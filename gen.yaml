@@ -10,7 +10,7 @@ generation:
   sdkFlattening: true
   singleTagPerOp: false
 python:
-  version: 0.1.0
+  version: 0.1.1
   author: Airbyte
   description: Python Client SDK for Airbyte API
   packageName: airbyte
