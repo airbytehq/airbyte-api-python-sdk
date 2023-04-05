@@ -11,10 +11,10 @@ pip install git+https://github.com/airbytehq/airbyte-api-python-sdk.git
 ## SDK Example Usage
 <!-- Start SDK Example Usage -->
 ```python
-import sdk
-from sdk.models import operations, shared
+import airbyte
+from airbyte.models import operations, shared
 
-s = sdk.SDK(
+s = airbyte.Airbyte(
     security=shared.Security(
         bearer_auth="Bearer YOUR_BEARER_TOKEN_HERE",
     ),
