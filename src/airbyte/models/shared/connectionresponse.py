@@ -15,8 +15,8 @@ class ConnectionResponse:
     r"""Provides details of a single connection."""
     
     connection_id: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('connectionId') }})  
+    data_residency: shared_geographyenum_enum.GeographyEnumEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('dataResidency') }})  
     destination_id: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('destinationId') }})  
-    geography: shared_geographyenum_enum.GeographyEnumEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('geography') }})  
     name: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('name') }})  
     schedule: shared_connectionscheduleresponse.ConnectionScheduleResponse = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('schedule') }})
     r"""schedule for when the the connection should run, per the schedule type"""  

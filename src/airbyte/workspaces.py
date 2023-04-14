@@ -34,7 +34,7 @@ class Workspaces:
         if data is None and form is None:
             raise Exception('request body is required')
         
-        client = self._security_client
+        client = self._client
         
         http_res = client.request('POST', url, data=data, files=form, headers=headers)
         content_type = http_res.headers.get('Content-Type')
@@ -50,6 +50,23 @@ class Workspaces:
 
         return res
 
+    def delete_workspace(self, request: operations.DeleteWorkspaceRequest) -> operations.DeleteWorkspaceResponse:
+        r"""Delete a Workspace"""
+        base_url = self._server_url
+        
+        url = utils.generate_url(operations.DeleteWorkspaceRequest, base_url, '/workspaces/{workspaceId}', request)
+        
+        
+        client = self._client
+        
+        http_res = client.request('DELETE', url)
+        content_type = http_res.headers.get('Content-Type')
+
+        res = operations.DeleteWorkspaceResponse(status_code=http_res.status_code, content_type=content_type, raw_response=http_res)
+        
+
+        return res
+
     def get_workspace(self, request: operations.GetWorkspaceRequest) -> operations.GetWorkspaceResponse:
         r"""Get Workspace details"""
         base_url = self._server_url
@@ -57,7 +74,7 @@ class Workspaces:
         url = utils.generate_url(operations.GetWorkspaceRequest, base_url, '/workspaces/{workspaceId}', request)
         
         
-        client = self._security_client
+        client = self._client
         
         http_res = client.request('GET', url)
         content_type = http_res.headers.get('Content-Type')
@@ -81,7 +98,7 @@ class Workspaces:
         
         query_params = utils.get_query_params(operations.ListWorkspacesRequest, request)
         
-        client = self._security_client
+        client = self._client
         
         http_res = client.request('GET', url, params=query_params)
         content_type = http_res.headers.get('Content-Type')

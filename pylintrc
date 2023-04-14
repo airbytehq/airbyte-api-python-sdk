@@ -179,8 +179,7 @@ good-names=i,
            k,
            ex,
            Run,
-           _,
-           id
+           _
 
 # Good variable names regexes, separated by a comma. If names match any regex,
 # they will always be accepted
@@ -438,6 +437,7 @@ disable=raw-checker-failed,
         using-constant-test,
         too-many-statements,
         cyclic-import,
+        too-many-nested-blocks
 
 # Enable the message, report, category or checker with the given id(s). You can
 # either give multiple identifier separated by comma (,) or put this option

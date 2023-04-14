@@ -4,17 +4,26 @@ from .canceljob import *
 from .createconnection import *
 from .createdestination import *
 from .createjob import *
+from .createorupdateworkspaceoauthcredentials import *
 from .createsource import *
 from .createworkspace import *
+from .deleteconnection import *
+from .deletedestination import *
+from .deletesource import *
+from .deleteworkspace import *
 from .getconnection import *
 from .getdestination import *
+from .gethealthcheck import *
 from .getjob import *
 from .getsource import *
+from .getstreamproperties import *
 from .getworkspace import *
+from .initiateoauth import *
 from .listconnections import *
 from .listdestinations import *
 from .listjobs import *
 from .listsources import *
 from .listworkspaces import *
+from .oauthcallback import *
 
-__all__ = ["CancelJobRequest","CancelJobResponse","CreateConnectionResponse","CreateDestinationResponse","CreateJobResponse","CreateSourceResponse","CreateWorkspaceResponse","GetConnectionRequest","GetConnectionResponse","GetDestinationRequest","GetDestinationResponse","GetJobRequest","GetJobResponse","GetSourceRequest","GetSourceResponse","GetWorkspaceRequest","GetWorkspaceResponse","ListConnectionsRequest","ListConnectionsResponse","ListDestinationsRequest","ListDestinationsResponse","ListJobsRequest","ListJobsResponse","ListSourcesRequest","ListSourcesResponse","ListWorkspacesRequest","ListWorkspacesResponse"]
+__all__ = ["CancelJobRequest","CancelJobResponse","CreateConnectionResponse","CreateDestinationResponse","CreateJobResponse","CreateOrUpdateWorkspaceOAuthCredentialsRequest","CreateOrUpdateWorkspaceOAuthCredentialsResponse","CreateSourceResponse","CreateWorkspaceResponse","DeleteConnectionRequest","DeleteConnectionResponse","DeleteDestinationRequest","DeleteDestinationResponse","DeleteSourceRequest","DeleteSourceResponse","DeleteWorkspaceRequest","DeleteWorkspaceResponse","GetConnectionRequest","GetConnectionResponse","GetDestinationRequest","GetDestinationResponse","GetHealthCheckResponse","GetJobRequest","GetJobResponse","GetSourceRequest","GetSourceResponse","GetStreamPropertiesRequest","GetStreamPropertiesResponse","GetWorkspaceRequest","GetWorkspaceResponse","InitiateOAuthResponse","ListConnectionsRequest","ListConnectionsResponse","ListDestinationsRequest","ListDestinationsResponse","ListJobsRequest","ListJobsResponse","ListSourcesRequest","ListSourcesResponse","ListWorkspacesRequest","ListWorkspacesResponse","OauthCallbackRequest","OauthCallbackResponse","GET_HEALTH_CHECK_SERVERS"]

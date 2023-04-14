@@ -34,7 +34,7 @@ class Connections:
         if data is None and form is None:
             raise Exception('request body is required')
         
-        client = self._security_client
+        client = self._client
         
         http_res = client.request('POST', url, data=data, files=form, headers=headers)
         content_type = http_res.headers.get('Content-Type')
@@ -50,6 +50,23 @@ class Connections:
 
         return res
 
+    def delete_connection(self, request: operations.DeleteConnectionRequest) -> operations.DeleteConnectionResponse:
+        r"""Delete a Connection"""
+        base_url = self._server_url
+        
+        url = utils.generate_url(operations.DeleteConnectionRequest, base_url, '/connections/{connectionId}', request)
+        
+        
+        client = self._client
+        
+        http_res = client.request('DELETE', url)
+        content_type = http_res.headers.get('Content-Type')
+
+        res = operations.DeleteConnectionResponse(status_code=http_res.status_code, content_type=content_type, raw_response=http_res)
+        
+
+        return res
+
     def get_connection(self, request: operations.GetConnectionRequest) -> operations.GetConnectionResponse:
         r"""Get Connection details"""
         base_url = self._server_url
@@ -57,7 +74,7 @@ class Connections:
         url = utils.generate_url(operations.GetConnectionRequest, base_url, '/connections/{connectionId}', request)
         
         
-        client = self._security_client
+        client = self._client
         
         http_res = client.request('GET', url)
         content_type = http_res.headers.get('Content-Type')
@@ -81,7 +98,7 @@ class Connections:
         
         query_params = utils.get_query_params(operations.ListConnectionsRequest, request)
         
-        client = self._security_client
+        client = self._client
         
         http_res = client.request('GET', url, params=query_params)
         content_type = http_res.headers.get('Content-Type')
