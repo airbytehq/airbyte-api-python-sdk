@@ -7,10 +7,10 @@ management:
 generation:
   telemetryEnabled: false
   sdkClassName: airbyte
-  sdkFlattening: false
+  sdkFlattening: true
   singleTagPerOp: false
 python:
-  version: 0.1.0
+  version: ""
   author: Airbyte
   description: Python Client SDK for Airbyte API
   packageName: airbyte
