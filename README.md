@@ -41,12 +41,12 @@ s = airbyte.Airbyte(
 req = shared.ConnectionCreateRequest(
     destination_id="89bd9d8d-69a6-474e-8f46-7cc8796ed151",
     geography="us",
-    name="perferendis",
+    name="Roberta Sipes",
     schedule=shared.ConnectionScheduleCreate(
-        cron_expression="ipsam",
+        cron_expression="odit",
         schedule_type="cron",
     ),
-    source_id="fc2ddf7c-c78c-4a1b-a928-fc816742cb73",
+    source_id="df7cc78c-a1ba-4928-bc81-6742cb739205",
 )
     
 res = s.connections.create_connection(req)
