@@ -31,8 +31,8 @@ class Airbyte:
     _security_client: requests_http.Session
     _server_url: str = SERVERS[0]
     _language: str = "python"
-    _sdk_version: str = "0.1.0"
-    _gen_version: str = "2.18.0"
+    _sdk_version: str = "0.0.1"
+    _gen_version: str = "2.18.1"
 
     def __init__(self,
                  server_url: str = None,
