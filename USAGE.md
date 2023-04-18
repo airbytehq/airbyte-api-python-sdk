@@ -3,7 +3,11 @@
 import airbyte
 from airbyte.models import operations, shared
 
-s = airbyte.Airbyte()
+s = airbyte.Airbyte(
+    security=shared.Security(
+        bearer_auth="Bearer YOUR_BEARER_TOKEN_HERE",
+    ),
+)
 
 
 req = shared.ConnectionCreateRequest(

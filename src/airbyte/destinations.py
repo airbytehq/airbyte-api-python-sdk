@@ -34,7 +34,7 @@ class Destinations:
         if req_content_type not in ('multipart/form-data', 'multipart/mixed'):
             headers['content-type'] = req_content_type
         
-        client = self._client
+        client = self._security_client
         
         http_res = client.request('POST', url, data=data, files=form, headers=headers)
         content_type = http_res.headers.get('Content-Type')
@@ -57,7 +57,7 @@ class Destinations:
         url = utils.generate_url(operations.DeleteDestinationRequest, base_url, '/destinations/{destinationId}', request)
         
         
-        client = self._client
+        client = self._security_client
         
         http_res = client.request('DELETE', url)
         content_type = http_res.headers.get('Content-Type')
@@ -74,7 +74,7 @@ class Destinations:
         url = utils.generate_url(operations.GetDestinationRequest, base_url, '/destinations/{destinationId}', request)
         
         
-        client = self._client
+        client = self._security_client
         
         http_res = client.request('GET', url)
         content_type = http_res.headers.get('Content-Type')
@@ -98,7 +98,7 @@ class Destinations:
         
         query_params = utils.get_query_params(operations.ListDestinationsRequest, request)
         
-        client = self._client
+        client = self._security_client
         
         http_res = client.request('GET', url, params=query_params)
         content_type = http_res.headers.get('Content-Type')

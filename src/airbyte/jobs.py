@@ -28,7 +28,7 @@ class Jobs:
         url = utils.generate_url(operations.CancelJobRequest, base_url, '/jobs/{jobId}', request)
         
         
-        client = self._client
+        client = self._security_client
         
         http_res = client.request('DELETE', url)
         content_type = http_res.headers.get('Content-Type')
@@ -57,7 +57,7 @@ class Jobs:
         if data is None and form is None:
             raise Exception('request body is required')
         
-        client = self._client
+        client = self._security_client
         
         http_res = client.request('POST', url, data=data, files=form, headers=headers)
         content_type = http_res.headers.get('Content-Type')
@@ -80,7 +80,7 @@ class Jobs:
         url = utils.generate_url(operations.GetJobRequest, base_url, '/jobs/{jobId}', request)
         
         
-        client = self._client
+        client = self._security_client
         
         http_res = client.request('GET', url)
         content_type = http_res.headers.get('Content-Type')
@@ -104,7 +104,7 @@ class Jobs:
         
         query_params = utils.get_query_params(operations.ListJobsRequest, request)
         
-        client = self._client
+        client = self._security_client
         
         http_res = client.request('GET', url, params=query_params)
         content_type = http_res.headers.get('Content-Type')

@@ -21,7 +21,7 @@ The Developer Portal UI can also be used to help build your integration by showi
 ## SDK Installation
 
 ```bash
-pip install git+https://github.com/airbytehq/airbyte-api-python-sdk.git
+pip install airbyte
 ```
 <!-- End SDK Installation -->
 
@@ -31,7 +31,11 @@ pip install git+https://github.com/airbytehq/airbyte-api-python-sdk.git
 import airbyte
 from airbyte.models import operations, shared
 
-s = airbyte.Airbyte()
+s = airbyte.Airbyte(
+    security=shared.Security(
+        bearer_auth="Bearer YOUR_BEARER_TOKEN_HERE",
+    ),
+)
 
 
 req = shared.ConnectionCreateRequest(
@@ -142,11 +146,6 @@ if res.connection_response is not None:
 * `get_job` - Get Job status and details
 * `list_jobs` - List Jobs by sync type
 
-### o_auth
-
-* `create_or_update_workspace_o_auth_credentials` - Initiate OAuth for a source.
-* `oauth_callback` - Receive OAuth callbacks
-
 ### sources
 
 * `create_source` - Create a source
@@ -165,10 +164,6 @@ if res.connection_response is not None:
 * `delete_workspace` - Delete a Workspace
 * `get_workspace` - Get Workspace details
 * `list_workspaces` - List workspaces
-
-### health
-
-* `get_health_check` - Health Check
 <!-- End SDK Available Operations -->
 
 ### Maturity

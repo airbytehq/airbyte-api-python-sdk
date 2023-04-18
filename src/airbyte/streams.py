@@ -29,7 +29,7 @@ class Streams:
         
         query_params = utils.get_query_params(operations.GetStreamPropertiesRequest, request)
         
-        client = self._client
+        client = self._security_client
         
         http_res = client.request('GET', url, params=query_params)
         content_type = http_res.headers.get('Content-Type')

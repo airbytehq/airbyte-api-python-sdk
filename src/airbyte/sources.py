@@ -34,7 +34,7 @@ class Sources:
         if req_content_type not in ('multipart/form-data', 'multipart/mixed'):
             headers['content-type'] = req_content_type
         
-        client = self._client
+        client = self._security_client
         
         http_res = client.request('POST', url, data=data, files=form, headers=headers)
         content_type = http_res.headers.get('Content-Type')
@@ -57,7 +57,7 @@ class Sources:
         url = utils.generate_url(operations.DeleteSourceRequest, base_url, '/sources/{sourceId}', request)
         
         
-        client = self._client
+        client = self._security_client
         
         http_res = client.request('DELETE', url)
         content_type = http_res.headers.get('Content-Type')
@@ -74,7 +74,7 @@ class Sources:
         url = utils.generate_url(operations.GetSourceRequest, base_url, '/sources/{sourceId}', request)
         
         
-        client = self._client
+        client = self._security_client
         
         http_res = client.request('GET', url)
         content_type = http_res.headers.get('Content-Type')
@@ -109,13 +109,19 @@ class Sources:
         if data is None and form is None:
             raise Exception('request body is required')
         
-        client = self._client
+        client = self._security_client
         
         http_res = client.request('POST', url, data=data, files=form, headers=headers)
         content_type = http_res.headers.get('Content-Type')
 
         res = operations.InitiateOAuthResponse(status_code=http_res.status_code, content_type=content_type, raw_response=http_res)
         
+        if http_res.status_code == 200:
+            if utils.match_content_type(content_type, 'application/json'):
+                out = utils.unmarshal_json(http_res.text, Optional[shared.InitiateOauthResponse])
+                res.initiate_oauth_response = out
+        elif http_res.status_code in [400, 403]:
+            pass
 
         return res
 
@@ -127,7 +133,7 @@ class Sources:
         
         query_params = utils.get_query_params(operations.ListSourcesRequest, request)
         
-        client = self._client
+        client = self._security_client
         
         http_res = client.request('GET', url, params=query_params)
         content_type = http_res.headers.get('Content-Type')
