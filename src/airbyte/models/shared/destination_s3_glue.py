@@ -32,6 +32,11 @@ class DestinationS3GlueFormatJSONLinesNewlineDelimitedJSONCompressionNoCompressi
     
     compression_type: Optional[DestinationS3GlueFormatJSONLinesNewlineDelimitedJSONCompressionNoCompressionCompressionTypeEnum] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('compression_type'), 'exclude': lambda f: f is None }})  
     
+class DestinationS3GlueFormatJSONLinesNewlineDelimitedJSONFlatteningEnum(str, Enum):
+    r"""Whether the input json data should be normalized (flattened) in the output JSON Lines. Please refer to docs for details."""
+    NO_FLATTENING = 'No flattening'
+    ROOT_LEVEL_FLATTENING = 'Root level flattening'
+
 class DestinationS3GlueFormatJSONLinesNewlineDelimitedJSONFormatTypeEnum(str, Enum):
     JSONL = 'JSONL'
 
@@ -44,8 +49,8 @@ class DestinationS3GlueFormatJSONLinesNewlineDelimitedJSON:
     format_type: DestinationS3GlueFormatJSONLinesNewlineDelimitedJSONFormatTypeEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('format_type') }})  
     compression: Optional[Any] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('compression'), 'exclude': lambda f: f is None }})
     r"""Whether the output files should be compressed. If compression is selected, the output filename will have an extra extension (GZIP: \\".jsonl.gz\\")."""  
-    flatten_data: Optional[bool] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('flatten_data'), 'exclude': lambda f: f is None }})
-    r"""If true data will be flattened and won't be nested in the _airbyte_data field"""  
+    flattening: Optional[DestinationS3GlueFormatJSONLinesNewlineDelimitedJSONFlatteningEnum] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('flattening'), 'exclude': lambda f: f is None }})
+    r"""Whether the input json data should be normalized (flattened) in the output JSON Lines. Please refer to docs for details."""  
     
 class DestinationS3GlueSerializationLibraryEnum(str, Enum):
     r"""The library that your query engine will use for reading and writing data in your lake."""

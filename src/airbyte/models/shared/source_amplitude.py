@@ -12,24 +12,6 @@ class SourceAmplitudeDataRegionEnum(str, Enum):
     STANDARD_SERVER = 'Standard Server'
     EU_RESIDENCY_SERVER = 'EU Residency Server'
 
-class SourceAmplitudeEventStreamTimeIntervalEventsTimeIntervalSizeUnitEnum(str, Enum):
-    r"""Amplitude event stream's interval size unit"""
-    DAYS = 'days'
-    HOURS = 'hours'
-    WEEKS = 'weeks'
-    MONTHS = 'months'
-
-
-@dataclass_json(undefined=Undefined.EXCLUDE)
-@dataclasses.dataclass
-class SourceAmplitudeEventStreamTimeInterval:
-    r"""Amplitude event stream time interval"""
-    
-    size: int = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('size') }})
-    r"""Amplitude event stream's interval size unit"""  
-    size_unit: SourceAmplitudeEventStreamTimeIntervalEventsTimeIntervalSizeUnitEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('size_unit') }})
-    r"""Amplitude event stream's interval size unit"""  
-    
 class SourceAmplitudeAmplitudeEnum(str, Enum):
     AMPLITUDE = 'amplitude'
 
@@ -48,6 +30,6 @@ class SourceAmplitude:
     r"""UTC date and time in the format 2021-01-25T00:00:00Z. Any data before this date will not be replicated."""  
     data_region: Optional[SourceAmplitudeDataRegionEnum] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('data_region'), 'exclude': lambda f: f is None }})
     r"""Amplitude data region server"""  
-    event_time_interval: Optional[SourceAmplitudeEventStreamTimeInterval] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('event_time_interval'), 'exclude': lambda f: f is None }})
-    r"""Amplitude event stream time interval"""  
+    request_time_range: Optional[int] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('request_time_range'), 'exclude': lambda f: f is None }})
+    r"""According to <a href=\\"https://www.docs.developers.amplitude.com/analytics/apis/export-api/#considerations\\">Considerations</a> too big time range in request can cause a timeout error. In this case, set shorter time interval in hours."""  
     

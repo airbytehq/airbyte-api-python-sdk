@@ -43,12 +43,6 @@ class SourceTiktokMarketingCredentialsOAuth20:
     r"""The Advertiser ID to filter reports and streams. Let this empty to retrieve all."""  
     auth_type: Optional[SourceTiktokMarketingCredentialsOAuth20AuthTypeEnum] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_type'), 'exclude': lambda f: f is None }})  
     
-class SourceTiktokMarketingReportAggregationGranularityEnum(str, Enum):
-    r"""The granularity used for aggregating performance data in reports. See <a href=\\"https://docs.airbyte.com/integrations/sources/tiktok-marketing/#report-aggregation\\">the docs</a>."""
-    LIFETIME = 'LIFETIME'
-    DAY = 'DAY'
-    HOUR = 'HOUR'
-
 class SourceTiktokMarketingTiktokMarketingEnum(str, Enum):
     TIKTOK_MARKETING = 'tiktok-marketing'
 
@@ -59,12 +53,12 @@ class SourceTiktokMarketing:
     r"""The values required to configure the source."""
     
     source_type: SourceTiktokMarketingTiktokMarketingEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})  
+    attribution_window: Optional[int] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('attribution_window'), 'exclude': lambda f: f is None }})
+    r"""The attribution window in days."""  
     credentials: Optional[Any] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credentials'), 'exclude': lambda f: f is None }})
     r"""Authentication method"""  
     end_date: Optional[date] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('end_date'), 'encoder': utils.dateisoformat(True), 'decoder': utils.datefromisoformat, 'mm_field': fields.DateTime(format='iso'), 'exclude': lambda f: f is None }})
     r"""The date until which you'd like to replicate data for all incremental streams, in the format YYYY-MM-DD. All data generated between start_date and this date will be replicated. Not setting this option will result in always syncing the data till the current date."""  
-    report_granularity: Optional[SourceTiktokMarketingReportAggregationGranularityEnum] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('report_granularity'), 'exclude': lambda f: f is None }})
-    r"""The granularity used for aggregating performance data in reports. See <a href=\\"https://docs.airbyte.com/integrations/sources/tiktok-marketing/#report-aggregation\\">the docs</a>."""  
     start_date: Optional[date] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('start_date'), 'encoder': utils.dateisoformat(True), 'decoder': utils.datefromisoformat, 'mm_field': fields.DateTime(format='iso'), 'exclude': lambda f: f is None }})
     r"""The Start Date in format: YYYY-MM-DD. Any data before this date will not be replicated. If this parameter is not set, all data will be replicated."""  
     

@@ -21,6 +21,32 @@ class Workspaces:
         self._sdk_version = sdk_version
         self._gen_version = gen_version
         
+    def create_or_update_workspace_o_auth_credentials(self, request: operations.CreateOrUpdateWorkspaceOAuthCredentialsRequest) -> operations.CreateOrUpdateWorkspaceOAuthCredentialsResponse:
+        r"""Create OAuth override credentials for a workspace and source type.
+        Create/update a set of OAuth credentials to override the Airbyte-provided OAuth credentials used for source/destination OAuth.
+        In order to determine what the credential configuration needs to be, please see the connector specification of the relevant  source/destination.
+        """
+        base_url = self._server_url
+        
+        url = utils.generate_url(operations.CreateOrUpdateWorkspaceOAuthCredentialsRequest, base_url, '/workspaces/{workspaceId}/oauthCredentials', request)
+        
+        headers = {}
+        req_content_type, data, form = utils.serialize_request_body(request, "workspace_o_auth_credentials_request", 'json')
+        if req_content_type not in ('multipart/form-data', 'multipart/mixed'):
+            headers['content-type'] = req_content_type
+        if data is None and form is None:
+            raise Exception('request body is required')
+        
+        client = self._security_client
+        
+        http_res = client.request('PUT', url, data=data, files=form, headers=headers)
+        content_type = http_res.headers.get('Content-Type')
+
+        res = operations.CreateOrUpdateWorkspaceOAuthCredentialsResponse(status_code=http_res.status_code, content_type=content_type, raw_response=http_res)
+        
+
+        return res
+
     def create_workspace(self, request: shared.WorkspaceCreateRequest) -> operations.CreateWorkspaceResponse:
         r"""Create a workspace"""
         base_url = self._server_url

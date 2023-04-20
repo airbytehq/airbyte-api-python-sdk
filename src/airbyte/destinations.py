@@ -50,6 +50,23 @@ class Destinations:
 
         return res
 
+    def delete_destination(self, request: operations.DeleteDestinationRequest) -> operations.DeleteDestinationResponse:
+        r"""Delete a Destination"""
+        base_url = self._server_url
+        
+        url = utils.generate_url(operations.DeleteDestinationRequest, base_url, '/destinations/{destinationId}', request)
+        
+        
+        client = self._security_client
+        
+        http_res = client.request('DELETE', url)
+        content_type = http_res.headers.get('Content-Type')
+
+        res = operations.DeleteDestinationResponse(status_code=http_res.status_code, content_type=content_type, raw_response=http_res)
+        
+
+        return res
+
     def get_destination(self, request: operations.GetDestinationRequest) -> operations.GetDestinationResponse:
         r"""Get Destination details"""
         base_url = self._server_url

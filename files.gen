@@ -2,6 +2,7 @@ src/airbyte/connections.py
 src/airbyte/destinations.py
 src/airbyte/jobs.py
 src/airbyte/sources.py
+src/airbyte/streams.py
 src/airbyte/workspaces.py
 src/airbyte/sdk.py
 pylintrc
@@ -12,9 +13,11 @@ src/airbyte/utils/__init__.py
 src/airbyte/utils/retries.py
 src/airbyte/utils/utils.py
 src/airbyte/models/operations/createconnection.py
+src/airbyte/models/operations/deleteconnection.py
 src/airbyte/models/operations/getconnection.py
 src/airbyte/models/operations/listconnections.py
 src/airbyte/models/operations/createdestination.py
+src/airbyte/models/operations/deletedestination.py
 src/airbyte/models/operations/getdestination.py
 src/airbyte/models/operations/listdestinations.py
 src/airbyte/models/operations/canceljob.py
@@ -22,8 +25,12 @@ src/airbyte/models/operations/createjob.py
 src/airbyte/models/operations/getjob.py
 src/airbyte/models/operations/listjobs.py
 src/airbyte/models/operations/createsource.py
+src/airbyte/models/operations/deletesource.py
 src/airbyte/models/operations/getsource.py
+src/airbyte/models/operations/initiateoauth.py
 src/airbyte/models/operations/listsources.py
+src/airbyte/models/operations/getstreamproperties.py
+src/airbyte/models/operations/createorupdateworkspaceoauthcredentials.py
 src/airbyte/models/operations/createworkspace.py
 src/airbyte/models/operations/getworkspace.py
 src/airbyte/models/operations/listworkspaces.py
@@ -36,6 +43,9 @@ src/airbyte/models/shared/geographyenum_enum.py
 src/airbyte/models/shared/connectioncreaterequest.py
 src/airbyte/models/shared/connectionschedulecreate.py
 src/airbyte/models/shared/scheduletypeenum_enum.py
+src/airbyte/models/shared/streamconfigurations.py
+src/airbyte/models/shared/streamconfiguration.py
+src/airbyte/models/shared/connectionsyncmodeenum_enum.py
 src/airbyte/models/shared/connectionsresponse.py
 src/airbyte/models/shared/destinationresponse.py
 src/airbyte/models/shared/destinationcreaterequest.py
@@ -95,6 +105,7 @@ src/airbyte/models/shared/source_apify_dataset.py
 src/airbyte/models/shared/source_asana.py
 src/airbyte/models/shared/source_auth0.py
 src/airbyte/models/shared/source_aws_cloudtrail.py
+src/airbyte/models/shared/source_azure_blob_storage.py
 src/airbyte/models/shared/source_azure_table.py
 src/airbyte/models/shared/source_bamboo_hr.py
 src/airbyte/models/shared/source_bigcommerce.py
@@ -206,6 +217,7 @@ src/airbyte/models/shared/source_public_apis.py
 src/airbyte/models/shared/source_punk_api.py
 src/airbyte/models/shared/source_pypi.py
 src/airbyte/models/shared/source_qualaroo.py
+src/airbyte/models/shared/source_quickbooks.py
 src/airbyte/models/shared/source_railz.py
 src/airbyte/models/shared/source_recharge.py
 src/airbyte/models/shared/source_recreation.py
@@ -272,7 +284,10 @@ src/airbyte/models/shared/source_zenloop.py
 src/airbyte/models/shared/source_zoho_crm.py
 src/airbyte/models/shared/source_zoom.py
 src/airbyte/models/shared/source_zuora.py
+src/airbyte/models/shared/initiateoauthrequest.py
 src/airbyte/models/shared/sourcesresponse.py
+src/airbyte/models/shared/streamproperties.py
+src/airbyte/models/shared/workspaceoauthcredentialsrequest.py
 src/airbyte/models/shared/workspaceresponse.py
 src/airbyte/models/shared/workspacecreaterequest.py
 src/airbyte/models/shared/workspacesresponse.py

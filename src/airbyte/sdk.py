@@ -6,6 +6,7 @@ from .connections import Connections
 from .destinations import Destinations
 from .jobs import Jobs
 from .sources import Sources
+from .streams import Streams
 from .workspaces import Workspaces
 from airbyte.models import shared
 
@@ -20,14 +21,15 @@ class Airbyte:
     destinations: Destinations
     jobs: Jobs
     sources: Sources
+    streams: Streams
     workspaces: Workspaces
 
     _client: requests_http.Session
     _security_client: requests_http.Session
     _server_url: str = SERVERS[0]
     _language: str = "python"
-    _sdk_version: str = "0.2.0"
-    _gen_version: str = "2.18.0"
+    _sdk_version: str = "0.2.1"
+    _gen_version: str = "2.18.2"
 
     def __init__(self,
                  security: shared.Security = None,
@@ -92,6 +94,15 @@ class Airbyte:
         )
         
         self.sources = Sources(
+            self._client,
+            self._security_client,
+            self._server_url,
+            self._language,
+            self._sdk_version,
+            self._gen_version
+        )
+        
+        self.streams = Streams(
             self._client,
             self._security_client,
             self._server_url,
