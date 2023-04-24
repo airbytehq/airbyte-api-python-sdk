@@ -30,8 +30,8 @@ src/airbyte/models/operations/getsource.py
 src/airbyte/models/operations/initiateoauth.py
 src/airbyte/models/operations/listsources.py
 src/airbyte/models/operations/getstreamproperties.py
+src/airbyte/models/operations/createorupdateworkspaceoauthcredentials.py
 src/airbyte/models/operations/createworkspace.py
-src/airbyte/models/operations/deleteworkspace.py
 src/airbyte/models/operations/getworkspace.py
 src/airbyte/models/operations/listworkspaces.py
 src/airbyte/models/operations/__init__.py
@@ -284,10 +284,10 @@ src/airbyte/models/shared/source_zenloop.py
 src/airbyte/models/shared/source_zoho_crm.py
 src/airbyte/models/shared/source_zoom.py
 src/airbyte/models/shared/source_zuora.py
-src/airbyte/models/shared/initiateoauthresponse.py
 src/airbyte/models/shared/initiateoauthrequest.py
 src/airbyte/models/shared/sourcesresponse.py
 src/airbyte/models/shared/streamproperties.py
+src/airbyte/models/shared/workspaceoauthcredentialsrequest.py
 src/airbyte/models/shared/workspaceresponse.py
 src/airbyte/models/shared/workspacecreaterequest.py
 src/airbyte/models/shared/workspacesresponse.py

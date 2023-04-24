@@ -33,6 +33,7 @@ class Sources:
         req_content_type, data, form = utils.serialize_request_body(request, "request", 'json')
         if req_content_type not in ('multipart/form-data', 'multipart/mixed'):
             headers['content-type'] = req_content_type
+        headers['user-agent'] = f'speakeasy-sdk/{self._language} {self._sdk_version} {self._gen_version}'
         
         client = self._security_client
         
@@ -56,10 +57,12 @@ class Sources:
         
         url = utils.generate_url(operations.DeleteSourceRequest, base_url, '/sources/{sourceId}', request)
         
+        headers = {}
+        headers['user-agent'] = f'speakeasy-sdk/{self._language} {self._sdk_version} {self._gen_version}'
         
         client = self._security_client
         
-        http_res = client.request('DELETE', url)
+        http_res = client.request('DELETE', url, headers=headers)
         content_type = http_res.headers.get('Content-Type')
 
         res = operations.DeleteSourceResponse(status_code=http_res.status_code, content_type=content_type, raw_response=http_res)
@@ -73,10 +76,12 @@ class Sources:
         
         url = utils.generate_url(operations.GetSourceRequest, base_url, '/sources/{sourceId}', request)
         
+        headers = {}
+        headers['user-agent'] = f'speakeasy-sdk/{self._language} {self._sdk_version} {self._gen_version}'
         
         client = self._security_client
         
-        http_res = client.request('GET', url)
+        http_res = client.request('GET', url, headers=headers)
         content_type = http_res.headers.get('Content-Type')
 
         res = operations.GetSourceResponse(status_code=http_res.status_code, content_type=content_type, raw_response=http_res)
@@ -91,7 +96,7 @@ class Sources:
         return res
 
     def initiate_o_auth(self, request: shared.InitiateOauthRequest) -> operations.InitiateOAuthResponse:
-        r"""Initiate OAuth for a source.
+        r"""Initiate OAuth for a source
         Given a source ID, workspace ID, and redirect URL, initiates OAuth for the source.
         
         This returns a fully formed URL for performing user authentication against the relevant source identity provider (IdP). Once authentication has been completed, the IdP will redirect to an Airbyte endpoint which will save the access and refresh tokens off as a secret and return the secret ID to the redirect URL specified in the `secret_id` query string parameter.
@@ -108,6 +113,7 @@ class Sources:
             headers['content-type'] = req_content_type
         if data is None and form is None:
             raise Exception('request body is required')
+        headers['user-agent'] = f'speakeasy-sdk/{self._language} {self._sdk_version} {self._gen_version}'
         
         client = self._security_client
         
@@ -116,12 +122,6 @@ class Sources:
 
         res = operations.InitiateOAuthResponse(status_code=http_res.status_code, content_type=content_type, raw_response=http_res)
         
-        if http_res.status_code == 200:
-            if utils.match_content_type(content_type, 'application/json'):
-                out = utils.unmarshal_json(http_res.text, Optional[shared.InitiateOauthResponse])
-                res.initiate_oauth_response = out
-        elif http_res.status_code in [400, 403]:
-            pass
 
         return res
 
@@ -131,11 +131,13 @@ class Sources:
         
         url = base_url.removesuffix('/') + '/sources'
         
+        headers = {}
         query_params = utils.get_query_params(operations.ListSourcesRequest, request)
+        headers['user-agent'] = f'speakeasy-sdk/{self._language} {self._sdk_version} {self._gen_version}'
         
         client = self._security_client
         
-        http_res = client.request('GET', url, params=query_params)
+        http_res = client.request('GET', url, params=query_params, headers=headers)
         content_type = http_res.headers.get('Content-Type')
 
         res = operations.ListSourcesResponse(status_code=http_res.status_code, content_type=content_type, raw_response=http_res)

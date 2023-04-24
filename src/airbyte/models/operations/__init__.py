@@ -4,12 +4,12 @@ from .canceljob import *
 from .createconnection import *
 from .createdestination import *
 from .createjob import *
+from .createorupdateworkspaceoauthcredentials import *
 from .createsource import *
 from .createworkspace import *
 from .deleteconnection import *
 from .deletedestination import *
 from .deletesource import *
-from .deleteworkspace import *
 from .getconnection import *
 from .getdestination import *
 from .getjob import *
@@ -23,4 +23,4 @@ from .listjobs import *
 from .listsources import *
 from .listworkspaces import *
 
-__all__ = ["CancelJobRequest","CancelJobResponse","CreateConnectionResponse","CreateDestinationResponse","CreateJobResponse","CreateSourceResponse","CreateWorkspaceResponse","DeleteConnectionRequest","DeleteConnectionResponse","DeleteDestinationRequest","DeleteDestinationResponse","DeleteSourceRequest","DeleteSourceResponse","DeleteWorkspaceRequest","DeleteWorkspaceResponse","GetConnectionRequest","GetConnectionResponse","GetDestinationRequest","GetDestinationResponse","GetJobRequest","GetJobResponse","GetSourceRequest","GetSourceResponse","GetStreamPropertiesRequest","GetStreamPropertiesResponse","GetWorkspaceRequest","GetWorkspaceResponse","InitiateOAuthResponse","ListConnectionsRequest","ListConnectionsResponse","ListDestinationsRequest","ListDestinationsResponse","ListJobsRequest","ListJobsResponse","ListSourcesRequest","ListSourcesResponse","ListWorkspacesRequest","ListWorkspacesResponse"]
+__all__ = ["CancelJobRequest","CancelJobResponse","CreateConnectionResponse","CreateDestinationResponse","CreateJobResponse","CreateOrUpdateWorkspaceOAuthCredentialsRequest","CreateOrUpdateWorkspaceOAuthCredentialsResponse","CreateSourceResponse","CreateWorkspaceResponse","DeleteConnectionRequest","DeleteConnectionResponse","DeleteDestinationRequest","DeleteDestinationResponse","DeleteSourceRequest","DeleteSourceResponse","GetConnectionRequest","GetConnectionResponse","GetDestinationRequest","GetDestinationResponse","GetJobRequest","GetJobResponse","GetSourceRequest","GetSourceResponse","GetStreamPropertiesRequest","GetStreamPropertiesResponse","GetWorkspaceRequest","GetWorkspaceResponse","InitiateOAuthResponse","ListConnectionsRequest","ListConnectionsResponse","ListDestinationsRequest","ListDestinationsResponse","ListJobsRequest","ListJobsResponse","ListSourcesRequest","ListSourcesResponse","ListWorkspacesRequest","ListWorkspacesResponse"]

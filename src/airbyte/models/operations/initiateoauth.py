@@ -3,7 +3,6 @@
 from __future__ import annotations
 import dataclasses
 import requests as requests_http
-from ..shared import initiateoauthresponse as shared_initiateoauthresponse
 from typing import Optional
 
 
@@ -12,7 +11,5 @@ class InitiateOAuthResponse:
     
     content_type: str = dataclasses.field()  
     status_code: int = dataclasses.field()  
-    initiate_oauth_response: Optional[shared_initiateoauthresponse.InitiateOauthResponse] = dataclasses.field(default=None)
-    r"""The result of creating an OAuth link"""  
     raw_response: Optional[requests_http.Response] = dataclasses.field(default=None)  
     
