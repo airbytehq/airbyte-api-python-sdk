@@ -5,7 +5,7 @@ management:
   speakeasyVersion: 1.20.2
   generationVersion: 2.18.2
 generation:
-  telemetryEnabled: false
+  telemetryEnabled: true
   sdkClassName: airbyte
   sdkFlattening: true
   singleTagPerOp: false
@@ -13,4 +13,4 @@ python:
   version: ""
   author: Airbyte
   description: Python Client SDK for Airbyte API
-  packageName: airbyte
+  packageName: airbyte-api
