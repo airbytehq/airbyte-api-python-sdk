@@ -27,10 +27,12 @@ class Jobs:
         
         url = utils.generate_url(operations.CancelJobRequest, base_url, '/jobs/{jobId}', request)
         
+        headers = {}
+        headers['user-agent'] = f'speakeasy-sdk/{self._language} {self._sdk_version} {self._gen_version}'
         
         client = self._security_client
         
-        http_res = client.request('DELETE', url)
+        http_res = client.request('DELETE', url, headers=headers)
         content_type = http_res.headers.get('Content-Type')
 
         res = operations.CancelJobResponse(status_code=http_res.status_code, content_type=content_type, raw_response=http_res)
@@ -56,6 +58,7 @@ class Jobs:
             headers['content-type'] = req_content_type
         if data is None and form is None:
             raise Exception('request body is required')
+        headers['user-agent'] = f'speakeasy-sdk/{self._language} {self._sdk_version} {self._gen_version}'
         
         client = self._security_client
         
@@ -79,10 +82,12 @@ class Jobs:
         
         url = utils.generate_url(operations.GetJobRequest, base_url, '/jobs/{jobId}', request)
         
+        headers = {}
+        headers['user-agent'] = f'speakeasy-sdk/{self._language} {self._sdk_version} {self._gen_version}'
         
         client = self._security_client
         
-        http_res = client.request('GET', url)
+        http_res = client.request('GET', url, headers=headers)
         content_type = http_res.headers.get('Content-Type')
 
         res = operations.GetJobResponse(status_code=http_res.status_code, content_type=content_type, raw_response=http_res)
@@ -102,11 +107,13 @@ class Jobs:
         
         url = base_url.removesuffix('/') + '/jobs'
         
+        headers = {}
         query_params = utils.get_query_params(operations.ListJobsRequest, request)
+        headers['user-agent'] = f'speakeasy-sdk/{self._language} {self._sdk_version} {self._gen_version}'
         
         client = self._security_client
         
-        http_res = client.request('GET', url, params=query_params)
+        http_res = client.request('GET', url, params=query_params, headers=headers)
         content_type = http_res.headers.get('Content-Type')
 
         res = operations.ListJobsResponse(status_code=http_res.status_code, content_type=content_type, raw_response=http_res)

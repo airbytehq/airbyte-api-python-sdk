@@ -2,9 +2,12 @@
 
 from __future__ import annotations
 import dataclasses
+import dateutil.parser
 from airbyte import utils
 from dataclasses_json import Undefined, dataclass_json
+from datetime import datetime
 from enum import Enum
+from marshmallow import fields
 from typing import Any, Optional
 
 class SourceS3FormatJsonlFiletypeEnum(str, Enum):
@@ -105,6 +108,8 @@ class SourceS3S3AmazonWebServices:
     r"""Endpoint to an S3 compatible service. Leave empty to use AWS."""  
     path_prefix: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('path_prefix'), 'exclude': lambda f: f is None }})
     r"""By providing a path-like prefix (e.g. myFolder/thisTable/) under which all the relevant files sit, we can optimize finding these in S3. This is optional but recommended if your bucket contains many folders/files which you don't need to replicate."""  
+    start_date: Optional[datetime] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('start_date'), 'encoder': utils.datetimeisoformat(True), 'decoder': dateutil.parser.isoparse, 'mm_field': fields.DateTime(format='iso'), 'exclude': lambda f: f is None }})
+    r"""UTC date and time in the format 2017-01-25T00:00:00Z. Any file modified before this date will not be replicated."""  
     
 class SourceS3S3Enum(str, Enum):
     S3 = 's3'

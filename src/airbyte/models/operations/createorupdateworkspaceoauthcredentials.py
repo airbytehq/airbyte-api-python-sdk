@@ -3,17 +3,19 @@
 from __future__ import annotations
 import dataclasses
 import requests as requests_http
+from ..shared import workspaceoauthcredentialsrequest as shared_workspaceoauthcredentialsrequest
 from typing import Optional
 
 
 @dataclasses.dataclass
-class DeleteWorkspaceRequest:
+class CreateOrUpdateWorkspaceOAuthCredentialsRequest:
     
     workspace_id: str = dataclasses.field(metadata={'path_param': { 'field_name': 'workspaceId', 'style': 'simple', 'explode': False }})  
+    workspace_o_auth_credentials_request: shared_workspaceoauthcredentialsrequest.WorkspaceOAuthCredentialsRequest = dataclasses.field(metadata={'request': { 'media_type': 'application/json' }})  
     
 
 @dataclasses.dataclass
-class DeleteWorkspaceResponse:
+class CreateOrUpdateWorkspaceOAuthCredentialsResponse:
     
     content_type: str = dataclasses.field()  
     status_code: int = dataclasses.field()  

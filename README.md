@@ -21,7 +21,7 @@ The Developer Portal UI can also be used to help build your integration by showi
 ## SDK Installation
 
 ```bash
-pip install airbyte
+pip install airbyte-api
 ```
 <!-- End SDK Installation -->
 
@@ -151,7 +151,7 @@ if res.connection_response is not None:
 * `create_source` - Create a source
 * `delete_source` - Delete a Source
 * `get_source` - Get Source details
-* `initiate_o_auth` - Initiate OAuth for a source.
+* `initiate_o_auth` - Initiate OAuth for a source
 * `list_sources` - List sources
 
 ### streams
@@ -160,8 +160,8 @@ if res.connection_response is not None:
 
 ### workspaces
 
+* `create_or_update_workspace_o_auth_credentials` - Create OAuth override credentials for a workspace and source type.
 * `create_workspace` - Create a workspace
-* `delete_workspace` - Delete a Workspace
 * `get_workspace` - Get Workspace details
 * `list_workspaces` - List workspaces
 <!-- End SDK Available Operations -->
