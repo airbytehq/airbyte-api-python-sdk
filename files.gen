@@ -293,4 +293,11 @@ src/airbyte/models/shared/workspacecreaterequest.py
 src/airbyte/models/shared/workspacesresponse.py
 src/airbyte/models/shared/security.py
 src/airbyte/models/shared/__init__.py
+docs/airbyte/README.md
+docs/connections/README.md
+docs/destinations/README.md
+docs/jobs/README.md
+docs/sources/README.md
+docs/streams/README.md
+docs/workspaces/README.md
 USAGE.md

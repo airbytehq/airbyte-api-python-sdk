@@ -25,7 +25,7 @@ pip install airbyte-api
 <!-- Start SDK Example Usage -->
 ```python
 import airbyte
-from airbyte.models import operations, shared
+from airbyte.models import shared
 
 s = airbyte.Airbyte(
     security=shared.Security(
@@ -109,7 +109,7 @@ req = shared.ConnectionCreateRequest(
     ),
     source_id="c5955907-aff1-4a3a-afa9-467739251aa5",
 )
-    
+
 res = s.connections.create_connection(req)
 
 if res.connection_response is not None:
@@ -121,45 +121,45 @@ if res.connection_response is not None:
 ## Available Resources and Operations
 
 
-### connections
+### [connections](docs/connections/README.md)
 
-* `create_connection` - Create a connection
-* `delete_connection` - Delete a Connection
-* `get_connection` - Get Connection details
-* `list_connections` - List connections
+* [create_connection](docs/connections/README.md#create_connection) - Create a connection
+* [delete_connection](docs/connections/README.md#delete_connection) - Delete a Connection
+* [get_connection](docs/connections/README.md#get_connection) - Get Connection details
+* [list_connections](docs/connections/README.md#list_connections) - List connections
 
-### destinations
+### [destinations](docs/destinations/README.md)
 
-* `create_destination` - Create a destination
-* `delete_destination` - Delete a Destination
-* `get_destination` - Get Destination details
-* `list_destinations` - List destinations
+* [create_destination](docs/destinations/README.md#create_destination) - Create a destination
+* [delete_destination](docs/destinations/README.md#delete_destination) - Delete a Destination
+* [get_destination](docs/destinations/README.md#get_destination) - Get Destination details
+* [list_destinations](docs/destinations/README.md#list_destinations) - List destinations
 
-### jobs
+### [jobs](docs/jobs/README.md)
 
-* `cancel_job` - Cancel a running Job
-* `create_job` - Trigger a sync or reset job of a connection
-* `get_job` - Get Job status and details
-* `list_jobs` - List Jobs by sync type
+* [cancel_job](docs/jobs/README.md#cancel_job) - Cancel a running Job
+* [create_job](docs/jobs/README.md#create_job) - Trigger a sync or reset job of a connection
+* [get_job](docs/jobs/README.md#get_job) - Get Job status and details
+* [list_jobs](docs/jobs/README.md#list_jobs) - List Jobs by sync type
 
-### sources
+### [sources](docs/sources/README.md)
 
-* `create_source` - Create a source
-* `delete_source` - Delete a Source
-* `get_source` - Get Source details
-* `initiate_o_auth` - Initiate OAuth for a source
-* `list_sources` - List sources
+* [create_source](docs/sources/README.md#create_source) - Create a source
+* [delete_source](docs/sources/README.md#delete_source) - Delete a Source
+* [get_source](docs/sources/README.md#get_source) - Get Source details
+* [initiate_o_auth](docs/sources/README.md#initiate_o_auth) - Initiate OAuth for a source
+* [list_sources](docs/sources/README.md#list_sources) - List sources
 
-### streams
+### [streams](docs/streams/README.md)
 
-* `get_stream_properties` - Get stream properties
+* [get_stream_properties](docs/streams/README.md#get_stream_properties) - Get stream properties
 
-### workspaces
+### [workspaces](docs/workspaces/README.md)
 
-* `create_or_update_workspace_o_auth_credentials` - Create OAuth override credentials for a workspace and source type.
-* `create_workspace` - Create a workspace
-* `get_workspace` - Get Workspace details
-* `list_workspaces` - List workspaces
+* [create_or_update_workspace_o_auth_credentials](docs/workspaces/README.md#create_or_update_workspace_o_auth_credentials) - Create OAuth override credentials for a workspace and source type.
+* [create_workspace](docs/workspaces/README.md#create_workspace) - Create a workspace
+* [get_workspace](docs/workspaces/README.md#get_workspace) - Get Workspace details
+* [list_workspaces](docs/workspaces/README.md#list_workspaces) - List workspaces
 <!-- End SDK Available Operations -->
 
 ### Maturity
