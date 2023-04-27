@@ -1,7 +1,7 @@
 <!-- Start SDK Example Usage -->
 ```python
 import airbyte
-from airbyte.models import operations, shared
+from airbyte.models import shared
 
 s = airbyte.Airbyte(
     security=shared.Security(
@@ -85,7 +85,7 @@ req = shared.ConnectionCreateRequest(
     ),
     source_id="c5955907-aff1-4a3a-afa9-467739251aa5",
 )
-    
+
 res = s.connections.create_connection(req)
 
 if res.connection_response is not None:
