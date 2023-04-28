@@ -16,6 +16,8 @@ class SourceYoutubeAnalyticsYoutubeAnalyticsEnum(str, Enum):
 class SourceYoutubeAnalytics:
     r"""The values required to configure the source."""
     
-    credentials: dict[str, Any] = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credentials') }})  
-    source_type: SourceYoutubeAnalyticsYoutubeAnalyticsEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})  
+    credentials: dict[str, Any] = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credentials') }})
+
+    source_type: SourceYoutubeAnalyticsYoutubeAnalyticsEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
+
     

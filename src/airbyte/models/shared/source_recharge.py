@@ -19,8 +19,11 @@ class SourceRecharge:
     r"""The values required to configure the source."""
     
     access_token: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('access_token') }})
-    r"""The value of the Access Token generated. See the <a href=\\"https://docs.airbyte.com/integrations/sources/recharge\\">docs</a> for more information."""  
-    source_type: SourceRechargeRechargeEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})  
+
+    r"""The value of the Access Token generated. See the <a href=\\"https://docs.airbyte.com/integrations/sources/recharge\\">docs</a> for more information."""
+    source_type: SourceRechargeRechargeEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
+
     start_date: datetime = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('start_date'), 'encoder': utils.datetimeisoformat(False), 'decoder': dateutil.parser.isoparse, 'mm_field': fields.DateTime(format='iso') }})
-    r"""The date from which you'd like to replicate data for Recharge API, in the format YYYY-MM-DDT00:00:00Z. Any data before this date will not be replicated."""  
+
+    r"""The date from which you'd like to replicate data for Recharge API, in the format YYYY-MM-DDT00:00:00Z. Any data before this date will not be replicated."""
     

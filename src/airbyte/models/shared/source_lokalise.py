@@ -16,8 +16,11 @@ class SourceLokalise:
     r"""The values required to configure the source."""
     
     api_key: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('api_key') }})
-    r"""Lokalise API Key with read-access. Available at Profile settings > API tokens. See <a href=\\"https://docs.lokalise.com/en/articles/1929556-api-tokens\\">here</a>."""  
+
+    r"""Lokalise API Key with read-access. Available at Profile settings > API tokens. See <a href=\\"https://docs.lokalise.com/en/articles/1929556-api-tokens\\">here</a>."""
     project_id: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('project_id') }})
-    r"""Lokalise project ID. Available at Project Settings > General."""  
-    source_type: SourceLokaliseLokaliseEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})  
+
+    r"""Lokalise project ID. Available at Project Settings > General."""
+    source_type: SourceLokaliseLokaliseEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
+
     

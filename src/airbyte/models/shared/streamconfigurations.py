@@ -13,5 +13,6 @@ from typing import Optional
 class StreamConfigurations:
     r"""A list of configured stream options for a connection."""
     
-    streams: Optional[list[shared_streamconfiguration.StreamConfiguration]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('streams'), 'exclude': lambda f: f is None }})  
+    streams: Optional[list[shared_streamconfiguration.StreamConfiguration]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('streams'), 'exclude': lambda f: f is None }})
+
     

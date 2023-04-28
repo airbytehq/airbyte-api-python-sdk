@@ -16,21 +16,30 @@ class DestinationRabbitmqRabbitmqEnum(str, Enum):
 class DestinationRabbitmq:
     r"""The values required to configure the destination."""
     
-    destination_type: DestinationRabbitmqRabbitmqEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('destinationType') }})  
+    destination_type: DestinationRabbitmqRabbitmqEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('destinationType') }})
+
     host: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('host') }})
-    r"""The RabbitMQ host name."""  
+
+    r"""The RabbitMQ host name."""
     routing_key: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('routing_key') }})
-    r"""The routing key."""  
+
+    r"""The routing key."""
     exchange: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('exchange'), 'exclude': lambda f: f is None }})
-    r"""The exchange name."""  
+
+    r"""The exchange name."""
     password: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('password'), 'exclude': lambda f: f is None }})
-    r"""The password to connect."""  
+
+    r"""The password to connect."""
     port: Optional[int] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('port'), 'exclude': lambda f: f is None }})
-    r"""The RabbitMQ port."""  
+
+    r"""The RabbitMQ port."""
     ssl: Optional[bool] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('ssl'), 'exclude': lambda f: f is None }})
-    r"""SSL enabled."""  
+
+    r"""SSL enabled."""
     username: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('username'), 'exclude': lambda f: f is None }})
-    r"""The username to connect."""  
+
+    r"""The username to connect."""
     virtual_host: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('virtual_host'), 'exclude': lambda f: f is None }})
-    r"""The RabbitMQ virtual host name."""  
+
+    r"""The RabbitMQ virtual host name."""
     

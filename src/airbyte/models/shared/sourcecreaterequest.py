@@ -12,9 +12,13 @@ from typing import Any, Optional
 class SourceCreateRequest:
     
     configuration: Any = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('configuration') }})
-    r"""The values required to configure the source."""  
-    name: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('name') }})  
-    workspace_id: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('workspaceId') }})  
+
+    r"""The values required to configure the source."""
+    name: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('name') }})
+
+    workspace_id: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('workspaceId') }})
+
     secret_id: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('secretId'), 'exclude': lambda f: f is None }})
-    r"""Optional secretID obtained through the public API OAuth redirect flow."""  
+
+    r"""Optional secretID obtained through the public API OAuth redirect flow."""
     

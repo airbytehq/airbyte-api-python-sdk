@@ -11,21 +11,29 @@ from typing import Optional
 class ListConnectionsRequest:
     
     include_deleted: Optional[bool] = dataclasses.field(default=None, metadata={'query_param': { 'field_name': 'includeDeleted', 'style': 'form', 'explode': True }})
-    r"""Include deleted connections in the returned results."""  
+
+    r"""Include deleted connections in the returned results."""
     limit: Optional[int] = dataclasses.field(default=None, metadata={'query_param': { 'field_name': 'limit', 'style': 'form', 'explode': True }})
-    r"""Set the limit on the number of Connections returned. The default is 20."""  
+
+    r"""Set the limit on the number of Connections returned. The default is 20."""
     offset: Optional[int] = dataclasses.field(default=None, metadata={'query_param': { 'field_name': 'offset', 'style': 'form', 'explode': True }})
-    r"""Set the offset to start at when returning Connections. The default is 0"""  
+
+    r"""Set the offset to start at when returning Connections. The default is 0"""
     workspace_ids: Optional[list[str]] = dataclasses.field(default=None, metadata={'query_param': { 'field_name': 'workspaceIds', 'style': 'form', 'explode': True }})
-    r"""The UUIDs of the workspaces you wish to list connections for. Empty list will retrieve all allowed workspaces."""  
+
+    r"""The UUIDs of the workspaces you wish to list connections for. Empty list will retrieve all allowed workspaces."""
     
 
 @dataclasses.dataclass
 class ListConnectionsResponse:
     
-    content_type: str = dataclasses.field()  
-    status_code: int = dataclasses.field()  
+    content_type: str = dataclasses.field()
+
+    status_code: int = dataclasses.field()
+
     connections_response: Optional[shared_connectionsresponse.ConnectionsResponse] = dataclasses.field(default=None)
-    r"""Successful operation"""  
-    raw_response: Optional[requests_http.Response] = dataclasses.field(default=None)  
+
+    r"""Successful operation"""
+    raw_response: Optional[requests_http.Response] = dataclasses.field(default=None)
+
     

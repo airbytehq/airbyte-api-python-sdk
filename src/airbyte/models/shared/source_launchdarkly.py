@@ -16,6 +16,8 @@ class SourceLaunchdarkly:
     r"""The values required to configure the source."""
     
     access_token: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('access_token') }})
-    r"""Your Access token. See <a href=\\"https://apidocs.launchdarkly.com/#section/Overview/Authentication\\">here</a>."""  
-    source_type: SourceLaunchdarklyLaunchdarklyEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})  
+
+    r"""Your Access token. See <a href=\\"https://apidocs.launchdarkly.com/#section/Overview/Authentication\\">here</a>."""
+    source_type: SourceLaunchdarklyLaunchdarklyEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
+
     

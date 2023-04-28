@@ -16,11 +16,14 @@ class DestinationElasticsearchAuthenticationMethodUsernamePasswordMethodEnum(str
 class DestinationElasticsearchAuthenticationMethodUsernamePassword:
     r"""Basic auth header with a username and password"""
     
-    method: DestinationElasticsearchAuthenticationMethodUsernamePasswordMethodEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('method') }})  
+    method: DestinationElasticsearchAuthenticationMethodUsernamePasswordMethodEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('method') }})
+
     password: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('password') }})
-    r"""Basic auth password to access a secure Elasticsearch server"""  
+
+    r"""Basic auth password to access a secure Elasticsearch server"""
     username: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('username') }})
-    r"""Basic auth username to access a secure Elasticsearch server"""  
+
+    r"""Basic auth username to access a secure Elasticsearch server"""
     
 class DestinationElasticsearchAuthenticationMethodAPIKeySecretMethodEnum(str, Enum):
     SECRET = 'secret'
@@ -32,10 +35,13 @@ class DestinationElasticsearchAuthenticationMethodAPIKeySecret:
     r"""Use a api key and secret combination to authenticate"""
     
     api_key_id: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('apiKeyId') }})
-    r"""The Key ID to used when accessing an enterprise Elasticsearch instance."""  
+
+    r"""The Key ID to used when accessing an enterprise Elasticsearch instance."""
     api_key_secret: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('apiKeySecret') }})
-    r"""The secret associated with the API Key ID."""  
-    method: DestinationElasticsearchAuthenticationMethodAPIKeySecretMethodEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('method') }})  
+
+    r"""The secret associated with the API Key ID."""
+    method: DestinationElasticsearchAuthenticationMethodAPIKeySecretMethodEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('method') }})
+
     
 class DestinationElasticsearchElasticsearchEnum(str, Enum):
     ELASTICSEARCH = 'elasticsearch'
@@ -46,13 +52,18 @@ class DestinationElasticsearchElasticsearchEnum(str, Enum):
 class DestinationElasticsearch:
     r"""The values required to configure the destination."""
     
-    destination_type: DestinationElasticsearchElasticsearchEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('destinationType') }})  
+    destination_type: DestinationElasticsearchElasticsearchEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('destinationType') }})
+
     endpoint: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('endpoint') }})
-    r"""The full url of the Elasticsearch server"""  
+
+    r"""The full url of the Elasticsearch server"""
     authentication_method: Optional[Any] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('authenticationMethod'), 'exclude': lambda f: f is None }})
-    r"""The type of authentication to be used"""  
+
+    r"""The type of authentication to be used"""
     ca_certificate: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('ca_certificate'), 'exclude': lambda f: f is None }})
-    r"""CA certificate"""  
+
+    r"""CA certificate"""
     upsert: Optional[bool] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('upsert'), 'exclude': lambda f: f is None }})
-    r"""If a primary key identifier is defined in the source, an upsert will be performed using the primary key value as the elasticsearch doc id. Does not support composite primary keys."""  
+
+    r"""If a primary key identifier is defined in the source, an upsert will be performed using the primary key value as the elasticsearch doc id. Does not support composite primary keys."""
     

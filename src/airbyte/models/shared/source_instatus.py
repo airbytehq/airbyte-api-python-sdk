@@ -16,6 +16,8 @@ class SourceInstatus:
     r"""The values required to configure the source."""
     
     api_key: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('api_key') }})
-    r"""Instatus REST API key"""  
-    source_type: SourceInstatusInstatusEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})  
+
+    r"""Instatus REST API key"""
+    source_type: SourceInstatusInstatusEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
+
     

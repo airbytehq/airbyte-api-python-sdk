@@ -16,8 +16,11 @@ class SourceGoogleDirectory:
     r"""The values required to configure the source."""
     
     credentials_json: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credentials_json') }})
-    r"""The contents of the JSON service account key. See the <a href=\\"https://developers.google.com/admin-sdk/directory/v1/guides/delegation\\">docs</a> for more information on how to generate this key."""  
+
+    r"""The contents of the JSON service account key. See the <a href=\\"https://developers.google.com/admin-sdk/directory/v1/guides/delegation\\">docs</a> for more information on how to generate this key."""
     email: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('email') }})
-    r"""The email of the user, which has permissions to access the Google Workspace Admin APIs."""  
-    source_type: SourceGoogleDirectoryGoogleDirectoryEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})  
+
+    r"""The email of the user, which has permissions to access the Google Workspace Admin APIs."""
+    source_type: SourceGoogleDirectoryGoogleDirectoryEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
+
     

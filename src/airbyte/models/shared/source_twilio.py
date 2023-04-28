@@ -20,12 +20,17 @@ class SourceTwilio:
     r"""The values required to configure the source."""
     
     account_sid: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('account_sid') }})
-    r"""Twilio account SID"""  
+
+    r"""Twilio account SID"""
     auth_token: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_token') }})
-    r"""Twilio Auth Token."""  
-    source_type: SourceTwilioTwilioEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})  
+
+    r"""Twilio Auth Token."""
+    source_type: SourceTwilioTwilioEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
+
     start_date: datetime = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('start_date'), 'encoder': utils.datetimeisoformat(False), 'decoder': dateutil.parser.isoparse, 'mm_field': fields.DateTime(format='iso') }})
-    r"""UTC date and time in the format 2020-10-01T00:00:00Z. Any data before this date will not be replicated."""  
+
+    r"""UTC date and time in the format 2020-10-01T00:00:00Z. Any data before this date will not be replicated."""
     lookback_window: Optional[int] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('lookback_window'), 'exclude': lambda f: f is None }})
-    r"""How far into the past to look for records. (in minutes)"""  
+
+    r"""How far into the past to look for records. (in minutes)"""
     

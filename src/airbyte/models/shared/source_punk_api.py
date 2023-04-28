@@ -17,10 +17,14 @@ class SourcePunkAPI:
     r"""The values required to configure the source."""
     
     brewed_after: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('brewed_after') }})
-    r"""To extract specific data with Unique ID"""  
+
+    r"""To extract specific data with Unique ID"""
     brewed_before: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('brewed_before') }})
-    r"""To extract specific data with Unique ID"""  
-    source_type: SourcePunkAPIPunkAPIEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})  
+
+    r"""To extract specific data with Unique ID"""
+    source_type: SourcePunkAPIPunkAPIEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
+
     id: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('id'), 'exclude': lambda f: f is None }})
-    r"""To extract specific data with Unique ID"""  
+
+    r"""To extract specific data with Unique ID"""
     

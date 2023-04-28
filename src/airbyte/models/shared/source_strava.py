@@ -23,15 +23,22 @@ class SourceStrava:
     r"""The values required to configure the source."""
     
     athlete_id: int = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('athlete_id') }})
-    r"""The Athlete ID of your Strava developer application."""  
+
+    r"""The Athlete ID of your Strava developer application."""
     client_id: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('client_id') }})
-    r"""The Client ID of your Strava developer application."""  
+
+    r"""The Client ID of your Strava developer application."""
     client_secret: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('client_secret') }})
-    r"""The Client Secret of your Strava developer application."""  
+
+    r"""The Client Secret of your Strava developer application."""
     refresh_token: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('refresh_token') }})
-    r"""The Refresh Token with the activity: read_all permissions."""  
-    source_type: SourceStravaStravaEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})  
+
+    r"""The Refresh Token with the activity: read_all permissions."""
+    source_type: SourceStravaStravaEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
+
     start_date: datetime = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('start_date'), 'encoder': utils.datetimeisoformat(False), 'decoder': dateutil.parser.isoparse, 'mm_field': fields.DateTime(format='iso') }})
-    r"""UTC date and time. Any data before this date will not be replicated."""  
-    auth_type: Optional[SourceStravaAuthTypeEnum] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_type'), 'exclude': lambda f: f is None }})  
+
+    r"""UTC date and time. Any data before this date will not be replicated."""
+    auth_type: Optional[SourceStravaAuthTypeEnum] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_type'), 'exclude': lambda f: f is None }})
+
     

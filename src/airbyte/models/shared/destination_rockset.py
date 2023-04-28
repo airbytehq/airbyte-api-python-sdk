@@ -17,10 +17,14 @@ class DestinationRockset:
     r"""The values required to configure the destination."""
     
     api_key: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('api_key') }})
-    r"""Rockset api key"""  
-    destination_type: DestinationRocksetRocksetEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('destinationType') }})  
+
+    r"""Rockset api key"""
+    destination_type: DestinationRocksetRocksetEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('destinationType') }})
+
     workspace: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('workspace') }})
-    r"""The Rockset workspace in which collections will be created + written to."""  
+
+    r"""The Rockset workspace in which collections will be created + written to."""
     api_server: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('api_server'), 'exclude': lambda f: f is None }})
-    r"""Rockset api URL"""  
+
+    r"""Rockset api URL"""
     

@@ -20,8 +20,11 @@ class SourceCloseCom:
     r"""The values required to configure the source."""
     
     api_key: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('api_key') }})
-    r"""Close.com API key (usually starts with 'api_'; find yours <a href=\\"https://app.close.com/settings/api/\\">here</a>)."""  
-    source_type: SourceCloseComCloseComEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})  
+
+    r"""Close.com API key (usually starts with 'api_'; find yours <a href=\\"https://app.close.com/settings/api/\\">here</a>)."""
+    source_type: SourceCloseComCloseComEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
+
     start_date: Optional[datetime] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('start_date'), 'encoder': utils.datetimeisoformat(True), 'decoder': dateutil.parser.isoparse, 'mm_field': fields.DateTime(format='iso'), 'exclude': lambda f: f is None }})
-    r"""The start date to sync data. Leave blank for full sync. Format: YYYY-MM-DD."""  
+
+    r"""The start date to sync data. Leave blank for full sync. Format: YYYY-MM-DD."""
     

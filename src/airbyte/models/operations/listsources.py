@@ -11,21 +11,29 @@ from typing import Optional
 class ListSourcesRequest:
     
     include_deleted: Optional[bool] = dataclasses.field(default=None, metadata={'query_param': { 'field_name': 'includeDeleted', 'style': 'form', 'explode': True }})
-    r"""Include deleted sources in the returned results."""  
+
+    r"""Include deleted sources in the returned results."""
     limit: Optional[int] = dataclasses.field(default=None, metadata={'query_param': { 'field_name': 'limit', 'style': 'form', 'explode': True }})
-    r"""Set the limit on the number of sources returned. The default is 20."""  
+
+    r"""Set the limit on the number of sources returned. The default is 20."""
     offset: Optional[int] = dataclasses.field(default=None, metadata={'query_param': { 'field_name': 'offset', 'style': 'form', 'explode': True }})
-    r"""Set the offset to start at when returning sources. The default is 0"""  
+
+    r"""Set the offset to start at when returning sources. The default is 0"""
     workspace_ids: Optional[list[str]] = dataclasses.field(default=None, metadata={'query_param': { 'field_name': 'workspaceIds', 'style': 'form', 'explode': True }})
-    r"""The UUIDs of the workspaces you wish to list sources for. Empty list will retrieve all allowed workspaces."""  
+
+    r"""The UUIDs of the workspaces you wish to list sources for. Empty list will retrieve all allowed workspaces."""
     
 
 @dataclasses.dataclass
 class ListSourcesResponse:
     
-    content_type: str = dataclasses.field()  
-    status_code: int = dataclasses.field()  
-    raw_response: Optional[requests_http.Response] = dataclasses.field(default=None)  
+    content_type: str = dataclasses.field()
+
+    status_code: int = dataclasses.field()
+
+    raw_response: Optional[requests_http.Response] = dataclasses.field(default=None)
+
     sources_response: Optional[shared_sourcesresponse.SourcesResponse] = dataclasses.field(default=None)
-    r"""Successful operation"""  
+
+    r"""Successful operation"""
     

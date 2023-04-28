@@ -19,10 +19,13 @@ class SourceTiktokMarketingCredentialsSandboxAccessToken:
     r"""Authentication method"""
     
     access_token: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('access_token') }})
-    r"""The long-term authorized access token."""  
+
+    r"""The long-term authorized access token."""
     advertiser_id: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('advertiser_id') }})
-    r"""The Advertiser ID which generated for the developer's Sandbox application."""  
-    auth_type: Optional[SourceTiktokMarketingCredentialsSandboxAccessTokenAuthTypeEnum] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_type'), 'exclude': lambda f: f is None }})  
+
+    r"""The Advertiser ID which generated for the developer's Sandbox application."""
+    auth_type: Optional[SourceTiktokMarketingCredentialsSandboxAccessTokenAuthTypeEnum] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_type'), 'exclude': lambda f: f is None }})
+
     
 class SourceTiktokMarketingCredentialsOAuth20AuthTypeEnum(str, Enum):
     OAUTH2_0 = 'oauth2.0'
@@ -34,14 +37,19 @@ class SourceTiktokMarketingCredentialsOAuth20:
     r"""Authentication method"""
     
     access_token: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('access_token') }})
-    r"""Long-term Authorized Access Token."""  
+
+    r"""Long-term Authorized Access Token."""
     app_id: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('app_id') }})
-    r"""The Developer Application App ID."""  
+
+    r"""The Developer Application App ID."""
     secret: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('secret') }})
-    r"""The Developer Application Secret."""  
+
+    r"""The Developer Application Secret."""
     advertiser_id: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('advertiser_id'), 'exclude': lambda f: f is None }})
-    r"""The Advertiser ID to filter reports and streams. Let this empty to retrieve all."""  
-    auth_type: Optional[SourceTiktokMarketingCredentialsOAuth20AuthTypeEnum] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_type'), 'exclude': lambda f: f is None }})  
+
+    r"""The Advertiser ID to filter reports and streams. Let this empty to retrieve all."""
+    auth_type: Optional[SourceTiktokMarketingCredentialsOAuth20AuthTypeEnum] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_type'), 'exclude': lambda f: f is None }})
+
     
 class SourceTiktokMarketingTiktokMarketingEnum(str, Enum):
     TIKTOK_MARKETING = 'tiktok-marketing'
@@ -52,13 +60,18 @@ class SourceTiktokMarketingTiktokMarketingEnum(str, Enum):
 class SourceTiktokMarketing:
     r"""The values required to configure the source."""
     
-    source_type: SourceTiktokMarketingTiktokMarketingEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})  
+    source_type: SourceTiktokMarketingTiktokMarketingEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
+
     attribution_window: Optional[int] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('attribution_window'), 'exclude': lambda f: f is None }})
-    r"""The attribution window in days."""  
+
+    r"""The attribution window in days."""
     credentials: Optional[Any] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credentials'), 'exclude': lambda f: f is None }})
-    r"""Authentication method"""  
+
+    r"""Authentication method"""
     end_date: Optional[date] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('end_date'), 'encoder': utils.dateisoformat(True), 'decoder': utils.datefromisoformat, 'mm_field': fields.DateTime(format='iso'), 'exclude': lambda f: f is None }})
-    r"""The date until which you'd like to replicate data for all incremental streams, in the format YYYY-MM-DD. All data generated between start_date and this date will be replicated. Not setting this option will result in always syncing the data till the current date."""  
+
+    r"""The date until which you'd like to replicate data for all incremental streams, in the format YYYY-MM-DD. All data generated between start_date and this date will be replicated. Not setting this option will result in always syncing the data till the current date."""
     start_date: Optional[date] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('start_date'), 'encoder': utils.dateisoformat(True), 'decoder': utils.datefromisoformat, 'mm_field': fields.DateTime(format='iso'), 'exclude': lambda f: f is None }})
-    r"""The Start Date in format: YYYY-MM-DD. Any data before this date will not be replicated. If this parameter is not set, all data will be replicated."""  
+
+    r"""The Start Date in format: YYYY-MM-DD. Any data before this date will not be replicated. If this parameter is not set, all data will be replicated."""
     

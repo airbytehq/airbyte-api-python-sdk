@@ -16,6 +16,8 @@ class SourceTempo:
     r"""The values required to configure the source."""
     
     api_token: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('api_token') }})
-    r"""Tempo API Token. Go to Tempo>Settings, scroll down to Data Access and select API integration."""  
-    source_type: SourceTempoTempoEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})  
+
+    r"""Tempo API Token. Go to Tempo>Settings, scroll down to Data Access and select API integration."""
+    source_type: SourceTempoTempoEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
+
     

@@ -16,10 +16,14 @@ class SourceSmaily:
     r"""The values required to configure the source."""
     
     api_password: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('api_password') }})
-    r"""API user password. See https://smaily.com/help/api/general/create-api-user/"""  
+
+    r"""API user password. See https://smaily.com/help/api/general/create-api-user/"""
     api_subdomain: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('api_subdomain') }})
-    r"""API Subdomain. See https://smaily.com/help/api/general/create-api-user/"""  
+
+    r"""API Subdomain. See https://smaily.com/help/api/general/create-api-user/"""
     api_username: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('api_username') }})
-    r"""API user username. See https://smaily.com/help/api/general/create-api-user/"""  
-    source_type: SourceSmailySmailyEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})  
+
+    r"""API user username. See https://smaily.com/help/api/general/create-api-user/"""
+    source_type: SourceSmailySmailyEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
+
     

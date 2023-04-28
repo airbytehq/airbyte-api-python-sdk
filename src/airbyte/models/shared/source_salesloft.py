@@ -19,8 +19,10 @@ class SourceSalesloftCredentialsAuthenticateViaAPIKeyAuthTypeEnum(str, Enum):
 class SourceSalesloftCredentialsAuthenticateViaAPIKey:
     
     api_key: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('api_key') }})
-    r"""API Key for making authenticated requests. More instruction on how to find this value in our <a href=\\"https://docs.airbyte.com/integrations/sources/salesloft#setup-guide\\">docs</a>"""  
-    auth_type: SourceSalesloftCredentialsAuthenticateViaAPIKeyAuthTypeEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_type') }})  
+
+    r"""API Key for making authenticated requests. More instruction on how to find this value in our <a href=\\"https://docs.airbyte.com/integrations/sources/salesloft#setup-guide\\">docs</a>"""
+    auth_type: SourceSalesloftCredentialsAuthenticateViaAPIKeyAuthTypeEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_type') }})
+
     
 class SourceSalesloftCredentialsAuthenticateViaOAuthAuthTypeEnum(str, Enum):
     OAUTH2_0 = 'oauth2.0'
@@ -31,16 +33,22 @@ class SourceSalesloftCredentialsAuthenticateViaOAuthAuthTypeEnum(str, Enum):
 class SourceSalesloftCredentialsAuthenticateViaOAuth:
     
     access_token: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('access_token') }})
-    r"""Access Token for making authenticated requests."""  
-    auth_type: SourceSalesloftCredentialsAuthenticateViaOAuthAuthTypeEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_type') }})  
+
+    r"""Access Token for making authenticated requests."""
+    auth_type: SourceSalesloftCredentialsAuthenticateViaOAuthAuthTypeEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_type') }})
+
     client_id: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('client_id') }})
-    r"""The Client ID of your Salesloft developer application."""  
+
+    r"""The Client ID of your Salesloft developer application."""
     client_secret: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('client_secret') }})
-    r"""The Client Secret of your Salesloft developer application."""  
+
+    r"""The Client Secret of your Salesloft developer application."""
     refresh_token: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('refresh_token') }})
-    r"""The token for obtaining a new access token."""  
+
+    r"""The token for obtaining a new access token."""
     token_expiry_date: datetime = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('token_expiry_date'), 'encoder': utils.datetimeisoformat(False), 'decoder': dateutil.parser.isoparse, 'mm_field': fields.DateTime(format='iso') }})
-    r"""The date-time when the access token should be refreshed."""  
+
+    r"""The date-time when the access token should be refreshed."""
     
 class SourceSalesloftSalesloftEnum(str, Enum):
     SALESLOFT = 'salesloft'
@@ -51,8 +59,11 @@ class SourceSalesloftSalesloftEnum(str, Enum):
 class SourceSalesloft:
     r"""The values required to configure the source."""
     
-    credentials: Any = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credentials') }})  
-    source_type: SourceSalesloftSalesloftEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})  
+    credentials: Any = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credentials') }})
+
+    source_type: SourceSalesloftSalesloftEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
+
     start_date: datetime = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('start_date'), 'encoder': utils.datetimeisoformat(False), 'decoder': dateutil.parser.isoparse, 'mm_field': fields.DateTime(format='iso') }})
-    r"""The date from which you'd like to replicate data for Salesloft API, in the format YYYY-MM-DDT00:00:00Z. All data generated after this date will be replicated."""  
+
+    r"""The date from which you'd like to replicate data for Salesloft API, in the format YYYY-MM-DDT00:00:00Z. All data generated after this date will be replicated."""
     

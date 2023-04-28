@@ -17,12 +17,17 @@ class SourceQualaroo:
     r"""The values required to configure the source."""
     
     key: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('key') }})
-    r"""A Qualaroo token. See the <a href=\\"https://help.qualaroo.com/hc/en-us/articles/201969438-The-REST-Reporting-API\\">docs</a> for instructions on how to generate it."""  
-    source_type: SourceQualarooQualarooEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})  
+
+    r"""A Qualaroo token. See the <a href=\\"https://help.qualaroo.com/hc/en-us/articles/201969438-The-REST-Reporting-API\\">docs</a> for instructions on how to generate it."""
+    source_type: SourceQualarooQualarooEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
+
     start_date: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('start_date') }})
-    r"""UTC date and time in the format 2017-01-25T00:00:00Z. Any data before this date will not be replicated."""  
+
+    r"""UTC date and time in the format 2017-01-25T00:00:00Z. Any data before this date will not be replicated."""
     token: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('token') }})
-    r"""A Qualaroo token. See the <a href=\\"https://help.qualaroo.com/hc/en-us/articles/201969438-The-REST-Reporting-API\\">docs</a> for instructions on how to generate it."""  
+
+    r"""A Qualaroo token. See the <a href=\\"https://help.qualaroo.com/hc/en-us/articles/201969438-The-REST-Reporting-API\\">docs</a> for instructions on how to generate it."""
     survey_ids: Optional[list[str]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('survey_ids'), 'exclude': lambda f: f is None }})
-    r"""IDs of the surveys from which you'd like to replicate data. If left empty, data from all surveys to which you have access will be replicated."""  
+
+    r"""IDs of the surveys from which you'd like to replicate data. If left empty, data from all surveys to which you have access will be replicated."""
     

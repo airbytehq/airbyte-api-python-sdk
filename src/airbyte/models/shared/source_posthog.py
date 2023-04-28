@@ -20,10 +20,14 @@ class SourcePosthog:
     r"""The values required to configure the source."""
     
     api_key: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('api_key') }})
-    r"""API Key. See the <a href=\\"https://docs.airbyte.com/integrations/sources/posthog\\">docs</a> for information on how to generate this key."""  
-    source_type: SourcePosthogPosthogEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})  
+
+    r"""API Key. See the <a href=\\"https://docs.airbyte.com/integrations/sources/posthog\\">docs</a> for information on how to generate this key."""
+    source_type: SourcePosthogPosthogEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
+
     start_date: datetime = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('start_date'), 'encoder': utils.datetimeisoformat(False), 'decoder': dateutil.parser.isoparse, 'mm_field': fields.DateTime(format='iso') }})
-    r"""The date from which you'd like to replicate the data. Any data before this date will not be replicated."""  
+
+    r"""The date from which you'd like to replicate the data. Any data before this date will not be replicated."""
     base_url: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('base_url'), 'exclude': lambda f: f is None }})
-    r"""Base PostHog url. Defaults to PostHog Cloud (https://app.posthog.com)."""  
+
+    r"""Base PostHog url. Defaults to PostHog Cloud (https://app.posthog.com)."""
     

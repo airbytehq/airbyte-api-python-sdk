@@ -29,19 +29,26 @@ class DestinationS3FormatParquetColumnarStorageFormatTypeEnum(str, Enum):
 class DestinationS3FormatParquetColumnarStorage:
     r"""Format of the data output. See <a href=\\"https://docs.airbyte.com/integrations/destinations/s3/#supported-output-schema\\">here</a> for more details"""
     
-    format_type: DestinationS3FormatParquetColumnarStorageFormatTypeEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('format_type') }})  
+    format_type: DestinationS3FormatParquetColumnarStorageFormatTypeEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('format_type') }})
+
     block_size_mb: Optional[int] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('block_size_mb'), 'exclude': lambda f: f is None }})
-    r"""This is the size of a row group being buffered in memory. It limits the memory usage when writing. Larger values will improve the IO when reading, but consume more memory when writing. Default: 128 MB."""  
+
+    r"""This is the size of a row group being buffered in memory. It limits the memory usage when writing. Larger values will improve the IO when reading, but consume more memory when writing. Default: 128 MB."""
     compression_codec: Optional[DestinationS3FormatParquetColumnarStorageCompressionCodecEnum] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('compression_codec'), 'exclude': lambda f: f is None }})
-    r"""The compression algorithm used to compress data pages."""  
+
+    r"""The compression algorithm used to compress data pages."""
     dictionary_encoding: Optional[bool] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('dictionary_encoding'), 'exclude': lambda f: f is None }})
-    r"""Default: true."""  
+
+    r"""Default: true."""
     dictionary_page_size_kb: Optional[int] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('dictionary_page_size_kb'), 'exclude': lambda f: f is None }})
-    r"""There is one dictionary page per column per row group when dictionary encoding is used. The dictionary page size works like the page size but for dictionary. Default: 1024 KB."""  
+
+    r"""There is one dictionary page per column per row group when dictionary encoding is used. The dictionary page size works like the page size but for dictionary. Default: 1024 KB."""
     max_padding_size_mb: Optional[int] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('max_padding_size_mb'), 'exclude': lambda f: f is None }})
-    r"""Maximum size allowed as padding to align row groups. This is also the minimum size of a row group. Default: 8 MB."""  
+
+    r"""Maximum size allowed as padding to align row groups. This is also the minimum size of a row group. Default: 8 MB."""
     page_size_kb: Optional[int] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('page_size_kb'), 'exclude': lambda f: f is None }})
-    r"""The page size is for compression. A block is composed of pages. A page is the smallest unit that must be read fully to access a single record. If this value is too small, the compression will deteriorate. Default: 1024 KB."""  
+
+    r"""The page size is for compression. A block is composed of pages. A page is the smallest unit that must be read fully to access a single record. If this value is too small, the compression will deteriorate. Default: 1024 KB."""
     
 class DestinationS3FormatJSONLinesNewlineDelimitedJSONCompressionGZIPCompressionTypeEnum(str, Enum):
     GZIP = 'GZIP'
@@ -52,7 +59,8 @@ class DestinationS3FormatJSONLinesNewlineDelimitedJSONCompressionGZIPCompression
 class DestinationS3FormatJSONLinesNewlineDelimitedJSONCompressionGZIP:
     r"""Whether the output files should be compressed. If compression is selected, the output filename will have an extra extension (GZIP: \\".jsonl.gz\\")."""
     
-    compression_type: Optional[DestinationS3FormatJSONLinesNewlineDelimitedJSONCompressionGZIPCompressionTypeEnum] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('compression_type'), 'exclude': lambda f: f is None }})  
+    compression_type: Optional[DestinationS3FormatJSONLinesNewlineDelimitedJSONCompressionGZIPCompressionTypeEnum] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('compression_type'), 'exclude': lambda f: f is None }})
+
     
 class DestinationS3FormatJSONLinesNewlineDelimitedJSONCompressionNoCompressionCompressionTypeEnum(str, Enum):
     NO_COMPRESSION = 'No Compression'
@@ -63,7 +71,8 @@ class DestinationS3FormatJSONLinesNewlineDelimitedJSONCompressionNoCompressionCo
 class DestinationS3FormatJSONLinesNewlineDelimitedJSONCompressionNoCompression:
     r"""Whether the output files should be compressed. If compression is selected, the output filename will have an extra extension (GZIP: \\".jsonl.gz\\")."""
     
-    compression_type: Optional[DestinationS3FormatJSONLinesNewlineDelimitedJSONCompressionNoCompressionCompressionTypeEnum] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('compression_type'), 'exclude': lambda f: f is None }})  
+    compression_type: Optional[DestinationS3FormatJSONLinesNewlineDelimitedJSONCompressionNoCompressionCompressionTypeEnum] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('compression_type'), 'exclude': lambda f: f is None }})
+
     
 class DestinationS3FormatJSONLinesNewlineDelimitedJSONFlatteningEnum(str, Enum):
     r"""Whether the input json data should be normalized (flattened) in the output JSON Lines. Please refer to docs for details."""
@@ -79,11 +88,14 @@ class DestinationS3FormatJSONLinesNewlineDelimitedJSONFormatTypeEnum(str, Enum):
 class DestinationS3FormatJSONLinesNewlineDelimitedJSON:
     r"""Format of the data output. See <a href=\\"https://docs.airbyte.com/integrations/destinations/s3/#supported-output-schema\\">here</a> for more details"""
     
-    format_type: DestinationS3FormatJSONLinesNewlineDelimitedJSONFormatTypeEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('format_type') }})  
+    format_type: DestinationS3FormatJSONLinesNewlineDelimitedJSONFormatTypeEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('format_type') }})
+
     compression: Optional[Any] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('compression'), 'exclude': lambda f: f is None }})
-    r"""Whether the output files should be compressed. If compression is selected, the output filename will have an extra extension (GZIP: \\".jsonl.gz\\")."""  
+
+    r"""Whether the output files should be compressed. If compression is selected, the output filename will have an extra extension (GZIP: \\".jsonl.gz\\")."""
     flattening: Optional[DestinationS3FormatJSONLinesNewlineDelimitedJSONFlatteningEnum] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('flattening'), 'exclude': lambda f: f is None }})
-    r"""Whether the input json data should be normalized (flattened) in the output JSON Lines. Please refer to docs for details."""  
+
+    r"""Whether the input json data should be normalized (flattened) in the output JSON Lines. Please refer to docs for details."""
     
 class DestinationS3FormatCSVCommaSeparatedValuesCompressionGZIPCompressionTypeEnum(str, Enum):
     GZIP = 'GZIP'
@@ -94,7 +106,8 @@ class DestinationS3FormatCSVCommaSeparatedValuesCompressionGZIPCompressionTypeEn
 class DestinationS3FormatCSVCommaSeparatedValuesCompressionGZIP:
     r"""Whether the output files should be compressed. If compression is selected, the output filename will have an extra extension (GZIP: \\".csv.gz\\")."""
     
-    compression_type: Optional[DestinationS3FormatCSVCommaSeparatedValuesCompressionGZIPCompressionTypeEnum] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('compression_type'), 'exclude': lambda f: f is None }})  
+    compression_type: Optional[DestinationS3FormatCSVCommaSeparatedValuesCompressionGZIPCompressionTypeEnum] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('compression_type'), 'exclude': lambda f: f is None }})
+
     
 class DestinationS3FormatCSVCommaSeparatedValuesCompressionNoCompressionCompressionTypeEnum(str, Enum):
     NO_COMPRESSION = 'No Compression'
@@ -105,7 +118,8 @@ class DestinationS3FormatCSVCommaSeparatedValuesCompressionNoCompressionCompress
 class DestinationS3FormatCSVCommaSeparatedValuesCompressionNoCompression:
     r"""Whether the output files should be compressed. If compression is selected, the output filename will have an extra extension (GZIP: \\".csv.gz\\")."""
     
-    compression_type: Optional[DestinationS3FormatCSVCommaSeparatedValuesCompressionNoCompressionCompressionTypeEnum] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('compression_type'), 'exclude': lambda f: f is None }})  
+    compression_type: Optional[DestinationS3FormatCSVCommaSeparatedValuesCompressionNoCompressionCompressionTypeEnum] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('compression_type'), 'exclude': lambda f: f is None }})
+
     
 class DestinationS3FormatCSVCommaSeparatedValuesFlatteningEnum(str, Enum):
     r"""Whether the input json data should be normalized (flattened) in the output CSV. Please refer to docs for details."""
@@ -122,10 +136,13 @@ class DestinationS3FormatCSVCommaSeparatedValues:
     r"""Format of the data output. See <a href=\\"https://docs.airbyte.com/integrations/destinations/s3/#supported-output-schema\\">here</a> for more details"""
     
     flattening: DestinationS3FormatCSVCommaSeparatedValuesFlatteningEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('flattening') }})
-    r"""Whether the input json data should be normalized (flattened) in the output CSV. Please refer to docs for details."""  
-    format_type: DestinationS3FormatCSVCommaSeparatedValuesFormatTypeEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('format_type') }})  
+
+    r"""Whether the input json data should be normalized (flattened) in the output CSV. Please refer to docs for details."""
+    format_type: DestinationS3FormatCSVCommaSeparatedValuesFormatTypeEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('format_type') }})
+
     compression: Optional[Any] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('compression'), 'exclude': lambda f: f is None }})
-    r"""Whether the output files should be compressed. If compression is selected, the output filename will have an extra extension (GZIP: \\".csv.gz\\")."""  
+
+    r"""Whether the output files should be compressed. If compression is selected, the output filename will have an extra extension (GZIP: \\".csv.gz\\")."""
     
 class DestinationS3FormatAvroApacheAvroCompressionCodecSnappyCodecEnum(str, Enum):
     SNAPPY = 'snappy'
@@ -136,7 +153,8 @@ class DestinationS3FormatAvroApacheAvroCompressionCodecSnappyCodecEnum(str, Enum
 class DestinationS3FormatAvroApacheAvroCompressionCodecSnappy:
     r"""The compression algorithm used to compress data. Default to no compression."""
     
-    codec: DestinationS3FormatAvroApacheAvroCompressionCodecSnappyCodecEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('codec') }})  
+    codec: DestinationS3FormatAvroApacheAvroCompressionCodecSnappyCodecEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('codec') }})
+
     
 class DestinationS3FormatAvroApacheAvroCompressionCodecZstandardCodecEnum(str, Enum):
     ZSTANDARD = 'zstandard'
@@ -147,11 +165,14 @@ class DestinationS3FormatAvroApacheAvroCompressionCodecZstandardCodecEnum(str, E
 class DestinationS3FormatAvroApacheAvroCompressionCodecZstandard:
     r"""The compression algorithm used to compress data. Default to no compression."""
     
-    codec: DestinationS3FormatAvroApacheAvroCompressionCodecZstandardCodecEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('codec') }})  
+    codec: DestinationS3FormatAvroApacheAvroCompressionCodecZstandardCodecEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('codec') }})
+
     compression_level: int = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('compression_level') }})
-    r"""Negative levels are 'fast' modes akin to lz4 or snappy, levels above 9 are generally for archival purposes, and levels above 18 use a lot of memory."""  
+
+    r"""Negative levels are 'fast' modes akin to lz4 or snappy, levels above 9 are generally for archival purposes, and levels above 18 use a lot of memory."""
     include_checksum: Optional[bool] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('include_checksum'), 'exclude': lambda f: f is None }})
-    r"""If true, include a checksum with each data block."""  
+
+    r"""If true, include a checksum with each data block."""
     
 class DestinationS3FormatAvroApacheAvroCompressionCodecXzCodecEnum(str, Enum):
     XZ = 'xz'
@@ -162,9 +183,11 @@ class DestinationS3FormatAvroApacheAvroCompressionCodecXzCodecEnum(str, Enum):
 class DestinationS3FormatAvroApacheAvroCompressionCodecXz:
     r"""The compression algorithm used to compress data. Default to no compression."""
     
-    codec: DestinationS3FormatAvroApacheAvroCompressionCodecXzCodecEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('codec') }})  
+    codec: DestinationS3FormatAvroApacheAvroCompressionCodecXzCodecEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('codec') }})
+
     compression_level: int = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('compression_level') }})
-    r"""See <a href=\\"https://commons.apache.org/proper/commons-compress/apidocs/org/apache/commons/compress/compressors/xz/XZCompressorOutputStream.html#XZCompressorOutputStream-java.io.OutputStream-int-\\">here</a> for details."""  
+
+    r"""See <a href=\\"https://commons.apache.org/proper/commons-compress/apidocs/org/apache/commons/compress/compressors/xz/XZCompressorOutputStream.html#XZCompressorOutputStream-java.io.OutputStream-int-\\">here</a> for details."""
     
 class DestinationS3FormatAvroApacheAvroCompressionCodecBzip2CodecEnum(str, Enum):
     BZIP2 = 'bzip2'
@@ -175,7 +198,8 @@ class DestinationS3FormatAvroApacheAvroCompressionCodecBzip2CodecEnum(str, Enum)
 class DestinationS3FormatAvroApacheAvroCompressionCodecBzip2:
     r"""The compression algorithm used to compress data. Default to no compression."""
     
-    codec: DestinationS3FormatAvroApacheAvroCompressionCodecBzip2CodecEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('codec') }})  
+    codec: DestinationS3FormatAvroApacheAvroCompressionCodecBzip2CodecEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('codec') }})
+
     
 class DestinationS3FormatAvroApacheAvroCompressionCodecDeflateCodecEnum(str, Enum):
     DEFLATE = 'Deflate'
@@ -186,9 +210,11 @@ class DestinationS3FormatAvroApacheAvroCompressionCodecDeflateCodecEnum(str, Enu
 class DestinationS3FormatAvroApacheAvroCompressionCodecDeflate:
     r"""The compression algorithm used to compress data. Default to no compression."""
     
-    codec: DestinationS3FormatAvroApacheAvroCompressionCodecDeflateCodecEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('codec') }})  
+    codec: DestinationS3FormatAvroApacheAvroCompressionCodecDeflateCodecEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('codec') }})
+
     compression_level: int = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('compression_level') }})
-    r"""0: no compression & fastest, 9: best compression & slowest."""  
+
+    r"""0: no compression & fastest, 9: best compression & slowest."""
     
 class DestinationS3FormatAvroApacheAvroCompressionCodecNoCompressionCodecEnum(str, Enum):
     NO_COMPRESSION = 'no compression'
@@ -199,7 +225,8 @@ class DestinationS3FormatAvroApacheAvroCompressionCodecNoCompressionCodecEnum(st
 class DestinationS3FormatAvroApacheAvroCompressionCodecNoCompression:
     r"""The compression algorithm used to compress data. Default to no compression."""
     
-    codec: DestinationS3FormatAvroApacheAvroCompressionCodecNoCompressionCodecEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('codec') }})  
+    codec: DestinationS3FormatAvroApacheAvroCompressionCodecNoCompressionCodecEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('codec') }})
+
     
 class DestinationS3FormatAvroApacheAvroFormatTypeEnum(str, Enum):
     AVRO = 'Avro'
@@ -211,8 +238,10 @@ class DestinationS3FormatAvroApacheAvro:
     r"""Format of the data output. See <a href=\\"https://docs.airbyte.com/integrations/destinations/s3/#supported-output-schema\\">here</a> for more details"""
     
     compression_codec: Any = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('compression_codec') }})
-    r"""The compression algorithm used to compress data. Default to no compression."""  
-    format_type: DestinationS3FormatAvroApacheAvroFormatTypeEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('format_type') }})  
+
+    r"""The compression algorithm used to compress data. Default to no compression."""
+    format_type: DestinationS3FormatAvroApacheAvroFormatTypeEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('format_type') }})
+
     
 class DestinationS3S3BucketRegionEnum(str, Enum):
     r"""The region of the S3 bucket. See <a href=\\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-regions-availability-zones.html#concepts-available-regions\\">here</a> for all region codes."""
@@ -249,23 +278,33 @@ class DestinationS3S3BucketRegionEnum(str, Enum):
 class DestinationS3:
     r"""The values required to configure the destination."""
     
-    destination_type: DestinationS3S3Enum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('destinationType') }})  
+    destination_type: DestinationS3S3Enum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('destinationType') }})
+
     format: Any = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('format') }})
-    r"""Format of the data output. See <a href=\\"https://docs.airbyte.com/integrations/destinations/s3/#supported-output-schema\\">here</a> for more details"""  
+
+    r"""Format of the data output. See <a href=\\"https://docs.airbyte.com/integrations/destinations/s3/#supported-output-schema\\">here</a> for more details"""
     s3_bucket_name: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('s3_bucket_name') }})
-    r"""The name of the S3 bucket. Read more <a href=\\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/create-bucket-overview.html\\">here</a>."""  
+
+    r"""The name of the S3 bucket. Read more <a href=\\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/create-bucket-overview.html\\">here</a>."""
     s3_bucket_path: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('s3_bucket_path') }})
-    r"""Directory under the S3 bucket where data will be written. Read more <a href=\\"https://docs.airbyte.com/integrations/destinations/s3#:~:text=to%20format%20the-,bucket%20path,-%3A\\">here</a>"""  
+
+    r"""Directory under the S3 bucket where data will be written. Read more <a href=\\"https://docs.airbyte.com/integrations/destinations/s3#:~:text=to%20format%20the-,bucket%20path,-%3A\\">here</a>"""
     s3_bucket_region: DestinationS3S3BucketRegionEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('s3_bucket_region') }})
-    r"""The region of the S3 bucket. See <a href=\\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-regions-availability-zones.html#concepts-available-regions\\">here</a> for all region codes."""  
+
+    r"""The region of the S3 bucket. See <a href=\\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-regions-availability-zones.html#concepts-available-regions\\">here</a> for all region codes."""
     access_key_id: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('access_key_id'), 'exclude': lambda f: f is None }})
-    r"""The access key ID to access the S3 bucket. Airbyte requires Read and Write permissions to the given bucket. Read more <a href=\\"https://docs.aws.amazon.com/general/latest/gr/aws-sec-cred-types.html#access-keys-and-secret-access-keys\\">here</a>."""  
+
+    r"""The access key ID to access the S3 bucket. Airbyte requires Read and Write permissions to the given bucket. Read more <a href=\\"https://docs.aws.amazon.com/general/latest/gr/aws-sec-cred-types.html#access-keys-and-secret-access-keys\\">here</a>."""
     file_name_pattern: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('file_name_pattern'), 'exclude': lambda f: f is None }})
-    r"""The pattern allows you to set the file-name format for the S3 staging file(s)"""  
+
+    r"""The pattern allows you to set the file-name format for the S3 staging file(s)"""
     s3_endpoint: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('s3_endpoint'), 'exclude': lambda f: f is None }})
-    r"""Your S3 endpoint url. Read more <a href=\\"https://docs.aws.amazon.com/general/latest/gr/s3.html#:~:text=Service%20endpoints-,Amazon%20S3%20endpoints,-When%20you%20use\\">here</a>"""  
+
+    r"""Your S3 endpoint url. Read more <a href=\\"https://docs.aws.amazon.com/general/latest/gr/s3.html#:~:text=Service%20endpoints-,Amazon%20S3%20endpoints,-When%20you%20use\\">here</a>"""
     s3_path_format: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('s3_path_format'), 'exclude': lambda f: f is None }})
-    r"""Format string on how data will be organized inside the S3 bucket directory. Read more <a href=\\"https://docs.airbyte.com/integrations/destinations/s3#:~:text=The%20full%20path%20of%20the%20output%20data%20with%20the%20default%20S3%20path%20format\\">here</a>"""  
+
+    r"""Format string on how data will be organized inside the S3 bucket directory. Read more <a href=\\"https://docs.airbyte.com/integrations/destinations/s3#:~:text=The%20full%20path%20of%20the%20output%20data%20with%20the%20default%20S3%20path%20format\\">here</a>"""
     secret_access_key: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('secret_access_key'), 'exclude': lambda f: f is None }})
-    r"""The corresponding secret to the access key ID. Read more <a href=\\"https://docs.aws.amazon.com/general/latest/gr/aws-sec-cred-types.html#access-keys-and-secret-access-keys\\">here</a>"""  
+
+    r"""The corresponding secret to the access key ID. Read more <a href=\\"https://docs.aws.amazon.com/general/latest/gr/aws-sec-cred-types.html#access-keys-and-secret-access-keys\\">here</a>"""
     

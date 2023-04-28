@@ -10,15 +10,20 @@ from typing import Optional
 @dataclasses.dataclass
 class CancelJobRequest:
     
-    job_id: int = dataclasses.field(metadata={'path_param': { 'field_name': 'jobId', 'style': 'simple', 'explode': False }})  
+    job_id: int = dataclasses.field(metadata={'path_param': { 'field_name': 'jobId', 'style': 'simple', 'explode': False }})
+
     
 
 @dataclasses.dataclass
 class CancelJobResponse:
     
-    content_type: str = dataclasses.field()  
-    status_code: int = dataclasses.field()  
+    content_type: str = dataclasses.field()
+
+    status_code: int = dataclasses.field()
+
     job_response: Optional[shared_jobresponse.JobResponse] = dataclasses.field(default=None)
-    r"""Cancel a Job."""  
-    raw_response: Optional[requests_http.Response] = dataclasses.field(default=None)  
+
+    r"""Cancel a Job."""
+    raw_response: Optional[requests_http.Response] = dataclasses.field(default=None)
+
     

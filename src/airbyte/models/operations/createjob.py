@@ -10,9 +10,13 @@ from typing import Optional
 @dataclasses.dataclass
 class CreateJobResponse:
     
-    content_type: str = dataclasses.field()  
-    status_code: int = dataclasses.field()  
+    content_type: str = dataclasses.field()
+
+    status_code: int = dataclasses.field()
+
     job_response: Optional[shared_jobresponse.JobResponse] = dataclasses.field(default=None)
-    r"""Kicks off a new Job based on the JobType. The connectionId is the resource that Job will be run for."""  
-    raw_response: Optional[requests_http.Response] = dataclasses.field(default=None)  
+
+    r"""Kicks off a new Job based on the JobType. The connectionId is the resource that Job will be run for."""
+    raw_response: Optional[requests_http.Response] = dataclasses.field(default=None)
+
     

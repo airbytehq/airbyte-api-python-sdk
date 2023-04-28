@@ -15,9 +15,12 @@ class SourcePostmarkappPostmarkappEnum(str, Enum):
 class SourcePostmarkapp:
     r"""The values required to configure the source."""
     
-    source_type: SourcePostmarkappPostmarkappEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})  
+    source_type: SourcePostmarkappPostmarkappEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
+
     x_postmark_account_token: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('X-Postmark-Account-Token') }})
-    r"""API Key for account"""  
+
+    r"""API Key for account"""
     x_postmark_server_token: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('X-Postmark-Server-Token') }})
-    r"""API Key for server"""  
+
+    r"""API Key for server"""
     
