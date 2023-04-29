@@ -11,19 +11,14 @@ from typing import Optional
 class GetJobRequest:
     
     job_id: int = dataclasses.field(metadata={'path_param': { 'field_name': 'jobId', 'style': 'simple', 'explode': False }})
-
     
 
 @dataclasses.dataclass
 class GetJobResponse:
     
     content_type: str = dataclasses.field()
-
     status_code: int = dataclasses.field()
-
     job_response: Optional[shared_jobresponse.JobResponse] = dataclasses.field(default=None)
-
     r"""Get a Job by the id in the path."""
     raw_response: Optional[requests_http.Response] = dataclasses.field(default=None)
-
     

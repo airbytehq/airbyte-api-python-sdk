@@ -16,10 +16,8 @@ class SourceAuth0CredentialsOAuth2AccessTokenAuthenticationMethodEnum(str, Enum)
 class SourceAuth0CredentialsOAuth2AccessToken:
     
     access_token: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('access_token') }})
-
     r"""Also called <a href=\\"https://auth0.com/docs/secure/tokens/access-tokens/get-management-api-access-tokens-for-testing\\">API Access Token </a> The access token used to call the Auth0 Management API Token. It's a JWT that contains specific grant permissions knowns as scopes."""
     auth_type: SourceAuth0CredentialsOAuth2AccessTokenAuthenticationMethodEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_type') }})
-
     
 class SourceAuth0CredentialsOAuth2ConfidentialApplicationAuthenticationMethodEnum(str, Enum):
     OAUTH2_CONFIDENTIAL_APPLICATION = 'oauth2_confidential_application'
@@ -30,15 +28,11 @@ class SourceAuth0CredentialsOAuth2ConfidentialApplicationAuthenticationMethodEnu
 class SourceAuth0CredentialsOAuth2ConfidentialApplication:
     
     audience: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('audience') }})
-
     r"""The audience for the token, which is your API. You can find this in the Identifier field on your  <a href=\\"https://manage.auth0.com/#/apis\\">API's settings tab</a>"""
     auth_type: SourceAuth0CredentialsOAuth2ConfidentialApplicationAuthenticationMethodEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_type') }})
-
     client_id: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('client_id') }})
-
     r"""Your application's Client ID. You can find this value on the <a href=\\"https://manage.auth0.com/#/applications\\">application's settings tab</a> after you login the admin portal."""
     client_secret: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('client_secret') }})
-
     r"""Your application's Client Secret. You can find this value on the <a href=\\"https://manage.auth0.com/#/applications\\">application's settings tab</a> after you login the admin portal."""
     
 class SourceAuth0Auth0Enum(str, Enum):
@@ -51,10 +45,7 @@ class SourceAuth0:
     r"""The values required to configure the source."""
     
     base_url: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('base_url') }})
-
     r"""The Authentication API is served over HTTPS. All URLs referenced in the documentation have the following base `https://YOUR_DOMAIN`"""
     credentials: Any = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credentials') }})
-
     source_type: SourceAuth0Auth0Enum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
-
     

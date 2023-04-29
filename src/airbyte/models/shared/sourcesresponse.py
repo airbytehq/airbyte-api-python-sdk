@@ -13,9 +13,6 @@ class SourcesResponse:
     r"""Successful operation"""
     
     data: list[shared_sourceresponse.SourceResponse] = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('data') }})
-
     next: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('next') }})
-
     previous: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('previous') }})
-
     

@@ -16,8 +16,6 @@ class SourceEmailoctopus:
     r"""The values required to configure the source."""
     
     api_key: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('api_key') }})
-
     r"""EmailOctopus API Key. See the <a href=\\"https://help.emailoctopus.com/article/165-how-to-create-and-delete-api-keys\\">docs</a> for information on how to generate this key."""
     source_type: SourceEmailoctopusEmailoctopusEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
-
     

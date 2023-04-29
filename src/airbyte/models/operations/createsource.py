@@ -11,12 +11,8 @@ from typing import Optional
 class CreateSourceResponse:
     
     content_type: str = dataclasses.field()
-
     status_code: int = dataclasses.field()
-
     raw_response: Optional[requests_http.Response] = dataclasses.field(default=None)
-
     source_response: Optional[shared_sourceresponse.SourceResponse] = dataclasses.field(default=None)
-
     r"""Successful operation"""
     

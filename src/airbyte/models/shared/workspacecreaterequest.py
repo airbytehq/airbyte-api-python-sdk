@@ -11,6 +11,5 @@ from dataclasses_json import Undefined, dataclass_json
 class WorkspaceCreateRequest:
     
     name: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('name') }})
-
     r"""Name of the workspace"""
     

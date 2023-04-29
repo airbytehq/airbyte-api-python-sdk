@@ -16,10 +16,8 @@ class SourceMailchimpCredentialsAPIKeyAuthTypeEnum(str, Enum):
 class SourceMailchimpCredentialsAPIKey:
     
     apikey: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('apikey') }})
-
     r"""Mailchimp API Key. See the <a href=\\"https://docs.airbyte.com/integrations/sources/mailchimp\\">docs</a> for information on how to generate this key."""
     auth_type: SourceMailchimpCredentialsAPIKeyAuthTypeEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_type') }})
-
     
 class SourceMailchimpCredentialsOAuth20AuthTypeEnum(str, Enum):
     OAUTH2_0 = 'oauth2.0'
@@ -30,15 +28,11 @@ class SourceMailchimpCredentialsOAuth20AuthTypeEnum(str, Enum):
 class SourceMailchimpCredentialsOAuth20:
     
     access_token: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('access_token') }})
-
     r"""An access token generated using the above client ID and secret."""
     auth_type: SourceMailchimpCredentialsOAuth20AuthTypeEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_type') }})
-
     client_id: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('client_id'), 'exclude': lambda f: f is None }})
-
     r"""The Client ID of your OAuth application."""
     client_secret: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('client_secret'), 'exclude': lambda f: f is None }})
-
     r"""The Client Secret of your OAuth application."""
     
 class SourceMailchimpMailchimpEnum(str, Enum):
@@ -51,9 +45,6 @@ class SourceMailchimp:
     r"""The values required to configure the source."""
     
     source_type: SourceMailchimpMailchimpEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
-
     campaign_id: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('campaign_id'), 'exclude': lambda f: f is None }})
-
     credentials: Optional[Any] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credentials'), 'exclude': lambda f: f is None }})
-
     

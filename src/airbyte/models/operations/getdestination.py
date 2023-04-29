@@ -11,19 +11,14 @@ from typing import Optional
 class GetDestinationRequest:
     
     destination_id: str = dataclasses.field(metadata={'path_param': { 'field_name': 'destinationId', 'style': 'simple', 'explode': False }})
-
     
 
 @dataclasses.dataclass
 class GetDestinationResponse:
     
     content_type: str = dataclasses.field()
-
     status_code: int = dataclasses.field()
-
     destination_response: Optional[shared_destinationresponse.DestinationResponse] = dataclasses.field(default=None)
-
     r"""Get a Destination by the id in the path."""
     raw_response: Optional[requests_http.Response] = dataclasses.field(default=None)
-
     

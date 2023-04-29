@@ -18,10 +18,8 @@ class SourceSftpCredentialsSSHKeyAuthentication:
     r"""The server authentication method"""
     
     auth_method: SourceSftpCredentialsSSHKeyAuthenticationAuthMethodEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_method') }})
-
     r"""Connect through ssh key"""
     auth_ssh_key: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_ssh_key') }})
-
     r"""OS-level user account ssh key credentials in RSA PEM format ( created with ssh-keygen -t rsa -m PEM -f myuser_rsa )"""
     
 class SourceSftpCredentialsPasswordAuthenticationAuthMethodEnum(str, Enum):
@@ -35,10 +33,8 @@ class SourceSftpCredentialsPasswordAuthentication:
     r"""The server authentication method"""
     
     auth_method: SourceSftpCredentialsPasswordAuthenticationAuthMethodEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_method') }})
-
     r"""Connect through password authentication"""
     auth_user_password: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_user_password') }})
-
     r"""OS-level password for logging into the jump server host"""
     
 class SourceSftpSftpEnum(str, Enum):
@@ -51,26 +47,18 @@ class SourceSftp:
     r"""The values required to configure the source."""
     
     host: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('host') }})
-
     r"""The server host address"""
     port: int = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('port') }})
-
     r"""The server port"""
     source_type: SourceSftpSftpEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
-
     user: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('user') }})
-
     r"""The server user"""
     credentials: Optional[Any] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credentials'), 'exclude': lambda f: f is None }})
-
     r"""The server authentication method"""
     file_pattern: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('file_pattern'), 'exclude': lambda f: f is None }})
-
     r"""The regular expression to specify files for sync in a chosen Folder Path"""
     file_types: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('file_types'), 'exclude': lambda f: f is None }})
-
     r"""Coma separated file types. Currently only 'csv' and 'json' types are supported."""
     folder_path: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('folder_path'), 'exclude': lambda f: f is None }})
-
     r"""The directory to search files for sync"""
     

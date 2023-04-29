@@ -11,19 +11,14 @@ from typing import Optional
 class GetSourceRequest:
     
     source_id: str = dataclasses.field(metadata={'path_param': { 'field_name': 'sourceId', 'style': 'simple', 'explode': False }})
-
     
 
 @dataclasses.dataclass
 class GetSourceResponse:
     
     content_type: str = dataclasses.field()
-
     status_code: int = dataclasses.field()
-
     raw_response: Optional[requests_http.Response] = dataclasses.field(default=None)
-
     source_response: Optional[shared_sourceresponse.SourceResponse] = dataclasses.field(default=None)
-
     r"""Get a Source by the id in the path."""
     

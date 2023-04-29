@@ -45,26 +45,18 @@ class DestinationAmazonSqs:
     r"""The values required to configure the destination."""
     
     destination_type: DestinationAmazonSqsAmazonSqsEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('destinationType') }})
-
     queue_url: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('queue_url') }})
-
     r"""URL of the SQS Queue"""
     region: DestinationAmazonSqsAWSRegionEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('region') }})
-
     r"""AWS Region of the SQS Queue"""
     access_key: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('access_key'), 'exclude': lambda f: f is None }})
-
     r"""The Access Key ID of the AWS IAM Role to use for sending  messages"""
     message_body_key: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('message_body_key'), 'exclude': lambda f: f is None }})
-
     r"""Use this property to extract the contents of the named key in the input record to use as the SQS message body. If not set, the entire content of the input record data is used as the message body."""
     message_delay: Optional[int] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('message_delay'), 'exclude': lambda f: f is None }})
-
     r"""Modify the Message Delay of the individual message from the Queue's default (seconds)."""
     message_group_id: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('message_group_id'), 'exclude': lambda f: f is None }})
-
     r"""The tag that specifies that a message belongs to a specific message group. This parameter applies only to, and is REQUIRED by, FIFO queues."""
     secret_key: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('secret_key'), 'exclude': lambda f: f is None }})
-
     r"""The Secret Key of the AWS IAM Role to use for sending messages"""
     

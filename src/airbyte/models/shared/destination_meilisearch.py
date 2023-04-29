@@ -17,11 +17,8 @@ class DestinationMeilisearch:
     r"""The values required to configure the destination."""
     
     destination_type: DestinationMeilisearchMeilisearchEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('destinationType') }})
-
     host: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('host') }})
-
     r"""Hostname of the MeiliSearch instance."""
     api_key: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('api_key'), 'exclude': lambda f: f is None }})
-
     r"""MeiliSearch API Key. See the <a href=\\"https://docs.airbyte.com/integrations/destinations/meilisearch\\">docs</a> for more information on how to obtain this key."""
     

@@ -13,9 +13,6 @@ class WorkspacesResponse:
     r"""Successful operation"""
     
     data: list[shared_workspaceresponse.WorkspaceResponse] = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('data') }})
-
     next: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('next') }})
-
     previous: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('previous') }})
-
     

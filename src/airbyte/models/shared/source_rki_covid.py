@@ -16,8 +16,6 @@ class SourceRkiCovid:
     r"""The values required to configure the source."""
     
     source_type: SourceRkiCovidRkiCovidEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
-
     start_date: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('start_date') }})
-
     r"""UTC date in the format 2017-01-25. Any data before this date will not be replicated."""
     
