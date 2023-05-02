@@ -104,7 +104,7 @@ class SourceGnews:
     r"""The values required to configure the source."""
     
     api_key: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('api_key') }})
-    r"""API Key"""  
+    r"""API Key"""
     query: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('query') }})
     r"""This parameter allows you to specify your search keywords to find the news articles you are looking for. The keywords will be used to return the most relevant articles. It is possible to use logical operators  with keywords. - Phrase Search Operator: This operator allows you to make an exact search. Keywords surrounded by
       quotation marks are used to search for articles with the exact same keyword sequence. 
@@ -120,24 +120,24 @@ class SourceGnews:
       specified keywords. To use it, you need to add NOT in front of each word or phrase surrounded by quotes.
       For example the query: Apple NOT iPhone will return all articles matching the keyword Apple but not the keyword
       iPhone
-    """  
-    source_type: SourceGnewsGnewsEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})  
+    """
+    source_type: SourceGnewsGnewsEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     country: Optional[SourceGnewsCountryEnum] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('country'), 'exclude': lambda f: f is None }})
-    r"""This parameter allows you to specify the country where the news articles returned by the API were published, the contents of the articles are not necessarily related to the specified country. You have to set as value the 2 letters code of the country you want to filter."""  
+    r"""This parameter allows you to specify the country where the news articles returned by the API were published, the contents of the articles are not necessarily related to the specified country. You have to set as value the 2 letters code of the country you want to filter."""
     end_date: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('end_date'), 'exclude': lambda f: f is None }})
-    r"""This parameter allows you to filter the articles that have a publication date smaller than or equal to the  specified value. The date must respect the following format: YYYY-MM-DD hh:mm:ss (in UTC)"""  
+    r"""This parameter allows you to filter the articles that have a publication date smaller than or equal to the  specified value. The date must respect the following format: YYYY-MM-DD hh:mm:ss (in UTC)"""
     in_: Optional[list[SourceGnewsInEnum]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('in'), 'exclude': lambda f: f is None }})
-    r"""This parameter allows you to choose in which attributes the keywords are searched. The attributes that can be set are title, description and content. It is possible to combine several attributes."""  
-    language: Optional[SourceGnewsLanguageEnum] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('language'), 'exclude': lambda f: f is None }})  
+    r"""This parameter allows you to choose in which attributes the keywords are searched. The attributes that can be set are title, description and content. It is possible to combine several attributes."""
+    language: Optional[SourceGnewsLanguageEnum] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('language'), 'exclude': lambda f: f is None }})
     nullable: Optional[list[SourceGnewsNullableEnum]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('nullable'), 'exclude': lambda f: f is None }})
-    r"""This parameter allows you to specify the attributes that you allow to return null values. The attributes that  can be set are title, description and content. It is possible to combine several attributes"""  
+    r"""This parameter allows you to specify the attributes that you allow to return null values. The attributes that  can be set are title, description and content. It is possible to combine several attributes"""
     sortby: Optional[SourceGnewsSortByEnum] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sortby'), 'exclude': lambda f: f is None }})
     r"""This parameter allows you to choose with which type of sorting the articles should be returned. Two values  are possible:
       - publishedAt = sort by publication date, the articles with the most recent publication date are returned first
       - relevance = sort by best match to keywords, the articles with the best match are returned first
-    """  
+    """
     start_date: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('start_date'), 'exclude': lambda f: f is None }})
-    r"""This parameter allows you to filter the articles that have a publication date greater than or equal to the  specified value. The date must respect the following format: YYYY-MM-DD hh:mm:ss (in UTC)"""  
+    r"""This parameter allows you to filter the articles that have a publication date greater than or equal to the  specified value. The date must respect the following format: YYYY-MM-DD hh:mm:ss (in UTC)"""
     top_headlines_query: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('top_headlines_query'), 'exclude': lambda f: f is None }})
     r"""This parameter allows you to specify your search keywords to find the news articles you are looking for. The keywords will be used to return the most relevant articles. It is possible to use logical operators  with keywords. - Phrase Search Operator: This operator allows you to make an exact search. Keywords surrounded by
       quotation marks are used to search for articles with the exact same keyword sequence. 
@@ -153,7 +153,7 @@ class SourceGnews:
       specified keywords. To use it, you need to add NOT in front of each word or phrase surrounded by quotes.
       For example the query: Apple NOT iPhone will return all articles matching the keyword Apple but not the keyword
       iPhone
-    """  
+    """
     top_headlines_topic: Optional[SourceGnewsTopHeadlinesTopicEnum] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('top_headlines_topic'), 'exclude': lambda f: f is None }})
-    r"""This parameter allows you to change the category for the request."""  
+    r"""This parameter allows you to change the category for the request."""
     

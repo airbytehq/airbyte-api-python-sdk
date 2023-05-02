@@ -17,10 +17,10 @@ class SourceGoogleWorkspaceAdminReports:
     r"""The values required to configure the source."""
     
     credentials_json: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credentials_json') }})
-    r"""The contents of the JSON service account key. See the <a href=\\"https://developers.google.com/admin-sdk/reports/v1/guides/delegation\\">docs</a> for more information on how to generate this key."""  
+    r"""The contents of the JSON service account key. See the <a href=\\"https://developers.google.com/admin-sdk/reports/v1/guides/delegation\\">docs</a> for more information on how to generate this key."""
     email: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('email') }})
-    r"""The email of the user, which has permissions to access the Google Workspace Admin APIs."""  
-    source_type: SourceGoogleWorkspaceAdminReportsGoogleWorkspaceAdminReportsEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})  
+    r"""The email of the user, which has permissions to access the Google Workspace Admin APIs."""
+    source_type: SourceGoogleWorkspaceAdminReportsGoogleWorkspaceAdminReportsEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     lookback: Optional[int] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('lookback'), 'exclude': lambda f: f is None }})
-    r"""Sets the range of time shown in the report. Reports API allows from up to 180 days ago."""  
+    r"""Sets the range of time shown in the report. Reports API allows from up to 180 days ago."""
     

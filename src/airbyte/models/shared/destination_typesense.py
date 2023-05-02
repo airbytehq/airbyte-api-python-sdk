@@ -17,14 +17,14 @@ class DestinationTypesense:
     r"""The values required to configure the destination."""
     
     api_key: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('api_key') }})
-    r"""Typesense API Key"""  
-    destination_type: DestinationTypesenseTypesenseEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('destinationType') }})  
+    r"""Typesense API Key"""
+    destination_type: DestinationTypesenseTypesenseEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('destinationType') }})
     host: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('host') }})
-    r"""Hostname of the Typesense instance without protocol."""  
+    r"""Hostname of the Typesense instance without protocol."""
     batch_size: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('batch_size'), 'exclude': lambda f: f is None }})
-    r"""How many documents should be imported together. Default 1000"""  
+    r"""How many documents should be imported together. Default 1000"""
     port: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('port'), 'exclude': lambda f: f is None }})
-    r"""Port of the Typesense instance. Ex: 8108, 80, 443. Default is 443"""  
+    r"""Port of the Typesense instance. Ex: 8108, 80, 443. Default is 443"""
     protocol: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('protocol'), 'exclude': lambda f: f is None }})
-    r"""Protocol of the Typesense instance. Ex: http or https. Default is https"""  
+    r"""Protocol of the Typesense instance. Ex: http or https. Default is https"""
     

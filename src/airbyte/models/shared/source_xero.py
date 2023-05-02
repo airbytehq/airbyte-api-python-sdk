@@ -15,15 +15,15 @@ from marshmallow import fields
 class SourceXeroAuthenticateViaXeroOAuth:
     
     access_token: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('access_token') }})
-    r"""Enter your Xero application's access token"""  
+    r"""Enter your Xero application's access token"""
     client_id: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('client_id') }})
-    r"""Enter your Xero application's Client ID"""  
+    r"""Enter your Xero application's Client ID"""
     client_secret: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('client_secret') }})
-    r"""Enter your Xero application's Client Secret"""  
+    r"""Enter your Xero application's Client Secret"""
     refresh_token: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('refresh_token') }})
-    r"""Enter your Xero application's refresh token"""  
+    r"""Enter your Xero application's refresh token"""
     token_expiry_date: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('token_expiry_date') }})
-    r"""The date-time when the access token should be refreshed"""  
+    r"""The date-time when the access token should be refreshed"""
     
 class SourceXeroXeroEnum(str, Enum):
     XERO = 'xero'
@@ -34,10 +34,10 @@ class SourceXeroXeroEnum(str, Enum):
 class SourceXero:
     r"""The values required to configure the source."""
     
-    authentication: SourceXeroAuthenticateViaXeroOAuth = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('authentication') }})  
-    source_type: SourceXeroXeroEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})  
+    authentication: SourceXeroAuthenticateViaXeroOAuth = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('authentication') }})
+    source_type: SourceXeroXeroEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     start_date: datetime = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('start_date'), 'encoder': utils.datetimeisoformat(False), 'decoder': dateutil.parser.isoparse, 'mm_field': fields.DateTime(format='iso') }})
-    r"""UTC date and time in the format YYYY-MM-DDTHH:mm:ssZ. Any data with created_at before this data will not be synced."""  
+    r"""UTC date and time in the format YYYY-MM-DDTHH:mm:ssZ. Any data with created_at before this data will not be synced."""
     tenant_id: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('tenant_id') }})
-    r"""Enter your Xero organization's Tenant ID"""  
+    r"""Enter your Xero organization's Tenant ID"""
     

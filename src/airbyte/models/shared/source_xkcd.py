@@ -15,5 +15,5 @@ class SourceXkcdXkcdEnum(str, Enum):
 class SourceXkcd:
     r"""The values required to configure the source."""
     
-    source_type: SourceXkcdXkcdEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})  
+    source_type: SourceXkcdXkcdEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     

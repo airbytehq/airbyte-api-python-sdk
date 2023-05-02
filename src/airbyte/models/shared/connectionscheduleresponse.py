@@ -13,7 +13,7 @@ from typing import Optional
 class ConnectionScheduleResponse:
     r"""schedule for when the the connection should run, per the schedule type"""
     
-    schedule_type: shared_scheduletypewithbasicenum_enum.ScheduleTypeWithBasicEnumEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('scheduleType') }})  
-    basic_timing: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('basicTiming'), 'exclude': lambda f: f is None }})  
-    cron_expression: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('cronExpression'), 'exclude': lambda f: f is None }})  
+    schedule_type: shared_scheduletypewithbasicenum_enum.ScheduleTypeWithBasicEnumEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('scheduleType') }})
+    basic_timing: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('basicTiming'), 'exclude': lambda f: f is None }})
+    cron_expression: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('cronExpression'), 'exclude': lambda f: f is None }})
     

@@ -16,6 +16,6 @@ class SourcePokeapi:
     r"""The values required to configure the source."""
     
     pokemon_name: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('pokemon_name') }})
-    r"""Pokemon requested from the API."""  
-    source_type: SourcePokeapiPokeapiEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})  
+    r"""Pokemon requested from the API."""
+    source_type: SourcePokeapiPokeapiEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     

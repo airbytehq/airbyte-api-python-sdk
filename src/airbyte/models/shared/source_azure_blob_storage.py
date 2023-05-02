@@ -16,7 +16,7 @@ class SourceAzureBlobStorageFormatJSONLinesNewlineDelimitedJSONFormatTypeEnum(st
 class SourceAzureBlobStorageFormatJSONLinesNewlineDelimitedJSON:
     r"""Input data format"""
     
-    format_type: SourceAzureBlobStorageFormatJSONLinesNewlineDelimitedJSONFormatTypeEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('format_type') }})  
+    format_type: SourceAzureBlobStorageFormatJSONLinesNewlineDelimitedJSONFormatTypeEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('format_type') }})
     
 class SourceAzureBlobStorageAzureBlobStorageEnum(str, Enum):
     AZURE_BLOB_STORAGE = 'azure-blob-storage'
@@ -28,18 +28,18 @@ class SourceAzureBlobStorage:
     r"""The values required to configure the source."""
     
     azure_blob_storage_account_key: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('azure_blob_storage_account_key') }})
-    r"""The Azure blob storage account key."""  
+    r"""The Azure blob storage account key."""
     azure_blob_storage_account_name: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('azure_blob_storage_account_name') }})
-    r"""The account's name of the Azure Blob Storage."""  
+    r"""The account's name of the Azure Blob Storage."""
     azure_blob_storage_container_name: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('azure_blob_storage_container_name') }})
-    r"""The name of the Azure blob storage container."""  
+    r"""The name of the Azure blob storage container."""
     format: Any = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('format') }})
-    r"""Input data format"""  
-    source_type: SourceAzureBlobStorageAzureBlobStorageEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})  
+    r"""Input data format"""
+    source_type: SourceAzureBlobStorageAzureBlobStorageEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     azure_blob_storage_blobs_prefix: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('azure_blob_storage_blobs_prefix'), 'exclude': lambda f: f is None }})
-    r"""The Azure blob storage prefix to be applied"""  
+    r"""The Azure blob storage prefix to be applied"""
     azure_blob_storage_endpoint: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('azure_blob_storage_endpoint'), 'exclude': lambda f: f is None }})
-    r"""This is Azure Blob Storage endpoint domain name. Leave default value (or leave it empty if run container from command line) to use Microsoft native from example."""  
+    r"""This is Azure Blob Storage endpoint domain name. Leave default value (or leave it empty if run container from command line) to use Microsoft native from example."""
     azure_blob_storage_schema_inference_limit: Optional[int] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('azure_blob_storage_schema_inference_limit'), 'exclude': lambda f: f is None }})
-    r"""The Azure blob storage blobs to scan for inferring the schema, useful on large amounts of data with consistent structure"""  
+    r"""The Azure blob storage blobs to scan for inferring the schema, useful on large amounts of data with consistent structure"""
     

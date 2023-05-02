@@ -75,14 +75,14 @@ class SourceOpenweather:
     r"""The values required to configure the source."""
     
     appid: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('appid') }})
-    r"""Your OpenWeather API Key. See <a href=\\"https://openweathermap.org/api\\">here</a>. The key is case sensitive."""  
+    r"""Your OpenWeather API Key. See <a href=\\"https://openweathermap.org/api\\">here</a>. The key is case sensitive."""
     lat: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('lat') }})
-    r"""Latitude for which you want to get weather condition from. (min -90, max 90)"""  
+    r"""Latitude for which you want to get weather condition from. (min -90, max 90)"""
     lon: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('lon') }})
-    r"""Longitude for which you want to get weather condition from. (min -180, max 180)"""  
-    source_type: SourceOpenweatherOpenweatherEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})  
+    r"""Longitude for which you want to get weather condition from. (min -180, max 180)"""
+    source_type: SourceOpenweatherOpenweatherEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     lang: Optional[SourceOpenweatherLanguageEnum] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('lang'), 'exclude': lambda f: f is None }})
-    r"""You can use lang parameter to get the output in your language. The contents of the description field will be translated. See <a href=\\"https://openweathermap.org/api/one-call-api#multi\\">here</a> for the list of supported languages."""  
+    r"""You can use lang parameter to get the output in your language. The contents of the description field will be translated. See <a href=\\"https://openweathermap.org/api/one-call-api#multi\\">here</a> for the list of supported languages."""
     units: Optional[SourceOpenweatherUnitsEnum] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('units'), 'exclude': lambda f: f is None }})
-    r"""Units of measurement. standard, metric and imperial units are available. If you do not use the units parameter, standard units will be applied by default."""  
+    r"""Units of measurement. standard, metric and imperial units are available. If you do not use the units parameter, standard units will be applied by default."""
     
