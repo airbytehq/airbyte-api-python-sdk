@@ -52,8 +52,8 @@ s = airbyte.Airbyte(
 
 
 req = shared.JobCreateRequest(
-    connection_id="temporibus",
-    job_type="sync",
+    connection_id='temporibus',
+    job_type=shared.JobTypeEnumEnum.SYNC,
 )
 
 res = s.jobs.create_job(req)
@@ -107,8 +107,8 @@ s = airbyte.Airbyte(
 
 
 req = operations.ListJobsRequest(
-    connection_id="fugit",
-    job_type="sync",
+    connection_id='fugit',
+    job_type=shared.JobTypeEnumEnum.SYNC,
     limit=488056,
     offset=124833,
 )

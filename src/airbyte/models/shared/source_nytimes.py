@@ -9,11 +9,11 @@ from enum import Enum
 from marshmallow import fields
 from typing import Optional
 
-class SourceNytimesPeriodUsedForMostPopularStreamsEnum(str, Enum):
+class SourceNytimesPeriodUsedForMostPopularStreamsEnum(int, Enum):
     r"""Period of time (in days)"""
-    ONE = '1'
-    SEVEN = '7'
-    THIRTY = '30'
+    ONE = 1
+    SEVEN = 7
+    THIRTY = 30
 
 class SourceNytimesShareTypeUsedForMostPopularSharedStreamEnum(str, Enum):
     r"""Share Type"""

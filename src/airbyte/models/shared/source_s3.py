@@ -13,12 +13,6 @@ from typing import Any, Optional
 class SourceS3FormatJsonlFiletypeEnum(str, Enum):
     JSONL = 'jsonl'
 
-class SourceS3FormatJsonlUnexpectedFieldBehaviorEnum(str, Enum):
-    r"""How JSON fields outside of explicit_schema (if given) are treated. Check <a href=\\"https://arrow.apache.org/docs/python/generated/pyarrow.json.ParseOptions.html\\" target=\\"_blank\\">PyArrow documentation</a> for details"""
-    IGNORE = 'ignore'
-    INFER = 'infer'
-    ERROR = 'error'
-
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
@@ -30,7 +24,7 @@ class SourceS3FormatJsonl:
     filetype: Optional[SourceS3FormatJsonlFiletypeEnum] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('filetype'), 'exclude': lambda f: f is None }})
     newlines_in_values: Optional[bool] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('newlines_in_values'), 'exclude': lambda f: f is None }})
     r"""Whether newline characters are allowed in JSON values. Turning this on may affect performance. Leave blank to default to False."""
-    unexpected_field_behavior: Optional[SourceS3FormatJsonlUnexpectedFieldBehaviorEnum] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('unexpected_field_behavior'), 'exclude': lambda f: f is None }})
+    unexpected_field_behavior: Optional[Any] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('unexpected_field_behavior'), 'exclude': lambda f: f is None }})
     r"""How JSON fields outside of explicit_schema (if given) are treated. Check <a href=\\"https://arrow.apache.org/docs/python/generated/pyarrow.json.ParseOptions.html\\" target=\\"_blank\\">PyArrow documentation</a> for details"""
     
 class SourceS3FormatAvroFiletypeEnum(str, Enum):

@@ -22,8 +22,8 @@ s = airbyte.Airbyte(
 
 
 req = operations.GetStreamPropertiesRequest(
-    destination_id="inventore",
-    source_id="non",
+    destination_id='inventore',
+    source_id='non',
 )
 
 res = s.streams.get_stream_properties(req)

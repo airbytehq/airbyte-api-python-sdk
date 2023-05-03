@@ -731,7 +731,7 @@ def _val_to_string(val):
     if isinstance(val, datetime):
         return val.isoformat().replace('+00:00', 'Z')
     if isinstance(val, Enum):
-        return val.value
+        return str(val.value)
 
     return str(val)
 
