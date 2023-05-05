@@ -23,7 +23,6 @@ s = airbyte.Airbyte(
     ),
 )
 
-
 req = shared.DestinationCreateRequest(
     configuration=shared.DestinationAzureBlobStorage(
         azure_blob_storage_account_key='maiores',
@@ -64,7 +63,6 @@ s = airbyte.Airbyte(
     ),
 )
 
-
 req = operations.DeleteDestinationRequest(
     destination_id='eaque',
 )
@@ -91,7 +89,6 @@ s = airbyte.Airbyte(
     ),
 )
 
-
 req = operations.GetDestinationRequest(
     destination_id='occaecati',
 )
@@ -117,7 +114,6 @@ s = airbyte.Airbyte(
         bearer_auth="Bearer YOUR_BEARER_TOKEN_HERE",
     ),
 )
-
 
 req = operations.ListDestinationsRequest(
     include_deleted=False,

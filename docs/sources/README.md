@@ -25,7 +25,6 @@ s = airbyte.Airbyte(
     ),
 )
 
-
 req = shared.SourceCreateRequest(
     configuration=shared.SourceInstagram(
         access_token='nam',
@@ -59,7 +58,6 @@ s = airbyte.Airbyte(
     ),
 )
 
-
 req = operations.DeleteSourceRequest(
     source_id='vero',
 )
@@ -85,7 +83,6 @@ s = airbyte.Airbyte(
         bearer_auth="Bearer YOUR_BEARER_TOKEN_HERE",
     ),
 )
-
 
 req = operations.GetSourceRequest(
     source_id='omnis',
@@ -116,7 +113,6 @@ s = airbyte.Airbyte(
         bearer_auth="Bearer YOUR_BEARER_TOKEN_HERE",
     ),
 )
-
 
 req = shared.InitiateOauthRequest(
     name='Tiffany Willms',
@@ -151,7 +147,6 @@ s = airbyte.Airbyte(
         bearer_auth="Bearer YOUR_BEARER_TOKEN_HERE",
     ),
 )
-
 
 req = operations.ListSourcesRequest(
     include_deleted=False,

@@ -23,7 +23,6 @@ s = airbyte.Airbyte(
     ),
 )
 
-
 req = operations.CancelJobRequest(
     job_id=565421,
 )
@@ -49,7 +48,6 @@ s = airbyte.Airbyte(
         bearer_auth="Bearer YOUR_BEARER_TOKEN_HERE",
     ),
 )
-
 
 req = shared.JobCreateRequest(
     connection_id='temporibus',
@@ -78,7 +76,6 @@ s = airbyte.Airbyte(
     ),
 )
 
-
 req = operations.GetJobRequest(
     job_id=204865,
 )
@@ -104,7 +101,6 @@ s = airbyte.Airbyte(
         bearer_auth="Bearer YOUR_BEARER_TOKEN_HERE",
     ),
 )
-
 
 req = operations.ListJobsRequest(
     connection_id='fugit',

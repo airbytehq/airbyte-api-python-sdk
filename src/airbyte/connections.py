@@ -21,6 +21,7 @@ class Connections:
         self._sdk_version = sdk_version
         self._gen_version = gen_version
         
+    
     def create_connection(self, request: shared.ConnectionCreateRequest) -> operations.CreateConnectionResponse:
         r"""Create a connection"""
         base_url = self._server_url
@@ -51,6 +52,7 @@ class Connections:
 
         return res
 
+    
     def delete_connection(self, request: operations.DeleteConnectionRequest) -> operations.DeleteConnectionResponse:
         r"""Delete a Connection"""
         base_url = self._server_url
@@ -70,6 +72,7 @@ class Connections:
 
         return res
 
+    
     def get_connection(self, request: operations.GetConnectionRequest) -> operations.GetConnectionResponse:
         r"""Get Connection details"""
         base_url = self._server_url
@@ -95,6 +98,7 @@ class Connections:
 
         return res
 
+    
     def list_connections(self, request: operations.ListConnectionsRequest) -> operations.ListConnectionsResponse:
         r"""List connections"""
         base_url = self._server_url

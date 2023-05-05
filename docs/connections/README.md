@@ -23,7 +23,6 @@ s = airbyte.Airbyte(
     ),
 )
 
-
 req = shared.ConnectionCreateRequest(
     configurations=shared.StreamConfigurations(
         streams=[
@@ -88,7 +87,6 @@ s = airbyte.Airbyte(
     ),
 )
 
-
 req = operations.DeleteConnectionRequest(
     connection_id='in',
 )
@@ -115,7 +113,6 @@ s = airbyte.Airbyte(
     ),
 )
 
-
 req = operations.GetConnectionRequest(
     connection_id='in',
 )
@@ -141,7 +138,6 @@ s = airbyte.Airbyte(
         bearer_auth="Bearer YOUR_BEARER_TOKEN_HERE",
     ),
 )
-
 
 req = operations.ListConnectionsRequest(
     include_deleted=False,

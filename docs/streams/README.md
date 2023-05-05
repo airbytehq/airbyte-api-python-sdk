@@ -20,7 +20,6 @@ s = airbyte.Airbyte(
     ),
 )
 
-
 req = operations.GetStreamPropertiesRequest(
     destination_id='inventore',
     source_id='non',

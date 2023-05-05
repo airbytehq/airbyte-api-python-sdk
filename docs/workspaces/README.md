@@ -24,7 +24,6 @@ s = airbyte.Airbyte(
     ),
 )
 
-
 req = operations.CreateOrUpdateWorkspaceOAuthCredentialsRequest(
     workspace_o_auth_credentials_request=shared.WorkspaceOAuthCredentialsRequest(
         actor_type='et',
@@ -60,7 +59,6 @@ s = airbyte.Airbyte(
     ),
 )
 
-
 req = shared.WorkspaceCreateRequest(
     name='Carrie Cole IV',
 )
@@ -87,7 +85,6 @@ s = airbyte.Airbyte(
     ),
 )
 
-
 req = operations.GetWorkspaceRequest(
     workspace_id='magnam',
 )
@@ -113,7 +110,6 @@ s = airbyte.Airbyte(
         bearer_auth="Bearer YOUR_BEARER_TOKEN_HERE",
     ),
 )
-
 
 req = operations.ListWorkspacesRequest(
     include_deleted=False,

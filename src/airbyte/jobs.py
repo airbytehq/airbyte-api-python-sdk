@@ -21,6 +21,7 @@ class Jobs:
         self._sdk_version = sdk_version
         self._gen_version = gen_version
         
+    
     def cancel_job(self, request: operations.CancelJobRequest) -> operations.CancelJobResponse:
         r"""Cancel a running Job"""
         base_url = self._server_url
@@ -46,6 +47,7 @@ class Jobs:
 
         return res
 
+    
     def create_job(self, request: shared.JobCreateRequest) -> operations.CreateJobResponse:
         r"""Trigger a sync or reset job of a connection"""
         base_url = self._server_url
@@ -76,6 +78,7 @@ class Jobs:
 
         return res
 
+    
     def get_job(self, request: operations.GetJobRequest) -> operations.GetJobResponse:
         r"""Get Job status and details"""
         base_url = self._server_url
@@ -101,6 +104,7 @@ class Jobs:
 
         return res
 
+    
     def list_jobs(self, request: operations.ListJobsRequest) -> operations.ListJobsResponse:
         r"""List Jobs by sync type"""
         base_url = self._server_url

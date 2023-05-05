@@ -33,7 +33,6 @@ s = airbyte.Airbyte(
     ),
 )
 
-
 req = shared.ConnectionCreateRequest(
     configurations=shared.StreamConfigurations(
         streams=[
