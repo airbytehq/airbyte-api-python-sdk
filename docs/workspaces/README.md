@@ -24,18 +24,17 @@ s = airbyte.Airbyte(
     ),
 )
 
-
 req = operations.CreateOrUpdateWorkspaceOAuthCredentialsRequest(
     workspace_o_auth_credentials_request=shared.WorkspaceOAuthCredentialsRequest(
-        actor_type="source",
+        actor_type=shared.WorkspaceOAuthCredentialsRequestActorTypeEnum.SOURCE,
         configuration={
-            "laborum": "placeat",
-            "velit": "eum",
-            "autem": "nobis",
+            "laborum": 'placeat',
+            "velit": 'eum',
+            "autem": 'nobis',
         },
-        name="Mack Stoltenberg",
+        name='Mack Stoltenberg',
     ),
-    workspace_id="quasi",
+    workspace_id='quasi',
 )
 
 res = s.workspaces.create_or_update_workspace_o_auth_credentials(req)
@@ -60,9 +59,8 @@ s = airbyte.Airbyte(
     ),
 )
 
-
 req = shared.WorkspaceCreateRequest(
-    name="Carrie Cole IV",
+    name='Carrie Cole IV',
 )
 
 res = s.workspaces.create_workspace(req)
@@ -87,9 +85,8 @@ s = airbyte.Airbyte(
     ),
 )
 
-
 req = operations.GetWorkspaceRequest(
-    workspace_id="magnam",
+    workspace_id='magnam',
 )
 
 res = s.workspaces.get_workspace(req)
@@ -114,14 +111,13 @@ s = airbyte.Airbyte(
     ),
 )
 
-
 req = operations.ListWorkspacesRequest(
     include_deleted=False,
     limit=487935,
     offset=262118,
     workspace_ids=[
-        "78a7bd46-6d28-4c10-ab3c-dca4251904e5",
-        "23c7e0bc-7178-4e47-96f2-a70c688282aa",
+        '78a7bd46-6d28-4c10-ab3c-dca4251904e5',
+        '23c7e0bc-7178-4e47-96f2-a70c688282aa',
     ],
 )
 

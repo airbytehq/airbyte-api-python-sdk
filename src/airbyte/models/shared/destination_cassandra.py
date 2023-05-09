@@ -17,18 +17,18 @@ class DestinationCassandra:
     r"""The values required to configure the destination."""
     
     address: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('address') }})
-    r"""Address to connect to."""  
-    destination_type: DestinationCassandraCassandraEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('destinationType') }})  
+    r"""Address to connect to."""
+    destination_type: DestinationCassandraCassandraEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('destinationType') }})
     keyspace: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('keyspace') }})
-    r"""Default Cassandra keyspace to create data in."""  
+    r"""Default Cassandra keyspace to create data in."""
     password: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('password') }})
-    r"""Password associated with Cassandra."""  
+    r"""Password associated with Cassandra."""
     port: int = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('port') }})
-    r"""Port of Cassandra."""  
+    r"""Port of Cassandra."""
     username: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('username') }})
-    r"""Username to use to access Cassandra."""  
+    r"""Username to use to access Cassandra."""
     datacenter: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('datacenter'), 'exclude': lambda f: f is None }})
-    r"""Datacenter of the cassandra cluster."""  
+    r"""Datacenter of the cassandra cluster."""
     replication: Optional[int] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('replication'), 'exclude': lambda f: f is None }})
-    r"""Indicates to how many nodes the data should be replicated to."""  
+    r"""Indicates to how many nodes the data should be replicated to."""
     

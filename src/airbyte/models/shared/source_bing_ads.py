@@ -22,17 +22,17 @@ class SourceBingAds:
     r"""The values required to configure the source."""
     
     client_id: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('client_id') }})
-    r"""The Client ID of your Microsoft Advertising developer application."""  
+    r"""The Client ID of your Microsoft Advertising developer application."""
     developer_token: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('developer_token') }})
-    r"""Developer token associated with user. See more info <a href=\\"https://docs.microsoft.com/en-us/advertising/guides/get-started?view=bingads-13#get-developer-token\\"> in the docs</a>."""  
+    r"""Developer token associated with user. See more info <a href=\\"https://docs.microsoft.com/en-us/advertising/guides/get-started?view=bingads-13#get-developer-token\\"> in the docs</a>."""
     refresh_token: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('refresh_token') }})
-    r"""Refresh Token to renew the expired Access Token."""  
+    r"""Refresh Token to renew the expired Access Token."""
     reports_start_date: date = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('reports_start_date'), 'encoder': utils.dateisoformat(False), 'decoder': utils.datefromisoformat, 'mm_field': fields.DateTime(format='iso') }})
-    r"""The start date from which to begin replicating report data. Any data generated before this date will not be replicated in reports. This is a UTC date in YYYY-MM-DD format."""  
-    source_type: SourceBingAdsBingAdsEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})  
-    auth_method: Optional[SourceBingAdsAuthMethodEnum] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_method'), 'exclude': lambda f: f is None }})  
+    r"""The start date from which to begin replicating report data. Any data generated before this date will not be replicated in reports. This is a UTC date in YYYY-MM-DD format."""
+    source_type: SourceBingAdsBingAdsEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
+    auth_method: Optional[SourceBingAdsAuthMethodEnum] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_method'), 'exclude': lambda f: f is None }})
     client_secret: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('client_secret'), 'exclude': lambda f: f is None }})
-    r"""The Client Secret of your Microsoft Advertising developer application."""  
+    r"""The Client Secret of your Microsoft Advertising developer application."""
     tenant_id: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('tenant_id'), 'exclude': lambda f: f is None }})
-    r"""The Tenant ID of your Microsoft Advertising developer application. Set this to \\"common\\" unless you know you need a different value."""  
+    r"""The Tenant ID of your Microsoft Advertising developer application. Set this to \\"common\\" unless you know you need a different value."""
     

@@ -19,8 +19,8 @@ class WorkspaceOAuthCredentialsRequest:
     r"""POST body for creating/updating workspace level OAuth credentials"""
     
     actor_type: WorkspaceOAuthCredentialsRequestActorTypeEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('actorType') }})
-    r"""Whether you're setting this override for a source or destination"""  
+    r"""Whether you're setting this override for a source or destination"""
     configuration: dict[str, Any] = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('configuration') }})
-    r"""The configuration for this source/destination based on the OAuth section of the relevant specification."""  
-    name: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('name') }})  
+    r"""The configuration for this source/destination based on the OAuth section of the relevant specification."""
+    name: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('name') }})
     

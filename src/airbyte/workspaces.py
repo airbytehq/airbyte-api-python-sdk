@@ -21,6 +21,7 @@ class Workspaces:
         self._sdk_version = sdk_version
         self._gen_version = gen_version
         
+    
     def create_or_update_workspace_o_auth_credentials(self, request: operations.CreateOrUpdateWorkspaceOAuthCredentialsRequest) -> operations.CreateOrUpdateWorkspaceOAuthCredentialsResponse:
         r"""Create OAuth override credentials for a workspace and source type.
         Create/update a set of OAuth credentials to override the Airbyte-provided OAuth credentials used for source/destination OAuth.
@@ -48,6 +49,7 @@ class Workspaces:
 
         return res
 
+    
     def create_workspace(self, request: shared.WorkspaceCreateRequest) -> operations.CreateWorkspaceResponse:
         r"""Create a workspace"""
         base_url = self._server_url
@@ -78,6 +80,7 @@ class Workspaces:
 
         return res
 
+    
     def get_workspace(self, request: operations.GetWorkspaceRequest) -> operations.GetWorkspaceResponse:
         r"""Get Workspace details"""
         base_url = self._server_url
@@ -103,6 +106,7 @@ class Workspaces:
 
         return res
 
+    
     def list_workspaces(self, request: operations.ListWorkspacesRequest) -> operations.ListWorkspacesResponse:
         r"""List workspaces"""
         base_url = self._server_url

@@ -18,8 +18,8 @@ class SourceLinkedinAdsCredentialsAccessTokenAuthMethodEnum(str, Enum):
 class SourceLinkedinAdsCredentialsAccessToken:
     
     access_token: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('access_token') }})
-    r"""The token value generated using the authentication code. See the <a href=\\"https://docs.airbyte.com/integrations/sources/linkedin-ads#authentication\\">docs</a> to obtain yours."""  
-    auth_method: Optional[SourceLinkedinAdsCredentialsAccessTokenAuthMethodEnum] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_method'), 'exclude': lambda f: f is None }})  
+    r"""The token value generated using the authentication code. See the <a href=\\"https://docs.airbyte.com/integrations/sources/linkedin-ads#authentication\\">docs</a> to obtain yours."""
+    auth_method: Optional[SourceLinkedinAdsCredentialsAccessTokenAuthMethodEnum] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_method'), 'exclude': lambda f: f is None }})
     
 class SourceLinkedinAdsCredentialsOAuth20AuthMethodEnum(str, Enum):
     O_AUTH2_0 = 'oAuth2.0'
@@ -30,12 +30,12 @@ class SourceLinkedinAdsCredentialsOAuth20AuthMethodEnum(str, Enum):
 class SourceLinkedinAdsCredentialsOAuth20:
     
     client_id: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('client_id') }})
-    r"""The client ID of the LinkedIn Ads developer application."""  
+    r"""The client ID of the LinkedIn Ads developer application."""
     client_secret: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('client_secret') }})
-    r"""The client secret the LinkedIn Ads developer application."""  
+    r"""The client secret the LinkedIn Ads developer application."""
     refresh_token: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('refresh_token') }})
-    r"""The key to refresh the expired access token."""  
-    auth_method: Optional[SourceLinkedinAdsCredentialsOAuth20AuthMethodEnum] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_method'), 'exclude': lambda f: f is None }})  
+    r"""The key to refresh the expired access token."""
+    auth_method: Optional[SourceLinkedinAdsCredentialsOAuth20AuthMethodEnum] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_method'), 'exclude': lambda f: f is None }})
     
 class SourceLinkedinAdsLinkedinAdsEnum(str, Enum):
     LINKEDIN_ADS = 'linkedin-ads'
@@ -46,10 +46,10 @@ class SourceLinkedinAdsLinkedinAdsEnum(str, Enum):
 class SourceLinkedinAds:
     r"""The values required to configure the source."""
     
-    source_type: SourceLinkedinAdsLinkedinAdsEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})  
+    source_type: SourceLinkedinAdsLinkedinAdsEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     start_date: date = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('start_date'), 'encoder': utils.dateisoformat(False), 'decoder': utils.datefromisoformat, 'mm_field': fields.DateTime(format='iso') }})
-    r"""UTC date in the format 2020-09-17. Any data before this date will not be replicated."""  
+    r"""UTC date in the format 2020-09-17. Any data before this date will not be replicated."""
     account_ids: Optional[list[int]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('account_ids'), 'exclude': lambda f: f is None }})
-    r"""Specify the account IDs separated by a space, to pull the data from. Leave empty, if you want to pull the data from all associated accounts. See the <a href=\\"https://www.linkedin.com/help/linkedin/answer/a424270/find-linkedin-ads-account-details?lang=en\\">LinkedIn Ads docs</a> for more info."""  
-    credentials: Optional[Any] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credentials'), 'exclude': lambda f: f is None }})  
+    r"""Specify the account IDs separated by a space, to pull the data from. Leave empty, if you want to pull the data from all associated accounts. See the <a href=\\"https://www.linkedin.com/help/linkedin/answer/a424270/find-linkedin-ads-account-details?lang=en\\">LinkedIn Ads docs</a> for more info."""
+    credentials: Optional[Any] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credentials'), 'exclude': lambda f: f is None }})
     

@@ -24,12 +24,12 @@ class SourceChargebee:
     r"""The values required to configure the source."""
     
     product_catalog: SourceChargebeeProductCatalogEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('product_catalog') }})
-    r"""Product Catalog version of your Chargebee site. Instructions on how to find your version you may find <a href=\\"https://apidocs.chargebee.com/docs/api?prod_cat_ver=2\\">here</a> under `API Version` section."""  
+    r"""Product Catalog version of your Chargebee site. Instructions on how to find your version you may find <a href=\\"https://apidocs.chargebee.com/docs/api?prod_cat_ver=2\\">here</a> under `API Version` section."""
     site: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('site') }})
-    r"""The site prefix for your Chargebee instance."""  
+    r"""The site prefix for your Chargebee instance."""
     site_api_key: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('site_api_key') }})
-    r"""Chargebee API Key. See the <a href=\\"https://docs.airbyte.com/integrations/sources/chargebee\\">docs</a> for more information on how to obtain this key."""  
-    source_type: SourceChargebeeChargebeeEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})  
+    r"""Chargebee API Key. See the <a href=\\"https://docs.airbyte.com/integrations/sources/chargebee\\">docs</a> for more information on how to obtain this key."""
+    source_type: SourceChargebeeChargebeeEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     start_date: datetime = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('start_date'), 'encoder': utils.datetimeisoformat(False), 'decoder': dateutil.parser.isoparse, 'mm_field': fields.DateTime(format='iso') }})
-    r"""UTC date and time in the format 2021-01-25T00:00:00Z. Any data before this date will not be replicated."""  
+    r"""UTC date and time in the format 2021-01-25T00:00:00Z. Any data before this date will not be replicated."""
     

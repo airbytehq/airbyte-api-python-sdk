@@ -25,16 +25,15 @@ s = airbyte.Airbyte(
     ),
 )
 
-
 req = shared.SourceCreateRequest(
     configuration=shared.SourceInstagram(
-        access_token="nam",
-        source_type="instagram",
+        access_token='nam',
+        source_type=shared.SourceInstagramInstagramEnum.INSTAGRAM,
         start_date=dateutil.parser.isoparse('2022-11-28T15:41:44.846Z'),
     ),
-    name="Dr. Dominic Rohan",
-    secret_id="veritatis",
-    workspace_id="b8b90f34-43a1-4108-a0ad-cf4b921879fc",
+    name='Dr. Dominic Rohan',
+    secret_id='veritatis',
+    workspace_id='b8b90f34-43a1-4108-a0ad-cf4b921879fc',
 )
 
 res = s.sources.create_source(req)
@@ -59,9 +58,8 @@ s = airbyte.Airbyte(
     ),
 )
 
-
 req = operations.DeleteSourceRequest(
-    source_id="vero",
+    source_id='vero',
 )
 
 res = s.sources.delete_source(req)
@@ -86,9 +84,8 @@ s = airbyte.Airbyte(
     ),
 )
 
-
 req = operations.GetSourceRequest(
-    source_id="omnis",
+    source_id='omnis',
 )
 
 res = s.sources.get_source(req)
@@ -117,17 +114,16 @@ s = airbyte.Airbyte(
     ),
 )
 
-
 req = shared.InitiateOauthRequest(
-    name="Tiffany Willms",
+    name='Tiffany Willms',
     o_auth_input_configuration={
-        "tenetur": "dignissimos",
-        "hic": "distinctio",
-        "quod": "odio",
-        "similique": "facilis",
+        "tenetur": 'dignissimos',
+        "hic": 'distinctio',
+        "quod": 'odio',
+        "similique": 'facilis',
     },
-    redirect_url="vero",
-    workspace_id="74dd39c0-f5d2-4cff-bc70-a45626d43681",
+    redirect_url='vero',
+    workspace_id='74dd39c0-f5d2-4cff-bc70-a45626d43681',
 )
 
 res = s.sources.initiate_o_auth(req)
@@ -152,13 +148,12 @@ s = airbyte.Airbyte(
     ),
 )
 
-
 req = operations.ListSourcesRequest(
     include_deleted=False,
     limit=224317,
     offset=980700,
     workspace_ids=[
-        "6d9f5fce-6c55-4614-ac3e-250fb008c42e",
+        '6d9f5fce-6c55-4614-ac3e-250fb008c42e',
     ],
 )
 

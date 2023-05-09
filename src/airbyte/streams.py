@@ -21,6 +21,7 @@ class Streams:
         self._sdk_version = sdk_version
         self._gen_version = gen_version
         
+    
     def get_stream_properties(self, request: operations.GetStreamPropertiesRequest) -> operations.GetStreamPropertiesResponse:
         r"""Get stream properties"""
         base_url = self._server_url

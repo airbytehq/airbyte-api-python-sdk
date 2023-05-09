@@ -45,22 +45,22 @@ class SourceAmazonSqs:
     r"""The values required to configure the source."""
     
     delete_messages: bool = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('delete_messages') }})
-    r"""If Enabled, messages will be deleted from the SQS Queue after being read. If Disabled, messages are left in the queue and can be read more than once. WARNING: Enabling this option can result in data loss in cases of failure, use with caution, see documentation for more detail."""  
+    r"""If Enabled, messages will be deleted from the SQS Queue after being read. If Disabled, messages are left in the queue and can be read more than once. WARNING: Enabling this option can result in data loss in cases of failure, use with caution, see documentation for more detail."""
     queue_url: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('queue_url') }})
-    r"""URL of the SQS Queue"""  
+    r"""URL of the SQS Queue"""
     region: SourceAmazonSqsAWSRegionEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('region') }})
-    r"""AWS Region of the SQS Queue"""  
-    source_type: SourceAmazonSqsAmazonSqsEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})  
+    r"""AWS Region of the SQS Queue"""
+    source_type: SourceAmazonSqsAmazonSqsEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     access_key: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('access_key'), 'exclude': lambda f: f is None }})
-    r"""The Access Key ID of the AWS IAM Role to use for pulling messages"""  
+    r"""The Access Key ID of the AWS IAM Role to use for pulling messages"""
     attributes_to_return: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('attributes_to_return'), 'exclude': lambda f: f is None }})
-    r"""Comma separated list of Mesage Attribute names to return"""  
+    r"""Comma separated list of Mesage Attribute names to return"""
     max_batch_size: Optional[int] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('max_batch_size'), 'exclude': lambda f: f is None }})
-    r"""Max amount of messages to get in one batch (10 max)"""  
+    r"""Max amount of messages to get in one batch (10 max)"""
     max_wait_time: Optional[int] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('max_wait_time'), 'exclude': lambda f: f is None }})
-    r"""Max amount of time in seconds to wait for messages in a single poll (20 max)"""  
+    r"""Max amount of time in seconds to wait for messages in a single poll (20 max)"""
     secret_key: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('secret_key'), 'exclude': lambda f: f is None }})
-    r"""The Secret Key of the AWS IAM Role to use for pulling messages"""  
+    r"""The Secret Key of the AWS IAM Role to use for pulling messages"""
     visibility_timeout: Optional[int] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('visibility_timeout'), 'exclude': lambda f: f is None }})
-    r"""Modify the Visibility Timeout of the individual message from the Queue's default (seconds)."""  
+    r"""Modify the Visibility Timeout of the individual message from the Queue's default (seconds)."""
     

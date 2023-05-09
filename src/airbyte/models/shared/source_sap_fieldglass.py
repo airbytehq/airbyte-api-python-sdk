@@ -16,6 +16,6 @@ class SourceSapFieldglass:
     r"""The values required to configure the source."""
     
     api_key: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('api_key') }})
-    r"""API Key"""  
-    source_type: SourceSapFieldglassSapFieldglassEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})  
+    r"""API Key"""
+    source_type: SourceSapFieldglassSapFieldglassEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     

@@ -18,10 +18,10 @@ class SourceBraze:
     r"""The values required to configure the source."""
     
     api_key: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('api_key') }})
-    r"""Braze REST API key"""  
-    source_type: SourceBrazeBrazeEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})  
+    r"""Braze REST API key"""
+    source_type: SourceBrazeBrazeEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     start_date: date = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('start_date'), 'encoder': utils.dateisoformat(False), 'decoder': utils.datefromisoformat, 'mm_field': fields.DateTime(format='iso') }})
-    r"""Rows after this date will be synced"""  
+    r"""Rows after this date will be synced"""
     url: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('url') }})
-    r"""Braze REST API endpoint"""  
+    r"""Braze REST API endpoint"""
     
