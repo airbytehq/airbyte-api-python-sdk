@@ -376,9 +376,9 @@ def _get_query_param_field_name(obj_field: Field) -> str:
     return obj_param_metadata.get("field_name", obj_field.name)
 
 
-def _get_delimited_query_params(metadata: dict, field_name: str, obj: any, array_delimiter: str) -> dict[
+def _get_delimited_query_params(metadata: dict, field_name: str, obj: any, delimiter: str) -> dict[
     str, list[str]]:
-    return _populate_form(field_name, metadata.get("explode", True), obj, _get_query_param_field_name, array_delimiter)
+    return _populate_form(field_name, metadata.get("explode", True), obj, _get_query_param_field_name, delimiter)
 
 
 SERIALIZATION_METHOD_TO_CONTENT_TYPE = {
@@ -548,7 +548,7 @@ def _get_form_field_name(obj_field: Field) -> str:
     return obj_param_metadata.get("field_name", obj_field.name)
 
 
-def _populate_form(field_name: str, explode: boolean, obj: any, get_field_name_func: Callable, array_delimiter: str) -> \
+def _populate_form(field_name: str, explode: boolean, obj: any, get_field_name_func: Callable, delimiter: str) -> \
         dict[str, list[str]]:
     params: dict[str, list[str]] = {}
 
@@ -572,10 +572,10 @@ def _populate_form(field_name: str, explode: boolean, obj: any, get_field_name_f
                 params[obj_field_name] = [_val_to_string(val)]
             else:
                 items.append(
-                    f'{obj_field_name},{_val_to_string(val)}')
+                    f'{obj_field_name}{delimiter}{_val_to_string(val)}')
 
         if len(items) > 0:
-            params[field_name] = [','.join(items)]
+            params[field_name] = [delimiter.join(items)]
     elif isinstance(obj, dict):
         items = []
         for key, value in obj.items():
@@ -585,10 +585,10 @@ def _populate_form(field_name: str, explode: boolean, obj: any, get_field_name_f
             if explode:
                 params[key] = _val_to_string(value)
             else:
-                items.append(f'{key},{_val_to_string(value)}')
+                items.append(f'{key}{delimiter}{_val_to_string(value)}')
 
         if len(items) > 0:
-            params[field_name] = [','.join(items)]
+            params[field_name] = [delimiter.join(items)]
     elif isinstance(obj, list):
         items = []
 
@@ -604,7 +604,7 @@ def _populate_form(field_name: str, explode: boolean, obj: any, get_field_name_f
                 items.append(_val_to_string(value))
 
         if len(items) > 0:
-            params[field_name] = [array_delimiter.join([str(item) for item in items])]
+            params[field_name] = [delimiter.join([str(item) for item in items])]
     else:
         params[field_name] = [_val_to_string(obj)]
 
