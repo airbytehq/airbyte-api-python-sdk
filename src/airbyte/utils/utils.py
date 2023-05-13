@@ -112,7 +112,7 @@ def _parse_security_scheme_value(client: SecurityClient, scheme_metadata: dict, 
         client.client.headers[header_name] = value
     elif scheme_type == 'http':
         if sub_type == 'bearer':
-            client.client.headers[header_name] = value
+            client.client.headers[header_name] = value.lower().startswith('bearer ') and value or f'Bearer {value}'
         else:
             raise Exception('not supported')
     else:
