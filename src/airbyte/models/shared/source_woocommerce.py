@@ -18,12 +18,12 @@ class SourceWoocommerce:
     r"""The values required to configure the source."""
     
     api_key: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('api_key') }})
-    r"""Customer Key for API in WooCommerce shop"""  
+    r"""Customer Key for API in WooCommerce shop"""
     api_secret: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('api_secret') }})
-    r"""Customer Secret for API in WooCommerce shop"""  
+    r"""Customer Secret for API in WooCommerce shop"""
     shop: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('shop') }})
-    r"""The name of the store. For https://EXAMPLE.com, the shop name is 'EXAMPLE.com'."""  
-    source_type: SourceWoocommerceWoocommerceEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})  
+    r"""The name of the store. For https://EXAMPLE.com, the shop name is 'EXAMPLE.com'."""
+    source_type: SourceWoocommerceWoocommerceEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     start_date: date = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('start_date'), 'encoder': utils.dateisoformat(False), 'decoder': utils.datefromisoformat, 'mm_field': fields.DateTime(format='iso') }})
-    r"""The date you would like to replicate data from. Format: YYYY-MM-DD"""  
+    r"""The date you would like to replicate data from. Format: YYYY-MM-DD"""
     

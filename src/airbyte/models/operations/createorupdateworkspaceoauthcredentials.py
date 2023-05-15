@@ -10,14 +10,14 @@ from typing import Optional
 @dataclasses.dataclass
 class CreateOrUpdateWorkspaceOAuthCredentialsRequest:
     
-    workspace_id: str = dataclasses.field(metadata={'path_param': { 'field_name': 'workspaceId', 'style': 'simple', 'explode': False }})  
-    workspace_o_auth_credentials_request: shared_workspaceoauthcredentialsrequest.WorkspaceOAuthCredentialsRequest = dataclasses.field(metadata={'request': { 'media_type': 'application/json' }})  
+    workspace_id: str = dataclasses.field(metadata={'path_param': { 'field_name': 'workspaceId', 'style': 'simple', 'explode': False }})
+    workspace_o_auth_credentials_request: shared_workspaceoauthcredentialsrequest.WorkspaceOAuthCredentialsRequest = dataclasses.field(metadata={'request': { 'media_type': 'application/json' }})
     
 
 @dataclasses.dataclass
 class CreateOrUpdateWorkspaceOAuthCredentialsResponse:
     
-    content_type: str = dataclasses.field()  
-    status_code: int = dataclasses.field()  
-    raw_response: Optional[requests_http.Response] = dataclasses.field(default=None)  
+    content_type: str = dataclasses.field()
+    status_code: int = dataclasses.field()
+    raw_response: Optional[requests_http.Response] = dataclasses.field(default=None)
     

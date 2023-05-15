@@ -17,8 +17,8 @@ class SourceApifyDataset:
     r"""The values required to configure the source."""
     
     dataset_id: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('datasetId') }})
-    r"""ID of the dataset you would like to load to Airbyte."""  
-    source_type: SourceApifyDatasetApifyDatasetEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})  
+    r"""ID of the dataset you would like to load to Airbyte."""
+    source_type: SourceApifyDatasetApifyDatasetEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     clean: Optional[bool] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('clean'), 'exclude': lambda f: f is None }})
-    r"""If set to true, only clean items will be downloaded from the dataset. See description of what clean means in <a href=\\"https://docs.apify.com/api/v2#/reference/datasets/item-collection/get-items\\">Apify API docs</a>. If not sure, set clean to false."""  
+    r"""If set to true, only clean items will be downloaded from the dataset. See description of what clean means in <a href=\\"https://docs.apify.com/api/v2#/reference/datasets/item-collection/get-items\\">Apify API docs</a>. If not sure, set clean to false."""
     

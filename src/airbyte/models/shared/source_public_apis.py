@@ -15,5 +15,5 @@ class SourcePublicApisPublicApisEnum(str, Enum):
 class SourcePublicApis:
     r"""The values required to configure the source."""
     
-    source_type: SourcePublicApisPublicApisEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})  
+    source_type: SourcePublicApisPublicApisEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     

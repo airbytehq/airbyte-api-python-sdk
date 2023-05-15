@@ -13,11 +13,11 @@ class InitiateOauthRequest:
     r"""POST body for initiating OAuth via the public API"""
     
     name: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('name') }})
-    r"""The name of the source to authenticate to"""  
+    r"""The name of the source to authenticate to"""
     redirect_url: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('redirectUrl') }})
-    r"""The URL to redirect the user to with the OAuth secret stored in the secret_id query string parameter after authentication is complete."""  
+    r"""The URL to redirect the user to with the OAuth secret stored in the secret_id query string parameter after authentication is complete."""
     workspace_id: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('workspaceId') }})
-    r"""The workspace to create the secret and eventually the full source."""  
+    r"""The workspace to create the secret and eventually the full source."""
     o_auth_input_configuration: Optional[dict[str, Any]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('oAuthInputConfiguration'), 'exclude': lambda f: f is None }})
-    r"""Arbitrary vars to pass for OAuth depending on what the source/destination spec requires."""  
+    r"""Arbitrary vars to pass for OAuth depending on what the source/destination spec requires."""
     

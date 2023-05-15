@@ -20,22 +20,21 @@ from airbyte.models import operations, shared
 
 s = airbyte.Airbyte(
     security=shared.Security(
-        bearer_auth="Bearer YOUR_BEARER_TOKEN_HERE",
+        bearer_auth="YOUR_BEARER_TOKEN_HERE",
     ),
 )
 
-
 req = operations.CreateOrUpdateWorkspaceOAuthCredentialsRequest(
     workspace_o_auth_credentials_request=shared.WorkspaceOAuthCredentialsRequest(
-        actor_type="source",
+        actor_type=shared.WorkspaceOAuthCredentialsRequestActorTypeEnum.SOURCE,
         configuration={
-            "laborum": "placeat",
-            "velit": "eum",
-            "autem": "nobis",
+            "laborum": 'placeat',
+            "velit": 'eum',
+            "autem": 'nobis',
         },
-        name="Mack Stoltenberg",
+        name='Mack Stoltenberg',
     ),
-    workspace_id="quasi",
+    workspace_id='quasi',
 )
 
 res = s.workspaces.create_or_update_workspace_o_auth_credentials(req)
@@ -56,13 +55,12 @@ from airbyte.models import shared
 
 s = airbyte.Airbyte(
     security=shared.Security(
-        bearer_auth="Bearer YOUR_BEARER_TOKEN_HERE",
+        bearer_auth="YOUR_BEARER_TOKEN_HERE",
     ),
 )
 
-
 req = shared.WorkspaceCreateRequest(
-    name="Carrie Cole IV",
+    name='Carrie Cole IV',
 )
 
 res = s.workspaces.create_workspace(req)
@@ -83,13 +81,12 @@ from airbyte.models import operations
 
 s = airbyte.Airbyte(
     security=shared.Security(
-        bearer_auth="Bearer YOUR_BEARER_TOKEN_HERE",
+        bearer_auth="YOUR_BEARER_TOKEN_HERE",
     ),
 )
 
-
 req = operations.GetWorkspaceRequest(
-    workspace_id="magnam",
+    workspace_id='magnam',
 )
 
 res = s.workspaces.get_workspace(req)
@@ -110,18 +107,17 @@ from airbyte.models import operations
 
 s = airbyte.Airbyte(
     security=shared.Security(
-        bearer_auth="Bearer YOUR_BEARER_TOKEN_HERE",
+        bearer_auth="YOUR_BEARER_TOKEN_HERE",
     ),
 )
-
 
 req = operations.ListWorkspacesRequest(
     include_deleted=False,
     limit=487935,
     offset=262118,
     workspace_ids=[
-        "78a7bd46-6d28-4c10-ab3c-dca4251904e5",
-        "23c7e0bc-7178-4e47-96f2-a70c688282aa",
+        '78a7bd46-6d28-4c10-ab3c-dca4251904e5',
+        '23c7e0bc-7178-4e47-96f2-a70c688282aa',
     ],
 )
 

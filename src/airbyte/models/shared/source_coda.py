@@ -16,6 +16,6 @@ class SourceCoda:
     r"""The values required to configure the source."""
     
     auth_token: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_token') }})
-    r"""Bearer token"""  
-    source_type: SourceCodaCodaEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})  
+    r"""Bearer token"""
+    source_type: SourceCodaCodaEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     

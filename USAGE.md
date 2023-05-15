@@ -5,85 +5,84 @@ from airbyte.models import shared
 
 s = airbyte.Airbyte(
     security=shared.Security(
-        bearer_auth="Bearer YOUR_BEARER_TOKEN_HERE",
+        bearer_auth="YOUR_BEARER_TOKEN_HERE",
     ),
 )
-
 
 req = shared.ConnectionCreateRequest(
     configurations=shared.StreamConfigurations(
         streams=[
             shared.StreamConfiguration(
                 cursor_field=[
-                    "distinctio",
-                    "quibusdam",
-                    "unde",
+                    'distinctio',
+                    'quibusdam',
+                    'unde',
                 ],
-                name="Johnnie Stamm",
+                name='Johnnie Stamm',
                 primary_key=[
                     [
-                        "iure",
-                        "magnam",
+                        'iure',
+                        'magnam',
                     ],
                     [
-                        "ipsa",
-                        "delectus",
-                        "tempora",
-                        "suscipit",
+                        'ipsa',
+                        'delectus',
+                        'tempora',
+                        'suscipit',
                     ],
                     [
-                        "minus",
-                        "placeat",
+                        'minus',
+                        'placeat',
                     ],
                 ],
-                sync_mode="incremental_append",
+                sync_mode=shared.ConnectionSyncModeEnumEnum.INCREMENTAL_APPEND,
             ),
             shared.StreamConfiguration(
                 cursor_field=[
-                    "excepturi",
-                    "nisi",
+                    'excepturi',
+                    'nisi',
                 ],
-                name="Jake Bernier MD",
+                name='Jake Bernier MD',
                 primary_key=[
                     [
-                        "repellendus",
-                        "sapiente",
+                        'repellendus',
+                        'sapiente',
                     ],
                 ],
-                sync_mode="incremental_deduped_history",
+                sync_mode=shared.ConnectionSyncModeEnumEnum.INCREMENTAL_DEDUPED_HISTORY,
             ),
             shared.StreamConfiguration(
                 cursor_field=[
-                    "at",
+                    'at',
                 ],
-                name="Emilio Krajcik",
+                name='Emilio Krajcik',
                 primary_key=[
                     [
-                        "porro",
-                        "dolorum",
-                        "dicta",
+                        'porro',
+                        'dolorum',
+                        'dicta',
                     ],
                     [
-                        "officia",
-                        "occaecati",
-                        "fugit",
+                        'officia',
+                        'occaecati',
+                        'fugit',
                     ],
                 ],
-                sync_mode="incremental_append",
+                sync_mode=shared.ConnectionSyncModeEnumEnum.INCREMENTAL_APPEND,
             ),
         ],
     ),
-    data_residency="eu",
-    destination_id="c816742c-b739-4205-9293-96fea7596eb1",
-    name="Lela Orn",
-    namespace_definition="source",
-    namespace_format="${SOURCE_NAMESPACE}",
-    prefix="dolorem",
+    data_residency=shared.GeographyEnumEnum.EU,
+    destination_id='c816742c-b739-4205-9293-96fea7596eb1',
+    name='Lela Orn',
+    namespace_definition=shared.ConnectionCreateRequestNamespaceDefinitionEnum.SOURCE,
+    namespace_format='${SOURCE_NAMESPACE}',
+    prefix='dolorem',
     schedule=shared.ConnectionScheduleCreate(
-        cron_expression="corporis",
-        schedule_type="manual",
+        cron_expression='corporis',
+        schedule_type=shared.ScheduleTypeEnumEnum.MANUAL,
     ),
-    source_id="c5955907-aff1-4a3a-afa9-467739251aa5",
+    source_id='c5955907-aff1-4a3a-afa9-467739251aa5',
 )
 
 res = s.connections.create_connection(req)

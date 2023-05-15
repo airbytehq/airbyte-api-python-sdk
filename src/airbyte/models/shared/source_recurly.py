@@ -17,10 +17,10 @@ class SourceRecurly:
     r"""The values required to configure the source."""
     
     api_key: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('api_key') }})
-    r"""Recurly API Key. See the  <a href=\\"https://docs.airbyte.com/integrations/sources/recurly\\">docs</a> for more information on how to generate this key."""  
-    source_type: SourceRecurlyRecurlyEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})  
+    r"""Recurly API Key. See the  <a href=\\"https://docs.airbyte.com/integrations/sources/recurly\\">docs</a> for more information on how to generate this key."""
+    source_type: SourceRecurlyRecurlyEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     begin_time: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('begin_time'), 'exclude': lambda f: f is None }})
-    r"""ISO8601 timestamp from which the replication from Recurly API will start from."""  
+    r"""ISO8601 timestamp from which the replication from Recurly API will start from."""
     end_time: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('end_time'), 'exclude': lambda f: f is None }})
-    r"""ISO8601 timestamp to which the replication from Recurly API will stop. Records after that date won't be imported."""  
+    r"""ISO8601 timestamp to which the replication from Recurly API will stop. Records after that date won't be imported."""
     

@@ -17,12 +17,12 @@ class SourceMyHours:
     r"""The values required to configure the source."""
     
     email: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('email') }})
-    r"""Your My Hours username"""  
+    r"""Your My Hours username"""
     password: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('password') }})
-    r"""The password associated to the username"""  
-    source_type: SourceMyHoursMyHoursEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})  
+    r"""The password associated to the username"""
+    source_type: SourceMyHoursMyHoursEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     start_date: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('start_date') }})
-    r"""Start date for collecting time logs"""  
+    r"""Start date for collecting time logs"""
     logs_batch_size: Optional[int] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('logs_batch_size'), 'exclude': lambda f: f is None }})
-    r"""Pagination size used for retrieving logs in days"""  
+    r"""Pagination size used for retrieving logs in days"""
     

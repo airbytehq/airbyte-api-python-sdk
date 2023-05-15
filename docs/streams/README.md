@@ -16,14 +16,13 @@ from airbyte.models import operations
 
 s = airbyte.Airbyte(
     security=shared.Security(
-        bearer_auth="Bearer YOUR_BEARER_TOKEN_HERE",
+        bearer_auth="YOUR_BEARER_TOKEN_HERE",
     ),
 )
 
-
 req = operations.GetStreamPropertiesRequest(
-    destination_id="inventore",
-    source_id="non",
+    destination_id='inventore',
+    source_id='non',
 )
 
 res = s.streams.get_stream_properties(req)

@@ -21,6 +21,7 @@ class Destinations:
         self._sdk_version = sdk_version
         self._gen_version = gen_version
         
+    
     def create_destination(self, request: shared.DestinationCreateRequest) -> operations.CreateDestinationResponse:
         r"""Create a destination
         Creates a destination given a name, workspace id, and a json blob containing the configuration for the source.
@@ -51,6 +52,7 @@ class Destinations:
 
         return res
 
+    
     def delete_destination(self, request: operations.DeleteDestinationRequest) -> operations.DeleteDestinationResponse:
         r"""Delete a Destination"""
         base_url = self._server_url
@@ -70,6 +72,7 @@ class Destinations:
 
         return res
 
+    
     def get_destination(self, request: operations.GetDestinationRequest) -> operations.GetDestinationResponse:
         r"""Get Destination details"""
         base_url = self._server_url
@@ -95,6 +98,7 @@ class Destinations:
 
         return res
 
+    
     def list_destinations(self, request: operations.ListDestinationsRequest) -> operations.ListDestinationsResponse:
         r"""List destinations"""
         base_url = self._server_url

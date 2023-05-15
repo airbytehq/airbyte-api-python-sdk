@@ -18,11 +18,11 @@ class DestinationAwsDatalakeCredentialsIAMUser:
     r"""Choose How to Authenticate to AWS."""
     
     aws_access_key_id: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('aws_access_key_id') }})
-    r"""AWS User Access Key Id"""  
+    r"""AWS User Access Key Id"""
     aws_secret_access_key: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('aws_secret_access_key') }})
-    r"""Secret Access Key"""  
+    r"""Secret Access Key"""
     credentials_title: DestinationAwsDatalakeCredentialsIAMUserCredentialsTitleEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credentials_title') }})
-    r"""Name of the credentials"""  
+    r"""Name of the credentials"""
     
 class DestinationAwsDatalakeCredentialsIAMRoleCredentialsTitleEnum(str, Enum):
     r"""Name of the credentials"""
@@ -35,9 +35,9 @@ class DestinationAwsDatalakeCredentialsIAMRole:
     r"""Choose How to Authenticate to AWS."""
     
     credentials_title: DestinationAwsDatalakeCredentialsIAMRoleCredentialsTitleEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credentials_title') }})
-    r"""Name of the credentials"""  
+    r"""Name of the credentials"""
     role_arn: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('role_arn') }})
-    r"""Will assume this role to write data to s3"""  
+    r"""Will assume this role to write data to s3"""
     
 class DestinationAwsDatalakeAwsDatalakeEnum(str, Enum):
     AWS_DATALAKE = 'aws-datalake'
@@ -58,9 +58,9 @@ class DestinationAwsDatalakeFormatParquetColumnarStorageFormatTypeWildcardEnum(s
 class DestinationAwsDatalakeFormatParquetColumnarStorage:
     r"""Format of the data output."""
     
-    format_type: DestinationAwsDatalakeFormatParquetColumnarStorageFormatTypeWildcardEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('format_type') }})  
+    format_type: DestinationAwsDatalakeFormatParquetColumnarStorageFormatTypeWildcardEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('format_type') }})
     compression_codec: Optional[DestinationAwsDatalakeFormatParquetColumnarStorageCompressionCodecOptionalEnum] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('compression_codec'), 'exclude': lambda f: f is None }})
-    r"""The compression algorithm used to compress data."""  
+    r"""The compression algorithm used to compress data."""
     
 class DestinationAwsDatalakeFormatJSONLinesNewlineDelimitedJSONCompressionCodecOptionalEnum(str, Enum):
     r"""The compression algorithm used to compress data."""
@@ -76,9 +76,9 @@ class DestinationAwsDatalakeFormatJSONLinesNewlineDelimitedJSONFormatTypeWildcar
 class DestinationAwsDatalakeFormatJSONLinesNewlineDelimitedJSON:
     r"""Format of the data output."""
     
-    format_type: DestinationAwsDatalakeFormatJSONLinesNewlineDelimitedJSONFormatTypeWildcardEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('format_type') }})  
+    format_type: DestinationAwsDatalakeFormatJSONLinesNewlineDelimitedJSONFormatTypeWildcardEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('format_type') }})
     compression_codec: Optional[DestinationAwsDatalakeFormatJSONLinesNewlineDelimitedJSONCompressionCodecOptionalEnum] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('compression_codec'), 'exclude': lambda f: f is None }})
-    r"""The compression algorithm used to compress data."""  
+    r"""The compression algorithm used to compress data."""
     
 class DestinationAwsDatalakeChooseHowToPartitionDataEnum(str, Enum):
     r"""Partition data by cursor fields when a cursor field is a date"""
@@ -126,28 +126,28 @@ class DestinationAwsDatalake:
     r"""The values required to configure the destination."""
     
     bucket_name: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('bucket_name') }})
-    r"""The name of the S3 bucket. Read more <a href=\\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/create-bucket-overview.html\\">here</a>."""  
+    r"""The name of the S3 bucket. Read more <a href=\\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/create-bucket-overview.html\\">here</a>."""
     credentials: Any = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credentials') }})
-    r"""Choose How to Authenticate to AWS."""  
-    destination_type: DestinationAwsDatalakeAwsDatalakeEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('destinationType') }})  
+    r"""Choose How to Authenticate to AWS."""
+    destination_type: DestinationAwsDatalakeAwsDatalakeEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('destinationType') }})
     lakeformation_database_name: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('lakeformation_database_name') }})
-    r"""The default database this destination will use to create tables in per stream. Can be changed per connection by customizing the namespace."""  
+    r"""The default database this destination will use to create tables in per stream. Can be changed per connection by customizing the namespace."""
     region: DestinationAwsDatalakeS3BucketRegionEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('region') }})
-    r"""The region of the S3 bucket. See <a href=\\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-regions-availability-zones.html#concepts-available-regions\\">here</a> for all region codes."""  
+    r"""The region of the S3 bucket. See <a href=\\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-regions-availability-zones.html#concepts-available-regions\\">here</a> for all region codes."""
     aws_account_id: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('aws_account_id'), 'exclude': lambda f: f is None }})
-    r"""target aws account id"""  
+    r"""target aws account id"""
     bucket_prefix: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('bucket_prefix'), 'exclude': lambda f: f is None }})
-    r"""S3 prefix"""  
+    r"""S3 prefix"""
     format: Optional[Any] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('format'), 'exclude': lambda f: f is None }})
-    r"""Format of the data output."""  
+    r"""Format of the data output."""
     glue_catalog_float_as_decimal: Optional[bool] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('glue_catalog_float_as_decimal'), 'exclude': lambda f: f is None }})
-    r"""Cast float/double as decimal(38,18). This can help achieve higher accuracy and represent numbers correctly as received from the source."""  
+    r"""Cast float/double as decimal(38,18). This can help achieve higher accuracy and represent numbers correctly as received from the source."""
     lakeformation_database_default_tag_key: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('lakeformation_database_default_tag_key'), 'exclude': lambda f: f is None }})
-    r"""Add a default tag key to databases created by this destination"""  
+    r"""Add a default tag key to databases created by this destination"""
     lakeformation_database_default_tag_values: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('lakeformation_database_default_tag_values'), 'exclude': lambda f: f is None }})
-    r"""Add default values for the `Tag Key` to databases created by this destination. Comma separate for multiple values."""  
+    r"""Add default values for the `Tag Key` to databases created by this destination. Comma separate for multiple values."""
     lakeformation_governed_tables: Optional[bool] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('lakeformation_governed_tables'), 'exclude': lambda f: f is None }})
-    r"""Whether to create tables as LF governed tables."""  
+    r"""Whether to create tables as LF governed tables."""
     partitioning: Optional[DestinationAwsDatalakeChooseHowToPartitionDataEnum] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('partitioning'), 'exclude': lambda f: f is None }})
-    r"""Partition data by cursor fields when a cursor field is a date"""  
+    r"""Partition data by cursor fields when a cursor field is a date"""
     

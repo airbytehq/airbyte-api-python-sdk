@@ -12,7 +12,7 @@ from dataclasses_json import Undefined, dataclass_json
 class JobCreateRequest:
     r"""Creates a new Job from the configuration provided in the request body."""
     
-    connection_id: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('connectionId') }})  
+    connection_id: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('connectionId') }})
     job_type: shared_jobtypeenum_enum.JobTypeEnumEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('jobType') }})
-    r"""Enum that describes the different types of jobs that the platform runs."""  
+    r"""Enum that describes the different types of jobs that the platform runs."""
     

@@ -17,9 +17,9 @@ class SourceMetabase:
     r"""The values required to configure the source."""
     
     instance_api_url: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('instance_api_url') }})
-    r"""URL to your metabase instance API"""  
-    source_type: SourceMetabaseMetabaseEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})  
-    password: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('password'), 'exclude': lambda f: f is None }})  
+    r"""URL to your metabase instance API"""
+    source_type: SourceMetabaseMetabaseEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
+    password: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('password'), 'exclude': lambda f: f is None }})
     session_token: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('session_token'), 'exclude': lambda f: f is None }})
     r"""To generate your session token, you need to run the following command: ``` curl -X POST \ 
       -H \"Content-Type: application/json\" \
@@ -27,6 +27,6 @@ class SourceMetabase:
       http://localhost:3000/api/session
     ``` Then copy the value of the `id` field returned by a successful call to that API.
     Note that by default, sessions are good for 14 days and needs to be regenerated.
-    """  
-    username: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('username'), 'exclude': lambda f: f is None }})  
+    """
+    username: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('username'), 'exclude': lambda f: f is None }})
     

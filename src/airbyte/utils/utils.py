@@ -112,7 +112,7 @@ def _parse_security_scheme_value(client: SecurityClient, scheme_metadata: dict, 
         client.client.headers[header_name] = value
     elif scheme_type == 'http':
         if sub_type == 'bearer':
-            client.client.headers[header_name] = value
+            client.client.headers[header_name] = value.lower().startswith('bearer ') and value or f'Bearer {value}'
         else:
             raise Exception('not supported')
     else:
@@ -141,7 +141,8 @@ def _parse_basic_auth_scheme(client: SecurityClient, scheme: dataclass):
     client.client.headers['Authorization'] = f'Basic {base64.b64encode(data).decode()}'
 
 
-def generate_url(clazz: type, server_url: str, path: str, path_params: dataclass, gbls: dict[str, dict[str, dict[str, Any]]] = None) -> str:
+def generate_url(clazz: type, server_url: str, path: str, path_params: dataclass,
+                 gbls: dict[str, dict[str, dict[str, Any]]] = None) -> str:
     path_param_fields: Tuple[Field, ...] = fields(clazz)
     for field in path_param_fields:
         request_metadata = field.metadata.get('request')
@@ -233,7 +234,8 @@ def template_url(url_with_params: str, params: dict[str, str]) -> str:
     return url_with_params
 
 
-def get_query_params(clazz: type, query_params: dataclass, gbls: dict[str, dict[str, dict[str, Any]]] = None) -> dict[str, list[str]]:
+def get_query_params(clazz: type, query_params: dataclass, gbls: dict[str, dict[str, dict[str, Any]]] = None) -> dict[
+    str, list[str]]:
     params: dict[str, list[str]] = {}
 
     param_fields: Tuple[Field, ...] = fields(clazz)
@@ -267,8 +269,11 @@ def get_query_params(clazz: type, query_params: dataclass, gbls: dict[str, dict[
                 params = params | _get_deep_object_query_params(
                     metadata, f_name, value)
             elif style == 'form':
-                params = params | _get_form_query_params(
-                    metadata, f_name, value)
+                params = params | _get_delimited_query_params(
+                    metadata, f_name, value, ",")
+            elif style == 'pipeDelimited':
+                params = params | _get_delimited_query_params(
+                    metadata, f_name, value, "|")
             else:
                 raise Exception('not yet implemented')
     return params
@@ -327,12 +332,15 @@ def _get_deep_object_query_params(metadata: dict, field_name: str, obj: any) -> 
                     if val is None:
                         continue
 
-                    if params.get(f'{metadata.get("field_name", field_name)}[{obj_param_metadata.get("field_name", obj_field.name)}]') is None:
-                        params[f'{metadata.get("field_name", field_name)}[{obj_param_metadata.get("field_name", obj_field.name)}]'] = [
+                    if params.get(
+                            f'{metadata.get("field_name", field_name)}[{obj_param_metadata.get("field_name", obj_field.name)}]') is None:
+                        params[
+                            f'{metadata.get("field_name", field_name)}[{obj_param_metadata.get("field_name", obj_field.name)}]'] = [
                         ]
 
                     params[
-                        f'{metadata.get("field_name", field_name)}[{obj_param_metadata.get("field_name", obj_field.name)}]'].append(_val_to_string(val))
+                        f'{metadata.get("field_name", field_name)}[{obj_param_metadata.get("field_name", obj_field.name)}]'].append(
+                        _val_to_string(val))
             else:
                 params[
                     f'{metadata.get("field_name", field_name)}[{obj_param_metadata.get("field_name", obj_field.name)}]'] = [
@@ -368,25 +376,28 @@ def _get_query_param_field_name(obj_field: Field) -> str:
     return obj_param_metadata.get("field_name", obj_field.name)
 
 
-def _get_form_query_params(metadata: dict, field_name: str, obj: any) -> dict[str, list[str]]:
-    return _populate_form(field_name, metadata.get("explode", True), obj, _get_query_param_field_name)
+def _get_delimited_query_params(metadata: dict, field_name: str, obj: any, delimiter: str) -> dict[
+    str, list[str]]:
+    return _populate_form(field_name, metadata.get("explode", True), obj, _get_query_param_field_name, delimiter)
 
 
 SERIALIZATION_METHOD_TO_CONTENT_TYPE = {
-    'json':      'application/json',
-    'form':      'application/x-www-form-urlencoded',
+    'json': 'application/json',
+    'form': 'application/x-www-form-urlencoded',
     'multipart': 'multipart/form-data',
-    'raw':       'application/octet-stream',
-    'string':    'text/plain',
+    'raw': 'application/octet-stream',
+    'string': 'text/plain',
 }
 
 
-def serialize_request_body(request: dataclass, request_field_name: str, serialization_method: str) -> Tuple[str, any, any]:
+def serialize_request_body(request: dataclass, request_field_name: str, serialization_method: str) -> Tuple[
+    str, any, any]:
     if request is None:
         return None, None, None, None
 
     if not is_dataclass(request) or not hasattr(request, request_field_name):
-        return serialize_content_type(request_field_name, SERIALIZATION_METHOD_TO_CONTENT_TYPE[serialization_method], request)
+        return serialize_content_type(request_field_name, SERIALIZATION_METHOD_TO_CONTENT_TYPE[serialization_method],
+                                      request)
 
     request_val = getattr(request, request_field_name)
 
@@ -401,7 +412,8 @@ def serialize_request_body(request: dataclass, request_field_name: str, serializ
     if request_metadata is None:
         raise Exception('invalid request type')
 
-    return serialize_content_type(request_field_name, request_metadata.get('media_type', 'application/octet-stream'), request_val)
+    return serialize_content_type(request_field_name, request_metadata.get('media_type', 'application/octet-stream'),
+                                  request_val)
 
 
 def serialize_content_type(field_name: str, media_type: str, request: dataclass) -> Tuple[str, any, list[list[any]]]:
@@ -474,7 +486,7 @@ def serialize_multipart_form(media_type: str, request: dataclass) -> Tuple[str, 
 
 
 def serialize_dict(original: dict, explode: bool, field_name, existing: Optional[dict[str, list[str]]]) -> dict[
-        str, list[str]]:
+    str, list[str]]:
     if existing is None:
         existing = []
 
@@ -514,7 +526,7 @@ def serialize_form_data(field_name: str, data: dataclass) -> dict[str, any]:
             else:
                 if metadata.get('style', 'form') == 'form':
                     form = form | _populate_form(
-                        field_name, metadata.get('explode', True), val, _get_form_field_name)
+                        field_name, metadata.get('explode', True), val, _get_form_field_name, ",")
                 else:
                     raise Exception(
                         f'Invalid form style for field {field.name}')
@@ -536,7 +548,8 @@ def _get_form_field_name(obj_field: Field) -> str:
     return obj_param_metadata.get("field_name", obj_field.name)
 
 
-def _populate_form(field_name: str, explode: boolean, obj: any, get_field_name_func: Callable) -> dict[str, list[str]]:
+def _populate_form(field_name: str, explode: boolean, obj: any, get_field_name_func: Callable, delimiter: str) -> \
+        dict[str, list[str]]:
     params: dict[str, list[str]] = {}
 
     if obj is None:
@@ -559,10 +572,10 @@ def _populate_form(field_name: str, explode: boolean, obj: any, get_field_name_f
                 params[obj_field_name] = [_val_to_string(val)]
             else:
                 items.append(
-                    f'{obj_field_name},{_val_to_string(val)}')
+                    f'{obj_field_name}{delimiter}{_val_to_string(val)}')
 
         if len(items) > 0:
-            params[field_name] = [','.join(items)]
+            params[field_name] = [delimiter.join(items)]
     elif isinstance(obj, dict):
         items = []
         for key, value in obj.items():
@@ -572,10 +585,10 @@ def _populate_form(field_name: str, explode: boolean, obj: any, get_field_name_f
             if explode:
                 params[key] = _val_to_string(value)
             else:
-                items.append(f'{key},{_val_to_string(value)}')
+                items.append(f'{key}{delimiter}{_val_to_string(value)}')
 
         if len(items) > 0:
-            params[field_name] = [','.join(items)]
+            params[field_name] = [delimiter.join(items)]
     elif isinstance(obj, list):
         items = []
 
@@ -591,7 +604,7 @@ def _populate_form(field_name: str, explode: boolean, obj: any, get_field_name_f
                 items.append(_val_to_string(value))
 
         if len(items) > 0:
-            params[field_name] = [','.join([str(item) for item in items])]
+            params[field_name] = [delimiter.join([str(item) for item in items])]
     else:
         params[field_name] = [_val_to_string(obj)]
 
@@ -731,7 +744,7 @@ def _val_to_string(val):
     if isinstance(val, datetime):
         return val.isoformat().replace('+00:00', 'Z')
     if isinstance(val, Enum):
-        return val.value
+        return str(val.value)
 
     return str(val)
 

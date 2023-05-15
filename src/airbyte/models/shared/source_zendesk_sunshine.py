@@ -16,10 +16,10 @@ class SourceZendeskSunshineCredentialsAPITokenAuthMethodEnum(str, Enum):
 class SourceZendeskSunshineCredentialsAPIToken:
     
     api_token: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('api_token') }})
-    r"""API Token. See the <a href=\\"https://docs.airbyte.io/integrations/sources/zendesk_sunshine\\">docs</a> for information on how to generate this key."""  
-    auth_method: SourceZendeskSunshineCredentialsAPITokenAuthMethodEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_method') }})  
+    r"""API Token. See the <a href=\\"https://docs.airbyte.io/integrations/sources/zendesk_sunshine\\">docs</a> for information on how to generate this key."""
+    auth_method: SourceZendeskSunshineCredentialsAPITokenAuthMethodEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_method') }})
     email: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('email') }})
-    r"""The user email for your Zendesk account"""  
+    r"""The user email for your Zendesk account"""
     
 class SourceZendeskSunshineCredentialsOAuth20AuthMethodEnum(str, Enum):
     OAUTH2_0 = 'oauth2.0'
@@ -30,12 +30,12 @@ class SourceZendeskSunshineCredentialsOAuth20AuthMethodEnum(str, Enum):
 class SourceZendeskSunshineCredentialsOAuth20:
     
     access_token: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('access_token') }})
-    r"""Long-term access Token for making authenticated requests."""  
-    auth_method: SourceZendeskSunshineCredentialsOAuth20AuthMethodEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_method') }})  
+    r"""Long-term access Token for making authenticated requests."""
+    auth_method: SourceZendeskSunshineCredentialsOAuth20AuthMethodEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_method') }})
     client_id: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('client_id') }})
-    r"""The Client ID of your OAuth application."""  
+    r"""The Client ID of your OAuth application."""
     client_secret: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('client_secret') }})
-    r"""The Client Secret of your OAuth application."""  
+    r"""The Client Secret of your OAuth application."""
     
 class SourceZendeskSunshineZendeskSunshineEnum(str, Enum):
     ZENDESK_SUNSHINE = 'zendesk-sunshine'
@@ -46,10 +46,10 @@ class SourceZendeskSunshineZendeskSunshineEnum(str, Enum):
 class SourceZendeskSunshine:
     r"""The values required to configure the source."""
     
-    source_type: SourceZendeskSunshineZendeskSunshineEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})  
+    source_type: SourceZendeskSunshineZendeskSunshineEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     start_date: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('start_date') }})
-    r"""The date from which you'd like to replicate data for Zendesk Sunshine API, in the format YYYY-MM-DDT00:00:00Z."""  
+    r"""The date from which you'd like to replicate data for Zendesk Sunshine API, in the format YYYY-MM-DDT00:00:00Z."""
     subdomain: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('subdomain') }})
-    r"""The subdomain for your Zendesk Account."""  
-    credentials: Optional[Any] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credentials'), 'exclude': lambda f: f is None }})  
+    r"""The subdomain for your Zendesk Account."""
+    credentials: Optional[Any] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credentials'), 'exclude': lambda f: f is None }})
     

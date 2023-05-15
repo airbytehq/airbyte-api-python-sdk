@@ -21,6 +21,7 @@ class Sources:
         self._sdk_version = sdk_version
         self._gen_version = gen_version
         
+    
     def create_source(self, request: shared.SourceCreateRequest) -> operations.CreateSourceResponse:
         r"""Create a source
         Creates a source given a name, workspace id, and a json blob containing the configuration for the source.
@@ -51,6 +52,7 @@ class Sources:
 
         return res
 
+    
     def delete_source(self, request: operations.DeleteSourceRequest) -> operations.DeleteSourceResponse:
         r"""Delete a Source"""
         base_url = self._server_url
@@ -70,6 +72,7 @@ class Sources:
 
         return res
 
+    
     def get_source(self, request: operations.GetSourceRequest) -> operations.GetSourceResponse:
         r"""Get Source details"""
         base_url = self._server_url
@@ -95,6 +98,7 @@ class Sources:
 
         return res
 
+    
     def initiate_o_auth(self, request: shared.InitiateOauthRequest) -> operations.InitiateOAuthResponse:
         r"""Initiate OAuth for a source
         Given a source ID, workspace ID, and redirect URL, initiates OAuth for the source.
@@ -125,6 +129,7 @@ class Sources:
 
         return res
 
+    
     def list_sources(self, request: operations.ListSourcesRequest) -> operations.ListSourcesResponse:
         r"""List sources"""
         base_url = self._server_url
