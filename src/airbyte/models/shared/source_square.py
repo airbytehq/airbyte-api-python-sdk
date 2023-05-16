@@ -9,7 +9,7 @@ from enum import Enum
 from marshmallow import fields
 from typing import Any, Optional
 
-class SourceSquareCredentialsAPIKeyCredentialsTitleEnum(str, Enum):
+class SourceSquareCredentialsAPIKeyAuthTypeEnum(str, Enum):
     API_KEY = 'API Key'
 
 
@@ -20,10 +20,10 @@ class SourceSquareCredentialsAPIKey:
     
     api_key: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('api_key') }})
     r"""The API key for a Square application"""
-    credentials_title: Optional[SourceSquareCredentialsAPIKeyCredentialsTitleEnum] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credentials_title'), 'exclude': lambda f: f is None }})
+    auth_type: SourceSquareCredentialsAPIKeyAuthTypeEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_type') }})
     
-class SourceSquareCredentialsOauthAuthenticationCredentialsTitleEnum(str, Enum):
-    O_AUTH_CREDENTIALS = 'OAuth Credentials'
+class SourceSquareCredentialsOauthAuthenticationAuthTypeEnum(str, Enum):
+    O_AUTH = 'OAuth'
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
@@ -31,13 +31,13 @@ class SourceSquareCredentialsOauthAuthenticationCredentialsTitleEnum(str, Enum):
 class SourceSquareCredentialsOauthAuthentication:
     r"""Choose how to authenticate to Square."""
     
+    auth_type: SourceSquareCredentialsOauthAuthenticationAuthTypeEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_type') }})
     client_id: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('client_id') }})
     r"""The Square-issued ID of your application"""
     client_secret: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('client_secret') }})
     r"""The Square-issued application secret for your application"""
     refresh_token: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('refresh_token') }})
     r"""A refresh token generated using the above client ID and secret"""
-    credentials_title: Optional[SourceSquareCredentialsOauthAuthenticationCredentialsTitleEnum] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credentials_title'), 'exclude': lambda f: f is None }})
     
 class SourceSquareSquareEnum(str, Enum):
     SQUARE = 'square'

@@ -26,14 +26,17 @@ s = airbyte.Airbyte(
 )
 
 req = shared.SourceCreateRequest(
-    configuration=shared.SourceInstagram(
-        access_token='nam',
-        source_type=shared.SourceInstagramInstagramEnum.INSTAGRAM,
-        start_date=dateutil.parser.isoparse('2022-11-28T15:41:44.846Z'),
+    configuration=shared.SourceFaker(
+        count=961571,
+        parallelism=455169,
+        records_per_slice=231701,
+        records_per_sync=878870,
+        seed=949319,
+        source_type=shared.SourceFakerFakerEnum.FAKER,
     ),
-    name='Dr. Dominic Rohan',
-    secret_id='veritatis',
-    workspace_id='b8b90f34-43a1-4108-a0ad-cf4b921879fc',
+    name='Darla Rau',
+    secret_id='similique',
+    workspace_id='bd74dd39-c0f5-4d2c-bf7c-70a45626d436',
 )
 
 res = s.sources.create_source(req)
@@ -59,7 +62,7 @@ s = airbyte.Airbyte(
 )
 
 req = operations.DeleteSourceRequest(
-    source_id='vero',
+    source_id='laudantium',
 )
 
 res = s.sources.delete_source(req)
@@ -85,7 +88,7 @@ s = airbyte.Airbyte(
 )
 
 req = operations.GetSourceRequest(
-    source_id='omnis',
+    source_id='dicta',
 )
 
 res = s.sources.get_source(req)
@@ -115,15 +118,14 @@ s = airbyte.Airbyte(
 )
 
 req = shared.InitiateOauthRequest(
-    name='Tiffany Willms',
+    name='Elisa Boyle',
     o_auth_input_configuration={
-        "tenetur": 'dignissimos',
-        "hic": 'distinctio',
-        "quod": 'odio',
-        "similique": 'facilis',
+        "voluptatibus": 'nostrum',
+        "sapiente": 'quisquam',
+        "saepe": 'ea',
     },
-    redirect_url='vero',
-    workspace_id='74dd39c0-f5d2-4cff-bc70-a45626d43681',
+    redirect_url='impedit',
+    workspace_id='556146c3-e250-4fb0-88c4-2e141aac366c',
 )
 
 res = s.sources.initiate_o_auth(req)
@@ -150,10 +152,13 @@ s = airbyte.Airbyte(
 
 req = operations.ListSourcesRequest(
     include_deleted=False,
-    limit=224317,
-    offset=980700,
+    limit=557369,
+    offset=829603,
     workspace_ids=[
-        '6d9f5fce-6c55-4614-ac3e-250fb008c42e',
+        '6b144290-7474-4778-a7bd-466d28c10ab3',
+        'cdca4251-904e-4523-87e0-bc7178e4796f',
+        '2a70c688-282a-4a48-a562-f222e9817ee1',
+        '7cbe61e6-b7b9-45bc-8ab3-c20c4f3789fd',
     ],
 )
 

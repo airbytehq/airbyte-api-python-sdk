@@ -5,8 +5,11 @@ import dataclasses
 from ..shared import connectionscheduleresponse as shared_connectionscheduleresponse
 from ..shared import connectionstatusenum_enum as shared_connectionstatusenum_enum
 from ..shared import geographyenum_enum as shared_geographyenum_enum
+from ..shared import namespacedefinitionenum_enum as shared_namespacedefinitionenum_enum
+from ..shared import nonbreakingschemaupdatesbehaviorenum_enum as shared_nonbreakingschemaupdatesbehaviorenum_enum
 from airbyte import utils
 from dataclasses_json import Undefined, dataclass_json
+from typing import Optional
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
@@ -23,4 +26,10 @@ class ConnectionResponse:
     source_id: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceId') }})
     status: shared_connectionstatusenum_enum.ConnectionStatusEnumEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('status') }})
     workspace_id: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('workspaceId') }})
+    namespace_definition: Optional[shared_namespacedefinitionenum_enum.NamespaceDefinitionEnumEnum] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('namespaceDefinition'), 'exclude': lambda f: f is None }})
+    r"""Define the location where the data will be stored in the destination"""
+    namespace_format: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('namespaceFormat'), 'exclude': lambda f: f is None }})
+    non_breaking_schema_updates_behavior: Optional[shared_nonbreakingschemaupdatesbehaviorenum_enum.NonBreakingSchemaUpdatesBehaviorEnumEnum] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('nonBreakingSchemaUpdatesBehavior'), 'exclude': lambda f: f is None }})
+    r"""Set how Airbyte handles syncs when it detects a non-breaking schema change in the source"""
+    prefix: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('prefix'), 'exclude': lambda f: f is None }})
     

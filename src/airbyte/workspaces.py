@@ -81,6 +81,26 @@ class Workspaces:
         return res
 
     
+    def delete_workspace(self, request: operations.DeleteWorkspaceRequest) -> operations.DeleteWorkspaceResponse:
+        r"""Delete a Workspace"""
+        base_url = self._server_url
+        
+        url = utils.generate_url(operations.DeleteWorkspaceRequest, base_url, '/workspaces/{workspaceId}', request)
+        
+        headers = {}
+        headers['user-agent'] = f'speakeasy-sdk/{self._language} {self._sdk_version} {self._gen_version}'
+        
+        client = self._security_client
+        
+        http_res = client.request('DELETE', url, headers=headers)
+        content_type = http_res.headers.get('Content-Type')
+
+        res = operations.DeleteWorkspaceResponse(status_code=http_res.status_code, content_type=content_type, raw_response=http_res)
+        
+
+        return res
+
+    
     def get_workspace(self, request: operations.GetWorkspaceRequest) -> operations.GetWorkspaceResponse:
         r"""Get Workspace details"""
         base_url = self._server_url
@@ -129,6 +149,37 @@ class Workspaces:
                 out = utils.unmarshal_json(http_res.text, Optional[shared.WorkspacesResponse])
                 res.workspaces_response = out
         elif http_res.status_code in [403, 404]:
+            pass
+
+        return res
+
+    
+    def update_workspace(self, request: operations.UpdateWorkspaceRequest) -> operations.UpdateWorkspaceResponse:
+        r"""Update a workspace"""
+        base_url = self._server_url
+        
+        url = utils.generate_url(operations.UpdateWorkspaceRequest, base_url, '/workspaces/{workspaceId}', request)
+        
+        headers = {}
+        req_content_type, data, form = utils.serialize_request_body(request, "workspace_update_request", 'json')
+        if req_content_type not in ('multipart/form-data', 'multipart/mixed'):
+            headers['content-type'] = req_content_type
+        if data is None and form is None:
+            raise Exception('request body is required')
+        headers['user-agent'] = f'speakeasy-sdk/{self._language} {self._sdk_version} {self._gen_version}'
+        
+        client = self._security_client
+        
+        http_res = client.request('PATCH', url, data=data, files=form, headers=headers)
+        content_type = http_res.headers.get('Content-Type')
+
+        res = operations.UpdateWorkspaceResponse(status_code=http_res.status_code, content_type=content_type, raw_response=http_res)
+        
+        if http_res.status_code == 200:
+            if utils.match_content_type(content_type, 'application/json'):
+                out = utils.unmarshal_json(http_res.text, Optional[shared.WorkspaceResponse])
+                res.workspace_response = out
+        elif http_res.status_code in [400, 403]:
             pass
 
         return res

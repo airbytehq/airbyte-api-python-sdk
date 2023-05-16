@@ -24,21 +24,22 @@ s = airbyte.Airbyte(
 )
 
 req = shared.DestinationCreateRequest(
-    configuration=shared.DestinationAzureBlobStorage(
-        azure_blob_storage_account_key='maiores',
-        azure_blob_storage_account_name='quidem',
-        azure_blob_storage_container_name='ipsam',
-        azure_blob_storage_endpoint_domain_name='voluptate',
-        azure_blob_storage_output_buffer_size=420075,
-        azure_blob_storage_spill_size=722056,
-        destination_type=shared.DestinationAzureBlobStorageAzureBlobStorageEnum.AZURE_BLOB_STORAGE,
-        format=shared.DestinationAzureBlobStorageFormatCSVCommaSeparatedValues(
-            flattening=shared.DestinationAzureBlobStorageFormatCSVCommaSeparatedValuesNormalizationFlatteningEnum.ROOT_LEVEL_FLATTENING,
-            format_type=shared.DestinationAzureBlobStorageFormatCSVCommaSeparatedValuesFormatTypeEnum.CSV,
+    configuration=shared.DestinationDatabricks(
+        accept_terms=False,
+        data_source=shared.DestinationDatabricksDataSourceRecommendedManagedTables(
+            data_source_type=shared.DestinationDatabricksDataSourceRecommendedManagedTablesDataSourceTypeEnum.MANAGED_TABLES_STORAGE,
         ),
+        database='perferendis',
+        databricks_http_path='amet',
+        databricks_personal_access_token='optio',
+        databricks_port='accusamus',
+        databricks_server_hostname='ad',
+        destination_type=shared.DestinationDatabricksDatabricksEnum.DATABRICKS,
+        purge_staging_data=False,
+        schema='saepe',
     ),
-    name='Camille Armstrong',
-    workspace_id='0c5fbb25-8705-4320-ac73-d5fe9b90c289',
+    name='Rosie McKenzie',
+    workspace_id='8a0d446c-e2af-47a7-bcf3-be453f870b32',
 )
 
 res = s.destinations.create_destination(req)
@@ -64,7 +65,7 @@ s = airbyte.Airbyte(
 )
 
 req = operations.DeleteDestinationRequest(
-    destination_id='eaque',
+    destination_id='vel',
 )
 
 res = s.destinations.delete_destination(req)
@@ -90,7 +91,7 @@ s = airbyte.Airbyte(
 )
 
 req = operations.GetDestinationRequest(
-    destination_id='occaecati',
+    destination_id='libero',
 )
 
 res = s.destinations.get_destination(req)
@@ -117,13 +118,11 @@ s = airbyte.Airbyte(
 
 req = operations.ListDestinationsRequest(
     include_deleted=False,
-    limit=699098,
-    offset=237893,
+    limit=374170,
+    offset=646265,
     workspace_ids=[
-        'e49a8d9c-bf48-4633-b23f-9b77f3a41006',
-        '74ebf692-80d1-4ba7-ba89-ebf737ae4203',
-        'ce5e6a95-d8a0-4d44-ace2-af7a73cf3be4',
-        '53f870b3-26b5-4a73-829c-db1a8422bb67',
+        '3429cdb1-a842-42bb-a79d-2322715bf0cb',
+        'b1e31b8b-90f3-4443-a110-8e0adcf4b921',
     ],
 )
 

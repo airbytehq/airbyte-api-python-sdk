@@ -4,7 +4,9 @@ from __future__ import annotations
 import dataclasses
 from airbyte import utils
 from dataclasses_json import Undefined, dataclass_json
+from datetime import date
 from enum import Enum
+from marshmallow import fields
 from typing import Any, Optional
 
 class SourceShopifyCredentialsOAuth20AuthMethodEnum(str, Enum):
@@ -49,7 +51,7 @@ class SourceShopify:
     shop: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('shop') }})
     r"""The name of your Shopify store found in the URL. For example, if your URL was https://NAME.myshopify.com, then the name would be 'NAME'."""
     source_type: SourceShopifyShopifyEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
-    start_date: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('start_date') }})
+    start_date: date = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('start_date'), 'encoder': utils.dateisoformat(False), 'decoder': utils.datefromisoformat, 'mm_field': fields.DateTime(format='iso') }})
     r"""The date you would like to replicate data from. Format: YYYY-MM-DD. Any data before this date will not be replicated."""
     credentials: Optional[Any] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credentials'), 'exclude': lambda f: f is None }})
     r"""The authorization method to use to retrieve data from Shopify"""

@@ -32,13 +32,17 @@ src/airbyte/models/operations/listsources.py
 src/airbyte/models/operations/getstreamproperties.py
 src/airbyte/models/operations/createorupdateworkspaceoauthcredentials.py
 src/airbyte/models/operations/createworkspace.py
+src/airbyte/models/operations/deleteworkspace.py
 src/airbyte/models/operations/getworkspace.py
 src/airbyte/models/operations/listworkspaces.py
+src/airbyte/models/operations/updateworkspace.py
 src/airbyte/models/operations/__init__.py
 src/airbyte/models/shared/connectionresponse.py
 src/airbyte/models/shared/connectionstatusenum_enum.py
 src/airbyte/models/shared/connectionscheduleresponse.py
 src/airbyte/models/shared/scheduletypewithbasicenum_enum.py
+src/airbyte/models/shared/nonbreakingschemaupdatesbehaviorenum_enum.py
+src/airbyte/models/shared/namespacedefinitionenum_enum.py
 src/airbyte/models/shared/geographyenum_enum.py
 src/airbyte/models/shared/connectioncreaterequest.py
 src/airbyte/models/shared/connectionschedulecreate.py
@@ -57,6 +61,7 @@ src/airbyte/models/shared/destination_bigquery_denormalized.py
 src/airbyte/models/shared/destination_cassandra.py
 src/airbyte/models/shared/destination_clickhouse.py
 src/airbyte/models/shared/destination_convex.py
+src/airbyte/models/shared/destination_cumulio.py
 src/airbyte/models/shared/destination_databend.py
 src/airbyte/models/shared/destination_databricks.py
 src/airbyte/models/shared/destination_dynamodb.py
@@ -95,6 +100,7 @@ src/airbyte/models/shared/jobsresponse.py
 src/airbyte/models/shared/sourceresponse.py
 src/airbyte/models/shared/sourcecreaterequest.py
 src/airbyte/models/shared/source_pokeapi.py
+src/airbyte/models/shared/source_aircall.py
 src/airbyte/models/shared/source_airtable.py
 src/airbyte/models/shared/source_alloydb.py
 src/airbyte/models/shared/source_amazon_ads.py
@@ -288,9 +294,11 @@ src/airbyte/models/shared/initiateoauthrequest.py
 src/airbyte/models/shared/sourcesresponse.py
 src/airbyte/models/shared/streamproperties.py
 src/airbyte/models/shared/workspaceoauthcredentialsrequest.py
+src/airbyte/models/shared/actortypeenum_enum.py
 src/airbyte/models/shared/workspaceresponse.py
 src/airbyte/models/shared/workspacecreaterequest.py
 src/airbyte/models/shared/workspacesresponse.py
+src/airbyte/models/shared/workspaceupdaterequest.py
 src/airbyte/models/shared/security.py
 src/airbyte/models/shared/__init__.py
 docs/airbyte/README.md

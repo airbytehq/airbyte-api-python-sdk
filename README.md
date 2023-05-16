@@ -99,14 +99,15 @@ req = shared.ConnectionCreateRequest(
     data_residency=shared.GeographyEnumEnum.EU,
     destination_id='c816742c-b739-4205-9293-96fea7596eb1',
     name='Lela Orn',
-    namespace_definition=shared.ConnectionCreateRequestNamespaceDefinitionEnum.SOURCE,
+    namespace_definition=shared.NamespaceDefinitionEnumEnum.SOURCE,
     namespace_format='${SOURCE_NAMESPACE}',
-    prefix='dolorem',
+    non_breaking_schema_updates_behavior=shared.NonBreakingSchemaUpdatesBehaviorEnumEnum.IGNORE,
+    prefix='corporis',
     schedule=shared.ConnectionScheduleCreate(
-        cron_expression='corporis',
-        schedule_type=shared.ScheduleTypeEnumEnum.MANUAL,
+        cron_expression='explicabo',
+        schedule_type=shared.ScheduleTypeEnumEnum.CRON,
     ),
-    source_id='c5955907-aff1-4a3a-afa9-467739251aa5',
+    source_id='5955907a-ff1a-43a2-ba94-67739251aa52',
 )
 
 res = s.connections.create_connection(req)
@@ -157,8 +158,10 @@ if res.connection_response is not None:
 
 * [create_or_update_workspace_o_auth_credentials](docs/workspaces/README.md#create_or_update_workspace_o_auth_credentials) - Create OAuth override credentials for a workspace and source type.
 * [create_workspace](docs/workspaces/README.md#create_workspace) - Create a workspace
+* [delete_workspace](docs/workspaces/README.md#delete_workspace) - Delete a Workspace
 * [get_workspace](docs/workspaces/README.md#get_workspace) - Get Workspace details
 * [list_workspaces](docs/workspaces/README.md#list_workspaces) - List workspaces
+* [update_workspace](docs/workspaces/README.md#update_workspace) - Update a workspace
 <!-- End SDK Available Operations -->
 
 ### Maturity
