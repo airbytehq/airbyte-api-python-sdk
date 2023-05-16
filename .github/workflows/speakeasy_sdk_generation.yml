@@ -1,34 +1,32 @@
 name: Generate
-
 permissions:
   checks: write
   contents: write
   pull-requests: write
   statuses: write
-
-on:
+"on":
   workflow_dispatch:
     inputs:
       force:
-        description: "Force the generation of the SDKs"
+        description: Force generation of SDKs
         type: boolean
         default: false
   schedule:
-    - cron: 0 0 * * * # Runs every day at midnight
-
+    - cron: 0 0 * * *
 jobs:
   generate:
-    uses: speakeasy-api/sdk-generation-action/.github/workflows/sdk-generation.yaml@v14 # Import the sdk generation workflow which will handle the generation of the SDKs and publishing to the package managers
+    uses: speakeasy-api/sdk-generation-action/.github/workflows/sdk-generation.yaml@v14
     with:
       force: ${{ github.event.inputs.force }}
-      speakeasy_version: latest
-      openapi_doc_location: https://prod.speakeasyapi.dev/v1/apis/public-api/version/v0.1.0/schema/download
-      openapi_doc_auth_header: x-api-key
-      languages: |-
+      languages: |
         - python
-      publish_python: true
       mode: pr
+      openapi_doc_auth_header: x-api-key
+      openapi_docs: |
+        - https://prod.speakeasyapi.dev/v1/apis/public-api/version/1.0.0/schema/download
+      publish_python: true
+      speakeasy_version: latest
     secrets:
-      speakeasy_api_key: ${{ secrets.SPEAKEASY_PROD_API_KEY }}
       github_access_token: ${{ secrets.GITHUB_TOKEN }}
       openapi_doc_auth_token: ${{ secrets.SPEAKEASY_API_KEY }}
+      speakeasy_api_key: ${{ secrets.SPEAKEASY_PROD_API_KEY }}
