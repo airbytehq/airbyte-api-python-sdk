@@ -28,41 +28,128 @@ req = shared.ConnectionCreateRequest(
         streams=[
             shared.StreamConfiguration(
                 cursor_field=[
-                    'sequi',
                     'tenetur',
-                    'ipsam',
-                    'id',
                 ],
-                name='Richard Boyer',
+                name='Mr. Alberta Schuster',
                 primary_key=[
                     [
+                        'quasi',
                         'reiciendis',
-                    ],
-                    [
-                        'vero',
-                        'nihil',
-                        'praesentium',
                         'voluptatibus',
                     ],
                     [
-                        'omnis',
+                        'nihil',
+                        'praesentium',
+                        'voluptatibus',
+                        'ipsa',
+                    ],
+                    [
+                        'voluptate',
+                        'cum',
+                        'perferendis',
+                    ],
+                    [
+                        'reprehenderit',
                     ],
                 ],
                 sync_mode=shared.ConnectionSyncModeEnumEnum.FULL_REFRESH_APPEND,
             ),
+            shared.StreamConfiguration(
+                cursor_field=[
+                    'dicta',
+                    'corporis',
+                    'dolore',
+                    'iusto',
+                ],
+                name='Maryann Hamill',
+                primary_key=[
+                    [
+                        'ipsum',
+                    ],
+                    [
+                        'molestias',
+                        'excepturi',
+                        'pariatur',
+                    ],
+                    [
+                        'praesentium',
+                        'rem',
+                    ],
+                    [
+                        'quasi',
+                        'repudiandae',
+                        'sint',
+                        'veritatis',
+                    ],
+                ],
+                sync_mode=shared.ConnectionSyncModeEnumEnum.INCREMENTAL_DEDUPED_HISTORY,
+            ),
+            shared.StreamConfiguration(
+                cursor_field=[
+                    'enim',
+                    'consequatur',
+                ],
+                name='Taylor Cole',
+                primary_key=[
+                    [
+                        'modi',
+                        'qui',
+                    ],
+                    [
+                        'cupiditate',
+                        'quos',
+                    ],
+                    [
+                        'magni',
+                    ],
+                    [
+                        'ipsam',
+                        'alias',
+                        'fugit',
+                        'dolorum',
+                    ],
+                ],
+                sync_mode=shared.ConnectionSyncModeEnumEnum.INCREMENTAL_APPEND,
+            ),
+            shared.StreamConfiguration(
+                cursor_field=[
+                    'facilis',
+                    'tempore',
+                ],
+                name='Lucia Kemmer',
+                primary_key=[
+                    [
+                        'provident',
+                        'necessitatibus',
+                    ],
+                    [
+                        'officia',
+                        'dolor',
+                        'debitis',
+                    ],
+                    [
+                        'dolorum',
+                        'in',
+                        'in',
+                        'illum',
+                    ],
+                ],
+                sync_mode=shared.ConnectionSyncModeEnumEnum.INCREMENTAL_DEDUPED_HISTORY,
+            ),
         ],
     ),
     data_residency=shared.GeographyEnumEnum.EU,
-    destination_id='0074f154-71b5-4e6e-93b9-9d488e1e91e4',
-    name='Elizabeth Orn',
-    namespace_definition=shared.ConnectionCreateRequestNamespaceDefinitionEnum.DESTINATION,
+    destination_id='14cd66ae-395e-4fb9-ba88-f3a66997074b',
+    name='Leroy Greenfelder',
+    namespace_definition=shared.NamespaceDefinitionEnumEnum.CUSTOM_FORMAT,
     namespace_format='${SOURCE_NAMESPACE}',
-    prefix='distinctio',
+    non_breaking_schema_updates_behavior=shared.NonBreakingSchemaUpdatesBehaviorEnumEnum.IGNORE,
+    prefix='vero',
     schedule=shared.ConnectionScheduleCreate(
-        cron_expression='quibusdam',
+        cron_expression='aspernatur',
         schedule_type=shared.ScheduleTypeEnumEnum.MANUAL,
     ),
-    source_id='4269802d-502a-494b-b4f6-3c969e9a3efa',
+    source_id='41959890-afa5-463e-a516-fe4c8b711e5b',
 )
 
 res = s.connections.create_connection(req)
@@ -88,7 +175,7 @@ s = airbyte.Airbyte(
 )
 
 req = operations.DeleteConnectionRequest(
-    connection_id='in',
+    connection_id='nihil',
 )
 
 res = s.connections.delete_connection(req)
@@ -114,7 +201,7 @@ s = airbyte.Airbyte(
 )
 
 req = operations.GetConnectionRequest(
-    connection_id='in',
+    connection_id='repellat',
 )
 
 res = s.connections.get_connection(req)
@@ -141,12 +228,13 @@ s = airbyte.Airbyte(
 
 req = operations.ListConnectionsRequest(
     include_deleted=False,
-    limit=846409,
-    offset=978571,
+    limit=841140,
+    offset=149448,
     workspace_ids=[
-        '14cd66ae-395e-4fb9-ba88-f3a66997074b',
-        'a4469b6e-2141-4959-890a-fa563e2516fe',
-        '4c8b711e-5b7f-4d2e-9028-921cddc69260',
+        'd028921c-ddc6-4926-81fb-576b0d5f0d30',
+        'c5fbb258-7053-4202-873d-5fe9b90c2890',
+        '9b3fe49a-8d9c-4bf4-8633-323f9b77f3a4',
+        '100674eb-f692-480d-9ba7-7a89ebf737ae',
     ],
 )
 

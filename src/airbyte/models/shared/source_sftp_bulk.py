@@ -47,4 +47,6 @@ class SourceSftpBulk:
     r"""OS-level password for logging into the jump server host"""
     private_key: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('private_key'), 'exclude': lambda f: f is None }})
     r"""The private key"""
+    separator: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('separator'), 'exclude': lambda f: f is None }})
+    r"""The separator used in the CSV files. Define None if you want to use the Sniffer functionality"""
     

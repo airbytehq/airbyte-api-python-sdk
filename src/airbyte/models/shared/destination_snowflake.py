@@ -54,25 +54,6 @@ class DestinationSnowflakeCredentialsOAuth20:
 class DestinationSnowflakeSnowflakeEnum(str, Enum):
     SNOWFLAKE = 'snowflake'
 
-class DestinationSnowflakeLoadingMethodAzureBlobStorageStagingMethodEnum(str, Enum):
-    AZURE_BLOB_STAGING = 'Azure Blob Staging'
-
-
-@dataclass_json(undefined=Undefined.EXCLUDE)
-@dataclasses.dataclass
-class DestinationSnowflakeLoadingMethodAzureBlobStorageStaging:
-    r"""Recommended for large production workloads for better speed and scalability."""
-    
-    azure_blob_storage_account_name: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('azure_blob_storage_account_name') }})
-    r"""Enter your Azure Blob Storage account name"""
-    azure_blob_storage_container_name: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('azure_blob_storage_container_name') }})
-    r"""Enter your Azure Blob Storage <a href=\\"https://docs.microsoft.com/en-us/rest/api/storageservices/naming-and-referencing-containers--blobs--and-metadata#container-names\\">container name</a>"""
-    azure_blob_storage_sas_token: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('azure_blob_storage_sas_token') }})
-    r"""Enter the <a href=\\"https://docs.snowflake.com/en/user-guide/data-load-azure-config.html#option-2-generating-a-sas-token\\">Shared access signature</a> (SAS) token to grant Snowflake limited access to objects in your Azure Blob Storage account"""
-    method: DestinationSnowflakeLoadingMethodAzureBlobStorageStagingMethodEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('method') }})
-    azure_blob_storage_endpoint_domain_name: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('azure_blob_storage_endpoint_domain_name'), 'exclude': lambda f: f is None }})
-    r"""Enter the Azure Blob Storage <a href=\\"https://docs.microsoft.com/en-us/azure/storage/common/storage-account-overview#storage-account-endpoints\\">endpoint domain name</a>"""
-    
 class DestinationSnowflakeLoadingMethodGoogleCloudStorageStagingMethodEnum(str, Enum):
     GCS_STAGING = 'GCS Staging'
 

@@ -89,6 +89,8 @@ class DestinationBigqueryLoadingMethodGCSStaging:
     gcs_bucket_path: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('gcs_bucket_path') }})
     r"""Directory under the GCS bucket where data will be written."""
     method: DestinationBigqueryLoadingMethodGCSStagingMethodEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('method') }})
+    file_buffer_count: Optional[int] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('file_buffer_count'), 'exclude': lambda f: f is None }})
+    r"""Number of file buffers allocated for writing data. Increasing this number is beneficial for connections using Change Data Capture (CDC) and up to the number of streams within a connection. Increasing the number of file buffers past the maximum number of streams has deteriorating effects"""
     keep_files_in_gcs_bucket: Optional[DestinationBigqueryLoadingMethodGCSStagingGCSTmpFilesAfterwardProcessingEnum] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('keep_files_in_gcs-bucket'), 'exclude': lambda f: f is None }})
     r"""This upload method is supposed to temporary store records in GCS bucket. By this select you can chose if these records should be removed from GCS when migration has finished. The default \\"Delete all tmp files from GCS\\" value is used if not set explicitly."""
     
