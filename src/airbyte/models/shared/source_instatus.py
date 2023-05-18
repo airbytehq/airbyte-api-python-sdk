@@ -6,7 +6,7 @@ from airbyte import utils
 from dataclasses_json import Undefined, dataclass_json
 from enum import Enum
 
-class SourceInstatusInstatusEnum(str, Enum):
+class SourceInstatusInstatus(str, Enum):
     INSTATUS = 'instatus'
 
 
@@ -17,5 +17,5 @@ class SourceInstatus:
     
     api_key: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('api_key') }})
     r"""Instatus REST API key"""
-    source_type: SourceInstatusInstatusEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
+    source_type: SourceInstatusInstatus = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     

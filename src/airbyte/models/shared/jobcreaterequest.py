@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 import dataclasses
-from ..shared import jobtypeenum_enum as shared_jobtypeenum_enum
+from ..shared import jobtypeenum as shared_jobtypeenum
 from airbyte import utils
 from dataclasses_json import Undefined, dataclass_json
 
@@ -13,6 +13,6 @@ class JobCreateRequest:
     r"""Creates a new Job from the configuration provided in the request body."""
     
     connection_id: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('connectionId') }})
-    job_type: shared_jobtypeenum_enum.JobTypeEnumEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('jobType') }})
+    job_type: shared_jobtypeenum.JobTypeEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('jobType') }})
     r"""Enum that describes the different types of jobs that the platform runs."""
     

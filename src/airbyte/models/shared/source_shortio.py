@@ -6,7 +6,7 @@ from airbyte import utils
 from dataclasses_json import Undefined, dataclass_json
 from enum import Enum
 
-class SourceShortioShortioEnum(str, Enum):
+class SourceShortioShortio(str, Enum):
     SHORTIO = 'shortio'
 
 
@@ -18,7 +18,7 @@ class SourceShortio:
     domain_id: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('domain_id') }})
     secret_key: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('secret_key') }})
     r"""Short.io Secret Key"""
-    source_type: SourceShortioShortioEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
+    source_type: SourceShortioShortio = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     start_date: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('start_date') }})
     r"""UTC date and time in the format 2017-01-25T00:00:00Z. Any data before this date will not be replicated."""
     

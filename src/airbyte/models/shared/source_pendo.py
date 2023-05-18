@@ -6,7 +6,7 @@ from airbyte import utils
 from dataclasses_json import Undefined, dataclass_json
 from enum import Enum
 
-class SourcePendoPendoEnum(str, Enum):
+class SourcePendoPendo(str, Enum):
     PENDO = 'pendo'
 
 
@@ -16,5 +16,5 @@ class SourcePendo:
     r"""The values required to configure the source."""
     
     api_key: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('api_key') }})
-    source_type: SourcePendoPendoEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
+    source_type: SourcePendoPendo = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     

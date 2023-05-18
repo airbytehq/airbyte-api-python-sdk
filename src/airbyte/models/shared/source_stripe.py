@@ -10,7 +10,7 @@ from enum import Enum
 from marshmallow import fields
 from typing import Optional
 
-class SourceStripeStripeEnum(str, Enum):
+class SourceStripeStripe(str, Enum):
     STRIPE = 'stripe'
 
 
@@ -23,7 +23,7 @@ class SourceStripe:
     r"""Your Stripe account ID (starts with 'acct_', find yours <a href=\\"https://dashboard.stripe.com/settings/account\\">here</a>)."""
     client_secret: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('client_secret') }})
     r"""Stripe API key (usually starts with 'sk_live_'; find yours <a href=\\"https://dashboard.stripe.com/apikeys\\">here</a>)."""
-    source_type: SourceStripeStripeEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
+    source_type: SourceStripeStripe = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     start_date: datetime = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('start_date'), 'encoder': utils.datetimeisoformat(False), 'decoder': dateutil.parser.isoparse, 'mm_field': fields.DateTime(format='iso') }})
     r"""UTC date and time in the format 2017-01-25T00:00:00Z. Only data generated after this date will be replicated."""
     lookback_window_days: Optional[int] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('lookback_window_days'), 'exclude': lambda f: f is None }})

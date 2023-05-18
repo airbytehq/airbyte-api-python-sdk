@@ -28,6 +28,7 @@ class Jobs:
         
         url = utils.generate_url(operations.CancelJobRequest, base_url, '/jobs/{jobId}', request)
         headers = {}
+        headers['Accept'] = 'application/json'
         headers['user-agent'] = f'speakeasy-sdk/{self._language} {self._sdk_version} {self._gen_version}'
         
         client = self._security_client
@@ -58,6 +59,7 @@ class Jobs:
             headers['content-type'] = req_content_type
         if data is None and form is None:
             raise Exception('request body is required')
+        headers['Accept'] = 'application/json'
         headers['user-agent'] = f'speakeasy-sdk/{self._language} {self._sdk_version} {self._gen_version}'
         
         client = self._security_client
@@ -83,6 +85,7 @@ class Jobs:
         
         url = utils.generate_url(operations.GetJobRequest, base_url, '/jobs/{jobId}', request)
         headers = {}
+        headers['Accept'] = 'application/json'
         headers['user-agent'] = f'speakeasy-sdk/{self._language} {self._sdk_version} {self._gen_version}'
         
         client = self._security_client
@@ -109,6 +112,7 @@ class Jobs:
         url = base_url.removesuffix('/') + '/jobs'
         headers = {}
         query_params = utils.get_query_params(operations.ListJobsRequest, request)
+        headers['Accept'] = 'application/json'
         headers['user-agent'] = f'speakeasy-sdk/{self._language} {self._sdk_version} {self._gen_version}'
         
         client = self._security_client

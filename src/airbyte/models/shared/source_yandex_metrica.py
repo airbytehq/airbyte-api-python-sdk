@@ -9,7 +9,7 @@ from enum import Enum
 from marshmallow import fields
 from typing import Optional
 
-class SourceYandexMetricaYandexMetricaEnum(str, Enum):
+class SourceYandexMetricaYandexMetrica(str, Enum):
     YANDEX_METRICA = 'yandex-metrica'
 
 
@@ -22,7 +22,7 @@ class SourceYandexMetrica:
     r"""Your Yandex Metrica API access token"""
     counter_id: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('counter_id') }})
     r"""Counter ID"""
-    source_type: SourceYandexMetricaYandexMetricaEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
+    source_type: SourceYandexMetricaYandexMetrica = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     start_date: date = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('start_date'), 'encoder': utils.dateisoformat(False), 'decoder': utils.datefromisoformat, 'mm_field': fields.DateTime(format='iso') }})
     r"""Starting point for your data replication, in format of \\"YYYY-MM-DD\\"."""
     end_date: Optional[date] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('end_date'), 'encoder': utils.dateisoformat(True), 'decoder': utils.datefromisoformat, 'mm_field': fields.DateTime(format='iso'), 'exclude': lambda f: f is None }})

@@ -2,8 +2,8 @@
 
 from __future__ import annotations
 import dataclasses
-from ..shared import jobstatusenum_enum as shared_jobstatusenum_enum
-from ..shared import jobtypeenum_enum as shared_jobtypeenum_enum
+from ..shared import jobstatusenum as shared_jobstatusenum
+from ..shared import jobtypeenum as shared_jobtypeenum
 from airbyte import utils
 from dataclasses_json import Undefined, dataclass_json
 from typing import Optional
@@ -15,10 +15,10 @@ class JobResponse:
     r"""Provides details of a single job."""
     
     job_id: int = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('jobId') }})
-    job_type: shared_jobtypeenum_enum.JobTypeEnumEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('jobType') }})
+    job_type: shared_jobtypeenum.JobTypeEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('jobType') }})
     r"""Enum that describes the different types of jobs that the platform runs."""
     start_time: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('startTime') }})
-    status: shared_jobstatusenum_enum.JobStatusEnumEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('status') }})
+    status: shared_jobstatusenum.JobStatusEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('status') }})
     bytes_synced: Optional[int] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('bytesSynced'), 'exclude': lambda f: f is None }})
     duration: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('duration'), 'exclude': lambda f: f is None }})
     r"""Duration of a sync in ISO_8601 format"""

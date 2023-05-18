@@ -3,8 +3,7 @@
 from __future__ import annotations
 from enum import Enum
 
-class NamespaceDefinitionEnumEnum(str, Enum):
-    r"""Define the location where the data will be stored in the destination"""
+class ActorTypeEnum(str, Enum):
+    r"""Whether you're setting this override for a source or destination"""
     SOURCE = 'source'
     DESTINATION = 'destination'
-    CUSTOM_FORMAT = 'custom_format'

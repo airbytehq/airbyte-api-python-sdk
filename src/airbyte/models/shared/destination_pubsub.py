@@ -7,7 +7,7 @@ from dataclasses_json import Undefined, dataclass_json
 from enum import Enum
 from typing import Optional
 
-class DestinationPubsubPubsubEnum(str, Enum):
+class DestinationPubsubPubsub(str, Enum):
     PUBSUB = 'pubsub'
 
 
@@ -20,7 +20,7 @@ class DestinationPubsub:
     r"""If TRUE messages will be buffered instead of sending them one by one"""
     credentials_json: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credentials_json') }})
     r"""The contents of the JSON service account key. Check out the <a href=\\"https://docs.airbyte.com/integrations/destinations/pubsub\\">docs</a> if you need help generating this key."""
-    destination_type: DestinationPubsubPubsubEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('destinationType') }})
+    destination_type: DestinationPubsubPubsub = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('destinationType') }})
     ordering_enabled: bool = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('ordering_enabled') }})
     r"""If TRUE PubSub publisher will have <a href=\\"https://cloud.google.com/pubsub/docs/ordering\\">message ordering</a> enabled. Every message will have an ordering key of stream"""
     project_id: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('project_id') }})

@@ -10,7 +10,7 @@ from enum import Enum
 from marshmallow import fields
 from typing import Optional
 
-class SourceTypeformTypeformEnum(str, Enum):
+class SourceTypeformTypeform(str, Enum):
     TYPEFORM = 'typeform'
 
 
@@ -19,7 +19,7 @@ class SourceTypeformTypeformEnum(str, Enum):
 class SourceTypeform:
     r"""The values required to configure the source."""
     
-    source_type: SourceTypeformTypeformEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
+    source_type: SourceTypeformTypeform = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     start_date: datetime = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('start_date'), 'encoder': utils.datetimeisoformat(False), 'decoder': dateutil.parser.isoparse, 'mm_field': fields.DateTime(format='iso') }})
     r"""UTC date and time in the format: YYYY-MM-DDTHH:mm:ss[Z]. Any data before this date will not be replicated."""
     token: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('token') }})

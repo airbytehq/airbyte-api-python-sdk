@@ -7,10 +7,10 @@ from dataclasses_json import Undefined, dataclass_json
 from enum import Enum
 from typing import Any, Optional
 
-class DestinationFireboltFireboltEnum(str, Enum):
+class DestinationFireboltFirebolt(str, Enum):
     FIREBOLT = 'firebolt'
 
-class DestinationFireboltLoadingMethodExternalTableViaS3MethodEnum(str, Enum):
+class DestinationFireboltLoadingMethodExternalTableViaS3Method(str, Enum):
     S3 = 'S3'
 
 
@@ -23,13 +23,13 @@ class DestinationFireboltLoadingMethodExternalTableViaS3:
     r"""AWS access key granting read and write access to S3."""
     aws_key_secret: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('aws_key_secret') }})
     r"""Corresponding secret part of the AWS Key"""
-    method: DestinationFireboltLoadingMethodExternalTableViaS3MethodEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('method') }})
+    method: DestinationFireboltLoadingMethodExternalTableViaS3Method = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('method') }})
     s3_bucket: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('s3_bucket') }})
     r"""The name of the S3 bucket."""
     s3_region: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('s3_region') }})
     r"""Region name of the S3 bucket."""
     
-class DestinationFireboltLoadingMethodSQLInsertsMethodEnum(str, Enum):
+class DestinationFireboltLoadingMethodSQLInsertsMethod(str, Enum):
     SQL = 'SQL'
 
 
@@ -38,7 +38,7 @@ class DestinationFireboltLoadingMethodSQLInsertsMethodEnum(str, Enum):
 class DestinationFireboltLoadingMethodSQLInserts:
     r"""Loading method used to select the way data will be uploaded to Firebolt"""
     
-    method: DestinationFireboltLoadingMethodSQLInsertsMethodEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('method') }})
+    method: DestinationFireboltLoadingMethodSQLInsertsMethod = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('method') }})
     
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
@@ -48,7 +48,7 @@ class DestinationFirebolt:
     
     database: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('database') }})
     r"""The database to connect to."""
-    destination_type: DestinationFireboltFireboltEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('destinationType') }})
+    destination_type: DestinationFireboltFirebolt = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('destinationType') }})
     password: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('password') }})
     r"""Firebolt password."""
     username: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('username') }})

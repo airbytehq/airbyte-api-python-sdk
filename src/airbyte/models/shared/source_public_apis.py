@@ -6,7 +6,7 @@ from airbyte import utils
 from dataclasses_json import Undefined, dataclass_json
 from enum import Enum
 
-class SourcePublicApisPublicApisEnum(str, Enum):
+class SourcePublicApisPublicApis(str, Enum):
     PUBLIC_APIS = 'public-apis'
 
 
@@ -15,5 +15,5 @@ class SourcePublicApisPublicApisEnum(str, Enum):
 class SourcePublicApis:
     r"""The values required to configure the source."""
     
-    source_type: SourcePublicApisPublicApisEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
+    source_type: SourcePublicApisPublicApis = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     

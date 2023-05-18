@@ -9,7 +9,7 @@ from enum import Enum
 from marshmallow import fields
 from typing import Any, Optional
 
-class SourceTiktokMarketingCredentialsSandboxAccessTokenAuthTypeEnum(str, Enum):
+class SourceTiktokMarketingCredentialsSandboxAccessTokenAuthType(str, Enum):
     SANDBOX_ACCESS_TOKEN = 'sandbox_access_token'
 
 
@@ -22,9 +22,9 @@ class SourceTiktokMarketingCredentialsSandboxAccessToken:
     r"""The long-term authorized access token."""
     advertiser_id: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('advertiser_id') }})
     r"""The Advertiser ID which generated for the developer's Sandbox application."""
-    auth_type: Optional[SourceTiktokMarketingCredentialsSandboxAccessTokenAuthTypeEnum] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_type'), 'exclude': lambda f: f is None }})
+    auth_type: Optional[SourceTiktokMarketingCredentialsSandboxAccessTokenAuthType] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_type'), 'exclude': lambda f: f is None }})
     
-class SourceTiktokMarketingCredentialsOAuth20AuthTypeEnum(str, Enum):
+class SourceTiktokMarketingCredentialsOAuth20AuthType(str, Enum):
     OAUTH2_0 = 'oauth2.0'
 
 
@@ -41,9 +41,9 @@ class SourceTiktokMarketingCredentialsOAuth20:
     r"""The Developer Application Secret."""
     advertiser_id: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('advertiser_id'), 'exclude': lambda f: f is None }})
     r"""The Advertiser ID to filter reports and streams. Let this empty to retrieve all."""
-    auth_type: Optional[SourceTiktokMarketingCredentialsOAuth20AuthTypeEnum] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_type'), 'exclude': lambda f: f is None }})
+    auth_type: Optional[SourceTiktokMarketingCredentialsOAuth20AuthType] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_type'), 'exclude': lambda f: f is None }})
     
-class SourceTiktokMarketingTiktokMarketingEnum(str, Enum):
+class SourceTiktokMarketingTiktokMarketing(str, Enum):
     TIKTOK_MARKETING = 'tiktok-marketing'
 
 
@@ -52,7 +52,7 @@ class SourceTiktokMarketingTiktokMarketingEnum(str, Enum):
 class SourceTiktokMarketing:
     r"""The values required to configure the source."""
     
-    source_type: SourceTiktokMarketingTiktokMarketingEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
+    source_type: SourceTiktokMarketingTiktokMarketing = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     attribution_window: Optional[int] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('attribution_window'), 'exclude': lambda f: f is None }})
     r"""The attribution window in days."""
     credentials: Optional[Any] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credentials'), 'exclude': lambda f: f is None }})

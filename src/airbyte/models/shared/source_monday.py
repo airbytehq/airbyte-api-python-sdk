@@ -7,7 +7,7 @@ from dataclasses_json import Undefined, dataclass_json
 from enum import Enum
 from typing import Any, Optional
 
-class SourceMondayCredentialsAPITokenAuthTypeEnum(str, Enum):
+class SourceMondayCredentialsAPITokenAuthType(str, Enum):
     API_TOKEN = 'api_token'
 
 
@@ -17,9 +17,9 @@ class SourceMondayCredentialsAPIToken:
     
     api_token: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('api_token') }})
     r"""API Token for making authenticated requests."""
-    auth_type: SourceMondayCredentialsAPITokenAuthTypeEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_type') }})
+    auth_type: SourceMondayCredentialsAPITokenAuthType = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_type') }})
     
-class SourceMondayCredentialsOAuth20AuthTypeEnum(str, Enum):
+class SourceMondayCredentialsOAuth20AuthType(str, Enum):
     OAUTH2_0 = 'oauth2.0'
 
 
@@ -29,7 +29,7 @@ class SourceMondayCredentialsOAuth20:
     
     access_token: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('access_token') }})
     r"""Access Token for making authenticated requests."""
-    auth_type: SourceMondayCredentialsOAuth20AuthTypeEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_type') }})
+    auth_type: SourceMondayCredentialsOAuth20AuthType = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_type') }})
     client_id: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('client_id') }})
     r"""The Client ID of your OAuth application."""
     client_secret: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('client_secret') }})
@@ -37,7 +37,7 @@ class SourceMondayCredentialsOAuth20:
     subdomain: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('subdomain'), 'exclude': lambda f: f is None }})
     r"""Slug/subdomain of the account, or the first part of the URL that comes before .monday.com"""
     
-class SourceMondayMondayEnum(str, Enum):
+class SourceMondayMonday(str, Enum):
     MONDAY = 'monday'
 
 
@@ -46,6 +46,6 @@ class SourceMondayMondayEnum(str, Enum):
 class SourceMonday:
     r"""The values required to configure the source."""
     
-    source_type: SourceMondayMondayEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
+    source_type: SourceMondayMonday = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     credentials: Optional[Any] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credentials'), 'exclude': lambda f: f is None }})
     

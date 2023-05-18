@@ -3,7 +3,7 @@
 from __future__ import annotations
 from enum import Enum
 
-class ConnectionStatusEnumEnum(str, Enum):
+class ConnectionStatusEnum(str, Enum):
     ACTIVE = 'active'
     INACTIVE = 'inactive'
     DEPRECATED = 'deprecated'

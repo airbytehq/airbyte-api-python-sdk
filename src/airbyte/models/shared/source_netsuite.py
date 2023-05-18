@@ -7,7 +7,7 @@ from dataclasses_json import Undefined, dataclass_json
 from enum import Enum
 from typing import Optional
 
-class SourceNetsuiteNetsuiteEnum(str, Enum):
+class SourceNetsuiteNetsuite(str, Enum):
     NETSUITE = 'netsuite'
 
 
@@ -22,7 +22,7 @@ class SourceNetsuite:
     r"""Consumer secret associated with your integration"""
     realm: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('realm') }})
     r"""Netsuite realm e.g. 2344535, as for `production` or 2344535_SB1, as for the `sandbox`"""
-    source_type: SourceNetsuiteNetsuiteEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
+    source_type: SourceNetsuiteNetsuite = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     start_datetime: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('start_datetime') }})
     r"""Starting point for your data replication, in format of \\"YYYY-MM-DDTHH:mm:ssZ\\" """
     token_key: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('token_key') }})

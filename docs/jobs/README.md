@@ -51,7 +51,7 @@ s = airbyte.Airbyte(
 
 req = shared.JobCreateRequest(
     connection_id='odio',
-    job_type=shared.JobTypeEnumEnum.RESET,
+    job_type=shared.JobTypeEnum.RESET,
 )
 
 res = s.jobs.create_job(req)
@@ -104,7 +104,7 @@ s = airbyte.Airbyte(
 
 req = operations.ListJobsRequest(
     connection_id='quisquam',
-    job_type=shared.JobTypeEnumEnum.RESET,
+    job_type=shared.JobTypeEnum.RESET,
     limit=606476,
     offset=338159,
 )

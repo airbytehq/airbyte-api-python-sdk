@@ -7,7 +7,7 @@ from dataclasses_json import Undefined, dataclass_json
 from enum import Enum
 from typing import Optional
 
-class DestinationSftpJSONSftpJSONEnum(str, Enum):
+class DestinationSftpJSONSftpJSON(str, Enum):
     SFTP_JSON = 'sftp-json'
 
 
@@ -18,7 +18,7 @@ class DestinationSftpJSON:
     
     destination_path: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('destination_path') }})
     r"""Path to the directory where json files will be written."""
-    destination_type: DestinationSftpJSONSftpJSONEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('destinationType') }})
+    destination_type: DestinationSftpJSONSftpJSON = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('destinationType') }})
     host: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('host') }})
     r"""Hostname of the SFTP server."""
     password: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('password') }})

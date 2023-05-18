@@ -4,7 +4,7 @@ from __future__ import annotations
 import dataclasses
 import requests as requests_http
 from ..shared import jobsresponse as shared_jobsresponse
-from ..shared import jobtypeenum_enum as shared_jobtypeenum_enum
+from ..shared import jobtypeenum as shared_jobtypeenum
 from typing import Optional
 
 
@@ -13,7 +13,7 @@ class ListJobsRequest:
     
     connection_id: str = dataclasses.field(metadata={'query_param': { 'field_name': 'connectionId', 'style': 'form', 'explode': True }})
     r"""Filter the Jobs by connectionId."""
-    job_type: Optional[shared_jobtypeenum_enum.JobTypeEnumEnum] = dataclasses.field(default=None, metadata={'query_param': { 'field_name': 'jobType', 'style': 'form', 'explode': True }})
+    job_type: Optional[shared_jobtypeenum.JobTypeEnum] = dataclasses.field(default=None, metadata={'query_param': { 'field_name': 'jobType', 'style': 'form', 'explode': True }})
     r"""Filter the Jobs by jobType."""
     limit: Optional[int] = dataclasses.field(default=None, metadata={'query_param': { 'field_name': 'limit', 'style': 'form', 'explode': True }})
     r"""Set the limit on the number of Jobs returned. The default is 20 Jobs."""

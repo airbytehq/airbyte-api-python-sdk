@@ -29,6 +29,7 @@ class Streams:
         url = base_url.removesuffix('/') + '/streams'
         headers = {}
         query_params = utils.get_query_params(operations.GetStreamPropertiesRequest, request)
+        headers['Accept'] = 'application/json'
         headers['user-agent'] = f'speakeasy-sdk/{self._language} {self._sdk_version} {self._gen_version}'
         
         client = self._security_client

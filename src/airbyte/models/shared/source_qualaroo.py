@@ -7,7 +7,7 @@ from dataclasses_json import Undefined, dataclass_json
 from enum import Enum
 from typing import Optional
 
-class SourceQualarooQualarooEnum(str, Enum):
+class SourceQualarooQualaroo(str, Enum):
     QUALAROO = 'qualaroo'
 
 
@@ -18,7 +18,7 @@ class SourceQualaroo:
     
     key: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('key') }})
     r"""A Qualaroo token. See the <a href=\\"https://help.qualaroo.com/hc/en-us/articles/201969438-The-REST-Reporting-API\\">docs</a> for instructions on how to generate it."""
-    source_type: SourceQualarooQualarooEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
+    source_type: SourceQualarooQualaroo = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     start_date: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('start_date') }})
     r"""UTC date and time in the format 2017-01-25T00:00:00Z. Any data before this date will not be replicated."""
     token: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('token') }})

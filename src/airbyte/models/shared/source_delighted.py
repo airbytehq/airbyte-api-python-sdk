@@ -9,7 +9,7 @@ from datetime import datetime
 from enum import Enum
 from marshmallow import fields
 
-class SourceDelightedDelightedEnum(str, Enum):
+class SourceDelightedDelighted(str, Enum):
     DELIGHTED = 'delighted'
 
 
@@ -22,5 +22,5 @@ class SourceDelighted:
     r"""A Delighted API key."""
     since: datetime = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('since'), 'encoder': utils.datetimeisoformat(False), 'decoder': dateutil.parser.isoparse, 'mm_field': fields.DateTime(format='iso') }})
     r"""The date from which you'd like to replicate the data"""
-    source_type: SourceDelightedDelightedEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
+    source_type: SourceDelightedDelighted = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     

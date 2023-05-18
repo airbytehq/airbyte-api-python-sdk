@@ -6,7 +6,7 @@ from airbyte import utils
 from dataclasses_json import Undefined, dataclass_json
 from enum import Enum
 
-class SourceGoogleDirectoryGoogleDirectoryEnum(str, Enum):
+class SourceGoogleDirectoryGoogleDirectory(str, Enum):
     GOOGLE_DIRECTORY = 'google-directory'
 
 
@@ -19,5 +19,5 @@ class SourceGoogleDirectory:
     r"""The contents of the JSON service account key. See the <a href=\\"https://developers.google.com/admin-sdk/directory/v1/guides/delegation\\">docs</a> for more information on how to generate this key."""
     email: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('email') }})
     r"""The email of the user, which has permissions to access the Google Workspace Admin APIs."""
-    source_type: SourceGoogleDirectoryGoogleDirectoryEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
+    source_type: SourceGoogleDirectoryGoogleDirectory = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     

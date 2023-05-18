@@ -6,7 +6,7 @@ from airbyte import utils
 from dataclasses_json import Undefined, dataclass_json
 from enum import Enum
 
-class SourceZoomZoomEnum(str, Enum):
+class SourceZoomZoom(str, Enum):
     ZOOM = 'zoom'
 
 
@@ -17,5 +17,5 @@ class SourceZoom:
     
     jwt_token: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('jwt_token') }})
     r"""JWT Token"""
-    source_type: SourceZoomZoomEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
+    source_type: SourceZoomZoom = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     

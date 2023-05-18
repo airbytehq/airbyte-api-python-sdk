@@ -10,10 +10,10 @@ from enum import Enum
 from marshmallow import fields
 from typing import Any, Optional
 
-class SourceS3FormatJsonlFiletypeEnum(str, Enum):
+class SourceS3FormatJsonlFiletype(str, Enum):
     JSONL = 'jsonl'
 
-class SourceS3FormatJsonlUnexpectedFieldBehaviorEnum(str, Enum):
+class SourceS3FormatJsonlUnexpectedFieldBehavior(str, Enum):
     r"""How JSON fields outside of explicit_schema (if given) are treated. Check <a href=\\"https://arrow.apache.org/docs/python/generated/pyarrow.json.ParseOptions.html\\" target=\\"_blank\\">PyArrow documentation</a> for details"""
     IGNORE = 'ignore'
     INFER = 'infer'
@@ -27,13 +27,13 @@ class SourceS3FormatJsonl:
     
     block_size: Optional[int] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('block_size'), 'exclude': lambda f: f is None }})
     r"""The chunk size in bytes to process at a time in memory from each file. If your data is particularly wide and failing during schema detection, increasing this should solve it. Beware of raising this too high as you could hit OOM errors."""
-    filetype: Optional[SourceS3FormatJsonlFiletypeEnum] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('filetype'), 'exclude': lambda f: f is None }})
+    filetype: Optional[SourceS3FormatJsonlFiletype] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('filetype'), 'exclude': lambda f: f is None }})
     newlines_in_values: Optional[bool] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('newlines_in_values'), 'exclude': lambda f: f is None }})
     r"""Whether newline characters are allowed in JSON values. Turning this on may affect performance. Leave blank to default to False."""
-    unexpected_field_behavior: Optional[SourceS3FormatJsonlUnexpectedFieldBehaviorEnum] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('unexpected_field_behavior'), 'exclude': lambda f: f is None }})
+    unexpected_field_behavior: Optional[SourceS3FormatJsonlUnexpectedFieldBehavior] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('unexpected_field_behavior'), 'exclude': lambda f: f is None }})
     r"""How JSON fields outside of explicit_schema (if given) are treated. Check <a href=\\"https://arrow.apache.org/docs/python/generated/pyarrow.json.ParseOptions.html\\" target=\\"_blank\\">PyArrow documentation</a> for details"""
     
-class SourceS3FormatAvroFiletypeEnum(str, Enum):
+class SourceS3FormatAvroFiletype(str, Enum):
     AVRO = 'avro'
 
 
@@ -42,9 +42,9 @@ class SourceS3FormatAvroFiletypeEnum(str, Enum):
 class SourceS3FormatAvro:
     r"""This connector utilises <a href=\\"https://fastavro.readthedocs.io/en/latest/\\" target=\\"_blank\\">fastavro</a> for Avro parsing."""
     
-    filetype: Optional[SourceS3FormatAvroFiletypeEnum] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('filetype'), 'exclude': lambda f: f is None }})
+    filetype: Optional[SourceS3FormatAvroFiletype] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('filetype'), 'exclude': lambda f: f is None }})
     
-class SourceS3FormatParquetFiletypeEnum(str, Enum):
+class SourceS3FormatParquetFiletype(str, Enum):
     PARQUET = 'parquet'
 
 
@@ -59,9 +59,9 @@ class SourceS3FormatParquet:
     r"""Perform read buffering when deserializing individual column chunks. By default every group column will be loaded fully to memory. This option can help avoid out-of-memory errors if your data is particularly wide."""
     columns: Optional[list[str]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('columns'), 'exclude': lambda f: f is None }})
     r"""If you only want to sync a subset of the columns from the file(s), add the columns you want here as a comma-delimited list. Leave it empty to sync all columns."""
-    filetype: Optional[SourceS3FormatParquetFiletypeEnum] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('filetype'), 'exclude': lambda f: f is None }})
+    filetype: Optional[SourceS3FormatParquetFiletype] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('filetype'), 'exclude': lambda f: f is None }})
     
-class SourceS3FormatCSVFiletypeEnum(str, Enum):
+class SourceS3FormatCSVFiletype(str, Enum):
     CSV = 'csv'
 
 
@@ -84,7 +84,7 @@ class SourceS3FormatCSV:
     r"""The character encoding of the CSV data. Leave blank to default to <strong>UTF8</strong>. See <a href=\\"https://docs.python.org/3/library/codecs.html#standard-encodings\\" target=\\"_blank\\">list of python encodings</a> for allowable options."""
     escape_char: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('escape_char'), 'exclude': lambda f: f is None }})
     r"""The character used for escaping special characters. To disallow escaping, leave this field blank."""
-    filetype: Optional[SourceS3FormatCSVFiletypeEnum] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('filetype'), 'exclude': lambda f: f is None }})
+    filetype: Optional[SourceS3FormatCSVFiletype] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('filetype'), 'exclude': lambda f: f is None }})
     infer_datatypes: Optional[bool] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('infer_datatypes'), 'exclude': lambda f: f is None }})
     r"""Configures whether a schema for the source should be inferred from the current data or not. If set to false and a custom schema is set, then the manually enforced schema is used. If a schema is not manually set, and this is set to false, then all fields will be read as strings"""
     newlines_in_values: Optional[bool] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('newlines_in_values'), 'exclude': lambda f: f is None }})
@@ -111,7 +111,7 @@ class SourceS3S3AmazonWebServices:
     start_date: Optional[datetime] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('start_date'), 'encoder': utils.datetimeisoformat(True), 'decoder': dateutil.parser.isoparse, 'mm_field': fields.DateTime(format='iso'), 'exclude': lambda f: f is None }})
     r"""UTC date and time in the format 2017-01-25T00:00:00Z. Any file modified before this date will not be replicated."""
     
-class SourceS3S3Enum(str, Enum):
+class SourceS3S3(str, Enum):
     S3 = 's3'
 
 
@@ -126,7 +126,7 @@ class SourceS3:
     r"""A regular expression which tells the connector which files to replicate. All files which match this pattern will be replicated. Use | to separate multiple patterns. See <a href=\\"https://facelessuser.github.io/wcmatch/glob/\\" target=\\"_blank\\">this page</a> to understand pattern syntax (GLOBSTAR and SPLIT flags are enabled). Use pattern <strong>**</strong> to pick up all files."""
     provider: SourceS3S3AmazonWebServices = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('provider') }})
     r"""Use this to load files from S3 or S3-compatible services"""
-    source_type: SourceS3S3Enum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
+    source_type: SourceS3S3 = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     format: Optional[Any] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('format'), 'exclude': lambda f: f is None }})
     r"""The format of the files you'd like to replicate"""
     schema: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('schema'), 'exclude': lambda f: f is None }})

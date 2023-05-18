@@ -7,7 +7,7 @@ from dataclasses_json import Undefined, dataclass_json
 from enum import Enum
 from typing import Optional
 
-class SourceFakerFakerEnum(str, Enum):
+class SourceFakerFaker(str, Enum):
     FAKER = 'faker'
 
 
@@ -18,7 +18,7 @@ class SourceFaker:
     
     count: int = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('count') }})
     r"""How many users should be generated in total.  This setting does not apply to the purchases or products stream."""
-    source_type: SourceFakerFakerEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
+    source_type: SourceFakerFaker = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     parallelism: Optional[int] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('parallelism'), 'exclude': lambda f: f is None }})
     r"""How many parallel workers should we use to generate fake data?  Choose a value equal to the number of CPUs you will allocate to this source."""
     records_per_slice: Optional[int] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('records_per_slice'), 'exclude': lambda f: f is None }})

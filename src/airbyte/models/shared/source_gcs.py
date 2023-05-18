@@ -6,7 +6,7 @@ from airbyte import utils
 from dataclasses_json import Undefined, dataclass_json
 from enum import Enum
 
-class SourceGcsGcsEnum(str, Enum):
+class SourceGcsGcs(str, Enum):
     GCS = 'gcs'
 
 
@@ -21,5 +21,5 @@ class SourceGcs:
     r"""GCS path to data"""
     service_account: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('service_account') }})
     r"""Enter your Google Cloud <a href=\\"https://cloud.google.com/iam/docs/creating-managing-service-account-keys#creating_service_account_keys\\">service account key</a> in JSON format"""
-    source_type: SourceGcsGcsEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
+    source_type: SourceGcsGcs = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     

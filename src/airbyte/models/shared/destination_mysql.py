@@ -7,10 +7,10 @@ from dataclasses_json import Undefined, dataclass_json
 from enum import Enum
 from typing import Any, Optional
 
-class DestinationMysqlMysqlEnum(str, Enum):
+class DestinationMysqlMysql(str, Enum):
     MYSQL = 'mysql'
 
-class DestinationMysqlTunnelMethodPasswordAuthenticationTunnelMethodEnum(str, Enum):
+class DestinationMysqlTunnelMethodPasswordAuthenticationTunnelMethod(str, Enum):
     r"""Connect through a jump server tunnel host using username and password authentication"""
     SSH_PASSWORD_AUTH = 'SSH_PASSWORD_AUTH'
 
@@ -22,7 +22,7 @@ class DestinationMysqlTunnelMethodPasswordAuthentication:
     
     tunnel_host: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('tunnel_host') }})
     r"""Hostname of the jump server host that allows inbound ssh tunnel."""
-    tunnel_method: DestinationMysqlTunnelMethodPasswordAuthenticationTunnelMethodEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('tunnel_method') }})
+    tunnel_method: DestinationMysqlTunnelMethodPasswordAuthenticationTunnelMethod = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('tunnel_method') }})
     r"""Connect through a jump server tunnel host using username and password authentication"""
     tunnel_port: int = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('tunnel_port') }})
     r"""Port on the proxy/jump server that accepts inbound ssh connections."""
@@ -31,7 +31,7 @@ class DestinationMysqlTunnelMethodPasswordAuthentication:
     tunnel_user_password: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('tunnel_user_password') }})
     r"""OS-level password for logging into the jump server host"""
     
-class DestinationMysqlTunnelMethodSSHKeyAuthenticationTunnelMethodEnum(str, Enum):
+class DestinationMysqlTunnelMethodSSHKeyAuthenticationTunnelMethod(str, Enum):
     r"""Connect through a jump server tunnel host using username and ssh key"""
     SSH_KEY_AUTH = 'SSH_KEY_AUTH'
 
@@ -45,14 +45,14 @@ class DestinationMysqlTunnelMethodSSHKeyAuthentication:
     r"""OS-level user account ssh key credentials in RSA PEM format ( created with ssh-keygen -t rsa -m PEM -f myuser_rsa )"""
     tunnel_host: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('tunnel_host') }})
     r"""Hostname of the jump server host that allows inbound ssh tunnel."""
-    tunnel_method: DestinationMysqlTunnelMethodSSHKeyAuthenticationTunnelMethodEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('tunnel_method') }})
+    tunnel_method: DestinationMysqlTunnelMethodSSHKeyAuthenticationTunnelMethod = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('tunnel_method') }})
     r"""Connect through a jump server tunnel host using username and ssh key"""
     tunnel_port: int = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('tunnel_port') }})
     r"""Port on the proxy/jump server that accepts inbound ssh connections."""
     tunnel_user: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('tunnel_user') }})
     r"""OS-level username for logging into the jump server host."""
     
-class DestinationMysqlTunnelMethodNoTunnelTunnelMethodEnum(str, Enum):
+class DestinationMysqlTunnelMethodNoTunnelTunnelMethod(str, Enum):
     r"""No ssh tunnel needed to connect to database"""
     NO_TUNNEL = 'NO_TUNNEL'
 
@@ -62,7 +62,7 @@ class DestinationMysqlTunnelMethodNoTunnelTunnelMethodEnum(str, Enum):
 class DestinationMysqlTunnelMethodNoTunnel:
     r"""Whether to initiate an SSH tunnel before connecting to the database, and if so, which kind of authentication to use."""
     
-    tunnel_method: DestinationMysqlTunnelMethodNoTunnelTunnelMethodEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('tunnel_method') }})
+    tunnel_method: DestinationMysqlTunnelMethodNoTunnelTunnelMethod = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('tunnel_method') }})
     r"""No ssh tunnel needed to connect to database"""
     
 
@@ -73,7 +73,7 @@ class DestinationMysql:
     
     database: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('database') }})
     r"""Name of the database."""
-    destination_type: DestinationMysqlMysqlEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('destinationType') }})
+    destination_type: DestinationMysqlMysql = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('destinationType') }})
     host: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('host') }})
     r"""Hostname of the database."""
     port: int = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('port') }})

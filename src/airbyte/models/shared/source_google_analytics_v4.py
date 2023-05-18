@@ -7,7 +7,7 @@ from dataclasses_json import Undefined, dataclass_json
 from enum import Enum
 from typing import Any, Optional
 
-class SourceGoogleAnalyticsV4CredentialsServiceAccountKeyAuthenticationAuthTypeEnum(str, Enum):
+class SourceGoogleAnalyticsV4CredentialsServiceAccountKeyAuthenticationAuthType(str, Enum):
     SERVICE = 'Service'
 
 
@@ -18,9 +18,9 @@ class SourceGoogleAnalyticsV4CredentialsServiceAccountKeyAuthentication:
     
     credentials_json: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credentials_json') }})
     r"""The JSON key of the service account to use for authorization"""
-    auth_type: Optional[SourceGoogleAnalyticsV4CredentialsServiceAccountKeyAuthenticationAuthTypeEnum] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_type'), 'exclude': lambda f: f is None }})
+    auth_type: Optional[SourceGoogleAnalyticsV4CredentialsServiceAccountKeyAuthenticationAuthType] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_type'), 'exclude': lambda f: f is None }})
     
-class SourceGoogleAnalyticsV4CredentialsAuthenticateViaGoogleOauthAuthTypeEnum(str, Enum):
+class SourceGoogleAnalyticsV4CredentialsAuthenticateViaGoogleOauthAuthType(str, Enum):
     CLIENT = 'Client'
 
 
@@ -37,9 +37,9 @@ class SourceGoogleAnalyticsV4CredentialsAuthenticateViaGoogleOauth:
     r"""The token for obtaining a new access token."""
     access_token: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('access_token'), 'exclude': lambda f: f is None }})
     r"""Access Token for making authenticated requests."""
-    auth_type: Optional[SourceGoogleAnalyticsV4CredentialsAuthenticateViaGoogleOauthAuthTypeEnum] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_type'), 'exclude': lambda f: f is None }})
+    auth_type: Optional[SourceGoogleAnalyticsV4CredentialsAuthenticateViaGoogleOauthAuthType] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_type'), 'exclude': lambda f: f is None }})
     
-class SourceGoogleAnalyticsV4GoogleAnalyticsV4Enum(str, Enum):
+class SourceGoogleAnalyticsV4GoogleAnalyticsV4(str, Enum):
     GOOGLE_ANALYTICS_V4 = 'google-analytics-v4'
 
 
@@ -48,7 +48,7 @@ class SourceGoogleAnalyticsV4GoogleAnalyticsV4Enum(str, Enum):
 class SourceGoogleAnalyticsV4:
     r"""The values required to configure the source."""
     
-    source_type: SourceGoogleAnalyticsV4GoogleAnalyticsV4Enum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
+    source_type: SourceGoogleAnalyticsV4GoogleAnalyticsV4 = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     start_date: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('start_date') }})
     r"""The date in the format YYYY-MM-DD. Any data before this date will not be replicated."""
     view_id: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('view_id') }})

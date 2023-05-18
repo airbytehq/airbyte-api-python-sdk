@@ -6,7 +6,7 @@ from airbyte import utils
 from dataclasses_json import Undefined, dataclass_json
 from enum import Enum
 
-class SourceSmailySmailyEnum(str, Enum):
+class SourceSmailySmaily(str, Enum):
     SMAILY = 'smaily'
 
 
@@ -21,5 +21,5 @@ class SourceSmaily:
     r"""API Subdomain. See https://smaily.com/help/api/general/create-api-user/"""
     api_username: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('api_username') }})
     r"""API user username. See https://smaily.com/help/api/general/create-api-user/"""
-    source_type: SourceSmailySmailyEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
+    source_type: SourceSmailySmaily = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     

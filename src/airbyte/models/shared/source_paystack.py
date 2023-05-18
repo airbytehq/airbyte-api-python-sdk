@@ -10,7 +10,7 @@ from enum import Enum
 from marshmallow import fields
 from typing import Optional
 
-class SourcePaystackPaystackEnum(str, Enum):
+class SourcePaystackPaystack(str, Enum):
     PAYSTACK = 'paystack'
 
 
@@ -21,7 +21,7 @@ class SourcePaystack:
     
     secret_key: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('secret_key') }})
     r"""The Paystack API key (usually starts with 'sk_live_'; find yours <a href=\\"https://dashboard.paystack.com/#/settings/developer\\">here</a>)."""
-    source_type: SourcePaystackPaystackEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
+    source_type: SourcePaystackPaystack = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     start_date: datetime = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('start_date'), 'encoder': utils.datetimeisoformat(False), 'decoder': dateutil.parser.isoparse, 'mm_field': fields.DateTime(format='iso') }})
     r"""UTC date and time in the format 2017-01-25T00:00:00Z. Any data before this date will not be replicated."""
     lookback_window_days: Optional[int] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('lookback_window_days'), 'exclude': lambda f: f is None }})

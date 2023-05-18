@@ -6,7 +6,7 @@ from airbyte import utils
 from dataclasses_json import Undefined, dataclass_json
 from enum import Enum
 
-class SourceGreenhouseGreenhouseEnum(str, Enum):
+class SourceGreenhouseGreenhouse(str, Enum):
     GREENHOUSE = 'greenhouse'
 
 
@@ -17,5 +17,5 @@ class SourceGreenhouse:
     
     api_key: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('api_key') }})
     r"""Greenhouse API Key. See the <a href=\\"https://docs.airbyte.com/integrations/sources/greenhouse\\">docs</a> for more information on how to generate this key."""
-    source_type: SourceGreenhouseGreenhouseEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
+    source_type: SourceGreenhouseGreenhouse = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     

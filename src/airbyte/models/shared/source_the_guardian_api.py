@@ -7,7 +7,7 @@ from dataclasses_json import Undefined, dataclass_json
 from enum import Enum
 from typing import Optional
 
-class SourceTheGuardianAPITheGuardianAPIEnum(str, Enum):
+class SourceTheGuardianAPITheGuardianAPI(str, Enum):
     THE_GUARDIAN_API = 'the-guardian-api'
 
 
@@ -18,7 +18,7 @@ class SourceTheGuardianAPI:
     
     api_key: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('api_key') }})
     r"""Your API Key. See <a href=\\"https://open-platform.theguardian.com/access/\\">here</a>. The key is case sensitive."""
-    source_type: SourceTheGuardianAPITheGuardianAPIEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
+    source_type: SourceTheGuardianAPITheGuardianAPI = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     start_date: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('start_date') }})
     r"""Use this to set the minimum date (YYYY-MM-DD) of the results. Results older than the start_date will not be shown."""
     end_date: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('end_date'), 'exclude': lambda f: f is None }})

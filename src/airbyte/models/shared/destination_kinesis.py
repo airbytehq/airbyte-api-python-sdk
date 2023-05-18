@@ -6,7 +6,7 @@ from airbyte import utils
 from dataclasses_json import Undefined, dataclass_json
 from enum import Enum
 
-class DestinationKinesisKinesisEnum(str, Enum):
+class DestinationKinesisKinesis(str, Enum):
     KINESIS = 'kinesis'
 
 
@@ -19,7 +19,7 @@ class DestinationKinesis:
     r"""Generate the AWS Access Key for current user."""
     buffer_size: int = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('bufferSize') }})
     r"""Buffer size for storing kinesis records before being batch streamed."""
-    destination_type: DestinationKinesisKinesisEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('destinationType') }})
+    destination_type: DestinationKinesisKinesis = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('destinationType') }})
     endpoint: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('endpoint') }})
     r"""AWS Kinesis endpoint."""
     private_key: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('privateKey') }})

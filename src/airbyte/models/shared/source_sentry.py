@@ -7,7 +7,7 @@ from dataclasses_json import Undefined, dataclass_json
 from enum import Enum
 from typing import Any, Optional
 
-class SourceSentrySentryEnum(str, Enum):
+class SourceSentrySentry(str, Enum):
     SENTRY = 'sentry'
 
 
@@ -22,7 +22,7 @@ class SourceSentry:
     r"""The slug of the organization the groups belong to."""
     project: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('project') }})
     r"""The name (slug) of the Project you want to sync."""
-    source_type: SourceSentrySentryEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
+    source_type: SourceSentrySentry = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     discover_fields: Optional[list[Any]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('discover_fields'), 'exclude': lambda f: f is None }})
     r"""Fields to retrieve when fetching discover events"""
     hostname: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('hostname'), 'exclude': lambda f: f is None }})

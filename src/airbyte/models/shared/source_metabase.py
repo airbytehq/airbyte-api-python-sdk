@@ -7,7 +7,7 @@ from dataclasses_json import Undefined, dataclass_json
 from enum import Enum
 from typing import Optional
 
-class SourceMetabaseMetabaseEnum(str, Enum):
+class SourceMetabaseMetabase(str, Enum):
     METABASE = 'metabase'
 
 
@@ -18,7 +18,7 @@ class SourceMetabase:
     
     instance_api_url: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('instance_api_url') }})
     r"""URL to your metabase instance API"""
-    source_type: SourceMetabaseMetabaseEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
+    source_type: SourceMetabaseMetabase = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     password: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('password'), 'exclude': lambda f: f is None }})
     session_token: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('session_token'), 'exclude': lambda f: f is None }})
     r"""To generate your session token, you need to run the following command: ``` curl -X POST \ 

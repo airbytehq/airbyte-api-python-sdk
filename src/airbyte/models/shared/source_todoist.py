@@ -6,7 +6,7 @@ from airbyte import utils
 from dataclasses_json import Undefined, dataclass_json
 from enum import Enum
 
-class SourceTodoistTodoistEnum(str, Enum):
+class SourceTodoistTodoist(str, Enum):
     TODOIST = 'todoist'
 
 
@@ -15,7 +15,7 @@ class SourceTodoistTodoistEnum(str, Enum):
 class SourceTodoist:
     r"""The values required to configure the source."""
     
-    source_type: SourceTodoistTodoistEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
+    source_type: SourceTodoistTodoist = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     token: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('token') }})
     r"""Your API Token. See <a href=\\"https://todoist.com/app/settings/integrations/\\">here</a>. The token is case sensitive."""
     

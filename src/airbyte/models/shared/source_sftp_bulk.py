@@ -10,12 +10,12 @@ from enum import Enum
 from marshmallow import fields
 from typing import Optional
 
-class SourceSftpBulkFileTypeEnum(str, Enum):
+class SourceSftpBulkFileType(str, Enum):
     r"""The file type you want to sync. Currently only 'csv' and 'json' files are supported."""
     CSV = 'csv'
     JSON = 'json'
 
-class SourceSftpBulkSftpBulkEnum(str, Enum):
+class SourceSftpBulkSftpBulk(str, Enum):
     SFTP_BULK = 'sftp-bulk'
 
 
@@ -30,7 +30,7 @@ class SourceSftpBulk:
     r"""The server host address"""
     port: int = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('port') }})
     r"""The server port"""
-    source_type: SourceSftpBulkSftpBulkEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
+    source_type: SourceSftpBulkSftpBulk = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     start_date: datetime = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('start_date'), 'encoder': utils.datetimeisoformat(False), 'decoder': dateutil.parser.isoparse, 'mm_field': fields.DateTime(format='iso') }})
     r"""The date from which you'd like to replicate data for all incremental streams, in the format YYYY-MM-DDT00:00:00Z. All data generated after this date will be replicated."""
     stream_name: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('stream_name') }})
@@ -41,7 +41,7 @@ class SourceSftpBulk:
     r"""Sync only the most recent file for the configured folder path and file pattern"""
     file_pattern: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('file_pattern'), 'exclude': lambda f: f is None }})
     r"""The regular expression to specify files for sync in a chosen Folder Path"""
-    file_type: Optional[SourceSftpBulkFileTypeEnum] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('file_type'), 'exclude': lambda f: f is None }})
+    file_type: Optional[SourceSftpBulkFileType] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('file_type'), 'exclude': lambda f: f is None }})
     r"""The file type you want to sync. Currently only 'csv' and 'json' files are supported."""
     password: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('password'), 'exclude': lambda f: f is None }})
     r"""OS-level password for logging into the jump server host"""

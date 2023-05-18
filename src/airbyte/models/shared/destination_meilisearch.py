@@ -7,7 +7,7 @@ from dataclasses_json import Undefined, dataclass_json
 from enum import Enum
 from typing import Optional
 
-class DestinationMeilisearchMeilisearchEnum(str, Enum):
+class DestinationMeilisearchMeilisearch(str, Enum):
     MEILISEARCH = 'meilisearch'
 
 
@@ -16,7 +16,7 @@ class DestinationMeilisearchMeilisearchEnum(str, Enum):
 class DestinationMeilisearch:
     r"""The values required to configure the destination."""
     
-    destination_type: DestinationMeilisearchMeilisearchEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('destinationType') }})
+    destination_type: DestinationMeilisearchMeilisearch = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('destinationType') }})
     host: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('host') }})
     r"""Hostname of the MeiliSearch instance."""
     api_key: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('api_key'), 'exclude': lambda f: f is None }})

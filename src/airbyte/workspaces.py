@@ -36,6 +36,7 @@ class Workspaces:
             headers['content-type'] = req_content_type
         if data is None and form is None:
             raise Exception('request body is required')
+        headers['Accept'] = '*/*'
         headers['user-agent'] = f'speakeasy-sdk/{self._language} {self._sdk_version} {self._gen_version}'
         
         client = self._security_client
@@ -60,6 +61,7 @@ class Workspaces:
             headers['content-type'] = req_content_type
         if data is None and form is None:
             raise Exception('request body is required')
+        headers['Accept'] = 'application/json'
         headers['user-agent'] = f'speakeasy-sdk/{self._language} {self._sdk_version} {self._gen_version}'
         
         client = self._security_client
@@ -85,6 +87,7 @@ class Workspaces:
         
         url = utils.generate_url(operations.DeleteWorkspaceRequest, base_url, '/workspaces/{workspaceId}', request)
         headers = {}
+        headers['Accept'] = '*/*'
         headers['user-agent'] = f'speakeasy-sdk/{self._language} {self._sdk_version} {self._gen_version}'
         
         client = self._security_client
@@ -104,6 +107,7 @@ class Workspaces:
         
         url = utils.generate_url(operations.GetWorkspaceRequest, base_url, '/workspaces/{workspaceId}', request)
         headers = {}
+        headers['Accept'] = 'application/json'
         headers['user-agent'] = f'speakeasy-sdk/{self._language} {self._sdk_version} {self._gen_version}'
         
         client = self._security_client
@@ -130,6 +134,7 @@ class Workspaces:
         url = base_url.removesuffix('/') + '/workspaces'
         headers = {}
         query_params = utils.get_query_params(operations.ListWorkspacesRequest, request)
+        headers['Accept'] = 'application/json'
         headers['user-agent'] = f'speakeasy-sdk/{self._language} {self._sdk_version} {self._gen_version}'
         
         client = self._security_client
@@ -160,6 +165,7 @@ class Workspaces:
             headers['content-type'] = req_content_type
         if data is None and form is None:
             raise Exception('request body is required')
+        headers['Accept'] = 'application/json'
         headers['user-agent'] = f'speakeasy-sdk/{self._language} {self._sdk_version} {self._gen_version}'
         
         client = self._security_client

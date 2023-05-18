@@ -7,10 +7,10 @@ from dataclasses_json import Undefined, dataclass_json
 from enum import Enum
 from typing import Optional
 
-class DestinationAmazonSqsAmazonSqsEnum(str, Enum):
+class DestinationAmazonSqsAmazonSqs(str, Enum):
     AMAZON_SQS = 'amazon-sqs'
 
-class DestinationAmazonSqsAWSRegionEnum(str, Enum):
+class DestinationAmazonSqsAWSRegion(str, Enum):
     r"""AWS Region of the SQS Queue"""
     US_EAST_1 = 'us-east-1'
     US_EAST_2 = 'us-east-2'
@@ -44,10 +44,10 @@ class DestinationAmazonSqsAWSRegionEnum(str, Enum):
 class DestinationAmazonSqs:
     r"""The values required to configure the destination."""
     
-    destination_type: DestinationAmazonSqsAmazonSqsEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('destinationType') }})
+    destination_type: DestinationAmazonSqsAmazonSqs = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('destinationType') }})
     queue_url: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('queue_url') }})
     r"""URL of the SQS Queue"""
-    region: DestinationAmazonSqsAWSRegionEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('region') }})
+    region: DestinationAmazonSqsAWSRegion = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('region') }})
     r"""AWS Region of the SQS Queue"""
     access_key: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('access_key'), 'exclude': lambda f: f is None }})
     r"""The Access Key ID of the AWS IAM Role to use for sending  messages"""

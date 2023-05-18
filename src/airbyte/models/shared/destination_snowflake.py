@@ -7,7 +7,7 @@ from dataclasses_json import Undefined, dataclass_json
 from enum import Enum
 from typing import Any, Optional
 
-class DestinationSnowflakeCredentialsUsernameAndPasswordAuthTypeEnum(str, Enum):
+class DestinationSnowflakeCredentialsUsernameAndPasswordAuthType(str, Enum):
     USERNAME_AND_PASSWORD = 'Username and Password'
 
 
@@ -17,9 +17,9 @@ class DestinationSnowflakeCredentialsUsernameAndPassword:
     
     password: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('password') }})
     r"""Enter the password associated with the username."""
-    auth_type: Optional[DestinationSnowflakeCredentialsUsernameAndPasswordAuthTypeEnum] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_type'), 'exclude': lambda f: f is None }})
+    auth_type: Optional[DestinationSnowflakeCredentialsUsernameAndPasswordAuthType] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_type'), 'exclude': lambda f: f is None }})
     
-class DestinationSnowflakeCredentialsKeyPairAuthenticationAuthTypeEnum(str, Enum):
+class DestinationSnowflakeCredentialsKeyPairAuthenticationAuthType(str, Enum):
     KEY_PAIR_AUTHENTICATION = 'Key Pair Authentication'
 
 
@@ -29,11 +29,11 @@ class DestinationSnowflakeCredentialsKeyPairAuthentication:
     
     private_key: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('private_key') }})
     r"""RSA Private key to use for Snowflake connection. See the <a href=\\"https://docs.airbyte.com/integrations/destinations/snowflake\\">docs</a> for more information on how to obtain this key."""
-    auth_type: Optional[DestinationSnowflakeCredentialsKeyPairAuthenticationAuthTypeEnum] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_type'), 'exclude': lambda f: f is None }})
+    auth_type: Optional[DestinationSnowflakeCredentialsKeyPairAuthenticationAuthType] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_type'), 'exclude': lambda f: f is None }})
     private_key_password: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('private_key_password'), 'exclude': lambda f: f is None }})
     r"""Passphrase for private key"""
     
-class DestinationSnowflakeCredentialsOAuth20AuthTypeEnum(str, Enum):
+class DestinationSnowflakeCredentialsOAuth20AuthType(str, Enum):
     O_AUTH2_0 = 'OAuth2.0'
 
 
@@ -45,16 +45,16 @@ class DestinationSnowflakeCredentialsOAuth20:
     r"""Enter you application's Access Token"""
     refresh_token: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('refresh_token') }})
     r"""Enter your application's Refresh Token"""
-    auth_type: Optional[DestinationSnowflakeCredentialsOAuth20AuthTypeEnum] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_type'), 'exclude': lambda f: f is None }})
+    auth_type: Optional[DestinationSnowflakeCredentialsOAuth20AuthType] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_type'), 'exclude': lambda f: f is None }})
     client_id: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('client_id'), 'exclude': lambda f: f is None }})
     r"""Enter your application's Client ID"""
     client_secret: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('client_secret'), 'exclude': lambda f: f is None }})
     r"""Enter your application's Client secret"""
     
-class DestinationSnowflakeSnowflakeEnum(str, Enum):
+class DestinationSnowflakeSnowflake(str, Enum):
     SNOWFLAKE = 'snowflake'
 
-class DestinationSnowflakeLoadingMethodGoogleCloudStorageStagingMethodEnum(str, Enum):
+class DestinationSnowflakeLoadingMethodGoogleCloudStorageStagingMethod(str, Enum):
     GCS_STAGING = 'GCS Staging'
 
 
@@ -67,11 +67,11 @@ class DestinationSnowflakeLoadingMethodGoogleCloudStorageStaging:
     r"""Enter the <a href=\\"https://cloud.google.com/storage/docs/creating-buckets\\">Cloud Storage bucket name</a>"""
     credentials_json: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credentials_json') }})
     r"""Enter your <a href=\\"https://cloud.google.com/iam/docs/creating-managing-service-account-keys#creating_service_account_keys\\">Google Cloud service account key</a> in the JSON format with read/write access to your Cloud Storage staging bucket"""
-    method: DestinationSnowflakeLoadingMethodGoogleCloudStorageStagingMethodEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('method') }})
+    method: DestinationSnowflakeLoadingMethodGoogleCloudStorageStagingMethod = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('method') }})
     project_id: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('project_id') }})
     r"""Enter the <a href=\\"https://cloud.google.com/resource-manager/docs/creating-managing-projects#identifying_projects\\">Google Cloud project ID</a>"""
     
-class DestinationSnowflakeLoadingMethodAWSS3StagingEncryptionAESCBCEnvelopeEncryptionEncryptionTypeEnum(str, Enum):
+class DestinationSnowflakeLoadingMethodAWSS3StagingEncryptionAESCBCEnvelopeEncryptionEncryptionType(str, Enum):
     AES_CBC_ENVELOPE = 'aes_cbc_envelope'
 
 
@@ -80,11 +80,11 @@ class DestinationSnowflakeLoadingMethodAWSS3StagingEncryptionAESCBCEnvelopeEncry
 class DestinationSnowflakeLoadingMethodAWSS3StagingEncryptionAESCBCEnvelopeEncryption:
     r"""Staging data will be encrypted using AES-CBC envelope encryption."""
     
-    encryption_type: DestinationSnowflakeLoadingMethodAWSS3StagingEncryptionAESCBCEnvelopeEncryptionEncryptionTypeEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('encryption_type') }})
+    encryption_type: DestinationSnowflakeLoadingMethodAWSS3StagingEncryptionAESCBCEnvelopeEncryptionEncryptionType = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('encryption_type') }})
     key_encrypting_key: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('key_encrypting_key'), 'exclude': lambda f: f is None }})
     r"""The key, base64-encoded. Must be either 128, 192, or 256 bits. Leave blank to have Airbyte generate an ephemeral key for each sync."""
     
-class DestinationSnowflakeLoadingMethodAWSS3StagingEncryptionNoEncryptionEncryptionTypeEnum(str, Enum):
+class DestinationSnowflakeLoadingMethodAWSS3StagingEncryptionNoEncryptionEncryptionType(str, Enum):
     NONE = 'none'
 
 
@@ -93,12 +93,12 @@ class DestinationSnowflakeLoadingMethodAWSS3StagingEncryptionNoEncryptionEncrypt
 class DestinationSnowflakeLoadingMethodAWSS3StagingEncryptionNoEncryption:
     r"""Staging data will be stored in plaintext."""
     
-    encryption_type: DestinationSnowflakeLoadingMethodAWSS3StagingEncryptionNoEncryptionEncryptionTypeEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('encryption_type') }})
+    encryption_type: DestinationSnowflakeLoadingMethodAWSS3StagingEncryptionNoEncryptionEncryptionType = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('encryption_type') }})
     
-class DestinationSnowflakeLoadingMethodAWSS3StagingMethodEnum(str, Enum):
+class DestinationSnowflakeLoadingMethodAWSS3StagingMethod(str, Enum):
     S3_STAGING = 'S3 Staging'
 
-class DestinationSnowflakeLoadingMethodAWSS3StagingS3BucketRegionEnum(str, Enum):
+class DestinationSnowflakeLoadingMethodAWSS3StagingS3BucketRegion(str, Enum):
     r"""Enter the region where your S3 bucket resides"""
     UNKNOWN = ''
     US_EAST_1 = 'us-east-1'
@@ -133,7 +133,7 @@ class DestinationSnowflakeLoadingMethodAWSS3Staging:
     
     access_key_id: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('access_key_id') }})
     r"""Enter your <a href=\\"https://docs.aws.amazon.com/powershell/latest/userguide/pstools-appendix-sign-up.html\\">AWS access key ID</a>. Airbyte requires Read and Write permissions on your S3 bucket"""
-    method: DestinationSnowflakeLoadingMethodAWSS3StagingMethodEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('method') }})
+    method: DestinationSnowflakeLoadingMethodAWSS3StagingMethod = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('method') }})
     s3_bucket_name: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('s3_bucket_name') }})
     r"""Enter your S3 bucket name"""
     secret_access_key: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('secret_access_key') }})
@@ -144,10 +144,10 @@ class DestinationSnowflakeLoadingMethodAWSS3Staging:
     r"""The pattern allows you to set the file-name format for the S3 staging file(s)"""
     purge_staging_data: Optional[bool] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('purge_staging_data'), 'exclude': lambda f: f is None }})
     r"""Toggle to delete staging files from the S3 bucket after a successful sync"""
-    s3_bucket_region: Optional[DestinationSnowflakeLoadingMethodAWSS3StagingS3BucketRegionEnum] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('s3_bucket_region'), 'exclude': lambda f: f is None }})
+    s3_bucket_region: Optional[DestinationSnowflakeLoadingMethodAWSS3StagingS3BucketRegion] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('s3_bucket_region'), 'exclude': lambda f: f is None }})
     r"""Enter the region where your S3 bucket resides"""
     
-class DestinationSnowflakeLoadingMethodRecommendedInternalStagingMethodEnum(str, Enum):
+class DestinationSnowflakeLoadingMethodRecommendedInternalStagingMethod(str, Enum):
     INTERNAL_STAGING = 'Internal Staging'
 
 
@@ -156,9 +156,9 @@ class DestinationSnowflakeLoadingMethodRecommendedInternalStagingMethodEnum(str,
 class DestinationSnowflakeLoadingMethodRecommendedInternalStaging:
     r"""Recommended for large production workloads for better speed and scalability."""
     
-    method: DestinationSnowflakeLoadingMethodRecommendedInternalStagingMethodEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('method') }})
+    method: DestinationSnowflakeLoadingMethodRecommendedInternalStagingMethod = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('method') }})
     
-class DestinationSnowflakeLoadingMethodSelectAnotherOptionMethodEnum(str, Enum):
+class DestinationSnowflakeLoadingMethodSelectAnotherOptionMethod(str, Enum):
     STANDARD = 'Standard'
 
 
@@ -167,7 +167,7 @@ class DestinationSnowflakeLoadingMethodSelectAnotherOptionMethodEnum(str, Enum):
 class DestinationSnowflakeLoadingMethodSelectAnotherOption:
     r"""Select another option"""
     
-    method: DestinationSnowflakeLoadingMethodSelectAnotherOptionMethodEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('method') }})
+    method: DestinationSnowflakeLoadingMethodSelectAnotherOptionMethod = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('method') }})
     
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
@@ -177,7 +177,7 @@ class DestinationSnowflake:
     
     database: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('database') }})
     r"""Enter the name of the <a href=\\"https://docs.snowflake.com/en/sql-reference/ddl-database.html#database-schema-share-ddl\\">database</a> you want to sync data into"""
-    destination_type: DestinationSnowflakeSnowflakeEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('destinationType') }})
+    destination_type: DestinationSnowflakeSnowflake = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('destinationType') }})
     host: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('host') }})
     r"""Enter your Snowflake account's <a href=\\"https://docs.snowflake.com/en/user-guide/admin-account-identifier.html#using-an-account-locator-as-an-identifier\\">locator</a> (in the format <account_locator>.<region>.<cloud>.snowflakecomputing.com)"""
     role: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('role') }})

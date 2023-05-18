@@ -7,7 +7,7 @@ from dataclasses_json import Undefined, dataclass_json
 from enum import Enum
 from typing import Any, Optional
 
-class SourceAzureBlobStorageFormatJSONLinesNewlineDelimitedJSONFormatTypeEnum(str, Enum):
+class SourceAzureBlobStorageFormatJSONLinesNewlineDelimitedJSONFormatType(str, Enum):
     JSONL = 'JSONL'
 
 
@@ -16,9 +16,9 @@ class SourceAzureBlobStorageFormatJSONLinesNewlineDelimitedJSONFormatTypeEnum(st
 class SourceAzureBlobStorageFormatJSONLinesNewlineDelimitedJSON:
     r"""Input data format"""
     
-    format_type: SourceAzureBlobStorageFormatJSONLinesNewlineDelimitedJSONFormatTypeEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('format_type') }})
+    format_type: SourceAzureBlobStorageFormatJSONLinesNewlineDelimitedJSONFormatType = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('format_type') }})
     
-class SourceAzureBlobStorageAzureBlobStorageEnum(str, Enum):
+class SourceAzureBlobStorageAzureBlobStorage(str, Enum):
     AZURE_BLOB_STORAGE = 'azure-blob-storage'
 
 
@@ -35,7 +35,7 @@ class SourceAzureBlobStorage:
     r"""The name of the Azure blob storage container."""
     format: Any = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('format') }})
     r"""Input data format"""
-    source_type: SourceAzureBlobStorageAzureBlobStorageEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
+    source_type: SourceAzureBlobStorageAzureBlobStorage = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     azure_blob_storage_blobs_prefix: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('azure_blob_storage_blobs_prefix'), 'exclude': lambda f: f is None }})
     r"""The Azure blob storage prefix to be applied"""
     azure_blob_storage_endpoint: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('azure_blob_storage_endpoint'), 'exclude': lambda f: f is None }})

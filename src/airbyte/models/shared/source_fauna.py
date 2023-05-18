@@ -7,7 +7,7 @@ from dataclasses_json import Undefined, dataclass_json
 from enum import Enum
 from typing import Any, Optional
 
-class SourceFaunaCollectionDeletionsEnabledDeletionModeEnum(str, Enum):
+class SourceFaunaCollectionDeletionsEnabledDeletionMode(str, Enum):
     DELETED_FIELD = 'deleted_field'
 
 
@@ -22,9 +22,9 @@ class SourceFaunaCollectionDeletionsEnabled:
     
     column: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('column') }})
     r"""Name of the \\"deleted at\\" column."""
-    deletion_mode: SourceFaunaCollectionDeletionsEnabledDeletionModeEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('deletion_mode') }})
+    deletion_mode: SourceFaunaCollectionDeletionsEnabledDeletionMode = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('deletion_mode') }})
     
-class SourceFaunaCollectionDeletionsDisabledDeletionModeEnum(str, Enum):
+class SourceFaunaCollectionDeletionsDisabledDeletionMode(str, Enum):
     IGNORE = 'ignore'
 
 
@@ -37,7 +37,7 @@ class SourceFaunaCollectionDeletionsDisabled:
     Enabled - Enables this feature. When a document is deleted, the connector exports a record with a \"deleted at\" column containing the time that the document was deleted.
     """
     
-    deletion_mode: SourceFaunaCollectionDeletionsDisabledDeletionModeEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('deletion_mode') }})
+    deletion_mode: SourceFaunaCollectionDeletionsDisabledDeletionMode = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('deletion_mode') }})
     
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
@@ -57,7 +57,7 @@ class SourceFaunaCollection:
     See <a href=\"https://docs.fauna.com/fauna/current/learn/understanding/types#page\">the docs</a>.
     """
     
-class SourceFaunaFaunaEnum(str, Enum):
+class SourceFaunaFauna(str, Enum):
     FAUNA = 'fauna'
 
 
@@ -74,7 +74,7 @@ class SourceFauna:
     r"""URL scheme."""
     secret: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('secret') }})
     r"""Fauna secret, used when authenticating with the database."""
-    source_type: SourceFaunaFaunaEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
+    source_type: SourceFaunaFauna = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     collection: Optional[SourceFaunaCollection] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('collection'), 'exclude': lambda f: f is None }})
     r"""Settings for the Fauna Collection."""
     

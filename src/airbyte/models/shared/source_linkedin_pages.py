@@ -7,7 +7,7 @@ from dataclasses_json import Undefined, dataclass_json
 from enum import Enum
 from typing import Any, Optional
 
-class SourceLinkedinPagesCredentialsAccessTokenAuthMethodEnum(str, Enum):
+class SourceLinkedinPagesCredentialsAccessTokenAuthMethod(str, Enum):
     ACCESS_TOKEN = 'access_token'
 
 
@@ -17,9 +17,9 @@ class SourceLinkedinPagesCredentialsAccessToken:
     
     access_token: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('access_token') }})
     r"""The token value generated using the LinkedIn Developers OAuth Token Tools. See the <a href=\\"https://docs.airbyte.com/integrations/sources/linkedin-pages/\\">docs</a> to obtain yours."""
-    auth_method: Optional[SourceLinkedinPagesCredentialsAccessTokenAuthMethodEnum] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_method'), 'exclude': lambda f: f is None }})
+    auth_method: Optional[SourceLinkedinPagesCredentialsAccessTokenAuthMethod] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_method'), 'exclude': lambda f: f is None }})
     
-class SourceLinkedinPagesCredentialsOAuth20AuthMethodEnum(str, Enum):
+class SourceLinkedinPagesCredentialsOAuth20AuthMethod(str, Enum):
     O_AUTH2_0 = 'oAuth2.0'
 
 
@@ -33,9 +33,9 @@ class SourceLinkedinPagesCredentialsOAuth20:
     r"""The client secret of the LinkedIn developer application."""
     refresh_token: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('refresh_token') }})
     r"""The token value generated using the LinkedIn Developers OAuth Token Tools. See the <a href=\\"https://docs.airbyte.com/integrations/sources/linkedin-pages/\\">docs</a> to obtain yours."""
-    auth_method: Optional[SourceLinkedinPagesCredentialsOAuth20AuthMethodEnum] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_method'), 'exclude': lambda f: f is None }})
+    auth_method: Optional[SourceLinkedinPagesCredentialsOAuth20AuthMethod] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_method'), 'exclude': lambda f: f is None }})
     
-class SourceLinkedinPagesLinkedinPagesEnum(str, Enum):
+class SourceLinkedinPagesLinkedinPages(str, Enum):
     LINKEDIN_PAGES = 'linkedin-pages'
 
 
@@ -46,6 +46,6 @@ class SourceLinkedinPages:
     
     org_id: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('org_id') }})
     r"""Specify the Organization ID"""
-    source_type: SourceLinkedinPagesLinkedinPagesEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
+    source_type: SourceLinkedinPagesLinkedinPages = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     credentials: Optional[Any] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credentials'), 'exclude': lambda f: f is None }})
     

@@ -6,7 +6,7 @@ from airbyte import utils
 from dataclasses_json import Undefined, dataclass_json
 from enum import Enum
 
-class SourceOutreachOutreachEnum(str, Enum):
+class SourceOutreachOutreach(str, Enum):
     OUTREACH = 'outreach'
 
 
@@ -23,7 +23,7 @@ class SourceOutreach:
     r"""A Redirect URI is the location where the authorization server sends the user once the app has been successfully authorized and granted an authorization code or access token."""
     refresh_token: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('refresh_token') }})
     r"""The token for obtaining the new access token."""
-    source_type: SourceOutreachOutreachEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
+    source_type: SourceOutreachOutreach = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     start_date: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('start_date') }})
     r"""The date from which you'd like to replicate data for Outreach API, in the format YYYY-MM-DDT00:00:00Z. All data generated after this date will be replicated."""
     

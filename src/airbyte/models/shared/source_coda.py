@@ -6,7 +6,7 @@ from airbyte import utils
 from dataclasses_json import Undefined, dataclass_json
 from enum import Enum
 
-class SourceCodaCodaEnum(str, Enum):
+class SourceCodaCoda(str, Enum):
     CODA = 'coda'
 
 
@@ -17,5 +17,5 @@ class SourceCoda:
     
     auth_token: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_token') }})
     r"""Bearer token"""
-    source_type: SourceCodaCodaEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
+    source_type: SourceCodaCoda = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     

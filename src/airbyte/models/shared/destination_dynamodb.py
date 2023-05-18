@@ -7,10 +7,10 @@ from dataclasses_json import Undefined, dataclass_json
 from enum import Enum
 from typing import Optional
 
-class DestinationDynamodbDynamodbEnum(str, Enum):
+class DestinationDynamodbDynamodb(str, Enum):
     DYNAMODB = 'dynamodb'
 
-class DestinationDynamodbDynamoDBRegionEnum(str, Enum):
+class DestinationDynamodbDynamoDBRegion(str, Enum):
     r"""The region of the DynamoDB."""
     UNKNOWN = ''
     US_EAST_1 = 'us-east-1'
@@ -47,8 +47,8 @@ class DestinationDynamodb:
     
     access_key_id: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('access_key_id') }})
     r"""The access key id to access the DynamoDB. Airbyte requires Read and Write permissions to the DynamoDB."""
-    destination_type: DestinationDynamodbDynamodbEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('destinationType') }})
-    dynamodb_region: DestinationDynamodbDynamoDBRegionEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('dynamodb_region') }})
+    destination_type: DestinationDynamodbDynamodb = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('destinationType') }})
+    dynamodb_region: DestinationDynamodbDynamoDBRegion = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('dynamodb_region') }})
     r"""The region of the DynamoDB."""
     dynamodb_table_name_prefix: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('dynamodb_table_name_prefix') }})
     r"""The prefix to use when naming DynamoDB tables."""

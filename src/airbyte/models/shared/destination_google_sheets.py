@@ -19,7 +19,7 @@ class DestinationGoogleSheetsAuthenticationViaGoogleOAuth:
     refresh_token: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('refresh_token') }})
     r"""The token for obtaining new access token."""
     
-class DestinationGoogleSheetsGoogleSheetsEnum(str, Enum):
+class DestinationGoogleSheetsGoogleSheets(str, Enum):
     GOOGLE_SHEETS = 'google-sheets'
 
 
@@ -30,7 +30,7 @@ class DestinationGoogleSheets:
     
     credentials: DestinationGoogleSheetsAuthenticationViaGoogleOAuth = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credentials') }})
     r"""Google API Credentials for connecting to Google Sheets and Google Drive APIs"""
-    destination_type: DestinationGoogleSheetsGoogleSheetsEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('destinationType') }})
+    destination_type: DestinationGoogleSheetsGoogleSheets = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('destinationType') }})
     spreadsheet_id: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('spreadsheet_id') }})
     r"""The link to your spreadsheet. See <a href='https://docs.airbyte.com/integrations/destinations/google-sheets#sheetlink'>this guide</a> for more details."""
     

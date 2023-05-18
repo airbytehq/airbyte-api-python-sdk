@@ -7,12 +7,12 @@ from dataclasses_json import Undefined, dataclass_json
 from enum import Enum
 from typing import Optional
 
-class SourceSalesforceSingerAPITypeEnum(str, Enum):
+class SourceSalesforceSingerAPIType(str, Enum):
     r"""Unless you know that you are transferring a very small amount of data, prefer using the BULK API. This will help avoid using up all of your API call quota with Salesforce. Valid values are BULK or REST."""
     BULK = 'BULK'
     REST = 'REST'
 
-class SourceSalesforceSingerSalesforceSingerEnum(str, Enum):
+class SourceSalesforceSingerSalesforceSinger(str, Enum):
     SALESFORCE_SINGER = 'salesforce-singer'
 
 
@@ -21,7 +21,7 @@ class SourceSalesforceSingerSalesforceSingerEnum(str, Enum):
 class SourceSalesforceSinger:
     r"""The values required to configure the source."""
     
-    api_type: SourceSalesforceSingerAPITypeEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('api_type') }})
+    api_type: SourceSalesforceSingerAPIType = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('api_type') }})
     r"""Unless you know that you are transferring a very small amount of data, prefer using the BULK API. This will help avoid using up all of your API call quota with Salesforce. Valid values are BULK or REST."""
     client_id: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('client_id') }})
     r"""The Consumer Key that can be found when viewing your app in Salesforce"""
@@ -29,7 +29,7 @@ class SourceSalesforceSinger:
     r"""The Consumer Secret that can be found when viewing your app in Salesforce"""
     refresh_token: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('refresh_token') }})
     r"""Salesforce Refresh Token used for Airbyte to access your Salesforce account. If you don't know what this is, follow this <a href=\\"https://medium.com/@bpmmendis94/obtain-access-refresh-tokens-from-salesforce-rest-api-a324fe4ccd9b\\">guide</a> to retrieve it."""
-    source_type: SourceSalesforceSingerSalesforceSingerEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
+    source_type: SourceSalesforceSingerSalesforceSinger = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     start_date: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('start_date') }})
     r"""UTC date and time in the format 2017-01-25T00:00:00Z. Any data before this date will not be replicated."""
     is_sandbox: Optional[bool] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('is_sandbox'), 'exclude': lambda f: f is None }})

@@ -6,7 +6,7 @@ from airbyte import utils
 from dataclasses_json import Undefined, dataclass_json
 from enum import Enum
 
-class SourceLemlistLemlistEnum(str, Enum):
+class SourceLemlistLemlist(str, Enum):
     LEMLIST = 'lemlist'
 
 
@@ -17,5 +17,5 @@ class SourceLemlist:
     
     api_key: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('api_key') }})
     r"""Lemlist API key."""
-    source_type: SourceLemlistLemlistEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
+    source_type: SourceLemlistLemlist = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     

@@ -7,7 +7,7 @@ from dataclasses_json import Undefined, dataclass_json
 from enum import Enum
 from typing import Optional
 
-class DestinationPulsarCompressionTypeEnum(str, Enum):
+class DestinationPulsarCompressionType(str, Enum):
     r"""Compression type for the producer."""
     NONE = 'NONE'
     LZ4 = 'LZ4'
@@ -15,10 +15,10 @@ class DestinationPulsarCompressionTypeEnum(str, Enum):
     ZSTD = 'ZSTD'
     SNAPPY = 'SNAPPY'
 
-class DestinationPulsarPulsarEnum(str, Enum):
+class DestinationPulsarPulsar(str, Enum):
     PULSAR = 'pulsar'
 
-class DestinationPulsarTopicTypeEnum(str, Enum):
+class DestinationPulsarTopicType(str, Enum):
     r"""It identifies type of topic. Pulsar supports two kind of topics: persistent and non-persistent. In persistent topic, all messages are durably persisted on disk (that means on multiple disks unless the broker is standalone), whereas non-persistent topic does not persist message into storage disk."""
     PERSISTENT = 'persistent'
     NON_PERSISTENT = 'non-persistent'
@@ -39,9 +39,9 @@ class DestinationPulsar:
     r"""If the send operation should block when the outgoing message queue is full."""
     brokers: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('brokers') }})
     r"""A list of host/port pairs to use for establishing the initial connection to the Pulsar cluster."""
-    compression_type: DestinationPulsarCompressionTypeEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('compression_type') }})
+    compression_type: DestinationPulsarCompressionType = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('compression_type') }})
     r"""Compression type for the producer."""
-    destination_type: DestinationPulsarPulsarEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('destinationType') }})
+    destination_type: DestinationPulsarPulsar = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('destinationType') }})
     max_pending_messages: int = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('max_pending_messages') }})
     r"""The maximum size of a queue holding pending messages."""
     max_pending_messages_across_partitions: int = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('max_pending_messages_across_partitions') }})
@@ -54,7 +54,7 @@ class DestinationPulsar:
     r"""Topic pattern in which the records will be sent. You can use patterns like '{namespace}' and/or '{stream}' to send the message to a specific topic based on these values. Notice that the topic name will be transformed to a standard naming convention."""
     topic_tenant: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('topic_tenant') }})
     r"""The topic tenant within the instance. Tenants are essential to multi-tenancy in Pulsar, and spread across clusters."""
-    topic_type: DestinationPulsarTopicTypeEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('topic_type') }})
+    topic_type: DestinationPulsarTopicType = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('topic_type') }})
     r"""It identifies type of topic. Pulsar supports two kind of topics: persistent and non-persistent. In persistent topic, all messages are durably persisted on disk (that means on multiple disks unless the broker is standalone), whereas non-persistent topic does not persist message into storage disk."""
     use_tls: bool = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('use_tls') }})
     r"""Whether to use TLS encryption on the connection."""

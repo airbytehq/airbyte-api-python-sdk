@@ -6,7 +6,7 @@ from airbyte import utils
 from dataclasses_json import Undefined, dataclass_json
 from enum import Enum
 
-class SourceWhiskyHunterWhiskyHunterEnum(str, Enum):
+class SourceWhiskyHunterWhiskyHunter(str, Enum):
     WHISKY_HUNTER = 'whisky-hunter'
 
 
@@ -15,5 +15,5 @@ class SourceWhiskyHunterWhiskyHunterEnum(str, Enum):
 class SourceWhiskyHunter:
     r"""The values required to configure the source."""
     
-    source_type: SourceWhiskyHunterWhiskyHunterEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
+    source_type: SourceWhiskyHunterWhiskyHunter = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     

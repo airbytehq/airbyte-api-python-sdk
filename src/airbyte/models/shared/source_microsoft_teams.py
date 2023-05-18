@@ -7,7 +7,7 @@ from dataclasses_json import Undefined, dataclass_json
 from enum import Enum
 from typing import Any, Optional
 
-class SourceMicrosoftTeamsCredentialsAuthenticateViaMicrosoftAuthTypeEnum(str, Enum):
+class SourceMicrosoftTeamsCredentialsAuthenticateViaMicrosoftAuthType(str, Enum):
     TOKEN = 'Token'
 
 
@@ -22,9 +22,9 @@ class SourceMicrosoftTeamsCredentialsAuthenticateViaMicrosoft:
     r"""The Client Secret of your Microsoft Teams developer application."""
     tenant_id: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('tenant_id') }})
     r"""A globally unique identifier (GUID) that is different than your organization name or domain. Follow these steps to obtain: open one of the Teams where you belong inside the Teams Application -> Click on the … next to the Team title -> Click on Get link to team -> Copy the link to the team and grab the tenant ID form the URL"""
-    auth_type: Optional[SourceMicrosoftTeamsCredentialsAuthenticateViaMicrosoftAuthTypeEnum] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_type'), 'exclude': lambda f: f is None }})
+    auth_type: Optional[SourceMicrosoftTeamsCredentialsAuthenticateViaMicrosoftAuthType] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_type'), 'exclude': lambda f: f is None }})
     
-class SourceMicrosoftTeamsCredentialsAuthenticateViaMicrosoftOAuth20AuthTypeEnum(str, Enum):
+class SourceMicrosoftTeamsCredentialsAuthenticateViaMicrosoftOAuth20AuthType(str, Enum):
     CLIENT = 'Client'
 
 
@@ -41,9 +41,9 @@ class SourceMicrosoftTeamsCredentialsAuthenticateViaMicrosoftOAuth20:
     r"""A Refresh Token to renew the expired Access Token."""
     tenant_id: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('tenant_id') }})
     r"""A globally unique identifier (GUID) that is different than your organization name or domain. Follow these steps to obtain: open one of the Teams where you belong inside the Teams Application -> Click on the … next to the Team title -> Click on Get link to team -> Copy the link to the team and grab the tenant ID form the URL"""
-    auth_type: Optional[SourceMicrosoftTeamsCredentialsAuthenticateViaMicrosoftOAuth20AuthTypeEnum] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_type'), 'exclude': lambda f: f is None }})
+    auth_type: Optional[SourceMicrosoftTeamsCredentialsAuthenticateViaMicrosoftOAuth20AuthType] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_type'), 'exclude': lambda f: f is None }})
     
-class SourceMicrosoftTeamsMicrosoftTeamsEnum(str, Enum):
+class SourceMicrosoftTeamsMicrosoftTeams(str, Enum):
     MICROSOFT_TEAMS = 'microsoft-teams'
 
 
@@ -54,7 +54,7 @@ class SourceMicrosoftTeams:
     
     period: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('period') }})
     r"""Specifies the length of time over which the Team Device Report stream is aggregated. The supported values are: D7, D30, D90, and D180."""
-    source_type: SourceMicrosoftTeamsMicrosoftTeamsEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
+    source_type: SourceMicrosoftTeamsMicrosoftTeams = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     credentials: Optional[Any] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credentials'), 'exclude': lambda f: f is None }})
     r"""Choose how to authenticate to Microsoft"""
     
