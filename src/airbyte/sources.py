@@ -29,7 +29,6 @@ class Sources:
         base_url = self._server_url
         
         url = base_url.removesuffix('/') + '/sources'
-        
         headers = {}
         req_content_type, data, form = utils.serialize_request_body(request, "request", 'json')
         if req_content_type not in ('multipart/form-data', 'multipart/mixed'):
@@ -58,7 +57,6 @@ class Sources:
         base_url = self._server_url
         
         url = utils.generate_url(operations.DeleteSourceRequest, base_url, '/sources/{sourceId}', request)
-        
         headers = {}
         headers['user-agent'] = f'speakeasy-sdk/{self._language} {self._sdk_version} {self._gen_version}'
         
@@ -78,7 +76,6 @@ class Sources:
         base_url = self._server_url
         
         url = utils.generate_url(operations.GetSourceRequest, base_url, '/sources/{sourceId}', request)
-        
         headers = {}
         headers['user-agent'] = f'speakeasy-sdk/{self._language} {self._sdk_version} {self._gen_version}'
         
@@ -110,7 +107,6 @@ class Sources:
         base_url = self._server_url
         
         url = base_url.removesuffix('/') + '/sources/initiateOAuth'
-        
         headers = {}
         req_content_type, data, form = utils.serialize_request_body(request, "request", 'json')
         if req_content_type not in ('multipart/form-data', 'multipart/mixed'):
@@ -135,7 +131,6 @@ class Sources:
         base_url = self._server_url
         
         url = base_url.removesuffix('/') + '/sources'
-        
         headers = {}
         query_params = utils.get_query_params(operations.ListSourcesRequest, request)
         headers['user-agent'] = f'speakeasy-sdk/{self._language} {self._sdk_version} {self._gen_version}'
