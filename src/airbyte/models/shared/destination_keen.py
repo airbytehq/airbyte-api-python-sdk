@@ -7,7 +7,7 @@ from dataclasses_json import Undefined, dataclass_json
 from enum import Enum
 from typing import Optional
 
-class DestinationKeenKeenEnum(str, Enum):
+class DestinationKeenKeen(str, Enum):
     KEEN = 'keen'
 
 
@@ -18,7 +18,7 @@ class DestinationKeen:
     
     api_key: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('api_key') }})
     r"""To get Keen Master API Key, navigate to the Access tab from the left-hand, side panel and check the Project Details section."""
-    destination_type: DestinationKeenKeenEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('destinationType') }})
+    destination_type: DestinationKeenKeen = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('destinationType') }})
     project_id: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('project_id') }})
     r"""To get Keen Project ID, navigate to the Access tab from the left-hand, side panel and check the Project Details section."""
     infer_timestamp: Optional[bool] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('infer_timestamp'), 'exclude': lambda f: f is None }})

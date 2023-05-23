@@ -7,10 +7,10 @@ from dataclasses_json import Undefined, dataclass_json
 from enum import Enum
 from typing import Any, Optional
 
-class SourceClickhouseClickhouseEnum(str, Enum):
+class SourceClickhouseClickhouse(str, Enum):
     CLICKHOUSE = 'clickhouse'
 
-class SourceClickhouseTunnelMethodPasswordAuthenticationTunnelMethodEnum(str, Enum):
+class SourceClickhouseTunnelMethodPasswordAuthenticationTunnelMethod(str, Enum):
     r"""Connect through a jump server tunnel host using username and password authentication"""
     SSH_PASSWORD_AUTH = 'SSH_PASSWORD_AUTH'
 
@@ -22,7 +22,7 @@ class SourceClickhouseTunnelMethodPasswordAuthentication:
     
     tunnel_host: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('tunnel_host') }})
     r"""Hostname of the jump server host that allows inbound ssh tunnel."""
-    tunnel_method: SourceClickhouseTunnelMethodPasswordAuthenticationTunnelMethodEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('tunnel_method') }})
+    tunnel_method: SourceClickhouseTunnelMethodPasswordAuthenticationTunnelMethod = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('tunnel_method') }})
     r"""Connect through a jump server tunnel host using username and password authentication"""
     tunnel_port: int = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('tunnel_port') }})
     r"""Port on the proxy/jump server that accepts inbound ssh connections."""
@@ -31,7 +31,7 @@ class SourceClickhouseTunnelMethodPasswordAuthentication:
     tunnel_user_password: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('tunnel_user_password') }})
     r"""OS-level password for logging into the jump server host"""
     
-class SourceClickhouseTunnelMethodSSHKeyAuthenticationTunnelMethodEnum(str, Enum):
+class SourceClickhouseTunnelMethodSSHKeyAuthenticationTunnelMethod(str, Enum):
     r"""Connect through a jump server tunnel host using username and ssh key"""
     SSH_KEY_AUTH = 'SSH_KEY_AUTH'
 
@@ -45,14 +45,14 @@ class SourceClickhouseTunnelMethodSSHKeyAuthentication:
     r"""OS-level user account ssh key credentials in RSA PEM format ( created with ssh-keygen -t rsa -m PEM -f myuser_rsa )"""
     tunnel_host: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('tunnel_host') }})
     r"""Hostname of the jump server host that allows inbound ssh tunnel."""
-    tunnel_method: SourceClickhouseTunnelMethodSSHKeyAuthenticationTunnelMethodEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('tunnel_method') }})
+    tunnel_method: SourceClickhouseTunnelMethodSSHKeyAuthenticationTunnelMethod = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('tunnel_method') }})
     r"""Connect through a jump server tunnel host using username and ssh key"""
     tunnel_port: int = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('tunnel_port') }})
     r"""Port on the proxy/jump server that accepts inbound ssh connections."""
     tunnel_user: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('tunnel_user') }})
     r"""OS-level username for logging into the jump server host."""
     
-class SourceClickhouseTunnelMethodNoTunnelTunnelMethodEnum(str, Enum):
+class SourceClickhouseTunnelMethodNoTunnelTunnelMethod(str, Enum):
     r"""No ssh tunnel needed to connect to database"""
     NO_TUNNEL = 'NO_TUNNEL'
 
@@ -62,7 +62,7 @@ class SourceClickhouseTunnelMethodNoTunnelTunnelMethodEnum(str, Enum):
 class SourceClickhouseTunnelMethodNoTunnel:
     r"""Whether to initiate an SSH tunnel before connecting to the database, and if so, which kind of authentication to use."""
     
-    tunnel_method: SourceClickhouseTunnelMethodNoTunnelTunnelMethodEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('tunnel_method') }})
+    tunnel_method: SourceClickhouseTunnelMethodNoTunnelTunnelMethod = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('tunnel_method') }})
     r"""No ssh tunnel needed to connect to database"""
     
 
@@ -77,7 +77,7 @@ class SourceClickhouse:
     r"""The host endpoint of the Clickhouse cluster."""
     port: int = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('port') }})
     r"""The port of the database."""
-    source_type: SourceClickhouseClickhouseEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
+    source_type: SourceClickhouseClickhouse = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     username: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('username') }})
     r"""The username which is used to access the database."""
     password: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('password'), 'exclude': lambda f: f is None }})

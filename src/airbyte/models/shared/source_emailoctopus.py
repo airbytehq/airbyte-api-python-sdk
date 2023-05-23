@@ -6,7 +6,7 @@ from airbyte import utils
 from dataclasses_json import Undefined, dataclass_json
 from enum import Enum
 
-class SourceEmailoctopusEmailoctopusEnum(str, Enum):
+class SourceEmailoctopusEmailoctopus(str, Enum):
     EMAILOCTOPUS = 'emailoctopus'
 
 
@@ -17,5 +17,5 @@ class SourceEmailoctopus:
     
     api_key: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('api_key') }})
     r"""EmailOctopus API Key. See the <a href=\\"https://help.emailoctopus.com/article/165-how-to-create-and-delete-api-keys\\">docs</a> for information on how to generate this key."""
-    source_type: SourceEmailoctopusEmailoctopusEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
+    source_type: SourceEmailoctopusEmailoctopus = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     

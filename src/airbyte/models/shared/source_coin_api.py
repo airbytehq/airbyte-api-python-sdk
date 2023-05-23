@@ -7,12 +7,12 @@ from dataclasses_json import Undefined, dataclass_json
 from enum import Enum
 from typing import Optional
 
-class SourceCoinAPIEnvironmentEnum(str, Enum):
+class SourceCoinAPIEnvironment(str, Enum):
     r"""The environment to use. Either sandbox or production."""
     SANDBOX = 'sandbox'
     PRODUCTION = 'production'
 
-class SourceCoinAPICoinAPIEnum(str, Enum):
+class SourceCoinAPICoinAPI(str, Enum):
     COIN_API = 'coin-api'
 
 
@@ -23,11 +23,11 @@ class SourceCoinAPI:
     
     api_key: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('api_key') }})
     r"""API Key"""
-    environment: SourceCoinAPIEnvironmentEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('environment') }})
+    environment: SourceCoinAPIEnvironment = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('environment') }})
     r"""The environment to use. Either sandbox or production."""
     period: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('period') }})
     r"""The period to use. See the documentation for a list. https://docs.coinapi.io/#list-all-periods-get"""
-    source_type: SourceCoinAPICoinAPIEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
+    source_type: SourceCoinAPICoinAPI = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     start_date: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('start_date') }})
     r"""The start date in ISO 8601 format."""
     symbol_id: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('symbol_id') }})

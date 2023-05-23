@@ -8,7 +8,7 @@ from datetime import date
 from enum import Enum
 from marshmallow import fields
 
-class SourcePrestashopPrestashopEnum(str, Enum):
+class SourcePrestashopPrestashop(str, Enum):
     PRESTASHOP = 'prestashop'
 
 
@@ -19,7 +19,7 @@ class SourcePrestashop:
     
     access_key: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('access_key') }})
     r"""Your PrestaShop access key. See <a href=\\"https://devdocs.prestashop.com/1.7/webservice/tutorials/creating-access/#create-an-access-key\\"> the docs </a> for info on how to obtain this."""
-    source_type: SourcePrestashopPrestashopEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
+    source_type: SourcePrestashopPrestashop = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     start_date: date = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('start_date'), 'encoder': utils.dateisoformat(False), 'decoder': utils.datefromisoformat, 'mm_field': fields.DateTime(format='iso') }})
     r"""The Start date in the format YYYY-MM-DD."""
     url: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('url') }})

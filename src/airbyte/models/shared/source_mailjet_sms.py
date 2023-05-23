@@ -7,7 +7,7 @@ from dataclasses_json import Undefined, dataclass_json
 from enum import Enum
 from typing import Optional
 
-class SourceMailjetSmsMailjetSmsEnum(str, Enum):
+class SourceMailjetSmsMailjetSms(str, Enum):
     MAILJET_SMS = 'mailjet-sms'
 
 
@@ -16,7 +16,7 @@ class SourceMailjetSmsMailjetSmsEnum(str, Enum):
 class SourceMailjetSms:
     r"""The values required to configure the source."""
     
-    source_type: SourceMailjetSmsMailjetSmsEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
+    source_type: SourceMailjetSmsMailjetSms = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     token: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('token') }})
     r"""Your access token. See <a href=\\"https://dev.mailjet.com/sms/reference/overview/authentication\\">here</a>."""
     end_date: Optional[int] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('end_date'), 'exclude': lambda f: f is None }})

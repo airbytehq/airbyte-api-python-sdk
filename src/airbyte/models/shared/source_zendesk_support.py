@@ -10,7 +10,7 @@ from enum import Enum
 from marshmallow import fields
 from typing import Any, Optional
 
-class SourceZendeskSupportZendeskSupportEnum(str, Enum):
+class SourceZendeskSupportZendeskSupport(str, Enum):
     ZENDESK_SUPPORT = 'zendesk-support'
 
 
@@ -19,7 +19,7 @@ class SourceZendeskSupportZendeskSupportEnum(str, Enum):
 class SourceZendeskSupport:
     r"""The values required to configure the source."""
     
-    source_type: SourceZendeskSupportZendeskSupportEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
+    source_type: SourceZendeskSupportZendeskSupport = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     start_date: datetime = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('start_date'), 'encoder': utils.datetimeisoformat(False), 'decoder': dateutil.parser.isoparse, 'mm_field': fields.DateTime(format='iso') }})
     r"""The date from which you'd like to replicate data for Zendesk Support API, in the format YYYY-MM-DDT00:00:00Z. All data generated after this date will be replicated."""
     subdomain: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('subdomain') }})

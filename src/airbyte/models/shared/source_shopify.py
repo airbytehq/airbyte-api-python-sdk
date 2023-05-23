@@ -9,7 +9,7 @@ from enum import Enum
 from marshmallow import fields
 from typing import Any, Optional
 
-class SourceShopifyCredentialsOAuth20AuthMethodEnum(str, Enum):
+class SourceShopifyCredentialsOAuth20AuthMethod(str, Enum):
     OAUTH2_0 = 'oauth2.0'
 
 
@@ -18,7 +18,7 @@ class SourceShopifyCredentialsOAuth20AuthMethodEnum(str, Enum):
 class SourceShopifyCredentialsOAuth20:
     r"""OAuth2.0"""
     
-    auth_method: SourceShopifyCredentialsOAuth20AuthMethodEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_method') }})
+    auth_method: SourceShopifyCredentialsOAuth20AuthMethod = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_method') }})
     access_token: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('access_token'), 'exclude': lambda f: f is None }})
     r"""The Access Token for making authenticated requests."""
     client_id: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('client_id'), 'exclude': lambda f: f is None }})
@@ -26,7 +26,7 @@ class SourceShopifyCredentialsOAuth20:
     client_secret: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('client_secret'), 'exclude': lambda f: f is None }})
     r"""The Client Secret of the Shopify developer application."""
     
-class SourceShopifyCredentialsAPIPasswordAuthMethodEnum(str, Enum):
+class SourceShopifyCredentialsAPIPasswordAuthMethod(str, Enum):
     API_PASSWORD = 'api_password'
 
 
@@ -37,9 +37,9 @@ class SourceShopifyCredentialsAPIPassword:
     
     api_password: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('api_password') }})
     r"""The API Password for your private application in the `Shopify` store."""
-    auth_method: SourceShopifyCredentialsAPIPasswordAuthMethodEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_method') }})
+    auth_method: SourceShopifyCredentialsAPIPasswordAuthMethod = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_method') }})
     
-class SourceShopifyShopifyEnum(str, Enum):
+class SourceShopifyShopify(str, Enum):
     SHOPIFY = 'shopify'
 
 
@@ -50,7 +50,7 @@ class SourceShopify:
     
     shop: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('shop') }})
     r"""The name of your Shopify store found in the URL. For example, if your URL was https://NAME.myshopify.com, then the name would be 'NAME'."""
-    source_type: SourceShopifyShopifyEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
+    source_type: SourceShopifyShopify = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     start_date: date = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('start_date'), 'encoder': utils.dateisoformat(False), 'decoder': utils.datefromisoformat, 'mm_field': fields.DateTime(format='iso') }})
     r"""The date you would like to replicate data from. Format: YYYY-MM-DD. Any data before this date will not be replicated."""
     credentials: Optional[Any] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credentials'), 'exclude': lambda f: f is None }})

@@ -7,7 +7,7 @@ from dataclasses_json import Undefined, dataclass_json
 from enum import Enum
 from typing import Any, Optional
 
-class SourceSnowflakeCredentialsUsernameAndPasswordAuthTypeEnum(str, Enum):
+class SourceSnowflakeCredentialsUsernameAndPasswordAuthType(str, Enum):
     USERNAME_PASSWORD = 'username/password'
 
 
@@ -15,13 +15,13 @@ class SourceSnowflakeCredentialsUsernameAndPasswordAuthTypeEnum(str, Enum):
 @dataclasses.dataclass
 class SourceSnowflakeCredentialsUsernameAndPassword:
     
-    auth_type: SourceSnowflakeCredentialsUsernameAndPasswordAuthTypeEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_type') }})
+    auth_type: SourceSnowflakeCredentialsUsernameAndPasswordAuthType = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_type') }})
     password: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('password') }})
     r"""The password associated with the username."""
     username: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('username') }})
     r"""The username you created to allow Airbyte to access the database."""
     
-class SourceSnowflakeCredentialsOAuth20AuthTypeEnum(str, Enum):
+class SourceSnowflakeCredentialsOAuth20AuthType(str, Enum):
     O_AUTH = 'OAuth'
 
 
@@ -29,7 +29,7 @@ class SourceSnowflakeCredentialsOAuth20AuthTypeEnum(str, Enum):
 @dataclasses.dataclass
 class SourceSnowflakeCredentialsOAuth20:
     
-    auth_type: SourceSnowflakeCredentialsOAuth20AuthTypeEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_type') }})
+    auth_type: SourceSnowflakeCredentialsOAuth20AuthType = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_type') }})
     client_id: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('client_id') }})
     r"""The Client ID of your Snowflake developer application."""
     client_secret: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('client_secret') }})
@@ -39,7 +39,7 @@ class SourceSnowflakeCredentialsOAuth20:
     refresh_token: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('refresh_token'), 'exclude': lambda f: f is None }})
     r"""Refresh Token for making authenticated requests."""
     
-class SourceSnowflakeSnowflakeEnum(str, Enum):
+class SourceSnowflakeSnowflake(str, Enum):
     SNOWFLAKE = 'snowflake'
 
 
@@ -54,7 +54,7 @@ class SourceSnowflake:
     r"""The host domain of the snowflake instance (must include the account, region, cloud environment, and end with snowflakecomputing.com)."""
     role: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('role') }})
     r"""The role you created for Airbyte to access Snowflake."""
-    source_type: SourceSnowflakeSnowflakeEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
+    source_type: SourceSnowflakeSnowflake = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     warehouse: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('warehouse') }})
     r"""The warehouse you created for Airbyte to access data."""
     credentials: Optional[Any] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credentials'), 'exclude': lambda f: f is None }})

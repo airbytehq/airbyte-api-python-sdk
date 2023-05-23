@@ -6,7 +6,7 @@ from airbyte import utils
 from dataclasses_json import Undefined, dataclass_json
 from enum import Enum
 
-class SourceVantageVantageEnum(str, Enum):
+class SourceVantageVantage(str, Enum):
     VANTAGE = 'vantage'
 
 
@@ -17,5 +17,5 @@ class SourceVantage:
     
     access_token: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('access_token') }})
     r"""Your API Access token. See <a href=\\"https://vantage.readme.io/reference/authentication\\">here</a>."""
-    source_type: SourceVantageVantageEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
+    source_type: SourceVantageVantage = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     

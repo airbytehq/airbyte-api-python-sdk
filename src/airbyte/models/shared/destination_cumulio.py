@@ -6,7 +6,7 @@ from airbyte import utils
 from dataclasses_json import Undefined, dataclass_json
 from enum import Enum
 
-class DestinationCumulioCumulioEnum(str, Enum):
+class DestinationCumulioCumulio(str, Enum):
     CUMULIO = 'cumulio'
 
 
@@ -21,5 +21,5 @@ class DestinationCumulio:
     r"""An API key generated in Cumul.io's platform (can be generated here: https://app.cumul.io/start/profile/integration)."""
     api_token: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('api_token') }})
     r"""The corresponding API token generated in Cumul.io's platform (can be generated here: https://app.cumul.io/start/profile/integration)."""
-    destination_type: DestinationCumulioCumulioEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('destinationType') }})
+    destination_type: DestinationCumulioCumulio = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('destinationType') }})
     

@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 import dataclasses
-from ..shared import geographyenum_enum as shared_geographyenum_enum
+from ..shared import geographyenum as shared_geographyenum
 from airbyte import utils
 from dataclasses_json import Undefined, dataclass_json
 
@@ -12,7 +12,7 @@ from dataclasses_json import Undefined, dataclass_json
 class WorkspaceResponse:
     r"""Provides details of a single workspace."""
     
-    data_residency: shared_geographyenum_enum.GeographyEnumEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('dataResidency') }})
+    data_residency: shared_geographyenum.GeographyEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('dataResidency') }})
     name: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('name') }})
     workspace_id: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('workspaceId') }})
     

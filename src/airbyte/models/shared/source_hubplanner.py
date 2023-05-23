@@ -6,7 +6,7 @@ from airbyte import utils
 from dataclasses_json import Undefined, dataclass_json
 from enum import Enum
 
-class SourceHubplannerHubplannerEnum(str, Enum):
+class SourceHubplannerHubplanner(str, Enum):
     HUBPLANNER = 'hubplanner'
 
 
@@ -17,5 +17,5 @@ class SourceHubplanner:
     
     api_key: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('api_key') }})
     r"""Hubplanner API key. See https://github.com/hubplanner/API#authentication for more details."""
-    source_type: SourceHubplannerHubplannerEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
+    source_type: SourceHubplannerHubplanner = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     

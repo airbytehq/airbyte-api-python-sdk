@@ -9,7 +9,7 @@ from datetime import datetime
 from enum import Enum
 from marshmallow import fields
 
-class SourceLinnworksLinnworksEnum(str, Enum):
+class SourceLinnworksLinnworks(str, Enum):
     LINNWORKS = 'linnworks'
 
 
@@ -22,7 +22,7 @@ class SourceLinnworks:
     r"""Linnworks Application ID"""
     application_secret: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('application_secret') }})
     r"""Linnworks Application Secret"""
-    source_type: SourceLinnworksLinnworksEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
+    source_type: SourceLinnworksLinnworks = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     start_date: datetime = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('start_date'), 'encoder': utils.datetimeisoformat(False), 'decoder': dateutil.parser.isoparse, 'mm_field': fields.DateTime(format='iso') }})
     r"""UTC date and time in the format 2017-01-25T00:00:00Z. Any data before this date will not be replicated."""
     token: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('token') }})

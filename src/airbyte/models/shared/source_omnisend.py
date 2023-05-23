@@ -6,7 +6,7 @@ from airbyte import utils
 from dataclasses_json import Undefined, dataclass_json
 from enum import Enum
 
-class SourceOmnisendOmnisendEnum(str, Enum):
+class SourceOmnisendOmnisend(str, Enum):
     OMNISEND = 'omnisend'
 
 
@@ -17,5 +17,5 @@ class SourceOmnisend:
     
     api_key: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('api_key') }})
     r"""API Key"""
-    source_type: SourceOmnisendOmnisendEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
+    source_type: SourceOmnisendOmnisend = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     

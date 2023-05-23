@@ -28,7 +28,7 @@ s = airbyte.Airbyte(
 
 req = operations.CreateOrUpdateWorkspaceOAuthCredentialsRequest(
     workspace_o_auth_credentials_request=shared.WorkspaceOAuthCredentialsRequest(
-        actor_type=shared.ActorTypeEnumEnum.SOURCE,
+        actor_type=shared.ActorTypeEnum.SOURCE,
         configuration={
             "error": 'sint',
             "pariatur": 'possimus',

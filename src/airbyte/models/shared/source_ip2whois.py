@@ -7,7 +7,7 @@ from dataclasses_json import Undefined, dataclass_json
 from enum import Enum
 from typing import Optional
 
-class SourceIp2whoisIp2whoisEnum(str, Enum):
+class SourceIp2whoisIp2whois(str, Enum):
     IP2WHOIS = 'ip2whois'
 
 
@@ -16,7 +16,7 @@ class SourceIp2whoisIp2whoisEnum(str, Enum):
 class SourceIp2whois:
     r"""The values required to configure the source."""
     
-    source_type: SourceIp2whoisIp2whoisEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
+    source_type: SourceIp2whoisIp2whois = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     api_key: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('api_key'), 'exclude': lambda f: f is None }})
     r"""Your API Key. See <a href=\\"https://www.ip2whois.com/developers-api\\">here</a>."""
     domain: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('domain'), 'exclude': lambda f: f is None }})

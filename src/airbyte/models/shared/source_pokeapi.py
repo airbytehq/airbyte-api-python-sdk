@@ -6,7 +6,7 @@ from airbyte import utils
 from dataclasses_json import Undefined, dataclass_json
 from enum import Enum
 
-class SourcePokeapiPokeapiEnum(str, Enum):
+class SourcePokeapiPokeapi(str, Enum):
     POKEAPI = 'pokeapi'
 
 
@@ -17,5 +17,5 @@ class SourcePokeapi:
     
     pokemon_name: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('pokemon_name') }})
     r"""Pokemon requested from the API."""
-    source_type: SourcePokeapiPokeapiEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
+    source_type: SourcePokeapiPokeapi = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     

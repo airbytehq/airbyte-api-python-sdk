@@ -7,7 +7,7 @@ from dataclasses_json import Undefined, dataclass_json
 from enum import Enum
 from typing import Optional
 
-class SourceBambooHrBambooHrEnum(str, Enum):
+class SourceBambooHrBambooHr(str, Enum):
     BAMBOO_HR = 'bamboo-hr'
 
 
@@ -18,7 +18,7 @@ class SourceBambooHr:
     
     api_key: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('api_key') }})
     r"""Api key of bamboo hr"""
-    source_type: SourceBambooHrBambooHrEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
+    source_type: SourceBambooHrBambooHr = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     subdomain: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('subdomain') }})
     r"""Sub Domain of bamboo hr"""
     custom_reports_fields: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('custom_reports_fields'), 'exclude': lambda f: f is None }})

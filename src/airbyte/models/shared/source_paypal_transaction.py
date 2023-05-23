@@ -10,7 +10,7 @@ from enum import Enum
 from marshmallow import fields
 from typing import Optional
 
-class SourcePaypalTransactionPaypalTransactionEnum(str, Enum):
+class SourcePaypalTransactionPaypalTransaction(str, Enum):
     PAYPAL_TRANSACTION = 'paypal-transaction'
 
 
@@ -21,7 +21,7 @@ class SourcePaypalTransaction:
     
     is_sandbox: bool = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('is_sandbox') }})
     r"""Determines whether to use the sandbox or production environment."""
-    source_type: SourcePaypalTransactionPaypalTransactionEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
+    source_type: SourcePaypalTransactionPaypalTransaction = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     start_date: datetime = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('start_date'), 'encoder': utils.datetimeisoformat(False), 'decoder': dateutil.parser.isoparse, 'mm_field': fields.DateTime(format='iso') }})
     r"""Start Date for data extraction in <a href=\\"https://datatracker.ietf.org/doc/html/rfc3339#section-5.6\\">ISO format</a>. Date must be in range from 3 years till 12 hrs before present time."""
     client_id: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('client_id'), 'exclude': lambda f: f is None }})

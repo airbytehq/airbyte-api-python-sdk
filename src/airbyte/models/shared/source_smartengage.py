@@ -6,7 +6,7 @@ from airbyte import utils
 from dataclasses_json import Undefined, dataclass_json
 from enum import Enum
 
-class SourceSmartengageSmartengageEnum(str, Enum):
+class SourceSmartengageSmartengage(str, Enum):
     SMARTENGAGE = 'smartengage'
 
 
@@ -17,5 +17,5 @@ class SourceSmartengage:
     
     api_key: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('api_key') }})
     r"""API Key"""
-    source_type: SourceSmartengageSmartengageEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
+    source_type: SourceSmartengageSmartengage = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     

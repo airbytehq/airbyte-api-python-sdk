@@ -7,7 +7,7 @@ from dataclasses_json import Undefined, dataclass_json
 from enum import Enum
 from typing import Optional
 
-class DestinationRabbitmqRabbitmqEnum(str, Enum):
+class DestinationRabbitmqRabbitmq(str, Enum):
     RABBITMQ = 'rabbitmq'
 
 
@@ -16,7 +16,7 @@ class DestinationRabbitmqRabbitmqEnum(str, Enum):
 class DestinationRabbitmq:
     r"""The values required to configure the destination."""
     
-    destination_type: DestinationRabbitmqRabbitmqEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('destinationType') }})
+    destination_type: DestinationRabbitmqRabbitmq = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('destinationType') }})
     host: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('host') }})
     r"""The RabbitMQ host name."""
     routing_key: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('routing_key') }})

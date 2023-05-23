@@ -7,7 +7,7 @@ from dataclasses_json import Undefined, dataclass_json
 from enum import Enum
 from typing import Any, Optional
 
-class DestinationMongodbAuthTypeLoginPasswordAuthorizationEnum(str, Enum):
+class DestinationMongodbAuthTypeLoginPasswordAuthorization(str, Enum):
     LOGIN_PASSWORD = 'login/password'
 
 
@@ -16,13 +16,13 @@ class DestinationMongodbAuthTypeLoginPasswordAuthorizationEnum(str, Enum):
 class DestinationMongodbAuthTypeLoginPassword:
     r"""Login/Password."""
     
-    authorization: DestinationMongodbAuthTypeLoginPasswordAuthorizationEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('authorization') }})
+    authorization: DestinationMongodbAuthTypeLoginPasswordAuthorization = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('authorization') }})
     password: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('password') }})
     r"""Password associated with the username."""
     username: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('username') }})
     r"""Username to use to access the database."""
     
-class DestinationMongodbAuthTypeNoneAuthorizationEnum(str, Enum):
+class DestinationMongodbAuthTypeNoneAuthorization(str, Enum):
     NONE = 'none'
 
 
@@ -31,12 +31,12 @@ class DestinationMongodbAuthTypeNoneAuthorizationEnum(str, Enum):
 class DestinationMongodbAuthTypeNone:
     r"""None."""
     
-    authorization: DestinationMongodbAuthTypeNoneAuthorizationEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('authorization') }})
+    authorization: DestinationMongodbAuthTypeNoneAuthorization = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('authorization') }})
     
-class DestinationMongodbMongodbEnum(str, Enum):
+class DestinationMongodbMongodb(str, Enum):
     MONGODB = 'mongodb'
 
-class DestinationMongodbInstanceTypeMongoDBAtlasInstanceEnum(str, Enum):
+class DestinationMongodbInstanceTypeMongoDBAtlasInstance(str, Enum):
     ATLAS = 'atlas'
 
 
@@ -47,9 +47,9 @@ class DestinationMongodbInstanceTypeMongoDBAtlas:
     
     cluster_url: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('cluster_url') }})
     r"""URL of a cluster to connect to."""
-    instance: DestinationMongodbInstanceTypeMongoDBAtlasInstanceEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('instance') }})
+    instance: DestinationMongodbInstanceTypeMongoDBAtlasInstance = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('instance') }})
     
-class DestinationMongodbInstanceTypeReplicaSetInstanceEnum(str, Enum):
+class DestinationMongodbInstanceTypeReplicaSetInstance(str, Enum):
     REPLICA = 'replica'
 
 
@@ -58,13 +58,13 @@ class DestinationMongodbInstanceTypeReplicaSetInstanceEnum(str, Enum):
 class DestinationMongodbInstanceTypeReplicaSet:
     r"""MongoDb instance to connect to. For MongoDB Atlas and Replica Set TLS connection is used by default."""
     
-    instance: DestinationMongodbInstanceTypeReplicaSetInstanceEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('instance') }})
+    instance: DestinationMongodbInstanceTypeReplicaSetInstance = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('instance') }})
     server_addresses: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('server_addresses') }})
     r"""The members of a replica set. Please specify `host`:`port` of each member seperated by comma."""
     replica_set: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('replica_set'), 'exclude': lambda f: f is None }})
     r"""A replica set name."""
     
-class DestinationMongodbInstanceTypeStandaloneMongoDbInstanceInstanceEnum(str, Enum):
+class DestinationMongodbInstanceTypeStandaloneMongoDbInstanceInstance(str, Enum):
     STANDALONE = 'standalone'
 
 
@@ -75,11 +75,11 @@ class DestinationMongodbInstanceTypeStandaloneMongoDbInstance:
     
     host: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('host') }})
     r"""The Host of a Mongo database to be replicated."""
-    instance: DestinationMongodbInstanceTypeStandaloneMongoDbInstanceInstanceEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('instance') }})
+    instance: DestinationMongodbInstanceTypeStandaloneMongoDbInstanceInstance = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('instance') }})
     port: int = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('port') }})
     r"""The Port of a Mongo database to be replicated."""
     
-class DestinationMongodbTunnelMethodPasswordAuthenticationTunnelMethodEnum(str, Enum):
+class DestinationMongodbTunnelMethodPasswordAuthenticationTunnelMethod(str, Enum):
     r"""Connect through a jump server tunnel host using username and password authentication"""
     SSH_PASSWORD_AUTH = 'SSH_PASSWORD_AUTH'
 
@@ -91,7 +91,7 @@ class DestinationMongodbTunnelMethodPasswordAuthentication:
     
     tunnel_host: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('tunnel_host') }})
     r"""Hostname of the jump server host that allows inbound ssh tunnel."""
-    tunnel_method: DestinationMongodbTunnelMethodPasswordAuthenticationTunnelMethodEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('tunnel_method') }})
+    tunnel_method: DestinationMongodbTunnelMethodPasswordAuthenticationTunnelMethod = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('tunnel_method') }})
     r"""Connect through a jump server tunnel host using username and password authentication"""
     tunnel_port: int = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('tunnel_port') }})
     r"""Port on the proxy/jump server that accepts inbound ssh connections."""
@@ -100,7 +100,7 @@ class DestinationMongodbTunnelMethodPasswordAuthentication:
     tunnel_user_password: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('tunnel_user_password') }})
     r"""OS-level password for logging into the jump server host"""
     
-class DestinationMongodbTunnelMethodSSHKeyAuthenticationTunnelMethodEnum(str, Enum):
+class DestinationMongodbTunnelMethodSSHKeyAuthenticationTunnelMethod(str, Enum):
     r"""Connect through a jump server tunnel host using username and ssh key"""
     SSH_KEY_AUTH = 'SSH_KEY_AUTH'
 
@@ -114,14 +114,14 @@ class DestinationMongodbTunnelMethodSSHKeyAuthentication:
     r"""OS-level user account ssh key credentials in RSA PEM format ( created with ssh-keygen -t rsa -m PEM -f myuser_rsa )"""
     tunnel_host: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('tunnel_host') }})
     r"""Hostname of the jump server host that allows inbound ssh tunnel."""
-    tunnel_method: DestinationMongodbTunnelMethodSSHKeyAuthenticationTunnelMethodEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('tunnel_method') }})
+    tunnel_method: DestinationMongodbTunnelMethodSSHKeyAuthenticationTunnelMethod = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('tunnel_method') }})
     r"""Connect through a jump server tunnel host using username and ssh key"""
     tunnel_port: int = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('tunnel_port') }})
     r"""Port on the proxy/jump server that accepts inbound ssh connections."""
     tunnel_user: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('tunnel_user') }})
     r"""OS-level username for logging into the jump server host."""
     
-class DestinationMongodbTunnelMethodNoTunnelTunnelMethodEnum(str, Enum):
+class DestinationMongodbTunnelMethodNoTunnelTunnelMethod(str, Enum):
     r"""No ssh tunnel needed to connect to database"""
     NO_TUNNEL = 'NO_TUNNEL'
 
@@ -131,7 +131,7 @@ class DestinationMongodbTunnelMethodNoTunnelTunnelMethodEnum(str, Enum):
 class DestinationMongodbTunnelMethodNoTunnel:
     r"""Whether to initiate an SSH tunnel before connecting to the database, and if so, which kind of authentication to use."""
     
-    tunnel_method: DestinationMongodbTunnelMethodNoTunnelTunnelMethodEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('tunnel_method') }})
+    tunnel_method: DestinationMongodbTunnelMethodNoTunnelTunnelMethod = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('tunnel_method') }})
     r"""No ssh tunnel needed to connect to database"""
     
 
@@ -144,7 +144,7 @@ class DestinationMongodb:
     r"""Authorization type."""
     database: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('database') }})
     r"""Name of the database."""
-    destination_type: DestinationMongodbMongodbEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('destinationType') }})
+    destination_type: DestinationMongodbMongodb = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('destinationType') }})
     instance_type: Optional[Any] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('instance_type'), 'exclude': lambda f: f is None }})
     r"""MongoDb instance to connect to. For MongoDB Atlas and Replica Set TLS connection is used by default."""
     tunnel_method: Optional[Any] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('tunnel_method'), 'exclude': lambda f: f is None }})

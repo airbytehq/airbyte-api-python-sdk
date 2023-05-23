@@ -32,7 +32,7 @@ req = shared.SourceCreateRequest(
         records_per_slice=231701,
         records_per_sync=878870,
         seed=949319,
-        source_type=shared.SourceFakerFakerEnum.FAKER,
+        source_type=shared.SourceFakerFaker.FAKER,
     ),
     name='Darla Rau',
     secret_id='similique',

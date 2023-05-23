@@ -10,7 +10,7 @@ from enum import Enum
 from marshmallow import fields
 from typing import Any, Optional
 
-class SourceQuickbooksCredentialsOAuth20AuthTypeEnum(str, Enum):
+class SourceQuickbooksCredentialsOAuth20AuthType(str, Enum):
     OAUTH2_0 = 'oauth2.0'
 
 
@@ -30,9 +30,9 @@ class SourceQuickbooksCredentialsOAuth20:
     r"""A token used when refreshing the access token."""
     token_expiry_date: datetime = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('token_expiry_date'), 'encoder': utils.datetimeisoformat(False), 'decoder': dateutil.parser.isoparse, 'mm_field': fields.DateTime(format='iso') }})
     r"""The date-time when the access token should be refreshed."""
-    auth_type: Optional[SourceQuickbooksCredentialsOAuth20AuthTypeEnum] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_type'), 'exclude': lambda f: f is None }})
+    auth_type: Optional[SourceQuickbooksCredentialsOAuth20AuthType] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_type'), 'exclude': lambda f: f is None }})
     
-class SourceQuickbooksQuickbooksEnum(str, Enum):
+class SourceQuickbooksQuickbooks(str, Enum):
     QUICKBOOKS = 'quickbooks'
 
 
@@ -44,7 +44,7 @@ class SourceQuickbooks:
     credentials: Any = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credentials') }})
     sandbox: bool = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sandbox') }})
     r"""Determines whether to use the sandbox or production environment."""
-    source_type: SourceQuickbooksQuickbooksEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
+    source_type: SourceQuickbooksQuickbooks = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     start_date: datetime = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('start_date'), 'encoder': utils.datetimeisoformat(False), 'decoder': dateutil.parser.isoparse, 'mm_field': fields.DateTime(format='iso') }})
     r"""The default value to use if no bookmark exists for an endpoint (rfc3339 date string). E.g, 2021-03-20T00:00:00+00:00. Any data before this date will not be replicated."""
     

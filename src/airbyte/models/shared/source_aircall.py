@@ -9,7 +9,7 @@ from datetime import datetime
 from enum import Enum
 from marshmallow import fields
 
-class SourceAircallAircallEnum(str, Enum):
+class SourceAircallAircall(str, Enum):
     AIRCALL = 'aircall'
 
 
@@ -22,7 +22,7 @@ class SourceAircall:
     r"""App ID found at settings https://dashboard.aircall.io/integrations/api-keys"""
     api_token: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('api_token') }})
     r"""App token found at settings (Ref- https://dashboard.aircall.io/integrations/api-keys)"""
-    source_type: SourceAircallAircallEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
+    source_type: SourceAircallAircall = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     start_date: datetime = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('start_date'), 'encoder': utils.datetimeisoformat(False), 'decoder': dateutil.parser.isoparse, 'mm_field': fields.DateTime(format='iso') }})
     r"""Date time filter for incremental filter, Specify which date to extract from."""
     

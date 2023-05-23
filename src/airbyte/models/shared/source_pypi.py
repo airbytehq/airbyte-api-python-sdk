@@ -7,7 +7,7 @@ from dataclasses_json import Undefined, dataclass_json
 from enum import Enum
 from typing import Optional
 
-class SourcePypiPypiEnum(str, Enum):
+class SourcePypiPypi(str, Enum):
     PYPI = 'pypi'
 
 
@@ -18,7 +18,7 @@ class SourcePypi:
     
     project_name: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('project_name') }})
     r"""Name of the project/package. Can only be in lowercase with hyphen. This is the name used using pip command for installing the package."""
-    source_type: SourcePypiPypiEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
+    source_type: SourcePypiPypi = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     version: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('version'), 'exclude': lambda f: f is None }})
     r"""Version of the project/package.  Use it to find a particular release instead of all releases."""
     

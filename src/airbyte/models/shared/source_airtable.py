@@ -10,7 +10,7 @@ from enum import Enum
 from marshmallow import fields
 from typing import Any, Optional
 
-class SourceAirtableCredentialsPersonalAccessTokenAuthMethodEnum(str, Enum):
+class SourceAirtableCredentialsPersonalAccessTokenAuthMethod(str, Enum):
     API_KEY = 'api_key'
 
 
@@ -20,9 +20,9 @@ class SourceAirtableCredentialsPersonalAccessToken:
     
     api_key: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('api_key') }})
     r"""The Personal Access Token for the Airtable account. See the <a href=\\"https://airtable.com/developers/web/guides/personal-access-tokens\\">Support Guide</a> for more information on how to obtain this token."""
-    auth_method: Optional[SourceAirtableCredentialsPersonalAccessTokenAuthMethodEnum] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_method'), 'exclude': lambda f: f is None }})
+    auth_method: Optional[SourceAirtableCredentialsPersonalAccessTokenAuthMethod] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_method'), 'exclude': lambda f: f is None }})
     
-class SourceAirtableCredentialsOAuth20AuthMethodEnum(str, Enum):
+class SourceAirtableCredentialsOAuth20AuthMethod(str, Enum):
     OAUTH2_0 = 'oauth2.0'
 
 
@@ -38,11 +38,11 @@ class SourceAirtableCredentialsOAuth20:
     r"""The key to refresh the expired access token."""
     access_token: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('access_token'), 'exclude': lambda f: f is None }})
     r"""Access Token for making authenticated requests."""
-    auth_method: Optional[SourceAirtableCredentialsOAuth20AuthMethodEnum] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_method'), 'exclude': lambda f: f is None }})
+    auth_method: Optional[SourceAirtableCredentialsOAuth20AuthMethod] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_method'), 'exclude': lambda f: f is None }})
     token_expiry_date: Optional[datetime] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('token_expiry_date'), 'encoder': utils.datetimeisoformat(True), 'decoder': dateutil.parser.isoparse, 'mm_field': fields.DateTime(format='iso'), 'exclude': lambda f: f is None }})
     r"""The date-time when the access token should be refreshed."""
     
-class SourceAirtableAirtableEnum(str, Enum):
+class SourceAirtableAirtable(str, Enum):
     AIRTABLE = 'airtable'
 
 
@@ -51,6 +51,6 @@ class SourceAirtableAirtableEnum(str, Enum):
 class SourceAirtable:
     r"""The values required to configure the source."""
     
-    source_type: SourceAirtableAirtableEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
+    source_type: SourceAirtableAirtable = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     credentials: Optional[Any] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credentials'), 'exclude': lambda f: f is None }})
     

@@ -7,7 +7,7 @@ from dataclasses_json import Undefined, dataclass_json
 from enum import Enum
 from typing import Any, Optional
 
-class SourceMongodbInstanceTypeMongoDBAtlasInstanceEnum(str, Enum):
+class SourceMongodbInstanceTypeMongoDBAtlasInstance(str, Enum):
     ATLAS = 'atlas'
 
 
@@ -18,9 +18,9 @@ class SourceMongodbInstanceTypeMongoDBAtlas:
     
     cluster_url: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('cluster_url') }})
     r"""The URL of a cluster to connect to."""
-    instance: SourceMongodbInstanceTypeMongoDBAtlasInstanceEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('instance') }})
+    instance: SourceMongodbInstanceTypeMongoDBAtlasInstance = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('instance') }})
     
-class SourceMongodbInstanceTypeReplicaSetInstanceEnum(str, Enum):
+class SourceMongodbInstanceTypeReplicaSetInstance(str, Enum):
     REPLICA = 'replica'
 
 
@@ -29,13 +29,13 @@ class SourceMongodbInstanceTypeReplicaSetInstanceEnum(str, Enum):
 class SourceMongodbInstanceTypeReplicaSet:
     r"""The MongoDb instance to connect to. For MongoDB Atlas and Replica Set TLS connection is used by default."""
     
-    instance: SourceMongodbInstanceTypeReplicaSetInstanceEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('instance') }})
+    instance: SourceMongodbInstanceTypeReplicaSetInstance = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('instance') }})
     server_addresses: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('server_addresses') }})
     r"""The members of a replica set. Please specify `host`:`port` of each member separated by comma."""
     replica_set: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('replica_set'), 'exclude': lambda f: f is None }})
     r"""A replica set in MongoDB is a group of mongod processes that maintain the same data set."""
     
-class SourceMongodbInstanceTypeStandaloneMongoDbInstanceInstanceEnum(str, Enum):
+class SourceMongodbInstanceTypeStandaloneMongoDbInstanceInstance(str, Enum):
     STANDALONE = 'standalone'
 
 
@@ -46,11 +46,11 @@ class SourceMongodbInstanceTypeStandaloneMongoDbInstance:
     
     host: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('host') }})
     r"""The host name of the Mongo database."""
-    instance: SourceMongodbInstanceTypeStandaloneMongoDbInstanceInstanceEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('instance') }})
+    instance: SourceMongodbInstanceTypeStandaloneMongoDbInstanceInstance = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('instance') }})
     port: int = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('port') }})
     r"""The port of the Mongo database."""
     
-class SourceMongodbMongodbEnum(str, Enum):
+class SourceMongodbMongodb(str, Enum):
     MONGODB = 'mongodb'
 
 
@@ -61,7 +61,7 @@ class SourceMongodb:
     
     database: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('database') }})
     r"""The database you want to replicate."""
-    source_type: SourceMongodbMongodbEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
+    source_type: SourceMongodbMongodb = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     auth_source: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_source'), 'exclude': lambda f: f is None }})
     r"""The authentication source where the user information is stored."""
     instance_type: Optional[Any] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('instance_type'), 'exclude': lambda f: f is None }})

@@ -9,7 +9,7 @@ from enum import Enum
 from marshmallow import fields
 from typing import Any, Optional
 
-class SourceSquareCredentialsAPIKeyAuthTypeEnum(str, Enum):
+class SourceSquareCredentialsAPIKeyAuthType(str, Enum):
     API_KEY = 'API Key'
 
 
@@ -20,9 +20,9 @@ class SourceSquareCredentialsAPIKey:
     
     api_key: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('api_key') }})
     r"""The API key for a Square application"""
-    auth_type: SourceSquareCredentialsAPIKeyAuthTypeEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_type') }})
+    auth_type: SourceSquareCredentialsAPIKeyAuthType = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_type') }})
     
-class SourceSquareCredentialsOauthAuthenticationAuthTypeEnum(str, Enum):
+class SourceSquareCredentialsOauthAuthenticationAuthType(str, Enum):
     O_AUTH = 'OAuth'
 
 
@@ -31,7 +31,7 @@ class SourceSquareCredentialsOauthAuthenticationAuthTypeEnum(str, Enum):
 class SourceSquareCredentialsOauthAuthentication:
     r"""Choose how to authenticate to Square."""
     
-    auth_type: SourceSquareCredentialsOauthAuthenticationAuthTypeEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_type') }})
+    auth_type: SourceSquareCredentialsOauthAuthenticationAuthType = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_type') }})
     client_id: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('client_id') }})
     r"""The Square-issued ID of your application"""
     client_secret: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('client_secret') }})
@@ -39,7 +39,7 @@ class SourceSquareCredentialsOauthAuthentication:
     refresh_token: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('refresh_token') }})
     r"""A refresh token generated using the above client ID and secret"""
     
-class SourceSquareSquareEnum(str, Enum):
+class SourceSquareSquare(str, Enum):
     SQUARE = 'square'
 
 
@@ -50,7 +50,7 @@ class SourceSquare:
     
     is_sandbox: bool = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('is_sandbox') }})
     r"""Determines whether to use the sandbox or production environment."""
-    source_type: SourceSquareSquareEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
+    source_type: SourceSquareSquare = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     credentials: Optional[Any] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credentials'), 'exclude': lambda f: f is None }})
     r"""Choose how to authenticate to Square."""
     include_deleted_objects: Optional[bool] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('include_deleted_objects'), 'exclude': lambda f: f is None }})

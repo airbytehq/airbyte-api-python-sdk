@@ -7,10 +7,10 @@ from dataclasses_json import Undefined, dataclass_json
 from enum import Enum
 from typing import Any, Optional
 
-class DestinationPostgresPostgresEnum(str, Enum):
+class DestinationPostgresPostgres(str, Enum):
     POSTGRES = 'postgres'
 
-class DestinationPostgresSslModeVerifyFullModeEnum(str, Enum):
+class DestinationPostgresSslModeVerifyFullMode(str, Enum):
     VERIFY_FULL = 'verify-full'
 
 
@@ -25,11 +25,11 @@ class DestinationPostgresSslModeVerifyFull:
     r"""Client certificate"""
     client_key: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('client_key') }})
     r"""Client key"""
-    mode: DestinationPostgresSslModeVerifyFullModeEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('mode') }})
+    mode: DestinationPostgresSslModeVerifyFullMode = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('mode') }})
     client_key_password: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('client_key_password'), 'exclude': lambda f: f is None }})
     r"""Password for keystorage. This field is optional. If you do not add it - the password will be generated automatically."""
     
-class DestinationPostgresSslModeVerifyCaModeEnum(str, Enum):
+class DestinationPostgresSslModeVerifyCaMode(str, Enum):
     VERIFY_CA = 'verify-ca'
 
 
@@ -40,11 +40,11 @@ class DestinationPostgresSslModeVerifyCa:
     
     ca_certificate: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('ca_certificate') }})
     r"""CA certificate"""
-    mode: DestinationPostgresSslModeVerifyCaModeEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('mode') }})
+    mode: DestinationPostgresSslModeVerifyCaMode = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('mode') }})
     client_key_password: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('client_key_password'), 'exclude': lambda f: f is None }})
     r"""Password for keystorage. This field is optional. If you do not add it - the password will be generated automatically."""
     
-class DestinationPostgresSslModeRequireModeEnum(str, Enum):
+class DestinationPostgresSslModeRequireMode(str, Enum):
     REQUIRE = 'require'
 
 
@@ -53,9 +53,9 @@ class DestinationPostgresSslModeRequireModeEnum(str, Enum):
 class DestinationPostgresSslModeRequire:
     r"""Require SSL mode."""
     
-    mode: DestinationPostgresSslModeRequireModeEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('mode') }})
+    mode: DestinationPostgresSslModeRequireMode = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('mode') }})
     
-class DestinationPostgresSslModePreferModeEnum(str, Enum):
+class DestinationPostgresSslModePreferMode(str, Enum):
     PREFER = 'prefer'
 
 
@@ -64,9 +64,9 @@ class DestinationPostgresSslModePreferModeEnum(str, Enum):
 class DestinationPostgresSslModePrefer:
     r"""Prefer SSL mode."""
     
-    mode: DestinationPostgresSslModePreferModeEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('mode') }})
+    mode: DestinationPostgresSslModePreferMode = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('mode') }})
     
-class DestinationPostgresSslModeAllowModeEnum(str, Enum):
+class DestinationPostgresSslModeAllowMode(str, Enum):
     ALLOW = 'allow'
 
 
@@ -75,9 +75,9 @@ class DestinationPostgresSslModeAllowModeEnum(str, Enum):
 class DestinationPostgresSslModeAllow:
     r"""Allow SSL mode."""
     
-    mode: DestinationPostgresSslModeAllowModeEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('mode') }})
+    mode: DestinationPostgresSslModeAllowMode = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('mode') }})
     
-class DestinationPostgresSslModeDisableModeEnum(str, Enum):
+class DestinationPostgresSslModeDisableMode(str, Enum):
     DISABLE = 'disable'
 
 
@@ -86,9 +86,9 @@ class DestinationPostgresSslModeDisableModeEnum(str, Enum):
 class DestinationPostgresSslModeDisable:
     r"""Disable SSL."""
     
-    mode: DestinationPostgresSslModeDisableModeEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('mode') }})
+    mode: DestinationPostgresSslModeDisableMode = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('mode') }})
     
-class DestinationPostgresTunnelMethodPasswordAuthenticationTunnelMethodEnum(str, Enum):
+class DestinationPostgresTunnelMethodPasswordAuthenticationTunnelMethod(str, Enum):
     r"""Connect through a jump server tunnel host using username and password authentication"""
     SSH_PASSWORD_AUTH = 'SSH_PASSWORD_AUTH'
 
@@ -100,7 +100,7 @@ class DestinationPostgresTunnelMethodPasswordAuthentication:
     
     tunnel_host: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('tunnel_host') }})
     r"""Hostname of the jump server host that allows inbound ssh tunnel."""
-    tunnel_method: DestinationPostgresTunnelMethodPasswordAuthenticationTunnelMethodEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('tunnel_method') }})
+    tunnel_method: DestinationPostgresTunnelMethodPasswordAuthenticationTunnelMethod = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('tunnel_method') }})
     r"""Connect through a jump server tunnel host using username and password authentication"""
     tunnel_port: int = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('tunnel_port') }})
     r"""Port on the proxy/jump server that accepts inbound ssh connections."""
@@ -109,7 +109,7 @@ class DestinationPostgresTunnelMethodPasswordAuthentication:
     tunnel_user_password: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('tunnel_user_password') }})
     r"""OS-level password for logging into the jump server host"""
     
-class DestinationPostgresTunnelMethodSSHKeyAuthenticationTunnelMethodEnum(str, Enum):
+class DestinationPostgresTunnelMethodSSHKeyAuthenticationTunnelMethod(str, Enum):
     r"""Connect through a jump server tunnel host using username and ssh key"""
     SSH_KEY_AUTH = 'SSH_KEY_AUTH'
 
@@ -123,14 +123,14 @@ class DestinationPostgresTunnelMethodSSHKeyAuthentication:
     r"""OS-level user account ssh key credentials in RSA PEM format ( created with ssh-keygen -t rsa -m PEM -f myuser_rsa )"""
     tunnel_host: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('tunnel_host') }})
     r"""Hostname of the jump server host that allows inbound ssh tunnel."""
-    tunnel_method: DestinationPostgresTunnelMethodSSHKeyAuthenticationTunnelMethodEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('tunnel_method') }})
+    tunnel_method: DestinationPostgresTunnelMethodSSHKeyAuthenticationTunnelMethod = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('tunnel_method') }})
     r"""Connect through a jump server tunnel host using username and ssh key"""
     tunnel_port: int = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('tunnel_port') }})
     r"""Port on the proxy/jump server that accepts inbound ssh connections."""
     tunnel_user: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('tunnel_user') }})
     r"""OS-level username for logging into the jump server host."""
     
-class DestinationPostgresTunnelMethodNoTunnelTunnelMethodEnum(str, Enum):
+class DestinationPostgresTunnelMethodNoTunnelTunnelMethod(str, Enum):
     r"""No ssh tunnel needed to connect to database"""
     NO_TUNNEL = 'NO_TUNNEL'
 
@@ -140,7 +140,7 @@ class DestinationPostgresTunnelMethodNoTunnelTunnelMethodEnum(str, Enum):
 class DestinationPostgresTunnelMethodNoTunnel:
     r"""Whether to initiate an SSH tunnel before connecting to the database, and if so, which kind of authentication to use."""
     
-    tunnel_method: DestinationPostgresTunnelMethodNoTunnelTunnelMethodEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('tunnel_method') }})
+    tunnel_method: DestinationPostgresTunnelMethodNoTunnelTunnelMethod = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('tunnel_method') }})
     r"""No ssh tunnel needed to connect to database"""
     
 
@@ -151,7 +151,7 @@ class DestinationPostgres:
     
     database: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('database') }})
     r"""Name of the database."""
-    destination_type: DestinationPostgresPostgresEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('destinationType') }})
+    destination_type: DestinationPostgresPostgres = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('destinationType') }})
     host: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('host') }})
     r"""Hostname of the database."""
     port: int = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('port') }})

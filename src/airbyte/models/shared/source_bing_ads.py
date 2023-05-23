@@ -9,10 +9,10 @@ from enum import Enum
 from marshmallow import fields
 from typing import Optional
 
-class SourceBingAdsAuthMethodEnum(str, Enum):
+class SourceBingAdsAuthMethod(str, Enum):
     OAUTH2_0 = 'oauth2.0'
 
-class SourceBingAdsBingAdsEnum(str, Enum):
+class SourceBingAdsBingAds(str, Enum):
     BING_ADS = 'bing-ads'
 
 
@@ -29,8 +29,8 @@ class SourceBingAds:
     r"""Refresh Token to renew the expired Access Token."""
     reports_start_date: date = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('reports_start_date'), 'encoder': utils.dateisoformat(False), 'decoder': utils.datefromisoformat, 'mm_field': fields.DateTime(format='iso') }})
     r"""The start date from which to begin replicating report data. Any data generated before this date will not be replicated in reports. This is a UTC date in YYYY-MM-DD format."""
-    source_type: SourceBingAdsBingAdsEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
-    auth_method: Optional[SourceBingAdsAuthMethodEnum] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_method'), 'exclude': lambda f: f is None }})
+    source_type: SourceBingAdsBingAds = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
+    auth_method: Optional[SourceBingAdsAuthMethod] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_method'), 'exclude': lambda f: f is None }})
     client_secret: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('client_secret'), 'exclude': lambda f: f is None }})
     r"""The Client Secret of your Microsoft Advertising developer application."""
     lookback_window: Optional[int] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('lookback_window'), 'exclude': lambda f: f is None }})

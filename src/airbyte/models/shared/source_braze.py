@@ -8,7 +8,7 @@ from datetime import date
 from enum import Enum
 from marshmallow import fields
 
-class SourceBrazeBrazeEnum(str, Enum):
+class SourceBrazeBraze(str, Enum):
     BRAZE = 'braze'
 
 
@@ -19,7 +19,7 @@ class SourceBraze:
     
     api_key: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('api_key') }})
     r"""Braze REST API key"""
-    source_type: SourceBrazeBrazeEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
+    source_type: SourceBrazeBraze = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     start_date: date = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('start_date'), 'encoder': utils.dateisoformat(False), 'decoder': utils.datefromisoformat, 'mm_field': fields.DateTime(format='iso') }})
     r"""Rows after this date will be synced"""
     url: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('url') }})

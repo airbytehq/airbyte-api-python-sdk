@@ -6,7 +6,7 @@ from airbyte import utils
 from dataclasses_json import Undefined, dataclass_json
 from enum import Enum
 
-class SourceDremioDremioEnum(str, Enum):
+class SourceDremioDremio(str, Enum):
     DREMIO = 'dremio'
 
 
@@ -19,5 +19,5 @@ class SourceDremio:
     r"""API Key that is generated when you authenticate to Dremio API"""
     base_url: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('base_url') }})
     r"""URL of your Dremio instance"""
-    source_type: SourceDremioDremioEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
+    source_type: SourceDremioDremio = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     

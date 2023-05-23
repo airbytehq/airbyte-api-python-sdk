@@ -10,7 +10,7 @@ from enum import Enum
 from marshmallow import fields
 from typing import Any, Optional
 
-class SourceTrustpilotCredentialsAPIKeyAuthTypeEnum(str, Enum):
+class SourceTrustpilotCredentialsAPIKeyAuthType(str, Enum):
     APIKEY = 'apikey'
 
 
@@ -21,9 +21,9 @@ class SourceTrustpilotCredentialsAPIKey:
     
     client_id: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('client_id') }})
     r"""The API key of the Trustpilot API application."""
-    auth_type: Optional[SourceTrustpilotCredentialsAPIKeyAuthTypeEnum] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_type'), 'exclude': lambda f: f is None }})
+    auth_type: Optional[SourceTrustpilotCredentialsAPIKeyAuthType] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_type'), 'exclude': lambda f: f is None }})
     
-class SourceTrustpilotCredentialsOAuth20AuthTypeEnum(str, Enum):
+class SourceTrustpilotCredentialsOAuth20AuthType(str, Enum):
     OAUTH2_0 = 'oauth2.0'
 
 
@@ -41,9 +41,9 @@ class SourceTrustpilotCredentialsOAuth20:
     r"""The key to refresh the expired access_token."""
     token_expiry_date: datetime = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('token_expiry_date'), 'encoder': utils.datetimeisoformat(False), 'decoder': dateutil.parser.isoparse, 'mm_field': fields.DateTime(format='iso') }})
     r"""The date-time when the access token should be refreshed."""
-    auth_type: Optional[SourceTrustpilotCredentialsOAuth20AuthTypeEnum] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_type'), 'exclude': lambda f: f is None }})
+    auth_type: Optional[SourceTrustpilotCredentialsOAuth20AuthType] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_type'), 'exclude': lambda f: f is None }})
     
-class SourceTrustpilotTrustpilotEnum(str, Enum):
+class SourceTrustpilotTrustpilot(str, Enum):
     TRUSTPILOT = 'trustpilot'
 
 
@@ -55,7 +55,7 @@ class SourceTrustpilot:
     business_units: list[str] = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('business_units') }})
     r"""The names of business units which shall be synchronized. Some streams e.g. configured_business_units or private_reviews use this configuration."""
     credentials: Any = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credentials') }})
-    source_type: SourceTrustpilotTrustpilotEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
+    source_type: SourceTrustpilotTrustpilot = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     start_date: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('start_date') }})
     r"""For streams with sync. method incremental the start date time to be used"""
     

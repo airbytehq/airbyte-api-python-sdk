@@ -7,7 +7,7 @@ from dataclasses_json import Undefined, dataclass_json
 from enum import Enum
 from typing import Optional
 
-class SourceDynamodbDynamodbRegionEnum(str, Enum):
+class SourceDynamodbDynamodbRegion(str, Enum):
     r"""The region of the Dynamodb database"""
     UNKNOWN = ''
     US_EAST_1 = 'us-east-1'
@@ -36,7 +36,7 @@ class SourceDynamodbDynamodbRegionEnum(str, Enum):
     US_GOV_EAST_1 = 'us-gov-east-1'
     US_GOV_WEST_1 = 'us-gov-west-1'
 
-class SourceDynamodbDynamodbEnum(str, Enum):
+class SourceDynamodbDynamodb(str, Enum):
     DYNAMODB = 'dynamodb'
 
 
@@ -49,10 +49,10 @@ class SourceDynamodb:
     r"""The access key id to access Dynamodb. Airbyte requires read permissions to the database"""
     secret_access_key: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('secret_access_key') }})
     r"""The corresponding secret to the access key id."""
-    source_type: SourceDynamodbDynamodbEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
+    source_type: SourceDynamodbDynamodb = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     endpoint: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('endpoint'), 'exclude': lambda f: f is None }})
     r"""the URL of the Dynamodb database"""
-    region: Optional[SourceDynamodbDynamodbRegionEnum] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('region'), 'exclude': lambda f: f is None }})
+    region: Optional[SourceDynamodbDynamodbRegion] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('region'), 'exclude': lambda f: f is None }})
     r"""The region of the Dynamodb database"""
     reserved_attribute_names: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('reserved_attribute_names'), 'exclude': lambda f: f is None }})
     r"""Comma separated reserved attribute names present in your tables"""

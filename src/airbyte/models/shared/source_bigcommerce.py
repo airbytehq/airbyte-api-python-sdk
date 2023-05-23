@@ -6,7 +6,7 @@ from airbyte import utils
 from dataclasses_json import Undefined, dataclass_json
 from enum import Enum
 
-class SourceBigcommerceBigcommerceEnum(str, Enum):
+class SourceBigcommerceBigcommerce(str, Enum):
     BIGCOMMERCE = 'bigcommerce'
 
 
@@ -17,7 +17,7 @@ class SourceBigcommerce:
     
     access_token: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('access_token') }})
     r"""Access Token for making authenticated requests."""
-    source_type: SourceBigcommerceBigcommerceEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
+    source_type: SourceBigcommerceBigcommerce = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     start_date: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('start_date') }})
     r"""The date you would like to replicate data. Format: YYYY-MM-DD."""
     store_hash: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('store_hash') }})

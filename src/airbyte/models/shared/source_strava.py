@@ -10,10 +10,10 @@ from enum import Enum
 from marshmallow import fields
 from typing import Optional
 
-class SourceStravaAuthTypeEnum(str, Enum):
+class SourceStravaAuthType(str, Enum):
     CLIENT = 'Client'
 
-class SourceStravaStravaEnum(str, Enum):
+class SourceStravaStrava(str, Enum):
     STRAVA = 'strava'
 
 
@@ -30,8 +30,8 @@ class SourceStrava:
     r"""The Client Secret of your Strava developer application."""
     refresh_token: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('refresh_token') }})
     r"""The Refresh Token with the activity: read_all permissions."""
-    source_type: SourceStravaStravaEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
+    source_type: SourceStravaStrava = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     start_date: datetime = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('start_date'), 'encoder': utils.datetimeisoformat(False), 'decoder': dateutil.parser.isoparse, 'mm_field': fields.DateTime(format='iso') }})
     r"""UTC date and time. Any data before this date will not be replicated."""
-    auth_type: Optional[SourceStravaAuthTypeEnum] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_type'), 'exclude': lambda f: f is None }})
+    auth_type: Optional[SourceStravaAuthType] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_type'), 'exclude': lambda f: f is None }})
     

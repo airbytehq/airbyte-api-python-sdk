@@ -9,7 +9,7 @@ from enum import Enum
 from marshmallow import fields
 from typing import Any, Optional
 
-class SourceGoogleAnalyticsDataAPICredentialsServiceAccountKeyAuthenticationAuthTypeEnum(str, Enum):
+class SourceGoogleAnalyticsDataAPICredentialsServiceAccountKeyAuthenticationAuthType(str, Enum):
     SERVICE = 'Service'
 
 
@@ -20,9 +20,9 @@ class SourceGoogleAnalyticsDataAPICredentialsServiceAccountKeyAuthentication:
     
     credentials_json: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credentials_json') }})
     r"""The JSON key of the service account to use for authorization"""
-    auth_type: Optional[SourceGoogleAnalyticsDataAPICredentialsServiceAccountKeyAuthenticationAuthTypeEnum] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_type'), 'exclude': lambda f: f is None }})
+    auth_type: Optional[SourceGoogleAnalyticsDataAPICredentialsServiceAccountKeyAuthenticationAuthType] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_type'), 'exclude': lambda f: f is None }})
     
-class SourceGoogleAnalyticsDataAPICredentialsAuthenticateViaGoogleOauthAuthTypeEnum(str, Enum):
+class SourceGoogleAnalyticsDataAPICredentialsAuthenticateViaGoogleOauthAuthType(str, Enum):
     CLIENT = 'Client'
 
 
@@ -39,9 +39,9 @@ class SourceGoogleAnalyticsDataAPICredentialsAuthenticateViaGoogleOauth:
     r"""The token for obtaining a new access token."""
     access_token: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('access_token'), 'exclude': lambda f: f is None }})
     r"""Access Token for making authenticated requests."""
-    auth_type: Optional[SourceGoogleAnalyticsDataAPICredentialsAuthenticateViaGoogleOauthAuthTypeEnum] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_type'), 'exclude': lambda f: f is None }})
+    auth_type: Optional[SourceGoogleAnalyticsDataAPICredentialsAuthenticateViaGoogleOauthAuthType] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_type'), 'exclude': lambda f: f is None }})
     
-class SourceGoogleAnalyticsDataAPIGoogleAnalyticsDataAPIEnum(str, Enum):
+class SourceGoogleAnalyticsDataAPIGoogleAnalyticsDataAPI(str, Enum):
     GOOGLE_ANALYTICS_DATA_API = 'google-analytics-data-api'
 
 
@@ -54,7 +54,7 @@ class SourceGoogleAnalyticsDataAPI:
     r"""The start date from which to replicate report data in the format YYYY-MM-DD. Data generated before this date will not be included in the report. Not applied to custom Cohort reports."""
     property_id: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('property_id') }})
     r"""A Google Analytics GA4 property identifier whose events are tracked. Specified in the URL path and not the body such as \\"123...\\". See <a href=\\"https://developers.google.com/analytics/devguides/reporting/data/v1/property-id#what_is_my_property_id\\">the docs</a> for more details."""
-    source_type: SourceGoogleAnalyticsDataAPIGoogleAnalyticsDataAPIEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
+    source_type: SourceGoogleAnalyticsDataAPIGoogleAnalyticsDataAPI = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     credentials: Optional[Any] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credentials'), 'exclude': lambda f: f is None }})
     r"""Credentials for the service"""
     custom_reports: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('custom_reports'), 'exclude': lambda f: f is None }})

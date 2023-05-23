@@ -7,7 +7,7 @@ from dataclasses_json import Undefined, dataclass_json
 from enum import Enum
 from typing import Optional
 
-class SourceSpacexAPISpacexAPIEnum(str, Enum):
+class SourceSpacexAPISpacexAPI(str, Enum):
     SPACEX_API = 'spacex-api'
 
 
@@ -16,7 +16,7 @@ class SourceSpacexAPISpacexAPIEnum(str, Enum):
 class SourceSpacexAPI:
     r"""The values required to configure the source."""
     
-    source_type: SourceSpacexAPISpacexAPIEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
+    source_type: SourceSpacexAPISpacexAPI = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     id: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('id'), 'exclude': lambda f: f is None }})
     options: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('options'), 'exclude': lambda f: f is None }})
     

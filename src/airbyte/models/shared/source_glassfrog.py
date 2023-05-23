@@ -6,7 +6,7 @@ from airbyte import utils
 from dataclasses_json import Undefined, dataclass_json
 from enum import Enum
 
-class SourceGlassfrogGlassfrogEnum(str, Enum):
+class SourceGlassfrogGlassfrog(str, Enum):
     GLASSFROG = 'glassfrog'
 
 
@@ -17,5 +17,5 @@ class SourceGlassfrog:
     
     api_key: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('api_key') }})
     r"""API key provided by Glassfrog"""
-    source_type: SourceGlassfrogGlassfrogEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
+    source_type: SourceGlassfrogGlassfrog = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     

@@ -10,7 +10,7 @@ from enum import Enum
 from marshmallow import fields
 from typing import Any, Optional
 
-class SourceGithubCredentialsPersonalAccessTokenOptionTitleEnum(str, Enum):
+class SourceGithubCredentialsPersonalAccessTokenOptionTitle(str, Enum):
     PAT_CREDENTIALS = 'PAT Credentials'
 
 
@@ -21,9 +21,9 @@ class SourceGithubCredentialsPersonalAccessToken:
     
     personal_access_token: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('personal_access_token') }})
     r"""Log into GitHub and then generate a <a href=\\"https://github.com/settings/tokens\\">personal access token</a>. To load balance your API quota consumption across multiple API tokens, input multiple tokens separated with \\",\\" """
-    option_title: Optional[SourceGithubCredentialsPersonalAccessTokenOptionTitleEnum] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('option_title'), 'exclude': lambda f: f is None }})
+    option_title: Optional[SourceGithubCredentialsPersonalAccessTokenOptionTitle] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('option_title'), 'exclude': lambda f: f is None }})
     
-class SourceGithubCredentialsOAuthOptionTitleEnum(str, Enum):
+class SourceGithubCredentialsOAuthOptionTitle(str, Enum):
     O_AUTH_CREDENTIALS = 'OAuth Credentials'
 
 
@@ -34,9 +34,9 @@ class SourceGithubCredentialsOAuth:
     
     access_token: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('access_token') }})
     r"""OAuth access token"""
-    option_title: Optional[SourceGithubCredentialsOAuthOptionTitleEnum] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('option_title'), 'exclude': lambda f: f is None }})
+    option_title: Optional[SourceGithubCredentialsOAuthOptionTitle] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('option_title'), 'exclude': lambda f: f is None }})
     
-class SourceGithubGithubEnum(str, Enum):
+class SourceGithubGithub(str, Enum):
     GITHUB = 'github'
 
 
@@ -47,7 +47,7 @@ class SourceGithub:
     
     repository: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('repository') }})
     r"""Space-delimited list of GitHub organizations/repositories, e.g. `airbytehq/airbyte` for single repository, `airbytehq/*` for get all repositories from organization and `airbytehq/airbyte airbytehq/another-repo` for multiple repositories."""
-    source_type: SourceGithubGithubEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
+    source_type: SourceGithubGithub = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     start_date: datetime = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('start_date'), 'encoder': utils.datetimeisoformat(False), 'decoder': dateutil.parser.isoparse, 'mm_field': fields.DateTime(format='iso') }})
     r"""The date from which you'd like to replicate data from GitHub in the format YYYY-MM-DDT00:00:00Z. For the streams which support this configuration, only data generated on or after the start date will be replicated. This field doesn't apply to all streams, see the <a href=\\"https://docs.airbyte.com/integrations/sources/github\\">docs</a> for more info"""
     branch: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('branch'), 'exclude': lambda f: f is None }})
@@ -56,4 +56,6 @@ class SourceGithub:
     r"""Choose how to authenticate to GitHub"""
     page_size_for_large_streams: Optional[int] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('page_size_for_large_streams'), 'exclude': lambda f: f is None }})
     r"""The Github connector contains several streams with a large amount of data. The page size of such streams depends on the size of your repository. We recommended that you specify values between 10 and 30."""
+    requests_per_hour: Optional[int] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('requests_per_hour'), 'exclude': lambda f: f is None }})
+    r"""The GitHub API allows for a maximum of 5000 requests per hour (15000 for Github Enterprise). You can specify a lower value to limit your use of the API quota."""
     

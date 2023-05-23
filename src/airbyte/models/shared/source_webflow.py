@@ -6,7 +6,7 @@ from airbyte import utils
 from dataclasses_json import Undefined, dataclass_json
 from enum import Enum
 
-class SourceWebflowWebflowEnum(str, Enum):
+class SourceWebflowWebflow(str, Enum):
     WEBFLOW = 'webflow'
 
 
@@ -19,5 +19,5 @@ class SourceWebflow:
     r"""The API token for authenticating to Webflow. See https://university.webflow.com/lesson/intro-to-the-webflow-api"""
     site_id: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('site_id') }})
     r"""The id of the Webflow site you are requesting data from. See https://developers.webflow.com/#sites"""
-    source_type: SourceWebflowWebflowEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
+    source_type: SourceWebflowWebflow = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     

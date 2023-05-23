@@ -52,7 +52,7 @@ req = shared.ConnectionCreateRequest(
                         'reprehenderit',
                     ],
                 ],
-                sync_mode=shared.ConnectionSyncModeEnumEnum.FULL_REFRESH_APPEND,
+                sync_mode=shared.ConnectionSyncModeEnum.FULL_REFRESH_APPEND,
             ),
             shared.StreamConfiguration(
                 cursor_field=[
@@ -82,7 +82,7 @@ req = shared.ConnectionCreateRequest(
                         'veritatis',
                     ],
                 ],
-                sync_mode=shared.ConnectionSyncModeEnumEnum.INCREMENTAL_DEDUPED_HISTORY,
+                sync_mode=shared.ConnectionSyncModeEnum.INCREMENTAL_DEDUPED_HISTORY,
             ),
             shared.StreamConfiguration(
                 cursor_field=[
@@ -109,7 +109,7 @@ req = shared.ConnectionCreateRequest(
                         'dolorum',
                     ],
                 ],
-                sync_mode=shared.ConnectionSyncModeEnumEnum.INCREMENTAL_APPEND,
+                sync_mode=shared.ConnectionSyncModeEnum.INCREMENTAL_APPEND,
             ),
             shared.StreamConfiguration(
                 cursor_field=[
@@ -134,20 +134,20 @@ req = shared.ConnectionCreateRequest(
                         'illum',
                     ],
                 ],
-                sync_mode=shared.ConnectionSyncModeEnumEnum.INCREMENTAL_DEDUPED_HISTORY,
+                sync_mode=shared.ConnectionSyncModeEnum.INCREMENTAL_DEDUPED_HISTORY,
             ),
         ],
     ),
-    data_residency=shared.GeographyEnumEnum.EU,
+    data_residency=shared.GeographyEnum.EU,
     destination_id='14cd66ae-395e-4fb9-ba88-f3a66997074b',
     name='Leroy Greenfelder',
-    namespace_definition=shared.NamespaceDefinitionEnumEnum.CUSTOM_FORMAT,
+    namespace_definition=shared.NamespaceDefinitionEnum.CUSTOM_FORMAT,
     namespace_format='${SOURCE_NAMESPACE}',
-    non_breaking_schema_updates_behavior=shared.NonBreakingSchemaUpdatesBehaviorEnumEnum.IGNORE,
+    non_breaking_schema_updates_behavior=shared.NonBreakingSchemaUpdatesBehaviorEnum.IGNORE,
     prefix='vero',
     schedule=shared.ConnectionScheduleCreate(
         cron_expression='aspernatur',
-        schedule_type=shared.ScheduleTypeEnumEnum.MANUAL,
+        schedule_type=shared.ScheduleTypeEnum.MANUAL,
     ),
     source_id='41959890-afa5-463e-a516-fe4c8b711e5b',
 )

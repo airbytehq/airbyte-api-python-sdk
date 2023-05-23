@@ -9,7 +9,7 @@ from enum import Enum
 from marshmallow import fields
 from typing import Optional
 
-class SourcePolygonStockAPIPolygonStockAPIEnum(str, Enum):
+class SourcePolygonStockAPIPolygonStockAPI(str, Enum):
     POLYGON_STOCK_API = 'polygon-stock-api'
 
 
@@ -24,7 +24,7 @@ class SourcePolygonStockAPI:
     r"""The target date for the aggregate window."""
     multiplier: int = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('multiplier') }})
     r"""The size of the timespan multiplier."""
-    source_type: SourcePolygonStockAPIPolygonStockAPIEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
+    source_type: SourcePolygonStockAPIPolygonStockAPI = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     start_date: date = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('start_date'), 'encoder': utils.dateisoformat(False), 'decoder': utils.datefromisoformat, 'mm_field': fields.DateTime(format='iso') }})
     r"""The beginning date for the aggregate window."""
     stocks_ticker: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('stocksTicker') }})

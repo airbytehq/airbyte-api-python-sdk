@@ -6,7 +6,7 @@ from airbyte import utils
 from dataclasses_json import Undefined, dataclass_json
 from enum import Enum
 
-class SourceSapFieldglassSapFieldglassEnum(str, Enum):
+class SourceSapFieldglassSapFieldglass(str, Enum):
     SAP_FIELDGLASS = 'sap-fieldglass'
 
 
@@ -17,5 +17,5 @@ class SourceSapFieldglass:
     
     api_key: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('api_key') }})
     r"""API Key"""
-    source_type: SourceSapFieldglassSapFieldglassEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
+    source_type: SourceSapFieldglassSapFieldglass = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     

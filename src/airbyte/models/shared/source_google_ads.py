@@ -35,7 +35,7 @@ class SourceGoogleAdsCustomQueries:
     table_name: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('table_name') }})
     r"""The table name in your destination database for choosen query."""
     
-class SourceGoogleAdsGoogleAdsEnum(str, Enum):
+class SourceGoogleAdsGoogleAds(str, Enum):
     GOOGLE_ADS = 'google-ads'
 
 
@@ -47,7 +47,7 @@ class SourceGoogleAds:
     credentials: SourceGoogleAdsGoogleCredentials = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credentials') }})
     customer_id: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('customer_id') }})
     r"""Comma separated list of (client) customer IDs. Each customer ID must be specified as a 10-digit number without dashes. More instruction on how to find this value in our <a href=\\"https://docs.airbyte.com/integrations/sources/google-ads#setup-guide\\">docs</a>. Metrics streams like AdGroupAdReport cannot be requested for a manager account."""
-    source_type: SourceGoogleAdsGoogleAdsEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
+    source_type: SourceGoogleAdsGoogleAds = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     start_date: date = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('start_date'), 'encoder': utils.dateisoformat(False), 'decoder': utils.datefromisoformat, 'mm_field': fields.DateTime(format='iso') }})
     r"""UTC date and time in the format 2017-01-25. Any data before this date will not be replicated."""
     conversion_window_days: Optional[int] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('conversion_window_days'), 'exclude': lambda f: f is None }})

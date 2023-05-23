@@ -3,7 +3,7 @@
 from __future__ import annotations
 from enum import Enum
 
-class GeographyEnumEnum(str, Enum):
-    AUTO = 'auto'
-    US = 'us'
-    EU = 'eu'
+class ScheduleTypeWithBasicEnum(str, Enum):
+    MANUAL = 'manual'
+    CRON = 'cron'
+    BASIC = 'basic'

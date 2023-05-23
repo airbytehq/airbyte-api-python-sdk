@@ -10,7 +10,7 @@ from enum import Enum
 from marshmallow import fields
 from typing import Optional
 
-class SourceMailgunMailgunEnum(str, Enum):
+class SourceMailgunMailgun(str, Enum):
     MAILGUN = 'mailgun'
 
 
@@ -21,7 +21,7 @@ class SourceMailgun:
     
     private_key: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('private_key') }})
     r"""Primary account API key to access your Mailgun data."""
-    source_type: SourceMailgunMailgunEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
+    source_type: SourceMailgunMailgun = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     domain_region: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('domain_region'), 'exclude': lambda f: f is None }})
     r"""Domain region code. 'EU' or 'US' are possible values. The default is 'US'."""
     start_date: Optional[datetime] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('start_date'), 'encoder': utils.datetimeisoformat(True), 'decoder': dateutil.parser.isoparse, 'mm_field': fields.DateTime(format='iso'), 'exclude': lambda f: f is None }})

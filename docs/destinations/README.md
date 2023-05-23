@@ -27,14 +27,14 @@ req = shared.DestinationCreateRequest(
     configuration=shared.DestinationDatabricks(
         accept_terms=False,
         data_source=shared.DestinationDatabricksDataSourceRecommendedManagedTables(
-            data_source_type=shared.DestinationDatabricksDataSourceRecommendedManagedTablesDataSourceTypeEnum.MANAGED_TABLES_STORAGE,
+            data_source_type=shared.DestinationDatabricksDataSourceRecommendedManagedTablesDataSourceType.MANAGED_TABLES_STORAGE,
         ),
         database='perferendis',
         databricks_http_path='amet',
         databricks_personal_access_token='optio',
         databricks_port='accusamus',
         databricks_server_hostname='ad',
-        destination_type=shared.DestinationDatabricksDatabricksEnum.DATABRICKS,
+        destination_type=shared.DestinationDatabricksDatabricks.DATABRICKS,
         purge_staging_data=False,
         schema='saepe',
     ),

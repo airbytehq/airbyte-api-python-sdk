@@ -6,7 +6,7 @@ from airbyte import utils
 from dataclasses_json import Undefined, dataclass_json
 from enum import Enum
 
-class SourceFacebookPagesFacebookPagesEnum(str, Enum):
+class SourceFacebookPagesFacebookPages(str, Enum):
     FACEBOOK_PAGES = 'facebook-pages'
 
 
@@ -19,5 +19,5 @@ class SourceFacebookPages:
     r"""Facebook Page Access Token"""
     page_id: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('page_id') }})
     r"""Page ID"""
-    source_type: SourceFacebookPagesFacebookPagesEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
+    source_type: SourceFacebookPagesFacebookPages = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     

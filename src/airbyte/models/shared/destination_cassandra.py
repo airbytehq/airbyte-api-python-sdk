@@ -7,7 +7,7 @@ from dataclasses_json import Undefined, dataclass_json
 from enum import Enum
 from typing import Optional
 
-class DestinationCassandraCassandraEnum(str, Enum):
+class DestinationCassandraCassandra(str, Enum):
     CASSANDRA = 'cassandra'
 
 
@@ -18,7 +18,7 @@ class DestinationCassandra:
     
     address: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('address') }})
     r"""Address to connect to."""
-    destination_type: DestinationCassandraCassandraEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('destinationType') }})
+    destination_type: DestinationCassandraCassandra = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('destinationType') }})
     keyspace: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('keyspace') }})
     r"""Default Cassandra keyspace to create data in."""
     password: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('password') }})
