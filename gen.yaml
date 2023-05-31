@@ -9,7 +9,7 @@ generation:
   singleTagPerOp: false
   telemetryEnabled: true
 python:
-  version: 0.11.0
+  version: 0.11.1
   author: Airbyte
   description: Python Client SDK for Airbyte API
   maxMethodParams: 0
