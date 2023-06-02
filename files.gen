@@ -5,6 +5,7 @@ src/airbyte/sources.py
 src/airbyte/streams.py
 src/airbyte/workspaces.py
 src/airbyte/sdk.py
+.gitignore
 pylintrc
 setup.py
 src/airbyte/__init__.py
