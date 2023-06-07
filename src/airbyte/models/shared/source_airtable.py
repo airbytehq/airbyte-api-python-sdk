@@ -51,6 +51,6 @@ class SourceAirtableAirtable(str, Enum):
 class SourceAirtable:
     r"""The values required to configure the source."""
     
-    source_type: SourceAirtableAirtable = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     credentials: Optional[Any] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credentials'), 'exclude': lambda f: f is None }})
+    source_type: Optional[SourceAirtableAirtable] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType'), 'exclude': lambda f: f is None }})
     

@@ -21,13 +21,13 @@ s = airbyte.Airbyte(
 )
 
 req = operations.GetStreamPropertiesRequest(
-    destination_id='quas',
+    destination_id='accusantium',
     ignore_cache=False,
-    source_id='esse',
+    source_id='porro',
 )
 
 res = s.streams.get_stream_properties(req)
 
-if res.stream_properties is not None:
+if res.stream_properties_response is not None:
     # handle response
 ```

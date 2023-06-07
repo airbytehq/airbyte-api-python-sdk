@@ -10,7 +10,7 @@ from typing import Optional
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
-class ConnectionScheduleCreate:
+class ConnectionSchedule:
     r"""schedule for when the the connection should run, per the schedule type"""
     
     schedule_type: shared_scheduletypeenum.ScheduleTypeEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('scheduleType') }})

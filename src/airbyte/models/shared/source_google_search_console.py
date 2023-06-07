@@ -41,6 +41,11 @@ class SourceGoogleSearchConsoleAuthorizationOAuth:
     access_token: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('access_token'), 'exclude': lambda f: f is None }})
     r"""Access token for making authenticated requests. Read more <a href=\\"https://developers.google.com/webmaster-tools/v1/how-tos/authorizing\\">here</a>."""
     
+class SourceGoogleSearchConsoleDataState(str, Enum):
+    r"""If \\"final\\" or if this parameter is omitted, the returned data will include only finalized data. Setting this parameter to \\"all\\" should not be used with Incremental Sync mode as it may cause data loss. If \\"all\\", data will include fresh data."""
+    FINAL = 'final'
+    ALL = 'all'
+
 class SourceGoogleSearchConsoleGoogleSearchConsole(str, Enum):
     GOOGLE_SEARCH_CONSOLE = 'google-search-console'
 
@@ -58,6 +63,8 @@ class SourceGoogleSearchConsole:
     r"""UTC date in the format 2017-01-25. Any data before this date will not be replicated."""
     custom_reports: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('custom_reports'), 'exclude': lambda f: f is None }})
     r"""A JSON array describing the custom reports you want to sync from Google Search Console. See <a href=\\"https://docs.airbyte.com/integrations/sources/google-search-console#step-2-set-up-the-google-search-console-connector-in-airbyte\\">the docs</a> for more information about the exact format you can use to fill out this field."""
+    data_state: Optional[SourceGoogleSearchConsoleDataState] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('data_state'), 'exclude': lambda f: f is None }})
+    r"""If \\"final\\" or if this parameter is omitted, the returned data will include only finalized data. Setting this parameter to \\"all\\" should not be used with Incremental Sync mode as it may cause data loss. If \\"all\\", data will include fresh data."""
     end_date: Optional[date] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('end_date'), 'encoder': utils.dateisoformat(True), 'decoder': utils.datefromisoformat, 'mm_field': fields.DateTime(format='iso'), 'exclude': lambda f: f is None }})
     r"""UTC date in the format 2017-01-25. Any data after this date will not be replicated. Must be greater or equal to the start date field."""
     

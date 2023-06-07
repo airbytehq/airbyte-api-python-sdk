@@ -5,7 +5,7 @@ from dataclasses import dataclass
 
 
 SERVERS = [
-    'https://api.airbyte.com/v1/',
+    'https://api.airbyte.com/v1',
     # Airbyte API v1
 ]
 """Contains the list of servers available to the SDK"""
@@ -17,7 +17,7 @@ class SDKConfiguration:
     server_url: str = ''
     server_idx: int = 0
     language: str = 'python'
-    sdk_version: str = '0.12.1'
+    sdk_version: str = '0.12.2'
     gen_version: str = '2.35.9'
 
     def get_server_details(self) -> tuple[str, dict[str, str]]:

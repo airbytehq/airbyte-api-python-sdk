@@ -3,7 +3,7 @@
 from __future__ import annotations
 import dataclasses
 import requests as requests_http
-from ..shared import streamproperties as shared_streamproperties
+from ..shared import streampropertiesresponse as shared_streampropertiesresponse
 from typing import Optional
 
 
@@ -24,6 +24,6 @@ class GetStreamPropertiesResponse:
     content_type: str = dataclasses.field()
     status_code: int = dataclasses.field()
     raw_response: Optional[requests_http.Response] = dataclasses.field(default=None)
-    stream_properties: Optional[shared_streamproperties.StreamProperties] = dataclasses.field(default=None)
+    stream_properties_response: Optional[shared_streampropertiesresponse.StreamPropertiesResponse] = dataclasses.field(default=None)
     r"""Get the available streams properties for a source/destination pair."""
     

@@ -18,4 +18,5 @@ class WorkspaceOAuthCredentialsRequest:
     configuration: dict[str, Any] = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('configuration') }})
     r"""The configuration for this source/destination based on the OAuth section of the relevant specification."""
     name: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('name') }})
+    r"""The name of the source i.e. google-ads"""
     

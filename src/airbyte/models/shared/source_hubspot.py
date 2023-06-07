@@ -10,7 +10,7 @@ from enum import Enum
 from marshmallow import fields
 from typing import Any
 
-class SourceHubspotCredentialsPrivateAppCredentials(str, Enum):
+class SourceHubspotCredentialsPrivateAppAuthType(str, Enum):
     r"""Name of the credentials set"""
     PRIVATE_APP_CREDENTIALS = 'Private App Credentials'
 
@@ -22,10 +22,10 @@ class SourceHubspotCredentialsPrivateApp:
     
     access_token: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('access_token') }})
     r"""HubSpot Access token. See the <a href=\\"https://developers.hubspot.com/docs/api/private-apps\\">Hubspot docs</a> if you need help finding this token."""
-    credentials_title: SourceHubspotCredentialsPrivateAppCredentials = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credentials_title') }})
+    credentials_title: SourceHubspotCredentialsPrivateAppAuthType = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credentials_title') }})
     r"""Name of the credentials set"""
     
-class SourceHubspotCredentialsOAuthCredentials(str, Enum):
+class SourceHubspotCredentialsOAuthAuthType(str, Enum):
     r"""Name of the credentials"""
     O_AUTH_CREDENTIALS = 'OAuth Credentials'
 
@@ -39,7 +39,7 @@ class SourceHubspotCredentialsOAuth:
     r"""The Client ID of your HubSpot developer application. See the <a href=\\"https://legacydocs.hubspot.com/docs/methods/oauth2/oauth2-quickstart\\">Hubspot docs</a> if you need help finding this ID."""
     client_secret: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('client_secret') }})
     r"""The client secret for your HubSpot developer application. See the <a href=\\"https://legacydocs.hubspot.com/docs/methods/oauth2/oauth2-quickstart\\">Hubspot docs</a> if you need help finding this secret."""
-    credentials_title: SourceHubspotCredentialsOAuthCredentials = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credentials_title') }})
+    credentials_title: SourceHubspotCredentialsOAuthAuthType = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credentials_title') }})
     r"""Name of the credentials"""
     refresh_token: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('refresh_token') }})
     r"""Refresh token to renew an expired access token. See the <a href=\\"https://legacydocs.hubspot.com/docs/methods/oauth2/oauth2-quickstart\\">Hubspot docs</a> if you need help finding this token."""

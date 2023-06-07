@@ -103,11 +103,12 @@ req = shared.ConnectionCreateRequest(
     namespace_format='${SOURCE_NAMESPACE}',
     non_breaking_schema_updates_behavior=shared.NonBreakingSchemaUpdatesBehaviorEnum.IGNORE,
     prefix='corporis',
-    schedule=shared.ConnectionScheduleCreate(
+    schedule=shared.ConnectionSchedule(
         cron_expression='explicabo',
         schedule_type=shared.ScheduleTypeEnum.CRON,
     ),
     source_id='5955907a-ff1a-43a2-ba94-67739251aa52',
+    status=shared.ConnectionStatusEnum.DEPRECATED,
 )
 
 res = s.connections.create_connection(req)
@@ -127,6 +128,7 @@ if res.connection_response is not None:
 * [delete_connection](docs/connections/README.md#delete_connection) - Delete a Connection
 * [get_connection](docs/connections/README.md#get_connection) - Get Connection details
 * [list_connections](docs/connections/README.md#list_connections) - List connections
+* [patch_connection](docs/connections/README.md#patch_connection) - Update Connection details
 
 ### [destinations](docs/destinations/README.md)
 
@@ -134,6 +136,8 @@ if res.connection_response is not None:
 * [delete_destination](docs/destinations/README.md#delete_destination) - Delete a Destination
 * [get_destination](docs/destinations/README.md#get_destination) - Get Destination details
 * [list_destinations](docs/destinations/README.md#list_destinations) - List destinations
+* [patch_destination](docs/destinations/README.md#patch_destination) - Update a Destination
+* [put_destination](docs/destinations/README.md#put_destination) - Update a Destination and fully overwrite it
 
 ### [jobs](docs/jobs/README.md)
 
@@ -149,6 +153,8 @@ if res.connection_response is not None:
 * [get_source](docs/sources/README.md#get_source) - Get Source details
 * [initiate_o_auth](docs/sources/README.md#initiate_o_auth) - Initiate OAuth for a source
 * [list_sources](docs/sources/README.md#list_sources) - List sources
+* [patch_source](docs/sources/README.md#patch_source) - Update a Source
+* [put_source](docs/sources/README.md#put_source) - Update a Source and fully overwrite it
 
 ### [streams](docs/streams/README.md)
 

@@ -30,14 +30,13 @@ req = operations.CreateOrUpdateWorkspaceOAuthCredentialsRequest(
     workspace_o_auth_credentials_request=shared.WorkspaceOAuthCredentialsRequest(
         actor_type=shared.ActorTypeEnum.SOURCE,
         configuration={
-            "error": 'sint',
-            "pariatur": 'possimus',
-            "quia": 'eveniet',
-            "asperiores": 'facere',
+            "praesentium": 'consequuntur',
+            "deleniti": 'fugit',
+            "fuga": 'mollitia',
         },
-        name='Marilyn Botsford',
+        name='Leah Champlin',
     ),
-    workspace_id='aliquid',
+    workspace_id='fugit',
 )
 
 res = s.workspaces.create_or_update_workspace_o_auth_credentials(req)
@@ -63,7 +62,7 @@ s = airbyte.Airbyte(
 )
 
 req = shared.WorkspaceCreateRequest(
-    name='Scott Wehner',
+    name='Eugene Dibbert',
 )
 
 res = s.workspaces.create_workspace(req)
@@ -89,7 +88,7 @@ s = airbyte.Airbyte(
 )
 
 req = operations.DeleteWorkspaceRequest(
-    workspace_id='eius',
+    workspace_id='occaecati',
 )
 
 res = s.workspaces.delete_workspace(req)
@@ -115,7 +114,7 @@ s = airbyte.Airbyte(
 )
 
 req = operations.GetWorkspaceRequest(
-    workspace_id='libero',
+    workspace_id='atque',
 )
 
 res = s.workspaces.get_workspace(req)
@@ -142,10 +141,13 @@ s = airbyte.Airbyte(
 
 req = operations.ListWorkspacesRequest(
     include_deleted=False,
-    limit=849039,
-    offset=742238,
+    limit=92260,
+    offset=456911,
     workspace_ids=[
-        '4f157560-82d6-48ea-99f1-d17051339d08',
+        'e17cbe61-e6b7-4b95-bc0a-b3c20c4f3789',
+        'fd871f99-dd2e-4fd1-a1aa-6f1e674bdb04',
+        'f1575608-2d68-4ea1-9f1d-17051339d080',
+        '86a18403-94c2-4607-9f93-f5f0642dac7a',
     ],
 )
 
@@ -173,9 +175,9 @@ s = airbyte.Airbyte(
 
 req = operations.UpdateWorkspaceRequest(
     workspace_update_request=shared.WorkspaceUpdateRequest(
-        name='Marsha Keebler IV',
+        name='Vernon Bergnaum',
     ),
-    workspace_id='non',
+    workspace_id='quod',
 )
 
 res = s.workspaces.update_workspace(req)

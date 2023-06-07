@@ -7,6 +7,21 @@ from dataclasses_json import Undefined, dataclass_json
 from enum import Enum
 from typing import Any, Optional
 
+class SourceAsanaCredentialsAuthenticateWithPersonalAccessTokenCredentialsTitle(str, Enum):
+    r"""PAT Credentials"""
+    PAT_CREDENTIALS = 'PAT Credentials'
+
+
+@dataclass_json(undefined=Undefined.EXCLUDE)
+@dataclasses.dataclass
+class SourceAsanaCredentialsAuthenticateWithPersonalAccessToken:
+    r"""Choose how to authenticate to Github"""
+    
+    personal_access_token: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('personal_access_token') }})
+    r"""Asana Personal Access Token (generate yours <a href=\\"https://app.asana.com/0/developer-console\\">here</a>)."""
+    option_title: Optional[SourceAsanaCredentialsAuthenticateWithPersonalAccessTokenCredentialsTitle] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('option_title'), 'exclude': lambda f: f is None }})
+    r"""PAT Credentials"""
+    
 class SourceAsanaCredentialsAuthenticateViaAsanaOauthCredentialsTitle(str, Enum):
     r"""OAuth Credentials"""
     O_AUTH_CREDENTIALS = 'OAuth Credentials'
@@ -23,21 +38,6 @@ class SourceAsanaCredentialsAuthenticateViaAsanaOauth:
     option_title: Optional[SourceAsanaCredentialsAuthenticateViaAsanaOauthCredentialsTitle] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('option_title'), 'exclude': lambda f: f is None }})
     r"""OAuth Credentials"""
     
-class SourceAsanaCredentialsAuthenticateWithPersonalAccessTokenCredentialsTitle(str, Enum):
-    r"""PAT Credentials"""
-    PAT_CREDENTIALS = 'PAT Credentials'
-
-
-@dataclass_json(undefined=Undefined.EXCLUDE)
-@dataclasses.dataclass
-class SourceAsanaCredentialsAuthenticateWithPersonalAccessToken:
-    r"""Choose how to authenticate to Github"""
-    
-    personal_access_token: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('personal_access_token') }})
-    r"""Asana Personal Access Token (generate yours <a href=\\"https://app.asana.com/0/developer-console\\">here</a>)."""
-    option_title: Optional[SourceAsanaCredentialsAuthenticateWithPersonalAccessTokenCredentialsTitle] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('option_title'), 'exclude': lambda f: f is None }})
-    r"""PAT Credentials"""
-    
 class SourceAsanaAsana(str, Enum):
     ASANA = 'asana'
 
@@ -47,7 +47,7 @@ class SourceAsanaAsana(str, Enum):
 class SourceAsana:
     r"""The values required to configure the source."""
     
-    source_type: SourceAsanaAsana = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     credentials: Optional[Any] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credentials'), 'exclude': lambda f: f is None }})
     r"""Choose how to authenticate to Github"""
+    source_type: Optional[SourceAsanaAsana] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType'), 'exclude': lambda f: f is None }})
     

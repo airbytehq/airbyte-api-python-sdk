@@ -6,6 +6,7 @@
 * [delete_connection](#delete_connection) - Delete a Connection
 * [get_connection](#get_connection) - Get Connection details
 * [list_connections](#list_connections) - List connections
+* [patch_connection](#patch_connection) - Update Connection details
 
 ## create_connection
 
@@ -28,15 +29,13 @@ req = shared.ConnectionCreateRequest(
         streams=[
             shared.StreamConfiguration(
                 cursor_field=[
-                    'tenetur',
+                    'ipsam',
+                    'id',
+                    'possimus',
+                    'aut',
                 ],
-                name='Mr. Alberta Schuster',
+                name='Sabrina Smitham DVM',
                 primary_key=[
-                    [
-                        'quasi',
-                        'reiciendis',
-                        'voluptatibus',
-                    ],
                     [
                         'nihil',
                         'praesentium',
@@ -51,105 +50,28 @@ req = shared.ConnectionCreateRequest(
                     [
                         'reprehenderit',
                     ],
+                    [
+                        'maiores',
+                        'dicta',
+                    ],
                 ],
                 sync_mode=shared.ConnectionSyncModeEnum.FULL_REFRESH_APPEND,
             ),
-            shared.StreamConfiguration(
-                cursor_field=[
-                    'dicta',
-                    'corporis',
-                    'dolore',
-                    'iusto',
-                ],
-                name='Maryann Hamill',
-                primary_key=[
-                    [
-                        'ipsum',
-                    ],
-                    [
-                        'molestias',
-                        'excepturi',
-                        'pariatur',
-                    ],
-                    [
-                        'praesentium',
-                        'rem',
-                    ],
-                    [
-                        'quasi',
-                        'repudiandae',
-                        'sint',
-                        'veritatis',
-                    ],
-                ],
-                sync_mode=shared.ConnectionSyncModeEnum.INCREMENTAL_DEDUPED_HISTORY,
-            ),
-            shared.StreamConfiguration(
-                cursor_field=[
-                    'enim',
-                    'consequatur',
-                ],
-                name='Taylor Cole',
-                primary_key=[
-                    [
-                        'modi',
-                        'qui',
-                    ],
-                    [
-                        'cupiditate',
-                        'quos',
-                    ],
-                    [
-                        'magni',
-                    ],
-                    [
-                        'ipsam',
-                        'alias',
-                        'fugit',
-                        'dolorum',
-                    ],
-                ],
-                sync_mode=shared.ConnectionSyncModeEnum.INCREMENTAL_APPEND,
-            ),
-            shared.StreamConfiguration(
-                cursor_field=[
-                    'facilis',
-                    'tempore',
-                ],
-                name='Lucia Kemmer',
-                primary_key=[
-                    [
-                        'provident',
-                        'necessitatibus',
-                    ],
-                    [
-                        'officia',
-                        'dolor',
-                        'debitis',
-                    ],
-                    [
-                        'dolorum',
-                        'in',
-                        'in',
-                        'illum',
-                    ],
-                ],
-                sync_mode=shared.ConnectionSyncModeEnum.INCREMENTAL_DEDUPED_HISTORY,
-            ),
         ],
     ),
-    data_residency=shared.GeographyEnum.EU,
-    destination_id='14cd66ae-395e-4fb9-ba88-f3a66997074b',
-    name='Leroy Greenfelder',
-    namespace_definition=shared.NamespaceDefinitionEnum.CUSTOM_FORMAT,
+    data_residency=shared.GeographyEnum.AUTO,
+    destination_id='71b5e6e1-3b99-4d48-8e1e-91e450ad2abd',
+    name='Pauline Deckow',
+    namespace_definition=shared.NamespaceDefinitionEnum.DESTINATION,
     namespace_format='${SOURCE_NAMESPACE}',
     non_breaking_schema_updates_behavior=shared.NonBreakingSchemaUpdatesBehaviorEnum.IGNORE,
-    prefix='vero',
-    schedule=shared.ConnectionScheduleCreate(
-        cron_expression='aspernatur',
+    prefix='magni',
+    schedule=shared.ConnectionSchedule(
+        cron_expression='assumenda',
         schedule_type=shared.ScheduleTypeEnum.MANUAL,
     ),
-    source_id='41959890-afa5-463e-a516-fe4c8b711e5b',
+    source_id='02a94bb4-f63c-4969-a9a3-efa77dfb14cd',
+    status=shared.ConnectionStatusEnum.INACTIVE,
 )
 
 res = s.connections.create_connection(req)
@@ -175,7 +97,7 @@ s = airbyte.Airbyte(
 )
 
 req = operations.DeleteConnectionRequest(
-    connection_id='nihil',
+    connection_id='aliquid',
 )
 
 res = s.connections.delete_connection(req)
@@ -201,7 +123,7 @@ s = airbyte.Airbyte(
 )
 
 req = operations.GetConnectionRequest(
-    connection_id='repellat',
+    connection_id='laborum',
 )
 
 res = s.connections.get_connection(req)
@@ -228,18 +150,141 @@ s = airbyte.Airbyte(
 
 req = operations.ListConnectionsRequest(
     include_deleted=False,
-    limit=841140,
-    offset=149448,
+    limit=881104,
+    offset=249796,
     workspace_ids=[
-        'd028921c-ddc6-4926-81fb-576b0d5f0d30',
-        'c5fbb258-7053-4202-873d-5fe9b90c2890',
-        '9b3fe49a-8d9c-4bf4-8633-323f9b77f3a4',
-        '100674eb-f692-480d-9ba7-7a89ebf737ae',
+        '5efb9ba8-8f3a-4669-9707-4ba4469b6e21',
+        '41959890-afa5-463e-a516-fe4c8b711e5b',
+        '7fd2ed02-8921-4cdd-8692-601fb576b0d5',
     ],
 )
 
 res = s.connections.list_connections(req)
 
 if res.connections_response is not None:
+    # handle response
+```
+
+## patch_connection
+
+Update Connection details
+
+### Example Usage
+
+```python
+import airbyte
+from airbyte.models import operations, shared
+
+s = airbyte.Airbyte(
+    security=shared.Security(
+        bearer_auth="YOUR_BEARER_TOKEN_HERE",
+    ),
+)
+
+req = operations.PatchConnectionRequest(
+    connection_patch_request=shared.ConnectionPatchRequest(
+        configurations=shared.StreamConfigurations(
+            streams=[
+                shared.StreamConfiguration(
+                    cursor_field=[
+                        'fugiat',
+                    ],
+                    name='Jennifer Runolfsdottir',
+                    primary_key=[
+                        [
+                            'dolores',
+                            'quis',
+                            'totam',
+                        ],
+                        [
+                            'eaque',
+                            'quis',
+                        ],
+                        [
+                            'eos',
+                        ],
+                    ],
+                    sync_mode=shared.ConnectionSyncModeEnum.FULL_REFRESH_OVERWRITE,
+                ),
+                shared.StreamConfiguration(
+                    cursor_field=[
+                        'minus',
+                    ],
+                    name='Rosa Swift',
+                    primary_key=[
+                        [
+                            'facilis',
+                            'perspiciatis',
+                            'voluptatem',
+                        ],
+                        [
+                            'consequuntur',
+                            'blanditiis',
+                            'error',
+                            'eaque',
+                        ],
+                        [
+                            'rerum',
+                            'adipisci',
+                            'asperiores',
+                        ],
+                        [
+                            'modi',
+                            'iste',
+                            'dolorum',
+                            'deleniti',
+                        ],
+                    ],
+                    sync_mode=shared.ConnectionSyncModeEnum.INCREMENTAL_DEDUPED_HISTORY,
+                ),
+                shared.StreamConfiguration(
+                    cursor_field=[
+                        'nobis',
+                        'libero',
+                        'delectus',
+                    ],
+                    name='Billie Jacobi',
+                    primary_key=[
+                        [
+                            'ipsum',
+                        ],
+                    ],
+                    sync_mode=shared.ConnectionSyncModeEnum.INCREMENTAL_DEDUPED_HISTORY,
+                ),
+                shared.StreamConfiguration(
+                    cursor_field=[
+                        'cum',
+                        'voluptate',
+                        'dignissimos',
+                    ],
+                    name='Allen Parisian Jr.',
+                    primary_key=[
+                        [
+                            'odio',
+                            'quaerat',
+                        ],
+                    ],
+                    sync_mode=shared.ConnectionSyncModeEnum.INCREMENTAL_DEDUPED_HISTORY,
+                ),
+            ],
+        ),
+        data_residency=shared.GeographyEnumNoDefault.EU,
+        name='Hector Mosciski',
+        namespace_definition=shared.NamespaceDefinitionEnumNoDefault.SOURCE,
+        namespace_format='${SOURCE_NAMESPACE}',
+        non_breaking_schema_updates_behavior=shared.NonBreakingSchemaUpdatesBehaviorEnumNoDefault.DISABLE_CONNECTION,
+        prefix='ab',
+        schedule=shared.ConnectionSchedule(
+            cron_expression='soluta',
+            schedule_type=shared.ScheduleTypeEnum.CRON,
+        ),
+        status=shared.ConnectionStatusEnum.INACTIVE,
+    ),
+    connection_id='voluptate',
+)
+
+res = s.connections.patch_connection(req)
+
+if res.connection_response is not None:
     # handle response
 ```

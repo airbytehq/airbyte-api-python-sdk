@@ -7,6 +7,8 @@
 * [get_source](#get_source) - Get Source details
 * [initiate_o_auth](#initiate_o_auth) - Initiate OAuth for a source
 * [list_sources](#list_sources) - List sources
+* [patch_source](#patch_source) - Update a Source
+* [put_source](#put_source) - Update a Source and fully overwrite it
 
 ## create_source
 
@@ -26,17 +28,13 @@ s = airbyte.Airbyte(
 )
 
 req = shared.SourceCreateRequest(
-    configuration=shared.SourceFaker(
-        count=961571,
-        parallelism=455169,
-        records_per_slice=231701,
-        records_per_sync=878870,
-        seed=949319,
-        source_type=shared.SourceFakerFaker.FAKER,
+    configuration=shared.SourceSmartengage(
+        api_key='doloribus',
+        source_type=shared.SourceSmartengageSmartengage.SMARTENGAGE,
     ),
-    name='Darla Rau',
-    secret_id='similique',
-    workspace_id='bd74dd39-c0f5-4d2c-bf7c-70a45626d436',
+    name='Olivia McGlynn IV',
+    secret_id='odio',
+    workspace_id='9fce953f-73ef-47fb-87ab-d74dd39c0f5d',
 )
 
 res = s.sources.create_source(req)
@@ -62,7 +60,7 @@ s = airbyte.Airbyte(
 )
 
 req = operations.DeleteSourceRequest(
-    source_id='laudantium',
+    source_id='fugit',
 )
 
 res = s.sources.delete_source(req)
@@ -88,7 +86,7 @@ s = airbyte.Airbyte(
 )
 
 req = operations.GetSourceRequest(
-    source_id='dicta',
+    source_id='porro',
 )
 
 res = s.sources.get_source(req)
@@ -118,14 +116,12 @@ s = airbyte.Airbyte(
 )
 
 req = shared.InitiateOauthRequest(
-    name='Elisa Boyle',
+    name='Domingo Kris',
     o_auth_input_configuration={
-        "voluptatibus": 'nostrum',
-        "sapiente": 'quisquam',
-        "saepe": 'ea',
+        "officia": 'tempora',
     },
-    redirect_url='impedit',
-    workspace_id='556146c3-e250-4fb0-88c4-2e141aac366c',
+    redirect_url='ipsam',
+    workspace_id='626d4368-13f1-46d9-b5fc-e6c556146c3e',
 )
 
 res = s.sources.initiate_o_auth(req)
@@ -152,18 +148,101 @@ s = airbyte.Airbyte(
 
 req = operations.ListSourcesRequest(
     include_deleted=False,
-    limit=557369,
-    offset=829603,
+    limit=132487,
+    offset=325310,
     workspace_ids=[
-        '6b144290-7474-4778-a7bd-466d28c10ab3',
-        'cdca4251-904e-4523-87e0-bc7178e4796f',
-        '2a70c688-282a-4a48-a562-f222e9817ee1',
-        '7cbe61e6-b7b9-45bc-8ab3-c20c4f3789fd',
+        'fb008c42-e141-4aac-b66c-8dd6b1442907',
     ],
 )
 
 res = s.sources.list_sources(req)
 
 if res.sources_response is not None:
+    # handle response
+```
+
+## patch_source
+
+Update a Source
+
+### Example Usage
+
+```python
+import airbyte
+import dateutil.parser
+from airbyte.models import operations, shared
+
+s = airbyte.Airbyte(
+    security=shared.Security(
+        bearer_auth="YOUR_BEARER_TOKEN_HERE",
+    ),
+)
+
+req = operations.PatchSourceRequest(
+    source_patch_request=shared.SourcePatchRequest(
+        configuration=shared.SourceGooglePagespeedInsights(
+            api_key='odio',
+            categories=[
+                shared.SourceGooglePagespeedInsightsCategories.PERFORMANCE,
+                shared.SourceGooglePagespeedInsightsCategories.PERFORMANCE,
+            ],
+            source_type=shared.SourceGooglePagespeedInsightsGooglePagespeedInsights.GOOGLE_PAGESPEED_INSIGHTS,
+            strategies=[
+                shared.SourceGooglePagespeedInsightsStrategies.MOBILE,
+                shared.SourceGooglePagespeedInsightsStrategies.DESKTOP,
+                shared.SourceGooglePagespeedInsightsStrategies.MOBILE,
+            ],
+            urls=[
+                'ut',
+                'eum',
+                'suscipit',
+                'assumenda',
+            ],
+        ),
+        name='My source',
+        secret_id='eos',
+        workspace_id='8c10ab3c-dca4-4251-904e-523c7e0bc717',
+    ),
+    source_id='totam',
+)
+
+res = s.sources.patch_source(req)
+
+if res.source_response is not None:
+    # handle response
+```
+
+## put_source
+
+Update a Source and fully overwrite it
+
+### Example Usage
+
+```python
+import airbyte
+import dateutil.parser
+from airbyte.models import operations, shared
+
+s = airbyte.Airbyte(
+    security=shared.Security(
+        bearer_auth="YOUR_BEARER_TOKEN_HERE",
+    ),
+)
+
+req = operations.PutSourceRequest(
+    source_put_request=shared.SourcePutRequest(
+        configuration=shared.SourceTwilioTaskrouter(
+            account_sid='aliquam',
+            auth_token='odio',
+            source_type=shared.SourceTwilioTaskrouterTwilioTaskrouter.TWILIO_TASKROUTER,
+        ),
+        name='Leslie Williamson',
+    ),
+    source_id='molestiae',
+)
+
+res = s.sources.put_source(req)
+
+if res.source_response is not None:
     # handle response
 ```
