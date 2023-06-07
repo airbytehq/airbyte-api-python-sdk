@@ -3,6 +3,7 @@
 import requests
 from dataclasses import dataclass
 
+
 SERVERS = [
     'https://api.airbyte.com/v1/',
     # Airbyte API v1
@@ -16,8 +17,8 @@ class SDKConfiguration:
     server_url: str = ''
     server_idx: int = 0
     language: str = 'python'
-    sdk_version: str = '0.12.0'
-    gen_version: str = '2.35.3'
+    sdk_version: str = '0.12.1'
+    gen_version: str = '2.35.9'
 
     def get_server_details(self) -> tuple[str, dict[str, str]]:
         if self.server_url:
