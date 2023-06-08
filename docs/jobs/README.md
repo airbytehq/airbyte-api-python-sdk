@@ -19,12 +19,12 @@ from airbyte.models import operations
 
 s = airbyte.Airbyte(
     security=shared.Security(
-        bearer_auth="YOUR_BEARER_TOKEN_HERE",
+        bearer_auth="",
     ),
 )
 
 req = operations.CancelJobRequest(
-    job_id=100294,
+    job_id=240829,
 )
 
 res = s.jobs.cancel_job(req)
@@ -45,12 +45,12 @@ from airbyte.models import shared
 
 s = airbyte.Airbyte(
     security=shared.Security(
-        bearer_auth="YOUR_BEARER_TOKEN_HERE",
+        bearer_auth="",
     ),
 )
 
 req = shared.JobCreateRequest(
-    connection_id='quae',
+    connection_id='dolorum',
     job_type=shared.JobTypeEnum.SYNC,
 )
 
@@ -72,12 +72,12 @@ from airbyte.models import operations
 
 s = airbyte.Airbyte(
     security=shared.Security(
-        bearer_auth="YOUR_BEARER_TOKEN_HERE",
+        bearer_auth="",
     ),
 )
 
 req = operations.GetJobRequest(
-    job_id=555649,
+    job_id=63038,
 )
 
 res = s.jobs.get_job(req)
@@ -98,15 +98,15 @@ from airbyte.models import operations, shared
 
 s = airbyte.Airbyte(
     security=shared.Security(
-        bearer_auth="YOUR_BEARER_TOKEN_HERE",
+        bearer_auth="",
     ),
 )
 
 req = operations.ListJobsRequest(
-    connection_id='itaque',
-    job_type=shared.JobTypeEnum.SYNC,
-    limit=669917,
-    offset=833038,
+    connection_id='aut',
+    job_type=shared.JobTypeEnum.RESET,
+    limit=929530,
+    offset=9240,
 )
 
 res = s.jobs.list_jobs(req)

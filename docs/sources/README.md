@@ -23,18 +23,19 @@ from airbyte.models import shared
 
 s = airbyte.Airbyte(
     security=shared.Security(
-        bearer_auth="YOUR_BEARER_TOKEN_HERE",
+        bearer_auth="",
     ),
 )
 
 req = shared.SourceCreateRequest(
-    configuration=shared.SourceSmartengage(
-        api_key='doloribus',
-        source_type=shared.SourceSmartengageSmartengage.SMARTENGAGE,
+    configuration=shared.SourceRecruitee(
+        api_key='repellendus',
+        company_id=785153,
+        source_type=shared.SourceRecruiteeRecruitee.RECRUITEE,
     ),
-    name='Olivia McGlynn IV',
-    secret_id='odio',
-    workspace_id='9fce953f-73ef-47fb-87ab-d74dd39c0f5d',
+    name='Alexander Prosacco',
+    secret_id='quae',
+    workspace_id='879fce95-3f73-4ef7-bbc7-abd74dd39c0f',
 )
 
 res = s.sources.create_source(req)
@@ -55,12 +56,12 @@ from airbyte.models import operations
 
 s = airbyte.Airbyte(
     security=shared.Security(
-        bearer_auth="YOUR_BEARER_TOKEN_HERE",
+        bearer_auth="",
     ),
 )
 
 req = operations.DeleteSourceRequest(
-    source_id='fugit',
+    source_id='exercitationem',
 )
 
 res = s.sources.delete_source(req)
@@ -81,12 +82,12 @@ from airbyte.models import operations
 
 s = airbyte.Airbyte(
     security=shared.Security(
-        bearer_auth="YOUR_BEARER_TOKEN_HERE",
+        bearer_auth="",
     ),
 )
 
 req = operations.GetSourceRequest(
-    source_id='porro',
+    source_id='nulla',
 )
 
 res = s.sources.get_source(req)
@@ -111,17 +112,20 @@ from airbyte.models import shared
 
 s = airbyte.Airbyte(
     security=shared.Security(
-        bearer_auth="YOUR_BEARER_TOKEN_HERE",
+        bearer_auth="",
     ),
 )
 
 req = shared.InitiateOauthRequest(
-    name='Domingo Kris',
+    name='Johnnie Wunsch',
     o_auth_input_configuration={
+        "ducimus": 'alias',
         "officia": 'tempora',
+        "ipsam": 'ea',
+        "aspernatur": 'vel',
     },
-    redirect_url='ipsam',
-    workspace_id='626d4368-13f1-46d9-b5fc-e6c556146c3e',
+    redirect_url='possimus',
+    workspace_id='436813f1-6d9f-45fc-a6c5-56146c3e250f',
 )
 
 res = s.sources.initiate_o_auth(req)
@@ -142,16 +146,16 @@ from airbyte.models import operations
 
 s = airbyte.Airbyte(
     security=shared.Security(
-        bearer_auth="YOUR_BEARER_TOKEN_HERE",
+        bearer_auth="",
     ),
 )
 
 req = operations.ListSourcesRequest(
     include_deleted=False,
-    limit=132487,
-    offset=325310,
+    limit=725595,
+    offset=13948,
     workspace_ids=[
-        'fb008c42-e141-4aac-b66c-8dd6b1442907',
+        '8c42e141-aac3-466c-8dd6-b14429074747',
     ],
 )
 
@@ -174,36 +178,24 @@ from airbyte.models import operations, shared
 
 s = airbyte.Airbyte(
     security=shared.Security(
-        bearer_auth="YOUR_BEARER_TOKEN_HERE",
+        bearer_auth="",
     ),
 )
 
 req = operations.PatchSourceRequest(
     source_patch_request=shared.SourcePatchRequest(
-        configuration=shared.SourceGooglePagespeedInsights(
-            api_key='odio',
-            categories=[
-                shared.SourceGooglePagespeedInsightsCategories.PERFORMANCE,
-                shared.SourceGooglePagespeedInsightsCategories.PERFORMANCE,
-            ],
-            source_type=shared.SourceGooglePagespeedInsightsGooglePagespeedInsights.GOOGLE_PAGESPEED_INSIGHTS,
-            strategies=[
-                shared.SourceGooglePagespeedInsightsStrategies.MOBILE,
-                shared.SourceGooglePagespeedInsightsStrategies.DESKTOP,
-                shared.SourceGooglePagespeedInsightsStrategies.MOBILE,
-            ],
-            urls=[
-                'ut',
-                'eum',
-                'suscipit',
-                'assumenda',
-            ],
+        configuration=shared.SourceMarketo(
+            client_id='rem',
+            client_secret='fuga',
+            domain_url='https://000-AAA-000.mktorest.com',
+            source_type=shared.SourceMarketoMarketo.MARKETO,
+            start_date=dateutil.parser.isoparse('2020-09-25T00:00:00Z'),
         ),
         name='My source',
-        secret_id='eos',
-        workspace_id='8c10ab3c-dca4-4251-904e-523c7e0bc717',
+        secret_id='reprehenderit',
+        workspace_id='bd466d28-c10a-4b3c-9ca4-251904e523c7',
     ),
-    source_id='totam',
+    source_id='recusandae',
 )
 
 res = s.sources.patch_source(req)
@@ -225,20 +217,22 @@ from airbyte.models import operations, shared
 
 s = airbyte.Airbyte(
     security=shared.Security(
-        bearer_auth="YOUR_BEARER_TOKEN_HERE",
+        bearer_auth="",
     ),
 )
 
 req = operations.PutSourceRequest(
     source_put_request=shared.SourcePutRequest(
-        configuration=shared.SourceTwilioTaskrouter(
-            account_sid='aliquam',
-            auth_token='odio',
-            source_type=shared.SourceTwilioTaskrouterTwilioTaskrouter.TWILIO_TASKROUTER,
+        configuration=shared.SourceAsana(
+            credentials=shared.SourceAsanaCredentialsAuthenticateWithPersonalAccessToken(
+                option_title=shared.SourceAsanaCredentialsAuthenticateWithPersonalAccessTokenCredentialsTitle.PAT_CREDENTIALS,
+                personal_access_token='quod',
+            ),
+            source_type=shared.SourceAsanaAsana.ASANA,
         ),
-        name='Leslie Williamson',
+        name='Debra Kovacek',
     ),
-    source_id='molestiae',
+    source_id='aliquam',
 )
 
 res = s.sources.put_source(req)

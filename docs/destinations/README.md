@@ -21,7 +21,7 @@ from airbyte.models import shared
 
 s = airbyte.Airbyte(
     security=shared.Security(
-        bearer_auth="YOUR_BEARER_TOKEN_HERE",
+        bearer_auth="",
     ),
 )
 
@@ -59,7 +59,7 @@ from airbyte.models import operations
 
 s = airbyte.Airbyte(
     security=shared.Security(
-        bearer_auth="YOUR_BEARER_TOKEN_HERE",
+        bearer_auth="",
     ),
 )
 
@@ -85,7 +85,7 @@ from airbyte.models import operations
 
 s = airbyte.Airbyte(
     security=shared.Security(
-        bearer_auth="YOUR_BEARER_TOKEN_HERE",
+        bearer_auth="",
     ),
 )
 
@@ -111,7 +111,7 @@ from airbyte.models import operations
 
 s = airbyte.Airbyte(
     security=shared.Security(
-        bearer_auth="YOUR_BEARER_TOKEN_HERE",
+        bearer_auth="",
     ),
 )
 
@@ -142,7 +142,7 @@ from airbyte.models import operations, shared
 
 s = airbyte.Airbyte(
     security=shared.Security(
-        bearer_auth="YOUR_BEARER_TOKEN_HERE",
+        bearer_auth="",
     ),
 )
 
@@ -150,7 +150,7 @@ req = operations.PatchDestinationRequest(
     destination_patch_request=shared.DestinationPatchRequest(
         configuration=shared.DestinationConvex(
             access_key='neque',
-            deployment_url='fugit',
+            deployment_url='https://murky-swan-635.convex.cloud',
             destination_type=shared.DestinationConvexConvex.CONVEX,
         ),
         name='Courtney Cassin',
@@ -176,19 +176,20 @@ from airbyte.models import operations, shared
 
 s = airbyte.Airbyte(
     security=shared.Security(
-        bearer_auth="YOUR_BEARER_TOKEN_HERE",
+        bearer_auth="",
     ),
 )
 
 req = operations.PutDestinationRequest(
     destination_put_request=shared.DestinationPutRequest(
         configuration=shared.DestinationAwsDatalake(
-            aws_account_id='cumque',
-            bucket_name='soluta',
-            bucket_prefix='nobis',
-            credentials=shared.DestinationAwsDatalakeCredentialsIAMRole(
-                credentials_title=shared.DestinationAwsDatalakeCredentialsIAMRoleCredentialsTitle.IAM_ROLE,
-                role_arn='saepe',
+            aws_account_id='111111111111',
+            bucket_name='cumque',
+            bucket_prefix='soluta',
+            credentials=shared.DestinationAwsDatalakeCredentialsIAMUser(
+                aws_access_key_id='et',
+                aws_secret_access_key='saepe',
+                credentials_title=shared.DestinationAwsDatalakeCredentialsIAMUserCredentialsTitle.IAM_USER,
             ),
             destination_type=shared.DestinationAwsDatalakeAwsDatalake.AWS_DATALAKE,
             format=shared.DestinationAwsDatalakeFormatJSONLinesNewlineDelimitedJSON(
@@ -196,16 +197,16 @@ req = operations.PutDestinationRequest(
                 format_type=shared.DestinationAwsDatalakeFormatJSONLinesNewlineDelimitedJSONFormatTypeWildcard.JSONL,
             ),
             glue_catalog_float_as_decimal=False,
-            lakeformation_database_default_tag_key='nobis',
-            lakeformation_database_default_tag_values='quos',
-            lakeformation_database_name='tempore',
+            lakeformation_database_default_tag_key='pii_level',
+            lakeformation_database_default_tag_values='private,public',
+            lakeformation_database_name='nobis',
             lakeformation_governed_tables=False,
-            partitioning=shared.DestinationAwsDatalakeChooseHowToPartitionData.DAY,
-            region=shared.DestinationAwsDatalakeS3BucketRegion.US_EAST_1,
+            partitioning=shared.DestinationAwsDatalakeChooseHowToPartitionData.MONTH,
+            region=shared.DestinationAwsDatalakeS3BucketRegion.EU_WEST_1,
         ),
-        name='Mike Greenholt',
+        name='Kevin Willms',
     ),
-    destination_id='dolorum',
+    destination_id='labore',
 )
 
 res = s.destinations.put_destination(req)
