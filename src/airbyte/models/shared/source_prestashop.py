@@ -13,10 +13,10 @@ class SourcePrestashopPrestashop(str, Enum):
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
+
 @dataclasses.dataclass
 class SourcePrestashop:
     r"""The values required to configure the source."""
-    
     access_key: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('access_key') }})
     r"""Your PrestaShop access key. See <a href=\\"https://devdocs.prestashop.com/1.7/webservice/tutorials/creating-access/#create-an-access-key\\"> the docs </a> for info on how to obtain this."""
     source_type: SourcePrestashopPrestashop = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
@@ -25,3 +25,4 @@ class SourcePrestashop:
     url: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('url') }})
     r"""Shop URL without trailing slash."""
     
+

@@ -15,10 +15,10 @@ class DestinationFireboltLoadingMethodExternalTableViaS3Method(str, Enum):
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
+
 @dataclasses.dataclass
 class DestinationFireboltLoadingMethodExternalTableViaS3:
     r"""Loading method used to select the way data will be uploaded to Firebolt"""
-    
     aws_key_id: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('aws_key_id') }})
     r"""AWS access key granting read and write access to S3."""
     aws_key_secret: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('aws_key_secret') }})
@@ -29,23 +29,27 @@ class DestinationFireboltLoadingMethodExternalTableViaS3:
     s3_region: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('s3_region') }})
     r"""Region name of the S3 bucket."""
     
+
+
 class DestinationFireboltLoadingMethodSQLInsertsMethod(str, Enum):
     SQL = 'SQL'
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
+
 @dataclasses.dataclass
 class DestinationFireboltLoadingMethodSQLInserts:
     r"""Loading method used to select the way data will be uploaded to Firebolt"""
-    
     method: DestinationFireboltLoadingMethodSQLInsertsMethod = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('method') }})
     
 
+
+
 @dataclass_json(undefined=Undefined.EXCLUDE)
+
 @dataclasses.dataclass
 class DestinationFirebolt:
     r"""The values required to configure the destination."""
-    
     database: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('database') }})
     r"""The database to connect to."""
     destination_type: DestinationFireboltFirebolt = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('destinationType') }})
@@ -62,3 +66,4 @@ class DestinationFirebolt:
     loading_method: Optional[Any] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('loading_method'), 'exclude': lambda f: f is None }})
     r"""Loading method used to select the way data will be uploaded to Firebolt"""
     
+

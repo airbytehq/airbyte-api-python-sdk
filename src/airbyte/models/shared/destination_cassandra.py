@@ -12,10 +12,10 @@ class DestinationCassandraCassandra(str, Enum):
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
+
 @dataclasses.dataclass
 class DestinationCassandra:
     r"""The values required to configure the destination."""
-    
     address: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('address') }})
     r"""Address to connect to."""
     destination_type: DestinationCassandraCassandra = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('destinationType') }})
@@ -32,3 +32,4 @@ class DestinationCassandra:
     replication: Optional[int] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('replication'), 'exclude': lambda f: f is None }})
     r"""Indicates to how many nodes the data should be replicated to."""
     
+

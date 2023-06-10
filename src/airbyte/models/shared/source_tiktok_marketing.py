@@ -14,25 +14,27 @@ class SourceTiktokMarketingCredentialsSandboxAccessTokenAuthType(str, Enum):
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
+
 @dataclasses.dataclass
 class SourceTiktokMarketingCredentialsSandboxAccessToken:
     r"""Authentication method"""
-    
     access_token: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('access_token') }})
     r"""The long-term authorized access token."""
     advertiser_id: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('advertiser_id') }})
     r"""The Advertiser ID which generated for the developer's Sandbox application."""
     auth_type: Optional[SourceTiktokMarketingCredentialsSandboxAccessTokenAuthType] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_type'), 'exclude': lambda f: f is None }})
     
+
+
 class SourceTiktokMarketingCredentialsOAuth20AuthType(str, Enum):
     OAUTH2_0 = 'oauth2.0'
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
+
 @dataclasses.dataclass
 class SourceTiktokMarketingCredentialsOAuth20:
     r"""Authentication method"""
-    
     access_token: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('access_token') }})
     r"""Long-term Authorized Access Token."""
     app_id: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('app_id') }})
@@ -43,15 +45,17 @@ class SourceTiktokMarketingCredentialsOAuth20:
     r"""The Advertiser ID to filter reports and streams. Let this empty to retrieve all."""
     auth_type: Optional[SourceTiktokMarketingCredentialsOAuth20AuthType] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_type'), 'exclude': lambda f: f is None }})
     
+
+
 class SourceTiktokMarketingTiktokMarketing(str, Enum):
     TIKTOK_MARKETING = 'tiktok-marketing'
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
+
 @dataclasses.dataclass
 class SourceTiktokMarketing:
     r"""The values required to configure the source."""
-    
     attribution_window: Optional[int] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('attribution_window'), 'exclude': lambda f: f is None }})
     r"""The attribution window in days."""
     credentials: Optional[Any] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credentials'), 'exclude': lambda f: f is None }})
@@ -62,3 +66,4 @@ class SourceTiktokMarketing:
     start_date: Optional[date] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('start_date'), 'encoder': utils.dateisoformat(True), 'decoder': utils.datefromisoformat, 'mm_field': fields.DateTime(format='iso'), 'exclude': lambda f: f is None }})
     r"""The Start Date in format: YYYY-MM-DD. Any data before this date will not be replicated. If this parameter is not set, all data will be replicated."""
     
+

@@ -7,9 +7,9 @@ from ..shared import connectionsresponse as shared_connectionsresponse
 from typing import Optional
 
 
+
 @dataclasses.dataclass
 class ListConnectionsRequest:
-    
     include_deleted: Optional[bool] = dataclasses.field(default=None, metadata={'query_param': { 'field_name': 'includeDeleted', 'style': 'form', 'explode': True }})
     r"""Include deleted connections in the returned results."""
     limit: Optional[int] = dataclasses.field(default=None, metadata={'query_param': { 'field_name': 'limit', 'style': 'form', 'explode': True }})
@@ -20,12 +20,15 @@ class ListConnectionsRequest:
     r"""The UUIDs of the workspaces you wish to list connections for. Empty list will retrieve all allowed workspaces."""
     
 
+
+
+
 @dataclasses.dataclass
 class ListConnectionsResponse:
-    
     content_type: str = dataclasses.field()
     status_code: int = dataclasses.field()
     connections_response: Optional[shared_connectionsresponse.ConnectionsResponse] = dataclasses.field(default=None)
     r"""Successful operation"""
     raw_response: Optional[requests_http.Response] = dataclasses.field(default=None)
     
+

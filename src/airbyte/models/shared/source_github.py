@@ -15,36 +15,40 @@ class SourceGithubCredentialsPersonalAccessTokenOptionTitle(str, Enum):
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
+
 @dataclasses.dataclass
 class SourceGithubCredentialsPersonalAccessToken:
     r"""Choose how to authenticate to GitHub"""
-    
     personal_access_token: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('personal_access_token') }})
     r"""Log into GitHub and then generate a <a href=\\"https://github.com/settings/tokens\\">personal access token</a>. To load balance your API quota consumption across multiple API tokens, input multiple tokens separated with \\",\\" """
     option_title: Optional[SourceGithubCredentialsPersonalAccessTokenOptionTitle] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('option_title'), 'exclude': lambda f: f is None }})
     
+
+
 class SourceGithubCredentialsOAuthOptionTitle(str, Enum):
     O_AUTH_CREDENTIALS = 'OAuth Credentials'
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
+
 @dataclasses.dataclass
 class SourceGithubCredentialsOAuth:
     r"""Choose how to authenticate to GitHub"""
-    
     access_token: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('access_token') }})
     r"""OAuth access token"""
     option_title: Optional[SourceGithubCredentialsOAuthOptionTitle] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('option_title'), 'exclude': lambda f: f is None }})
     
+
+
 class SourceGithubGithub(str, Enum):
     GITHUB = 'github'
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
+
 @dataclasses.dataclass
 class SourceGithub:
     r"""The values required to configure the source."""
-    
     repository: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('repository') }})
     r"""Space-delimited list of GitHub organizations/repositories, e.g. `airbytehq/airbyte` for single repository, `airbytehq/*` for get all repositories from organization and `airbytehq/airbyte airbytehq/another-repo` for multiple repositories."""
     source_type: SourceGithubGithub = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
@@ -57,3 +61,4 @@ class SourceGithub:
     requests_per_hour: Optional[int] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('requests_per_hour'), 'exclude': lambda f: f is None }})
     r"""The GitHub API allows for a maximum of 5000 requests per hour (15000 for Github Enterprise). You can specify a lower value to limit your use of the API quota."""
     
+

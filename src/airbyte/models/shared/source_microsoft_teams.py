@@ -12,10 +12,10 @@ class SourceMicrosoftTeamsCredentialsAuthenticateViaMicrosoftAuthType(str, Enum)
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
+
 @dataclasses.dataclass
 class SourceMicrosoftTeamsCredentialsAuthenticateViaMicrosoft:
     r"""Choose how to authenticate to Microsoft"""
-    
     client_id: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('client_id') }})
     r"""The Client ID of your Microsoft Teams developer application."""
     client_secret: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('client_secret') }})
@@ -24,15 +24,17 @@ class SourceMicrosoftTeamsCredentialsAuthenticateViaMicrosoft:
     r"""A globally unique identifier (GUID) that is different than your organization name or domain. Follow these steps to obtain: open one of the Teams where you belong inside the Teams Application -> Click on the … next to the Team title -> Click on Get link to team -> Copy the link to the team and grab the tenant ID form the URL"""
     auth_type: Optional[SourceMicrosoftTeamsCredentialsAuthenticateViaMicrosoftAuthType] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_type'), 'exclude': lambda f: f is None }})
     
+
+
 class SourceMicrosoftTeamsCredentialsAuthenticateViaMicrosoftOAuth20AuthType(str, Enum):
     CLIENT = 'Client'
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
+
 @dataclasses.dataclass
 class SourceMicrosoftTeamsCredentialsAuthenticateViaMicrosoftOAuth20:
     r"""Choose how to authenticate to Microsoft"""
-    
     client_id: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('client_id') }})
     r"""The Client ID of your Microsoft Teams developer application."""
     client_secret: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('client_secret') }})
@@ -43,18 +45,21 @@ class SourceMicrosoftTeamsCredentialsAuthenticateViaMicrosoftOAuth20:
     r"""A globally unique identifier (GUID) that is different than your organization name or domain. Follow these steps to obtain: open one of the Teams where you belong inside the Teams Application -> Click on the … next to the Team title -> Click on Get link to team -> Copy the link to the team and grab the tenant ID form the URL"""
     auth_type: Optional[SourceMicrosoftTeamsCredentialsAuthenticateViaMicrosoftOAuth20AuthType] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_type'), 'exclude': lambda f: f is None }})
     
+
+
 class SourceMicrosoftTeamsMicrosoftTeams(str, Enum):
     MICROSOFT_TEAMS = 'microsoft-teams'
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
+
 @dataclasses.dataclass
 class SourceMicrosoftTeams:
     r"""The values required to configure the source."""
-    
     period: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('period') }})
     r"""Specifies the length of time over which the Team Device Report stream is aggregated. The supported values are: D7, D30, D90, and D180."""
     source_type: SourceMicrosoftTeamsMicrosoftTeams = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     credentials: Optional[Any] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credentials'), 'exclude': lambda f: f is None }})
     r"""Choose how to authenticate to Microsoft"""
     
+

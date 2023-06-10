@@ -11,13 +11,14 @@ class SourceTwilioTaskrouterTwilioTaskrouter(str, Enum):
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
+
 @dataclasses.dataclass
 class SourceTwilioTaskrouter:
     r"""The values required to configure the source."""
-    
     account_sid: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('account_sid') }})
     r"""Twilio Account ID"""
     auth_token: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_token') }})
     r"""Twilio Auth Token"""
     source_type: SourceTwilioTaskrouterTwilioTaskrouter = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     
+

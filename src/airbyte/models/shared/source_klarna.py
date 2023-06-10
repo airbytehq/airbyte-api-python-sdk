@@ -17,10 +17,10 @@ class SourceKlarnaKlarna(str, Enum):
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
+
 @dataclasses.dataclass
 class SourceKlarna:
     r"""The values required to configure the source."""
-    
     password: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('password') }})
     r"""A string which is associated with your Merchant ID and is used to authorize use of Klarna's APIs (https://developers.klarna.com/api/#authentication)"""
     playground: bool = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('playground') }})
@@ -31,3 +31,4 @@ class SourceKlarna:
     username: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('username') }})
     r"""Consists of your Merchant ID (eid) - a unique number that identifies your e-store, combined with a random string (https://developers.klarna.com/api/#authentication)"""
     
+

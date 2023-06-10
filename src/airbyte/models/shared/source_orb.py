@@ -12,10 +12,10 @@ class SourceOrbOrb(str, Enum):
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
+
 @dataclasses.dataclass
 class SourceOrb:
     r"""The values required to configure the source."""
-    
     api_key: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('api_key') }})
     r"""Orb API Key, issued from the Orb admin console."""
     source_type: SourceOrbOrb = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
@@ -32,3 +32,4 @@ class SourceOrb:
     subscription_usage_grouping_key: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('subscription_usage_grouping_key'), 'exclude': lambda f: f is None }})
     r"""Property key name to group subscription usage by."""
     
+

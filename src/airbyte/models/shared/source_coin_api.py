@@ -17,10 +17,10 @@ class SourceCoinAPICoinAPI(str, Enum):
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
+
 @dataclasses.dataclass
 class SourceCoinAPI:
     r"""The values required to configure the source."""
-    
     api_key: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('api_key') }})
     r"""API Key"""
     environment: SourceCoinAPIEnvironment = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('environment') }})
@@ -45,3 +45,4 @@ class SourceCoinAPI:
     request for pricing purposes. Maximum value is 100000.
     """
     
+

@@ -12,10 +12,10 @@ class SourceSentrySentry(str, Enum):
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
+
 @dataclasses.dataclass
 class SourceSentry:
     r"""The values required to configure the source."""
-    
     auth_token: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_token') }})
     r"""Log into Sentry and then <a href=\\"https://sentry.io/settings/account/api/auth-tokens/\\">create authentication tokens</a>.For self-hosted, you can find or create authentication tokens by visiting \\"{instance_url_prefix}/settings/account/api/auth-tokens/\\" """
     organization: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('organization') }})
@@ -28,3 +28,4 @@ class SourceSentry:
     hostname: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('hostname'), 'exclude': lambda f: f is None }})
     r"""Host name of Sentry API server.For self-hosted, specify your host name here. Otherwise, leave it empty."""
     
+

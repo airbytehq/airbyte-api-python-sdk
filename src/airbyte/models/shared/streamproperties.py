@@ -9,10 +9,10 @@ from typing import Optional
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
+
 @dataclasses.dataclass
 class StreamProperties:
     r"""The stream properties associated with a connection."""
-    
     default_cursor_field: Optional[list[str]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('defaultCursorField'), 'exclude': lambda f: f is None }})
     property_fields: Optional[list[list[str]]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('propertyFields'), 'exclude': lambda f: f is None }})
     source_defined_cursor_field: Optional[bool] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceDefinedCursorField'), 'exclude': lambda f: f is None }})
@@ -20,3 +20,4 @@ class StreamProperties:
     stream_name: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('streamName'), 'exclude': lambda f: f is None }})
     sync_modes: Optional[list[shared_connectionsyncmodeenum.ConnectionSyncModeEnum]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('syncModes'), 'exclude': lambda f: f is None }})
     
+

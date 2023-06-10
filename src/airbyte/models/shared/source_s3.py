@@ -21,10 +21,10 @@ class SourceS3FormatJsonlUnexpectedFieldBehavior(str, Enum):
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
+
 @dataclasses.dataclass
 class SourceS3FormatJsonl:
     r"""This connector uses <a href=\\"https://arrow.apache.org/docs/python/json.html\\" target=\\"_blank\\">PyArrow</a> for JSON Lines (jsonl) file parsing."""
-    
     block_size: Optional[int] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('block_size'), 'exclude': lambda f: f is None }})
     r"""The chunk size in bytes to process at a time in memory from each file. If your data is particularly wide and failing during schema detection, increasing this should solve it. Beware of raising this too high as you could hit OOM errors."""
     filetype: Optional[SourceS3FormatJsonlFiletype] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('filetype'), 'exclude': lambda f: f is None }})
@@ -33,26 +33,30 @@ class SourceS3FormatJsonl:
     unexpected_field_behavior: Optional[SourceS3FormatJsonlUnexpectedFieldBehavior] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('unexpected_field_behavior'), 'exclude': lambda f: f is None }})
     r"""How JSON fields outside of explicit_schema (if given) are treated. Check <a href=\\"https://arrow.apache.org/docs/python/generated/pyarrow.json.ParseOptions.html\\" target=\\"_blank\\">PyArrow documentation</a> for details"""
     
+
+
 class SourceS3FormatAvroFiletype(str, Enum):
     AVRO = 'avro'
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
+
 @dataclasses.dataclass
 class SourceS3FormatAvro:
     r"""This connector utilises <a href=\\"https://fastavro.readthedocs.io/en/latest/\\" target=\\"_blank\\">fastavro</a> for Avro parsing."""
-    
     filetype: Optional[SourceS3FormatAvroFiletype] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('filetype'), 'exclude': lambda f: f is None }})
     
+
+
 class SourceS3FormatParquetFiletype(str, Enum):
     PARQUET = 'parquet'
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
+
 @dataclasses.dataclass
 class SourceS3FormatParquet:
     r"""This connector utilises <a href=\\"https://arrow.apache.org/docs/python/generated/pyarrow.parquet.ParquetFile.html\\" target=\\"_blank\\">PyArrow (Apache Arrow)</a> for Parquet parsing."""
-    
     batch_size: Optional[int] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('batch_size'), 'exclude': lambda f: f is None }})
     r"""Maximum number of records per batch read from the input files. Batches may be smaller if there aren’t enough rows in the file. This option can help avoid out-of-memory errors if your data is particularly wide."""
     buffer_size: Optional[int] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('buffer_size'), 'exclude': lambda f: f is None }})
@@ -61,15 +65,17 @@ class SourceS3FormatParquet:
     r"""If you only want to sync a subset of the columns from the file(s), add the columns you want here as a comma-delimited list. Leave it empty to sync all columns."""
     filetype: Optional[SourceS3FormatParquetFiletype] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('filetype'), 'exclude': lambda f: f is None }})
     
+
+
 class SourceS3FormatCSVFiletype(str, Enum):
     CSV = 'csv'
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
+
 @dataclasses.dataclass
 class SourceS3FormatCSV:
     r"""This connector utilises <a href=\\"https: // arrow.apache.org/docs/python/generated/pyarrow.csv.open_csv.html\\" target=\\"_blank\\">PyArrow (Apache Arrow)</a> for CSV parsing."""
-    
     additional_reader_options: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('additional_reader_options'), 'exclude': lambda f: f is None }})
     r"""Optionally add a valid JSON string here to provide additional options to the csv reader. Mappings must correspond to options <a href=\\"https://arrow.apache.org/docs/python/generated/pyarrow.csv.ConvertOptions.html#pyarrow.csv.ConvertOptions\\" target=\\"_blank\\">detailed here</a>. 'column_types' is used internally to handle schema so overriding that would likely cause problems."""
     advanced_options: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('advanced_options'), 'exclude': lambda f: f is None }})
@@ -93,11 +99,13 @@ class SourceS3FormatCSV:
     r"""The character used for quoting CSV values. To disallow quoting, make this field blank."""
     
 
+
+
 @dataclass_json(undefined=Undefined.EXCLUDE)
+
 @dataclasses.dataclass
 class SourceS3S3AmazonWebServices:
     r"""Use this to load files from S3 or S3-compatible services"""
-    
     bucket: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('bucket') }})
     r"""Name of the S3 bucket where the file(s) exist."""
     aws_access_key_id: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('aws_access_key_id'), 'exclude': lambda f: f is None }})
@@ -111,15 +119,17 @@ class SourceS3S3AmazonWebServices:
     start_date: Optional[datetime] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('start_date'), 'encoder': utils.datetimeisoformat(True), 'decoder': dateutil.parser.isoparse, 'mm_field': fields.DateTime(format='iso'), 'exclude': lambda f: f is None }})
     r"""UTC date and time in the format 2017-01-25T00:00:00Z. Any file modified before this date will not be replicated."""
     
+
+
 class SourceS3S3(str, Enum):
     S3 = 's3'
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
+
 @dataclasses.dataclass
 class SourceS3:
     r"""The values required to configure the source."""
-    
     dataset: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('dataset') }})
     r"""The name of the stream you would like this source to output. Can contain letters, numbers, or underscores."""
     path_pattern: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('path_pattern') }})
@@ -132,3 +142,4 @@ class SourceS3:
     schema: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('schema'), 'exclude': lambda f: f is None }})
     r"""Optionally provide a schema to enforce, as a valid JSON string. Ensure this is a mapping of <strong>{ \\"column\\" : \\"type\\" }</strong>, where types are valid <a href=\\"https://json-schema.org/understanding-json-schema/reference/type.html\\" target=\\"_blank\\">JSON Schema datatypes</a>. Leave as {} to auto-infer the schema."""
     
+

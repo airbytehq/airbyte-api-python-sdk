@@ -11,9 +11,10 @@ class SourcePublicApisPublicApis(str, Enum):
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
+
 @dataclasses.dataclass
 class SourcePublicApis:
     r"""The values required to configure the source."""
-    
     source_type: SourcePublicApisPublicApis = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     
+

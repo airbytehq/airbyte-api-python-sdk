@@ -1,0 +1,12 @@
+# SourceLinkedinPages
+
+The values required to configure the source.
+
+
+## Fields
+
+| Field                                                                                       | Type                                                                                        | Required                                                                                    | Description                                                                                 | Example                                                                                     |
+| ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- |
+| `credentials`                                                                               | *Optional[Any]*                                                                             | :heavy_minus_sign:                                                                          | N/A                                                                                         |                                                                                             |
+| `org_id`                                                                                    | *str*                                                                                       | :heavy_check_mark:                                                                          | Specify the Organization ID                                                                 | 123456789                                                                                   |
+| `source_type`                                                                               | [SourceLinkedinPagesLinkedinPages](../../models/shared/sourcelinkedinpageslinkedinpages.md) | :heavy_check_mark:                                                                          | N/A                                                                                         |                                                                                             |

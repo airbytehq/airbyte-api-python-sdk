@@ -12,23 +12,25 @@ class SourceSnowflakeCredentialsUsernameAndPasswordAuthType(str, Enum):
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
+
 @dataclasses.dataclass
 class SourceSnowflakeCredentialsUsernameAndPassword:
-    
     auth_type: SourceSnowflakeCredentialsUsernameAndPasswordAuthType = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_type') }})
     password: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('password') }})
     r"""The password associated with the username."""
     username: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('username') }})
     r"""The username you created to allow Airbyte to access the database."""
     
+
+
 class SourceSnowflakeCredentialsOAuth20AuthType(str, Enum):
     O_AUTH = 'OAuth'
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
+
 @dataclasses.dataclass
 class SourceSnowflakeCredentialsOAuth20:
-    
     auth_type: SourceSnowflakeCredentialsOAuth20AuthType = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_type') }})
     client_id: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('client_id') }})
     r"""The Client ID of your Snowflake developer application."""
@@ -39,15 +41,17 @@ class SourceSnowflakeCredentialsOAuth20:
     refresh_token: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('refresh_token'), 'exclude': lambda f: f is None }})
     r"""Refresh Token for making authenticated requests."""
     
+
+
 class SourceSnowflakeSnowflake(str, Enum):
     SNOWFLAKE = 'snowflake'
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
+
 @dataclasses.dataclass
 class SourceSnowflake:
     r"""The values required to configure the source."""
-    
     database: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('database') }})
     r"""The database you created for Airbyte to access data."""
     host: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('host') }})
@@ -63,3 +67,4 @@ class SourceSnowflake:
     schema: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('schema'), 'exclude': lambda f: f is None }})
     r"""The source Snowflake schema tables. Leave empty to access tables from multiple schemas."""
     
+

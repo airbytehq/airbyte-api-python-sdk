@@ -1,0 +1,10 @@
+# DestinationGcsFormatAvroApacheAvroCompressionCodecNoCompression
+
+The compression algorithm used to compress data. Default to no compression.
+
+
+## Fields
+
+| Field                                                                                                                                                               | Type                                                                                                                                                                | Required                                                                                                                                                            | Description                                                                                                                                                         |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `codec`                                                                                                                                                             | [DestinationGcsFormatAvroApacheAvroCompressionCodecNoCompressionCodec](../../models/shared/destinationgcsformatavroapacheavrocompressioncodecnocompressioncodec.md) | :heavy_check_mark:                                                                                                                                                  | N/A                                                                                                                                                                 |

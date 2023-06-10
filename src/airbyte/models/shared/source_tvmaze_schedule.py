@@ -12,10 +12,10 @@ class SourceTvmazeScheduleTvmazeSchedule(str, Enum):
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
+
 @dataclasses.dataclass
 class SourceTvmazeSchedule:
     r"""The values required to configure the source."""
-    
     domestic_schedule_country_code: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('domestic_schedule_country_code') }})
     r"""Country code for domestic TV schedule retrieval."""
     source_type: SourceTvmazeScheduleTvmazeSchedule = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
@@ -29,3 +29,4 @@ class SourceTvmazeSchedule:
     set to 'global' for just global web channels.
     """
     
+

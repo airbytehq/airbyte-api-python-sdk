@@ -12,10 +12,10 @@ class SourceClickupAPIClickupAPI(str, Enum):
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
+
 @dataclasses.dataclass
 class SourceClickupAPI:
     r"""The values required to configure the source."""
-    
     api_token: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('api_token') }})
     r"""Every ClickUp API call required authentication. This field is your personal API token. See <a href=\\"https://clickup.com/api/developer-portal/authentication/#personal-token\\">here</a>."""
     source_type: SourceClickupAPIClickupAPI = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
@@ -30,3 +30,4 @@ class SourceClickupAPI:
     team_id: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('team_id'), 'exclude': lambda f: f is None }})
     r"""The ID of your team in ClickUp. Retrieve it from the `/team` of the ClickUp API. See <a href=\\"https://clickup.com/api/clickupreference/operation/GetAuthorizedTeams/\\">here</a>."""
     
+

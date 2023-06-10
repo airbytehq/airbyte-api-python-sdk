@@ -11,10 +11,10 @@ class SourceFreshserviceFreshservice(str, Enum):
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
+
 @dataclasses.dataclass
 class SourceFreshservice:
     r"""The values required to configure the source."""
-    
     api_key: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('api_key') }})
     r"""Freshservice API Key. See <a href=\\"https://api.freshservice.com/#authentication\\">here</a>. The key is case sensitive."""
     domain_name: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('domain_name') }})
@@ -23,3 +23,4 @@ class SourceFreshservice:
     start_date: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('start_date') }})
     r"""UTC date and time in the format 2020-10-01T00:00:00Z. Any data before this date will not be replicated."""
     
+

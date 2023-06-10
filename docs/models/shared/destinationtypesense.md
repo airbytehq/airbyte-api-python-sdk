@@ -1,0 +1,15 @@
+# DestinationTypesense
+
+The values required to configure the destination.
+
+
+## Fields
+
+| Field                                                                                 | Type                                                                                  | Required                                                                              | Description                                                                           |
+| ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- |
+| `api_key`                                                                             | *str*                                                                                 | :heavy_check_mark:                                                                    | Typesense API Key                                                                     |
+| `batch_size`                                                                          | *Optional[str]*                                                                       | :heavy_minus_sign:                                                                    | How many documents should be imported together. Default 1000                          |
+| `destination_type`                                                                    | [DestinationTypesenseTypesense](../../models/shared/destinationtypesensetypesense.md) | :heavy_check_mark:                                                                    | N/A                                                                                   |
+| `host`                                                                                | *str*                                                                                 | :heavy_check_mark:                                                                    | Hostname of the Typesense instance without protocol.                                  |
+| `port`                                                                                | *Optional[str]*                                                                       | :heavy_minus_sign:                                                                    | Port of the Typesense instance. Ex: 8108, 80, 443. Default is 443                     |
+| `protocol`                                                                            | *Optional[str]*                                                                       | :heavy_minus_sign:                                                                    | Protocol of the Typesense instance. Ex: http or https. Default is https               |

@@ -14,9 +14,9 @@ from typing import Optional
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
+
 @dataclasses.dataclass
 class ConnectionPatchRequest:
-    
     configurations: Optional[shared_streamconfigurations.StreamConfigurations] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('configurations'), 'exclude': lambda f: f is None }})
     r"""A list of configured stream options for a connection."""
     data_residency: Optional[shared_geographyenumnodefault.GeographyEnumNoDefault] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('dataResidency'), 'exclude': lambda f: f is None }})
@@ -34,3 +34,4 @@ class ConnectionPatchRequest:
     r"""schedule for when the the connection should run, per the schedule type"""
     status: Optional[shared_connectionstatusenum.ConnectionStatusEnum] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('status'), 'exclude': lambda f: f is None }})
     
+

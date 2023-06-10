@@ -1,0 +1,11 @@
+# SourceDockerhub
+
+The values required to configure the source.
+
+
+## Fields
+
+| Field                                                                                                        | Type                                                                                                         | Required                                                                                                     | Description                                                                                                  | Example                                                                                                      |
+| ------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------ |
+| `docker_username`                                                                                            | *str*                                                                                                        | :heavy_check_mark:                                                                                           | Username of DockerHub person or organization (for https://hub.docker.com/v2/repositories/USERNAME/ API call) | airbyte                                                                                                      |
+| `source_type`                                                                                                | [SourceDockerhubDockerhub](../../models/shared/sourcedockerhubdockerhub.md)                                  | :heavy_check_mark:                                                                                           | N/A                                                                                                          |                                                                                                              |

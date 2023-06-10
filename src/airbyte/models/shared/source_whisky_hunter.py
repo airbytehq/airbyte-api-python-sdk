@@ -12,9 +12,10 @@ class SourceWhiskyHunterWhiskyHunter(str, Enum):
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
+
 @dataclasses.dataclass
 class SourceWhiskyHunter:
     r"""The values required to configure the source."""
-    
     source_type: Optional[SourceWhiskyHunterWhiskyHunter] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType'), 'exclude': lambda f: f is None }})
     
+

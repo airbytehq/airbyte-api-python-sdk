@@ -12,10 +12,10 @@ class SourceQualarooQualaroo(str, Enum):
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
+
 @dataclasses.dataclass
 class SourceQualaroo:
     r"""The values required to configure the source."""
-    
     key: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('key') }})
     r"""A Qualaroo token. See the <a href=\\"https://help.qualaroo.com/hc/en-us/articles/201969438-The-REST-Reporting-API\\">docs</a> for instructions on how to generate it."""
     source_type: SourceQualarooQualaroo = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
@@ -26,3 +26,4 @@ class SourceQualaroo:
     survey_ids: Optional[list[str]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('survey_ids'), 'exclude': lambda f: f is None }})
     r"""IDs of the surveys from which you'd like to replicate data. If left empty, data from all surveys to which you have access will be replicated."""
     
+

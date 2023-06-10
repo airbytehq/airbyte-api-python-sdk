@@ -36,10 +36,10 @@ class SourcePocketState(str, Enum):
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
+
 @dataclasses.dataclass
 class SourcePocket:
     r"""The values required to configure the source."""
-    
     access_token: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('access_token') }})
     r"""The user's Pocket access token."""
     consumer_key: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('consumer_key') }})
@@ -64,3 +64,4 @@ class SourcePocket:
     tag: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('tag'), 'exclude': lambda f: f is None }})
     r"""Return only items tagged with this tag name. Use _untagged_ for retrieving only untagged items."""
     
+

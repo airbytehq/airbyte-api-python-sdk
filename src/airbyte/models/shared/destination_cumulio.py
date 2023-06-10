@@ -11,10 +11,10 @@ class DestinationCumulioCumulio(str, Enum):
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
+
 @dataclasses.dataclass
 class DestinationCumulio:
     r"""The values required to configure the destination."""
-    
     api_host: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('api_host') }})
     r"""URL of the Cumul.io API (e.g. 'https://api.cumul.io', 'https://api.us.cumul.io', or VPC-specific API url). Defaults to 'https://api.cumul.io'."""
     api_key: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('api_key') }})
@@ -23,3 +23,4 @@ class DestinationCumulio:
     r"""The corresponding API token generated in Cumul.io's platform (can be generated here: https://app.cumul.io/start/profile/integration)."""
     destination_type: DestinationCumulioCumulio = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('destinationType') }})
     
+

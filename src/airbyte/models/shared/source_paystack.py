@@ -15,10 +15,10 @@ class SourcePaystackPaystack(str, Enum):
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
+
 @dataclasses.dataclass
 class SourcePaystack:
     r"""The values required to configure the source."""
-    
     secret_key: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('secret_key') }})
     r"""The Paystack API key (usually starts with 'sk_live_'; find yours <a href=\\"https://dashboard.paystack.com/#/settings/developer\\">here</a>)."""
     source_type: SourcePaystackPaystack = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
@@ -27,3 +27,4 @@ class SourcePaystack:
     lookback_window_days: Optional[int] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('lookback_window_days'), 'exclude': lambda f: f is None }})
     r"""When set, the connector will always reload data from the past N days, where N is the value set here. This is useful if your data is updated after creation."""
     
+

@@ -12,40 +12,44 @@ class DestinationElasticsearchAuthenticationMethodUsernamePasswordMethod(str, En
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
+
 @dataclasses.dataclass
 class DestinationElasticsearchAuthenticationMethodUsernamePassword:
     r"""Basic auth header with a username and password"""
-    
     method: DestinationElasticsearchAuthenticationMethodUsernamePasswordMethod = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('method') }})
     password: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('password') }})
     r"""Basic auth password to access a secure Elasticsearch server"""
     username: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('username') }})
     r"""Basic auth username to access a secure Elasticsearch server"""
     
+
+
 class DestinationElasticsearchAuthenticationMethodAPIKeySecretMethod(str, Enum):
     SECRET = 'secret'
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
+
 @dataclasses.dataclass
 class DestinationElasticsearchAuthenticationMethodAPIKeySecret:
     r"""Use a api key and secret combination to authenticate"""
-    
     api_key_id: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('apiKeyId') }})
     r"""The Key ID to used when accessing an enterprise Elasticsearch instance."""
     api_key_secret: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('apiKeySecret') }})
     r"""The secret associated with the API Key ID."""
     method: DestinationElasticsearchAuthenticationMethodAPIKeySecretMethod = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('method') }})
     
+
+
 class DestinationElasticsearchElasticsearch(str, Enum):
     ELASTICSEARCH = 'elasticsearch'
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
+
 @dataclasses.dataclass
 class DestinationElasticsearch:
     r"""The values required to configure the destination."""
-    
     destination_type: DestinationElasticsearchElasticsearch = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('destinationType') }})
     endpoint: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('endpoint') }})
     r"""The full url of the Elasticsearch server"""
@@ -56,3 +60,4 @@ class DestinationElasticsearch:
     upsert: Optional[bool] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('upsert'), 'exclude': lambda f: f is None }})
     r"""If a primary key identifier is defined in the source, an upsert will be performed using the primary key value as the elasticsearch doc id. Does not support composite primary keys."""
     
+

@@ -11,10 +11,10 @@ class SourceBigcommerceBigcommerce(str, Enum):
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
+
 @dataclasses.dataclass
 class SourceBigcommerce:
     r"""The values required to configure the source."""
-    
     access_token: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('access_token') }})
     r"""Access Token for making authenticated requests."""
     source_type: SourceBigcommerceBigcommerce = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
@@ -23,3 +23,4 @@ class SourceBigcommerce:
     store_hash: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('store_hash') }})
     r"""The hash code of the store. For https://api.bigcommerce.com/stores/HASH_CODE/v3/, The store's hash code is 'HASH_CODE'."""
     
+

@@ -12,10 +12,10 @@ class DestinationDatabendDatabend(str, Enum):
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
+
 @dataclasses.dataclass
 class DestinationDatabend:
     r"""The values required to configure the destination."""
-    
     database: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('database') }})
     r"""Name of the database."""
     destination_type: DestinationDatabendDatabend = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('destinationType') }})
@@ -30,3 +30,4 @@ class DestinationDatabend:
     table: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('table'), 'exclude': lambda f: f is None }})
     r"""The default  table was written to."""
     
+

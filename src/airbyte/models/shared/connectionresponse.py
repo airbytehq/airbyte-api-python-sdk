@@ -14,10 +14,10 @@ from typing import Optional
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
+
 @dataclasses.dataclass
 class ConnectionResponse:
     r"""Provides details of a single connection."""
-    
     configurations: shared_streamconfigurations.StreamConfigurations = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('configurations') }})
     r"""A list of configured stream options for a connection."""
     connection_id: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('connectionId') }})
@@ -36,3 +36,4 @@ class ConnectionResponse:
     r"""Set how Airbyte handles syncs when it detects a non-breaking schema change in the source"""
     prefix: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('prefix'), 'exclude': lambda f: f is None }})
     
+

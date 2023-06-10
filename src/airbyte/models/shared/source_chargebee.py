@@ -19,10 +19,10 @@ class SourceChargebeeChargebee(str, Enum):
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
+
 @dataclasses.dataclass
 class SourceChargebee:
     r"""The values required to configure the source."""
-    
     product_catalog: SourceChargebeeProductCatalog = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('product_catalog') }})
     r"""Product Catalog version of your Chargebee site. Instructions on how to find your version you may find <a href=\\"https://apidocs.chargebee.com/docs/api?prod_cat_ver=2\\">here</a> under `API Version` section."""
     site: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('site') }})
@@ -33,3 +33,4 @@ class SourceChargebee:
     start_date: datetime = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('start_date'), 'encoder': utils.datetimeisoformat(False), 'decoder': dateutil.parser.isoparse, 'mm_field': fields.DateTime(format='iso') }})
     r"""UTC date and time in the format 2021-01-25T00:00:00Z. Any data before this date will not be replicated."""
     
+

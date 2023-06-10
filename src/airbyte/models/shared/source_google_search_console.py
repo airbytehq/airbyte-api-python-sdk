@@ -14,23 +14,25 @@ class SourceGoogleSearchConsoleAuthorizationServiceAccountKeyAuthenticationAuthT
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
+
 @dataclasses.dataclass
 class SourceGoogleSearchConsoleAuthorizationServiceAccountKeyAuthentication:
-    
     auth_type: SourceGoogleSearchConsoleAuthorizationServiceAccountKeyAuthenticationAuthType = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_type') }})
     email: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('email') }})
     r"""The email of the user which has permissions to access the Google Workspace Admin APIs."""
     service_account_info: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('service_account_info') }})
     r"""The JSON key of the service account to use for authorization. Read more <a href=\\"https://cloud.google.com/iam/docs/creating-managing-service-account-keys\\">here</a>."""
     
+
+
 class SourceGoogleSearchConsoleAuthorizationOAuthAuthType(str, Enum):
     CLIENT = 'Client'
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
+
 @dataclasses.dataclass
 class SourceGoogleSearchConsoleAuthorizationOAuth:
-    
     auth_type: SourceGoogleSearchConsoleAuthorizationOAuthAuthType = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_type') }})
     client_id: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('client_id') }})
     r"""The client ID of your Google Search Console developer application. Read more <a href=\\"https://developers.google.com/webmaster-tools/v1/how-tos/authorizing\\">here</a>."""
@@ -41,6 +43,8 @@ class SourceGoogleSearchConsoleAuthorizationOAuth:
     access_token: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('access_token'), 'exclude': lambda f: f is None }})
     r"""Access token for making authenticated requests. Read more <a href=\\"https://developers.google.com/webmaster-tools/v1/how-tos/authorizing\\">here</a>."""
     
+
+
 class SourceGoogleSearchConsoleDataState(str, Enum):
     r"""If \\"final\\" or if this parameter is omitted, the returned data will include only finalized data. Setting this parameter to \\"all\\" should not be used with Incremental Sync mode as it may cause data loss. If \\"all\\", data will include fresh data."""
     FINAL = 'final'
@@ -51,10 +55,10 @@ class SourceGoogleSearchConsoleGoogleSearchConsole(str, Enum):
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
+
 @dataclasses.dataclass
 class SourceGoogleSearchConsole:
     r"""The values required to configure the source."""
-    
     authorization: Any = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('authorization') }})
     site_urls: list[str] = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('site_urls') }})
     r"""The URLs of the website property attached to your GSC account. Read more <a href=\\"https://support.google.com/webmasters/answer/34592?hl=en\\">here</a>."""
@@ -68,3 +72,4 @@ class SourceGoogleSearchConsole:
     end_date: Optional[date] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('end_date'), 'encoder': utils.dateisoformat(True), 'decoder': utils.datefromisoformat, 'mm_field': fields.DateTime(format='iso'), 'exclude': lambda f: f is None }})
     r"""UTC date in the format 2017-01-25. Any data after this date will not be replicated. Must be greater or equal to the start date field."""
     
+

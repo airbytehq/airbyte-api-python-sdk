@@ -15,10 +15,10 @@ class SourceSurveymonkeySurveyMonkeyAuthorizationMethodAuthMethod(str, Enum):
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
+
 @dataclasses.dataclass
 class SourceSurveymonkeySurveyMonkeyAuthorizationMethod:
     r"""The authorization method to use to retrieve data from SurveyMonkey"""
-    
     access_token: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('access_token') }})
     r"""Access Token for making authenticated requests. See the <a href=\\"https://docs.airbyte.io/integrations/sources/surveymonkey\\">docs</a> for information on how to generate this key."""
     auth_method: SourceSurveymonkeySurveyMonkeyAuthorizationMethodAuthMethod = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_method') }})
@@ -27,6 +27,8 @@ class SourceSurveymonkeySurveyMonkeyAuthorizationMethod:
     client_secret: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('client_secret'), 'exclude': lambda f: f is None }})
     r"""The Client Secret of the SurveyMonkey developer application."""
     
+
+
 class SourceSurveymonkeyOriginDatacenterOfTheSurveyMonkeyAccount(str, Enum):
     r"""Depending on the originating datacenter of the SurveyMonkey account, the API access URL may be different."""
     USA = 'USA'
@@ -38,10 +40,10 @@ class SourceSurveymonkeySurveymonkey(str, Enum):
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
+
 @dataclasses.dataclass
 class SourceSurveymonkey:
     r"""The values required to configure the source."""
-    
     source_type: SourceSurveymonkeySurveymonkey = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     start_date: datetime = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('start_date'), 'encoder': utils.datetimeisoformat(False), 'decoder': dateutil.parser.isoparse, 'mm_field': fields.DateTime(format='iso') }})
     r"""UTC date and time in the format 2017-01-25T00:00:00Z. Any data before this date will not be replicated."""
@@ -52,3 +54,4 @@ class SourceSurveymonkey:
     survey_ids: Optional[list[str]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('survey_ids'), 'exclude': lambda f: f is None }})
     r"""IDs of the surveys from which you'd like to replicate data. If left empty, data from all boards to which you have access will be replicated."""
     
+

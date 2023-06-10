@@ -11,11 +11,12 @@ class SourceHubplannerHubplanner(str, Enum):
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
+
 @dataclasses.dataclass
 class SourceHubplanner:
     r"""The values required to configure the source."""
-    
     api_key: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('api_key') }})
     r"""Hubplanner API key. See https://github.com/hubplanner/API#authentication for more details."""
     source_type: SourceHubplannerHubplanner = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     
+

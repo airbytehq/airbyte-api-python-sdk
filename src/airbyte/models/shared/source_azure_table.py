@@ -12,10 +12,10 @@ class SourceAzureTableAzureTable(str, Enum):
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
+
 @dataclasses.dataclass
 class SourceAzureTable:
     r"""The values required to configure the source."""
-    
     source_type: SourceAzureTableAzureTable = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     storage_access_key: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('storage_access_key') }})
     r"""Azure Table Storage Access Key. See the <a href=\\"https://docs.airbyte.com/integrations/sources/azure-table\\">docs</a> for more information on how to obtain this key."""
@@ -24,3 +24,4 @@ class SourceAzureTable:
     storage_endpoint_suffix: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('storage_endpoint_suffix'), 'exclude': lambda f: f is None }})
     r"""Azure Table Storage service account URL suffix. See the <a href=\\"https://docs.airbyte.com/integrations/sources/azure-table\\">docs</a> for more information on how to obtain endpoint suffix"""
     
+

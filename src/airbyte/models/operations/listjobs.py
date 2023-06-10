@@ -8,9 +8,9 @@ from ..shared import jobtypeenum as shared_jobtypeenum
 from typing import Optional
 
 
+
 @dataclasses.dataclass
 class ListJobsRequest:
-    
     connection_id: str = dataclasses.field(metadata={'query_param': { 'field_name': 'connectionId', 'style': 'form', 'explode': True }})
     r"""Filter the Jobs by connectionId."""
     job_type: Optional[shared_jobtypeenum.JobTypeEnum] = dataclasses.field(default=None, metadata={'query_param': { 'field_name': 'jobType', 'style': 'form', 'explode': True }})
@@ -21,12 +21,15 @@ class ListJobsRequest:
     r"""Set the offset to start at when returning Jobs. The default is 0."""
     
 
+
+
+
 @dataclasses.dataclass
 class ListJobsResponse:
-    
     content_type: str = dataclasses.field()
     status_code: int = dataclasses.field()
     jobs_response: Optional[shared_jobsresponse.JobsResponse] = dataclasses.field(default=None)
     r"""List all the Jobs by connectionId."""
     raw_response: Optional[requests_http.Response] = dataclasses.field(default=None)
     
+

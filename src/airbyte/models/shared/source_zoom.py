@@ -11,11 +11,12 @@ class SourceZoomZoom(str, Enum):
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
+
 @dataclasses.dataclass
 class SourceZoom:
     r"""The values required to configure the source."""
-    
     jwt_token: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('jwt_token') }})
     r"""JWT Token"""
     source_type: SourceZoomZoom = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     
+

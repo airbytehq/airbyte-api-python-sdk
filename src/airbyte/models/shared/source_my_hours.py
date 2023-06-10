@@ -12,10 +12,10 @@ class SourceMyHoursMyHours(str, Enum):
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
+
 @dataclasses.dataclass
 class SourceMyHours:
     r"""The values required to configure the source."""
-    
     email: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('email') }})
     r"""Your My Hours username"""
     password: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('password') }})
@@ -26,3 +26,4 @@ class SourceMyHours:
     logs_batch_size: Optional[int] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('logs_batch_size'), 'exclude': lambda f: f is None }})
     r"""Pagination size used for retrieving logs in days"""
     
+

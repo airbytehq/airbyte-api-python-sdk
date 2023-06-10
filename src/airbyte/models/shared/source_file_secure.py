@@ -23,55 +23,61 @@ class SourceFileSecureProviderSFTPSecureFileTransferProtocolStorage(str, Enum):
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
+
 @dataclasses.dataclass
 class SourceFileSecureProviderSFTPSecureFileTransferProtocol:
     r"""The storage Provider or Location of the file(s) which should be replicated."""
-    
     host: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('host') }})
     storage: SourceFileSecureProviderSFTPSecureFileTransferProtocolStorage = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('storage') }})
     user: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('user') }})
     password: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('password'), 'exclude': lambda f: f is None }})
     port: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('port'), 'exclude': lambda f: f is None }})
     
+
+
 class SourceFileSecureProviderSCPSecureCopyProtocolStorage(str, Enum):
     SCP = 'SCP'
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
+
 @dataclasses.dataclass
 class SourceFileSecureProviderSCPSecureCopyProtocol:
     r"""The storage Provider or Location of the file(s) which should be replicated."""
-    
     host: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('host') }})
     storage: SourceFileSecureProviderSCPSecureCopyProtocolStorage = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('storage') }})
     user: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('user') }})
     password: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('password'), 'exclude': lambda f: f is None }})
     port: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('port'), 'exclude': lambda f: f is None }})
     
+
+
 class SourceFileSecureProviderSSHSecureShellStorage(str, Enum):
     SSH = 'SSH'
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
+
 @dataclasses.dataclass
 class SourceFileSecureProviderSSHSecureShell:
     r"""The storage Provider or Location of the file(s) which should be replicated."""
-    
     host: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('host') }})
     storage: SourceFileSecureProviderSSHSecureShellStorage = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('storage') }})
     user: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('user') }})
     password: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('password'), 'exclude': lambda f: f is None }})
     port: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('port'), 'exclude': lambda f: f is None }})
     
+
+
 class SourceFileSecureProviderAzBlobAzureBlobStorageStorage(str, Enum):
     AZ_BLOB = 'AzBlob'
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
+
 @dataclasses.dataclass
 class SourceFileSecureProviderAzBlobAzureBlobStorage:
     r"""The storage Provider or Location of the file(s) which should be replicated."""
-    
     storage: SourceFileSecureProviderAzBlobAzureBlobStorageStorage = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('storage') }})
     storage_account: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('storage_account') }})
     r"""The globally unique name of the storage account that the desired blob sits within. See <a href=\\"https://docs.microsoft.com/en-us/azure/storage/common/storage-account-overview\\" target=\\"_blank\\">here</a> for more details."""
@@ -80,56 +86,64 @@ class SourceFileSecureProviderAzBlobAzureBlobStorage:
     shared_key: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('shared_key'), 'exclude': lambda f: f is None }})
     r"""To access Azure Blob Storage, this connector would need credentials with the proper permissions. One option is a storage account shared key (aka account key or access key). If accessing publicly available data, this field is not necessary."""
     
+
+
 class SourceFileSecureProviderS3AmazonWebServicesStorage(str, Enum):
     S3 = 'S3'
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
+
 @dataclasses.dataclass
 class SourceFileSecureProviderS3AmazonWebServices:
     r"""The storage Provider or Location of the file(s) which should be replicated."""
-    
     storage: SourceFileSecureProviderS3AmazonWebServicesStorage = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('storage') }})
     aws_access_key_id: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('aws_access_key_id'), 'exclude': lambda f: f is None }})
     r"""In order to access private Buckets stored on AWS S3, this connector would need credentials with the proper permissions. If accessing publicly available data, this field is not necessary."""
     aws_secret_access_key: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('aws_secret_access_key'), 'exclude': lambda f: f is None }})
     r"""In order to access private Buckets stored on AWS S3, this connector would need credentials with the proper permissions. If accessing publicly available data, this field is not necessary."""
     
+
+
 class SourceFileSecureProviderGCSGoogleCloudStorageStorage(str, Enum):
     GCS = 'GCS'
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
+
 @dataclasses.dataclass
 class SourceFileSecureProviderGCSGoogleCloudStorage:
     r"""The storage Provider or Location of the file(s) which should be replicated."""
-    
     storage: SourceFileSecureProviderGCSGoogleCloudStorageStorage = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('storage') }})
     service_account_json: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('service_account_json'), 'exclude': lambda f: f is None }})
     r"""In order to access private Buckets stored on Google Cloud, this connector would need a service account json credentials with the proper permissions as described <a href=\\"https://cloud.google.com/iam/docs/service-accounts\\" target=\\"_blank\\">here</a>. Please generate the credentials.json file and copy/paste its content to this field (expecting JSON formats). If accessing publicly available data, this field is not necessary."""
     
+
+
 class SourceFileSecureProviderHTTPSPublicWebStorage(str, Enum):
     HTTPS = 'HTTPS'
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
+
 @dataclasses.dataclass
 class SourceFileSecureProviderHTTPSPublicWeb:
     r"""The storage Provider or Location of the file(s) which should be replicated."""
-    
     storage: SourceFileSecureProviderHTTPSPublicWebStorage = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('storage') }})
     user_agent: Optional[bool] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('user_agent'), 'exclude': lambda f: f is None }})
     r"""Add User-Agent to request"""
     
+
+
 class SourceFileSecureFileSecure(str, Enum):
     FILE_SECURE = 'file-secure'
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
+
 @dataclasses.dataclass
 class SourceFileSecure:
     r"""The values required to configure the source."""
-    
     dataset_name: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('dataset_name') }})
     r"""The Name of the final table to replicate this file into (should include letters, numbers dash and underscores only)."""
     format: SourceFileSecureFileFormat = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('format') }})
@@ -142,3 +156,4 @@ class SourceFileSecure:
     reader_options: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('reader_options'), 'exclude': lambda f: f is None }})
     r"""This should be a string in JSON format. It depends on the chosen file format to provide additional options and tune its behavior."""
     
+

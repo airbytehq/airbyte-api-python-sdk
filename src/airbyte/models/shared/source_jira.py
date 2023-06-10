@@ -15,10 +15,10 @@ class SourceJiraJira(str, Enum):
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
+
 @dataclasses.dataclass
 class SourceJira:
     r"""The values required to configure the source."""
-    
     api_token: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('api_token') }})
     r"""Jira API Token. See the <a href=\\"https://docs.airbyte.com/integrations/sources/jira\\">docs</a> for more information on how to generate this key. API Token is used for Authorization to your account by BasicAuth."""
     domain: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('domain') }})
@@ -37,3 +37,4 @@ class SourceJira:
     start_date: Optional[datetime] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('start_date'), 'encoder': utils.datetimeisoformat(True), 'decoder': dateutil.parser.isoparse, 'mm_field': fields.DateTime(format='iso'), 'exclude': lambda f: f is None }})
     r"""The date from which you want to replicate data from Jira, use the format YYYY-MM-DDT00:00:00Z. Note that this field only applies to certain streams, and only data generated on or after the start date will be replicated. Or leave it empty if you want to replicate all data. For more information, refer to the <a href=\\"https://docs.airbyte.com/integrations/sources/jira/\\">documentation</a>."""
     
+

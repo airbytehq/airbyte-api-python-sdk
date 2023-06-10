@@ -12,10 +12,10 @@ class SourcePexelsAPIPexelsAPI(str, Enum):
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
+
 @dataclasses.dataclass
 class SourcePexelsAPI:
     r"""The values required to configure the source."""
-    
     api_key: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('api_key') }})
     r"""API key is required to access pexels api, For getting your's goto https://www.pexels.com/api/documentation and create account for free."""
     query: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('query') }})
@@ -30,3 +30,4 @@ class SourcePexelsAPI:
     size: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('size'), 'exclude': lambda f: f is None }})
     r"""Optional, Minimum photo size. The current supported sizes are large(24MP), medium(12MP) or small(4MP)."""
     
+

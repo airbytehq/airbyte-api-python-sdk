@@ -99,10 +99,10 @@ class SourceGnewsTopHeadlinesTopic(str, Enum):
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
+
 @dataclasses.dataclass
 class SourceGnews:
     r"""The values required to configure the source."""
-    
     api_key: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('api_key') }})
     r"""API Key"""
     query: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('query') }})
@@ -157,3 +157,4 @@ class SourceGnews:
     top_headlines_topic: Optional[SourceGnewsTopHeadlinesTopic] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('top_headlines_topic'), 'exclude': lambda f: f is None }})
     r"""This parameter allows you to change the category for the request."""
     
+

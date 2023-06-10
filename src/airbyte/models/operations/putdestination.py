@@ -8,19 +8,22 @@ from ..shared import destinationresponse as shared_destinationresponse
 from typing import Optional
 
 
+
 @dataclasses.dataclass
 class PutDestinationRequest:
-    
     destination_id: str = dataclasses.field(metadata={'path_param': { 'field_name': 'destinationId', 'style': 'simple', 'explode': False }})
     destination_put_request: Optional[shared_destinationputrequest.DestinationPutRequest] = dataclasses.field(default=None, metadata={'request': { 'media_type': 'application/json' }})
     
 
+
+
+
 @dataclasses.dataclass
 class PutDestinationResponse:
-    
     content_type: str = dataclasses.field()
     status_code: int = dataclasses.field()
     destination_response: Optional[shared_destinationresponse.DestinationResponse] = dataclasses.field(default=None)
     r"""Update a Destination and fully overwrite it"""
     raw_response: Optional[requests_http.Response] = dataclasses.field(default=None)
     
+

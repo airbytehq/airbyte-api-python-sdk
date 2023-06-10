@@ -15,10 +15,10 @@ class SourcePaypalTransactionPaypalTransaction(str, Enum):
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
+
 @dataclasses.dataclass
 class SourcePaypalTransaction:
     r"""The values required to configure the source."""
-    
     is_sandbox: bool = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('is_sandbox') }})
     r"""Determines whether to use the sandbox or production environment."""
     source_type: SourcePaypalTransactionPaypalTransaction = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
@@ -31,3 +31,4 @@ class SourcePaypalTransaction:
     refresh_token: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('refresh_token'), 'exclude': lambda f: f is None }})
     r"""The key to refresh the expired access token."""
     
+

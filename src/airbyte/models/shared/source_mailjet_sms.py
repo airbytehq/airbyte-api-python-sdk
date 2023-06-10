@@ -12,10 +12,10 @@ class SourceMailjetSmsMailjetSms(str, Enum):
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
+
 @dataclasses.dataclass
 class SourceMailjetSms:
     r"""The values required to configure the source."""
-    
     source_type: SourceMailjetSmsMailjetSms = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     token: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('token') }})
     r"""Your access token. See <a href=\\"https://dev.mailjet.com/sms/reference/overview/authentication\\">here</a>."""
@@ -24,3 +24,4 @@ class SourceMailjetSms:
     start_date: Optional[int] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('start_date'), 'exclude': lambda f: f is None }})
     r"""Retrieve SMS messages created after the specified timestamp. Required format - Unix timestamp."""
     
+

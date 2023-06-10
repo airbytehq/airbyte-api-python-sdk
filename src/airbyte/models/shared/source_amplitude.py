@@ -17,10 +17,10 @@ class SourceAmplitudeAmplitude(str, Enum):
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
+
 @dataclasses.dataclass
 class SourceAmplitude:
     r"""The values required to configure the source."""
-    
     api_key: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('api_key') }})
     r"""Amplitude API Key. See the <a href=\\"https://docs.airbyte.com/integrations/sources/amplitude#setup-guide\\">setup guide</a> for more information on how to obtain this key."""
     secret_key: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('secret_key') }})
@@ -33,3 +33,4 @@ class SourceAmplitude:
     request_time_range: Optional[int] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('request_time_range'), 'exclude': lambda f: f is None }})
     r"""According to <a href=\\"https://www.docs.developers.amplitude.com/analytics/apis/export-api/#considerations\\">Considerations</a> too big time range in request can cause a timeout error. In this case, set shorter time interval in hours."""
     
+

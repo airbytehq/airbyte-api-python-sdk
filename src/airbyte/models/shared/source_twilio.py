@@ -15,10 +15,10 @@ class SourceTwilioTwilio(str, Enum):
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
+
 @dataclasses.dataclass
 class SourceTwilio:
     r"""The values required to configure the source."""
-    
     account_sid: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('account_sid') }})
     r"""Twilio account SID"""
     auth_token: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_token') }})
@@ -29,3 +29,4 @@ class SourceTwilio:
     lookback_window: Optional[int] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('lookback_window'), 'exclude': lambda f: f is None }})
     r"""How far into the past to look for records. (in minutes)"""
     
+

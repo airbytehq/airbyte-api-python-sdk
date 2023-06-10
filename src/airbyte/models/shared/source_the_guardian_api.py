@@ -12,10 +12,10 @@ class SourceTheGuardianAPITheGuardianAPI(str, Enum):
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
+
 @dataclasses.dataclass
 class SourceTheGuardianAPI:
     r"""The values required to configure the source."""
-    
     api_key: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('api_key') }})
     r"""Your API Key. See <a href=\\"https://open-platform.theguardian.com/access/\\">here</a>. The key is case sensitive."""
     source_type: SourceTheGuardianAPITheGuardianAPI = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
@@ -30,3 +30,4 @@ class SourceTheGuardianAPI:
     tag: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('tag'), 'exclude': lambda f: f is None }})
     r"""(Optional) A tag is a piece of data that is used by The Guardian to categorise content. Use this parameter to filter results by showing only the ones matching the entered tag. See <a href=\\"https://content.guardianapis.com/tags?api-key=test\\">here</a> for a list of all tags, and <a href=\\"https://open-platform.theguardian.com/documentation/tag\\">here</a> for the tags endpoint documentation."""
     
+

@@ -12,10 +12,10 @@ class SourceNetsuiteNetsuite(str, Enum):
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
+
 @dataclasses.dataclass
 class SourceNetsuite:
     r"""The values required to configure the source."""
-    
     consumer_key: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('consumer_key') }})
     r"""Consumer key associated with your integration"""
     consumer_secret: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('consumer_secret') }})
@@ -34,3 +34,4 @@ class SourceNetsuite:
     window_in_days: Optional[int] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('window_in_days'), 'exclude': lambda f: f is None }})
     r"""The amount of days used to query the data with date chunks. Set smaller value, if you have lots of data."""
     
+

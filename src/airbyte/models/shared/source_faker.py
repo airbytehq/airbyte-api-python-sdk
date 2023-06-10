@@ -12,10 +12,10 @@ class SourceFakerFaker(str, Enum):
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
+
 @dataclasses.dataclass
 class SourceFaker:
     r"""The values required to configure the source."""
-    
     count: int = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('count') }})
     r"""How many users should be generated in total.  This setting does not apply to the purchases or products stream."""
     source_type: SourceFakerFaker = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
@@ -28,3 +28,4 @@ class SourceFaker:
     seed: Optional[int] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('seed'), 'exclude': lambda f: f is None }})
     r"""Manually control the faker random seed to return the same values on subsequent runs (leave -1 for random)"""
     
+

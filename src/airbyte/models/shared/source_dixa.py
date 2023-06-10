@@ -12,10 +12,10 @@ class SourceDixaDixa(str, Enum):
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
+
 @dataclasses.dataclass
 class SourceDixa:
     r"""The values required to configure the source."""
-    
     api_token: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('api_token') }})
     r"""Dixa API token"""
     source_type: SourceDixaDixa = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
@@ -24,3 +24,4 @@ class SourceDixa:
     batch_size: Optional[int] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('batch_size'), 'exclude': lambda f: f is None }})
     r"""Number of days to batch into one request. Max 31."""
     
+

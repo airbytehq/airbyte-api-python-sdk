@@ -11,11 +11,12 @@ class SourceK6CloudK6Cloud(str, Enum):
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
+
 @dataclasses.dataclass
 class SourceK6Cloud:
     r"""The values required to configure the source."""
-    
     api_token: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('api_token') }})
     r"""Your API Token. See <a href=\\"https://k6.io/docs/cloud/integrations/token/\\">here</a>. The key is case sensitive."""
     source_type: SourceK6CloudK6Cloud = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     
+

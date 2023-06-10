@@ -7,9 +7,9 @@ from ..shared import workspacesresponse as shared_workspacesresponse
 from typing import Optional
 
 
+
 @dataclasses.dataclass
 class ListWorkspacesRequest:
-    
     include_deleted: Optional[bool] = dataclasses.field(default=None, metadata={'query_param': { 'field_name': 'includeDeleted', 'style': 'form', 'explode': True }})
     r"""Include deleted workspaces in the returned results."""
     limit: Optional[int] = dataclasses.field(default=None, metadata={'query_param': { 'field_name': 'limit', 'style': 'form', 'explode': True }})
@@ -20,12 +20,15 @@ class ListWorkspacesRequest:
     r"""The UUIDs of the workspaces you wish to fetch. Empty list will retrieve all allowed workspaces."""
     
 
+
+
+
 @dataclasses.dataclass
 class ListWorkspacesResponse:
-    
     content_type: str = dataclasses.field()
     status_code: int = dataclasses.field()
     raw_response: Optional[requests_http.Response] = dataclasses.field(default=None)
     workspaces_response: Optional[shared_workspacesresponse.WorkspacesResponse] = dataclasses.field(default=None)
     r"""Successful operation"""
     
+

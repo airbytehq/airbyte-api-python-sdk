@@ -15,21 +15,23 @@ class SourceGitlabCredentialsPrivateTokenAuthType(str, Enum):
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
+
 @dataclasses.dataclass
 class SourceGitlabCredentialsPrivateToken:
-    
     access_token: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('access_token') }})
     r"""Log into your Gitlab account and then generate a personal Access Token."""
     auth_type: Optional[SourceGitlabCredentialsPrivateTokenAuthType] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_type'), 'exclude': lambda f: f is None }})
     
+
+
 class SourceGitlabCredentialsOAuth20AuthType(str, Enum):
     OAUTH2_0 = 'oauth2.0'
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
+
 @dataclasses.dataclass
 class SourceGitlabCredentialsOAuth20:
-    
     access_token: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('access_token') }})
     r"""Access Token for making authenticated requests."""
     client_id: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('client_id') }})
@@ -42,15 +44,17 @@ class SourceGitlabCredentialsOAuth20:
     r"""The date-time when the access token should be refreshed."""
     auth_type: Optional[SourceGitlabCredentialsOAuth20AuthType] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_type'), 'exclude': lambda f: f is None }})
     
+
+
 class SourceGitlabGitlab(str, Enum):
     GITLAB = 'gitlab'
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
+
 @dataclasses.dataclass
 class SourceGitlab:
     r"""The values required to configure the source."""
-    
     api_url: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('api_url') }})
     r"""Please enter your basic URL from GitLab instance."""
     credentials: Any = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credentials') }})
@@ -62,3 +66,4 @@ class SourceGitlab:
     projects: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('projects'), 'exclude': lambda f: f is None }})
     r"""Space-delimited list of projects. e.g. airbyte.io/documentation meltano/tap-gitlab."""
     
+

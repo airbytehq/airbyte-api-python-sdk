@@ -14,10 +14,10 @@ class SourceSonarCloudSonarCloud(str, Enum):
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
+
 @dataclasses.dataclass
 class SourceSonarCloud:
     r"""The values required to configure the source."""
-    
     component_keys: list[Any] = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('component_keys') }})
     r"""Comma-separated list of component keys."""
     organization: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('organization') }})
@@ -30,3 +30,4 @@ class SourceSonarCloud:
     start_date: Optional[date] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('start_date'), 'encoder': utils.dateisoformat(True), 'decoder': utils.datefromisoformat, 'mm_field': fields.DateTime(format='iso'), 'exclude': lambda f: f is None }})
     r"""To retrieve issues created after the given date (inclusive)."""
     
+

@@ -14,10 +14,10 @@ class SourceAircallAircall(str, Enum):
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
+
 @dataclasses.dataclass
 class SourceAircall:
     r"""The values required to configure the source."""
-    
     api_id: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('api_id') }})
     r"""App ID found at settings https://dashboard.aircall.io/integrations/api-keys"""
     api_token: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('api_token') }})
@@ -26,3 +26,4 @@ class SourceAircall:
     start_date: datetime = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('start_date'), 'encoder': utils.datetimeisoformat(False), 'decoder': dateutil.parser.isoparse, 'mm_field': fields.DateTime(format='iso') }})
     r"""Date time filter for incremental filter, Specify which date to extract from."""
     
+

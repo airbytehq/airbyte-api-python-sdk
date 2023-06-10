@@ -12,10 +12,10 @@ class DestinationRocksetRockset(str, Enum):
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
+
 @dataclasses.dataclass
 class DestinationRockset:
     r"""The values required to configure the destination."""
-    
     api_key: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('api_key') }})
     r"""Rockset api key"""
     destination_type: DestinationRocksetRockset = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('destinationType') }})
@@ -24,3 +24,4 @@ class DestinationRockset:
     api_server: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('api_server'), 'exclude': lambda f: f is None }})
     r"""Rockset api URL"""
     
+
