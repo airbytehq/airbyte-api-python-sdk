@@ -8,4 +8,5 @@ import dataclasses
 @dataclasses.dataclass
 class OAuthCredentialsConfiguration:
     r"""The configuration for this source/destination based on the OAuth section of the relevant specification."""
-    pass
+    
+
