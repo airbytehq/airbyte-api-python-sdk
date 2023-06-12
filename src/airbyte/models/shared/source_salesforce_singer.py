@@ -17,10 +17,10 @@ class SourceSalesforceSingerSalesforceSinger(str, Enum):
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
+
 @dataclasses.dataclass
 class SourceSalesforceSinger:
     r"""The values required to configure the source."""
-    
     api_type: SourceSalesforceSingerAPIType = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('api_type') }})
     r"""Unless you know that you are transferring a very small amount of data, prefer using the BULK API. This will help avoid using up all of your API call quota with Salesforce. Valid values are BULK or REST."""
     client_id: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('client_id') }})
@@ -39,3 +39,4 @@ class SourceSalesforceSinger:
     quota_percent_total: Optional[float] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('quota_percent_total'), 'exclude': lambda f: f is None }})
     r"""Determines the maximum allowed API quota percentage the connector is allowed to consume at any time"""
     
+

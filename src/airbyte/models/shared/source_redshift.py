@@ -12,10 +12,10 @@ class SourceRedshiftRedshift(str, Enum):
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
+
 @dataclasses.dataclass
 class SourceRedshift:
     r"""The values required to configure the source."""
-    
     database: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('database') }})
     r"""Name of the database."""
     host: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('host') }})
@@ -32,3 +32,4 @@ class SourceRedshift:
     schemas: Optional[list[str]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('schemas'), 'exclude': lambda f: f is None }})
     r"""The list of schemas to sync from. Specify one or more explicitly or keep empty to process all schemas. Schema names are case sensitive."""
     
+

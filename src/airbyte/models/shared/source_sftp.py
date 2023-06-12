@@ -13,39 +13,43 @@ class SourceSftpCredentialsSSHKeyAuthenticationAuthMethod(str, Enum):
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
+
 @dataclasses.dataclass
 class SourceSftpCredentialsSSHKeyAuthentication:
     r"""The server authentication method"""
-    
     auth_method: SourceSftpCredentialsSSHKeyAuthenticationAuthMethod = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_method') }})
     r"""Connect through ssh key"""
     auth_ssh_key: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_ssh_key') }})
     r"""OS-level user account ssh key credentials in RSA PEM format ( created with ssh-keygen -t rsa -m PEM -f myuser_rsa )"""
     
+
+
 class SourceSftpCredentialsPasswordAuthenticationAuthMethod(str, Enum):
     r"""Connect through password authentication"""
     SSH_PASSWORD_AUTH = 'SSH_PASSWORD_AUTH'
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
+
 @dataclasses.dataclass
 class SourceSftpCredentialsPasswordAuthentication:
     r"""The server authentication method"""
-    
     auth_method: SourceSftpCredentialsPasswordAuthenticationAuthMethod = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_method') }})
     r"""Connect through password authentication"""
     auth_user_password: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_user_password') }})
     r"""OS-level password for logging into the jump server host"""
     
+
+
 class SourceSftpSftp(str, Enum):
     SFTP = 'sftp'
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
+
 @dataclasses.dataclass
 class SourceSftp:
     r"""The values required to configure the source."""
-    
     host: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('host') }})
     r"""The server host address"""
     port: int = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('port') }})
@@ -62,3 +66,4 @@ class SourceSftp:
     folder_path: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('folder_path'), 'exclude': lambda f: f is None }})
     r"""The directory to search files for sync"""
     
+

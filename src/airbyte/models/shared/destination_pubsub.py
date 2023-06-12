@@ -12,10 +12,10 @@ class DestinationPubsubPubsub(str, Enum):
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
+
 @dataclasses.dataclass
 class DestinationPubsub:
     r"""The values required to configure the destination."""
-    
     batching_enabled: bool = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('batching_enabled') }})
     r"""If TRUE messages will be buffered instead of sending them one by one"""
     credentials_json: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credentials_json') }})
@@ -34,3 +34,4 @@ class DestinationPubsub:
     batching_request_bytes_threshold: Optional[int] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('batching_request_bytes_threshold'), 'exclude': lambda f: f is None }})
     r"""Number of bytes before the buffer is flushed"""
     
+

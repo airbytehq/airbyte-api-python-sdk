@@ -15,10 +15,10 @@ class SourceFreshdeskFreshdesk(str, Enum):
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
+
 @dataclasses.dataclass
 class SourceFreshdesk:
     r"""The values required to configure the source."""
-    
     api_key: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('api_key') }})
     r"""Freshdesk API Key. See the <a href=\\"https://docs.airbyte.com/integrations/sources/freshdesk\\">docs</a> for more information on how to obtain this key."""
     domain: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('domain') }})
@@ -29,3 +29,4 @@ class SourceFreshdesk:
     start_date: Optional[datetime] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('start_date'), 'encoder': utils.datetimeisoformat(True), 'decoder': dateutil.parser.isoparse, 'mm_field': fields.DateTime(format='iso'), 'exclude': lambda f: f is None }})
     r"""UTC date and time. Any data created after this date will be replicated. If this parameter is not set, all data will be replicated."""
     
+

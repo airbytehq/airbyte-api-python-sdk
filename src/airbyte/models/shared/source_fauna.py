@@ -12,6 +12,7 @@ class SourceFaunaCollectionDeletionsEnabledDeletionMode(str, Enum):
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
+
 @dataclasses.dataclass
 class SourceFaunaCollectionDeletionsEnabled:
     r"""<b>This only applies to incremental syncs.</b> <br>
@@ -19,16 +20,18 @@ class SourceFaunaCollectionDeletionsEnabled:
     Disabled - Leave this feature disabled, and ignore deleted documents.<br>
     Enabled - Enables this feature. When a document is deleted, the connector exports a record with a \"deleted at\" column containing the time that the document was deleted.
     """
-    
     column: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('column') }})
     r"""Name of the \\"deleted at\\" column."""
     deletion_mode: SourceFaunaCollectionDeletionsEnabledDeletionMode = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('deletion_mode') }})
     
+
+
 class SourceFaunaCollectionDeletionsDisabledDeletionMode(str, Enum):
     IGNORE = 'ignore'
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
+
 @dataclasses.dataclass
 class SourceFaunaCollectionDeletionsDisabled:
     r"""<b>This only applies to incremental syncs.</b> <br>
@@ -36,15 +39,16 @@ class SourceFaunaCollectionDeletionsDisabled:
     Disabled - Leave this feature disabled, and ignore deleted documents.<br>
     Enabled - Enables this feature. When a document is deleted, the connector exports a record with a \"deleted at\" column containing the time that the document was deleted.
     """
-    
     deletion_mode: SourceFaunaCollectionDeletionsDisabledDeletionMode = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('deletion_mode') }})
     
 
+
+
 @dataclass_json(undefined=Undefined.EXCLUDE)
+
 @dataclasses.dataclass
 class SourceFaunaCollection:
     r"""Settings for the Fauna Collection."""
-    
     deletions: Any = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('deletions') }})
     r"""<b>This only applies to incremental syncs.</b> <br>
     Enabling deletion mode informs your destination of deleted documents.<br>
@@ -57,15 +61,17 @@ class SourceFaunaCollection:
     See <a href=\"https://docs.fauna.com/fauna/current/learn/understanding/types#page\">the docs</a>.
     """
     
+
+
 class SourceFaunaFauna(str, Enum):
     FAUNA = 'fauna'
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
+
 @dataclasses.dataclass
 class SourceFauna:
     r"""The values required to configure the source."""
-    
     domain: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('domain') }})
     r"""Domain of Fauna to query. Defaults db.fauna.com. See <a href=https://docs.fauna.com/fauna/current/learn/understanding/region_groups#how-to-use-region-groups>the docs</a>."""
     port: int = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('port') }})
@@ -78,3 +84,4 @@ class SourceFauna:
     collection: Optional[SourceFaunaCollection] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('collection'), 'exclude': lambda f: f is None }})
     r"""Settings for the Fauna Collection."""
     
+

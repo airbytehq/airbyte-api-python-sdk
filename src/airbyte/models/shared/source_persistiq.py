@@ -11,11 +11,12 @@ class SourcePersistiqPersistiq(str, Enum):
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
+
 @dataclasses.dataclass
 class SourcePersistiq:
     r"""The values required to configure the source."""
-    
     api_key: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('api_key') }})
     r"""PersistIq API Key. See the <a href=\\"https://apidocs.persistiq.com/#authentication\\">docs</a> for more information on where to find that key."""
     source_type: SourcePersistiqPersistiq = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     
+

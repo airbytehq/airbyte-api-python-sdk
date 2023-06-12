@@ -20,10 +20,10 @@ class SourceSftpBulkSftpBulk(str, Enum):
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
+
 @dataclasses.dataclass
 class SourceSftpBulk:
     r"""The values required to configure the source."""
-    
     folder_path: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('folder_path') }})
     r"""The directory to search files for sync"""
     host: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('host') }})
@@ -50,3 +50,4 @@ class SourceSftpBulk:
     separator: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('separator'), 'exclude': lambda f: f is None }})
     r"""The separator used in the CSV files. Define None if you want to use the Sniffer functionality"""
     
+

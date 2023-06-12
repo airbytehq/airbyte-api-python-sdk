@@ -1,0 +1,11 @@
+# DestinationAwsDatalakeCredentialsIAMRole
+
+Choose How to Authenticate to AWS.
+
+
+## Fields
+
+| Field                                                                                                                                       | Type                                                                                                                                        | Required                                                                                                                                    | Description                                                                                                                                 |
+| ------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------- |
+| `credentials_title`                                                                                                                         | [DestinationAwsDatalakeCredentialsIAMRoleCredentialsTitle](../../models/shared/destinationawsdatalakecredentialsiamrolecredentialstitle.md) | :heavy_check_mark:                                                                                                                          | Name of the credentials                                                                                                                     |
+| `role_arn`                                                                                                                                  | *str*                                                                                                                                       | :heavy_check_mark:                                                                                                                          | Will assume this role to write data to s3                                                                                                   |

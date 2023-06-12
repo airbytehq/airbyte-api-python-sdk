@@ -7,9 +7,9 @@ from ..shared import destinationsresponse as shared_destinationsresponse
 from typing import Optional
 
 
+
 @dataclasses.dataclass
 class ListDestinationsRequest:
-    
     include_deleted: Optional[bool] = dataclasses.field(default=None, metadata={'query_param': { 'field_name': 'includeDeleted', 'style': 'form', 'explode': True }})
     r"""Include deleted destinations in the returned results."""
     limit: Optional[int] = dataclasses.field(default=None, metadata={'query_param': { 'field_name': 'limit', 'style': 'form', 'explode': True }})
@@ -20,12 +20,15 @@ class ListDestinationsRequest:
     r"""The UUIDs of the workspaces you wish to list destinations for. Empty list will retrieve all allowed workspaces."""
     
 
+
+
+
 @dataclasses.dataclass
 class ListDestinationsResponse:
-    
     content_type: str = dataclasses.field()
     status_code: int = dataclasses.field()
     destinations_response: Optional[shared_destinationsresponse.DestinationsResponse] = dataclasses.field(default=None)
     r"""Successful operation"""
     raw_response: Optional[requests_http.Response] = dataclasses.field(default=None)
     
+

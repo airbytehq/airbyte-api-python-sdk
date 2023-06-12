@@ -7,9 +7,9 @@ from ..shared import sourcesresponse as shared_sourcesresponse
 from typing import Optional
 
 
+
 @dataclasses.dataclass
 class ListSourcesRequest:
-    
     include_deleted: Optional[bool] = dataclasses.field(default=None, metadata={'query_param': { 'field_name': 'includeDeleted', 'style': 'form', 'explode': True }})
     r"""Include deleted sources in the returned results."""
     limit: Optional[int] = dataclasses.field(default=None, metadata={'query_param': { 'field_name': 'limit', 'style': 'form', 'explode': True }})
@@ -20,12 +20,15 @@ class ListSourcesRequest:
     r"""The UUIDs of the workspaces you wish to list sources for. Empty list will retrieve all allowed workspaces."""
     
 
+
+
+
 @dataclasses.dataclass
 class ListSourcesResponse:
-    
     content_type: str = dataclasses.field()
     status_code: int = dataclasses.field()
     raw_response: Optional[requests_http.Response] = dataclasses.field(default=None)
     sources_response: Optional[shared_sourcesresponse.SourcesResponse] = dataclasses.field(default=None)
     r"""Successful operation"""
     
+

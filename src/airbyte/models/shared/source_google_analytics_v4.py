@@ -12,23 +12,25 @@ class SourceGoogleAnalyticsV4CredentialsServiceAccountKeyAuthenticationAuthType(
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
+
 @dataclasses.dataclass
 class SourceGoogleAnalyticsV4CredentialsServiceAccountKeyAuthentication:
     r"""Credentials for the service"""
-    
     credentials_json: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credentials_json') }})
     r"""The JSON key of the service account to use for authorization"""
     auth_type: Optional[SourceGoogleAnalyticsV4CredentialsServiceAccountKeyAuthenticationAuthType] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_type'), 'exclude': lambda f: f is None }})
     
+
+
 class SourceGoogleAnalyticsV4CredentialsAuthenticateViaGoogleOauthAuthType(str, Enum):
     CLIENT = 'Client'
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
+
 @dataclasses.dataclass
 class SourceGoogleAnalyticsV4CredentialsAuthenticateViaGoogleOauth:
     r"""Credentials for the service"""
-    
     client_id: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('client_id') }})
     r"""The Client ID of your Google Analytics developer application."""
     client_secret: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('client_secret') }})
@@ -39,15 +41,17 @@ class SourceGoogleAnalyticsV4CredentialsAuthenticateViaGoogleOauth:
     r"""Access Token for making authenticated requests."""
     auth_type: Optional[SourceGoogleAnalyticsV4CredentialsAuthenticateViaGoogleOauthAuthType] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_type'), 'exclude': lambda f: f is None }})
     
+
+
 class SourceGoogleAnalyticsV4GoogleAnalyticsV4(str, Enum):
     GOOGLE_ANALYTICS_V4 = 'google-analytics-v4'
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
+
 @dataclasses.dataclass
 class SourceGoogleAnalyticsV4:
     r"""The values required to configure the source."""
-    
     source_type: SourceGoogleAnalyticsV4GoogleAnalyticsV4 = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     start_date: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('start_date') }})
     r"""The date in the format YYYY-MM-DD. Any data before this date will not be replicated."""
@@ -60,3 +64,4 @@ class SourceGoogleAnalyticsV4:
     window_in_days: Optional[int] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('window_in_days'), 'exclude': lambda f: f is None }})
     r"""The time increment used by the connector when requesting data from the Google Analytics API. More information is available in the <a href=\\"https://docs.airbyte.com/integrations/sources/google-analytics-v4/#sampling-in-reports\\">the docs</a>. The bigger this value is, the faster the sync will be, but the more likely that sampling will be applied to your data, potentially causing inaccuracies in the returned results. We recommend setting this to 1 unless you have a hard requirement to make the sync faster at the expense of accuracy. The minimum allowed value for this field is 1, and the maximum is 364."""
     
+

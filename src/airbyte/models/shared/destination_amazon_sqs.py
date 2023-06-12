@@ -40,10 +40,10 @@ class DestinationAmazonSqsAWSRegion(str, Enum):
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
+
 @dataclasses.dataclass
 class DestinationAmazonSqs:
     r"""The values required to configure the destination."""
-    
     destination_type: DestinationAmazonSqsAmazonSqs = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('destinationType') }})
     queue_url: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('queue_url') }})
     r"""URL of the SQS Queue"""
@@ -60,3 +60,4 @@ class DestinationAmazonSqs:
     secret_key: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('secret_key'), 'exclude': lambda f: f is None }})
     r"""The Secret Key of the AWS IAM Role to use for sending messages"""
     
+

@@ -40,10 +40,10 @@ class SourceAmazonSqsAmazonSqs(str, Enum):
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
+
 @dataclasses.dataclass
 class SourceAmazonSqs:
     r"""The values required to configure the source."""
-    
     delete_messages: bool = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('delete_messages') }})
     r"""If Enabled, messages will be deleted from the SQS Queue after being read. If Disabled, messages are left in the queue and can be read more than once. WARNING: Enabling this option can result in data loss in cases of failure, use with caution, see documentation for more detail."""
     queue_url: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('queue_url') }})
@@ -64,3 +64,4 @@ class SourceAmazonSqs:
     visibility_timeout: Optional[int] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('visibility_timeout'), 'exclude': lambda f: f is None }})
     r"""Modify the Visibility Timeout of the individual message from the Queue's default (seconds)."""
     
+

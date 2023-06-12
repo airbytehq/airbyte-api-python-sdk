@@ -13,10 +13,10 @@ class SourceWoocommerceWoocommerce(str, Enum):
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
+
 @dataclasses.dataclass
 class SourceWoocommerce:
     r"""The values required to configure the source."""
-    
     api_key: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('api_key') }})
     r"""Customer Key for API in WooCommerce shop"""
     api_secret: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('api_secret') }})
@@ -27,3 +27,4 @@ class SourceWoocommerce:
     start_date: date = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('start_date'), 'encoder': utils.dateisoformat(False), 'decoder': utils.datefromisoformat, 'mm_field': fields.DateTime(format='iso') }})
     r"""The date you would like to replicate data from. Format: YYYY-MM-DD"""
     
+

@@ -24,10 +24,10 @@ class SourceNytimesNytimes(str, Enum):
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
+
 @dataclasses.dataclass
 class SourceNytimes:
     r"""The values required to configure the source."""
-    
     api_key: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('api_key') }})
     r"""API Key"""
     period: SourceNytimesPeriodUsedForMostPopularStreams = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('period') }})
@@ -40,3 +40,4 @@ class SourceNytimes:
     share_type: Optional[SourceNytimesShareTypeUsedForMostPopularSharedStream] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('share_type'), 'exclude': lambda f: f is None }})
     r"""Share Type"""
     
+

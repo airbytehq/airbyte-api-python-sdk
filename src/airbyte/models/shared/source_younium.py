@@ -12,10 +12,10 @@ class SourceYouniumYounium(str, Enum):
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
+
 @dataclasses.dataclass
 class SourceYounium:
     r"""The values required to configure the source."""
-    
     legal_entity: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('legal_entity') }})
     r"""Legal Entity that data should be pulled from"""
     password: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('password') }})
@@ -26,3 +26,4 @@ class SourceYounium:
     playground: Optional[bool] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('playground'), 'exclude': lambda f: f is None }})
     r"""Property defining if connector is used against playground or production environment"""
     
+

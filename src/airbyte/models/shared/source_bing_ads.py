@@ -17,10 +17,10 @@ class SourceBingAdsBingAds(str, Enum):
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
+
 @dataclasses.dataclass
 class SourceBingAds:
     r"""The values required to configure the source."""
-    
     client_id: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('client_id') }})
     r"""The Client ID of your Microsoft Advertising developer application."""
     developer_token: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('developer_token') }})
@@ -38,3 +38,4 @@ class SourceBingAds:
     tenant_id: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('tenant_id'), 'exclude': lambda f: f is None }})
     r"""The Tenant ID of your Microsoft Advertising developer application. Set this to \\"common\\" unless you know you need a different value."""
     
+

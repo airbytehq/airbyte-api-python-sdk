@@ -1,0 +1,10 @@
+# DestinationSnowflakeLoadingMethodRecommendedInternalStaging
+
+Recommended for large production workloads for better speed and scalability.
+
+
+## Fields
+
+| Field                                                                                                                                                         | Type                                                                                                                                                          | Required                                                                                                                                                      | Description                                                                                                                                                   |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `method`                                                                                                                                                      | [DestinationSnowflakeLoadingMethodRecommendedInternalStagingMethod](../../models/shared/destinationsnowflakeloadingmethodrecommendedinternalstagingmethod.md) | :heavy_check_mark:                                                                                                                                            | N/A                                                                                                                                                           |

@@ -1,0 +1,11 @@
+# SourcePatchRequest
+
+
+## Fields
+
+| Field                                                                  | Type                                                                   | Required                                                               | Description                                                            | Example                                                                |
+| ---------------------------------------------------------------------- | ---------------------------------------------------------------------- | ---------------------------------------------------------------------- | ---------------------------------------------------------------------- | ---------------------------------------------------------------------- |
+| `configuration`                                                        | *Optional[Any]*                                                        | :heavy_minus_sign:                                                     | The values required to configure the source.                           |                                                                        |
+| `name`                                                                 | *Optional[str]*                                                        | :heavy_minus_sign:                                                     | N/A                                                                    | My source                                                              |
+| `secret_id`                                                            | *Optional[str]*                                                        | :heavy_minus_sign:                                                     | Optional secretID obtained through the public API OAuth redirect flow. |                                                                        |
+| `workspace_id`                                                         | *Optional[str]*                                                        | :heavy_minus_sign:                                                     | N/A                                                                    |                                                                        |

@@ -1,0 +1,11 @@
+# SourceSecoda
+
+The values required to configure the source.
+
+
+## Fields
+
+| Field                                                                                                                    | Type                                                                                                                     | Required                                                                                                                 | Description                                                                                                              |
+| ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------ |
+| `api_key`                                                                                                                | *str*                                                                                                                    | :heavy_check_mark:                                                                                                       | Your API Access Key. See <a href="https://docs.secoda.co/secoda-api/authentication">here</a>. The key is case sensitive. |
+| `source_type`                                                                                                            | [SourceSecodaSecoda](../../models/shared/sourcesecodasecoda.md)                                                          | :heavy_check_mark:                                                                                                       | N/A                                                                                                                      |

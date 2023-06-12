@@ -70,10 +70,10 @@ class SourceOpenweatherUnits(str, Enum):
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
+
 @dataclasses.dataclass
 class SourceOpenweather:
     r"""The values required to configure the source."""
-    
     appid: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('appid') }})
     r"""Your OpenWeather API Key. See <a href=\\"https://openweathermap.org/api\\">here</a>. The key is case sensitive."""
     lat: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('lat') }})
@@ -86,3 +86,4 @@ class SourceOpenweather:
     units: Optional[SourceOpenweatherUnits] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('units'), 'exclude': lambda f: f is None }})
     r"""Units of measurement. standard, metric and imperial units are available. If you do not use the units parameter, standard units will be applied by default."""
     
+

@@ -5,7 +5,7 @@ from airbyte.models import shared
 
 s = airbyte.Airbyte(
     security=shared.Security(
-        bearer_auth="YOUR_BEARER_TOKEN_HERE",
+        bearer_auth="",
     ),
 )
 
@@ -79,11 +79,12 @@ req = shared.ConnectionCreateRequest(
     namespace_format='${SOURCE_NAMESPACE}',
     non_breaking_schema_updates_behavior=shared.NonBreakingSchemaUpdatesBehaviorEnum.IGNORE,
     prefix='corporis',
-    schedule=shared.ConnectionScheduleCreate(
+    schedule=shared.ConnectionSchedule(
         cron_expression='explicabo',
         schedule_type=shared.ScheduleTypeEnum.CRON,
     ),
     source_id='5955907a-ff1a-43a2-ba94-67739251aa52',
+    status=shared.ConnectionStatusEnum.DEPRECATED,
 )
 
 res = s.connections.create_connection(req)

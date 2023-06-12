@@ -15,12 +15,14 @@ class DestinationAzureBlobStorageFormatJSONLinesNewlineDelimitedJSONFormatType(s
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
+
 @dataclasses.dataclass
 class DestinationAzureBlobStorageFormatJSONLinesNewlineDelimitedJSON:
     r"""Output data format"""
-    
     format_type: DestinationAzureBlobStorageFormatJSONLinesNewlineDelimitedJSONFormatType = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('format_type') }})
     
+
+
 class DestinationAzureBlobStorageFormatCSVCommaSeparatedValuesNormalizationFlattening(str, Enum):
     r"""Whether the input json data should be normalized (flattened) in the output CSV. Please refer to docs for details."""
     NO_FLATTENING = 'No flattening'
@@ -31,20 +33,22 @@ class DestinationAzureBlobStorageFormatCSVCommaSeparatedValuesFormatType(str, En
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
+
 @dataclasses.dataclass
 class DestinationAzureBlobStorageFormatCSVCommaSeparatedValues:
     r"""Output data format"""
-    
     flattening: DestinationAzureBlobStorageFormatCSVCommaSeparatedValuesNormalizationFlattening = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('flattening') }})
     r"""Whether the input json data should be normalized (flattened) in the output CSV. Please refer to docs for details."""
     format_type: DestinationAzureBlobStorageFormatCSVCommaSeparatedValuesFormatType = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('format_type') }})
     
 
+
+
 @dataclass_json(undefined=Undefined.EXCLUDE)
+
 @dataclasses.dataclass
 class DestinationAzureBlobStorage:
     r"""The values required to configure the destination."""
-    
     azure_blob_storage_account_key: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('azure_blob_storage_account_key') }})
     r"""The Azure blob storage account key."""
     azure_blob_storage_account_name: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('azure_blob_storage_account_name') }})
@@ -61,3 +65,4 @@ class DestinationAzureBlobStorage:
     azure_blob_storage_spill_size: Optional[int] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('azure_blob_storage_spill_size'), 'exclude': lambda f: f is None }})
     r"""The amount of megabytes after which the connector should spill the records in a new blob object. Make sure to configure size greater than individual records. Enter 0 if not applicable"""
     
+

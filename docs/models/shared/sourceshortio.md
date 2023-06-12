@@ -1,0 +1,13 @@
+# SourceShortio
+
+The values required to configure the source.
+
+
+## Fields
+
+| Field                                                                                                   | Type                                                                                                    | Required                                                                                                | Description                                                                                             |
+| ------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------- |
+| `domain_id`                                                                                             | *str*                                                                                                   | :heavy_check_mark:                                                                                      | N/A                                                                                                     |
+| `secret_key`                                                                                            | *str*                                                                                                   | :heavy_check_mark:                                                                                      | Short.io Secret Key                                                                                     |
+| `source_type`                                                                                           | [SourceShortioShortio](../../models/shared/sourceshortioshortio.md)                                     | :heavy_check_mark:                                                                                      | N/A                                                                                                     |
+| `start_date`                                                                                            | *str*                                                                                                   | :heavy_check_mark:                                                                                      | UTC date and time in the format 2017-01-25T00:00:00Z. Any data before this date will not be replicated. |

@@ -11,9 +11,9 @@ from typing import Optional
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
+
 @dataclasses.dataclass
 class SourceGoogleAdsGoogleCredentials:
-    
     client_id: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('client_id') }})
     r"""The Client ID of your Google Ads developer application. More instruction on how to find this value in our <a href=\\"https://docs.airbyte.com/integrations/sources/google-ads#setup-guide\\">docs</a>"""
     client_secret: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('client_secret') }})
@@ -26,24 +26,28 @@ class SourceGoogleAdsGoogleCredentials:
     r"""Access Token for making authenticated requests. More instruction on how to find this value in our <a href=\\"https://docs.airbyte.com/integrations/sources/google-ads#setup-guide\\">docs</a>"""
     
 
+
+
 @dataclass_json(undefined=Undefined.EXCLUDE)
+
 @dataclasses.dataclass
 class SourceGoogleAdsCustomQueries:
-    
     query: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('query') }})
     r"""A custom defined GAQL query for building the report. Should not contain segments.date expression because it is used by incremental streams. See Google's <a href=\\"https://developers.google.com/google-ads/api/fields/v11/overview_query_builder\\">query builder</a> for more information."""
     table_name: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('table_name') }})
     r"""The table name in your destination database for choosen query."""
     
+
+
 class SourceGoogleAdsGoogleAds(str, Enum):
     GOOGLE_ADS = 'google-ads'
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
+
 @dataclasses.dataclass
 class SourceGoogleAds:
     r"""The values required to configure the source."""
-    
     credentials: SourceGoogleAdsGoogleCredentials = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credentials') }})
     customer_id: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('customer_id') }})
     r"""Comma separated list of (client) customer IDs. Each customer ID must be specified as a 10-digit number without dashes. More instruction on how to find this value in our <a href=\\"https://docs.airbyte.com/integrations/sources/google-ads#setup-guide\\">docs</a>. Metrics streams like AdGroupAdReport cannot be requested for a manager account."""
@@ -58,3 +62,4 @@ class SourceGoogleAds:
     login_customer_id: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('login_customer_id'), 'exclude': lambda f: f is None }})
     r"""If your access to the customer account is through a manager account, this field is required and must be set to the customer ID of the manager account (10-digit number without dashes). More information about this field you can see <a href=\\"https://developers.google.com/google-ads/api/docs/concepts/call-structure#cid\\">here</a>"""
     
+

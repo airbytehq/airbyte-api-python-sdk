@@ -14,10 +14,10 @@ class SourceYandexMetricaYandexMetrica(str, Enum):
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
+
 @dataclasses.dataclass
 class SourceYandexMetrica:
     r"""The values required to configure the source."""
-    
     auth_token: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_token') }})
     r"""Your Yandex Metrica API access token"""
     counter_id: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('counter_id') }})
@@ -28,3 +28,4 @@ class SourceYandexMetrica:
     end_date: Optional[date] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('end_date'), 'encoder': utils.dateisoformat(True), 'decoder': utils.datefromisoformat, 'mm_field': fields.DateTime(format='iso'), 'exclude': lambda f: f is None }})
     r"""Starting point for your data replication, in format of \\"YYYY-MM-DD\\". If not provided will sync till most recent date."""
     
+

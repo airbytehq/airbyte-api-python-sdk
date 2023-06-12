@@ -14,10 +14,10 @@ class SourceExchangeRatesExchangeRates(str, Enum):
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
+
 @dataclasses.dataclass
 class SourceExchangeRates:
     r"""The values required to configure the source."""
-    
     access_key: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('access_key') }})
     r"""Your API Key. See <a href=\\"https://apilayer.com/marketplace/exchangerates_data-api\\">here</a>. The key is case sensitive."""
     source_type: SourceExchangeRatesExchangeRates = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
@@ -28,3 +28,4 @@ class SourceExchangeRates:
     ignore_weekends: Optional[bool] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('ignore_weekends'), 'exclude': lambda f: f is None }})
     r"""Ignore weekends? (Exchanges don't run on weekends)"""
     
+

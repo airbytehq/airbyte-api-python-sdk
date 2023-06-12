@@ -25,10 +25,10 @@ class DestinationPulsarTopicType(str, Enum):
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
+
 @dataclasses.dataclass
 class DestinationPulsar:
     r"""The values required to configure the destination."""
-    
     batching_enabled: bool = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('batching_enabled') }})
     r"""Control whether automatic batching of messages is enabled for the producer."""
     batching_max_messages: int = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('batching_max_messages') }})
@@ -65,3 +65,4 @@ class DestinationPulsar:
     topic_test: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('topic_test'), 'exclude': lambda f: f is None }})
     r"""Topic to test if Airbyte can produce messages."""
     
+

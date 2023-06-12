@@ -14,10 +14,10 @@ class SourcePolygonStockAPIPolygonStockAPI(str, Enum):
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
+
 @dataclasses.dataclass
 class SourcePolygonStockAPI:
     r"""The values required to configure the source."""
-    
     api_key: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('apiKey') }})
     r"""Your API ACCESS Key"""
     end_date: date = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('end_date'), 'encoder': utils.dateisoformat(False), 'decoder': utils.datefromisoformat, 'mm_field': fields.DateTime(format='iso') }})
@@ -38,3 +38,4 @@ class SourcePolygonStockAPI:
     sort: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sort'), 'exclude': lambda f: f is None }})
     r"""Sort the results by timestamp. asc will return results in ascending order (oldest at the top), desc will return results in descending order (newest at the top)."""
     
+

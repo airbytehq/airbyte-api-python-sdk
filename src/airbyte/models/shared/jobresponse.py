@@ -10,10 +10,10 @@ from typing import Optional
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
+
 @dataclasses.dataclass
 class JobResponse:
     r"""Provides details of a single job."""
-    
     job_id: int = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('jobId') }})
     job_type: shared_jobtypeenum.JobTypeEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('jobType') }})
     r"""Enum that describes the different types of jobs that the platform runs."""
@@ -25,3 +25,4 @@ class JobResponse:
     last_updated_at: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('lastUpdatedAt'), 'exclude': lambda f: f is None }})
     rows_synced: Optional[int] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('rowsSynced'), 'exclude': lambda f: f is None }})
     
+

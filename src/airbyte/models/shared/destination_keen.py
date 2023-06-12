@@ -12,10 +12,10 @@ class DestinationKeenKeen(str, Enum):
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
+
 @dataclasses.dataclass
 class DestinationKeen:
     r"""The values required to configure the destination."""
-    
     api_key: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('api_key') }})
     r"""To get Keen Master API Key, navigate to the Access tab from the left-hand, side panel and check the Project Details section."""
     destination_type: DestinationKeenKeen = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('destinationType') }})
@@ -24,3 +24,4 @@ class DestinationKeen:
     infer_timestamp: Optional[bool] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('infer_timestamp'), 'exclude': lambda f: f is None }})
     r"""Allow connector to guess keen.timestamp value based on the streamed data."""
     
+

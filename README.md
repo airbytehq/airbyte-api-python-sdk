@@ -29,7 +29,7 @@ from airbyte.models import shared
 
 s = airbyte.Airbyte(
     security=shared.Security(
-        bearer_auth="YOUR_BEARER_TOKEN_HERE",
+        bearer_auth="",
     ),
 )
 
@@ -103,11 +103,12 @@ req = shared.ConnectionCreateRequest(
     namespace_format='${SOURCE_NAMESPACE}',
     non_breaking_schema_updates_behavior=shared.NonBreakingSchemaUpdatesBehaviorEnum.IGNORE,
     prefix='corporis',
-    schedule=shared.ConnectionScheduleCreate(
+    schedule=shared.ConnectionSchedule(
         cron_expression='explicabo',
         schedule_type=shared.ScheduleTypeEnum.CRON,
     ),
     source_id='5955907a-ff1a-43a2-ba94-67739251aa52',
+    status=shared.ConnectionStatusEnum.DEPRECATED,
 )
 
 res = s.connections.create_connection(req)
@@ -121,47 +122,52 @@ if res.connection_response is not None:
 ## Available Resources and Operations
 
 
-### [connections](docs/connections/README.md)
+### [connections](docs/sdks/connections/README.md)
 
-* [create_connection](docs/connections/README.md#create_connection) - Create a connection
-* [delete_connection](docs/connections/README.md#delete_connection) - Delete a Connection
-* [get_connection](docs/connections/README.md#get_connection) - Get Connection details
-* [list_connections](docs/connections/README.md#list_connections) - List connections
+* [create_connection](docs/sdks/connections/README.md#create_connection) - Create a connection
+* [delete_connection](docs/sdks/connections/README.md#delete_connection) - Delete a Connection
+* [get_connection](docs/sdks/connections/README.md#get_connection) - Get Connection details
+* [list_connections](docs/sdks/connections/README.md#list_connections) - List connections
+* [patch_connection](docs/sdks/connections/README.md#patch_connection) - Update Connection details
 
-### [destinations](docs/destinations/README.md)
+### [destinations](docs/sdks/destinations/README.md)
 
-* [create_destination](docs/destinations/README.md#create_destination) - Create a destination
-* [delete_destination](docs/destinations/README.md#delete_destination) - Delete a Destination
-* [get_destination](docs/destinations/README.md#get_destination) - Get Destination details
-* [list_destinations](docs/destinations/README.md#list_destinations) - List destinations
+* [create_destination](docs/sdks/destinations/README.md#create_destination) - Create a destination
+* [delete_destination](docs/sdks/destinations/README.md#delete_destination) - Delete a Destination
+* [get_destination](docs/sdks/destinations/README.md#get_destination) - Get Destination details
+* [list_destinations](docs/sdks/destinations/README.md#list_destinations) - List destinations
+* [patch_destination](docs/sdks/destinations/README.md#patch_destination) - Update a Destination
+* [put_destination](docs/sdks/destinations/README.md#put_destination) - Update a Destination and fully overwrite it
 
-### [jobs](docs/jobs/README.md)
+### [jobs](docs/sdks/jobs/README.md)
 
-* [cancel_job](docs/jobs/README.md#cancel_job) - Cancel a running Job
-* [create_job](docs/jobs/README.md#create_job) - Trigger a sync or reset job of a connection
-* [get_job](docs/jobs/README.md#get_job) - Get Job status and details
-* [list_jobs](docs/jobs/README.md#list_jobs) - List Jobs by sync type
+* [cancel_job](docs/sdks/jobs/README.md#cancel_job) - Cancel a running Job
+* [create_job](docs/sdks/jobs/README.md#create_job) - Trigger a sync or reset job of a connection
+* [get_job](docs/sdks/jobs/README.md#get_job) - Get Job status and details
+* [list_jobs](docs/sdks/jobs/README.md#list_jobs) - List Jobs by sync type
 
-### [sources](docs/sources/README.md)
+### [sources](docs/sdks/sources/README.md)
 
-* [create_source](docs/sources/README.md#create_source) - Create a source
-* [delete_source](docs/sources/README.md#delete_source) - Delete a Source
-* [get_source](docs/sources/README.md#get_source) - Get Source details
-* [initiate_o_auth](docs/sources/README.md#initiate_o_auth) - Initiate OAuth for a source
-* [list_sources](docs/sources/README.md#list_sources) - List sources
+* [create_source](docs/sdks/sources/README.md#create_source) - Create a source
+* [delete_source](docs/sdks/sources/README.md#delete_source) - Delete a Source
+* [get_source](docs/sdks/sources/README.md#get_source) - Get Source details
+* [initiate_o_auth](docs/sdks/sources/README.md#initiate_o_auth) - Initiate OAuth for a source
+* [list_sources](docs/sdks/sources/README.md#list_sources) - List sources
+* [patch_source](docs/sdks/sources/README.md#patch_source) - Update a Source
+* [put_source](docs/sdks/sources/README.md#put_source) - Update a Source and fully overwrite it
 
-### [streams](docs/streams/README.md)
+### [streams](docs/sdks/streams/README.md)
 
-* [get_stream_properties](docs/streams/README.md#get_stream_properties) - Get stream properties
+* [get_stream_properties](docs/sdks/streams/README.md#get_stream_properties) - Get stream properties
 
-### [workspaces](docs/workspaces/README.md)
+### [workspaces](docs/sdks/workspaces/README.md)
 
-* [create_or_update_workspace_o_auth_credentials](docs/workspaces/README.md#create_or_update_workspace_o_auth_credentials) - Create OAuth override credentials for a workspace and source type.
-* [create_workspace](docs/workspaces/README.md#create_workspace) - Create a workspace
-* [delete_workspace](docs/workspaces/README.md#delete_workspace) - Delete a Workspace
-* [get_workspace](docs/workspaces/README.md#get_workspace) - Get Workspace details
-* [list_workspaces](docs/workspaces/README.md#list_workspaces) - List workspaces
-* [update_workspace](docs/workspaces/README.md#update_workspace) - Update a workspace
+* [create_or_update_workspace_o_auth_credentials](docs/sdks/workspaces/README.md#create_or_update_workspace_o_auth_credentials) - Create OAuth override credentials for a workspace and source type.
+* [create_workspace](docs/sdks/workspaces/README.md#create_workspace) - Create a workspace
+* [delete_workspace](docs/sdks/workspaces/README.md#delete_workspace) - Delete a Workspace
+* [get_workspace](docs/sdks/workspaces/README.md#get_workspace) - Get Workspace details
+* [list_workspaces](docs/sdks/workspaces/README.md#list_workspaces) - List workspaces
+* [update_workspace](docs/sdks/workspaces/README.md#update_workspace) - Update a workspace
 <!-- End SDK Available Operations -->
 
 ### Maturity

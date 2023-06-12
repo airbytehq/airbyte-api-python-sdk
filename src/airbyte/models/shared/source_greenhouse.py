@@ -11,11 +11,12 @@ class SourceGreenhouseGreenhouse(str, Enum):
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
+
 @dataclasses.dataclass
 class SourceGreenhouse:
     r"""The values required to configure the source."""
-    
     api_key: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('api_key') }})
     r"""Greenhouse API Key. See the <a href=\\"https://docs.airbyte.com/integrations/sources/greenhouse\\">docs</a> for more information on how to generate this key."""
     source_type: SourceGreenhouseGreenhouse = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     
+

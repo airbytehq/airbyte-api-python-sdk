@@ -15,10 +15,10 @@ class SourcePosthogPosthog(str, Enum):
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
+
 @dataclasses.dataclass
 class SourcePosthog:
     r"""The values required to configure the source."""
-    
     api_key: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('api_key') }})
     r"""API Key. See the <a href=\\"https://docs.airbyte.com/integrations/sources/posthog\\">docs</a> for information on how to generate this key."""
     source_type: SourcePosthogPosthog = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
@@ -27,3 +27,4 @@ class SourcePosthog:
     base_url: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('base_url'), 'exclude': lambda f: f is None }})
     r"""Base PostHog url. Defaults to PostHog Cloud (https://app.posthog.com)."""
     
+

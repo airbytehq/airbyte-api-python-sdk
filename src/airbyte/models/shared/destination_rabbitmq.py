@@ -12,10 +12,10 @@ class DestinationRabbitmqRabbitmq(str, Enum):
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
+
 @dataclasses.dataclass
 class DestinationRabbitmq:
     r"""The values required to configure the destination."""
-    
     destination_type: DestinationRabbitmqRabbitmq = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('destinationType') }})
     host: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('host') }})
     r"""The RabbitMQ host name."""
@@ -34,3 +34,4 @@ class DestinationRabbitmq:
     virtual_host: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('virtual_host'), 'exclude': lambda f: f is None }})
     r"""The RabbitMQ virtual host name."""
     
+

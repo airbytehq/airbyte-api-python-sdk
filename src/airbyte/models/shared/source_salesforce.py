@@ -28,18 +28,20 @@ class SourceSalesforceStreamsCriteriaSearchCriteria(str, Enum):
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
+
 @dataclasses.dataclass
 class SourceSalesforceStreamsCriteria:
-    
     criteria: SourceSalesforceStreamsCriteriaSearchCriteria = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('criteria') }})
     value: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('value') }})
     
 
+
+
 @dataclass_json(undefined=Undefined.EXCLUDE)
+
 @dataclasses.dataclass
 class SourceSalesforce:
     r"""The values required to configure the source."""
-    
     client_id: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('client_id') }})
     r"""Enter your Salesforce developer application's <a href=\\"https://developer.salesforce.com/forums/?id=9062I000000DLgbQAG\\">Client ID</a>"""
     client_secret: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('client_secret') }})
@@ -55,3 +57,4 @@ class SourceSalesforce:
     streams_criteria: Optional[list[SourceSalesforceStreamsCriteria]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('streams_criteria'), 'exclude': lambda f: f is None }})
     r"""Filter streams relevant to you"""
     
+

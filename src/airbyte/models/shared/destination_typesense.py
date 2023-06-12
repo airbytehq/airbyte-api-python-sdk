@@ -12,10 +12,10 @@ class DestinationTypesenseTypesense(str, Enum):
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
+
 @dataclasses.dataclass
 class DestinationTypesense:
     r"""The values required to configure the destination."""
-    
     api_key: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('api_key') }})
     r"""Typesense API Key"""
     destination_type: DestinationTypesenseTypesense = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('destinationType') }})
@@ -28,3 +28,4 @@ class DestinationTypesense:
     protocol: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('protocol'), 'exclude': lambda f: f is None }})
     r"""Protocol of the Typesense instance. Ex: http or https. Default is https"""
     
+

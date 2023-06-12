@@ -12,10 +12,10 @@ class DestinationSftpJSONSftpJSON(str, Enum):
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
+
 @dataclasses.dataclass
 class DestinationSftpJSON:
     r"""The values required to configure the destination."""
-    
     destination_path: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('destination_path') }})
     r"""Path to the directory where json files will be written."""
     destination_type: DestinationSftpJSONSftpJSON = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('destinationType') }})
@@ -28,3 +28,4 @@ class DestinationSftpJSON:
     port: Optional[int] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('port'), 'exclude': lambda f: f is None }})
     r"""Port of the SFTP server."""
     
+

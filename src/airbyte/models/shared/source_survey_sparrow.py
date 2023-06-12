@@ -12,32 +12,36 @@ class SourceSurveySparrowRegionGlobalAccountURLBase(str, Enum):
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
+
 @dataclasses.dataclass
 class SourceSurveySparrowRegionGlobalAccount:
     r"""Is your account location is EU based? If yes, the base url to retrieve data will be different."""
-    
     url_base: Optional[SourceSurveySparrowRegionGlobalAccountURLBase] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('url_base'), 'exclude': lambda f: f is None }})
     
+
+
 class SourceSurveySparrowRegionEUBasedAccountURLBase(str, Enum):
     HTTPS_EU_API_SURVEYSPARROW_COM_V3 = 'https://eu-api.surveysparrow.com/v3'
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
+
 @dataclasses.dataclass
 class SourceSurveySparrowRegionEUBasedAccount:
     r"""Is your account location is EU based? If yes, the base url to retrieve data will be different."""
-    
     url_base: Optional[SourceSurveySparrowRegionEUBasedAccountURLBase] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('url_base'), 'exclude': lambda f: f is None }})
     
+
+
 class SourceSurveySparrowSurveySparrow(str, Enum):
     SURVEY_SPARROW = 'survey-sparrow'
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
+
 @dataclasses.dataclass
 class SourceSurveySparrow:
     r"""The values required to configure the source."""
-    
     access_token: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('access_token') }})
     r"""Your access token. See <a href=\\"https://developers.surveysparrow.com/rest-apis#authentication\\">here</a>. The key is case sensitive."""
     source_type: SourceSurveySparrowSurveySparrow = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
@@ -46,3 +50,4 @@ class SourceSurveySparrow:
     survey_id: Optional[list[Any]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('survey_id'), 'exclude': lambda f: f is None }})
     r"""A List of your survey ids for survey-specific stream"""
     
+

@@ -12,10 +12,10 @@ class SourceZenloopZenloop(str, Enum):
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
+
 @dataclasses.dataclass
 class SourceZenloop:
     r"""The values required to configure the source."""
-    
     api_token: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('api_token') }})
     r"""Zenloop API Token. You can get the API token in settings page <a href=\\"https://app.zenloop.com/settings/api\\">here</a>"""
     source_type: SourceZenloopZenloop = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
@@ -26,3 +26,4 @@ class SourceZenloop:
     survey_id: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('survey_id'), 'exclude': lambda f: f is None }})
     r"""Zenloop Survey ID. Can be found <a href=\\"https://app.zenloop.com/settings/api\\">here</a>. Leave empty to pull answers from all surveys"""
     
+

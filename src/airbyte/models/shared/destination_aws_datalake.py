@@ -13,10 +13,10 @@ class DestinationAwsDatalakeCredentialsIAMUserCredentialsTitle(str, Enum):
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
+
 @dataclasses.dataclass
 class DestinationAwsDatalakeCredentialsIAMUser:
     r"""Choose How to Authenticate to AWS."""
-    
     aws_access_key_id: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('aws_access_key_id') }})
     r"""AWS User Access Key Id"""
     aws_secret_access_key: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('aws_secret_access_key') }})
@@ -24,21 +24,25 @@ class DestinationAwsDatalakeCredentialsIAMUser:
     credentials_title: DestinationAwsDatalakeCredentialsIAMUserCredentialsTitle = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credentials_title') }})
     r"""Name of the credentials"""
     
+
+
 class DestinationAwsDatalakeCredentialsIAMRoleCredentialsTitle(str, Enum):
     r"""Name of the credentials"""
     IAM_ROLE = 'IAM Role'
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
+
 @dataclasses.dataclass
 class DestinationAwsDatalakeCredentialsIAMRole:
     r"""Choose How to Authenticate to AWS."""
-    
     credentials_title: DestinationAwsDatalakeCredentialsIAMRoleCredentialsTitle = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credentials_title') }})
     r"""Name of the credentials"""
     role_arn: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('role_arn') }})
     r"""Will assume this role to write data to s3"""
     
+
+
 class DestinationAwsDatalakeAwsDatalake(str, Enum):
     AWS_DATALAKE = 'aws-datalake'
 
@@ -54,14 +58,16 @@ class DestinationAwsDatalakeFormatParquetColumnarStorageFormatTypeWildcard(str, 
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
+
 @dataclasses.dataclass
 class DestinationAwsDatalakeFormatParquetColumnarStorage:
     r"""Format of the data output."""
-    
     format_type: DestinationAwsDatalakeFormatParquetColumnarStorageFormatTypeWildcard = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('format_type') }})
     compression_codec: Optional[DestinationAwsDatalakeFormatParquetColumnarStorageCompressionCodecOptional] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('compression_codec'), 'exclude': lambda f: f is None }})
     r"""The compression algorithm used to compress data."""
     
+
+
 class DestinationAwsDatalakeFormatJSONLinesNewlineDelimitedJSONCompressionCodecOptional(str, Enum):
     r"""The compression algorithm used to compress data."""
     UNCOMPRESSED = 'UNCOMPRESSED'
@@ -72,14 +78,16 @@ class DestinationAwsDatalakeFormatJSONLinesNewlineDelimitedJSONFormatTypeWildcar
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
+
 @dataclasses.dataclass
 class DestinationAwsDatalakeFormatJSONLinesNewlineDelimitedJSON:
     r"""Format of the data output."""
-    
     format_type: DestinationAwsDatalakeFormatJSONLinesNewlineDelimitedJSONFormatTypeWildcard = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('format_type') }})
     compression_codec: Optional[DestinationAwsDatalakeFormatJSONLinesNewlineDelimitedJSONCompressionCodecOptional] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('compression_codec'), 'exclude': lambda f: f is None }})
     r"""The compression algorithm used to compress data."""
     
+
+
 class DestinationAwsDatalakeChooseHowToPartitionData(str, Enum):
     r"""Partition data by cursor fields when a cursor field is a date"""
     NO_PARTITIONING = 'NO PARTITIONING'
@@ -121,10 +129,10 @@ class DestinationAwsDatalakeS3BucketRegion(str, Enum):
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
+
 @dataclasses.dataclass
 class DestinationAwsDatalake:
     r"""The values required to configure the destination."""
-    
     bucket_name: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('bucket_name') }})
     r"""The name of the S3 bucket. Read more <a href=\\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/create-bucket-overview.html\\">here</a>."""
     credentials: Any = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credentials') }})
@@ -151,3 +159,4 @@ class DestinationAwsDatalake:
     partitioning: Optional[DestinationAwsDatalakeChooseHowToPartitionData] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('partitioning'), 'exclude': lambda f: f is None }})
     r"""Partition data by cursor fields when a cursor field is a date"""
     
+

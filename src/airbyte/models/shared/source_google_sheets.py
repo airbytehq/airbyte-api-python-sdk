@@ -12,23 +12,25 @@ class SourceGoogleSheetsCredentialsServiceAccountKeyAuthenticationAuthType(str, 
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
+
 @dataclasses.dataclass
 class SourceGoogleSheetsCredentialsServiceAccountKeyAuthentication:
     r"""Credentials for connecting to the Google Sheets API"""
-    
     auth_type: SourceGoogleSheetsCredentialsServiceAccountKeyAuthenticationAuthType = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_type') }})
     service_account_info: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('service_account_info') }})
     r"""Enter your Google Cloud <a href=\\"https://cloud.google.com/iam/docs/creating-managing-service-account-keys#creating_service_account_keys\\">service account key</a> in JSON format"""
     
+
+
 class SourceGoogleSheetsCredentialsAuthenticateViaGoogleOAuthAuthType(str, Enum):
     CLIENT = 'Client'
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
+
 @dataclasses.dataclass
 class SourceGoogleSheetsCredentialsAuthenticateViaGoogleOAuth:
     r"""Credentials for connecting to the Google Sheets API"""
-    
     auth_type: SourceGoogleSheetsCredentialsAuthenticateViaGoogleOAuthAuthType = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_type') }})
     client_id: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('client_id') }})
     r"""Enter your Google application's Client ID"""
@@ -37,15 +39,17 @@ class SourceGoogleSheetsCredentialsAuthenticateViaGoogleOAuth:
     refresh_token: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('refresh_token') }})
     r"""Enter your Google application's refresh token"""
     
+
+
 class SourceGoogleSheetsGoogleSheets(str, Enum):
     GOOGLE_SHEETS = 'google-sheets'
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
+
 @dataclasses.dataclass
 class SourceGoogleSheets:
     r"""The values required to configure the source."""
-    
     credentials: Any = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credentials') }})
     r"""Credentials for connecting to the Google Sheets API"""
     source_type: SourceGoogleSheetsGoogleSheets = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
@@ -54,3 +58,4 @@ class SourceGoogleSheets:
     row_batch_size: Optional[int] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('row_batch_size'), 'exclude': lambda f: f is None }})
     r"""Number of rows fetched when making a Google Sheet API call. Defaults to 200."""
     
+

@@ -12,21 +12,23 @@ class SourceAzureBlobStorageFormatJSONLinesNewlineDelimitedJSONFormatType(str, E
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
+
 @dataclasses.dataclass
 class SourceAzureBlobStorageFormatJSONLinesNewlineDelimitedJSON:
     r"""Input data format"""
-    
     format_type: SourceAzureBlobStorageFormatJSONLinesNewlineDelimitedJSONFormatType = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('format_type') }})
     
+
+
 class SourceAzureBlobStorageAzureBlobStorage(str, Enum):
     AZURE_BLOB_STORAGE = 'azure-blob-storage'
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
+
 @dataclasses.dataclass
 class SourceAzureBlobStorage:
     r"""The values required to configure the source."""
-    
     azure_blob_storage_account_key: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('azure_blob_storage_account_key') }})
     r"""The Azure blob storage account key."""
     azure_blob_storage_account_name: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('azure_blob_storage_account_name') }})
@@ -43,3 +45,4 @@ class SourceAzureBlobStorage:
     azure_blob_storage_schema_inference_limit: Optional[int] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('azure_blob_storage_schema_inference_limit'), 'exclude': lambda f: f is None }})
     r"""The Azure blob storage blobs to scan for inferring the schema, useful on large amounts of data with consistent structure"""
     
+

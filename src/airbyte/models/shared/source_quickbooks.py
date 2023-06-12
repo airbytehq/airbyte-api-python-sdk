@@ -15,9 +15,9 @@ class SourceQuickbooksCredentialsOAuth20AuthType(str, Enum):
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
+
 @dataclasses.dataclass
 class SourceQuickbooksCredentialsOAuth20:
-    
     access_token: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('access_token') }})
     r"""Access token fot making authenticated requests."""
     client_id: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('client_id') }})
@@ -32,15 +32,17 @@ class SourceQuickbooksCredentialsOAuth20:
     r"""The date-time when the access token should be refreshed."""
     auth_type: Optional[SourceQuickbooksCredentialsOAuth20AuthType] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_type'), 'exclude': lambda f: f is None }})
     
+
+
 class SourceQuickbooksQuickbooks(str, Enum):
     QUICKBOOKS = 'quickbooks'
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
+
 @dataclasses.dataclass
 class SourceQuickbooks:
     r"""The values required to configure the source."""
-    
     credentials: Any = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credentials') }})
     sandbox: bool = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sandbox') }})
     r"""Determines whether to use the sandbox or production environment."""
@@ -48,3 +50,4 @@ class SourceQuickbooks:
     start_date: datetime = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('start_date'), 'encoder': utils.datetimeisoformat(False), 'decoder': dateutil.parser.isoparse, 'mm_field': fields.DateTime(format='iso') }})
     r"""The default value to use if no bookmark exists for an endpoint (rfc3339 date string). E.g, 2021-03-20T00:00:00+00:00. Any data before this date will not be replicated."""
     
+

@@ -20,7 +20,7 @@ class Streams:
         headers = {}
         query_params = utils.get_query_params(operations.GetStreamPropertiesRequest, request)
         headers['Accept'] = 'application/json'
-        headers['user-agent'] = f'speakeasy-sdk/{self.sdk_configuration.language} {self.sdk_configuration.sdk_version} {self.sdk_configuration.gen_version}'
+        headers['user-agent'] = f'speakeasy-sdk/{self.sdk_configuration.language} {self.sdk_configuration.sdk_version} {self.sdk_configuration.gen_version} {self.sdk_configuration.openapi_doc_version}'
         
         client = self.sdk_configuration.security_client
         
@@ -31,8 +31,8 @@ class Streams:
         
         if http_res.status_code == 200:
             if utils.match_content_type(content_type, 'application/json'):
-                out = utils.unmarshal_json(http_res.text, Optional[shared.StreamProperties])
-                res.stream_properties = out
+                out = utils.unmarshal_json(http_res.text, Optional[shared.StreamPropertiesResponse])
+                res.stream_properties_response = out
         elif http_res.status_code in [400, 403, 404]:
             pass
 

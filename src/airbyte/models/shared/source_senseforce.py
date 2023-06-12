@@ -14,10 +14,10 @@ class SourceSenseforceSenseforce(str, Enum):
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
+
 @dataclasses.dataclass
 class SourceSenseforce:
     r"""The values required to configure the source."""
-    
     access_token: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('access_token') }})
     r"""Your API access token. See <a href=\\"https://manual.senseforce.io/manual/sf-platform/public-api/get-your-access-token/\\">here</a>. The toke is case sensitive."""
     backend_url: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('backend_url') }})
@@ -30,3 +30,4 @@ class SourceSenseforce:
     slice_range: Optional[int] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('slice_range'), 'exclude': lambda f: f is None }})
     r"""The time increment used by the connector when requesting data from the Senseforce API. The bigger the value is, the less requests will be made and faster the sync will be. On the other hand, the more seldom the state is persisted and the more likely one could run into rate limites.  Furthermore, consider that large chunks of time might take a long time for the Senseforce query to return data - meaning it could take in effect longer than with more smaller time slices. If there are a lot of data per day, set this setting to 1. If there is only very little data per day, you might change the setting to 10 or more."""
     
+
