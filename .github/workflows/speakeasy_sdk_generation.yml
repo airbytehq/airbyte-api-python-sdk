@@ -29,4 +29,4 @@ jobs:
     secrets:
       github_access_token: ${{ secrets.GITHUB_TOKEN }}
       openapi_doc_auth_token: ${{ secrets.SPEAKEASY_API_KEY }}
-      speakeasy_api_key: ${{ secrets.SPEAKEASY_PROD_API_KEY }}
+      speakeasy_api_key: ${{ secrets.SPEAKEASY_API_KEY }}
