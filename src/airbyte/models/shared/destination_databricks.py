@@ -119,6 +119,8 @@ class DestinationDatabricks:
     r"""The name of the catalog. If not specified otherwise, the \\"hive_metastore\\" will be used."""
     databricks_port: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('databricks_port'), 'exclude': lambda f: f is None }})
     r"""Databricks Cluster Port."""
+    enable_schema_evolution: Optional[bool] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('enable_schema_evolution'), 'exclude': lambda f: f is None }})
+    r"""Support schema evolution for all streams. If \\"false\\", the connector might fail when a stream's schema changes."""
     purge_staging_data: Optional[bool] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('purge_staging_data'), 'exclude': lambda f: f is None }})
     r"""Default to 'true'. Switch it to 'false' for debugging purpose."""
     schema: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('schema'), 'exclude': lambda f: f is None }})

@@ -46,6 +46,25 @@ class SourceSmartsheetsCredentialsOAuth20:
     
 
 
+class SourceSmartsheetsValidenums(str, Enum):
+    SHEETCREATED_AT = 'sheetcreatedAt'
+    SHEETID = 'sheetid'
+    SHEETMODIFIED_AT = 'sheetmodifiedAt'
+    SHEETNAME = 'sheetname'
+    SHEETPERMALINK = 'sheetpermalink'
+    SHEETVERSION = 'sheetversion'
+    SHEETACCESS_LEVEL = 'sheetaccess_level'
+    ROW_ID = 'row_id'
+    ROW_ACCESS_LEVEL = 'row_access_level'
+    ROW_CREATED_AT = 'row_created_at'
+    ROW_CREATED_BY = 'row_created_by'
+    ROW_EXPANDED = 'row_expanded'
+    ROW_MODIFIED_BY = 'row_modified_by'
+    ROW_PARENT_ID = 'row_parent_id'
+    ROW_PERMALINK = 'row_permalink'
+    ROW_NUMBER = 'row_number'
+    ROW_VERSION = 'row_version'
+
 class SourceSmartsheetsSmartsheets(str, Enum):
     SMARTSHEETS = 'smartsheets'
 
@@ -59,6 +78,8 @@ class SourceSmartsheets:
     source_type: SourceSmartsheetsSmartsheets = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     spreadsheet_id: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('spreadsheet_id') }})
     r"""The spreadsheet ID. Find it by opening the spreadsheet then navigating to File > Properties"""
+    metadata_fields: Optional[list[SourceSmartsheetsValidenums]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('metadata_fields'), 'exclude': lambda f: f is None }})
+    r"""A List of available columns which metadata can be pulled from."""
     start_datetime: Optional[datetime] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('start_datetime'), 'encoder': utils.datetimeisoformat(True), 'decoder': dateutil.parser.isoparse, 'mm_field': fields.DateTime(format='iso'), 'exclude': lambda f: f is None }})
     r"""Only rows modified after this date/time will be replicated. This should be an ISO 8601 string, for instance: `2000-01-01T13:00:00`"""
     

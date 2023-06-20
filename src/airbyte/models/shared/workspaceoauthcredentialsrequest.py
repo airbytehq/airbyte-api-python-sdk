@@ -3,9 +3,10 @@
 from __future__ import annotations
 import dataclasses
 from ..shared import actortypeenum as shared_actortypeenum
-from ..shared import oauthcredentialsconfiguration as shared_oauthcredentialsconfiguration
+from ..shared import oauthactornames as shared_oauthactornames
 from airbyte import utils
 from dataclasses_json import Undefined, dataclass_json
+from typing import Any, Optional
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
@@ -15,9 +16,8 @@ class WorkspaceOAuthCredentialsRequest:
     r"""POST body for creating/updating workspace level OAuth credentials"""
     actor_type: shared_actortypeenum.ActorTypeEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('actorType') }})
     r"""Whether you're setting this override for a source or destination"""
-    configuration: shared_oauthcredentialsconfiguration.OAuthCredentialsConfiguration = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('configuration') }})
-    r"""The configuration for this source/destination based on the OAuth section of the relevant specification."""
-    name: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('name') }})
-    r"""The name of the source i.e. google-ads"""
+    configuration: Any = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('configuration') }})
+    r"""The values required to configure the source."""
+    source_type: Optional[shared_oauthactornames.OAuthActorNames] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType'), 'exclude': lambda f: f is None }})
     
 

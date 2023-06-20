@@ -26,19 +26,25 @@ s = airbyte.Airbyte(
 )
 
 req = shared.DestinationCreateRequest(
-    configuration=shared.DestinationPubsub(
-        batching_delay_threshold=536579,
-        batching_element_count_threshold=607045,
-        batching_enabled=False,
-        batching_request_bytes_threshold=896672,
-        credentials_json='distinctio',
-        destination_type=shared.DestinationPubsubPubsub.PUBSUB,
-        ordering_enabled=False,
-        project_id='asperiores',
-        topic_id='nihil',
+    configuration=shared.DestinationOracle(
+        destination_type=shared.DestinationOracleOracle.ORACLE,
+        host='deleniti',
+        jdbc_url_params='omnis',
+        password='necessitatibus',
+        port=1521,
+        schema='airbyte',
+        sid='distinctio',
+        tunnel_method=shared.DestinationOracleTunnelMethodPasswordAuthentication(
+            tunnel_host='nihil',
+            tunnel_method=shared.DestinationOracleTunnelMethodPasswordAuthenticationTunnelMethod.SSH_PASSWORD_AUTH,
+            tunnel_port=22,
+            tunnel_user='ipsum',
+            tunnel_user_password='voluptate',
+        ),
+        username='Makenzie13',
     ),
-    name='Tamara Ondricka',
-    workspace_id='203ce5e6-a95d-48a0-9446-ce2af7a73cf3',
+    name='Wendy Rosenbaum',
+    workspace_id='e6a95d8a-0d44-46ce-aaf7-a73cf3be453f',
 )
 
 res = s.destinations.create_destination(req)
@@ -76,7 +82,7 @@ s = airbyte.Airbyte(
 )
 
 req = operations.DeleteDestinationRequest(
-    destination_id='tempore',
+    destination_id='totam',
 )
 
 res = s.destinations.delete_destination(req)
@@ -114,7 +120,7 @@ s = airbyte.Airbyte(
 )
 
 req = operations.GetDestinationRequest(
-    destination_id='accusamus',
+    destination_id='nihil',
 )
 
 res = s.destinations.get_destination(req)
@@ -153,10 +159,10 @@ s = airbyte.Airbyte(
 
 req = operations.ListDestinationsRequest(
     include_deleted=False,
-    limit=253941,
-    offset=313692,
+    limit=25662,
+    offset=711584,
     workspace_ids=[
-        'f870b326-b5a7-4342-9cdb-1a8422bb679d',
+        '26b5a734-29cd-4b1a-8422-bb679d232271',
     ],
 )
 
@@ -196,14 +202,20 @@ s = airbyte.Airbyte(
 
 req = operations.PatchDestinationRequest(
     destination_patch_request=shared.DestinationPatchRequest(
-        configuration=shared.DestinationConvex(
-            access_key='neque',
-            deployment_url='https://murky-swan-635.convex.cloud',
-            destination_type=shared.DestinationConvexConvex.CONVEX,
+        configuration=shared.DestinationElasticsearch(
+            authentication_method=shared.DestinationElasticsearchAuthenticationMethodUsernamePassword(
+                method=shared.DestinationElasticsearchAuthenticationMethodUsernamePasswordMethod.BASIC,
+                password='hic',
+                username='Alexander_Runolfsdottir9',
+            ),
+            ca_certificate='saepe',
+            destination_type=shared.DestinationElasticsearchElasticsearch.ELASTICSEARCH,
+            endpoint='ipsum',
+            upsert=False,
         ),
-        name='Courtney Cassin',
+        name='Gayle Lueilwitz',
     ),
-    destination_id='hic',
+    destination_id='aperiam',
 )
 
 res = s.destinations.patch_destination(req)
@@ -242,31 +254,17 @@ s = airbyte.Airbyte(
 
 req = operations.PutDestinationRequest(
     destination_put_request=shared.DestinationPutRequest(
-        configuration=shared.DestinationAwsDatalake(
-            aws_account_id='111111111111',
-            bucket_name='cumque',
-            bucket_prefix='soluta',
-            credentials=shared.DestinationAwsDatalakeCredentialsIAMUser(
-                aws_access_key_id='et',
-                aws_secret_access_key='saepe',
-                credentials_title=shared.DestinationAwsDatalakeCredentialsIAMUserCredentialsTitle.IAM_USER,
-            ),
-            destination_type=shared.DestinationAwsDatalakeAwsDatalake.AWS_DATALAKE,
-            format=shared.DestinationAwsDatalakeFormatJSONLinesNewlineDelimitedJSON(
-                compression_codec=shared.DestinationAwsDatalakeFormatJSONLinesNewlineDelimitedJSONCompressionCodecOptional.UNCOMPRESSED,
-                format_type=shared.DestinationAwsDatalakeFormatJSONLinesNewlineDelimitedJSONFormatTypeWildcard.JSONL,
-            ),
-            glue_catalog_float_as_decimal=False,
-            lakeformation_database_default_tag_key='pii_level',
-            lakeformation_database_default_tag_values='private,public',
-            lakeformation_database_name='nobis',
-            lakeformation_governed_tables=False,
-            partitioning=shared.DestinationAwsDatalakeChooseHowToPartitionData.MONTH,
-            region=shared.DestinationAwsDatalakeS3BucketRegion.EU_WEST_1,
+        configuration=shared.DestinationTypesense(
+            api_key='dolorem',
+            batch_size='dolore',
+            destination_type=shared.DestinationTypesenseTypesense.TYPESENSE,
+            host='labore',
+            port='adipisci',
+            protocol='dolorum',
         ),
-        name='Kevin Willms',
+        name='Amy Armstrong',
     ),
-    destination_id='labore',
+    destination_id='consequatur',
 )
 
 res = s.destinations.put_destination(req)
