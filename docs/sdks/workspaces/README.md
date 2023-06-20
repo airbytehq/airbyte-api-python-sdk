@@ -29,10 +29,15 @@ s = airbyte.Airbyte(
 req = operations.CreateOrUpdateWorkspaceOAuthCredentialsRequest(
     workspace_o_auth_credentials_request=shared.WorkspaceOAuthCredentialsRequest(
         actor_type=shared.ActorTypeEnum.DESTINATION,
-        configuration=shared.OAuthCredentialsConfiguration(),
-        name='Pearl Gerlach',
+        configuration=shared.Mailchimp(
+            credentials=shared.MailchimpCredentials(
+                client_id='accusantium',
+                client_secret='porro',
+            ),
+        ),
+        source_type=shared.OAuthActorNames.LEVER_HIRING,
     ),
-    workspace_id='soluta',
+    workspace_id='quas',
 )
 
 res = s.workspaces.create_or_update_workspace_o_auth_credentials(req)
@@ -70,7 +75,7 @@ s = airbyte.Airbyte(
 )
 
 req = shared.WorkspaceCreateRequest(
-    name='Mrs. Michele Williamson',
+    name='Eugene Leuschke',
 )
 
 res = s.workspaces.create_workspace(req)
@@ -108,7 +113,7 @@ s = airbyte.Airbyte(
 )
 
 req = operations.DeleteWorkspaceRequest(
-    workspace_id='ullam',
+    workspace_id='mollitia',
 )
 
 res = s.workspaces.delete_workspace(req)
@@ -146,7 +151,7 @@ s = airbyte.Airbyte(
 )
 
 req = operations.GetWorkspaceRequest(
-    workspace_id='nisi',
+    workspace_id='incidunt',
 )
 
 res = s.workspaces.get_workspace(req)
@@ -185,10 +190,11 @@ s = airbyte.Airbyte(
 
 req = operations.ListWorkspacesRequest(
     include_deleted=False,
-    limit=16328,
-    offset=531849,
+    limit=539224,
+    offset=128860,
     workspace_ids=[
-        'd68ea19f-1d17-4051-b39d-08086a184039',
+        '62f222e9-817e-4e17-8be6-1e6b7b95bc0a',
+        'b3c20c4f-3789-4fd8-b1f9-9dd2efd121aa',
     ],
 )
 
@@ -228,9 +234,9 @@ s = airbyte.Airbyte(
 
 req = operations.UpdateWorkspaceRequest(
     workspace_update_request=shared.WorkspaceUpdateRequest(
-        name='Leticia Christiansen IV',
+        name='Mandy Berge',
     ),
-    workspace_id='dicta',
+    workspace_id='in',
 )
 
 res = s.workspaces.update_workspace(req)

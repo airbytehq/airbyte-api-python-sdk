@@ -22,22 +22,16 @@ class SourceGoogleSheetsCredentialsServiceAccountKeyAuthentication:
     
 
 
-class SourceGoogleSheetsCredentialsAuthenticateViaGoogleOAuthAuthType(str, Enum):
-    CLIENT = 'Client'
-
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
 
 @dataclasses.dataclass
 class SourceGoogleSheetsCredentialsAuthenticateViaGoogleOAuth:
     r"""Credentials for connecting to the Google Sheets API"""
-    auth_type: SourceGoogleSheetsCredentialsAuthenticateViaGoogleOAuthAuthType = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_type') }})
     client_id: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('client_id') }})
     r"""Enter your Google application's Client ID"""
     client_secret: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('client_secret') }})
     r"""Enter your Google application's Client Secret"""
-    refresh_token: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('refresh_token') }})
-    r"""Enter your Google application's refresh token"""
     
 
 

@@ -55,12 +55,12 @@ class SourceGitlabGitlab(str, Enum):
 @dataclasses.dataclass
 class SourceGitlab:
     r"""The values required to configure the source."""
-    api_url: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('api_url') }})
-    r"""Please enter your basic URL from GitLab instance."""
     credentials: Any = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credentials') }})
     source_type: SourceGitlabGitlab = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     start_date: datetime = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('start_date'), 'encoder': utils.datetimeisoformat(False), 'decoder': dateutil.parser.isoparse, 'mm_field': fields.DateTime(format='iso') }})
     r"""The date from which you'd like to replicate data for GitLab API, in the format YYYY-MM-DDT00:00:00Z. All data generated after this date will be replicated."""
+    api_url: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('api_url'), 'exclude': lambda f: f is None }})
+    r"""Please enter your basic URL from GitLab instance."""
     groups: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('groups'), 'exclude': lambda f: f is None }})
     r"""Space-delimited list of groups. e.g. airbyte.io."""
     projects: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('projects'), 'exclude': lambda f: f is None }})

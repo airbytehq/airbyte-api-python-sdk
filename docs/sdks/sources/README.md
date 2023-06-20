@@ -28,14 +28,16 @@ s = airbyte.Airbyte(
 )
 
 req = shared.SourceCreateRequest(
-    configuration=shared.SourceRecruitee(
-        api_key='repellendus',
-        company_id=785153,
-        source_type=shared.SourceRecruiteeRecruitee.RECRUITEE,
+    configuration=shared.SourceAwsCloudtrail(
+        aws_key_id='laudantium',
+        aws_region_name='odio',
+        aws_secret_key='occaecati',
+        source_type=shared.SourceAwsCloudtrailAwsCloudtrail.AWS_CLOUDTRAIL,
+        start_date=dateutil.parser.parse('2021-01-01').date(),
     ),
-    name='Alexander Prosacco',
-    secret_id='quae',
-    workspace_id='879fce95-3f73-4ef7-bbc7-abd74dd39c0f',
+    name='Wilson Terry',
+    secret_id='ipsum',
+    workspace_id='f73ef7fb-c7ab-4d74-9d39-c0f5d2cff7c7',
 )
 
 res = s.sources.create_source(req)
@@ -73,7 +75,7 @@ s = airbyte.Airbyte(
 )
 
 req = operations.DeleteSourceRequest(
-    source_id='exercitationem',
+    source_id='alias',
 )
 
 res = s.sources.delete_source(req)
@@ -111,7 +113,7 @@ s = airbyte.Airbyte(
 )
 
 req = operations.GetSourceRequest(
-    source_id='nulla',
+    source_id='officia',
 )
 
 res = s.sources.get_source(req)
@@ -153,10 +155,10 @@ s = airbyte.Airbyte(
 )
 
 req = shared.InitiateOauthRequest(
-    name='Johnnie Wunsch',
     o_auth_input_configuration=shared.OAuthInputConfiguration(),
-    redirect_url='eligendi',
-    workspace_id='70a45626-d436-4813-b16d-9f5fce6c5561',
+    redirect_url='tempora',
+    source_type=shared.OAuthActorNames.HUBSPOT,
+    workspace_id='626d4368-13f1-46d9-b5fc-e6c556146c3e',
 )
 
 res = s.sources.initiate_o_auth(req)
@@ -195,13 +197,10 @@ s = airbyte.Airbyte(
 
 req = operations.ListSourcesRequest(
     include_deleted=False,
-    limit=301831,
-    offset=407241,
+    limit=132487,
+    offset=325310,
     workspace_ids=[
-        '3e250fb0-08c4-42e1-81aa-c366c8dd6b14',
-        '42907474-778a-47bd-866d-28c10ab3cdca',
-        '4251904e-523c-47e0-bc71-78e4796f2a70',
-        'c688282a-a482-4562-b222-e9817ee17cbe',
+        'fb008c42-e141-4aac-b66c-8dd6b1442907',
     ],
 )
 
@@ -242,16 +241,25 @@ s = airbyte.Airbyte(
 
 req = operations.PatchSourceRequest(
     source_patch_request=shared.SourcePatchRequest(
-        configuration=shared.SourceKlaviyo(
-            api_key='quasi',
-            source_type=shared.SourceKlaviyoKlaviyo.KLAVIYO,
-            start_date=dateutil.parser.isoparse('2017-01-25T00:00:00Z'),
+        configuration=shared.SourceGoogleAnalyticsV4(
+            credentials=shared.SourceGoogleAnalyticsV4CredentialsAuthenticateViaGoogleOauth(
+                access_token='eius',
+                auth_type=shared.SourceGoogleAnalyticsV4CredentialsAuthenticateViaGoogleOauthAuthType.CLIENT,
+                client_id='esse',
+                client_secret='esse',
+                refresh_token='rem',
+            ),
+            custom_reports='fuga',
+            source_type=shared.SourceGoogleAnalyticsV4GoogleAnalyticsV4.GOOGLE_ANALYTICS_V4,
+            start_date='2020-06-01',
+            view_id='reprehenderit',
+            window_in_days=200,
         ),
         name='My source',
-        secret_id='saepe',
-        workspace_id='6b7b95bc-0ab3-4c20-84f3-789fd871f99d',
+        secret_id='fugiat',
+        workspace_id='466d28c1-0ab3-4cdc-a425-1904e523c7e0',
     ),
-    source_id='possimus',
+    source_id='distinctio',
 )
 
 res = s.sources.patch_source(req)
@@ -291,14 +299,17 @@ s = airbyte.Airbyte(
 
 req = operations.PutSourceRequest(
     source_put_request=shared.SourcePutRequest(
-        configuration=shared.SourceDelighted(
-            api_key='eveniet',
-            since=dateutil.parser.isoparse('2022-05-30 04:50:23'),
-            source_type=shared.SourceDelightedDelighted.DELIGHTED,
+        configuration=shared.SourceSnapchatMarketing(
+            client_id='dignissimos',
+            client_secret='inventore',
+            end_date=dateutil.parser.parse('2022-01-30').date(),
+            refresh_token='nihil',
+            source_type=shared.SourceSnapchatMarketingSnapchatMarketing.SNAPCHAT_MARKETING,
+            start_date=dateutil.parser.parse('2022-01-01').date(),
         ),
-        name='Miss Peter Cronin',
+        name='Sheldon Hackett',
     ),
-    source_id='aliquid',
+    source_id='commodi',
 )
 
 res = s.sources.put_source(req)
