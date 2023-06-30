@@ -13,5 +13,6 @@ jobs:
       publish_python: true
     secrets:
       github_access_token: ${{ secrets.GITHUB_TOKEN }}
+      openapi_doc_auth_token: ${{ secrets.OPENAPI_DOC_AUTH_TOKEN }}
       pypi_token: ${{ secrets.PYPI_TOKEN }}
       speakeasy_api_key: ${{ secrets.SPEAKEASY_API_KEY }}
