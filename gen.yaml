@@ -5,8 +5,13 @@ management:
   speakeasyVersion: 1.51.3
   generationVersion: 2.52.2
 generation:
+  comments:
+    disableComments: false
+    omitDescriptionIfSummaryPresent: false
+  baseServerURL: ""
   sdkClassName: airbyte
   singleTagPerOp: false
+  tagNamespacingDisabled: false
   telemetryEnabled: true
 python:
   version: 0.18.0
