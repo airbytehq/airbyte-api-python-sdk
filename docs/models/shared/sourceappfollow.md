@@ -1,0 +1,14 @@
+# SourceAppfollow
+
+The values required to configure the source.
+
+
+## Fields
+
+| Field                                                                                             | Type                                                                                              | Required                                                                                          | Description                                                                                       |
+| ------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- |
+| `api_secret`                                                                                      | *str*                                                                                             | :heavy_check_mark:                                                                                | api secret provided by Appfollow                                                                  |
+| `cid`                                                                                             | *str*                                                                                             | :heavy_check_mark:                                                                                | client id provided by Appfollow                                                                   |
+| `country`                                                                                         | *str*                                                                                             | :heavy_check_mark:                                                                                | getting data by Country                                                                           |
+| `ext_id`                                                                                          | *str*                                                                                             | :heavy_check_mark:                                                                                | for App Store — this is 9-10 digits identification number; for Google Play — this is bundle name; |
+| `source_type`                                                                                     | [SourceAppfollowAppfollow](../../models/shared/sourceappfollowappfollow.md)                       | :heavy_check_mark:                                                                                | N/A                                                                                               |

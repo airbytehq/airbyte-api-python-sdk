@@ -15,6 +15,8 @@ class LinkedinAdsCredentials:
     r"""The client ID of the LinkedIn Ads developer application."""
     client_secret: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('client_secret'), 'exclude': lambda f: f is None }})
     r"""The client secret the LinkedIn Ads developer application."""
+    refresh_token: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('refresh_token'), 'exclude': lambda f: f is None }})
+    r"""The key to refresh the expired access token."""
     
 
 

@@ -14,5 +14,9 @@ class Trello:
     r"""The values required to configure the source."""
     client_id: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('client_id'), 'exclude': lambda f: f is None }})
     client_secret: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('client_secret'), 'exclude': lambda f: f is None }})
+    key: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('key'), 'exclude': lambda f: f is None }})
+    r"""Trello API key. See the <a href=\\"https://developer.atlassian.com/cloud/trello/guides/rest-api/authorization/#using-basic-oauth\\">docs</a> for instructions on how to generate it."""
+    token: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('token'), 'exclude': lambda f: f is None }})
+    r"""Trello API token. See the <a href=\\"https://developer.atlassian.com/cloud/trello/guides/rest-api/authorization/#using-basic-oauth\\">docs</a> for instructions on how to generate it."""
     
 

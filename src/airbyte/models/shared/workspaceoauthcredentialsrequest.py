@@ -6,7 +6,7 @@ from ..shared import actortypeenum as shared_actortypeenum
 from ..shared import oauthactornames as shared_oauthactornames
 from airbyte import utils
 from dataclasses_json import Undefined, dataclass_json
-from typing import Any, Optional
+from typing import Any
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
@@ -18,6 +18,6 @@ class WorkspaceOAuthCredentialsRequest:
     r"""Whether you're setting this override for a source or destination"""
     configuration: Any = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('configuration') }})
     r"""The values required to configure the source."""
-    source_type: Optional[shared_oauthactornames.OAuthActorNames] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType'), 'exclude': lambda f: f is None }})
+    name: shared_oauthactornames.OAuthActorNames = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('name') }})
     
 

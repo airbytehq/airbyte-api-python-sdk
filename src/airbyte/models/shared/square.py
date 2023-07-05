@@ -15,6 +15,8 @@ class SquareCredentials:
     r"""The Square-issued ID of your application"""
     client_secret: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('client_secret'), 'exclude': lambda f: f is None }})
     r"""The Square-issued application secret for your application"""
+    refresh_token: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('refresh_token'), 'exclude': lambda f: f is None }})
+    r"""A refresh token generated using the above client ID and secret"""
     
 
 

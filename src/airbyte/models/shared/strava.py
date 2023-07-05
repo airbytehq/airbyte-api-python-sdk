@@ -16,5 +16,7 @@ class Strava:
     r"""The Client ID of your Strava developer application."""
     client_secret: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('client_secret'), 'exclude': lambda f: f is None }})
     r"""The Client Secret of your Strava developer application."""
+    refresh_token: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('refresh_token'), 'exclude': lambda f: f is None }})
+    r"""The Refresh Token with the activity: read_all permissions."""
     
 

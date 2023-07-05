@@ -7,3 +7,4 @@
 | -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- |
 | `client_id`                                              | *Optional[str]*                                          | :heavy_minus_sign:                                       | The Client ID of your Harvest developer application.     |
 | `client_secret`                                          | *Optional[str]*                                          | :heavy_minus_sign:                                       | The Client Secret of your Harvest developer application. |
+| `refresh_token`                                          | *Optional[str]*                                          | :heavy_minus_sign:                                       | Refresh Token to renew the expired Access Token.         |

@@ -11,7 +11,7 @@ from typing import Optional
 
 @dataclasses.dataclass
 class ListJobsRequest:
-    connection_id: str = dataclasses.field(metadata={'query_param': { 'field_name': 'connectionId', 'style': 'form', 'explode': True }})
+    connection_id: Optional[str] = dataclasses.field(default=None, metadata={'query_param': { 'field_name': 'connectionId', 'style': 'form', 'explode': True }})
     r"""Filter the Jobs by connectionId."""
     job_type: Optional[shared_jobtypeenum.JobTypeEnum] = dataclasses.field(default=None, metadata={'query_param': { 'field_name': 'jobType', 'style': 'form', 'explode': True }})
     r"""Filter the Jobs by jobType."""
@@ -19,6 +19,8 @@ class ListJobsRequest:
     r"""Set the limit on the number of Jobs returned. The default is 20 Jobs."""
     offset: Optional[int] = dataclasses.field(default=None, metadata={'query_param': { 'field_name': 'offset', 'style': 'form', 'explode': True }})
     r"""Set the offset to start at when returning Jobs. The default is 0."""
+    workspace_ids: Optional[list[str]] = dataclasses.field(default=None, metadata={'query_param': { 'field_name': 'workspaceIds', 'style': 'form', 'explode': True }})
+    r"""The UUIDs of the workspaces you wish to list jobs for. Empty list will retrieve all allowed workspaces."""
     
 
 

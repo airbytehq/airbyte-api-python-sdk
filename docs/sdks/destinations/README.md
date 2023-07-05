@@ -26,25 +26,19 @@ s = airbyte.Airbyte(
 )
 
 req = shared.DestinationCreateRequest(
-    configuration=shared.DestinationOracle(
-        destination_type=shared.DestinationOracleOracle.ORACLE,
-        host='deleniti',
-        jdbc_url_params='omnis',
-        password='necessitatibus',
-        port=1521,
-        schema='airbyte',
-        sid='distinctio',
-        tunnel_method=shared.DestinationOracleTunnelMethodPasswordAuthentication(
-            tunnel_host='nihil',
-            tunnel_method=shared.DestinationOracleTunnelMethodPasswordAuthenticationTunnelMethod.SSH_PASSWORD_AUTH,
-            tunnel_port=22,
-            tunnel_user='ipsum',
-            tunnel_user_password='voluptate',
-        ),
-        username='Makenzie13',
+    configuration=shared.DestinationPubsub(
+        batching_delay_threshold=536579,
+        batching_element_count_threshold=607045,
+        batching_enabled=False,
+        batching_request_bytes_threshold=896672,
+        credentials_json='distinctio',
+        destination_type=shared.DestinationPubsubPubsub.PUBSUB,
+        ordering_enabled=False,
+        project_id='asperiores',
+        topic_id='nihil',
     ),
-    name='Wendy Rosenbaum',
-    workspace_id='e6a95d8a-0d44-46ce-aaf7-a73cf3be453f',
+    name='Tamara Ondricka',
+    workspace_id='203ce5e6-a95d-48a0-9446-ce2af7a73cf3',
 )
 
 res = s.destinations.create_destination(req)
@@ -82,7 +76,7 @@ s = airbyte.Airbyte(
 )
 
 req = operations.DeleteDestinationRequest(
-    destination_id='totam',
+    destination_id='tempore',
 )
 
 res = s.destinations.delete_destination(req)
@@ -120,7 +114,7 @@ s = airbyte.Airbyte(
 )
 
 req = operations.GetDestinationRequest(
-    destination_id='nihil',
+    destination_id='accusamus',
 )
 
 res = s.destinations.get_destination(req)
@@ -159,10 +153,10 @@ s = airbyte.Airbyte(
 
 req = operations.ListDestinationsRequest(
     include_deleted=False,
-    limit=25662,
-    offset=711584,
+    limit=253941,
+    offset=313692,
     workspace_ids=[
-        '26b5a734-29cd-4b1a-8422-bb679d232271',
+        'f870b326-b5a7-4342-9cdb-1a8422bb679d',
     ],
 )
 
@@ -202,20 +196,15 @@ s = airbyte.Airbyte(
 
 req = operations.PatchDestinationRequest(
     destination_patch_request=shared.DestinationPatchRequest(
-        configuration=shared.DestinationElasticsearch(
-            authentication_method=shared.DestinationElasticsearchAuthenticationMethodUsernamePassword(
-                method=shared.DestinationElasticsearchAuthenticationMethodUsernamePasswordMethod.BASIC,
-                password='hic',
-                username='Alexander_Runolfsdottir9',
-            ),
-            ca_certificate='saepe',
-            destination_type=shared.DestinationElasticsearchElasticsearch.ELASTICSEARCH,
-            endpoint='ipsum',
-            upsert=False,
+        configuration=shared.DestinationCumulio(
+            api_host='neque',
+            api_key='fugit',
+            api_token='magni',
+            destination_type=shared.DestinationCumulioCumulio.CUMULIO,
         ),
-        name='Gayle Lueilwitz',
+        name='Ashley Hermiston',
     ),
-    destination_id='aperiam',
+    destination_id='voluptatem',
 )
 
 res = s.destinations.patch_destination(req)
@@ -254,17 +243,27 @@ s = airbyte.Airbyte(
 
 req = operations.PutDestinationRequest(
     destination_put_request=shared.DestinationPutRequest(
-        configuration=shared.DestinationTypesense(
-            api_key='dolorem',
-            batch_size='dolore',
-            destination_type=shared.DestinationTypesenseTypesense.TYPESENSE,
-            host='labore',
-            port='adipisci',
-            protocol='dolorum',
+        configuration=shared.DestinationS3(
+            access_key_id='A012345678910EXAMPLE',
+            destination_type=shared.DestinationS3S3.S3,
+            file_name_pattern='{part_number}',
+            format=shared.DestinationS3FormatJSONLinesNewlineDelimitedJSON(
+                compression=shared.DestinationS3FormatJSONLinesNewlineDelimitedJSONCompressionNoCompression(
+                    compression_type=shared.DestinationS3FormatJSONLinesNewlineDelimitedJSONCompressionNoCompressionCompressionType.NO_COMPRESSION,
+                ),
+                flattening=shared.DestinationS3FormatJSONLinesNewlineDelimitedJSONFlattening.ROOT_LEVEL_FLATTENING,
+                format_type=shared.DestinationS3FormatJSONLinesNewlineDelimitedJSONFormatType.JSONL,
+            ),
+            s3_bucket_name='airbyte_sync',
+            s3_bucket_path='data_sync/test',
+            s3_bucket_region=shared.DestinationS3S3BucketRegion.AF_SOUTH_1,
+            s3_endpoint='http://localhost:9000',
+            s3_path_format='${NAMESPACE}/${STREAM_NAME}/${YEAR}_${MONTH}_${DAY}_${EPOCH}_',
+            secret_access_key='a012345678910ABCDEFGH/AbCdEfGhEXAMPLEKEY',
         ),
-        name='Amy Armstrong',
+        name='Gayle Lueilwitz',
     ),
-    destination_id='consequatur',
+    destination_id='aperiam',
 )
 
 res = s.destinations.put_destination(req)

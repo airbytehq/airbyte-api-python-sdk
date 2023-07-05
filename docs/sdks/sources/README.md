@@ -28,16 +28,15 @@ s = airbyte.Airbyte(
 )
 
 req = shared.SourceCreateRequest(
-    configuration=shared.SourceAwsCloudtrail(
-        aws_key_id='laudantium',
-        aws_region_name='odio',
-        aws_secret_key='occaecati',
-        source_type=shared.SourceAwsCloudtrailAwsCloudtrail.AWS_CLOUDTRAIL,
-        start_date=dateutil.parser.parse('2021-01-01').date(),
+    configuration=shared.SourcePosthog(
+        api_key='facilis',
+        base_url='https://posthog.example.com',
+        source_type=shared.SourcePosthogPosthog.POSTHOG,
+        start_date=dateutil.parser.isoparse('2021-01-01T00:00:00Z'),
     ),
-    name='Wilson Terry',
-    secret_id='ipsum',
-    workspace_id='f73ef7fb-c7ab-4d74-9d39-c0f5d2cff7c7',
+    name='Allan Greenholt',
+    secret_id='sequi',
+    workspace_id='9c0f5d2c-ff7c-470a-8562-6d436813f16d',
 )
 
 res = s.sources.create_source(req)
@@ -75,7 +74,7 @@ s = airbyte.Airbyte(
 )
 
 req = operations.DeleteSourceRequest(
-    source_id='alias',
+    source_id='excepturi',
 )
 
 res = s.sources.delete_source(req)
@@ -113,7 +112,7 @@ s = airbyte.Airbyte(
 )
 
 req = operations.GetSourceRequest(
-    source_id='officia',
+    source_id='voluptatibus',
 )
 
 res = s.sources.get_source(req)
@@ -155,10 +154,10 @@ s = airbyte.Airbyte(
 )
 
 req = shared.InitiateOauthRequest(
+    name=shared.OAuthActorNames.HUBSPOT,
     o_auth_input_configuration=shared.OAuthInputConfiguration(),
-    redirect_url='tempora',
-    source_type=shared.OAuthActorNames.HUBSPOT,
-    workspace_id='626d4368-13f1-46d9-b5fc-e6c556146c3e',
+    redirect_url='sapiente',
+    workspace_id='ce6c5561-46c3-4e25-8fb0-08c42e141aac',
 )
 
 res = s.sources.initiate_o_auth(req)
@@ -197,10 +196,11 @@ s = airbyte.Airbyte(
 
 req = operations.ListSourcesRequest(
     include_deleted=False,
-    limit=132487,
-    offset=325310,
+    limit=245367,
+    offset=432148,
     workspace_ids=[
-        'fb008c42-e141-4aac-b66c-8dd6b1442907',
+        'c8dd6b14-4290-4747-8778-a7bd466d28c1',
+        '0ab3cdca-4251-4904-a523-c7e0bc7178e4',
     ],
 )
 
@@ -241,25 +241,21 @@ s = airbyte.Airbyte(
 
 req = operations.PatchSourceRequest(
     source_patch_request=shared.SourcePatchRequest(
-        configuration=shared.SourceGoogleAnalyticsV4(
-            credentials=shared.SourceGoogleAnalyticsV4CredentialsAuthenticateViaGoogleOauth(
-                access_token='eius',
-                auth_type=shared.SourceGoogleAnalyticsV4CredentialsAuthenticateViaGoogleOauthAuthType.CLIENT,
-                client_id='esse',
-                client_secret='esse',
-                refresh_token='rem',
+        configuration=shared.SourceMicrosoftTeams(
+            credentials=shared.SourceMicrosoftTeamsCredentialsAuthenticateViaMicrosoft(
+                auth_type=shared.SourceMicrosoftTeamsCredentialsAuthenticateViaMicrosoftAuthType.TOKEN,
+                client_id='commodi',
+                client_secret='sapiente',
+                tenant_id='dolores',
             ),
-            custom_reports='fuga',
-            source_type=shared.SourceGoogleAnalyticsV4GoogleAnalyticsV4.GOOGLE_ANALYTICS_V4,
-            start_date='2020-06-01',
-            view_id='reprehenderit',
-            window_in_days=200,
+            period='D7',
+            source_type=shared.SourceMicrosoftTeamsMicrosoftTeams.MICROSOFT_TEAMS,
         ),
         name='My source',
-        secret_id='fugiat',
-        workspace_id='466d28c1-0ab3-4cdc-a425-1904e523c7e0',
+        secret_id='deserunt',
+        workspace_id='70c68828-2aa4-4825-a2f2-22e9817ee17c',
     ),
-    source_id='distinctio',
+    source_id='nam',
 )
 
 res = s.sources.patch_source(req)
@@ -299,17 +295,16 @@ s = airbyte.Airbyte(
 
 req = operations.PutSourceRequest(
     source_put_request=shared.SourcePutRequest(
-        configuration=shared.SourceSnapchatMarketing(
-            client_id='dignissimos',
-            client_secret='inventore',
-            end_date=dateutil.parser.parse('2022-01-30').date(),
-            refresh_token='nihil',
-            source_type=shared.SourceSnapchatMarketingSnapchatMarketing.SNAPCHAT_MARKETING,
-            start_date=dateutil.parser.parse('2022-01-01').date(),
+        configuration=shared.SourceTvmazeSchedule(
+            domestic_schedule_country_code='US',
+            end_date='quasi',
+            source_type=shared.SourceTvmazeScheduleTvmazeSchedule.TVMAZE_SCHEDULE,
+            start_date='saepe',
+            web_schedule_country_code='GB',
         ),
-        name='Sheldon Hackett',
+        name='Javier Price',
     ),
-    source_id='commodi',
+    source_id='distinctio',
 )
 
 res = s.sources.put_source(req)

@@ -11,12 +11,16 @@ from typing import Optional
 
 @dataclasses.dataclass
 class GoogleAdsCredentials:
+    access_token: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('access_token'), 'exclude': lambda f: f is None }})
+    r"""Access Token for making authenticated requests. More instruction on how to find this value in our <a href=\\"https://docs.airbyte.com/integrations/sources/google-ads#setup-guide\\">docs</a>"""
     client_id: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('client_id'), 'exclude': lambda f: f is None }})
     r"""The Client ID of your Google Ads developer application. More instruction on how to find this value in our <a href=\\"https://docs.airbyte.com/integrations/sources/google-ads#setup-guide\\">docs</a>"""
     client_secret: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('client_secret'), 'exclude': lambda f: f is None }})
     r"""The Client Secret of your Google Ads developer application. More instruction on how to find this value in our <a href=\\"https://docs.airbyte.com/integrations/sources/google-ads#setup-guide\\">docs</a>"""
     developer_token: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('developer_token'), 'exclude': lambda f: f is None }})
     r"""Developer token granted by Google to use their APIs. More instruction on how to find this value in our <a href=\\"https://docs.airbyte.com/integrations/sources/google-ads#setup-guide\\">docs</a>"""
+    refresh_token: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('refresh_token'), 'exclude': lambda f: f is None }})
+    r"""The token for obtaining a new access token. More instruction on how to find this value in our <a href=\\"https://docs.airbyte.com/integrations/sources/google-ads#setup-guide\\">docs</a>"""
     
 
 

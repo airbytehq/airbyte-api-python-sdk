@@ -3,7 +3,8 @@
 
 ## Fields
 
-| Field                                        | Type                                         | Required                                     | Description                                  |
-| -------------------------------------------- | -------------------------------------------- | -------------------------------------------- | -------------------------------------------- |
-| `client_id`                                  | *Optional[str]*                              | :heavy_minus_sign:                           | The Client ID of your OAuth application.     |
-| `client_secret`                              | *Optional[str]*                              | :heavy_minus_sign:                           | The Client Secret of your OAuth application. |
+| Field                                                           | Type                                                            | Required                                                        | Description                                                     |
+| --------------------------------------------------------------- | --------------------------------------------------------------- | --------------------------------------------------------------- | --------------------------------------------------------------- |
+| `access_token`                                                  | *Optional[str]*                                                 | :heavy_minus_sign:                                              | An access token generated using the above client ID and secret. |
+| `client_id`                                                     | *Optional[str]*                                                 | :heavy_minus_sign:                                              | The Client ID of your OAuth application.                        |
+| `client_secret`                                                 | *Optional[str]*                                                 | :heavy_minus_sign:                                              | The Client Secret of your OAuth application.                    |
