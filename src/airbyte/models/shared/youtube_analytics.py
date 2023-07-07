@@ -15,6 +15,8 @@ class YoutubeAnalyticsCredentials:
     r"""The Client ID of your developer application"""
     client_secret: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('client_secret'), 'exclude': lambda f: f is None }})
     r"""The client secret of your developer application"""
+    refresh_token: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('refresh_token'), 'exclude': lambda f: f is None }})
+    r"""A refresh token generated using the above client ID and secret"""
     
 
 

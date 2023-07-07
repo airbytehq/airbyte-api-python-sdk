@@ -14,6 +14,7 @@ from typing import Optional
 @dataclasses.dataclass
 class JobResponse:
     r"""Provides details of a single job."""
+    connection_id: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('connectionId') }})
     job_id: int = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('jobId') }})
     job_type: shared_jobtypeenum.JobTypeEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('jobType') }})
     r"""Enum that describes the different types of jobs that the platform runs."""

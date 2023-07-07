@@ -92,8 +92,10 @@ src/airbyte/models/shared/destination_s3.py
 src/airbyte/models/shared/destination_s3_glue.py
 src/airbyte/models/shared/destination_sftp_json.py
 src/airbyte/models/shared/destination_snowflake.py
+src/airbyte/models/shared/destination_timeplus.py
 src/airbyte/models/shared/destination_typesense.py
 src/airbyte/models/shared/destination_vertica.py
+src/airbyte/models/shared/destination_xata.py
 src/airbyte/models/shared/destinationcreaterequest.py
 src/airbyte/models/shared/destinationsresponse.py
 src/airbyte/models/shared/destinationpatchrequest.py
@@ -114,6 +116,7 @@ src/airbyte/models/shared/source_amazon_seller_partner.py
 src/airbyte/models/shared/source_amazon_sqs.py
 src/airbyte/models/shared/source_amplitude.py
 src/airbyte/models/shared/source_apify_dataset.py
+src/airbyte/models/shared/source_appfollow.py
 src/airbyte/models/shared/source_asana.py
 src/airbyte/models/shared/source_auth0.py
 src/airbyte/models/shared/source_aws_cloudtrail.py
@@ -303,8 +306,8 @@ src/airbyte/models/shared/source_zoom.py
 src/airbyte/models/shared/source_zuora.py
 src/airbyte/models/shared/sourcecreaterequest.py
 src/airbyte/models/shared/initiateoauthrequest.py
-src/airbyte/models/shared/oauthactornames.py
 src/airbyte/models/shared/oauthinputconfiguration.py
+src/airbyte/models/shared/oauthactornames.py
 src/airbyte/models/shared/sourcesresponse.py
 src/airbyte/models/shared/sourcepatchrequest.py
 src/airbyte/models/shared/sourceputrequest.py
@@ -317,6 +320,7 @@ src/airbyte/models/shared/amazon_seller_partner.py
 src/airbyte/models/shared/asana.py
 src/airbyte/models/shared/bing_ads.py
 src/airbyte/models/shared/facebook_marketing.py
+src/airbyte/models/shared/facebook_pages.py
 src/airbyte/models/shared/github.py
 src/airbyte/models/shared/gitlab.py
 src/airbyte/models/shared/google_ads.py
@@ -347,6 +351,7 @@ src/airbyte/models/shared/strava.py
 src/airbyte/models/shared/surveymonkey.py
 src/airbyte/models/shared/tiktok_marketing.py
 src/airbyte/models/shared/trello.py
+src/airbyte/models/shared/typeform.py
 src/airbyte/models/shared/xero.py
 src/airbyte/models/shared/youtube_analytics.py
 src/airbyte/models/shared/zendesk_chat.py
@@ -733,6 +738,8 @@ docs/models/shared/destinationsnowflakeloadingmethodrecommendedinternalstaging.m
 docs/models/shared/destinationsnowflakeloadingmethodselectanotheroptionmethod.md
 docs/models/shared/destinationsnowflakeloadingmethodselectanotheroption.md
 docs/models/shared/destinationsnowflake.md
+docs/models/shared/destinationtimeplustimeplus.md
+docs/models/shared/destinationtimeplus.md
 docs/models/shared/destinationtypesensetypesense.md
 docs/models/shared/destinationtypesense.md
 docs/models/shared/destinationverticavertica.md
@@ -743,6 +750,8 @@ docs/models/shared/destinationverticatunnelmethodsshkeyauthentication.md
 docs/models/shared/destinationverticatunnelmethodnotunneltunnelmethod.md
 docs/models/shared/destinationverticatunnelmethodnotunnel.md
 docs/models/shared/destinationvertica.md
+docs/models/shared/destinationxataxata.md
+docs/models/shared/destinationxata.md
 docs/models/shared/destinationcreaterequest.md
 docs/models/shared/destinationsresponse.md
 docs/models/shared/destinationpatchrequest.md
@@ -794,6 +803,8 @@ docs/models/shared/sourceamplitudeamplitude.md
 docs/models/shared/sourceamplitude.md
 docs/models/shared/sourceapifydatasetapifydataset.md
 docs/models/shared/sourceapifydataset.md
+docs/models/shared/sourceappfollowappfollow.md
+docs/models/shared/sourceappfollow.md
 docs/models/shared/sourceasanacredentialsauthenticatewithpersonalaccesstokencredentialstitle.md
 docs/models/shared/sourceasanacredentialsauthenticatewithpersonalaccesstoken.md
 docs/models/shared/sourceasanacredentialsauthenticateviaasanaoauthcredentialstitle.md
@@ -971,6 +982,10 @@ docs/models/shared/sourcegoogleanalyticsv4credentialsauthenticateviagoogleoautha
 docs/models/shared/sourcegoogleanalyticsv4credentialsauthenticateviagoogleoauth.md
 docs/models/shared/sourcegoogleanalyticsv4googleanalyticsv4.md
 docs/models/shared/sourcegoogleanalyticsv4.md
+docs/models/shared/sourcegoogledirectorycredentialsserviceaccountkeycredentialstitle.md
+docs/models/shared/sourcegoogledirectorycredentialsserviceaccountkey.md
+docs/models/shared/sourcegoogledirectorycredentialssigninviagoogleoauthcredentialstitle.md
+docs/models/shared/sourcegoogledirectorycredentialssigninviagoogleoauth.md
 docs/models/shared/sourcegoogledirectorygoogledirectory.md
 docs/models/shared/sourcegoogledirectory.md
 docs/models/shared/sourcegooglepagespeedinsightscategories.md
@@ -1396,6 +1411,10 @@ docs/models/shared/sourcetwiliotaskroutertwiliotaskrouter.md
 docs/models/shared/sourcetwiliotaskrouter.md
 docs/models/shared/sourcetwittertwitter.md
 docs/models/shared/sourcetwitter.md
+docs/models/shared/sourcetypeformcredentialsprivatetokenauthtype.md
+docs/models/shared/sourcetypeformcredentialsprivatetoken.md
+docs/models/shared/sourcetypeformcredentialsoauth20authtype.md
+docs/models/shared/sourcetypeformcredentialsoauth20.md
 docs/models/shared/sourcetypeformtypeform.md
 docs/models/shared/sourcetypeform.md
 docs/models/shared/sourceuscensususcensus.md
@@ -1454,8 +1473,8 @@ docs/models/shared/sourcezuoratenantendpointlocation.md
 docs/models/shared/sourcezuora.md
 docs/models/shared/sourcecreaterequest.md
 docs/models/shared/initiateoauthrequest.md
-docs/models/shared/oauthactornames.md
 docs/models/shared/oauthinputconfiguration.md
+docs/models/shared/oauthactornames.md
 docs/models/shared/sourcesresponse.md
 docs/models/shared/sourcepatchrequest.md
 docs/models/shared/sourceputrequest.md
@@ -1470,6 +1489,7 @@ docs/models/shared/asanacredentials.md
 docs/models/shared/asana.md
 docs/models/shared/bingads.md
 docs/models/shared/facebookmarketing.md
+docs/models/shared/facebookpages.md
 docs/models/shared/githubcredentials.md
 docs/models/shared/github.md
 docs/models/shared/gitlabcredentials.md
@@ -1524,6 +1544,8 @@ docs/models/shared/surveymonkey.md
 docs/models/shared/tiktokmarketingcredentials.md
 docs/models/shared/tiktokmarketing.md
 docs/models/shared/trello.md
+docs/models/shared/typeformcredentials.md
+docs/models/shared/typeform.md
 docs/models/shared/xeroauthentication.md
 docs/models/shared/xero.md
 docs/models/shared/youtubeanalyticscredentials.md

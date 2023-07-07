@@ -1,9 +1,9 @@
 configVersion: 1.0.0
 management:
-  docChecksum: c3c0a7d7f488dcf1be7bfc12e4f4ab3b
+  docChecksum: bb2011e16a0ec78eb8a13a803e08b4aa
   docVersion: 1.0.0
-  speakeasyVersion: 1.51.3
-  generationVersion: 2.52.2
+  speakeasyVersion: 1.53.0
+  generationVersion: 2.58.0
 generation:
   comments:
     disableComments: false
@@ -14,7 +14,7 @@ generation:
   tagNamespacingDisabled: false
   telemetryEnabled: true
 python:
-  version: 0.18.0
+  version: 0.20.0
   author: Airbyte
   description: Python Client SDK for Airbyte API
   maxMethodParams: 0

@@ -16,5 +16,7 @@ class AmazonSellerPartner:
     r"""Your Login with Amazon Client ID."""
     lwa_client_secret: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('lwa_client_secret'), 'exclude': lambda f: f is None }})
     r"""Your Login with Amazon Client Secret."""
+    refresh_token: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('refresh_token'), 'exclude': lambda f: f is None }})
+    r"""The Refresh Token obtained via OAuth flow authorization."""
     
 

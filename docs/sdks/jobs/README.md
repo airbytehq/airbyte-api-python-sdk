@@ -24,7 +24,7 @@ s = airbyte.Airbyte(
 )
 
 req = operations.CancelJobRequest(
-    job_id=669917,
+    job_id=961937,
 )
 
 res = s.jobs.cancel_job(req)
@@ -62,8 +62,8 @@ s = airbyte.Airbyte(
 )
 
 req = shared.JobCreateRequest(
-    connection_id='repellendus',
-    job_type=shared.JobTypeEnum.RESET,
+    connection_id='dolorem',
+    job_type=shared.JobTypeEnum.SYNC,
 )
 
 res = s.jobs.create_job(req)
@@ -101,7 +101,7 @@ s = airbyte.Airbyte(
 )
 
 req = operations.GetJobRequest(
-    job_id=984330,
+    job_id=286915,
 )
 
 res = s.jobs.get_job(req)
@@ -139,10 +139,13 @@ s = airbyte.Airbyte(
 )
 
 req = operations.ListJobsRequest(
-    connection_id='ut',
+    connection_id='adipisci',
     job_type=shared.JobTypeEnum.RESET,
-    limit=586410,
-    offset=181631,
+    limit=100294,
+    offset=63038,
+    workspace_ids=[
+        '8e0adcf4-b921-4879-bce9-53f73ef7fbc7',
+    ],
 )
 
 res = s.jobs.list_jobs(req)

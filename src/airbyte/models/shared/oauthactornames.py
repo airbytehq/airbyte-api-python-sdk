@@ -41,6 +41,7 @@ class OAuthActorNames(str, Enum):
     SURVEYMONKEY = 'surveymonkey'
     TIKTOK_MARKETING = 'tiktok-marketing'
     TRELLO = 'trello'
+    TYPEFORM = 'typeform'
     XERO = 'xero'
     YOUTUBE_ANALYTICS = 'youtube-analytics'
     ZENDESK_CHAT = 'zendesk-chat'
