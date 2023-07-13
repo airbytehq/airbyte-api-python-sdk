@@ -92,9 +92,9 @@ class Sources:
     def initiate_o_auth(self, request: shared.InitiateOauthRequest) -> operations.InitiateOAuthResponse:
         r"""Initiate OAuth for a source
         Given a source ID, workspace ID, and redirect URL, initiates OAuth for the source.
-        
+
         This returns a fully formed URL for performing user authentication against the relevant source identity provider (IdP). Once authentication has been completed, the IdP will redirect to an Airbyte endpoint which will save the access and refresh tokens off as a secret and return the secret ID to the redirect URL specified in the `secret_id` query string parameter.
-        
+
         That secret ID can be used to create a source with credentials in place of actual tokens.
         """
         base_url = utils.template_url(*self.sdk_configuration.get_server_details())
