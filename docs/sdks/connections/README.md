@@ -100,7 +100,7 @@ Delete a Connection
 
 ```python
 import airbyte
-from airbyte.models import operations
+from airbyte.models import operations, shared
 
 s = airbyte.Airbyte(
     security=shared.Security(
@@ -138,7 +138,7 @@ Get Connection details
 
 ```python
 import airbyte
-from airbyte.models import operations
+from airbyte.models import operations, shared
 
 s = airbyte.Airbyte(
     security=shared.Security(
@@ -176,7 +176,7 @@ List connections
 
 ```python
 import airbyte
-from airbyte.models import operations
+from airbyte.models import operations, shared
 
 s = airbyte.Airbyte(
     security=shared.Security(

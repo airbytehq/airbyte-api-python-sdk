@@ -106,7 +106,7 @@ Delete a Workspace
 
 ```python
 import airbyte
-from airbyte.models import operations
+from airbyte.models import operations, shared
 
 s = airbyte.Airbyte(
     security=shared.Security(
@@ -144,7 +144,7 @@ Get Workspace details
 
 ```python
 import airbyte
-from airbyte.models import operations
+from airbyte.models import operations, shared
 
 s = airbyte.Airbyte(
     security=shared.Security(
@@ -182,7 +182,7 @@ List workspaces
 
 ```python
 import airbyte
-from airbyte.models import operations
+from airbyte.models import operations, shared
 
 s = airbyte.Airbyte(
     security=shared.Security(

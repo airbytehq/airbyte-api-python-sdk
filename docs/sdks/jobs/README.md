@@ -15,7 +15,7 @@ Cancel a running Job
 
 ```python
 import airbyte
-from airbyte.models import operations
+from airbyte.models import operations, shared
 
 s = airbyte.Airbyte(
     security=shared.Security(
@@ -92,7 +92,7 @@ Get Job status and details
 
 ```python
 import airbyte
-from airbyte.models import operations
+from airbyte.models import operations, shared
 
 s = airbyte.Airbyte(
     security=shared.Security(
