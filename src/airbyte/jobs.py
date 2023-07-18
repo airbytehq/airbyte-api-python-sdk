@@ -2,7 +2,7 @@
 
 from .sdkconfiguration import SDKConfiguration
 from airbyte import utils
-from airbyte.models import operations, shared
+from airbyte.models import errors, operations, shared
 from typing import Optional
 
 class Jobs:
@@ -32,6 +32,8 @@ class Jobs:
             if utils.match_content_type(content_type, 'application/json'):
                 out = utils.unmarshal_json(http_res.text, Optional[shared.JobResponse])
                 res.job_response = out
+            else:
+                raise errors.SDKError(f'unknown content-type received: {content_type}', http_res.status_code, http_res.text, http_res)
         elif http_res.status_code in [403, 404]:
             pass
 
@@ -63,6 +65,8 @@ class Jobs:
             if utils.match_content_type(content_type, 'application/json'):
                 out = utils.unmarshal_json(http_res.text, Optional[shared.JobResponse])
                 res.job_response = out
+            else:
+                raise errors.SDKError(f'unknown content-type received: {content_type}', http_res.status_code, http_res.text, http_res)
         elif http_res.status_code in [400, 403]:
             pass
 
@@ -89,6 +93,8 @@ class Jobs:
             if utils.match_content_type(content_type, 'application/json'):
                 out = utils.unmarshal_json(http_res.text, Optional[shared.JobResponse])
                 res.job_response = out
+            else:
+                raise errors.SDKError(f'unknown content-type received: {content_type}', http_res.status_code, http_res.text, http_res)
         elif http_res.status_code in [403, 404]:
             pass
 
@@ -116,6 +122,8 @@ class Jobs:
             if utils.match_content_type(content_type, 'application/json'):
                 out = utils.unmarshal_json(http_res.text, Optional[shared.JobsResponse])
                 res.jobs_response = out
+            else:
+                raise errors.SDKError(f'unknown content-type received: {content_type}', http_res.status_code, http_res.text, http_res)
         elif http_res.status_code == 403:
             pass
 
