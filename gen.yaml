@@ -14,7 +14,7 @@ generation:
   tagNamespacingDisabled: false
   telemetryEnabled: true
 python:
-  version: 0.24.1
+  version: 0.24.2
   author: Airbyte
   description: Python Client SDK for Airbyte API
   maxMethodParams: 0
