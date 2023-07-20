@@ -12,7 +12,7 @@ from typing import Optional
 
 class SourceFacebookMarketingInsightConfigValidActionBreakdowns(str, Enum):
     r"""Generic enumeration.
-    
+
     Derive from this class to define new enumerations.
     """
     ACTION_CANVAS_COMPONENT_NAME = 'action_canvas_component_name'
@@ -28,7 +28,7 @@ class SourceFacebookMarketingInsightConfigValidActionBreakdowns(str, Enum):
 
 class SourceFacebookMarketingInsightConfigValidBreakdowns(str, Enum):
     r"""Generic enumeration.
-    
+
     Derive from this class to define new enumerations.
     """
     AD_FORMAT_ASSET = 'ad_format_asset'
@@ -61,7 +61,7 @@ class SourceFacebookMarketingInsightConfigValidBreakdowns(str, Enum):
 
 class SourceFacebookMarketingInsightConfigValidEnums(str, Enum):
     r"""Generic enumeration.
-    
+
     Derive from this class to define new enumerations.
     """
     ACCOUNT_CURRENCY = 'account_currency'

@@ -10,6 +10,7 @@ pylintrc
 setup.py
 src/airbyte/__init__.py
 src/airbyte/models/__init__.py
+src/airbyte/models/errors/sdkerror.py
 src/airbyte/utils/__init__.py
 src/airbyte/utils/retries.py
 src/airbyte/utils/utils.py
@@ -365,6 +366,7 @@ src/airbyte/models/shared/workspacesresponse.py
 src/airbyte/models/shared/workspaceupdaterequest.py
 src/airbyte/models/shared/security.py
 src/airbyte/models/shared/__init__.py
+src/airbyte/models/errors/__init__.py
 docs/sdks/airbyte/README.md
 docs/sdks/connections/README.md
 docs/sdks/destinations/README.md

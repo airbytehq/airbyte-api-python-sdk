@@ -2,7 +2,7 @@
 
 from .sdkconfiguration import SDKConfiguration
 from airbyte import utils
-from airbyte.models import operations, shared
+from airbyte.models import errors, operations, shared
 from typing import Optional
 
 class Sources:
@@ -37,6 +37,8 @@ class Sources:
             if utils.match_content_type(content_type, 'application/json'):
                 out = utils.unmarshal_json(http_res.text, Optional[shared.SourceResponse])
                 res.source_response = out
+            else:
+                raise errors.SDKError(f'unknown content-type received: {content_type}', http_res.status_code, http_res.text, http_res)
         elif http_res.status_code in [400, 403]:
             pass
 
@@ -83,6 +85,8 @@ class Sources:
             if utils.match_content_type(content_type, 'application/json'):
                 out = utils.unmarshal_json(http_res.text, Optional[shared.SourceResponse])
                 res.source_response = out
+            else:
+                raise errors.SDKError(f'unknown content-type received: {content_type}', http_res.status_code, http_res.text, http_res)
         elif http_res.status_code in [403, 404]:
             pass
 
@@ -92,9 +96,9 @@ class Sources:
     def initiate_o_auth(self, request: shared.InitiateOauthRequest) -> operations.InitiateOAuthResponse:
         r"""Initiate OAuth for a source
         Given a source ID, workspace ID, and redirect URL, initiates OAuth for the source.
-        
+
         This returns a fully formed URL for performing user authentication against the relevant source identity provider (IdP). Once authentication has been completed, the IdP will redirect to an Airbyte endpoint which will save the access and refresh tokens off as a secret and return the secret ID to the redirect URL specified in the `secret_id` query string parameter.
-        
+
         That secret ID can be used to create a source with credentials in place of actual tokens.
         """
         base_url = utils.template_url(*self.sdk_configuration.get_server_details())
@@ -141,6 +145,8 @@ class Sources:
             if utils.match_content_type(content_type, 'application/json'):
                 out = utils.unmarshal_json(http_res.text, Optional[shared.SourcesResponse])
                 res.sources_response = out
+            else:
+                raise errors.SDKError(f'unknown content-type received: {content_type}', http_res.status_code, http_res.text, http_res)
         elif http_res.status_code in [403, 404]:
             pass
 
@@ -170,6 +176,8 @@ class Sources:
             if utils.match_content_type(content_type, 'application/json'):
                 out = utils.unmarshal_json(http_res.text, Optional[shared.SourceResponse])
                 res.source_response = out
+            else:
+                raise errors.SDKError(f'unknown content-type received: {content_type}', http_res.status_code, http_res.text, http_res)
         elif http_res.status_code in [403, 404]:
             pass
 
@@ -199,6 +207,8 @@ class Sources:
             if utils.match_content_type(content_type, 'application/json'):
                 out = utils.unmarshal_json(http_res.text, Optional[shared.SourceResponse])
                 res.source_response = out
+            else:
+                raise errors.SDKError(f'unknown content-type received: {content_type}', http_res.status_code, http_res.text, http_res)
         elif http_res.status_code in [403, 404]:
             pass
 

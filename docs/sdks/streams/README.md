@@ -12,7 +12,7 @@ Get stream properties
 
 ```python
 import airbyte
-from airbyte.models import operations
+from airbyte.models import operations, shared
 
 s = airbyte.Airbyte(
     security=shared.Security(
