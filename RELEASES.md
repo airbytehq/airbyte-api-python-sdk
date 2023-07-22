@@ -375,3 +375,11 @@ Based on:
 - Speakeasy CLI 1.62.1 (2.70.2) https://github.com/speakeasy-api/speakeasy
 ### Releases
 - [PyPI v0.24.2] https://pypi.org/project/airbyte-api/0.24.2 - .
+
+## 2023-07-22 00:14:41
+### Changes
+Based on:
+- OpenAPI Doc 1.0.0 
+- Speakeasy CLI 1.64.0 (2.71.0) https://github.com/speakeasy-api/speakeasy
+### Releases
+- [PyPI v0.25.0] https://pypi.org/project/airbyte-api/0.25.0 - .
