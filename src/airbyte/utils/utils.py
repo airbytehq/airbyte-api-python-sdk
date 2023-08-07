@@ -678,7 +678,10 @@ def unmarshal_json(data, typ):
     unmarhsal = make_dataclass('Unmarhsal', [('res', typ)],
                                bases=(DataClassJsonMixin,))
     json_dict = json.loads(data)
-    out = unmarhsal.from_dict({"res": json_dict})
+    try:
+        out = unmarhsal.from_dict({"res": json_dict})
+    except AttributeError as attr_err:
+        raise AttributeError(f'unable to unmarshal {data} as {typ}') from attr_err
     return out.res
 
 
