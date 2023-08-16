@@ -14,6 +14,7 @@ generation:
   tagNamespacingDisabled: false
   telemetryEnabled: true
 features:
+  version: ""
   python:
     core: 2.82.0
     globalSecurity: 2.81.1
