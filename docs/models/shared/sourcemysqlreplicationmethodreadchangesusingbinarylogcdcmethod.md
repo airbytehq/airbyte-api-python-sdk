@@ -1,4 +1,4 @@
-# SourceMysqlReplicationMethodLogicalReplicationCDCMethod
+# SourceMysqlReplicationMethodReadChangesUsingBinaryLogCDCMethod
 
 
 ## Values

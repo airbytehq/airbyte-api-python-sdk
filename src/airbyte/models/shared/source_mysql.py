@@ -7,33 +7,33 @@ from dataclasses_json import Undefined, dataclass_json
 from enum import Enum
 from typing import Any, Optional
 
-class SourceMysqlReplicationMethodLogicalReplicationCDCMethod(str, Enum):
-    CDC = 'CDC'
-
-
-@dataclass_json(undefined=Undefined.EXCLUDE)
-
-@dataclasses.dataclass
-class SourceMysqlReplicationMethodLogicalReplicationCDC:
-    r"""CDC uses the Binlog to detect inserts, updates, and deletes. This needs to be configured on the source database itself."""
-    method: SourceMysqlReplicationMethodLogicalReplicationCDCMethod = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('method') }})
-    initial_waiting_seconds: Optional[int] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('initial_waiting_seconds'), 'exclude': lambda f: f is None }})
-    r"""The amount of time the connector will wait when it launches to determine if there is new data to sync or not. Defaults to 300 seconds. Valid range: 120 seconds to 1200 seconds. Read about <a href=\\"https://docs.airbyte.com/integrations/sources/mysql/#change-data-capture-cdc\\">initial waiting time</a>."""
-    server_time_zone: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('server_time_zone'), 'exclude': lambda f: f is None }})
-    r"""Enter the configured MySQL server timezone. This should only be done if the configured timezone in your MySQL instance does not conform to IANNA standard."""
-    
-
-
-class SourceMysqlReplicationMethodStandardMethod(str, Enum):
+class SourceMysqlReplicationMethodScanChangesWithUserDefinedCursorMethod(str, Enum):
     STANDARD = 'STANDARD'
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
 
 @dataclasses.dataclass
-class SourceMysqlReplicationMethodStandard:
-    r"""Standard replication requires no setup on the DB side but will not be able to represent deletions incrementally."""
-    method: SourceMysqlReplicationMethodStandardMethod = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('method') }})
+class SourceMysqlReplicationMethodScanChangesWithUserDefinedCursor:
+    r"""Incrementally detects new inserts and updates using the <a href=\\"https://docs.airbyte.com/understanding-airbyte/connections/incremental-append/#user-defined-cursor\\">cursor column</a> chosen when configuring a connection (e.g. created_at, updated_at)."""
+    method: SourceMysqlReplicationMethodScanChangesWithUserDefinedCursorMethod = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('method') }})
+    
+
+
+class SourceMysqlReplicationMethodReadChangesUsingBinaryLogCDCMethod(str, Enum):
+    CDC = 'CDC'
+
+
+@dataclass_json(undefined=Undefined.EXCLUDE)
+
+@dataclasses.dataclass
+class SourceMysqlReplicationMethodReadChangesUsingBinaryLogCDC:
+    r"""<i>Recommended</i> - Incrementally reads new inserts, updates, and deletes using the MySQL <a href=\\"https://docs.airbyte.com/integrations/sources/mysql/#change-data-capture-cdc\\">binary log</a>. This must be enabled on your database."""
+    method: SourceMysqlReplicationMethodReadChangesUsingBinaryLogCDCMethod = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('method') }})
+    initial_waiting_seconds: Optional[int] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('initial_waiting_seconds'), 'exclude': lambda f: f is None }})
+    r"""The amount of time the connector will wait when it launches to determine if there is new data to sync or not. Defaults to 300 seconds. Valid range: 120 seconds to 1200 seconds. Read about <a href=\\"https://docs.airbyte.com/integrations/sources/mysql/#change-data-capture-cdc\\">initial waiting time</a>."""
+    server_time_zone: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('server_time_zone'), 'exclude': lambda f: f is None }})
+    r"""Enter the configured MySQL server timezone. This should only be done if the configured timezone in your MySQL instance does not conform to IANNA standard."""
     
 
 
@@ -182,7 +182,7 @@ class SourceMysql:
     port: int = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('port') }})
     r"""The port to connect to."""
     replication_method: Any = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('replication_method') }})
-    r"""Replication method to use for extracting data from the database."""
+    r"""Configures how data is extracted from the database."""
     source_type: SourceMysqlMysql = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     username: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('username') }})
     r"""The username which is used to access the database."""

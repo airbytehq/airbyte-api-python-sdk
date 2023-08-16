@@ -11,10 +11,10 @@ from typing import Optional
 
 @dataclasses.dataclass
 class ZendeskTalkCredentials:
-    access_token: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('access_token'), 'exclude': lambda f: f is None }})
-    r"""The value of the API token generated. See the <a href=\\"https://docs.airbyte.com/integrations/sources/zendesk-talk\\">docs</a> for more information."""
     client_id: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('client_id'), 'exclude': lambda f: f is None }})
+    r"""Client ID"""
     client_secret: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('client_secret'), 'exclude': lambda f: f is None }})
+    r"""Client Secret"""
     
 
 

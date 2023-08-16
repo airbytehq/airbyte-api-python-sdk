@@ -12,8 +12,6 @@ from typing import Optional
 @dataclasses.dataclass
 class Intercom:
     r"""The values required to configure the source."""
-    access_token: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('access_token'), 'exclude': lambda f: f is None }})
-    r"""Access token for making authenticated requests. See the <a href=\\"https://developers.intercom.com/building-apps/docs/authentication-types#how-to-get-your-access-token\\">Intercom docs</a> for more information."""
     client_id: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('client_id'), 'exclude': lambda f: f is None }})
     client_secret: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('client_secret'), 'exclude': lambda f: f is None }})
     

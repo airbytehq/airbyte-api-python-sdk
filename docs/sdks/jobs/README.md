@@ -130,6 +130,7 @@ List Jobs by sync type
 
 ```python
 import airbyte
+import dateutil.parser
 from airbyte.models import operations, shared
 
 s = airbyte.Airbyte(
@@ -140,11 +141,18 @@ s = airbyte.Airbyte(
 
 req = operations.ListJobsRequest(
     connection_id='adipisci',
+    created_at_end=dateutil.parser.isoparse('2022-10-19T18:50:59.428Z'),
+    created_at_start=dateutil.parser.isoparse('2022-12-26T00:04:34.165Z'),
     job_type=shared.JobTypeEnum.RESET,
-    limit=100294,
-    offset=63038,
+    limit=929530,
+    offset=9240,
+    status=shared.JobStatusEnum.SUCCEEDED,
+    updated_at_end=dateutil.parser.isoparse('2020-08-24T06:10:53.249Z'),
+    updated_at_start=dateutil.parser.isoparse('2022-02-26T12:07:57.580Z'),
     workspace_ids=[
-        '8e0adcf4-b921-4879-bce9-53f73ef7fbc7',
+        '921879fc-e953-4f73-af7f-bc7abd74dd39',
+        'c0f5d2cf-f7c7-40a4-9626-d436813f16d9',
+        'f5fce6c5-5614-46c3-a250-fb008c42e141',
     ],
 )
 

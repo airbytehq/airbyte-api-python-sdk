@@ -4,7 +4,9 @@ from __future__ import annotations
 import dataclasses
 import requests as requests_http
 from ..shared import jobsresponse as shared_jobsresponse
+from ..shared import jobstatusenum as shared_jobstatusenum
 from ..shared import jobtypeenum as shared_jobtypeenum
+from datetime import datetime
 from typing import Optional
 
 
@@ -13,12 +15,22 @@ from typing import Optional
 class ListJobsRequest:
     connection_id: Optional[str] = dataclasses.field(default=None, metadata={'query_param': { 'field_name': 'connectionId', 'style': 'form', 'explode': True }})
     r"""Filter the Jobs by connectionId."""
+    created_at_end: Optional[datetime] = dataclasses.field(default=None, metadata={'query_param': { 'field_name': 'createdAtEnd', 'style': 'form', 'explode': True }})
+    r"""The end date to filter by"""
+    created_at_start: Optional[datetime] = dataclasses.field(default=None, metadata={'query_param': { 'field_name': 'createdAtStart', 'style': 'form', 'explode': True }})
+    r"""The start date to filter by"""
     job_type: Optional[shared_jobtypeenum.JobTypeEnum] = dataclasses.field(default=None, metadata={'query_param': { 'field_name': 'jobType', 'style': 'form', 'explode': True }})
     r"""Filter the Jobs by jobType."""
     limit: Optional[int] = dataclasses.field(default=None, metadata={'query_param': { 'field_name': 'limit', 'style': 'form', 'explode': True }})
     r"""Set the limit on the number of Jobs returned. The default is 20 Jobs."""
     offset: Optional[int] = dataclasses.field(default=None, metadata={'query_param': { 'field_name': 'offset', 'style': 'form', 'explode': True }})
     r"""Set the offset to start at when returning Jobs. The default is 0."""
+    status: Optional[shared_jobstatusenum.JobStatusEnum] = dataclasses.field(default=None, metadata={'query_param': { 'field_name': 'status', 'style': 'form', 'explode': True }})
+    r"""The Job status you want to filter by"""
+    updated_at_end: Optional[datetime] = dataclasses.field(default=None, metadata={'query_param': { 'field_name': 'updatedAtEnd', 'style': 'form', 'explode': True }})
+    r"""The end date to filter by"""
+    updated_at_start: Optional[datetime] = dataclasses.field(default=None, metadata={'query_param': { 'field_name': 'updatedAtStart', 'style': 'form', 'explode': True }})
+    r"""The start date to filter by"""
     workspace_ids: Optional[list[str]] = dataclasses.field(default=None, metadata={'query_param': { 'field_name': 'workspaceIds', 'style': 'form', 'explode': True }})
     r"""The UUIDs of the workspaces you wish to list jobs for. Empty list will retrieve all allowed workspaces."""
     

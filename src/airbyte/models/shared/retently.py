@@ -15,8 +15,6 @@ class RetentlyCredentials:
     r"""The Client ID of your Retently developer application."""
     client_secret: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('client_secret'), 'exclude': lambda f: f is None }})
     r"""The Client Secret of your Retently developer application."""
-    refresh_token: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('refresh_token'), 'exclude': lambda f: f is None }})
-    r"""Retently Refresh Token which can be used to fetch new Bearer Tokens when the current one expires."""
     
 
 

@@ -22,16 +22,22 @@ class SourceGoogleSheetsCredentialsServiceAccountKeyAuthentication:
     
 
 
+class SourceGoogleSheetsCredentialsAuthenticateViaGoogleOAuthAuthType(str, Enum):
+    CLIENT = 'Client'
+
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
 
 @dataclasses.dataclass
 class SourceGoogleSheetsCredentialsAuthenticateViaGoogleOAuth:
     r"""Credentials for connecting to the Google Sheets API"""
+    auth_type: SourceGoogleSheetsCredentialsAuthenticateViaGoogleOAuthAuthType = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_type') }})
     client_id: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('client_id') }})
     r"""Enter your Google application's Client ID"""
     client_secret: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('client_secret') }})
     r"""Enter your Google application's Client Secret"""
+    refresh_token: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('refresh_token') }})
+    r"""Enter your Google application's refresh token"""
     
 
 
@@ -49,6 +55,8 @@ class SourceGoogleSheets:
     source_type: SourceGoogleSheetsGoogleSheets = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     spreadsheet_id: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('spreadsheet_id') }})
     r"""Enter the link to the Google spreadsheet you want to sync"""
+    names_conversion: Optional[bool] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('names_conversion'), 'exclude': lambda f: f is None }})
+    r"""Columns name conversion using a set of rules, for example, 'My Name' -> 'my-name'."""
     row_batch_size: Optional[int] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('row_batch_size'), 'exclude': lambda f: f is None }})
     r"""Number of rows fetched when making a Google Sheet API call. Defaults to 200."""
     

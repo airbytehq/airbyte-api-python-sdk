@@ -11,10 +11,7 @@ from marshmallow import fields
 from typing import Optional
 
 class SourceFacebookMarketingInsightConfigValidActionBreakdowns(str, Enum):
-    r"""Generic enumeration.
-
-    Derive from this class to define new enumerations.
-    """
+    r"""An enumeration."""
     ACTION_CANVAS_COMPONENT_NAME = 'action_canvas_component_name'
     ACTION_CAROUSEL_CARD_ID = 'action_carousel_card_id'
     ACTION_CAROUSEL_CARD_NAME = 'action_carousel_card_name'
@@ -26,24 +23,30 @@ class SourceFacebookMarketingInsightConfigValidActionBreakdowns(str, Enum):
     ACTION_VIDEO_SOUND = 'action_video_sound'
     ACTION_VIDEO_TYPE = 'action_video_type'
 
-class SourceFacebookMarketingInsightConfigValidBreakdowns(str, Enum):
-    r"""Generic enumeration.
+class SourceFacebookMarketingInsightConfigActionReportTime(str, Enum):
+    r"""Determines the report time of action stats. For example, if a person saw the ad on Jan 1st but converted on Jan 2nd, when you query the API with action_report_time=impression, you see a conversion on Jan 1st. When you query the API with action_report_time=conversion, you see a conversion on Jan 2nd."""
+    CONVERSION = 'conversion'
+    IMPRESSION = 'impression'
+    MIXED = 'mixed'
 
-    Derive from this class to define new enumerations.
-    """
+class SourceFacebookMarketingInsightConfigValidBreakdowns(str, Enum):
+    r"""An enumeration."""
     AD_FORMAT_ASSET = 'ad_format_asset'
     AGE = 'age'
     APP_ID = 'app_id'
     BODY_ASSET = 'body_asset'
     CALL_TO_ACTION_ASSET = 'call_to_action_asset'
+    COARSE_CONVERSION_VALUE = 'coarse_conversion_value'
     COUNTRY = 'country'
     DESCRIPTION_ASSET = 'description_asset'
     DEVICE_PLATFORM = 'device_platform'
     DMA = 'dma'
+    FIDELITY_TYPE = 'fidelity_type'
     FREQUENCY_VALUE = 'frequency_value'
     GENDER = 'gender'
     HOURLY_STATS_AGGREGATED_BY_ADVERTISER_TIME_ZONE = 'hourly_stats_aggregated_by_advertiser_time_zone'
     HOURLY_STATS_AGGREGATED_BY_AUDIENCE_TIME_ZONE = 'hourly_stats_aggregated_by_audience_time_zone'
+    HSID = 'hsid'
     IMAGE_ASSET = 'image_asset'
     IMPRESSION_DEVICE = 'impression_device'
     IS_CONVERSION_ID_MODELED = 'is_conversion_id_modeled'
@@ -51,8 +54,10 @@ class SourceFacebookMarketingInsightConfigValidBreakdowns(str, Enum):
     MMM = 'mmm'
     PLACE_PAGE_ID = 'place_page_id'
     PLATFORM_POSITION = 'platform_position'
+    POSTBACK_SEQUENCE_INDEX = 'postback_sequence_index'
     PRODUCT_ID = 'product_id'
     PUBLISHER_PLATFORM = 'publisher_platform'
+    REDOWNLOAD = 'redownload'
     REGION = 'region'
     SKAN_CAMPAIGN_ID = 'skan_campaign_id'
     SKAN_CONVERSION_ID = 'skan_conversion_id'
@@ -60,21 +65,16 @@ class SourceFacebookMarketingInsightConfigValidBreakdowns(str, Enum):
     VIDEO_ASSET = 'video_asset'
 
 class SourceFacebookMarketingInsightConfigValidEnums(str, Enum):
-    r"""Generic enumeration.
-
-    Derive from this class to define new enumerations.
-    """
+    r"""An enumeration."""
     ACCOUNT_CURRENCY = 'account_currency'
     ACCOUNT_ID = 'account_id'
     ACCOUNT_NAME = 'account_name'
     ACTION_VALUES = 'action_values'
     ACTIONS = 'actions'
-    AD_BID_VALUE = 'ad_bid_value'
     AD_CLICK_ACTIONS = 'ad_click_actions'
     AD_ID = 'ad_id'
     AD_IMPRESSION_ACTIONS = 'ad_impression_actions'
     AD_NAME = 'ad_name'
-    ADSET_BID_VALUE = 'adset_bid_value'
     ADSET_END = 'adset_end'
     ADSET_ID = 'adset_id'
     ADSET_NAME = 'adset_name'
@@ -121,6 +121,7 @@ class SourceFacebookMarketingInsightConfigValidEnums(str, Enum):
     CPM = 'cpm'
     CPP = 'cpp'
     CREATED_TIME = 'created_time'
+    CREATIVE_MEDIA_TYPE = 'creative_media_type'
     CTR = 'ctr'
     DATE_START = 'date_start'
     DATE_STOP = 'date_stop'
@@ -141,6 +142,7 @@ class SourceFacebookMarketingInsightConfigValidEnums(str, Enum):
     INLINE_LINK_CLICK_CTR = 'inline_link_click_ctr'
     INLINE_LINK_CLICKS = 'inline_link_clicks'
     INLINE_POST_ENGAGEMENT = 'inline_post_engagement'
+    INSTAGRAM_UPCOMING_EVENT_REMINDERS_SET = 'instagram_upcoming_event_reminders_set'
     INSTANT_EXPERIENCE_CLICKS_TO_OPEN = 'instant_experience_clicks_to_open'
     INSTANT_EXPERIENCE_CLICKS_TO_START = 'instant_experience_clicks_to_start'
     INSTANT_EXPERIENCE_OUTBOUND_CLICKS = 'instant_experience_outbound_clicks'
@@ -164,6 +166,7 @@ class SourceFacebookMarketingInsightConfigValidEnums(str, Enum):
     SPEND = 'spend'
     TOTAL_POSTBACKS = 'total_postbacks'
     TOTAL_POSTBACKS_DETAILED = 'total_postbacks_detailed'
+    TOTAL_POSTBACKS_DETAILED_V4 = 'total_postbacks_detailed_v4'
     UNIQUE_ACTIONS = 'unique_actions'
     UNIQUE_CLICKS = 'unique_clicks'
     UNIQUE_CONVERSIONS = 'unique_conversions'
@@ -213,6 +216,8 @@ class SourceFacebookMarketingInsightConfig:
     r"""The name value of insight"""
     action_breakdowns: Optional[list[SourceFacebookMarketingInsightConfigValidActionBreakdowns]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('action_breakdowns'), 'exclude': lambda f: f is None }})
     r"""A list of chosen action_breakdowns for action_breakdowns"""
+    action_report_time: Optional[SourceFacebookMarketingInsightConfigActionReportTime] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('action_report_time'), 'exclude': lambda f: f is None }})
+    r"""Determines the report time of action stats. For example, if a person saw the ad on Jan 1st but converted on Jan 2nd, when you query the API with action_report_time=impression, you see a conversion on Jan 1st. When you query the API with action_report_time=conversion, you see a conversion on Jan 2nd."""
     breakdowns: Optional[list[SourceFacebookMarketingInsightConfigValidBreakdowns]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('breakdowns'), 'exclude': lambda f: f is None }})
     r"""A list of chosen breakdowns for breakdowns"""
     end_date: Optional[datetime] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('end_date'), 'encoder': utils.datetimeisoformat(True), 'decoder': dateutil.parser.isoparse, 'mm_field': fields.DateTime(format='iso'), 'exclude': lambda f: f is None }})
@@ -248,6 +253,10 @@ class SourceFacebookMarketing:
     r"""The date from which you'd like to replicate data for all incremental streams, in the format YYYY-MM-DDT00:00:00Z. All data generated after this date will be replicated."""
     action_breakdowns_allow_empty: Optional[bool] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('action_breakdowns_allow_empty'), 'exclude': lambda f: f is None }})
     r"""Allows action_breakdowns to be an empty list"""
+    client_id: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('client_id'), 'exclude': lambda f: f is None }})
+    r"""The Client Id for your OAuth app"""
+    client_secret: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('client_secret'), 'exclude': lambda f: f is None }})
+    r"""The Client Secret for your OAuth app"""
     custom_insights: Optional[list[SourceFacebookMarketingInsightConfig]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('custom_insights'), 'exclude': lambda f: f is None }})
     r"""A list which contains ad statistics entries, each entry must have a name and can contains fields, breakdowns or action_breakdowns. Click on \\"add\\" to fill this field."""
     end_date: Optional[datetime] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('end_date'), 'encoder': utils.datetimeisoformat(True), 'decoder': dateutil.parser.isoparse, 'mm_field': fields.DateTime(format='iso'), 'exclude': lambda f: f is None }})

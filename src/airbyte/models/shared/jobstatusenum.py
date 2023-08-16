@@ -4,6 +4,7 @@ from __future__ import annotations
 from enum import Enum
 
 class JobStatusEnum(str, Enum):
+    r"""The Job status you want to filter by"""
     PENDING = 'pending'
     RUNNING = 'running'
     INCOMPLETE = 'incomplete'

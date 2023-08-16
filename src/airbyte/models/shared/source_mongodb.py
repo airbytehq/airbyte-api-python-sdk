@@ -7,21 +7,6 @@ from dataclasses_json import Undefined, dataclass_json
 from enum import Enum
 from typing import Any, Optional
 
-class SourceMongodbInstanceTypeMongoDBAtlasInstance(str, Enum):
-    ATLAS = 'atlas'
-
-
-@dataclass_json(undefined=Undefined.EXCLUDE)
-
-@dataclasses.dataclass
-class SourceMongodbInstanceTypeMongoDBAtlas:
-    r"""The MongoDb instance to connect to. For MongoDB Atlas and Replica Set TLS connection is used by default."""
-    cluster_url: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('cluster_url') }})
-    r"""The URL of a cluster to connect to."""
-    instance: SourceMongodbInstanceTypeMongoDBAtlasInstance = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('instance') }})
-    
-
-
 class SourceMongodbInstanceTypeReplicaSetInstance(str, Enum):
     REPLICA = 'replica'
 

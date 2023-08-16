@@ -10,10 +10,10 @@ from typing import Optional
 @dataclass_json(undefined=Undefined.EXCLUDE)
 
 @dataclasses.dataclass
-class GoogleSheetsAuthenticateViaGoogleOAuth:
-    client_id: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('client_id') }})
+class GoogleSheetsCredentials:
+    client_id: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('client_id'), 'exclude': lambda f: f is None }})
     r"""Enter your Google application's Client ID"""
-    client_secret: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('client_secret') }})
+    client_secret: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('client_secret'), 'exclude': lambda f: f is None }})
     r"""Enter your Google application's Client Secret"""
     
 
@@ -24,6 +24,6 @@ class GoogleSheetsAuthenticateViaGoogleOAuth:
 @dataclasses.dataclass
 class GoogleSheets:
     r"""The values required to configure the source."""
-    credentials: Optional[GoogleSheetsAuthenticateViaGoogleOAuth] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credentials'), 'exclude': lambda f: f is None }})
+    credentials: Optional[GoogleSheetsCredentials] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credentials'), 'exclude': lambda f: f is None }})
     
 

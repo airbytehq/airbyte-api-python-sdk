@@ -1,4 +1,4 @@
-# SourceMysqlReplicationMethodStandardMethod
+# SourceMysqlReplicationMethodScanChangesWithUserDefinedCursorMethod
 
 
 ## Values

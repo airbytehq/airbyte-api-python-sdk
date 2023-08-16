@@ -28,15 +28,14 @@ s = airbyte.Airbyte(
 )
 
 req = shared.SourceCreateRequest(
-    configuration=shared.SourcePosthog(
-        api_key='facilis',
-        base_url='https://posthog.example.com',
-        source_type=shared.SourcePosthogPosthog.POSTHOG,
-        start_date=dateutil.parser.isoparse('2021-01-01T00:00:00Z'),
+    configuration=shared.SourceRecharge(
+        access_token='laborum',
+        source_type=shared.SourceRechargeRecharge.RECHARGE,
+        start_date=dateutil.parser.isoparse('2021-05-14T00:00:00Z'),
     ),
-    name='Allan Greenholt',
-    secret_id='sequi',
-    workspace_id='9c0f5d2c-ff7c-470a-8562-6d436813f16d',
+    name='Lee Kemmer',
+    secret_id='quas',
+    workspace_id='dd6b1442-9074-4747-b8a7-bd466d28c10a',
 )
 
 res = s.sources.create_source(req)
@@ -74,7 +73,7 @@ s = airbyte.Airbyte(
 )
 
 req = operations.DeleteSourceRequest(
-    source_id='excepturi',
+    source_id='quidem',
 )
 
 res = s.sources.delete_source(req)
@@ -112,7 +111,7 @@ s = airbyte.Airbyte(
 )
 
 req = operations.GetSourceRequest(
-    source_id='voluptatibus',
+    source_id='neque',
 )
 
 res = s.sources.get_source(req)
@@ -154,10 +153,10 @@ s = airbyte.Airbyte(
 )
 
 req = shared.InitiateOauthRequest(
-    name=shared.OAuthActorNames.HUBSPOT,
     o_auth_input_configuration=shared.OAuthInputConfiguration(),
-    redirect_url='sapiente',
-    workspace_id='ce6c5561-46c3-4e25-8fb0-08c42e141aac',
+    redirect_url='quo',
+    source_type=shared.OAuthActorNames.TYPEFORM,
+    workspace_id='ca425190-4e52-43c7-a0bc-7178e4796f2a',
 )
 
 res = s.sources.initiate_o_auth(req)
@@ -196,11 +195,13 @@ s = airbyte.Airbyte(
 
 req = operations.ListSourcesRequest(
     include_deleted=False,
-    limit=245367,
-    offset=432148,
+    limit=475289,
+    offset=35362,
     workspace_ids=[
-        'c8dd6b14-4290-4747-8778-a7bd466d28c1',
-        '0ab3cdca-4251-4904-a523-c7e0bc7178e4',
+        '688282aa-4825-462f-a22e-9817ee17cbe6',
+        '1e6b7b95-bc0a-4b3c-a0c4-f3789fd871f9',
+        '9dd2efd1-21aa-46f1-a674-bdb04f157560',
+        '82d68ea1-9f1d-4170-9133-9d08086a1840',
     ],
 )
 
@@ -241,21 +242,53 @@ s = airbyte.Airbyte(
 
 req = operations.PatchSourceRequest(
     source_patch_request=shared.SourcePatchRequest(
-        configuration=shared.SourceMicrosoftTeams(
-            credentials=shared.SourceMicrosoftTeamsCredentialsAuthenticateViaMicrosoft(
-                auth_type=shared.SourceMicrosoftTeamsCredentialsAuthenticateViaMicrosoftAuthType.TOKEN,
-                client_id='commodi',
-                client_secret='sapiente',
-                tenant_id='dolores',
-            ),
-            period='D7',
-            source_type=shared.SourceMicrosoftTeamsMicrosoftTeams.MICROSOFT_TEAMS,
+        configuration=shared.SourceFacebookMarketing(
+            access_token='occaecati',
+            account_id='111111111111111',
+            action_breakdowns_allow_empty=False,
+            client_id='numquam',
+            client_secret='impedit',
+            custom_insights=[
+                shared.SourceFacebookMarketingInsightConfig(
+                    action_breakdowns=[
+                        shared.SourceFacebookMarketingInsightConfigValidActionBreakdowns.ACTION_CANVAS_COMPONENT_NAME,
+                        shared.SourceFacebookMarketingInsightConfigValidActionBreakdowns.ACTION_DEVICE,
+                    ],
+                    action_report_time=shared.SourceFacebookMarketingInsightConfigActionReportTime.CONVERSION,
+                    breakdowns=[
+                        shared.SourceFacebookMarketingInsightConfigValidBreakdowns.LINK_URL_ASSET,
+                        shared.SourceFacebookMarketingInsightConfigValidBreakdowns.DESCRIPTION_ASSET,
+                        shared.SourceFacebookMarketingInsightConfigValidBreakdowns.VIDEO_ASSET,
+                        shared.SourceFacebookMarketingInsightConfigValidBreakdowns.FREQUENCY_VALUE,
+                    ],
+                    end_date=dateutil.parser.isoparse('2017-01-26T00:00:00Z'),
+                    fields_=[
+                        shared.SourceFacebookMarketingInsightConfigValidEnums.AD_ID,
+                        shared.SourceFacebookMarketingInsightConfigValidEnums.CPP,
+                        shared.SourceFacebookMarketingInsightConfigValidEnums.COST_PER_ESTIMATED_AD_RECALLERS,
+                        shared.SourceFacebookMarketingInsightConfigValidEnums.CANVAS_AVG_VIEW_PERCENT,
+                    ],
+                    insights_lookback_window=831520,
+                    level=shared.SourceFacebookMarketingInsightConfigLevel.CAMPAIGN,
+                    name='Cody Nikolaus',
+                    start_date=dateutil.parser.isoparse('2017-01-25T00:00:00Z'),
+                    time_increment=65304,
+                ),
+            ],
+            end_date=dateutil.parser.isoparse('2017-01-26T00:00:00Z'),
+            fetch_thumbnail_images=False,
+            include_deleted=False,
+            insights_lookback_window=312753,
+            max_batch_size=783235,
+            page_size=801836,
+            source_type=shared.SourceFacebookMarketingFacebookMarketing.FACEBOOK_MARKETING,
+            start_date=dateutil.parser.isoparse('2017-01-25T00:00:00Z'),
         ),
         name='My source',
-        secret_id='deserunt',
-        workspace_id='70c68828-2aa4-4825-a2f2-22e9817ee17c',
+        secret_id='labore',
+        workspace_id='13aa63aa-e8d6-4786-8dbb-675fd5e60b37',
     ),
-    source_id='nam',
+    source_id='exercitationem',
 )
 
 res = s.sources.patch_source(req)
@@ -295,16 +328,12 @@ s = airbyte.Airbyte(
 
 req = operations.PutSourceRequest(
     source_put_request=shared.SourcePutRequest(
-        configuration=shared.SourceTvmazeSchedule(
-            domestic_schedule_country_code='US',
-            end_date='quasi',
-            source_type=shared.SourceTvmazeScheduleTvmazeSchedule.TVMAZE_SCHEDULE,
-            start_date='saepe',
-            web_schedule_country_code='GB',
+        configuration=shared.SourceXkcd(
+            source_type=shared.SourceXkcdXkcd.XKCD,
         ),
-        name='Javier Price',
+        name='Jesus Yost',
     ),
-    source_id='distinctio',
+    source_id='quidem',
 )
 
 res = s.sources.put_source(req)
