@@ -1,6 +1,9 @@
 name: Suggest
 
 on:
+  push:
+    branches:
+      - feat/automatic-schema-maintenance
   workflow_dispatch: {} # Allows manual triggering of the workflow to suggest OpenAPI document
 
 jobs:
