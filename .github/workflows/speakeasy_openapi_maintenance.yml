@@ -1,0 +1,19 @@
+name: Suggest
+
+on:
+  workflow_dispatch: {} # Allows manual triggering of the workflow to suggest OpenAPI document
+
+jobs:
+  suggest:
+    uses: speakeasy-api/sdk-generation-action/.github/workflows/sdk-suggestion.yaml@v14 # Import the sdk suggestion workflow which will handle applying suggestions to the OpenAPI document and creating a resulting PR.
+    with:
+      speakeasy_version: latest
+      openapi_docs: |
+        - ./openapi.yaml
+      openapi_doc_output: ./openapi.yaml
+      max_suggestions: 5
+    secrets:
+      github_access_token: ${{ secrets.GITHUB_TOKEN }}
+      speakeasy_api_key: ${{ secrets.SPEAKEASY_API_KEY }}
+      openai_api_key: ${{ secrets.OPENAI_API_KEY }}
+      
