@@ -7,40 +7,6 @@ from dataclasses_json import Undefined, dataclass_json
 from enum import Enum
 from typing import Any, Optional
 
-class SourceZendeskSunshineCredentialsAPITokenAuthMethod(str, Enum):
-    API_TOKEN = 'api_token'
-
-
-@dataclass_json(undefined=Undefined.EXCLUDE)
-
-@dataclasses.dataclass
-class SourceZendeskSunshineCredentialsAPIToken:
-    api_token: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('api_token') }})
-    r"""API Token. See the <a href=\\"https://docs.airbyte.io/integrations/sources/zendesk_sunshine\\">docs</a> for information on how to generate this key."""
-    auth_method: SourceZendeskSunshineCredentialsAPITokenAuthMethod = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_method') }})
-    email: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('email') }})
-    r"""The user email for your Zendesk account"""
-    
-
-
-class SourceZendeskSunshineCredentialsOAuth20AuthMethod(str, Enum):
-    OAUTH2_0 = 'oauth2.0'
-
-
-@dataclass_json(undefined=Undefined.EXCLUDE)
-
-@dataclasses.dataclass
-class SourceZendeskSunshineCredentialsOAuth20:
-    access_token: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('access_token') }})
-    r"""Long-term access Token for making authenticated requests."""
-    auth_method: SourceZendeskSunshineCredentialsOAuth20AuthMethod = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_method') }})
-    client_id: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('client_id') }})
-    r"""The Client ID of your OAuth application."""
-    client_secret: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('client_secret') }})
-    r"""The Client Secret of your OAuth application."""
-    
-
-
 class SourceZendeskSunshineZendeskSunshine(str, Enum):
     ZENDESK_SUNSHINE = 'zendesk-sunshine'
 

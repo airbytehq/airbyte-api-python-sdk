@@ -60,133 +60,6 @@ class DestinationSnowflakeCredentialsOAuth20:
 class DestinationSnowflakeSnowflake(str, Enum):
     SNOWFLAKE = 'snowflake'
 
-class DestinationSnowflakeLoadingMethodGoogleCloudStorageStagingMethod(str, Enum):
-    GCS_STAGING = 'GCS Staging'
-
-
-@dataclass_json(undefined=Undefined.EXCLUDE)
-
-@dataclasses.dataclass
-class DestinationSnowflakeLoadingMethodGoogleCloudStorageStaging:
-    r"""Recommended for large production workloads for better speed and scalability."""
-    bucket_name: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('bucket_name') }})
-    r"""Enter the <a href=\\"https://cloud.google.com/storage/docs/creating-buckets\\">Cloud Storage bucket name</a>"""
-    credentials_json: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credentials_json') }})
-    r"""Enter your <a href=\\"https://cloud.google.com/iam/docs/creating-managing-service-account-keys#creating_service_account_keys\\">Google Cloud service account key</a> in the JSON format with read/write access to your Cloud Storage staging bucket"""
-    method: DestinationSnowflakeLoadingMethodGoogleCloudStorageStagingMethod = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('method') }})
-    project_id: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('project_id') }})
-    r"""Enter the <a href=\\"https://cloud.google.com/resource-manager/docs/creating-managing-projects#identifying_projects\\">Google Cloud project ID</a>"""
-    
-
-
-class DestinationSnowflakeLoadingMethodAWSS3StagingEncryptionAESCBCEnvelopeEncryptionEncryptionType(str, Enum):
-    AES_CBC_ENVELOPE = 'aes_cbc_envelope'
-
-
-@dataclass_json(undefined=Undefined.EXCLUDE)
-
-@dataclasses.dataclass
-class DestinationSnowflakeLoadingMethodAWSS3StagingEncryptionAESCBCEnvelopeEncryption:
-    r"""Staging data will be encrypted using AES-CBC envelope encryption."""
-    encryption_type: DestinationSnowflakeLoadingMethodAWSS3StagingEncryptionAESCBCEnvelopeEncryptionEncryptionType = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('encryption_type') }})
-    key_encrypting_key: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('key_encrypting_key'), 'exclude': lambda f: f is None }})
-    r"""The key, base64-encoded. Must be either 128, 192, or 256 bits. Leave blank to have Airbyte generate an ephemeral key for each sync."""
-    
-
-
-class DestinationSnowflakeLoadingMethodAWSS3StagingEncryptionNoEncryptionEncryptionType(str, Enum):
-    NONE = 'none'
-
-
-@dataclass_json(undefined=Undefined.EXCLUDE)
-
-@dataclasses.dataclass
-class DestinationSnowflakeLoadingMethodAWSS3StagingEncryptionNoEncryption:
-    r"""Staging data will be stored in plaintext."""
-    encryption_type: DestinationSnowflakeLoadingMethodAWSS3StagingEncryptionNoEncryptionEncryptionType = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('encryption_type') }})
-    
-
-
-class DestinationSnowflakeLoadingMethodAWSS3StagingMethod(str, Enum):
-    S3_STAGING = 'S3 Staging'
-
-class DestinationSnowflakeLoadingMethodAWSS3StagingS3BucketRegion(str, Enum):
-    r"""Enter the region where your S3 bucket resides"""
-    UNKNOWN = ''
-    US_EAST_1 = 'us-east-1'
-    US_EAST_2 = 'us-east-2'
-    US_WEST_1 = 'us-west-1'
-    US_WEST_2 = 'us-west-2'
-    AF_SOUTH_1 = 'af-south-1'
-    AP_EAST_1 = 'ap-east-1'
-    AP_SOUTH_1 = 'ap-south-1'
-    AP_NORTHEAST_1 = 'ap-northeast-1'
-    AP_NORTHEAST_2 = 'ap-northeast-2'
-    AP_NORTHEAST_3 = 'ap-northeast-3'
-    AP_SOUTHEAST_1 = 'ap-southeast-1'
-    AP_SOUTHEAST_2 = 'ap-southeast-2'
-    CA_CENTRAL_1 = 'ca-central-1'
-    CN_NORTH_1 = 'cn-north-1'
-    CN_NORTHWEST_1 = 'cn-northwest-1'
-    EU_CENTRAL_1 = 'eu-central-1'
-    EU_WEST_1 = 'eu-west-1'
-    EU_WEST_2 = 'eu-west-2'
-    EU_WEST_3 = 'eu-west-3'
-    EU_SOUTH_1 = 'eu-south-1'
-    EU_NORTH_1 = 'eu-north-1'
-    SA_EAST_1 = 'sa-east-1'
-    ME_SOUTH_1 = 'me-south-1'
-
-
-@dataclass_json(undefined=Undefined.EXCLUDE)
-
-@dataclasses.dataclass
-class DestinationSnowflakeLoadingMethodAWSS3Staging:
-    r"""Recommended for large production workloads for better speed and scalability."""
-    access_key_id: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('access_key_id') }})
-    r"""Enter your <a href=\\"https://docs.aws.amazon.com/powershell/latest/userguide/pstools-appendix-sign-up.html\\">AWS access key ID</a>. Airbyte requires Read and Write permissions on your S3 bucket"""
-    method: DestinationSnowflakeLoadingMethodAWSS3StagingMethod = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('method') }})
-    s3_bucket_name: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('s3_bucket_name') }})
-    r"""Enter your S3 bucket name"""
-    secret_access_key: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('secret_access_key') }})
-    r"""Enter your <a href=\\"https://docs.aws.amazon.com/powershell/latest/userguide/pstools-appendix-sign-up.html\\">AWS secret access key</a>"""
-    encryption: Optional[Any] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('encryption'), 'exclude': lambda f: f is None }})
-    r"""Choose a data encryption method for the staging data"""
-    file_name_pattern: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('file_name_pattern'), 'exclude': lambda f: f is None }})
-    r"""The pattern allows you to set the file-name format for the S3 staging file(s)"""
-    purge_staging_data: Optional[bool] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('purge_staging_data'), 'exclude': lambda f: f is None }})
-    r"""Toggle to delete staging files from the S3 bucket after a successful sync"""
-    s3_bucket_region: Optional[DestinationSnowflakeLoadingMethodAWSS3StagingS3BucketRegion] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('s3_bucket_region'), 'exclude': lambda f: f is None }})
-    r"""Enter the region where your S3 bucket resides"""
-    
-
-
-class DestinationSnowflakeLoadingMethodRecommendedInternalStagingMethod(str, Enum):
-    INTERNAL_STAGING = 'Internal Staging'
-
-
-@dataclass_json(undefined=Undefined.EXCLUDE)
-
-@dataclasses.dataclass
-class DestinationSnowflakeLoadingMethodRecommendedInternalStaging:
-    r"""Recommended for large production workloads for better speed and scalability."""
-    method: DestinationSnowflakeLoadingMethodRecommendedInternalStagingMethod = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('method') }})
-    
-
-
-class DestinationSnowflakeLoadingMethodSelectAnotherOptionMethod(str, Enum):
-    STANDARD = 'Standard'
-
-
-@dataclass_json(undefined=Undefined.EXCLUDE)
-
-@dataclasses.dataclass
-class DestinationSnowflakeLoadingMethodSelectAnotherOption:
-    r"""Select another option"""
-    method: DestinationSnowflakeLoadingMethodSelectAnotherOptionMethod = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('method') }})
-    
-
-
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
 
@@ -207,11 +80,11 @@ class DestinationSnowflake:
     warehouse: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('warehouse') }})
     r"""Enter the name of the <a href=\\"https://docs.snowflake.com/en/user-guide/warehouses-overview.html#overview-of-warehouses\\">warehouse</a> that you want to sync data into"""
     credentials: Optional[Any] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credentials'), 'exclude': lambda f: f is None }})
-    file_buffer_count: Optional[int] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('file_buffer_count'), 'exclude': lambda f: f is None }})
-    r"""Number of file buffers allocated for writing data. Increasing this number is beneficial for connections using Change Data Capture (CDC) and up to the number of streams within a connection. Increasing the number of file buffers past the maximum number of streams has deteriorating effects"""
     jdbc_url_params: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('jdbc_url_params'), 'exclude': lambda f: f is None }})
     r"""Enter the additional properties to pass to the JDBC URL string when connecting to the database (formatted as key=value pairs separated by the symbol &). Example: key1=value1&key2=value2&key3=value3"""
-    loading_method: Optional[Any] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('loading_method'), 'exclude': lambda f: f is None }})
-    r"""Select a data staging method"""
+    raw_data_schema: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('raw_data_schema'), 'exclude': lambda f: f is None }})
+    r"""(Beta) The schema to write raw tables into"""
+    use_1s1t_format: Optional[bool] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('use_1s1t_format'), 'exclude': lambda f: f is None }})
+    r"""(Beta) Use <a href=\\"https://github.com/airbytehq/airbyte/issues/26028\\" target=\\"_blank\\">Destinations V2</a>. Contact Airbyte Support to participate in the beta program."""
     
 

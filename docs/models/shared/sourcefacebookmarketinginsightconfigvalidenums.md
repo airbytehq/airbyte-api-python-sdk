@@ -1,8 +1,6 @@
 # SourceFacebookMarketingInsightConfigValidEnums
 
-Generic enumeration.
-
-Derive from this class to define new enumerations.
+An enumeration.
 
 
 ## Values
@@ -14,12 +12,10 @@ Derive from this class to define new enumerations.
 | `ACCOUNT_NAME`                                  | account_name                                    |
 | `ACTION_VALUES`                                 | action_values                                   |
 | `ACTIONS`                                       | actions                                         |
-| `AD_BID_VALUE`                                  | ad_bid_value                                    |
 | `AD_CLICK_ACTIONS`                              | ad_click_actions                                |
 | `AD_ID`                                         | ad_id                                           |
 | `AD_IMPRESSION_ACTIONS`                         | ad_impression_actions                           |
 | `AD_NAME`                                       | ad_name                                         |
-| `ADSET_BID_VALUE`                               | adset_bid_value                                 |
 | `ADSET_END`                                     | adset_end                                       |
 | `ADSET_ID`                                      | adset_id                                        |
 | `ADSET_NAME`                                    | adset_name                                      |
@@ -66,6 +62,7 @@ Derive from this class to define new enumerations.
 | `CPM`                                           | cpm                                             |
 | `CPP`                                           | cpp                                             |
 | `CREATED_TIME`                                  | created_time                                    |
+| `CREATIVE_MEDIA_TYPE`                           | creative_media_type                             |
 | `CTR`                                           | ctr                                             |
 | `DATE_START`                                    | date_start                                      |
 | `DATE_STOP`                                     | date_stop                                       |
@@ -86,6 +83,7 @@ Derive from this class to define new enumerations.
 | `INLINE_LINK_CLICK_CTR`                         | inline_link_click_ctr                           |
 | `INLINE_LINK_CLICKS`                            | inline_link_clicks                              |
 | `INLINE_POST_ENGAGEMENT`                        | inline_post_engagement                          |
+| `INSTAGRAM_UPCOMING_EVENT_REMINDERS_SET`        | instagram_upcoming_event_reminders_set          |
 | `INSTANT_EXPERIENCE_CLICKS_TO_OPEN`             | instant_experience_clicks_to_open               |
 | `INSTANT_EXPERIENCE_CLICKS_TO_START`            | instant_experience_clicks_to_start              |
 | `INSTANT_EXPERIENCE_OUTBOUND_CLICKS`            | instant_experience_outbound_clicks              |
@@ -109,6 +107,7 @@ Derive from this class to define new enumerations.
 | `SPEND`                                         | spend                                           |
 | `TOTAL_POSTBACKS`                               | total_postbacks                                 |
 | `TOTAL_POSTBACKS_DETAILED`                      | total_postbacks_detailed                        |
+| `TOTAL_POSTBACKS_DETAILED_V4`                   | total_postbacks_detailed_v4                     |
 | `UNIQUE_ACTIONS`                                | unique_actions                                  |
 | `UNIQUE_CLICKS`                                 | unique_clicks                                   |
 | `UNIQUE_CONVERSIONS`                            | unique_conversions                              |

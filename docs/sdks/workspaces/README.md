@@ -18,7 +18,6 @@ In order to determine what the credential configuration needs to be, please see 
 
 ```python
 import airbyte
-import dateutil.parser
 from airbyte.models import operations, shared
 
 s = airbyte.Airbyte(
@@ -29,17 +28,14 @@ s = airbyte.Airbyte(
 
 req = operations.CreateOrUpdateWorkspaceOAuthCredentialsRequest(
     workspace_o_auth_credentials_request=shared.WorkspaceOAuthCredentialsRequest(
-        actor_type=shared.ActorTypeEnum.DESTINATION,
-        configuration=shared.Square(
-            credentials=shared.SquareCredentials(
-                client_id='adipisci',
-                client_secret='cumque',
-                refresh_token='consequuntur',
-            ),
+        actor_type=shared.ActorTypeEnum.SOURCE,
+        configuration=shared.FacebookMarketing(
+            client_id='voluptas',
+            client_secret='voluptas',
         ),
-        name=shared.OAuthActorNames.AIRTABLE,
+        name=shared.OAuthActorNames.INSTAGRAM,
     ),
-    workspace_id='minus',
+    workspace_id='minima',
 )
 
 res = s.workspaces.create_or_update_workspace_o_auth_credentials(req)
@@ -77,7 +73,7 @@ s = airbyte.Airbyte(
 )
 
 req = shared.WorkspaceCreateRequest(
-    name='Miranda Feest',
+    name='Wilbur Ferry',
 )
 
 res = s.workspaces.create_workspace(req)
@@ -115,7 +111,7 @@ s = airbyte.Airbyte(
 )
 
 req = operations.DeleteWorkspaceRequest(
-    workspace_id='provident',
+    workspace_id='blanditiis',
 )
 
 res = s.workspaces.delete_workspace(req)
@@ -153,7 +149,7 @@ s = airbyte.Airbyte(
 )
 
 req = operations.GetWorkspaceRequest(
-    workspace_id='a',
+    workspace_id='in',
 )
 
 res = s.workspaces.get_workspace(req)
@@ -192,11 +188,13 @@ s = airbyte.Airbyte(
 
 req = operations.ListWorkspacesRequest(
     include_deleted=False,
-    limit=857723,
-    offset=557811,
+    limit=296242,
+    offset=304468,
     workspace_ids=[
-        '1f99dd2e-fd12-41aa-af1e-674bdb04f157',
-        '56082d68-ea19-4f1d-9705-1339d08086a1',
+        'd53b88f3-a8d8-4f5c-8b2f-2fb7b194a276',
+        'b26916fe-1f08-4f42-94e3-698f447f603e',
+        '8b445e80-ca55-4efd-a0e4-57e1858b6a89',
+        'fbe3a5aa-8e48-424d-8ab4-075088e51862',
     ],
 )
 
@@ -236,9 +234,9 @@ s = airbyte.Airbyte(
 
 req = operations.UpdateWorkspaceRequest(
     workspace_update_request=shared.WorkspaceUpdateRequest(
-        name='Kyle Bartoletti',
+        name='Gina Heathcote',
     ),
-    workspace_id='numquam',
+    workspace_id='consequatur',
 )
 
 res = s.workspaces.update_workspace(req)

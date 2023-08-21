@@ -28,15 +28,15 @@ s = airbyte.Airbyte(
 )
 
 req = shared.SourceCreateRequest(
-    configuration=shared.SourcePosthog(
-        api_key='facilis',
-        base_url='https://posthog.example.com',
-        source_type=shared.SourcePosthogPosthog.POSTHOG,
-        start_date=dateutil.parser.isoparse('2021-01-01T00:00:00Z'),
+    configuration=shared.SourcePrestashop(
+        access_key='molestiae',
+        source_type=shared.SourcePrestashopPrestashop.PRESTASHOP,
+        start_date=dateutil.parser.parse('2022-01-01').date(),
+        url='accusantium',
     ),
-    name='Allan Greenholt',
-    secret_id='sequi',
-    workspace_id='9c0f5d2c-ff7c-470a-8562-6d436813f16d',
+    name='Franklin Lynch',
+    secret_id='deleniti',
+    workspace_id='2aa48256-2f22-42e9-817e-e17cbe61e6b7',
 )
 
 res = s.sources.create_source(req)
@@ -74,7 +74,7 @@ s = airbyte.Airbyte(
 )
 
 req = operations.DeleteSourceRequest(
-    source_id='excepturi',
+    source_id='rerum',
 )
 
 res = s.sources.delete_source(req)
@@ -112,7 +112,7 @@ s = airbyte.Airbyte(
 )
 
 req = operations.GetSourceRequest(
-    source_id='voluptatibus',
+    source_id='occaecati',
 )
 
 res = s.sources.get_source(req)
@@ -154,10 +154,10 @@ s = airbyte.Airbyte(
 )
 
 req = shared.InitiateOauthRequest(
-    name=shared.OAuthActorNames.HUBSPOT,
     o_auth_input_configuration=shared.OAuthInputConfiguration(),
-    redirect_url='sapiente',
-    workspace_id='ce6c5561-46c3-4e25-8fb0-08c42e141aac',
+    redirect_url='minima',
+    source_type=shared.OAuthActorNames.SNOWFLAKE,
+    workspace_id='c0ab3c20-c4f3-4789-bd87-1f99dd2efd12',
 )
 
 res = s.sources.initiate_o_auth(req)
@@ -196,11 +196,12 @@ s = airbyte.Airbyte(
 
 req = operations.ListSourcesRequest(
     include_deleted=False,
-    limit=245367,
-    offset=432148,
+    limit=94458,
+    offset=628899,
     workspace_ids=[
-        'c8dd6b14-4290-4747-8778-a7bd466d28c1',
-        '0ab3cdca-4251-4904-a523-c7e0bc7178e4',
+        '6f1e674b-db04-4f15-b560-82d68ea19f1d',
+        '17051339-d080-486a-9840-394c26071f93',
+        'f5f0642d-ac7a-4f51-9cc4-13aa63aae8d6',
     ],
 )
 
@@ -241,21 +242,18 @@ s = airbyte.Airbyte(
 
 req = operations.PatchSourceRequest(
     source_patch_request=shared.SourcePatchRequest(
-        configuration=shared.SourceMicrosoftTeams(
-            credentials=shared.SourceMicrosoftTeamsCredentialsAuthenticateViaMicrosoft(
-                auth_type=shared.SourceMicrosoftTeamsCredentialsAuthenticateViaMicrosoftAuthType.TOKEN,
-                client_id='commodi',
-                client_secret='sapiente',
-                tenant_id='dolores',
+        configuration=shared.SourceMonday(
+            credentials=shared.SourceMondayCredentialsAPIToken(
+                api_token='vel',
+                auth_type=shared.SourceMondayCredentialsAPITokenAuthType.API_TOKEN,
             ),
-            period='D7',
-            source_type=shared.SourceMicrosoftTeamsMicrosoftTeams.MICROSOFT_TEAMS,
+            source_type=shared.SourceMondayMonday.MONDAY,
         ),
         name='My source',
-        secret_id='deserunt',
-        workspace_id='70c68828-2aa4-4825-a2f2-22e9817ee17c',
+        secret_id='labore',
+        workspace_id='dbb675fd-5e60-4b37-9ed4-f6fbee41f333',
     ),
-    source_id='nam',
+    source_id='beatae',
 )
 
 res = s.sources.patch_source(req)
@@ -295,16 +293,19 @@ s = airbyte.Airbyte(
 
 req = operations.PutSourceRequest(
     source_put_request=shared.SourcePutRequest(
-        configuration=shared.SourceTvmazeSchedule(
-            domestic_schedule_country_code='US',
-            end_date='quasi',
-            source_type=shared.SourceTvmazeScheduleTvmazeSchedule.TVMAZE_SCHEDULE,
-            start_date='saepe',
-            web_schedule_country_code='GB',
+        configuration=shared.SourceMicrosoftTeams(
+            credentials=shared.SourceMicrosoftTeamsCredentialsAuthenticateViaMicrosoft(
+                auth_type=shared.SourceMicrosoftTeamsCredentialsAuthenticateViaMicrosoftAuthType.TOKEN,
+                client_id='debitis',
+                client_secret='consectetur',
+                tenant_id='corporis',
+            ),
+            period='D7',
+            source_type=shared.SourceMicrosoftTeamsMicrosoftTeams.MICROSOFT_TEAMS,
         ),
-        name='Javier Price',
+        name='Rick Beer',
     ),
-    source_id='distinctio',
+    source_id='vitae',
 )
 
 res = s.sources.put_source(req)

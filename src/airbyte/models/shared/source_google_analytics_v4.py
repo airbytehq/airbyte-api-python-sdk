@@ -4,7 +4,9 @@ from __future__ import annotations
 import dataclasses
 from airbyte import utils
 from dataclasses_json import Undefined, dataclass_json
+from datetime import date
 from enum import Enum
+from marshmallow import fields
 from typing import Any, Optional
 
 class SourceGoogleAnalyticsV4CredentialsServiceAccountKeyAuthenticationAuthType(str, Enum):
@@ -53,7 +55,7 @@ class SourceGoogleAnalyticsV4GoogleAnalyticsV4(str, Enum):
 class SourceGoogleAnalyticsV4:
     r"""The values required to configure the source."""
     source_type: SourceGoogleAnalyticsV4GoogleAnalyticsV4 = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
-    start_date: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('start_date') }})
+    start_date: date = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('start_date'), 'encoder': utils.dateisoformat(False), 'decoder': utils.datefromisoformat, 'mm_field': fields.DateTime(format='iso') }})
     r"""The date in the format YYYY-MM-DD. Any data before this date will not be replicated."""
     view_id: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('view_id') }})
     r"""The ID for the Google Analytics View you want to fetch data from. This can be found from the <a href=\\"https://ga-dev-tools.appspot.com/account-explorer/\\">Google Analytics Account Explorer</a>."""

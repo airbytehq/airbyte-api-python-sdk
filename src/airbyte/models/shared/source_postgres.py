@@ -20,6 +20,19 @@ class SourcePostgresReplicationMethodStandard:
     
 
 
+class SourcePostgresReplicationMethodStandardXminMethod(str, Enum):
+    XMIN = 'Xmin'
+
+
+@dataclass_json(undefined=Undefined.EXCLUDE)
+
+@dataclasses.dataclass
+class SourcePostgresReplicationMethodStandardXmin:
+    r"""Xmin replication requires no setup on the DB side but will not be able to represent deletions incrementally."""
+    method: SourcePostgresReplicationMethodStandardXminMethod = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('method') }})
+    
+
+
 class SourcePostgresPostgres(str, Enum):
     POSTGRES = 'postgres'
 

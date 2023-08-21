@@ -20,6 +20,19 @@ class SourceAlloydbReplicationMethodStandard:
     
 
 
+class SourceAlloydbReplicationMethodStandardXminMethod(str, Enum):
+    XMIN = 'Xmin'
+
+
+@dataclass_json(undefined=Undefined.EXCLUDE)
+
+@dataclasses.dataclass
+class SourceAlloydbReplicationMethodStandardXmin:
+    r"""Xmin replication requires no setup on the DB side but will not be able to represent deletions incrementally."""
+    method: SourceAlloydbReplicationMethodStandardXminMethod = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('method') }})
+    
+
+
 class SourceAlloydbAlloydb(str, Enum):
     ALLOYDB = 'alloydb'
 

@@ -24,7 +24,7 @@ s = airbyte.Airbyte(
 )
 
 req = operations.CancelJobRequest(
-    job_id=961937,
+    job_id=708548,
 )
 
 res = s.jobs.cancel_job(req)
@@ -62,7 +62,7 @@ s = airbyte.Airbyte(
 )
 
 req = shared.JobCreateRequest(
-    connection_id='dolorem',
+    connection_id='vero',
     job_type=shared.JobTypeEnum.SYNC,
 )
 
@@ -101,7 +101,7 @@ s = airbyte.Airbyte(
 )
 
 req = operations.GetJobRequest(
-    job_id=286915,
+    job_id=293020,
 )
 
 res = s.jobs.get_job(req)
@@ -130,6 +130,7 @@ List Jobs by sync type
 
 ```python
 import airbyte
+import dateutil.parser
 from airbyte.models import operations, shared
 
 s = airbyte.Airbyte(
@@ -139,12 +140,21 @@ s = airbyte.Airbyte(
 )
 
 req = operations.ListJobsRequest(
-    connection_id='adipisci',
-    job_type=shared.JobTypeEnum.RESET,
-    limit=100294,
-    offset=63038,
+    connection_id='quibusdam',
+    created_at_end=dateutil.parser.isoparse('2022-06-02T04:41:10.492Z'),
+    created_at_start=dateutil.parser.isoparse('2021-06-15T11:19:41.363Z'),
+    job_type=shared.JobTypeEnum.SYNC,
+    limit=974259,
+    offset=347233,
+    order_by='nulla',
+    status=shared.JobStatusEnum.PENDING,
+    updated_at_end=dateutil.parser.isoparse('2020-01-21T21:31:25.345Z'),
+    updated_at_start=dateutil.parser.isoparse('2021-07-26T04:25:41.517Z'),
     workspace_ids=[
-        '8e0adcf4-b921-4879-bce9-53f73ef7fbc7',
+        '70a45626-d436-4813-b16d-9f5fce6c5561',
+        '46c3e250-fb00-48c4-ae14-1aac366c8dd6',
+        'b1442907-4747-478a-bbd4-66d28c10ab3c',
+        'dca42519-04e5-423c-be0b-c7178e4796f2',
     ],
 )
 

@@ -1,5 +1,7 @@
 # JobStatusEnum
 
+The Job status you want to filter by
+
 
 ## Values
 

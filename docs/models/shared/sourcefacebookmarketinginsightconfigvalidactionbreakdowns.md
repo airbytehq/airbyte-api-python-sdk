@@ -1,8 +1,6 @@
 # SourceFacebookMarketingInsightConfigValidActionBreakdowns
 
-Generic enumeration.
-
-Derive from this class to define new enumerations.
+An enumeration.
 
 
 ## Values
