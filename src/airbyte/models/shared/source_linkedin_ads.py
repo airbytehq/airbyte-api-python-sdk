@@ -9,6 +9,62 @@ from enum import Enum
 from marshmallow import fields
 from typing import Any, Optional
 
+class SourceLinkedinAdsAdAnalyticsReportConfigurationPivotBy(str, Enum):
+    r"""Select value from list to pivot by"""
+    COMPANY = 'COMPANY'
+    ACCOUNT = 'ACCOUNT'
+    SHARE = 'SHARE'
+    CAMPAIGN = 'CAMPAIGN'
+    CREATIVE = 'CREATIVE'
+    CAMPAIGN_GROUP = 'CAMPAIGN_GROUP'
+    CONVERSION = 'CONVERSION'
+    CONVERSATION_NODE = 'CONVERSATION_NODE'
+    CONVERSATION_NODE_OPTION_INDEX = 'CONVERSATION_NODE_OPTION_INDEX'
+    SERVING_LOCATION = 'SERVING_LOCATION'
+    CARD_INDEX = 'CARD_INDEX'
+    MEMBER_COMPANY_SIZE = 'MEMBER_COMPANY_SIZE'
+    MEMBER_INDUSTRY = 'MEMBER_INDUSTRY'
+    MEMBER_SENIORITY = 'MEMBER_SENIORITY'
+    MEMBER_JOB_TITLE = 'MEMBER_JOB_TITLE '
+    MEMBER_JOB_FUNCTION = 'MEMBER_JOB_FUNCTION '
+    MEMBER_COUNTRY_V2 = 'MEMBER_COUNTRY_V2 '
+    MEMBER_REGION_V2 = 'MEMBER_REGION_V2'
+    MEMBER_COMPANY = 'MEMBER_COMPANY'
+    PLACEMENT_NAME = 'PLACEMENT_NAME'
+    IMPRESSION_DEVICE_TYPE = 'IMPRESSION_DEVICE_TYPE'
+
+class SourceLinkedinAdsAdAnalyticsReportConfigurationTimeGranularity(str, Enum):
+    r"""Set time granularity for report:
+    ALL - Results grouped into a single result across the entire time range of the report.
+    DAILY - Results grouped by day.
+    MONTHLY - Results grouped by month.
+    YEARLY - Results grouped by year.
+    """
+    ALL = 'ALL'
+    DAILY = 'DAILY'
+    MONTHLY = 'MONTHLY'
+    YEARLY = 'YEARLY'
+
+
+@dataclass_json(undefined=Undefined.EXCLUDE)
+
+@dataclasses.dataclass
+class SourceLinkedinAdsAdAnalyticsReportConfiguration:
+    r"""Config for custom ad Analytics Report"""
+    name: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('name') }})
+    r"""The name for the report"""
+    pivot_by: SourceLinkedinAdsAdAnalyticsReportConfigurationPivotBy = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('pivot_by') }})
+    r"""Select value from list to pivot by"""
+    time_granularity: SourceLinkedinAdsAdAnalyticsReportConfigurationTimeGranularity = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('time_granularity') }})
+    r"""Set time granularity for report:
+    ALL - Results grouped into a single result across the entire time range of the report.
+    DAILY - Results grouped by day.
+    MONTHLY - Results grouped by month.
+    YEARLY - Results grouped by year.
+    """
+    
+
+
 class SourceLinkedinAdsCredentialsAccessTokenAuthMethod(str, Enum):
     ACCESS_TOKEN = 'access_token'
 
@@ -55,6 +111,7 @@ class SourceLinkedinAds:
     r"""UTC date in the format 2020-09-17. Any data before this date will not be replicated."""
     account_ids: Optional[list[int]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('account_ids'), 'exclude': lambda f: f is None }})
     r"""Specify the account IDs separated by a space, to pull the data from. Leave empty, if you want to pull the data from all associated accounts. See the <a href=\\"https://www.linkedin.com/help/linkedin/answer/a424270/find-linkedin-ads-account-details?lang=en\\">LinkedIn Ads docs</a> for more info."""
+    ad_analytics_reports: Optional[list[SourceLinkedinAdsAdAnalyticsReportConfiguration]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('ad_analytics_reports'), 'exclude': lambda f: f is None }})
     credentials: Optional[Any] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credentials'), 'exclude': lambda f: f is None }})
     
 

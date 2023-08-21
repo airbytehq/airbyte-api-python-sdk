@@ -1,6 +1,6 @@
 configVersion: 1.0.0
 management:
-  docChecksum: eaa9626014fcb80af2557b14d6630a48
+  docChecksum: 677c33932664e2e3ad3b815e949e0aa9
   docVersion: 1.0.0
   speakeasyVersion: 1.74.3
   generationVersion: 2.86.6
@@ -20,7 +20,7 @@ features:
     globalServerURLs: 2.82.0
     includes: 2.81.1
 python:
-  version: 0.32.1
+  version: 0.32.2
   author: Airbyte
   description: Python Client SDK for Airbyte API
   maxMethodParams: 0

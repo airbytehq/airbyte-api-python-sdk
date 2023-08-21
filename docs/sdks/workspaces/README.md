@@ -30,12 +30,12 @@ req = operations.CreateOrUpdateWorkspaceOAuthCredentialsRequest(
     workspace_o_auth_credentials_request=shared.WorkspaceOAuthCredentialsRequest(
         actor_type=shared.ActorTypeEnum.SOURCE,
         configuration=shared.FacebookMarketing(
-            client_id='asperiores',
-            client_secret='adipisci',
+            client_id='voluptas',
+            client_secret='voluptas',
         ),
-        name=shared.OAuthActorNames.GOOGLE_ANALYTICS_V4,
+        name=shared.OAuthActorNames.INSTAGRAM,
     ),
-    workspace_id='amet',
+    workspace_id='minima',
 )
 
 res = s.workspaces.create_or_update_workspace_o_auth_credentials(req)
@@ -73,7 +73,7 @@ s = airbyte.Airbyte(
 )
 
 req = shared.WorkspaceCreateRequest(
-    name='Courtney Wiegand',
+    name='Wilbur Ferry',
 )
 
 res = s.workspaces.create_workspace(req)
@@ -111,7 +111,7 @@ s = airbyte.Airbyte(
 )
 
 req = operations.DeleteWorkspaceRequest(
-    workspace_id='corporis',
+    workspace_id='blanditiis',
 )
 
 res = s.workspaces.delete_workspace(req)
@@ -149,7 +149,7 @@ s = airbyte.Airbyte(
 )
 
 req = operations.GetWorkspaceRequest(
-    workspace_id='harum',
+    workspace_id='in',
 )
 
 res = s.workspaces.get_workspace(req)
@@ -188,13 +188,13 @@ s = airbyte.Airbyte(
 
 req = operations.ListWorkspacesRequest(
     include_deleted=False,
-    limit=385237,
-    offset=58356,
+    limit=296242,
+    offset=304468,
     workspace_ids=[
-        'b1ea4265-55ba-43c2-8744-ed53b88f3a8d',
-        '8f5c0b2f-2fb7-4b19-8a27-6b26916fe1f0',
-        '8f4294e3-698f-4447-b603-e8b445e80ca5',
-        '5efd20e4-57e1-4858-b6a8-9fbe3a5aa8e4',
+        'd53b88f3-a8d8-4f5c-8b2f-2fb7b194a276',
+        'b26916fe-1f08-4f42-94e3-698f447f603e',
+        '8b445e80-ca55-4efd-a0e4-57e1858b6a89',
+        'fbe3a5aa-8e48-424d-8ab4-075088e51862',
     ],
 )
 
@@ -234,9 +234,9 @@ s = airbyte.Airbyte(
 
 req = operations.UpdateWorkspaceRequest(
     workspace_update_request=shared.WorkspaceUpdateRequest(
-        name='Louis Grady V',
+        name='Gina Heathcote',
     ),
-    workspace_id='expedita',
+    workspace_id='consequatur',
 )
 
 res = s.workspaces.update_workspace(req)

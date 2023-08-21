@@ -33,7 +33,6 @@
 | `RETENTLY`                  | retently                    |
 | `SALESFORCE`                | salesforce                  |
 | `SHOPIFY`                   | shopify                     |
-| `SHOPIFY_OAUTH`             | shopify-oauth               |
 | `SLACK`                     | slack                       |
 | `SMARTSHEETS`               | smartsheets                 |
 | `SNAPCHAT_MARKETING`        | snapchat-marketing          |
