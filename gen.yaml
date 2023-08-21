@@ -22,6 +22,7 @@ features:
 python:
   version: 0.31.0
   author: Airbyte
+  clientServerStatusCodesAsErrors: true
   description: Python Client SDK for Airbyte API
   maxMethodParams: 0
   packageName: airbyte-api
