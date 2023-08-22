@@ -14,7 +14,7 @@ jobs:
       openapi_docs: |
         - ./openapi.yaml
       openapi_doc_output: ./openapi.yaml
-      max_suggestions: 3
+      max_suggestions: 2
     secrets:
       github_access_token: ${{ secrets.GITHUB_TOKEN }}
       speakeasy_api_key: ${{ secrets.SPEAKEASY_API_KEY }}
