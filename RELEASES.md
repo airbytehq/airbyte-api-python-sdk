@@ -479,3 +479,53 @@ Based on:
 - [python v0.32.2] .
 ### Releases
 - [PyPI v0.32.2] https://pypi.org/project/airbyte-api/0.32.2 - .
+
+## 2023-08-25 00:12:42
+### Changes
+Based on:
+- OpenAPI Doc 1.0.0 
+- Speakeasy CLI 1.74.11 (2.87.1) https://github.com/speakeasy-api/speakeasy
+### Generated
+- [python v0.32.3] .
+### Releases
+- [PyPI v0.32.3] https://pypi.org/project/airbyte-api/0.32.3 - .
+
+## 2023-08-26 00:12:14
+### Changes
+Based on:
+- OpenAPI Doc 1.0.0 
+- Speakeasy CLI 1.74.15 (2.88.2) https://github.com/speakeasy-api/speakeasy
+### Generated
+- [python v0.33.0] .
+### Releases
+- [PyPI v0.33.0] https://pypi.org/project/airbyte-api/0.33.0 - .
+
+## 2023-08-29 00:12:54
+### Changes
+Based on:
+- OpenAPI Doc 1.0.0 
+- Speakeasy CLI 1.74.17 (2.88.5) https://github.com/speakeasy-api/speakeasy
+### Generated
+- [python v0.33.1] .
+### Releases
+- [PyPI v0.33.1] https://pypi.org/project/airbyte-api/0.33.1 - .
+
+## 2023-08-31 00:12:43
+### Changes
+Based on:
+- OpenAPI Doc 1.0.0 
+- Speakeasy CLI 1.75.0 (2.89.1) https://github.com/speakeasy-api/speakeasy
+### Generated
+- [python v0.34.0] .
+### Releases
+- [PyPI v0.34.0] https://pypi.org/project/airbyte-api/0.34.0 - .
+
+## 2023-09-01 00:14:04
+### Changes
+Based on:
+- OpenAPI Doc 1.0.0 
+- Speakeasy CLI 1.77.0 (2.91.2) https://github.com/speakeasy-api/speakeasy
+### Generated
+- [python v0.35.0] .
+### Releases
+- [PyPI v0.35.0] https://pypi.org/project/airbyte-api/0.35.0 - .
