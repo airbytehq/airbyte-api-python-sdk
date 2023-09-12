@@ -12,7 +12,6 @@ from typing import Optional
 
 @dataclasses.dataclass
 class JobsResponse:
-    r"""List all the Jobs by connectionId."""
     data: list[shared_jobresponse.JobResponse] = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('data') }})
     next: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('next'), 'exclude': lambda f: f is None }})
     previous: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('previous'), 'exclude': lambda f: f is None }})

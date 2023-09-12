@@ -1,0 +1,13 @@
+# DestinationPinecone
+
+The values required to configure the destination.
+
+
+## Fields
+
+| Field                                                                                                       | Type                                                                                                        | Required                                                                                                    | Description                                                                                                 |
+| ----------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------- |
+| `destination_type`                                                                                          | [DestinationPineconePinecone](../../models/shared/destinationpineconepinecone.md)                           | :heavy_check_mark:                                                                                          | N/A                                                                                                         |
+| `embedding`                                                                                                 | *Any*                                                                                                       | :heavy_check_mark:                                                                                          | Embedding configuration                                                                                     |
+| `indexing`                                                                                                  | [DestinationPineconeIndexing](../../models/shared/destinationpineconeindexing.md)                           | :heavy_check_mark:                                                                                          | Pinecone is a popular vector store that can be used to store and retrieve embeddings.                       |
+| `processing`                                                                                                | [DestinationPineconeProcessingConfigModel](../../models/shared/destinationpineconeprocessingconfigmodel.md) | :heavy_check_mark:                                                                                          | N/A                                                                                                         |

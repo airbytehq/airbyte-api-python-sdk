@@ -22,20 +22,23 @@ from airbyte.models import operations, shared
 
 s = airbyte.Airbyte(
     security=shared.Security(
-        bearer_auth="",
+        basic_auth=shared.SchemeBasicAuth(
+            password="",
+            username="",
+        ),
     ),
 )
 
 req = operations.CreateOrUpdateWorkspaceOAuthCredentialsRequest(
     workspace_o_auth_credentials_request=shared.WorkspaceOAuthCredentialsRequest(
         actor_type=shared.ActorTypeEnum.SOURCE,
-        configuration=shared.FacebookMarketing(
-            client_id='voluptas',
-            client_secret='voluptas',
+        configuration=shared.SnapchatMarketing(
+            client_id='cupiditate',
+            client_secret='qui',
         ),
-        name=shared.OAuthActorNames.INSTAGRAM,
+        name=shared.OAuthActorNames.AMAZON_SELLER_PARTNER,
     ),
-    workspace_id='minima',
+    workspace_id='laudantium',
 )
 
 res = s.workspaces.create_or_update_workspace_o_auth_credentials(req)
@@ -68,12 +71,15 @@ from airbyte.models import shared
 
 s = airbyte.Airbyte(
     security=shared.Security(
-        bearer_auth="",
+        basic_auth=shared.SchemeBasicAuth(
+            password="",
+            username="",
+        ),
     ),
 )
 
 req = shared.WorkspaceCreateRequest(
-    name='Wilbur Ferry',
+    name='Toni Wolff',
 )
 
 res = s.workspaces.create_workspace(req)
@@ -106,12 +112,15 @@ from airbyte.models import operations, shared
 
 s = airbyte.Airbyte(
     security=shared.Security(
-        bearer_auth="",
+        basic_auth=shared.SchemeBasicAuth(
+            password="",
+            username="",
+        ),
     ),
 )
 
 req = operations.DeleteWorkspaceRequest(
-    workspace_id='blanditiis',
+    workspace_id='omnis',
 )
 
 res = s.workspaces.delete_workspace(req)
@@ -144,12 +153,15 @@ from airbyte.models import operations, shared
 
 s = airbyte.Airbyte(
     security=shared.Security(
-        bearer_auth="",
+        basic_auth=shared.SchemeBasicAuth(
+            password="",
+            username="",
+        ),
     ),
 )
 
 req = operations.GetWorkspaceRequest(
-    workspace_id='in',
+    workspace_id='quis',
 )
 
 res = s.workspaces.get_workspace(req)
@@ -182,19 +194,19 @@ from airbyte.models import operations, shared
 
 s = airbyte.Airbyte(
     security=shared.Security(
-        bearer_auth="",
+        basic_auth=shared.SchemeBasicAuth(
+            password="",
+            username="",
+        ),
     ),
 )
 
 req = operations.ListWorkspacesRequest(
     include_deleted=False,
-    limit=296242,
-    offset=304468,
+    limit=218403,
+    offset=961571,
     workspace_ids=[
-        'd53b88f3-a8d8-4f5c-8b2f-2fb7b194a276',
-        'b26916fe-1f08-4f42-94e3-698f447f603e',
-        '8b445e80-ca55-4efd-a0e4-57e1858b6a89',
-        'fbe3a5aa-8e48-424d-8ab4-075088e51862',
+        '73ef7fbc-7abd-474d-939c-0f5d2cff7c70',
     ],
 )
 
@@ -228,15 +240,18 @@ from airbyte.models import operations, shared
 
 s = airbyte.Airbyte(
     security=shared.Security(
-        bearer_auth="",
+        basic_auth=shared.SchemeBasicAuth(
+            password="",
+            username="",
+        ),
     ),
 )
 
 req = operations.UpdateWorkspaceRequest(
     workspace_update_request=shared.WorkspaceUpdateRequest(
-        name='Gina Heathcote',
+        name='Don Hills',
     ),
-    workspace_id='consequatur',
+    workspace_id='vel',
 )
 
 res = s.workspaces.update_workspace(req)

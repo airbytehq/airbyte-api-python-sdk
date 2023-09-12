@@ -7,7 +7,6 @@ from airbyte import utils
 from dataclasses_json import Undefined, dataclass_json
 from datetime import datetime
 from enum import Enum
-from marshmallow import fields
 
 class SourceChartmogulInterval(str, Enum):
     r"""Some APIs such as <a href=\\"https://dev.chartmogul.com/reference/endpoint-overview-metrics-api\\">Metrics</a> require intervals to cluster data."""
@@ -30,7 +29,7 @@ class SourceChartmogul:
     interval: SourceChartmogulInterval = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('interval') }})
     r"""Some APIs such as <a href=\\"https://dev.chartmogul.com/reference/endpoint-overview-metrics-api\\">Metrics</a> require intervals to cluster data."""
     source_type: SourceChartmogulChartmogul = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
-    start_date: datetime = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('start_date'), 'encoder': utils.datetimeisoformat(False), 'decoder': dateutil.parser.isoparse, 'mm_field': fields.DateTime(format='iso') }})
+    start_date: datetime = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('start_date'), 'encoder': utils.datetimeisoformat(False), 'decoder': dateutil.parser.isoparse }})
     r"""UTC date and time in the format 2017-01-25T00:00:00Z. When feasible, any data before this date will not be replicated."""
     
 

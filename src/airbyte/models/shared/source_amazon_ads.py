@@ -50,8 +50,10 @@ class SourceAmazonAds:
     auth_type: Optional[SourceAmazonAdsAuthType] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_type'), 'exclude': lambda f: f is None }})
     look_back_window: Optional[int] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('look_back_window'), 'exclude': lambda f: f is None }})
     r"""The amount of days to go back in time to get the updated data from Amazon Ads"""
+    marketplace_ids: Optional[list[str]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('marketplace_ids'), 'exclude': lambda f: f is None }})
+    r"""Marketplace IDs you want to fetch data for. Note: If Profile IDs are also selected, profiles will be selected if they match the Profile ID OR the Marketplace ID."""
     profiles: Optional[list[int]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('profiles'), 'exclude': lambda f: f is None }})
-    r"""Profile IDs you want to fetch data for. See <a href=\\"https://advertising.amazon.com/API/docs/en-us/concepts/authorization/profiles\\">docs</a> for more details."""
+    r"""Profile IDs you want to fetch data for. See <a href=\\"https://advertising.amazon.com/API/docs/en-us/concepts/authorization/profiles\\">docs</a> for more details. Note: If Marketplace IDs are also selected, profiles will be selected if they match the Profile ID OR the Marketplace ID."""
     region: Optional[SourceAmazonAdsRegion] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('region'), 'exclude': lambda f: f is None }})
     r"""Region to pull data from (EU/NA/FE). See <a href=\\"https://advertising.amazon.com/API/docs/en-us/info/api-overview#api-endpoints\\">docs</a> for more details."""
     report_record_types: Optional[list[SourceAmazonAdsReportRecordTypes]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('report_record_types'), 'exclude': lambda f: f is None }})

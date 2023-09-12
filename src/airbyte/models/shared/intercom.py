@@ -13,6 +13,8 @@ from typing import Optional
 class Intercom:
     r"""The values required to configure the source."""
     client_id: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('client_id'), 'exclude': lambda f: f is None }})
+    r"""Client Id for your Intercom application."""
     client_secret: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('client_secret'), 'exclude': lambda f: f is None }})
+    r"""Client Secret for your Intercom application."""
     
 

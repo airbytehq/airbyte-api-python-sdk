@@ -6,7 +6,6 @@ from airbyte import utils
 from dataclasses_json import Undefined, dataclass_json
 from datetime import date
 from enum import Enum
-from marshmallow import fields
 from typing import Any, Optional
 
 class SourceGoogleSearchConsoleAuthorizationServiceAccountKeyAuthenticationAuthType(str, Enum):
@@ -45,8 +44,28 @@ class SourceGoogleSearchConsoleAuthorizationOAuth:
     
 
 
-class SourceGoogleSearchConsoleDataState(str, Enum):
-    r"""If \\"final\\" or if this parameter is omitted, the returned data will include only finalized data. Setting this parameter to \\"all\\" should not be used with Incremental Sync mode as it may cause data loss. If \\"all\\", data will include fresh data."""
+class SourceGoogleSearchConsoleCustomReportConfigValidEnums(str, Enum):
+    r"""An enumeration of dimensions."""
+    COUNTRY = 'country'
+    DATE = 'date'
+    DEVICE = 'device'
+    PAGE = 'page'
+    QUERY = 'query'
+
+
+@dataclass_json(undefined=Undefined.EXCLUDE)
+
+@dataclasses.dataclass
+class SourceGoogleSearchConsoleCustomReportConfig:
+    dimensions: list[SourceGoogleSearchConsoleCustomReportConfigValidEnums] = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('dimensions') }})
+    r"""A list of dimensions (country, date, device, page, query)"""
+    name: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('name') }})
+    r"""The name of the custom report, this name would be used as stream name"""
+    
+
+
+class SourceGoogleSearchConsoleDataFreshness(str, Enum):
+    r"""If set to 'final', the returned data will include only finalized, stable data. If set to 'all', fresh data will be included. When using Incremental sync mode, we do not recommend setting this parameter to 'all' as it may cause data loss. More information can be found in our <a href='https://docs.airbyte.com/integrations/source/google-search-console'>full documentation</a>."""
     FINAL = 'final'
     ALL = 'all'
 
@@ -61,15 +80,17 @@ class SourceGoogleSearchConsole:
     r"""The values required to configure the source."""
     authorization: Any = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('authorization') }})
     site_urls: list[str] = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('site_urls') }})
-    r"""The URLs of the website property attached to your GSC account. Read more <a href=\\"https://support.google.com/webmasters/answer/34592?hl=en\\">here</a>."""
+    r"""The URLs of the website property attached to your GSC account. Learn more about properties <a href=\\"https://support.google.com/webmasters/answer/34592?hl=en\\">here</a>."""
     source_type: SourceGoogleSearchConsoleGoogleSearchConsole = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
-    start_date: date = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('start_date'), 'encoder': utils.dateisoformat(False), 'decoder': utils.datefromisoformat, 'mm_field': fields.DateTime(format='iso') }})
-    r"""UTC date in the format 2017-01-25. Any data before this date will not be replicated."""
     custom_reports: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('custom_reports'), 'exclude': lambda f: f is None }})
-    r"""A JSON array describing the custom reports you want to sync from Google Search Console. See <a href=\\"https://docs.airbyte.com/integrations/sources/google-search-console#step-2-set-up-the-google-search-console-connector-in-airbyte\\">the docs</a> for more information about the exact format you can use to fill out this field."""
-    data_state: Optional[SourceGoogleSearchConsoleDataState] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('data_state'), 'exclude': lambda f: f is None }})
-    r"""If \\"final\\" or if this parameter is omitted, the returned data will include only finalized data. Setting this parameter to \\"all\\" should not be used with Incremental Sync mode as it may cause data loss. If \\"all\\", data will include fresh data."""
-    end_date: Optional[date] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('end_date'), 'encoder': utils.dateisoformat(True), 'decoder': utils.datefromisoformat, 'mm_field': fields.DateTime(format='iso'), 'exclude': lambda f: f is None }})
-    r"""UTC date in the format 2017-01-25. Any data after this date will not be replicated. Must be greater or equal to the start date field."""
+    r"""(DEPRCATED) A JSON array describing the custom reports you want to sync from Google Search Console. See our <a href='https://docs.airbyte.com/integrations/sources/google-search-console'>documentation</a> for more information on formulating custom reports."""
+    custom_reports_array: Optional[list[SourceGoogleSearchConsoleCustomReportConfig]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('custom_reports_array'), 'exclude': lambda f: f is None }})
+    r"""You can add your Custom Analytics report by creating one."""
+    data_state: Optional[SourceGoogleSearchConsoleDataFreshness] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('data_state'), 'exclude': lambda f: f is None }})
+    r"""If set to 'final', the returned data will include only finalized, stable data. If set to 'all', fresh data will be included. When using Incremental sync mode, we do not recommend setting this parameter to 'all' as it may cause data loss. More information can be found in our <a href='https://docs.airbyte.com/integrations/source/google-search-console'>full documentation</a>."""
+    end_date: Optional[date] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('end_date'), 'encoder': utils.dateisoformat(True), 'decoder': utils.datefromisoformat, 'exclude': lambda f: f is None }})
+    r"""UTC date in the format YYYY-MM-DD. Any data created after this date will not be replicated. Must be greater or equal to the start date field. Leaving this field blank will replicate all data from the start date onward."""
+    start_date: Optional[date] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('start_date'), 'encoder': utils.dateisoformat(True), 'decoder': utils.datefromisoformat, 'exclude': lambda f: f is None }})
+    r"""UTC date in the format YYYY-MM-DD. Any data before this date will not be replicated."""
     
 

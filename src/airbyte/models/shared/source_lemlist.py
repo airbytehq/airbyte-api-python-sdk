@@ -16,7 +16,7 @@ class SourceLemlistLemlist(str, Enum):
 class SourceLemlist:
     r"""The values required to configure the source."""
     api_key: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('api_key') }})
-    r"""Lemlist API key."""
+    r"""Lemlist API key,"""
     source_type: SourceLemlistLemlist = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     
 

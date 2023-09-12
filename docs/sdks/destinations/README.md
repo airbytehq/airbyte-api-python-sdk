@@ -21,37 +21,22 @@ from airbyte.models import shared
 
 s = airbyte.Airbyte(
     security=shared.Security(
-        bearer_auth="",
+        basic_auth=shared.SchemeBasicAuth(
+            password="",
+            username="",
+        ),
     ),
 )
 
 req = shared.DestinationCreateRequest(
-    configuration=shared.DestinationPostgres(
-        database='deleniti',
-        destination_type=shared.DestinationPostgresPostgres.POSTGRES,
-        host='omnis',
-        jdbc_url_params='necessitatibus',
-        password='distinctio',
-        port=5432,
-        schema='public',
-        ssl_mode=shared.DestinationPostgresSslModeVerifyFull(
-            ca_certificate='nihil',
-            client_certificate='ipsum',
-            client_key='voluptate',
-            client_key_password='id',
-            mode=shared.DestinationPostgresSslModeVerifyFullMode.VERIFY_FULL,
-        ),
-        tunnel_method=shared.DestinationPostgresTunnelMethodPasswordAuthentication(
-            tunnel_host='eius',
-            tunnel_method=shared.DestinationPostgresTunnelMethodPasswordAuthenticationTunnelMethod.SSH_PASSWORD_AUTH,
-            tunnel_port=22,
-            tunnel_user='aspernatur',
-            tunnel_user_password='perferendis',
-        ),
-        username='Daphne.Rosenbaum90',
+    configuration=shared.DestinationKeen(
+        api_key='ABCDEFGHIJKLMNOPRSTUWXYZ',
+        destination_type=shared.DestinationKeenKeen.KEEN,
+        infer_timestamp=False,
+        project_id='58b4acc22ba938934e888322e',
     ),
-    name='Rosie McKenzie',
-    workspace_id='8a0d446c-e2af-47a7-bcf3-be453f870b32',
+    name='Mrs. Emilio Price',
+    workspace_id='d66ae395-efb9-4ba8-8f3a-66997074ba44',
 )
 
 res = s.destinations.create_destination(req)
@@ -84,12 +69,15 @@ from airbyte.models import operations, shared
 
 s = airbyte.Airbyte(
     security=shared.Security(
-        bearer_auth="",
+        basic_auth=shared.SchemeBasicAuth(
+            password="",
+            username="",
+        ),
     ),
 )
 
 req = operations.DeleteDestinationRequest(
-    destination_id='vel',
+    destination_id='suscipit',
 )
 
 res = s.destinations.delete_destination(req)
@@ -122,12 +110,15 @@ from airbyte.models import operations, shared
 
 s = airbyte.Airbyte(
     security=shared.Security(
-        bearer_auth="",
+        basic_auth=shared.SchemeBasicAuth(
+            password="",
+            username="",
+        ),
     ),
 )
 
 req = operations.GetDestinationRequest(
-    destination_id='libero',
+    destination_id='natus',
 )
 
 res = s.destinations.get_destination(req)
@@ -160,17 +151,19 @@ from airbyte.models import operations, shared
 
 s = airbyte.Airbyte(
     security=shared.Security(
-        bearer_auth="",
+        basic_auth=shared.SchemeBasicAuth(
+            password="",
+            username="",
+        ),
     ),
 )
 
 req = operations.ListDestinationsRequest(
     include_deleted=False,
-    limit=374170,
-    offset=646265,
+    limit=749170,
+    offset=428769,
     workspace_ids=[
-        '3429cdb1-a842-42bb-a79d-2322715bf0cb',
-        'b1e31b8b-90f3-4443-a110-8e0adcf4b921',
+        'e2141959-890a-4fa5-a3e2-516fe4c8b711',
     ],
 )
 
@@ -204,24 +197,26 @@ from airbyte.models import operations, shared
 
 s = airbyte.Airbyte(
     security=shared.Security(
-        bearer_auth="",
+        basic_auth=shared.SchemeBasicAuth(
+            password="",
+            username="",
+        ),
     ),
 )
 
 req = operations.PatchDestinationRequest(
     destination_patch_request=shared.DestinationPatchRequest(
-        configuration=shared.DestinationKinesis(
-            access_key='odio',
-            buffer_size=580447,
-            destination_type=shared.DestinationKinesisKinesis.KINESIS,
-            endpoint='kinesis.us‑west‑1.amazonaws.com',
-            private_key='voluptatibus',
-            region='us‑west‑1',
-            shard_count=787542,
+        configuration=shared.DestinationTypesense(
+            api_key='ullam',
+            batch_size=714242,
+            destination_type=shared.DestinationTypesenseTypesense.TYPESENSE,
+            host='nihil',
+            port='repellat',
+            protocol='quibusdam',
         ),
-        name='Arturo Hauck',
+        name='Mr. Jenna Stroman',
     ),
-    destination_id='voluptate',
+    destination_id='natus',
 )
 
 res = s.destinations.patch_destination(req)
@@ -254,34 +249,24 @@ from airbyte.models import operations, shared
 
 s = airbyte.Airbyte(
     security=shared.Security(
-        bearer_auth="",
+        basic_auth=shared.SchemeBasicAuth(
+            password="",
+            username="",
+        ),
     ),
 )
 
 req = operations.PutDestinationRequest(
     destination_put_request=shared.DestinationPutRequest(
-        configuration=shared.DestinationDatabricks(
-            accept_terms=False,
-            data_source=shared.DestinationDatabricksDataSourceAzureBlobStorage(
-                azure_blob_storage_account_name='airbyte5storage',
-                azure_blob_storage_container_name='airbytetestcontainername',
-                azure_blob_storage_endpoint_domain_name='blob.core.windows.net',
-                azure_blob_storage_sas_token='?sv=2016-05-31&ss=b&srt=sco&sp=rwdl&se=2018-06-27T10:05:50Z&st=2017-06-27T02:05:50Z&spr=https,http&sig=bgqQwoXwxzuD2GJfagRg7VOS8hzNr3QLT7rhS8OFRLQ%3D',
-                data_source_type=shared.DestinationDatabricksDataSourceAzureBlobStorageDataSourceType.AZURE_BLOB_STORAGE,
-            ),
-            database='tenetur',
-            databricks_http_path='sql/protocolvx/o/1234567489/0000-1111111-abcd90',
-            databricks_personal_access_token='dapi0123456789abcdefghij0123456789AB',
-            databricks_port='443',
-            databricks_server_hostname='abc-12345678-wxyz.cloud.databricks.com',
-            destination_type=shared.DestinationDatabricksDatabricks.DATABRICKS,
-            enable_schema_evolution=False,
-            purge_staging_data=False,
-            schema='default',
+        configuration=shared.DestinationCumulio(
+            api_host='sunt',
+            api_key='quo',
+            api_token='illum',
+            destination_type=shared.DestinationCumulioCumulio.CUMULIO,
         ),
-        name='Darla Rau',
+        name='Simon Jenkins',
     ),
-    destination_id='similique',
+    destination_id='ea',
 )
 
 res = s.destinations.put_destination(req)

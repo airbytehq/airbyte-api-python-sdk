@@ -1,7 +1,5 @@
 # ConnectionsResponse
 
-Successful operation
-
 
 ## Fields
 

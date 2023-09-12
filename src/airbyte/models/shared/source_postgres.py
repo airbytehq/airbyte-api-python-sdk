@@ -7,29 +7,29 @@ from dataclasses_json import Undefined, dataclass_json
 from enum import Enum
 from typing import Any, Optional
 
-class SourcePostgresReplicationMethodStandardMethod(str, Enum):
+class SourcePostgresReplicationMethodScanChangesWithUserDefinedCursorMethod(str, Enum):
     STANDARD = 'Standard'
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
 
 @dataclasses.dataclass
-class SourcePostgresReplicationMethodStandard:
-    r"""Standard replication requires no setup on the DB side but will not be able to represent deletions incrementally."""
-    method: SourcePostgresReplicationMethodStandardMethod = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('method') }})
+class SourcePostgresReplicationMethodScanChangesWithUserDefinedCursor:
+    r"""Incrementally detects new inserts and updates using the <a href=\\"https://docs.airbyte.com/understanding-airbyte/connections/incremental-append/#user-defined-cursor\\">cursor column</a> chosen when configuring a connection (e.g. created_at, updated_at)."""
+    method: SourcePostgresReplicationMethodScanChangesWithUserDefinedCursorMethod = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('method') }})
     
 
 
-class SourcePostgresReplicationMethodStandardXminMethod(str, Enum):
+class SourcePostgresReplicationMethodDetectChangesWithXminSystemColumnMethod(str, Enum):
     XMIN = 'Xmin'
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
 
 @dataclasses.dataclass
-class SourcePostgresReplicationMethodStandardXmin:
-    r"""Xmin replication requires no setup on the DB side but will not be able to represent deletions incrementally."""
-    method: SourcePostgresReplicationMethodStandardXminMethod = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('method') }})
+class SourcePostgresReplicationMethodDetectChangesWithXminSystemColumn:
+    r"""<i>Recommended</i> - Incrementally reads new inserts and updates via Postgres <a href=\\"https://docs.airbyte.com/integrations/sources/postgres/#xmin\\">Xmin system column</a>. Only recommended for tables up to 500GB."""
+    method: SourcePostgresReplicationMethodDetectChangesWithXminSystemColumnMethod = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('method') }})
     
 
 
@@ -117,7 +117,7 @@ class SourcePostgres:
     password: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('password'), 'exclude': lambda f: f is None }})
     r"""Password associated with the username."""
     replication_method: Optional[Any] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('replication_method'), 'exclude': lambda f: f is None }})
-    r"""Replication method for extracting data from the database."""
+    r"""Configures how data is extracted from the database."""
     schemas: Optional[list[str]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('schemas'), 'exclude': lambda f: f is None }})
     r"""The list of schemas (case sensitive) to sync from. Defaults to public."""
     ssl_mode: Optional[Any] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('ssl_mode'), 'exclude': lambda f: f is None }})

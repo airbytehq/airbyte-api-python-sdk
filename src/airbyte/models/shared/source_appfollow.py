@@ -5,6 +5,7 @@ import dataclasses
 from airbyte import utils
 from dataclasses_json import Undefined, dataclass_json
 from enum import Enum
+from typing import Optional
 
 class SourceAppfollowAppfollow(str, Enum):
     APPFOLLOW = 'appfollow'
@@ -15,14 +16,8 @@ class SourceAppfollowAppfollow(str, Enum):
 @dataclasses.dataclass
 class SourceAppfollow:
     r"""The values required to configure the source."""
-    api_secret: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('api_secret') }})
-    r"""api secret provided by Appfollow"""
-    cid: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('cid') }})
-    r"""client id provided by Appfollow"""
-    country: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('country') }})
-    r"""getting data by Country"""
-    ext_id: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('ext_id') }})
-    r"""for App Store — this is 9-10 digits identification number; for Google Play — this is bundle name;"""
     source_type: SourceAppfollowAppfollow = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
+    api_secret: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('api_secret'), 'exclude': lambda f: f is None }})
+    r"""API Key provided by Appfollow"""
     
 

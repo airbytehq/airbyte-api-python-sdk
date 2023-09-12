@@ -57,7 +57,5 @@ class SourceGoogleSheets:
     r"""Enter the link to the Google spreadsheet you want to sync. To copy the link, click the 'Share' button in the top-right corner of the spreadsheet, then click 'Copy link'."""
     names_conversion: Optional[bool] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('names_conversion'), 'exclude': lambda f: f is None }})
     r"""Enables the conversion of column names to a standardized, SQL-compliant format. For example, 'My Name' -> 'my_name'. Enable this option if your destination is SQL-based."""
-    row_batch_size: Optional[int] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('row_batch_size'), 'exclude': lambda f: f is None }})
-    r"""The number of rows fetched when making a Google Sheet API call. Defaults to 200."""
     
 

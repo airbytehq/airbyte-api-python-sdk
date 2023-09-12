@@ -1,7 +1,5 @@
 # DestinationsResponse
 
-Successful operation
-
 
 ## Fields
 
