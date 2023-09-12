@@ -20,7 +20,10 @@ from airbyte.models import shared
 
 s = airbyte.Airbyte(
     security=shared.Security(
-        bearer_auth="",
+        basic_auth=shared.SchemeBasicAuth(
+            password="",
+            username="",
+        ),
     ),
 )
 
@@ -86,7 +89,10 @@ from airbyte.models import operations, shared
 
 s = airbyte.Airbyte(
     security=shared.Security(
-        bearer_auth="",
+        basic_auth=shared.SchemeBasicAuth(
+            password="",
+            username="",
+        ),
     ),
 )
 
@@ -124,7 +130,10 @@ from airbyte.models import operations, shared
 
 s = airbyte.Airbyte(
     security=shared.Security(
-        bearer_auth="",
+        basic_auth=shared.SchemeBasicAuth(
+            password="",
+            username="",
+        ),
     ),
 )
 
@@ -162,7 +171,10 @@ from airbyte.models import operations, shared
 
 s = airbyte.Airbyte(
     security=shared.Security(
-        bearer_auth="",
+        basic_auth=shared.SchemeBasicAuth(
+            password="",
+            username="",
+        ),
     ),
 )
 
@@ -205,7 +217,10 @@ from airbyte.models import operations, shared
 
 s = airbyte.Airbyte(
     security=shared.Security(
-        bearer_auth="",
+        basic_auth=shared.SchemeBasicAuth(
+            password="",
+            username="",
+        ),
     ),
 )
 

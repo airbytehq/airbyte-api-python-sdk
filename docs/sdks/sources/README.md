@@ -23,22 +23,28 @@ from airbyte.models import shared
 
 s = airbyte.Airbyte(
     security=shared.Security(
-        bearer_auth="",
+        basic_auth=shared.SchemeBasicAuth(
+            password="",
+            username="",
+        ),
     ),
 )
 
 req = shared.SourceCreateRequest(
-    configuration=shared.SourcePipedrive(
-        authorization=shared.SourcePipedriveAPIKeyAuthentication(
-            api_token='dolorum',
-            auth_type=shared.SourcePipedriveAPIKeyAuthenticationAuthType.TOKEN,
+    configuration=shared.SourceFileSecure(
+        dataset_name='asperiores',
+        format=shared.SourceFileSecureFileFormat.YAML,
+        provider=shared.SourceFileSecureProviderGCSGoogleCloudStorage(
+            service_account_json='iste',
+            storage=shared.SourceFileSecureProviderGCSGoogleCloudStorageStorage.GCS,
         ),
-        replication_start_date=dateutil.parser.isoparse('2017-01-25T00:00:00Z'),
-        source_type=shared.SourcePipedrivePipedrive.PIPEDRIVE,
+        reader_options='{"sep": "	", "header": 0, "names": ["column1", "column2"] }',
+        source_type=shared.SourceFileSecureFileSecure.FILE_SECURE,
+        url='gs://my-google-bucket/data.csv',
     ),
-    name='Ervin McLaughlin',
-    secret_id='delectus',
-    workspace_id='48633323-f9b7-47f3-a410-0674ebf69280',
+    name='Rene Rolfson',
+    secret_id='quaerat',
+    workspace_id='8633323f-9b77-4f3a-8100-674ebf69280d',
 )
 
 res = s.sources.create_source(req)
@@ -71,12 +77,15 @@ from airbyte.models import operations, shared
 
 s = airbyte.Airbyte(
     security=shared.Security(
-        bearer_auth="",
+        basic_auth=shared.SchemeBasicAuth(
+            password="",
+            username="",
+        ),
     ),
 )
 
 req = operations.DeleteSourceRequest(
-    source_id='fugiat',
+    source_id='ab',
 )
 
 res = s.sources.delete_source(req)
@@ -109,12 +118,15 @@ from airbyte.models import operations, shared
 
 s = airbyte.Airbyte(
     security=shared.Security(
-        bearer_auth="",
+        basic_auth=shared.SchemeBasicAuth(
+            password="",
+            username="",
+        ),
     ),
 )
 
 req = operations.GetSourceRequest(
-    source_id='ab',
+    source_id='soluta',
 )
 
 res = s.sources.get_source(req)
@@ -151,15 +163,18 @@ from airbyte.models import shared
 
 s = airbyte.Airbyte(
     security=shared.Security(
-        bearer_auth="",
+        basic_auth=shared.SchemeBasicAuth(
+            password="",
+            username="",
+        ),
     ),
 )
 
 req = shared.InitiateOauthRequest(
     o_auth_input_configuration=shared.OAuthInputConfiguration(),
-    redirect_url='soluta',
-    source_type=shared.OAuthActorNames.SMARTSHEETS,
-    workspace_id='77a89ebf-737a-4e42-83ce-5e6a95d8a0d4',
+    redirect_url='dolorum',
+    source_type=shared.OAuthActorNames.MICROSOFT_TEAMS,
+    workspace_id='7a89ebf7-37ae-4420-bce5-e6a95d8a0d44',
 )
 
 res = s.sources.initiate_o_auth(req)
@@ -192,16 +207,19 @@ from airbyte.models import operations, shared
 
 s = airbyte.Airbyte(
     security=shared.Security(
-        bearer_auth="",
+        basic_auth=shared.SchemeBasicAuth(
+            password="",
+            username="",
+        ),
     ),
 )
 
 req = operations.ListSourcesRequest(
     include_deleted=False,
-    limit=273542,
-    offset=425451,
+    limit=425451,
+    offset=798047,
     workspace_ids=[
-        'ce2af7a7-3cf3-4be4-93f8-70b326b5a734',
+        'e2af7a73-cf3b-4e45-bf87-0b326b5a7342',
     ],
 )
 
@@ -236,23 +254,28 @@ from airbyte.models import operations, shared
 
 s = airbyte.Airbyte(
     security=shared.Security(
-        bearer_auth="",
+        basic_auth=shared.SchemeBasicAuth(
+            password="",
+            username="",
+        ),
     ),
 )
 
 req = operations.PatchSourceRequest(
     source_patch_request=shared.SourcePatchRequest(
-        configuration=shared.SourceDixa(
-            api_token='cupiditate',
-            batch_size=31,
-            source_type=shared.SourceDixaDixa.DIXA,
-            start_date='YYYY-MM-DD',
+        configuration=shared.SourcePaypalTransaction(
+            client_id='maxime',
+            client_secret='pariatur',
+            is_sandbox=False,
+            refresh_token='soluta',
+            source_type=shared.SourcePaypalTransactionPaypalTransaction.PAYPAL_TRANSACTION,
+            start_date=dateutil.parser.isoparse('2021-06-11T23:59:59'),
         ),
         name='My source',
-        secret_id='pariatur',
-        workspace_id='b1a8422b-b679-4d23-a271-5bf0cbb1e31b',
+        secret_id='laborum',
+        workspace_id='8422bb67-9d23-4227-95bf-0cbb1e31b8b9',
     ),
-    source_id='quos',
+    source_id='aperiam',
 )
 
 res = s.sources.patch_source(req)
@@ -286,23 +309,30 @@ from airbyte.models import operations, shared
 
 s = airbyte.Airbyte(
     security=shared.Security(
-        bearer_auth="",
+        basic_auth=shared.SchemeBasicAuth(
+            password="",
+            username="",
+        ),
     ),
 )
 
 req = operations.PutSourceRequest(
     source_put_request=shared.SourcePutRequest(
-        configuration=shared.SourceSalesloft(
-            credentials=shared.SourceSalesloftCredentialsAuthenticateViaAPIKey(
-                api_key='aperiam',
-                auth_type=shared.SourceSalesloftCredentialsAuthenticateViaAPIKeyAuthType.API_KEY,
+        configuration=shared.SourceZendeskChat(
+            credentials=shared.SourceZendeskChatCredentialsOAuth20(
+                access_token='dolore',
+                client_id='labore',
+                client_secret='adipisci',
+                credentials=shared.SourceZendeskChatCredentialsOAuth20Credentials.OAUTH2_0,
+                refresh_token='dolorum',
             ),
-            source_type=shared.SourceSalesloftSalesloft.SALESLOFT,
-            start_date=dateutil.parser.isoparse('2020-11-16T00:00:00Z'),
+            source_type=shared.SourceZendeskChatZendeskChat.ZENDESK_CHAT,
+            start_date=dateutil.parser.isoparse('2021-02-01T00:00:00Z'),
+            subdomain='architecto',
         ),
-        name='Mike Greenholt',
+        name='Margaret Luettgen MD',
     ),
-    source_id='dolorum',
+    source_id='repellendus',
 )
 
 res = s.sources.put_source(req)

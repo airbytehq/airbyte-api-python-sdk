@@ -20,7 +20,7 @@ class SDKConfiguration:
     server_idx: int = 0
     language: str = 'python'
     openapi_doc_version: str = '1.0.0'
-    sdk_version: str = '0.35.3'
+    sdk_version: str = '0.35.4'
     gen_version: str = '2.108.3'
     retry_config: RetryConfig = None
 

@@ -8,8 +8,8 @@ from datetime import date
 from enum import Enum
 from typing import Any, Optional
 
-class SourceLinkedinAdsAdAnalyticsReportConfigurationPivotBy(str, Enum):
-    r"""Select value from list to pivot by"""
+class SourceLinkedinAdsAdAnalyticsReportConfigurationPivotCategory(str, Enum):
+    r"""Choose a category to pivot your analytics report around. This selection will organize your data based on the chosen attribute, allowing you to analyze trends and performance from different perspectives."""
     COMPANY = 'COMPANY'
     ACCOUNT = 'ACCOUNT'
     SHARE = 'SHARE'
@@ -33,12 +33,7 @@ class SourceLinkedinAdsAdAnalyticsReportConfigurationPivotBy(str, Enum):
     IMPRESSION_DEVICE_TYPE = 'IMPRESSION_DEVICE_TYPE'
 
 class SourceLinkedinAdsAdAnalyticsReportConfigurationTimeGranularity(str, Enum):
-    r"""Set time granularity for report:
-    ALL - Results grouped into a single result across the entire time range of the report.
-    DAILY - Results grouped by day.
-    MONTHLY - Results grouped by month.
-    YEARLY - Results grouped by year.
-    """
+    r"""Choose how to group the data in your report by time. The options are:<br>- 'ALL': A single result summarizing the entire time range.<br>- 'DAILY': Group results by each day.<br>- 'MONTHLY': Group results by each month.<br>- 'YEARLY': Group results by each year.<br>Selecting a time grouping helps you analyze trends and patterns over different time periods."""
     ALL = 'ALL'
     DAILY = 'DAILY'
     MONTHLY = 'MONTHLY'
@@ -51,16 +46,11 @@ class SourceLinkedinAdsAdAnalyticsReportConfigurationTimeGranularity(str, Enum):
 class SourceLinkedinAdsAdAnalyticsReportConfiguration:
     r"""Config for custom ad Analytics Report"""
     name: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('name') }})
-    r"""The name for the report"""
-    pivot_by: SourceLinkedinAdsAdAnalyticsReportConfigurationPivotBy = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('pivot_by') }})
-    r"""Select value from list to pivot by"""
+    r"""The name for the custom report."""
+    pivot_by: SourceLinkedinAdsAdAnalyticsReportConfigurationPivotCategory = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('pivot_by') }})
+    r"""Choose a category to pivot your analytics report around. This selection will organize your data based on the chosen attribute, allowing you to analyze trends and performance from different perspectives."""
     time_granularity: SourceLinkedinAdsAdAnalyticsReportConfigurationTimeGranularity = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('time_granularity') }})
-    r"""Set time granularity for report:
-    ALL - Results grouped into a single result across the entire time range of the report.
-    DAILY - Results grouped by day.
-    MONTHLY - Results grouped by month.
-    YEARLY - Results grouped by year.
-    """
+    r"""Choose how to group the data in your report by time. The options are:<br>- 'ALL': A single result summarizing the entire time range.<br>- 'DAILY': Group results by each day.<br>- 'MONTHLY': Group results by each month.<br>- 'YEARLY': Group results by each year.<br>Selecting a time grouping helps you analyze trends and patterns over different time periods."""
     
 
 
@@ -73,7 +63,7 @@ class SourceLinkedinAdsCredentialsAccessTokenAuthMethod(str, Enum):
 @dataclasses.dataclass
 class SourceLinkedinAdsCredentialsAccessToken:
     access_token: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('access_token') }})
-    r"""The token value generated using the authentication code. See the <a href=\\"https://docs.airbyte.com/integrations/sources/linkedin-ads#authentication\\">docs</a> to obtain yours."""
+    r"""The access token generated for your developer application. Refer to our <a href='https://docs.airbyte.com/integrations/sources/linkedin-ads#setup-guide'>documentation</a> for more information."""
     auth_method: Optional[SourceLinkedinAdsCredentialsAccessTokenAuthMethod] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_method'), 'exclude': lambda f: f is None }})
     
 
@@ -87,11 +77,11 @@ class SourceLinkedinAdsCredentialsOAuth20AuthMethod(str, Enum):
 @dataclasses.dataclass
 class SourceLinkedinAdsCredentialsOAuth20:
     client_id: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('client_id') }})
-    r"""The client ID of the LinkedIn Ads developer application."""
+    r"""The client ID of your developer application. Refer to our <a href='https://docs.airbyte.com/integrations/sources/linkedin-ads#setup-guide'>documentation</a> for more information."""
     client_secret: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('client_secret') }})
-    r"""The client secret the LinkedIn Ads developer application."""
+    r"""The client secret of your developer application. Refer to our <a href='https://docs.airbyte.com/integrations/sources/linkedin-ads#setup-guide'>documentation</a> for more information."""
     refresh_token: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('refresh_token') }})
-    r"""The key to refresh the expired access token."""
+    r"""The key to refresh the expired access token. Refer to our <a href='https://docs.airbyte.com/integrations/sources/linkedin-ads#setup-guide'>documentation</a> for more information."""
     auth_method: Optional[SourceLinkedinAdsCredentialsOAuth20AuthMethod] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_method'), 'exclude': lambda f: f is None }})
     
 
@@ -107,9 +97,9 @@ class SourceLinkedinAds:
     r"""The values required to configure the source."""
     source_type: SourceLinkedinAdsLinkedinAds = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     start_date: date = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('start_date'), 'encoder': utils.dateisoformat(False), 'decoder': utils.datefromisoformat }})
-    r"""UTC date in the format 2020-09-17. Any data before this date will not be replicated."""
+    r"""UTC date in the format YYYY-MM-DD. Any data before this date will not be replicated."""
     account_ids: Optional[list[int]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('account_ids'), 'exclude': lambda f: f is None }})
-    r"""Specify the account IDs separated by a space, to pull the data from. Leave empty, if you want to pull the data from all associated accounts. See the <a href=\\"https://www.linkedin.com/help/linkedin/answer/a424270/find-linkedin-ads-account-details?lang=en\\">LinkedIn Ads docs</a> for more info."""
+    r"""Specify the account IDs to pull data from, separated by a space. Leave this field empty if you want to pull the data from all accounts accessible by the authenticated user. See the <a href=\\"https://www.linkedin.com/help/linkedin/answer/a424270/find-linkedin-ads-account-details?lang=en\\">LinkedIn docs</a> to locate these IDs."""
     ad_analytics_reports: Optional[list[SourceLinkedinAdsAdAnalyticsReportConfiguration]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('ad_analytics_reports'), 'exclude': lambda f: f is None }})
     credentials: Optional[Any] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credentials'), 'exclude': lambda f: f is None }})
     

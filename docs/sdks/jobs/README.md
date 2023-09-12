@@ -19,12 +19,15 @@ from airbyte.models import operations, shared
 
 s = airbyte.Airbyte(
     security=shared.Security(
-        bearer_auth="",
+        basic_auth=shared.SchemeBasicAuth(
+            password="",
+            username="",
+        ),
     ),
 )
 
 req = operations.CancelJobRequest(
-    job_id=373291,
+    job_id=33222,
 )
 
 res = s.jobs.cancel_job(req)
@@ -57,13 +60,16 @@ from airbyte.models import shared
 
 s = airbyte.Airbyte(
     security=shared.Security(
-        bearer_auth="",
+        basic_auth=shared.SchemeBasicAuth(
+            password="",
+            username="",
+        ),
     ),
 )
 
 req = shared.JobCreateRequest(
-    connection_id='voluptate',
-    job_type=shared.JobTypeEnum.SYNC,
+    connection_id='ab',
+    job_type=shared.JobTypeEnum.RESET,
 )
 
 res = s.jobs.create_job(req)
@@ -96,12 +102,15 @@ from airbyte.models import operations, shared
 
 s = airbyte.Airbyte(
     security=shared.Security(
-        bearer_auth="",
+        basic_auth=shared.SchemeBasicAuth(
+            password="",
+            username="",
+        ),
     ),
 )
 
 req = operations.GetJobRequest(
-    job_id=722056,
+    job_id=697429,
 )
 
 res = s.jobs.get_job(req)
@@ -135,23 +144,26 @@ from airbyte.models import operations, shared
 
 s = airbyte.Airbyte(
     security=shared.Security(
-        bearer_auth="",
+        basic_auth=shared.SchemeBasicAuth(
+            password="",
+            username="",
+        ),
     ),
 )
 
 req = operations.ListJobsRequest(
-    connection_id='eaque',
-    created_at_end=dateutil.parser.isoparse('2021-11-26T18:45:44.366Z'),
-    created_at_start=dateutil.parser.isoparse('2022-12-13T19:01:00.083Z'),
+    connection_id='ipsam',
+    created_at_end=dateutil.parser.isoparse('2022-07-31T16:08:22.625Z'),
+    created_at_start=dateutil.parser.isoparse('2022-11-25T01:41:45.601Z'),
     job_type=shared.JobTypeEnum.RESET,
-    limit=230742,
-    offset=11714,
-    order_by='cumque',
-    status=shared.JobStatusEnum.INCOMPLETE,
-    updated_at_end=dateutil.parser.isoparse('2020-10-23T15:50:52.666Z'),
-    updated_at_start=dateutil.parser.isoparse('2022-08-28T17:02:52.151Z'),
+    limit=365496,
+    offset=975522,
+    order_by='perferendis',
+    status=shared.JobStatusEnum.CANCELLED,
+    updated_at_end=dateutil.parser.isoparse('2022-12-27T17:23:03.738Z'),
+    updated_at_start=dateutil.parser.isoparse('2021-12-02T19:46:35.147Z'),
     workspace_ids=[
-        '58705320-2c73-4d5f-a9b9-0c28909b3fe4',
+        'fbb25870-5320-42c7-bd5f-e9b90c28909b',
     ],
 )
 

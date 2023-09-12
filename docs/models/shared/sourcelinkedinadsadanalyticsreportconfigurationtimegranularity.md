@@ -1,10 +1,6 @@
 # SourceLinkedinAdsAdAnalyticsReportConfigurationTimeGranularity
 
-Set time granularity for report: 
-ALL - Results grouped into a single result across the entire time range of the report.
-DAILY - Results grouped by day.
-MONTHLY - Results grouped by month.
-YEARLY - Results grouped by year.
+Choose how to group the data in your report by time. The options are:<br>- 'ALL': A single result summarizing the entire time range.<br>- 'DAILY': Group results by each day.<br>- 'MONTHLY': Group results by each month.<br>- 'YEARLY': Group results by each year.<br>Selecting a time grouping helps you analyze trends and patterns over different time periods.
 
 
 ## Values

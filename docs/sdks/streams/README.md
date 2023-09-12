@@ -16,14 +16,17 @@ from airbyte.models import operations, shared
 
 s = airbyte.Airbyte(
     security=shared.Security(
-        bearer_auth="",
+        basic_auth=shared.SchemeBasicAuth(
+            password="",
+            username="",
+        ),
     ),
 )
 
 req = operations.GetStreamPropertiesRequest(
-    destination_id='architecto',
+    destination_id='porro',
     ignore_cache=False,
-    source_id='quae',
+    source_id='doloribus',
 )
 
 res = s.streams.get_stream_properties(req)

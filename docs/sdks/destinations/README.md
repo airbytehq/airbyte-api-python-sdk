@@ -21,22 +21,22 @@ from airbyte.models import shared
 
 s = airbyte.Airbyte(
     security=shared.Security(
-        bearer_auth="",
+        basic_auth=shared.SchemeBasicAuth(
+            password="",
+            username="",
+        ),
     ),
 )
 
 req = shared.DestinationCreateRequest(
-    configuration=shared.DestinationGoogleSheets(
-        credentials=shared.DestinationGoogleSheetsAuthenticationViaGoogleOAuth(
-            client_id='illum',
-            client_secret='maiores',
-            refresh_token='rerum',
-        ),
-        destination_type=shared.DestinationGoogleSheetsGoogleSheets.GOOGLE_SHEETS,
-        spreadsheet_id='https://docs.google.com/spreadsheets/d/1hLd9Qqti3UyLXZB2aFfUWDT7BG/edit',
+    configuration=shared.DestinationKeen(
+        api_key='ABCDEFGHIJKLMNOPRSTUWXYZ',
+        destination_type=shared.DestinationKeenKeen.KEEN,
+        infer_timestamp=False,
+        project_id='58b4acc22ba938934e888322e',
     ),
-    name='Valerie Runolfsson',
-    workspace_id='6ae395ef-b9ba-488f-ba66-997074ba4469',
+    name='Mrs. Emilio Price',
+    workspace_id='d66ae395-efb9-4ba8-8f3a-66997074ba44',
 )
 
 res = s.destinations.create_destination(req)
@@ -69,12 +69,15 @@ from airbyte.models import operations, shared
 
 s = airbyte.Airbyte(
     security=shared.Security(
-        bearer_auth="",
+        basic_auth=shared.SchemeBasicAuth(
+            password="",
+            username="",
+        ),
     ),
 )
 
 req = operations.DeleteDestinationRequest(
-    destination_id='nobis',
+    destination_id='suscipit',
 )
 
 res = s.destinations.delete_destination(req)
@@ -107,12 +110,15 @@ from airbyte.models import operations, shared
 
 s = airbyte.Airbyte(
     security=shared.Security(
-        bearer_auth="",
+        basic_auth=shared.SchemeBasicAuth(
+            password="",
+            username="",
+        ),
     ),
 )
 
 req = operations.GetDestinationRequest(
-    destination_id='eum',
+    destination_id='natus',
 )
 
 res = s.destinations.get_destination(req)
@@ -145,16 +151,19 @@ from airbyte.models import operations, shared
 
 s = airbyte.Airbyte(
     security=shared.Security(
-        bearer_auth="",
+        basic_auth=shared.SchemeBasicAuth(
+            password="",
+            username="",
+        ),
     ),
 )
 
 req = operations.ListDestinationsRequest(
     include_deleted=False,
-    limit=878453,
-    offset=135474,
+    limit=749170,
+    offset=428769,
     workspace_ids=[
-        '14195989-0afa-4563-a251-6fe4c8b711e5',
+        'e2141959-890a-4fa5-a3e2-516fe4c8b711',
     ],
 )
 
@@ -188,26 +197,26 @@ from airbyte.models import operations, shared
 
 s = airbyte.Airbyte(
     security=shared.Security(
-        bearer_auth="",
+        basic_auth=shared.SchemeBasicAuth(
+            password="",
+            username="",
+        ),
     ),
 )
 
 req = operations.PatchDestinationRequest(
     destination_patch_request=shared.DestinationPatchRequest(
-        configuration=shared.DestinationPubsub(
-            batching_delay_threshold=469249,
-            batching_element_count_threshold=998848,
-            batching_enabled=False,
-            batching_request_bytes_threshold=841140,
-            credentials_json='sed',
-            destination_type=shared.DestinationPubsubPubsub.PUBSUB,
-            ordering_enabled=False,
-            project_id='saepe',
-            topic_id='pariatur',
+        configuration=shared.DestinationTypesense(
+            api_key='ullam',
+            batch_size=714242,
+            destination_type=shared.DestinationTypesenseTypesense.TYPESENSE,
+            host='nihil',
+            port='repellat',
+            protocol='quibusdam',
         ),
-        name='Kathryn Lang',
+        name='Mr. Jenna Stroman',
     ),
-    destination_id='sunt',
+    destination_id='natus',
 )
 
 res = s.destinations.patch_destination(req)
@@ -240,35 +249,24 @@ from airbyte.models import operations, shared
 
 s = airbyte.Airbyte(
     security=shared.Security(
-        bearer_auth="",
+        basic_auth=shared.SchemeBasicAuth(
+            password="",
+            username="",
+        ),
     ),
 )
 
 req = operations.PutDestinationRequest(
     destination_put_request=shared.DestinationPutRequest(
-        configuration=shared.DestinationS3(
-            access_key_id='A012345678910EXAMPLE',
-            destination_type=shared.DestinationS3S3.S3,
-            file_name_pattern='{sync_id}',
-            format=shared.DestinationS3FormatParquetColumnarStorage(
-                block_size_mb=128,
-                compression_codec=shared.DestinationS3FormatParquetColumnarStorageCompressionCodec.LZ4,
-                dictionary_encoding=False,
-                dictionary_page_size_kb=1024,
-                format_type=shared.DestinationS3FormatParquetColumnarStorageFormatType.PARQUET,
-                max_padding_size_mb=8,
-                page_size_kb=1024,
-            ),
-            s3_bucket_name='airbyte_sync',
-            s3_bucket_path='data_sync/test',
-            s3_bucket_region=shared.DestinationS3S3BucketRegion.AP_NORTHEAST_3,
-            s3_endpoint='http://localhost:9000',
-            s3_path_format='${NAMESPACE}/${STREAM_NAME}/${YEAR}_${MONTH}_${DAY}_${EPOCH}_',
-            secret_access_key='a012345678910ABCDEFGH/AbCdEfGhEXAMPLEKEY',
+        configuration=shared.DestinationCumulio(
+            api_host='sunt',
+            api_key='quo',
+            api_token='illum',
+            destination_type=shared.DestinationCumulioCumulio.CUMULIO,
         ),
-        name='Mr. Harry Jaskolski',
+        name='Simon Jenkins',
     ),
-    destination_id='quidem',
+    destination_id='ea',
 )
 
 res = s.destinations.put_destination(req)

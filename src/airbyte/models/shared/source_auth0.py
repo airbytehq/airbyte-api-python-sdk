@@ -5,7 +5,7 @@ import dataclasses
 from airbyte import utils
 from dataclasses_json import Undefined, dataclass_json
 from enum import Enum
-from typing import Any
+from typing import Any, Optional
 
 class SourceAuth0CredentialsOAuth2AccessTokenAuthenticationMethod(str, Enum):
     OAUTH2_ACCESS_TOKEN = 'oauth2_access_token'
@@ -52,5 +52,7 @@ class SourceAuth0:
     r"""The Authentication API is served over HTTPS. All URLs referenced in the documentation have the following base `https://YOUR_DOMAIN`"""
     credentials: Any = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credentials') }})
     source_type: SourceAuth0Auth0 = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
+    start_date: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('start_date'), 'exclude': lambda f: f is None }})
+    r"""UTC date and time in the format 2017-01-25T00:00:00Z. Any data before this date will not be replicated."""
     
 

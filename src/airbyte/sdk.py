@@ -12,6 +12,7 @@ from airbyte import utils
 from airbyte.models import shared
 
 class Airbyte:
+    r"""airbyte-api: Programatically control Airbyte Cloud, OSS & Enterprise."""
     connections: Connections
     destinations: Destinations
     jobs: Jobs

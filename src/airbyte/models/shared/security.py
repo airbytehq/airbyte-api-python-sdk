@@ -2,11 +2,22 @@
 
 from __future__ import annotations
 import dataclasses
+from typing import Optional
+
+
+
+@dataclasses.dataclass
+class SchemeBasicAuth:
+    password: str = dataclasses.field(metadata={'security': { 'field_name': 'password' }})
+    username: str = dataclasses.field(metadata={'security': { 'field_name': 'username' }})
+    
+
 
 
 
 @dataclasses.dataclass
 class Security:
-    bearer_auth: str = dataclasses.field(metadata={'security': { 'scheme': True, 'type': 'http', 'sub_type': 'bearer', 'field_name': 'Authorization' }})
+    basic_auth: Optional[SchemeBasicAuth] = dataclasses.field(default=None, metadata={'security': { 'scheme': True, 'type': 'http', 'sub_type': 'basic' }})
+    bearer_auth: Optional[str] = dataclasses.field(default=None, metadata={'security': { 'scheme': True, 'type': 'http', 'sub_type': 'bearer', 'field_name': 'Authorization' }})
     
 

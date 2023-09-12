@@ -83,8 +83,6 @@ class DestinationSnowflake:
     jdbc_url_params: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('jdbc_url_params'), 'exclude': lambda f: f is None }})
     r"""Enter the additional properties to pass to the JDBC URL string when connecting to the database (formatted as key=value pairs separated by the symbol &). Example: key1=value1&key2=value2&key3=value3"""
     raw_data_schema: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('raw_data_schema'), 'exclude': lambda f: f is None }})
-    r"""(Beta) The schema to write raw tables into"""
-    use_1s1t_format: Optional[bool] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('use_1s1t_format'), 'exclude': lambda f: f is None }})
-    r"""(Beta) Use <a href=\\"https://github.com/airbytehq/airbyte/issues/26028\\" target=\\"_blank\\">Destinations V2</a>. Contact Airbyte Support to participate in the beta program."""
+    r"""The schema to write raw tables into"""
     
 
