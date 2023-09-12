@@ -6,7 +6,6 @@ from airbyte import utils
 from dataclasses_json import Undefined, dataclass_json
 from datetime import date
 from enum import Enum
-from marshmallow import fields
 from typing import Optional
 
 class SourceBingAdsAuthMethod(str, Enum):
@@ -27,7 +26,7 @@ class SourceBingAds:
     r"""Developer token associated with user. See more info <a href=\\"https://docs.microsoft.com/en-us/advertising/guides/get-started?view=bingads-13#get-developer-token\\"> in the docs</a>."""
     refresh_token: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('refresh_token') }})
     r"""Refresh Token to renew the expired Access Token."""
-    reports_start_date: date = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('reports_start_date'), 'encoder': utils.dateisoformat(False), 'decoder': utils.datefromisoformat, 'mm_field': fields.DateTime(format='iso') }})
+    reports_start_date: date = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('reports_start_date'), 'encoder': utils.dateisoformat(False), 'decoder': utils.datefromisoformat }})
     r"""The start date from which to begin replicating report data. Any data generated before this date will not be replicated in reports. This is a UTC date in YYYY-MM-DD format."""
     source_type: SourceBingAdsBingAds = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     auth_method: Optional[SourceBingAdsAuthMethod] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_method'), 'exclude': lambda f: f is None }})

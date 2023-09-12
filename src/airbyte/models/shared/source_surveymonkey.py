@@ -7,7 +7,6 @@ from airbyte import utils
 from dataclasses_json import Undefined, dataclass_json
 from datetime import datetime
 from enum import Enum
-from marshmallow import fields
 from typing import Optional
 
 class SourceSurveymonkeySurveyMonkeyAuthorizationMethodAuthMethod(str, Enum):
@@ -45,7 +44,7 @@ class SourceSurveymonkeySurveymonkey(str, Enum):
 class SourceSurveymonkey:
     r"""The values required to configure the source."""
     source_type: SourceSurveymonkeySurveymonkey = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
-    start_date: datetime = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('start_date'), 'encoder': utils.datetimeisoformat(False), 'decoder': dateutil.parser.isoparse, 'mm_field': fields.DateTime(format='iso') }})
+    start_date: datetime = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('start_date'), 'encoder': utils.datetimeisoformat(False), 'decoder': dateutil.parser.isoparse }})
     r"""UTC date and time in the format 2017-01-25T00:00:00Z. Any data before this date will not be replicated."""
     credentials: Optional[SourceSurveymonkeySurveyMonkeyAuthorizationMethod] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credentials'), 'exclude': lambda f: f is None }})
     r"""The authorization method to use to retrieve data from SurveyMonkey"""

@@ -6,7 +6,6 @@ from airbyte import utils
 from dataclasses_json import Undefined, dataclass_json
 from datetime import date
 from enum import Enum
-from marshmallow import fields
 
 class SourceAwsCloudtrailAwsCloudtrail(str, Enum):
     AWS_CLOUDTRAIL = 'aws-cloudtrail'
@@ -24,7 +23,7 @@ class SourceAwsCloudtrail:
     aws_secret_key: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('aws_secret_key') }})
     r"""AWS CloudTrail Access Key ID. See the <a href=\\"https://docs.airbyte.com/integrations/sources/aws-cloudtrail\\">docs</a> for more information on how to obtain this key."""
     source_type: SourceAwsCloudtrailAwsCloudtrail = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
-    start_date: date = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('start_date'), 'encoder': utils.dateisoformat(False), 'decoder': utils.datefromisoformat, 'mm_field': fields.DateTime(format='iso') }})
+    start_date: date = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('start_date'), 'encoder': utils.dateisoformat(False), 'decoder': utils.datefromisoformat }})
     r"""The date you would like to replicate data. Data in AWS CloudTrail is available for last 90 days only. Format: YYYY-MM-DD."""
     
 

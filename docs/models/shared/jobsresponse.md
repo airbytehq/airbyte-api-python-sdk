@@ -1,7 +1,5 @@
 # JobsResponse
 
-List all the Jobs by connectionId.
-
 
 ## Fields
 

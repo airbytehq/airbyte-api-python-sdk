@@ -7,7 +7,6 @@ from airbyte import utils
 from dataclasses_json import Undefined, dataclass_json
 from datetime import datetime
 from enum import Enum
-from marshmallow import fields
 from typing import Optional
 
 class SourceJiraJira(str, Enum):
@@ -34,7 +33,7 @@ class SourceJira:
     r"""List of Jira project keys to replicate data for, or leave it empty if you want to replicate data for all projects."""
     render_fields: Optional[bool] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('render_fields'), 'exclude': lambda f: f is None }})
     r"""Render issue fields in HTML format in addition to Jira JSON-like format."""
-    start_date: Optional[datetime] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('start_date'), 'encoder': utils.datetimeisoformat(True), 'decoder': dateutil.parser.isoparse, 'mm_field': fields.DateTime(format='iso'), 'exclude': lambda f: f is None }})
+    start_date: Optional[datetime] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('start_date'), 'encoder': utils.datetimeisoformat(True), 'decoder': dateutil.parser.isoparse, 'exclude': lambda f: f is None }})
     r"""The date from which you want to replicate data from Jira, use the format YYYY-MM-DDT00:00:00Z. Note that this field only applies to certain streams, and only data generated on or after the start date will be replicated. Or leave it empty if you want to replicate all data. For more information, refer to the <a href=\\"https://docs.airbyte.com/integrations/sources/jira/\\">documentation</a>."""
     
 

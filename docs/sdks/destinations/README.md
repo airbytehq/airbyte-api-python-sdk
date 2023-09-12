@@ -26,32 +26,17 @@ s = airbyte.Airbyte(
 )
 
 req = shared.DestinationCreateRequest(
-    configuration=shared.DestinationPostgres(
-        database='deleniti',
-        destination_type=shared.DestinationPostgresPostgres.POSTGRES,
-        host='omnis',
-        jdbc_url_params='necessitatibus',
-        password='distinctio',
-        port=5432,
-        schema='public',
-        ssl_mode=shared.DestinationPostgresSslModeVerifyFull(
-            ca_certificate='nihil',
-            client_certificate='ipsum',
-            client_key='voluptate',
-            client_key_password='id',
-            mode=shared.DestinationPostgresSslModeVerifyFullMode.VERIFY_FULL,
+    configuration=shared.DestinationGoogleSheets(
+        credentials=shared.DestinationGoogleSheetsAuthenticationViaGoogleOAuth(
+            client_id='illum',
+            client_secret='maiores',
+            refresh_token='rerum',
         ),
-        tunnel_method=shared.DestinationPostgresTunnelMethodPasswordAuthentication(
-            tunnel_host='eius',
-            tunnel_method=shared.DestinationPostgresTunnelMethodPasswordAuthenticationTunnelMethod.SSH_PASSWORD_AUTH,
-            tunnel_port=22,
-            tunnel_user='aspernatur',
-            tunnel_user_password='perferendis',
-        ),
-        username='Daphne.Rosenbaum90',
+        destination_type=shared.DestinationGoogleSheetsGoogleSheets.GOOGLE_SHEETS,
+        spreadsheet_id='https://docs.google.com/spreadsheets/d/1hLd9Qqti3UyLXZB2aFfUWDT7BG/edit',
     ),
-    name='Rosie McKenzie',
-    workspace_id='8a0d446c-e2af-47a7-bcf3-be453f870b32',
+    name='Valerie Runolfsson',
+    workspace_id='6ae395ef-b9ba-488f-ba66-997074ba4469',
 )
 
 res = s.destinations.create_destination(req)
@@ -89,7 +74,7 @@ s = airbyte.Airbyte(
 )
 
 req = operations.DeleteDestinationRequest(
-    destination_id='vel',
+    destination_id='nobis',
 )
 
 res = s.destinations.delete_destination(req)
@@ -127,7 +112,7 @@ s = airbyte.Airbyte(
 )
 
 req = operations.GetDestinationRequest(
-    destination_id='libero',
+    destination_id='eum',
 )
 
 res = s.destinations.get_destination(req)
@@ -166,11 +151,10 @@ s = airbyte.Airbyte(
 
 req = operations.ListDestinationsRequest(
     include_deleted=False,
-    limit=374170,
-    offset=646265,
+    limit=878453,
+    offset=135474,
     workspace_ids=[
-        '3429cdb1-a842-42bb-a79d-2322715bf0cb',
-        'b1e31b8b-90f3-4443-a110-8e0adcf4b921',
+        '14195989-0afa-4563-a251-6fe4c8b711e5',
     ],
 )
 
@@ -210,18 +194,20 @@ s = airbyte.Airbyte(
 
 req = operations.PatchDestinationRequest(
     destination_patch_request=shared.DestinationPatchRequest(
-        configuration=shared.DestinationKinesis(
-            access_key='odio',
-            buffer_size=580447,
-            destination_type=shared.DestinationKinesisKinesis.KINESIS,
-            endpoint='kinesis.us‑west‑1.amazonaws.com',
-            private_key='voluptatibus',
-            region='us‑west‑1',
-            shard_count=787542,
+        configuration=shared.DestinationPubsub(
+            batching_delay_threshold=469249,
+            batching_element_count_threshold=998848,
+            batching_enabled=False,
+            batching_request_bytes_threshold=841140,
+            credentials_json='sed',
+            destination_type=shared.DestinationPubsubPubsub.PUBSUB,
+            ordering_enabled=False,
+            project_id='saepe',
+            topic_id='pariatur',
         ),
-        name='Arturo Hauck',
+        name='Kathryn Lang',
     ),
-    destination_id='voluptate',
+    destination_id='sunt',
 )
 
 res = s.destinations.patch_destination(req)
@@ -260,28 +246,29 @@ s = airbyte.Airbyte(
 
 req = operations.PutDestinationRequest(
     destination_put_request=shared.DestinationPutRequest(
-        configuration=shared.DestinationDatabricks(
-            accept_terms=False,
-            data_source=shared.DestinationDatabricksDataSourceAzureBlobStorage(
-                azure_blob_storage_account_name='airbyte5storage',
-                azure_blob_storage_container_name='airbytetestcontainername',
-                azure_blob_storage_endpoint_domain_name='blob.core.windows.net',
-                azure_blob_storage_sas_token='?sv=2016-05-31&ss=b&srt=sco&sp=rwdl&se=2018-06-27T10:05:50Z&st=2017-06-27T02:05:50Z&spr=https,http&sig=bgqQwoXwxzuD2GJfagRg7VOS8hzNr3QLT7rhS8OFRLQ%3D',
-                data_source_type=shared.DestinationDatabricksDataSourceAzureBlobStorageDataSourceType.AZURE_BLOB_STORAGE,
+        configuration=shared.DestinationS3(
+            access_key_id='A012345678910EXAMPLE',
+            destination_type=shared.DestinationS3S3.S3,
+            file_name_pattern='{sync_id}',
+            format=shared.DestinationS3FormatParquetColumnarStorage(
+                block_size_mb=128,
+                compression_codec=shared.DestinationS3FormatParquetColumnarStorageCompressionCodec.LZ4,
+                dictionary_encoding=False,
+                dictionary_page_size_kb=1024,
+                format_type=shared.DestinationS3FormatParquetColumnarStorageFormatType.PARQUET,
+                max_padding_size_mb=8,
+                page_size_kb=1024,
             ),
-            database='tenetur',
-            databricks_http_path='sql/protocolvx/o/1234567489/0000-1111111-abcd90',
-            databricks_personal_access_token='dapi0123456789abcdefghij0123456789AB',
-            databricks_port='443',
-            databricks_server_hostname='abc-12345678-wxyz.cloud.databricks.com',
-            destination_type=shared.DestinationDatabricksDatabricks.DATABRICKS,
-            enable_schema_evolution=False,
-            purge_staging_data=False,
-            schema='default',
+            s3_bucket_name='airbyte_sync',
+            s3_bucket_path='data_sync/test',
+            s3_bucket_region=shared.DestinationS3S3BucketRegion.AP_NORTHEAST_3,
+            s3_endpoint='http://localhost:9000',
+            s3_path_format='${NAMESPACE}/${STREAM_NAME}/${YEAR}_${MONTH}_${DAY}_${EPOCH}_',
+            secret_access_key='a012345678910ABCDEFGH/AbCdEfGhEXAMPLEKEY',
         ),
-        name='Darla Rau',
+        name='Mr. Harry Jaskolski',
     ),
-    destination_id='similique',
+    destination_id='quidem',
 )
 
 res = s.destinations.put_destination(req)

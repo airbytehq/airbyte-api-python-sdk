@@ -24,7 +24,7 @@ s = airbyte.Airbyte(
 )
 
 req = operations.CancelJobRequest(
-    job_id=708548,
+    job_id=373291,
 )
 
 res = s.jobs.cancel_job(req)
@@ -62,7 +62,7 @@ s = airbyte.Airbyte(
 )
 
 req = shared.JobCreateRequest(
-    connection_id='vero',
+    connection_id='voluptate',
     job_type=shared.JobTypeEnum.SYNC,
 )
 
@@ -101,7 +101,7 @@ s = airbyte.Airbyte(
 )
 
 req = operations.GetJobRequest(
-    job_id=293020,
+    job_id=722056,
 )
 
 res = s.jobs.get_job(req)
@@ -140,21 +140,18 @@ s = airbyte.Airbyte(
 )
 
 req = operations.ListJobsRequest(
-    connection_id='quibusdam',
-    created_at_end=dateutil.parser.isoparse('2022-06-02T04:41:10.492Z'),
-    created_at_start=dateutil.parser.isoparse('2021-06-15T11:19:41.363Z'),
-    job_type=shared.JobTypeEnum.SYNC,
-    limit=974259,
-    offset=347233,
-    order_by='nulla',
-    status=shared.JobStatusEnum.PENDING,
-    updated_at_end=dateutil.parser.isoparse('2020-01-21T21:31:25.345Z'),
-    updated_at_start=dateutil.parser.isoparse('2021-07-26T04:25:41.517Z'),
+    connection_id='eaque',
+    created_at_end=dateutil.parser.isoparse('2021-11-26T18:45:44.366Z'),
+    created_at_start=dateutil.parser.isoparse('2022-12-13T19:01:00.083Z'),
+    job_type=shared.JobTypeEnum.RESET,
+    limit=230742,
+    offset=11714,
+    order_by='cumque',
+    status=shared.JobStatusEnum.INCOMPLETE,
+    updated_at_end=dateutil.parser.isoparse('2020-10-23T15:50:52.666Z'),
+    updated_at_start=dateutil.parser.isoparse('2022-08-28T17:02:52.151Z'),
     workspace_ids=[
-        '70a45626-d436-4813-b16d-9f5fce6c5561',
-        '46c3e250-fb00-48c4-ae14-1aac366c8dd6',
-        'b1442907-4747-478a-bbd4-66d28c10ab3c',
-        'dca42519-04e5-423c-be0b-c7178e4796f2',
+        '58705320-2c73-4d5f-a9b9-0c28909b3fe4',
     ],
 )
 

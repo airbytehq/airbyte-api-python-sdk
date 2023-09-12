@@ -5,6 +5,7 @@ import json
 import re
 from dataclasses import Field, dataclass, fields, is_dataclass, make_dataclass
 from datetime import date, datetime
+from decimal import Decimal
 from email.message import Message
 from enum import Enum
 from typing import Any, Callable, Optional, Tuple, Union, get_args, get_origin
@@ -193,7 +194,7 @@ def generate_url(clazz: type, server_url: str, path: str, path_params: dataclass
                                 f"{pp_key},{_val_to_string(param[pp_key])}")
                     path = path.replace(
                         '{' + param_metadata.get('field_name', field.name) + '}', ",".join(pp_vals), 1)
-                elif not isinstance(param, (str, int, float, complex, bool)):
+                elif not isinstance(param, (str, int, float, complex, bool, Decimal)):
                     pp_vals: list[str] = []
                     param_fields: Tuple[Field, ...] = fields(param)
                     for param_field in param_fields:
@@ -735,6 +736,36 @@ def dateisoformat(optional: bool):
 
 def datefromisoformat(date_str: str):
     return dateutil.parser.parse(date_str).date()
+
+
+def bigintencoder(optional: bool):
+    def bigintencode(val: int):
+        if optional and val is None:
+            return None
+        return str(val)
+
+    return bigintencode
+
+
+def bigintdecoder(val):
+    return int(val)
+
+
+def decimalencoder(optional: bool, as_str: bool):
+    def decimalencode(val: Decimal):
+        if optional and val is None:
+            return None
+
+        if as_str:
+            return str(val)
+
+        return float(val)
+
+    return decimalencode
+
+
+def decimaldecoder(val):
+    return Decimal(str(val))
 
 
 def get_field_name(name):

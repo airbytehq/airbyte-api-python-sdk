@@ -28,15 +28,17 @@ s = airbyte.Airbyte(
 )
 
 req = shared.SourceCreateRequest(
-    configuration=shared.SourcePrestashop(
-        access_key='molestiae',
-        source_type=shared.SourcePrestashopPrestashop.PRESTASHOP,
-        start_date=dateutil.parser.parse('2022-01-01').date(),
-        url='accusantium',
+    configuration=shared.SourcePipedrive(
+        authorization=shared.SourcePipedriveAPIKeyAuthentication(
+            api_token='dolorum',
+            auth_type=shared.SourcePipedriveAPIKeyAuthenticationAuthType.TOKEN,
+        ),
+        replication_start_date=dateutil.parser.isoparse('2017-01-25T00:00:00Z'),
+        source_type=shared.SourcePipedrivePipedrive.PIPEDRIVE,
     ),
-    name='Franklin Lynch',
-    secret_id='deleniti',
-    workspace_id='2aa48256-2f22-42e9-817e-e17cbe61e6b7',
+    name='Ervin McLaughlin',
+    secret_id='delectus',
+    workspace_id='48633323-f9b7-47f3-a410-0674ebf69280',
 )
 
 res = s.sources.create_source(req)
@@ -74,7 +76,7 @@ s = airbyte.Airbyte(
 )
 
 req = operations.DeleteSourceRequest(
-    source_id='rerum',
+    source_id='fugiat',
 )
 
 res = s.sources.delete_source(req)
@@ -112,7 +114,7 @@ s = airbyte.Airbyte(
 )
 
 req = operations.GetSourceRequest(
-    source_id='occaecati',
+    source_id='ab',
 )
 
 res = s.sources.get_source(req)
@@ -155,9 +157,9 @@ s = airbyte.Airbyte(
 
 req = shared.InitiateOauthRequest(
     o_auth_input_configuration=shared.OAuthInputConfiguration(),
-    redirect_url='minima',
-    source_type=shared.OAuthActorNames.SNOWFLAKE,
-    workspace_id='c0ab3c20-c4f3-4789-bd87-1f99dd2efd12',
+    redirect_url='soluta',
+    source_type=shared.OAuthActorNames.SMARTSHEETS,
+    workspace_id='77a89ebf-737a-4e42-83ce-5e6a95d8a0d4',
 )
 
 res = s.sources.initiate_o_auth(req)
@@ -196,12 +198,10 @@ s = airbyte.Airbyte(
 
 req = operations.ListSourcesRequest(
     include_deleted=False,
-    limit=94458,
-    offset=628899,
+    limit=273542,
+    offset=425451,
     workspace_ids=[
-        '6f1e674b-db04-4f15-b560-82d68ea19f1d',
-        '17051339-d080-486a-9840-394c26071f93',
-        'f5f0642d-ac7a-4f51-9cc4-13aa63aae8d6',
+        'ce2af7a7-3cf3-4be4-93f8-70b326b5a734',
     ],
 )
 
@@ -242,18 +242,17 @@ s = airbyte.Airbyte(
 
 req = operations.PatchSourceRequest(
     source_patch_request=shared.SourcePatchRequest(
-        configuration=shared.SourceMonday(
-            credentials=shared.SourceMondayCredentialsAPIToken(
-                api_token='vel',
-                auth_type=shared.SourceMondayCredentialsAPITokenAuthType.API_TOKEN,
-            ),
-            source_type=shared.SourceMondayMonday.MONDAY,
+        configuration=shared.SourceDixa(
+            api_token='cupiditate',
+            batch_size=31,
+            source_type=shared.SourceDixaDixa.DIXA,
+            start_date='YYYY-MM-DD',
         ),
         name='My source',
-        secret_id='labore',
-        workspace_id='dbb675fd-5e60-4b37-9ed4-f6fbee41f333',
+        secret_id='pariatur',
+        workspace_id='b1a8422b-b679-4d23-a271-5bf0cbb1e31b',
     ),
-    source_id='beatae',
+    source_id='quos',
 )
 
 res = s.sources.patch_source(req)
@@ -293,19 +292,17 @@ s = airbyte.Airbyte(
 
 req = operations.PutSourceRequest(
     source_put_request=shared.SourcePutRequest(
-        configuration=shared.SourceMicrosoftTeams(
-            credentials=shared.SourceMicrosoftTeamsCredentialsAuthenticateViaMicrosoft(
-                auth_type=shared.SourceMicrosoftTeamsCredentialsAuthenticateViaMicrosoftAuthType.TOKEN,
-                client_id='debitis',
-                client_secret='consectetur',
-                tenant_id='corporis',
+        configuration=shared.SourceSalesloft(
+            credentials=shared.SourceSalesloftCredentialsAuthenticateViaAPIKey(
+                api_key='aperiam',
+                auth_type=shared.SourceSalesloftCredentialsAuthenticateViaAPIKeyAuthType.API_KEY,
             ),
-            period='D7',
-            source_type=shared.SourceMicrosoftTeamsMicrosoftTeams.MICROSOFT_TEAMS,
+            source_type=shared.SourceSalesloftSalesloft.SALESLOFT,
+            start_date=dateutil.parser.isoparse('2020-11-16T00:00:00Z'),
         ),
-        name='Rick Beer',
+        name='Mike Greenholt',
     ),
-    source_id='vitae',
+    source_id='dolorum',
 )
 
 res = s.sources.put_source(req)

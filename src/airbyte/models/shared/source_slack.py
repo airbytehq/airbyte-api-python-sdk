@@ -7,7 +7,6 @@ from airbyte import utils
 from dataclasses_json import Undefined, dataclass_json
 from datetime import datetime
 from enum import Enum
-from marshmallow import fields
 from typing import Any, Optional
 
 class SourceSlackCredentialsAPITokenOptionTitle(str, Enum):
@@ -58,7 +57,7 @@ class SourceSlack:
     lookback_window: int = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('lookback_window') }})
     r"""How far into the past to look for messages in threads, default is 0 days"""
     source_type: SourceSlackSlack = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
-    start_date: datetime = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('start_date'), 'encoder': utils.datetimeisoformat(False), 'decoder': dateutil.parser.isoparse, 'mm_field': fields.DateTime(format='iso') }})
+    start_date: datetime = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('start_date'), 'encoder': utils.datetimeisoformat(False), 'decoder': dateutil.parser.isoparse }})
     r"""UTC date and time in the format 2017-01-25T00:00:00Z. Any data before this date will not be replicated."""
     channel_filter: Optional[list[str]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('channel_filter'), 'exclude': lambda f: f is None }})
     r"""A channel name list (without leading '#' char) which limit the channels from which you'd like to sync. Empty list means no filter."""

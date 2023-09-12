@@ -1,7 +1,5 @@
 # WorkspacesResponse
 
-Successful operation
-
 
 ## Fields
 

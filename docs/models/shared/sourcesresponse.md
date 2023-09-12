@@ -1,7 +1,5 @@
 # SourcesResponse
 
-Successful operation
-
 
 ## Fields
 

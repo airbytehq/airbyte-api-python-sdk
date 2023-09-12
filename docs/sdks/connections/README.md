@@ -29,49 +29,31 @@ req = shared.ConnectionCreateRequest(
         streams=[
             shared.StreamConfiguration(
                 cursor_field=[
-                    'ipsam',
-                    'id',
-                    'possimus',
-                    'aut',
+                    'iure',
                 ],
-                name='Sabrina Smitham DVM',
+                name='Dr. Rickey Boyle',
                 primary_key=[
                     [
-                        'nihil',
-                        'praesentium',
-                        'voluptatibus',
-                        'ipsa',
-                    ],
-                    [
-                        'voluptate',
-                        'cum',
-                        'perferendis',
-                    ],
-                    [
-                        'reprehenderit',
-                    ],
-                    [
-                        'maiores',
-                        'dicta',
+                        'mollitia',
                     ],
                 ],
-                sync_mode=shared.ConnectionSyncModeEnum.FULL_REFRESH_APPEND,
+                sync_mode=shared.ConnectionSyncModeEnum.INCREMENTAL_APPEND,
             ),
         ],
     ),
     data_residency=shared.GeographyEnum.AUTO,
-    destination_id='71b5e6e1-3b99-4d48-8e1e-91e450ad2abd',
-    name='Pauline Deckow',
-    namespace_definition=shared.NamespaceDefinitionEnum.DESTINATION,
+    destination_id='352c5955-907a-4ff1-a3a2-fa9467739251',
+    name='Matt Hamill',
+    namespace_definition=shared.NamespaceDefinitionEnum.SOURCE,
     namespace_format='${SOURCE_NAMESPACE}',
-    non_breaking_schema_updates_behavior=shared.NonBreakingSchemaUpdatesBehaviorEnum.IGNORE,
-    prefix='magni',
+    non_breaking_schema_updates_behavior=shared.NonBreakingSchemaUpdatesBehaviorEnum.PROPAGATE_FULLY,
+    prefix='ipsam',
     schedule=shared.ConnectionSchedule(
-        cron_expression='assumenda',
-        schedule_type=shared.ScheduleTypeEnum.MANUAL,
+        cron_expression='id',
+        schedule_type=shared.ScheduleTypeEnum.CRON,
     ),
-    source_id='02a94bb4-f63c-4969-a9a3-efa77dfb14cd',
-    status=shared.ConnectionStatusEnum.INACTIVE,
+    source_id='019da1ff-e78f-4097-b007-4f15471b5e6e',
+    status=shared.ConnectionStatusEnum.ACTIVE,
 )
 
 res = s.connections.create_connection(req)
@@ -109,7 +91,7 @@ s = airbyte.Airbyte(
 )
 
 req = operations.DeleteConnectionRequest(
-    connection_id='aliquid',
+    connection_id='ipsum',
 )
 
 res = s.connections.delete_connection(req)
@@ -147,7 +129,7 @@ s = airbyte.Airbyte(
 )
 
 req = operations.GetConnectionRequest(
-    connection_id='laborum',
+    connection_id='quidem',
 )
 
 res = s.connections.get_connection(req)
@@ -186,12 +168,10 @@ s = airbyte.Airbyte(
 
 req = operations.ListConnectionsRequest(
     include_deleted=False,
-    limit=881104,
-    offset=249796,
+    limit=565189,
+    offset=566602,
     workspace_ids=[
-        '5efb9ba8-8f3a-4669-9707-4ba4469b6e21',
-        '41959890-afa5-463e-a516-fe4c8b711e5b',
-        '7fd2ed02-8921-4cdd-8692-601fb576b0d5',
+        'd488e1e9-1e45-40ad-aabd-44269802d502',
     ],
 )
 
@@ -235,100 +215,31 @@ req = operations.PatchConnectionRequest(
             streams=[
                 shared.StreamConfiguration(
                     cursor_field=[
-                        'fugiat',
+                        'dolorum',
                     ],
-                    name='Jennifer Runolfsdottir',
+                    name='Eddie Prosacco',
                     primary_key=[
                         [
-                            'dolores',
-                            'quis',
-                            'totam',
-                        ],
-                        [
-                            'eaque',
-                            'quis',
-                        ],
-                        [
-                            'eos',
+                            'delectus',
                         ],
                     ],
-                    sync_mode=shared.ConnectionSyncModeEnum.FULL_REFRESH_OVERWRITE,
-                ),
-                shared.StreamConfiguration(
-                    cursor_field=[
-                        'minus',
-                    ],
-                    name='Rosa Swift',
-                    primary_key=[
-                        [
-                            'facilis',
-                            'perspiciatis',
-                            'voluptatem',
-                        ],
-                        [
-                            'consequuntur',
-                            'blanditiis',
-                            'error',
-                            'eaque',
-                        ],
-                        [
-                            'rerum',
-                            'adipisci',
-                            'asperiores',
-                        ],
-                        [
-                            'modi',
-                            'iste',
-                            'dolorum',
-                            'deleniti',
-                        ],
-                    ],
-                    sync_mode=shared.ConnectionSyncModeEnum.INCREMENTAL_DEDUPED_HISTORY,
-                ),
-                shared.StreamConfiguration(
-                    cursor_field=[
-                        'nobis',
-                        'libero',
-                        'delectus',
-                    ],
-                    name='Billie Jacobi',
-                    primary_key=[
-                        [
-                            'ipsum',
-                        ],
-                    ],
-                    sync_mode=shared.ConnectionSyncModeEnum.INCREMENTAL_DEDUPED_HISTORY,
-                ),
-                shared.StreamConfiguration(
-                    cursor_field=[
-                        'cum',
-                        'voluptate',
-                        'dignissimos',
-                    ],
-                    name='Allen Parisian Jr.',
-                    primary_key=[
-                        [
-                            'odio',
-                            'quaerat',
-                        ],
-                    ],
-                    sync_mode=shared.ConnectionSyncModeEnum.INCREMENTAL_DEDUPED_HISTORY,
+                    sync_mode=shared.ConnectionSyncModeEnum.FULL_REFRESH_APPEND,
                 ),
             ],
         ),
-        data_residency=shared.GeographyEnumNoDefault.EU,
-        name='Hector Mosciski',
-        namespace_definition=shared.NamespaceDefinitionEnumNoDefault.SOURCE,
+        data_residency=shared.GeographyEnumNoDefault.AUTO,
+        name='Sergio Hyatt',
+        namespace_definition=shared.NamespaceDefinitionEnumNoDefault.DESTINATION,
         namespace_format='${SOURCE_NAMESPACE}',
-        non_breaking_schema_updates_behavior=shared.NonBreakingSchemaUpdatesBehaviorEnumNoDefault.PROPAGATE_FULLY,
-        prefix='ab',
+        non_breaking_schema_updates_behavior=shared.NonBreakingSchemaUpdatesBehaviorEnumNoDefault.PROPAGATE_COLUMNS,
+        prefix='dolor',
         schedule=shared.ConnectionSchedule(
-            cron_expression='soluta',
+            cron_expression='debitis',
             schedule_type=shared.ScheduleTypeEnum.CRON,
         ),
-        status=shared.ConnectionStatusEnum.INACTIVE,
+        status=shared.ConnectionStatusEnum.DEPRECATED,
     ),
-    connection_id='voluptate',
+    connection_id='in',
 )
 
 res = s.connections.patch_connection(req)
