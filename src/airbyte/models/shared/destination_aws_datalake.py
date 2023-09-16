@@ -46,48 +46,6 @@ class DestinationAwsDatalakeCredentialsIAMRole:
 class DestinationAwsDatalakeAwsDatalake(str, Enum):
     AWS_DATALAKE = 'aws-datalake'
 
-class DestinationAwsDatalakeFormatParquetColumnarStorageCompressionCodecOptional(str, Enum):
-    r"""The compression algorithm used to compress data."""
-    UNCOMPRESSED = 'UNCOMPRESSED'
-    SNAPPY = 'SNAPPY'
-    GZIP = 'GZIP'
-    ZSTD = 'ZSTD'
-
-class DestinationAwsDatalakeFormatParquetColumnarStorageFormatTypeWildcard(str, Enum):
-    PARQUET = 'Parquet'
-
-
-@dataclass_json(undefined=Undefined.EXCLUDE)
-
-@dataclasses.dataclass
-class DestinationAwsDatalakeFormatParquetColumnarStorage:
-    r"""Format of the data output."""
-    format_type: DestinationAwsDatalakeFormatParquetColumnarStorageFormatTypeWildcard = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('format_type') }})
-    compression_codec: Optional[DestinationAwsDatalakeFormatParquetColumnarStorageCompressionCodecOptional] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('compression_codec'), 'exclude': lambda f: f is None }})
-    r"""The compression algorithm used to compress data."""
-    
-
-
-class DestinationAwsDatalakeFormatJSONLinesNewlineDelimitedJSONCompressionCodecOptional(str, Enum):
-    r"""The compression algorithm used to compress data."""
-    UNCOMPRESSED = 'UNCOMPRESSED'
-    GZIP = 'GZIP'
-
-class DestinationAwsDatalakeFormatJSONLinesNewlineDelimitedJSONFormatTypeWildcard(str, Enum):
-    JSONL = 'JSONL'
-
-
-@dataclass_json(undefined=Undefined.EXCLUDE)
-
-@dataclasses.dataclass
-class DestinationAwsDatalakeFormatJSONLinesNewlineDelimitedJSON:
-    r"""Format of the data output."""
-    format_type: DestinationAwsDatalakeFormatJSONLinesNewlineDelimitedJSONFormatTypeWildcard = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('format_type') }})
-    compression_codec: Optional[DestinationAwsDatalakeFormatJSONLinesNewlineDelimitedJSONCompressionCodecOptional] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('compression_codec'), 'exclude': lambda f: f is None }})
-    r"""The compression algorithm used to compress data."""
-    
-
-
 class DestinationAwsDatalakeChooseHowToPartitionData(str, Enum):
     r"""Partition data by cursor fields when a cursor field is a date"""
     NO_PARTITIONING = 'NO PARTITIONING'

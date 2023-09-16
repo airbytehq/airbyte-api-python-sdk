@@ -10,19 +10,6 @@ from typing import Any
 class DestinationDevNullDevNull(str, Enum):
     DEV_NULL = 'dev-null'
 
-class DestinationDevNullTestDestinationSilentTestDestinationType(str, Enum):
-    SILENT = 'SILENT'
-
-
-@dataclass_json(undefined=Undefined.EXCLUDE)
-
-@dataclasses.dataclass
-class DestinationDevNullTestDestinationSilent:
-    r"""The type of destination to be used"""
-    test_destination_type: DestinationDevNullTestDestinationSilentTestDestinationType = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('test_destination_type') }})
-    
-
-
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
 

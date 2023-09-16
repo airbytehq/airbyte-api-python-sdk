@@ -81,7 +81,7 @@ if res.connection_response is not None:
 ## Available Resources and Operations
 
 
-### [connections](docs/sdks/connections/README.md)
+### [Connections](docs/sdks/connections/README.md)
 
 * [create_connection](docs/sdks/connections/README.md#create_connection) - Create a connection
 * [delete_connection](docs/sdks/connections/README.md#delete_connection) - Delete a Connection
@@ -89,7 +89,7 @@ if res.connection_response is not None:
 * [list_connections](docs/sdks/connections/README.md#list_connections) - List connections
 * [patch_connection](docs/sdks/connections/README.md#patch_connection) - Update Connection details
 
-### [destinations](docs/sdks/destinations/README.md)
+### [Destinations](docs/sdks/destinations/README.md)
 
 * [create_destination](docs/sdks/destinations/README.md#create_destination) - Create a destination
 * [delete_destination](docs/sdks/destinations/README.md#delete_destination) - Delete a Destination
@@ -98,14 +98,14 @@ if res.connection_response is not None:
 * [patch_destination](docs/sdks/destinations/README.md#patch_destination) - Update a Destination
 * [put_destination](docs/sdks/destinations/README.md#put_destination) - Update a Destination and fully overwrite it
 
-### [jobs](docs/sdks/jobs/README.md)
+### [Jobs](docs/sdks/jobs/README.md)
 
 * [cancel_job](docs/sdks/jobs/README.md#cancel_job) - Cancel a running Job
 * [create_job](docs/sdks/jobs/README.md#create_job) - Trigger a sync or reset job of a connection
 * [get_job](docs/sdks/jobs/README.md#get_job) - Get Job status and details
 * [list_jobs](docs/sdks/jobs/README.md#list_jobs) - List Jobs by sync type
 
-### [sources](docs/sdks/sources/README.md)
+### [Sources](docs/sdks/sources/README.md)
 
 * [create_source](docs/sdks/sources/README.md#create_source) - Create a source
 * [delete_source](docs/sdks/sources/README.md#delete_source) - Delete a Source
@@ -115,11 +115,11 @@ if res.connection_response is not None:
 * [patch_source](docs/sdks/sources/README.md#patch_source) - Update a Source
 * [put_source](docs/sdks/sources/README.md#put_source) - Update a Source and fully overwrite it
 
-### [streams](docs/sdks/streams/README.md)
+### [Streams](docs/sdks/streams/README.md)
 
 * [get_stream_properties](docs/sdks/streams/README.md#get_stream_properties) - Get stream properties
 
-### [workspaces](docs/sdks/workspaces/README.md)
+### [Workspaces](docs/sdks/workspaces/README.md)
 
 * [create_or_update_workspace_o_auth_credentials](docs/sdks/workspaces/README.md#create_or_update_workspace_o_auth_credentials) - Create OAuth override credentials for a workspace and source type.
 * [create_workspace](docs/sdks/workspaces/README.md#create_workspace) - Create a workspace

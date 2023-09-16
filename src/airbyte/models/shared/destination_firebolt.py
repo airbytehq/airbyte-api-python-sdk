@@ -10,40 +10,6 @@ from typing import Any, Optional
 class DestinationFireboltFirebolt(str, Enum):
     FIREBOLT = 'firebolt'
 
-class DestinationFireboltLoadingMethodExternalTableViaS3Method(str, Enum):
-    S3 = 'S3'
-
-
-@dataclass_json(undefined=Undefined.EXCLUDE)
-
-@dataclasses.dataclass
-class DestinationFireboltLoadingMethodExternalTableViaS3:
-    r"""Loading method used to select the way data will be uploaded to Firebolt"""
-    aws_key_id: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('aws_key_id') }})
-    r"""AWS access key granting read and write access to S3."""
-    aws_key_secret: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('aws_key_secret') }})
-    r"""Corresponding secret part of the AWS Key"""
-    method: DestinationFireboltLoadingMethodExternalTableViaS3Method = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('method') }})
-    s3_bucket: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('s3_bucket') }})
-    r"""The name of the S3 bucket."""
-    s3_region: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('s3_region') }})
-    r"""Region name of the S3 bucket."""
-    
-
-
-class DestinationFireboltLoadingMethodSQLInsertsMethod(str, Enum):
-    SQL = 'SQL'
-
-
-@dataclass_json(undefined=Undefined.EXCLUDE)
-
-@dataclasses.dataclass
-class DestinationFireboltLoadingMethodSQLInserts:
-    r"""Loading method used to select the way data will be uploaded to Firebolt"""
-    method: DestinationFireboltLoadingMethodSQLInsertsMethod = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('method') }})
-    
-
-
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
 

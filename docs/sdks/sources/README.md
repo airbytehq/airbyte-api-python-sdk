@@ -1,4 +1,4 @@
-# sources
+# Sources
 
 ### Available Operations
 
@@ -34,17 +34,14 @@ req = shared.SourceCreateRequest(
     configuration=shared.SourceFileSecure(
         dataset_name='asperiores',
         format=shared.SourceFileSecureFileFormat.YAML,
-        provider=shared.SourceFileSecureProviderGCSGoogleCloudStorage(
-            service_account_json='iste',
-            storage=shared.SourceFileSecureProviderGCSGoogleCloudStorageStorage.GCS,
-        ),
-        reader_options='{"sep": "	", "header": 0, "names": ["column1", "column2"] }',
+        provider='modi',
+        reader_options='{"sep": " "}',
         source_type=shared.SourceFileSecureFileSecure.FILE_SECURE,
-        url='gs://my-google-bucket/data.csv',
+        url='s3://gdelt-open-data/events/20190914.export.csv',
     ),
-    name='Rene Rolfson',
-    secret_id='quaerat',
-    workspace_id='8633323f-9b77-4f3a-8100-674ebf69280d',
+    name='Ervin McLaughlin',
+    secret_id='delectus',
+    workspace_id='48633323-f9b7-47f3-a410-0674ebf69280',
 )
 
 res = s.sources.create_source(req)
@@ -85,7 +82,7 @@ s = airbyte.Airbyte(
 )
 
 req = operations.DeleteSourceRequest(
-    source_id='ab',
+    source_id='fugiat',
 )
 
 res = s.sources.delete_source(req)
@@ -126,7 +123,7 @@ s = airbyte.Airbyte(
 )
 
 req = operations.GetSourceRequest(
-    source_id='soluta',
+    source_id='ab',
 )
 
 res = s.sources.get_source(req)
@@ -172,9 +169,9 @@ s = airbyte.Airbyte(
 
 req = shared.InitiateOauthRequest(
     o_auth_input_configuration=shared.OAuthInputConfiguration(),
-    redirect_url='dolorum',
-    source_type=shared.OAuthActorNames.MICROSOFT_TEAMS,
-    workspace_id='7a89ebf7-37ae-4420-bce5-e6a95d8a0d44',
+    redirect_url='soluta',
+    source_type=shared.OAuthActorNames.SMARTSHEETS,
+    workspace_id='77a89ebf-737a-4e42-83ce-5e6a95d8a0d4',
 )
 
 res = s.sources.initiate_o_auth(req)
@@ -216,10 +213,10 @@ s = airbyte.Airbyte(
 
 req = operations.ListSourcesRequest(
     include_deleted=False,
-    limit=425451,
-    offset=798047,
+    limit=273542,
+    offset=425451,
     workspace_ids=[
-        'e2af7a73-cf3b-4e45-bf87-0b326b5a7342',
+        'ce2af7a7-3cf3-4be4-93f8-70b326b5a734',
     ],
 )
 
@@ -263,19 +260,15 @@ s = airbyte.Airbyte(
 
 req = operations.PatchSourceRequest(
     source_patch_request=shared.SourcePatchRequest(
-        configuration=shared.SourcePaypalTransaction(
-            client_id='maxime',
-            client_secret='pariatur',
-            is_sandbox=False,
-            refresh_token='soluta',
-            source_type=shared.SourcePaypalTransactionPaypalTransaction.PAYPAL_TRANSACTION,
-            start_date=dateutil.parser.isoparse('2021-06-11T23:59:59'),
+        configuration=shared.SourceDockerhub(
+            docker_username='airbyte',
+            source_type=shared.SourceDockerhubDockerhub.DOCKERHUB,
         ),
         name='My source',
-        secret_id='laborum',
-        workspace_id='8422bb67-9d23-4227-95bf-0cbb1e31b8b9',
+        secret_id='cupiditate',
+        workspace_id='cdb1a842-2bb6-479d-a322-715bf0cbb1e3',
     ),
-    source_id='aperiam',
+    source_id='veritatis',
 )
 
 res = s.sources.patch_source(req)
@@ -318,21 +311,17 @@ s = airbyte.Airbyte(
 
 req = operations.PutSourceRequest(
     source_put_request=shared.SourcePutRequest(
-        configuration=shared.SourceZendeskChat(
-            credentials=shared.SourceZendeskChatCredentialsOAuth20(
-                access_token='dolore',
-                client_id='labore',
-                client_secret='adipisci',
-                credentials=shared.SourceZendeskChatCredentialsOAuth20Credentials.OAUTH2_0,
-                refresh_token='dolorum',
-            ),
-            source_type=shared.SourceZendeskChatZendeskChat.ZENDESK_CHAT,
-            start_date=dateutil.parser.isoparse('2021-02-01T00:00:00Z'),
-            subdomain='architecto',
+        configuration=shared.SourceSenseforce(
+            access_token='quos',
+            backend_url='https://galaxyapi.senseforce.io',
+            dataset_id='8f418098-ca28-4df5-9498-0df9fe78eda7',
+            slice_range=180,
+            source_type=shared.SourceSenseforceSenseforce.SENSEFORCE,
+            start_date=dateutil.parser.parse('2017-01-25').date(),
         ),
-        name='Margaret Luettgen MD',
+        name='Kevin Willms',
     ),
-    source_id='repellendus',
+    source_id='labore',
 )
 
 res = s.sources.put_source(req)

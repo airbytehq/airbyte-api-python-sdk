@@ -10,7 +10,7 @@ except FileNotFoundError:
 
 setuptools.setup(
     name="airbyte-api",
-    version="0.35.4",
+    version="0.35.5",
     author="Airbyte",
     description="Python Client SDK for Airbyte API",
     long_description=long_description,

@@ -1,4 +1,4 @@
-# connections
+# Connections
 
 ### Available Operations
 

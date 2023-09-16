@@ -7,19 +7,6 @@ from dataclasses_json import Undefined, dataclass_json
 from enum import Enum
 from typing import Any, Optional
 
-class SourceAzureBlobStorageFormatJSONLinesNewlineDelimitedJSONFormatType(str, Enum):
-    JSONL = 'JSONL'
-
-
-@dataclass_json(undefined=Undefined.EXCLUDE)
-
-@dataclasses.dataclass
-class SourceAzureBlobStorageFormatJSONLinesNewlineDelimitedJSON:
-    r"""Input data format"""
-    format_type: SourceAzureBlobStorageFormatJSONLinesNewlineDelimitedJSONFormatType = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('format_type') }})
-    
-
-
 class SourceAzureBlobStorageAzureBlobStorage(str, Enum):
     AZURE_BLOB_STORAGE = 'azure-blob-storage'
 

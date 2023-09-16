@@ -7,40 +7,6 @@ from dataclasses_json import Undefined, dataclass_json
 from enum import Enum
 from typing import Any, Optional
 
-class SourceSftpCredentialsSSHKeyAuthenticationAuthMethod(str, Enum):
-    r"""Connect through ssh key"""
-    SSH_KEY_AUTH = 'SSH_KEY_AUTH'
-
-
-@dataclass_json(undefined=Undefined.EXCLUDE)
-
-@dataclasses.dataclass
-class SourceSftpCredentialsSSHKeyAuthentication:
-    r"""The server authentication method"""
-    auth_method: SourceSftpCredentialsSSHKeyAuthenticationAuthMethod = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_method') }})
-    r"""Connect through ssh key"""
-    auth_ssh_key: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_ssh_key') }})
-    r"""OS-level user account ssh key credentials in RSA PEM format ( created with ssh-keygen -t rsa -m PEM -f myuser_rsa )"""
-    
-
-
-class SourceSftpCredentialsPasswordAuthenticationAuthMethod(str, Enum):
-    r"""Connect through password authentication"""
-    SSH_PASSWORD_AUTH = 'SSH_PASSWORD_AUTH'
-
-
-@dataclass_json(undefined=Undefined.EXCLUDE)
-
-@dataclasses.dataclass
-class SourceSftpCredentialsPasswordAuthentication:
-    r"""The server authentication method"""
-    auth_method: SourceSftpCredentialsPasswordAuthenticationAuthMethod = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_method') }})
-    r"""Connect through password authentication"""
-    auth_user_password: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_user_password') }})
-    r"""OS-level password for logging into the jump server host"""
-    
-
-
 class SourceSftpSftp(str, Enum):
     SFTP = 'sftp'
 

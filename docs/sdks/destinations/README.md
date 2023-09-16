@@ -1,4 +1,4 @@
-# destinations
+# Destinations
 
 ### Available Operations
 

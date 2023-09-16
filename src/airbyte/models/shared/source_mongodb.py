@@ -7,40 +7,6 @@ from dataclasses_json import Undefined, dataclass_json
 from enum import Enum
 from typing import Any, Optional
 
-class SourceMongodbInstanceTypeReplicaSetInstance(str, Enum):
-    REPLICA = 'replica'
-
-
-@dataclass_json(undefined=Undefined.EXCLUDE)
-
-@dataclasses.dataclass
-class SourceMongodbInstanceTypeReplicaSet:
-    r"""The MongoDb instance to connect to. For MongoDB Atlas and Replica Set TLS connection is used by default."""
-    instance: SourceMongodbInstanceTypeReplicaSetInstance = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('instance') }})
-    server_addresses: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('server_addresses') }})
-    r"""The members of a replica set. Please specify `host`:`port` of each member separated by comma."""
-    replica_set: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('replica_set'), 'exclude': lambda f: f is None }})
-    r"""A replica set in MongoDB is a group of mongod processes that maintain the same data set."""
-    
-
-
-class SourceMongodbInstanceTypeStandaloneMongoDbInstanceInstance(str, Enum):
-    STANDALONE = 'standalone'
-
-
-@dataclass_json(undefined=Undefined.EXCLUDE)
-
-@dataclasses.dataclass
-class SourceMongodbInstanceTypeStandaloneMongoDbInstance:
-    r"""The MongoDb instance to connect to. For MongoDB Atlas and Replica Set TLS connection is used by default."""
-    host: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('host') }})
-    r"""The host name of the Mongo database."""
-    instance: SourceMongodbInstanceTypeStandaloneMongoDbInstanceInstance = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('instance') }})
-    port: int = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('port') }})
-    r"""The port of the Mongo database."""
-    
-
-
 class SourceMongodbMongodb(str, Enum):
     MONGODB = 'mongodb'
 

@@ -7,40 +7,6 @@ from dataclasses_json import Undefined, dataclass_json
 from enum import Enum
 from typing import Any, Optional
 
-class DestinationElasticsearchAuthenticationMethodUsernamePasswordMethod(str, Enum):
-    BASIC = 'basic'
-
-
-@dataclass_json(undefined=Undefined.EXCLUDE)
-
-@dataclasses.dataclass
-class DestinationElasticsearchAuthenticationMethodUsernamePassword:
-    r"""Basic auth header with a username and password"""
-    method: DestinationElasticsearchAuthenticationMethodUsernamePasswordMethod = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('method') }})
-    password: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('password') }})
-    r"""Basic auth password to access a secure Elasticsearch server"""
-    username: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('username') }})
-    r"""Basic auth username to access a secure Elasticsearch server"""
-    
-
-
-class DestinationElasticsearchAuthenticationMethodAPIKeySecretMethod(str, Enum):
-    SECRET = 'secret'
-
-
-@dataclass_json(undefined=Undefined.EXCLUDE)
-
-@dataclasses.dataclass
-class DestinationElasticsearchAuthenticationMethodAPIKeySecret:
-    r"""Use a api key and secret combination to authenticate"""
-    api_key_id: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('apiKeyId') }})
-    r"""The Key ID to used when accessing an enterprise Elasticsearch instance."""
-    api_key_secret: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('apiKeySecret') }})
-    r"""The secret associated with the API Key ID."""
-    method: DestinationElasticsearchAuthenticationMethodAPIKeySecretMethod = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('method') }})
-    
-
-
 class DestinationElasticsearchElasticsearch(str, Enum):
     ELASTICSEARCH = 'elasticsearch'
 

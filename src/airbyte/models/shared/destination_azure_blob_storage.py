@@ -10,39 +10,6 @@ from typing import Any, Optional
 class DestinationAzureBlobStorageAzureBlobStorage(str, Enum):
     AZURE_BLOB_STORAGE = 'azure-blob-storage'
 
-class DestinationAzureBlobStorageFormatJSONLinesNewlineDelimitedJSONFormatType(str, Enum):
-    JSONL = 'JSONL'
-
-
-@dataclass_json(undefined=Undefined.EXCLUDE)
-
-@dataclasses.dataclass
-class DestinationAzureBlobStorageFormatJSONLinesNewlineDelimitedJSON:
-    r"""Output data format"""
-    format_type: DestinationAzureBlobStorageFormatJSONLinesNewlineDelimitedJSONFormatType = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('format_type') }})
-    
-
-
-class DestinationAzureBlobStorageFormatCSVCommaSeparatedValuesNormalizationFlattening(str, Enum):
-    r"""Whether the input json data should be normalized (flattened) in the output CSV. Please refer to docs for details."""
-    NO_FLATTENING = 'No flattening'
-    ROOT_LEVEL_FLATTENING = 'Root level flattening'
-
-class DestinationAzureBlobStorageFormatCSVCommaSeparatedValuesFormatType(str, Enum):
-    CSV = 'CSV'
-
-
-@dataclass_json(undefined=Undefined.EXCLUDE)
-
-@dataclasses.dataclass
-class DestinationAzureBlobStorageFormatCSVCommaSeparatedValues:
-    r"""Output data format"""
-    flattening: DestinationAzureBlobStorageFormatCSVCommaSeparatedValuesNormalizationFlattening = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('flattening') }})
-    r"""Whether the input json data should be normalized (flattened) in the output CSV. Please refer to docs for details."""
-    format_type: DestinationAzureBlobStorageFormatCSVCommaSeparatedValuesFormatType = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('format_type') }})
-    
-
-
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
 
