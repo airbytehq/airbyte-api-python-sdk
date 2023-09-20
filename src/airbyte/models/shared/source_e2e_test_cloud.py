@@ -19,10 +19,10 @@ class SourceE2eTestCloudType(str, Enum):
 @dataclasses.dataclass
 class SourceE2eTestCloud:
     r"""The values required to configure the source."""
-    max_messages: int = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('max_messages') }})
-    r"""Number of records to emit per stream. Min 1. Max 100 billion."""
     mock_catalog: Any = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('mock_catalog') }})
     source_type: SourceE2eTestCloudE2eTestCloud = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
+    max_messages: Optional[int] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('max_messages'), 'exclude': lambda f: f is None }})
+    r"""Number of records to emit per stream. Min 1. Max 100 billion."""
     message_interval_ms: Optional[int] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('message_interval_ms'), 'exclude': lambda f: f is None }})
     r"""Interval between messages in ms. Min 0 ms. Max 60000 ms (1 minute)."""
     seed: Optional[int] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('seed'), 'exclude': lambda f: f is None }})

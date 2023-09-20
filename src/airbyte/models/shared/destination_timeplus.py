@@ -5,6 +5,7 @@ import dataclasses
 from airbyte import utils
 from dataclasses_json import Undefined, dataclass_json
 from enum import Enum
+from typing import Optional
 
 class DestinationTimeplusTimeplus(str, Enum):
     TIMEPLUS = 'timeplus'
@@ -18,7 +19,7 @@ class DestinationTimeplus:
     apikey: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('apikey') }})
     r"""Personal API key"""
     destination_type: DestinationTimeplusTimeplus = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('destinationType') }})
-    endpoint: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('endpoint') }})
+    endpoint: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('endpoint'), 'exclude': lambda f: f is None }})
     r"""Timeplus workspace endpoint"""
     
 

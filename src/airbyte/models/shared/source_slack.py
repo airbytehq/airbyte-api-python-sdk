@@ -52,10 +52,6 @@ class SourceSlackSlack(str, Enum):
 @dataclasses.dataclass
 class SourceSlack:
     r"""The values required to configure the source."""
-    join_channels: bool = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('join_channels') }})
-    r"""Whether to join all channels or to sync data only from channels the bot is already in.  If false, you'll need to manually add the bot to all the channels from which you'd like to sync messages."""
-    lookback_window: int = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('lookback_window') }})
-    r"""How far into the past to look for messages in threads, default is 0 days"""
     source_type: SourceSlackSlack = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     start_date: datetime = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('start_date'), 'encoder': utils.datetimeisoformat(False), 'decoder': dateutil.parser.isoparse }})
     r"""UTC date and time in the format 2017-01-25T00:00:00Z. Any data before this date will not be replicated."""
@@ -63,5 +59,9 @@ class SourceSlack:
     r"""A channel name list (without leading '#' char) which limit the channels from which you'd like to sync. Empty list means no filter."""
     credentials: Optional[Any] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credentials'), 'exclude': lambda f: f is None }})
     r"""Choose how to authenticate into Slack"""
+    join_channels: Optional[bool] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('join_channels'), 'exclude': lambda f: f is None }})
+    r"""Whether to join all channels or to sync data only from channels the bot is already in.  If false, you'll need to manually add the bot to all the channels from which you'd like to sync messages."""
+    lookback_window: Optional[int] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('lookback_window'), 'exclude': lambda f: f is None }})
+    r"""How far into the past to look for messages in threads, default is 0 days"""
     
 

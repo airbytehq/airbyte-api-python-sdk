@@ -19,8 +19,6 @@ class DestinationOracle:
     destination_type: DestinationOracleOracle = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('destinationType') }})
     host: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('host') }})
     r"""The hostname of the database."""
-    port: int = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('port') }})
-    r"""The port of the database."""
     sid: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sid') }})
     r"""The System Identifier uniquely distinguishes the instance from any other instance on the same computer."""
     username: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('username') }})
@@ -29,6 +27,8 @@ class DestinationOracle:
     r"""Additional properties to pass to the JDBC URL string when connecting to the database formatted as 'key=value' pairs separated by the symbol '&'. (example: key1=value1&key2=value2&key3=value3)."""
     password: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('password'), 'exclude': lambda f: f is None }})
     r"""The password associated with the username."""
+    port: Optional[int] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('port'), 'exclude': lambda f: f is None }})
+    r"""The port of the database."""
     schema: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('schema'), 'exclude': lambda f: f is None }})
     r"""The default schema is used as the target schema for all statements issued from the connection that do not explicitly specify a schema name. The usual value for this field is \\"airbyte\\".  In Oracle, schemas and users are the same thing, so the \\"user\\" parameter is used as the login credentials and this is used for the default Airbyte message schema."""
     tunnel_method: Optional[Any] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('tunnel_method'), 'exclude': lambda f: f is None }})

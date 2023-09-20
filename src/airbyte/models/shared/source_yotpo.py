@@ -7,6 +7,7 @@ from airbyte import utils
 from dataclasses_json import Undefined, dataclass_json
 from datetime import datetime
 from enum import Enum
+from typing import Optional
 
 class SourceYotpoYotpo(str, Enum):
     YOTPO = 'yotpo'
@@ -21,10 +22,10 @@ class SourceYotpo:
     r"""Access token recieved as a result of API call to https://api.yotpo.com/oauth/token (Ref- https://apidocs.yotpo.com/reference/yotpo-authentication)"""
     app_key: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('app_key') }})
     r"""App key found at settings (Ref- https://settings.yotpo.com/#/general_settings)"""
-    email: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('email') }})
-    r"""Email address registered with yotpo."""
     source_type: SourceYotpoYotpo = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     start_date: datetime = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('start_date'), 'encoder': utils.datetimeisoformat(False), 'decoder': dateutil.parser.isoparse }})
     r"""Date time filter for incremental filter, Specify which date to extract from."""
+    email: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('email'), 'exclude': lambda f: f is None }})
+    r"""Email address registered with yotpo."""
     
 

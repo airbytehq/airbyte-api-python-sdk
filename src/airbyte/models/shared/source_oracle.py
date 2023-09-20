@@ -20,12 +20,6 @@ class SourceOracle:
     r"""The encryption method with is used when communicating with the database."""
     host: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('host') }})
     r"""Hostname of the database."""
-    port: int = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('port') }})
-    r"""Port of the database.
-    Oracle Corporations recommends the following port numbers:
-    1521 - Default listening port for client connections to the listener. 
-    2484 - Recommended and officially registered listening port for client connections to the listener using TCP/IP with SSL
-    """
     source_type: SourceOracleOracle = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     username: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('username') }})
     r"""The username which is used to access the database."""
@@ -35,6 +29,12 @@ class SourceOracle:
     r"""Additional properties to pass to the JDBC URL string when connecting to the database formatted as 'key=value' pairs separated by the symbol '&'. (example: key1=value1&key2=value2&key3=value3)."""
     password: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('password'), 'exclude': lambda f: f is None }})
     r"""The password associated with the username."""
+    port: Optional[int] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('port'), 'exclude': lambda f: f is None }})
+    r"""Port of the database.
+    Oracle Corporations recommends the following port numbers:
+    1521 - Default listening port for client connections to the listener. 
+    2484 - Recommended and officially registered listening port for client connections to the listener using TCP/IP with SSL
+    """
     schemas: Optional[list[str]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('schemas'), 'exclude': lambda f: f is None }})
     r"""The list of schemas to sync from. Defaults to user. Case sensitive."""
     tunnel_method: Optional[Any] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('tunnel_method'), 'exclude': lambda f: f is None }})

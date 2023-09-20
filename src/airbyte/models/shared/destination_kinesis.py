@@ -5,6 +5,7 @@ import dataclasses
 from airbyte import utils
 from dataclasses_json import Undefined, dataclass_json
 from enum import Enum
+from typing import Optional
 
 class DestinationKinesisKinesis(str, Enum):
     KINESIS = 'kinesis'
@@ -17,8 +18,6 @@ class DestinationKinesis:
     r"""The values required to configure the destination."""
     access_key: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('accessKey') }})
     r"""Generate the AWS Access Key for current user."""
-    buffer_size: int = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('bufferSize') }})
-    r"""Buffer size for storing kinesis records before being batch streamed."""
     destination_type: DestinationKinesisKinesis = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('destinationType') }})
     endpoint: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('endpoint') }})
     r"""AWS Kinesis endpoint."""
@@ -26,7 +25,9 @@ class DestinationKinesis:
     r"""The AWS Private Key - a string of numbers and letters that are unique for each account, also known as a \\"recovery phrase\\"."""
     region: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('region') }})
     r"""AWS region. Your account determines the Regions that are available to you."""
-    shard_count: int = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('shardCount') }})
+    buffer_size: Optional[int] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('bufferSize'), 'exclude': lambda f: f is None }})
+    r"""Buffer size for storing kinesis records before being batch streamed."""
+    shard_count: Optional[int] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('shardCount'), 'exclude': lambda f: f is None }})
     r"""Number of shards to which the data should be streamed."""
     
 

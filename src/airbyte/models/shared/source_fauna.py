@@ -20,9 +20,9 @@ class SourceFaunaCollectionDeletionsEnabled:
     Disabled - Leave this feature disabled, and ignore deleted documents.<br>
     Enabled - Enables this feature. When a document is deleted, the connector exports a record with a \"deleted at\" column containing the time that the document was deleted.
     """
-    column: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('column') }})
-    r"""Name of the \\"deleted at\\" column."""
     deletion_mode: SourceFaunaCollectionDeletionsEnabledDeletionMode = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('deletion_mode') }})
+    column: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('column'), 'exclude': lambda f: f is None }})
+    r"""Name of the \\"deleted at\\" column."""
     
 
 
@@ -55,7 +55,7 @@ class SourceFaunaCollection:
     Disabled - Leave this feature disabled, and ignore deleted documents.<br>
     Enabled - Enables this feature. When a document is deleted, the connector exports a record with a \"deleted at\" column containing the time that the document was deleted.
     """
-    page_size: int = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('page_size') }})
+    page_size: Optional[int] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('page_size'), 'exclude': lambda f: f is None }})
     r"""The page size used when reading documents from the database. The larger the page size, the faster the connector processes documents. However, if a page is too large, the connector may fail. <br>
     Choose your page size based on how large the documents are. <br>
     See <a href=\"https://docs.fauna.com/fauna/current/learn/understanding/types#page\">the docs</a>.
@@ -72,16 +72,16 @@ class SourceFaunaFauna(str, Enum):
 @dataclasses.dataclass
 class SourceFauna:
     r"""The values required to configure the source."""
-    domain: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('domain') }})
-    r"""Domain of Fauna to query. Defaults db.fauna.com. See <a href=https://docs.fauna.com/fauna/current/learn/understanding/region_groups#how-to-use-region-groups>the docs</a>."""
-    port: int = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('port') }})
-    r"""Endpoint port."""
-    scheme: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('scheme') }})
-    r"""URL scheme."""
     secret: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('secret') }})
     r"""Fauna secret, used when authenticating with the database."""
     source_type: SourceFaunaFauna = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     collection: Optional[SourceFaunaCollection] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('collection'), 'exclude': lambda f: f is None }})
     r"""Settings for the Fauna Collection."""
+    domain: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('domain'), 'exclude': lambda f: f is None }})
+    r"""Domain of Fauna to query. Defaults db.fauna.com. See <a href=https://docs.fauna.com/fauna/current/learn/understanding/region_groups#how-to-use-region-groups>the docs</a>."""
+    port: Optional[int] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('port'), 'exclude': lambda f: f is None }})
+    r"""Endpoint port."""
+    scheme: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('scheme'), 'exclude': lambda f: f is None }})
+    r"""URL scheme."""
     
 

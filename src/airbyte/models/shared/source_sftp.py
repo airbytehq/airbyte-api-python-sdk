@@ -18,8 +18,6 @@ class SourceSftp:
     r"""The values required to configure the source."""
     host: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('host') }})
     r"""The server host address"""
-    port: int = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('port') }})
-    r"""The server port"""
     source_type: SourceSftpSftp = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     user: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('user') }})
     r"""The server user"""
@@ -31,5 +29,7 @@ class SourceSftp:
     r"""Coma separated file types. Currently only 'csv' and 'json' types are supported."""
     folder_path: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('folder_path'), 'exclude': lambda f: f is None }})
     r"""The directory to search files for sync"""
+    port: Optional[int] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('port'), 'exclude': lambda f: f is None }})
+    r"""The server port"""
     
 

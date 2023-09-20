@@ -20,17 +20,17 @@ class DestinationRedisRedis(str, Enum):
 @dataclasses.dataclass
 class DestinationRedis:
     r"""The values required to configure the destination."""
-    cache_type: DestinationRedisCacheType = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('cache_type') }})
-    r"""Redis cache type to store data in."""
     destination_type: DestinationRedisRedis = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('destinationType') }})
     host: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('host') }})
     r"""Redis host to connect to."""
-    port: int = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('port') }})
-    r"""Port of Redis."""
     username: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('username') }})
     r"""Username associated with Redis."""
+    cache_type: Optional[DestinationRedisCacheType] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('cache_type'), 'exclude': lambda f: f is None }})
+    r"""Redis cache type to store data in."""
     password: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('password'), 'exclude': lambda f: f is None }})
     r"""Password associated with Redis."""
+    port: Optional[int] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('port'), 'exclude': lambda f: f is None }})
+    r"""Port of Redis."""
     ssl: Optional[bool] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('ssl'), 'exclude': lambda f: f is None }})
     r"""Indicates whether SSL encryption protocol will be used to connect to Redis. It is recommended to use SSL connection if possible."""
     ssl_mode: Optional[Any] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('ssl_mode'), 'exclude': lambda f: f is None }})

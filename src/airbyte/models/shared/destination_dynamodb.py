@@ -48,13 +48,13 @@ class DestinationDynamodb:
     access_key_id: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('access_key_id') }})
     r"""The access key id to access the DynamoDB. Airbyte requires Read and Write permissions to the DynamoDB."""
     destination_type: DestinationDynamodbDynamodb = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('destinationType') }})
-    dynamodb_region: DestinationDynamodbDynamoDBRegion = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('dynamodb_region') }})
-    r"""The region of the DynamoDB."""
     dynamodb_table_name_prefix: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('dynamodb_table_name_prefix') }})
     r"""The prefix to use when naming DynamoDB tables."""
     secret_access_key: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('secret_access_key') }})
     r"""The corresponding secret to the access key id."""
     dynamodb_endpoint: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('dynamodb_endpoint'), 'exclude': lambda f: f is None }})
     r"""This is your DynamoDB endpoint url.(if you are working with AWS DynamoDB, just leave empty)."""
+    dynamodb_region: Optional[DestinationDynamodbDynamoDBRegion] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('dynamodb_region'), 'exclude': lambda f: f is None }})
+    r"""The region of the DynamoDB."""
     
 

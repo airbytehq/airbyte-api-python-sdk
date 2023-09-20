@@ -30,8 +30,8 @@ class SourceSalesforceStreamsCriteriaSearchCriteria(str, Enum):
 
 @dataclasses.dataclass
 class SourceSalesforceStreamsCriteria:
-    criteria: SourceSalesforceStreamsCriteriaSearchCriteria = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('criteria') }})
     value: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('value') }})
+    criteria: Optional[SourceSalesforceStreamsCriteriaSearchCriteria] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('criteria'), 'exclude': lambda f: f is None }})
     
 
 

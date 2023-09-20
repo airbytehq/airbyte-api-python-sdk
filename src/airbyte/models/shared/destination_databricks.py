@@ -16,8 +16,6 @@ class DestinationDatabricksDatabricks(str, Enum):
 @dataclasses.dataclass
 class DestinationDatabricks:
     r"""The values required to configure the destination."""
-    accept_terms: bool = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('accept_terms') }})
-    r"""You must agree to the Databricks JDBC Driver <a href=\\"https://databricks.com/jdbc-odbc-driver-license\\">Terms & Conditions</a> to use this connector."""
     data_source: Any = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('data_source') }})
     r"""Storage on which the delta lake is built."""
     databricks_http_path: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('databricks_http_path') }})
@@ -27,6 +25,8 @@ class DestinationDatabricks:
     databricks_server_hostname: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('databricks_server_hostname') }})
     r"""Databricks Cluster Server Hostname."""
     destination_type: DestinationDatabricksDatabricks = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('destinationType') }})
+    accept_terms: Optional[bool] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('accept_terms'), 'exclude': lambda f: f is None }})
+    r"""You must agree to the Databricks JDBC Driver <a href=\\"https://databricks.com/jdbc-odbc-driver-license\\">Terms & Conditions</a> to use this connector."""
     database: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('database'), 'exclude': lambda f: f is None }})
     r"""The name of the catalog. If not specified otherwise, the \\"hive_metastore\\" will be used."""
     databricks_port: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('databricks_port'), 'exclude': lambda f: f is None }})

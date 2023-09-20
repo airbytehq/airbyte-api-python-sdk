@@ -23,8 +23,6 @@ class SourceCoinAPI:
     r"""The values required to configure the source."""
     api_key: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('api_key') }})
     r"""API Key"""
-    environment: SourceCoinAPIEnvironment = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('environment') }})
-    r"""The environment to use. Either sandbox or production."""
     period: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('period') }})
     r"""The period to use. See the documentation for a list. https://docs.coinapi.io/#list-all-periods-get"""
     source_type: SourceCoinAPICoinAPI = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
@@ -39,6 +37,8 @@ class SourceCoinAPI:
     from the start date to the current time, or when the count of result
     elements reaches its limit.
     """
+    environment: Optional[SourceCoinAPIEnvironment] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('environment'), 'exclude': lambda f: f is None }})
+    r"""The environment to use. Either sandbox or production."""
     limit: Optional[int] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('limit'), 'exclude': lambda f: f is None }})
     r"""The maximum number of elements to return. If not supplied, the default
     is 100. For numbers larger than 100, each 100 items is counted as one

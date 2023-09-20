@@ -16,11 +16,11 @@ class SourceFakerFaker(str, Enum):
 @dataclasses.dataclass
 class SourceFaker:
     r"""The values required to configure the source."""
-    count: int = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('count') }})
-    r"""How many users should be generated in total.  This setting does not apply to the purchases or products stream."""
     source_type: SourceFakerFaker = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     always_updated: Optional[bool] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('always_updated'), 'exclude': lambda f: f is None }})
     r"""Should the updated_at values for every record be new each sync?  Setting this to false will case the source to stop emitting records after COUNT records have been emitted."""
+    count: Optional[int] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('count'), 'exclude': lambda f: f is None }})
+    r"""How many users should be generated in total.  This setting does not apply to the purchases or products stream."""
     parallelism: Optional[int] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('parallelism'), 'exclude': lambda f: f is None }})
     r"""How many parallel workers should we use to generate fake data?  Choose a value equal to the number of CPUs you will allocate to this source."""
     records_per_slice: Optional[int] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('records_per_slice'), 'exclude': lambda f: f is None }})

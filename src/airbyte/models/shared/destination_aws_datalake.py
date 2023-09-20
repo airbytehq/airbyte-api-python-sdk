@@ -21,7 +21,7 @@ class DestinationAwsDatalakeCredentialsIAMUser:
     r"""AWS User Access Key Id"""
     aws_secret_access_key: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('aws_secret_access_key') }})
     r"""Secret Access Key"""
-    credentials_title: DestinationAwsDatalakeCredentialsIAMUserCredentialsTitle = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credentials_title') }})
+    credentials_title: Optional[DestinationAwsDatalakeCredentialsIAMUserCredentialsTitle] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credentials_title'), 'exclude': lambda f: f is None }})
     r"""Name of the credentials"""
     
 
@@ -36,10 +36,10 @@ class DestinationAwsDatalakeCredentialsIAMRoleCredentialsTitle(str, Enum):
 @dataclasses.dataclass
 class DestinationAwsDatalakeCredentialsIAMRole:
     r"""Choose How to Authenticate to AWS."""
-    credentials_title: DestinationAwsDatalakeCredentialsIAMRoleCredentialsTitle = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credentials_title') }})
-    r"""Name of the credentials"""
     role_arn: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('role_arn') }})
     r"""Will assume this role to write data to s3"""
+    credentials_title: Optional[DestinationAwsDatalakeCredentialsIAMRoleCredentialsTitle] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credentials_title'), 'exclude': lambda f: f is None }})
+    r"""Name of the credentials"""
     
 
 
@@ -98,8 +98,6 @@ class DestinationAwsDatalake:
     destination_type: DestinationAwsDatalakeAwsDatalake = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('destinationType') }})
     lakeformation_database_name: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('lakeformation_database_name') }})
     r"""The default database this destination will use to create tables in per stream. Can be changed per connection by customizing the namespace."""
-    region: DestinationAwsDatalakeS3BucketRegion = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('region') }})
-    r"""The region of the S3 bucket. See <a href=\\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-regions-availability-zones.html#concepts-available-regions\\">here</a> for all region codes."""
     aws_account_id: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('aws_account_id'), 'exclude': lambda f: f is None }})
     r"""target aws account id"""
     bucket_prefix: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('bucket_prefix'), 'exclude': lambda f: f is None }})
@@ -116,5 +114,7 @@ class DestinationAwsDatalake:
     r"""Whether to create tables as LF governed tables."""
     partitioning: Optional[DestinationAwsDatalakeChooseHowToPartitionData] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('partitioning'), 'exclude': lambda f: f is None }})
     r"""Partition data by cursor fields when a cursor field is a date"""
+    region: Optional[DestinationAwsDatalakeS3BucketRegion] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('region'), 'exclude': lambda f: f is None }})
+    r"""The region of the S3 bucket. See <a href=\\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-regions-availability-zones.html#concepts-available-regions\\">here</a> for all region codes."""
     
 
