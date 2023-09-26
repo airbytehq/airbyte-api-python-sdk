@@ -32,31 +32,31 @@ req = shared.ConnectionCreateRequest(
         streams=[
             shared.StreamConfiguration(
                 cursor_field=[
-                    'iure',
+                    'ipsum',
                 ],
-                name='Dr. Rickey Boyle',
+                name='Virgil Mante',
                 primary_key=[
                     [
-                        'mollitia',
+                        'praesentium',
                     ],
                 ],
                 sync_mode=shared.ConnectionSyncModeEnum.INCREMENTAL_APPEND,
             ),
         ],
     ),
-    data_residency=shared.GeographyEnum.AUTO,
-    destination_id='352c5955-907a-4ff1-a3a2-fa9467739251',
-    name='Matt Hamill',
-    namespace_definition=shared.NamespaceDefinitionEnum.SOURCE,
+    data_residency=shared.GeographyEnum.EU,
+    destination_id='1e91e450-ad2a-4bd4-8269-802d502a94bb',
+    name='Lucia Kemmer',
+    namespace_definition=shared.NamespaceDefinitionEnum.DESTINATION,
     namespace_format='${SOURCE_NAMESPACE}',
-    non_breaking_schema_updates_behavior=shared.NonBreakingSchemaUpdatesBehaviorEnum.PROPAGATE_FULLY,
-    prefix='ipsam',
+    non_breaking_schema_updates_behavior=shared.NonBreakingSchemaUpdatesBehaviorEnum.DISABLE_CONNECTION,
+    prefix='provident',
     schedule=shared.ConnectionSchedule(
-        cron_expression='id',
+        cron_expression='necessitatibus',
         schedule_type=shared.ScheduleTypeEnum.CRON,
     ),
-    source_id='019da1ff-e78f-4097-b007-4f15471b5e6e',
-    status=shared.ConnectionStatusEnum.ACTIVE,
+    source_id='a3efa77d-fb14-4cd6-aae3-95efb9ba88f3',
+    status=shared.ConnectionStatusEnum.INACTIVE,
 )
 
 res = s.connections.create_connection(req)
@@ -97,7 +97,7 @@ s = airbyte.Airbyte(
 )
 
 req = operations.DeleteConnectionRequest(
-    connection_id='ipsum',
+    connection_id='nisi',
 )
 
 res = s.connections.delete_connection(req)
@@ -138,7 +138,7 @@ s = airbyte.Airbyte(
 )
 
 req = operations.GetConnectionRequest(
-    connection_id='quidem',
+    connection_id='vel',
 )
 
 res = s.connections.get_connection(req)
@@ -180,10 +180,10 @@ s = airbyte.Airbyte(
 
 req = operations.ListConnectionsRequest(
     include_deleted=False,
-    limit=565189,
-    offset=566602,
+    limit=618809,
+    offset=606393,
     workspace_ids=[
-        'd488e1e9-1e45-40ad-aabd-44269802d502',
+        '7074ba44-69b6-4e21-8195-9890afa563e2',
     ],
 )
 
@@ -230,31 +230,31 @@ req = operations.PatchConnectionRequest(
             streams=[
                 shared.StreamConfiguration(
                     cursor_field=[
-                        'dolorum',
+                        'nemo',
                     ],
-                    name='Eddie Prosacco',
+                    name='Vera Wyman',
                     primary_key=[
                         [
-                            'delectus',
+                            'maxime',
                         ],
                     ],
-                    sync_mode=shared.ConnectionSyncModeEnum.FULL_REFRESH_APPEND,
+                    sync_mode=shared.ConnectionSyncModeEnum.INCREMENTAL_APPEND,
                 ),
             ],
         ),
-        data_residency=shared.GeographyEnumNoDefault.AUTO,
-        name='Sergio Hyatt',
-        namespace_definition=shared.NamespaceDefinitionEnumNoDefault.DESTINATION,
+        data_residency=shared.GeographyEnumNoDefault.EU,
+        name='Alice Bradtke',
+        namespace_definition=shared.NamespaceDefinitionEnumNoDefault.CUSTOM_FORMAT,
         namespace_format='${SOURCE_NAMESPACE}',
-        non_breaking_schema_updates_behavior=shared.NonBreakingSchemaUpdatesBehaviorEnumNoDefault.PROPAGATE_COLUMNS,
-        prefix='dolor',
+        non_breaking_schema_updates_behavior=shared.NonBreakingSchemaUpdatesBehaviorEnumNoDefault.DISABLE_CONNECTION,
+        prefix='repellat',
         schedule=shared.ConnectionSchedule(
-            cron_expression='debitis',
-            schedule_type=shared.ScheduleTypeEnum.CRON,
+            cron_expression='quibusdam',
+            schedule_type=shared.ScheduleTypeEnum.MANUAL,
         ),
         status=shared.ConnectionStatusEnum.DEPRECATED,
     ),
-    connection_id='in',
+    connection_id='pariatur',
 )
 
 res = s.connections.patch_connection(req)

@@ -32,13 +32,15 @@ s = airbyte.Airbyte(
 req = operations.CreateOrUpdateWorkspaceOAuthCredentialsRequest(
     workspace_o_auth_credentials_request=shared.WorkspaceOAuthCredentialsRequest(
         actor_type=shared.ActorTypeEnum.SOURCE,
-        configuration=shared.AmazonSellerPartner(
-            lwa_app_id='aut',
-            lwa_client_secret='quas',
+        configuration=shared.Airtable(
+            credentials=shared.AirtableCredentials(
+                client_id='deleniti',
+                client_secret='impedit',
+            ),
         ),
-        name=shared.OAuthActorNames.ZENDESK_CHAT,
+        name=shared.OAuthActorNames.GOOGLE_SHEETS,
     ),
-    workspace_id='consequatur',
+    workspace_id='fugit',
 )
 
 res = s.workspaces.create_or_update_workspace_o_auth_credentials(req)
@@ -79,7 +81,7 @@ s = airbyte.Airbyte(
 )
 
 req = shared.WorkspaceCreateRequest(
-    name='Marcos Schaden',
+    name='Miss Dennis Friesen',
 )
 
 res = s.workspaces.create_workspace(req)
@@ -120,7 +122,7 @@ s = airbyte.Airbyte(
 )
 
 req = operations.DeleteWorkspaceRequest(
-    workspace_id='facilis',
+    workspace_id='placeat',
 )
 
 res = s.workspaces.delete_workspace(req)
@@ -161,7 +163,7 @@ s = airbyte.Airbyte(
 )
 
 req = operations.GetWorkspaceRequest(
-    workspace_id='cupiditate',
+    workspace_id='velit',
 )
 
 res = s.workspaces.get_workspace(req)
@@ -203,10 +205,10 @@ s = airbyte.Airbyte(
 
 req = operations.ListWorkspacesRequest(
     include_deleted=False,
-    limit=181631,
-    offset=63955,
+    limit=432148,
+    offset=420539,
     workspace_ids=[
-        '879fce95-3f73-4ef7-bbc7-abd74dd39c0f',
+        'c8dd6b14-4290-4747-8778-a7bd466d28c1',
     ],
 )
 
@@ -249,9 +251,9 @@ s = airbyte.Airbyte(
 
 req = operations.UpdateWorkspaceRequest(
     workspace_update_request=shared.WorkspaceUpdateRequest(
-        name='Freda Cormier',
+        name='Amelia Predovic',
     ),
-    workspace_id='doloribus',
+    workspace_id='illum',
 )
 
 res = s.workspaces.update_workspace(req)

@@ -31,17 +31,17 @@ s = airbyte.Airbyte(
 )
 
 req = shared.SourceCreateRequest(
-    configuration=shared.SourceFileSecure(
-        dataset_name='asperiores',
-        format=shared.SourceFileSecureFileFormat.YAML,
-        provider='modi',
-        reader_options='{"sep": " "}',
-        source_type=shared.SourceFileSecureFileSecure.FILE_SECURE,
-        url='s3://gdelt-open-data/events/20190914.export.csv',
+    configuration=shared.SourceFaker(
+        always_updated=False,
+        count=730856,
+        parallelism=880298,
+        records_per_slice=253941,
+        seed=313692,
+        source_type=shared.SourceFakerFaker.FAKER,
     ),
-    name='Ervin McLaughlin',
-    secret_id='delectus',
-    workspace_id='48633323-f9b7-47f3-a410-0674ebf69280',
+    name='Jeannie Leannon MD',
+    secret_id='neque',
+    workspace_id='26b5a734-29cd-4b1a-8422-bb679d232271',
 )
 
 res = s.sources.create_source(req)
@@ -82,7 +82,7 @@ s = airbyte.Airbyte(
 )
 
 req = operations.DeleteSourceRequest(
-    source_id='fugiat',
+    source_id='ullam',
 )
 
 res = s.sources.delete_source(req)
@@ -123,7 +123,7 @@ s = airbyte.Airbyte(
 )
 
 req = operations.GetSourceRequest(
-    source_id='ab',
+    source_id='nam',
 )
 
 res = s.sources.get_source(req)
@@ -169,9 +169,9 @@ s = airbyte.Airbyte(
 
 req = shared.InitiateOauthRequest(
     o_auth_input_configuration=shared.OAuthInputConfiguration(),
-    redirect_url='soluta',
-    source_type=shared.OAuthActorNames.SMARTSHEETS,
-    workspace_id='77a89ebf-737a-4e42-83ce-5e6a95d8a0d4',
+    redirect_url='hic',
+    source_type=shared.OAuthActorNames.AMAZON_ADS,
+    workspace_id='cbb1e31b-8b90-4f34-83a1-108e0adcf4b9',
 )
 
 res = s.sources.initiate_o_auth(req)
@@ -213,10 +213,10 @@ s = airbyte.Airbyte(
 
 req = operations.ListSourcesRequest(
     include_deleted=False,
-    limit=273542,
-    offset=425451,
+    limit=181631,
+    offset=63955,
     workspace_ids=[
-        'ce2af7a7-3cf3-4be4-93f8-70b326b5a734',
+        '879fce95-3f73-4ef7-bbc7-abd74dd39c0f',
     ],
 )
 
@@ -260,15 +260,16 @@ s = airbyte.Airbyte(
 
 req = operations.PatchSourceRequest(
     source_patch_request=shared.SourcePatchRequest(
-        configuration=shared.SourceDockerhub(
-            docker_username='airbyte',
-            source_type=shared.SourceDockerhubDockerhub.DOCKERHUB,
+        configuration=shared.SourceGridly(
+            api_key='nulla',
+            grid_id='fugit',
+            source_type=shared.SourceGridlyGridly.GRIDLY,
         ),
         name='My source',
-        secret_id='cupiditate',
-        workspace_id='cdb1a842-2bb6-479d-a322-715bf0cbb1e3',
+        secret_id='porro',
+        workspace_id='ff7c70a4-5626-4d43-a813-f16d9f5fce6c',
     ),
-    source_id='veritatis',
+    source_id='corporis',
 )
 
 res = s.sources.patch_source(req)
@@ -311,17 +312,16 @@ s = airbyte.Airbyte(
 
 req = operations.PutSourceRequest(
     source_put_request=shared.SourcePutRequest(
-        configuration=shared.SourceSenseforce(
-            access_token='quos',
-            backend_url='https://galaxyapi.senseforce.io',
-            dataset_id='8f418098-ca28-4df5-9498-0df9fe78eda7',
-            slice_range=180,
-            source_type=shared.SourceSenseforceSenseforce.SENSEFORCE,
-            start_date=dateutil.parser.parse('2017-01-25').date(),
+        configuration=shared.SourceGoogleWebfonts(
+            alt='aliquid',
+            api_key='inventore',
+            pretty_print='magnam',
+            sort='ea',
+            source_type=shared.SourceGoogleWebfontsGoogleWebfonts.GOOGLE_WEBFONTS,
         ),
-        name='Kevin Willms',
+        name='Glenn Walter',
     ),
-    source_id='labore',
+    source_id='eaque',
 )
 
 res = s.sources.put_source(req)

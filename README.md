@@ -23,8 +23,6 @@ pip install airbyte-api
 
 ## SDK Example Usage
 <!-- Start SDK Example Usage -->
-
-
 ```python
 import airbyte
 from airbyte.models import shared
@@ -43,31 +41,31 @@ req = shared.ConnectionCreateRequest(
         streams=[
             shared.StreamConfiguration(
                 cursor_field=[
-                    'corrupti',
+                    'iure',
                 ],
-                name='Kelvin Sporer',
+                name='Dr. Rickey Boyle',
                 primary_key=[
                     [
-                        'corrupti',
+                        'mollitia',
                     ],
                 ],
-                sync_mode=shared.ConnectionSyncModeEnum.INCREMENTAL_DEDUPED_HISTORY,
+                sync_mode=shared.ConnectionSyncModeEnum.INCREMENTAL_APPEND,
             ),
         ],
     ),
-    data_residency=shared.GeographyEnum.US,
-    destination_id='9a674e0f-467c-4c87-96ed-151a05dfc2dd',
-    name='Javier Schmidt',
-    namespace_definition=shared.NamespaceDefinitionEnum.DESTINATION,
+    data_residency=shared.GeographyEnum.AUTO,
+    destination_id='352c5955-907a-4ff1-a3a2-fa9467739251',
+    name='Matt Hamill',
+    namespace_definition=shared.NamespaceDefinitionEnum.SOURCE,
     namespace_format='${SOURCE_NAMESPACE}',
     non_breaking_schema_updates_behavior=shared.NonBreakingSchemaUpdatesBehaviorEnum.PROPAGATE_FULLY,
-    prefix='dolorum',
+    prefix='ipsam',
     schedule=shared.ConnectionSchedule(
-        cron_expression='dicta',
+        cron_expression='id',
         schedule_type=shared.ScheduleTypeEnum.CRON,
     ),
-    source_id='a928fc81-6742-4cb7-b920-5929396fea75',
-    status=shared.ConnectionStatusEnum.INACTIVE,
+    source_id='019da1ff-e78f-4097-b007-4f15471b5e6e',
+    status=shared.ConnectionStatusEnum.ACTIVE,
 )
 
 res = s.connections.create_connection(req)
@@ -128,6 +126,32 @@ if res.connection_response is not None:
 * [list_workspaces](docs/sdks/workspaces/README.md#list_workspaces) - List workspaces
 * [update_workspace](docs/sdks/workspaces/README.md#update_workspace) - Update a workspace
 <!-- End SDK Available Operations -->
+
+
+
+<!-- Start Dev Containers -->
+
+
+
+<!-- End Dev Containers -->
+
+
+
+<!-- Start Pagination -->
+# Pagination
+
+Some of the endpoints in this SDK support pagination. To use pagination, you make your SDK calls as usual, but the
+returned response object will have a `Next` method that can be called to pull down the next group of results. If the
+return value of `Next` is `None`, then there are no more pages to be fetched.
+
+Here's an example of one such pagination call:
+
+
+<!-- End Pagination -->
+
+<!-- Placeholder for Future Speakeasy SDK Sections -->
+
+
 
 ### Maturity
 

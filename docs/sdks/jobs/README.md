@@ -27,7 +27,7 @@ s = airbyte.Airbyte(
 )
 
 req = operations.CancelJobRequest(
-    job_id=33222,
+    job_id=24678,
 )
 
 res = s.jobs.cancel_job(req)
@@ -68,8 +68,8 @@ s = airbyte.Airbyte(
 )
 
 req = shared.JobCreateRequest(
-    connection_id='ab',
-    job_type=shared.JobTypeEnum.RESET,
+    connection_id='fugiat',
+    job_type=shared.JobTypeEnum.SYNC,
 )
 
 res = s.jobs.create_job(req)
@@ -110,7 +110,7 @@ s = airbyte.Airbyte(
 )
 
 req = operations.GetJobRequest(
-    job_id=697429,
+    job_id=743835,
 )
 
 res = s.jobs.get_job(req)
@@ -152,18 +152,18 @@ s = airbyte.Airbyte(
 )
 
 req = operations.ListJobsRequest(
-    connection_id='ipsam',
-    created_at_end=dateutil.parser.isoparse('2022-07-31T16:08:22.625Z'),
-    created_at_start=dateutil.parser.isoparse('2022-11-25T01:41:45.601Z'),
+    connection_id='dolorum',
+    created_at_end=dateutil.parser.isoparse('2022-07-19T09:36:55.923Z'),
+    created_at_start=dateutil.parser.isoparse('2021-12-05T07:07:55.687Z'),
     job_type=shared.JobTypeEnum.RESET,
-    limit=365496,
-    offset=975522,
-    order_by='perferendis',
-    status=shared.JobStatusEnum.CANCELLED,
-    updated_at_end=dateutil.parser.isoparse('2022-12-27T17:23:03.738Z'),
-    updated_at_start=dateutil.parser.isoparse('2021-12-02T19:46:35.147Z'),
+    limit=896672,
+    offset=714697,
+    order_by='asperiores',
+    status=shared.JobStatusEnum.INCOMPLETE,
+    updated_at_end=dateutil.parser.isoparse('2022-07-18T13:18:42.293Z'),
+    updated_at_start=dateutil.parser.isoparse('2021-03-10T07:33:18.208Z'),
     workspace_ids=[
-        'fbb25870-5320-42c7-bd5f-e9b90c28909b',
+        '4203ce5e-6a95-4d8a-8d44-6ce2af7a73cf',
     ],
 )
 
