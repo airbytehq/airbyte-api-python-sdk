@@ -5,10 +5,16 @@ import dataclasses
 from airbyte import utils
 from dataclasses_json import Undefined, dataclass_json
 from enum import Enum
-from typing import Any, Optional
+from typing import Optional, Union
 
 class DestinationS3GlueS3Glue(str, Enum):
     S3_GLUE = 's3-glue'
+
+
+
+@dataclasses.dataclass
+class DestinationS3GlueOutputFormat:
+    pass
 
 class DestinationS3GlueSerializationLibrary(str, Enum):
     r"""The library that your query engine will use for reading and writing data in your lake."""
@@ -51,7 +57,7 @@ class DestinationS3GlueS3BucketRegion(str, Enum):
 class DestinationS3Glue:
     r"""The values required to configure the destination."""
     destination_type: DestinationS3GlueS3Glue = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('destinationType') }})
-    format: Any = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('format') }})
+    format: Union[] = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('format') }})
     r"""Format of the data output. See <a href=\\"https://docs.airbyte.com/integrations/destinations/s3/#supported-output-schema\\">here</a> for more details"""
     glue_database: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('glue_database') }})
     r"""Name of the glue database for creating the tables, leave blank if no integration"""

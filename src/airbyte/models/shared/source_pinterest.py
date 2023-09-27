@@ -6,31 +6,31 @@ from airbyte import utils
 from dataclasses_json import Undefined, dataclass_json
 from datetime import date
 from enum import Enum
-from typing import Any, Optional
+from typing import Optional, Union
 
-class SourcePinterestCredentialsAccessTokenAuthMethod(str, Enum):
+class SourcePinterestAuthorizationMethodAccessTokenAuthMethod(str, Enum):
     ACCESS_TOKEN = 'access_token'
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
 
 @dataclasses.dataclass
-class SourcePinterestCredentialsAccessToken:
+class SourcePinterestAuthorizationMethodAccessToken:
     access_token: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('access_token') }})
     r"""The Access Token to make authenticated requests."""
-    auth_method: SourcePinterestCredentialsAccessTokenAuthMethod = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_method') }})
+    auth_method: SourcePinterestAuthorizationMethodAccessTokenAuthMethod = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_method') }})
     
 
 
-class SourcePinterestCredentialsOAuth20AuthMethod(str, Enum):
+class SourcePinterestAuthorizationMethodOAuth20AuthMethod(str, Enum):
     OAUTH2_0 = 'oauth2.0'
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
 
 @dataclasses.dataclass
-class SourcePinterestCredentialsOAuth20:
-    auth_method: SourcePinterestCredentialsOAuth20AuthMethod = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_method') }})
+class SourcePinterestAuthorizationMethodOAuth20:
+    auth_method: SourcePinterestAuthorizationMethodOAuth20AuthMethod = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_method') }})
     refresh_token: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('refresh_token') }})
     r"""Refresh Token to obtain new Access Token, when it's expired."""
     client_id: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('client_id'), 'exclude': lambda f: f is None }})
@@ -39,6 +39,12 @@ class SourcePinterestCredentialsOAuth20:
     r"""The Client Secret of your OAuth application."""
     
 
+
+
+
+@dataclasses.dataclass
+class SourcePinterestAuthorizationMethod:
+    pass
 
 class SourcePinterestPinterest(str, Enum):
     PINTEREST = 'pinterest'
@@ -57,7 +63,7 @@ class SourcePinterest:
     source_type: SourcePinterestPinterest = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     start_date: date = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('start_date'), 'encoder': utils.dateisoformat(False), 'decoder': utils.datefromisoformat }})
     r"""A date in the format YYYY-MM-DD. If you have not set a date, it would be defaulted to latest allowed date by api (89 days from today)."""
-    credentials: Optional[Any] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credentials'), 'exclude': lambda f: f is None }})
+    credentials: Optional[Union[SourcePinterestAuthorizationMethodOAuth20, SourcePinterestAuthorizationMethodAccessToken]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credentials'), 'exclude': lambda f: f is None }})
     status: Optional[list[SourcePinterestStatus]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('status'), 'exclude': lambda f: f is None }})
     r"""Entity statuses based off of campaigns, ad_groups, and ads. If you do not have a status set, it will be ignored completely."""
     

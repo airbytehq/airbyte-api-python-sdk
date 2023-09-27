@@ -5,7 +5,13 @@ import dataclasses
 from airbyte import utils
 from dataclasses_json import Undefined, dataclass_json
 from enum import Enum
-from typing import Any, Optional
+from typing import Optional, Union
+
+
+
+@dataclasses.dataclass
+class SourceAzureBlobStorageInputFormat:
+    pass
 
 class SourceAzureBlobStorageAzureBlobStorage(str, Enum):
     AZURE_BLOB_STORAGE = 'azure-blob-storage'
@@ -22,7 +28,7 @@ class SourceAzureBlobStorage:
     r"""The account's name of the Azure Blob Storage."""
     azure_blob_storage_container_name: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('azure_blob_storage_container_name') }})
     r"""The name of the Azure blob storage container."""
-    format: Any = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('format') }})
+    format: Union[] = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('format') }})
     r"""Input data format"""
     source_type: SourceAzureBlobStorageAzureBlobStorage = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     azure_blob_storage_blobs_prefix: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('azure_blob_storage_blobs_prefix'), 'exclude': lambda f: f is None }})

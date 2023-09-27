@@ -5,7 +5,13 @@ import dataclasses
 from airbyte import utils
 from dataclasses_json import Undefined, dataclass_json
 from enum import Enum
-from typing import Any, Optional
+from typing import Optional, Union
+
+
+
+@dataclasses.dataclass
+class SourceE2eTestCloudMockCatalog:
+    pass
 
 class SourceE2eTestCloudE2eTestCloud(str, Enum):
     E2E_TEST_CLOUD = 'e2e-test-cloud'
@@ -19,7 +25,7 @@ class SourceE2eTestCloudType(str, Enum):
 @dataclasses.dataclass
 class SourceE2eTestCloud:
     r"""The values required to configure the source."""
-    mock_catalog: Any = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('mock_catalog') }})
+    mock_catalog: Union[] = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('mock_catalog') }})
     source_type: SourceE2eTestCloudE2eTestCloud = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     max_messages: Optional[int] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('max_messages'), 'exclude': lambda f: f is None }})
     r"""Number of records to emit per stream. Min 1. Max 100 billion."""

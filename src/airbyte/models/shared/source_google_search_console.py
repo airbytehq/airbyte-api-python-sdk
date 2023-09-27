@@ -6,17 +6,17 @@ from airbyte import utils
 from dataclasses_json import Undefined, dataclass_json
 from datetime import date
 from enum import Enum
-from typing import Any, Optional
+from typing import Optional, Union
 
-class SourceGoogleSearchConsoleAuthorizationServiceAccountKeyAuthenticationAuthType(str, Enum):
+class SourceGoogleSearchConsoleAuthenticationTypeServiceAccountKeyAuthenticationAuthType(str, Enum):
     SERVICE = 'Service'
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
 
 @dataclasses.dataclass
-class SourceGoogleSearchConsoleAuthorizationServiceAccountKeyAuthentication:
-    auth_type: SourceGoogleSearchConsoleAuthorizationServiceAccountKeyAuthenticationAuthType = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_type') }})
+class SourceGoogleSearchConsoleAuthenticationTypeServiceAccountKeyAuthentication:
+    auth_type: SourceGoogleSearchConsoleAuthenticationTypeServiceAccountKeyAuthenticationAuthType = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_type') }})
     email: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('email') }})
     r"""The email of the user which has permissions to access the Google Workspace Admin APIs."""
     service_account_info: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('service_account_info') }})
@@ -24,15 +24,15 @@ class SourceGoogleSearchConsoleAuthorizationServiceAccountKeyAuthentication:
     
 
 
-class SourceGoogleSearchConsoleAuthorizationOAuthAuthType(str, Enum):
+class SourceGoogleSearchConsoleAuthenticationTypeOAuthAuthType(str, Enum):
     CLIENT = 'Client'
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
 
 @dataclasses.dataclass
-class SourceGoogleSearchConsoleAuthorizationOAuth:
-    auth_type: SourceGoogleSearchConsoleAuthorizationOAuthAuthType = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_type') }})
+class SourceGoogleSearchConsoleAuthenticationTypeOAuth:
+    auth_type: SourceGoogleSearchConsoleAuthenticationTypeOAuthAuthType = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_type') }})
     client_id: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('client_id') }})
     r"""The client ID of your Google Search Console developer application. Read more <a href=\\"https://developers.google.com/webmaster-tools/v1/how-tos/authorizing\\">here</a>."""
     client_secret: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('client_secret') }})
@@ -43,6 +43,12 @@ class SourceGoogleSearchConsoleAuthorizationOAuth:
     r"""Access token for making authenticated requests. Read more <a href=\\"https://developers.google.com/webmaster-tools/v1/how-tos/authorizing\\">here</a>."""
     
 
+
+
+
+@dataclasses.dataclass
+class SourceGoogleSearchConsoleAuthenticationType:
+    pass
 
 class SourceGoogleSearchConsoleCustomReportConfigValidEnums(str, Enum):
     r"""An enumeration of dimensions."""
@@ -78,7 +84,7 @@ class SourceGoogleSearchConsoleGoogleSearchConsole(str, Enum):
 @dataclasses.dataclass
 class SourceGoogleSearchConsole:
     r"""The values required to configure the source."""
-    authorization: Any = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('authorization') }})
+    authorization: Union[SourceGoogleSearchConsoleAuthenticationTypeOAuth, SourceGoogleSearchConsoleAuthenticationTypeServiceAccountKeyAuthentication] = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('authorization') }})
     site_urls: list[str] = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('site_urls') }})
     r"""The URLs of the website property attached to your GSC account. Learn more about properties <a href=\\"https://support.google.com/webmasters/answer/34592?hl=en\\">here</a>."""
     source_type: SourceGoogleSearchConsoleGoogleSearchConsole = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})

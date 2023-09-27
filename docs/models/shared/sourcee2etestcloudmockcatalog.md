@@ -1,0 +1,2 @@
+# SourceE2eTestCloudMockCatalog
+

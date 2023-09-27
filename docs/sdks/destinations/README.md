@@ -1,4 +1,5 @@
 # Destinations
+(*destinations*)
 
 ### Available Operations
 
@@ -29,18 +30,9 @@ s = airbyte.Airbyte(
 )
 
 req = shared.DestinationCreateRequest(
-    configuration=shared.DestinationAzureBlobStorage(
-        azure_blob_storage_account_key='Z8ZkZpteggFx394vm+PJHnGTvdRncaYS+JhLKdj789YNmD+iyGTnG+PV+POiuYNhBg/ACS+LKjd%4FG3FHGN12Nd==',
-        azure_blob_storage_account_name='airbyte5storage',
-        azure_blob_storage_container_name='airbytetescontainername',
-        azure_blob_storage_endpoint_domain_name='blob.core.windows.net',
-        azure_blob_storage_output_buffer_size=5,
-        azure_blob_storage_spill_size=500,
-        destination_type=shared.DestinationAzureBlobStorageAzureBlobStorage.AZURE_BLOB_STORAGE,
-        format='consequuntur',
-    ),
-    name='Miss Nick Cummerata',
-    workspace_id='dc692601-fb57-46b0-95f0-d30c5fbb2587',
+    configuration=[],
+    name='Kathryn Lang',
+    workspace_id='1cddc692-601f-4b57-ab0d-5f0d30c5fbb2',
 )
 
 res = s.destinations.create_destination(req)
@@ -81,7 +73,7 @@ s = airbyte.Airbyte(
 )
 
 req = operations.DeleteDestinationRequest(
-    destination_id='eaque',
+    destination_id='quis',
 )
 
 res = s.destinations.delete_destination(req)
@@ -122,7 +114,7 @@ s = airbyte.Airbyte(
 )
 
 req = operations.GetDestinationRequest(
-    destination_id='quis',
+    destination_id='totam',
 )
 
 res = s.destinations.get_destination(req)
@@ -164,10 +156,10 @@ s = airbyte.Airbyte(
 
 req = operations.ListDestinationsRequest(
     include_deleted=False,
-    limit=199996,
-    offset=179490,
+    limit=489549,
+    offset=54338,
     workspace_ids=[
-        '02c73d5f-e9b9-40c2-8909-b3fe49a8d9cb',
+        '53202c73-d5fe-49b9-8c28-909b3fe49a8d',
     ],
 )
 
@@ -210,20 +202,10 @@ s = airbyte.Airbyte(
 
 req = operations.PatchDestinationRequest(
     destination_patch_request=shared.DestinationPatchRequest(
-        configuration=shared.DestinationVertica(
-            database='quaerat',
-            destination_type=shared.DestinationVerticaVertica.VERTICA,
-            host='quos',
-            jdbc_url_params='aliquid',
-            password='dolorem',
-            port=5433,
-            schema='dolorem',
-            tunnel_method='dolor',
-            username='Christy_Erdman73',
-        ),
-        name='Marian Wisozk',
+        configuration=[],
+        name='Loren Renner',
     ),
-    destination_id='numquam',
+    destination_id='quos',
 )
 
 res = s.destinations.patch_destination(req)
@@ -265,25 +247,10 @@ s = airbyte.Airbyte(
 
 req = operations.PutDestinationRequest(
     destination_put_request=shared.DestinationPutRequest(
-        configuration=shared.DestinationBigqueryDenormalized(
-            big_query_client_buffer_size_mb=15,
-            credentials_json='ipsa',
-            dataset_id='ipsa',
-            dataset_location=shared.DestinationBigqueryDenormalizedDatasetLocation.EUROPE_WEST1,
-            destination_type=shared.DestinationBigqueryDenormalizedBigqueryDenormalized.BIGQUERY_DENORMALIZED,
-            loading_method=shared.DestinationBigqueryDenormalizedGCSStaging(
-                credential='odio',
-                file_buffer_count=10,
-                gcs_bucket_name='airbyte_sync',
-                gcs_bucket_path='data_sync/test',
-                keep_files_in_gcs_bucket=shared.DestinationBigqueryDenormalizedGCSStagingGCSTmpFilesAfterwardProcessing.DELETE_ALL_TMP_FILES_FROM_GCS,
-                method=shared.DestinationBigqueryDenormalizedGCSStagingMethod.GCS_STAGING,
-            ),
-            project_id='accusamus',
-        ),
-        name='Jan Hodkiewicz',
+        configuration=[],
+        name='Florence Ebert',
     ),
-    destination_id='atque',
+    destination_id='ipsum',
 )
 
 res = s.destinations.put_destination(req)

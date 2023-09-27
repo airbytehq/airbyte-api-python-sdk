@@ -5,38 +5,50 @@ import dataclasses
 from airbyte import utils
 from dataclasses_json import Undefined, dataclass_json
 from enum import Enum
-from typing import Any, Optional
+from typing import Optional, Union
 
 class DestinationMssqlMssql(str, Enum):
     MSSQL = 'mssql'
 
-class DestinationMssqlSslMethodEncryptedVerifyCertificateSslMethod(str, Enum):
+class DestinationMssqlSSLMethodEncryptedVerifyCertificateSSLMethod(str, Enum):
     ENCRYPTED_VERIFY_CERTIFICATE = 'encrypted_verify_certificate'
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
 
 @dataclasses.dataclass
-class DestinationMssqlSslMethodEncryptedVerifyCertificate:
+class DestinationMssqlSSLMethodEncryptedVerifyCertificate:
     r"""Verify and use the certificate provided by the server."""
     host_name_in_certificate: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('hostNameInCertificate'), 'exclude': lambda f: f is None }})
     r"""Specifies the host name of the server. The value of this property must match the subject property of the certificate."""
-    ssl_method: Optional[DestinationMssqlSslMethodEncryptedVerifyCertificateSslMethod] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('ssl_method'), 'exclude': lambda f: f is None }})
+    ssl_method: Optional[DestinationMssqlSSLMethodEncryptedVerifyCertificateSSLMethod] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('ssl_method'), 'exclude': lambda f: f is None }})
     
 
 
-class DestinationMssqlSslMethodEncryptedTrustServerCertificateSslMethod(str, Enum):
+class DestinationMssqlSSLMethodEncryptedTrustServerCertificateSSLMethod(str, Enum):
     ENCRYPTED_TRUST_SERVER_CERTIFICATE = 'encrypted_trust_server_certificate'
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
 
 @dataclasses.dataclass
-class DestinationMssqlSslMethodEncryptedTrustServerCertificate:
+class DestinationMssqlSSLMethodEncryptedTrustServerCertificate:
     r"""Use the certificate provided by the server without verification. (For testing purposes only!)"""
-    ssl_method: Optional[DestinationMssqlSslMethodEncryptedTrustServerCertificateSslMethod] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('ssl_method'), 'exclude': lambda f: f is None }})
+    ssl_method: Optional[DestinationMssqlSSLMethodEncryptedTrustServerCertificateSSLMethod] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('ssl_method'), 'exclude': lambda f: f is None }})
     
 
+
+
+
+@dataclasses.dataclass
+class DestinationMssqlSSLMethod:
+    pass
+
+
+
+@dataclasses.dataclass
+class DestinationMssqlSSHTunnelMethod:
+    pass
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
@@ -59,9 +71,9 @@ class DestinationMssql:
     r"""The port of the MSSQL database."""
     schema: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('schema'), 'exclude': lambda f: f is None }})
     r"""The default schema tables are written to if the source does not specify a namespace. The usual value for this field is \\"public\\"."""
-    ssl_method: Optional[Any] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('ssl_method'), 'exclude': lambda f: f is None }})
+    ssl_method: Optional[Union[DestinationMssqlSSLMethodEncryptedTrustServerCertificate, DestinationMssqlSSLMethodEncryptedVerifyCertificate]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('ssl_method'), 'exclude': lambda f: f is None }})
     r"""The encryption method which is used to communicate with the database."""
-    tunnel_method: Optional[Any] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('tunnel_method'), 'exclude': lambda f: f is None }})
+    tunnel_method: Optional[Union[]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('tunnel_method'), 'exclude': lambda f: f is None }})
     r"""Whether to initiate an SSH tunnel before connecting to the database, and if so, which kind of authentication to use."""
     
 

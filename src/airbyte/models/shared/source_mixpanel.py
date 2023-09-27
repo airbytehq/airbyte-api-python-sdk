@@ -6,39 +6,45 @@ from airbyte import utils
 from dataclasses_json import Undefined, dataclass_json
 from datetime import date
 from enum import Enum
-from typing import Any, Optional
+from typing import Optional, Union
 
-class SourceMixpanelCredentialsProjectSecretOptionTitle(str, Enum):
+class SourceMixpanelAuthenticationWildcardProjectSecretOptionTitle(str, Enum):
     PROJECT_SECRET = 'Project Secret'
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
 
 @dataclasses.dataclass
-class SourceMixpanelCredentialsProjectSecret:
+class SourceMixpanelAuthenticationWildcardProjectSecret:
     r"""Choose how to authenticate to Mixpanel"""
     api_secret: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('api_secret') }})
     r"""Mixpanel project secret. See the <a href=\\"https://developer.mixpanel.com/reference/project-secret#managing-a-projects-secret\\">docs</a> for more information on how to obtain this."""
-    option_title: Optional[SourceMixpanelCredentialsProjectSecretOptionTitle] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('option_title'), 'exclude': lambda f: f is None }})
+    option_title: Optional[SourceMixpanelAuthenticationWildcardProjectSecretOptionTitle] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('option_title'), 'exclude': lambda f: f is None }})
     
 
 
-class SourceMixpanelCredentialsServiceAccountOptionTitle(str, Enum):
+class SourceMixpanelAuthenticationWildcardServiceAccountOptionTitle(str, Enum):
     SERVICE_ACCOUNT = 'Service Account'
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
 
 @dataclasses.dataclass
-class SourceMixpanelCredentialsServiceAccount:
+class SourceMixpanelAuthenticationWildcardServiceAccount:
     r"""Choose how to authenticate to Mixpanel"""
     secret: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('secret') }})
     r"""Mixpanel Service Account Secret. See the <a href=\\"https://developer.mixpanel.com/reference/service-accounts\\">docs</a> for more information on how to obtain this."""
     username: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('username') }})
     r"""Mixpanel Service Account Username. See the <a href=\\"https://developer.mixpanel.com/reference/service-accounts\\">docs</a> for more information on how to obtain this."""
-    option_title: Optional[SourceMixpanelCredentialsServiceAccountOptionTitle] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('option_title'), 'exclude': lambda f: f is None }})
+    option_title: Optional[SourceMixpanelAuthenticationWildcardServiceAccountOptionTitle] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('option_title'), 'exclude': lambda f: f is None }})
     
 
+
+
+
+@dataclasses.dataclass
+class SourceMixpanelAuthenticationWildcard:
+    pass
 
 class SourceMixpanelRegion(str, Enum):
     r"""The region of mixpanel domain instance either US or EU."""
@@ -56,7 +62,7 @@ class SourceMixpanel:
     r"""The values required to configure the source."""
     attribution_window: Optional[int] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('attribution_window'), 'exclude': lambda f: f is None }})
     r"""A period of time for attributing results to ads and the lookback period after those actions occur during which ad results are counted. Default attribution window is 5 days."""
-    credentials: Optional[Any] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credentials'), 'exclude': lambda f: f is None }})
+    credentials: Optional[Union[SourceMixpanelAuthenticationWildcardServiceAccount, SourceMixpanelAuthenticationWildcardProjectSecret]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credentials'), 'exclude': lambda f: f is None }})
     r"""Choose how to authenticate to Mixpanel"""
     date_window_size: Optional[int] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('date_window_size'), 'exclude': lambda f: f is None }})
     r"""Defines window size in days, that used to slice through data. You can reduce it, if amount of data in each window is too big for your environment."""

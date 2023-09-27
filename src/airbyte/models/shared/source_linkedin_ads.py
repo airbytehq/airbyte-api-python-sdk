@@ -6,7 +6,7 @@ from airbyte import utils
 from dataclasses_json import Undefined, dataclass_json
 from datetime import date
 from enum import Enum
-from typing import Any, Optional
+from typing import Optional, Union
 
 class SourceLinkedinAdsAdAnalyticsReportConfigurationPivotCategory(str, Enum):
     r"""Choose a category to pivot your analytics report around. This selection will organize your data based on the chosen attribute, allowing you to analyze trends and performance from different perspectives."""
@@ -54,37 +54,43 @@ class SourceLinkedinAdsAdAnalyticsReportConfiguration:
     
 
 
-class SourceLinkedinAdsCredentialsAccessTokenAuthMethod(str, Enum):
+class SourceLinkedinAdsAuthenticationAccessTokenAuthMethod(str, Enum):
     ACCESS_TOKEN = 'access_token'
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
 
 @dataclasses.dataclass
-class SourceLinkedinAdsCredentialsAccessToken:
+class SourceLinkedinAdsAuthenticationAccessToken:
     access_token: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('access_token') }})
     r"""The access token generated for your developer application. Refer to our <a href='https://docs.airbyte.com/integrations/sources/linkedin-ads#setup-guide'>documentation</a> for more information."""
-    auth_method: Optional[SourceLinkedinAdsCredentialsAccessTokenAuthMethod] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_method'), 'exclude': lambda f: f is None }})
+    auth_method: Optional[SourceLinkedinAdsAuthenticationAccessTokenAuthMethod] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_method'), 'exclude': lambda f: f is None }})
     
 
 
-class SourceLinkedinAdsCredentialsOAuth20AuthMethod(str, Enum):
+class SourceLinkedinAdsAuthenticationOAuth20AuthMethod(str, Enum):
     O_AUTH2_0 = 'oAuth2.0'
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
 
 @dataclasses.dataclass
-class SourceLinkedinAdsCredentialsOAuth20:
+class SourceLinkedinAdsAuthenticationOAuth20:
     client_id: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('client_id') }})
     r"""The client ID of your developer application. Refer to our <a href='https://docs.airbyte.com/integrations/sources/linkedin-ads#setup-guide'>documentation</a> for more information."""
     client_secret: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('client_secret') }})
     r"""The client secret of your developer application. Refer to our <a href='https://docs.airbyte.com/integrations/sources/linkedin-ads#setup-guide'>documentation</a> for more information."""
     refresh_token: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('refresh_token') }})
     r"""The key to refresh the expired access token. Refer to our <a href='https://docs.airbyte.com/integrations/sources/linkedin-ads#setup-guide'>documentation</a> for more information."""
-    auth_method: Optional[SourceLinkedinAdsCredentialsOAuth20AuthMethod] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_method'), 'exclude': lambda f: f is None }})
+    auth_method: Optional[SourceLinkedinAdsAuthenticationOAuth20AuthMethod] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_method'), 'exclude': lambda f: f is None }})
     
 
+
+
+
+@dataclasses.dataclass
+class SourceLinkedinAdsAuthentication:
+    pass
 
 class SourceLinkedinAdsLinkedinAds(str, Enum):
     LINKEDIN_ADS = 'linkedin-ads'
@@ -101,6 +107,6 @@ class SourceLinkedinAds:
     account_ids: Optional[list[int]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('account_ids'), 'exclude': lambda f: f is None }})
     r"""Specify the account IDs to pull data from, separated by a space. Leave this field empty if you want to pull the data from all accounts accessible by the authenticated user. See the <a href=\\"https://www.linkedin.com/help/linkedin/answer/a424270/find-linkedin-ads-account-details?lang=en\\">LinkedIn docs</a> to locate these IDs."""
     ad_analytics_reports: Optional[list[SourceLinkedinAdsAdAnalyticsReportConfiguration]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('ad_analytics_reports'), 'exclude': lambda f: f is None }})
-    credentials: Optional[Any] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credentials'), 'exclude': lambda f: f is None }})
+    credentials: Optional[Union[SourceLinkedinAdsAuthenticationOAuth20, SourceLinkedinAdsAuthenticationAccessToken]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credentials'), 'exclude': lambda f: f is None }})
     
 

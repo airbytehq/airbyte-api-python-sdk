@@ -1,4 +1,5 @@
 # Streams
+(*streams*)
 
 ### Available Operations
 
@@ -24,9 +25,9 @@ s = airbyte.Airbyte(
 )
 
 req = operations.GetStreamPropertiesRequest(
-    destination_id='a',
+    destination_id='ipsam',
     ignore_cache=False,
-    source_id='libero',
+    source_id='ea',
 )
 
 res = s.streams.get_stream_properties(req)

@@ -5,7 +5,7 @@ import dataclasses
 from airbyte import utils
 from dataclasses_json import Undefined, dataclass_json
 from enum import Enum
-from typing import Any, Optional
+from typing import Optional, Union
 
 class DestinationMilvusMilvus(str, Enum):
     MILVUS = 'milvus'
@@ -68,50 +68,62 @@ class DestinationMilvusEmbeddingOpenAI:
     
 
 
-class DestinationMilvusIndexingAuthNoAuthMode(str, Enum):
+
+
+@dataclasses.dataclass
+class DestinationMilvusEmbedding:
+    pass
+
+class DestinationMilvusIndexingAuthenticationNoAuthMode(str, Enum):
     NO_AUTH = 'no_auth'
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
 
 @dataclasses.dataclass
-class DestinationMilvusIndexingAuthNoAuth:
+class DestinationMilvusIndexingAuthenticationNoAuth:
     r"""Do not authenticate (suitable for locally running test clusters, do not use for clusters with public IP addresses)"""
-    mode: Optional[DestinationMilvusIndexingAuthNoAuthMode] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('mode'), 'exclude': lambda f: f is None }})
+    mode: Optional[DestinationMilvusIndexingAuthenticationNoAuthMode] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('mode'), 'exclude': lambda f: f is None }})
     
 
 
-class DestinationMilvusIndexingAuthUsernamePasswordMode(str, Enum):
+class DestinationMilvusIndexingAuthenticationUsernamePasswordMode(str, Enum):
     USERNAME_PASSWORD = 'username_password'
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
 
 @dataclasses.dataclass
-class DestinationMilvusIndexingAuthUsernamePassword:
+class DestinationMilvusIndexingAuthenticationUsernamePassword:
     r"""Authenticate using username and password (suitable for self-managed Milvus clusters)"""
     password: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('password') }})
     r"""Password for the Milvus instance"""
     username: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('username') }})
     r"""Username for the Milvus instance"""
-    mode: Optional[DestinationMilvusIndexingAuthUsernamePasswordMode] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('mode'), 'exclude': lambda f: f is None }})
+    mode: Optional[DestinationMilvusIndexingAuthenticationUsernamePasswordMode] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('mode'), 'exclude': lambda f: f is None }})
     
 
 
-class DestinationMilvusIndexingAuthAPITokenMode(str, Enum):
+class DestinationMilvusIndexingAuthenticationAPITokenMode(str, Enum):
     TOKEN = 'token'
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
 
 @dataclasses.dataclass
-class DestinationMilvusIndexingAuthAPIToken:
+class DestinationMilvusIndexingAuthenticationAPIToken:
     r"""Authenticate using an API token (suitable for Zilliz Cloud)"""
     token: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('token') }})
     r"""API Token for the Milvus instance"""
-    mode: Optional[DestinationMilvusIndexingAuthAPITokenMode] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('mode'), 'exclude': lambda f: f is None }})
+    mode: Optional[DestinationMilvusIndexingAuthenticationAPITokenMode] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('mode'), 'exclude': lambda f: f is None }})
     
 
+
+
+
+@dataclasses.dataclass
+class DestinationMilvusIndexingAuthentication:
+    pass
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
@@ -119,7 +131,7 @@ class DestinationMilvusIndexingAuthAPIToken:
 @dataclasses.dataclass
 class DestinationMilvusIndexing:
     r"""Indexing configuration"""
-    auth: Any = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth') }})
+    auth: Union[DestinationMilvusIndexingAuthenticationAPIToken, DestinationMilvusIndexingAuthenticationUsernamePassword, DestinationMilvusIndexingAuthenticationNoAuth] = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth') }})
     r"""Authentication method"""
     collection: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('collection') }})
     r"""The collection to load data into"""
@@ -157,7 +169,7 @@ class DestinationMilvusProcessingConfigModel:
 class DestinationMilvus:
     r"""The values required to configure the destination."""
     destination_type: DestinationMilvusMilvus = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('destinationType') }})
-    embedding: Any = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('embedding') }})
+    embedding: Union[DestinationMilvusEmbeddingOpenAI, DestinationMilvusEmbeddingCohere, DestinationMilvusEmbeddingFake, DestinationMilvusEmbeddingFromField] = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('embedding') }})
     r"""Embedding configuration"""
     indexing: DestinationMilvusIndexing = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('indexing') }})
     r"""Indexing configuration"""

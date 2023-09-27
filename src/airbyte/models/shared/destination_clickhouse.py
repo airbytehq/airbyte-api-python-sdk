@@ -5,10 +5,16 @@ import dataclasses
 from airbyte import utils
 from dataclasses_json import Undefined, dataclass_json
 from enum import Enum
-from typing import Any, Optional
+from typing import Optional, Union
 
 class DestinationClickhouseClickhouse(str, Enum):
     CLICKHOUSE = 'clickhouse'
+
+
+
+@dataclasses.dataclass
+class DestinationClickhouseSSHTunnelMethod:
+    pass
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
@@ -29,7 +35,7 @@ class DestinationClickhouse:
     r"""Password associated with the username."""
     port: Optional[int] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('port'), 'exclude': lambda f: f is None }})
     r"""HTTP port of the database."""
-    tunnel_method: Optional[Any] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('tunnel_method'), 'exclude': lambda f: f is None }})
+    tunnel_method: Optional[Union[]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('tunnel_method'), 'exclude': lambda f: f is None }})
     r"""Whether to initiate an SSH tunnel before connecting to the database, and if so, which kind of authentication to use."""
     
 

@@ -5,10 +5,28 @@ import dataclasses
 from airbyte import utils
 from dataclasses_json import Undefined, dataclass_json
 from enum import Enum
-from typing import Any, Optional
+from typing import Optional, Union
+
+
+
+@dataclasses.dataclass
+class SourceMysqlUpdateMethod:
+    pass
 
 class SourceMysqlMysql(str, Enum):
     MYSQL = 'mysql'
+
+
+
+@dataclasses.dataclass
+class SourceMysqlSSLModes:
+    pass
+
+
+
+@dataclasses.dataclass
+class SourceMysqlSSHTunnelMethod:
+    pass
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
@@ -20,7 +38,7 @@ class SourceMysql:
     r"""The database name."""
     host: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('host') }})
     r"""The host name of the database."""
-    replication_method: Any = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('replication_method') }})
+    replication_method: Union[] = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('replication_method') }})
     r"""Configures how data is extracted from the database."""
     source_type: SourceMysqlMysql = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     username: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('username') }})
@@ -31,9 +49,9 @@ class SourceMysql:
     r"""The password associated with the username."""
     port: Optional[int] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('port'), 'exclude': lambda f: f is None }})
     r"""The port to connect to."""
-    ssl_mode: Optional[Any] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('ssl_mode'), 'exclude': lambda f: f is None }})
+    ssl_mode: Optional[Union[]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('ssl_mode'), 'exclude': lambda f: f is None }})
     r"""SSL connection modes. Read more <a href=\\"https://dev.mysql.com/doc/connector-j/8.0/en/connector-j-reference-using-ssl.html\\"> in the docs</a>."""
-    tunnel_method: Optional[Any] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('tunnel_method'), 'exclude': lambda f: f is None }})
+    tunnel_method: Optional[Union[]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('tunnel_method'), 'exclude': lambda f: f is None }})
     r"""Whether to initiate an SSH tunnel before connecting to the database, and if so, which kind of authentication to use."""
     
 

@@ -1,4 +1,5 @@
 # Workspaces
+(*workspaces*)
 
 ### Available Operations
 
@@ -32,15 +33,15 @@ s = airbyte.Airbyte(
 req = operations.CreateOrUpdateWorkspaceOAuthCredentialsRequest(
     workspace_o_auth_credentials_request=shared.WorkspaceOAuthCredentialsRequest(
         actor_type=shared.ActorTypeEnum.SOURCE,
-        configuration=shared.Airtable(
-            credentials=shared.AirtableCredentials(
-                client_id='deleniti',
-                client_secret='impedit',
+        configuration=shared.LeverHiring(
+            credentials=shared.LeverHiringCredentials(
+                client_id='possimus',
+                client_secret='magnam',
             ),
         ),
-        name=shared.OAuthActorNames.GOOGLE_SHEETS,
+        name=shared.OAuthActorNames.GITLAB,
     ),
-    workspace_id='fugit',
+    workspace_id='ex',
 )
 
 res = s.workspaces.create_or_update_workspace_o_auth_credentials(req)
@@ -81,7 +82,7 @@ s = airbyte.Airbyte(
 )
 
 req = shared.WorkspaceCreateRequest(
-    name='Miss Dennis Friesen',
+    name='Willie Fahey III',
 )
 
 res = s.workspaces.create_workspace(req)
@@ -122,7 +123,7 @@ s = airbyte.Airbyte(
 )
 
 req = operations.DeleteWorkspaceRequest(
-    workspace_id='placeat',
+    workspace_id='nulla',
 )
 
 res = s.workspaces.delete_workspace(req)
@@ -163,7 +164,7 @@ s = airbyte.Airbyte(
 )
 
 req = operations.GetWorkspaceRequest(
-    workspace_id='velit',
+    workspace_id='excepturi',
 )
 
 res = s.workspaces.get_workspace(req)
@@ -205,10 +206,10 @@ s = airbyte.Airbyte(
 
 req = operations.ListWorkspacesRequest(
     include_deleted=False,
-    limit=432148,
-    offset=420539,
+    limit=972920,
+    offset=343605,
     workspace_ids=[
-        'c8dd6b14-4290-4747-8778-a7bd466d28c1',
+        'fce6c556-146c-43e2-90fb-008c42e141aa',
     ],
 )
 
@@ -251,9 +252,9 @@ s = airbyte.Airbyte(
 
 req = operations.UpdateWorkspaceRequest(
     workspace_update_request=shared.WorkspaceUpdateRequest(
-        name='Amelia Predovic',
+        name='Lee Kemmer',
     ),
-    workspace_id='illum',
+    workspace_id='quas',
 )
 
 res = s.workspaces.update_workspace(req)

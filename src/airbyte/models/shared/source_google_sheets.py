@@ -5,33 +5,33 @@ import dataclasses
 from airbyte import utils
 from dataclasses_json import Undefined, dataclass_json
 from enum import Enum
-from typing import Any, Optional
+from typing import Optional, Union
 
-class SourceGoogleSheetsCredentialsServiceAccountKeyAuthenticationAuthType(str, Enum):
+class SourceGoogleSheetsAuthenticationServiceAccountKeyAuthenticationAuthType(str, Enum):
     SERVICE = 'Service'
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
 
 @dataclasses.dataclass
-class SourceGoogleSheetsCredentialsServiceAccountKeyAuthentication:
+class SourceGoogleSheetsAuthenticationServiceAccountKeyAuthentication:
     r"""Credentials for connecting to the Google Sheets API"""
-    auth_type: SourceGoogleSheetsCredentialsServiceAccountKeyAuthenticationAuthType = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_type') }})
+    auth_type: SourceGoogleSheetsAuthenticationServiceAccountKeyAuthenticationAuthType = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_type') }})
     service_account_info: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('service_account_info') }})
     r"""The JSON key of the service account to use for authorization. Read more <a href=\\"https://cloud.google.com/iam/docs/creating-managing-service-account-keys#creating_service_account_keys\\">here</a>."""
     
 
 
-class SourceGoogleSheetsCredentialsAuthenticateViaGoogleOAuthAuthType(str, Enum):
+class SourceGoogleSheetsAuthenticationAuthenticateViaGoogleOAuthAuthType(str, Enum):
     CLIENT = 'Client'
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
 
 @dataclasses.dataclass
-class SourceGoogleSheetsCredentialsAuthenticateViaGoogleOAuth:
+class SourceGoogleSheetsAuthenticationAuthenticateViaGoogleOAuth:
     r"""Credentials for connecting to the Google Sheets API"""
-    auth_type: SourceGoogleSheetsCredentialsAuthenticateViaGoogleOAuthAuthType = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_type') }})
+    auth_type: SourceGoogleSheetsAuthenticationAuthenticateViaGoogleOAuthAuthType = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_type') }})
     client_id: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('client_id') }})
     r"""Enter your Google application's Client ID. See <a href='https://developers.google.com/identity/protocols/oauth2'>Google's documentation</a> for more information."""
     client_secret: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('client_secret') }})
@@ -40,6 +40,12 @@ class SourceGoogleSheetsCredentialsAuthenticateViaGoogleOAuth:
     r"""Enter your Google application's refresh token. See <a href='https://developers.google.com/identity/protocols/oauth2'>Google's documentation</a> for more information."""
     
 
+
+
+
+@dataclasses.dataclass
+class SourceGoogleSheetsAuthentication:
+    pass
 
 class SourceGoogleSheetsGoogleSheets(str, Enum):
     GOOGLE_SHEETS = 'google-sheets'
@@ -50,7 +56,7 @@ class SourceGoogleSheetsGoogleSheets(str, Enum):
 @dataclasses.dataclass
 class SourceGoogleSheets:
     r"""The values required to configure the source."""
-    credentials: Any = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credentials') }})
+    credentials: Union[SourceGoogleSheetsAuthenticationAuthenticateViaGoogleOAuth, SourceGoogleSheetsAuthenticationServiceAccountKeyAuthentication] = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credentials') }})
     r"""Credentials for connecting to the Google Sheets API"""
     source_type: SourceGoogleSheetsGoogleSheets = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     spreadsheet_id: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('spreadsheet_id') }})

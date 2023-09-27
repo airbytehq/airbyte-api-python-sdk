@@ -5,10 +5,22 @@ import dataclasses
 from airbyte import utils
 from dataclasses_json import Undefined, dataclass_json
 from enum import Enum
-from typing import Any, Optional
+from typing import Optional, Union
 
 class DestinationPostgresPostgres(str, Enum):
     POSTGRES = 'postgres'
+
+
+
+@dataclasses.dataclass
+class DestinationPostgresSSLModes:
+    pass
+
+
+
+@dataclasses.dataclass
+class DestinationPostgresSSHTunnelMethod:
+    pass
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
@@ -31,7 +43,7 @@ class DestinationPostgres:
     r"""Port of the database."""
     schema: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('schema'), 'exclude': lambda f: f is None }})
     r"""The default schema tables are written to if the source does not specify a namespace. The usual value for this field is \\"public\\"."""
-    ssl_mode: Optional[Any] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('ssl_mode'), 'exclude': lambda f: f is None }})
+    ssl_mode: Optional[Union[]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('ssl_mode'), 'exclude': lambda f: f is None }})
     r"""SSL connection modes.
      <b>disable</b> - Chose this mode to disable encryption of communication between Airbyte and destination database
      <b>allow</b> - Chose this mode to enable encryption only when required by the source database
@@ -41,7 +53,7 @@ class DestinationPostgres:
       <b>verify-full</b> - This is the most secure mode. Chose this mode to always require encryption and to verify the identity of the source database server
      See more information - <a href=\"https://jdbc.postgresql.org/documentation/head/ssl-client.html\"> in the docs</a>.
     """
-    tunnel_method: Optional[Any] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('tunnel_method'), 'exclude': lambda f: f is None }})
+    tunnel_method: Optional[Union[]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('tunnel_method'), 'exclude': lambda f: f is None }})
     r"""Whether to initiate an SSH tunnel before connecting to the database, and if so, which kind of authentication to use."""
     
 

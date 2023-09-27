@@ -5,9 +5,9 @@ import dataclasses
 from airbyte import utils
 from dataclasses_json import Undefined, dataclass_json
 from enum import Enum
-from typing import Any, Optional
+from typing import Optional, Union
 
-class DestinationAwsDatalakeCredentialsIAMUserCredentialsTitle(str, Enum):
+class DestinationAwsDatalakeAuthenticationModeIAMUserCredentialsTitle(str, Enum):
     r"""Name of the credentials"""
     IAM_USER = 'IAM User'
 
@@ -15,18 +15,18 @@ class DestinationAwsDatalakeCredentialsIAMUserCredentialsTitle(str, Enum):
 @dataclass_json(undefined=Undefined.EXCLUDE)
 
 @dataclasses.dataclass
-class DestinationAwsDatalakeCredentialsIAMUser:
+class DestinationAwsDatalakeAuthenticationModeIAMUser:
     r"""Choose How to Authenticate to AWS."""
     aws_access_key_id: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('aws_access_key_id') }})
     r"""AWS User Access Key Id"""
     aws_secret_access_key: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('aws_secret_access_key') }})
     r"""Secret Access Key"""
-    credentials_title: Optional[DestinationAwsDatalakeCredentialsIAMUserCredentialsTitle] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credentials_title'), 'exclude': lambda f: f is None }})
+    credentials_title: Optional[DestinationAwsDatalakeAuthenticationModeIAMUserCredentialsTitle] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credentials_title'), 'exclude': lambda f: f is None }})
     r"""Name of the credentials"""
     
 
 
-class DestinationAwsDatalakeCredentialsIAMRoleCredentialsTitle(str, Enum):
+class DestinationAwsDatalakeAuthenticationModeIAMRoleCredentialsTitle(str, Enum):
     r"""Name of the credentials"""
     IAM_ROLE = 'IAM Role'
 
@@ -34,17 +34,29 @@ class DestinationAwsDatalakeCredentialsIAMRoleCredentialsTitle(str, Enum):
 @dataclass_json(undefined=Undefined.EXCLUDE)
 
 @dataclasses.dataclass
-class DestinationAwsDatalakeCredentialsIAMRole:
+class DestinationAwsDatalakeAuthenticationModeIAMRole:
     r"""Choose How to Authenticate to AWS."""
     role_arn: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('role_arn') }})
     r"""Will assume this role to write data to s3"""
-    credentials_title: Optional[DestinationAwsDatalakeCredentialsIAMRoleCredentialsTitle] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credentials_title'), 'exclude': lambda f: f is None }})
+    credentials_title: Optional[DestinationAwsDatalakeAuthenticationModeIAMRoleCredentialsTitle] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credentials_title'), 'exclude': lambda f: f is None }})
     r"""Name of the credentials"""
     
 
 
+
+
+@dataclasses.dataclass
+class DestinationAwsDatalakeAuthenticationMode:
+    pass
+
 class DestinationAwsDatalakeAwsDatalake(str, Enum):
     AWS_DATALAKE = 'aws-datalake'
+
+
+
+@dataclasses.dataclass
+class DestinationAwsDatalakeOutputFormatWildcard:
+    pass
 
 class DestinationAwsDatalakeChooseHowToPartitionData(str, Enum):
     r"""Partition data by cursor fields when a cursor field is a date"""
@@ -93,7 +105,7 @@ class DestinationAwsDatalake:
     r"""The values required to configure the destination."""
     bucket_name: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('bucket_name') }})
     r"""The name of the S3 bucket. Read more <a href=\\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/create-bucket-overview.html\\">here</a>."""
-    credentials: Any = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credentials') }})
+    credentials: Union[DestinationAwsDatalakeAuthenticationModeIAMRole, DestinationAwsDatalakeAuthenticationModeIAMUser] = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credentials') }})
     r"""Choose How to Authenticate to AWS."""
     destination_type: DestinationAwsDatalakeAwsDatalake = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('destinationType') }})
     lakeformation_database_name: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('lakeformation_database_name') }})
@@ -102,7 +114,7 @@ class DestinationAwsDatalake:
     r"""target aws account id"""
     bucket_prefix: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('bucket_prefix'), 'exclude': lambda f: f is None }})
     r"""S3 prefix"""
-    format: Optional[Any] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('format'), 'exclude': lambda f: f is None }})
+    format: Optional[Union[]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('format'), 'exclude': lambda f: f is None }})
     r"""Format of the data output."""
     glue_catalog_float_as_decimal: Optional[bool] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('glue_catalog_float_as_decimal'), 'exclude': lambda f: f is None }})
     r"""Cast float/double as decimal(38,18). This can help achieve higher accuracy and represent numbers correctly as received from the source."""

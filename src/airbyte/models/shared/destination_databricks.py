@@ -5,7 +5,13 @@ import dataclasses
 from airbyte import utils
 from dataclasses_json import Undefined, dataclass_json
 from enum import Enum
-from typing import Any, Optional
+from typing import Optional, Union
+
+
+
+@dataclasses.dataclass
+class DestinationDatabricksDataSource:
+    pass
 
 class DestinationDatabricksDatabricks(str, Enum):
     DATABRICKS = 'databricks'
@@ -16,7 +22,7 @@ class DestinationDatabricksDatabricks(str, Enum):
 @dataclasses.dataclass
 class DestinationDatabricks:
     r"""The values required to configure the destination."""
-    data_source: Any = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('data_source') }})
+    data_source: Union[] = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('data_source') }})
     r"""Storage on which the delta lake is built."""
     databricks_http_path: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('databricks_http_path') }})
     r"""Databricks Cluster HTTP Path."""

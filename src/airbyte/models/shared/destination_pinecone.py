@@ -5,7 +5,7 @@ import dataclasses
 from airbyte import utils
 from dataclasses_json import Undefined, dataclass_json
 from enum import Enum
-from typing import Any, Optional
+from typing import Optional, Union
 
 class DestinationPineconePinecone(str, Enum):
     PINECONE = 'pinecone'
@@ -52,6 +52,12 @@ class DestinationPineconeEmbeddingOpenAI:
 
 
 
+
+@dataclasses.dataclass
+class DestinationPineconeEmbedding:
+    pass
+
+
 @dataclass_json(undefined=Undefined.EXCLUDE)
 
 @dataclasses.dataclass
@@ -88,7 +94,7 @@ class DestinationPineconeProcessingConfigModel:
 class DestinationPinecone:
     r"""The values required to configure the destination."""
     destination_type: DestinationPineconePinecone = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('destinationType') }})
-    embedding: Any = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('embedding') }})
+    embedding: Union[DestinationPineconeEmbeddingOpenAI, DestinationPineconeEmbeddingCohere, DestinationPineconeEmbeddingFake] = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('embedding') }})
     r"""Embedding configuration"""
     indexing: DestinationPineconeIndexing = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('indexing') }})
     r"""Pinecone is a popular vector store that can be used to store and retrieve embeddings."""

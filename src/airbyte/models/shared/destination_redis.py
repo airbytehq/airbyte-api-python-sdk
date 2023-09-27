@@ -5,7 +5,7 @@ import dataclasses
 from airbyte import utils
 from dataclasses_json import Undefined, dataclass_json
 from enum import Enum
-from typing import Any, Optional
+from typing import Optional, Union
 
 class DestinationRedisCacheType(str, Enum):
     r"""Redis cache type to store data in."""
@@ -13,6 +13,18 @@ class DestinationRedisCacheType(str, Enum):
 
 class DestinationRedisRedis(str, Enum):
     REDIS = 'redis'
+
+
+
+@dataclasses.dataclass
+class DestinationRedisSSLModes:
+    pass
+
+
+
+@dataclasses.dataclass
+class DestinationRedisSSHTunnelMethod:
+    pass
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
@@ -33,11 +45,11 @@ class DestinationRedis:
     r"""Port of Redis."""
     ssl: Optional[bool] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('ssl'), 'exclude': lambda f: f is None }})
     r"""Indicates whether SSL encryption protocol will be used to connect to Redis. It is recommended to use SSL connection if possible."""
-    ssl_mode: Optional[Any] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('ssl_mode'), 'exclude': lambda f: f is None }})
+    ssl_mode: Optional[Union[]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('ssl_mode'), 'exclude': lambda f: f is None }})
     r"""SSL connection modes.
       <li><b>verify-full</b> - This is the most secure mode. Always require encryption and verifies the identity of the source database server
     """
-    tunnel_method: Optional[Any] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('tunnel_method'), 'exclude': lambda f: f is None }})
+    tunnel_method: Optional[Union[]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('tunnel_method'), 'exclude': lambda f: f is None }})
     r"""Whether to initiate an SSH tunnel before connecting to the database, and if so, which kind of authentication to use."""
     
 

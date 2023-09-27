@@ -5,7 +5,7 @@ import dataclasses
 from airbyte import utils
 from dataclasses_json import Undefined, dataclass_json
 from enum import Enum
-from typing import Any, Optional
+from typing import Optional, Union
 
 class DestinationBigqueryDatasetLocation(str, Enum):
     r"""The location of the dataset. Warning: Changes made after creation will not be applied. Read more <a href=\\"https://cloud.google.com/bigquery/docs/locations\\">here</a>."""
@@ -53,6 +53,12 @@ class DestinationBigqueryDatasetLocation(str, Enum):
 class DestinationBigqueryBigquery(str, Enum):
     BIGQUERY = 'bigquery'
 
+
+
+@dataclasses.dataclass
+class DestinationBigqueryLoadingMethod:
+    pass
+
 class DestinationBigqueryTransformationQueryRunType(str, Enum):
     r"""Interactive run type means that the query is executed as soon as possible, and these queries count towards concurrent rate limit and daily limit. Read more about interactive run type <a href=\\"https://cloud.google.com/bigquery/docs/running-queries#queries\\">here</a>. Batch queries are queued and started as soon as idle resources are available in the BigQuery shared resource pool, which usually occurs within a few minutes. Batch queries don’t count towards your concurrent rate limit. Read more about batch queries <a href=\\"https://cloud.google.com/bigquery/docs/running-queries#batch\\">here</a>. The default \\"interactive\\" value is used if not set explicitly."""
     INTERACTIVE = 'interactive'
@@ -75,7 +81,7 @@ class DestinationBigquery:
     r"""Google BigQuery client's chunk (buffer) size (MIN=1, MAX = 15) for each table. The size that will be written by a single RPC. Written data will be buffered and only flushed upon reaching this size or closing the channel. The default 15MB value is used if not set explicitly. Read more <a href=\\"https://googleapis.dev/python/bigquery/latest/generated/google.cloud.bigquery.client.Client.html\\">here</a>."""
     credentials_json: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credentials_json'), 'exclude': lambda f: f is None }})
     r"""The contents of the JSON service account key. Check out the <a href=\\"https://docs.airbyte.com/integrations/destinations/bigquery#service-account-key\\">docs</a> if you need help generating this key. Default credentials will be used if this field is left empty."""
-    loading_method: Optional[Any] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('loading_method'), 'exclude': lambda f: f is None }})
+    loading_method: Optional[Union[]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('loading_method'), 'exclude': lambda f: f is None }})
     r"""Loading method used to send select the way data will be uploaded to BigQuery. <br/><b>Standard Inserts</b> - Direct uploading using SQL INSERT statements. This method is extremely inefficient and provided only for quick testing. In almost all cases, you should use staging. <br/><b>GCS Staging</b> - Writes large batches of records to a file, uploads the file to GCS, then uses <b>COPY INTO table</b> to upload the file. Recommended for most workloads for better speed and scalability. Read more about GCS Staging <a href=\\"https://docs.airbyte.com/integrations/destinations/bigquery#gcs-staging\\">here</a>."""
     raw_data_dataset: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('raw_data_dataset'), 'exclude': lambda f: f is None }})
     r"""The dataset to write raw tables into"""

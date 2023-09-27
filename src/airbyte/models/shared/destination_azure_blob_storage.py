@@ -5,10 +5,16 @@ import dataclasses
 from airbyte import utils
 from dataclasses_json import Undefined, dataclass_json
 from enum import Enum
-from typing import Any, Optional
+from typing import Optional, Union
 
 class DestinationAzureBlobStorageAzureBlobStorage(str, Enum):
     AZURE_BLOB_STORAGE = 'azure-blob-storage'
+
+
+
+@dataclasses.dataclass
+class DestinationAzureBlobStorageOutputFormat:
+    pass
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
@@ -21,7 +27,7 @@ class DestinationAzureBlobStorage:
     azure_blob_storage_account_name: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('azure_blob_storage_account_name') }})
     r"""The account's name of the Azure Blob Storage."""
     destination_type: DestinationAzureBlobStorageAzureBlobStorage = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('destinationType') }})
-    format: Any = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('format') }})
+    format: Union[] = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('format') }})
     r"""Output data format"""
     azure_blob_storage_container_name: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('azure_blob_storage_container_name'), 'exclude': lambda f: f is None }})
     r"""The name of the Azure blob storage container. If not exists - will be created automatically. May be empty, then will be created automatically airbytecontainer+timestamp"""

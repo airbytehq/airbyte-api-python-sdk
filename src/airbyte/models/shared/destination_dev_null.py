@@ -5,10 +5,16 @@ import dataclasses
 from airbyte import utils
 from dataclasses_json import Undefined, dataclass_json
 from enum import Enum
-from typing import Any
+from typing import Union
 
 class DestinationDevNullDevNull(str, Enum):
     DEV_NULL = 'dev-null'
+
+
+
+@dataclasses.dataclass
+class DestinationDevNullTestDestination:
+    pass
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
@@ -17,7 +23,7 @@ class DestinationDevNullDevNull(str, Enum):
 class DestinationDevNull:
     r"""The values required to configure the destination."""
     destination_type: DestinationDevNullDevNull = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('destinationType') }})
-    test_destination: Any = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('test_destination') }})
+    test_destination: Union[] = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('test_destination') }})
     r"""The type of destination to be used"""
     
 

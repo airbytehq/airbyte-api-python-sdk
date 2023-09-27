@@ -6,7 +6,7 @@ from airbyte import utils
 from dataclasses_json import Undefined, dataclass_json
 from datetime import date
 from enum import Enum
-from typing import Any, Optional
+from typing import Optional, Union
 
 class SourceGoogleAnalyticsDataAPICredentialsServiceAccountKeyAuthenticationAuthType(str, Enum):
     SERVICE = 'Service'
@@ -44,6 +44,12 @@ class SourceGoogleAnalyticsDataAPICredentialsAuthenticateViaGoogleOauth:
     
 
 
+
+
+@dataclasses.dataclass
+class SourceGoogleAnalyticsDataAPICredentials:
+    pass
+
 class SourceGoogleAnalyticsDataAPIGoogleAnalyticsDataAPI(str, Enum):
     GOOGLE_ANALYTICS_DATA_API = 'google-analytics-data-api'
 
@@ -58,7 +64,7 @@ class SourceGoogleAnalyticsDataAPI:
     property_id: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('property_id') }})
     r"""The Property ID is a unique number assigned to each property in Google Analytics, found in your GA4 property URL. This ID allows the connector to track the specific events associated with your property. Refer to the <a href='https://developers.google.com/analytics/devguides/reporting/data/v1/property-id#what_is_my_property_id'>Google Analytics documentation</a> to locate your property ID."""
     source_type: SourceGoogleAnalyticsDataAPIGoogleAnalyticsDataAPI = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
-    credentials: Optional[Any] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credentials'), 'exclude': lambda f: f is None }})
+    credentials: Optional[Union[SourceGoogleAnalyticsDataAPICredentialsAuthenticateViaGoogleOauth, SourceGoogleAnalyticsDataAPICredentialsServiceAccountKeyAuthentication]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credentials'), 'exclude': lambda f: f is None }})
     r"""Credentials for the service"""
     custom_reports: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('custom_reports'), 'exclude': lambda f: f is None }})
     r"""A JSON array describing the custom reports you want to sync from Google Analytics. See <a href=\\"https://docs.airbyte.com/integrations/sources/google-analytics-data-api/#custom-reports\\">the documentation</a> for more information about the exact format you can use to fill out this field."""

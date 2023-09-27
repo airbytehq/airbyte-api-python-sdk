@@ -5,7 +5,7 @@ import dataclasses
 from airbyte import utils
 from dataclasses_json import Undefined, dataclass_json
 from enum import Enum
-from typing import Any, Optional
+from typing import Optional, Union
 
 class DestinationLangchainLangchain(str, Enum):
     LANGCHAIN = 'langchain'
@@ -36,6 +36,12 @@ class DestinationLangchainEmbeddingOpenAI:
     mode: Optional[DestinationLangchainEmbeddingOpenAIMode] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('mode'), 'exclude': lambda f: f is None }})
     
 
+
+
+
+@dataclasses.dataclass
+class DestinationLangchainEmbedding:
+    pass
 
 class DestinationLangchainIndexingChromaLocalPersistanceMode(str, Enum):
     CHROMA_LOCAL = 'chroma_local'
@@ -88,6 +94,12 @@ class DestinationLangchainIndexingPinecone:
 
 
 
+
+@dataclasses.dataclass
+class DestinationLangchainIndexing:
+    pass
+
+
 @dataclass_json(undefined=Undefined.EXCLUDE)
 
 @dataclasses.dataclass
@@ -108,9 +120,9 @@ class DestinationLangchainProcessingConfigModel:
 class DestinationLangchain:
     r"""The values required to configure the destination."""
     destination_type: DestinationLangchainLangchain = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('destinationType') }})
-    embedding: Any = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('embedding') }})
+    embedding: Union[DestinationLangchainEmbeddingOpenAI, DestinationLangchainEmbeddingFake] = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('embedding') }})
     r"""Embedding configuration"""
-    indexing: Any = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('indexing') }})
+    indexing: Union[DestinationLangchainIndexingPinecone, DestinationLangchainIndexingDocArrayHnswSearch, DestinationLangchainIndexingChromaLocalPersistance] = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('indexing') }})
     r"""Indexing configuration"""
     processing: DestinationLangchainProcessingConfigModel = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('processing') }})
     

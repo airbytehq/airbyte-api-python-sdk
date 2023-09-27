@@ -7,7 +7,7 @@ from airbyte import utils
 from dataclasses_json import Undefined, dataclass_json
 from datetime import datetime
 from enum import Enum
-from typing import Any
+from typing import Union
 
 class SourceSalesloftCredentialsAuthenticateViaAPIKeyAuthType(str, Enum):
     API_KEY = 'api_key'
@@ -45,6 +45,12 @@ class SourceSalesloftCredentialsAuthenticateViaOAuth:
     
 
 
+
+
+@dataclasses.dataclass
+class SourceSalesloftCredentials:
+    pass
+
 class SourceSalesloftSalesloft(str, Enum):
     SALESLOFT = 'salesloft'
 
@@ -54,7 +60,7 @@ class SourceSalesloftSalesloft(str, Enum):
 @dataclasses.dataclass
 class SourceSalesloft:
     r"""The values required to configure the source."""
-    credentials: Any = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credentials') }})
+    credentials: Union[SourceSalesloftCredentialsAuthenticateViaOAuth, SourceSalesloftCredentialsAuthenticateViaAPIKey] = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credentials') }})
     source_type: SourceSalesloftSalesloft = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     start_date: datetime = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('start_date'), 'encoder': utils.datetimeisoformat(False), 'decoder': dateutil.parser.isoparse }})
     r"""The date from which you'd like to replicate data for Salesloft API, in the format YYYY-MM-DDT00:00:00Z. All data generated after this date will be replicated."""

@@ -7,30 +7,30 @@ from airbyte import utils
 from dataclasses_json import Undefined, dataclass_json
 from datetime import datetime
 from enum import Enum
-from typing import Any, Optional
+from typing import Optional, Union
 
-class SourceGitlabCredentialsPrivateTokenAuthType(str, Enum):
+class SourceGitlabAuthorizationMethodPrivateTokenAuthType(str, Enum):
     ACCESS_TOKEN = 'access_token'
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
 
 @dataclasses.dataclass
-class SourceGitlabCredentialsPrivateToken:
+class SourceGitlabAuthorizationMethodPrivateToken:
     access_token: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('access_token') }})
     r"""Log into your Gitlab account and then generate a personal Access Token."""
-    auth_type: Optional[SourceGitlabCredentialsPrivateTokenAuthType] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_type'), 'exclude': lambda f: f is None }})
+    auth_type: Optional[SourceGitlabAuthorizationMethodPrivateTokenAuthType] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_type'), 'exclude': lambda f: f is None }})
     
 
 
-class SourceGitlabCredentialsOAuth20AuthType(str, Enum):
+class SourceGitlabAuthorizationMethodOAuth20AuthType(str, Enum):
     OAUTH2_0 = 'oauth2.0'
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
 
 @dataclasses.dataclass
-class SourceGitlabCredentialsOAuth20:
+class SourceGitlabAuthorizationMethodOAuth20:
     access_token: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('access_token') }})
     r"""Access Token for making authenticated requests."""
     client_id: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('client_id') }})
@@ -41,9 +41,15 @@ class SourceGitlabCredentialsOAuth20:
     r"""The key to refresh the expired access_token."""
     token_expiry_date: datetime = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('token_expiry_date'), 'encoder': utils.datetimeisoformat(False), 'decoder': dateutil.parser.isoparse }})
     r"""The date-time when the access token should be refreshed."""
-    auth_type: Optional[SourceGitlabCredentialsOAuth20AuthType] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_type'), 'exclude': lambda f: f is None }})
+    auth_type: Optional[SourceGitlabAuthorizationMethodOAuth20AuthType] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_type'), 'exclude': lambda f: f is None }})
     
 
+
+
+
+@dataclasses.dataclass
+class SourceGitlabAuthorizationMethod:
+    pass
 
 class SourceGitlabGitlab(str, Enum):
     GITLAB = 'gitlab'
@@ -54,7 +60,7 @@ class SourceGitlabGitlab(str, Enum):
 @dataclasses.dataclass
 class SourceGitlab:
     r"""The values required to configure the source."""
-    credentials: Any = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credentials') }})
+    credentials: Union[SourceGitlabAuthorizationMethodOAuth20, SourceGitlabAuthorizationMethodPrivateToken] = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credentials') }})
     source_type: SourceGitlabGitlab = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     start_date: datetime = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('start_date'), 'encoder': utils.datetimeisoformat(False), 'decoder': dateutil.parser.isoparse }})
     r"""The date from which you'd like to replicate data for GitLab API, in the format YYYY-MM-DDT00:00:00Z. All data generated after this date will be replicated."""

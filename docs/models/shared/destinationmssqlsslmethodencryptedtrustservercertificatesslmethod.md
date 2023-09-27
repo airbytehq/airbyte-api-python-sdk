@@ -1,4 +1,4 @@
-# DestinationMssqlSslMethodEncryptedTrustServerCertificateSslMethod
+# DestinationMssqlSSLMethodEncryptedTrustServerCertificateSSLMethod
 
 
 ## Values

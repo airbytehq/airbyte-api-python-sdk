@@ -5,7 +5,7 @@ import dataclasses
 from airbyte import utils
 from dataclasses_json import Undefined, dataclass_json
 from enum import Enum
-from typing import Any, Optional
+from typing import Optional, Union
 
 class DestinationBigqueryDenormalizedDatasetLocation(str, Enum):
     r"""The location of the dataset. Warning: Changes made after creation will not be applied. The default \\"US\\" value is used if not set explicitly. Read more <a href=\\"https://cloud.google.com/bigquery/docs/locations\\">here</a>."""
@@ -53,6 +53,12 @@ class DestinationBigqueryDenormalizedDatasetLocation(str, Enum):
 class DestinationBigqueryDenormalizedBigqueryDenormalized(str, Enum):
     BIGQUERY_DENORMALIZED = 'bigquery-denormalized'
 
+
+
+@dataclasses.dataclass
+class DestinationBigqueryDenormalizedGCSStagingCredential:
+    pass
+
 class DestinationBigqueryDenormalizedGCSStagingGCSTmpFilesAfterwardProcessing(str, Enum):
     r"""This upload method is supposed to temporary store records in GCS bucket. By this select you can chose if these records should be removed from GCS when migration has finished. The default \\"Delete all tmp files from GCS\\" value is used if not set explicitly."""
     DELETE_ALL_TMP_FILES_FROM_GCS = 'Delete all tmp files from GCS'
@@ -66,7 +72,7 @@ class DestinationBigqueryDenormalizedGCSStagingMethod(str, Enum):
 
 @dataclasses.dataclass
 class DestinationBigqueryDenormalizedGCSStaging:
-    credential: Any = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credential') }})
+    credential: Union[] = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credential') }})
     r"""An HMAC key is a type of credential and can be associated with a service account or a user account in Cloud Storage. Read more <a href=\\"https://cloud.google.com/storage/docs/authentication/hmackeys\\">here</a>."""
     gcs_bucket_name: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('gcs_bucket_name') }})
     r"""The name of the GCS bucket. Read more <a href=\\"https://cloud.google.com/storage/docs/naming-buckets\\">here</a>."""

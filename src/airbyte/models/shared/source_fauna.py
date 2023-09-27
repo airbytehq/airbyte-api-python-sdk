@@ -5,43 +5,49 @@ import dataclasses
 from airbyte import utils
 from dataclasses_json import Undefined, dataclass_json
 from enum import Enum
-from typing import Any, Optional
+from typing import Optional, Union
 
-class SourceFaunaCollectionDeletionsEnabledDeletionMode(str, Enum):
+class SourceFaunaCollectionDeletionModeEnabledDeletionMode(str, Enum):
     DELETED_FIELD = 'deleted_field'
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
 
 @dataclasses.dataclass
-class SourceFaunaCollectionDeletionsEnabled:
+class SourceFaunaCollectionDeletionModeEnabled:
     r"""<b>This only applies to incremental syncs.</b> <br>
     Enabling deletion mode informs your destination of deleted documents.<br>
     Disabled - Leave this feature disabled, and ignore deleted documents.<br>
     Enabled - Enables this feature. When a document is deleted, the connector exports a record with a \"deleted at\" column containing the time that the document was deleted.
     """
-    deletion_mode: SourceFaunaCollectionDeletionsEnabledDeletionMode = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('deletion_mode') }})
+    deletion_mode: SourceFaunaCollectionDeletionModeEnabledDeletionMode = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('deletion_mode') }})
     column: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('column'), 'exclude': lambda f: f is None }})
     r"""Name of the \\"deleted at\\" column."""
     
 
 
-class SourceFaunaCollectionDeletionsDisabledDeletionMode(str, Enum):
+class SourceFaunaCollectionDeletionModeDisabledDeletionMode(str, Enum):
     IGNORE = 'ignore'
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
 
 @dataclasses.dataclass
-class SourceFaunaCollectionDeletionsDisabled:
+class SourceFaunaCollectionDeletionModeDisabled:
     r"""<b>This only applies to incremental syncs.</b> <br>
     Enabling deletion mode informs your destination of deleted documents.<br>
     Disabled - Leave this feature disabled, and ignore deleted documents.<br>
     Enabled - Enables this feature. When a document is deleted, the connector exports a record with a \"deleted at\" column containing the time that the document was deleted.
     """
-    deletion_mode: SourceFaunaCollectionDeletionsDisabledDeletionMode = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('deletion_mode') }})
+    deletion_mode: SourceFaunaCollectionDeletionModeDisabledDeletionMode = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('deletion_mode') }})
     
 
+
+
+
+@dataclasses.dataclass
+class SourceFaunaCollectionDeletionMode:
+    pass
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
@@ -49,7 +55,7 @@ class SourceFaunaCollectionDeletionsDisabled:
 @dataclasses.dataclass
 class SourceFaunaCollection:
     r"""Settings for the Fauna Collection."""
-    deletions: Any = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('deletions') }})
+    deletions: Union[SourceFaunaCollectionDeletionModeDisabled, SourceFaunaCollectionDeletionModeEnabled] = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('deletions') }})
     r"""<b>This only applies to incremental syncs.</b> <br>
     Enabling deletion mode informs your destination of deleted documents.<br>
     Disabled - Leave this feature disabled, and ignore deleted documents.<br>

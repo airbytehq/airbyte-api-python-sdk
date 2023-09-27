@@ -5,18 +5,18 @@ import dataclasses
 from airbyte import utils
 from dataclasses_json import Undefined, dataclass_json
 from enum import Enum
-from typing import Any, Optional
+from typing import Optional, Union
 
-class DestinationMongodbAuthTypeLoginPasswordAuthorization(str, Enum):
+class DestinationMongodbAuthorizationTypeLoginPasswordAuthorization(str, Enum):
     LOGIN_PASSWORD = 'login/password'
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
 
 @dataclasses.dataclass
-class DestinationMongodbAuthTypeLoginPassword:
+class DestinationMongodbAuthorizationTypeLoginPassword:
     r"""Login/Password."""
-    authorization: DestinationMongodbAuthTypeLoginPasswordAuthorization = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('authorization') }})
+    authorization: DestinationMongodbAuthorizationTypeLoginPasswordAuthorization = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('authorization') }})
     password: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('password') }})
     r"""Password associated with the username."""
     username: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('username') }})
@@ -24,21 +24,39 @@ class DestinationMongodbAuthTypeLoginPassword:
     
 
 
-class DestinationMongodbAuthTypeNoneAuthorization(str, Enum):
+class DestinationMongodbAuthorizationTypeNoneAuthorization(str, Enum):
     NONE = 'none'
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
 
 @dataclasses.dataclass
-class DestinationMongodbAuthTypeNone:
+class DestinationMongodbAuthorizationTypeNone:
     r"""None."""
-    authorization: DestinationMongodbAuthTypeNoneAuthorization = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('authorization') }})
+    authorization: DestinationMongodbAuthorizationTypeNoneAuthorization = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('authorization') }})
     
 
 
+
+
+@dataclasses.dataclass
+class DestinationMongodbAuthorizationType:
+    pass
+
 class DestinationMongodbMongodb(str, Enum):
     MONGODB = 'mongodb'
+
+
+
+@dataclasses.dataclass
+class DestinationMongodbMongoDbInstanceType:
+    pass
+
+
+
+@dataclasses.dataclass
+class DestinationMongodbSSHTunnelMethod:
+    pass
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
@@ -46,14 +64,14 @@ class DestinationMongodbMongodb(str, Enum):
 @dataclasses.dataclass
 class DestinationMongodb:
     r"""The values required to configure the destination."""
-    auth_type: Any = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_type') }})
+    auth_type: Union[DestinationMongodbAuthorizationTypeNone, DestinationMongodbAuthorizationTypeLoginPassword] = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_type') }})
     r"""Authorization type."""
     database: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('database') }})
     r"""Name of the database."""
     destination_type: DestinationMongodbMongodb = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('destinationType') }})
-    instance_type: Optional[Any] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('instance_type'), 'exclude': lambda f: f is None }})
+    instance_type: Optional[Union[]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('instance_type'), 'exclude': lambda f: f is None }})
     r"""MongoDb instance to connect to. For MongoDB Atlas and Replica Set TLS connection is used by default."""
-    tunnel_method: Optional[Any] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('tunnel_method'), 'exclude': lambda f: f is None }})
+    tunnel_method: Optional[Union[]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('tunnel_method'), 'exclude': lambda f: f is None }})
     r"""Whether to initiate an SSH tunnel before connecting to the database, and if so, which kind of authentication to use."""
     
 

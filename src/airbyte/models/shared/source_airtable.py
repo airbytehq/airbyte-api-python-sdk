@@ -7,30 +7,30 @@ from airbyte import utils
 from dataclasses_json import Undefined, dataclass_json
 from datetime import datetime
 from enum import Enum
-from typing import Any, Optional
+from typing import Optional, Union
 
-class SourceAirtableCredentialsPersonalAccessTokenAuthMethod(str, Enum):
+class SourceAirtableAuthenticationPersonalAccessTokenAuthMethod(str, Enum):
     API_KEY = 'api_key'
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
 
 @dataclasses.dataclass
-class SourceAirtableCredentialsPersonalAccessToken:
+class SourceAirtableAuthenticationPersonalAccessToken:
     api_key: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('api_key') }})
     r"""The Personal Access Token for the Airtable account. See the <a href=\\"https://airtable.com/developers/web/guides/personal-access-tokens\\">Support Guide</a> for more information on how to obtain this token."""
-    auth_method: Optional[SourceAirtableCredentialsPersonalAccessTokenAuthMethod] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_method'), 'exclude': lambda f: f is None }})
+    auth_method: Optional[SourceAirtableAuthenticationPersonalAccessTokenAuthMethod] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_method'), 'exclude': lambda f: f is None }})
     
 
 
-class SourceAirtableCredentialsOAuth20AuthMethod(str, Enum):
+class SourceAirtableAuthenticationOAuth20AuthMethod(str, Enum):
     OAUTH2_0 = 'oauth2.0'
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
 
 @dataclasses.dataclass
-class SourceAirtableCredentialsOAuth20:
+class SourceAirtableAuthenticationOAuth20:
     client_id: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('client_id') }})
     r"""The client ID of the Airtable developer application."""
     client_secret: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('client_secret') }})
@@ -39,11 +39,17 @@ class SourceAirtableCredentialsOAuth20:
     r"""The key to refresh the expired access token."""
     access_token: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('access_token'), 'exclude': lambda f: f is None }})
     r"""Access Token for making authenticated requests."""
-    auth_method: Optional[SourceAirtableCredentialsOAuth20AuthMethod] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_method'), 'exclude': lambda f: f is None }})
+    auth_method: Optional[SourceAirtableAuthenticationOAuth20AuthMethod] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_method'), 'exclude': lambda f: f is None }})
     token_expiry_date: Optional[datetime] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('token_expiry_date'), 'encoder': utils.datetimeisoformat(True), 'decoder': dateutil.parser.isoparse, 'exclude': lambda f: f is None }})
     r"""The date-time when the access token should be refreshed."""
     
 
+
+
+
+@dataclasses.dataclass
+class SourceAirtableAuthentication:
+    pass
 
 class SourceAirtableAirtable(str, Enum):
     AIRTABLE = 'airtable'
@@ -54,7 +60,7 @@ class SourceAirtableAirtable(str, Enum):
 @dataclasses.dataclass
 class SourceAirtable:
     r"""The values required to configure the source."""
-    credentials: Optional[Any] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credentials'), 'exclude': lambda f: f is None }})
+    credentials: Optional[Union[SourceAirtableAuthenticationOAuth20, SourceAirtableAuthenticationPersonalAccessToken]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credentials'), 'exclude': lambda f: f is None }})
     source_type: Optional[SourceAirtableAirtable] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType'), 'exclude': lambda f: f is None }})
     
 

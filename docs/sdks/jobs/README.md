@@ -1,4 +1,5 @@
 # Jobs
+(*jobs*)
 
 ### Available Operations
 
@@ -27,7 +28,7 @@ s = airbyte.Airbyte(
 )
 
 req = operations.CancelJobRequest(
-    job_id=24678,
+    job_id=944373,
 )
 
 res = s.jobs.cancel_job(req)
@@ -68,8 +69,8 @@ s = airbyte.Airbyte(
 )
 
 req = shared.JobCreateRequest(
-    connection_id='fugiat',
-    job_type=shared.JobTypeEnum.SYNC,
+    connection_id='excepturi',
+    job_type=shared.JobTypeEnum.RESET,
 )
 
 res = s.jobs.create_job(req)
@@ -110,7 +111,7 @@ s = airbyte.Airbyte(
 )
 
 req = operations.GetJobRequest(
-    job_id=743835,
+    job_id=452109,
 )
 
 res = s.jobs.get_job(req)
@@ -152,18 +153,18 @@ s = airbyte.Airbyte(
 )
 
 req = operations.ListJobsRequest(
-    connection_id='dolorum',
-    created_at_end=dateutil.parser.isoparse('2022-07-19T09:36:55.923Z'),
-    created_at_start=dateutil.parser.isoparse('2021-12-05T07:07:55.687Z'),
-    job_type=shared.JobTypeEnum.RESET,
-    limit=896672,
-    offset=714697,
-    order_by='asperiores',
+    connection_id='dignissimos',
+    created_at_end=dateutil.parser.isoparse('2022-04-26T23:32:35.989Z'),
+    created_at_start=dateutil.parser.isoparse('2022-06-29T07:40:27.174Z'),
+    job_type=shared.JobTypeEnum.SYNC,
+    limit=58029,
+    offset=56418,
+    order_by='iure',
     status=shared.JobStatusEnum.INCOMPLETE,
-    updated_at_end=dateutil.parser.isoparse('2022-07-18T13:18:42.293Z'),
-    updated_at_start=dateutil.parser.isoparse('2021-03-10T07:33:18.208Z'),
+    updated_at_end=dateutil.parser.isoparse('2022-02-13T10:24:00.119Z'),
+    updated_at_start=dateutil.parser.isoparse('2021-01-18T05:23:42.271Z'),
     workspace_ids=[
-        '4203ce5e-6a95-4d8a-8d44-6ce2af7a73cf',
+        '69280d1b-a77a-489e-bf73-7ae4203ce5e6',
     ],
 )
 

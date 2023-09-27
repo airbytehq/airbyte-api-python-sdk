@@ -7,41 +7,47 @@ from airbyte import utils
 from dataclasses_json import Undefined, dataclass_json
 from datetime import datetime
 from enum import Enum
-from typing import Any, Optional
+from typing import Optional, Union
 
-class SourceZendeskSunshineCredentialsAPITokenAuthMethod(str, Enum):
+class SourceZendeskSunshineAuthorizationMethodAPITokenAuthMethod(str, Enum):
     API_TOKEN = 'api_token'
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
 
 @dataclasses.dataclass
-class SourceZendeskSunshineCredentialsAPIToken:
+class SourceZendeskSunshineAuthorizationMethodAPIToken:
     api_token: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('api_token') }})
     r"""API Token. See the <a href=\\"https://docs.airbyte.com/integrations/sources/zendesk_sunshine\\">docs</a> for information on how to generate this key."""
     email: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('email') }})
     r"""The user email for your Zendesk account"""
-    auth_method: Optional[SourceZendeskSunshineCredentialsAPITokenAuthMethod] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_method'), 'exclude': lambda f: f is None }})
+    auth_method: Optional[SourceZendeskSunshineAuthorizationMethodAPITokenAuthMethod] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_method'), 'exclude': lambda f: f is None }})
     
 
 
-class SourceZendeskSunshineCredentialsOAuth20AuthMethod(str, Enum):
+class SourceZendeskSunshineAuthorizationMethodOAuth20AuthMethod(str, Enum):
     OAUTH2_0 = 'oauth2.0'
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
 
 @dataclasses.dataclass
-class SourceZendeskSunshineCredentialsOAuth20:
+class SourceZendeskSunshineAuthorizationMethodOAuth20:
     access_token: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('access_token') }})
     r"""Long-term access Token for making authenticated requests."""
     client_id: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('client_id') }})
     r"""The Client ID of your OAuth application."""
     client_secret: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('client_secret') }})
     r"""The Client Secret of your OAuth application."""
-    auth_method: Optional[SourceZendeskSunshineCredentialsOAuth20AuthMethod] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_method'), 'exclude': lambda f: f is None }})
+    auth_method: Optional[SourceZendeskSunshineAuthorizationMethodOAuth20AuthMethod] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_method'), 'exclude': lambda f: f is None }})
     
 
+
+
+
+@dataclasses.dataclass
+class SourceZendeskSunshineAuthorizationMethod:
+    pass
 
 class SourceZendeskSunshineZendeskSunshine(str, Enum):
     ZENDESK_SUNSHINE = 'zendesk-sunshine'
@@ -57,6 +63,6 @@ class SourceZendeskSunshine:
     r"""The date from which you'd like to replicate data for Zendesk Sunshine API, in the format YYYY-MM-DDT00:00:00Z."""
     subdomain: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('subdomain') }})
     r"""The subdomain for your Zendesk Account."""
-    credentials: Optional[Any] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credentials'), 'exclude': lambda f: f is None }})
+    credentials: Optional[Union[SourceZendeskSunshineAuthorizationMethodOAuth20, SourceZendeskSunshineAuthorizationMethodAPIToken]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credentials'), 'exclude': lambda f: f is None }})
     
 

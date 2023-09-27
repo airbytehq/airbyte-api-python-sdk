@@ -5,9 +5,9 @@ import dataclasses
 from airbyte import utils
 from dataclasses_json import Undefined, dataclass_json
 from enum import Enum
-from typing import Any, Optional
+from typing import Optional, Union
 
-class SourceAsanaCredentialsAuthenticateWithPersonalAccessTokenCredentialsTitle(str, Enum):
+class SourceAsanaAuthenticationMechanismAuthenticateWithPersonalAccessTokenCredentialsTitle(str, Enum):
     r"""PAT Credentials"""
     PAT_CREDENTIALS = 'PAT Credentials'
 
@@ -15,16 +15,16 @@ class SourceAsanaCredentialsAuthenticateWithPersonalAccessTokenCredentialsTitle(
 @dataclass_json(undefined=Undefined.EXCLUDE)
 
 @dataclasses.dataclass
-class SourceAsanaCredentialsAuthenticateWithPersonalAccessToken:
+class SourceAsanaAuthenticationMechanismAuthenticateWithPersonalAccessToken:
     r"""Choose how to authenticate to Github"""
     personal_access_token: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('personal_access_token') }})
     r"""Asana Personal Access Token (generate yours <a href=\\"https://app.asana.com/0/developer-console\\">here</a>)."""
-    option_title: Optional[SourceAsanaCredentialsAuthenticateWithPersonalAccessTokenCredentialsTitle] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('option_title'), 'exclude': lambda f: f is None }})
+    option_title: Optional[SourceAsanaAuthenticationMechanismAuthenticateWithPersonalAccessTokenCredentialsTitle] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('option_title'), 'exclude': lambda f: f is None }})
     r"""PAT Credentials"""
     
 
 
-class SourceAsanaCredentialsAuthenticateViaAsanaOauthCredentialsTitle(str, Enum):
+class SourceAsanaAuthenticationMechanismAuthenticateViaAsanaOauthCredentialsTitle(str, Enum):
     r"""OAuth Credentials"""
     O_AUTH_CREDENTIALS = 'OAuth Credentials'
 
@@ -32,15 +32,21 @@ class SourceAsanaCredentialsAuthenticateViaAsanaOauthCredentialsTitle(str, Enum)
 @dataclass_json(undefined=Undefined.EXCLUDE)
 
 @dataclasses.dataclass
-class SourceAsanaCredentialsAuthenticateViaAsanaOauth:
+class SourceAsanaAuthenticationMechanismAuthenticateViaAsanaOauth:
     r"""Choose how to authenticate to Github"""
     client_id: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('client_id') }})
     client_secret: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('client_secret') }})
     refresh_token: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('refresh_token') }})
-    option_title: Optional[SourceAsanaCredentialsAuthenticateViaAsanaOauthCredentialsTitle] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('option_title'), 'exclude': lambda f: f is None }})
+    option_title: Optional[SourceAsanaAuthenticationMechanismAuthenticateViaAsanaOauthCredentialsTitle] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('option_title'), 'exclude': lambda f: f is None }})
     r"""OAuth Credentials"""
     
 
+
+
+
+@dataclasses.dataclass
+class SourceAsanaAuthenticationMechanism:
+    pass
 
 class SourceAsanaAsana(str, Enum):
     ASANA = 'asana'
@@ -51,7 +57,7 @@ class SourceAsanaAsana(str, Enum):
 @dataclasses.dataclass
 class SourceAsana:
     r"""The values required to configure the source."""
-    credentials: Optional[Any] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credentials'), 'exclude': lambda f: f is None }})
+    credentials: Optional[Union[SourceAsanaAuthenticationMechanismAuthenticateViaAsanaOauth, SourceAsanaAuthenticationMechanismAuthenticateWithPersonalAccessToken]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credentials'), 'exclude': lambda f: f is None }})
     r"""Choose how to authenticate to Github"""
     source_type: Optional[SourceAsanaAsana] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType'), 'exclude': lambda f: f is None }})
     

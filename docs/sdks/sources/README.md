@@ -1,4 +1,5 @@
 # Sources
+(*sources*)
 
 ### Available Operations
 
@@ -31,17 +32,10 @@ s = airbyte.Airbyte(
 )
 
 req = shared.SourceCreateRequest(
-    configuration=shared.SourceFaker(
-        always_updated=False,
-        count=730856,
-        parallelism=880298,
-        records_per_slice=253941,
-        seed=313692,
-        source_type=shared.SourceFakerFaker.FAKER,
-    ),
-    name='Jeannie Leannon MD',
-    secret_id='neque',
-    workspace_id='26b5a734-29cd-4b1a-8422-bb679d232271',
+    configuration=[],
+    name='Rene Hane',
+    secret_id='similique',
+    workspace_id='0d446ce2-af7a-473c-b3be-453f870b326b',
 )
 
 res = s.sources.create_source(req)
@@ -82,7 +76,7 @@ s = airbyte.Airbyte(
 )
 
 req = operations.DeleteSourceRequest(
-    source_id='ullam',
+    source_id='voluptas',
 )
 
 res = s.sources.delete_source(req)
@@ -123,7 +117,7 @@ s = airbyte.Airbyte(
 )
 
 req = operations.GetSourceRequest(
-    source_id='nam',
+    source_id='deserunt',
 )
 
 res = s.sources.get_source(req)
@@ -169,9 +163,9 @@ s = airbyte.Airbyte(
 
 req = shared.InitiateOauthRequest(
     o_auth_input_configuration=shared.OAuthInputConfiguration(),
-    redirect_url='hic',
-    source_type=shared.OAuthActorNames.AMAZON_ADS,
-    workspace_id='cbb1e31b-8b90-4f34-83a1-108e0adcf4b9',
+    redirect_url='quam',
+    source_type=shared.OAuthActorNames.GOOGLE_ADS,
+    workspace_id='429cdb1a-8422-4bb6-b9d2-322715bf0cbb',
 )
 
 res = s.sources.initiate_o_auth(req)
@@ -213,10 +207,10 @@ s = airbyte.Airbyte(
 
 req = operations.ListSourcesRequest(
     include_deleted=False,
-    limit=181631,
-    offset=63955,
+    limit=92596,
+    offset=903720,
     workspace_ids=[
-        '879fce95-3f73-4ef7-bbc7-abd74dd39c0f',
+        '31b8b90f-3443-4a11-88e0-adcf4b921879',
     ],
 )
 
@@ -260,16 +254,12 @@ s = airbyte.Airbyte(
 
 req = operations.PatchSourceRequest(
     source_patch_request=shared.SourcePatchRequest(
-        configuration=shared.SourceGridly(
-            api_key='nulla',
-            grid_id='fugit',
-            source_type=shared.SourceGridlyGridly.GRIDLY,
-        ),
+        configuration=[],
         name='My source',
-        secret_id='porro',
-        workspace_id='ff7c70a4-5626-4d43-a813-f16d9f5fce6c',
+        secret_id='voluptatibus',
+        workspace_id='ce953f73-ef7f-4bc7-abd7-4dd39c0f5d2c',
     ),
-    source_id='corporis',
+    source_id='maiores',
 )
 
 res = s.sources.patch_source(req)
@@ -312,16 +302,10 @@ s = airbyte.Airbyte(
 
 req = operations.PutSourceRequest(
     source_put_request=shared.SourcePutRequest(
-        configuration=shared.SourceGoogleWebfonts(
-            alt='aliquid',
-            api_key='inventore',
-            pretty_print='magnam',
-            sort='ea',
-            source_type=shared.SourceGoogleWebfontsGoogleWebfonts.GOOGLE_WEBFONTS,
-        ),
-        name='Glenn Walter',
+        configuration=[],
+        name='Ted Romaguera MD',
     ),
-    source_id='eaque',
+    source_id='tempora',
 )
 
 res = s.sources.put_source(req)

@@ -5,7 +5,13 @@ import dataclasses
 from airbyte import utils
 from dataclasses_json import Undefined, dataclass_json
 from enum import Enum
-from typing import Any, Optional
+from typing import Optional, Union
+
+
+
+@dataclasses.dataclass
+class DestinationElasticsearchAuthenticationMethod:
+    pass
 
 class DestinationElasticsearchElasticsearch(str, Enum):
     ELASTICSEARCH = 'elasticsearch'
@@ -19,7 +25,7 @@ class DestinationElasticsearch:
     destination_type: DestinationElasticsearchElasticsearch = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('destinationType') }})
     endpoint: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('endpoint') }})
     r"""The full url of the Elasticsearch server"""
-    authentication_method: Optional[Any] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('authenticationMethod'), 'exclude': lambda f: f is None }})
+    authentication_method: Optional[Union[]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('authenticationMethod'), 'exclude': lambda f: f is None }})
     r"""The type of authentication to be used"""
     ca_certificate: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('ca_certificate'), 'exclude': lambda f: f is None }})
     r"""CA certificate"""

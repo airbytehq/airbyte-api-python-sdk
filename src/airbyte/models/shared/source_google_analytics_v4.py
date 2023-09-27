@@ -6,7 +6,7 @@ from airbyte import utils
 from dataclasses_json import Undefined, dataclass_json
 from datetime import date
 from enum import Enum
-from typing import Any, Optional
+from typing import Optional, Union
 
 class SourceGoogleAnalyticsV4CredentialsServiceAccountKeyAuthenticationAuthType(str, Enum):
     SERVICE = 'Service'
@@ -44,6 +44,12 @@ class SourceGoogleAnalyticsV4CredentialsAuthenticateViaGoogleOauth:
     
 
 
+
+
+@dataclasses.dataclass
+class SourceGoogleAnalyticsV4Credentials:
+    pass
+
 class SourceGoogleAnalyticsV4GoogleAnalyticsV4(str, Enum):
     GOOGLE_ANALYTICS_V4 = 'google-analytics-v4'
 
@@ -58,7 +64,7 @@ class SourceGoogleAnalyticsV4:
     r"""The date in the format YYYY-MM-DD. Any data before this date will not be replicated."""
     view_id: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('view_id') }})
     r"""The ID for the Google Analytics View you want to fetch data from. This can be found from the <a href=\\"https://ga-dev-tools.appspot.com/account-explorer/\\">Google Analytics Account Explorer</a>."""
-    credentials: Optional[Any] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credentials'), 'exclude': lambda f: f is None }})
+    credentials: Optional[Union[SourceGoogleAnalyticsV4CredentialsAuthenticateViaGoogleOauth, SourceGoogleAnalyticsV4CredentialsServiceAccountKeyAuthentication]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credentials'), 'exclude': lambda f: f is None }})
     r"""Credentials for the service"""
     custom_reports: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('custom_reports'), 'exclude': lambda f: f is None }})
     r"""A JSON array describing the custom reports you want to sync from Google Analytics. See <a href=\\"https://docs.airbyte.com/integrations/sources/google-analytics-v4#data-processing-latency\\">the docs</a> for more information about the exact format you can use to fill out this field."""
