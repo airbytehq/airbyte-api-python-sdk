@@ -5,10 +5,7 @@ import dataclasses
 from airbyte import utils
 from dataclasses_json import Undefined, dataclass_json
 from enum import Enum
-from typing import Optional
-
-class SourceAmazonSellerPartnerAuthType(str, Enum):
-    OAUTH2_0 = 'oauth2.0'
+from typing import Final, Optional
 
 class SourceAmazonSellerPartnerAWSEnvironment(str, Enum):
     r"""Select the AWS Environment."""
@@ -40,9 +37,6 @@ class SourceAmazonSellerPartnerAWSRegion(str, Enum):
     UK = 'UK'
     US = 'US'
 
-class SourceAmazonSellerPartnerAmazonSellerPartner(str, Enum):
-    AMAZON_SELLER_PARTNER = 'amazon-seller-partner'
-
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
 
@@ -57,21 +51,21 @@ class SourceAmazonSellerPartner:
     r"""The Refresh Token obtained via OAuth flow authorization."""
     replication_start_date: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('replication_start_date') }})
     r"""UTC date and time in the format 2017-01-25T00:00:00Z. Any data before this date will not be replicated."""
-    source_type: SourceAmazonSellerPartnerAmazonSellerPartner = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
+    SOURCE_TYPE: Final[str] = dataclasses.field(default='amazon-seller-partner', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     advanced_stream_options: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('advanced_stream_options'), 'exclude': lambda f: f is None }})
     r"""Additional information to configure report options. This varies by report type, not every report implement this kind of feature. Must be a valid json string."""
-    auth_type: Optional[SourceAmazonSellerPartnerAuthType] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_type'), 'exclude': lambda f: f is None }})
+    AUTH_TYPE: Final[Optional[str]] = dataclasses.field(default='oauth2.0', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_type'), 'exclude': lambda f: f is None }})
     aws_access_key: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('aws_access_key'), 'exclude': lambda f: f is None }})
     r"""Specifies the AWS access key used as part of the credentials to authenticate the user."""
-    aws_environment: Optional[SourceAmazonSellerPartnerAWSEnvironment] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('aws_environment'), 'exclude': lambda f: f is None }})
+    aws_environment: Optional[SourceAmazonSellerPartnerAWSEnvironment] = dataclasses.field(default=SourceAmazonSellerPartnerAWSEnvironment.PRODUCTION, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('aws_environment'), 'exclude': lambda f: f is None }})
     r"""Select the AWS Environment."""
     aws_secret_key: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('aws_secret_key'), 'exclude': lambda f: f is None }})
     r"""Specifies the AWS secret key used as part of the credentials to authenticate the user."""
-    max_wait_seconds: Optional[int] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('max_wait_seconds'), 'exclude': lambda f: f is None }})
+    max_wait_seconds: Optional[int] = dataclasses.field(default=500, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('max_wait_seconds'), 'exclude': lambda f: f is None }})
     r"""Sometimes report can take up to 30 minutes to generate. This will set the limit for how long to wait for a successful report."""
-    period_in_days: Optional[int] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('period_in_days'), 'exclude': lambda f: f is None }})
+    period_in_days: Optional[int] = dataclasses.field(default=90, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('period_in_days'), 'exclude': lambda f: f is None }})
     r"""Will be used for stream slicing for initial full_refresh sync when no updated state is present for reports that support sliced incremental sync."""
-    region: Optional[SourceAmazonSellerPartnerAWSRegion] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('region'), 'exclude': lambda f: f is None }})
+    region: Optional[SourceAmazonSellerPartnerAWSRegion] = dataclasses.field(default=SourceAmazonSellerPartnerAWSRegion.US, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('region'), 'exclude': lambda f: f is None }})
     r"""Select the AWS Region."""
     replication_end_date: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('replication_end_date'), 'exclude': lambda f: f is None }})
     r"""UTC date and time in the format 2017-01-25T00:00:00Z. Any data after this date will not be replicated."""

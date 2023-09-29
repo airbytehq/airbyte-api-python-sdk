@@ -28,7 +28,7 @@ s = airbyte.Airbyte(
 )
 
 req = operations.CancelJobRequest(
-    job_id=944373,
+    job_id=801771,
 )
 
 res = s.jobs.cancel_job(req)
@@ -69,7 +69,7 @@ s = airbyte.Airbyte(
 )
 
 req = shared.JobCreateRequest(
-    connection_id='excepturi',
+    connection_id='Seychelles',
     job_type=shared.JobTypeEnum.RESET,
 )
 
@@ -111,7 +111,7 @@ s = airbyte.Airbyte(
 )
 
 req = operations.GetJobRequest(
-    job_id=452109,
+    job_id=131101,
 )
 
 res = s.jobs.get_job(req)
@@ -153,18 +153,18 @@ s = airbyte.Airbyte(
 )
 
 req = operations.ListJobsRequest(
-    connection_id='dignissimos',
-    created_at_end=dateutil.parser.isoparse('2022-04-26T23:32:35.989Z'),
-    created_at_start=dateutil.parser.isoparse('2022-06-29T07:40:27.174Z'),
-    job_type=shared.JobTypeEnum.SYNC,
-    limit=58029,
-    offset=56418,
-    order_by='iure',
-    status=shared.JobStatusEnum.INCOMPLETE,
-    updated_at_end=dateutil.parser.isoparse('2022-02-13T10:24:00.119Z'),
-    updated_at_start=dateutil.parser.isoparse('2021-01-18T05:23:42.271Z'),
+    connection_id='Account Brand District',
+    created_at_end=dateutil.parser.isoparse('2023-07-31T08:36:30.681Z'),
+    created_at_start=dateutil.parser.isoparse('2023-09-12T08:02:55.258Z'),
+    job_type=shared.JobTypeEnum.RESET,
+    limit=15461,
+    offset=82575,
+    order_by='reserved Chrysler deposit',
+    status=shared.JobStatusEnum.SUCCEEDED,
+    updated_at_end=dateutil.parser.isoparse('2021-02-15T00:19:53.913Z'),
+    updated_at_start=dateutil.parser.isoparse('2022-01-10T07:46:53.710Z'),
     workspace_ids=[
-        '69280d1b-a77a-489e-bf73-7ae4203ce5e6',
+        'bc4dea63-2e54-40b9-b441-91e8f146d646',
     ],
 )
 

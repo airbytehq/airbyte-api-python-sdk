@@ -4,10 +4,7 @@ from __future__ import annotations
 import dataclasses
 from airbyte import utils
 from dataclasses_json import Undefined, dataclass_json
-from enum import Enum
-
-class SourceLaunchdarklyLaunchdarkly(str, Enum):
-    LAUNCHDARKLY = 'launchdarkly'
+from typing import Final
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
@@ -17,6 +14,6 @@ class SourceLaunchdarkly:
     r"""The values required to configure the source."""
     access_token: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('access_token') }})
     r"""Your Access token. See <a href=\\"https://apidocs.launchdarkly.com/#section/Overview/Authentication\\">here</a>."""
-    source_type: SourceLaunchdarklyLaunchdarkly = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
+    SOURCE_TYPE: Final[str] = dataclasses.field(default='launchdarkly', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     
 

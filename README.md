@@ -41,31 +41,31 @@ req = shared.ConnectionCreateRequest(
         streams=[
             shared.StreamConfiguration(
                 cursor_field=[
-                    'iure',
+                    'violet',
                 ],
-                name='Dr. Rickey Boyle',
+                name='at BMW',
                 primary_key=[
                     [
-                        'mollitia',
+                        'pfft',
                     ],
                 ],
-                sync_mode=shared.ConnectionSyncModeEnum.INCREMENTAL_APPEND,
+                sync_mode=shared.ConnectionSyncModeEnum.FULL_REFRESH_APPEND,
             ),
         ],
     ),
     data_residency=shared.GeographyEnum.AUTO,
-    destination_id='352c5955-907a-4ff1-a3a2-fa9467739251',
-    name='Matt Hamill',
-    namespace_definition=shared.NamespaceDefinitionEnum.SOURCE,
+    destination_id='083eafc8-5591-44e0-a570-f6dd427d83a5',
+    name='mesh interactive',
+    namespace_definition=shared.NamespaceDefinitionEnum.DESTINATION,
     namespace_format='${SOURCE_NAMESPACE}',
-    non_breaking_schema_updates_behavior=shared.NonBreakingSchemaUpdatesBehaviorEnum.PROPAGATE_FULLY,
-    prefix='ipsam',
+    non_breaking_schema_updates_behavior=shared.NonBreakingSchemaUpdatesBehaviorEnum.IGNORE,
+    prefix='port Idaho',
     schedule=shared.ConnectionSchedule(
-        cron_expression='id',
-        schedule_type=shared.ScheduleTypeEnum.CRON,
+        cron_expression='productivity',
+        schedule_type=shared.ScheduleTypeEnum.MANUAL,
     ),
-    source_id='019da1ff-e78f-4097-b007-4f15471b5e6e',
-    status=shared.ConnectionStatusEnum.ACTIVE,
+    source_id='b3fd2fd3-07d6-40cb-97ea-6dfc635b80f2',
+    status=shared.ConnectionStatusEnum.INACTIVE,
 )
 
 res = s.connections.create_connection(req)

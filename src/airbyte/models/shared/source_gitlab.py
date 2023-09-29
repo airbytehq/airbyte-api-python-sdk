@@ -6,11 +6,7 @@ import dateutil.parser
 from airbyte import utils
 from dataclasses_json import Undefined, dataclass_json
 from datetime import datetime
-from enum import Enum
-from typing import Optional, Union
-
-class SourceGitlabAuthorizationMethodPrivateTokenAuthType(str, Enum):
-    ACCESS_TOKEN = 'access_token'
+from typing import Final, Optional, Union
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
@@ -19,12 +15,9 @@ class SourceGitlabAuthorizationMethodPrivateTokenAuthType(str, Enum):
 class SourceGitlabAuthorizationMethodPrivateToken:
     access_token: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('access_token') }})
     r"""Log into your Gitlab account and then generate a personal Access Token."""
-    auth_type: Optional[SourceGitlabAuthorizationMethodPrivateTokenAuthType] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_type'), 'exclude': lambda f: f is None }})
+    AUTH_TYPE: Final[Optional[str]] = dataclasses.field(default='access_token', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_type'), 'exclude': lambda f: f is None }})
     
 
-
-class SourceGitlabAuthorizationMethodOAuth20AuthType(str, Enum):
-    OAUTH2_0 = 'oauth2.0'
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
@@ -41,7 +34,7 @@ class SourceGitlabAuthorizationMethodOAuth20:
     r"""The key to refresh the expired access_token."""
     token_expiry_date: datetime = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('token_expiry_date'), 'encoder': utils.datetimeisoformat(False), 'decoder': dateutil.parser.isoparse }})
     r"""The date-time when the access token should be refreshed."""
-    auth_type: Optional[SourceGitlabAuthorizationMethodOAuth20AuthType] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_type'), 'exclude': lambda f: f is None }})
+    AUTH_TYPE: Final[Optional[str]] = dataclasses.field(default='oauth2.0', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_type'), 'exclude': lambda f: f is None }})
     
 
 
@@ -51,9 +44,6 @@ class SourceGitlabAuthorizationMethodOAuth20:
 class SourceGitlabAuthorizationMethod:
     pass
 
-class SourceGitlabGitlab(str, Enum):
-    GITLAB = 'gitlab'
-
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
 
@@ -61,10 +51,10 @@ class SourceGitlabGitlab(str, Enum):
 class SourceGitlab:
     r"""The values required to configure the source."""
     credentials: Union[SourceGitlabAuthorizationMethodOAuth20, SourceGitlabAuthorizationMethodPrivateToken] = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credentials') }})
-    source_type: SourceGitlabGitlab = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     start_date: datetime = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('start_date'), 'encoder': utils.datetimeisoformat(False), 'decoder': dateutil.parser.isoparse }})
     r"""The date from which you'd like to replicate data for GitLab API, in the format YYYY-MM-DDT00:00:00Z. All data generated after this date will be replicated."""
-    api_url: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('api_url'), 'exclude': lambda f: f is None }})
+    SOURCE_TYPE: Final[str] = dataclasses.field(default='gitlab', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
+    api_url: Optional[str] = dataclasses.field(default='gitlab.com', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('api_url'), 'exclude': lambda f: f is None }})
     r"""Please enter your basic URL from GitLab instance."""
     groups: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('groups'), 'exclude': lambda f: f is None }})
     r"""Space-delimited list of groups. e.g. airbyte.io."""

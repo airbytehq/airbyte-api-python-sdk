@@ -4,11 +4,7 @@ from __future__ import annotations
 import dataclasses
 from airbyte import utils
 from dataclasses_json import Undefined, dataclass_json
-from enum import Enum
-from typing import Optional, Union
-
-class SourceMondayAuthorizationMethodAPITokenAuthType(str, Enum):
-    API_TOKEN = 'api_token'
+from typing import Final, Optional, Union
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
@@ -17,12 +13,9 @@ class SourceMondayAuthorizationMethodAPITokenAuthType(str, Enum):
 class SourceMondayAuthorizationMethodAPIToken:
     api_token: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('api_token') }})
     r"""API Token for making authenticated requests."""
-    auth_type: SourceMondayAuthorizationMethodAPITokenAuthType = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_type') }})
+    AUTH_TYPE: Final[str] = dataclasses.field(default='api_token', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_type') }})
     
 
-
-class SourceMondayAuthorizationMethodOAuth20AuthType(str, Enum):
-    OAUTH2_0 = 'oauth2.0'
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
@@ -31,12 +24,12 @@ class SourceMondayAuthorizationMethodOAuth20AuthType(str, Enum):
 class SourceMondayAuthorizationMethodOAuth20:
     access_token: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('access_token') }})
     r"""Access Token for making authenticated requests."""
-    auth_type: SourceMondayAuthorizationMethodOAuth20AuthType = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_type') }})
     client_id: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('client_id') }})
     r"""The Client ID of your OAuth application."""
     client_secret: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('client_secret') }})
     r"""The Client Secret of your OAuth application."""
-    subdomain: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('subdomain'), 'exclude': lambda f: f is None }})
+    AUTH_TYPE: Final[str] = dataclasses.field(default='oauth2.0', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_type') }})
+    subdomain: Optional[str] = dataclasses.field(default='', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('subdomain'), 'exclude': lambda f: f is None }})
     r"""Slug/subdomain of the account, or the first part of the URL that comes before .monday.com"""
     
 
@@ -47,16 +40,13 @@ class SourceMondayAuthorizationMethodOAuth20:
 class SourceMondayAuthorizationMethod:
     pass
 
-class SourceMondayMonday(str, Enum):
-    MONDAY = 'monday'
-
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
 
 @dataclasses.dataclass
 class SourceMonday:
     r"""The values required to configure the source."""
-    source_type: SourceMondayMonday = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
+    SOURCE_TYPE: Final[str] = dataclasses.field(default='monday', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     credentials: Optional[Union[SourceMondayAuthorizationMethodOAuth20, SourceMondayAuthorizationMethodAPIToken]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credentials'), 'exclude': lambda f: f is None }})
     
 

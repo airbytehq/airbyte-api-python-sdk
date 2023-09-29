@@ -6,11 +6,7 @@ import dateutil.parser
 from airbyte import utils
 from dataclasses_json import Undefined, dataclass_json
 from datetime import datetime
-from enum import Enum
-from typing import Optional
-
-class SourcePosthogPosthog(str, Enum):
-    POSTHOG = 'posthog'
+from typing import Final, Optional
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
@@ -20,12 +16,12 @@ class SourcePosthog:
     r"""The values required to configure the source."""
     api_key: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('api_key') }})
     r"""API Key. See the <a href=\\"https://docs.airbyte.com/integrations/sources/posthog\\">docs</a> for information on how to generate this key."""
-    source_type: SourcePosthogPosthog = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     start_date: datetime = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('start_date'), 'encoder': utils.datetimeisoformat(False), 'decoder': dateutil.parser.isoparse }})
     r"""The date from which you'd like to replicate the data. Any data before this date will not be replicated."""
-    base_url: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('base_url'), 'exclude': lambda f: f is None }})
+    SOURCE_TYPE: Final[str] = dataclasses.field(default='posthog', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
+    base_url: Optional[str] = dataclasses.field(default='https://app.posthog.com', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('base_url'), 'exclude': lambda f: f is None }})
     r"""Base PostHog url. Defaults to PostHog Cloud (https://app.posthog.com)."""
-    events_time_step: Optional[int] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('events_time_step'), 'exclude': lambda f: f is None }})
+    events_time_step: Optional[int] = dataclasses.field(default=30, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('events_time_step'), 'exclude': lambda f: f is None }})
     r"""Set lower value in case of failing long running sync of events stream."""
     
 

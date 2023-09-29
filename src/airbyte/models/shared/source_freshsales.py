@@ -4,10 +4,7 @@ from __future__ import annotations
 import dataclasses
 from airbyte import utils
 from dataclasses_json import Undefined, dataclass_json
-from enum import Enum
-
-class SourceFreshsalesFreshsales(str, Enum):
-    FRESHSALES = 'freshsales'
+from typing import Final
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
@@ -19,6 +16,6 @@ class SourceFreshsales:
     r"""Freshsales API Key. See <a href=\\"https://crmsupport.freshworks.com/support/solutions/articles/50000002503-how-to-find-my-api-key-\\">here</a>. The key is case sensitive."""
     domain_name: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('domain_name') }})
     r"""The Name of your Freshsales domain"""
-    source_type: SourceFreshsalesFreshsales = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
+    SOURCE_TYPE: Final[str] = dataclasses.field(default='freshsales', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     
 

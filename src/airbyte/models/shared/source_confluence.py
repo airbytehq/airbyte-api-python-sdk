@@ -4,10 +4,7 @@ from __future__ import annotations
 import dataclasses
 from airbyte import utils
 from dataclasses_json import Undefined, dataclass_json
-from enum import Enum
-
-class SourceConfluenceConfluence(str, Enum):
-    CONFLUENCE = 'confluence'
+from typing import Final
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
@@ -21,6 +18,6 @@ class SourceConfluence:
     r"""Your Confluence domain name"""
     email: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('email') }})
     r"""Your Confluence login email"""
-    source_type: SourceConfluenceConfluence = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
+    SOURCE_TYPE: Final[str] = dataclasses.field(default='confluence', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     
 

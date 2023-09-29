@@ -4,11 +4,7 @@ from __future__ import annotations
 import dataclasses
 from airbyte import utils
 from dataclasses_json import Undefined, dataclass_json
-from enum import Enum
-from typing import Any
-
-class SourceYoutubeAnalyticsYoutubeAnalytics(str, Enum):
-    YOUTUBE_ANALYTICS = 'youtube-analytics'
+from typing import Any, Final
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
@@ -17,6 +13,6 @@ class SourceYoutubeAnalyticsYoutubeAnalytics(str, Enum):
 class SourceYoutubeAnalytics:
     r"""The values required to configure the source."""
     credentials: dict[str, Any] = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credentials') }})
-    source_type: SourceYoutubeAnalyticsYoutubeAnalytics = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
+    SOURCE_TYPE: Final[str] = dataclasses.field(default='youtube-analytics', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     
 

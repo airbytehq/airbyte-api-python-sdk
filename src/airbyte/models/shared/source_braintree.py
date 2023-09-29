@@ -7,7 +7,7 @@ from airbyte import utils
 from dataclasses_json import Undefined, dataclass_json
 from datetime import datetime
 from enum import Enum
-from typing import Optional
+from typing import Final, Optional
 
 class SourceBraintreeEnvironment(str, Enum):
     r"""Environment specifies where the data will come from."""
@@ -15,9 +15,6 @@ class SourceBraintreeEnvironment(str, Enum):
     SANDBOX = 'Sandbox'
     QA = 'Qa'
     PRODUCTION = 'Production'
-
-class SourceBraintreeBraintree(str, Enum):
-    BRAINTREE = 'braintree'
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
@@ -33,7 +30,7 @@ class SourceBraintree:
     r"""Braintree Private Key. See the <a href=\\"https://docs.airbyte.com/integrations/sources/braintree\\">docs</a> for more information on how to obtain this key."""
     public_key: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('public_key') }})
     r"""Braintree Public Key. See the <a href=\\"https://docs.airbyte.com/integrations/sources/braintree\\">docs</a> for more information on how to obtain this key."""
-    source_type: SourceBraintreeBraintree = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
+    SOURCE_TYPE: Final[str] = dataclasses.field(default='braintree', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     start_date: Optional[datetime] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('start_date'), 'encoder': utils.datetimeisoformat(True), 'decoder': dateutil.parser.isoparse, 'exclude': lambda f: f is None }})
     r"""UTC date and time in the format 2017-01-25T00:00:00Z. Any data before this date will not be replicated."""
     

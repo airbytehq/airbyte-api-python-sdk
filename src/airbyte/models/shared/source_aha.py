@@ -4,10 +4,7 @@ from __future__ import annotations
 import dataclasses
 from airbyte import utils
 from dataclasses_json import Undefined, dataclass_json
-from enum import Enum
-
-class SourceAhaAha(str, Enum):
-    AHA = 'aha'
+from typing import Final
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
@@ -17,8 +14,8 @@ class SourceAha:
     r"""The values required to configure the source."""
     api_key: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('api_key') }})
     r"""API Key"""
-    source_type: SourceAhaAha = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     url: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('url') }})
     r"""URL"""
+    SOURCE_TYPE: Final[str] = dataclasses.field(default='aha', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     
 

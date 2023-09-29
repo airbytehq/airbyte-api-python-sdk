@@ -4,11 +4,7 @@ from __future__ import annotations
 import dataclasses
 from airbyte import utils
 from dataclasses_json import Undefined, dataclass_json
-from enum import Enum
-from typing import Optional
-
-class DestinationTimeplusTimeplus(str, Enum):
-    TIMEPLUS = 'timeplus'
+from typing import Final, Optional
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
@@ -18,8 +14,8 @@ class DestinationTimeplus:
     r"""The values required to configure the destination."""
     apikey: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('apikey') }})
     r"""Personal API key"""
-    destination_type: DestinationTimeplusTimeplus = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('destinationType') }})
-    endpoint: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('endpoint'), 'exclude': lambda f: f is None }})
+    DESTINATION_TYPE: Final[str] = dataclasses.field(default='timeplus', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('destinationType') }})
+    endpoint: Optional[str] = dataclasses.field(default='https://us.timeplus.cloud/<workspace_id>', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('endpoint'), 'exclude': lambda f: f is None }})
     r"""Timeplus workspace endpoint"""
     
 

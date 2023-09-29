@@ -5,10 +5,7 @@ import dataclasses
 from airbyte import utils
 from dataclasses_json import Undefined, dataclass_json
 from enum import Enum
-from typing import Optional
-
-class DestinationDynamodbDynamodb(str, Enum):
-    DYNAMODB = 'dynamodb'
+from typing import Final, Optional
 
 class DestinationDynamodbDynamoDBRegion(str, Enum):
     r"""The region of the DynamoDB."""
@@ -47,14 +44,14 @@ class DestinationDynamodb:
     r"""The values required to configure the destination."""
     access_key_id: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('access_key_id') }})
     r"""The access key id to access the DynamoDB. Airbyte requires Read and Write permissions to the DynamoDB."""
-    destination_type: DestinationDynamodbDynamodb = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('destinationType') }})
     dynamodb_table_name_prefix: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('dynamodb_table_name_prefix') }})
     r"""The prefix to use when naming DynamoDB tables."""
     secret_access_key: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('secret_access_key') }})
     r"""The corresponding secret to the access key id."""
-    dynamodb_endpoint: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('dynamodb_endpoint'), 'exclude': lambda f: f is None }})
+    DESTINATION_TYPE: Final[str] = dataclasses.field(default='dynamodb', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('destinationType') }})
+    dynamodb_endpoint: Optional[str] = dataclasses.field(default='', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('dynamodb_endpoint'), 'exclude': lambda f: f is None }})
     r"""This is your DynamoDB endpoint url.(if you are working with AWS DynamoDB, just leave empty)."""
-    dynamodb_region: Optional[DestinationDynamodbDynamoDBRegion] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('dynamodb_region'), 'exclude': lambda f: f is None }})
+    dynamodb_region: Optional[DestinationDynamodbDynamoDBRegion] = dataclasses.field(default=DestinationDynamodbDynamoDBRegion.UNKNOWN, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('dynamodb_region'), 'exclude': lambda f: f is None }})
     r"""The region of the DynamoDB."""
     
 

@@ -4,10 +4,7 @@ from __future__ import annotations
 import dataclasses
 from airbyte import utils
 from dataclasses_json import Undefined, dataclass_json
-from enum import Enum
-
-class SourceRssRss(str, Enum):
-    RSS = 'rss'
+from typing import Final
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
@@ -15,8 +12,8 @@ class SourceRssRss(str, Enum):
 @dataclasses.dataclass
 class SourceRss:
     r"""The values required to configure the source."""
-    source_type: SourceRssRss = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     url: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('url') }})
     r"""RSS Feed URL"""
+    SOURCE_TYPE: Final[str] = dataclasses.field(default='rss', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     
 

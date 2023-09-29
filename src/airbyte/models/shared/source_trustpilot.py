@@ -6,11 +6,7 @@ import dateutil.parser
 from airbyte import utils
 from dataclasses_json import Undefined, dataclass_json
 from datetime import datetime
-from enum import Enum
-from typing import Optional, Union
-
-class SourceTrustpilotAuthorizationMethodAPIKeyAuthType(str, Enum):
-    APIKEY = 'apikey'
+from typing import Final, Optional, Union
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
@@ -20,12 +16,9 @@ class SourceTrustpilotAuthorizationMethodAPIKey:
     r"""The API key authentication method gives you access to only the streams which are part of the Public API. When you want to get streams available via the Consumer API (e.g. the private reviews) you need to use authentication method OAuth 2.0."""
     client_id: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('client_id') }})
     r"""The API key of the Trustpilot API application."""
-    auth_type: Optional[SourceTrustpilotAuthorizationMethodAPIKeyAuthType] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_type'), 'exclude': lambda f: f is None }})
+    AUTH_TYPE: Final[Optional[str]] = dataclasses.field(default='apikey', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_type'), 'exclude': lambda f: f is None }})
     
 
-
-class SourceTrustpilotAuthorizationMethodOAuth20AuthType(str, Enum):
-    OAUTH2_0 = 'oauth2.0'
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
@@ -42,7 +35,7 @@ class SourceTrustpilotAuthorizationMethodOAuth20:
     r"""The key to refresh the expired access_token."""
     token_expiry_date: datetime = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('token_expiry_date'), 'encoder': utils.datetimeisoformat(False), 'decoder': dateutil.parser.isoparse }})
     r"""The date-time when the access token should be refreshed."""
-    auth_type: Optional[SourceTrustpilotAuthorizationMethodOAuth20AuthType] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_type'), 'exclude': lambda f: f is None }})
+    AUTH_TYPE: Final[Optional[str]] = dataclasses.field(default='oauth2.0', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_type'), 'exclude': lambda f: f is None }})
     
 
 
@@ -51,9 +44,6 @@ class SourceTrustpilotAuthorizationMethodOAuth20:
 @dataclasses.dataclass
 class SourceTrustpilotAuthorizationMethod:
     pass
-
-class SourceTrustpilotTrustpilot(str, Enum):
-    TRUSTPILOT = 'trustpilot'
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
@@ -64,8 +54,8 @@ class SourceTrustpilot:
     business_units: list[str] = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('business_units') }})
     r"""The names of business units which shall be synchronized. Some streams e.g. configured_business_units or private_reviews use this configuration."""
     credentials: Union[SourceTrustpilotAuthorizationMethodOAuth20, SourceTrustpilotAuthorizationMethodAPIKey] = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credentials') }})
-    source_type: SourceTrustpilotTrustpilot = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     start_date: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('start_date') }})
     r"""For streams with sync. method incremental the start date time to be used"""
+    SOURCE_TYPE: Final[str] = dataclasses.field(default='trustpilot', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     
 

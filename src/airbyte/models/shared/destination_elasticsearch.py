@@ -4,8 +4,7 @@ from __future__ import annotations
 import dataclasses
 from airbyte import utils
 from dataclasses_json import Undefined, dataclass_json
-from enum import Enum
-from typing import Optional, Union
+from typing import Final, Optional, Union
 
 
 
@@ -13,23 +12,20 @@ from typing import Optional, Union
 class DestinationElasticsearchAuthenticationMethod:
     pass
 
-class DestinationElasticsearchElasticsearch(str, Enum):
-    ELASTICSEARCH = 'elasticsearch'
-
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
 
 @dataclasses.dataclass
 class DestinationElasticsearch:
     r"""The values required to configure the destination."""
-    destination_type: DestinationElasticsearchElasticsearch = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('destinationType') }})
     endpoint: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('endpoint') }})
     r"""The full url of the Elasticsearch server"""
-    authentication_method: Optional[Union[]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('authenticationMethod'), 'exclude': lambda f: f is None }})
+    DESTINATION_TYPE: Final[str] = dataclasses.field(default='elasticsearch', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('destinationType') }})
+    authentication_method: Optional[Union[]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('authenticationMethod') }})
     r"""The type of authentication to be used"""
     ca_certificate: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('ca_certificate'), 'exclude': lambda f: f is None }})
     r"""CA certificate"""
-    upsert: Optional[bool] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('upsert'), 'exclude': lambda f: f is None }})
+    upsert: Optional[bool] = dataclasses.field(default=True, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('upsert'), 'exclude': lambda f: f is None }})
     r"""If a primary key identifier is defined in the source, an upsert will be performed using the primary key value as the elasticsearch doc id. Does not support composite primary keys."""
     
 

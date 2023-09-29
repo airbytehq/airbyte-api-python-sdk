@@ -4,17 +4,13 @@ from __future__ import annotations
 import dataclasses
 from airbyte import utils
 from dataclasses_json import Undefined, dataclass_json
-from enum import Enum
-from typing import Optional, Union
+from typing import Final, Optional, Union
 
 
 
 @dataclasses.dataclass
 class SourceSftpAuthenticationWildcard:
     pass
-
-class SourceSftpSftp(str, Enum):
-    SFTP = 'sftp'
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
@@ -24,18 +20,18 @@ class SourceSftp:
     r"""The values required to configure the source."""
     host: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('host') }})
     r"""The server host address"""
-    source_type: SourceSftpSftp = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     user: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('user') }})
     r"""The server user"""
-    credentials: Optional[Union[]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credentials'), 'exclude': lambda f: f is None }})
+    SOURCE_TYPE: Final[str] = dataclasses.field(default='sftp', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
+    credentials: Optional[Union[]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credentials') }})
     r"""The server authentication method"""
-    file_pattern: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('file_pattern'), 'exclude': lambda f: f is None }})
+    file_pattern: Optional[str] = dataclasses.field(default='', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('file_pattern'), 'exclude': lambda f: f is None }})
     r"""The regular expression to specify files for sync in a chosen Folder Path"""
-    file_types: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('file_types'), 'exclude': lambda f: f is None }})
+    file_types: Optional[str] = dataclasses.field(default='csv,json', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('file_types'), 'exclude': lambda f: f is None }})
     r"""Coma separated file types. Currently only 'csv' and 'json' types are supported."""
-    folder_path: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('folder_path'), 'exclude': lambda f: f is None }})
+    folder_path: Optional[str] = dataclasses.field(default='', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('folder_path'), 'exclude': lambda f: f is None }})
     r"""The directory to search files for sync"""
-    port: Optional[int] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('port'), 'exclude': lambda f: f is None }})
+    port: Optional[int] = dataclasses.field(default=22, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('port'), 'exclude': lambda f: f is None }})
     r"""The server port"""
     
 

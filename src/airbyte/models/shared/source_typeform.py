@@ -6,11 +6,7 @@ import dateutil.parser
 from airbyte import utils
 from dataclasses_json import Undefined, dataclass_json
 from datetime import datetime
-from enum import Enum
-from typing import Optional, Union
-
-class SourceTypeformAuthorizationMethodPrivateTokenAuthType(str, Enum):
-    ACCESS_TOKEN = 'access_token'
+from typing import Final, Optional, Union
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
@@ -19,12 +15,9 @@ class SourceTypeformAuthorizationMethodPrivateTokenAuthType(str, Enum):
 class SourceTypeformAuthorizationMethodPrivateToken:
     access_token: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('access_token') }})
     r"""Log into your Typeform account and then generate a personal Access Token."""
-    auth_type: Optional[SourceTypeformAuthorizationMethodPrivateTokenAuthType] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_type'), 'exclude': lambda f: f is None }})
+    AUTH_TYPE: Final[Optional[str]] = dataclasses.field(default='access_token', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_type'), 'exclude': lambda f: f is None }})
     
 
-
-class SourceTypeformAuthorizationMethodOAuth20AuthType(str, Enum):
-    OAUTH2_0 = 'oauth2.0'
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
@@ -41,7 +34,7 @@ class SourceTypeformAuthorizationMethodOAuth20:
     r"""The key to refresh the expired access_token."""
     token_expiry_date: datetime = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('token_expiry_date'), 'encoder': utils.datetimeisoformat(False), 'decoder': dateutil.parser.isoparse }})
     r"""The date-time when the access token should be refreshed."""
-    auth_type: Optional[SourceTypeformAuthorizationMethodOAuth20AuthType] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_type'), 'exclude': lambda f: f is None }})
+    AUTH_TYPE: Final[Optional[str]] = dataclasses.field(default='oauth2.0', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_type'), 'exclude': lambda f: f is None }})
     
 
 
@@ -51,9 +44,6 @@ class SourceTypeformAuthorizationMethodOAuth20:
 class SourceTypeformAuthorizationMethod:
     pass
 
-class SourceTypeformTypeform(str, Enum):
-    TYPEFORM = 'typeform'
-
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
 
@@ -61,7 +51,7 @@ class SourceTypeformTypeform(str, Enum):
 class SourceTypeform:
     r"""The values required to configure the source."""
     credentials: Union[SourceTypeformAuthorizationMethodOAuth20, SourceTypeformAuthorizationMethodPrivateToken] = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credentials') }})
-    source_type: SourceTypeformTypeform = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
+    SOURCE_TYPE: Final[str] = dataclasses.field(default='typeform', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     form_ids: Optional[list[str]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('form_ids'), 'exclude': lambda f: f is None }})
     r"""When this parameter is set, the connector will replicate data only from the input forms. Otherwise, all forms in your Typeform account will be replicated. You can find form IDs in your form URLs. For example, in the URL \\"https://mysite.typeform.com/to/u6nXL7\\" the form_id is u6nXL7. You can find form URLs on Share panel"""
     start_date: Optional[datetime] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('start_date'), 'encoder': utils.datetimeisoformat(True), 'decoder': dateutil.parser.isoparse, 'exclude': lambda f: f is None }})

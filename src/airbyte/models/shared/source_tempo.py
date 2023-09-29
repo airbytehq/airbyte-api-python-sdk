@@ -4,10 +4,7 @@ from __future__ import annotations
 import dataclasses
 from airbyte import utils
 from dataclasses_json import Undefined, dataclass_json
-from enum import Enum
-
-class SourceTempoTempo(str, Enum):
-    TEMPO = 'tempo'
+from typing import Final
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
@@ -17,6 +14,6 @@ class SourceTempo:
     r"""The values required to configure the source."""
     api_token: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('api_token') }})
     r"""Tempo API Token. Go to Tempo>Settings, scroll down to Data Access and select API integration."""
-    source_type: SourceTempoTempo = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
+    SOURCE_TYPE: Final[str] = dataclasses.field(default='tempo', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     
 

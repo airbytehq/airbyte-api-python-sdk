@@ -10,11 +10,11 @@ from typing import Optional
 
 @dataclasses.dataclass
 class ListConnectionsRequest:
-    include_deleted: Optional[bool] = dataclasses.field(default=None, metadata={'query_param': { 'field_name': 'includeDeleted', 'style': 'form', 'explode': True }})
+    include_deleted: Optional[bool] = dataclasses.field(default=False, metadata={'query_param': { 'field_name': 'includeDeleted', 'style': 'form', 'explode': True }})
     r"""Include deleted connections in the returned results."""
-    limit: Optional[int] = dataclasses.field(default=None, metadata={'query_param': { 'field_name': 'limit', 'style': 'form', 'explode': True }})
+    limit: Optional[int] = dataclasses.field(default=20, metadata={'query_param': { 'field_name': 'limit', 'style': 'form', 'explode': True }})
     r"""Set the limit on the number of Connections returned. The default is 20."""
-    offset: Optional[int] = dataclasses.field(default=None, metadata={'query_param': { 'field_name': 'offset', 'style': 'form', 'explode': True }})
+    offset: Optional[int] = dataclasses.field(default=0, metadata={'query_param': { 'field_name': 'offset', 'style': 'form', 'explode': True }})
     r"""Set the offset to start at when returning Connections. The default is 0"""
     workspace_ids: Optional[list[str]] = dataclasses.field(default=None, metadata={'query_param': { 'field_name': 'workspaceIds', 'style': 'form', 'explode': True }})
     r"""The UUIDs of the workspaces you wish to list connections for. Empty list will retrieve all allowed workspaces."""

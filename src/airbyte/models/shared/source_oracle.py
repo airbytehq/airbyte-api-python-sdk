@@ -4,8 +4,7 @@ from __future__ import annotations
 import dataclasses
 from airbyte import utils
 from dataclasses_json import Undefined, dataclass_json
-from enum import Enum
-from typing import Optional, Union
+from typing import Final, Optional, Union
 
 
 
@@ -19,9 +18,6 @@ class SourceOracleConnectBy:
 class SourceOracleEncryption:
     pass
 
-class SourceOracleOracle(str, Enum):
-    ORACLE = 'oracle'
-
 
 
 @dataclasses.dataclass
@@ -34,20 +30,20 @@ class SourceOracleSSHTunnelMethod:
 @dataclasses.dataclass
 class SourceOracle:
     r"""The values required to configure the source."""
-    encryption: Union[] = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('encryption') }})
+    encryption: Optional[Union[]] = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('encryption') }})
     r"""The encryption method with is used when communicating with the database."""
     host: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('host') }})
     r"""Hostname of the database."""
-    source_type: SourceOracleOracle = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     username: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('username') }})
     r"""The username which is used to access the database."""
-    connection_data: Optional[Union[]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('connection_data'), 'exclude': lambda f: f is None }})
+    SOURCE_TYPE: Final[str] = dataclasses.field(default='oracle', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
+    connection_data: Optional[Union[]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('connection_data') }})
     r"""Connect data that will be used for DB connection"""
     jdbc_url_params: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('jdbc_url_params'), 'exclude': lambda f: f is None }})
     r"""Additional properties to pass to the JDBC URL string when connecting to the database formatted as 'key=value' pairs separated by the symbol '&'. (example: key1=value1&key2=value2&key3=value3)."""
     password: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('password'), 'exclude': lambda f: f is None }})
     r"""The password associated with the username."""
-    port: Optional[int] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('port'), 'exclude': lambda f: f is None }})
+    port: Optional[int] = dataclasses.field(default=1521, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('port'), 'exclude': lambda f: f is None }})
     r"""Port of the database.
     Oracle Corporations recommends the following port numbers:
     1521 - Default listening port for client connections to the listener. 
@@ -55,7 +51,7 @@ class SourceOracle:
     """
     schemas: Optional[list[str]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('schemas'), 'exclude': lambda f: f is None }})
     r"""The list of schemas to sync from. Defaults to user. Case sensitive."""
-    tunnel_method: Optional[Union[]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('tunnel_method'), 'exclude': lambda f: f is None }})
+    tunnel_method: Optional[Union[]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('tunnel_method') }})
     r"""Whether to initiate an SSH tunnel before connecting to the database, and if so, which kind of authentication to use."""
     
 

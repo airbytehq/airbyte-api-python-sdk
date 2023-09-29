@@ -4,10 +4,7 @@ from __future__ import annotations
 import dataclasses
 from airbyte import utils
 from dataclasses_json import Undefined, dataclass_json
-from enum import Enum
-
-class SourceConfigcatConfigcat(str, Enum):
-    CONFIGCAT = 'configcat'
+from typing import Final
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
@@ -17,8 +14,8 @@ class SourceConfigcat:
     r"""The values required to configure the source."""
     password: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('password') }})
     r"""Basic auth password. See <a href=\\"https://api.configcat.com/docs/#section/Authentication\\">here</a>."""
-    source_type: SourceConfigcatConfigcat = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     username: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('username') }})
     r"""Basic auth user name. See <a href=\\"https://api.configcat.com/docs/#section/Authentication\\">here</a>."""
+    SOURCE_TYPE: Final[str] = dataclasses.field(default='configcat', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     
 

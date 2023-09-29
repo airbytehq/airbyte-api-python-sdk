@@ -6,20 +6,13 @@ from airbyte import utils
 from dataclasses_json import Undefined, dataclass_json
 from datetime import date
 from enum import Enum
-from typing import Optional
+from typing import Final, Optional
 
 class SourceNytimesPeriodUsedForMostPopularStreams(int, Enum):
     r"""Period of time (in days)"""
     ONE = 1
     SEVEN = 7
     THIRTY = 30
-
-class SourceNytimesShareTypeUsedForMostPopularSharedStream(str, Enum):
-    r"""Share Type"""
-    FACEBOOK = 'facebook'
-
-class SourceNytimesNytimes(str, Enum):
-    NYTIMES = 'nytimes'
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
@@ -31,12 +24,12 @@ class SourceNytimes:
     r"""API Key"""
     period: SourceNytimesPeriodUsedForMostPopularStreams = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('period') }})
     r"""Period of time (in days)"""
-    source_type: SourceNytimesNytimes = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     start_date: date = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('start_date'), 'encoder': utils.dateisoformat(False), 'decoder': utils.datefromisoformat }})
     r"""Start date to begin the article retrieval (format YYYY-MM)"""
+    SOURCE_TYPE: Final[str] = dataclasses.field(default='nytimes', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     end_date: Optional[date] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('end_date'), 'encoder': utils.dateisoformat(True), 'decoder': utils.datefromisoformat, 'exclude': lambda f: f is None }})
     r"""End date to stop the article retrieval (format YYYY-MM)"""
-    share_type: Optional[SourceNytimesShareTypeUsedForMostPopularSharedStream] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('share_type'), 'exclude': lambda f: f is None }})
+    SHARE_TYPE: Final[Optional[str]] = dataclasses.field(default='facebook', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('share_type'), 'exclude': lambda f: f is None }})
     r"""Share Type"""
     
 

@@ -33,30 +33,30 @@ req = shared.ConnectionCreateRequest(
         streams=[
             shared.StreamConfiguration(
                 cursor_field=[
-                    'ipsum',
+                    'violet',
                 ],
-                name='Virgil Mante',
+                name='at BMW',
                 primary_key=[
                     [
-                        'praesentium',
+                        'pfft',
                     ],
                 ],
-                sync_mode=shared.ConnectionSyncModeEnum.INCREMENTAL_APPEND,
+                sync_mode=shared.ConnectionSyncModeEnum.FULL_REFRESH_APPEND,
             ),
         ],
     ),
-    data_residency=shared.GeographyEnum.EU,
-    destination_id='1e91e450-ad2a-4bd4-8269-802d502a94bb',
-    name='Lucia Kemmer',
+    data_residency=shared.GeographyEnum.AUTO,
+    destination_id='083eafc8-5591-44e0-a570-f6dd427d83a5',
+    name='mesh interactive',
     namespace_definition=shared.NamespaceDefinitionEnum.DESTINATION,
     namespace_format='${SOURCE_NAMESPACE}',
-    non_breaking_schema_updates_behavior=shared.NonBreakingSchemaUpdatesBehaviorEnum.DISABLE_CONNECTION,
-    prefix='provident',
+    non_breaking_schema_updates_behavior=shared.NonBreakingSchemaUpdatesBehaviorEnum.IGNORE,
+    prefix='port Idaho',
     schedule=shared.ConnectionSchedule(
-        cron_expression='necessitatibus',
-        schedule_type=shared.ScheduleTypeEnum.CRON,
+        cron_expression='productivity',
+        schedule_type=shared.ScheduleTypeEnum.MANUAL,
     ),
-    source_id='a3efa77d-fb14-4cd6-aae3-95efb9ba88f3',
+    source_id='b3fd2fd3-07d6-40cb-97ea-6dfc635b80f2',
     status=shared.ConnectionStatusEnum.INACTIVE,
 )
 
@@ -98,7 +98,7 @@ s = airbyte.Airbyte(
 )
 
 req = operations.DeleteConnectionRequest(
-    connection_id='nisi',
+    connection_id='Tesla Administrator Southeast',
 )
 
 res = s.connections.delete_connection(req)
@@ -139,7 +139,7 @@ s = airbyte.Airbyte(
 )
 
 req = operations.GetConnectionRequest(
-    connection_id='vel',
+    connection_id='silver rigid Southeast',
 )
 
 res = s.connections.get_connection(req)
@@ -181,10 +181,10 @@ s = airbyte.Airbyte(
 
 req = operations.ListConnectionsRequest(
     include_deleted=False,
-    limit=618809,
-    offset=606393,
+    limit=726733,
+    offset=907316,
     workspace_ids=[
-        '7074ba44-69b6-4e21-8195-9890afa563e2',
+        'd8f6e532-a55f-479c-ab30-682edc879612',
     ],
 )
 
@@ -231,31 +231,31 @@ req = operations.PatchConnectionRequest(
             streams=[
                 shared.StreamConfiguration(
                     cursor_field=[
-                        'nemo',
+                        'Northeast',
                     ],
-                    name='Vera Wyman',
+                    name='Folk Wooden Officer',
                     primary_key=[
                         [
-                            'maxime',
+                            'Clothing',
                         ],
                     ],
                     sync_mode=shared.ConnectionSyncModeEnum.INCREMENTAL_APPEND,
                 ),
             ],
         ),
-        data_residency=shared.GeographyEnumNoDefault.EU,
-        name='Alice Bradtke',
-        namespace_definition=shared.NamespaceDefinitionEnumNoDefault.CUSTOM_FORMAT,
+        data_residency=shared.GeographyEnumNoDefault.US,
+        name='Customizable Dinar Bike',
+        namespace_definition=shared.NamespaceDefinitionEnumNoDefault.SOURCE,
         namespace_format='${SOURCE_NAMESPACE}',
-        non_breaking_schema_updates_behavior=shared.NonBreakingSchemaUpdatesBehaviorEnumNoDefault.DISABLE_CONNECTION,
-        prefix='repellat',
+        non_breaking_schema_updates_behavior=shared.NonBreakingSchemaUpdatesBehaviorEnumNoDefault.PROPAGATE_COLUMNS,
+        prefix='override',
         schedule=shared.ConnectionSchedule(
-            cron_expression='quibusdam',
+            cron_expression='Serbia Indio microchip',
             schedule_type=shared.ScheduleTypeEnum.MANUAL,
         ),
-        status=shared.ConnectionStatusEnum.DEPRECATED,
+        status=shared.ConnectionStatusEnum.ACTIVE,
     ),
-    connection_id='pariatur',
+    connection_id='Lead shyly port',
 )
 
 res = s.connections.patch_connection(req)

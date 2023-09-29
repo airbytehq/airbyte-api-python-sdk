@@ -5,6 +5,6 @@ This connector utilises <a href="https://fastavro.readthedocs.io/en/latest/" tar
 
 ## Fields
 
-| Field                                                                                             | Type                                                                                              | Required                                                                                          | Description                                                                                       |
-| ------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- |
-| `filetype`                                                                                        | [Optional[SourceS3FileFormatAvroFiletype]](../../models/shared/sources3fileformatavrofiletype.md) | :heavy_minus_sign:                                                                                | N/A                                                                                               |
+| Field              | Type               | Required           | Description        |
+| ------------------ | ------------------ | ------------------ | ------------------ |
+| `filetype`         | *Optional[str]*    | :heavy_minus_sign: | N/A                |

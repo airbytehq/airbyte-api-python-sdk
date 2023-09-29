@@ -5,16 +5,13 @@ import dataclasses
 from airbyte import utils
 from dataclasses_json import Undefined, dataclass_json
 from enum import Enum
-from typing import Optional, Union
+from typing import Final, Optional, Union
 
 
 
 @dataclasses.dataclass
 class DestinationGcsAuthentication:
     pass
-
-class DestinationGcsGcs(str, Enum):
-    GCS = 'gcs'
 
 
 
@@ -66,16 +63,16 @@ class DestinationGCSGCSBucketRegion(str, Enum):
 @dataclasses.dataclass
 class DestinationGcs:
     r"""The values required to configure the destination."""
-    credential: Union[] = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credential') }})
+    credential: Optional[Union[]] = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credential') }})
     r"""An HMAC key is a type of credential and can be associated with a service account or a user account in Cloud Storage. Read more <a href=\\"https://cloud.google.com/storage/docs/authentication/hmackeys\\">here</a>."""
-    destination_type: DestinationGcsGcs = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('destinationType') }})
-    format: Union[] = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('format') }})
+    format: Optional[Union[]] = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('format') }})
     r"""Output data format. One of the following formats must be selected - <a href=\\"https://cloud.google.com/bigquery/docs/loading-data-cloud-storage-avro#advantages_of_avro\\">AVRO</a> format, <a href=\\"https://cloud.google.com/bigquery/docs/loading-data-cloud-storage-parquet#parquet_schemas\\">PARQUET</a> format, <a href=\\"https://cloud.google.com/bigquery/docs/loading-data-cloud-storage-csv#loading_csv_data_into_a_table\\">CSV</a> format, or <a href=\\"https://cloud.google.com/bigquery/docs/loading-data-cloud-storage-json#loading_json_data_into_a_new_table\\">JSONL</a> format."""
     gcs_bucket_name: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('gcs_bucket_name') }})
     r"""You can find the bucket name in the App Engine Admin console Application Settings page, under the label Google Cloud Storage Bucket. Read more <a href=\\"https://cloud.google.com/storage/docs/naming-buckets\\">here</a>."""
     gcs_bucket_path: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('gcs_bucket_path') }})
     r"""GCS Bucket Path string Subdirectory under the above bucket to sync the data into."""
-    gcs_bucket_region: Optional[DestinationGCSGCSBucketRegion] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('gcs_bucket_region'), 'exclude': lambda f: f is None }})
+    DESTINATION_TYPE: Final[str] = dataclasses.field(default='gcs', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('destinationType') }})
+    gcs_bucket_region: Optional[DestinationGCSGCSBucketRegion] = dataclasses.field(default=DestinationGCSGCSBucketRegion.US, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('gcs_bucket_region'), 'exclude': lambda f: f is None }})
     r"""Select a Region of the GCS Bucket. Read more <a href=\\"https://cloud.google.com/storage/docs/locations\\">here</a>."""
     
 

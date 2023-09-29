@@ -21,9 +21,9 @@ class ListJobsRequest:
     r"""The start date to filter by"""
     job_type: Optional[shared_jobtypeenum.JobTypeEnum] = dataclasses.field(default=None, metadata={'query_param': { 'field_name': 'jobType', 'style': 'form', 'explode': True }})
     r"""Filter the Jobs by jobType."""
-    limit: Optional[int] = dataclasses.field(default=None, metadata={'query_param': { 'field_name': 'limit', 'style': 'form', 'explode': True }})
+    limit: Optional[int] = dataclasses.field(default=20, metadata={'query_param': { 'field_name': 'limit', 'style': 'form', 'explode': True }})
     r"""Set the limit on the number of Jobs returned. The default is 20 Jobs."""
-    offset: Optional[int] = dataclasses.field(default=None, metadata={'query_param': { 'field_name': 'offset', 'style': 'form', 'explode': True }})
+    offset: Optional[int] = dataclasses.field(default=0, metadata={'query_param': { 'field_name': 'offset', 'style': 'form', 'explode': True }})
     r"""Set the offset to start at when returning Jobs. The default is 0."""
     order_by: Optional[str] = dataclasses.field(default=None, metadata={'query_param': { 'field_name': 'orderBy', 'style': 'form', 'explode': True }})
     r"""The field and method to use for ordering. Currently allowed are createdAt and updatedAt."""

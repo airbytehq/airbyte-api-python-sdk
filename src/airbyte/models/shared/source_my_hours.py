@@ -4,11 +4,7 @@ from __future__ import annotations
 import dataclasses
 from airbyte import utils
 from dataclasses_json import Undefined, dataclass_json
-from enum import Enum
-from typing import Optional
-
-class SourceMyHoursMyHours(str, Enum):
-    MY_HOURS = 'my-hours'
+from typing import Final, Optional
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
@@ -20,10 +16,10 @@ class SourceMyHours:
     r"""Your My Hours username"""
     password: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('password') }})
     r"""The password associated to the username"""
-    source_type: SourceMyHoursMyHours = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     start_date: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('start_date') }})
     r"""Start date for collecting time logs"""
-    logs_batch_size: Optional[int] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('logs_batch_size'), 'exclude': lambda f: f is None }})
+    SOURCE_TYPE: Final[str] = dataclasses.field(default='my-hours', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
+    logs_batch_size: Optional[int] = dataclasses.field(default=30, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('logs_batch_size'), 'exclude': lambda f: f is None }})
     r"""Pagination size used for retrieving logs in days"""
     
 

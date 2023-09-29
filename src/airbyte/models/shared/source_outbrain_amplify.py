@@ -5,10 +5,7 @@ import dataclasses
 from airbyte import utils
 from dataclasses_json import Undefined, dataclass_json
 from enum import Enum
-from typing import Optional, Union
-
-class SourceOutbrainAmplifyAuthenticationMethodUsernamePasswordBothUsernameAndPasswordIsRequiredForAuthenticationRequest(str, Enum):
-    USERNAME_PASSWORD = 'username_password'
+from typing import Final, Optional, Union
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
@@ -18,14 +15,11 @@ class SourceOutbrainAmplifyAuthenticationMethodUsernamePassword:
     r"""Credentials for making authenticated requests requires either username/password or access_token."""
     password: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('password') }})
     r"""Add Password for authentication."""
-    type: SourceOutbrainAmplifyAuthenticationMethodUsernamePasswordBothUsernameAndPasswordIsRequiredForAuthenticationRequest = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('type') }})
     username: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('username') }})
     r"""Add Username for authentication."""
+    TYPE: Final[str] = dataclasses.field(default='username_password', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('type') }})
     
 
-
-class SourceOutbrainAmplifyAuthenticationMethodAccessTokenAccessTokenIsRequiredForAuthenticationRequests(str, Enum):
-    ACCESS_TOKEN = 'access_token'
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
@@ -35,7 +29,7 @@ class SourceOutbrainAmplifyAuthenticationMethodAccessToken:
     r"""Credentials for making authenticated requests requires either username/password or access_token."""
     access_token: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('access_token') }})
     r"""Access Token for making authenticated requests."""
-    type: SourceOutbrainAmplifyAuthenticationMethodAccessTokenAccessTokenIsRequiredForAuthenticationRequests = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('type') }})
+    TYPE: Final[str] = dataclasses.field(default='access_token', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('type') }})
     
 
 
@@ -57,9 +51,6 @@ class SourceOutbrainAmplifyGranularityForPeriodicReports(str, Enum):
     WEEKLY = 'weekly'
     MONTHLY = 'monthly'
 
-class SourceOutbrainAmplifyOutbrainAmplify(str, Enum):
-    OUTBRAIN_AMPLIFY = 'outbrain-amplify'
-
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
 
@@ -68,9 +59,9 @@ class SourceOutbrainAmplify:
     r"""The values required to configure the source."""
     credentials: Union[SourceOutbrainAmplifyAuthenticationMethodAccessToken, SourceOutbrainAmplifyAuthenticationMethodUsernamePassword] = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credentials') }})
     r"""Credentials for making authenticated requests requires either username/password or access_token."""
-    source_type: SourceOutbrainAmplifyOutbrainAmplify = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     start_date: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('start_date') }})
     r"""Date in the format YYYY-MM-DD eg. 2017-01-25. Any data before this date will not be replicated."""
+    SOURCE_TYPE: Final[str] = dataclasses.field(default='outbrain-amplify', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     end_date: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('end_date'), 'exclude': lambda f: f is None }})
     r"""Date in the format YYYY-MM-DD."""
     geo_location_breakdown: Optional[SourceOutbrainAmplifyGranularityForGeoLocationRegion] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('geo_location_breakdown'), 'exclude': lambda f: f is None }})

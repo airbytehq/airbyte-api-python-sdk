@@ -4,10 +4,7 @@ from __future__ import annotations
 import dataclasses
 from airbyte import utils
 from dataclasses_json import Undefined, dataclass_json
-from enum import Enum
-
-class SourceSmailySmaily(str, Enum):
-    SMAILY = 'smaily'
+from typing import Final
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
@@ -21,6 +18,6 @@ class SourceSmaily:
     r"""API Subdomain. See https://smaily.com/help/api/general/create-api-user/"""
     api_username: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('api_username') }})
     r"""API user username. See https://smaily.com/help/api/general/create-api-user/"""
-    source_type: SourceSmailySmaily = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
+    SOURCE_TYPE: Final[str] = dataclasses.field(default='smaily', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     
 

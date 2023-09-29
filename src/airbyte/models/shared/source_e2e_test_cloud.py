@@ -4,8 +4,7 @@ from __future__ import annotations
 import dataclasses
 from airbyte import utils
 from dataclasses_json import Undefined, dataclass_json
-from enum import Enum
-from typing import Optional, Union
+from typing import Final, Optional, Union
 
 
 
@@ -13,26 +12,20 @@ from typing import Optional, Union
 class SourceE2eTestCloudMockCatalog:
     pass
 
-class SourceE2eTestCloudE2eTestCloud(str, Enum):
-    E2E_TEST_CLOUD = 'e2e-test-cloud'
-
-class SourceE2eTestCloudType(str, Enum):
-    CONTINUOUS_FEED = 'CONTINUOUS_FEED'
-
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
 
 @dataclasses.dataclass
 class SourceE2eTestCloud:
     r"""The values required to configure the source."""
-    mock_catalog: Union[] = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('mock_catalog') }})
-    source_type: SourceE2eTestCloudE2eTestCloud = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
-    max_messages: Optional[int] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('max_messages'), 'exclude': lambda f: f is None }})
+    mock_catalog: Optional[Union[]] = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('mock_catalog') }})
+    SOURCE_TYPE: Final[str] = dataclasses.field(default='e2e-test-cloud', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
+    max_messages: Optional[int] = dataclasses.field(default=100, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('max_messages'), 'exclude': lambda f: f is None }})
     r"""Number of records to emit per stream. Min 1. Max 100 billion."""
-    message_interval_ms: Optional[int] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('message_interval_ms'), 'exclude': lambda f: f is None }})
+    message_interval_ms: Optional[int] = dataclasses.field(default=0, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('message_interval_ms'), 'exclude': lambda f: f is None }})
     r"""Interval between messages in ms. Min 0 ms. Max 60000 ms (1 minute)."""
-    seed: Optional[int] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('seed'), 'exclude': lambda f: f is None }})
+    seed: Optional[int] = dataclasses.field(default=0, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('seed'), 'exclude': lambda f: f is None }})
     r"""When the seed is unspecified, the current time millis will be used as the seed. Range: [0, 1000000]."""
-    type: Optional[SourceE2eTestCloudType] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('type'), 'exclude': lambda f: f is None }})
+    TYPE: Final[Optional[str]] = dataclasses.field(default='CONTINUOUS_FEED', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('type'), 'exclude': lambda f: f is None }})
     
 

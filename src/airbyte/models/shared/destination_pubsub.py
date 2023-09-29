@@ -4,11 +4,7 @@ from __future__ import annotations
 import dataclasses
 from airbyte import utils
 from dataclasses_json import Undefined, dataclass_json
-from enum import Enum
-from typing import Optional
-
-class DestinationPubsubPubsub(str, Enum):
-    PUBSUB = 'pubsub'
+from typing import Final, Optional
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
@@ -18,20 +14,20 @@ class DestinationPubsub:
     r"""The values required to configure the destination."""
     credentials_json: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credentials_json') }})
     r"""The contents of the JSON service account key. Check out the <a href=\\"https://docs.airbyte.com/integrations/destinations/pubsub\\">docs</a> if you need help generating this key."""
-    destination_type: DestinationPubsubPubsub = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('destinationType') }})
     project_id: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('project_id') }})
     r"""The GCP project ID for the project containing the target PubSub."""
     topic_id: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('topic_id') }})
     r"""The PubSub topic ID in the given GCP project ID."""
-    batching_delay_threshold: Optional[int] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('batching_delay_threshold'), 'exclude': lambda f: f is None }})
+    DESTINATION_TYPE: Final[str] = dataclasses.field(default='pubsub', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('destinationType') }})
+    batching_delay_threshold: Optional[int] = dataclasses.field(default=1, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('batching_delay_threshold'), 'exclude': lambda f: f is None }})
     r"""Number of ms before the buffer is flushed"""
-    batching_element_count_threshold: Optional[int] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('batching_element_count_threshold'), 'exclude': lambda f: f is None }})
+    batching_element_count_threshold: Optional[int] = dataclasses.field(default=1, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('batching_element_count_threshold'), 'exclude': lambda f: f is None }})
     r"""Number of messages before the buffer is flushed"""
-    batching_enabled: Optional[bool] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('batching_enabled'), 'exclude': lambda f: f is None }})
+    batching_enabled: Optional[bool] = dataclasses.field(default=False, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('batching_enabled'), 'exclude': lambda f: f is None }})
     r"""If TRUE messages will be buffered instead of sending them one by one"""
-    batching_request_bytes_threshold: Optional[int] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('batching_request_bytes_threshold'), 'exclude': lambda f: f is None }})
+    batching_request_bytes_threshold: Optional[int] = dataclasses.field(default=1, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('batching_request_bytes_threshold'), 'exclude': lambda f: f is None }})
     r"""Number of bytes before the buffer is flushed"""
-    ordering_enabled: Optional[bool] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('ordering_enabled'), 'exclude': lambda f: f is None }})
+    ordering_enabled: Optional[bool] = dataclasses.field(default=False, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('ordering_enabled'), 'exclude': lambda f: f is None }})
     r"""If TRUE PubSub publisher will have <a href=\\"https://cloud.google.com/pubsub/docs/ordering\\">message ordering</a> enabled. Every message will have an ordering key of stream"""
     
 

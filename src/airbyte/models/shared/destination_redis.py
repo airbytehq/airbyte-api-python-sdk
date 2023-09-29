@@ -4,15 +4,7 @@ from __future__ import annotations
 import dataclasses
 from airbyte import utils
 from dataclasses_json import Undefined, dataclass_json
-from enum import Enum
-from typing import Optional, Union
-
-class DestinationRedisCacheType(str, Enum):
-    r"""Redis cache type to store data in."""
-    HASH = 'hash'
-
-class DestinationRedisRedis(str, Enum):
-    REDIS = 'redis'
+from typing import Final, Optional, Union
 
 
 
@@ -32,24 +24,24 @@ class DestinationRedisSSHTunnelMethod:
 @dataclasses.dataclass
 class DestinationRedis:
     r"""The values required to configure the destination."""
-    destination_type: DestinationRedisRedis = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('destinationType') }})
     host: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('host') }})
     r"""Redis host to connect to."""
     username: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('username') }})
     r"""Username associated with Redis."""
-    cache_type: Optional[DestinationRedisCacheType] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('cache_type'), 'exclude': lambda f: f is None }})
+    DESTINATION_TYPE: Final[str] = dataclasses.field(default='redis', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('destinationType') }})
+    CACHE_TYPE: Final[Optional[str]] = dataclasses.field(default='hash', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('cache_type'), 'exclude': lambda f: f is None }})
     r"""Redis cache type to store data in."""
     password: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('password'), 'exclude': lambda f: f is None }})
     r"""Password associated with Redis."""
-    port: Optional[int] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('port'), 'exclude': lambda f: f is None }})
+    port: Optional[int] = dataclasses.field(default=6379, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('port'), 'exclude': lambda f: f is None }})
     r"""Port of Redis."""
-    ssl: Optional[bool] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('ssl'), 'exclude': lambda f: f is None }})
+    ssl: Optional[bool] = dataclasses.field(default=False, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('ssl'), 'exclude': lambda f: f is None }})
     r"""Indicates whether SSL encryption protocol will be used to connect to Redis. It is recommended to use SSL connection if possible."""
-    ssl_mode: Optional[Union[]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('ssl_mode'), 'exclude': lambda f: f is None }})
+    ssl_mode: Optional[Union[]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('ssl_mode') }})
     r"""SSL connection modes.
       <li><b>verify-full</b> - This is the most secure mode. Always require encryption and verifies the identity of the source database server
     """
-    tunnel_method: Optional[Union[]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('tunnel_method'), 'exclude': lambda f: f is None }})
+    tunnel_method: Optional[Union[]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('tunnel_method') }})
     r"""Whether to initiate an SSH tunnel before connecting to the database, and if so, which kind of authentication to use."""
     
 

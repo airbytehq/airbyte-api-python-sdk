@@ -5,11 +5,7 @@ import dataclasses
 from airbyte import utils
 from dataclasses_json import Undefined, dataclass_json
 from datetime import date
-from enum import Enum
-from typing import Optional, Union
-
-class SourceGoogleAnalyticsDataAPICredentialsServiceAccountKeyAuthenticationAuthType(str, Enum):
-    SERVICE = 'Service'
+from typing import Final, Optional, Union
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
@@ -19,12 +15,9 @@ class SourceGoogleAnalyticsDataAPICredentialsServiceAccountKeyAuthentication:
     r"""Credentials for the service"""
     credentials_json: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credentials_json') }})
     r"""The JSON key linked to the service account used for authorization. For steps on obtaining this key, refer to <a href=\\"https://docs.airbyte.com/integrations/sources/google-analytics-data-api/#setup-guide\\">the setup guide</a>."""
-    auth_type: Optional[SourceGoogleAnalyticsDataAPICredentialsServiceAccountKeyAuthenticationAuthType] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_type'), 'exclude': lambda f: f is None }})
+    AUTH_TYPE: Final[Optional[str]] = dataclasses.field(default='Service', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_type'), 'exclude': lambda f: f is None }})
     
 
-
-class SourceGoogleAnalyticsDataAPICredentialsAuthenticateViaGoogleOauthAuthType(str, Enum):
-    CLIENT = 'Client'
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
@@ -40,7 +33,7 @@ class SourceGoogleAnalyticsDataAPICredentialsAuthenticateViaGoogleOauth:
     r"""The token for obtaining a new access token."""
     access_token: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('access_token'), 'exclude': lambda f: f is None }})
     r"""Access Token for making authenticated requests."""
-    auth_type: Optional[SourceGoogleAnalyticsDataAPICredentialsAuthenticateViaGoogleOauthAuthType] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_type'), 'exclude': lambda f: f is None }})
+    AUTH_TYPE: Final[Optional[str]] = dataclasses.field(default='Client', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_type'), 'exclude': lambda f: f is None }})
     
 
 
@@ -49,9 +42,6 @@ class SourceGoogleAnalyticsDataAPICredentialsAuthenticateViaGoogleOauth:
 @dataclasses.dataclass
 class SourceGoogleAnalyticsDataAPICredentials:
     pass
-
-class SourceGoogleAnalyticsDataAPIGoogleAnalyticsDataAPI(str, Enum):
-    GOOGLE_ANALYTICS_DATA_API = 'google-analytics-data-api'
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
@@ -63,12 +53,12 @@ class SourceGoogleAnalyticsDataAPI:
     r"""The start date from which to replicate report data in the format YYYY-MM-DD. Data generated before this date will not be included in the report. Not applied to custom Cohort reports."""
     property_id: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('property_id') }})
     r"""The Property ID is a unique number assigned to each property in Google Analytics, found in your GA4 property URL. This ID allows the connector to track the specific events associated with your property. Refer to the <a href='https://developers.google.com/analytics/devguides/reporting/data/v1/property-id#what_is_my_property_id'>Google Analytics documentation</a> to locate your property ID."""
-    source_type: SourceGoogleAnalyticsDataAPIGoogleAnalyticsDataAPI = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
+    SOURCE_TYPE: Final[str] = dataclasses.field(default='google-analytics-data-api', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     credentials: Optional[Union[SourceGoogleAnalyticsDataAPICredentialsAuthenticateViaGoogleOauth, SourceGoogleAnalyticsDataAPICredentialsServiceAccountKeyAuthentication]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credentials'), 'exclude': lambda f: f is None }})
     r"""Credentials for the service"""
     custom_reports: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('custom_reports'), 'exclude': lambda f: f is None }})
     r"""A JSON array describing the custom reports you want to sync from Google Analytics. See <a href=\\"https://docs.airbyte.com/integrations/sources/google-analytics-data-api/#custom-reports\\">the documentation</a> for more information about the exact format you can use to fill out this field."""
-    window_in_days: Optional[int] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('window_in_days'), 'exclude': lambda f: f is None }})
+    window_in_days: Optional[int] = dataclasses.field(default=1, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('window_in_days'), 'exclude': lambda f: f is None }})
     r"""The interval in days for each data request made to the Google Analytics API. A larger value speeds up data sync, but increases the chance of data sampling, which may result in inaccuracies. We recommend a value of 1 to minimize sampling, unless speed is an absolute priority over accuracy. Acceptable values range from 1 to 364. Does not apply to custom Cohort reports. More information is available in <a href=\\"https://docs.airbyte.com/integrations/sources/google-analytics-data-api\\">the documentation</a>."""
     
 

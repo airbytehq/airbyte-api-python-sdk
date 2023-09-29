@@ -31,8 +31,8 @@ s = airbyte.Airbyte(
 
 req = shared.DestinationCreateRequest(
     configuration=[],
-    name='Kathryn Lang',
-    workspace_id='1cddc692-601f-4b57-ab0d-5f0d30c5fbb2',
+    name='Grocery Maldives',
+    workspace_id='60ad46e8-e62f-4620-8e5b-a5019ef3492f',
 )
 
 res = s.destinations.create_destination(req)
@@ -73,7 +73,7 @@ s = airbyte.Airbyte(
 )
 
 req = operations.DeleteDestinationRequest(
-    destination_id='quis',
+    destination_id='downturn Ergonomic',
 )
 
 res = s.destinations.delete_destination(req)
@@ -114,7 +114,7 @@ s = airbyte.Airbyte(
 )
 
 req = operations.GetDestinationRequest(
-    destination_id='totam',
+    destination_id='Configuration Beauty',
 )
 
 res = s.destinations.get_destination(req)
@@ -156,10 +156,10 @@ s = airbyte.Airbyte(
 
 req = operations.ListDestinationsRequest(
     include_deleted=False,
-    limit=489549,
-    offset=54338,
+    limit=772794,
+    offset=125999,
     workspace_ids=[
-        '53202c73-d5fe-49b9-8c28-909b3fe49a8d',
+        '980b9a83-1720-4244-9cd2-6fb4455227f2',
     ],
 )
 
@@ -203,9 +203,9 @@ s = airbyte.Airbyte(
 req = operations.PatchDestinationRequest(
     destination_patch_request=shared.DestinationPatchRequest(
         configuration=[],
-        name='Loren Renner',
+        name='unethically',
     ),
-    destination_id='quos',
+    destination_id='hoodwink Toys pixel',
 )
 
 res = s.destinations.patch_destination(req)
@@ -248,9 +248,9 @@ s = airbyte.Airbyte(
 req = operations.PutDestinationRequest(
     destination_put_request=shared.DestinationPutRequest(
         configuration=[],
-        name='Florence Ebert',
+        name='West',
     ),
-    destination_id='ipsum',
+    destination_id='Fermium except',
 )
 
 res = s.destinations.put_destination(req)

@@ -4,11 +4,7 @@ from __future__ import annotations
 import dataclasses
 from airbyte import utils
 from dataclasses_json import Undefined, dataclass_json
-from enum import Enum
-from typing import Optional, Union
-
-class DestinationSnowflakeAuthorizationMethodUsernameAndPasswordAuthType(str, Enum):
-    USERNAME_AND_PASSWORD = 'Username and Password'
+from typing import Final, Optional, Union
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
@@ -17,12 +13,9 @@ class DestinationSnowflakeAuthorizationMethodUsernameAndPasswordAuthType(str, En
 class DestinationSnowflakeAuthorizationMethodUsernameAndPassword:
     password: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('password') }})
     r"""Enter the password associated with the username."""
-    auth_type: Optional[DestinationSnowflakeAuthorizationMethodUsernameAndPasswordAuthType] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_type'), 'exclude': lambda f: f is None }})
+    AUTH_TYPE: Final[Optional[str]] = dataclasses.field(default='Username and Password', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_type'), 'exclude': lambda f: f is None }})
     
 
-
-class DestinationSnowflakeAuthorizationMethodKeyPairAuthenticationAuthType(str, Enum):
-    KEY_PAIR_AUTHENTICATION = 'Key Pair Authentication'
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
@@ -31,14 +24,11 @@ class DestinationSnowflakeAuthorizationMethodKeyPairAuthenticationAuthType(str, 
 class DestinationSnowflakeAuthorizationMethodKeyPairAuthentication:
     private_key: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('private_key') }})
     r"""RSA Private key to use for Snowflake connection. See the <a href=\\"https://docs.airbyte.com/integrations/destinations/snowflake\\">docs</a> for more information on how to obtain this key."""
-    auth_type: Optional[DestinationSnowflakeAuthorizationMethodKeyPairAuthenticationAuthType] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_type'), 'exclude': lambda f: f is None }})
+    AUTH_TYPE: Final[Optional[str]] = dataclasses.field(default='Key Pair Authentication', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_type'), 'exclude': lambda f: f is None }})
     private_key_password: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('private_key_password'), 'exclude': lambda f: f is None }})
     r"""Passphrase for private key"""
     
 
-
-class DestinationSnowflakeAuthorizationMethodOAuth20AuthType(str, Enum):
-    O_AUTH2_0 = 'OAuth2.0'
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
@@ -49,7 +39,7 @@ class DestinationSnowflakeAuthorizationMethodOAuth20:
     r"""Enter you application's Access Token"""
     refresh_token: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('refresh_token') }})
     r"""Enter your application's Refresh Token"""
-    auth_type: Optional[DestinationSnowflakeAuthorizationMethodOAuth20AuthType] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_type'), 'exclude': lambda f: f is None }})
+    AUTH_TYPE: Final[Optional[str]] = dataclasses.field(default='OAuth2.0', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_type'), 'exclude': lambda f: f is None }})
     client_id: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('client_id'), 'exclude': lambda f: f is None }})
     r"""Enter your application's Client ID"""
     client_secret: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('client_secret'), 'exclude': lambda f: f is None }})
@@ -63,9 +53,6 @@ class DestinationSnowflakeAuthorizationMethodOAuth20:
 class DestinationSnowflakeAuthorizationMethod:
     pass
 
-class DestinationSnowflakeSnowflake(str, Enum):
-    SNOWFLAKE = 'snowflake'
-
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
 
@@ -74,7 +61,6 @@ class DestinationSnowflake:
     r"""The values required to configure the destination."""
     database: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('database') }})
     r"""Enter the name of the <a href=\\"https://docs.snowflake.com/en/sql-reference/ddl-database.html#database-schema-share-ddl\\">database</a> you want to sync data into"""
-    destination_type: DestinationSnowflakeSnowflake = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('destinationType') }})
     host: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('host') }})
     r"""Enter your Snowflake account's <a href=\\"https://docs.snowflake.com/en/user-guide/admin-account-identifier.html#using-an-account-locator-as-an-identifier\\">locator</a> (in the format <account_locator>.<region>.<cloud>.snowflakecomputing.com)"""
     role: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('role') }})
@@ -85,6 +71,7 @@ class DestinationSnowflake:
     r"""Enter the name of the user you want to use to access the database"""
     warehouse: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('warehouse') }})
     r"""Enter the name of the <a href=\\"https://docs.snowflake.com/en/user-guide/warehouses-overview.html#overview-of-warehouses\\">warehouse</a> that you want to sync data into"""
+    DESTINATION_TYPE: Final[str] = dataclasses.field(default='snowflake', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('destinationType') }})
     credentials: Optional[Union[DestinationSnowflakeAuthorizationMethodOAuth20, DestinationSnowflakeAuthorizationMethodKeyPairAuthentication, DestinationSnowflakeAuthorizationMethodUsernameAndPassword]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credentials'), 'exclude': lambda f: f is None }})
     jdbc_url_params: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('jdbc_url_params'), 'exclude': lambda f: f is None }})
     r"""Enter the additional properties to pass to the JDBC URL string when connecting to the database (formatted as key=value pairs separated by the symbol &). Example: key1=value1&key2=value2&key3=value3"""

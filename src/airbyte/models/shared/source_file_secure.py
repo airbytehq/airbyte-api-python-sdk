@@ -5,7 +5,7 @@ import dataclasses
 from airbyte import utils
 from dataclasses_json import Undefined, dataclass_json
 from enum import Enum
-from typing import Optional, Union
+from typing import Final, Optional, Union
 
 class SourceFileSecureFileFormat(str, Enum):
     r"""The Format of the file which should be replicated (Warning: some formats may be experimental, please refer to the docs)."""
@@ -24,9 +24,6 @@ class SourceFileSecureFileFormat(str, Enum):
 class SourceFileSecureStorageProvider:
     pass
 
-class SourceFileSecureFileSecure(str, Enum):
-    FILE_SECURE = 'file-secure'
-
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
 
@@ -35,12 +32,12 @@ class SourceFileSecure:
     r"""The values required to configure the source."""
     dataset_name: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('dataset_name') }})
     r"""The Name of the final table to replicate this file into (should include letters, numbers dash and underscores only)."""
-    provider: Union[] = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('provider') }})
+    provider: Optional[Union[]] = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('provider') }})
     r"""The storage Provider or Location of the file(s) which should be replicated."""
-    source_type: SourceFileSecureFileSecure = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     url: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('url') }})
     r"""The URL path to access the file which should be replicated."""
-    format: Optional[SourceFileSecureFileFormat] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('format'), 'exclude': lambda f: f is None }})
+    SOURCE_TYPE: Final[str] = dataclasses.field(default='file-secure', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
+    format: Optional[SourceFileSecureFileFormat] = dataclasses.field(default=SourceFileSecureFileFormat.CSV, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('format'), 'exclude': lambda f: f is None }})
     r"""The Format of the file which should be replicated (Warning: some formats may be experimental, please refer to the docs)."""
     reader_options: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('reader_options'), 'exclude': lambda f: f is None }})
     r"""This should be a string in JSON format. It depends on the chosen file format to provide additional options and tune its behavior."""

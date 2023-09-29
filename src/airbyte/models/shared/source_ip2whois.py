@@ -4,11 +4,7 @@ from __future__ import annotations
 import dataclasses
 from airbyte import utils
 from dataclasses_json import Undefined, dataclass_json
-from enum import Enum
-from typing import Optional
-
-class SourceIp2whoisIp2whois(str, Enum):
-    IP2WHOIS = 'ip2whois'
+from typing import Final, Optional
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
@@ -20,6 +16,6 @@ class SourceIp2whois:
     r"""Your API Key. See <a href=\\"https://www.ip2whois.com/developers-api\\">here</a>."""
     domain: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('domain'), 'exclude': lambda f: f is None }})
     r"""Domain name. See <a href=\\"https://www.ip2whois.com/developers-api\\">here</a>."""
-    source_type: Optional[SourceIp2whoisIp2whois] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType'), 'exclude': lambda f: f is None }})
+    SOURCE_TYPE: Final[Optional[str]] = dataclasses.field(default='ip2whois', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType'), 'exclude': lambda f: f is None }})
     
 

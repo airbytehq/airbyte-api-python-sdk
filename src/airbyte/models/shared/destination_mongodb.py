@@ -4,11 +4,7 @@ from __future__ import annotations
 import dataclasses
 from airbyte import utils
 from dataclasses_json import Undefined, dataclass_json
-from enum import Enum
-from typing import Optional, Union
-
-class DestinationMongodbAuthorizationTypeLoginPasswordAuthorization(str, Enum):
-    LOGIN_PASSWORD = 'login/password'
+from typing import Final, Optional, Union
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
@@ -16,16 +12,13 @@ class DestinationMongodbAuthorizationTypeLoginPasswordAuthorization(str, Enum):
 @dataclasses.dataclass
 class DestinationMongodbAuthorizationTypeLoginPassword:
     r"""Login/Password."""
-    authorization: DestinationMongodbAuthorizationTypeLoginPasswordAuthorization = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('authorization') }})
     password: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('password') }})
     r"""Password associated with the username."""
     username: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('username') }})
     r"""Username to use to access the database."""
+    AUTHORIZATION: Final[str] = dataclasses.field(default='login/password', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('authorization') }})
     
 
-
-class DestinationMongodbAuthorizationTypeNoneAuthorization(str, Enum):
-    NONE = 'none'
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
@@ -33,7 +26,7 @@ class DestinationMongodbAuthorizationTypeNoneAuthorization(str, Enum):
 @dataclasses.dataclass
 class DestinationMongodbAuthorizationTypeNone:
     r"""None."""
-    authorization: DestinationMongodbAuthorizationTypeNoneAuthorization = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('authorization') }})
+    AUTHORIZATION: Final[str] = dataclasses.field(default='none', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('authorization') }})
     
 
 
@@ -42,9 +35,6 @@ class DestinationMongodbAuthorizationTypeNone:
 @dataclasses.dataclass
 class DestinationMongodbAuthorizationType:
     pass
-
-class DestinationMongodbMongodb(str, Enum):
-    MONGODB = 'mongodb'
 
 
 
@@ -68,10 +58,10 @@ class DestinationMongodb:
     r"""Authorization type."""
     database: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('database') }})
     r"""Name of the database."""
-    destination_type: DestinationMongodbMongodb = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('destinationType') }})
-    instance_type: Optional[Union[]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('instance_type'), 'exclude': lambda f: f is None }})
+    DESTINATION_TYPE: Final[str] = dataclasses.field(default='mongodb', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('destinationType') }})
+    instance_type: Optional[Union[]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('instance_type') }})
     r"""MongoDb instance to connect to. For MongoDB Atlas and Replica Set TLS connection is used by default."""
-    tunnel_method: Optional[Union[]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('tunnel_method'), 'exclude': lambda f: f is None }})
+    tunnel_method: Optional[Union[]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('tunnel_method') }})
     r"""Whether to initiate an SSH tunnel before connecting to the database, and if so, which kind of authentication to use."""
     
 

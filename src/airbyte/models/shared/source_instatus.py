@@ -4,10 +4,7 @@ from __future__ import annotations
 import dataclasses
 from airbyte import utils
 from dataclasses_json import Undefined, dataclass_json
-from enum import Enum
-
-class SourceInstatusInstatus(str, Enum):
-    INSTATUS = 'instatus'
+from typing import Final
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
@@ -17,6 +14,6 @@ class SourceInstatus:
     r"""The values required to configure the source."""
     api_key: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('api_key') }})
     r"""Instatus REST API key"""
-    source_type: SourceInstatusInstatus = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
+    SOURCE_TYPE: Final[str] = dataclasses.field(default='instatus', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     
 

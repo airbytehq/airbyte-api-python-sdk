@@ -5,15 +5,12 @@ import dataclasses
 from airbyte import utils
 from dataclasses_json import Undefined, dataclass_json
 from enum import Enum
-from typing import Optional
+from typing import Final, Optional
 
 class SourceCoinmarketcapDataType(str, Enum):
     r"""/latest: Latest market ticker quotes and averages for cryptocurrencies and exchanges. /historical: Intervals of historic market data like OHLCV data or data for use in charting libraries. See <a href=\\"https://coinmarketcap.com/api/documentation/v1/#section/Endpoint-Overview\\">here</a>."""
     LATEST = 'latest'
     HISTORICAL = 'historical'
-
-class SourceCoinmarketcapCoinmarketcap(str, Enum):
-    COINMARKETCAP = 'coinmarketcap'
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
@@ -25,7 +22,7 @@ class SourceCoinmarketcap:
     r"""Your API Key. See <a href=\\"https://coinmarketcap.com/api/documentation/v1/#section/Authentication\\">here</a>. The token is case sensitive."""
     data_type: SourceCoinmarketcapDataType = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('data_type') }})
     r"""/latest: Latest market ticker quotes and averages for cryptocurrencies and exchanges. /historical: Intervals of historic market data like OHLCV data or data for use in charting libraries. See <a href=\\"https://coinmarketcap.com/api/documentation/v1/#section/Endpoint-Overview\\">here</a>."""
-    source_type: SourceCoinmarketcapCoinmarketcap = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
+    SOURCE_TYPE: Final[str] = dataclasses.field(default='coinmarketcap', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     symbols: Optional[list[str]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('symbols'), 'exclude': lambda f: f is None }})
     r"""Cryptocurrency symbols. (only used for quotes stream)"""
     

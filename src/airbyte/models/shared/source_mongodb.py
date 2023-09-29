@@ -4,17 +4,13 @@ from __future__ import annotations
 import dataclasses
 from airbyte import utils
 from dataclasses_json import Undefined, dataclass_json
-from enum import Enum
-from typing import Optional, Union
+from typing import Final, Optional, Union
 
 
 
 @dataclasses.dataclass
 class SourceMongodbMongoDbInstanceType:
     pass
-
-class SourceMongodbMongodb(str, Enum):
-    MONGODB = 'mongodb'
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
@@ -24,10 +20,10 @@ class SourceMongodb:
     r"""The values required to configure the source."""
     database: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('database') }})
     r"""The database you want to replicate."""
-    source_type: SourceMongodbMongodb = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
-    auth_source: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_source'), 'exclude': lambda f: f is None }})
+    SOURCE_TYPE: Final[str] = dataclasses.field(default='mongodb', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
+    auth_source: Optional[str] = dataclasses.field(default='admin', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_source'), 'exclude': lambda f: f is None }})
     r"""The authentication source where the user information is stored."""
-    instance_type: Optional[Union[]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('instance_type'), 'exclude': lambda f: f is None }})
+    instance_type: Optional[Union[]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('instance_type') }})
     r"""The MongoDb instance to connect to. For MongoDB Atlas and Replica Set TLS connection is used by default."""
     password: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('password'), 'exclude': lambda f: f is None }})
     r"""The password associated with this username."""
