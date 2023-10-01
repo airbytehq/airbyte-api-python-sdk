@@ -7,6 +7,16 @@ from dataclasses_json import Undefined, dataclass_json
 from typing import Final, Optional, Union
 
 
+@dataclass_json(undefined=Undefined.EXCLUDE)
+
+@dataclasses.dataclass
+class SourceAzureBlobStorageInputFormatJSONLinesNewlineDelimitedJSON:
+    r"""Input data format"""
+    FORMAT_TYPE: Final[str] = dataclasses.field(default='JSONL', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('format_type') }})
+    
+
+
+
 
 @dataclasses.dataclass
 class SourceAzureBlobStorageInputFormat:
@@ -24,7 +34,7 @@ class SourceAzureBlobStorage:
     r"""The account's name of the Azure Blob Storage."""
     azure_blob_storage_container_name: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('azure_blob_storage_container_name') }})
     r"""The name of the Azure blob storage container."""
-    format: Optional[Union[]] = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('format') }})
+    format: Union[SourceAzureBlobStorageInputFormatJSONLinesNewlineDelimitedJSON] = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('format') }})
     r"""Input data format"""
     SOURCE_TYPE: Final[str] = dataclasses.field(default='azure-blob-storage', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     azure_blob_storage_blobs_prefix: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('azure_blob_storage_blobs_prefix'), 'exclude': lambda f: f is None }})

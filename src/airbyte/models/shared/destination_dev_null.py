@@ -7,6 +7,16 @@ from dataclasses_json import Undefined, dataclass_json
 from typing import Final, Optional, Union
 
 
+@dataclass_json(undefined=Undefined.EXCLUDE)
+
+@dataclasses.dataclass
+class DestinationDevNullTestDestinationSilent:
+    r"""The type of destination to be used"""
+    TEST_DESTINATION_TYPE: Final[Optional[str]] = dataclasses.field(default='SILENT', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('test_destination_type'), 'exclude': lambda f: f is None }})
+    
+
+
+
 
 @dataclasses.dataclass
 class DestinationDevNullTestDestination:
@@ -18,7 +28,7 @@ class DestinationDevNullTestDestination:
 @dataclasses.dataclass
 class DestinationDevNull:
     r"""The values required to configure the destination."""
-    test_destination: Optional[Union[]] = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('test_destination') }})
+    test_destination: Union[DestinationDevNullTestDestinationSilent] = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('test_destination') }})
     r"""The type of destination to be used"""
     DESTINATION_TYPE: Final[str] = dataclasses.field(default='dev-null', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('destinationType') }})
     

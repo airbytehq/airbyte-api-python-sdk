@@ -7,6 +7,34 @@ from dataclasses_json import Undefined, dataclass_json
 from typing import Final, Optional, Union
 
 
+@dataclass_json(undefined=Undefined.EXCLUDE)
+
+@dataclasses.dataclass
+class SourceE2eTestCloudMockCatalogMultiSchema:
+    r"""A catalog with multiple data streams, each with a different schema."""
+    stream_schemas: Optional[str] = dataclasses.field(default='{ "stream1": { "type": "object", "properties": { "field1": { "type": "string" } } }, "stream2": { "type": "object", "properties": { "field1": { "type": "boolean" } } } }', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('stream_schemas'), 'exclude': lambda f: f is None }})
+    r"""A Json object specifying multiple data streams and their schemas. Each key in this object is one stream name. Each value is the schema for that stream. The schema should be compatible with <a href=\\"https://json-schema.org/draft-07/json-schema-release-notes.html\\">draft-07</a>. See <a href=\\"https://cswr.github.io/JsonSchema/spec/introduction/\\">this doc</a> for examples."""
+    TYPE: Final[Optional[str]] = dataclasses.field(default='MULTI_STREAM', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('type'), 'exclude': lambda f: f is None }})
+    
+
+
+
+@dataclass_json(undefined=Undefined.EXCLUDE)
+
+@dataclasses.dataclass
+class SourceE2eTestCloudMockCatalogSingleSchema:
+    r"""A catalog with one or multiple streams that share the same schema."""
+    stream_duplication: Optional[int] = dataclasses.field(default=1, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('stream_duplication'), 'exclude': lambda f: f is None }})
+    r"""Duplicate the stream for easy load testing. Each stream name will have a number suffix. For example, if the stream name is \\"ds\\", the duplicated streams will be \\"ds_0\\", \\"ds_1\\", etc."""
+    stream_name: Optional[str] = dataclasses.field(default='data_stream', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('stream_name'), 'exclude': lambda f: f is None }})
+    r"""Name of the data stream."""
+    stream_schema: Optional[str] = dataclasses.field(default='{ "type": "object", "properties": { "column1": { "type": "string" } } }', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('stream_schema'), 'exclude': lambda f: f is None }})
+    r"""A Json schema for the stream. The schema should be compatible with <a href=\\"https://json-schema.org/draft-07/json-schema-release-notes.html\\">draft-07</a>. See <a href=\\"https://cswr.github.io/JsonSchema/spec/introduction/\\">this doc</a> for examples."""
+    TYPE: Final[Optional[str]] = dataclasses.field(default='SINGLE_STREAM', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('type'), 'exclude': lambda f: f is None }})
+    
+
+
+
 
 @dataclasses.dataclass
 class SourceE2eTestCloudMockCatalog:
@@ -18,7 +46,7 @@ class SourceE2eTestCloudMockCatalog:
 @dataclasses.dataclass
 class SourceE2eTestCloud:
     r"""The values required to configure the source."""
-    mock_catalog: Optional[Union[]] = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('mock_catalog') }})
+    mock_catalog: Union[SourceE2eTestCloudMockCatalogSingleSchema, SourceE2eTestCloudMockCatalogMultiSchema] = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('mock_catalog') }})
     SOURCE_TYPE: Final[str] = dataclasses.field(default='e2e-test-cloud', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     max_messages: Optional[int] = dataclasses.field(default=100, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('max_messages'), 'exclude': lambda f: f is None }})
     r"""Number of records to emit per stream. Min 1. Max 100 billion."""

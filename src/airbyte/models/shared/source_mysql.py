@@ -7,16 +7,145 @@ from dataclasses_json import Undefined, dataclass_json
 from typing import Final, Optional, Union
 
 
+@dataclass_json(undefined=Undefined.EXCLUDE)
+
+@dataclasses.dataclass
+class SourceMysqlUpdateMethodScanChangesWithUserDefinedCursor:
+    r"""Incrementally detects new inserts and updates using the <a href=\\"https://docs.airbyte.com/understanding-airbyte/connections/incremental-append/#user-defined-cursor\\">cursor column</a> chosen when configuring a connection (e.g. created_at, updated_at)."""
+    METHOD: Final[str] = dataclasses.field(default='STANDARD', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('method') }})
+    
+
+
+
+@dataclass_json(undefined=Undefined.EXCLUDE)
+
+@dataclasses.dataclass
+class SourceMysqlUpdateMethodReadChangesUsingBinaryLogCDC:
+    r"""<i>Recommended</i> - Incrementally reads new inserts, updates, and deletes using the MySQL <a href=\\"https://docs.airbyte.com/integrations/sources/mysql/#change-data-capture-cdc\\">binary log</a>. This must be enabled on your database."""
+    METHOD: Final[str] = dataclasses.field(default='CDC', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('method') }})
+    initial_waiting_seconds: Optional[int] = dataclasses.field(default=300, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('initial_waiting_seconds'), 'exclude': lambda f: f is None }})
+    r"""The amount of time the connector will wait when it launches to determine if there is new data to sync or not. Defaults to 300 seconds. Valid range: 120 seconds to 1200 seconds. Read about <a href=\\"https://docs.airbyte.com/integrations/sources/mysql/#change-data-capture-cdc\\">initial waiting time</a>."""
+    server_time_zone: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('server_time_zone'), 'exclude': lambda f: f is None }})
+    r"""Enter the configured MySQL server timezone. This should only be done if the configured timezone in your MySQL instance does not conform to IANNA standard."""
+    
+
+
+
 
 @dataclasses.dataclass
 class SourceMysqlUpdateMethod:
     pass
 
 
+@dataclass_json(undefined=Undefined.EXCLUDE)
+
+@dataclasses.dataclass
+class SourceMysqlSSLModesVerifyIdentity:
+    r"""Always connect with SSL. Verify both CA and Hostname."""
+    ca_certificate: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('ca_certificate') }})
+    r"""CA certificate"""
+    MODE: Final[str] = dataclasses.field(default='verify_identity', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('mode') }})
+    client_certificate: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('client_certificate'), 'exclude': lambda f: f is None }})
+    r"""Client certificate (this is not a required field, but if you want to use it, you will need to add the <b>Client key</b> as well)"""
+    client_key: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('client_key'), 'exclude': lambda f: f is None }})
+    r"""Client key (this is not a required field, but if you want to use it, you will need to add the <b>Client certificate</b> as well)"""
+    client_key_password: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('client_key_password'), 'exclude': lambda f: f is None }})
+    r"""Password for keystorage. This field is optional. If you do not add it - the password will be generated automatically."""
+    
+
+
+
+@dataclass_json(undefined=Undefined.EXCLUDE)
+
+@dataclasses.dataclass
+class SourceMysqlSSLModesVerifyCA:
+    r"""Always connect with SSL. Verifies CA, but allows connection even if Hostname does not match."""
+    ca_certificate: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('ca_certificate') }})
+    r"""CA certificate"""
+    MODE: Final[str] = dataclasses.field(default='verify_ca', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('mode') }})
+    client_certificate: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('client_certificate'), 'exclude': lambda f: f is None }})
+    r"""Client certificate (this is not a required field, but if you want to use it, you will need to add the <b>Client key</b> as well)"""
+    client_key: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('client_key'), 'exclude': lambda f: f is None }})
+    r"""Client key (this is not a required field, but if you want to use it, you will need to add the <b>Client certificate</b> as well)"""
+    client_key_password: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('client_key_password'), 'exclude': lambda f: f is None }})
+    r"""Password for keystorage. This field is optional. If you do not add it - the password will be generated automatically."""
+    
+
+
+
+@dataclass_json(undefined=Undefined.EXCLUDE)
+
+@dataclasses.dataclass
+class SourceMysqlSSLModesRequired:
+    r"""Always connect with SSL. If the MySQL server doesn’t support SSL, the connection will not be established. Certificate Authority (CA) and Hostname are not verified."""
+    MODE: Final[str] = dataclasses.field(default='required', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('mode') }})
+    
+
+
+
+@dataclass_json(undefined=Undefined.EXCLUDE)
+
+@dataclasses.dataclass
+class SourceMysqlSSLModesPreferred:
+    r"""Automatically attempt SSL connection. If the MySQL server does not support SSL, continue with a regular connection."""
+    MODE: Final[str] = dataclasses.field(default='preferred', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('mode') }})
+    
+
+
+
 
 @dataclasses.dataclass
 class SourceMysqlSSLModes:
     pass
+
+
+@dataclass_json(undefined=Undefined.EXCLUDE)
+
+@dataclasses.dataclass
+class SourceMysqlSSHTunnelMethodPasswordAuthentication:
+    r"""Whether to initiate an SSH tunnel before connecting to the database, and if so, which kind of authentication to use."""
+    tunnel_host: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('tunnel_host') }})
+    r"""Hostname of the jump server host that allows inbound ssh tunnel."""
+    tunnel_user: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('tunnel_user') }})
+    r"""OS-level username for logging into the jump server host"""
+    tunnel_user_password: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('tunnel_user_password') }})
+    r"""OS-level password for logging into the jump server host"""
+    TUNNEL_METHOD: Final[str] = dataclasses.field(default='SSH_PASSWORD_AUTH', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('tunnel_method') }})
+    r"""Connect through a jump server tunnel host using username and password authentication"""
+    tunnel_port: Optional[int] = dataclasses.field(default=22, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('tunnel_port'), 'exclude': lambda f: f is None }})
+    r"""Port on the proxy/jump server that accepts inbound ssh connections."""
+    
+
+
+
+@dataclass_json(undefined=Undefined.EXCLUDE)
+
+@dataclasses.dataclass
+class SourceMysqlSSHTunnelMethodSSHKeyAuthentication:
+    r"""Whether to initiate an SSH tunnel before connecting to the database, and if so, which kind of authentication to use."""
+    ssh_key: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('ssh_key') }})
+    r"""OS-level user account ssh key credentials in RSA PEM format ( created with ssh-keygen -t rsa -m PEM -f myuser_rsa )"""
+    tunnel_host: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('tunnel_host') }})
+    r"""Hostname of the jump server host that allows inbound ssh tunnel."""
+    tunnel_user: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('tunnel_user') }})
+    r"""OS-level username for logging into the jump server host."""
+    TUNNEL_METHOD: Final[str] = dataclasses.field(default='SSH_KEY_AUTH', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('tunnel_method') }})
+    r"""Connect through a jump server tunnel host using username and ssh key"""
+    tunnel_port: Optional[int] = dataclasses.field(default=22, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('tunnel_port'), 'exclude': lambda f: f is None }})
+    r"""Port on the proxy/jump server that accepts inbound ssh connections."""
+    
+
+
+
+@dataclass_json(undefined=Undefined.EXCLUDE)
+
+@dataclasses.dataclass
+class SourceMysqlSSHTunnelMethodNoTunnel:
+    r"""Whether to initiate an SSH tunnel before connecting to the database, and if so, which kind of authentication to use."""
+    TUNNEL_METHOD: Final[str] = dataclasses.field(default='NO_TUNNEL', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('tunnel_method') }})
+    r"""No ssh tunnel needed to connect to database"""
+    
+
 
 
 
@@ -34,7 +163,7 @@ class SourceMysql:
     r"""The database name."""
     host: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('host') }})
     r"""The host name of the database."""
-    replication_method: Optional[Union[]] = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('replication_method') }})
+    replication_method: Union[SourceMysqlUpdateMethodReadChangesUsingBinaryLogCDC, SourceMysqlUpdateMethodScanChangesWithUserDefinedCursor] = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('replication_method') }})
     r"""Configures how data is extracted from the database."""
     username: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('username') }})
     r"""The username which is used to access the database."""
@@ -45,9 +174,9 @@ class SourceMysql:
     r"""The password associated with the username."""
     port: Optional[int] = dataclasses.field(default=3306, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('port'), 'exclude': lambda f: f is None }})
     r"""The port to connect to."""
-    ssl_mode: Optional[Union[]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('ssl_mode') }})
+    ssl_mode: Optional[Union[SourceMysqlSSLModesPreferred, SourceMysqlSSLModesRequired, SourceMysqlSSLModesVerifyCA, SourceMysqlSSLModesVerifyIdentity]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('ssl_mode'), 'exclude': lambda f: f is None }})
     r"""SSL connection modes. Read more <a href=\\"https://dev.mysql.com/doc/connector-j/8.0/en/connector-j-reference-using-ssl.html\\"> in the docs</a>."""
-    tunnel_method: Optional[Union[]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('tunnel_method') }})
+    tunnel_method: Optional[Union[SourceMysqlSSHTunnelMethodNoTunnel, SourceMysqlSSHTunnelMethodSSHKeyAuthentication, SourceMysqlSSHTunnelMethodPasswordAuthentication]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('tunnel_method'), 'exclude': lambda f: f is None }})
     r"""Whether to initiate an SSH tunnel before connecting to the database, and if so, which kind of authentication to use."""
     
 

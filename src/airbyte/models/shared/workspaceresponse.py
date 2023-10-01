@@ -15,6 +15,6 @@ class WorkspaceResponse:
     r"""Provides details of a single workspace."""
     name: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('name') }})
     workspace_id: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('workspaceId') }})
-    data_residency: Optional[shared_geographyenum.GeographyEnum] = dataclasses.field(default=GeographyEnum.AUTO, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('dataResidency'), 'exclude': lambda f: f is None }})
+    data_residency: Optional[shared_geographyenum.GeographyEnum] = dataclasses.field(default=shared_geographyenum.GeographyEnum.AUTO, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('dataResidency'), 'exclude': lambda f: f is None }})
     
 

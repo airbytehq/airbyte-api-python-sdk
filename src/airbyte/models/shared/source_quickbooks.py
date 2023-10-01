@@ -6,13 +6,13 @@ import dateutil.parser
 from airbyte import utils
 from dataclasses_json import Undefined, dataclass_json
 from datetime import datetime
-from typing import Final, Optional
+from typing import Final, Optional, Union
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
 
 @dataclasses.dataclass
-class SourceQuickbooksOAuth20:
+class SourceQuickbooksAuthorizationMethodOAuth20:
     access_token: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('access_token') }})
     r"""Access token fot making authenticated requests."""
     client_id: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('client_id') }})
@@ -30,12 +30,18 @@ class SourceQuickbooksOAuth20:
 
 
 
+
+@dataclasses.dataclass
+class SourceQuickbooksAuthorizationMethod:
+    pass
+
+
 @dataclass_json(undefined=Undefined.EXCLUDE)
 
 @dataclasses.dataclass
 class SourceQuickbooks:
     r"""The values required to configure the source."""
-    credentials: SourceQuickbooksOAuth20 = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credentials') }})
+    credentials: Union[SourceQuickbooksAuthorizationMethodOAuth20] = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credentials') }})
     start_date: datetime = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('start_date'), 'encoder': utils.datetimeisoformat(False), 'decoder': dateutil.parser.isoparse }})
     r"""The default value to use if no bookmark exists for an endpoint (rfc3339 date string). E.g, 2021-03-20T00:00:00Z. Any data before this date will not be replicated."""
     SOURCE_TYPE: Final[str] = dataclasses.field(default='quickbooks', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})

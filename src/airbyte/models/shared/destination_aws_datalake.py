@@ -41,6 +41,42 @@ class DestinationAwsDatalakeAuthenticationModeIAMRole:
 class DestinationAwsDatalakeAuthenticationMode:
     pass
 
+class DestinationAwsDatalakeOutputFormatWildcardParquetColumnarStorageCompressionCodecOptional(str, Enum):
+    r"""The compression algorithm used to compress data."""
+    UNCOMPRESSED = 'UNCOMPRESSED'
+    SNAPPY = 'SNAPPY'
+    GZIP = 'GZIP'
+    ZSTD = 'ZSTD'
+
+
+@dataclass_json(undefined=Undefined.EXCLUDE)
+
+@dataclasses.dataclass
+class DestinationAwsDatalakeOutputFormatWildcardParquetColumnarStorage:
+    r"""Format of the data output."""
+    compression_codec: Optional[DestinationAwsDatalakeOutputFormatWildcardParquetColumnarStorageCompressionCodecOptional] = dataclasses.field(default=DestinationAwsDatalakeOutputFormatWildcardParquetColumnarStorageCompressionCodecOptional.SNAPPY, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('compression_codec'), 'exclude': lambda f: f is None }})
+    r"""The compression algorithm used to compress data."""
+    FORMAT_TYPE: Final[Optional[str]] = dataclasses.field(default='Parquet', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('format_type'), 'exclude': lambda f: f is None }})
+    
+
+
+class DestinationAwsDatalakeOutputFormatWildcardJSONLinesNewlineDelimitedJSONCompressionCodecOptional(str, Enum):
+    r"""The compression algorithm used to compress data."""
+    UNCOMPRESSED = 'UNCOMPRESSED'
+    GZIP = 'GZIP'
+
+
+@dataclass_json(undefined=Undefined.EXCLUDE)
+
+@dataclasses.dataclass
+class DestinationAwsDatalakeOutputFormatWildcardJSONLinesNewlineDelimitedJSON:
+    r"""Format of the data output."""
+    compression_codec: Optional[DestinationAwsDatalakeOutputFormatWildcardJSONLinesNewlineDelimitedJSONCompressionCodecOptional] = dataclasses.field(default=DestinationAwsDatalakeOutputFormatWildcardJSONLinesNewlineDelimitedJSONCompressionCodecOptional.UNCOMPRESSED, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('compression_codec'), 'exclude': lambda f: f is None }})
+    r"""The compression algorithm used to compress data."""
+    FORMAT_TYPE: Final[Optional[str]] = dataclasses.field(default='JSONL', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('format_type'), 'exclude': lambda f: f is None }})
+    
+
+
 
 
 @dataclasses.dataclass
@@ -103,7 +139,7 @@ class DestinationAwsDatalake:
     r"""target aws account id"""
     bucket_prefix: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('bucket_prefix'), 'exclude': lambda f: f is None }})
     r"""S3 prefix"""
-    format: Optional[Union[]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('format') }})
+    format: Optional[Union[DestinationAwsDatalakeOutputFormatWildcardJSONLinesNewlineDelimitedJSON, DestinationAwsDatalakeOutputFormatWildcardParquetColumnarStorage]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('format'), 'exclude': lambda f: f is None }})
     r"""Format of the data output."""
     glue_catalog_float_as_decimal: Optional[bool] = dataclasses.field(default=False, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('glue_catalog_float_as_decimal'), 'exclude': lambda f: f is None }})
     r"""Cast float/double as decimal(38,18). This can help achieve higher accuracy and represent numbers correctly as received from the source."""

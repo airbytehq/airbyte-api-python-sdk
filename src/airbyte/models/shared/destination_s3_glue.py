@@ -8,6 +8,51 @@ from enum import Enum
 from typing import Final, Optional, Union
 
 
+@dataclass_json(undefined=Undefined.EXCLUDE)
+
+@dataclasses.dataclass
+class DestinationS3GlueOutputFormatJSONLinesNewlineDelimitedJSONCompressionGZIP:
+    r"""Whether the output files should be compressed. If compression is selected, the output filename will have an extra extension (GZIP: \\".jsonl.gz\\")."""
+    COMPRESSION_TYPE: Final[Optional[str]] = dataclasses.field(default='GZIP', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('compression_type'), 'exclude': lambda f: f is None }})
+    
+
+
+
+@dataclass_json(undefined=Undefined.EXCLUDE)
+
+@dataclasses.dataclass
+class DestinationS3GlueOutputFormatJSONLinesNewlineDelimitedJSONCompressionNoCompression:
+    r"""Whether the output files should be compressed. If compression is selected, the output filename will have an extra extension (GZIP: \\".jsonl.gz\\")."""
+    COMPRESSION_TYPE: Final[Optional[str]] = dataclasses.field(default='No Compression', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('compression_type'), 'exclude': lambda f: f is None }})
+    
+
+
+
+
+@dataclasses.dataclass
+class DestinationS3GlueOutputFormatJSONLinesNewlineDelimitedJSONCompression:
+    pass
+
+class DestinationS3GlueOutputFormatJSONLinesNewlineDelimitedJSONFlattening(str, Enum):
+    r"""Whether the input json data should be normalized (flattened) in the output JSON Lines. Please refer to docs for details."""
+    NO_FLATTENING = 'No flattening'
+    ROOT_LEVEL_FLATTENING = 'Root level flattening'
+
+
+@dataclass_json(undefined=Undefined.EXCLUDE)
+
+@dataclasses.dataclass
+class DestinationS3GlueOutputFormatJSONLinesNewlineDelimitedJSON:
+    r"""Format of the data output. See <a href=\\"https://docs.airbyte.com/integrations/destinations/s3/#supported-output-schema\\">here</a> for more details"""
+    compression: Optional[Union[DestinationS3GlueOutputFormatJSONLinesNewlineDelimitedJSONCompressionNoCompression, DestinationS3GlueOutputFormatJSONLinesNewlineDelimitedJSONCompressionGZIP]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('compression'), 'exclude': lambda f: f is None }})
+    r"""Whether the output files should be compressed. If compression is selected, the output filename will have an extra extension (GZIP: \\".jsonl.gz\\")."""
+    flattening: Optional[DestinationS3GlueOutputFormatJSONLinesNewlineDelimitedJSONFlattening] = dataclasses.field(default=DestinationS3GlueOutputFormatJSONLinesNewlineDelimitedJSONFlattening.ROOT_LEVEL_FLATTENING, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('flattening'), 'exclude': lambda f: f is None }})
+    r"""Whether the input json data should be normalized (flattened) in the output JSON Lines. Please refer to docs for details."""
+    FORMAT_TYPE: Final[Optional[str]] = dataclasses.field(default='JSONL', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('format_type'), 'exclude': lambda f: f is None }})
+    
+
+
+
 
 @dataclasses.dataclass
 class DestinationS3GlueOutputFormat:
@@ -53,7 +98,7 @@ class DestinationS3GlueS3BucketRegion(str, Enum):
 @dataclasses.dataclass
 class DestinationS3Glue:
     r"""The values required to configure the destination."""
-    format: Optional[Union[]] = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('format') }})
+    format: Union[DestinationS3GlueOutputFormatJSONLinesNewlineDelimitedJSON] = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('format') }})
     r"""Format of the data output. See <a href=\\"https://docs.airbyte.com/integrations/destinations/s3/#supported-output-schema\\">here</a> for more details"""
     glue_database: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('glue_database') }})
     r"""Name of the glue database for creating the tables, leave blank if no integration"""

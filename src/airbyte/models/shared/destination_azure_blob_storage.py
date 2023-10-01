@@ -4,7 +4,35 @@ from __future__ import annotations
 import dataclasses
 from airbyte import utils
 from dataclasses_json import Undefined, dataclass_json
+from enum import Enum
 from typing import Final, Optional, Union
+
+
+@dataclass_json(undefined=Undefined.EXCLUDE)
+
+@dataclasses.dataclass
+class DestinationAzureBlobStorageOutputFormatJSONLinesNewlineDelimitedJSON:
+    r"""Output data format"""
+    FORMAT_TYPE: Final[str] = dataclasses.field(default='JSONL', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('format_type') }})
+    
+
+
+class DestinationAzureBlobStorageOutputFormatCSVCommaSeparatedValuesNormalizationFlattening(str, Enum):
+    r"""Whether the input json data should be normalized (flattened) in the output CSV. Please refer to docs for details."""
+    NO_FLATTENING = 'No flattening'
+    ROOT_LEVEL_FLATTENING = 'Root level flattening'
+
+
+@dataclass_json(undefined=Undefined.EXCLUDE)
+
+@dataclasses.dataclass
+class DestinationAzureBlobStorageOutputFormatCSVCommaSeparatedValues:
+    r"""Output data format"""
+    FORMAT_TYPE: Final[str] = dataclasses.field(default='CSV', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('format_type') }})
+    flattening: Optional[DestinationAzureBlobStorageOutputFormatCSVCommaSeparatedValuesNormalizationFlattening] = dataclasses.field(default=DestinationAzureBlobStorageOutputFormatCSVCommaSeparatedValuesNormalizationFlattening.NO_FLATTENING, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('flattening'), 'exclude': lambda f: f is None }})
+    r"""Whether the input json data should be normalized (flattened) in the output CSV. Please refer to docs for details."""
+    
+
 
 
 
@@ -22,7 +50,7 @@ class DestinationAzureBlobStorage:
     r"""The Azure blob storage account key."""
     azure_blob_storage_account_name: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('azure_blob_storage_account_name') }})
     r"""The account's name of the Azure Blob Storage."""
-    format: Optional[Union[]] = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('format') }})
+    format: Union[DestinationAzureBlobStorageOutputFormatCSVCommaSeparatedValues, DestinationAzureBlobStorageOutputFormatJSONLinesNewlineDelimitedJSON] = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('format') }})
     r"""Output data format"""
     DESTINATION_TYPE: Final[str] = dataclasses.field(default='azure-blob-storage', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('destinationType') }})
     azure_blob_storage_container_name: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('azure_blob_storage_container_name'), 'exclude': lambda f: f is None }})

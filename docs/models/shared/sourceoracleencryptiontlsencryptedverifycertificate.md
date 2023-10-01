@@ -1,0 +1,11 @@
+# SourceOracleEncryptionTLSEncryptedVerifyCertificate
+
+Verify and use the certificate provided by the server.
+
+
+## Fields
+
+| Field                                                                                                                   | Type                                                                                                                    | Required                                                                                                                | Description                                                                                                             |
+| ----------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------- |
+| `encryption_method`                                                                                                     | *Optional[str]*                                                                                                         | :heavy_minus_sign:                                                                                                      | N/A                                                                                                                     |
+| `ssl_certificate`                                                                                                       | *Optional[str]*                                                                                                         | :heavy_check_mark:                                                                                                      | Privacy Enhanced Mail (PEM) files are concatenated certificate containers frequently used in certificate installations. |
