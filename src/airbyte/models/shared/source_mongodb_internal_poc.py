@@ -4,11 +4,7 @@ from __future__ import annotations
 import dataclasses
 from airbyte import utils
 from dataclasses_json import Undefined, dataclass_json
-from enum import Enum
-from typing import Optional
-
-class SourceMongodbInternalPocMongodbInternalPoc(str, Enum):
-    MONGODB_INTERNAL_POC = 'mongodb-internal-poc'
+from typing import Final, Optional
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
@@ -16,8 +12,8 @@ class SourceMongodbInternalPocMongodbInternalPoc(str, Enum):
 @dataclasses.dataclass
 class SourceMongodbInternalPoc:
     r"""The values required to configure the source."""
-    source_type: SourceMongodbInternalPocMongodbInternalPoc = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
-    auth_source: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_source'), 'exclude': lambda f: f is None }})
+    SOURCE_TYPE: Final[str] = dataclasses.field(default='mongodb-internal-poc', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
+    auth_source: Optional[str] = dataclasses.field(default='admin', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_source'), 'exclude': lambda f: f is None }})
     r"""The authentication source where the user information is stored."""
     connection_string: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('connection_string'), 'exclude': lambda f: f is None }})
     r"""The connection string of the database that you want to replicate.."""

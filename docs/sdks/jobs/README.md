@@ -1,4 +1,5 @@
-# jobs
+# Jobs
+(*jobs*)
 
 ### Available Operations
 
@@ -27,7 +28,7 @@ s = airbyte.Airbyte(
 )
 
 req = operations.CancelJobRequest(
-    job_id=33222,
+    job_id=801771,
 )
 
 res = s.jobs.cancel_job(req)
@@ -68,7 +69,7 @@ s = airbyte.Airbyte(
 )
 
 req = shared.JobCreateRequest(
-    connection_id='ab',
+    connection_id='Seychelles',
     job_type=shared.JobTypeEnum.RESET,
 )
 
@@ -110,7 +111,7 @@ s = airbyte.Airbyte(
 )
 
 req = operations.GetJobRequest(
-    job_id=697429,
+    job_id=131101,
 )
 
 res = s.jobs.get_job(req)
@@ -152,18 +153,18 @@ s = airbyte.Airbyte(
 )
 
 req = operations.ListJobsRequest(
-    connection_id='ipsam',
-    created_at_end=dateutil.parser.isoparse('2022-07-31T16:08:22.625Z'),
-    created_at_start=dateutil.parser.isoparse('2022-11-25T01:41:45.601Z'),
+    connection_id='Account Brand District',
+    created_at_end=dateutil.parser.isoparse('2023-07-31T08:36:30.681Z'),
+    created_at_start=dateutil.parser.isoparse('2023-09-12T08:02:55.258Z'),
     job_type=shared.JobTypeEnum.RESET,
-    limit=365496,
-    offset=975522,
-    order_by='perferendis',
-    status=shared.JobStatusEnum.CANCELLED,
-    updated_at_end=dateutil.parser.isoparse('2022-12-27T17:23:03.738Z'),
-    updated_at_start=dateutil.parser.isoparse('2021-12-02T19:46:35.147Z'),
+    limit=15461,
+    offset=82575,
+    order_by='reserved Chrysler deposit',
+    status=shared.JobStatusEnum.SUCCEEDED,
+    updated_at_end=dateutil.parser.isoparse('2021-02-15T00:19:53.913Z'),
+    updated_at_start=dateutil.parser.isoparse('2022-01-10T07:46:53.710Z'),
     workspace_ids=[
-        'fbb25870-5320-42c7-bd5f-e9b90c28909b',
+        'bc4dea63-2e54-40b9-b441-91e8f146d646',
     ],
 )
 

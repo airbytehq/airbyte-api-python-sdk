@@ -7,7 +7,7 @@ from airbyte import utils
 from dataclasses_json import Undefined, dataclass_json
 from datetime import datetime
 from enum import Enum
-from typing import Optional
+from typing import Final, Optional
 
 class SourceZohoCrmDataCenterLocation(str, Enum):
     r"""Please choose the region of your Data Center location. More info by this <a href=\\"https://www.zoho.com/crm/developer/docs/api/v2/multi-dc.html\\">Link</a>"""
@@ -32,9 +32,6 @@ class SourceZohoCrmEnvironment(str, Enum):
     DEVELOPER = 'Developer'
     SANDBOX = 'Sandbox'
 
-class SourceZohoCrmZohoCrm(str, Enum):
-    ZOHO_CRM = 'zoho-crm'
-
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
 
@@ -47,14 +44,14 @@ class SourceZohoCrm:
     r"""OAuth2.0 Client Secret"""
     dc_region: SourceZohoCrmDataCenterLocation = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('dc_region') }})
     r"""Please choose the region of your Data Center location. More info by this <a href=\\"https://www.zoho.com/crm/developer/docs/api/v2/multi-dc.html\\">Link</a>"""
-    edition: SourceZohoCRMZohoCRMEdition = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('edition') }})
-    r"""Choose your Edition of Zoho CRM to determine API Concurrency Limits"""
     environment: SourceZohoCrmEnvironment = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('environment') }})
     r"""Please choose the environment"""
     refresh_token: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('refresh_token') }})
     r"""OAuth2.0 Refresh Token"""
-    source_type: SourceZohoCrmZohoCrm = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
-    start_datetime: Optional[datetime] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('start_datetime'), 'encoder': utils.datetimeisoformat(True), 'decoder': dateutil.parser.isoparse, 'exclude': lambda f: f is None }})
+    SOURCE_TYPE: Final[str] = dataclasses.field(default='zoho-crm', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
+    edition: Optional[SourceZohoCRMZohoCRMEdition] = dataclasses.field(default=SourceZohoCRMZohoCRMEdition.FREE, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('edition'), 'exclude': lambda f: f is None }})
+    r"""Choose your Edition of Zoho CRM to determine API Concurrency Limits"""
+    start_datetime: Optional[datetime] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('start_datetime'), 'encoder': utils.datetimeisoformat(True), 'decoder': dateutil.parser.isoparse }})
     r"""ISO 8601, for instance: `YYYY-MM-DD`, `YYYY-MM-DD HH:MM:SS+HH:MM`"""
     
 

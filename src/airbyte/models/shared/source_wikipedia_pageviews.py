@@ -4,10 +4,7 @@ from __future__ import annotations
 import dataclasses
 from airbyte import utils
 from dataclasses_json import Undefined, dataclass_json
-from enum import Enum
-
-class SourceWikipediaPageviewsWikipediaPageviews(str, Enum):
-    WIKIPEDIA_PAGEVIEWS = 'wikipedia-pageviews'
+from typing import Final
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
@@ -27,8 +24,8 @@ class SourceWikipediaPageviews:
     r"""The date of the last day to include, in YYYYMMDD or YYYYMMDDHH format."""
     project: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('project') }})
     r"""If you want to filter by project, use the domain of any Wikimedia project."""
-    source_type: SourceWikipediaPageviewsWikipediaPageviews = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     start: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('start') }})
     r"""The date of the first day to include, in YYYYMMDD or YYYYMMDDHH format."""
+    SOURCE_TYPE: Final[str] = dataclasses.field(default='wikipedia-pageviews', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     
 

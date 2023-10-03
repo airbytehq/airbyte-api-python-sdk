@@ -19,30 +19,30 @@ req = shared.ConnectionCreateRequest(
         streams=[
             shared.StreamConfiguration(
                 cursor_field=[
-                    'corrupti',
+                    'violet',
                 ],
-                name='Kelvin Sporer',
+                name='at BMW',
                 primary_key=[
                     [
-                        'corrupti',
+                        'pfft',
                     ],
                 ],
-                sync_mode=shared.ConnectionSyncModeEnum.INCREMENTAL_DEDUPED_HISTORY,
+                sync_mode=shared.ConnectionSyncModeEnum.FULL_REFRESH_APPEND,
             ),
         ],
     ),
-    data_residency=shared.GeographyEnum.US,
-    destination_id='9a674e0f-467c-4c87-96ed-151a05dfc2dd',
-    name='Javier Schmidt',
+    data_residency=shared.GeographyEnum.AUTO,
+    destination_id='083eafc8-5591-44e0-a570-f6dd427d83a5',
+    name='mesh interactive',
     namespace_definition=shared.NamespaceDefinitionEnum.DESTINATION,
     namespace_format='${SOURCE_NAMESPACE}',
-    non_breaking_schema_updates_behavior=shared.NonBreakingSchemaUpdatesBehaviorEnum.PROPAGATE_FULLY,
-    prefix='dolorum',
+    non_breaking_schema_updates_behavior=shared.NonBreakingSchemaUpdatesBehaviorEnum.IGNORE,
+    prefix='port Idaho',
     schedule=shared.ConnectionSchedule(
-        cron_expression='dicta',
-        schedule_type=shared.ScheduleTypeEnum.CRON,
+        cron_expression='productivity',
+        schedule_type=shared.ScheduleTypeEnum.MANUAL,
     ),
-    source_id='a928fc81-6742-4cb7-b920-5929396fea75',
+    source_id='b3fd2fd3-07d6-40cb-97ea-6dfc635b80f2',
     status=shared.ConnectionStatusEnum.INACTIVE,
 )
 

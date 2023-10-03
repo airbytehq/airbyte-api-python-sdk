@@ -5,11 +5,7 @@ import dataclasses
 from airbyte import utils
 from dataclasses_json import Undefined, dataclass_json
 from datetime import date
-from enum import Enum
-from typing import Optional
-
-class SourceYandexMetricaYandexMetrica(str, Enum):
-    YANDEX_METRICA = 'yandex-metrica'
+from typing import Final, Optional
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
@@ -21,9 +17,9 @@ class SourceYandexMetrica:
     r"""Your Yandex Metrica API access token"""
     counter_id: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('counter_id') }})
     r"""Counter ID"""
-    source_type: SourceYandexMetricaYandexMetrica = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     start_date: date = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('start_date'), 'encoder': utils.dateisoformat(False), 'decoder': utils.datefromisoformat }})
     r"""Starting point for your data replication, in format of \\"YYYY-MM-DD\\"."""
+    SOURCE_TYPE: Final[str] = dataclasses.field(default='yandex-metrica', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     end_date: Optional[date] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('end_date'), 'encoder': utils.dateisoformat(True), 'decoder': utils.datefromisoformat, 'exclude': lambda f: f is None }})
     r"""Starting point for your data replication, in format of \\"YYYY-MM-DD\\". If not provided will sync till most recent date."""
     

@@ -4,37 +4,28 @@ from __future__ import annotations
 import dataclasses
 from airbyte import utils
 from dataclasses_json import Undefined, dataclass_json
-from enum import Enum
-from typing import Any, Optional
-
-class SourceGoogleDirectoryCredentialsServiceAccountKeyCredentialsTitle(str, Enum):
-    r"""Authentication Scenario"""
-    SERVICE_ACCOUNTS = 'Service accounts'
+from typing import Final, Optional, Union
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
 
 @dataclasses.dataclass
-class SourceGoogleDirectoryCredentialsServiceAccountKey:
+class SourceGoogleDirectoryGoogleCredentialsServiceAccountKey:
     r"""For these scenario user should obtain service account's credentials from the Google API Console and provide delegated email."""
     credentials_json: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credentials_json') }})
     r"""The contents of the JSON service account key. See the <a href=\\"https://developers.google.com/admin-sdk/directory/v1/guides/delegation\\">docs</a> for more information on how to generate this key."""
     email: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('email') }})
     r"""The email of the user, which has permissions to access the Google Workspace Admin APIs."""
-    credentials_title: Optional[SourceGoogleDirectoryCredentialsServiceAccountKeyCredentialsTitle] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credentials_title'), 'exclude': lambda f: f is None }})
+    CREDENTIALS_TITLE: Final[Optional[str]] = dataclasses.field(default='Service accounts', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credentials_title'), 'exclude': lambda f: f is None }})
     r"""Authentication Scenario"""
     
 
-
-class SourceGoogleDirectoryCredentialsSignInViaGoogleOAuthCredentialsTitle(str, Enum):
-    r"""Authentication Scenario"""
-    WEB_SERVER_APP = 'Web server app'
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
 
 @dataclasses.dataclass
-class SourceGoogleDirectoryCredentialsSignInViaGoogleOAuth:
+class SourceGoogleDirectoryGoogleCredentialsSignInViaGoogleOAuth:
     r"""For these scenario user only needs to give permission to read Google Directory data."""
     client_id: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('client_id') }})
     r"""The Client ID of the developer application."""
@@ -42,13 +33,16 @@ class SourceGoogleDirectoryCredentialsSignInViaGoogleOAuth:
     r"""The Client Secret of the developer application."""
     refresh_token: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('refresh_token') }})
     r"""The Token for obtaining a new access token."""
-    credentials_title: Optional[SourceGoogleDirectoryCredentialsSignInViaGoogleOAuthCredentialsTitle] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credentials_title'), 'exclude': lambda f: f is None }})
+    CREDENTIALS_TITLE: Final[Optional[str]] = dataclasses.field(default='Web server app', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credentials_title'), 'exclude': lambda f: f is None }})
     r"""Authentication Scenario"""
     
 
 
-class SourceGoogleDirectoryGoogleDirectory(str, Enum):
-    GOOGLE_DIRECTORY = 'google-directory'
+
+
+@dataclasses.dataclass
+class SourceGoogleDirectoryGoogleCredentials:
+    pass
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
@@ -56,8 +50,8 @@ class SourceGoogleDirectoryGoogleDirectory(str, Enum):
 @dataclasses.dataclass
 class SourceGoogleDirectory:
     r"""The values required to configure the source."""
-    source_type: SourceGoogleDirectoryGoogleDirectory = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
-    credentials: Optional[Any] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credentials'), 'exclude': lambda f: f is None }})
+    SOURCE_TYPE: Final[str] = dataclasses.field(default='google-directory', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
+    credentials: Optional[Union[SourceGoogleDirectoryGoogleCredentialsSignInViaGoogleOAuth, SourceGoogleDirectoryGoogleCredentialsServiceAccountKey]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credentials'), 'exclude': lambda f: f is None }})
     r"""Google APIs use the OAuth 2.0 protocol for authentication and authorization. The Source supports <a href=\\"https://developers.google.com/identity/protocols/oauth2#webserver\\" target=\\"_blank\\">Web server application</a> and <a href=\\"https://developers.google.com/identity/protocols/oauth2#serviceaccount\\" target=\\"_blank\\">Service accounts</a> scenarios."""
     
 

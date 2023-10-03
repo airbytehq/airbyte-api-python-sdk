@@ -1,4 +1,5 @@
-# destinations
+# Destinations
+(*destinations*)
 
 ### Available Operations
 
@@ -29,14 +30,9 @@ s = airbyte.Airbyte(
 )
 
 req = shared.DestinationCreateRequest(
-    configuration=shared.DestinationKeen(
-        api_key='ABCDEFGHIJKLMNOPRSTUWXYZ',
-        destination_type=shared.DestinationKeenKeen.KEEN,
-        infer_timestamp=False,
-        project_id='58b4acc22ba938934e888322e',
-    ),
-    name='Mrs. Emilio Price',
-    workspace_id='d66ae395-efb9-4ba8-8f3a-66997074ba44',
+    configuration=[],
+    name='Grocery Maldives',
+    workspace_id='60ad46e8-e62f-4620-8e5b-a5019ef3492f',
 )
 
 res = s.destinations.create_destination(req)
@@ -77,7 +73,7 @@ s = airbyte.Airbyte(
 )
 
 req = operations.DeleteDestinationRequest(
-    destination_id='suscipit',
+    destination_id='downturn Ergonomic',
 )
 
 res = s.destinations.delete_destination(req)
@@ -118,7 +114,7 @@ s = airbyte.Airbyte(
 )
 
 req = operations.GetDestinationRequest(
-    destination_id='natus',
+    destination_id='Configuration Beauty',
 )
 
 res = s.destinations.get_destination(req)
@@ -160,10 +156,10 @@ s = airbyte.Airbyte(
 
 req = operations.ListDestinationsRequest(
     include_deleted=False,
-    limit=749170,
-    offset=428769,
+    limit=772794,
+    offset=125999,
     workspace_ids=[
-        'e2141959-890a-4fa5-a3e2-516fe4c8b711',
+        '980b9a83-1720-4244-9cd2-6fb4455227f2',
     ],
 )
 
@@ -206,17 +202,10 @@ s = airbyte.Airbyte(
 
 req = operations.PatchDestinationRequest(
     destination_patch_request=shared.DestinationPatchRequest(
-        configuration=shared.DestinationTypesense(
-            api_key='ullam',
-            batch_size=714242,
-            destination_type=shared.DestinationTypesenseTypesense.TYPESENSE,
-            host='nihil',
-            port='repellat',
-            protocol='quibusdam',
-        ),
-        name='Mr. Jenna Stroman',
+        configuration=[],
+        name='unethically',
     ),
-    destination_id='natus',
+    destination_id='hoodwink Toys pixel',
 )
 
 res = s.destinations.patch_destination(req)
@@ -258,15 +247,10 @@ s = airbyte.Airbyte(
 
 req = operations.PutDestinationRequest(
     destination_put_request=shared.DestinationPutRequest(
-        configuration=shared.DestinationCumulio(
-            api_host='sunt',
-            api_key='quo',
-            api_token='illum',
-            destination_type=shared.DestinationCumulioCumulio.CUMULIO,
-        ),
-        name='Simon Jenkins',
+        configuration=[],
+        name='West',
     ),
-    destination_id='ea',
+    destination_id='Fermium except',
 )
 
 res = s.destinations.put_destination(req)

@@ -4,10 +4,7 @@ from __future__ import annotations
 import dataclasses
 from airbyte import utils
 from dataclasses_json import Undefined, dataclass_json
-from enum import Enum
-
-class DestinationConvexConvex(str, Enum):
-    CONVEX = 'convex'
+from typing import Final
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
@@ -19,6 +16,6 @@ class DestinationConvex:
     r"""API access key used to send data to a Convex deployment."""
     deployment_url: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('deployment_url') }})
     r"""URL of the Convex deployment that is the destination"""
-    destination_type: DestinationConvexConvex = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('destinationType') }})
+    DESTINATION_TYPE: Final[str] = dataclasses.field(default='convex', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('destinationType') }})
     
 

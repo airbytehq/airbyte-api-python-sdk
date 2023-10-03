@@ -4,10 +4,7 @@ from __future__ import annotations
 import dataclasses
 from airbyte import utils
 from dataclasses_json import Undefined, dataclass_json
-from enum import Enum
-
-class SourceSecodaSecoda(str, Enum):
-    SECODA = 'secoda'
+from typing import Final
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
@@ -17,6 +14,6 @@ class SourceSecoda:
     r"""The values required to configure the source."""
     api_key: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('api_key') }})
     r"""Your API Access Key. See <a href=\\"https://docs.secoda.co/secoda-api/authentication\\">here</a>. The key is case sensitive."""
-    source_type: SourceSecodaSecoda = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
+    SOURCE_TYPE: Final[str] = dataclasses.field(default='secoda', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     
 

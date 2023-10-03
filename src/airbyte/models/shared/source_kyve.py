@@ -4,11 +4,7 @@ from __future__ import annotations
 import dataclasses
 from airbyte import utils
 from dataclasses_json import Undefined, dataclass_json
-from enum import Enum
-from typing import Optional
-
-class SourceKyveKyve(str, Enum):
-    KYVE = 'kyve'
+from typing import Final, Optional
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
@@ -18,14 +14,14 @@ class SourceKyve:
     r"""The values required to configure the source."""
     pool_ids: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('pool_ids') }})
     r"""The IDs of the KYVE storage pool you want to archive. (Comma separated)"""
-    source_type: SourceKyveKyve = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     start_ids: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('start_ids') }})
     r"""The start-id defines, from which bundle id the pipeline should start to extract the data (Comma separated)"""
+    SOURCE_TYPE: Final[str] = dataclasses.field(default='kyve', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     max_pages: Optional[int] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('max_pages'), 'exclude': lambda f: f is None }})
     r"""The maximum amount of pages to go trough. Set to 'null' for all pages."""
-    page_size: Optional[int] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('page_size'), 'exclude': lambda f: f is None }})
+    page_size: Optional[int] = dataclasses.field(default=100, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('page_size'), 'exclude': lambda f: f is None }})
     r"""The pagesize for pagination, smaller numbers are used in integration tests."""
-    url_base: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('url_base'), 'exclude': lambda f: f is None }})
+    url_base: Optional[str] = dataclasses.field(default='https://api.korellia.kyve.network', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('url_base'), 'exclude': lambda f: f is None }})
     r"""URL to the KYVE Chain API."""
     
 

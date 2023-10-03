@@ -1,4 +1,5 @@
-# sources
+# Sources
+(*sources*)
 
 ### Available Operations
 
@@ -31,20 +32,10 @@ s = airbyte.Airbyte(
 )
 
 req = shared.SourceCreateRequest(
-    configuration=shared.SourceFileSecure(
-        dataset_name='asperiores',
-        format=shared.SourceFileSecureFileFormat.YAML,
-        provider=shared.SourceFileSecureProviderGCSGoogleCloudStorage(
-            service_account_json='iste',
-            storage=shared.SourceFileSecureProviderGCSGoogleCloudStorageStorage.GCS,
-        ),
-        reader_options='{"sep": "	", "header": 0, "names": ["column1", "column2"] }',
-        source_type=shared.SourceFileSecureFileSecure.FILE_SECURE,
-        url='gs://my-google-bucket/data.csv',
-    ),
-    name='Rene Rolfson',
-    secret_id='quaerat',
-    workspace_id='8633323f-9b77-4f3a-8100-674ebf69280d',
+    configuration=[],
+    name='Carolina States',
+    secret_id='creator',
+    workspace_id='ddc9848c-34bd-4fb1-8905-6aa6d6dedf29',
 )
 
 res = s.sources.create_source(req)
@@ -85,7 +76,7 @@ s = airbyte.Airbyte(
 )
 
 req = operations.DeleteSourceRequest(
-    source_id='ab',
+    source_id='Optimization',
 )
 
 res = s.sources.delete_source(req)
@@ -126,7 +117,7 @@ s = airbyte.Airbyte(
 )
 
 req = operations.GetSourceRequest(
-    source_id='soluta',
+    source_id='Baby Gorgeous',
 )
 
 res = s.sources.get_source(req)
@@ -172,9 +163,9 @@ s = airbyte.Airbyte(
 
 req = shared.InitiateOauthRequest(
     o_auth_input_configuration=shared.OAuthInputConfiguration(),
-    redirect_url='dolorum',
-    source_type=shared.OAuthActorNames.MICROSOFT_TEAMS,
-    workspace_id='7a89ebf7-37ae-4420-bce5-e6a95d8a0d44',
+    redirect_url='till',
+    source_type=shared.OAuthActorNames.GITHUB,
+    workspace_id='8130d991-9ffa-4e67-94e1-2eb0994476c5',
 )
 
 res = s.sources.initiate_o_auth(req)
@@ -216,10 +207,10 @@ s = airbyte.Airbyte(
 
 req = operations.ListSourcesRequest(
     include_deleted=False,
-    limit=425451,
-    offset=798047,
+    limit=442892,
+    offset=284564,
     workspace_ids=[
-        'e2af7a73-cf3b-4e45-bf87-0b326b5a7342',
+        'dbbb77f8-0b57-4c45-800c-5d47a64428ce',
     ],
 )
 
@@ -263,19 +254,12 @@ s = airbyte.Airbyte(
 
 req = operations.PatchSourceRequest(
     source_patch_request=shared.SourcePatchRequest(
-        configuration=shared.SourcePaypalTransaction(
-            client_id='maxime',
-            client_secret='pariatur',
-            is_sandbox=False,
-            refresh_token='soluta',
-            source_type=shared.SourcePaypalTransactionPaypalTransaction.PAYPAL_TRANSACTION,
-            start_date=dateutil.parser.isoparse('2021-06-11T23:59:59'),
-        ),
+        configuration=[],
         name='My source',
-        secret_id='laborum',
-        workspace_id='8422bb67-9d23-4227-95bf-0cbb1e31b8b9',
+        secret_id='Vanuatu',
+        workspace_id='c2511c44-f79e-4d2c-b0df-4fd46c0e47eb',
     ),
-    source_id='aperiam',
+    source_id='Future',
 )
 
 res = s.sources.patch_source(req)
@@ -318,21 +302,10 @@ s = airbyte.Airbyte(
 
 req = operations.PutSourceRequest(
     source_put_request=shared.SourcePutRequest(
-        configuration=shared.SourceZendeskChat(
-            credentials=shared.SourceZendeskChatCredentialsOAuth20(
-                access_token='dolore',
-                client_id='labore',
-                client_secret='adipisci',
-                credentials=shared.SourceZendeskChatCredentialsOAuth20Credentials.OAUTH2_0,
-                refresh_token='dolorum',
-            ),
-            source_type=shared.SourceZendeskChatZendeskChat.ZENDESK_CHAT,
-            start_date=dateutil.parser.isoparse('2021-02-01T00:00:00Z'),
-            subdomain='architecto',
-        ),
-        name='Margaret Luettgen MD',
+        configuration=[],
+        name='Urbana Program',
     ),
-    source_id='repellendus',
+    source_id='Berkshire ASCII',
 )
 
 res = s.sources.put_source(req)

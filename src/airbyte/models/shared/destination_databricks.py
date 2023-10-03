@@ -5,10 +5,7 @@ import dataclasses
 from airbyte import utils
 from dataclasses_json import Undefined, dataclass_json
 from enum import Enum
-from typing import Any, Optional
-
-class DestinationDatabricksDataSourceAzureBlobStorageDataSourceType(str, Enum):
-    AZURE_BLOB_STORAGE = 'AZURE_BLOB_STORAGE'
+from typing import Final, Optional, Union
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
@@ -22,14 +19,11 @@ class DestinationDatabricksDataSourceAzureBlobStorage:
     r"""The name of the Azure blob storage container."""
     azure_blob_storage_sas_token: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('azure_blob_storage_sas_token') }})
     r"""Shared access signature (SAS) token to grant limited access to objects in your storage account."""
-    data_source_type: DestinationDatabricksDataSourceAzureBlobStorageDataSourceType = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('data_source_type') }})
-    azure_blob_storage_endpoint_domain_name: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('azure_blob_storage_endpoint_domain_name'), 'exclude': lambda f: f is None }})
+    DATA_SOURCE_TYPE: Final[str] = dataclasses.field(default='AZURE_BLOB_STORAGE', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('data_source_type') }})
+    azure_blob_storage_endpoint_domain_name: Optional[str] = dataclasses.field(default='blob.core.windows.net', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('azure_blob_storage_endpoint_domain_name'), 'exclude': lambda f: f is None }})
     r"""This is Azure Blob Storage endpoint domain name. Leave default value (or leave it empty if run container from command line) to use Microsoft native from example."""
     
 
-
-class DestinationDatabricksDataSourceAmazonS3DataSourceType(str, Enum):
-    S3_STORAGE = 'S3_STORAGE'
 
 class DestinationDatabricksDataSourceAmazonS3S3BucketRegion(str, Enum):
     r"""The region of the S3 staging bucket to use if utilising a copy strategy."""
@@ -66,24 +60,21 @@ class DestinationDatabricksDataSourceAmazonS3S3BucketRegion(str, Enum):
 @dataclasses.dataclass
 class DestinationDatabricksDataSourceAmazonS3:
     r"""Storage on which the delta lake is built."""
-    data_source_type: DestinationDatabricksDataSourceAmazonS3DataSourceType = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('data_source_type') }})
     s3_access_key_id: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('s3_access_key_id') }})
     r"""The Access Key Id granting allow one to access the above S3 staging bucket. Airbyte requires Read and Write permissions to the given bucket."""
     s3_bucket_name: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('s3_bucket_name') }})
     r"""The name of the S3 bucket to use for intermittent staging of the data."""
     s3_bucket_path: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('s3_bucket_path') }})
     r"""The directory under the S3 bucket where data will be written."""
-    s3_bucket_region: DestinationDatabricksDataSourceAmazonS3S3BucketRegion = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('s3_bucket_region') }})
-    r"""The region of the S3 staging bucket to use if utilising a copy strategy."""
     s3_secret_access_key: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('s3_secret_access_key') }})
     r"""The corresponding secret to the above access key id."""
+    DATA_SOURCE_TYPE: Final[str] = dataclasses.field(default='S3_STORAGE', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('data_source_type') }})
     file_name_pattern: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('file_name_pattern'), 'exclude': lambda f: f is None }})
     r"""The pattern allows you to set the file-name format for the S3 staging file(s)"""
+    s3_bucket_region: Optional[DestinationDatabricksDataSourceAmazonS3S3BucketRegion] = dataclasses.field(default=DestinationDatabricksDataSourceAmazonS3S3BucketRegion.UNKNOWN, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('s3_bucket_region'), 'exclude': lambda f: f is None }})
+    r"""The region of the S3 staging bucket to use if utilising a copy strategy."""
     
 
-
-class DestinationDatabricksDataSourceRecommendedManagedTablesDataSourceType(str, Enum):
-    MANAGED_TABLES_STORAGE = 'MANAGED_TABLES_STORAGE'
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
@@ -91,12 +82,15 @@ class DestinationDatabricksDataSourceRecommendedManagedTablesDataSourceType(str,
 @dataclasses.dataclass
 class DestinationDatabricksDataSourceRecommendedManagedTables:
     r"""Storage on which the delta lake is built."""
-    data_source_type: DestinationDatabricksDataSourceRecommendedManagedTablesDataSourceType = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('data_source_type') }})
+    DATA_SOURCE_TYPE: Final[str] = dataclasses.field(default='MANAGED_TABLES_STORAGE', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('data_source_type') }})
     
 
 
-class DestinationDatabricksDatabricks(str, Enum):
-    DATABRICKS = 'databricks'
+
+
+@dataclasses.dataclass
+class DestinationDatabricksDataSource:
+    pass
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
@@ -104,9 +98,7 @@ class DestinationDatabricksDatabricks(str, Enum):
 @dataclasses.dataclass
 class DestinationDatabricks:
     r"""The values required to configure the destination."""
-    accept_terms: bool = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('accept_terms') }})
-    r"""You must agree to the Databricks JDBC Driver <a href=\\"https://databricks.com/jdbc-odbc-driver-license\\">Terms & Conditions</a> to use this connector."""
-    data_source: Any = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('data_source') }})
+    data_source: Union[DestinationDatabricksDataSourceRecommendedManagedTables, DestinationDatabricksDataSourceAmazonS3, DestinationDatabricksDataSourceAzureBlobStorage] = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('data_source') }})
     r"""Storage on which the delta lake is built."""
     databricks_http_path: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('databricks_http_path') }})
     r"""Databricks Cluster HTTP Path."""
@@ -114,16 +106,18 @@ class DestinationDatabricks:
     r"""Databricks Personal Access Token for making authenticated requests."""
     databricks_server_hostname: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('databricks_server_hostname') }})
     r"""Databricks Cluster Server Hostname."""
-    destination_type: DestinationDatabricksDatabricks = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('destinationType') }})
+    DESTINATION_TYPE: Final[str] = dataclasses.field(default='databricks', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('destinationType') }})
+    accept_terms: Optional[bool] = dataclasses.field(default=False, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('accept_terms'), 'exclude': lambda f: f is None }})
+    r"""You must agree to the Databricks JDBC Driver <a href=\\"https://databricks.com/jdbc-odbc-driver-license\\">Terms & Conditions</a> to use this connector."""
     database: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('database'), 'exclude': lambda f: f is None }})
     r"""The name of the catalog. If not specified otherwise, the \\"hive_metastore\\" will be used."""
-    databricks_port: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('databricks_port'), 'exclude': lambda f: f is None }})
+    databricks_port: Optional[str] = dataclasses.field(default='443', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('databricks_port'), 'exclude': lambda f: f is None }})
     r"""Databricks Cluster Port."""
-    enable_schema_evolution: Optional[bool] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('enable_schema_evolution'), 'exclude': lambda f: f is None }})
+    enable_schema_evolution: Optional[bool] = dataclasses.field(default=False, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('enable_schema_evolution'), 'exclude': lambda f: f is None }})
     r"""Support schema evolution for all streams. If \\"false\\", the connector might fail when a stream's schema changes."""
-    purge_staging_data: Optional[bool] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('purge_staging_data'), 'exclude': lambda f: f is None }})
+    purge_staging_data: Optional[bool] = dataclasses.field(default=True, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('purge_staging_data'), 'exclude': lambda f: f is None }})
     r"""Default to 'true'. Switch it to 'false' for debugging purpose."""
-    schema: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('schema'), 'exclude': lambda f: f is None }})
+    schema: Optional[str] = dataclasses.field(default='default', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('schema'), 'exclude': lambda f: f is None }})
     r"""The default schema tables are written. If not specified otherwise, the \\"default\\" will be used."""
     
 

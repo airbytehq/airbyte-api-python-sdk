@@ -4,11 +4,7 @@ from __future__ import annotations
 import dataclasses
 from airbyte import utils
 from dataclasses_json import Undefined, dataclass_json
-from enum import Enum
-from typing import Any, Optional
-
-class SourceAlloydbReplicationMethodStandardMethod(str, Enum):
-    STANDARD = 'Standard'
+from typing import Any, Final, Optional, Union
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
@@ -16,12 +12,9 @@ class SourceAlloydbReplicationMethodStandardMethod(str, Enum):
 @dataclasses.dataclass
 class SourceAlloydbReplicationMethodStandard:
     r"""Standard replication requires no setup on the DB side but will not be able to represent deletions incrementally."""
-    method: SourceAlloydbReplicationMethodStandardMethod = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('method') }})
+    METHOD: Final[str] = dataclasses.field(default='Standard', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('method') }})
     
 
-
-class SourceAlloydbReplicationMethodStandardXminMethod(str, Enum):
-    XMIN = 'Xmin'
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
@@ -29,73 +22,70 @@ class SourceAlloydbReplicationMethodStandardXminMethod(str, Enum):
 @dataclasses.dataclass
 class SourceAlloydbReplicationMethodStandardXmin:
     r"""Xmin replication requires no setup on the DB side but will not be able to represent deletions incrementally."""
-    method: SourceAlloydbReplicationMethodStandardXminMethod = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('method') }})
+    METHOD: Final[str] = dataclasses.field(default='Xmin', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('method') }})
     
 
 
-class SourceAlloydbAlloydb(str, Enum):
-    ALLOYDB = 'alloydb'
 
-class SourceAlloydbTunnelMethodPasswordAuthenticationTunnelMethod(str, Enum):
-    r"""Connect through a jump server tunnel host using username and password authentication"""
-    SSH_PASSWORD_AUTH = 'SSH_PASSWORD_AUTH'
+
+@dataclasses.dataclass
+class SourceAlloydbReplicationMethod:
+    pass
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
 
 @dataclasses.dataclass
-class SourceAlloydbTunnelMethodPasswordAuthentication:
+class SourceAlloydbSSHTunnelMethodPasswordAuthentication:
     r"""Whether to initiate an SSH tunnel before connecting to the database, and if so, which kind of authentication to use."""
     tunnel_host: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('tunnel_host') }})
     r"""Hostname of the jump server host that allows inbound ssh tunnel."""
-    tunnel_method: SourceAlloydbTunnelMethodPasswordAuthenticationTunnelMethod = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('tunnel_method') }})
-    r"""Connect through a jump server tunnel host using username and password authentication"""
-    tunnel_port: int = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('tunnel_port') }})
-    r"""Port on the proxy/jump server that accepts inbound ssh connections."""
     tunnel_user: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('tunnel_user') }})
     r"""OS-level username for logging into the jump server host"""
     tunnel_user_password: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('tunnel_user_password') }})
     r"""OS-level password for logging into the jump server host"""
+    TUNNEL_METHOD: Final[str] = dataclasses.field(default='SSH_PASSWORD_AUTH', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('tunnel_method') }})
+    r"""Connect through a jump server tunnel host using username and password authentication"""
+    tunnel_port: Optional[int] = dataclasses.field(default=22, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('tunnel_port'), 'exclude': lambda f: f is None }})
+    r"""Port on the proxy/jump server that accepts inbound ssh connections."""
     
 
-
-class SourceAlloydbTunnelMethodSSHKeyAuthenticationTunnelMethod(str, Enum):
-    r"""Connect through a jump server tunnel host using username and ssh key"""
-    SSH_KEY_AUTH = 'SSH_KEY_AUTH'
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
 
 @dataclasses.dataclass
-class SourceAlloydbTunnelMethodSSHKeyAuthentication:
+class SourceAlloydbSSHTunnelMethodSSHKeyAuthentication:
     r"""Whether to initiate an SSH tunnel before connecting to the database, and if so, which kind of authentication to use."""
     ssh_key: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('ssh_key') }})
     r"""OS-level user account ssh key credentials in RSA PEM format ( created with ssh-keygen -t rsa -m PEM -f myuser_rsa )"""
     tunnel_host: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('tunnel_host') }})
     r"""Hostname of the jump server host that allows inbound ssh tunnel."""
-    tunnel_method: SourceAlloydbTunnelMethodSSHKeyAuthenticationTunnelMethod = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('tunnel_method') }})
-    r"""Connect through a jump server tunnel host using username and ssh key"""
-    tunnel_port: int = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('tunnel_port') }})
-    r"""Port on the proxy/jump server that accepts inbound ssh connections."""
     tunnel_user: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('tunnel_user') }})
     r"""OS-level username for logging into the jump server host."""
+    TUNNEL_METHOD: Final[str] = dataclasses.field(default='SSH_KEY_AUTH', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('tunnel_method') }})
+    r"""Connect through a jump server tunnel host using username and ssh key"""
+    tunnel_port: Optional[int] = dataclasses.field(default=22, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('tunnel_port'), 'exclude': lambda f: f is None }})
+    r"""Port on the proxy/jump server that accepts inbound ssh connections."""
     
 
-
-class SourceAlloydbTunnelMethodNoTunnelTunnelMethod(str, Enum):
-    r"""No ssh tunnel needed to connect to database"""
-    NO_TUNNEL = 'NO_TUNNEL'
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
 
 @dataclasses.dataclass
-class SourceAlloydbTunnelMethodNoTunnel:
+class SourceAlloydbSSHTunnelMethodNoTunnel:
     r"""Whether to initiate an SSH tunnel before connecting to the database, and if so, which kind of authentication to use."""
-    tunnel_method: SourceAlloydbTunnelMethodNoTunnelTunnelMethod = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('tunnel_method') }})
+    TUNNEL_METHOD: Final[str] = dataclasses.field(default='NO_TUNNEL', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('tunnel_method') }})
     r"""No ssh tunnel needed to connect to database"""
     
 
+
+
+
+@dataclasses.dataclass
+class SourceAlloydbSSHTunnelMethod:
+    pass
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
@@ -107,16 +97,16 @@ class SourceAlloydb:
     r"""Name of the database."""
     host: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('host') }})
     r"""Hostname of the database."""
-    port: int = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('port') }})
-    r"""Port of the database."""
-    source_type: SourceAlloydbAlloydb = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     username: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('username') }})
     r"""Username to access the database."""
+    SOURCE_TYPE: Final[str] = dataclasses.field(default='alloydb', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     jdbc_url_params: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('jdbc_url_params'), 'exclude': lambda f: f is None }})
     r"""Additional properties to pass to the JDBC URL string when connecting to the database formatted as 'key=value' pairs separated by the symbol '&'. (Eg. key1=value1&key2=value2&key3=value3). For more information read about <a href=\\"https://jdbc.postgresql.org/documentation/head/connect.html\\">JDBC URL parameters</a>."""
     password: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('password'), 'exclude': lambda f: f is None }})
     r"""Password associated with the username."""
-    replication_method: Optional[Any] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('replication_method'), 'exclude': lambda f: f is None }})
+    port: Optional[int] = dataclasses.field(default=5432, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('port'), 'exclude': lambda f: f is None }})
+    r"""Port of the database."""
+    replication_method: Optional[Union[SourceAlloydbReplicationMethodStandardXmin, dict[str, Any], SourceAlloydbReplicationMethodStandard]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('replication_method'), 'exclude': lambda f: f is None }})
     r"""Replication method for extracting data from the database."""
     schemas: Optional[list[str]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('schemas'), 'exclude': lambda f: f is None }})
     r"""The list of schemas (case sensitive) to sync from. Defaults to public."""
@@ -124,7 +114,7 @@ class SourceAlloydb:
     r"""SSL connection modes.
       Read more <a href=\"https://jdbc.postgresql.org/documentation/head/ssl-client.html\"> in the docs</a>.
     """
-    tunnel_method: Optional[Any] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('tunnel_method'), 'exclude': lambda f: f is None }})
+    tunnel_method: Optional[Union[SourceAlloydbSSHTunnelMethodNoTunnel, SourceAlloydbSSHTunnelMethodSSHKeyAuthentication, SourceAlloydbSSHTunnelMethodPasswordAuthentication]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('tunnel_method'), 'exclude': lambda f: f is None }})
     r"""Whether to initiate an SSH tunnel before connecting to the database, and if so, which kind of authentication to use."""
     
 

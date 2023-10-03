@@ -4,10 +4,7 @@ from __future__ import annotations
 import dataclasses
 from airbyte import utils
 from dataclasses_json import Undefined, dataclass_json
-from enum import Enum
-
-class SourceRkiCovidRkiCovid(str, Enum):
-    RKI_COVID = 'rki-covid'
+from typing import Final
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
@@ -15,8 +12,8 @@ class SourceRkiCovidRkiCovid(str, Enum):
 @dataclasses.dataclass
 class SourceRkiCovid:
     r"""The values required to configure the source."""
-    source_type: SourceRkiCovidRkiCovid = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     start_date: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('start_date') }})
     r"""UTC date in the format 2017-01-25. Any data before this date will not be replicated."""
+    SOURCE_TYPE: Final[str] = dataclasses.field(default='rki-covid', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     
 

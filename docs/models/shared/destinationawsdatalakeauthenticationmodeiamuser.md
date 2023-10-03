@@ -1,0 +1,12 @@
+# DestinationAwsDatalakeAuthenticationModeIAMUser
+
+Choose How to Authenticate to AWS.
+
+
+## Fields
+
+| Field                   | Type                    | Required                | Description             |
+| ----------------------- | ----------------------- | ----------------------- | ----------------------- |
+| `aws_access_key_id`     | *Optional[str]*         | :heavy_check_mark:      | AWS User Access Key Id  |
+| `aws_secret_access_key` | *Optional[str]*         | :heavy_check_mark:      | Secret Access Key       |
+| `credentials_title`     | *Optional[str]*         | :heavy_minus_sign:      | Name of the credentials |

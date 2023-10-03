@@ -5,6 +5,7 @@ import dataclasses
 from ..shared import geographyenum as shared_geographyenum
 from airbyte import utils
 from dataclasses_json import Undefined, dataclass_json
+from typing import Optional
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
@@ -12,8 +13,8 @@ from dataclasses_json import Undefined, dataclass_json
 @dataclasses.dataclass
 class WorkspaceResponse:
     r"""Provides details of a single workspace."""
-    data_residency: shared_geographyenum.GeographyEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('dataResidency') }})
     name: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('name') }})
     workspace_id: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('workspaceId') }})
+    data_residency: Optional[shared_geographyenum.GeographyEnum] = dataclasses.field(default=shared_geographyenum.GeographyEnum.AUTO, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('dataResidency'), 'exclude': lambda f: f is None }})
     
 

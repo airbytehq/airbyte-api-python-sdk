@@ -4,10 +4,7 @@ from __future__ import annotations
 import dataclasses
 from airbyte import utils
 from dataclasses_json import Undefined, dataclass_json
-from enum import Enum
-
-class SourceRailzRailz(str, Enum):
-    RAILZ = 'railz'
+from typing import Final
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
@@ -19,8 +16,8 @@ class SourceRailz:
     r"""Client ID (client_id)"""
     secret_key: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('secret_key') }})
     r"""Secret key (secret_key)"""
-    source_type: SourceRailzRailz = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     start_date: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('start_date') }})
     r"""Start date"""
+    SOURCE_TYPE: Final[str] = dataclasses.field(default='railz', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     
 

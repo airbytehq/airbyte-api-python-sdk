@@ -4,10 +4,7 @@ from __future__ import annotations
 import dataclasses
 from airbyte import utils
 from dataclasses_json import Undefined, dataclass_json
-from enum import Enum
-
-class SourceTwilioTaskrouterTwilioTaskrouter(str, Enum):
-    TWILIO_TASKROUTER = 'twilio-taskrouter'
+from typing import Final
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
@@ -19,6 +16,6 @@ class SourceTwilioTaskrouter:
     r"""Twilio Account ID"""
     auth_token: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_token') }})
     r"""Twilio Auth Token"""
-    source_type: SourceTwilioTaskrouterTwilioTaskrouter = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
+    SOURCE_TYPE: Final[str] = dataclasses.field(default='twilio-taskrouter', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     
 

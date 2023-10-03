@@ -7,13 +7,7 @@ from airbyte import utils
 from dataclasses_json import Undefined, dataclass_json
 from datetime import datetime
 from enum import Enum
-from typing import Optional
-
-class SourceSalesforceAuthType(str, Enum):
-    CLIENT = 'Client'
-
-class SourceSalesforceSalesforce(str, Enum):
-    SALESFORCE = 'salesforce'
+from typing import Final, Optional
 
 class SourceSalesforceStreamsCriteriaSearchCriteria(str, Enum):
     STARTS_WITH = 'starts with'
@@ -30,8 +24,8 @@ class SourceSalesforceStreamsCriteriaSearchCriteria(str, Enum):
 
 @dataclasses.dataclass
 class SourceSalesforceStreamsCriteria:
-    criteria: SourceSalesforceStreamsCriteriaSearchCriteria = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('criteria') }})
     value: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('value') }})
+    criteria: Optional[SourceSalesforceStreamsCriteriaSearchCriteria] = dataclasses.field(default=SourceSalesforceStreamsCriteriaSearchCriteria.CONTAINS, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('criteria'), 'exclude': lambda f: f is None }})
     
 
 
@@ -47,11 +41,11 @@ class SourceSalesforce:
     r"""Enter your Salesforce developer application's <a href=\\"https://developer.salesforce.com/forums/?id=9062I000000DLgbQAG\\">Client secret</a>"""
     refresh_token: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('refresh_token') }})
     r"""Enter your application's <a href=\\"https://developer.salesforce.com/docs/atlas.en-us.mobile_sdk.meta/mobile_sdk/oauth_refresh_token_flow.htm\\">Salesforce Refresh Token</a> used for Airbyte to access your Salesforce account."""
-    source_type: SourceSalesforceSalesforce = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
-    auth_type: Optional[SourceSalesforceAuthType] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_type'), 'exclude': lambda f: f is None }})
-    force_use_bulk_api: Optional[bool] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('force_use_bulk_api'), 'exclude': lambda f: f is None }})
+    SOURCE_TYPE: Final[str] = dataclasses.field(default='salesforce', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
+    AUTH_TYPE: Final[Optional[str]] = dataclasses.field(default='Client', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_type'), 'exclude': lambda f: f is None }})
+    force_use_bulk_api: Optional[bool] = dataclasses.field(default=False, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('force_use_bulk_api'), 'exclude': lambda f: f is None }})
     r"""Toggle to use Bulk API (this might cause empty fields for some streams)"""
-    is_sandbox: Optional[bool] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('is_sandbox'), 'exclude': lambda f: f is None }})
+    is_sandbox: Optional[bool] = dataclasses.field(default=False, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('is_sandbox'), 'exclude': lambda f: f is None }})
     r"""Toggle if you're using a <a href=\\"https://help.salesforce.com/s/articleView?id=sf.deploy_sandboxes_parent.htm&type=5\\">Salesforce Sandbox</a>"""
     start_date: Optional[datetime] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('start_date'), 'encoder': utils.datetimeisoformat(True), 'decoder': dateutil.parser.isoparse, 'exclude': lambda f: f is None }})
     r"""Enter the date (or date-time) in the YYYY-MM-DD or YYYY-MM-DDTHH:mm:ssZ format. Airbyte will replicate the data updated on and after this date. If this field is blank, Airbyte will replicate the data for last two years."""

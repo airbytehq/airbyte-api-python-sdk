@@ -6,17 +6,13 @@ import dateutil.parser
 from airbyte import utils
 from dataclasses_json import Undefined, dataclass_json
 from datetime import datetime
-from enum import Enum
-from typing import Any, Optional
-
-class SourceQuickbooksCredentialsOAuth20AuthType(str, Enum):
-    OAUTH2_0 = 'oauth2.0'
+from typing import Final, Optional, Union
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
 
 @dataclasses.dataclass
-class SourceQuickbooksCredentialsOAuth20:
+class SourceQuickbooksAuthorizationMethodOAuth20:
     access_token: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('access_token') }})
     r"""Access token fot making authenticated requests."""
     client_id: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('client_id') }})
@@ -29,12 +25,15 @@ class SourceQuickbooksCredentialsOAuth20:
     r"""A token used when refreshing the access token."""
     token_expiry_date: datetime = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('token_expiry_date'), 'encoder': utils.datetimeisoformat(False), 'decoder': dateutil.parser.isoparse }})
     r"""The date-time when the access token should be refreshed."""
-    auth_type: Optional[SourceQuickbooksCredentialsOAuth20AuthType] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_type'), 'exclude': lambda f: f is None }})
+    AUTH_TYPE: Final[Optional[str]] = dataclasses.field(default='oauth2.0', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_type'), 'exclude': lambda f: f is None }})
     
 
 
-class SourceQuickbooksQuickbooks(str, Enum):
-    QUICKBOOKS = 'quickbooks'
+
+
+@dataclasses.dataclass
+class SourceQuickbooksAuthorizationMethod:
+    pass
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
@@ -42,11 +41,11 @@ class SourceQuickbooksQuickbooks(str, Enum):
 @dataclasses.dataclass
 class SourceQuickbooks:
     r"""The values required to configure the source."""
-    credentials: Any = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credentials') }})
-    sandbox: bool = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sandbox') }})
-    r"""Determines whether to use the sandbox or production environment."""
-    source_type: SourceQuickbooksQuickbooks = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
+    credentials: Union[SourceQuickbooksAuthorizationMethodOAuth20] = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credentials') }})
     start_date: datetime = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('start_date'), 'encoder': utils.datetimeisoformat(False), 'decoder': dateutil.parser.isoparse }})
     r"""The default value to use if no bookmark exists for an endpoint (rfc3339 date string). E.g, 2021-03-20T00:00:00Z. Any data before this date will not be replicated."""
+    SOURCE_TYPE: Final[str] = dataclasses.field(default='quickbooks', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
+    sandbox: Optional[bool] = dataclasses.field(default=False, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sandbox'), 'exclude': lambda f: f is None }})
+    r"""Determines whether to use the sandbox or production environment."""
     
 

@@ -6,7 +6,7 @@ import dateutil.parser
 from airbyte import utils
 from dataclasses_json import Undefined, dataclass_json
 from datetime import datetime
-from enum import Enum
+from typing import Final
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
@@ -26,9 +26,6 @@ class SourceXeroAuthenticateViaXeroOAuth:
     
 
 
-class SourceXeroXero(str, Enum):
-    XERO = 'xero'
-
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
 
@@ -36,10 +33,10 @@ class SourceXeroXero(str, Enum):
 class SourceXero:
     r"""The values required to configure the source."""
     authentication: SourceXeroAuthenticateViaXeroOAuth = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('authentication') }})
-    source_type: SourceXeroXero = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     start_date: datetime = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('start_date'), 'encoder': utils.datetimeisoformat(False), 'decoder': dateutil.parser.isoparse }})
     r"""UTC date and time in the format YYYY-MM-DDTHH:mm:ssZ. Any data with created_at before this data will not be synced."""
     tenant_id: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('tenant_id') }})
     r"""Enter your Xero organization's Tenant ID"""
+    SOURCE_TYPE: Final[str] = dataclasses.field(default='xero', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     
 

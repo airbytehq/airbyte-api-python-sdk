@@ -5,10 +5,7 @@ import dataclasses
 from airbyte import utils
 from dataclasses_json import Undefined, dataclass_json
 from datetime import date
-from enum import Enum
-
-class SourceAwsCloudtrailAwsCloudtrail(str, Enum):
-    AWS_CLOUDTRAIL = 'aws-cloudtrail'
+from typing import Final, Optional
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
@@ -22,8 +19,8 @@ class SourceAwsCloudtrail:
     r"""The default AWS Region to use, for example, us-west-1 or us-west-2. When specifying a Region inline during client initialization, this property is named region_name."""
     aws_secret_key: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('aws_secret_key') }})
     r"""AWS CloudTrail Access Key ID. See the <a href=\\"https://docs.airbyte.com/integrations/sources/aws-cloudtrail\\">docs</a> for more information on how to obtain this key."""
-    source_type: SourceAwsCloudtrailAwsCloudtrail = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
-    start_date: date = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('start_date'), 'encoder': utils.dateisoformat(False), 'decoder': utils.datefromisoformat }})
+    SOURCE_TYPE: Final[str] = dataclasses.field(default='aws-cloudtrail', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
+    start_date: Optional[date] = dataclasses.field(default=dateutil.parser.parse('1970-01-01').date(), metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('start_date'), 'encoder': utils.dateisoformat(True), 'decoder': utils.datefromisoformat, 'exclude': lambda f: f is None }})
     r"""The date you would like to replicate data. Data in AWS CloudTrail is available for last 90 days only. Format: YYYY-MM-DD."""
     
 
