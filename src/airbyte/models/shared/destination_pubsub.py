@@ -4,7 +4,11 @@ from __future__ import annotations
 import dataclasses
 from airbyte import utils
 from dataclasses_json import Undefined, dataclass_json
+from enum import Enum
 from typing import Final, Optional
+
+class DestinationPubsubPubsub(str, Enum):
+    PUBSUB = 'pubsub'
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
@@ -18,7 +22,7 @@ class DestinationPubsub:
     r"""The GCP project ID for the project containing the target PubSub."""
     topic_id: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('topic_id') }})
     r"""The PubSub topic ID in the given GCP project ID."""
-    DESTINATION_TYPE: Final[str] = dataclasses.field(default='pubsub', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('destinationType') }})
+    DESTINATION_TYPE: Final[DestinationPubsubPubsub] = dataclasses.field(default=DestinationPubsubPubsub.PUBSUB, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('destinationType') }})
     batching_delay_threshold: Optional[int] = dataclasses.field(default=1, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('batching_delay_threshold'), 'exclude': lambda f: f is None }})
     r"""Number of ms before the buffer is flushed"""
     batching_element_count_threshold: Optional[int] = dataclasses.field(default=1, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('batching_element_count_threshold'), 'exclude': lambda f: f is None }})

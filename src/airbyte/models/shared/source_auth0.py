@@ -4,7 +4,11 @@ from __future__ import annotations
 import dataclasses
 from airbyte import utils
 from dataclasses_json import Undefined, dataclass_json
+from enum import Enum
 from typing import Final, Optional, Union
+
+class SourceAuth0AuthenticationMethodOAuth2AccessTokenAuthenticationMethod(str, Enum):
+    OAUTH2_ACCESS_TOKEN = 'oauth2_access_token'
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
@@ -13,9 +17,12 @@ from typing import Final, Optional, Union
 class SourceAuth0AuthenticationMethodOAuth2AccessToken:
     access_token: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('access_token') }})
     r"""Also called <a href=\\"https://auth0.com/docs/secure/tokens/access-tokens/get-management-api-access-tokens-for-testing\\">API Access Token </a> The access token used to call the Auth0 Management API Token. It's a JWT that contains specific grant permissions knowns as scopes."""
-    AUTH_TYPE: Final[str] = dataclasses.field(default='oauth2_access_token', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_type') }})
+    AUTH_TYPE: Final[SourceAuth0AuthenticationMethodOAuth2AccessTokenAuthenticationMethod] = dataclasses.field(default=SourceAuth0AuthenticationMethodOAuth2AccessTokenAuthenticationMethod.OAUTH2_ACCESS_TOKEN, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_type') }})
     
 
+
+class SourceAuth0AuthenticationMethodOAuth2ConfidentialApplicationAuthenticationMethod(str, Enum):
+    OAUTH2_CONFIDENTIAL_APPLICATION = 'oauth2_confidential_application'
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
@@ -28,7 +35,7 @@ class SourceAuth0AuthenticationMethodOAuth2ConfidentialApplication:
     r"""Your application's Client ID. You can find this value on the <a href=\\"https://manage.auth0.com/#/applications\\">application's settings tab</a> after you login the admin portal."""
     client_secret: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('client_secret') }})
     r"""Your application's Client Secret. You can find this value on the <a href=\\"https://manage.auth0.com/#/applications\\">application's settings tab</a> after you login the admin portal."""
-    AUTH_TYPE: Final[str] = dataclasses.field(default='oauth2_confidential_application', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_type') }})
+    AUTH_TYPE: Final[SourceAuth0AuthenticationMethodOAuth2ConfidentialApplicationAuthenticationMethod] = dataclasses.field(default=SourceAuth0AuthenticationMethodOAuth2ConfidentialApplicationAuthenticationMethod.OAUTH2_CONFIDENTIAL_APPLICATION, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_type') }})
     
 
 
@@ -37,6 +44,9 @@ class SourceAuth0AuthenticationMethodOAuth2ConfidentialApplication:
 @dataclasses.dataclass
 class SourceAuth0AuthenticationMethod:
     pass
+
+class SourceAuth0Auth0(str, Enum):
+    AUTH0 = 'auth0'
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
@@ -47,7 +57,7 @@ class SourceAuth0:
     base_url: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('base_url') }})
     r"""The Authentication API is served over HTTPS. All URLs referenced in the documentation have the following base `https://YOUR_DOMAIN`"""
     credentials: Union[SourceAuth0AuthenticationMethodOAuth2ConfidentialApplication, SourceAuth0AuthenticationMethodOAuth2AccessToken] = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credentials') }})
-    SOURCE_TYPE: Final[str] = dataclasses.field(default='auth0', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
+    SOURCE_TYPE: Final[SourceAuth0Auth0] = dataclasses.field(default=SourceAuth0Auth0.AUTH0, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     start_date: Optional[str] = dataclasses.field(default='2023-08-05T00:43:59.244Z', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('start_date'), 'exclude': lambda f: f is None }})
     r"""UTC date and time in the format 2017-01-25T00:00:00Z. Any data before this date will not be replicated."""
     

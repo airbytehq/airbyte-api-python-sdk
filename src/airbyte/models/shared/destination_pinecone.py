@@ -4,7 +4,14 @@ from __future__ import annotations
 import dataclasses
 from airbyte import utils
 from dataclasses_json import Undefined, dataclass_json
+from enum import Enum
 from typing import Final, Optional, Union
+
+class DestinationPineconePinecone(str, Enum):
+    PINECONE = 'pinecone'
+
+class DestinationPineconeEmbeddingFakeMode(str, Enum):
+    FAKE = 'fake'
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
@@ -12,9 +19,12 @@ from typing import Final, Optional, Union
 @dataclasses.dataclass
 class DestinationPineconeEmbeddingFake:
     r"""Use a fake embedding made out of random vectors with 1536 embedding dimensions. This is useful for testing the data pipeline without incurring any costs."""
-    MODE: Final[Optional[str]] = dataclasses.field(default='fake', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('mode'), 'exclude': lambda f: f is None }})
+    MODE: Final[Optional[DestinationPineconeEmbeddingFakeMode]] = dataclasses.field(default=DestinationPineconeEmbeddingFakeMode.FAKE, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('mode'), 'exclude': lambda f: f is None }})
     
 
+
+class DestinationPineconeEmbeddingCohereMode(str, Enum):
+    COHERE = 'cohere'
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
@@ -23,9 +33,12 @@ class DestinationPineconeEmbeddingFake:
 class DestinationPineconeEmbeddingCohere:
     r"""Use the Cohere API to embed text."""
     cohere_key: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('cohere_key') }})
-    MODE: Final[Optional[str]] = dataclasses.field(default='cohere', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('mode'), 'exclude': lambda f: f is None }})
+    MODE: Final[Optional[DestinationPineconeEmbeddingCohereMode]] = dataclasses.field(default=DestinationPineconeEmbeddingCohereMode.COHERE, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('mode'), 'exclude': lambda f: f is None }})
     
 
+
+class DestinationPineconeEmbeddingOpenAIMode(str, Enum):
+    OPENAI = 'openai'
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
@@ -34,7 +47,7 @@ class DestinationPineconeEmbeddingCohere:
 class DestinationPineconeEmbeddingOpenAI:
     r"""Use the OpenAI API to embed text. This option is using the text-embedding-ada-002 model with 1536 embedding dimensions."""
     openai_key: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('openai_key') }})
-    MODE: Final[Optional[str]] = dataclasses.field(default='openai', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('mode'), 'exclude': lambda f: f is None }})
+    MODE: Final[Optional[DestinationPineconeEmbeddingOpenAIMode]] = dataclasses.field(default=DestinationPineconeEmbeddingOpenAIMode.OPENAI, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('mode'), 'exclude': lambda f: f is None }})
     
 
 
@@ -85,6 +98,6 @@ class DestinationPinecone:
     indexing: DestinationPineconeIndexing = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('indexing') }})
     r"""Pinecone is a popular vector store that can be used to store and retrieve embeddings."""
     processing: DestinationPineconeProcessingConfigModel = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('processing') }})
-    DESTINATION_TYPE: Final[str] = dataclasses.field(default='pinecone', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('destinationType') }})
+    DESTINATION_TYPE: Final[DestinationPineconePinecone] = dataclasses.field(default=DestinationPineconePinecone.PINECONE, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('destinationType') }})
     
 

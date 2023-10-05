@@ -4,7 +4,11 @@ from __future__ import annotations
 import dataclasses
 from airbyte import utils
 from dataclasses_json import Undefined, dataclass_json
+from enum import Enum
 from typing import Final, Optional
+
+class SourceXkcdXkcd(str, Enum):
+    XKCD = 'xkcd'
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
@@ -12,6 +16,6 @@ from typing import Final, Optional
 @dataclasses.dataclass
 class SourceXkcd:
     r"""The values required to configure the source."""
-    SOURCE_TYPE: Final[Optional[str]] = dataclasses.field(default='xkcd', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType'), 'exclude': lambda f: f is None }})
+    SOURCE_TYPE: Final[Optional[SourceXkcdXkcd]] = dataclasses.field(default=SourceXkcdXkcd.XKCD, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType'), 'exclude': lambda f: f is None }})
     
 

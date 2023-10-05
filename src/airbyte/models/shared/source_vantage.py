@@ -4,7 +4,11 @@ from __future__ import annotations
 import dataclasses
 from airbyte import utils
 from dataclasses_json import Undefined, dataclass_json
+from enum import Enum
 from typing import Final
+
+class SourceVantageVantage(str, Enum):
+    VANTAGE = 'vantage'
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
@@ -14,6 +18,6 @@ class SourceVantage:
     r"""The values required to configure the source."""
     access_token: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('access_token') }})
     r"""Your API Access token. See <a href=\\"https://vantage.readme.io/reference/authentication\\">here</a>."""
-    SOURCE_TYPE: Final[str] = dataclasses.field(default='vantage', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
+    SOURCE_TYPE: Final[SourceVantageVantage] = dataclasses.field(default=SourceVantageVantage.VANTAGE, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     
 

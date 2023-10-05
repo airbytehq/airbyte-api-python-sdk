@@ -35,6 +35,9 @@ class SourceAmazonSqsAWSRegion(str, Enum):
     US_GOV_EAST_1 = 'us-gov-east-1'
     US_GOV_WEST_1 = 'us-gov-west-1'
 
+class SourceAmazonSqsAmazonSqs(str, Enum):
+    AMAZON_SQS = 'amazon-sqs'
+
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
 
@@ -45,7 +48,7 @@ class SourceAmazonSqs:
     r"""URL of the SQS Queue"""
     region: SourceAmazonSqsAWSRegion = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('region') }})
     r"""AWS Region of the SQS Queue"""
-    SOURCE_TYPE: Final[str] = dataclasses.field(default='amazon-sqs', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
+    SOURCE_TYPE: Final[SourceAmazonSqsAmazonSqs] = dataclasses.field(default=SourceAmazonSqsAmazonSqs.AMAZON_SQS, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     access_key: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('access_key'), 'exclude': lambda f: f is None }})
     r"""The Access Key ID of the AWS IAM Role to use for pulling messages"""
     attributes_to_return: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('attributes_to_return'), 'exclude': lambda f: f is None }})

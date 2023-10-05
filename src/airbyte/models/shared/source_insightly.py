@@ -4,7 +4,11 @@ from __future__ import annotations
 import dataclasses
 from airbyte import utils
 from dataclasses_json import Undefined, dataclass_json
+from enum import Enum
 from typing import Final, Optional
+
+class SourceInsightlyInsightly(str, Enum):
+    INSIGHTLY = 'insightly'
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
@@ -16,6 +20,6 @@ class SourceInsightly:
     r"""The date from which you'd like to replicate data for Insightly in the format YYYY-MM-DDT00:00:00Z. All data generated after this date will be replicated. Note that it will be used only for incremental streams."""
     token: Optional[str] = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('token') }})
     r"""Your Insightly API token."""
-    SOURCE_TYPE: Final[str] = dataclasses.field(default='insightly', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
+    SOURCE_TYPE: Final[SourceInsightlyInsightly] = dataclasses.field(default=SourceInsightlyInsightly.INSIGHTLY, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     
 

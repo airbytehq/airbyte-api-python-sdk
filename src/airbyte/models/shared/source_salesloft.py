@@ -6,7 +6,11 @@ import dateutil.parser
 from airbyte import utils
 from dataclasses_json import Undefined, dataclass_json
 from datetime import datetime
+from enum import Enum
 from typing import Final, Union
+
+class SourceSalesloftCredentialsAuthenticateViaAPIKeyAuthType(str, Enum):
+    API_KEY = 'api_key'
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
@@ -15,9 +19,12 @@ from typing import Final, Union
 class SourceSalesloftCredentialsAuthenticateViaAPIKey:
     api_key: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('api_key') }})
     r"""API Key for making authenticated requests. More instruction on how to find this value in our <a href=\\"https://docs.airbyte.com/integrations/sources/salesloft#setup-guide\\">docs</a>"""
-    AUTH_TYPE: Final[str] = dataclasses.field(default='api_key', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_type') }})
+    AUTH_TYPE: Final[SourceSalesloftCredentialsAuthenticateViaAPIKeyAuthType] = dataclasses.field(default=SourceSalesloftCredentialsAuthenticateViaAPIKeyAuthType.API_KEY, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_type') }})
     
 
+
+class SourceSalesloftCredentialsAuthenticateViaOAuthAuthType(str, Enum):
+    OAUTH2_0 = 'oauth2.0'
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
@@ -34,7 +41,7 @@ class SourceSalesloftCredentialsAuthenticateViaOAuth:
     r"""The token for obtaining a new access token."""
     token_expiry_date: datetime = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('token_expiry_date'), 'encoder': utils.datetimeisoformat(False), 'decoder': dateutil.parser.isoparse }})
     r"""The date-time when the access token should be refreshed."""
-    AUTH_TYPE: Final[str] = dataclasses.field(default='oauth2.0', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_type') }})
+    AUTH_TYPE: Final[SourceSalesloftCredentialsAuthenticateViaOAuthAuthType] = dataclasses.field(default=SourceSalesloftCredentialsAuthenticateViaOAuthAuthType.OAUTH2_0, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_type') }})
     
 
 
@@ -43,6 +50,9 @@ class SourceSalesloftCredentialsAuthenticateViaOAuth:
 @dataclasses.dataclass
 class SourceSalesloftCredentials:
     pass
+
+class SourceSalesloftSalesloft(str, Enum):
+    SALESLOFT = 'salesloft'
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
@@ -53,6 +63,6 @@ class SourceSalesloft:
     credentials: Union[SourceSalesloftCredentialsAuthenticateViaOAuth, SourceSalesloftCredentialsAuthenticateViaAPIKey] = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credentials') }})
     start_date: datetime = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('start_date'), 'encoder': utils.datetimeisoformat(False), 'decoder': dateutil.parser.isoparse }})
     r"""The date from which you'd like to replicate data for Salesloft API, in the format YYYY-MM-DDT00:00:00Z. All data generated after this date will be replicated."""
-    SOURCE_TYPE: Final[str] = dataclasses.field(default='salesloft', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
+    SOURCE_TYPE: Final[SourceSalesloftSalesloft] = dataclasses.field(default=SourceSalesloftSalesloft.SALESLOFT, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     
 

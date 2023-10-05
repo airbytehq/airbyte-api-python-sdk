@@ -5,7 +5,11 @@ import dataclasses
 from airbyte import utils
 from dataclasses_json import Undefined, dataclass_json
 from datetime import date
+from enum import Enum
 from typing import Final
+
+class SourcePrestashopPrestashop(str, Enum):
+    PRESTASHOP = 'prestashop'
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
@@ -19,6 +23,6 @@ class SourcePrestashop:
     r"""The Start date in the format YYYY-MM-DD."""
     url: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('url') }})
     r"""Shop URL without trailing slash."""
-    SOURCE_TYPE: Final[str] = dataclasses.field(default='prestashop', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
+    SOURCE_TYPE: Final[SourcePrestashopPrestashop] = dataclasses.field(default=SourcePrestashopPrestashop.PRESTASHOP, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     
 

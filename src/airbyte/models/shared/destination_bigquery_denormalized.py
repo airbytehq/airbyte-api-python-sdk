@@ -50,6 +50,12 @@ class DestinationBigqueryDenormalizedDatasetLocation(str, Enum):
     US_WEST3 = 'us-west3'
     US_WEST4 = 'us-west4'
 
+class DestinationBigqueryDenormalizedBigqueryDenormalized(str, Enum):
+    BIGQUERY_DENORMALIZED = 'bigquery-denormalized'
+
+class DestinationBigqueryDenormalizedLoadingMethodGCSStagingCredentialHMACKeyCredentialType(str, Enum):
+    HMAC_KEY = 'HMAC_KEY'
+
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
 
@@ -60,7 +66,7 @@ class DestinationBigqueryDenormalizedLoadingMethodGCSStagingCredentialHMACKey:
     r"""HMAC key access ID. When linked to a service account, this ID is 61 characters long; when linked to a user account, it is 24 characters long."""
     hmac_key_secret: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('hmac_key_secret') }})
     r"""The corresponding secret for the access ID. It is a 40-character base-64 encoded string."""
-    CREDENTIAL_TYPE: Final[str] = dataclasses.field(default='HMAC_KEY', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credential_type') }})
+    CREDENTIAL_TYPE: Final[DestinationBigqueryDenormalizedLoadingMethodGCSStagingCredentialHMACKeyCredentialType] = dataclasses.field(default=DestinationBigqueryDenormalizedLoadingMethodGCSStagingCredentialHMACKeyCredentialType.HMAC_KEY, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credential_type') }})
     
 
 
@@ -75,6 +81,9 @@ class DestinationBigqueryDenormalizedLoadingMethodGCSStagingGCSTmpFilesAfterward
     DELETE_ALL_TMP_FILES_FROM_GCS = 'Delete all tmp files from GCS'
     KEEP_ALL_TMP_FILES_IN_GCS = 'Keep all tmp files in GCS'
 
+class DestinationBigqueryDenormalizedLoadingMethodGCSStagingMethod(str, Enum):
+    GCS_STAGING = 'GCS Staging'
+
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
 
@@ -87,7 +96,7 @@ class DestinationBigqueryDenormalizedLoadingMethodGCSStaging:
     r"""The name of the GCS bucket. Read more <a href=\\"https://cloud.google.com/storage/docs/naming-buckets\\">here</a>."""
     gcs_bucket_path: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('gcs_bucket_path') }})
     r"""Directory under the GCS bucket where data will be written. Read more <a href=\\"https://cloud.google.com/storage/docs/locations\\">here</a>."""
-    METHOD: Final[str] = dataclasses.field(default='GCS Staging', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('method') }})
+    METHOD: Final[DestinationBigqueryDenormalizedLoadingMethodGCSStagingMethod] = dataclasses.field(default=DestinationBigqueryDenormalizedLoadingMethodGCSStagingMethod.GCS_STAGING, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('method') }})
     file_buffer_count: Optional[int] = dataclasses.field(default=10, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('file_buffer_count'), 'exclude': lambda f: f is None }})
     r"""Number of file buffers allocated for writing data. Increasing this number is beneficial for connections using Change Data Capture (CDC) and up to the number of streams within a connection. Increasing the number of file buffers past the maximum number of streams has deteriorating effects"""
     keep_files_in_gcs_bucket: Optional[DestinationBigqueryDenormalizedLoadingMethodGCSStagingGCSTmpFilesAfterwardProcessing] = dataclasses.field(default=DestinationBigqueryDenormalizedLoadingMethodGCSStagingGCSTmpFilesAfterwardProcessing.DELETE_ALL_TMP_FILES_FROM_GCS, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('keep_files_in_gcs-bucket'), 'exclude': lambda f: f is None }})
@@ -95,13 +104,16 @@ class DestinationBigqueryDenormalizedLoadingMethodGCSStaging:
     
 
 
+class DestinationBigqueryDenormalizedLoadingMethodStandardInsertsMethod(str, Enum):
+    STANDARD = 'Standard'
+
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
 
 @dataclasses.dataclass
 class DestinationBigqueryDenormalizedLoadingMethodStandardInserts:
     r"""Loading method used to send select the way data will be uploaded to BigQuery. <br/><b>Standard Inserts</b> - Direct uploading using SQL INSERT statements. This method is extremely inefficient and provided only for quick testing. In almost all cases, you should use staging. <br/><b>GCS Staging</b> - Writes large batches of records to a file, uploads the file to GCS, then uses <b>COPY INTO table</b> to upload the file. Recommended for most workloads for better speed and scalability. Read more about GCS Staging <a href=\\"https://docs.airbyte.com/integrations/destinations/bigquery#gcs-staging\\">here</a>."""
-    METHOD: Final[str] = dataclasses.field(default='Standard', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('method') }})
+    METHOD: Final[DestinationBigqueryDenormalizedLoadingMethodStandardInsertsMethod] = dataclasses.field(default=DestinationBigqueryDenormalizedLoadingMethodStandardInsertsMethod.STANDARD, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('method') }})
     
 
 
@@ -121,7 +133,7 @@ class DestinationBigqueryDenormalized:
     r"""The default BigQuery Dataset ID that tables are replicated to if the source does not specify a namespace. Read more <a href=\\"https://cloud.google.com/bigquery/docs/datasets#create-dataset\\">here</a>."""
     project_id: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('project_id') }})
     r"""The GCP project ID for the project containing the target BigQuery dataset. Read more <a href=\\"https://cloud.google.com/resource-manager/docs/creating-managing-projects#identifying_projects\\">here</a>."""
-    DESTINATION_TYPE: Final[str] = dataclasses.field(default='bigquery-denormalized', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('destinationType') }})
+    DESTINATION_TYPE: Final[DestinationBigqueryDenormalizedBigqueryDenormalized] = dataclasses.field(default=DestinationBigqueryDenormalizedBigqueryDenormalized.BIGQUERY_DENORMALIZED, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('destinationType') }})
     big_query_client_buffer_size_mb: Optional[int] = dataclasses.field(default=15, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('big_query_client_buffer_size_mb'), 'exclude': lambda f: f is None }})
     r"""Google BigQuery client's chunk (buffer) size (MIN=1, MAX = 15) for each table. The size that will be written by a single RPC. Written data will be buffered and only flushed upon reaching this size or closing the channel. The default 15MB value is used if not set explicitly. Read more <a href=\\"https://googleapis.dev/python/bigquery/latest/generated/google.cloud.bigquery.client.Client.html\\">here</a>."""
     credentials_json: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credentials_json'), 'exclude': lambda f: f is None }})
