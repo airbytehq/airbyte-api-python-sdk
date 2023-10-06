@@ -4,7 +4,11 @@ from __future__ import annotations
 import dataclasses
 from airbyte import utils
 from dataclasses_json import Undefined, dataclass_json
+from enum import Enum
 from typing import Final
+
+class SourcePersistiqPersistiq(str, Enum):
+    PERSISTIQ = 'persistiq'
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
@@ -14,6 +18,6 @@ class SourcePersistiq:
     r"""The values required to configure the source."""
     api_key: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('api_key') }})
     r"""PersistIq API Key. See the <a href=\\"https://apidocs.persistiq.com/#authentication\\">docs</a> for more information on where to find that key."""
-    SOURCE_TYPE: Final[str] = dataclasses.field(default='persistiq', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
+    SOURCE_TYPE: Final[SourcePersistiqPersistiq] = dataclasses.field(default=SourcePersistiqPersistiq.PERSISTIQ, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     
 

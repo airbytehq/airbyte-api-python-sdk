@@ -7,6 +7,10 @@ from dataclasses_json import Undefined, dataclass_json
 from enum import Enum
 from typing import Final, Optional, Union
 
+class DestinationAwsDatalakeAuthenticationModeIAMUserCredentialsTitle(str, Enum):
+    r"""Name of the credentials"""
+    IAM_USER = 'IAM User'
+
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
 
@@ -17,10 +21,14 @@ class DestinationAwsDatalakeAuthenticationModeIAMUser:
     r"""AWS User Access Key Id"""
     aws_secret_access_key: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('aws_secret_access_key') }})
     r"""Secret Access Key"""
-    CREDENTIALS_TITLE: Final[Optional[str]] = dataclasses.field(default='IAM User', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credentials_title'), 'exclude': lambda f: f is None }})
+    CREDENTIALS_TITLE: Final[Optional[DestinationAwsDatalakeAuthenticationModeIAMUserCredentialsTitle]] = dataclasses.field(default=DestinationAwsDatalakeAuthenticationModeIAMUserCredentialsTitle.IAM_USER, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credentials_title'), 'exclude': lambda f: f is None }})
     r"""Name of the credentials"""
     
 
+
+class DestinationAwsDatalakeAuthenticationModeIAMRoleCredentialsTitle(str, Enum):
+    r"""Name of the credentials"""
+    IAM_ROLE = 'IAM Role'
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
@@ -30,7 +38,7 @@ class DestinationAwsDatalakeAuthenticationModeIAMRole:
     r"""Choose How to Authenticate to AWS."""
     role_arn: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('role_arn') }})
     r"""Will assume this role to write data to s3"""
-    CREDENTIALS_TITLE: Final[Optional[str]] = dataclasses.field(default='IAM Role', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credentials_title'), 'exclude': lambda f: f is None }})
+    CREDENTIALS_TITLE: Final[Optional[DestinationAwsDatalakeAuthenticationModeIAMRoleCredentialsTitle]] = dataclasses.field(default=DestinationAwsDatalakeAuthenticationModeIAMRoleCredentialsTitle.IAM_ROLE, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credentials_title'), 'exclude': lambda f: f is None }})
     r"""Name of the credentials"""
     
 
@@ -41,12 +49,18 @@ class DestinationAwsDatalakeAuthenticationModeIAMRole:
 class DestinationAwsDatalakeAuthenticationMode:
     pass
 
+class DestinationAwsDatalakeAwsDatalake(str, Enum):
+    AWS_DATALAKE = 'aws-datalake'
+
 class DestinationAwsDatalakeOutputFormatWildcardParquetColumnarStorageCompressionCodecOptional(str, Enum):
     r"""The compression algorithm used to compress data."""
     UNCOMPRESSED = 'UNCOMPRESSED'
     SNAPPY = 'SNAPPY'
     GZIP = 'GZIP'
     ZSTD = 'ZSTD'
+
+class DestinationAwsDatalakeOutputFormatWildcardParquetColumnarStorageFormatTypeWildcard(str, Enum):
+    PARQUET = 'Parquet'
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
@@ -56,7 +70,7 @@ class DestinationAwsDatalakeOutputFormatWildcardParquetColumnarStorage:
     r"""Format of the data output."""
     compression_codec: Optional[DestinationAwsDatalakeOutputFormatWildcardParquetColumnarStorageCompressionCodecOptional] = dataclasses.field(default=DestinationAwsDatalakeOutputFormatWildcardParquetColumnarStorageCompressionCodecOptional.SNAPPY, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('compression_codec'), 'exclude': lambda f: f is None }})
     r"""The compression algorithm used to compress data."""
-    FORMAT_TYPE: Final[Optional[str]] = dataclasses.field(default='Parquet', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('format_type'), 'exclude': lambda f: f is None }})
+    format_type: Optional[DestinationAwsDatalakeOutputFormatWildcardParquetColumnarStorageFormatTypeWildcard] = dataclasses.field(default=DestinationAwsDatalakeOutputFormatWildcardParquetColumnarStorageFormatTypeWildcard.PARQUET, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('format_type'), 'exclude': lambda f: f is None }})
     
 
 
@@ -64,6 +78,9 @@ class DestinationAwsDatalakeOutputFormatWildcardJSONLinesNewlineDelimitedJSONCom
     r"""The compression algorithm used to compress data."""
     UNCOMPRESSED = 'UNCOMPRESSED'
     GZIP = 'GZIP'
+
+class DestinationAwsDatalakeOutputFormatWildcardJSONLinesNewlineDelimitedJSONFormatTypeWildcard(str, Enum):
+    JSONL = 'JSONL'
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
@@ -73,7 +90,7 @@ class DestinationAwsDatalakeOutputFormatWildcardJSONLinesNewlineDelimitedJSON:
     r"""Format of the data output."""
     compression_codec: Optional[DestinationAwsDatalakeOutputFormatWildcardJSONLinesNewlineDelimitedJSONCompressionCodecOptional] = dataclasses.field(default=DestinationAwsDatalakeOutputFormatWildcardJSONLinesNewlineDelimitedJSONCompressionCodecOptional.UNCOMPRESSED, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('compression_codec'), 'exclude': lambda f: f is None }})
     r"""The compression algorithm used to compress data."""
-    FORMAT_TYPE: Final[Optional[str]] = dataclasses.field(default='JSONL', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('format_type'), 'exclude': lambda f: f is None }})
+    format_type: Optional[DestinationAwsDatalakeOutputFormatWildcardJSONLinesNewlineDelimitedJSONFormatTypeWildcard] = dataclasses.field(default=DestinationAwsDatalakeOutputFormatWildcardJSONLinesNewlineDelimitedJSONFormatTypeWildcard.JSONL, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('format_type'), 'exclude': lambda f: f is None }})
     
 
 
@@ -134,7 +151,7 @@ class DestinationAwsDatalake:
     r"""Choose How to Authenticate to AWS."""
     lakeformation_database_name: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('lakeformation_database_name') }})
     r"""The default database this destination will use to create tables in per stream. Can be changed per connection by customizing the namespace."""
-    DESTINATION_TYPE: Final[str] = dataclasses.field(default='aws-datalake', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('destinationType') }})
+    DESTINATION_TYPE: Final[DestinationAwsDatalakeAwsDatalake] = dataclasses.field(default=DestinationAwsDatalakeAwsDatalake.AWS_DATALAKE, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('destinationType') }})
     aws_account_id: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('aws_account_id'), 'exclude': lambda f: f is None }})
     r"""target aws account id"""
     bucket_prefix: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('bucket_prefix'), 'exclude': lambda f: f is None }})

@@ -7,6 +7,9 @@ from dataclasses_json import Undefined, dataclass_json
 from enum import Enum
 from typing import Final, Optional, Union
 
+class SourceOutbrainAmplifyAuthenticationMethodUsernamePasswordBothUsernameAndPasswordIsRequiredForAuthenticationRequest(str, Enum):
+    USERNAME_PASSWORD = 'username_password'
+
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
 
@@ -17,9 +20,12 @@ class SourceOutbrainAmplifyAuthenticationMethodUsernamePassword:
     r"""Add Password for authentication."""
     username: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('username') }})
     r"""Add Username for authentication."""
-    TYPE: Final[str] = dataclasses.field(default='username_password', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('type') }})
+    TYPE: Final[SourceOutbrainAmplifyAuthenticationMethodUsernamePasswordBothUsernameAndPasswordIsRequiredForAuthenticationRequest] = dataclasses.field(default=SourceOutbrainAmplifyAuthenticationMethodUsernamePasswordBothUsernameAndPasswordIsRequiredForAuthenticationRequest.USERNAME_PASSWORD, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('type') }})
     
 
+
+class SourceOutbrainAmplifyAuthenticationMethodAccessTokenAccessTokenIsRequiredForAuthenticationRequests(str, Enum):
+    ACCESS_TOKEN = 'access_token'
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
@@ -29,7 +35,7 @@ class SourceOutbrainAmplifyAuthenticationMethodAccessToken:
     r"""Credentials for making authenticated requests requires either username/password or access_token."""
     access_token: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('access_token') }})
     r"""Access Token for making authenticated requests."""
-    TYPE: Final[str] = dataclasses.field(default='access_token', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('type') }})
+    TYPE: Final[SourceOutbrainAmplifyAuthenticationMethodAccessTokenAccessTokenIsRequiredForAuthenticationRequests] = dataclasses.field(default=SourceOutbrainAmplifyAuthenticationMethodAccessTokenAccessTokenIsRequiredForAuthenticationRequests.ACCESS_TOKEN, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('type') }})
     
 
 
@@ -51,6 +57,9 @@ class SourceOutbrainAmplifyGranularityForPeriodicReports(str, Enum):
     WEEKLY = 'weekly'
     MONTHLY = 'monthly'
 
+class SourceOutbrainAmplifyOutbrainAmplify(str, Enum):
+    OUTBRAIN_AMPLIFY = 'outbrain-amplify'
+
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
 
@@ -61,7 +70,7 @@ class SourceOutbrainAmplify:
     r"""Credentials for making authenticated requests requires either username/password or access_token."""
     start_date: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('start_date') }})
     r"""Date in the format YYYY-MM-DD eg. 2017-01-25. Any data before this date will not be replicated."""
-    SOURCE_TYPE: Final[str] = dataclasses.field(default='outbrain-amplify', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
+    SOURCE_TYPE: Final[SourceOutbrainAmplifyOutbrainAmplify] = dataclasses.field(default=SourceOutbrainAmplifyOutbrainAmplify.OUTBRAIN_AMPLIFY, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     end_date: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('end_date'), 'exclude': lambda f: f is None }})
     r"""Date in the format YYYY-MM-DD."""
     geo_location_breakdown: Optional[SourceOutbrainAmplifyGranularityForGeoLocationRegion] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('geo_location_breakdown'), 'exclude': lambda f: f is None }})

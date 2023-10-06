@@ -5,7 +5,11 @@ import dataclasses
 from airbyte import utils
 from dataclasses_json import Undefined, dataclass_json
 from datetime import date
+from enum import Enum
 from typing import Final
+
+class SourceWoocommerceWoocommerce(str, Enum):
+    WOOCOMMERCE = 'woocommerce'
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
@@ -21,6 +25,6 @@ class SourceWoocommerce:
     r"""The name of the store. For https://EXAMPLE.com, the shop name is 'EXAMPLE.com'."""
     start_date: date = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('start_date'), 'encoder': utils.dateisoformat(False), 'decoder': utils.datefromisoformat }})
     r"""The date you would like to replicate data from. Format: YYYY-MM-DD"""
-    SOURCE_TYPE: Final[str] = dataclasses.field(default='woocommerce', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
+    SOURCE_TYPE: Final[SourceWoocommerceWoocommerce] = dataclasses.field(default=SourceWoocommerceWoocommerce.WOOCOMMERCE, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     
 

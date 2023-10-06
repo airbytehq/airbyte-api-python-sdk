@@ -7,6 +7,13 @@ from dataclasses_json import Undefined, dataclass_json
 from enum import Enum
 from typing import Final, Optional, Union
 
+class DestinationRedshiftRedshift(str, Enum):
+    REDSHIFT = 'redshift'
+
+class DestinationRedshiftSSHTunnelMethodPasswordAuthenticationTunnelMethod(str, Enum):
+    r"""Connect through a jump server tunnel host using username and password authentication"""
+    SSH_PASSWORD_AUTH = 'SSH_PASSWORD_AUTH'
+
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
 
@@ -19,12 +26,16 @@ class DestinationRedshiftSSHTunnelMethodPasswordAuthentication:
     r"""OS-level username for logging into the jump server host"""
     tunnel_user_password: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('tunnel_user_password') }})
     r"""OS-level password for logging into the jump server host"""
-    TUNNEL_METHOD: Final[str] = dataclasses.field(default='SSH_PASSWORD_AUTH', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('tunnel_method') }})
+    TUNNEL_METHOD: Final[DestinationRedshiftSSHTunnelMethodPasswordAuthenticationTunnelMethod] = dataclasses.field(default=DestinationRedshiftSSHTunnelMethodPasswordAuthenticationTunnelMethod.SSH_PASSWORD_AUTH, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('tunnel_method') }})
     r"""Connect through a jump server tunnel host using username and password authentication"""
     tunnel_port: Optional[int] = dataclasses.field(default=22, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('tunnel_port'), 'exclude': lambda f: f is None }})
     r"""Port on the proxy/jump server that accepts inbound ssh connections."""
     
 
+
+class DestinationRedshiftSSHTunnelMethodSSHKeyAuthenticationTunnelMethod(str, Enum):
+    r"""Connect through a jump server tunnel host using username and ssh key"""
+    SSH_KEY_AUTH = 'SSH_KEY_AUTH'
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
@@ -38,12 +49,16 @@ class DestinationRedshiftSSHTunnelMethodSSHKeyAuthentication:
     r"""Hostname of the jump server host that allows inbound ssh tunnel."""
     tunnel_user: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('tunnel_user') }})
     r"""OS-level username for logging into the jump server host."""
-    TUNNEL_METHOD: Final[str] = dataclasses.field(default='SSH_KEY_AUTH', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('tunnel_method') }})
+    TUNNEL_METHOD: Final[DestinationRedshiftSSHTunnelMethodSSHKeyAuthenticationTunnelMethod] = dataclasses.field(default=DestinationRedshiftSSHTunnelMethodSSHKeyAuthenticationTunnelMethod.SSH_KEY_AUTH, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('tunnel_method') }})
     r"""Connect through a jump server tunnel host using username and ssh key"""
     tunnel_port: Optional[int] = dataclasses.field(default=22, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('tunnel_port'), 'exclude': lambda f: f is None }})
     r"""Port on the proxy/jump server that accepts inbound ssh connections."""
     
 
+
+class DestinationRedshiftSSHTunnelMethodNoTunnelTunnelMethod(str, Enum):
+    r"""No ssh tunnel needed to connect to database"""
+    NO_TUNNEL = 'NO_TUNNEL'
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
@@ -51,7 +66,7 @@ class DestinationRedshiftSSHTunnelMethodSSHKeyAuthentication:
 @dataclasses.dataclass
 class DestinationRedshiftSSHTunnelMethodNoTunnel:
     r"""Whether to initiate an SSH tunnel before connecting to the database, and if so, which kind of authentication to use."""
-    TUNNEL_METHOD: Final[str] = dataclasses.field(default='NO_TUNNEL', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('tunnel_method') }})
+    TUNNEL_METHOD: Final[DestinationRedshiftSSHTunnelMethodNoTunnelTunnelMethod] = dataclasses.field(default=DestinationRedshiftSSHTunnelMethodNoTunnelTunnelMethod.NO_TUNNEL, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('tunnel_method') }})
     r"""No ssh tunnel needed to connect to database"""
     
 
@@ -62,17 +77,23 @@ class DestinationRedshiftSSHTunnelMethodNoTunnel:
 class DestinationRedshiftSSHTunnelMethod:
     pass
 
+class DestinationRedshiftUploadingMethodS3StagingEncryptionAESCBCEnvelopeEncryptionEncryptionType(str, Enum):
+    AES_CBC_ENVELOPE = 'aes_cbc_envelope'
+
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
 
 @dataclasses.dataclass
 class DestinationRedshiftUploadingMethodS3StagingEncryptionAESCBCEnvelopeEncryption:
     r"""Staging data will be encrypted using AES-CBC envelope encryption."""
-    ENCRYPTION_TYPE: Final[Optional[str]] = dataclasses.field(default='aes_cbc_envelope', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('encryption_type'), 'exclude': lambda f: f is None }})
+    ENCRYPTION_TYPE: Final[Optional[DestinationRedshiftUploadingMethodS3StagingEncryptionAESCBCEnvelopeEncryptionEncryptionType]] = dataclasses.field(default=DestinationRedshiftUploadingMethodS3StagingEncryptionAESCBCEnvelopeEncryptionEncryptionType.AES_CBC_ENVELOPE, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('encryption_type'), 'exclude': lambda f: f is None }})
     key_encrypting_key: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('key_encrypting_key'), 'exclude': lambda f: f is None }})
     r"""The key, base64-encoded. Must be either 128, 192, or 256 bits. Leave blank to have Airbyte generate an ephemeral key for each sync."""
     
 
+
+class DestinationRedshiftUploadingMethodS3StagingEncryptionNoEncryptionEncryptionType(str, Enum):
+    NONE = 'none'
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
@@ -80,7 +101,7 @@ class DestinationRedshiftUploadingMethodS3StagingEncryptionAESCBCEnvelopeEncrypt
 @dataclasses.dataclass
 class DestinationRedshiftUploadingMethodS3StagingEncryptionNoEncryption:
     r"""Staging data will be stored in plaintext."""
-    ENCRYPTION_TYPE: Final[Optional[str]] = dataclasses.field(default='none', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('encryption_type'), 'exclude': lambda f: f is None }})
+    ENCRYPTION_TYPE: Final[Optional[DestinationRedshiftUploadingMethodS3StagingEncryptionNoEncryptionEncryptionType]] = dataclasses.field(default=DestinationRedshiftUploadingMethodS3StagingEncryptionNoEncryptionEncryptionType.NONE, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('encryption_type'), 'exclude': lambda f: f is None }})
     
 
 
@@ -89,6 +110,9 @@ class DestinationRedshiftUploadingMethodS3StagingEncryptionNoEncryption:
 @dataclasses.dataclass
 class DestinationRedshiftUploadingMethodS3StagingEncryption:
     pass
+
+class DestinationRedshiftUploadingMethodS3StagingMethod(str, Enum):
+    S3_STAGING = 'S3 Staging'
 
 class DestinationRedshiftUploadingMethodS3StagingS3BucketRegion(str, Enum):
     r"""The region of the S3 staging bucket to use if utilising a COPY strategy. See <a href=\\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/creating-bucket.html#:~:text=In-,Region,-%2C%20choose%20the%20AWS\\">AWS docs</a> for details."""
@@ -129,7 +153,7 @@ class DestinationRedshiftUploadingMethodS3Staging:
     r"""The name of the staging S3 bucket to use if utilising a COPY strategy. COPY is recommended for production workloads for better speed and scalability. See <a href=\\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/creating-bucket.html\\">AWS docs</a> for more details."""
     secret_access_key: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('secret_access_key') }})
     r"""The corresponding secret to the above access key id. See <a href=\\"https://docs.aws.amazon.com/general/latest/gr/aws-sec-cred-types.html#access-keys-and-secret-access-keys\\">AWS docs</a> on how to generate an access key ID and secret access key."""
-    METHOD: Final[str] = dataclasses.field(default='S3 Staging', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('method') }})
+    METHOD: Final[DestinationRedshiftUploadingMethodS3StagingMethod] = dataclasses.field(default=DestinationRedshiftUploadingMethodS3StagingMethod.S3_STAGING, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('method') }})
     encryption: Optional[Union[DestinationRedshiftUploadingMethodS3StagingEncryptionNoEncryption, DestinationRedshiftUploadingMethodS3StagingEncryptionAESCBCEnvelopeEncryption]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('encryption'), 'exclude': lambda f: f is None }})
     r"""How to encrypt the staging data"""
     file_buffer_count: Optional[int] = dataclasses.field(default=10, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('file_buffer_count'), 'exclude': lambda f: f is None }})
@@ -145,13 +169,16 @@ class DestinationRedshiftUploadingMethodS3Staging:
     
 
 
+class DestinationRedshiftUploadingMethodStandardMethod(str, Enum):
+    STANDARD = 'Standard'
+
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
 
 @dataclasses.dataclass
 class DestinationRedshiftUploadingMethodStandard:
     r"""The method how the data will be uploaded to the database."""
-    METHOD: Final[str] = dataclasses.field(default='Standard', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('method') }})
+    METHOD: Final[DestinationRedshiftUploadingMethodStandardMethod] = dataclasses.field(default=DestinationRedshiftUploadingMethodStandardMethod.STANDARD, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('method') }})
     
 
 
@@ -175,7 +202,7 @@ class DestinationRedshift:
     r"""Password associated with the username."""
     username: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('username') }})
     r"""Username to use to access the database."""
-    DESTINATION_TYPE: Final[str] = dataclasses.field(default='redshift', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('destinationType') }})
+    DESTINATION_TYPE: Final[DestinationRedshiftRedshift] = dataclasses.field(default=DestinationRedshiftRedshift.REDSHIFT, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('destinationType') }})
     jdbc_url_params: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('jdbc_url_params'), 'exclude': lambda f: f is None }})
     r"""Additional properties to pass to the JDBC URL string when connecting to the database formatted as 'key=value' pairs separated by the symbol '&'. (example: key1=value1&key2=value2&key3=value3)."""
     port: Optional[int] = dataclasses.field(default=5439, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('port'), 'exclude': lambda f: f is None }})

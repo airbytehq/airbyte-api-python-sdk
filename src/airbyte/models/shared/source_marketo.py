@@ -6,7 +6,11 @@ import dateutil.parser
 from airbyte import utils
 from dataclasses_json import Undefined, dataclass_json
 from datetime import datetime
+from enum import Enum
 from typing import Final
+
+class SourceMarketoMarketo(str, Enum):
+    MARKETO = 'marketo'
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
@@ -22,6 +26,6 @@ class SourceMarketo:
     r"""Your Marketo Base URL. See <a href=\\"https://docs.airbyte.com/integrations/sources/marketo\\"> the docs </a> for info on how to obtain this."""
     start_date: datetime = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('start_date'), 'encoder': utils.datetimeisoformat(False), 'decoder': dateutil.parser.isoparse }})
     r"""UTC date and time in the format 2017-01-25T00:00:00Z. Any data before this date will not be replicated."""
-    SOURCE_TYPE: Final[str] = dataclasses.field(default='marketo', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
+    SOURCE_TYPE: Final[SourceMarketoMarketo] = dataclasses.field(default=SourceMarketoMarketo.MARKETO, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     
 
