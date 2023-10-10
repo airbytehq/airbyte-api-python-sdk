@@ -6,7 +6,11 @@ import dateutil.parser
 from airbyte import utils
 from dataclasses_json import Undefined, dataclass_json
 from datetime import datetime
+from enum import Enum
 from typing import Final
+
+class SourceAircallAircall(str, Enum):
+    AIRCALL = 'aircall'
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
@@ -20,6 +24,6 @@ class SourceAircall:
     r"""App token found at settings (Ref- https://dashboard.aircall.io/integrations/api-keys)"""
     start_date: datetime = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('start_date'), 'encoder': utils.datetimeisoformat(False), 'decoder': dateutil.parser.isoparse }})
     r"""Date time filter for incremental filter, Specify which date to extract from."""
-    SOURCE_TYPE: Final[str] = dataclasses.field(default='aircall', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
+    SOURCE_TYPE: Final[SourceAircallAircall] = dataclasses.field(default=SourceAircallAircall.AIRCALL, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     
 

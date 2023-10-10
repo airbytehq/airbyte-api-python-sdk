@@ -4,7 +4,14 @@ from __future__ import annotations
 import dataclasses
 from airbyte import utils
 from dataclasses_json import Undefined, dataclass_json
+from enum import Enum
 from typing import Final, Optional, Union
+
+class DestinationMilvusMilvus(str, Enum):
+    MILVUS = 'milvus'
+
+class DestinationMilvusEmbeddingFromFieldMode(str, Enum):
+    FROM_FIELD = 'from_field'
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
@@ -16,9 +23,12 @@ class DestinationMilvusEmbeddingFromField:
     r"""The number of dimensions the embedding model is generating"""
     field_name: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('field_name') }})
     r"""Name of the field in the record that contains the embedding"""
-    MODE: Final[Optional[str]] = dataclasses.field(default='from_field', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('mode'), 'exclude': lambda f: f is None }})
+    MODE: Final[Optional[DestinationMilvusEmbeddingFromFieldMode]] = dataclasses.field(default=DestinationMilvusEmbeddingFromFieldMode.FROM_FIELD, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('mode'), 'exclude': lambda f: f is None }})
     
 
+
+class DestinationMilvusEmbeddingFakeMode(str, Enum):
+    FAKE = 'fake'
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
@@ -26,9 +36,12 @@ class DestinationMilvusEmbeddingFromField:
 @dataclasses.dataclass
 class DestinationMilvusEmbeddingFake:
     r"""Use a fake embedding made out of random vectors with 1536 embedding dimensions. This is useful for testing the data pipeline without incurring any costs."""
-    MODE: Final[Optional[str]] = dataclasses.field(default='fake', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('mode'), 'exclude': lambda f: f is None }})
+    MODE: Final[Optional[DestinationMilvusEmbeddingFakeMode]] = dataclasses.field(default=DestinationMilvusEmbeddingFakeMode.FAKE, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('mode'), 'exclude': lambda f: f is None }})
     
 
+
+class DestinationMilvusEmbeddingCohereMode(str, Enum):
+    COHERE = 'cohere'
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
@@ -37,9 +50,12 @@ class DestinationMilvusEmbeddingFake:
 class DestinationMilvusEmbeddingCohere:
     r"""Use the Cohere API to embed text."""
     cohere_key: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('cohere_key') }})
-    MODE: Final[Optional[str]] = dataclasses.field(default='cohere', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('mode'), 'exclude': lambda f: f is None }})
+    MODE: Final[Optional[DestinationMilvusEmbeddingCohereMode]] = dataclasses.field(default=DestinationMilvusEmbeddingCohereMode.COHERE, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('mode'), 'exclude': lambda f: f is None }})
     
 
+
+class DestinationMilvusEmbeddingOpenAIMode(str, Enum):
+    OPENAI = 'openai'
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
@@ -48,7 +64,7 @@ class DestinationMilvusEmbeddingCohere:
 class DestinationMilvusEmbeddingOpenAI:
     r"""Use the OpenAI API to embed text. This option is using the text-embedding-ada-002 model with 1536 embedding dimensions."""
     openai_key: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('openai_key') }})
-    MODE: Final[Optional[str]] = dataclasses.field(default='openai', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('mode'), 'exclude': lambda f: f is None }})
+    MODE: Final[Optional[DestinationMilvusEmbeddingOpenAIMode]] = dataclasses.field(default=DestinationMilvusEmbeddingOpenAIMode.OPENAI, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('mode'), 'exclude': lambda f: f is None }})
     
 
 
@@ -58,15 +74,21 @@ class DestinationMilvusEmbeddingOpenAI:
 class DestinationMilvusEmbedding:
     pass
 
+class DestinationMilvusIndexingAuthenticationNoAuthMode(str, Enum):
+    NO_AUTH = 'no_auth'
+
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
 
 @dataclasses.dataclass
 class DestinationMilvusIndexingAuthenticationNoAuth:
     r"""Do not authenticate (suitable for locally running test clusters, do not use for clusters with public IP addresses)"""
-    MODE: Final[Optional[str]] = dataclasses.field(default='no_auth', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('mode'), 'exclude': lambda f: f is None }})
+    MODE: Final[Optional[DestinationMilvusIndexingAuthenticationNoAuthMode]] = dataclasses.field(default=DestinationMilvusIndexingAuthenticationNoAuthMode.NO_AUTH, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('mode'), 'exclude': lambda f: f is None }})
     
 
+
+class DestinationMilvusIndexingAuthenticationUsernamePasswordMode(str, Enum):
+    USERNAME_PASSWORD = 'username_password'
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
@@ -78,9 +100,12 @@ class DestinationMilvusIndexingAuthenticationUsernamePassword:
     r"""Password for the Milvus instance"""
     username: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('username') }})
     r"""Username for the Milvus instance"""
-    MODE: Final[Optional[str]] = dataclasses.field(default='username_password', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('mode'), 'exclude': lambda f: f is None }})
+    MODE: Final[Optional[DestinationMilvusIndexingAuthenticationUsernamePasswordMode]] = dataclasses.field(default=DestinationMilvusIndexingAuthenticationUsernamePasswordMode.USERNAME_PASSWORD, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('mode'), 'exclude': lambda f: f is None }})
     
 
+
+class DestinationMilvusIndexingAuthenticationAPITokenMode(str, Enum):
+    TOKEN = 'token'
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
@@ -90,7 +115,7 @@ class DestinationMilvusIndexingAuthenticationAPIToken:
     r"""Authenticate using an API token (suitable for Zilliz Cloud)"""
     token: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('token') }})
     r"""API Token for the Milvus instance"""
-    MODE: Final[Optional[str]] = dataclasses.field(default='token', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('mode'), 'exclude': lambda f: f is None }})
+    MODE: Final[Optional[DestinationMilvusIndexingAuthenticationAPITokenMode]] = dataclasses.field(default=DestinationMilvusIndexingAuthenticationAPITokenMode.TOKEN, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('mode'), 'exclude': lambda f: f is None }})
     
 
 
@@ -148,6 +173,6 @@ class DestinationMilvus:
     indexing: DestinationMilvusIndexing = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('indexing') }})
     r"""Indexing configuration"""
     processing: DestinationMilvusProcessingConfigModel = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('processing') }})
-    DESTINATION_TYPE: Final[str] = dataclasses.field(default='milvus', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('destinationType') }})
+    DESTINATION_TYPE: Final[DestinationMilvusMilvus] = dataclasses.field(default=DestinationMilvusMilvus.MILVUS, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('destinationType') }})
     
 

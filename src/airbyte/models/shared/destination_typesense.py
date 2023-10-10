@@ -4,7 +4,11 @@ from __future__ import annotations
 import dataclasses
 from airbyte import utils
 from dataclasses_json import Undefined, dataclass_json
+from enum import Enum
 from typing import Final, Optional
+
+class DestinationTypesenseTypesense(str, Enum):
+    TYPESENSE = 'typesense'
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
@@ -16,7 +20,7 @@ class DestinationTypesense:
     r"""Typesense API Key"""
     host: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('host') }})
     r"""Hostname of the Typesense instance without protocol."""
-    DESTINATION_TYPE: Final[str] = dataclasses.field(default='typesense', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('destinationType') }})
+    DESTINATION_TYPE: Final[DestinationTypesenseTypesense] = dataclasses.field(default=DestinationTypesenseTypesense.TYPESENSE, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('destinationType') }})
     batch_size: Optional[int] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('batch_size'), 'exclude': lambda f: f is None }})
     r"""How many documents should be imported together. Default 1000"""
     port: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('port'), 'exclude': lambda f: f is None }})

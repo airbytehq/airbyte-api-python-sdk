@@ -5,6 +5,6 @@ Always connect with SSL. If the MySQL server doesn’t support SSL, the connecti
 
 ## Fields
 
-| Field              | Type               | Required           | Description        |
-| ------------------ | ------------------ | ------------------ | ------------------ |
-| `mode`             | *Optional[str]*    | :heavy_check_mark: | N/A                |
+| Field                                                                                                          | Type                                                                                                           | Required                                                                                                       | Description                                                                                                    |
+| -------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------- |
+| `mode`                                                                                                         | [Optional[shared.SourceMysqlSSLModesRequiredMode]](undefined/models/shared/sourcemysqlsslmodesrequiredmode.md) | :heavy_check_mark:                                                                                             | N/A                                                                                                            |
