@@ -4,7 +4,11 @@ from __future__ import annotations
 import dataclasses
 from airbyte import utils
 from dataclasses_json import Undefined, dataclass_json
+from enum import Enum
 from typing import Final
+
+class SourceLokaliseLokalise(str, Enum):
+    LOKALISE = 'lokalise'
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
@@ -16,6 +20,6 @@ class SourceLokalise:
     r"""Lokalise API Key with read-access. Available at Profile settings > API tokens. See <a href=\\"https://docs.lokalise.com/en/articles/1929556-api-tokens\\">here</a>."""
     project_id: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('project_id') }})
     r"""Lokalise project ID. Available at Project Settings > General."""
-    SOURCE_TYPE: Final[str] = dataclasses.field(default='lokalise', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
+    SOURCE_TYPE: Final[SourceLokaliseLokalise] = dataclasses.field(default=SourceLokaliseLokalise.LOKALISE, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     
 

@@ -4,7 +4,11 @@ from __future__ import annotations
 import dataclasses
 from airbyte import utils
 from dataclasses_json import Undefined, dataclass_json
+from enum import Enum
 from typing import Final, Optional, Union
+
+class SourceSnowflakeAuthorizationMethodUsernameAndPasswordAuthType(str, Enum):
+    USERNAME_PASSWORD = 'username/password'
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
@@ -15,9 +19,12 @@ class SourceSnowflakeAuthorizationMethodUsernameAndPassword:
     r"""The password associated with the username."""
     username: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('username') }})
     r"""The username you created to allow Airbyte to access the database."""
-    AUTH_TYPE: Final[str] = dataclasses.field(default='username/password', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_type') }})
+    AUTH_TYPE: Final[SourceSnowflakeAuthorizationMethodUsernameAndPasswordAuthType] = dataclasses.field(default=SourceSnowflakeAuthorizationMethodUsernameAndPasswordAuthType.USERNAME_PASSWORD, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_type') }})
     
 
+
+class SourceSnowflakeAuthorizationMethodOAuth20AuthType(str, Enum):
+    O_AUTH = 'OAuth'
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
@@ -28,7 +35,7 @@ class SourceSnowflakeAuthorizationMethodOAuth20:
     r"""The Client ID of your Snowflake developer application."""
     client_secret: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('client_secret') }})
     r"""The Client Secret of your Snowflake developer application."""
-    AUTH_TYPE: Final[str] = dataclasses.field(default='OAuth', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_type') }})
+    AUTH_TYPE: Final[SourceSnowflakeAuthorizationMethodOAuth20AuthType] = dataclasses.field(default=SourceSnowflakeAuthorizationMethodOAuth20AuthType.O_AUTH, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_type') }})
     access_token: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('access_token'), 'exclude': lambda f: f is None }})
     r"""Access Token for making authenticated requests."""
     refresh_token: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('refresh_token'), 'exclude': lambda f: f is None }})
@@ -41,6 +48,9 @@ class SourceSnowflakeAuthorizationMethodOAuth20:
 @dataclasses.dataclass
 class SourceSnowflakeAuthorizationMethod:
     pass
+
+class SourceSnowflakeSnowflake(str, Enum):
+    SNOWFLAKE = 'snowflake'
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
@@ -56,7 +66,7 @@ class SourceSnowflake:
     r"""The role you created for Airbyte to access Snowflake."""
     warehouse: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('warehouse') }})
     r"""The warehouse you created for Airbyte to access data."""
-    SOURCE_TYPE: Final[str] = dataclasses.field(default='snowflake', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
+    SOURCE_TYPE: Final[SourceSnowflakeSnowflake] = dataclasses.field(default=SourceSnowflakeSnowflake.SNOWFLAKE, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     credentials: Optional[Union[SourceSnowflakeAuthorizationMethodOAuth20, SourceSnowflakeAuthorizationMethodUsernameAndPassword]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credentials'), 'exclude': lambda f: f is None }})
     jdbc_url_params: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('jdbc_url_params'), 'exclude': lambda f: f is None }})
     r"""Additional properties to pass to the JDBC URL string when connecting to the database formatted as 'key=value' pairs separated by the symbol '&'. (example: key1=value1&key2=value2&key3=value3)."""

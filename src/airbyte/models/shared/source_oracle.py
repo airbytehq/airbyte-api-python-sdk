@@ -7,6 +7,9 @@ from dataclasses_json import Undefined, dataclass_json
 from enum import Enum
 from typing import Final, Optional, Union
 
+class SourceOracleConnectBySystemIDSIDConnectionType(str, Enum):
+    SID = 'sid'
+
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
 
@@ -14,9 +17,12 @@ from typing import Final, Optional, Union
 class SourceOracleConnectBySystemIDSID:
     r"""Use SID (Oracle System Identifier)"""
     sid: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sid') }})
-    CONNECTION_TYPE: Final[Optional[str]] = dataclasses.field(default='sid', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('connection_type'), 'exclude': lambda f: f is None }})
+    CONNECTION_TYPE: Final[Optional[SourceOracleConnectBySystemIDSIDConnectionType]] = dataclasses.field(default=SourceOracleConnectBySystemIDSIDConnectionType.SID, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('connection_type'), 'exclude': lambda f: f is None }})
     
 
+
+class SourceOracleConnectByServiceNameConnectionType(str, Enum):
+    SERVICE_NAME = 'service_name'
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
@@ -25,7 +31,7 @@ class SourceOracleConnectBySystemIDSID:
 class SourceOracleConnectByServiceName:
     r"""Use service name"""
     service_name: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('service_name') }})
-    CONNECTION_TYPE: Final[Optional[str]] = dataclasses.field(default='service_name', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('connection_type'), 'exclude': lambda f: f is None }})
+    CONNECTION_TYPE: Final[Optional[SourceOracleConnectByServiceNameConnectionType]] = dataclasses.field(default=SourceOracleConnectByServiceNameConnectionType.SERVICE_NAME, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('connection_type'), 'exclude': lambda f: f is None }})
     
 
 
@@ -35,6 +41,9 @@ class SourceOracleConnectByServiceName:
 class SourceOracleConnectBy:
     pass
 
+class SourceOracleEncryptionTLSEncryptedVerifyCertificateEncryptionMethod(str, Enum):
+    ENCRYPTED_VERIFY_CERTIFICATE = 'encrypted_verify_certificate'
+
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
 
@@ -43,7 +52,7 @@ class SourceOracleEncryptionTLSEncryptedVerifyCertificate:
     r"""Verify and use the certificate provided by the server."""
     ssl_certificate: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('ssl_certificate') }})
     r"""Privacy Enhanced Mail (PEM) files are concatenated certificate containers frequently used in certificate installations."""
-    ENCRYPTION_METHOD: Final[Optional[str]] = dataclasses.field(default='encrypted_verify_certificate', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('encryption_method'), 'exclude': lambda f: f is None }})
+    ENCRYPTION_METHOD: Final[Optional[SourceOracleEncryptionTLSEncryptedVerifyCertificateEncryptionMethod]] = dataclasses.field(default=SourceOracleEncryptionTLSEncryptedVerifyCertificateEncryptionMethod.ENCRYPTED_VERIFY_CERTIFICATE, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('encryption_method'), 'exclude': lambda f: f is None }})
     
 
 
@@ -53,6 +62,9 @@ class SourceOracleEncryptionNativeNetworkEncryptionNNEEncryptionAlgorithm(str, E
     RC4_56 = 'RC4_56'
     THREE_DES168 = '3DES168'
 
+class SourceOracleEncryptionNativeNetworkEncryptionNNEEncryptionMethod(str, Enum):
+    CLIENT_NNE = 'client_nne'
+
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
 
@@ -61,7 +73,7 @@ class SourceOracleEncryptionNativeNetworkEncryptionNNE:
     r"""The native network encryption gives you the ability to encrypt database connections, without the configuration overhead of TCP/IP and SSL/TLS and without the need to open and listen on different ports."""
     encryption_algorithm: Optional[SourceOracleEncryptionNativeNetworkEncryptionNNEEncryptionAlgorithm] = dataclasses.field(default=SourceOracleEncryptionNativeNetworkEncryptionNNEEncryptionAlgorithm.AES256, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('encryption_algorithm'), 'exclude': lambda f: f is None }})
     r"""This parameter defines what encryption algorithm is used."""
-    ENCRYPTION_METHOD: Final[Optional[str]] = dataclasses.field(default='client_nne', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('encryption_method'), 'exclude': lambda f: f is None }})
+    ENCRYPTION_METHOD: Final[Optional[SourceOracleEncryptionNativeNetworkEncryptionNNEEncryptionMethod]] = dataclasses.field(default=SourceOracleEncryptionNativeNetworkEncryptionNNEEncryptionMethod.CLIENT_NNE, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('encryption_method'), 'exclude': lambda f: f is None }})
     
 
 
@@ -70,6 +82,13 @@ class SourceOracleEncryptionNativeNetworkEncryptionNNE:
 @dataclasses.dataclass
 class SourceOracleEncryption:
     pass
+
+class SourceOracleOracle(str, Enum):
+    ORACLE = 'oracle'
+
+class SourceOracleSSHTunnelMethodPasswordAuthenticationTunnelMethod(str, Enum):
+    r"""Connect through a jump server tunnel host using username and password authentication"""
+    SSH_PASSWORD_AUTH = 'SSH_PASSWORD_AUTH'
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
@@ -83,12 +102,16 @@ class SourceOracleSSHTunnelMethodPasswordAuthentication:
     r"""OS-level username for logging into the jump server host"""
     tunnel_user_password: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('tunnel_user_password') }})
     r"""OS-level password for logging into the jump server host"""
-    TUNNEL_METHOD: Final[str] = dataclasses.field(default='SSH_PASSWORD_AUTH', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('tunnel_method') }})
+    TUNNEL_METHOD: Final[SourceOracleSSHTunnelMethodPasswordAuthenticationTunnelMethod] = dataclasses.field(default=SourceOracleSSHTunnelMethodPasswordAuthenticationTunnelMethod.SSH_PASSWORD_AUTH, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('tunnel_method') }})
     r"""Connect through a jump server tunnel host using username and password authentication"""
     tunnel_port: Optional[int] = dataclasses.field(default=22, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('tunnel_port'), 'exclude': lambda f: f is None }})
     r"""Port on the proxy/jump server that accepts inbound ssh connections."""
     
 
+
+class SourceOracleSSHTunnelMethodSSHKeyAuthenticationTunnelMethod(str, Enum):
+    r"""Connect through a jump server tunnel host using username and ssh key"""
+    SSH_KEY_AUTH = 'SSH_KEY_AUTH'
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
@@ -102,12 +125,16 @@ class SourceOracleSSHTunnelMethodSSHKeyAuthentication:
     r"""Hostname of the jump server host that allows inbound ssh tunnel."""
     tunnel_user: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('tunnel_user') }})
     r"""OS-level username for logging into the jump server host."""
-    TUNNEL_METHOD: Final[str] = dataclasses.field(default='SSH_KEY_AUTH', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('tunnel_method') }})
+    TUNNEL_METHOD: Final[SourceOracleSSHTunnelMethodSSHKeyAuthenticationTunnelMethod] = dataclasses.field(default=SourceOracleSSHTunnelMethodSSHKeyAuthenticationTunnelMethod.SSH_KEY_AUTH, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('tunnel_method') }})
     r"""Connect through a jump server tunnel host using username and ssh key"""
     tunnel_port: Optional[int] = dataclasses.field(default=22, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('tunnel_port'), 'exclude': lambda f: f is None }})
     r"""Port on the proxy/jump server that accepts inbound ssh connections."""
     
 
+
+class SourceOracleSSHTunnelMethodNoTunnelTunnelMethod(str, Enum):
+    r"""No ssh tunnel needed to connect to database"""
+    NO_TUNNEL = 'NO_TUNNEL'
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
@@ -115,7 +142,7 @@ class SourceOracleSSHTunnelMethodSSHKeyAuthentication:
 @dataclasses.dataclass
 class SourceOracleSSHTunnelMethodNoTunnel:
     r"""Whether to initiate an SSH tunnel before connecting to the database, and if so, which kind of authentication to use."""
-    TUNNEL_METHOD: Final[str] = dataclasses.field(default='NO_TUNNEL', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('tunnel_method') }})
+    TUNNEL_METHOD: Final[SourceOracleSSHTunnelMethodNoTunnelTunnelMethod] = dataclasses.field(default=SourceOracleSSHTunnelMethodNoTunnelTunnelMethod.NO_TUNNEL, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('tunnel_method') }})
     r"""No ssh tunnel needed to connect to database"""
     
 
@@ -138,7 +165,7 @@ class SourceOracle:
     r"""Hostname of the database."""
     username: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('username') }})
     r"""The username which is used to access the database."""
-    SOURCE_TYPE: Final[str] = dataclasses.field(default='oracle', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
+    SOURCE_TYPE: Final[SourceOracleOracle] = dataclasses.field(default=SourceOracleOracle.ORACLE, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     connection_data: Optional[Union[SourceOracleConnectByServiceName, SourceOracleConnectBySystemIDSID]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('connection_data'), 'exclude': lambda f: f is None }})
     r"""Connect data that will be used for DB connection"""
     jdbc_url_params: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('jdbc_url_params'), 'exclude': lambda f: f is None }})

@@ -4,7 +4,11 @@ from __future__ import annotations
 import dataclasses
 from airbyte import utils
 from dataclasses_json import Undefined, dataclass_json
+from enum import Enum
 from typing import Final, Optional, Union
+
+class SourceAzureBlobStorageInputFormatJSONLinesNewlineDelimitedJSONFormatType(str, Enum):
+    JSONL = 'JSONL'
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
@@ -12,7 +16,7 @@ from typing import Final, Optional, Union
 @dataclasses.dataclass
 class SourceAzureBlobStorageInputFormatJSONLinesNewlineDelimitedJSON:
     r"""Input data format"""
-    FORMAT_TYPE: Final[str] = dataclasses.field(default='JSONL', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('format_type') }})
+    FORMAT_TYPE: Final[SourceAzureBlobStorageInputFormatJSONLinesNewlineDelimitedJSONFormatType] = dataclasses.field(default=SourceAzureBlobStorageInputFormatJSONLinesNewlineDelimitedJSONFormatType.JSONL, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('format_type') }})
     
 
 
@@ -21,6 +25,9 @@ class SourceAzureBlobStorageInputFormatJSONLinesNewlineDelimitedJSON:
 @dataclasses.dataclass
 class SourceAzureBlobStorageInputFormat:
     pass
+
+class SourceAzureBlobStorageAzureBlobStorage(str, Enum):
+    AZURE_BLOB_STORAGE = 'azure-blob-storage'
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
@@ -36,7 +43,7 @@ class SourceAzureBlobStorage:
     r"""The name of the Azure blob storage container."""
     format: Union[SourceAzureBlobStorageInputFormatJSONLinesNewlineDelimitedJSON] = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('format') }})
     r"""Input data format"""
-    SOURCE_TYPE: Final[str] = dataclasses.field(default='azure-blob-storage', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
+    SOURCE_TYPE: Final[SourceAzureBlobStorageAzureBlobStorage] = dataclasses.field(default=SourceAzureBlobStorageAzureBlobStorage.AZURE_BLOB_STORAGE, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     azure_blob_storage_blobs_prefix: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('azure_blob_storage_blobs_prefix'), 'exclude': lambda f: f is None }})
     r"""The Azure blob storage prefix to be applied"""
     azure_blob_storage_endpoint: Optional[str] = dataclasses.field(default='blob.core.windows.net', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('azure_blob_storage_endpoint'), 'exclude': lambda f: f is None }})

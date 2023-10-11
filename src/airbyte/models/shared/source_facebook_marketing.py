@@ -234,6 +234,9 @@ class SourceFacebookMarketingInsightConfig:
     
 
 
+class SourceFacebookMarketingFacebookMarketing(str, Enum):
+    FACEBOOK_MARKETING = 'facebook-marketing'
+
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
 
@@ -246,7 +249,7 @@ class SourceFacebookMarketing:
     r"""The Facebook Ad account ID to use when pulling data from the Facebook Marketing API. Open your Meta Ads Manager. The Ad account ID number is in the account dropdown menu or in your browser's address bar. See the <a href=\\"https://www.facebook.com/business/help/1492627900875762\\">docs</a> for more information."""
     start_date: datetime = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('start_date'), 'encoder': utils.datetimeisoformat(False), 'decoder': dateutil.parser.isoparse }})
     r"""The date from which you'd like to replicate data for all incremental streams, in the format YYYY-MM-DDT00:00:00Z. All data generated after this date will be replicated."""
-    SOURCE_TYPE: Final[str] = dataclasses.field(default='facebook-marketing', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
+    SOURCE_TYPE: Final[SourceFacebookMarketingFacebookMarketing] = dataclasses.field(default=SourceFacebookMarketingFacebookMarketing.FACEBOOK_MARKETING, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     action_breakdowns_allow_empty: Optional[bool] = dataclasses.field(default=True, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('action_breakdowns_allow_empty'), 'exclude': lambda f: f is None }})
     r"""Allows action_breakdowns to be an empty list"""
     client_id: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('client_id'), 'exclude': lambda f: f is None }})

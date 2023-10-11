@@ -4,7 +4,14 @@ from __future__ import annotations
 import dataclasses
 from airbyte import utils
 from dataclasses_json import Undefined, dataclass_json
+from enum import Enum
 from typing import Final, Optional, Union
+
+class DestinationDevNullDevNull(str, Enum):
+    DEV_NULL = 'dev-null'
+
+class DestinationDevNullTestDestinationSilentTestDestinationType(str, Enum):
+    SILENT = 'SILENT'
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
@@ -12,7 +19,7 @@ from typing import Final, Optional, Union
 @dataclasses.dataclass
 class DestinationDevNullTestDestinationSilent:
     r"""The type of destination to be used"""
-    TEST_DESTINATION_TYPE: Final[Optional[str]] = dataclasses.field(default='SILENT', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('test_destination_type'), 'exclude': lambda f: f is None }})
+    TEST_DESTINATION_TYPE: Final[Optional[DestinationDevNullTestDestinationSilentTestDestinationType]] = dataclasses.field(default=DestinationDevNullTestDestinationSilentTestDestinationType.SILENT, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('test_destination_type'), 'exclude': lambda f: f is None }})
     
 
 
@@ -30,6 +37,6 @@ class DestinationDevNull:
     r"""The values required to configure the destination."""
     test_destination: Union[DestinationDevNullTestDestinationSilent] = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('test_destination') }})
     r"""The type of destination to be used"""
-    DESTINATION_TYPE: Final[str] = dataclasses.field(default='dev-null', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('destinationType') }})
+    DESTINATION_TYPE: Final[DestinationDevNullDevNull] = dataclasses.field(default=DestinationDevNullDevNull.DEV_NULL, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('destinationType') }})
     
 

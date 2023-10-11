@@ -4,7 +4,11 @@ from __future__ import annotations
 import dataclasses
 from airbyte import utils
 from dataclasses_json import Undefined, dataclass_json
+from enum import Enum
 from typing import Final
+
+class SourceConvexConvex(str, Enum):
+    CONVEX = 'convex'
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
@@ -15,6 +19,6 @@ class SourceConvex:
     access_key: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('access_key') }})
     r"""API access key used to retrieve data from Convex."""
     deployment_url: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('deployment_url') }})
-    SOURCE_TYPE: Final[str] = dataclasses.field(default='convex', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
+    SOURCE_TYPE: Final[SourceConvexConvex] = dataclasses.field(default=SourceConvexConvex.CONVEX, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     
 

@@ -6,7 +6,11 @@ import dateutil.parser
 from airbyte import utils
 from dataclasses_json import Undefined, dataclass_json
 from datetime import datetime
+from enum import Enum
 from typing import Final, Optional, Union
+
+class SourceGithubAuthenticationPersonalAccessTokenOptionTitle(str, Enum):
+    PAT_CREDENTIALS = 'PAT Credentials'
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
@@ -16,9 +20,12 @@ class SourceGithubAuthenticationPersonalAccessToken:
     r"""Choose how to authenticate to GitHub"""
     personal_access_token: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('personal_access_token') }})
     r"""Log into GitHub and then generate a <a href=\\"https://github.com/settings/tokens\\">personal access token</a>. To load balance your API quota consumption across multiple API tokens, input multiple tokens separated with \\",\\" """
-    OPTION_TITLE: Final[Optional[str]] = dataclasses.field(default='PAT Credentials', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('option_title'), 'exclude': lambda f: f is None }})
+    OPTION_TITLE: Final[Optional[SourceGithubAuthenticationPersonalAccessTokenOptionTitle]] = dataclasses.field(default=SourceGithubAuthenticationPersonalAccessTokenOptionTitle.PAT_CREDENTIALS, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('option_title'), 'exclude': lambda f: f is None }})
     
 
+
+class SourceGithubAuthenticationOAuthOptionTitle(str, Enum):
+    O_AUTH_CREDENTIALS = 'OAuth Credentials'
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
@@ -32,7 +39,7 @@ class SourceGithubAuthenticationOAuth:
     r"""OAuth Client Id"""
     client_secret: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('client_secret'), 'exclude': lambda f: f is None }})
     r"""OAuth Client secret"""
-    OPTION_TITLE: Final[Optional[str]] = dataclasses.field(default='OAuth Credentials', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('option_title'), 'exclude': lambda f: f is None }})
+    OPTION_TITLE: Final[Optional[SourceGithubAuthenticationOAuthOptionTitle]] = dataclasses.field(default=SourceGithubAuthenticationOAuthOptionTitle.O_AUTH_CREDENTIALS, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('option_title'), 'exclude': lambda f: f is None }})
     
 
 
@@ -41,6 +48,9 @@ class SourceGithubAuthenticationOAuth:
 @dataclasses.dataclass
 class SourceGithubAuthentication:
     pass
+
+class SourceGithubGithub(str, Enum):
+    GITHUB = 'github'
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
@@ -52,7 +62,7 @@ class SourceGithub:
     r"""Space-delimited list of GitHub organizations/repositories, e.g. `airbytehq/airbyte` for single repository, `airbytehq/*` for get all repositories from organization and `airbytehq/airbyte airbytehq/another-repo` for multiple repositories."""
     start_date: datetime = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('start_date'), 'encoder': utils.datetimeisoformat(False), 'decoder': dateutil.parser.isoparse }})
     r"""The date from which you'd like to replicate data from GitHub in the format YYYY-MM-DDT00:00:00Z. For the streams which support this configuration, only data generated on or after the start date will be replicated. This field doesn't apply to all streams, see the <a href=\\"https://docs.airbyte.com/integrations/sources/github\\">docs</a> for more info"""
-    SOURCE_TYPE: Final[str] = dataclasses.field(default='github', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
+    SOURCE_TYPE: Final[SourceGithubGithub] = dataclasses.field(default=SourceGithubGithub.GITHUB, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     branch: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('branch'), 'exclude': lambda f: f is None }})
     r"""Space-delimited list of GitHub repository branches to pull commits for, e.g. `airbytehq/airbyte/master`. If no branches are specified for a repository, the default branch will be pulled."""
     credentials: Optional[Union[SourceGithubAuthenticationOAuth, SourceGithubAuthenticationPersonalAccessToken]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credentials'), 'exclude': lambda f: f is None }})

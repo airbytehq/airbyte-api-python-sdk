@@ -6,7 +6,11 @@ import dateutil.parser
 from airbyte import utils
 from dataclasses_json import Undefined, dataclass_json
 from datetime import datetime
+from enum import Enum
 from typing import Final, Optional
+
+class SourceTwilioTwilio(str, Enum):
+    TWILIO = 'twilio'
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
@@ -20,7 +24,7 @@ class SourceTwilio:
     r"""Twilio Auth Token."""
     start_date: datetime = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('start_date'), 'encoder': utils.datetimeisoformat(False), 'decoder': dateutil.parser.isoparse }})
     r"""UTC date and time in the format 2020-10-01T00:00:00Z. Any data before this date will not be replicated."""
-    SOURCE_TYPE: Final[str] = dataclasses.field(default='twilio', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
+    SOURCE_TYPE: Final[SourceTwilioTwilio] = dataclasses.field(default=SourceTwilioTwilio.TWILIO, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     lookback_window: Optional[int] = dataclasses.field(default=0, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('lookback_window'), 'exclude': lambda f: f is None }})
     r"""How far into the past to look for records. (in minutes)"""
     

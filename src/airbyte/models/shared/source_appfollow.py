@@ -4,7 +4,11 @@ from __future__ import annotations
 import dataclasses
 from airbyte import utils
 from dataclasses_json import Undefined, dataclass_json
+from enum import Enum
 from typing import Final, Optional
+
+class SourceAppfollowAppfollow(str, Enum):
+    APPFOLLOW = 'appfollow'
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
@@ -12,7 +16,7 @@ from typing import Final, Optional
 @dataclasses.dataclass
 class SourceAppfollow:
     r"""The values required to configure the source."""
-    SOURCE_TYPE: Final[str] = dataclasses.field(default='appfollow', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
+    SOURCE_TYPE: Final[SourceAppfollowAppfollow] = dataclasses.field(default=SourceAppfollowAppfollow.APPFOLLOW, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     api_secret: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('api_secret'), 'exclude': lambda f: f is None }})
     r"""API Key provided by Appfollow"""
     

@@ -6,6 +6,7 @@ import dateutil.parser
 from airbyte import utils
 from dataclasses_json import Undefined, dataclass_json
 from datetime import datetime
+from enum import Enum
 from typing import Final, Optional
 
 
@@ -18,6 +19,9 @@ class SourceOnesignalApplications:
     app_name: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('app_name'), 'exclude': lambda f: f is None }})
     
 
+
+class SourceOnesignalOnesignal(str, Enum):
+    ONESIGNAL = 'onesignal'
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
@@ -33,6 +37,6 @@ class SourceOnesignal:
     r"""The date from which you'd like to replicate data for OneSignal API, in the format YYYY-MM-DDT00:00:00Z. All data generated after this date will be replicated."""
     user_auth_key: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('user_auth_key') }})
     r"""OneSignal User Auth Key, see the <a href=\\"https://documentation.onesignal.com/docs/accounts-and-keys#user-auth-key\\">docs</a> for more information on how to obtain this key."""
-    SOURCE_TYPE: Final[str] = dataclasses.field(default='onesignal', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
+    SOURCE_TYPE: Final[SourceOnesignalOnesignal] = dataclasses.field(default=SourceOnesignalOnesignal.ONESIGNAL, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     
 

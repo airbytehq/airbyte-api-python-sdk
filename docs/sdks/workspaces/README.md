@@ -33,13 +33,10 @@ s = airbyte.Airbyte(
 req = operations.CreateOrUpdateWorkspaceOAuthCredentialsRequest(
     workspace_o_auth_credentials_request=shared.WorkspaceOAuthCredentialsRequest(
         actor_type=shared.ActorTypeEnum.DESTINATION,
-        configuration=shared.AmazonAds(
-            client_id='seamless',
-            client_secret='Industrial Baby Rupee',
-        ),
-        name=shared.OAuthActorNames.ZENDESK_CHAT,
+        configuration=shared.AmazonAds(),
+        name=shared.OAuthActorNames.AIRTABLE,
     ),
-    workspace_id='Chips Springs Home',
+    workspace_id='Polygender',
 )
 
 res = s.workspaces.create_or_update_workspace_o_auth_credentials(req)
@@ -203,11 +200,8 @@ s = airbyte.Airbyte(
 )
 
 req = operations.ListWorkspacesRequest(
-    include_deleted=False,
-    limit=283250,
-    offset=568374,
     workspace_ids=[
-        '53f9aa38-0387-4f54-9d38-9888ede30708',
+        '4953f9aa-3803-487f-945d-389888ede307',
     ],
 )
 
