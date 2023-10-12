@@ -4,7 +4,14 @@ from __future__ import annotations
 import dataclasses
 from airbyte import utils
 from dataclasses_json import Undefined, dataclass_json
+from enum import Enum
 from typing import Final, Optional, Union
+
+class DestinationFireboltFirebolt(str, Enum):
+    FIREBOLT = 'firebolt'
+
+class DestinationFireboltLoadingMethodExternalTableViaS3Method(str, Enum):
+    S3 = 'S3'
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
@@ -20,9 +27,12 @@ class DestinationFireboltLoadingMethodExternalTableViaS3:
     r"""The name of the S3 bucket."""
     s3_region: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('s3_region') }})
     r"""Region name of the S3 bucket."""
-    METHOD: Final[str] = dataclasses.field(default='S3', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('method') }})
+    METHOD: Final[DestinationFireboltLoadingMethodExternalTableViaS3Method] = dataclasses.field(default=DestinationFireboltLoadingMethodExternalTableViaS3Method.S3, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('method') }})
     
 
+
+class DestinationFireboltLoadingMethodSQLInsertsMethod(str, Enum):
+    SQL = 'SQL'
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
@@ -30,7 +40,7 @@ class DestinationFireboltLoadingMethodExternalTableViaS3:
 @dataclasses.dataclass
 class DestinationFireboltLoadingMethodSQLInserts:
     r"""Loading method used to select the way data will be uploaded to Firebolt"""
-    METHOD: Final[str] = dataclasses.field(default='SQL', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('method') }})
+    METHOD: Final[DestinationFireboltLoadingMethodSQLInsertsMethod] = dataclasses.field(default=DestinationFireboltLoadingMethodSQLInsertsMethod.SQL, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('method') }})
     
 
 
@@ -52,7 +62,7 @@ class DestinationFirebolt:
     r"""Firebolt password."""
     username: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('username') }})
     r"""Firebolt email address you use to login."""
-    DESTINATION_TYPE: Final[str] = dataclasses.field(default='firebolt', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('destinationType') }})
+    DESTINATION_TYPE: Final[DestinationFireboltFirebolt] = dataclasses.field(default=DestinationFireboltFirebolt.FIREBOLT, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('destinationType') }})
     account: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('account'), 'exclude': lambda f: f is None }})
     r"""Firebolt account to login."""
     engine: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('engine'), 'exclude': lambda f: f is None }})

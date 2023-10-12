@@ -12,6 +12,9 @@ class SourceCoinmarketcapDataType(str, Enum):
     LATEST = 'latest'
     HISTORICAL = 'historical'
 
+class SourceCoinmarketcapCoinmarketcap(str, Enum):
+    COINMARKETCAP = 'coinmarketcap'
+
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
 
@@ -22,7 +25,7 @@ class SourceCoinmarketcap:
     r"""Your API Key. See <a href=\\"https://coinmarketcap.com/api/documentation/v1/#section/Authentication\\">here</a>. The token is case sensitive."""
     data_type: SourceCoinmarketcapDataType = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('data_type') }})
     r"""/latest: Latest market ticker quotes and averages for cryptocurrencies and exchanges. /historical: Intervals of historic market data like OHLCV data or data for use in charting libraries. See <a href=\\"https://coinmarketcap.com/api/documentation/v1/#section/Endpoint-Overview\\">here</a>."""
-    SOURCE_TYPE: Final[str] = dataclasses.field(default='coinmarketcap', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
+    SOURCE_TYPE: Final[SourceCoinmarketcapCoinmarketcap] = dataclasses.field(default=SourceCoinmarketcapCoinmarketcap.COINMARKETCAP, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     symbols: Optional[list[str]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('symbols'), 'exclude': lambda f: f is None }})
     r"""Cryptocurrency symbols. (only used for quotes stream)"""
     

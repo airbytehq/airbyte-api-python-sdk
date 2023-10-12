@@ -5,7 +5,11 @@ import dataclasses
 from airbyte import utils
 from dataclasses_json import Undefined, dataclass_json
 from datetime import date
+from enum import Enum
 from typing import Final
+
+class SourceBrazeBraze(str, Enum):
+    BRAZE = 'braze'
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
@@ -19,6 +23,6 @@ class SourceBraze:
     r"""Rows after this date will be synced"""
     url: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('url') }})
     r"""Braze REST API endpoint"""
-    SOURCE_TYPE: Final[str] = dataclasses.field(default='braze', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
+    SOURCE_TYPE: Final[SourceBrazeBraze] = dataclasses.field(default=SourceBrazeBraze.BRAZE, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     
 

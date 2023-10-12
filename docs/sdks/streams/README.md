@@ -26,7 +26,6 @@ s = airbyte.Airbyte(
 
 req = operations.GetStreamPropertiesRequest(
     destination_id='customized',
-    ignore_cache=False,
     source_id='South withdrawal salmon',
 )
 
