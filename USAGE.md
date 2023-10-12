@@ -27,23 +27,15 @@ req = shared.ConnectionCreateRequest(
                         'pfft',
                     ],
                 ],
-                sync_mode=shared.ConnectionSyncModeEnum.FULL_REFRESH_APPEND,
             ),
         ],
     ),
-    data_residency=shared.GeographyEnum.AUTO,
-    destination_id='083eafc8-5591-44e0-a570-f6dd427d83a5',
-    name='mesh interactive',
-    namespace_definition=shared.NamespaceDefinitionEnum.DESTINATION,
+    destination_id='62083eaf-c855-4914-a0a5-70f6dd427d83',
     namespace_format='${SOURCE_NAMESPACE}',
-    non_breaking_schema_updates_behavior=shared.NonBreakingSchemaUpdatesBehaviorEnum.IGNORE,
-    prefix='port Idaho',
     schedule=shared.ConnectionSchedule(
-        cron_expression='productivity',
-        schedule_type=shared.ScheduleTypeEnum.MANUAL,
+        schedule_type=shared.ScheduleTypeEnum.CRON,
     ),
-    source_id='b3fd2fd3-07d6-40cb-97ea-6dfc635b80f2',
-    status=shared.ConnectionStatusEnum.INACTIVE,
+    source_id='55584783-5842-4325-b6c7-b3fd2fd307d6',
 )
 
 res = s.connections.create_connection(req)

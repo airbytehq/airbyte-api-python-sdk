@@ -4,7 +4,11 @@ from __future__ import annotations
 import dataclasses
 from airbyte import utils
 from dataclasses_json import Undefined, dataclass_json
+from enum import Enum
 from typing import Final, Optional
+
+class SourceYouniumYounium(str, Enum):
+    YOUNIUM = 'younium'
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
@@ -18,7 +22,7 @@ class SourceYounium:
     r"""Account password for younium account API key"""
     username: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('username') }})
     r"""Username for Younium account"""
-    SOURCE_TYPE: Final[str] = dataclasses.field(default='younium', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
+    SOURCE_TYPE: Final[SourceYouniumYounium] = dataclasses.field(default=SourceYouniumYounium.YOUNIUM, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     playground: Optional[bool] = dataclasses.field(default=False, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('playground'), 'exclude': lambda f: f is None }})
     r"""Property defining if connector is used against playground or production environment"""
     

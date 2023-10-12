@@ -41,23 +41,15 @@ req = shared.ConnectionCreateRequest(
                         'pfft',
                     ],
                 ],
-                sync_mode=shared.ConnectionSyncModeEnum.FULL_REFRESH_APPEND,
             ),
         ],
     ),
-    data_residency=shared.GeographyEnum.AUTO,
-    destination_id='083eafc8-5591-44e0-a570-f6dd427d83a5',
-    name='mesh interactive',
-    namespace_definition=shared.NamespaceDefinitionEnum.DESTINATION,
+    destination_id='62083eaf-c855-4914-a0a5-70f6dd427d83',
     namespace_format='${SOURCE_NAMESPACE}',
-    non_breaking_schema_updates_behavior=shared.NonBreakingSchemaUpdatesBehaviorEnum.IGNORE,
-    prefix='port Idaho',
     schedule=shared.ConnectionSchedule(
-        cron_expression='productivity',
-        schedule_type=shared.ScheduleTypeEnum.MANUAL,
+        schedule_type=shared.ScheduleTypeEnum.CRON,
     ),
-    source_id='b3fd2fd3-07d6-40cb-97ea-6dfc635b80f2',
-    status=shared.ConnectionStatusEnum.INACTIVE,
+    source_id='55584783-5842-4325-b6c7-b3fd2fd307d6',
 )
 
 res = s.connections.create_connection(req)
@@ -180,11 +172,8 @@ s = airbyte.Airbyte(
 )
 
 req = operations.ListConnectionsRequest(
-    include_deleted=False,
-    limit=726733,
-    offset=907316,
     workspace_ids=[
-        'd8f6e532-a55f-479c-ab30-682edc879612',
+        'bed8f6e5-32a5-45f7-9c2b-30682edc8796',
     ],
 )
 
@@ -239,23 +228,15 @@ req = operations.PatchConnectionRequest(
                             'Clothing',
                         ],
                     ],
-                    sync_mode=shared.ConnectionSyncModeEnum.INCREMENTAL_APPEND,
                 ),
             ],
         ),
-        data_residency=shared.GeographyEnumNoDefault.US,
-        name='Customizable Dinar Bike',
-        namespace_definition=shared.NamespaceDefinitionEnumNoDefault.SOURCE,
         namespace_format='${SOURCE_NAMESPACE}',
-        non_breaking_schema_updates_behavior=shared.NonBreakingSchemaUpdatesBehaviorEnumNoDefault.PROPAGATE_COLUMNS,
-        prefix='override',
         schedule=shared.ConnectionSchedule(
-            cron_expression='Serbia Indio microchip',
-            schedule_type=shared.ScheduleTypeEnum.MANUAL,
+            schedule_type=shared.ScheduleTypeEnum.CRON,
         ),
-        status=shared.ConnectionStatusEnum.ACTIVE,
     ),
-    connection_id='Lead shyly port',
+    connection_id='Electric Gaetano',
 )
 
 res = s.connections.patch_connection(req)

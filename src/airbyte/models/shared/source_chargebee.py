@@ -14,6 +14,9 @@ class SourceChargebeeProductCatalog(str, Enum):
     ONE_0 = '1.0'
     TWO_0 = '2.0'
 
+class SourceChargebeeChargebee(str, Enum):
+    CHARGEBEE = 'chargebee'
+
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
 
@@ -28,6 +31,6 @@ class SourceChargebee:
     r"""Chargebee API Key. See the <a href=\\"https://docs.airbyte.com/integrations/sources/chargebee\\">docs</a> for more information on how to obtain this key."""
     start_date: datetime = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('start_date'), 'encoder': utils.datetimeisoformat(False), 'decoder': dateutil.parser.isoparse }})
     r"""UTC date and time in the format 2021-01-25T00:00:00Z. Any data before this date will not be replicated."""
-    SOURCE_TYPE: Final[str] = dataclasses.field(default='chargebee', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
+    SOURCE_TYPE: Final[SourceChargebeeChargebee] = dataclasses.field(default=SourceChargebeeChargebee.CHARGEBEE, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     
 

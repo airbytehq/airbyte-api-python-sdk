@@ -5,6 +5,7 @@ import dataclasses
 from airbyte import utils
 from dataclasses_json import Undefined, dataclass_json
 from datetime import date
+from enum import Enum
 from typing import Final, Optional
 
 
@@ -37,6 +38,9 @@ class SourceGoogleAdsCustomQueries:
     
 
 
+class SourceGoogleAdsGoogleAds(str, Enum):
+    GOOGLE_ADS = 'google-ads'
+
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
 
@@ -46,7 +50,7 @@ class SourceGoogleAds:
     credentials: SourceGoogleAdsGoogleCredentials = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credentials') }})
     customer_id: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('customer_id') }})
     r"""Comma-separated list of (client) customer IDs. Each customer ID must be specified as a 10-digit number without dashes. For detailed instructions on finding this value, refer to our <a href=\\"https://docs.airbyte.com/integrations/sources/google-ads#setup-guide\\">documentation</a>."""
-    SOURCE_TYPE: Final[str] = dataclasses.field(default='google-ads', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
+    SOURCE_TYPE: Final[SourceGoogleAdsGoogleAds] = dataclasses.field(default=SourceGoogleAdsGoogleAds.GOOGLE_ADS, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     conversion_window_days: Optional[int] = dataclasses.field(default=14, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('conversion_window_days'), 'exclude': lambda f: f is None }})
     r"""A conversion window is the number of days after an ad interaction (such as an ad click or video view) during which a conversion, such as a purchase, is recorded in Google Ads. For more information, see <a href=\\"https://support.google.com/google-ads/answer/3123169?hl=en\\">Google's documentation</a>."""
     custom_queries: Optional[list[SourceGoogleAdsCustomQueries]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('custom_queries'), 'exclude': lambda f: f is None }})

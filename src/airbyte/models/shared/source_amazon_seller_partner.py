@@ -7,6 +7,9 @@ from dataclasses_json import Undefined, dataclass_json
 from enum import Enum
 from typing import Final, Optional
 
+class SourceAmazonSellerPartnerAuthType(str, Enum):
+    OAUTH2_0 = 'oauth2.0'
+
 class SourceAmazonSellerPartnerAWSEnvironment(str, Enum):
     r"""Select the AWS Environment."""
     PRODUCTION = 'PRODUCTION'
@@ -37,6 +40,9 @@ class SourceAmazonSellerPartnerAWSRegion(str, Enum):
     UK = 'UK'
     US = 'US'
 
+class SourceAmazonSellerPartnerAmazonSellerPartner(str, Enum):
+    AMAZON_SELLER_PARTNER = 'amazon-seller-partner'
+
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
 
@@ -51,10 +57,10 @@ class SourceAmazonSellerPartner:
     r"""The Refresh Token obtained via OAuth flow authorization."""
     replication_start_date: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('replication_start_date') }})
     r"""UTC date and time in the format 2017-01-25T00:00:00Z. Any data before this date will not be replicated."""
-    SOURCE_TYPE: Final[str] = dataclasses.field(default='amazon-seller-partner', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
+    SOURCE_TYPE: Final[SourceAmazonSellerPartnerAmazonSellerPartner] = dataclasses.field(default=SourceAmazonSellerPartnerAmazonSellerPartner.AMAZON_SELLER_PARTNER, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     advanced_stream_options: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('advanced_stream_options'), 'exclude': lambda f: f is None }})
     r"""Additional information to configure report options. This varies by report type, not every report implement this kind of feature. Must be a valid json string."""
-    AUTH_TYPE: Final[Optional[str]] = dataclasses.field(default='oauth2.0', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_type'), 'exclude': lambda f: f is None }})
+    AUTH_TYPE: Final[Optional[SourceAmazonSellerPartnerAuthType]] = dataclasses.field(default=SourceAmazonSellerPartnerAuthType.OAUTH2_0, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_type'), 'exclude': lambda f: f is None }})
     aws_access_key: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('aws_access_key'), 'exclude': lambda f: f is None }})
     r"""Specifies the AWS access key used as part of the credentials to authenticate the user."""
     aws_environment: Optional[SourceAmazonSellerPartnerAWSEnvironment] = dataclasses.field(default=SourceAmazonSellerPartnerAWSEnvironment.PRODUCTION, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('aws_environment'), 'exclude': lambda f: f is None }})

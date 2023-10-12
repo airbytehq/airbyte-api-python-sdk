@@ -25,6 +25,9 @@ class SourcePocketSortBy(str, Enum):
     TITLE = 'title'
     SITE = 'site'
 
+class SourcePocketPocket(str, Enum):
+    POCKET = 'pocket'
+
 class SourcePocketState(str, Enum):
     r"""Select the state of the items to retrieve."""
     UNREAD = 'unread'
@@ -41,7 +44,7 @@ class SourcePocket:
     r"""The user's Pocket access token."""
     consumer_key: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('consumer_key') }})
     r"""Your application's Consumer Key."""
-    SOURCE_TYPE: Final[str] = dataclasses.field(default='pocket', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
+    SOURCE_TYPE: Final[SourcePocketPocket] = dataclasses.field(default=SourcePocketPocket.POCKET, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     content_type: Optional[SourcePocketContentType] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('content_type'), 'exclude': lambda f: f is None }})
     r"""Select the content type of the items to retrieve."""
     detail_type: Optional[SourcePocketDetailType] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('detail_type'), 'exclude': lambda f: f is None }})

@@ -4,7 +4,11 @@ from __future__ import annotations
 import dataclasses
 from airbyte import utils
 from dataclasses_json import Undefined, dataclass_json
+from enum import Enum
 from typing import Any, Final, Optional
+
+class SourceRetentlyRetently(str, Enum):
+    RETENTLY = 'retently'
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
@@ -14,6 +18,6 @@ class SourceRetently:
     r"""The values required to configure the source."""
     credentials: Optional[Any] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credentials'), 'exclude': lambda f: f is None }})
     r"""Choose how to authenticate to Retently"""
-    SOURCE_TYPE: Final[Optional[str]] = dataclasses.field(default='retently', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType'), 'exclude': lambda f: f is None }})
+    SOURCE_TYPE: Final[Optional[SourceRetentlyRetently]] = dataclasses.field(default=SourceRetentlyRetently.RETENTLY, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType'), 'exclude': lambda f: f is None }})
     
 
