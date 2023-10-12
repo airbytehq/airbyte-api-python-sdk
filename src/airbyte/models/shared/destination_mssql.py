@@ -4,7 +4,14 @@ from __future__ import annotations
 import dataclasses
 from airbyte import utils
 from dataclasses_json import Undefined, dataclass_json
+from enum import Enum
 from typing import Final, Optional, Union
+
+class DestinationMssqlMssql(str, Enum):
+    MSSQL = 'mssql'
+
+class DestinationMssqlSSLMethodEncryptedVerifyCertificateSSLMethod(str, Enum):
+    ENCRYPTED_VERIFY_CERTIFICATE = 'encrypted_verify_certificate'
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
@@ -14,9 +21,12 @@ class DestinationMssqlSSLMethodEncryptedVerifyCertificate:
     r"""Verify and use the certificate provided by the server."""
     host_name_in_certificate: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('hostNameInCertificate'), 'exclude': lambda f: f is None }})
     r"""Specifies the host name of the server. The value of this property must match the subject property of the certificate."""
-    SSL_METHOD: Final[Optional[str]] = dataclasses.field(default='encrypted_verify_certificate', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('ssl_method'), 'exclude': lambda f: f is None }})
+    SSL_METHOD: Final[Optional[DestinationMssqlSSLMethodEncryptedVerifyCertificateSSLMethod]] = dataclasses.field(default=DestinationMssqlSSLMethodEncryptedVerifyCertificateSSLMethod.ENCRYPTED_VERIFY_CERTIFICATE, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('ssl_method'), 'exclude': lambda f: f is None }})
     
 
+
+class DestinationMssqlSSLMethodEncryptedTrustServerCertificateSSLMethod(str, Enum):
+    ENCRYPTED_TRUST_SERVER_CERTIFICATE = 'encrypted_trust_server_certificate'
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
@@ -24,7 +34,7 @@ class DestinationMssqlSSLMethodEncryptedVerifyCertificate:
 @dataclasses.dataclass
 class DestinationMssqlSSLMethodEncryptedTrustServerCertificate:
     r"""Use the certificate provided by the server without verification. (For testing purposes only!)"""
-    SSL_METHOD: Final[Optional[str]] = dataclasses.field(default='encrypted_trust_server_certificate', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('ssl_method'), 'exclude': lambda f: f is None }})
+    SSL_METHOD: Final[Optional[DestinationMssqlSSLMethodEncryptedTrustServerCertificateSSLMethod]] = dataclasses.field(default=DestinationMssqlSSLMethodEncryptedTrustServerCertificateSSLMethod.ENCRYPTED_TRUST_SERVER_CERTIFICATE, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('ssl_method'), 'exclude': lambda f: f is None }})
     
 
 
@@ -33,6 +43,10 @@ class DestinationMssqlSSLMethodEncryptedTrustServerCertificate:
 @dataclasses.dataclass
 class DestinationMssqlSSLMethod:
     pass
+
+class DestinationMssqlSSHTunnelMethodPasswordAuthenticationTunnelMethod(str, Enum):
+    r"""Connect through a jump server tunnel host using username and password authentication"""
+    SSH_PASSWORD_AUTH = 'SSH_PASSWORD_AUTH'
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
@@ -46,12 +60,16 @@ class DestinationMssqlSSHTunnelMethodPasswordAuthentication:
     r"""OS-level username for logging into the jump server host"""
     tunnel_user_password: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('tunnel_user_password') }})
     r"""OS-level password for logging into the jump server host"""
-    TUNNEL_METHOD: Final[str] = dataclasses.field(default='SSH_PASSWORD_AUTH', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('tunnel_method') }})
+    TUNNEL_METHOD: Final[DestinationMssqlSSHTunnelMethodPasswordAuthenticationTunnelMethod] = dataclasses.field(default=DestinationMssqlSSHTunnelMethodPasswordAuthenticationTunnelMethod.SSH_PASSWORD_AUTH, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('tunnel_method') }})
     r"""Connect through a jump server tunnel host using username and password authentication"""
     tunnel_port: Optional[int] = dataclasses.field(default=22, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('tunnel_port'), 'exclude': lambda f: f is None }})
     r"""Port on the proxy/jump server that accepts inbound ssh connections."""
     
 
+
+class DestinationMssqlSSHTunnelMethodSSHKeyAuthenticationTunnelMethod(str, Enum):
+    r"""Connect through a jump server tunnel host using username and ssh key"""
+    SSH_KEY_AUTH = 'SSH_KEY_AUTH'
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
@@ -65,12 +83,16 @@ class DestinationMssqlSSHTunnelMethodSSHKeyAuthentication:
     r"""Hostname of the jump server host that allows inbound ssh tunnel."""
     tunnel_user: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('tunnel_user') }})
     r"""OS-level username for logging into the jump server host."""
-    TUNNEL_METHOD: Final[str] = dataclasses.field(default='SSH_KEY_AUTH', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('tunnel_method') }})
+    TUNNEL_METHOD: Final[DestinationMssqlSSHTunnelMethodSSHKeyAuthenticationTunnelMethod] = dataclasses.field(default=DestinationMssqlSSHTunnelMethodSSHKeyAuthenticationTunnelMethod.SSH_KEY_AUTH, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('tunnel_method') }})
     r"""Connect through a jump server tunnel host using username and ssh key"""
     tunnel_port: Optional[int] = dataclasses.field(default=22, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('tunnel_port'), 'exclude': lambda f: f is None }})
     r"""Port on the proxy/jump server that accepts inbound ssh connections."""
     
 
+
+class DestinationMssqlSSHTunnelMethodNoTunnelTunnelMethod(str, Enum):
+    r"""No ssh tunnel needed to connect to database"""
+    NO_TUNNEL = 'NO_TUNNEL'
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
@@ -78,7 +100,7 @@ class DestinationMssqlSSHTunnelMethodSSHKeyAuthentication:
 @dataclasses.dataclass
 class DestinationMssqlSSHTunnelMethodNoTunnel:
     r"""Whether to initiate an SSH tunnel before connecting to the database, and if so, which kind of authentication to use."""
-    TUNNEL_METHOD: Final[str] = dataclasses.field(default='NO_TUNNEL', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('tunnel_method') }})
+    TUNNEL_METHOD: Final[DestinationMssqlSSHTunnelMethodNoTunnelTunnelMethod] = dataclasses.field(default=DestinationMssqlSSHTunnelMethodNoTunnelTunnelMethod.NO_TUNNEL, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('tunnel_method') }})
     r"""No ssh tunnel needed to connect to database"""
     
 
@@ -101,7 +123,7 @@ class DestinationMssql:
     r"""The host name of the MSSQL database."""
     username: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('username') }})
     r"""The username which is used to access the database."""
-    DESTINATION_TYPE: Final[str] = dataclasses.field(default='mssql', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('destinationType') }})
+    DESTINATION_TYPE: Final[DestinationMssqlMssql] = dataclasses.field(default=DestinationMssqlMssql.MSSQL, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('destinationType') }})
     jdbc_url_params: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('jdbc_url_params'), 'exclude': lambda f: f is None }})
     r"""Additional properties to pass to the JDBC URL string when connecting to the database formatted as 'key=value' pairs separated by the symbol '&'. (example: key1=value1&key2=value2&key3=value3)."""
     password: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('password'), 'exclude': lambda f: f is None }})

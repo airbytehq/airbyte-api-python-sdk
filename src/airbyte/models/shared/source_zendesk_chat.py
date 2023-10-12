@@ -6,7 +6,11 @@ import dateutil.parser
 from airbyte import utils
 from dataclasses_json import Undefined, dataclass_json
 from datetime import datetime
+from enum import Enum
 from typing import Final, Optional, Union
+
+class SourceZendeskChatAuthorizationMethodAccessTokenCredentials(str, Enum):
+    ACCESS_TOKEN = 'access_token'
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
@@ -15,16 +19,19 @@ from typing import Final, Optional, Union
 class SourceZendeskChatAuthorizationMethodAccessToken:
     access_token: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('access_token') }})
     r"""The Access Token to make authenticated requests."""
-    CREDENTIALS: Final[str] = dataclasses.field(default='access_token', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credentials') }})
+    CREDENTIALS: Final[SourceZendeskChatAuthorizationMethodAccessTokenCredentials] = dataclasses.field(default=SourceZendeskChatAuthorizationMethodAccessTokenCredentials.ACCESS_TOKEN, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credentials') }})
     
 
+
+class SourceZendeskChatAuthorizationMethodOAuth20Credentials(str, Enum):
+    OAUTH2_0 = 'oauth2.0'
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
 
 @dataclasses.dataclass
 class SourceZendeskChatAuthorizationMethodOAuth20:
-    CREDENTIALS: Final[str] = dataclasses.field(default='oauth2.0', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credentials') }})
+    CREDENTIALS: Final[SourceZendeskChatAuthorizationMethodOAuth20Credentials] = dataclasses.field(default=SourceZendeskChatAuthorizationMethodOAuth20Credentials.OAUTH2_0, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credentials') }})
     access_token: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('access_token'), 'exclude': lambda f: f is None }})
     r"""Access Token for making authenticated requests."""
     client_id: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('client_id'), 'exclude': lambda f: f is None }})
@@ -42,6 +49,9 @@ class SourceZendeskChatAuthorizationMethodOAuth20:
 class SourceZendeskChatAuthorizationMethod:
     pass
 
+class SourceZendeskChatZendeskChat(str, Enum):
+    ZENDESK_CHAT = 'zendesk-chat'
+
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
 
@@ -50,7 +60,7 @@ class SourceZendeskChat:
     r"""The values required to configure the source."""
     start_date: datetime = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('start_date'), 'encoder': utils.datetimeisoformat(False), 'decoder': dateutil.parser.isoparse }})
     r"""The date from which you'd like to replicate data for Zendesk Chat API, in the format YYYY-MM-DDT00:00:00Z."""
-    SOURCE_TYPE: Final[str] = dataclasses.field(default='zendesk-chat', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
+    SOURCE_TYPE: Final[SourceZendeskChatZendeskChat] = dataclasses.field(default=SourceZendeskChatZendeskChat.ZENDESK_CHAT, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     credentials: Optional[Union[SourceZendeskChatAuthorizationMethodOAuth20, SourceZendeskChatAuthorizationMethodAccessToken]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credentials'), 'exclude': lambda f: f is None }})
     subdomain: Optional[str] = dataclasses.field(default='', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('subdomain'), 'exclude': lambda f: f is None }})
     r"""Required if you access Zendesk Chat from a Zendesk Support subdomain."""

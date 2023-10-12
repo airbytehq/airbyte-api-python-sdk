@@ -4,7 +4,15 @@ from __future__ import annotations
 import dataclasses
 from airbyte import utils
 from dataclasses_json import Undefined, dataclass_json
+from enum import Enum
 from typing import Final, Optional, Union
+
+class DestinationVerticaVertica(str, Enum):
+    VERTICA = 'vertica'
+
+class DestinationVerticaSSHTunnelMethodPasswordAuthenticationTunnelMethod(str, Enum):
+    r"""Connect through a jump server tunnel host using username and password authentication"""
+    SSH_PASSWORD_AUTH = 'SSH_PASSWORD_AUTH'
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
@@ -18,12 +26,16 @@ class DestinationVerticaSSHTunnelMethodPasswordAuthentication:
     r"""OS-level username for logging into the jump server host"""
     tunnel_user_password: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('tunnel_user_password') }})
     r"""OS-level password for logging into the jump server host"""
-    TUNNEL_METHOD: Final[str] = dataclasses.field(default='SSH_PASSWORD_AUTH', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('tunnel_method') }})
+    TUNNEL_METHOD: Final[DestinationVerticaSSHTunnelMethodPasswordAuthenticationTunnelMethod] = dataclasses.field(default=DestinationVerticaSSHTunnelMethodPasswordAuthenticationTunnelMethod.SSH_PASSWORD_AUTH, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('tunnel_method') }})
     r"""Connect through a jump server tunnel host using username and password authentication"""
     tunnel_port: Optional[int] = dataclasses.field(default=22, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('tunnel_port'), 'exclude': lambda f: f is None }})
     r"""Port on the proxy/jump server that accepts inbound ssh connections."""
     
 
+
+class DestinationVerticaSSHTunnelMethodSSHKeyAuthenticationTunnelMethod(str, Enum):
+    r"""Connect through a jump server tunnel host using username and ssh key"""
+    SSH_KEY_AUTH = 'SSH_KEY_AUTH'
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
@@ -37,12 +49,16 @@ class DestinationVerticaSSHTunnelMethodSSHKeyAuthentication:
     r"""Hostname of the jump server host that allows inbound ssh tunnel."""
     tunnel_user: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('tunnel_user') }})
     r"""OS-level username for logging into the jump server host."""
-    TUNNEL_METHOD: Final[str] = dataclasses.field(default='SSH_KEY_AUTH', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('tunnel_method') }})
+    TUNNEL_METHOD: Final[DestinationVerticaSSHTunnelMethodSSHKeyAuthenticationTunnelMethod] = dataclasses.field(default=DestinationVerticaSSHTunnelMethodSSHKeyAuthenticationTunnelMethod.SSH_KEY_AUTH, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('tunnel_method') }})
     r"""Connect through a jump server tunnel host using username and ssh key"""
     tunnel_port: Optional[int] = dataclasses.field(default=22, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('tunnel_port'), 'exclude': lambda f: f is None }})
     r"""Port on the proxy/jump server that accepts inbound ssh connections."""
     
 
+
+class DestinationVerticaSSHTunnelMethodNoTunnelTunnelMethod(str, Enum):
+    r"""No ssh tunnel needed to connect to database"""
+    NO_TUNNEL = 'NO_TUNNEL'
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
@@ -50,7 +66,7 @@ class DestinationVerticaSSHTunnelMethodSSHKeyAuthentication:
 @dataclasses.dataclass
 class DestinationVerticaSSHTunnelMethodNoTunnel:
     r"""Whether to initiate an SSH tunnel before connecting to the database, and if so, which kind of authentication to use."""
-    TUNNEL_METHOD: Final[str] = dataclasses.field(default='NO_TUNNEL', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('tunnel_method') }})
+    TUNNEL_METHOD: Final[DestinationVerticaSSHTunnelMethodNoTunnelTunnelMethod] = dataclasses.field(default=DestinationVerticaSSHTunnelMethodNoTunnelTunnelMethod.NO_TUNNEL, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('tunnel_method') }})
     r"""No ssh tunnel needed to connect to database"""
     
 
@@ -75,7 +91,7 @@ class DestinationVertica:
     r"""Schema for vertica destination"""
     username: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('username') }})
     r"""Username to use to access the database."""
-    DESTINATION_TYPE: Final[str] = dataclasses.field(default='vertica', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('destinationType') }})
+    DESTINATION_TYPE: Final[DestinationVerticaVertica] = dataclasses.field(default=DestinationVerticaVertica.VERTICA, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('destinationType') }})
     jdbc_url_params: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('jdbc_url_params'), 'exclude': lambda f: f is None }})
     r"""Additional properties to pass to the JDBC URL string when connecting to the database formatted as 'key=value' pairs separated by the symbol '&'. (example: key1=value1&key2=value2&key3=value3)."""
     password: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('password'), 'exclude': lambda f: f is None }})

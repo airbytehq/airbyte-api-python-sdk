@@ -4,7 +4,14 @@ from __future__ import annotations
 import dataclasses
 from airbyte import utils
 from dataclasses_json import Undefined, dataclass_json
+from enum import Enum
 from typing import Final, Optional, Union
+
+class DestinationLangchainLangchain(str, Enum):
+    LANGCHAIN = 'langchain'
+
+class DestinationLangchainEmbeddingFakeMode(str, Enum):
+    FAKE = 'fake'
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
@@ -12,9 +19,12 @@ from typing import Final, Optional, Union
 @dataclasses.dataclass
 class DestinationLangchainEmbeddingFake:
     r"""Use a fake embedding made out of random vectors with 1536 embedding dimensions. This is useful for testing the data pipeline without incurring any costs."""
-    MODE: Final[Optional[str]] = dataclasses.field(default='fake', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('mode'), 'exclude': lambda f: f is None }})
+    MODE: Final[Optional[DestinationLangchainEmbeddingFakeMode]] = dataclasses.field(default=DestinationLangchainEmbeddingFakeMode.FAKE, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('mode'), 'exclude': lambda f: f is None }})
     
 
+
+class DestinationLangchainEmbeddingOpenAIMode(str, Enum):
+    OPENAI = 'openai'
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
@@ -23,7 +33,7 @@ class DestinationLangchainEmbeddingFake:
 class DestinationLangchainEmbeddingOpenAI:
     r"""Use the OpenAI API to embed text. This option is using the text-embedding-ada-002 model with 1536 embedding dimensions."""
     openai_key: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('openai_key') }})
-    MODE: Final[Optional[str]] = dataclasses.field(default='openai', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('mode'), 'exclude': lambda f: f is None }})
+    MODE: Final[Optional[DestinationLangchainEmbeddingOpenAIMode]] = dataclasses.field(default=DestinationLangchainEmbeddingOpenAIMode.OPENAI, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('mode'), 'exclude': lambda f: f is None }})
     
 
 
@@ -32,6 +42,9 @@ class DestinationLangchainEmbeddingOpenAI:
 @dataclasses.dataclass
 class DestinationLangchainEmbedding:
     pass
+
+class DestinationLangchainIndexingChromaLocalPersistanceMode(str, Enum):
+    CHROMA_LOCAL = 'chroma_local'
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
@@ -43,9 +56,12 @@ class DestinationLangchainIndexingChromaLocalPersistance:
     r"""Path to the directory where chroma files will be written. The files will be placed inside that local mount."""
     collection_name: Optional[str] = dataclasses.field(default='langchain', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('collection_name'), 'exclude': lambda f: f is None }})
     r"""Name of the collection to use."""
-    MODE: Final[Optional[str]] = dataclasses.field(default='chroma_local', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('mode'), 'exclude': lambda f: f is None }})
+    MODE: Final[Optional[DestinationLangchainIndexingChromaLocalPersistanceMode]] = dataclasses.field(default=DestinationLangchainIndexingChromaLocalPersistanceMode.CHROMA_LOCAL, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('mode'), 'exclude': lambda f: f is None }})
     
 
+
+class DestinationLangchainIndexingDocArrayHnswSearchMode(str, Enum):
+    DOC_ARRAY_HNSW_SEARCH = 'DocArrayHnswSearch'
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
@@ -55,9 +71,12 @@ class DestinationLangchainIndexingDocArrayHnswSearch:
     r"""DocArrayHnswSearch is a lightweight Document Index implementation provided by Docarray that runs fully locally and is best suited for small- to medium-sized datasets. It stores vectors on disk in hnswlib, and stores all other data in SQLite."""
     destination_path: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('destination_path') }})
     r"""Path to the directory where hnswlib and meta data files will be written. The files will be placed inside that local mount. All files in the specified destination directory will be deleted on each run."""
-    MODE: Final[Optional[str]] = dataclasses.field(default='DocArrayHnswSearch', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('mode'), 'exclude': lambda f: f is None }})
+    MODE: Final[Optional[DestinationLangchainIndexingDocArrayHnswSearchMode]] = dataclasses.field(default=DestinationLangchainIndexingDocArrayHnswSearchMode.DOC_ARRAY_HNSW_SEARCH, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('mode'), 'exclude': lambda f: f is None }})
     
 
+
+class DestinationLangchainIndexingPineconeMode(str, Enum):
+    PINECONE = 'pinecone'
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
@@ -70,7 +89,7 @@ class DestinationLangchainIndexingPinecone:
     pinecone_environment: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('pinecone_environment') }})
     r"""Pinecone environment to use"""
     pinecone_key: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('pinecone_key') }})
-    MODE: Final[Optional[str]] = dataclasses.field(default='pinecone', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('mode'), 'exclude': lambda f: f is None }})
+    MODE: Final[Optional[DestinationLangchainIndexingPineconeMode]] = dataclasses.field(default=DestinationLangchainIndexingPineconeMode.PINECONE, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('mode'), 'exclude': lambda f: f is None }})
     
 
 
@@ -105,6 +124,6 @@ class DestinationLangchain:
     indexing: Union[DestinationLangchainIndexingPinecone, DestinationLangchainIndexingDocArrayHnswSearch, DestinationLangchainIndexingChromaLocalPersistance] = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('indexing') }})
     r"""Indexing configuration"""
     processing: DestinationLangchainProcessingConfigModel = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('processing') }})
-    DESTINATION_TYPE: Final[str] = dataclasses.field(default='langchain', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('destinationType') }})
+    DESTINATION_TYPE: Final[DestinationLangchainLangchain] = dataclasses.field(default=DestinationLangchainLangchain.LANGCHAIN, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('destinationType') }})
     
 

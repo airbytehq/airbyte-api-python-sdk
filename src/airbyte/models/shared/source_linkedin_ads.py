@@ -54,6 +54,9 @@ class SourceLinkedinAdsAdAnalyticsReportConfiguration:
     
 
 
+class SourceLinkedinAdsAuthenticationAccessTokenAuthMethod(str, Enum):
+    ACCESS_TOKEN = 'access_token'
+
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
 
@@ -61,9 +64,12 @@ class SourceLinkedinAdsAdAnalyticsReportConfiguration:
 class SourceLinkedinAdsAuthenticationAccessToken:
     access_token: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('access_token') }})
     r"""The access token generated for your developer application. Refer to our <a href='https://docs.airbyte.com/integrations/sources/linkedin-ads#setup-guide'>documentation</a> for more information."""
-    AUTH_METHOD: Final[Optional[str]] = dataclasses.field(default='access_token', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_method'), 'exclude': lambda f: f is None }})
+    AUTH_METHOD: Final[Optional[SourceLinkedinAdsAuthenticationAccessTokenAuthMethod]] = dataclasses.field(default=SourceLinkedinAdsAuthenticationAccessTokenAuthMethod.ACCESS_TOKEN, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_method'), 'exclude': lambda f: f is None }})
     
 
+
+class SourceLinkedinAdsAuthenticationOAuth20AuthMethod(str, Enum):
+    O_AUTH2_0 = 'oAuth2.0'
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
@@ -76,7 +82,7 @@ class SourceLinkedinAdsAuthenticationOAuth20:
     r"""The client secret of your developer application. Refer to our <a href='https://docs.airbyte.com/integrations/sources/linkedin-ads#setup-guide'>documentation</a> for more information."""
     refresh_token: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('refresh_token') }})
     r"""The key to refresh the expired access token. Refer to our <a href='https://docs.airbyte.com/integrations/sources/linkedin-ads#setup-guide'>documentation</a> for more information."""
-    AUTH_METHOD: Final[Optional[str]] = dataclasses.field(default='oAuth2.0', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_method'), 'exclude': lambda f: f is None }})
+    AUTH_METHOD: Final[Optional[SourceLinkedinAdsAuthenticationOAuth20AuthMethod]] = dataclasses.field(default=SourceLinkedinAdsAuthenticationOAuth20AuthMethod.O_AUTH2_0, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_method'), 'exclude': lambda f: f is None }})
     
 
 
@@ -86,6 +92,9 @@ class SourceLinkedinAdsAuthenticationOAuth20:
 class SourceLinkedinAdsAuthentication:
     pass
 
+class SourceLinkedinAdsLinkedinAds(str, Enum):
+    LINKEDIN_ADS = 'linkedin-ads'
+
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
 
@@ -94,7 +103,7 @@ class SourceLinkedinAds:
     r"""The values required to configure the source."""
     start_date: date = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('start_date'), 'encoder': utils.dateisoformat(False), 'decoder': utils.datefromisoformat }})
     r"""UTC date in the format YYYY-MM-DD. Any data before this date will not be replicated."""
-    SOURCE_TYPE: Final[str] = dataclasses.field(default='linkedin-ads', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
+    SOURCE_TYPE: Final[SourceLinkedinAdsLinkedinAds] = dataclasses.field(default=SourceLinkedinAdsLinkedinAds.LINKEDIN_ADS, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     account_ids: Optional[list[int]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('account_ids'), 'exclude': lambda f: f is None }})
     r"""Specify the account IDs to pull data from, separated by a space. Leave this field empty if you want to pull the data from all accounts accessible by the authenticated user. See the <a href=\\"https://www.linkedin.com/help/linkedin/answer/a424270/find-linkedin-ads-account-details?lang=en\\">LinkedIn docs</a> to locate these IDs."""
     ad_analytics_reports: Optional[list[SourceLinkedinAdsAdAnalyticsReportConfiguration]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('ad_analytics_reports'), 'exclude': lambda f: f is None }})

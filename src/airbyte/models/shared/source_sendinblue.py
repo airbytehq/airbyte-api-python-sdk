@@ -4,7 +4,11 @@ from __future__ import annotations
 import dataclasses
 from airbyte import utils
 from dataclasses_json import Undefined, dataclass_json
+from enum import Enum
 from typing import Final
+
+class SourceSendinblueSendinblue(str, Enum):
+    SENDINBLUE = 'sendinblue'
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
@@ -14,6 +18,6 @@ class SourceSendinblue:
     r"""The values required to configure the source."""
     api_key: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('api_key') }})
     r"""Your API Key. See <a href=\\"https://developers.sendinblue.com/docs/getting-started\\">here</a>."""
-    SOURCE_TYPE: Final[str] = dataclasses.field(default='sendinblue', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
+    SOURCE_TYPE: Final[SourceSendinblueSendinblue] = dataclasses.field(default=SourceSendinblueSendinblue.SENDINBLUE, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     
 

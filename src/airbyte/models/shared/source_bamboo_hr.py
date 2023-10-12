@@ -4,7 +4,11 @@ from __future__ import annotations
 import dataclasses
 from airbyte import utils
 from dataclasses_json import Undefined, dataclass_json
+from enum import Enum
 from typing import Final, Optional
+
+class SourceBambooHrBambooHr(str, Enum):
+    BAMBOO_HR = 'bamboo-hr'
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
@@ -16,7 +20,7 @@ class SourceBambooHr:
     r"""Api key of bamboo hr"""
     subdomain: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('subdomain') }})
     r"""Sub Domain of bamboo hr"""
-    SOURCE_TYPE: Final[str] = dataclasses.field(default='bamboo-hr', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
+    SOURCE_TYPE: Final[SourceBambooHrBambooHr] = dataclasses.field(default=SourceBambooHrBambooHr.BAMBOO_HR, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     custom_reports_fields: Optional[str] = dataclasses.field(default='', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('custom_reports_fields'), 'exclude': lambda f: f is None }})
     r"""Comma-separated list of fields to include in custom reports."""
     custom_reports_include_default_fields: Optional[bool] = dataclasses.field(default=True, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('custom_reports_include_default_fields'), 'exclude': lambda f: f is None }})
