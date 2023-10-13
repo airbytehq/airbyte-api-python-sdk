@@ -5,6 +5,6 @@ Is your account location is EU based? If yes, the base url to retrieve data will
 
 ## Fields
 
-| Field              | Type               | Required           | Description        |
-| ------------------ | ------------------ | ------------------ | ------------------ |
-| `url_base`         | *Optional[str]*    | :heavy_minus_sign: | N/A                |
+| Field                                                                                                                             | Type                                                                                                                              | Required                                                                                                                          | Description                                                                                                                       |
+| --------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------- |
+| `url_base`                                                                                                                        | [Optional[SourceSurveySparrowBaseURLGlobalAccountURLBase]](../../models/shared/sourcesurveysparrowbaseurlglobalaccounturlbase.md) | :heavy_minus_sign:                                                                                                                | N/A                                                                                                                               |

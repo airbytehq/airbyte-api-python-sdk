@@ -6,7 +6,11 @@ import dateutil.parser
 from airbyte import utils
 from dataclasses_json import Undefined, dataclass_json
 from datetime import datetime
+from enum import Enum
 from typing import Any, Final, Optional
+
+class SourceHarvestHarvest(str, Enum):
+    HARVEST = 'harvest'
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
@@ -18,7 +22,7 @@ class SourceHarvest:
     r"""Harvest account ID. Required for all Harvest requests in pair with Personal Access Token"""
     replication_start_date: datetime = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('replication_start_date'), 'encoder': utils.datetimeisoformat(False), 'decoder': dateutil.parser.isoparse }})
     r"""UTC date and time in the format 2017-01-25T00:00:00Z. Any data before this date will not be replicated."""
-    SOURCE_TYPE: Final[str] = dataclasses.field(default='harvest', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
+    SOURCE_TYPE: Final[SourceHarvestHarvest] = dataclasses.field(default=SourceHarvestHarvest.HARVEST, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     credentials: Optional[Any] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credentials'), 'exclude': lambda f: f is None }})
     r"""Choose how to authenticate to Harvest."""
     replication_end_date: Optional[datetime] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('replication_end_date'), 'encoder': utils.datetimeisoformat(True), 'decoder': dateutil.parser.isoparse, 'exclude': lambda f: f is None }})

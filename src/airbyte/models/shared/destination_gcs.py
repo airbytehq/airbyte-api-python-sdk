@@ -7,6 +7,9 @@ from dataclasses_json import Undefined, dataclass_json
 from enum import Enum
 from typing import Final, Optional, Union
 
+class DestinationGcsAuthenticationHMACKeyCredentialType(str, Enum):
+    HMAC_KEY = 'HMAC_KEY'
+
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
 
@@ -17,7 +20,7 @@ class DestinationGcsAuthenticationHMACKey:
     r"""When linked to a service account, this ID is 61 characters long; when linked to a user account, it is 24 characters long. Read more <a href=\\"https://cloud.google.com/storage/docs/authentication/hmackeys#overview\\">here</a>."""
     hmac_key_secret: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('hmac_key_secret') }})
     r"""The corresponding secret for the access ID. It is a 40-character base-64 encoded string.  Read more <a href=\\"https://cloud.google.com/storage/docs/authentication/hmackeys#secrets\\">here</a>."""
-    CREDENTIAL_TYPE: Final[Optional[str]] = dataclasses.field(default='HMAC_KEY', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credential_type'), 'exclude': lambda f: f is None }})
+    credential_type: Optional[DestinationGcsAuthenticationHMACKeyCredentialType] = dataclasses.field(default=DestinationGcsAuthenticationHMACKeyCredentialType.HMAC_KEY, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credential_type'), 'exclude': lambda f: f is None }})
     
 
 
@@ -26,6 +29,9 @@ class DestinationGcsAuthenticationHMACKey:
 @dataclasses.dataclass
 class DestinationGcsAuthentication:
     pass
+
+class DestinationGcsGcs(str, Enum):
+    GCS = 'gcs'
 
 class DestinationGcsOutputFormatParquetColumnarStorageCompressionCodec(str, Enum):
     r"""The compression algorithm used to compress data pages."""
@@ -36,6 +42,9 @@ class DestinationGcsOutputFormatParquetColumnarStorageCompressionCodec(str, Enum
     BROTLI = 'BROTLI'
     LZ4 = 'LZ4'
     ZSTD = 'ZSTD'
+
+class DestinationGcsOutputFormatParquetColumnarStorageFormatType(str, Enum):
+    PARQUET = 'Parquet'
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
@@ -51,7 +60,7 @@ class DestinationGcsOutputFormatParquetColumnarStorage:
     r"""Default: true."""
     dictionary_page_size_kb: Optional[int] = dataclasses.field(default=1024, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('dictionary_page_size_kb'), 'exclude': lambda f: f is None }})
     r"""There is one dictionary page per column per row group when dictionary encoding is used. The dictionary page size works like the page size but for dictionary. Default: 1024 KB."""
-    FORMAT_TYPE: Final[Optional[str]] = dataclasses.field(default='Parquet', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('format_type'), 'exclude': lambda f: f is None }})
+    format_type: Optional[DestinationGcsOutputFormatParquetColumnarStorageFormatType] = dataclasses.field(default=DestinationGcsOutputFormatParquetColumnarStorageFormatType.PARQUET, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('format_type'), 'exclude': lambda f: f is None }})
     max_padding_size_mb: Optional[int] = dataclasses.field(default=8, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('max_padding_size_mb'), 'exclude': lambda f: f is None }})
     r"""Maximum size allowed as padding to align row groups. This is also the minimum size of a row group. Default: 8 MB."""
     page_size_kb: Optional[int] = dataclasses.field(default=1024, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('page_size_kb'), 'exclude': lambda f: f is None }})
@@ -59,15 +68,21 @@ class DestinationGcsOutputFormatParquetColumnarStorage:
     
 
 
+class DestinationGcsOutputFormatJSONLinesNewlineDelimitedJSONCompressionGZIPCompressionType(str, Enum):
+    GZIP = 'GZIP'
+
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
 
 @dataclasses.dataclass
 class DestinationGcsOutputFormatJSONLinesNewlineDelimitedJSONCompressionGZIP:
     r"""Whether the output files should be compressed. If compression is selected, the output filename will have an extra extension (GZIP: \\".jsonl.gz\\")."""
-    COMPRESSION_TYPE: Final[Optional[str]] = dataclasses.field(default='GZIP', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('compression_type'), 'exclude': lambda f: f is None }})
+    compression_type: Optional[DestinationGcsOutputFormatJSONLinesNewlineDelimitedJSONCompressionGZIPCompressionType] = dataclasses.field(default=DestinationGcsOutputFormatJSONLinesNewlineDelimitedJSONCompressionGZIPCompressionType.GZIP, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('compression_type'), 'exclude': lambda f: f is None }})
     
 
+
+class DestinationGcsOutputFormatJSONLinesNewlineDelimitedJSONCompressionNoCompressionCompressionType(str, Enum):
+    NO_COMPRESSION = 'No Compression'
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
@@ -75,7 +90,7 @@ class DestinationGcsOutputFormatJSONLinesNewlineDelimitedJSONCompressionGZIP:
 @dataclasses.dataclass
 class DestinationGcsOutputFormatJSONLinesNewlineDelimitedJSONCompressionNoCompression:
     r"""Whether the output files should be compressed. If compression is selected, the output filename will have an extra extension (GZIP: \\".jsonl.gz\\")."""
-    COMPRESSION_TYPE: Final[Optional[str]] = dataclasses.field(default='No Compression', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('compression_type'), 'exclude': lambda f: f is None }})
+    compression_type: Optional[DestinationGcsOutputFormatJSONLinesNewlineDelimitedJSONCompressionNoCompressionCompressionType] = dataclasses.field(default=DestinationGcsOutputFormatJSONLinesNewlineDelimitedJSONCompressionNoCompressionCompressionType.NO_COMPRESSION, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('compression_type'), 'exclude': lambda f: f is None }})
     
 
 
@@ -85,6 +100,9 @@ class DestinationGcsOutputFormatJSONLinesNewlineDelimitedJSONCompressionNoCompre
 class DestinationGcsOutputFormatJSONLinesNewlineDelimitedJSONCompression:
     pass
 
+class DestinationGcsOutputFormatJSONLinesNewlineDelimitedJSONFormatType(str, Enum):
+    JSONL = 'JSONL'
+
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
 
@@ -93,9 +111,12 @@ class DestinationGcsOutputFormatJSONLinesNewlineDelimitedJSON:
     r"""Output data format. One of the following formats must be selected - <a href=\\"https://cloud.google.com/bigquery/docs/loading-data-cloud-storage-avro#advantages_of_avro\\">AVRO</a> format, <a href=\\"https://cloud.google.com/bigquery/docs/loading-data-cloud-storage-parquet#parquet_schemas\\">PARQUET</a> format, <a href=\\"https://cloud.google.com/bigquery/docs/loading-data-cloud-storage-csv#loading_csv_data_into_a_table\\">CSV</a> format, or <a href=\\"https://cloud.google.com/bigquery/docs/loading-data-cloud-storage-json#loading_json_data_into_a_new_table\\">JSONL</a> format."""
     compression: Optional[Union[DestinationGcsOutputFormatJSONLinesNewlineDelimitedJSONCompressionNoCompression, DestinationGcsOutputFormatJSONLinesNewlineDelimitedJSONCompressionGZIP]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('compression'), 'exclude': lambda f: f is None }})
     r"""Whether the output files should be compressed. If compression is selected, the output filename will have an extra extension (GZIP: \\".jsonl.gz\\")."""
-    FORMAT_TYPE: Final[Optional[str]] = dataclasses.field(default='JSONL', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('format_type'), 'exclude': lambda f: f is None }})
+    format_type: Optional[DestinationGcsOutputFormatJSONLinesNewlineDelimitedJSONFormatType] = dataclasses.field(default=DestinationGcsOutputFormatJSONLinesNewlineDelimitedJSONFormatType.JSONL, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('format_type'), 'exclude': lambda f: f is None }})
     
 
+
+class DestinationGcsOutputFormatCSVCommaSeparatedValuesCompressionGZIPCompressionType(str, Enum):
+    GZIP = 'GZIP'
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
@@ -103,9 +124,12 @@ class DestinationGcsOutputFormatJSONLinesNewlineDelimitedJSON:
 @dataclasses.dataclass
 class DestinationGcsOutputFormatCSVCommaSeparatedValuesCompressionGZIP:
     r"""Whether the output files should be compressed. If compression is selected, the output filename will have an extra extension (GZIP: \\".csv.gz\\")."""
-    COMPRESSION_TYPE: Final[Optional[str]] = dataclasses.field(default='GZIP', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('compression_type'), 'exclude': lambda f: f is None }})
+    compression_type: Optional[DestinationGcsOutputFormatCSVCommaSeparatedValuesCompressionGZIPCompressionType] = dataclasses.field(default=DestinationGcsOutputFormatCSVCommaSeparatedValuesCompressionGZIPCompressionType.GZIP, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('compression_type'), 'exclude': lambda f: f is None }})
     
 
+
+class DestinationGcsOutputFormatCSVCommaSeparatedValuesCompressionNoCompressionCompressionType(str, Enum):
+    NO_COMPRESSION = 'No Compression'
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
@@ -113,7 +137,7 @@ class DestinationGcsOutputFormatCSVCommaSeparatedValuesCompressionGZIP:
 @dataclasses.dataclass
 class DestinationGcsOutputFormatCSVCommaSeparatedValuesCompressionNoCompression:
     r"""Whether the output files should be compressed. If compression is selected, the output filename will have an extra extension (GZIP: \\".csv.gz\\")."""
-    COMPRESSION_TYPE: Final[Optional[str]] = dataclasses.field(default='No Compression', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('compression_type'), 'exclude': lambda f: f is None }})
+    compression_type: Optional[DestinationGcsOutputFormatCSVCommaSeparatedValuesCompressionNoCompressionCompressionType] = dataclasses.field(default=DestinationGcsOutputFormatCSVCommaSeparatedValuesCompressionNoCompressionCompressionType.NO_COMPRESSION, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('compression_type'), 'exclude': lambda f: f is None }})
     
 
 
@@ -128,6 +152,9 @@ class DestinationGcsOutputFormatCSVCommaSeparatedValuesNormalization(str, Enum):
     NO_FLATTENING = 'No flattening'
     ROOT_LEVEL_FLATTENING = 'Root level flattening'
 
+class DestinationGcsOutputFormatCSVCommaSeparatedValuesFormatType(str, Enum):
+    CSV = 'CSV'
+
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
 
@@ -138,9 +165,12 @@ class DestinationGcsOutputFormatCSVCommaSeparatedValues:
     r"""Whether the output files should be compressed. If compression is selected, the output filename will have an extra extension (GZIP: \\".csv.gz\\")."""
     flattening: Optional[DestinationGcsOutputFormatCSVCommaSeparatedValuesNormalization] = dataclasses.field(default=DestinationGcsOutputFormatCSVCommaSeparatedValuesNormalization.NO_FLATTENING, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('flattening'), 'exclude': lambda f: f is None }})
     r"""Whether the input JSON data should be normalized (flattened) in the output CSV. Please refer to docs for details."""
-    FORMAT_TYPE: Final[Optional[str]] = dataclasses.field(default='CSV', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('format_type'), 'exclude': lambda f: f is None }})
+    format_type: Optional[DestinationGcsOutputFormatCSVCommaSeparatedValuesFormatType] = dataclasses.field(default=DestinationGcsOutputFormatCSVCommaSeparatedValuesFormatType.CSV, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('format_type'), 'exclude': lambda f: f is None }})
     
 
+
+class DestinationGcsOutputFormatAvroApacheAvroCompressionCodecSnappyCodec(str, Enum):
+    SNAPPY = 'snappy'
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
@@ -148,9 +178,12 @@ class DestinationGcsOutputFormatCSVCommaSeparatedValues:
 @dataclasses.dataclass
 class DestinationGcsOutputFormatAvroApacheAvroCompressionCodecSnappy:
     r"""The compression algorithm used to compress data. Default to no compression."""
-    CODEC: Final[Optional[str]] = dataclasses.field(default='snappy', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('codec'), 'exclude': lambda f: f is None }})
+    codec: Optional[DestinationGcsOutputFormatAvroApacheAvroCompressionCodecSnappyCodec] = dataclasses.field(default=DestinationGcsOutputFormatAvroApacheAvroCompressionCodecSnappyCodec.SNAPPY, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('codec'), 'exclude': lambda f: f is None }})
     
 
+
+class DestinationGcsOutputFormatAvroApacheAvroCompressionCodecZstandardCodec(str, Enum):
+    ZSTANDARD = 'zstandard'
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
@@ -158,7 +191,7 @@ class DestinationGcsOutputFormatAvroApacheAvroCompressionCodecSnappy:
 @dataclasses.dataclass
 class DestinationGcsOutputFormatAvroApacheAvroCompressionCodecZstandard:
     r"""The compression algorithm used to compress data. Default to no compression."""
-    CODEC: Final[Optional[str]] = dataclasses.field(default='zstandard', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('codec'), 'exclude': lambda f: f is None }})
+    codec: Optional[DestinationGcsOutputFormatAvroApacheAvroCompressionCodecZstandardCodec] = dataclasses.field(default=DestinationGcsOutputFormatAvroApacheAvroCompressionCodecZstandardCodec.ZSTANDARD, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('codec'), 'exclude': lambda f: f is None }})
     compression_level: Optional[int] = dataclasses.field(default=3, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('compression_level'), 'exclude': lambda f: f is None }})
     r"""Negative levels are 'fast' modes akin to lz4 or snappy, levels above 9 are generally for archival purposes, and levels above 18 use a lot of memory."""
     include_checksum: Optional[bool] = dataclasses.field(default=False, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('include_checksum'), 'exclude': lambda f: f is None }})
@@ -166,17 +199,23 @@ class DestinationGcsOutputFormatAvroApacheAvroCompressionCodecZstandard:
     
 
 
+class DestinationGcsOutputFormatAvroApacheAvroCompressionCodecXzCodec(str, Enum):
+    XZ = 'xz'
+
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
 
 @dataclasses.dataclass
 class DestinationGcsOutputFormatAvroApacheAvroCompressionCodecXz:
     r"""The compression algorithm used to compress data. Default to no compression."""
-    CODEC: Final[Optional[str]] = dataclasses.field(default='xz', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('codec'), 'exclude': lambda f: f is None }})
+    codec: Optional[DestinationGcsOutputFormatAvroApacheAvroCompressionCodecXzCodec] = dataclasses.field(default=DestinationGcsOutputFormatAvroApacheAvroCompressionCodecXzCodec.XZ, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('codec'), 'exclude': lambda f: f is None }})
     compression_level: Optional[int] = dataclasses.field(default=6, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('compression_level'), 'exclude': lambda f: f is None }})
     r"""The presets 0-3 are fast presets with medium compression. The presets 4-6 are fairly slow presets with high compression. The default preset is 6. The presets 7-9 are like the preset 6 but use bigger dictionaries and have higher compressor and decompressor memory requirements. Unless the uncompressed size of the file exceeds 8 MiB, 16 MiB, or 32 MiB, it is waste of memory to use the presets 7, 8, or 9, respectively. Read more <a href=\\"https://commons.apache.org/proper/commons-compress/apidocs/org/apache/commons/compress/compressors/xz/XZCompressorOutputStream.html#XZCompressorOutputStream-java.io.OutputStream-int-\\">here</a> for details."""
     
 
+
+class DestinationGcsOutputFormatAvroApacheAvroCompressionCodecBzip2Codec(str, Enum):
+    BZIP2 = 'bzip2'
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
@@ -184,9 +223,12 @@ class DestinationGcsOutputFormatAvroApacheAvroCompressionCodecXz:
 @dataclasses.dataclass
 class DestinationGcsOutputFormatAvroApacheAvroCompressionCodecBzip2:
     r"""The compression algorithm used to compress data. Default to no compression."""
-    CODEC: Final[Optional[str]] = dataclasses.field(default='bzip2', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('codec'), 'exclude': lambda f: f is None }})
+    codec: Optional[DestinationGcsOutputFormatAvroApacheAvroCompressionCodecBzip2Codec] = dataclasses.field(default=DestinationGcsOutputFormatAvroApacheAvroCompressionCodecBzip2Codec.BZIP2, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('codec'), 'exclude': lambda f: f is None }})
     
 
+
+class DestinationGcsOutputFormatAvroApacheAvroCompressionCodecDeflateCodec(str, Enum):
+    DEFLATE = 'Deflate'
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
@@ -194,11 +236,14 @@ class DestinationGcsOutputFormatAvroApacheAvroCompressionCodecBzip2:
 @dataclasses.dataclass
 class DestinationGcsOutputFormatAvroApacheAvroCompressionCodecDeflate:
     r"""The compression algorithm used to compress data. Default to no compression."""
-    CODEC: Final[Optional[str]] = dataclasses.field(default='Deflate', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('codec'), 'exclude': lambda f: f is None }})
+    codec: Optional[DestinationGcsOutputFormatAvroApacheAvroCompressionCodecDeflateCodec] = dataclasses.field(default=DestinationGcsOutputFormatAvroApacheAvroCompressionCodecDeflateCodec.DEFLATE, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('codec'), 'exclude': lambda f: f is None }})
     compression_level: Optional[int] = dataclasses.field(default=0, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('compression_level'), 'exclude': lambda f: f is None }})
     r"""0: no compression & fastest, 9: best compression & slowest."""
     
 
+
+class DestinationGcsOutputFormatAvroApacheAvroCompressionCodecNoCompressionCodec(str, Enum):
+    NO_COMPRESSION = 'no compression'
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
@@ -206,7 +251,7 @@ class DestinationGcsOutputFormatAvroApacheAvroCompressionCodecDeflate:
 @dataclasses.dataclass
 class DestinationGcsOutputFormatAvroApacheAvroCompressionCodecNoCompression:
     r"""The compression algorithm used to compress data. Default to no compression."""
-    CODEC: Final[Optional[str]] = dataclasses.field(default='no compression', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('codec'), 'exclude': lambda f: f is None }})
+    codec: Optional[DestinationGcsOutputFormatAvroApacheAvroCompressionCodecNoCompressionCodec] = dataclasses.field(default=DestinationGcsOutputFormatAvroApacheAvroCompressionCodecNoCompressionCodec.NO_COMPRESSION, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('codec'), 'exclude': lambda f: f is None }})
     
 
 
@@ -216,6 +261,9 @@ class DestinationGcsOutputFormatAvroApacheAvroCompressionCodecNoCompression:
 class DestinationGcsOutputFormatAvroApacheAvroCompressionCodec:
     pass
 
+class DestinationGcsOutputFormatAvroApacheAvroFormatType(str, Enum):
+    AVRO = 'Avro'
+
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
 
@@ -224,7 +272,7 @@ class DestinationGcsOutputFormatAvroApacheAvro:
     r"""Output data format. One of the following formats must be selected - <a href=\\"https://cloud.google.com/bigquery/docs/loading-data-cloud-storage-avro#advantages_of_avro\\">AVRO</a> format, <a href=\\"https://cloud.google.com/bigquery/docs/loading-data-cloud-storage-parquet#parquet_schemas\\">PARQUET</a> format, <a href=\\"https://cloud.google.com/bigquery/docs/loading-data-cloud-storage-csv#loading_csv_data_into_a_table\\">CSV</a> format, or <a href=\\"https://cloud.google.com/bigquery/docs/loading-data-cloud-storage-json#loading_json_data_into_a_new_table\\">JSONL</a> format."""
     compression_codec: Union[DestinationGcsOutputFormatAvroApacheAvroCompressionCodecNoCompression, DestinationGcsOutputFormatAvroApacheAvroCompressionCodecDeflate, DestinationGcsOutputFormatAvroApacheAvroCompressionCodecBzip2, DestinationGcsOutputFormatAvroApacheAvroCompressionCodecXz, DestinationGcsOutputFormatAvroApacheAvroCompressionCodecZstandard, DestinationGcsOutputFormatAvroApacheAvroCompressionCodecSnappy] = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('compression_codec') }})
     r"""The compression algorithm used to compress data. Default to no compression."""
-    FORMAT_TYPE: Final[Optional[str]] = dataclasses.field(default='Avro', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('format_type'), 'exclude': lambda f: f is None }})
+    format_type: Optional[DestinationGcsOutputFormatAvroApacheAvroFormatType] = dataclasses.field(default=DestinationGcsOutputFormatAvroApacheAvroFormatType.AVRO, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('format_type'), 'exclude': lambda f: f is None }})
     
 
 
@@ -286,7 +334,7 @@ class DestinationGcs:
     r"""You can find the bucket name in the App Engine Admin console Application Settings page, under the label Google Cloud Storage Bucket. Read more <a href=\\"https://cloud.google.com/storage/docs/naming-buckets\\">here</a>."""
     gcs_bucket_path: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('gcs_bucket_path') }})
     r"""GCS Bucket Path string Subdirectory under the above bucket to sync the data into."""
-    DESTINATION_TYPE: Final[str] = dataclasses.field(default='gcs', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('destinationType') }})
+    DESTINATION_TYPE: Final[DestinationGcsGcs] = dataclasses.field(default=DestinationGcsGcs.GCS, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('destinationType') }})
     gcs_bucket_region: Optional[DestinationGCSGCSBucketRegion] = dataclasses.field(default=DestinationGCSGCSBucketRegion.US, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('gcs_bucket_region'), 'exclude': lambda f: f is None }})
     r"""Select a Region of the GCS Bucket. Read more <a href=\\"https://cloud.google.com/storage/docs/locations\\">here</a>."""
     

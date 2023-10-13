@@ -5,6 +5,6 @@ Use a fake embedding made out of random vectors with 1536 embedding dimensions. 
 
 ## Fields
 
-| Field              | Type               | Required           | Description        |
-| ------------------ | ------------------ | ------------------ | ------------------ |
-| `mode`             | *Optional[str]*    | :heavy_minus_sign: | N/A                |
+| Field                                                                                                           | Type                                                                                                            | Required                                                                                                        | Description                                                                                                     |
+| --------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------- |
+| `mode`                                                                                                          | [Optional[DestinationLangchainEmbeddingFakeMode]](../../models/shared/destinationlangchainembeddingfakemode.md) | :heavy_minus_sign:                                                                                              | N/A                                                                                                             |

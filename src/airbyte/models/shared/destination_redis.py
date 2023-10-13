@@ -4,7 +4,18 @@ from __future__ import annotations
 import dataclasses
 from airbyte import utils
 from dataclasses_json import Undefined, dataclass_json
+from enum import Enum
 from typing import Final, Optional, Union
+
+class DestinationRedisCacheType(str, Enum):
+    r"""Redis cache type to store data in."""
+    HASH = 'hash'
+
+class DestinationRedisRedis(str, Enum):
+    REDIS = 'redis'
+
+class DestinationRedisSSLModesVerifyFullMode(str, Enum):
+    VERIFY_FULL = 'verify-full'
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
@@ -20,9 +31,12 @@ class DestinationRedisSSLModesVerifyFull:
     r"""Client key"""
     client_key_password: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('client_key_password'), 'exclude': lambda f: f is None }})
     r"""Password for keystorage. If you do not add it - the password will be generated automatically."""
-    MODE: Final[Optional[str]] = dataclasses.field(default='verify-full', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('mode'), 'exclude': lambda f: f is None }})
+    MODE: Final[Optional[DestinationRedisSSLModesVerifyFullMode]] = dataclasses.field(default=DestinationRedisSSLModesVerifyFullMode.VERIFY_FULL, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('mode'), 'exclude': lambda f: f is None }})
     
 
+
+class DestinationRedisSSLModesDisableMode(str, Enum):
+    DISABLE = 'disable'
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
@@ -30,7 +44,7 @@ class DestinationRedisSSLModesVerifyFull:
 @dataclasses.dataclass
 class DestinationRedisSSLModesDisable:
     r"""Disable SSL."""
-    MODE: Final[Optional[str]] = dataclasses.field(default='disable', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('mode'), 'exclude': lambda f: f is None }})
+    MODE: Final[Optional[DestinationRedisSSLModesDisableMode]] = dataclasses.field(default=DestinationRedisSSLModesDisableMode.DISABLE, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('mode'), 'exclude': lambda f: f is None }})
     
 
 
@@ -39,6 +53,10 @@ class DestinationRedisSSLModesDisable:
 @dataclasses.dataclass
 class DestinationRedisSSLModes:
     pass
+
+class DestinationRedisSSHTunnelMethodPasswordAuthenticationTunnelMethod(str, Enum):
+    r"""Connect through a jump server tunnel host using username and password authentication"""
+    SSH_PASSWORD_AUTH = 'SSH_PASSWORD_AUTH'
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
@@ -52,12 +70,16 @@ class DestinationRedisSSHTunnelMethodPasswordAuthentication:
     r"""OS-level username for logging into the jump server host"""
     tunnel_user_password: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('tunnel_user_password') }})
     r"""OS-level password for logging into the jump server host"""
-    TUNNEL_METHOD: Final[str] = dataclasses.field(default='SSH_PASSWORD_AUTH', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('tunnel_method') }})
+    TUNNEL_METHOD: Final[DestinationRedisSSHTunnelMethodPasswordAuthenticationTunnelMethod] = dataclasses.field(default=DestinationRedisSSHTunnelMethodPasswordAuthenticationTunnelMethod.SSH_PASSWORD_AUTH, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('tunnel_method') }})
     r"""Connect through a jump server tunnel host using username and password authentication"""
     tunnel_port: Optional[int] = dataclasses.field(default=22, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('tunnel_port'), 'exclude': lambda f: f is None }})
     r"""Port on the proxy/jump server that accepts inbound ssh connections."""
     
 
+
+class DestinationRedisSSHTunnelMethodSSHKeyAuthenticationTunnelMethod(str, Enum):
+    r"""Connect through a jump server tunnel host using username and ssh key"""
+    SSH_KEY_AUTH = 'SSH_KEY_AUTH'
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
@@ -71,12 +93,16 @@ class DestinationRedisSSHTunnelMethodSSHKeyAuthentication:
     r"""Hostname of the jump server host that allows inbound ssh tunnel."""
     tunnel_user: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('tunnel_user') }})
     r"""OS-level username for logging into the jump server host."""
-    TUNNEL_METHOD: Final[str] = dataclasses.field(default='SSH_KEY_AUTH', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('tunnel_method') }})
+    TUNNEL_METHOD: Final[DestinationRedisSSHTunnelMethodSSHKeyAuthenticationTunnelMethod] = dataclasses.field(default=DestinationRedisSSHTunnelMethodSSHKeyAuthenticationTunnelMethod.SSH_KEY_AUTH, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('tunnel_method') }})
     r"""Connect through a jump server tunnel host using username and ssh key"""
     tunnel_port: Optional[int] = dataclasses.field(default=22, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('tunnel_port'), 'exclude': lambda f: f is None }})
     r"""Port on the proxy/jump server that accepts inbound ssh connections."""
     
 
+
+class DestinationRedisSSHTunnelMethodNoTunnelTunnelMethod(str, Enum):
+    r"""No ssh tunnel needed to connect to database"""
+    NO_TUNNEL = 'NO_TUNNEL'
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
@@ -84,7 +110,7 @@ class DestinationRedisSSHTunnelMethodSSHKeyAuthentication:
 @dataclasses.dataclass
 class DestinationRedisSSHTunnelMethodNoTunnel:
     r"""Whether to initiate an SSH tunnel before connecting to the database, and if so, which kind of authentication to use."""
-    TUNNEL_METHOD: Final[str] = dataclasses.field(default='NO_TUNNEL', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('tunnel_method') }})
+    TUNNEL_METHOD: Final[DestinationRedisSSHTunnelMethodNoTunnelTunnelMethod] = dataclasses.field(default=DestinationRedisSSHTunnelMethodNoTunnelTunnelMethod.NO_TUNNEL, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('tunnel_method') }})
     r"""No ssh tunnel needed to connect to database"""
     
 
@@ -105,8 +131,8 @@ class DestinationRedis:
     r"""Redis host to connect to."""
     username: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('username') }})
     r"""Username associated with Redis."""
-    DESTINATION_TYPE: Final[str] = dataclasses.field(default='redis', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('destinationType') }})
-    CACHE_TYPE: Final[Optional[str]] = dataclasses.field(default='hash', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('cache_type'), 'exclude': lambda f: f is None }})
+    DESTINATION_TYPE: Final[DestinationRedisRedis] = dataclasses.field(default=DestinationRedisRedis.REDIS, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('destinationType') }})
+    cache_type: Optional[DestinationRedisCacheType] = dataclasses.field(default=DestinationRedisCacheType.HASH, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('cache_type'), 'exclude': lambda f: f is None }})
     r"""Redis cache type to store data in."""
     password: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('password'), 'exclude': lambda f: f is None }})
     r"""Password associated with Redis."""

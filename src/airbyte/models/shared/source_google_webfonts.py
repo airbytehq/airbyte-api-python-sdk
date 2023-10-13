@@ -4,7 +4,11 @@ from __future__ import annotations
 import dataclasses
 from airbyte import utils
 from dataclasses_json import Undefined, dataclass_json
+from enum import Enum
 from typing import Final, Optional
+
+class SourceGoogleWebfontsGoogleWebfonts(str, Enum):
+    GOOGLE_WEBFONTS = 'google-webfonts'
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
@@ -14,7 +18,7 @@ class SourceGoogleWebfonts:
     r"""The values required to configure the source."""
     api_key: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('api_key') }})
     r"""API key is required to access google apis, For getting your's goto google console and generate api key for Webfonts"""
-    SOURCE_TYPE: Final[str] = dataclasses.field(default='google-webfonts', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
+    SOURCE_TYPE: Final[SourceGoogleWebfontsGoogleWebfonts] = dataclasses.field(default=SourceGoogleWebfontsGoogleWebfonts.GOOGLE_WEBFONTS, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     alt: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('alt'), 'exclude': lambda f: f is None }})
     r"""Optional, Available params- json, media, proto"""
     pretty_print: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('prettyPrint'), 'exclude': lambda f: f is None }})

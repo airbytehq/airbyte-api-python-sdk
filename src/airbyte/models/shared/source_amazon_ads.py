@@ -7,6 +7,9 @@ from dataclasses_json import Undefined, dataclass_json
 from enum import Enum
 from typing import Final, Optional
 
+class SourceAmazonAdsAuthType(str, Enum):
+    OAUTH2_0 = 'oauth2.0'
+
 class SourceAmazonAdsRegion(str, Enum):
     r"""Region to pull data from (EU/NA/FE). See <a href=\\"https://advertising.amazon.com/API/docs/en-us/info/api-overview#api-endpoints\\">docs</a> for more details."""
     NA = 'NA'
@@ -22,6 +25,9 @@ class SourceAmazonAdsReportRecordTypes(str, Enum):
     KEYWORDS = 'keywords'
     PRODUCT_ADS = 'productAds'
     TARGETS = 'targets'
+
+class SourceAmazonAdsAmazonAds(str, Enum):
+    AMAZON_ADS = 'amazon-ads'
 
 class SourceAmazonAdsStateFilter(str, Enum):
     ENABLED = 'enabled'
@@ -40,8 +46,8 @@ class SourceAmazonAds:
     r"""The client secret of your Amazon Ads developer application. See the <a href=\\"https://advertising.amazon.com/API/docs/en-us/get-started/generate-api-tokens#retrieve-your-client-id-and-client-secret\\">docs</a> for more information."""
     refresh_token: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('refresh_token') }})
     r"""Amazon Ads refresh token. See the <a href=\\"https://advertising.amazon.com/API/docs/en-us/get-started/generate-api-tokens\\">docs</a> for more information on how to obtain this token."""
-    SOURCE_TYPE: Final[str] = dataclasses.field(default='amazon-ads', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
-    AUTH_TYPE: Final[Optional[str]] = dataclasses.field(default='oauth2.0', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_type'), 'exclude': lambda f: f is None }})
+    SOURCE_TYPE: Final[SourceAmazonAdsAmazonAds] = dataclasses.field(default=SourceAmazonAdsAmazonAds.AMAZON_ADS, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
+    AUTH_TYPE: Final[Optional[SourceAmazonAdsAuthType]] = dataclasses.field(default=SourceAmazonAdsAuthType.OAUTH2_0, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_type'), 'exclude': lambda f: f is None }})
     look_back_window: Optional[int] = dataclasses.field(default=3, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('look_back_window'), 'exclude': lambda f: f is None }})
     r"""The amount of days to go back in time to get the updated data from Amazon Ads"""
     marketplace_ids: Optional[list[str]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('marketplace_ids'), 'exclude': lambda f: f is None }})

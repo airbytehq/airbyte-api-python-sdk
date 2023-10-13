@@ -26,7 +26,6 @@ s = airbyte.Airbyte(
 
 req = operations.GetStreamPropertiesRequest(
     destination_id='customized',
-    ignore_cache=False,
     source_id='South withdrawal salmon',
 )
 
@@ -34,6 +33,7 @@ res = s.streams.get_stream_properties(req)
 
 if res.stream_properties_response is not None:
     # handle response
+    pass
 ```
 
 ### Parameters

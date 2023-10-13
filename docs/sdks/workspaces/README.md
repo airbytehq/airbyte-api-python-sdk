@@ -33,19 +33,17 @@ s = airbyte.Airbyte(
 req = operations.CreateOrUpdateWorkspaceOAuthCredentialsRequest(
     workspace_o_auth_credentials_request=shared.WorkspaceOAuthCredentialsRequest(
         actor_type=shared.ActorTypeEnum.DESTINATION,
-        configuration=shared.AmazonAds(
-            client_id='seamless',
-            client_secret='Industrial Baby Rupee',
-        ),
-        name=shared.OAuthActorNames.ZENDESK_CHAT,
+        configuration=shared.AmazonAds(),
+        name=shared.OAuthActorNames.AIRTABLE,
     ),
-    workspace_id='Chips Springs Home',
+    workspace_id='Polygender',
 )
 
 res = s.workspaces.create_or_update_workspace_o_auth_credentials(req)
 
 if res.status_code == 200:
     # handle response
+    pass
 ```
 
 ### Parameters
@@ -87,6 +85,7 @@ res = s.workspaces.create_workspace(req)
 
 if res.workspace_response is not None:
     # handle response
+    pass
 ```
 
 ### Parameters
@@ -128,6 +127,7 @@ res = s.workspaces.delete_workspace(req)
 
 if res.status_code == 200:
     # handle response
+    pass
 ```
 
 ### Parameters
@@ -169,6 +169,7 @@ res = s.workspaces.get_workspace(req)
 
 if res.workspace_response is not None:
     # handle response
+    pass
 ```
 
 ### Parameters
@@ -203,11 +204,8 @@ s = airbyte.Airbyte(
 )
 
 req = operations.ListWorkspacesRequest(
-    include_deleted=False,
-    limit=283250,
-    offset=568374,
     workspace_ids=[
-        '53f9aa38-0387-4f54-9d38-9888ede30708',
+        '4953f9aa-3803-487f-945d-389888ede307',
     ],
 )
 
@@ -215,6 +213,7 @@ res = s.workspaces.list_workspaces(req)
 
 if res.workspaces_response is not None:
     # handle response
+    pass
 ```
 
 ### Parameters
@@ -259,6 +258,7 @@ res = s.workspaces.update_workspace(req)
 
 if res.workspace_response is not None:
     # handle response
+    pass
 ```
 
 ### Parameters

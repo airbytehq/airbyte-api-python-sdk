@@ -5,7 +5,7 @@ The values required to configure the source.
 
 ## Fields
 
-| Field              | Type               | Required           | Description        |
-| ------------------ | ------------------ | ------------------ | ------------------ |
-| `source_type`      | *Optional[str]*    | :heavy_check_mark: | N/A                |
-| `url`              | *Optional[str]*    | :heavy_check_mark: | RSS Feed URL       |
+| Field                                               | Type                                                | Required                                            | Description                                         |
+| --------------------------------------------------- | --------------------------------------------------- | --------------------------------------------------- | --------------------------------------------------- |
+| `source_type`                                       | [SourceRssRss](../../models/shared/sourcerssrss.md) | :heavy_check_mark:                                  | N/A                                                 |
+| `url`                                               | *str*                                               | :heavy_check_mark:                                  | RSS Feed URL                                        |

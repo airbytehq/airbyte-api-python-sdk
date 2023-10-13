@@ -5,6 +5,6 @@ Automatically attempt SSL connection. If the MySQL server does not support SSL, 
 
 ## Fields
 
-| Field              | Type               | Required           | Description        |
-| ------------------ | ------------------ | ------------------ | ------------------ |
-| `mode`             | *Optional[str]*    | :heavy_check_mark: | N/A                |
+| Field                                                                                       | Type                                                                                        | Required                                                                                    | Description                                                                                 |
+| ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- |
+| `mode`                                                                                      | [SourceMysqlSSLModesPreferredMode](../../models/shared/sourcemysqlsslmodespreferredmode.md) | :heavy_check_mark:                                                                          | N/A                                                                                         |

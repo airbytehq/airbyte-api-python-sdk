@@ -5,6 +5,6 @@ Xmin replication requires no setup on the DB side but will not be able to repres
 
 ## Fields
 
-| Field              | Type               | Required           | Description        |
-| ------------------ | ------------------ | ------------------ | ------------------ |
-| `method`           | *Optional[str]*    | :heavy_check_mark: | N/A                |
+| Field                                                                                                                       | Type                                                                                                                        | Required                                                                                                                    | Description                                                                                                                 |
+| --------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------- |
+| `method`                                                                                                                    | [SourceAlloydbReplicationMethodStandardXminMethod](../../models/shared/sourcealloydbreplicationmethodstandardxminmethod.md) | :heavy_check_mark:                                                                                                          | N/A                                                                                                                         |

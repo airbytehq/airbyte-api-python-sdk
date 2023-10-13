@@ -32,16 +32,19 @@ s = airbyte.Airbyte(
 )
 
 req = shared.SourceCreateRequest(
-    configuration=[],
-    name='Carolina States',
-    secret_id='creator',
-    workspace_id='ddc9848c-34bd-4fb1-8905-6aa6d6dedf29',
+    shared.SourcePokeapi(
+        pokemon_name='luxray',
+        source_type=shared.SourcePokeapiPokeapi.POKEAPI,
+    ),
+    name='lavender',
+    workspace_id='0f31f3dd-c984-48c3-8bdf-b109056aa6d6',
 )
 
 res = s.sources.create_source(req)
 
 if res.source_response is not None:
     # handle response
+    pass
 ```
 
 ### Parameters
@@ -83,6 +86,7 @@ res = s.sources.delete_source(req)
 
 if res.status_code == 200:
     # handle response
+    pass
 ```
 
 ### Parameters
@@ -124,6 +128,7 @@ res = s.sources.get_source(req)
 
 if res.source_response is not None:
     # handle response
+    pass
 ```
 
 ### Parameters
@@ -172,6 +177,7 @@ res = s.sources.initiate_o_auth(req)
 
 if res.status_code == 200:
     # handle response
+    pass
 ```
 
 ### Parameters
@@ -206,11 +212,8 @@ s = airbyte.Airbyte(
 )
 
 req = operations.ListSourcesRequest(
-    include_deleted=False,
-    limit=442892,
-    offset=284564,
     workspace_ids=[
-        'dbbb77f8-0b57-4c45-800c-5d47a64428ce',
+        '74dbbb77-f80b-457c-8540-0c5d47a64428',
     ],
 )
 
@@ -218,6 +221,7 @@ res = s.sources.list_sources(req)
 
 if res.sources_response is not None:
     # handle response
+    pass
 ```
 
 ### Parameters
@@ -254,18 +258,20 @@ s = airbyte.Airbyte(
 
 req = operations.PatchSourceRequest(
     source_patch_request=shared.SourcePatchRequest(
-        configuration=[],
+        shared.SourcePokeapi(
+            pokemon_name='ditto',
+            source_type=shared.SourcePokeapiPokeapi.POKEAPI,
+        ),
         name='My source',
-        secret_id='Vanuatu',
-        workspace_id='c2511c44-f79e-4d2c-b0df-4fd46c0e47eb',
     ),
-    source_id='Future',
+    source_id='septicaemia',
 )
 
 res = s.sources.patch_source(req)
 
 if res.source_response is not None:
     # handle response
+    pass
 ```
 
 ### Parameters
@@ -302,16 +308,20 @@ s = airbyte.Airbyte(
 
 req = operations.PutSourceRequest(
     source_put_request=shared.SourcePutRequest(
-        configuration=[],
-        name='Urbana Program',
+        shared.SourcePokeapi(
+            pokemon_name='luxray',
+            source_type=shared.SourcePokeapiPokeapi.POKEAPI,
+        ),
+        name='bah',
     ),
-    source_id='Berkshire ASCII',
+    source_id='Checking',
 )
 
 res = s.sources.put_source(req)
 
 if res.source_response is not None:
     # handle response
+    pass
 ```
 
 ### Parameters

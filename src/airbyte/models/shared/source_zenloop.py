@@ -4,7 +4,11 @@ from __future__ import annotations
 import dataclasses
 from airbyte import utils
 from dataclasses_json import Undefined, dataclass_json
+from enum import Enum
 from typing import Final, Optional
+
+class SourceZenloopZenloop(str, Enum):
+    ZENLOOP = 'zenloop'
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
@@ -14,7 +18,7 @@ class SourceZenloop:
     r"""The values required to configure the source."""
     api_token: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('api_token') }})
     r"""Zenloop API Token. You can get the API token in settings page <a href=\\"https://app.zenloop.com/settings/api\\">here</a>"""
-    SOURCE_TYPE: Final[str] = dataclasses.field(default='zenloop', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
+    SOURCE_TYPE: Final[SourceZenloopZenloop] = dataclasses.field(default=SourceZenloopZenloop.ZENLOOP, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     date_from: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('date_from'), 'exclude': lambda f: f is None }})
     r"""Zenloop date_from. Format: 2021-10-24T03:30:30Z or 2021-10-24. Leave empty if only data from current data should be synced"""
     survey_group_id: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('survey_group_id'), 'exclude': lambda f: f is None }})
