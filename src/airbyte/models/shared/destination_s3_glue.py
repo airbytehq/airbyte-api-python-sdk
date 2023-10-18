@@ -15,7 +15,6 @@ class DestinationS3GlueOutputFormatJSONLinesNewlineDelimitedJSONCompressionGZIPC
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class DestinationS3GlueOutputFormatJSONLinesNewlineDelimitedJSONCompressionGZIP:
     r"""Whether the output files should be compressed. If compression is selected, the output filename will have an extra extension (GZIP: \\".jsonl.gz\\")."""
@@ -28,13 +27,11 @@ class DestinationS3GlueOutputFormatJSONLinesNewlineDelimitedJSONCompressionNoCom
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class DestinationS3GlueOutputFormatJSONLinesNewlineDelimitedJSONCompressionNoCompression:
     r"""Whether the output files should be compressed. If compression is selected, the output filename will have an extra extension (GZIP: \\".jsonl.gz\\")."""
     compression_type: Optional[DestinationS3GlueOutputFormatJSONLinesNewlineDelimitedJSONCompressionNoCompressionCompressionType] = dataclasses.field(default=DestinationS3GlueOutputFormatJSONLinesNewlineDelimitedJSONCompressionNoCompressionCompressionType.NO_COMPRESSION, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('compression_type'), 'exclude': lambda f: f is None }})
     
-
 
 
 
@@ -52,7 +49,6 @@ class DestinationS3GlueOutputFormatJSONLinesNewlineDelimitedJSONFormatType(str, 
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class DestinationS3GlueOutputFormatJSONLinesNewlineDelimitedJSON:
     r"""Format of the data output. See <a href=\\"https://docs.airbyte.com/integrations/destinations/s3/#supported-output-schema\\">here</a> for more details"""
@@ -62,7 +58,6 @@ class DestinationS3GlueOutputFormatJSONLinesNewlineDelimitedJSON:
     r"""Whether the input json data should be normalized (flattened) in the output JSON Lines. Please refer to docs for details."""
     format_type: Optional[DestinationS3GlueOutputFormatJSONLinesNewlineDelimitedJSONFormatType] = dataclasses.field(default=DestinationS3GlueOutputFormatJSONLinesNewlineDelimitedJSONFormatType.JSONL, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('format_type'), 'exclude': lambda f: f is None }})
     
-
 
 
 
@@ -106,7 +101,6 @@ class DestinationS3GlueS3BucketRegion(str, Enum):
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class DestinationS3Glue:
     r"""The values required to configure the destination."""

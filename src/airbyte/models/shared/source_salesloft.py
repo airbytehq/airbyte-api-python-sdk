@@ -14,7 +14,6 @@ class SourceSalesloftCredentialsAuthenticateViaAPIKeyAuthType(str, Enum):
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class SourceSalesloftCredentialsAuthenticateViaAPIKey:
     api_key: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('api_key') }})
@@ -28,7 +27,6 @@ class SourceSalesloftCredentialsAuthenticateViaOAuthAuthType(str, Enum):
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class SourceSalesloftCredentialsAuthenticateViaOAuth:
     access_token: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('access_token') }})
@@ -46,7 +44,6 @@ class SourceSalesloftCredentialsAuthenticateViaOAuth:
 
 
 
-
 @dataclasses.dataclass
 class SourceSalesloftCredentials:
     pass
@@ -56,7 +53,6 @@ class SourceSalesloftSalesloft(str, Enum):
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class SourceSalesloft:
     r"""The values required to configure the source."""

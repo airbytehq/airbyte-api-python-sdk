@@ -5,7 +5,7 @@ import dataclasses
 from airbyte import utils
 from dataclasses_json import Undefined, dataclass_json
 from enum import Enum
-from typing import Final, Optional
+from typing import Final, List, Optional
 
 class SourceGooglePagespeedInsightsCategories(str, Enum):
     ACCESSIBILITY = 'accessibility'
@@ -23,15 +23,14 @@ class SourceGooglePagespeedInsightsStrategies(str, Enum):
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class SourceGooglePagespeedInsights:
     r"""The values required to configure the source."""
-    categories: list[SourceGooglePagespeedInsightsCategories] = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('categories') }})
+    categories: List[SourceGooglePagespeedInsightsCategories] = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('categories') }})
     r"""Defines which Lighthouse category to run. One or many of: \\"accessibility\\", \\"best-practices\\", \\"performance\\", \\"pwa\\", \\"seo\\"."""
-    strategies: list[SourceGooglePagespeedInsightsStrategies] = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('strategies') }})
+    strategies: List[SourceGooglePagespeedInsightsStrategies] = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('strategies') }})
     r"""The analyses strategy to use. Either \\"desktop\\" or \\"mobile\\"."""
-    urls: list[str] = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('urls') }})
+    urls: List[str] = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('urls') }})
     r"""The URLs to retrieve pagespeed information from. The connector will attempt to sync PageSpeed reports for all the defined URLs. Format: https://(www.)url.domain"""
     SOURCE_TYPE: Final[SourceGooglePagespeedInsightsGooglePagespeedInsights] = dataclasses.field(default=SourceGooglePagespeedInsightsGooglePagespeedInsights.GOOGLE_PAGESPEED_INSIGHTS, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     api_key: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('api_key'), 'exclude': lambda f: f is None }})

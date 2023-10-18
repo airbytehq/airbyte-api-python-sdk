@@ -12,7 +12,6 @@ class SourceMondayAuthorizationMethodAPITokenAuthType(str, Enum):
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class SourceMondayAuthorizationMethodAPIToken:
     api_token: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('api_token') }})
@@ -26,7 +25,6 @@ class SourceMondayAuthorizationMethodOAuth20AuthType(str, Enum):
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class SourceMondayAuthorizationMethodOAuth20:
     access_token: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('access_token') }})
@@ -42,7 +40,6 @@ class SourceMondayAuthorizationMethodOAuth20:
 
 
 
-
 @dataclasses.dataclass
 class SourceMondayAuthorizationMethod:
     pass
@@ -52,7 +49,6 @@ class SourceMondayMonday(str, Enum):
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class SourceMonday:
     r"""The values required to configure the source."""

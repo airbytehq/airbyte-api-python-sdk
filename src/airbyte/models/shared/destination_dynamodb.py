@@ -41,7 +41,6 @@ class DestinationDynamodbDynamoDBRegion(str, Enum):
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class DestinationDynamodb:
     r"""The values required to configure the destination."""

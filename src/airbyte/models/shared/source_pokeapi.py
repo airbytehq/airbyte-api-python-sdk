@@ -12,7 +12,6 @@ class SourcePokeapiPokeapi(str, Enum):
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class SourcePokeapi:
     r"""The values required to configure the source."""

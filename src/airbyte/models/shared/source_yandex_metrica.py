@@ -13,7 +13,6 @@ class SourceYandexMetricaYandexMetrica(str, Enum):
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class SourceYandexMetrica:
     r"""The values required to configure the source."""

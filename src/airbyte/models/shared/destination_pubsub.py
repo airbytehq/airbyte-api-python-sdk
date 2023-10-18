@@ -12,7 +12,6 @@ class DestinationPubsubPubsub(str, Enum):
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class DestinationPubsub:
     r"""The values required to configure the destination."""

@@ -13,7 +13,6 @@ class SourceSftpAuthenticationWildcardSSHKeyAuthenticationAuthMethod(str, Enum):
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class SourceSftpAuthenticationWildcardSSHKeyAuthentication:
     r"""The server authentication method"""
@@ -30,7 +29,6 @@ class SourceSftpAuthenticationWildcardPasswordAuthenticationAuthMethod(str, Enum
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class SourceSftpAuthenticationWildcardPasswordAuthentication:
     r"""The server authentication method"""
@@ -39,7 +37,6 @@ class SourceSftpAuthenticationWildcardPasswordAuthentication:
     AUTH_METHOD: Final[SourceSftpAuthenticationWildcardPasswordAuthenticationAuthMethod] = dataclasses.field(default=SourceSftpAuthenticationWildcardPasswordAuthenticationAuthMethod.SSH_PASSWORD_AUTH, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_method') }})
     r"""Connect through password authentication"""
     
-
 
 
 
@@ -52,7 +49,6 @@ class SourceSftpSftp(str, Enum):
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class SourceSftp:
     r"""The values required to configure the source."""

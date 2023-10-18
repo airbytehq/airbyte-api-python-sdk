@@ -12,7 +12,6 @@ class SourceRssRss(str, Enum):
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class SourceRss:
     r"""The values required to configure the source."""

@@ -15,7 +15,6 @@ class DestinationMssqlSSLMethodEncryptedVerifyCertificateSSLMethod(str, Enum):
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class DestinationMssqlSSLMethodEncryptedVerifyCertificate:
     r"""Verify and use the certificate provided by the server."""
@@ -30,13 +29,11 @@ class DestinationMssqlSSLMethodEncryptedTrustServerCertificateSSLMethod(str, Enu
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class DestinationMssqlSSLMethodEncryptedTrustServerCertificate:
     r"""Use the certificate provided by the server without verification. (For testing purposes only!)"""
     SSL_METHOD: Final[Optional[DestinationMssqlSSLMethodEncryptedTrustServerCertificateSSLMethod]] = dataclasses.field(default=DestinationMssqlSSLMethodEncryptedTrustServerCertificateSSLMethod.ENCRYPTED_TRUST_SERVER_CERTIFICATE, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('ssl_method'), 'exclude': lambda f: f is None }})
     
-
 
 
 
@@ -50,7 +47,6 @@ class DestinationMssqlSSHTunnelMethodPasswordAuthenticationTunnelMethod(str, Enu
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class DestinationMssqlSSHTunnelMethodPasswordAuthentication:
     r"""Whether to initiate an SSH tunnel before connecting to the database, and if so, which kind of authentication to use."""
@@ -73,7 +69,6 @@ class DestinationMssqlSSHTunnelMethodSSHKeyAuthenticationTunnelMethod(str, Enum)
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class DestinationMssqlSSHTunnelMethodSSHKeyAuthentication:
     r"""Whether to initiate an SSH tunnel before connecting to the database, and if so, which kind of authentication to use."""
@@ -96,7 +91,6 @@ class DestinationMssqlSSHTunnelMethodNoTunnelTunnelMethod(str, Enum):
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class DestinationMssqlSSHTunnelMethodNoTunnel:
     r"""Whether to initiate an SSH tunnel before connecting to the database, and if so, which kind of authentication to use."""
@@ -106,14 +100,12 @@ class DestinationMssqlSSHTunnelMethodNoTunnel:
 
 
 
-
 @dataclasses.dataclass
 class DestinationMssqlSSHTunnelMethod:
     pass
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class DestinationMssql:
     r"""The values required to configure the destination."""

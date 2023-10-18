@@ -5,14 +5,28 @@ import dataclasses
 from airbyte import utils
 from dataclasses_json import Undefined, dataclass_json
 from enum import Enum
-from typing import Any, Final, Optional, Union
+from typing import Any, Dict, Final, Optional, Union
+
+class SourceMongodbMongoDBInstanceTypeMongoDBAtlasInstance(str, Enum):
+    ATLAS = 'atlas'
+
+
+@dataclass_json(undefined=Undefined.EXCLUDE)
+@dataclasses.dataclass
+class SourceMongodbMongoDBInstanceTypeMongoDBAtlas:
+    r"""The MongoDb instance to connect to. For MongoDB Atlas and Replica Set TLS connection is used by default."""
+    cluster_url: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('cluster_url') }})
+    r"""The URL of a cluster to connect to."""
+    INSTANCE: Final[SourceMongodbMongoDBInstanceTypeMongoDBAtlasInstance] = dataclasses.field(default=SourceMongodbMongoDBInstanceTypeMongoDBAtlasInstance.ATLAS, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('instance') }})
+    additional_properties: Optional[Dict[str, Any]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'exclude': lambda f: f is None }})
+    
+
 
 class SourceMongodbMongoDbInstanceTypeReplicaSetInstance(str, Enum):
     REPLICA = 'replica'
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class SourceMongodbMongoDbInstanceTypeReplicaSet:
     r"""The MongoDb instance to connect to. For MongoDB Atlas and Replica Set TLS connection is used by default."""
@@ -29,7 +43,6 @@ class SourceMongodbMongoDbInstanceTypeStandaloneMongoDbInstanceInstance(str, Enu
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class SourceMongodbMongoDbInstanceTypeStandaloneMongoDbInstance:
     r"""The MongoDb instance to connect to. For MongoDB Atlas and Replica Set TLS connection is used by default."""
@@ -42,7 +55,6 @@ class SourceMongodbMongoDbInstanceTypeStandaloneMongoDbInstance:
 
 
 
-
 @dataclasses.dataclass
 class SourceMongodbMongoDbInstanceType:
     pass
@@ -52,7 +64,6 @@ class SourceMongodbMongodb(str, Enum):
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class SourceMongodb:
     r"""The values required to configure the source."""
@@ -61,7 +72,7 @@ class SourceMongodb:
     SOURCE_TYPE: Final[SourceMongodbMongodb] = dataclasses.field(default=SourceMongodbMongodb.MONGODB, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     auth_source: Optional[str] = dataclasses.field(default='admin', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_source'), 'exclude': lambda f: f is None }})
     r"""The authentication source where the user information is stored."""
-    instance_type: Optional[Union[SourceMongodbMongoDbInstanceTypeStandaloneMongoDbInstance, SourceMongodbMongoDbInstanceTypeReplicaSet, dict[str, Any]]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('instance_type'), 'exclude': lambda f: f is None }})
+    instance_type: Optional[Union[SourceMongodbMongoDbInstanceTypeStandaloneMongoDbInstance, SourceMongodbMongoDbInstanceTypeReplicaSet, SourceMongodbMongoDBInstanceTypeMongoDBAtlas]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('instance_type'), 'exclude': lambda f: f is None }})
     r"""The MongoDb instance to connect to. For MongoDB Atlas and Replica Set TLS connection is used by default."""
     password: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('password'), 'exclude': lambda f: f is None }})
     r"""The password associated with this username."""

@@ -12,7 +12,6 @@ class DestinationDatabricksDataSourceAzureBlobStorageDataSourceType(str, Enum):
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class DestinationDatabricksDataSourceAzureBlobStorage:
     r"""Storage on which the delta lake is built."""
@@ -62,7 +61,6 @@ class DestinationDatabricksDataSourceAmazonS3S3BucketRegion(str, Enum):
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class DestinationDatabricksDataSourceAmazonS3:
     r"""Storage on which the delta lake is built."""
@@ -87,13 +85,11 @@ class DestinationDatabricksDataSourceRecommendedManagedTablesDataSourceType(str,
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class DestinationDatabricksDataSourceRecommendedManagedTables:
     r"""Storage on which the delta lake is built."""
     DATA_SOURCE_TYPE: Final[DestinationDatabricksDataSourceRecommendedManagedTablesDataSourceType] = dataclasses.field(default=DestinationDatabricksDataSourceRecommendedManagedTablesDataSourceType.MANAGED_TABLES_STORAGE, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('data_source_type') }})
     
-
 
 
 
@@ -106,7 +102,6 @@ class DestinationDatabricksDatabricks(str, Enum):
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class DestinationDatabricks:
     r"""The values required to configure the destination."""

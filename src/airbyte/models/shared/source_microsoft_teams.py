@@ -12,7 +12,6 @@ class SourceMicrosoftTeamsAuthenticationMechanismAuthenticateViaMicrosoftAuthTyp
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class SourceMicrosoftTeamsAuthenticationMechanismAuthenticateViaMicrosoft:
     r"""Choose how to authenticate to Microsoft"""
@@ -31,7 +30,6 @@ class SourceMicrosoftTeamsAuthenticationMechanismAuthenticateViaMicrosoftOAuth20
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class SourceMicrosoftTeamsAuthenticationMechanismAuthenticateViaMicrosoftOAuth20:
     r"""Choose how to authenticate to Microsoft"""
@@ -48,7 +46,6 @@ class SourceMicrosoftTeamsAuthenticationMechanismAuthenticateViaMicrosoftOAuth20
 
 
 
-
 @dataclasses.dataclass
 class SourceMicrosoftTeamsAuthenticationMechanism:
     pass
@@ -58,7 +55,6 @@ class SourceMicrosoftTeamsMicrosoftTeams(str, Enum):
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class SourceMicrosoftTeams:
     r"""The values required to configure the source."""

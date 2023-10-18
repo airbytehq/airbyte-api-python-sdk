@@ -14,7 +14,6 @@ class SourceGitlabAuthorizationMethodPrivateTokenAuthType(str, Enum):
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class SourceGitlabAuthorizationMethodPrivateToken:
     access_token: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('access_token') }})
@@ -28,7 +27,6 @@ class SourceGitlabAuthorizationMethodOAuth20AuthType(str, Enum):
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class SourceGitlabAuthorizationMethodOAuth20:
     access_token: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('access_token') }})
@@ -46,7 +44,6 @@ class SourceGitlabAuthorizationMethodOAuth20:
 
 
 
-
 @dataclasses.dataclass
 class SourceGitlabAuthorizationMethod:
     pass
@@ -56,7 +53,6 @@ class SourceGitlabGitlab(str, Enum):
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class SourceGitlab:
     r"""The values required to configure the source."""

@@ -12,7 +12,6 @@ class SourceGoogleSheetsAuthenticationServiceAccountKeyAuthenticationAuthType(st
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class SourceGoogleSheetsAuthenticationServiceAccountKeyAuthentication:
     r"""Credentials for connecting to the Google Sheets API"""
@@ -27,7 +26,6 @@ class SourceGoogleSheetsAuthenticationAuthenticateViaGoogleOAuthAuthType(str, En
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class SourceGoogleSheetsAuthenticationAuthenticateViaGoogleOAuth:
     r"""Credentials for connecting to the Google Sheets API"""
@@ -42,7 +40,6 @@ class SourceGoogleSheetsAuthenticationAuthenticateViaGoogleOAuth:
 
 
 
-
 @dataclasses.dataclass
 class SourceGoogleSheetsAuthentication:
     pass
@@ -52,7 +49,6 @@ class SourceGoogleSheetsGoogleSheets(str, Enum):
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class SourceGoogleSheets:
     r"""The values required to configure the source."""

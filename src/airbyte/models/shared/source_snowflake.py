@@ -12,7 +12,6 @@ class SourceSnowflakeAuthorizationMethodUsernameAndPasswordAuthType(str, Enum):
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class SourceSnowflakeAuthorizationMethodUsernameAndPassword:
     password: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('password') }})
@@ -28,7 +27,6 @@ class SourceSnowflakeAuthorizationMethodOAuth20AuthType(str, Enum):
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class SourceSnowflakeAuthorizationMethodOAuth20:
     client_id: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('client_id') }})
@@ -44,7 +42,6 @@ class SourceSnowflakeAuthorizationMethodOAuth20:
 
 
 
-
 @dataclasses.dataclass
 class SourceSnowflakeAuthorizationMethod:
     pass
@@ -54,7 +51,6 @@ class SourceSnowflakeSnowflake(str, Enum):
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class SourceSnowflake:
     r"""The values required to configure the source."""

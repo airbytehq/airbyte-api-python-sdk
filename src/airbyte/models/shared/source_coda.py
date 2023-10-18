@@ -12,7 +12,6 @@ class SourceCodaCoda(str, Enum):
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class SourceCoda:
     r"""The values required to configure the source."""

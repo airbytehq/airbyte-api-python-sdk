@@ -7,12 +7,10 @@ from ..shared import workspaceresponse as shared_workspaceresponse
 from typing import Optional
 
 
-
 @dataclasses.dataclass
 class GetWorkspaceRequest:
     workspace_id: str = dataclasses.field(metadata={'path_param': { 'field_name': 'workspaceId', 'style': 'simple', 'explode': False }})
     
-
 
 
 

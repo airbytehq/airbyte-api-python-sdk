@@ -12,7 +12,6 @@ class SourceLeverHiringAuthenticationMechanismAuthenticateViaLeverAPIKeyAuthType
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class SourceLeverHiringAuthenticationMechanismAuthenticateViaLeverAPIKey:
     r"""Choose how to authenticate to Lever Hiring."""
@@ -27,7 +26,6 @@ class SourceLeverHiringAuthenticationMechanismAuthenticateViaLeverOAuthAuthType(
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class SourceLeverHiringAuthenticationMechanismAuthenticateViaLeverOAuth:
     r"""Choose how to authenticate to Lever Hiring."""
@@ -39,7 +37,6 @@ class SourceLeverHiringAuthenticationMechanismAuthenticateViaLeverOAuth:
     client_secret: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('client_secret'), 'exclude': lambda f: f is None }})
     r"""The Client Secret of your Lever Hiring developer application."""
     
-
 
 
 
@@ -57,7 +54,6 @@ class SourceLeverHiringLeverHiring(str, Enum):
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class SourceLeverHiring:
     r"""The values required to configure the source."""

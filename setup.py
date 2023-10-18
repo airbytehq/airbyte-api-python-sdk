@@ -10,33 +10,31 @@ except FileNotFoundError:
 
 setuptools.setup(
     name="airbyte-api",
-    version="0.39.0",
+    version="0.40.0",
     author="Airbyte",
     description="Python Client SDK for Airbyte API",
     long_description=long_description,
     long_description_content_type="text/markdown",
     packages=setuptools.find_packages(where="src"),
     install_requires=[
-        "certifi>=2022.12.7",
-        "charset-normalizer>=2.1.1",
+        "certifi>=2023.7.22",
+        "charset-normalizer>=3.2.0",
         "dataclasses-json>=0.6.1",
-        "idna>=3.3",
+        "idna>=3.4",
         "jsonpath-python>=1.0.6 ",
-        "marshmallow>=3.17.1",
-        "marshmallow-enum>=1.5.1",
-        "mypy-extensions>=0.4.3",
-        "packaging>=21.3",
-        "pyparsing>=3.0.9",
+        "marshmallow>=3.19.0",
+        "mypy-extensions>=1.0.0",
+        "packaging>=23.1",
         "python-dateutil>=2.8.2",
-        "requests>=2.28.1",
+        "requests>=2.31.0",
         "six>=1.16.0",
-        "typing-inspect>=0.8.0",
-        "typing_extensions>=4.3.0",
-        "urllib3>=1.26.12",
+        "typing-inspect>=0.9.0",
+        "typing_extensions>=4.7.1",
+        "urllib3>=2.0.4",
     ],
     extras_require={
         "dev":["pylint==2.16.2"]
     },
     package_dir={'': 'src'},
-    python_requires='>=3.9'
+    python_requires='>=3.8'
 )

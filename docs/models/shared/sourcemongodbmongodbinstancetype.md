@@ -15,9 +15,9 @@ sourceMongodbMongoDbInstanceType: shared.SourceMongodbMongoDbInstanceTypeStandal
 sourceMongodbMongoDbInstanceType: shared.SourceMongodbMongoDbInstanceTypeReplicaSet = /* values here */
 ```
 
-### 
+### SourceMongodbMongoDBInstanceTypeMongoDBAtlas
 
 ```python
-sourceMongodbMongoDbInstanceType: dict[str, Any] = /* values here */
+sourceMongodbMongoDbInstanceType: shared.SourceMongodbMongoDBInstanceTypeMongoDBAtlas = /* values here */
 ```
 

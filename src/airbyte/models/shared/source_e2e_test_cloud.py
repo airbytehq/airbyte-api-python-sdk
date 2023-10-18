@@ -12,7 +12,6 @@ class SourceE2eTestCloudMockCatalogMultiSchemaType(str, Enum):
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class SourceE2eTestCloudMockCatalogMultiSchema:
     r"""A catalog with multiple data streams, each with a different schema."""
@@ -27,7 +26,6 @@ class SourceE2eTestCloudMockCatalogSingleSchemaType(str, Enum):
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class SourceE2eTestCloudMockCatalogSingleSchema:
     r"""A catalog with one or multiple streams that share the same schema."""
@@ -39,7 +37,6 @@ class SourceE2eTestCloudMockCatalogSingleSchema:
     r"""A Json schema for the stream. The schema should be compatible with <a href=\\"https://json-schema.org/draft-07/json-schema-release-notes.html\\">draft-07</a>. See <a href=\\"https://cswr.github.io/JsonSchema/spec/introduction/\\">this doc</a> for examples."""
     TYPE: Final[Optional[SourceE2eTestCloudMockCatalogSingleSchemaType]] = dataclasses.field(default=SourceE2eTestCloudMockCatalogSingleSchemaType.SINGLE_STREAM, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('type'), 'exclude': lambda f: f is None }})
     
-
 
 
 
@@ -55,7 +52,6 @@ class SourceE2eTestCloudType(str, Enum):
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class SourceE2eTestCloud:
     r"""The values required to configure the source."""

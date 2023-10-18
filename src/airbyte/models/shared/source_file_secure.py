@@ -23,7 +23,6 @@ class SourceFileSecureStorageProviderSFTPSecureFileTransferProtocolStorage(str, 
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class SourceFileSecureStorageProviderSFTPSecureFileTransferProtocol:
     r"""The storage Provider or Location of the file(s) which should be replicated."""
@@ -40,7 +39,6 @@ class SourceFileSecureStorageProviderSCPSecureCopyProtocolStorage(str, Enum):
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class SourceFileSecureStorageProviderSCPSecureCopyProtocol:
     r"""The storage Provider or Location of the file(s) which should be replicated."""
@@ -57,7 +55,6 @@ class SourceFileSecureStorageProviderSSHSecureShellStorage(str, Enum):
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class SourceFileSecureStorageProviderSSHSecureShell:
     r"""The storage Provider or Location of the file(s) which should be replicated."""
@@ -74,7 +71,6 @@ class SourceFileSecureStorageProviderAzBlobAzureBlobStorageStorage(str, Enum):
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class SourceFileSecureStorageProviderAzBlobAzureBlobStorage:
     r"""The storage Provider or Location of the file(s) which should be replicated."""
@@ -93,7 +89,6 @@ class SourceFileSecureStorageProviderS3AmazonWebServicesStorage(str, Enum):
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class SourceFileSecureStorageProviderS3AmazonWebServices:
     r"""The storage Provider or Location of the file(s) which should be replicated."""
@@ -110,7 +105,6 @@ class SourceFileSecureStorageProviderGCSGoogleCloudStorageStorage(str, Enum):
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class SourceFileSecureStorageProviderGCSGoogleCloudStorage:
     r"""The storage Provider or Location of the file(s) which should be replicated."""
@@ -125,7 +119,6 @@ class SourceFileSecureStorageProviderHTTPSPublicWebStorage(str, Enum):
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class SourceFileSecureStorageProviderHTTPSPublicWeb:
     r"""The storage Provider or Location of the file(s) which should be replicated."""
@@ -133,7 +126,6 @@ class SourceFileSecureStorageProviderHTTPSPublicWeb:
     user_agent: Optional[bool] = dataclasses.field(default=False, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('user_agent'), 'exclude': lambda f: f is None }})
     r"""Add User-Agent to request"""
     
-
 
 
 
@@ -146,7 +138,6 @@ class SourceFileSecureFileSecure(str, Enum):
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class SourceFileSecure:
     r"""The values required to configure the source."""

@@ -12,7 +12,6 @@ class DestinationMongodbAuthorizationTypeLoginPasswordAuthorization(str, Enum):
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class DestinationMongodbAuthorizationTypeLoginPassword:
     r"""Login/Password."""
@@ -29,13 +28,11 @@ class DestinationMongodbAuthorizationTypeNoneAuthorization(str, Enum):
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class DestinationMongodbAuthorizationTypeNone:
     r"""None."""
     AUTHORIZATION: Final[DestinationMongodbAuthorizationTypeNoneAuthorization] = dataclasses.field(default=DestinationMongodbAuthorizationTypeNoneAuthorization.NONE, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('authorization') }})
     
-
 
 
 
@@ -51,7 +48,6 @@ class DestinationMongodbMongoDBInstanceTypeMongoDBAtlasInstance(str, Enum):
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class DestinationMongodbMongoDBInstanceTypeMongoDBAtlas:
     r"""MongoDb instance to connect to. For MongoDB Atlas and Replica Set TLS connection is used by default."""
@@ -66,7 +62,6 @@ class DestinationMongodbMongoDbInstanceTypeReplicaSetInstance(str, Enum):
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class DestinationMongodbMongoDbInstanceTypeReplicaSet:
     r"""MongoDb instance to connect to. For MongoDB Atlas and Replica Set TLS connection is used by default."""
@@ -83,7 +78,6 @@ class DestinationMongodbMongoDbInstanceTypeStandaloneMongoDbInstanceInstance(str
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class DestinationMongodbMongoDbInstanceTypeStandaloneMongoDbInstance:
     r"""MongoDb instance to connect to. For MongoDB Atlas and Replica Set TLS connection is used by default."""
@@ -93,7 +87,6 @@ class DestinationMongodbMongoDbInstanceTypeStandaloneMongoDbInstance:
     port: Optional[int] = dataclasses.field(default=27017, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('port'), 'exclude': lambda f: f is None }})
     r"""The Port of a Mongo database to be replicated."""
     
-
 
 
 
@@ -107,7 +100,6 @@ class DestinationMongodbSSHTunnelMethodPasswordAuthenticationTunnelMethod(str, E
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class DestinationMongodbSSHTunnelMethodPasswordAuthentication:
     r"""Whether to initiate an SSH tunnel before connecting to the database, and if so, which kind of authentication to use."""
@@ -130,7 +122,6 @@ class DestinationMongodbSSHTunnelMethodSSHKeyAuthenticationTunnelMethod(str, Enu
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class DestinationMongodbSSHTunnelMethodSSHKeyAuthentication:
     r"""Whether to initiate an SSH tunnel before connecting to the database, and if so, which kind of authentication to use."""
@@ -153,7 +144,6 @@ class DestinationMongodbSSHTunnelMethodNoTunnelTunnelMethod(str, Enum):
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class DestinationMongodbSSHTunnelMethodNoTunnel:
     r"""Whether to initiate an SSH tunnel before connecting to the database, and if so, which kind of authentication to use."""
@@ -163,14 +153,12 @@ class DestinationMongodbSSHTunnelMethodNoTunnel:
 
 
 
-
 @dataclasses.dataclass
 class DestinationMongodbSSHTunnelMethod:
     pass
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class DestinationMongodb:
     r"""The values required to configure the destination."""

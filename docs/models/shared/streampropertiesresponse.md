@@ -7,4 +7,4 @@ A list of stream properties.
 
 | Field                                                             | Type                                                              | Required                                                          | Description                                                       |
 | ----------------------------------------------------------------- | ----------------------------------------------------------------- | ----------------------------------------------------------------- | ----------------------------------------------------------------- |
-| `streams`                                                         | list[[StreamProperties](../../models/shared/streamproperties.md)] | :heavy_minus_sign:                                                | N/A                                                               |
+| `streams`                                                         | List[[StreamProperties](../../models/shared/streamproperties.md)] | :heavy_minus_sign:                                                | N/A                                                               |

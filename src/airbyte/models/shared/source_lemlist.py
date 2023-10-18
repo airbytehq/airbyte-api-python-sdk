@@ -12,7 +12,6 @@ class SourceLemlistLemlist(str, Enum):
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class SourceLemlist:
     r"""The values required to configure the source."""

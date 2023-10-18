@@ -16,7 +16,6 @@ class SourceClickhouseSSHTunnelMethodPasswordAuthenticationTunnelMethod(str, Enu
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class SourceClickhouseSSHTunnelMethodPasswordAuthentication:
     r"""Whether to initiate an SSH tunnel before connecting to the database, and if so, which kind of authentication to use."""
@@ -39,7 +38,6 @@ class SourceClickhouseSSHTunnelMethodSSHKeyAuthenticationTunnelMethod(str, Enum)
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class SourceClickhouseSSHTunnelMethodSSHKeyAuthentication:
     r"""Whether to initiate an SSH tunnel before connecting to the database, and if so, which kind of authentication to use."""
@@ -62,7 +60,6 @@ class SourceClickhouseSSHTunnelMethodNoTunnelTunnelMethod(str, Enum):
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class SourceClickhouseSSHTunnelMethodNoTunnel:
     r"""Whether to initiate an SSH tunnel before connecting to the database, and if so, which kind of authentication to use."""
@@ -72,14 +69,12 @@ class SourceClickhouseSSHTunnelMethodNoTunnel:
 
 
 
-
 @dataclasses.dataclass
 class SourceClickhouseSSHTunnelMethod:
     pass
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class SourceClickhouse:
     r"""The values required to configure the source."""

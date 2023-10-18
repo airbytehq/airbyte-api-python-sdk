@@ -13,7 +13,6 @@ class SourceExchangeRatesExchangeRates(str, Enum):
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class SourceExchangeRates:
     r"""The values required to configure the source."""

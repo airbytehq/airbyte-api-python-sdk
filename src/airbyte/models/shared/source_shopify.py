@@ -14,7 +14,6 @@ class SourceShopifyShopifyAuthorizationMethodAPIPasswordAuthMethod(str, Enum):
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class SourceShopifyShopifyAuthorizationMethodAPIPassword:
     r"""API Password Auth"""
@@ -29,7 +28,6 @@ class SourceShopifyShopifyAuthorizationMethodOAuth20AuthMethod(str, Enum):
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class SourceShopifyShopifyAuthorizationMethodOAuth20:
     r"""OAuth2.0"""
@@ -44,7 +42,6 @@ class SourceShopifyShopifyAuthorizationMethodOAuth20:
 
 
 
-
 @dataclasses.dataclass
 class SourceShopifyShopifyAuthorizationMethod:
     pass
@@ -54,7 +51,6 @@ class SourceShopifyShopify(str, Enum):
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class SourceShopify:
     r"""The values required to configure the source."""

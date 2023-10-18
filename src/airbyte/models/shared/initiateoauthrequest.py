@@ -10,7 +10,6 @@ from typing import Optional
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class InitiateOauthRequest:
     r"""POST body for initiating OAuth via the public API"""

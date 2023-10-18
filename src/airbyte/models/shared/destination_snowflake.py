@@ -12,7 +12,6 @@ class DestinationSnowflakeAuthorizationMethodUsernameAndPasswordAuthType(str, En
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class DestinationSnowflakeAuthorizationMethodUsernameAndPassword:
     password: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('password') }})
@@ -26,7 +25,6 @@ class DestinationSnowflakeAuthorizationMethodKeyPairAuthenticationAuthType(str, 
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class DestinationSnowflakeAuthorizationMethodKeyPairAuthentication:
     private_key: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('private_key') }})
@@ -42,7 +40,6 @@ class DestinationSnowflakeAuthorizationMethodOAuth20AuthType(str, Enum):
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class DestinationSnowflakeAuthorizationMethodOAuth20:
     access_token: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('access_token') }})
@@ -58,7 +55,6 @@ class DestinationSnowflakeAuthorizationMethodOAuth20:
 
 
 
-
 @dataclasses.dataclass
 class DestinationSnowflakeAuthorizationMethod:
     pass
@@ -68,7 +64,6 @@ class DestinationSnowflakeSnowflake(str, Enum):
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class DestinationSnowflake:
     r"""The values required to configure the destination."""

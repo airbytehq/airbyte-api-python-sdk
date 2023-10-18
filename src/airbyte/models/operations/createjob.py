@@ -7,7 +7,6 @@ from ..shared import jobresponse as shared_jobresponse
 from typing import Optional
 
 
-
 @dataclasses.dataclass
 class CreateJobResponse:
     content_type: str = dataclasses.field()

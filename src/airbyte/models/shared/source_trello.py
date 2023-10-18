@@ -7,14 +7,13 @@ from airbyte import utils
 from dataclasses_json import Undefined, dataclass_json
 from datetime import datetime
 from enum import Enum
-from typing import Final, Optional
+from typing import Final, List, Optional
 
 class SourceTrelloTrello(str, Enum):
     TRELLO = 'trello'
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class SourceTrello:
     r"""The values required to configure the source."""
@@ -25,7 +24,7 @@ class SourceTrello:
     token: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('token') }})
     r"""Trello API token. See the <a href=\\"https://developer.atlassian.com/cloud/trello/guides/rest-api/authorization/#using-basic-oauth\\">docs</a> for instructions on how to generate it."""
     SOURCE_TYPE: Final[SourceTrelloTrello] = dataclasses.field(default=SourceTrelloTrello.TRELLO, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
-    board_ids: Optional[list[str]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('board_ids'), 'exclude': lambda f: f is None }})
+    board_ids: Optional[List[str]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('board_ids'), 'exclude': lambda f: f is None }})
     r"""IDs of the boards to replicate data from. If left empty, data from all boards to which you have access will be replicated."""
     
 

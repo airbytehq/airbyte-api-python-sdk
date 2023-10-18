@@ -12,7 +12,6 @@ class SourceAuth0AuthenticationMethodOAuth2AccessTokenAuthenticationMethod(str, 
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class SourceAuth0AuthenticationMethodOAuth2AccessToken:
     access_token: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('access_token') }})
@@ -26,7 +25,6 @@ class SourceAuth0AuthenticationMethodOAuth2ConfidentialApplicationAuthentication
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class SourceAuth0AuthenticationMethodOAuth2ConfidentialApplication:
     audience: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('audience') }})
@@ -40,7 +38,6 @@ class SourceAuth0AuthenticationMethodOAuth2ConfidentialApplication:
 
 
 
-
 @dataclasses.dataclass
 class SourceAuth0AuthenticationMethod:
     pass
@@ -50,7 +47,6 @@ class SourceAuth0Auth0(str, Enum):
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class SourceAuth0:
     r"""The values required to configure the source."""

@@ -12,7 +12,6 @@ class SourceSapFieldglassSapFieldglass(str, Enum):
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class SourceSapFieldglass:
     r"""The values required to configure the source."""

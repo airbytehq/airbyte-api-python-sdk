@@ -5,7 +5,7 @@ import dataclasses
 from airbyte import utils
 from dataclasses_json import Undefined, dataclass_json
 from enum import Enum
-from typing import Final, Optional, Union
+from typing import Final, List, Optional, Union
 
 class DestinationMilvusMilvus(str, Enum):
     MILVUS = 'milvus'
@@ -15,7 +15,6 @@ class DestinationMilvusEmbeddingFromFieldMode(str, Enum):
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class DestinationMilvusEmbeddingFromField:
     r"""Use a field in the record as the embedding. This is useful if you already have an embedding for your data and want to store it in the vector store."""
@@ -32,7 +31,6 @@ class DestinationMilvusEmbeddingFakeMode(str, Enum):
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class DestinationMilvusEmbeddingFake:
     r"""Use a fake embedding made out of random vectors with 1536 embedding dimensions. This is useful for testing the data pipeline without incurring any costs."""
@@ -45,7 +43,6 @@ class DestinationMilvusEmbeddingCohereMode(str, Enum):
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class DestinationMilvusEmbeddingCohere:
     r"""Use the Cohere API to embed text."""
@@ -59,14 +56,12 @@ class DestinationMilvusEmbeddingOpenAIMode(str, Enum):
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class DestinationMilvusEmbeddingOpenAI:
     r"""Use the OpenAI API to embed text. This option is using the text-embedding-ada-002 model with 1536 embedding dimensions."""
     openai_key: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('openai_key') }})
     MODE: Final[Optional[DestinationMilvusEmbeddingOpenAIMode]] = dataclasses.field(default=DestinationMilvusEmbeddingOpenAIMode.OPENAI, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('mode'), 'exclude': lambda f: f is None }})
     
-
 
 
 
@@ -79,7 +74,6 @@ class DestinationMilvusIndexingAuthenticationNoAuthMode(str, Enum):
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class DestinationMilvusIndexingAuthenticationNoAuth:
     r"""Do not authenticate (suitable for locally running test clusters, do not use for clusters with public IP addresses)"""
@@ -92,7 +86,6 @@ class DestinationMilvusIndexingAuthenticationUsernamePasswordMode(str, Enum):
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class DestinationMilvusIndexingAuthenticationUsernamePassword:
     r"""Authenticate using username and password (suitable for self-managed Milvus clusters)"""
@@ -109,7 +102,6 @@ class DestinationMilvusIndexingAuthenticationAPITokenMode(str, Enum):
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class DestinationMilvusIndexingAuthenticationAPIToken:
     r"""Authenticate using an API token (suitable for Zilliz Cloud)"""
@@ -120,14 +112,12 @@ class DestinationMilvusIndexingAuthenticationAPIToken:
 
 
 
-
 @dataclasses.dataclass
 class DestinationMilvusIndexingAuthentication:
     pass
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class DestinationMilvusIndexing:
     r"""Indexing configuration"""
@@ -148,23 +138,21 @@ class DestinationMilvusIndexing:
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class DestinationMilvusProcessingConfigModel:
     chunk_size: int = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('chunk_size') }})
     r"""Size of chunks in tokens to store in vector store (make sure it is not too big for the context if your LLM)"""
     chunk_overlap: Optional[int] = dataclasses.field(default=0, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('chunk_overlap'), 'exclude': lambda f: f is None }})
     r"""Size of overlap between chunks in tokens to store in vector store to better capture relevant context"""
-    metadata_fields: Optional[list[str]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('metadata_fields'), 'exclude': lambda f: f is None }})
+    metadata_fields: Optional[List[str]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('metadata_fields'), 'exclude': lambda f: f is None }})
     r"""List of fields in the record that should be stored as metadata. The field list is applied to all streams in the same way and non-existing fields are ignored. If none are defined, all fields are considered metadata fields. When specifying text fields, you can access nested fields in the record by using dot notation, e.g. `user.name` will access the `name` field in the `user` object. It's also possible to use wildcards to access all fields in an object, e.g. `users.*.name` will access all `names` fields in all entries of the `users` array. When specifying nested paths, all matching values are flattened into an array set to a field named by the path."""
-    text_fields: Optional[list[str]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('text_fields'), 'exclude': lambda f: f is None }})
+    text_fields: Optional[List[str]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('text_fields'), 'exclude': lambda f: f is None }})
     r"""List of fields in the record that should be used to calculate the embedding. The field list is applied to all streams in the same way and non-existing fields are ignored. If none are defined, all fields are considered text fields. When specifying text fields, you can access nested fields in the record by using dot notation, e.g. `user.name` will access the `name` field in the `user` object. It's also possible to use wildcards to access all fields in an object, e.g. `users.*.name` will access all `names` fields in all entries of the `users` array."""
     
 
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class DestinationMilvus:
     r"""The values required to configure the destination."""

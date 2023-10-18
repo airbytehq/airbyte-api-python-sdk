@@ -5,14 +5,13 @@ import dataclasses
 from airbyte import utils
 from dataclasses_json import Undefined, dataclass_json
 from enum import Enum
-from typing import Final, Optional
+from typing import Final, List, Optional
 
 class SourceOrbOrb(str, Enum):
     ORB = 'orb'
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class SourceOrb:
     r"""The values required to configure the source."""
@@ -23,11 +22,11 @@ class SourceOrb:
     SOURCE_TYPE: Final[SourceOrbOrb] = dataclasses.field(default=SourceOrbOrb.ORB, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     lookback_window_days: Optional[int] = dataclasses.field(default=0, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('lookback_window_days'), 'exclude': lambda f: f is None }})
     r"""When set to N, the connector will always refresh resources created within the past N days. By default, updated objects that are not newly created are not incrementally synced."""
-    numeric_event_properties_keys: Optional[list[str]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('numeric_event_properties_keys'), 'exclude': lambda f: f is None }})
+    numeric_event_properties_keys: Optional[List[str]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('numeric_event_properties_keys'), 'exclude': lambda f: f is None }})
     r"""Property key names to extract from all events, in order to enrich ledger entries corresponding to an event deduction."""
     plan_id: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('plan_id'), 'exclude': lambda f: f is None }})
     r"""Orb Plan ID to filter subscriptions that should have usage fetched."""
-    string_event_properties_keys: Optional[list[str]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('string_event_properties_keys'), 'exclude': lambda f: f is None }})
+    string_event_properties_keys: Optional[List[str]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('string_event_properties_keys'), 'exclude': lambda f: f is None }})
     r"""Property key names to extract from all events, in order to enrich ledger entries corresponding to an event deduction."""
     subscription_usage_grouping_key: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('subscription_usage_grouping_key'), 'exclude': lambda f: f is None }})
     r"""Property key name to group subscription usage by."""

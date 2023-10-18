@@ -12,7 +12,6 @@ class SourceApifyDatasetApifyDataset(str, Enum):
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class SourceApifyDataset:
     r"""The values required to configure the source."""

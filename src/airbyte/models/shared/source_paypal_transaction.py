@@ -14,7 +14,6 @@ class SourcePaypalTransactionPaypalTransaction(str, Enum):
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class SourcePaypalTransaction:
     r"""The values required to configure the source."""

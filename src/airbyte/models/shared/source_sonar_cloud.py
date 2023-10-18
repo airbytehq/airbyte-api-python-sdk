@@ -6,18 +6,17 @@ from airbyte import utils
 from dataclasses_json import Undefined, dataclass_json
 from datetime import date
 from enum import Enum
-from typing import Any, Final, Optional
+from typing import Any, Final, List, Optional
 
 class SourceSonarCloudSonarCloud(str, Enum):
     SONAR_CLOUD = 'sonar-cloud'
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class SourceSonarCloud:
     r"""The values required to configure the source."""
-    component_keys: list[Any] = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('component_keys') }})
+    component_keys: List[Any] = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('component_keys') }})
     r"""Comma-separated list of component keys."""
     organization: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('organization') }})
     r"""Organization key. See <a href=\\"https://docs.sonarcloud.io/appendices/project-information/#project-and-organization-keys\\">here</a>."""

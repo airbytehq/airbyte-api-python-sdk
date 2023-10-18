@@ -12,7 +12,6 @@ class SourceGoogleWebfontsGoogleWebfonts(str, Enum):
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class SourceGoogleWebfonts:
     r"""The values required to configure the source."""

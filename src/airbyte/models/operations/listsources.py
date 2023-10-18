@@ -4,8 +4,7 @@ from __future__ import annotations
 import dataclasses
 import requests as requests_http
 from ..shared import sourcesresponse as shared_sourcesresponse
-from typing import Optional
-
+from typing import List, Optional
 
 
 @dataclasses.dataclass
@@ -16,10 +15,9 @@ class ListSourcesRequest:
     r"""Set the limit on the number of sources returned. The default is 20."""
     offset: Optional[int] = dataclasses.field(default=0, metadata={'query_param': { 'field_name': 'offset', 'style': 'form', 'explode': True }})
     r"""Set the offset to start at when returning sources. The default is 0"""
-    workspace_ids: Optional[list[str]] = dataclasses.field(default=None, metadata={'query_param': { 'field_name': 'workspaceIds', 'style': 'form', 'explode': True }})
+    workspace_ids: Optional[List[str]] = dataclasses.field(default=None, metadata={'query_param': { 'field_name': 'workspaceIds', 'style': 'form', 'explode': True }})
     r"""The UUIDs of the workspaces you wish to list sources for. Empty list will retrieve all allowed workspaces."""
     
-
 
 
 

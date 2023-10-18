@@ -12,7 +12,6 @@ class SourceShortioShortio(str, Enum):
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class SourceShortio:
     r"""The values required to configure the source."""

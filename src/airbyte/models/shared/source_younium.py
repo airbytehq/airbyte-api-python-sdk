@@ -12,7 +12,6 @@ class SourceYouniumYounium(str, Enum):
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class SourceYounium:
     r"""The values required to configure the source."""

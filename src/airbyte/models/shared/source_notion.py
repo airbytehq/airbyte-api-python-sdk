@@ -14,7 +14,6 @@ class SourceNotionAuthenticateUsingAccessTokenAuthType(str, Enum):
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class SourceNotionAuthenticateUsingAccessToken:
     r"""Pick an authentication method."""
@@ -29,7 +28,6 @@ class SourceNotionAuthenticateUsingOAuth20AuthType(str, Enum):
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class SourceNotionAuthenticateUsingOAuth20:
     r"""Pick an authentication method."""
@@ -44,7 +42,6 @@ class SourceNotionAuthenticateUsingOAuth20:
 
 
 
-
 @dataclasses.dataclass
 class SourceNotionAuthenticateUsing:
     pass
@@ -54,7 +51,6 @@ class SourceNotionNotion(str, Enum):
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class SourceNotion:
     r"""The values required to configure the source."""

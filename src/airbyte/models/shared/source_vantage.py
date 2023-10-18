@@ -12,7 +12,6 @@ class SourceVantageVantage(str, Enum):
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class SourceVantage:
     r"""The values required to configure the source."""

@@ -14,7 +14,6 @@ class SourceTwitterTwitter(str, Enum):
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class SourceTwitter:
     r"""The values required to configure the source."""

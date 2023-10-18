@@ -16,7 +16,6 @@ class DestinationMysqlSSHTunnelMethodPasswordAuthenticationTunnelMethod(str, Enu
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class DestinationMysqlSSHTunnelMethodPasswordAuthentication:
     r"""Whether to initiate an SSH tunnel before connecting to the database, and if so, which kind of authentication to use."""
@@ -39,7 +38,6 @@ class DestinationMysqlSSHTunnelMethodSSHKeyAuthenticationTunnelMethod(str, Enum)
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class DestinationMysqlSSHTunnelMethodSSHKeyAuthentication:
     r"""Whether to initiate an SSH tunnel before connecting to the database, and if so, which kind of authentication to use."""
@@ -62,7 +60,6 @@ class DestinationMysqlSSHTunnelMethodNoTunnelTunnelMethod(str, Enum):
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class DestinationMysqlSSHTunnelMethodNoTunnel:
     r"""Whether to initiate an SSH tunnel before connecting to the database, and if so, which kind of authentication to use."""
@@ -72,14 +69,12 @@ class DestinationMysqlSSHTunnelMethodNoTunnel:
 
 
 
-
 @dataclasses.dataclass
 class DestinationMysqlSSHTunnelMethod:
     pass
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class DestinationMysql:
     r"""The values required to configure the destination."""

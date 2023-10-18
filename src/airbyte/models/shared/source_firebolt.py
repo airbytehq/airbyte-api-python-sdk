@@ -12,7 +12,6 @@ class SourceFireboltFirebolt(str, Enum):
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class SourceFirebolt:
     r"""The values required to configure the source."""

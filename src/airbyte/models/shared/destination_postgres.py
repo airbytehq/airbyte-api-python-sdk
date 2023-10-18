@@ -15,7 +15,6 @@ class DestinationPostgresSSLModesVerifyFullMode(str, Enum):
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class DestinationPostgresSSLModesVerifyFull:
     r"""Verify-full SSL mode."""
@@ -36,7 +35,6 @@ class DestinationPostgresSSLModesVerifyCaMode(str, Enum):
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class DestinationPostgresSSLModesVerifyCa:
     r"""Verify-ca SSL mode."""
@@ -53,7 +51,6 @@ class DestinationPostgresSSLModesRequireMode(str, Enum):
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class DestinationPostgresSSLModesRequire:
     r"""Require SSL mode."""
@@ -66,7 +63,6 @@ class DestinationPostgresSSLModesPreferMode(str, Enum):
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class DestinationPostgresSSLModesPrefer:
     r"""Prefer SSL mode."""
@@ -79,7 +75,6 @@ class DestinationPostgresSSLModesAllowMode(str, Enum):
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class DestinationPostgresSSLModesAllow:
     r"""Allow SSL mode."""
@@ -92,13 +87,11 @@ class DestinationPostgresSSLModesDisableMode(str, Enum):
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class DestinationPostgresSSLModesDisable:
     r"""Disable SSL."""
     MODE: Final[Optional[DestinationPostgresSSLModesDisableMode]] = dataclasses.field(default=DestinationPostgresSSLModesDisableMode.DISABLE, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('mode'), 'exclude': lambda f: f is None }})
     
-
 
 
 
@@ -112,7 +105,6 @@ class DestinationPostgresSSHTunnelMethodPasswordAuthenticationTunnelMethod(str, 
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class DestinationPostgresSSHTunnelMethodPasswordAuthentication:
     r"""Whether to initiate an SSH tunnel before connecting to the database, and if so, which kind of authentication to use."""
@@ -135,7 +127,6 @@ class DestinationPostgresSSHTunnelMethodSSHKeyAuthenticationTunnelMethod(str, En
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class DestinationPostgresSSHTunnelMethodSSHKeyAuthentication:
     r"""Whether to initiate an SSH tunnel before connecting to the database, and if so, which kind of authentication to use."""
@@ -158,7 +149,6 @@ class DestinationPostgresSSHTunnelMethodNoTunnelTunnelMethod(str, Enum):
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class DestinationPostgresSSHTunnelMethodNoTunnel:
     r"""Whether to initiate an SSH tunnel before connecting to the database, and if so, which kind of authentication to use."""
@@ -168,14 +158,12 @@ class DestinationPostgresSSHTunnelMethodNoTunnel:
 
 
 
-
 @dataclasses.dataclass
 class DestinationPostgresSSHTunnelMethod:
     pass
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class DestinationPostgres:
     r"""The values required to configure the destination."""

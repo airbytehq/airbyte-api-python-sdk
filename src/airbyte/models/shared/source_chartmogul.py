@@ -21,7 +21,6 @@ class SourceChartmogulChartmogul(str, Enum):
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class SourceChartmogul:
     r"""The values required to configure the source."""

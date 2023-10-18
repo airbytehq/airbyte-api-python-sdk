@@ -15,7 +15,6 @@ class SourceHubspotAuthenticationPrivateAppAuthType(str, Enum):
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class SourceHubspotAuthenticationPrivateApp:
     r"""Choose how to authenticate to HubSpot."""
@@ -32,7 +31,6 @@ class SourceHubspotAuthenticationOAuthAuthType(str, Enum):
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class SourceHubspotAuthenticationOAuth:
     r"""Choose how to authenticate to HubSpot."""
@@ -48,7 +46,6 @@ class SourceHubspotAuthenticationOAuth:
 
 
 
-
 @dataclasses.dataclass
 class SourceHubspotAuthentication:
     pass
@@ -58,7 +55,6 @@ class SourceHubspotHubspot(str, Enum):
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class SourceHubspot:
     r"""The values required to configure the source."""

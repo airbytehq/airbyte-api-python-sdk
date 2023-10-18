@@ -12,7 +12,6 @@ class SourceGetlagoGetlago(str, Enum):
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class SourceGetlago:
     r"""The values required to configure the source."""

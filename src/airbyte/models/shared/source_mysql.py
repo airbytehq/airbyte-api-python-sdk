@@ -12,7 +12,6 @@ class SourceMysqlUpdateMethodScanChangesWithUserDefinedCursorMethod(str, Enum):
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class SourceMysqlUpdateMethodScanChangesWithUserDefinedCursor:
     r"""Incrementally detects new inserts and updates using the <a href=\\"https://docs.airbyte.com/understanding-airbyte/connections/incremental-append/#user-defined-cursor\\">cursor column</a> chosen when configuring a connection (e.g. created_at, updated_at)."""
@@ -25,7 +24,6 @@ class SourceMysqlUpdateMethodReadChangesUsingBinaryLogCDCMethod(str, Enum):
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class SourceMysqlUpdateMethodReadChangesUsingBinaryLogCDC:
     r"""<i>Recommended</i> - Incrementally reads new inserts, updates, and deletes using the MySQL <a href=\\"https://docs.airbyte.com/integrations/sources/mysql/#change-data-capture-cdc\\">binary log</a>. This must be enabled on your database."""
@@ -35,7 +33,6 @@ class SourceMysqlUpdateMethodReadChangesUsingBinaryLogCDC:
     server_time_zone: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('server_time_zone'), 'exclude': lambda f: f is None }})
     r"""Enter the configured MySQL server timezone. This should only be done if the configured timezone in your MySQL instance does not conform to IANNA standard."""
     
-
 
 
 
@@ -51,7 +48,6 @@ class SourceMysqlSSLModesVerifyIdentityMode(str, Enum):
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class SourceMysqlSSLModesVerifyIdentity:
     r"""Always connect with SSL. Verify both CA and Hostname."""
@@ -72,7 +68,6 @@ class SourceMysqlSSLModesVerifyCAMode(str, Enum):
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class SourceMysqlSSLModesVerifyCA:
     r"""Always connect with SSL. Verifies CA, but allows connection even if Hostname does not match."""
@@ -93,7 +88,6 @@ class SourceMysqlSSLModesRequiredMode(str, Enum):
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class SourceMysqlSSLModesRequired:
     r"""Always connect with SSL. If the MySQL server doesn’t support SSL, the connection will not be established. Certificate Authority (CA) and Hostname are not verified."""
@@ -106,13 +100,11 @@ class SourceMysqlSSLModesPreferredMode(str, Enum):
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class SourceMysqlSSLModesPreferred:
     r"""Automatically attempt SSL connection. If the MySQL server does not support SSL, continue with a regular connection."""
     MODE: Final[SourceMysqlSSLModesPreferredMode] = dataclasses.field(default=SourceMysqlSSLModesPreferredMode.PREFERRED, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('mode') }})
     
-
 
 
 
@@ -126,7 +118,6 @@ class SourceMysqlSSHTunnelMethodPasswordAuthenticationTunnelMethod(str, Enum):
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class SourceMysqlSSHTunnelMethodPasswordAuthentication:
     r"""Whether to initiate an SSH tunnel before connecting to the database, and if so, which kind of authentication to use."""
@@ -149,7 +140,6 @@ class SourceMysqlSSHTunnelMethodSSHKeyAuthenticationTunnelMethod(str, Enum):
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class SourceMysqlSSHTunnelMethodSSHKeyAuthentication:
     r"""Whether to initiate an SSH tunnel before connecting to the database, and if so, which kind of authentication to use."""
@@ -172,7 +162,6 @@ class SourceMysqlSSHTunnelMethodNoTunnelTunnelMethod(str, Enum):
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class SourceMysqlSSHTunnelMethodNoTunnel:
     r"""Whether to initiate an SSH tunnel before connecting to the database, and if so, which kind of authentication to use."""
@@ -182,14 +171,12 @@ class SourceMysqlSSHTunnelMethodNoTunnel:
 
 
 
-
 @dataclasses.dataclass
 class SourceMysqlSSHTunnelMethod:
     pass
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class SourceMysql:
     r"""The values required to configure the source."""

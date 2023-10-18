@@ -36,7 +36,6 @@ class SourcePocketState(str, Enum):
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class SourcePocket:
     r"""The values required to configure the source."""

@@ -7,14 +7,13 @@ from airbyte import utils
 from dataclasses_json import Undefined, dataclass_json
 from datetime import datetime
 from enum import Enum
-from typing import Final, Optional
+from typing import Final, List, Optional
 
 class SourceSurveymonkeySurveyMonkeyAuthorizationMethodAuthMethod(str, Enum):
     OAUTH2_0 = 'oauth2.0'
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class SourceSurveymonkeySurveyMonkeyAuthorizationMethod:
     r"""The authorization method to use to retrieve data from SurveyMonkey"""
@@ -39,7 +38,6 @@ class SourceSurveymonkeySurveymonkey(str, Enum):
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class SourceSurveymonkey:
     r"""The values required to configure the source."""
@@ -50,7 +48,7 @@ class SourceSurveymonkey:
     r"""The authorization method to use to retrieve data from SurveyMonkey"""
     origin: Optional[SourceSurveymonkeyOriginDatacenterOfTheSurveyMonkeyAccount] = dataclasses.field(default=SourceSurveymonkeyOriginDatacenterOfTheSurveyMonkeyAccount.USA, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('origin'), 'exclude': lambda f: f is None }})
     r"""Depending on the originating datacenter of the SurveyMonkey account, the API access URL may be different."""
-    survey_ids: Optional[list[str]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('survey_ids'), 'exclude': lambda f: f is None }})
+    survey_ids: Optional[List[str]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('survey_ids'), 'exclude': lambda f: f is None }})
     r"""IDs of the surveys from which you'd like to replicate data. If left empty, data from all boards to which you have access will be replicated."""
     
 

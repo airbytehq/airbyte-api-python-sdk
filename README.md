@@ -43,21 +43,21 @@ req = shared.ConnectionCreateRequest(
                 cursor_field=[
                     'violet',
                 ],
-                name='at BMW',
+                name='Account',
                 primary_key=[
                     [
-                        'pfft',
+                        'BMW',
                     ],
                 ],
             ),
         ],
     ),
-    destination_id='62083eaf-c855-4914-a0a5-70f6dd427d83',
+    destination_id='e362083e-afc8-4559-94e0-a570f6dd427d',
     namespace_format='${SOURCE_NAMESPACE}',
     schedule=shared.ConnectionSchedule(
         schedule_type=shared.ScheduleTypeEnum.CRON,
     ),
-    source_id='55584783-5842-4325-b6c7-b3fd2fd307d6',
+    source_id='3a555847-8358-4423-a5b6-c7b3fd2fd307',
 )
 
 res = s.connections.create_connection(req)

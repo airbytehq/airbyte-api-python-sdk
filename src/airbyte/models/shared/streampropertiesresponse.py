@@ -5,14 +5,13 @@ import dataclasses
 from ..shared import streamproperties as shared_streamproperties
 from airbyte import utils
 from dataclasses_json import Undefined, dataclass_json
-from typing import Optional
+from typing import List, Optional
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class StreamPropertiesResponse:
     r"""A list of stream properties."""
-    streams: Optional[list[shared_streamproperties.StreamProperties]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('streams'), 'exclude': lambda f: f is None }})
+    streams: Optional[List[shared_streamproperties.StreamProperties]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('streams'), 'exclude': lambda f: f is None }})
     
 

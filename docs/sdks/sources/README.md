@@ -36,7 +36,7 @@ req = shared.SourceCreateRequest(
         pokemon_name='luxray',
         source_type=shared.SourcePokeapiPokeapi.POKEAPI,
     ),
-    name='lavender',
+    name='Carolina',
     workspace_id='0f31f3dd-c984-48c3-8bdf-b109056aa6d6',
 )
 
@@ -79,7 +79,7 @@ s = airbyte.Airbyte(
 )
 
 req = operations.DeleteSourceRequest(
-    source_id='Optimization',
+    source_id='South',
 )
 
 res = s.sources.delete_source(req)
@@ -121,7 +121,7 @@ s = airbyte.Airbyte(
 )
 
 req = operations.GetSourceRequest(
-    source_id='Baby Gorgeous',
+    source_id='Dynamic',
 )
 
 res = s.sources.get_source(req)
@@ -168,9 +168,9 @@ s = airbyte.Airbyte(
 
 req = shared.InitiateOauthRequest(
     o_auth_input_configuration=shared.OAuthInputConfiguration(),
-    redirect_url='till',
-    source_type=shared.OAuthActorNames.GITHUB,
-    workspace_id='8130d991-9ffa-4e67-94e1-2eb0994476c5',
+    redirect_url='Chips',
+    source_type=shared.OAuthActorNames.TRELLO,
+    workspace_id='28130d99-19ff-4ae6-bd4e-12eb0994476c',
 )
 
 res = s.sources.initiate_o_auth(req)
@@ -264,7 +264,7 @@ req = operations.PatchSourceRequest(
         ),
         name='My source',
     ),
-    source_id='septicaemia',
+    source_id='Vanuatu',
 )
 
 res = s.sources.patch_source(req)
@@ -312,9 +312,9 @@ req = operations.PutSourceRequest(
             pokemon_name='luxray',
             source_type=shared.SourcePokeapiPokeapi.POKEAPI,
         ),
-        name='bah',
+        name='Urbana',
     ),
-    source_id='Checking',
+    source_id='Program',
 )
 
 res = s.sources.put_source(req)

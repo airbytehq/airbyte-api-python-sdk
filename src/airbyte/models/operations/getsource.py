@@ -7,12 +7,10 @@ from ..shared import sourceresponse as shared_sourceresponse
 from typing import Optional
 
 
-
 @dataclasses.dataclass
 class GetSourceRequest:
     source_id: str = dataclasses.field(metadata={'path_param': { 'field_name': 'sourceId', 'style': 'simple', 'explode': False }})
     
-
 
 
 

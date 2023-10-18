@@ -14,7 +14,6 @@ class SourcePaystackPaystack(str, Enum):
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class SourcePaystack:
     r"""The values required to configure the source."""

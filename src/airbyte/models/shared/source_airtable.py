@@ -14,7 +14,6 @@ class SourceAirtableAuthenticationPersonalAccessTokenAuthMethod(str, Enum):
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class SourceAirtableAuthenticationPersonalAccessToken:
     api_key: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('api_key') }})
@@ -28,7 +27,6 @@ class SourceAirtableAuthenticationOAuth20AuthMethod(str, Enum):
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class SourceAirtableAuthenticationOAuth20:
     client_id: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('client_id') }})
@@ -46,7 +44,6 @@ class SourceAirtableAuthenticationOAuth20:
 
 
 
-
 @dataclasses.dataclass
 class SourceAirtableAuthentication:
     pass
@@ -56,7 +53,6 @@ class SourceAirtableAirtable(str, Enum):
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class SourceAirtable:
     r"""The values required to configure the source."""

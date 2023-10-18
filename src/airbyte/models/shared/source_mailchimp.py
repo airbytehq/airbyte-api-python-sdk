@@ -12,7 +12,6 @@ class SourceMailchimpAuthenticationAPIKeyAuthType(str, Enum):
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class SourceMailchimpAuthenticationAPIKey:
     apikey: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('apikey') }})
@@ -26,7 +25,6 @@ class SourceMailchimpAuthenticationOAuth20AuthType(str, Enum):
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class SourceMailchimpAuthenticationOAuth20:
     access_token: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('access_token') }})
@@ -40,7 +38,6 @@ class SourceMailchimpAuthenticationOAuth20:
 
 
 
-
 @dataclasses.dataclass
 class SourceMailchimpAuthentication:
     pass
@@ -50,7 +47,6 @@ class SourceMailchimpMailchimp(str, Enum):
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class SourceMailchimp:
     r"""The values required to configure the source."""

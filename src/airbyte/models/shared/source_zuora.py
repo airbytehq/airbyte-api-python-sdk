@@ -29,7 +29,6 @@ class SourceZuoraTenantEndpointLocation(str, Enum):
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class SourceZuora:
     r"""The values required to configure the source."""

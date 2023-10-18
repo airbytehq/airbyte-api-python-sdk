@@ -12,7 +12,6 @@ class SourceTodoistTodoist(str, Enum):
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class SourceTodoist:
     r"""The values required to configure the source."""

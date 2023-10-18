@@ -14,7 +14,6 @@ class SourceSendgridSendgrid(str, Enum):
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class SourceSendgrid:
     r"""The values required to configure the source."""

@@ -14,7 +14,6 @@ class SourceZendeskSunshineAuthorizationMethodAPITokenAuthMethod(str, Enum):
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class SourceZendeskSunshineAuthorizationMethodAPIToken:
     api_token: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('api_token') }})
@@ -30,7 +29,6 @@ class SourceZendeskSunshineAuthorizationMethodOAuth20AuthMethod(str, Enum):
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class SourceZendeskSunshineAuthorizationMethodOAuth20:
     access_token: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('access_token') }})
@@ -44,7 +42,6 @@ class SourceZendeskSunshineAuthorizationMethodOAuth20:
 
 
 
-
 @dataclasses.dataclass
 class SourceZendeskSunshineAuthorizationMethod:
     pass
@@ -54,7 +51,6 @@ class SourceZendeskSunshineZendeskSunshine(str, Enum):
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class SourceZendeskSunshine:
     r"""The values required to configure the source."""

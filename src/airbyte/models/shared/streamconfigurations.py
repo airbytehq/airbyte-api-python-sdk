@@ -5,14 +5,13 @@ import dataclasses
 from ..shared import streamconfiguration as shared_streamconfiguration
 from airbyte import utils
 from dataclasses_json import Undefined, dataclass_json
-from typing import Optional
+from typing import List, Optional
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class StreamConfigurations:
     r"""A list of configured stream options for a connection."""
-    streams: Optional[list[shared_streamconfiguration.StreamConfiguration]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('streams'), 'exclude': lambda f: f is None }})
+    streams: Optional[List[shared_streamconfiguration.StreamConfiguration]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('streams'), 'exclude': lambda f: f is None }})
     
 

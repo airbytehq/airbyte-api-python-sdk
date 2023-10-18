@@ -58,7 +58,6 @@ class DestinationBigqueryLoadingMethodGCSStagingCredentialHMACKeyCredentialType(
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class DestinationBigqueryLoadingMethodGCSStagingCredentialHMACKey:
     r"""An HMAC key is a type of credential and can be associated with a service account or a user account in Cloud Storage. Read more <a href=\\"https://cloud.google.com/storage/docs/authentication/hmackeys\\">here</a>."""
@@ -68,7 +67,6 @@ class DestinationBigqueryLoadingMethodGCSStagingCredentialHMACKey:
     r"""The corresponding secret for the access ID. It is a 40-character base-64 encoded string."""
     CREDENTIAL_TYPE: Final[DestinationBigqueryLoadingMethodGCSStagingCredentialHMACKeyCredentialType] = dataclasses.field(default=DestinationBigqueryLoadingMethodGCSStagingCredentialHMACKeyCredentialType.HMAC_KEY, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credential_type') }})
     
-
 
 
 
@@ -86,7 +84,6 @@ class DestinationBigqueryLoadingMethodGCSStagingMethod(str, Enum):
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class DestinationBigqueryLoadingMethodGCSStaging:
     r"""Loading method used to send select the way data will be uploaded to BigQuery. <br/><b>Standard Inserts</b> - Direct uploading using SQL INSERT statements. This method is extremely inefficient and provided only for quick testing. In almost all cases, you should use staging. <br/><b>GCS Staging</b> - Writes large batches of records to a file, uploads the file to GCS, then uses <b>COPY INTO table</b> to upload the file. Recommended for most workloads for better speed and scalability. Read more about GCS Staging <a href=\\"https://docs.airbyte.com/integrations/destinations/bigquery#gcs-staging\\">here</a>."""
@@ -109,13 +106,11 @@ class DestinationBigqueryLoadingMethodStandardInsertsMethod(str, Enum):
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class DestinationBigqueryLoadingMethodStandardInserts:
     r"""Loading method used to send select the way data will be uploaded to BigQuery. <br/><b>Standard Inserts</b> - Direct uploading using SQL INSERT statements. This method is extremely inefficient and provided only for quick testing. In almost all cases, you should use staging. <br/><b>GCS Staging</b> - Writes large batches of records to a file, uploads the file to GCS, then uses <b>COPY INTO table</b> to upload the file. Recommended for most workloads for better speed and scalability. Read more about GCS Staging <a href=\\"https://docs.airbyte.com/integrations/destinations/bigquery#gcs-staging\\">here</a>."""
     METHOD: Final[DestinationBigqueryLoadingMethodStandardInsertsMethod] = dataclasses.field(default=DestinationBigqueryLoadingMethodStandardInsertsMethod.STANDARD, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('method') }})
     
-
 
 
 
@@ -130,7 +125,6 @@ class DestinationBigqueryTransformationQueryRunType(str, Enum):
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class DestinationBigquery:
     r"""The values required to configure the destination."""

@@ -14,7 +14,6 @@ class SourceAircallAircall(str, Enum):
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class SourceAircall:
     r"""The values required to configure the source."""

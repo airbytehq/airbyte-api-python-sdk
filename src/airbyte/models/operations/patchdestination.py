@@ -8,13 +8,11 @@ from ..shared import destinationresponse as shared_destinationresponse
 from typing import Optional
 
 
-
 @dataclasses.dataclass
 class PatchDestinationRequest:
     destination_id: str = dataclasses.field(metadata={'path_param': { 'field_name': 'destinationId', 'style': 'simple', 'explode': False }})
     destination_patch_request: Optional[shared_destinationpatchrequest.DestinationPatchRequest] = dataclasses.field(default=None, metadata={'request': { 'media_type': 'application/json' }})
     
-
 
 
 

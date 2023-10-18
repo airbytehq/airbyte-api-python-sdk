@@ -14,7 +14,6 @@ class SourceIterableIterable(str, Enum):
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class SourceIterable:
     r"""The values required to configure the source."""

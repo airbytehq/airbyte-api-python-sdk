@@ -25,7 +25,6 @@ class DestinationS3OutputFormatParquetColumnarStorageFormatType(str, Enum):
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class DestinationS3OutputFormatParquetColumnarStorage:
     r"""Format of the data output. See <a href=\\"https://docs.airbyte.com/integrations/destinations/s3/#supported-output-schema\\">here</a> for more details"""
@@ -50,7 +49,6 @@ class DestinationS3OutputFormatJSONLinesNewlineDelimitedJSONCompressionGZIPCompr
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class DestinationS3OutputFormatJSONLinesNewlineDelimitedJSONCompressionGZIP:
     r"""Whether the output files should be compressed. If compression is selected, the output filename will have an extra extension (GZIP: \\".jsonl.gz\\")."""
@@ -63,13 +61,11 @@ class DestinationS3OutputFormatJSONLinesNewlineDelimitedJSONCompressionNoCompres
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class DestinationS3OutputFormatJSONLinesNewlineDelimitedJSONCompressionNoCompression:
     r"""Whether the output files should be compressed. If compression is selected, the output filename will have an extra extension (GZIP: \\".jsonl.gz\\")."""
     compression_type: Optional[DestinationS3OutputFormatJSONLinesNewlineDelimitedJSONCompressionNoCompressionCompressionType] = dataclasses.field(default=DestinationS3OutputFormatJSONLinesNewlineDelimitedJSONCompressionNoCompressionCompressionType.NO_COMPRESSION, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('compression_type'), 'exclude': lambda f: f is None }})
     
-
 
 
 
@@ -87,7 +83,6 @@ class DestinationS3OutputFormatJSONLinesNewlineDelimitedJSONFormatType(str, Enum
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class DestinationS3OutputFormatJSONLinesNewlineDelimitedJSON:
     r"""Format of the data output. See <a href=\\"https://docs.airbyte.com/integrations/destinations/s3/#supported-output-schema\\">here</a> for more details"""
@@ -104,7 +99,6 @@ class DestinationS3OutputFormatCSVCommaSeparatedValuesCompressionGZIPCompression
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class DestinationS3OutputFormatCSVCommaSeparatedValuesCompressionGZIP:
     r"""Whether the output files should be compressed. If compression is selected, the output filename will have an extra extension (GZIP: \\".csv.gz\\")."""
@@ -117,13 +111,11 @@ class DestinationS3OutputFormatCSVCommaSeparatedValuesCompressionNoCompressionCo
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class DestinationS3OutputFormatCSVCommaSeparatedValuesCompressionNoCompression:
     r"""Whether the output files should be compressed. If compression is selected, the output filename will have an extra extension (GZIP: \\".csv.gz\\")."""
     compression_type: Optional[DestinationS3OutputFormatCSVCommaSeparatedValuesCompressionNoCompressionCompressionType] = dataclasses.field(default=DestinationS3OutputFormatCSVCommaSeparatedValuesCompressionNoCompressionCompressionType.NO_COMPRESSION, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('compression_type'), 'exclude': lambda f: f is None }})
     
-
 
 
 
@@ -141,7 +133,6 @@ class DestinationS3OutputFormatCSVCommaSeparatedValuesFormatType(str, Enum):
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class DestinationS3OutputFormatCSVCommaSeparatedValues:
     r"""Format of the data output. See <a href=\\"https://docs.airbyte.com/integrations/destinations/s3/#supported-output-schema\\">here</a> for more details"""
@@ -158,7 +149,6 @@ class DestinationS3OutputFormatAvroApacheAvroCompressionCodecSnappyCodec(str, En
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class DestinationS3OutputFormatAvroApacheAvroCompressionCodecSnappy:
     r"""The compression algorithm used to compress data. Default to no compression."""
@@ -171,7 +161,6 @@ class DestinationS3OutputFormatAvroApacheAvroCompressionCodecZstandardCodec(str,
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class DestinationS3OutputFormatAvroApacheAvroCompressionCodecZstandard:
     r"""The compression algorithm used to compress data. Default to no compression."""
@@ -188,7 +177,6 @@ class DestinationS3OutputFormatAvroApacheAvroCompressionCodecXzCodec(str, Enum):
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class DestinationS3OutputFormatAvroApacheAvroCompressionCodecXz:
     r"""The compression algorithm used to compress data. Default to no compression."""
@@ -203,7 +191,6 @@ class DestinationS3OutputFormatAvroApacheAvroCompressionCodecBzip2Codec(str, Enu
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class DestinationS3OutputFormatAvroApacheAvroCompressionCodecBzip2:
     r"""The compression algorithm used to compress data. Default to no compression."""
@@ -216,7 +203,6 @@ class DestinationS3OutputFormatAvroApacheAvroCompressionCodecDeflateCodec(str, E
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class DestinationS3OutputFormatAvroApacheAvroCompressionCodecDeflate:
     r"""The compression algorithm used to compress data. Default to no compression."""
@@ -231,13 +217,11 @@ class DestinationS3OutputFormatAvroApacheAvroCompressionCodecNoCompressionCodec(
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class DestinationS3OutputFormatAvroApacheAvroCompressionCodecNoCompression:
     r"""The compression algorithm used to compress data. Default to no compression."""
     codec: Optional[DestinationS3OutputFormatAvroApacheAvroCompressionCodecNoCompressionCodec] = dataclasses.field(default=DestinationS3OutputFormatAvroApacheAvroCompressionCodecNoCompressionCodec.NO_COMPRESSION, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('codec'), 'exclude': lambda f: f is None }})
     
-
 
 
 
@@ -250,7 +234,6 @@ class DestinationS3OutputFormatAvroApacheAvroFormatType(str, Enum):
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class DestinationS3OutputFormatAvroApacheAvro:
     r"""Format of the data output. See <a href=\\"https://docs.airbyte.com/integrations/destinations/s3/#supported-output-schema\\">here</a> for more details"""
@@ -258,7 +241,6 @@ class DestinationS3OutputFormatAvroApacheAvro:
     r"""The compression algorithm used to compress data. Default to no compression."""
     format_type: Optional[DestinationS3OutputFormatAvroApacheAvroFormatType] = dataclasses.field(default=DestinationS3OutputFormatAvroApacheAvroFormatType.AVRO, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('format_type'), 'exclude': lambda f: f is None }})
     
-
 
 
 
@@ -297,7 +279,6 @@ class DestinationS3S3BucketRegion(str, Enum):
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class DestinationS3:
     r"""The values required to configure the destination."""

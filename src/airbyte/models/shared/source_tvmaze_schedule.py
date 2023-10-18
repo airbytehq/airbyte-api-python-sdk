@@ -12,7 +12,6 @@ class SourceTvmazeScheduleTvmazeSchedule(str, Enum):
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class SourceTvmazeSchedule:
     r"""The values required to configure the source."""

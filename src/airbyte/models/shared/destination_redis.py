@@ -19,7 +19,6 @@ class DestinationRedisSSLModesVerifyFullMode(str, Enum):
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class DestinationRedisSSLModesVerifyFull:
     r"""Verify-full SSL mode."""
@@ -40,13 +39,11 @@ class DestinationRedisSSLModesDisableMode(str, Enum):
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class DestinationRedisSSLModesDisable:
     r"""Disable SSL."""
     MODE: Final[Optional[DestinationRedisSSLModesDisableMode]] = dataclasses.field(default=DestinationRedisSSLModesDisableMode.DISABLE, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('mode'), 'exclude': lambda f: f is None }})
     
-
 
 
 
@@ -60,7 +57,6 @@ class DestinationRedisSSHTunnelMethodPasswordAuthenticationTunnelMethod(str, Enu
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class DestinationRedisSSHTunnelMethodPasswordAuthentication:
     r"""Whether to initiate an SSH tunnel before connecting to the database, and if so, which kind of authentication to use."""
@@ -83,7 +79,6 @@ class DestinationRedisSSHTunnelMethodSSHKeyAuthenticationTunnelMethod(str, Enum)
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class DestinationRedisSSHTunnelMethodSSHKeyAuthentication:
     r"""Whether to initiate an SSH tunnel before connecting to the database, and if so, which kind of authentication to use."""
@@ -106,7 +101,6 @@ class DestinationRedisSSHTunnelMethodNoTunnelTunnelMethod(str, Enum):
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class DestinationRedisSSHTunnelMethodNoTunnel:
     r"""Whether to initiate an SSH tunnel before connecting to the database, and if so, which kind of authentication to use."""
@@ -116,14 +110,12 @@ class DestinationRedisSSHTunnelMethodNoTunnel:
 
 
 
-
 @dataclasses.dataclass
 class DestinationRedisSSHTunnelMethod:
     pass
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class DestinationRedis:
     r"""The values required to configure the destination."""

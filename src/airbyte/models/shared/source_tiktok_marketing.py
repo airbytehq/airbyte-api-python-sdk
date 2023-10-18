@@ -14,7 +14,6 @@ class SourceTiktokMarketingAuthenticationMethodSandboxAccessTokenAuthType(str, E
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class SourceTiktokMarketingAuthenticationMethodSandboxAccessToken:
     r"""Authentication method"""
@@ -31,7 +30,6 @@ class SourceTiktokMarketingAuthenticationMethodOAuth20AuthType(str, Enum):
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class SourceTiktokMarketingAuthenticationMethodOAuth20:
     r"""Authentication method"""
@@ -48,7 +46,6 @@ class SourceTiktokMarketingAuthenticationMethodOAuth20:
 
 
 
-
 @dataclasses.dataclass
 class SourceTiktokMarketingAuthenticationMethod:
     pass
@@ -58,7 +55,6 @@ class SourceTiktokMarketingTiktokMarketing(str, Enum):
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class SourceTiktokMarketing:
     r"""The values required to configure the source."""

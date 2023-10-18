@@ -12,7 +12,6 @@ class DestinationDatabendDatabend(str, Enum):
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class DestinationDatabend:
     r"""The values required to configure the destination."""

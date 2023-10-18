@@ -19,7 +19,6 @@ class SourceChargebeeChargebee(str, Enum):
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class SourceChargebee:
     r"""The values required to configure the source."""

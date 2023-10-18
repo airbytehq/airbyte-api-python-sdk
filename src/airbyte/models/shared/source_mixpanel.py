@@ -13,7 +13,6 @@ class SourceMixpanelAuthenticationWildcardProjectSecretOptionTitle(str, Enum):
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class SourceMixpanelAuthenticationWildcardProjectSecret:
     r"""Choose how to authenticate to Mixpanel"""
@@ -28,7 +27,6 @@ class SourceMixpanelAuthenticationWildcardServiceAccountOptionTitle(str, Enum):
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class SourceMixpanelAuthenticationWildcardServiceAccount:
     r"""Choose how to authenticate to Mixpanel"""
@@ -38,7 +36,6 @@ class SourceMixpanelAuthenticationWildcardServiceAccount:
     r"""Mixpanel Service Account Username. See the <a href=\\"https://developer.mixpanel.com/reference/service-accounts\\">docs</a> for more information on how to obtain this."""
     OPTION_TITLE: Final[Optional[SourceMixpanelAuthenticationWildcardServiceAccountOptionTitle]] = dataclasses.field(default=SourceMixpanelAuthenticationWildcardServiceAccountOptionTitle.SERVICE_ACCOUNT, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('option_title'), 'exclude': lambda f: f is None }})
     
-
 
 
 
@@ -56,7 +53,6 @@ class SourceMixpanelMixpanel(str, Enum):
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class SourceMixpanel:
     r"""The values required to configure the source."""

@@ -15,7 +15,6 @@ class DestinationAzureBlobStorageOutputFormatJSONLinesNewlineDelimitedJSONFormat
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class DestinationAzureBlobStorageOutputFormatJSONLinesNewlineDelimitedJSON:
     r"""Output data format"""
@@ -33,7 +32,6 @@ class DestinationAzureBlobStorageOutputFormatCSVCommaSeparatedValuesFormatType(s
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class DestinationAzureBlobStorageOutputFormatCSVCommaSeparatedValues:
     r"""Output data format"""
@@ -44,14 +42,12 @@ class DestinationAzureBlobStorageOutputFormatCSVCommaSeparatedValues:
 
 
 
-
 @dataclasses.dataclass
 class DestinationAzureBlobStorageOutputFormat:
     pass
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class DestinationAzureBlobStorage:
     r"""The values required to configure the destination."""

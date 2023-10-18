@@ -12,7 +12,6 @@ class SourceAzureTableAzureTable(str, Enum):
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class SourceAzureTable:
     r"""The values required to configure the source."""

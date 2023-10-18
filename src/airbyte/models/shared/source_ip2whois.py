@@ -12,7 +12,6 @@ class SourceIp2whoisIp2whois(str, Enum):
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class SourceIp2whois:
     r"""The values required to configure the source."""

@@ -12,7 +12,6 @@ class SourceSendinblueSendinblue(str, Enum):
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class SourceSendinblue:
     r"""The values required to configure the source."""

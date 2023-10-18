@@ -12,7 +12,6 @@ class SourceConfluenceConfluence(str, Enum):
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class SourceConfluence:
     r"""The values required to configure the source."""

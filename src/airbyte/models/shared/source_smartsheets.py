@@ -7,14 +7,13 @@ from airbyte import utils
 from dataclasses_json import Undefined, dataclass_json
 from datetime import datetime
 from enum import Enum
-from typing import Final, Optional, Union
+from typing import Final, List, Optional, Union
 
 class SourceSmartsheetsAuthorizationMethodAPIAccessTokenAuthType(str, Enum):
     ACCESS_TOKEN = 'access_token'
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class SourceSmartsheetsAuthorizationMethodAPIAccessToken:
     access_token: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('access_token') }})
@@ -28,7 +27,6 @@ class SourceSmartsheetsAuthorizationMethodOAuth20AuthType(str, Enum):
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class SourceSmartsheetsAuthorizationMethodOAuth20:
     access_token: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('access_token') }})
@@ -43,7 +41,6 @@ class SourceSmartsheetsAuthorizationMethodOAuth20:
     r"""The date-time when the access token should be refreshed."""
     AUTH_TYPE: Final[Optional[SourceSmartsheetsAuthorizationMethodOAuth20AuthType]] = dataclasses.field(default=SourceSmartsheetsAuthorizationMethodOAuth20AuthType.OAUTH2_0, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_type'), 'exclude': lambda f: f is None }})
     
-
 
 
 
@@ -75,7 +72,6 @@ class SourceSmartsheetsSmartsheets(str, Enum):
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class SourceSmartsheets:
     r"""The values required to configure the source."""
@@ -83,7 +79,7 @@ class SourceSmartsheets:
     spreadsheet_id: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('spreadsheet_id') }})
     r"""The spreadsheet ID. Find it by opening the spreadsheet then navigating to File > Properties"""
     SOURCE_TYPE: Final[SourceSmartsheetsSmartsheets] = dataclasses.field(default=SourceSmartsheetsSmartsheets.SMARTSHEETS, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
-    metadata_fields: Optional[list[SourceSmartsheetsValidenums]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('metadata_fields'), 'exclude': lambda f: f is None }})
+    metadata_fields: Optional[List[SourceSmartsheetsValidenums]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('metadata_fields'), 'exclude': lambda f: f is None }})
     r"""A List of available columns which metadata can be pulled from."""
     start_datetime: Optional[datetime] = dataclasses.field(default=dateutil.parser.isoparse('2020-01-01T00:00:00+00:00'), metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('start_datetime'), 'encoder': utils.datetimeisoformat(True), 'decoder': dateutil.parser.isoparse, 'exclude': lambda f: f is None }})
     r"""Only rows modified after this date/time will be replicated. This should be an ISO 8601 string, for instance: `2000-01-01T13:00:00`"""

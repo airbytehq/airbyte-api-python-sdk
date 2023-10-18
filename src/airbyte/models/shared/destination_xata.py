@@ -12,7 +12,6 @@ class DestinationXataXata(str, Enum):
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class DestinationXata:
     r"""The values required to configure the destination."""

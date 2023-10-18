@@ -7,12 +7,10 @@ from ..shared import jobresponse as shared_jobresponse
 from typing import Optional
 
 
-
 @dataclasses.dataclass
 class CancelJobRequest:
     job_id: int = dataclasses.field(metadata={'path_param': { 'field_name': 'jobId', 'style': 'simple', 'explode': False }})
     
-
 
 
 

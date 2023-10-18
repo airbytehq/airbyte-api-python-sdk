@@ -14,7 +14,6 @@ class SourceZendeskChatAuthorizationMethodAccessTokenCredentials(str, Enum):
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class SourceZendeskChatAuthorizationMethodAccessToken:
     access_token: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('access_token') }})
@@ -28,7 +27,6 @@ class SourceZendeskChatAuthorizationMethodOAuth20Credentials(str, Enum):
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class SourceZendeskChatAuthorizationMethodOAuth20:
     CREDENTIALS: Final[SourceZendeskChatAuthorizationMethodOAuth20Credentials] = dataclasses.field(default=SourceZendeskChatAuthorizationMethodOAuth20Credentials.OAUTH2_0, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credentials') }})
@@ -44,7 +42,6 @@ class SourceZendeskChatAuthorizationMethodOAuth20:
 
 
 
-
 @dataclasses.dataclass
 class SourceZendeskChatAuthorizationMethod:
     pass
@@ -54,7 +51,6 @@ class SourceZendeskChatZendeskChat(str, Enum):
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class SourceZendeskChat:
     r"""The values required to configure the source."""

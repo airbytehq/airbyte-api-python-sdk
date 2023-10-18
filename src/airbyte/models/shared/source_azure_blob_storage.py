@@ -12,13 +12,11 @@ class SourceAzureBlobStorageInputFormatJSONLinesNewlineDelimitedJSONFormatType(s
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class SourceAzureBlobStorageInputFormatJSONLinesNewlineDelimitedJSON:
     r"""Input data format"""
     FORMAT_TYPE: Final[SourceAzureBlobStorageInputFormatJSONLinesNewlineDelimitedJSONFormatType] = dataclasses.field(default=SourceAzureBlobStorageInputFormatJSONLinesNewlineDelimitedJSONFormatType.JSONL, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('format_type') }})
     
-
 
 
 
@@ -31,7 +29,6 @@ class SourceAzureBlobStorageAzureBlobStorage(str, Enum):
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class SourceAzureBlobStorage:
     r"""The values required to configure the source."""

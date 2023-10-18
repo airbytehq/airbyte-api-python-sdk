@@ -7,13 +7,11 @@ from ..shared import workspaceoauthcredentialsrequest as shared_workspaceoauthcr
 from typing import Optional
 
 
-
 @dataclasses.dataclass
 class CreateOrUpdateWorkspaceOAuthCredentialsRequest:
     workspace_id: str = dataclasses.field(metadata={'path_param': { 'field_name': 'workspaceId', 'style': 'simple', 'explode': False }})
     workspace_o_auth_credentials_request: shared_workspaceoauthcredentialsrequest.WorkspaceOAuthCredentialsRequest = dataclasses.field(metadata={'request': { 'media_type': 'application/json' }})
     
-
 
 
 

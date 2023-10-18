@@ -14,7 +14,6 @@ class SourceLinnworksLinnworks(str, Enum):
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class SourceLinnworks:
     r"""The values required to configure the source."""

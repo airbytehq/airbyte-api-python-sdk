@@ -32,18 +32,18 @@ s = airbyte.Airbyte(
 req = shared.DestinationCreateRequest(
     shared.DestinationAwsDatalake(
         aws_account_id='111111111111',
-        bucket_name='Grocery Maldives',
+        bucket_name='override',
         shared.DestinationAwsDatalakeAuthenticationModeIAMRole(
-            role_arn='Assistant',
+            role_arn='Maldives',
         ),
         destination_type=shared.DestinationAwsDatalakeAwsDatalake.AWS_DATALAKE,
         shared.DestinationAwsDatalakeOutputFormatWildcardJSONLinesNewlineDelimitedJSON(),
         lakeformation_database_default_tag_key='pii_level',
         lakeformation_database_default_tag_values='private,public',
-        lakeformation_database_name='or kindheartedly',
+        lakeformation_database_name='Pflugerville',
     ),
-    name='horn',
-    workspace_id='208e5ba5-019e-4f34-92fc-0eef565b030c',
+    name='Dodge',
+    workspace_id='6e8e62f6-208e-45ba-9019-ef3492fc0eef',
 )
 
 res = s.destinations.create_destination(req)
@@ -85,7 +85,7 @@ s = airbyte.Airbyte(
 )
 
 req = operations.DeleteDestinationRequest(
-    destination_id='downturn Ergonomic',
+    destination_id='virtual',
 )
 
 res = s.destinations.delete_destination(req)
@@ -127,7 +127,7 @@ s = airbyte.Airbyte(
 )
 
 req = operations.GetDestinationRequest(
-    destination_id='Configuration Beauty',
+    destination_id='alarm',
 )
 
 res = s.destinations.get_destination(req)
@@ -216,19 +216,19 @@ req = operations.PatchDestinationRequest(
     destination_patch_request=shared.DestinationPatchRequest(
         shared.DestinationAwsDatalake(
             aws_account_id='111111111111',
-            bucket_name='unethically',
+            bucket_name='Refined',
             shared.DestinationAwsDatalakeAuthenticationModeIAMUser(
-                aws_access_key_id='Verde pixel male',
-                aws_secret_access_key='Principal enervate Sleek',
+                aws_access_key_id='silver',
+                aws_secret_access_key='Verde',
             ),
             destination_type=shared.DestinationAwsDatalakeAwsDatalake.AWS_DATALAKE,
-            shared.DestinationAwsDatalakeOutputFormatWildcardJSONLinesNewlineDelimitedJSON(),
+            shared.DestinationAwsDatalakeOutputFormatWildcardParquetColumnarStorage(),
             lakeformation_database_default_tag_key='pii_level',
             lakeformation_database_default_tag_values='private,public',
-            lakeformation_database_name='Representative',
+            lakeformation_database_name='Latin',
         ),
     ),
-    destination_id='Sleek Diesel Coordinator',
+    destination_id='henry',
 )
 
 res = s.destinations.patch_destination(req)
@@ -273,19 +273,20 @@ req = operations.PutDestinationRequest(
     destination_put_request=shared.DestinationPutRequest(
         shared.DestinationAwsDatalake(
             aws_account_id='111111111111',
-            bucket_name='West',
-            shared.DestinationAwsDatalakeAuthenticationModeIAMRole(
-                role_arn='Wagon Loan female',
+            bucket_name='Heights',
+            shared.DestinationAwsDatalakeAuthenticationModeIAMUser(
+                aws_access_key_id='except',
+                aws_secret_access_key='navigate',
             ),
             destination_type=shared.DestinationAwsDatalakeAwsDatalake.AWS_DATALAKE,
             shared.DestinationAwsDatalakeOutputFormatWildcardParquetColumnarStorage(),
             lakeformation_database_default_tag_key='pii_level',
             lakeformation_database_default_tag_values='private,public',
-            lakeformation_database_name='amidst redundant technologies',
+            lakeformation_database_name='why',
         ),
-        name='Warren Guatemala',
+        name='Missouri',
     ),
-    destination_id='redefine wireless',
+    destination_id='Market',
 )
 
 res = s.destinations.put_destination(req)

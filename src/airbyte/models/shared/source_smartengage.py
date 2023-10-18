@@ -12,7 +12,6 @@ class SourceSmartengageSmartengage(str, Enum):
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class SourceSmartengage:
     r"""The values required to configure the source."""

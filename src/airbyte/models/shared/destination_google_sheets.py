@@ -9,7 +9,6 @@ from typing import Final
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class DestinationGoogleSheetsAuthenticationViaGoogleOAuth:
     r"""Google API Credentials for connecting to Google Sheets and Google Drive APIs"""
@@ -27,7 +26,6 @@ class DestinationGoogleSheetsGoogleSheets(str, Enum):
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class DestinationGoogleSheets:
     r"""The values required to configure the destination."""

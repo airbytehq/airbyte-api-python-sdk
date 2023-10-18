@@ -12,7 +12,6 @@ class DestinationElasticsearchAuthenticationMethodUsernamePasswordMethod(str, En
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class DestinationElasticsearchAuthenticationMethodUsernamePassword:
     r"""Basic auth header with a username and password"""
@@ -29,7 +28,6 @@ class DestinationElasticsearchAuthenticationMethodAPIKeySecretMethod(str, Enum):
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class DestinationElasticsearchAuthenticationMethodAPIKeySecret:
     r"""Use a api key and secret combination to authenticate"""
@@ -42,7 +40,6 @@ class DestinationElasticsearchAuthenticationMethodAPIKeySecret:
 
 
 
-
 @dataclasses.dataclass
 class DestinationElasticsearchAuthenticationMethod:
     pass
@@ -52,7 +49,6 @@ class DestinationElasticsearchElasticsearch(str, Enum):
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class DestinationElasticsearch:
     r"""The values required to configure the destination."""

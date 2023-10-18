@@ -14,7 +14,6 @@ class SourceGithubAuthenticationPersonalAccessTokenOptionTitle(str, Enum):
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class SourceGithubAuthenticationPersonalAccessToken:
     r"""Choose how to authenticate to GitHub"""
@@ -29,7 +28,6 @@ class SourceGithubAuthenticationOAuthOptionTitle(str, Enum):
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class SourceGithubAuthenticationOAuth:
     r"""Choose how to authenticate to GitHub"""
@@ -44,7 +42,6 @@ class SourceGithubAuthenticationOAuth:
 
 
 
-
 @dataclasses.dataclass
 class SourceGithubAuthentication:
     pass
@@ -54,7 +51,6 @@ class SourceGithubGithub(str, Enum):
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class SourceGithub:
     r"""The values required to configure the source."""

@@ -5,14 +5,13 @@ import dataclasses
 from airbyte import utils
 from dataclasses_json import Undefined, dataclass_json
 from enum import Enum
-from typing import Final, Optional, Union
+from typing import Final, List, Optional, Union
 
 class SourceOracleConnectBySystemIDSIDConnectionType(str, Enum):
     SID = 'sid'
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class SourceOracleConnectBySystemIDSID:
     r"""Use SID (Oracle System Identifier)"""
@@ -26,14 +25,12 @@ class SourceOracleConnectByServiceNameConnectionType(str, Enum):
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class SourceOracleConnectByServiceName:
     r"""Use service name"""
     service_name: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('service_name') }})
     CONNECTION_TYPE: Final[Optional[SourceOracleConnectByServiceNameConnectionType]] = dataclasses.field(default=SourceOracleConnectByServiceNameConnectionType.SERVICE_NAME, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('connection_type'), 'exclude': lambda f: f is None }})
     
-
 
 
 
@@ -46,7 +43,6 @@ class SourceOracleEncryptionTLSEncryptedVerifyCertificateEncryptionMethod(str, E
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class SourceOracleEncryptionTLSEncryptedVerifyCertificate:
     r"""Verify and use the certificate provided by the server."""
@@ -67,7 +63,6 @@ class SourceOracleEncryptionNativeNetworkEncryptionNNEEncryptionMethod(str, Enum
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class SourceOracleEncryptionNativeNetworkEncryptionNNE:
     r"""The native network encryption gives you the ability to encrypt database connections, without the configuration overhead of TCP/IP and SSL/TLS and without the need to open and listen on different ports."""
@@ -75,7 +70,6 @@ class SourceOracleEncryptionNativeNetworkEncryptionNNE:
     r"""This parameter defines what encryption algorithm is used."""
     ENCRYPTION_METHOD: Final[Optional[SourceOracleEncryptionNativeNetworkEncryptionNNEEncryptionMethod]] = dataclasses.field(default=SourceOracleEncryptionNativeNetworkEncryptionNNEEncryptionMethod.CLIENT_NNE, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('encryption_method'), 'exclude': lambda f: f is None }})
     
-
 
 
 
@@ -92,7 +86,6 @@ class SourceOracleSSHTunnelMethodPasswordAuthenticationTunnelMethod(str, Enum):
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class SourceOracleSSHTunnelMethodPasswordAuthentication:
     r"""Whether to initiate an SSH tunnel before connecting to the database, and if so, which kind of authentication to use."""
@@ -115,7 +108,6 @@ class SourceOracleSSHTunnelMethodSSHKeyAuthenticationTunnelMethod(str, Enum):
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class SourceOracleSSHTunnelMethodSSHKeyAuthentication:
     r"""Whether to initiate an SSH tunnel before connecting to the database, and if so, which kind of authentication to use."""
@@ -138,7 +130,6 @@ class SourceOracleSSHTunnelMethodNoTunnelTunnelMethod(str, Enum):
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class SourceOracleSSHTunnelMethodNoTunnel:
     r"""Whether to initiate an SSH tunnel before connecting to the database, and if so, which kind of authentication to use."""
@@ -148,14 +139,12 @@ class SourceOracleSSHTunnelMethodNoTunnel:
 
 
 
-
 @dataclasses.dataclass
 class SourceOracleSSHTunnelMethod:
     pass
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class SourceOracle:
     r"""The values required to configure the source."""
@@ -178,7 +167,7 @@ class SourceOracle:
     1521 - Default listening port for client connections to the listener. 
     2484 - Recommended and officially registered listening port for client connections to the listener using TCP/IP with SSL
     """
-    schemas: Optional[list[str]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('schemas'), 'exclude': lambda f: f is None }})
+    schemas: Optional[List[str]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('schemas'), 'exclude': lambda f: f is None }})
     r"""The list of schemas to sync from. Defaults to user. Case sensitive."""
     tunnel_method: Optional[Union[SourceOracleSSHTunnelMethodNoTunnel, SourceOracleSSHTunnelMethodSSHKeyAuthentication, SourceOracleSSHTunnelMethodPasswordAuthentication]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('tunnel_method'), 'exclude': lambda f: f is None }})
     r"""Whether to initiate an SSH tunnel before connecting to the database, and if so, which kind of authentication to use."""

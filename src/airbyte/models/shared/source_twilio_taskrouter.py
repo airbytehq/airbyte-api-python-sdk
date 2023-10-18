@@ -12,7 +12,6 @@ class SourceTwilioTaskrouterTwilioTaskrouter(str, Enum):
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class SourceTwilioTaskrouter:
     r"""The values required to configure the source."""

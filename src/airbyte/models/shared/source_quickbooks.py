@@ -14,7 +14,6 @@ class SourceQuickbooksAuthorizationMethodOAuth20AuthType(str, Enum):
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class SourceQuickbooksAuthorizationMethodOAuth20:
     access_token: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('access_token') }})
@@ -34,7 +33,6 @@ class SourceQuickbooksAuthorizationMethodOAuth20:
 
 
 
-
 @dataclasses.dataclass
 class SourceQuickbooksAuthorizationMethod:
     pass
@@ -44,7 +42,6 @@ class SourceQuickbooksQuickbooks(str, Enum):
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class SourceQuickbooks:
     r"""The values required to configure the source."""

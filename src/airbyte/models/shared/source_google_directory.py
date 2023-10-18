@@ -13,7 +13,6 @@ class SourceGoogleDirectoryGoogleCredentialsServiceAccountKeyCredentialsTitle(st
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class SourceGoogleDirectoryGoogleCredentialsServiceAccountKey:
     r"""For these scenario user should obtain service account's credentials from the Google API Console and provide delegated email."""
@@ -32,7 +31,6 @@ class SourceGoogleDirectoryGoogleCredentialsSignInViaGoogleOAuthCredentialsTitle
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class SourceGoogleDirectoryGoogleCredentialsSignInViaGoogleOAuth:
     r"""For these scenario user only needs to give permission to read Google Directory data."""
@@ -48,7 +46,6 @@ class SourceGoogleDirectoryGoogleCredentialsSignInViaGoogleOAuth:
 
 
 
-
 @dataclasses.dataclass
 class SourceGoogleDirectoryGoogleCredentials:
     pass
@@ -58,7 +55,6 @@ class SourceGoogleDirectoryGoogleDirectory(str, Enum):
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class SourceGoogleDirectory:
     r"""The values required to configure the source."""

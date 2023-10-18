@@ -14,7 +14,6 @@ class SourcePipedriveAPIKeyAuthenticationAuthType(str, Enum):
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class SourcePipedriveAPIKeyAuthentication:
     api_token: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('api_token') }})
@@ -28,7 +27,6 @@ class SourcePipedrivePipedrive(str, Enum):
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class SourcePipedrive:
     r"""The values required to configure the source."""

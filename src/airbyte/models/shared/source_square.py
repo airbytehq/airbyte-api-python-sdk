@@ -14,7 +14,6 @@ class SourceSquareAuthenticationAPIKeyAuthType(str, Enum):
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class SourceSquareAuthenticationAPIKey:
     r"""Choose how to authenticate to Square."""
@@ -29,7 +28,6 @@ class SourceSquareAuthenticationOauthAuthenticationAuthType(str, Enum):
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class SourceSquareAuthenticationOauthAuthentication:
     r"""Choose how to authenticate to Square."""
@@ -44,7 +42,6 @@ class SourceSquareAuthenticationOauthAuthentication:
 
 
 
-
 @dataclasses.dataclass
 class SourceSquareAuthentication:
     pass
@@ -54,7 +51,6 @@ class SourceSquareSquare(str, Enum):
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class SourceSquare:
     r"""The values required to configure the source."""

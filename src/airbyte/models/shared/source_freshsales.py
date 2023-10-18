@@ -12,7 +12,6 @@ class SourceFreshsalesFreshsales(str, Enum):
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class SourceFreshsales:
     r"""The values required to configure the source."""

@@ -12,7 +12,6 @@ class SourceTempoTempo(str, Enum):
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class SourceTempo:
     r"""The values required to configure the source."""

@@ -7,7 +7,6 @@ from ..shared import workspaceresponse as shared_workspaceresponse
 from typing import Optional
 
 
-
 @dataclasses.dataclass
 class CreateWorkspaceResponse:
     content_type: str = dataclasses.field()

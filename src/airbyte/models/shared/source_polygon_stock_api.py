@@ -13,7 +13,6 @@ class SourcePolygonStockAPIPolygonStockAPI(str, Enum):
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class SourcePolygonStockAPI:
     r"""The values required to configure the source."""

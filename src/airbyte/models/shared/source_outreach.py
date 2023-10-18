@@ -12,7 +12,6 @@ class SourceOutreachOutreach(str, Enum):
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class SourceOutreach:
     r"""The values required to configure the source."""

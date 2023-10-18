@@ -5,7 +5,7 @@ import dataclasses
 from airbyte import utils
 from dataclasses_json import Undefined, dataclass_json
 from enum import Enum
-from typing import Final, Optional, Union
+from typing import Final, List, Optional, Union
 
 class DestinationLangchainLangchain(str, Enum):
     LANGCHAIN = 'langchain'
@@ -15,7 +15,6 @@ class DestinationLangchainEmbeddingFakeMode(str, Enum):
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class DestinationLangchainEmbeddingFake:
     r"""Use a fake embedding made out of random vectors with 1536 embedding dimensions. This is useful for testing the data pipeline without incurring any costs."""
@@ -28,14 +27,12 @@ class DestinationLangchainEmbeddingOpenAIMode(str, Enum):
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class DestinationLangchainEmbeddingOpenAI:
     r"""Use the OpenAI API to embed text. This option is using the text-embedding-ada-002 model with 1536 embedding dimensions."""
     openai_key: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('openai_key') }})
     MODE: Final[Optional[DestinationLangchainEmbeddingOpenAIMode]] = dataclasses.field(default=DestinationLangchainEmbeddingOpenAIMode.OPENAI, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('mode'), 'exclude': lambda f: f is None }})
     
-
 
 
 
@@ -48,7 +45,6 @@ class DestinationLangchainIndexingChromaLocalPersistanceMode(str, Enum):
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class DestinationLangchainIndexingChromaLocalPersistance:
     r"""Chroma is a popular vector store that can be used to store and retrieve embeddings. It will build its index in memory and persist it to disk by the end of the sync."""
@@ -65,7 +61,6 @@ class DestinationLangchainIndexingDocArrayHnswSearchMode(str, Enum):
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class DestinationLangchainIndexingDocArrayHnswSearch:
     r"""DocArrayHnswSearch is a lightweight Document Index implementation provided by Docarray that runs fully locally and is best suited for small- to medium-sized datasets. It stores vectors on disk in hnswlib, and stores all other data in SQLite."""
@@ -80,7 +75,6 @@ class DestinationLangchainIndexingPineconeMode(str, Enum):
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class DestinationLangchainIndexingPinecone:
     r"""Pinecone is a popular vector store that can be used to store and retrieve embeddings. It is a managed service and can also be queried from outside of langchain."""
@@ -94,19 +88,17 @@ class DestinationLangchainIndexingPinecone:
 
 
 
-
 @dataclasses.dataclass
 class DestinationLangchainIndexing:
     pass
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class DestinationLangchainProcessingConfigModel:
     chunk_size: int = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('chunk_size') }})
     r"""Size of chunks in tokens to store in vector store (make sure it is not too big for the context if your LLM)"""
-    text_fields: list[str] = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('text_fields') }})
+    text_fields: List[str] = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('text_fields') }})
     r"""List of fields in the record that should be used to calculate the embedding. All other fields are passed along as meta fields. The field list is applied to all streams in the same way and non-existing fields are ignored. If none are defined, all fields are considered text fields. When specifying text fields, you can access nested fields in the record by using dot notation, e.g. `user.name` will access the `name` field in the `user` object. It's also possible to use wildcards to access all fields in an object, e.g. `users.*.name` will access all `names` fields in all entries of the `users` array."""
     chunk_overlap: Optional[int] = dataclasses.field(default=0, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('chunk_overlap'), 'exclude': lambda f: f is None }})
     r"""Size of overlap between chunks in tokens to store in vector store to better capture relevant context"""
@@ -115,7 +107,6 @@ class DestinationLangchainProcessingConfigModel:
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class DestinationLangchain:
     r"""The values required to configure the destination."""

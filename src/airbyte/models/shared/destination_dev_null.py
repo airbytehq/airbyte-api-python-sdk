@@ -15,13 +15,11 @@ class DestinationDevNullTestDestinationSilentTestDestinationType(str, Enum):
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class DestinationDevNullTestDestinationSilent:
     r"""The type of destination to be used"""
     TEST_DESTINATION_TYPE: Final[Optional[DestinationDevNullTestDestinationSilentTestDestinationType]] = dataclasses.field(default=DestinationDevNullTestDestinationSilentTestDestinationType.SILENT, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('test_destination_type'), 'exclude': lambda f: f is None }})
     
-
 
 
 
@@ -31,7 +29,6 @@ class DestinationDevNullTestDestination:
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class DestinationDevNull:
     r"""The values required to configure the destination."""

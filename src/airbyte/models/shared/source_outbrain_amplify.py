@@ -12,7 +12,6 @@ class SourceOutbrainAmplifyAuthenticationMethodUsernamePasswordBothUsernameAndPa
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class SourceOutbrainAmplifyAuthenticationMethodUsernamePassword:
     r"""Credentials for making authenticated requests requires either username/password or access_token."""
@@ -29,7 +28,6 @@ class SourceOutbrainAmplifyAuthenticationMethodAccessTokenAccessTokenIsRequiredF
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class SourceOutbrainAmplifyAuthenticationMethodAccessToken:
     r"""Credentials for making authenticated requests requires either username/password or access_token."""
@@ -37,7 +35,6 @@ class SourceOutbrainAmplifyAuthenticationMethodAccessToken:
     r"""Access Token for making authenticated requests."""
     TYPE: Final[SourceOutbrainAmplifyAuthenticationMethodAccessTokenAccessTokenIsRequiredForAuthenticationRequests] = dataclasses.field(default=SourceOutbrainAmplifyAuthenticationMethodAccessTokenAccessTokenIsRequiredForAuthenticationRequests.ACCESS_TOKEN, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('type') }})
     
-
 
 
 
@@ -62,7 +59,6 @@ class SourceOutbrainAmplifyOutbrainAmplify(str, Enum):
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class SourceOutbrainAmplify:
     r"""The values required to configure the source."""

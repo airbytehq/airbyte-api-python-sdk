@@ -7,11 +7,10 @@ from airbyte import utils
 from dataclasses_json import Undefined, dataclass_json
 from datetime import datetime
 from enum import Enum
-from typing import Final, Optional
+from typing import Final, List, Optional
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class SourceOnesignalApplications:
     app_api_key: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('app_api_key') }})
@@ -25,11 +24,10 @@ class SourceOnesignalOnesignal(str, Enum):
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class SourceOnesignal:
     r"""The values required to configure the source."""
-    applications: list[SourceOnesignalApplications] = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('applications') }})
+    applications: List[SourceOnesignalApplications] = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('applications') }})
     r"""Applications keys, see the <a href=\\"https://documentation.onesignal.com/docs/accounts-and-keys\\">docs</a> for more information on how to obtain this data"""
     outcome_names: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('outcome_names') }})
     r"""Comma-separated list of names and the value (sum/count) for the returned outcome data. See the <a href=\\"https://documentation.onesignal.com/reference/view-outcomes\\">docs</a> for more details"""

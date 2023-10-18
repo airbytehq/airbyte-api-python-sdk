@@ -5,18 +5,51 @@ import dataclasses
 from airbyte import utils
 from dataclasses_json import Undefined, dataclass_json
 from enum import Enum
-from typing import Any, Final, Optional, Union
+from typing import Any, Dict, Final, List, Optional, Union
 
 class SourceAlloydbReplicationMethodStandardMethod(str, Enum):
     STANDARD = 'Standard'
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class SourceAlloydbReplicationMethodStandard:
     r"""Standard replication requires no setup on the DB side but will not be able to represent deletions incrementally."""
     METHOD: Final[SourceAlloydbReplicationMethodStandardMethod] = dataclasses.field(default=SourceAlloydbReplicationMethodStandardMethod.STANDARD, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('method') }})
+    
+
+
+class SourceAlloydbReplicationMethodLogicalReplicationCDCLSNCommitBehaviour(str, Enum):
+    r"""Determines when Airbtye should flush the LSN of processed WAL logs in the source database. `After loading Data in the destination` is default. If `While reading Data` is selected, in case of a downstream failure (while loading data into the destination), next sync would result in a full sync."""
+    WHILE_READING_DATA = 'While reading Data'
+    AFTER_LOADING_DATA_IN_THE_DESTINATION = 'After loading Data in the destination'
+
+class SourceAlloydbReplicationMethodLogicalReplicationCDCMethod(str, Enum):
+    CDC = 'CDC'
+
+class SourceAlloydbReplicationMethodLogicalReplicationCDCPlugin(str, Enum):
+    r"""A logical decoding plugin installed on the PostgreSQL server."""
+    PGOUTPUT = 'pgoutput'
+
+
+@dataclass_json(undefined=Undefined.EXCLUDE)
+@dataclasses.dataclass
+class SourceAlloydbReplicationMethodLogicalReplicationCDC:
+    r"""Logical replication uses the Postgres write-ahead log (WAL) to detect inserts, updates, and deletes. This needs to be configured on the source database itself. Only available on Postgres 10 and above. Read the <a href=\\"https://docs.airbyte.com/integrations/sources/postgres\\">docs</a>."""
+    publication: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('publication') }})
+    r"""A Postgres publication used for consuming changes. Read about <a href=\\"https://docs.airbyte.com/integrations/sources/postgres#step-4-create-publications-and-replication-identities-for-tables\\">publications and replication identities</a>."""
+    replication_slot: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('replication_slot') }})
+    r"""A plugin logical replication slot. Read about <a href=\\"https://docs.airbyte.com/integrations/sources/postgres#step-3-create-replication-slot\\">replication slots</a>."""
+    METHOD: Final[SourceAlloydbReplicationMethodLogicalReplicationCDCMethod] = dataclasses.field(default=SourceAlloydbReplicationMethodLogicalReplicationCDCMethod.CDC, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('method') }})
+    additional_properties: Optional[Dict[str, Any]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'exclude': lambda f: f is None }})
+    initial_waiting_seconds: Optional[int] = dataclasses.field(default=300, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('initial_waiting_seconds'), 'exclude': lambda f: f is None }})
+    r"""The amount of time the connector will wait when it launches to determine if there is new data to sync or not. Defaults to 300 seconds. Valid range: 120 seconds to 1200 seconds. Read about <a href=\\"https://docs.airbyte.com/integrations/sources/postgres#step-5-optional-set-up-initial-waiting-time\\">initial waiting time</a>."""
+    lsn_commit_behaviour: Optional[SourceAlloydbReplicationMethodLogicalReplicationCDCLSNCommitBehaviour] = dataclasses.field(default=SourceAlloydbReplicationMethodLogicalReplicationCDCLSNCommitBehaviour.AFTER_LOADING_DATA_IN_THE_DESTINATION, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('lsn_commit_behaviour'), 'exclude': lambda f: f is None }})
+    r"""Determines when Airbtye should flush the LSN of processed WAL logs in the source database. `After loading Data in the destination` is default. If `While reading Data` is selected, in case of a downstream failure (while loading data into the destination), next sync would result in a full sync."""
+    plugin: Optional[SourceAlloydbReplicationMethodLogicalReplicationCDCPlugin] = dataclasses.field(default=SourceAlloydbReplicationMethodLogicalReplicationCDCPlugin.PGOUTPUT, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('plugin'), 'exclude': lambda f: f is None }})
+    r"""A logical decoding plugin installed on the PostgreSQL server."""
+    queue_size: Optional[int] = dataclasses.field(default=10000, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('queue_size'), 'exclude': lambda f: f is None }})
+    r"""The size of the internal queue. This may interfere with memory consumption and efficiency of the connector, please be careful."""
     
 
 
@@ -25,13 +58,11 @@ class SourceAlloydbReplicationMethodStandardXminMethod(str, Enum):
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class SourceAlloydbReplicationMethodStandardXmin:
     r"""Xmin replication requires no setup on the DB side but will not be able to represent deletions incrementally."""
     METHOD: Final[SourceAlloydbReplicationMethodStandardXminMethod] = dataclasses.field(default=SourceAlloydbReplicationMethodStandardXminMethod.XMIN, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('method') }})
     
-
 
 
 
@@ -42,13 +73,111 @@ class SourceAlloydbReplicationMethod:
 class SourceAlloydbAlloydb(str, Enum):
     ALLOYDB = 'alloydb'
 
+class SourceAlloydbSSLModesVerifyFullMode(str, Enum):
+    VERIFY_FULL = 'verify-full'
+
+
+@dataclass_json(undefined=Undefined.EXCLUDE)
+@dataclasses.dataclass
+class SourceAlloydbSSLModesVerifyFull:
+    r"""This is the most secure mode. Always require encryption and verifies the identity of the source database server."""
+    ca_certificate: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('ca_certificate') }})
+    r"""CA certificate"""
+    MODE: Final[SourceAlloydbSSLModesVerifyFullMode] = dataclasses.field(default=SourceAlloydbSSLModesVerifyFullMode.VERIFY_FULL, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('mode') }})
+    additional_properties: Optional[Dict[str, Any]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'exclude': lambda f: f is None }})
+    client_certificate: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('client_certificate'), 'exclude': lambda f: f is None }})
+    r"""Client certificate"""
+    client_key: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('client_key'), 'exclude': lambda f: f is None }})
+    r"""Client key"""
+    client_key_password: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('client_key_password'), 'exclude': lambda f: f is None }})
+    r"""Password for keystorage. If you do not add it - the password will be generated automatically."""
+    
+
+
+class SourceAlloydbSSLModesVerifyCaMode(str, Enum):
+    VERIFY_CA = 'verify-ca'
+
+
+@dataclass_json(undefined=Undefined.EXCLUDE)
+@dataclasses.dataclass
+class SourceAlloydbSSLModesVerifyCa:
+    r"""Always require encryption and verifies that the source database server has a valid SSL certificate."""
+    ca_certificate: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('ca_certificate') }})
+    r"""CA certificate"""
+    MODE: Final[SourceAlloydbSSLModesVerifyCaMode] = dataclasses.field(default=SourceAlloydbSSLModesVerifyCaMode.VERIFY_CA, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('mode') }})
+    additional_properties: Optional[Dict[str, Any]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'exclude': lambda f: f is None }})
+    client_certificate: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('client_certificate'), 'exclude': lambda f: f is None }})
+    r"""Client certificate"""
+    client_key: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('client_key'), 'exclude': lambda f: f is None }})
+    r"""Client key"""
+    client_key_password: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('client_key_password'), 'exclude': lambda f: f is None }})
+    r"""Password for keystorage. If you do not add it - the password will be generated automatically."""
+    
+
+
+class SourceAlloydbSSLModesRequireMode(str, Enum):
+    REQUIRE = 'require'
+
+
+@dataclass_json(undefined=Undefined.EXCLUDE)
+@dataclasses.dataclass
+class SourceAlloydbSSLModesRequire:
+    r"""Always require encryption. If the source database server does not support encryption, connection will fail."""
+    MODE: Final[SourceAlloydbSSLModesRequireMode] = dataclasses.field(default=SourceAlloydbSSLModesRequireMode.REQUIRE, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('mode') }})
+    additional_properties: Optional[Dict[str, Any]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'exclude': lambda f: f is None }})
+    
+
+
+class SourceAlloydbSSLModesPreferMode(str, Enum):
+    PREFER = 'prefer'
+
+
+@dataclass_json(undefined=Undefined.EXCLUDE)
+@dataclasses.dataclass
+class SourceAlloydbSSLModesPrefer:
+    r"""Allows unencrypted connection only if the source database does not support encryption."""
+    MODE: Final[SourceAlloydbSSLModesPreferMode] = dataclasses.field(default=SourceAlloydbSSLModesPreferMode.PREFER, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('mode') }})
+    additional_properties: Optional[Dict[str, Any]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'exclude': lambda f: f is None }})
+    
+
+
+class SourceAlloydbSSLModesAllowMode(str, Enum):
+    ALLOW = 'allow'
+
+
+@dataclass_json(undefined=Undefined.EXCLUDE)
+@dataclasses.dataclass
+class SourceAlloydbSSLModesAllow:
+    r"""Enables encryption only when required by the source database."""
+    MODE: Final[SourceAlloydbSSLModesAllowMode] = dataclasses.field(default=SourceAlloydbSSLModesAllowMode.ALLOW, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('mode') }})
+    additional_properties: Optional[Dict[str, Any]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'exclude': lambda f: f is None }})
+    
+
+
+class SourceAlloydbSSLModesDisableMode(str, Enum):
+    DISABLE = 'disable'
+
+
+@dataclass_json(undefined=Undefined.EXCLUDE)
+@dataclasses.dataclass
+class SourceAlloydbSSLModesDisable:
+    r"""Disables encryption of communication between Airbyte and source database."""
+    MODE: Final[SourceAlloydbSSLModesDisableMode] = dataclasses.field(default=SourceAlloydbSSLModesDisableMode.DISABLE, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('mode') }})
+    additional_properties: Optional[Dict[str, Any]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'exclude': lambda f: f is None }})
+    
+
+
+
+@dataclasses.dataclass
+class SourceAlloydbSSLModes:
+    pass
+
 class SourceAlloydbSSHTunnelMethodPasswordAuthenticationTunnelMethod(str, Enum):
     r"""Connect through a jump server tunnel host using username and password authentication"""
     SSH_PASSWORD_AUTH = 'SSH_PASSWORD_AUTH'
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class SourceAlloydbSSHTunnelMethodPasswordAuthentication:
     r"""Whether to initiate an SSH tunnel before connecting to the database, and if so, which kind of authentication to use."""
@@ -71,7 +200,6 @@ class SourceAlloydbSSHTunnelMethodSSHKeyAuthenticationTunnelMethod(str, Enum):
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class SourceAlloydbSSHTunnelMethodSSHKeyAuthentication:
     r"""Whether to initiate an SSH tunnel before connecting to the database, and if so, which kind of authentication to use."""
@@ -94,7 +222,6 @@ class SourceAlloydbSSHTunnelMethodNoTunnelTunnelMethod(str, Enum):
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class SourceAlloydbSSHTunnelMethodNoTunnel:
     r"""Whether to initiate an SSH tunnel before connecting to the database, and if so, which kind of authentication to use."""
@@ -104,14 +231,12 @@ class SourceAlloydbSSHTunnelMethodNoTunnel:
 
 
 
-
 @dataclasses.dataclass
 class SourceAlloydbSSHTunnelMethod:
     pass
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class SourceAlloydb:
     r"""The values required to configure the source."""
@@ -128,11 +253,11 @@ class SourceAlloydb:
     r"""Password associated with the username."""
     port: Optional[int] = dataclasses.field(default=5432, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('port'), 'exclude': lambda f: f is None }})
     r"""Port of the database."""
-    replication_method: Optional[Union[SourceAlloydbReplicationMethodStandardXmin, dict[str, Any], SourceAlloydbReplicationMethodStandard]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('replication_method'), 'exclude': lambda f: f is None }})
+    replication_method: Optional[Union[SourceAlloydbReplicationMethodStandardXmin, SourceAlloydbReplicationMethodLogicalReplicationCDC, SourceAlloydbReplicationMethodStandard]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('replication_method'), 'exclude': lambda f: f is None }})
     r"""Replication method for extracting data from the database."""
-    schemas: Optional[list[str]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('schemas'), 'exclude': lambda f: f is None }})
+    schemas: Optional[List[str]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('schemas'), 'exclude': lambda f: f is None }})
     r"""The list of schemas (case sensitive) to sync from. Defaults to public."""
-    ssl_mode: Optional[Any] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('ssl_mode'), 'exclude': lambda f: f is None }})
+    ssl_mode: Optional[Union[SourceAlloydbSSLModesDisable, SourceAlloydbSSLModesAllow, SourceAlloydbSSLModesPrefer, SourceAlloydbSSLModesRequire, SourceAlloydbSSLModesVerifyCa, SourceAlloydbSSLModesVerifyFull]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('ssl_mode'), 'exclude': lambda f: f is None }})
     r"""SSL connection modes.
       Read more <a href=\"https://jdbc.postgresql.org/documentation/head/ssl-client.html\"> in the docs</a>.
     """

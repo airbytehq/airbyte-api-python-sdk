@@ -7,7 +7,6 @@ from ..shared import sourceresponse as shared_sourceresponse
 from typing import Optional
 
 
-
 @dataclasses.dataclass
 class CreateSourceResponse:
     content_type: str = dataclasses.field()

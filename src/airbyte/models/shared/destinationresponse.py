@@ -45,7 +45,6 @@ from typing import Union
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class DestinationResponse:
     r"""Provides details of a single destination."""

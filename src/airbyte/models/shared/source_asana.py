@@ -13,7 +13,6 @@ class SourceAsanaAuthenticationMechanismAuthenticateWithPersonalAccessTokenCrede
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class SourceAsanaAuthenticationMechanismAuthenticateWithPersonalAccessToken:
     r"""Choose how to authenticate to Github"""
@@ -30,7 +29,6 @@ class SourceAsanaAuthenticationMechanismAuthenticateViaAsanaOauthCredentialsTitl
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class SourceAsanaAuthenticationMechanismAuthenticateViaAsanaOauth:
     r"""Choose how to authenticate to Github"""
@@ -43,7 +41,6 @@ class SourceAsanaAuthenticationMechanismAuthenticateViaAsanaOauth:
 
 
 
-
 @dataclasses.dataclass
 class SourceAsanaAuthenticationMechanism:
     pass
@@ -53,7 +50,6 @@ class SourceAsanaAsana(str, Enum):
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class SourceAsana:
     r"""The values required to configure the source."""

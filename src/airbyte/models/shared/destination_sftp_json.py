@@ -12,7 +12,6 @@ class DestinationSftpJSONSftpJSON(str, Enum):
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class DestinationSftpJSON:
     r"""The values required to configure the destination."""

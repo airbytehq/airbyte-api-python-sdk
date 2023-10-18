@@ -15,7 +15,6 @@ class DestinationFireboltLoadingMethodExternalTableViaS3Method(str, Enum):
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class DestinationFireboltLoadingMethodExternalTableViaS3:
     r"""Loading method used to select the way data will be uploaded to Firebolt"""
@@ -36,13 +35,11 @@ class DestinationFireboltLoadingMethodSQLInsertsMethod(str, Enum):
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class DestinationFireboltLoadingMethodSQLInserts:
     r"""Loading method used to select the way data will be uploaded to Firebolt"""
     METHOD: Final[DestinationFireboltLoadingMethodSQLInsertsMethod] = dataclasses.field(default=DestinationFireboltLoadingMethodSQLInsertsMethod.SQL, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('method') }})
     
-
 
 
 
@@ -52,7 +49,6 @@ class DestinationFireboltLoadingMethod:
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class DestinationFirebolt:
     r"""The values required to configure the destination."""

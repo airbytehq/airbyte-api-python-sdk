@@ -12,7 +12,6 @@ class SourceOktaAuthorizationMethodAPITokenAuthType(str, Enum):
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class SourceOktaAuthorizationMethodAPIToken:
     api_token: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('api_token') }})
@@ -26,7 +25,6 @@ class SourceOktaAuthorizationMethodOAuth20AuthType(str, Enum):
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class SourceOktaAuthorizationMethodOAuth20:
     client_id: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('client_id') }})
@@ -40,7 +38,6 @@ class SourceOktaAuthorizationMethodOAuth20:
 
 
 
-
 @dataclasses.dataclass
 class SourceOktaAuthorizationMethod:
     pass
@@ -50,7 +47,6 @@ class SourceOktaOkta(str, Enum):
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class SourceOkta:
     r"""The values required to configure the source."""

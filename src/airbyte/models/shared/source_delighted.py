@@ -14,7 +14,6 @@ class SourceDelightedDelighted(str, Enum):
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class SourceDelighted:
     r"""The values required to configure the source."""

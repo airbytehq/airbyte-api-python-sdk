@@ -12,7 +12,6 @@ class SourceGridlyGridly(str, Enum):
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class SourceGridly:
     r"""The values required to configure the source."""

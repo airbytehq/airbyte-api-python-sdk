@@ -16,7 +16,6 @@ class DestinationRedshiftSSHTunnelMethodPasswordAuthenticationTunnelMethod(str, 
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class DestinationRedshiftSSHTunnelMethodPasswordAuthentication:
     r"""Whether to initiate an SSH tunnel before connecting to the database, and if so, which kind of authentication to use."""
@@ -39,7 +38,6 @@ class DestinationRedshiftSSHTunnelMethodSSHKeyAuthenticationTunnelMethod(str, En
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class DestinationRedshiftSSHTunnelMethodSSHKeyAuthentication:
     r"""Whether to initiate an SSH tunnel before connecting to the database, and if so, which kind of authentication to use."""
@@ -62,14 +60,12 @@ class DestinationRedshiftSSHTunnelMethodNoTunnelTunnelMethod(str, Enum):
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class DestinationRedshiftSSHTunnelMethodNoTunnel:
     r"""Whether to initiate an SSH tunnel before connecting to the database, and if so, which kind of authentication to use."""
     TUNNEL_METHOD: Final[DestinationRedshiftSSHTunnelMethodNoTunnelTunnelMethod] = dataclasses.field(default=DestinationRedshiftSSHTunnelMethodNoTunnelTunnelMethod.NO_TUNNEL, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('tunnel_method') }})
     r"""No ssh tunnel needed to connect to database"""
     
-
 
 
 
@@ -82,7 +78,6 @@ class DestinationRedshiftUploadingMethodS3StagingEncryptionAESCBCEnvelopeEncrypt
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class DestinationRedshiftUploadingMethodS3StagingEncryptionAESCBCEnvelopeEncryption:
     r"""Staging data will be encrypted using AES-CBC envelope encryption."""
@@ -97,13 +92,11 @@ class DestinationRedshiftUploadingMethodS3StagingEncryptionNoEncryptionEncryptio
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class DestinationRedshiftUploadingMethodS3StagingEncryptionNoEncryption:
     r"""Staging data will be stored in plaintext."""
     ENCRYPTION_TYPE: Final[Optional[DestinationRedshiftUploadingMethodS3StagingEncryptionNoEncryptionEncryptionType]] = dataclasses.field(default=DestinationRedshiftUploadingMethodS3StagingEncryptionNoEncryptionEncryptionType.NONE, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('encryption_type'), 'exclude': lambda f: f is None }})
     
-
 
 
 
@@ -143,7 +136,6 @@ class DestinationRedshiftUploadingMethodS3StagingS3BucketRegion(str, Enum):
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class DestinationRedshiftUploadingMethodS3Staging:
     r"""The method how the data will be uploaded to the database."""
@@ -174,13 +166,11 @@ class DestinationRedshiftUploadingMethodStandardMethod(str, Enum):
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class DestinationRedshiftUploadingMethodStandard:
     r"""The method how the data will be uploaded to the database."""
     METHOD: Final[DestinationRedshiftUploadingMethodStandardMethod] = dataclasses.field(default=DestinationRedshiftUploadingMethodStandardMethod.STANDARD, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('method') }})
     
-
 
 
 
@@ -190,7 +180,6 @@ class DestinationRedshiftUploadingMethod:
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class DestinationRedshift:
     r"""The values required to configure the destination."""

@@ -12,7 +12,6 @@ class SourceFaunaCollectionDeletionModeEnabledDeletionMode(str, Enum):
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class SourceFaunaCollectionDeletionModeEnabled:
     r"""<b>This only applies to incremental syncs.</b> <br>
@@ -31,7 +30,6 @@ class SourceFaunaCollectionDeletionModeDisabledDeletionMode(str, Enum):
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class SourceFaunaCollectionDeletionModeDisabled:
     r"""<b>This only applies to incremental syncs.</b> <br>
@@ -44,14 +42,12 @@ class SourceFaunaCollectionDeletionModeDisabled:
 
 
 
-
 @dataclasses.dataclass
 class SourceFaunaCollectionDeletionMode:
     pass
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class SourceFaunaCollection:
     r"""Settings for the Fauna Collection."""
@@ -74,7 +70,6 @@ class SourceFaunaFauna(str, Enum):
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class SourceFauna:
     r"""The values required to configure the source."""

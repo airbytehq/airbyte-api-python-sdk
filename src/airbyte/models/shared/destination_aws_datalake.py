@@ -13,7 +13,6 @@ class DestinationAwsDatalakeAuthenticationModeIAMUserCredentialsTitle(str, Enum)
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class DestinationAwsDatalakeAuthenticationModeIAMUser:
     r"""Choose How to Authenticate to AWS."""
@@ -32,7 +31,6 @@ class DestinationAwsDatalakeAuthenticationModeIAMRoleCredentialsTitle(str, Enum)
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class DestinationAwsDatalakeAuthenticationModeIAMRole:
     r"""Choose How to Authenticate to AWS."""
@@ -41,7 +39,6 @@ class DestinationAwsDatalakeAuthenticationModeIAMRole:
     CREDENTIALS_TITLE: Final[Optional[DestinationAwsDatalakeAuthenticationModeIAMRoleCredentialsTitle]] = dataclasses.field(default=DestinationAwsDatalakeAuthenticationModeIAMRoleCredentialsTitle.IAM_ROLE, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credentials_title'), 'exclude': lambda f: f is None }})
     r"""Name of the credentials"""
     
-
 
 
 
@@ -64,7 +61,6 @@ class DestinationAwsDatalakeOutputFormatWildcardParquetColumnarStorageFormatType
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class DestinationAwsDatalakeOutputFormatWildcardParquetColumnarStorage:
     r"""Format of the data output."""
@@ -84,7 +80,6 @@ class DestinationAwsDatalakeOutputFormatWildcardJSONLinesNewlineDelimitedJSONFor
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class DestinationAwsDatalakeOutputFormatWildcardJSONLinesNewlineDelimitedJSON:
     r"""Format of the data output."""
@@ -92,7 +87,6 @@ class DestinationAwsDatalakeOutputFormatWildcardJSONLinesNewlineDelimitedJSON:
     r"""The compression algorithm used to compress data."""
     format_type: Optional[DestinationAwsDatalakeOutputFormatWildcardJSONLinesNewlineDelimitedJSONFormatTypeWildcard] = dataclasses.field(default=DestinationAwsDatalakeOutputFormatWildcardJSONLinesNewlineDelimitedJSONFormatTypeWildcard.JSONL, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('format_type'), 'exclude': lambda f: f is None }})
     
-
 
 
 
@@ -141,7 +135,6 @@ class DestinationAwsDatalakeS3BucketRegion(str, Enum):
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class DestinationAwsDatalake:
     r"""The values required to configure the destination."""

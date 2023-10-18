@@ -13,7 +13,6 @@ class SourceGoogleAnalyticsDataAPICredentialsServiceAccountKeyAuthenticationAuth
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class SourceGoogleAnalyticsDataAPICredentialsServiceAccountKeyAuthentication:
     r"""Credentials for the service"""
@@ -28,7 +27,6 @@ class SourceGoogleAnalyticsDataAPICredentialsAuthenticateViaGoogleOauthAuthType(
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class SourceGoogleAnalyticsDataAPICredentialsAuthenticateViaGoogleOauth:
     r"""Credentials for the service"""
@@ -45,7 +43,6 @@ class SourceGoogleAnalyticsDataAPICredentialsAuthenticateViaGoogleOauth:
 
 
 
-
 @dataclasses.dataclass
 class SourceGoogleAnalyticsDataAPICredentials:
     pass
@@ -55,7 +52,6 @@ class SourceGoogleAnalyticsDataAPIGoogleAnalyticsDataAPI(str, Enum):
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class SourceGoogleAnalyticsDataAPI:
     r"""The values required to configure the source."""

@@ -12,7 +12,6 @@ class SourceLinkedinPagesAuthenticationAccessTokenAuthMethod(str, Enum):
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class SourceLinkedinPagesAuthenticationAccessToken:
     access_token: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('access_token') }})
@@ -26,7 +25,6 @@ class SourceLinkedinPagesAuthenticationOAuth20AuthMethod(str, Enum):
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class SourceLinkedinPagesAuthenticationOAuth20:
     client_id: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('client_id') }})
@@ -40,7 +38,6 @@ class SourceLinkedinPagesAuthenticationOAuth20:
 
 
 
-
 @dataclasses.dataclass
 class SourceLinkedinPagesAuthentication:
     pass
@@ -50,7 +47,6 @@ class SourceLinkedinPagesLinkedinPages(str, Enum):
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class SourceLinkedinPages:
     r"""The values required to configure the source."""
