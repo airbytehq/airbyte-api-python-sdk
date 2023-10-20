@@ -4,17 +4,20 @@ from __future__ import annotations
 import dataclasses
 from airbyte import utils
 from dataclasses_json import Undefined, dataclass_json
+from enum import Enum
 from typing import Final, Optional
+
+class SourceDremioDremio(str, Enum):
+    DREMIO = 'dremio'
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class SourceDremio:
     r"""The values required to configure the source."""
     api_key: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('api_key') }})
     r"""API Key that is generated when you authenticate to Dremio API"""
-    SOURCE_TYPE: Final[str] = dataclasses.field(default='dremio', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
+    SOURCE_TYPE: Final[SourceDremioDremio] = dataclasses.field(default=SourceDremioDremio.DREMIO, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     base_url: Optional[str] = dataclasses.field(default='https://app.dremio.cloud', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('base_url'), 'exclude': lambda f: f is None }})
     r"""URL of your Dremio instance"""
     

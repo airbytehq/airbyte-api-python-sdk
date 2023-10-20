@@ -7,7 +7,10 @@ from airbyte import utils
 from dataclasses_json import Undefined, dataclass_json
 from datetime import datetime
 from enum import Enum
-from typing import Final, Optional, Union
+from typing import Final, List, Optional, Union
+
+class SourceS3FileFormatJsonlFiletype(str, Enum):
+    JSONL = 'jsonl'
 
 class SourceS3FileFormatJsonlUnexpectedFieldBehavior(str, Enum):
     r"""How JSON fields outside of explicit_schema (if given) are treated. Check <a href=\\"https://arrow.apache.org/docs/python/generated/pyarrow.json.ParseOptions.html\\" target=\\"_blank\\">PyArrow documentation</a> for details"""
@@ -17,13 +20,12 @@ class SourceS3FileFormatJsonlUnexpectedFieldBehavior(str, Enum):
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class SourceS3FileFormatJsonl:
     r"""This connector uses <a href=\\"https://arrow.apache.org/docs/python/json.html\\" target=\\"_blank\\">PyArrow</a> for JSON Lines (jsonl) file parsing."""
     block_size: Optional[int] = dataclasses.field(default=0, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('block_size'), 'exclude': lambda f: f is None }})
     r"""The chunk size in bytes to process at a time in memory from each file. If your data is particularly wide and failing during schema detection, increasing this should solve it. Beware of raising this too high as you could hit OOM errors."""
-    FILETYPE: Final[Optional[str]] = dataclasses.field(default='jsonl', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('filetype'), 'exclude': lambda f: f is None }})
+    FILETYPE: Final[Optional[SourceS3FileFormatJsonlFiletype]] = dataclasses.field(default=SourceS3FileFormatJsonlFiletype.JSONL, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('filetype'), 'exclude': lambda f: f is None }})
     newlines_in_values: Optional[bool] = dataclasses.field(default=False, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('newlines_in_values'), 'exclude': lambda f: f is None }})
     r"""Whether newline characters are allowed in JSON values. Turning this on may affect performance. Leave blank to default to False."""
     unexpected_field_behavior: Optional[SourceS3FileFormatJsonlUnexpectedFieldBehavior] = dataclasses.field(default=SourceS3FileFormatJsonlUnexpectedFieldBehavior.INFER, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('unexpected_field_behavior'), 'exclude': lambda f: f is None }})
@@ -31,19 +33,23 @@ class SourceS3FileFormatJsonl:
     
 
 
+class SourceS3FileFormatAvroFiletype(str, Enum):
+    AVRO = 'avro'
+
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class SourceS3FileFormatAvro:
     r"""This connector utilises <a href=\\"https://fastavro.readthedocs.io/en/latest/\\" target=\\"_blank\\">fastavro</a> for Avro parsing."""
-    FILETYPE: Final[Optional[str]] = dataclasses.field(default='avro', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('filetype'), 'exclude': lambda f: f is None }})
+    FILETYPE: Final[Optional[SourceS3FileFormatAvroFiletype]] = dataclasses.field(default=SourceS3FileFormatAvroFiletype.AVRO, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('filetype'), 'exclude': lambda f: f is None }})
     
 
 
+class SourceS3FileFormatParquetFiletype(str, Enum):
+    PARQUET = 'parquet'
+
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class SourceS3FileFormatParquet:
     r"""This connector utilises <a href=\\"https://arrow.apache.org/docs/python/generated/pyarrow.parquet.ParquetFile.html\\" target=\\"_blank\\">PyArrow (Apache Arrow)</a> for Parquet parsing."""
@@ -51,15 +57,17 @@ class SourceS3FileFormatParquet:
     r"""Maximum number of records per batch read from the input files. Batches may be smaller if there aren’t enough rows in the file. This option can help avoid out-of-memory errors if your data is particularly wide."""
     buffer_size: Optional[int] = dataclasses.field(default=2, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('buffer_size'), 'exclude': lambda f: f is None }})
     r"""Perform read buffering when deserializing individual column chunks. By default every group column will be loaded fully to memory. This option can help avoid out-of-memory errors if your data is particularly wide."""
-    columns: Optional[list[str]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('columns'), 'exclude': lambda f: f is None }})
+    columns: Optional[List[str]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('columns'), 'exclude': lambda f: f is None }})
     r"""If you only want to sync a subset of the columns from the file(s), add the columns you want here as a comma-delimited list. Leave it empty to sync all columns."""
-    FILETYPE: Final[Optional[str]] = dataclasses.field(default='parquet', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('filetype'), 'exclude': lambda f: f is None }})
+    FILETYPE: Final[Optional[SourceS3FileFormatParquetFiletype]] = dataclasses.field(default=SourceS3FileFormatParquetFiletype.PARQUET, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('filetype'), 'exclude': lambda f: f is None }})
     
 
 
+class SourceS3FileFormatCSVFiletype(str, Enum):
+    CSV = 'csv'
+
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class SourceS3FileFormatCSV:
     r"""This connector utilises <a href=\\"https: // arrow.apache.org/docs/python/generated/pyarrow.csv.open_csv.html\\" target=\\"_blank\\">PyArrow (Apache Arrow)</a> for CSV parsing."""
@@ -77,7 +85,7 @@ class SourceS3FileFormatCSV:
     r"""The character encoding of the CSV data. Leave blank to default to <strong>UTF8</strong>. See <a href=\\"https://docs.python.org/3/library/codecs.html#standard-encodings\\" target=\\"_blank\\">list of python encodings</a> for allowable options."""
     escape_char: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('escape_char'), 'exclude': lambda f: f is None }})
     r"""The character used for escaping special characters. To disallow escaping, leave this field blank."""
-    FILETYPE: Final[Optional[str]] = dataclasses.field(default='csv', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('filetype'), 'exclude': lambda f: f is None }})
+    FILETYPE: Final[Optional[SourceS3FileFormatCSVFiletype]] = dataclasses.field(default=SourceS3FileFormatCSVFiletype.CSV, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('filetype'), 'exclude': lambda f: f is None }})
     infer_datatypes: Optional[bool] = dataclasses.field(default=True, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('infer_datatypes'), 'exclude': lambda f: f is None }})
     r"""Configures whether a schema for the source should be inferred from the current data or not. If set to false and a custom schema is set, then the manually enforced schema is used. If a schema is not manually set, and this is set to false, then all fields will be read as strings"""
     newlines_in_values: Optional[bool] = dataclasses.field(default=False, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('newlines_in_values'), 'exclude': lambda f: f is None }})
@@ -88,14 +96,12 @@ class SourceS3FileFormatCSV:
 
 
 
-
 @dataclasses.dataclass
 class SourceS3FileFormat:
     pass
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class SourceS3S3AmazonWebServices:
     r"""Deprecated and will be removed soon. Please do not use this field anymore and use bucket, aws_access_key_id, aws_secret_access_key and endpoint instead. Use this to load files from S3 or S3-compatible services"""
@@ -114,59 +120,74 @@ class SourceS3S3AmazonWebServices:
     
 
 
+class SourceS3S3(str, Enum):
+    S3 = 's3'
+
+class SourceS3FileBasedStreamConfigFormatParquetFormatFiletype(str, Enum):
+    PARQUET = 'parquet'
+
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class SourceS3FileBasedStreamConfigFormatParquetFormat:
     r"""The configuration options that are used to alter how to read incoming files that deviate from the standard formatting."""
     decimal_as_float: Optional[bool] = dataclasses.field(default=False, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('decimal_as_float'), 'exclude': lambda f: f is None }})
     r"""Whether to convert decimal fields to floats. There is a loss of precision when converting decimals to floats, so this is not recommended."""
-    FILETYPE: Final[Optional[str]] = dataclasses.field(default='parquet', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('filetype'), 'exclude': lambda f: f is None }})
+    FILETYPE: Final[Optional[SourceS3FileBasedStreamConfigFormatParquetFormatFiletype]] = dataclasses.field(default=SourceS3FileBasedStreamConfigFormatParquetFormatFiletype.PARQUET, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('filetype'), 'exclude': lambda f: f is None }})
     
 
 
+class SourceS3FileBasedStreamConfigFormatJsonlFormatFiletype(str, Enum):
+    JSONL = 'jsonl'
+
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class SourceS3FileBasedStreamConfigFormatJsonlFormat:
     r"""The configuration options that are used to alter how to read incoming files that deviate from the standard formatting."""
-    FILETYPE: Final[Optional[str]] = dataclasses.field(default='jsonl', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('filetype'), 'exclude': lambda f: f is None }})
+    FILETYPE: Final[Optional[SourceS3FileBasedStreamConfigFormatJsonlFormatFiletype]] = dataclasses.field(default=SourceS3FileBasedStreamConfigFormatJsonlFormatFiletype.JSONL, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('filetype'), 'exclude': lambda f: f is None }})
     
 
 
+class SourceS3FileBasedStreamConfigFormatCSVFormatFiletype(str, Enum):
+    CSV = 'csv'
+
+class SourceS3FileBasedStreamConfigFormatCSVFormatCSVHeaderDefinitionUserProvidedHeaderDefinitionType(str, Enum):
+    USER_PROVIDED = 'User Provided'
+
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class SourceS3FileBasedStreamConfigFormatCSVFormatCSVHeaderDefinitionUserProvided:
     r"""How headers will be defined. `User Provided` assumes the CSV does not have a header row and uses the headers provided and `Autogenerated` assumes the CSV does not have a header row and the CDK will generate headers using for `f{i}` where `i` is the index starting from 0. Else, the default behavior is to use the header from the CSV file. If a user wants to autogenerate or provide column names for a CSV having headers, they can skip rows."""
-    column_names: list[str] = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('column_names') }})
+    column_names: List[str] = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('column_names') }})
     r"""The column names that will be used while emitting the CSV records"""
-    HEADER_DEFINITION_TYPE: Final[Optional[str]] = dataclasses.field(default='User Provided', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('header_definition_type'), 'exclude': lambda f: f is None }})
+    HEADER_DEFINITION_TYPE: Final[Optional[SourceS3FileBasedStreamConfigFormatCSVFormatCSVHeaderDefinitionUserProvidedHeaderDefinitionType]] = dataclasses.field(default=SourceS3FileBasedStreamConfigFormatCSVFormatCSVHeaderDefinitionUserProvidedHeaderDefinitionType.USER_PROVIDED, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('header_definition_type'), 'exclude': lambda f: f is None }})
     
 
 
+class SourceS3FileBasedStreamConfigFormatCSVFormatCSVHeaderDefinitionAutogeneratedHeaderDefinitionType(str, Enum):
+    AUTOGENERATED = 'Autogenerated'
+
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class SourceS3FileBasedStreamConfigFormatCSVFormatCSVHeaderDefinitionAutogenerated:
     r"""How headers will be defined. `User Provided` assumes the CSV does not have a header row and uses the headers provided and `Autogenerated` assumes the CSV does not have a header row and the CDK will generate headers using for `f{i}` where `i` is the index starting from 0. Else, the default behavior is to use the header from the CSV file. If a user wants to autogenerate or provide column names for a CSV having headers, they can skip rows."""
-    HEADER_DEFINITION_TYPE: Final[Optional[str]] = dataclasses.field(default='Autogenerated', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('header_definition_type'), 'exclude': lambda f: f is None }})
+    HEADER_DEFINITION_TYPE: Final[Optional[SourceS3FileBasedStreamConfigFormatCSVFormatCSVHeaderDefinitionAutogeneratedHeaderDefinitionType]] = dataclasses.field(default=SourceS3FileBasedStreamConfigFormatCSVFormatCSVHeaderDefinitionAutogeneratedHeaderDefinitionType.AUTOGENERATED, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('header_definition_type'), 'exclude': lambda f: f is None }})
     
 
+
+class SourceS3FileBasedStreamConfigFormatCSVFormatCSVHeaderDefinitionFromCSVHeaderDefinitionType(str, Enum):
+    FROM_CSV = 'From CSV'
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class SourceS3FileBasedStreamConfigFormatCSVFormatCSVHeaderDefinitionFromCSV:
     r"""How headers will be defined. `User Provided` assumes the CSV does not have a header row and uses the headers provided and `Autogenerated` assumes the CSV does not have a header row and the CDK will generate headers using for `f{i}` where `i` is the index starting from 0. Else, the default behavior is to use the header from the CSV file. If a user wants to autogenerate or provide column names for a CSV having headers, they can skip rows."""
-    HEADER_DEFINITION_TYPE: Final[Optional[str]] = dataclasses.field(default='From CSV', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('header_definition_type'), 'exclude': lambda f: f is None }})
+    HEADER_DEFINITION_TYPE: Final[Optional[SourceS3FileBasedStreamConfigFormatCSVFormatCSVHeaderDefinitionFromCSVHeaderDefinitionType]] = dataclasses.field(default=SourceS3FileBasedStreamConfigFormatCSVFormatCSVHeaderDefinitionFromCSVHeaderDefinitionType.FROM_CSV, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('header_definition_type'), 'exclude': lambda f: f is None }})
     
-
 
 
 
@@ -181,7 +202,6 @@ class SourceS3FileBasedStreamConfigFormatCSVFormatInferenceType(str, Enum):
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class SourceS3FileBasedStreamConfigFormatCSVFormat:
     r"""The configuration options that are used to alter how to read incoming files that deviate from the standard formatting."""
@@ -193,14 +213,14 @@ class SourceS3FileBasedStreamConfigFormatCSVFormat:
     r"""The character encoding of the CSV data. Leave blank to default to <strong>UTF8</strong>. See <a href=\\"https://docs.python.org/3/library/codecs.html#standard-encodings\\" target=\\"_blank\\">list of python encodings</a> for allowable options."""
     escape_char: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('escape_char'), 'exclude': lambda f: f is None }})
     r"""The character used for escaping special characters. To disallow escaping, leave this field blank."""
-    false_values: Optional[list[str]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('false_values'), 'exclude': lambda f: f is None }})
+    false_values: Optional[List[str]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('false_values'), 'exclude': lambda f: f is None }})
     r"""A set of case-sensitive strings that should be interpreted as false values."""
-    FILETYPE: Final[Optional[str]] = dataclasses.field(default='csv', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('filetype'), 'exclude': lambda f: f is None }})
+    FILETYPE: Final[Optional[SourceS3FileBasedStreamConfigFormatCSVFormatFiletype]] = dataclasses.field(default=SourceS3FileBasedStreamConfigFormatCSVFormatFiletype.CSV, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('filetype'), 'exclude': lambda f: f is None }})
     header_definition: Optional[Union[SourceS3FileBasedStreamConfigFormatCSVFormatCSVHeaderDefinitionFromCSV, SourceS3FileBasedStreamConfigFormatCSVFormatCSVHeaderDefinitionAutogenerated, SourceS3FileBasedStreamConfigFormatCSVFormatCSVHeaderDefinitionUserProvided]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('header_definition'), 'exclude': lambda f: f is None }})
     r"""How headers will be defined. `User Provided` assumes the CSV does not have a header row and uses the headers provided and `Autogenerated` assumes the CSV does not have a header row and the CDK will generate headers using for `f{i}` where `i` is the index starting from 0. Else, the default behavior is to use the header from the CSV file. If a user wants to autogenerate or provide column names for a CSV having headers, they can skip rows."""
     inference_type: Optional[SourceS3FileBasedStreamConfigFormatCSVFormatInferenceType] = dataclasses.field(default=SourceS3FileBasedStreamConfigFormatCSVFormatInferenceType.NONE, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('inference_type'), 'exclude': lambda f: f is None }})
     r"""How to infer the types of the columns. If none, inference default to strings."""
-    null_values: Optional[list[str]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('null_values'), 'exclude': lambda f: f is None }})
+    null_values: Optional[List[str]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('null_values'), 'exclude': lambda f: f is None }})
     r"""A set of case-sensitive strings that should be interpreted as null values. For example, if the value 'NA' should be interpreted as null, enter 'NA' in this field."""
     quote_char: Optional[str] = dataclasses.field(default='"', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('quote_char'), 'exclude': lambda f: f is None }})
     r"""The character used for quoting CSV values. To disallow quoting, make this field blank."""
@@ -210,22 +230,23 @@ class SourceS3FileBasedStreamConfigFormatCSVFormat:
     r"""The number of rows to skip before the header row. For example, if the header row is on the 3rd row, enter 2 in this field."""
     strings_can_be_null: Optional[bool] = dataclasses.field(default=True, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('strings_can_be_null'), 'exclude': lambda f: f is None }})
     r"""Whether strings can be interpreted as null values. If true, strings that match the null_values set will be interpreted as null. If false, strings that match the null_values set will be interpreted as the string itself."""
-    true_values: Optional[list[str]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('true_values'), 'exclude': lambda f: f is None }})
+    true_values: Optional[List[str]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('true_values'), 'exclude': lambda f: f is None }})
     r"""A set of case-sensitive strings that should be interpreted as true values."""
     
 
 
+class SourceS3FileBasedStreamConfigFormatAvroFormatFiletype(str, Enum):
+    AVRO = 'avro'
+
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class SourceS3FileBasedStreamConfigFormatAvroFormat:
     r"""The configuration options that are used to alter how to read incoming files that deviate from the standard formatting."""
     double_as_string: Optional[bool] = dataclasses.field(default=False, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('double_as_string'), 'exclude': lambda f: f is None }})
     r"""Whether to convert double fields to strings. This is recommended if you have decimal numbers with a high degree of precision because there can be a loss precision when handling floating point numbers."""
-    FILETYPE: Final[Optional[str]] = dataclasses.field(default='avro', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('filetype'), 'exclude': lambda f: f is None }})
+    FILETYPE: Final[Optional[SourceS3FileBasedStreamConfigFormatAvroFormatFiletype]] = dataclasses.field(default=SourceS3FileBasedStreamConfigFormatAvroFormatFiletype.AVRO, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('filetype'), 'exclude': lambda f: f is None }})
     
-
 
 
 
@@ -241,7 +262,6 @@ class SourceS3FileBasedStreamConfigValidationPolicy(str, Enum):
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class SourceS3FileBasedStreamConfig:
     file_type: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('file_type') }})
@@ -252,7 +272,7 @@ class SourceS3FileBasedStreamConfig:
     r"""When the state history of the file store is full, syncs will only read files that were last modified in the provided day range."""
     format: Optional[Union[SourceS3FileBasedStreamConfigFormatAvroFormat, SourceS3FileBasedStreamConfigFormatCSVFormat, SourceS3FileBasedStreamConfigFormatJsonlFormat, SourceS3FileBasedStreamConfigFormatParquetFormat]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('format'), 'exclude': lambda f: f is None }})
     r"""The configuration options that are used to alter how to read incoming files that deviate from the standard formatting."""
-    globs: Optional[list[str]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('globs'), 'exclude': lambda f: f is None }})
+    globs: Optional[List[str]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('globs'), 'exclude': lambda f: f is None }})
     r"""The pattern used to specify which files should be selected from the file system. For more information on glob pattern matching look <a href=\\"https://en.wikipedia.org/wiki/Glob_(programming)\\">here</a>."""
     input_schema: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('input_schema'), 'exclude': lambda f: f is None }})
     r"""The schema that will be used to validate records extracted from the file. This will override the stream schema that is auto-detected from incoming files."""
@@ -269,7 +289,6 @@ class SourceS3FileBasedStreamConfig:
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class SourceS3:
     r"""NOTE: When this Spec is changed, legacy_config_transformer.py must also be modified to uptake the changes
@@ -277,9 +296,9 @@ class SourceS3:
     """
     bucket: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('bucket') }})
     r"""Name of the S3 bucket where the file(s) exist."""
-    streams: list[SourceS3FileBasedStreamConfig] = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('streams') }})
+    streams: List[SourceS3FileBasedStreamConfig] = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('streams') }})
     r"""Each instance of this configuration defines a <a href=\\"https://docs.airbyte.com/cloud/core-concepts#stream\\">stream</a>. Use this to define which files belong in the stream, their format, and how they should be parsed and validated. When sending data to warehouse destination such as Snowflake or BigQuery, each stream is a separate table."""
-    SOURCE_TYPE: Final[str] = dataclasses.field(default='s3', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
+    SOURCE_TYPE: Final[SourceS3S3] = dataclasses.field(default=SourceS3S3.S3, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     aws_access_key_id: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('aws_access_key_id'), 'exclude': lambda f: f is None }})
     r"""In order to access private Buckets stored on AWS S3, this connector requires credentials with the proper permissions. If accessing publicly available data, this field is not necessary."""
     aws_secret_access_key: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('aws_secret_access_key'), 'exclude': lambda f: f is None }})

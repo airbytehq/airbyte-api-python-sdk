@@ -8,13 +8,11 @@ from ..shared import sourceresponse as shared_sourceresponse
 from typing import Optional
 
 
-
 @dataclasses.dataclass
 class PutSourceRequest:
     source_id: str = dataclasses.field(metadata={'path_param': { 'field_name': 'sourceId', 'style': 'simple', 'explode': False }})
     source_put_request: Optional[shared_sourceputrequest.SourcePutRequest] = dataclasses.field(default=None, metadata={'request': { 'media_type': 'application/json' }})
     
-
 
 
 

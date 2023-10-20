@@ -6,11 +6,14 @@ import dateutil.parser
 from airbyte import utils
 from dataclasses_json import Undefined, dataclass_json
 from datetime import datetime
-from typing import Final, Optional
+from enum import Enum
+from typing import Final, List, Optional
+
+class SourceJiraJira(str, Enum):
+    JIRA = 'jira'
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class SourceJira:
     r"""The values required to configure the source."""
@@ -20,12 +23,12 @@ class SourceJira:
     r"""The Domain for your Jira account, e.g. airbyteio.atlassian.net, airbyteio.jira.com, jira.your-domain.com"""
     email: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('email') }})
     r"""The user email for your Jira account which you used to generate the API token. This field is used for Authorization to your account by BasicAuth."""
-    SOURCE_TYPE: Final[str] = dataclasses.field(default='jira', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
+    SOURCE_TYPE: Final[SourceJiraJira] = dataclasses.field(default=SourceJiraJira.JIRA, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     enable_experimental_streams: Optional[bool] = dataclasses.field(default=False, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('enable_experimental_streams'), 'exclude': lambda f: f is None }})
     r"""Allow the use of experimental streams which rely on undocumented Jira API endpoints. See https://docs.airbyte.com/integrations/sources/jira#experimental-tables for more info."""
     expand_issue_changelog: Optional[bool] = dataclasses.field(default=False, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('expand_issue_changelog'), 'exclude': lambda f: f is None }})
     r"""Expand the changelog when replicating issues."""
-    projects: Optional[list[str]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('projects'), 'exclude': lambda f: f is None }})
+    projects: Optional[List[str]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('projects'), 'exclude': lambda f: f is None }})
     r"""List of Jira project keys to replicate data for, or leave it empty if you want to replicate data for all projects."""
     render_fields: Optional[bool] = dataclasses.field(default=False, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('render_fields'), 'exclude': lambda f: f is None }})
     r"""Render issue fields in HTML format in addition to Jira JSON-like format."""

@@ -8,13 +8,11 @@ from ..shared import connectionresponse as shared_connectionresponse
 from typing import Optional
 
 
-
 @dataclasses.dataclass
 class PatchConnectionRequest:
     connection_id: str = dataclasses.field(metadata={'path_param': { 'field_name': 'connectionId', 'style': 'simple', 'explode': False }})
     connection_patch_request: shared_connectionpatchrequest.ConnectionPatchRequest = dataclasses.field(metadata={'request': { 'media_type': 'application/json' }})
     
-
 
 
 

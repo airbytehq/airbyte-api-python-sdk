@@ -4,7 +4,6 @@ from __future__ import annotations
 import dataclasses
 
 
-
 @dataclasses.dataclass
 class OAuthInputConfiguration:
     r"""Arbitrary vars to pass for OAuth depending on what the source/destination spec requires."""

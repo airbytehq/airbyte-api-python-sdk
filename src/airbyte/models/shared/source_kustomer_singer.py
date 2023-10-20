@@ -4,11 +4,14 @@ from __future__ import annotations
 import dataclasses
 from airbyte import utils
 from dataclasses_json import Undefined, dataclass_json
+from enum import Enum
 from typing import Final
+
+class SourceKustomerSingerKustomerSinger(str, Enum):
+    KUSTOMER_SINGER = 'kustomer-singer'
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class SourceKustomerSinger:
     r"""The values required to configure the source."""
@@ -16,6 +19,6 @@ class SourceKustomerSinger:
     r"""Kustomer API Token. See the <a href=\\"https://developer.kustomer.com/kustomer-api-docs/reference/authentication\\">docs</a> on how to obtain this"""
     start_date: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('start_date') }})
     r"""The date from which you'd like to replicate the data"""
-    SOURCE_TYPE: Final[str] = dataclasses.field(default='kustomer-singer', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
+    SOURCE_TYPE: Final[SourceKustomerSingerKustomerSinger] = dataclasses.field(default=SourceKustomerSingerKustomerSinger.KUSTOMER_SINGER, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     
 

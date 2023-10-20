@@ -14,9 +14,11 @@ class SourceSftpBulkFileType(str, Enum):
     CSV = 'csv'
     JSON = 'json'
 
+class SourceSftpBulkSftpBulk(str, Enum):
+    SFTP_BULK = 'sftp-bulk'
+
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class SourceSftpBulk:
     r"""The values required to configure the source."""
@@ -28,7 +30,7 @@ class SourceSftpBulk:
     r"""The name of the stream or table you want to create"""
     username: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('username') }})
     r"""The server user"""
-    SOURCE_TYPE: Final[str] = dataclasses.field(default='sftp-bulk', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
+    SOURCE_TYPE: Final[SourceSftpBulkSftpBulk] = dataclasses.field(default=SourceSftpBulkSftpBulk.SFTP_BULK, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     file_most_recent: Optional[bool] = dataclasses.field(default=False, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('file_most_recent'), 'exclude': lambda f: f is None }})
     r"""Sync only the most recent file for the configured folder path and file pattern"""
     file_pattern: Optional[str] = dataclasses.field(default='', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('file_pattern'), 'exclude': lambda f: f is None }})

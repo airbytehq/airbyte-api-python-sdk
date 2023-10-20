@@ -2,14 +2,21 @@
 
 from __future__ import annotations
 import dataclasses
+import dateutil.parser
 from airbyte import utils
 from dataclasses_json import Undefined, dataclass_json
 from datetime import date
+from enum import Enum
 from typing import Final, Optional
+
+class SourceBingAdsAuthMethod(str, Enum):
+    OAUTH2_0 = 'oauth2.0'
+
+class SourceBingAdsBingAds(str, Enum):
+    BING_ADS = 'bing-ads'
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class SourceBingAds:
     r"""The values required to configure the source."""
@@ -19,8 +26,8 @@ class SourceBingAds:
     r"""Developer token associated with user. See more info <a href=\\"https://docs.microsoft.com/en-us/advertising/guides/get-started?view=bingads-13#get-developer-token\\"> in the docs</a>."""
     refresh_token: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('refresh_token') }})
     r"""Refresh Token to renew the expired Access Token."""
-    SOURCE_TYPE: Final[str] = dataclasses.field(default='bing-ads', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
-    AUTH_METHOD: Final[Optional[str]] = dataclasses.field(default='oauth2.0', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_method'), 'exclude': lambda f: f is None }})
+    SOURCE_TYPE: Final[SourceBingAdsBingAds] = dataclasses.field(default=SourceBingAdsBingAds.BING_ADS, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
+    AUTH_METHOD: Final[Optional[SourceBingAdsAuthMethod]] = dataclasses.field(default=SourceBingAdsAuthMethod.OAUTH2_0, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_method'), 'exclude': lambda f: f is None }})
     client_secret: Optional[str] = dataclasses.field(default='', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('client_secret'), 'exclude': lambda f: f is None }})
     r"""The Client Secret of your Microsoft Advertising developer application."""
     lookback_window: Optional[int] = dataclasses.field(default=0, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('lookback_window'), 'exclude': lambda f: f is None }})

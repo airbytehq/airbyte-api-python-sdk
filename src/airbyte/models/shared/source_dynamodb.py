@@ -36,9 +36,11 @@ class SourceDynamodbDynamodbRegion(str, Enum):
     US_GOV_EAST_1 = 'us-gov-east-1'
     US_GOV_WEST_1 = 'us-gov-west-1'
 
+class SourceDynamodbDynamodb(str, Enum):
+    DYNAMODB = 'dynamodb'
+
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class SourceDynamodb:
     r"""The values required to configure the source."""
@@ -46,7 +48,7 @@ class SourceDynamodb:
     r"""The access key id to access Dynamodb. Airbyte requires read permissions to the database"""
     secret_access_key: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('secret_access_key') }})
     r"""The corresponding secret to the access key id."""
-    SOURCE_TYPE: Final[str] = dataclasses.field(default='dynamodb', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
+    SOURCE_TYPE: Final[SourceDynamodbDynamodb] = dataclasses.field(default=SourceDynamodbDynamodb.DYNAMODB, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     endpoint: Optional[str] = dataclasses.field(default='', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('endpoint'), 'exclude': lambda f: f is None }})
     r"""the URL of the Dynamodb database"""
     region: Optional[SourceDynamodbDynamodbRegion] = dataclasses.field(default=SourceDynamodbDynamodbRegion.UNKNOWN, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('region'), 'exclude': lambda f: f is None }})

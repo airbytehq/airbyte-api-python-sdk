@@ -6,11 +6,17 @@ import dateutil.parser
 from airbyte import utils
 from dataclasses_json import Undefined, dataclass_json
 from datetime import datetime
+from enum import Enum
 from typing import Final, Optional
+
+class SourceStravaAuthType(str, Enum):
+    CLIENT = 'Client'
+
+class SourceStravaStrava(str, Enum):
+    STRAVA = 'strava'
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class SourceStrava:
     r"""The values required to configure the source."""
@@ -24,7 +30,7 @@ class SourceStrava:
     r"""The Refresh Token with the activity: read_all permissions."""
     start_date: datetime = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('start_date'), 'encoder': utils.datetimeisoformat(False), 'decoder': dateutil.parser.isoparse }})
     r"""UTC date and time. Any data before this date will not be replicated."""
-    SOURCE_TYPE: Final[str] = dataclasses.field(default='strava', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
-    AUTH_TYPE: Final[Optional[str]] = dataclasses.field(default='Client', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_type'), 'exclude': lambda f: f is None }})
+    SOURCE_TYPE: Final[SourceStravaStrava] = dataclasses.field(default=SourceStravaStrava.STRAVA, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
+    AUTH_TYPE: Final[Optional[SourceStravaAuthType]] = dataclasses.field(default=SourceStravaAuthType.CLIENT, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_type'), 'exclude': lambda f: f is None }})
     
 

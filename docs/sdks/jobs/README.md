@@ -35,6 +35,7 @@ res = s.jobs.cancel_job(req)
 
 if res.job_response is not None:
     # handle response
+    pass
 ```
 
 ### Parameters
@@ -69,7 +70,7 @@ s = airbyte.Airbyte(
 )
 
 req = shared.JobCreateRequest(
-    connection_id='Seychelles',
+    connection_id='deploy',
     job_type=shared.JobTypeEnum.RESET,
 )
 
@@ -77,6 +78,7 @@ res = s.jobs.create_job(req)
 
 if res.job_response is not None:
     # handle response
+    pass
 ```
 
 ### Parameters
@@ -118,6 +120,7 @@ res = s.jobs.get_job(req)
 
 if res.job_response is not None:
     # handle response
+    pass
 ```
 
 ### Parameters
@@ -153,18 +156,8 @@ s = airbyte.Airbyte(
 )
 
 req = operations.ListJobsRequest(
-    connection_id='Account Brand District',
-    created_at_end=dateutil.parser.isoparse('2023-07-31T08:36:30.681Z'),
-    created_at_start=dateutil.parser.isoparse('2023-09-12T08:02:55.258Z'),
-    job_type=shared.JobTypeEnum.RESET,
-    limit=15461,
-    offset=82575,
-    order_by='reserved Chrysler deposit',
-    status=shared.JobStatusEnum.SUCCEEDED,
-    updated_at_end=dateutil.parser.isoparse('2021-02-15T00:19:53.913Z'),
-    updated_at_start=dateutil.parser.isoparse('2022-01-10T07:46:53.710Z'),
     workspace_ids=[
-        'bc4dea63-2e54-40b9-b441-91e8f146d646',
+        'c60f91a7-de80-41f6-b5d3-71c05bc4dea6',
     ],
 )
 
@@ -172,6 +165,7 @@ res = s.jobs.list_jobs(req)
 
 if res.jobs_response is not None:
     # handle response
+    pass
 ```
 
 ### Parameters

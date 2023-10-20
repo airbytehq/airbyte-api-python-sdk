@@ -12,9 +12,11 @@ class SourceAmplitudeDataRegion(str, Enum):
     STANDARD_SERVER = 'Standard Server'
     EU_RESIDENCY_SERVER = 'EU Residency Server'
 
+class SourceAmplitudeAmplitude(str, Enum):
+    AMPLITUDE = 'amplitude'
+
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class SourceAmplitude:
     r"""The values required to configure the source."""
@@ -24,7 +26,7 @@ class SourceAmplitude:
     r"""Amplitude Secret Key. See the <a href=\\"https://docs.airbyte.com/integrations/sources/amplitude#setup-guide\\">setup guide</a> for more information on how to obtain this key."""
     start_date: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('start_date') }})
     r"""UTC date and time in the format 2021-01-25T00:00:00Z. Any data before this date will not be replicated."""
-    SOURCE_TYPE: Final[str] = dataclasses.field(default='amplitude', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
+    SOURCE_TYPE: Final[SourceAmplitudeAmplitude] = dataclasses.field(default=SourceAmplitudeAmplitude.AMPLITUDE, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     data_region: Optional[SourceAmplitudeDataRegion] = dataclasses.field(default=SourceAmplitudeDataRegion.STANDARD_SERVER, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('data_region'), 'exclude': lambda f: f is None }})
     r"""Amplitude data region server"""
     request_time_range: Optional[int] = dataclasses.field(default=24, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('request_time_range'), 'exclude': lambda f: f is None }})

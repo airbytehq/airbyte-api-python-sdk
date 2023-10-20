@@ -16,9 +16,11 @@ class SourceChartmogulInterval(str, Enum):
     MONTH = 'month'
     QUARTER = 'quarter'
 
+class SourceChartmogulChartmogul(str, Enum):
+    CHARTMOGUL = 'chartmogul'
+
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class SourceChartmogul:
     r"""The values required to configure the source."""
@@ -26,7 +28,7 @@ class SourceChartmogul:
     r"""Your Chartmogul API key. See <a href=\\"https://help.chartmogul.com/hc/en-us/articles/4407796325906-Creating-and-Managing-API-keys#creating-an-api-key\\"> the docs </a> for info on how to obtain this."""
     start_date: datetime = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('start_date'), 'encoder': utils.datetimeisoformat(False), 'decoder': dateutil.parser.isoparse }})
     r"""UTC date and time in the format 2017-01-25T00:00:00Z. When feasible, any data before this date will not be replicated."""
-    SOURCE_TYPE: Final[str] = dataclasses.field(default='chartmogul', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
+    SOURCE_TYPE: Final[SourceChartmogulChartmogul] = dataclasses.field(default=SourceChartmogulChartmogul.CHARTMOGUL, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     interval: Optional[SourceChartmogulInterval] = dataclasses.field(default=SourceChartmogulInterval.MONTH, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('interval'), 'exclude': lambda f: f is None }})
     r"""Some APIs such as <a href=\\"https://dev.chartmogul.com/reference/endpoint-overview-metrics-api\\">Metrics</a> require intervals to cluster data."""
     

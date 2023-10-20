@@ -6,11 +6,14 @@ import dateutil.parser
 from airbyte import utils
 from dataclasses_json import Undefined, dataclass_json
 from datetime import datetime
+from enum import Enum
 from typing import Final, Optional
+
+class SourceFreshcallerFreshcaller(str, Enum):
+    FRESHCALLER = 'freshcaller'
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class SourceFreshcaller:
     r"""The values required to configure the source."""
@@ -20,7 +23,7 @@ class SourceFreshcaller:
     r"""Used to construct Base URL for the Freshcaller APIs"""
     start_date: datetime = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('start_date'), 'encoder': utils.datetimeisoformat(False), 'decoder': dateutil.parser.isoparse }})
     r"""UTC date and time. Any data created after this date will be replicated."""
-    SOURCE_TYPE: Final[str] = dataclasses.field(default='freshcaller', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
+    SOURCE_TYPE: Final[SourceFreshcallerFreshcaller] = dataclasses.field(default=SourceFreshcallerFreshcaller.FRESHCALLER, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     requests_per_minute: Optional[int] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('requests_per_minute'), 'exclude': lambda f: f is None }})
     r"""The number of requests per minute that this source allowed to use. There is a rate limit of 50 requests per minute per app per account."""
     sync_lag_minutes: Optional[int] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sync_lag_minutes'), 'exclude': lambda f: f is None }})

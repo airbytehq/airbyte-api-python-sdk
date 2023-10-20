@@ -6,22 +6,27 @@ import dateutil.parser
 from airbyte import utils
 from dataclasses_json import Undefined, dataclass_json
 from datetime import datetime
+from enum import Enum
 from typing import Final, Optional, Union
+
+class SourceGitlabAuthorizationMethodPrivateTokenAuthType(str, Enum):
+    ACCESS_TOKEN = 'access_token'
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class SourceGitlabAuthorizationMethodPrivateToken:
     access_token: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('access_token') }})
     r"""Log into your Gitlab account and then generate a personal Access Token."""
-    AUTH_TYPE: Final[Optional[str]] = dataclasses.field(default='access_token', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_type'), 'exclude': lambda f: f is None }})
+    AUTH_TYPE: Final[Optional[SourceGitlabAuthorizationMethodPrivateTokenAuthType]] = dataclasses.field(default=SourceGitlabAuthorizationMethodPrivateTokenAuthType.ACCESS_TOKEN, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_type'), 'exclude': lambda f: f is None }})
     
 
 
+class SourceGitlabAuthorizationMethodOAuth20AuthType(str, Enum):
+    OAUTH2_0 = 'oauth2.0'
+
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class SourceGitlabAuthorizationMethodOAuth20:
     access_token: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('access_token') }})
@@ -34,9 +39,8 @@ class SourceGitlabAuthorizationMethodOAuth20:
     r"""The key to refresh the expired access_token."""
     token_expiry_date: datetime = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('token_expiry_date'), 'encoder': utils.datetimeisoformat(False), 'decoder': dateutil.parser.isoparse }})
     r"""The date-time when the access token should be refreshed."""
-    AUTH_TYPE: Final[Optional[str]] = dataclasses.field(default='oauth2.0', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_type'), 'exclude': lambda f: f is None }})
+    AUTH_TYPE: Final[Optional[SourceGitlabAuthorizationMethodOAuth20AuthType]] = dataclasses.field(default=SourceGitlabAuthorizationMethodOAuth20AuthType.OAUTH2_0, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_type'), 'exclude': lambda f: f is None }})
     
-
 
 
 
@@ -44,16 +48,18 @@ class SourceGitlabAuthorizationMethodOAuth20:
 class SourceGitlabAuthorizationMethod:
     pass
 
+class SourceGitlabGitlab(str, Enum):
+    GITLAB = 'gitlab'
+
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class SourceGitlab:
     r"""The values required to configure the source."""
     credentials: Union[SourceGitlabAuthorizationMethodOAuth20, SourceGitlabAuthorizationMethodPrivateToken] = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credentials') }})
     start_date: datetime = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('start_date'), 'encoder': utils.datetimeisoformat(False), 'decoder': dateutil.parser.isoparse }})
     r"""The date from which you'd like to replicate data for GitLab API, in the format YYYY-MM-DDT00:00:00Z. All data generated after this date will be replicated."""
-    SOURCE_TYPE: Final[str] = dataclasses.field(default='gitlab', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
+    SOURCE_TYPE: Final[SourceGitlabGitlab] = dataclasses.field(default=SourceGitlabGitlab.GITLAB, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     api_url: Optional[str] = dataclasses.field(default='gitlab.com', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('api_url'), 'exclude': lambda f: f is None }})
     r"""Please enter your basic URL from GitLab instance."""
     groups: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('groups'), 'exclude': lambda f: f is None }})

@@ -3,10 +3,10 @@
 
 ## Supported Types
 
-### 
+### SourcePostgresUpdateMethodReadChangesUsingWriteAheadLogCDC
 
 ```python
-sourcePostgresUpdateMethod: dict[str, Any] = /* values here */
+sourcePostgresUpdateMethod: shared.SourcePostgresUpdateMethodReadChangesUsingWriteAheadLogCDC = /* values here */
 ```
 
 ### SourcePostgresUpdateMethodDetectChangesWithXminSystemColumn

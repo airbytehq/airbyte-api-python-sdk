@@ -4,11 +4,14 @@ from __future__ import annotations
 import dataclasses
 from airbyte import utils
 from dataclasses_json import Undefined, dataclass_json
+from enum import Enum
 from typing import Final
+
+class DestinationXataXata(str, Enum):
+    XATA = 'xata'
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class DestinationXata:
     r"""The values required to configure the destination."""
@@ -16,6 +19,6 @@ class DestinationXata:
     r"""API Key to connect."""
     db_url: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('db_url') }})
     r"""URL pointing to your workspace."""
-    DESTINATION_TYPE: Final[str] = dataclasses.field(default='xata', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('destinationType') }})
+    DESTINATION_TYPE: Final[DestinationXataXata] = dataclasses.field(default=DestinationXataXata.XATA, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('destinationType') }})
     
 

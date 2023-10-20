@@ -4,11 +4,14 @@ from __future__ import annotations
 import dataclasses
 from airbyte import utils
 from dataclasses_json import Undefined, dataclass_json
+from enum import Enum
 from typing import Final
+
+class SourceGcsGcs(str, Enum):
+    GCS = 'gcs'
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class SourceGcs:
     r"""The values required to configure the source."""
@@ -18,6 +21,6 @@ class SourceGcs:
     r"""GCS path to data"""
     service_account: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('service_account') }})
     r"""Enter your Google Cloud <a href=\\"https://cloud.google.com/iam/docs/creating-managing-service-account-keys#creating_service_account_keys\\">service account key</a> in JSON format"""
-    SOURCE_TYPE: Final[str] = dataclasses.field(default='gcs', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
+    SOURCE_TYPE: Final[SourceGcsGcs] = dataclasses.field(default=SourceGcsGcs.GCS, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     
 

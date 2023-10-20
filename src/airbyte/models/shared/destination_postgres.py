@@ -4,11 +4,17 @@ from __future__ import annotations
 import dataclasses
 from airbyte import utils
 from dataclasses_json import Undefined, dataclass_json
+from enum import Enum
 from typing import Final, Optional, Union
+
+class DestinationPostgresPostgres(str, Enum):
+    POSTGRES = 'postgres'
+
+class DestinationPostgresSSLModesVerifyFullMode(str, Enum):
+    VERIFY_FULL = 'verify-full'
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class DestinationPostgresSSLModesVerifyFull:
     r"""Verify-full SSL mode."""
@@ -20,13 +26,15 @@ class DestinationPostgresSSLModesVerifyFull:
     r"""Client key"""
     client_key_password: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('client_key_password'), 'exclude': lambda f: f is None }})
     r"""Password for keystorage. This field is optional. If you do not add it - the password will be generated automatically."""
-    MODE: Final[Optional[str]] = dataclasses.field(default='verify-full', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('mode'), 'exclude': lambda f: f is None }})
+    MODE: Final[Optional[DestinationPostgresSSLModesVerifyFullMode]] = dataclasses.field(default=DestinationPostgresSSLModesVerifyFullMode.VERIFY_FULL, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('mode'), 'exclude': lambda f: f is None }})
     
 
 
+class DestinationPostgresSSLModesVerifyCaMode(str, Enum):
+    VERIFY_CA = 'verify-ca'
+
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class DestinationPostgresSSLModesVerifyCa:
     r"""Verify-ca SSL mode."""
@@ -34,49 +42,56 @@ class DestinationPostgresSSLModesVerifyCa:
     r"""CA certificate"""
     client_key_password: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('client_key_password'), 'exclude': lambda f: f is None }})
     r"""Password for keystorage. This field is optional. If you do not add it - the password will be generated automatically."""
-    MODE: Final[Optional[str]] = dataclasses.field(default='verify-ca', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('mode'), 'exclude': lambda f: f is None }})
+    MODE: Final[Optional[DestinationPostgresSSLModesVerifyCaMode]] = dataclasses.field(default=DestinationPostgresSSLModesVerifyCaMode.VERIFY_CA, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('mode'), 'exclude': lambda f: f is None }})
     
 
 
+class DestinationPostgresSSLModesRequireMode(str, Enum):
+    REQUIRE = 'require'
+
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class DestinationPostgresSSLModesRequire:
     r"""Require SSL mode."""
-    MODE: Final[Optional[str]] = dataclasses.field(default='require', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('mode'), 'exclude': lambda f: f is None }})
+    MODE: Final[Optional[DestinationPostgresSSLModesRequireMode]] = dataclasses.field(default=DestinationPostgresSSLModesRequireMode.REQUIRE, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('mode'), 'exclude': lambda f: f is None }})
     
 
 
+class DestinationPostgresSSLModesPreferMode(str, Enum):
+    PREFER = 'prefer'
+
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class DestinationPostgresSSLModesPrefer:
     r"""Prefer SSL mode."""
-    MODE: Final[Optional[str]] = dataclasses.field(default='prefer', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('mode'), 'exclude': lambda f: f is None }})
+    MODE: Final[Optional[DestinationPostgresSSLModesPreferMode]] = dataclasses.field(default=DestinationPostgresSSLModesPreferMode.PREFER, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('mode'), 'exclude': lambda f: f is None }})
     
 
 
+class DestinationPostgresSSLModesAllowMode(str, Enum):
+    ALLOW = 'allow'
+
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class DestinationPostgresSSLModesAllow:
     r"""Allow SSL mode."""
-    MODE: Final[Optional[str]] = dataclasses.field(default='allow', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('mode'), 'exclude': lambda f: f is None }})
+    MODE: Final[Optional[DestinationPostgresSSLModesAllowMode]] = dataclasses.field(default=DestinationPostgresSSLModesAllowMode.ALLOW, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('mode'), 'exclude': lambda f: f is None }})
     
 
+
+class DestinationPostgresSSLModesDisableMode(str, Enum):
+    DISABLE = 'disable'
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class DestinationPostgresSSLModesDisable:
     r"""Disable SSL."""
-    MODE: Final[Optional[str]] = dataclasses.field(default='disable', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('mode'), 'exclude': lambda f: f is None }})
+    MODE: Final[Optional[DestinationPostgresSSLModesDisableMode]] = dataclasses.field(default=DestinationPostgresSSLModesDisableMode.DISABLE, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('mode'), 'exclude': lambda f: f is None }})
     
-
 
 
 
@@ -84,9 +99,12 @@ class DestinationPostgresSSLModesDisable:
 class DestinationPostgresSSLModes:
     pass
 
+class DestinationPostgresSSHTunnelMethodPasswordAuthenticationTunnelMethod(str, Enum):
+    r"""Connect through a jump server tunnel host using username and password authentication"""
+    SSH_PASSWORD_AUTH = 'SSH_PASSWORD_AUTH'
+
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class DestinationPostgresSSHTunnelMethodPasswordAuthentication:
     r"""Whether to initiate an SSH tunnel before connecting to the database, and if so, which kind of authentication to use."""
@@ -96,16 +114,19 @@ class DestinationPostgresSSHTunnelMethodPasswordAuthentication:
     r"""OS-level username for logging into the jump server host"""
     tunnel_user_password: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('tunnel_user_password') }})
     r"""OS-level password for logging into the jump server host"""
-    TUNNEL_METHOD: Final[str] = dataclasses.field(default='SSH_PASSWORD_AUTH', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('tunnel_method') }})
+    TUNNEL_METHOD: Final[DestinationPostgresSSHTunnelMethodPasswordAuthenticationTunnelMethod] = dataclasses.field(default=DestinationPostgresSSHTunnelMethodPasswordAuthenticationTunnelMethod.SSH_PASSWORD_AUTH, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('tunnel_method') }})
     r"""Connect through a jump server tunnel host using username and password authentication"""
     tunnel_port: Optional[int] = dataclasses.field(default=22, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('tunnel_port'), 'exclude': lambda f: f is None }})
     r"""Port on the proxy/jump server that accepts inbound ssh connections."""
     
 
 
+class DestinationPostgresSSHTunnelMethodSSHKeyAuthenticationTunnelMethod(str, Enum):
+    r"""Connect through a jump server tunnel host using username and ssh key"""
+    SSH_KEY_AUTH = 'SSH_KEY_AUTH'
+
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class DestinationPostgresSSHTunnelMethodSSHKeyAuthentication:
     r"""Whether to initiate an SSH tunnel before connecting to the database, and if so, which kind of authentication to use."""
@@ -115,23 +136,25 @@ class DestinationPostgresSSHTunnelMethodSSHKeyAuthentication:
     r"""Hostname of the jump server host that allows inbound ssh tunnel."""
     tunnel_user: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('tunnel_user') }})
     r"""OS-level username for logging into the jump server host."""
-    TUNNEL_METHOD: Final[str] = dataclasses.field(default='SSH_KEY_AUTH', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('tunnel_method') }})
+    TUNNEL_METHOD: Final[DestinationPostgresSSHTunnelMethodSSHKeyAuthenticationTunnelMethod] = dataclasses.field(default=DestinationPostgresSSHTunnelMethodSSHKeyAuthenticationTunnelMethod.SSH_KEY_AUTH, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('tunnel_method') }})
     r"""Connect through a jump server tunnel host using username and ssh key"""
     tunnel_port: Optional[int] = dataclasses.field(default=22, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('tunnel_port'), 'exclude': lambda f: f is None }})
     r"""Port on the proxy/jump server that accepts inbound ssh connections."""
     
 
 
+class DestinationPostgresSSHTunnelMethodNoTunnelTunnelMethod(str, Enum):
+    r"""No ssh tunnel needed to connect to database"""
+    NO_TUNNEL = 'NO_TUNNEL'
+
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class DestinationPostgresSSHTunnelMethodNoTunnel:
     r"""Whether to initiate an SSH tunnel before connecting to the database, and if so, which kind of authentication to use."""
-    TUNNEL_METHOD: Final[str] = dataclasses.field(default='NO_TUNNEL', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('tunnel_method') }})
+    TUNNEL_METHOD: Final[DestinationPostgresSSHTunnelMethodNoTunnelTunnelMethod] = dataclasses.field(default=DestinationPostgresSSHTunnelMethodNoTunnelTunnelMethod.NO_TUNNEL, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('tunnel_method') }})
     r"""No ssh tunnel needed to connect to database"""
     
-
 
 
 
@@ -141,7 +164,6 @@ class DestinationPostgresSSHTunnelMethod:
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class DestinationPostgres:
     r"""The values required to configure the destination."""
@@ -151,7 +173,7 @@ class DestinationPostgres:
     r"""Hostname of the database."""
     username: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('username') }})
     r"""Username to use to access the database."""
-    DESTINATION_TYPE: Final[str] = dataclasses.field(default='postgres', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('destinationType') }})
+    DESTINATION_TYPE: Final[DestinationPostgresPostgres] = dataclasses.field(default=DestinationPostgresPostgres.POSTGRES, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('destinationType') }})
     jdbc_url_params: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('jdbc_url_params'), 'exclude': lambda f: f is None }})
     r"""Additional properties to pass to the JDBC URL string when connecting to the database formatted as 'key=value' pairs separated by the symbol '&'. (example: key1=value1&key2=value2&key3=value3)."""
     password: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('password'), 'exclude': lambda f: f is None }})

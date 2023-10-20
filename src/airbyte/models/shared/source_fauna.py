@@ -4,11 +4,14 @@ from __future__ import annotations
 import dataclasses
 from airbyte import utils
 from dataclasses_json import Undefined, dataclass_json
+from enum import Enum
 from typing import Final, Optional, Union
+
+class SourceFaunaCollectionDeletionModeEnabledDeletionMode(str, Enum):
+    DELETED_FIELD = 'deleted_field'
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class SourceFaunaCollectionDeletionModeEnabled:
     r"""<b>This only applies to incremental syncs.</b> <br>
@@ -16,15 +19,17 @@ class SourceFaunaCollectionDeletionModeEnabled:
     Disabled - Leave this feature disabled, and ignore deleted documents.<br>
     Enabled - Enables this feature. When a document is deleted, the connector exports a record with a \"deleted at\" column containing the time that the document was deleted.
     """
-    DELETION_MODE: Final[str] = dataclasses.field(default='deleted_field', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('deletion_mode') }})
+    DELETION_MODE: Final[SourceFaunaCollectionDeletionModeEnabledDeletionMode] = dataclasses.field(default=SourceFaunaCollectionDeletionModeEnabledDeletionMode.DELETED_FIELD, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('deletion_mode') }})
     column: Optional[str] = dataclasses.field(default='deleted_at', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('column'), 'exclude': lambda f: f is None }})
     r"""Name of the \\"deleted at\\" column."""
     
 
 
+class SourceFaunaCollectionDeletionModeDisabledDeletionMode(str, Enum):
+    IGNORE = 'ignore'
+
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class SourceFaunaCollectionDeletionModeDisabled:
     r"""<b>This only applies to incremental syncs.</b> <br>
@@ -32,9 +37,8 @@ class SourceFaunaCollectionDeletionModeDisabled:
     Disabled - Leave this feature disabled, and ignore deleted documents.<br>
     Enabled - Enables this feature. When a document is deleted, the connector exports a record with a \"deleted at\" column containing the time that the document was deleted.
     """
-    DELETION_MODE: Final[str] = dataclasses.field(default='ignore', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('deletion_mode') }})
+    DELETION_MODE: Final[SourceFaunaCollectionDeletionModeDisabledDeletionMode] = dataclasses.field(default=SourceFaunaCollectionDeletionModeDisabledDeletionMode.IGNORE, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('deletion_mode') }})
     
-
 
 
 
@@ -44,7 +48,6 @@ class SourceFaunaCollectionDeletionMode:
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class SourceFaunaCollection:
     r"""Settings for the Fauna Collection."""
@@ -62,15 +65,17 @@ class SourceFaunaCollection:
     
 
 
+class SourceFaunaFauna(str, Enum):
+    FAUNA = 'fauna'
+
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class SourceFauna:
     r"""The values required to configure the source."""
     secret: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('secret') }})
     r"""Fauna secret, used when authenticating with the database."""
-    SOURCE_TYPE: Final[str] = dataclasses.field(default='fauna', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
+    SOURCE_TYPE: Final[SourceFaunaFauna] = dataclasses.field(default=SourceFaunaFauna.FAUNA, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     collection: Optional[SourceFaunaCollection] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('collection'), 'exclude': lambda f: f is None }})
     r"""Settings for the Fauna Collection."""
     domain: Optional[str] = dataclasses.field(default='db.fauna.com', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('domain'), 'exclude': lambda f: f is None }})

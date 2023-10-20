@@ -7,7 +7,6 @@ from ..shared import streampropertiesresponse as shared_streampropertiesresponse
 from typing import Optional
 
 
-
 @dataclasses.dataclass
 class GetStreamPropertiesRequest:
     destination_id: str = dataclasses.field(metadata={'query_param': { 'field_name': 'destinationId', 'style': 'form', 'explode': True }})
@@ -17,7 +16,6 @@ class GetStreamPropertiesRequest:
     ignore_cache: Optional[bool] = dataclasses.field(default=False, metadata={'query_param': { 'field_name': 'ignoreCache', 'style': 'form', 'explode': True }})
     r"""If true pull the latest schema from the source, else pull from cache (default false)"""
     
-
 
 
 

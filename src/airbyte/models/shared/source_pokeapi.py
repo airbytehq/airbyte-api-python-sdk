@@ -4,16 +4,19 @@ from __future__ import annotations
 import dataclasses
 from airbyte import utils
 from dataclasses_json import Undefined, dataclass_json
+from enum import Enum
 from typing import Final
+
+class SourcePokeapiPokeapi(str, Enum):
+    POKEAPI = 'pokeapi'
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class SourcePokeapi:
     r"""The values required to configure the source."""
     pokemon_name: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('pokemon_name') }})
     r"""Pokemon requested from the API."""
-    SOURCE_TYPE: Final[str] = dataclasses.field(default='pokeapi', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
+    SOURCE_TYPE: Final[SourcePokeapiPokeapi] = dataclasses.field(default=SourcePokeapiPokeapi.POKEAPI, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     
 

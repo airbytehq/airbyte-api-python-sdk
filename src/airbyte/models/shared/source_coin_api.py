@@ -12,9 +12,11 @@ class SourceCoinAPIEnvironment(str, Enum):
     SANDBOX = 'sandbox'
     PRODUCTION = 'production'
 
+class SourceCoinAPICoinAPI(str, Enum):
+    COIN_API = 'coin-api'
+
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class SourceCoinAPI:
     r"""The values required to configure the source."""
@@ -28,7 +30,7 @@ class SourceCoinAPI:
     r"""The symbol ID to use. See the documentation for a list.
     https://docs.coinapi.io/#list-all-symbols-get
     """
-    SOURCE_TYPE: Final[str] = dataclasses.field(default='coin-api', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
+    SOURCE_TYPE: Final[SourceCoinAPICoinAPI] = dataclasses.field(default=SourceCoinAPICoinAPI.COIN_API, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     end_date: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('end_date'), 'exclude': lambda f: f is None }})
     r"""The end date in ISO 8601 format. If not supplied, data will be returned
     from the start date to the current time, or when the count of result

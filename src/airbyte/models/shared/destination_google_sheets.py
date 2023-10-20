@@ -4,11 +4,11 @@ from __future__ import annotations
 import dataclasses
 from airbyte import utils
 from dataclasses_json import Undefined, dataclass_json
+from enum import Enum
 from typing import Final
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class DestinationGoogleSheetsAuthenticationViaGoogleOAuth:
     r"""Google API Credentials for connecting to Google Sheets and Google Drive APIs"""
@@ -21,9 +21,11 @@ class DestinationGoogleSheetsAuthenticationViaGoogleOAuth:
     
 
 
+class DestinationGoogleSheetsGoogleSheets(str, Enum):
+    GOOGLE_SHEETS = 'google-sheets'
+
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class DestinationGoogleSheets:
     r"""The values required to configure the destination."""
@@ -31,6 +33,6 @@ class DestinationGoogleSheets:
     r"""Google API Credentials for connecting to Google Sheets and Google Drive APIs"""
     spreadsheet_id: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('spreadsheet_id') }})
     r"""The link to your spreadsheet. See <a href='https://docs.airbyte.com/integrations/destinations/google-sheets#sheetlink'>this guide</a> for more details."""
-    DESTINATION_TYPE: Final[str] = dataclasses.field(default='google-sheets', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('destinationType') }})
+    DESTINATION_TYPE: Final[DestinationGoogleSheetsGoogleSheets] = dataclasses.field(default=DestinationGoogleSheetsGoogleSheets.GOOGLE_SHEETS, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('destinationType') }})
     
 

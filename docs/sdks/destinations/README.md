@@ -30,15 +30,27 @@ s = airbyte.Airbyte(
 )
 
 req = shared.DestinationCreateRequest(
-    configuration=[],
-    name='Grocery Maldives',
-    workspace_id='60ad46e8-e62f-4620-8e5b-a5019ef3492f',
+    shared.DestinationAwsDatalake(
+        aws_account_id='111111111111',
+        bucket_name='override',
+        shared.DestinationAwsDatalakeAuthenticationModeIAMRole(
+            role_arn='Maldives',
+        ),
+        destination_type=shared.DestinationAwsDatalakeAwsDatalake.AWS_DATALAKE,
+        shared.DestinationAwsDatalakeOutputFormatWildcardJSONLinesNewlineDelimitedJSON(),
+        lakeformation_database_default_tag_key='pii_level',
+        lakeformation_database_default_tag_values='private,public',
+        lakeformation_database_name='Pflugerville',
+    ),
+    name='Dodge',
+    workspace_id='6e8e62f6-208e-45ba-9019-ef3492fc0eef',
 )
 
 res = s.destinations.create_destination(req)
 
 if res.destination_response is not None:
     # handle response
+    pass
 ```
 
 ### Parameters
@@ -73,13 +85,14 @@ s = airbyte.Airbyte(
 )
 
 req = operations.DeleteDestinationRequest(
-    destination_id='downturn Ergonomic',
+    destination_id='virtual',
 )
 
 res = s.destinations.delete_destination(req)
 
 if res.status_code == 200:
     # handle response
+    pass
 ```
 
 ### Parameters
@@ -114,13 +127,14 @@ s = airbyte.Airbyte(
 )
 
 req = operations.GetDestinationRequest(
-    destination_id='Configuration Beauty',
+    destination_id='alarm',
 )
 
 res = s.destinations.get_destination(req)
 
 if res.destination_response is not None:
     # handle response
+    pass
 ```
 
 ### Parameters
@@ -155,11 +169,8 @@ s = airbyte.Airbyte(
 )
 
 req = operations.ListDestinationsRequest(
-    include_deleted=False,
-    limit=772794,
-    offset=125999,
     workspace_ids=[
-        '980b9a83-1720-4244-9cd2-6fb4455227f2',
+        'c2980b9a-8317-4202-845c-d26fb4455227',
     ],
 )
 
@@ -167,6 +178,7 @@ res = s.destinations.list_destinations(req)
 
 if res.destinations_response is not None:
     # handle response
+    pass
 ```
 
 ### Parameters
@@ -202,16 +214,28 @@ s = airbyte.Airbyte(
 
 req = operations.PatchDestinationRequest(
     destination_patch_request=shared.DestinationPatchRequest(
-        configuration=[],
-        name='unethically',
+        shared.DestinationAwsDatalake(
+            aws_account_id='111111111111',
+            bucket_name='Refined',
+            shared.DestinationAwsDatalakeAuthenticationModeIAMUser(
+                aws_access_key_id='silver',
+                aws_secret_access_key='Verde',
+            ),
+            destination_type=shared.DestinationAwsDatalakeAwsDatalake.AWS_DATALAKE,
+            shared.DestinationAwsDatalakeOutputFormatWildcardParquetColumnarStorage(),
+            lakeformation_database_default_tag_key='pii_level',
+            lakeformation_database_default_tag_values='private,public',
+            lakeformation_database_name='Latin',
+        ),
     ),
-    destination_id='hoodwink Toys pixel',
+    destination_id='henry',
 )
 
 res = s.destinations.patch_destination(req)
 
 if res.destination_response is not None:
     # handle response
+    pass
 ```
 
 ### Parameters
@@ -247,16 +271,29 @@ s = airbyte.Airbyte(
 
 req = operations.PutDestinationRequest(
     destination_put_request=shared.DestinationPutRequest(
-        configuration=[],
-        name='West',
+        shared.DestinationAwsDatalake(
+            aws_account_id='111111111111',
+            bucket_name='Heights',
+            shared.DestinationAwsDatalakeAuthenticationModeIAMUser(
+                aws_access_key_id='except',
+                aws_secret_access_key='navigate',
+            ),
+            destination_type=shared.DestinationAwsDatalakeAwsDatalake.AWS_DATALAKE,
+            shared.DestinationAwsDatalakeOutputFormatWildcardParquetColumnarStorage(),
+            lakeformation_database_default_tag_key='pii_level',
+            lakeformation_database_default_tag_values='private,public',
+            lakeformation_database_name='why',
+        ),
+        name='Missouri',
     ),
-    destination_id='Fermium except',
+    destination_id='Market',
 )
 
 res = s.destinations.put_destination(req)
 
 if res.destination_response is not None:
     # handle response
+    pass
 ```
 
 ### Parameters

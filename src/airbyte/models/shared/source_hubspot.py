@@ -6,24 +6,31 @@ import dateutil.parser
 from airbyte import utils
 from dataclasses_json import Undefined, dataclass_json
 from datetime import datetime
+from enum import Enum
 from typing import Final, Union
+
+class SourceHubspotAuthenticationPrivateAppAuthType(str, Enum):
+    r"""Name of the credentials set"""
+    PRIVATE_APP_CREDENTIALS = 'Private App Credentials'
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class SourceHubspotAuthenticationPrivateApp:
     r"""Choose how to authenticate to HubSpot."""
     access_token: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('access_token') }})
     r"""HubSpot Access token. See the <a href=\\"https://developers.hubspot.com/docs/api/private-apps\\">Hubspot docs</a> if you need help finding this token."""
-    CREDENTIALS_TITLE: Final[str] = dataclasses.field(default='Private App Credentials', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credentials_title') }})
+    CREDENTIALS_TITLE: Final[SourceHubspotAuthenticationPrivateAppAuthType] = dataclasses.field(default=SourceHubspotAuthenticationPrivateAppAuthType.PRIVATE_APP_CREDENTIALS, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credentials_title') }})
     r"""Name of the credentials set"""
     
 
 
+class SourceHubspotAuthenticationOAuthAuthType(str, Enum):
+    r"""Name of the credentials"""
+    O_AUTH_CREDENTIALS = 'OAuth Credentials'
+
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class SourceHubspotAuthenticationOAuth:
     r"""Choose how to authenticate to HubSpot."""
@@ -33,10 +40,9 @@ class SourceHubspotAuthenticationOAuth:
     r"""The client secret for your HubSpot developer application. See the <a href=\\"https://legacydocs.hubspot.com/docs/methods/oauth2/oauth2-quickstart\\">Hubspot docs</a> if you need help finding this secret."""
     refresh_token: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('refresh_token') }})
     r"""Refresh token to renew an expired access token. See the <a href=\\"https://legacydocs.hubspot.com/docs/methods/oauth2/oauth2-quickstart\\">Hubspot docs</a> if you need help finding this token."""
-    CREDENTIALS_TITLE: Final[str] = dataclasses.field(default='OAuth Credentials', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credentials_title') }})
+    CREDENTIALS_TITLE: Final[SourceHubspotAuthenticationOAuthAuthType] = dataclasses.field(default=SourceHubspotAuthenticationOAuthAuthType.O_AUTH_CREDENTIALS, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credentials_title') }})
     r"""Name of the credentials"""
     
-
 
 
 
@@ -44,9 +50,11 @@ class SourceHubspotAuthenticationOAuth:
 class SourceHubspotAuthentication:
     pass
 
+class SourceHubspotHubspot(str, Enum):
+    HUBSPOT = 'hubspot'
+
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class SourceHubspot:
     r"""The values required to configure the source."""
@@ -54,6 +62,6 @@ class SourceHubspot:
     r"""Choose how to authenticate to HubSpot."""
     start_date: datetime = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('start_date'), 'encoder': utils.datetimeisoformat(False), 'decoder': dateutil.parser.isoparse }})
     r"""UTC date and time in the format 2017-01-25T00:00:00Z. Any data before this date will not be replicated."""
-    SOURCE_TYPE: Final[str] = dataclasses.field(default='hubspot', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
+    SOURCE_TYPE: Final[SourceHubspotHubspot] = dataclasses.field(default=SourceHubspotHubspot.HUBSPOT, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     
 

@@ -8,13 +8,11 @@ from ..shared import workspaceupdaterequest as shared_workspaceupdaterequest
 from typing import Optional
 
 
-
 @dataclasses.dataclass
 class UpdateWorkspaceRequest:
     workspace_id: str = dataclasses.field(metadata={'path_param': { 'field_name': 'workspaceId', 'style': 'simple', 'explode': False }})
     workspace_update_request: shared_workspaceupdaterequest.WorkspaceUpdateRequest = dataclasses.field(metadata={'request': { 'media_type': 'application/json' }})
     
-
 
 
 

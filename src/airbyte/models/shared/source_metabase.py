@@ -4,17 +4,20 @@ from __future__ import annotations
 import dataclasses
 from airbyte import utils
 from dataclasses_json import Undefined, dataclass_json
+from enum import Enum
 from typing import Final, Optional
+
+class SourceMetabaseMetabase(str, Enum):
+    METABASE = 'metabase'
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class SourceMetabase:
     r"""The values required to configure the source."""
     instance_api_url: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('instance_api_url') }})
     r"""URL to your metabase instance API"""
-    SOURCE_TYPE: Final[str] = dataclasses.field(default='metabase', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
+    SOURCE_TYPE: Final[SourceMetabaseMetabase] = dataclasses.field(default=SourceMetabaseMetabase.METABASE, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     password: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('password'), 'exclude': lambda f: f is None }})
     session_token: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('session_token'), 'exclude': lambda f: f is None }})
     r"""To generate your session token, you need to run the following command: ``` curl -X POST \ 

@@ -6,17 +6,20 @@ import dateutil.parser
 from airbyte import utils
 from dataclasses_json import Undefined, dataclass_json
 from datetime import datetime
+from enum import Enum
 from typing import Final, Optional
+
+class SourceSendgridSendgrid(str, Enum):
+    SENDGRID = 'sendgrid'
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class SourceSendgrid:
     r"""The values required to configure the source."""
     apikey: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('apikey') }})
     r"""API Key, use <a href=\\"https://app.sendgrid.com/settings/api_keys/\\">admin</a> to generate this key."""
-    SOURCE_TYPE: Final[str] = dataclasses.field(default='sendgrid', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
+    SOURCE_TYPE: Final[SourceSendgridSendgrid] = dataclasses.field(default=SourceSendgridSendgrid.SENDGRID, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     start_time: Optional[datetime] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('start_time'), 'encoder': utils.datetimeisoformat(True), 'decoder': dateutil.parser.isoparse, 'exclude': lambda f: f is None }})
     r"""Start time in ISO8601 format. Any data before this time point will not be replicated."""
     

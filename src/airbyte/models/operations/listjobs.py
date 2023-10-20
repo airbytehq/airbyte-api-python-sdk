@@ -7,8 +7,7 @@ from ..shared import jobsresponse as shared_jobsresponse
 from ..shared import jobstatusenum as shared_jobstatusenum
 from ..shared import jobtypeenum as shared_jobtypeenum
 from datetime import datetime
-from typing import Optional
-
+from typing import List, Optional
 
 
 @dataclasses.dataclass
@@ -33,10 +32,9 @@ class ListJobsRequest:
     r"""The end date to filter by"""
     updated_at_start: Optional[datetime] = dataclasses.field(default=None, metadata={'query_param': { 'field_name': 'updatedAtStart', 'style': 'form', 'explode': True }})
     r"""The start date to filter by"""
-    workspace_ids: Optional[list[str]] = dataclasses.field(default=None, metadata={'query_param': { 'field_name': 'workspaceIds', 'style': 'form', 'explode': True }})
+    workspace_ids: Optional[List[str]] = dataclasses.field(default=None, metadata={'query_param': { 'field_name': 'workspaceIds', 'style': 'form', 'explode': True }})
     r"""The UUIDs of the workspaces you wish to list jobs for. Empty list will retrieve all allowed workspaces."""
     
-
 
 
 

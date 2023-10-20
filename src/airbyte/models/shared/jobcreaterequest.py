@@ -8,7 +8,6 @@ from dataclasses_json import Undefined, dataclass_json
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class JobCreateRequest:
     r"""Creates a new Job from the configuration provided in the request body."""

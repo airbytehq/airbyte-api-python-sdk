@@ -7,7 +7,6 @@ from ..shared import destinationresponse as shared_destinationresponse
 from typing import Optional
 
 
-
 @dataclasses.dataclass
 class CreateDestinationResponse:
     content_type: str = dataclasses.field()

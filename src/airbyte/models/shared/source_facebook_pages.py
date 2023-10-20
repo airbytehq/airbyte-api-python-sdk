@@ -4,11 +4,14 @@ from __future__ import annotations
 import dataclasses
 from airbyte import utils
 from dataclasses_json import Undefined, dataclass_json
+from enum import Enum
 from typing import Final
+
+class SourceFacebookPagesFacebookPages(str, Enum):
+    FACEBOOK_PAGES = 'facebook-pages'
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class SourceFacebookPages:
     r"""The values required to configure the source."""
@@ -16,6 +19,6 @@ class SourceFacebookPages:
     r"""Facebook Page Access Token"""
     page_id: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('page_id') }})
     r"""Page ID"""
-    SOURCE_TYPE: Final[str] = dataclasses.field(default='facebook-pages', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
+    SOURCE_TYPE: Final[SourceFacebookPagesFacebookPages] = dataclasses.field(default=SourceFacebookPagesFacebookPages.FACEBOOK_PAGES, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     
 

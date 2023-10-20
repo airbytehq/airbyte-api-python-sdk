@@ -7,6 +7,9 @@ from dataclasses_json import Undefined, dataclass_json
 from enum import Enum
 from typing import Final, Optional
 
+class DestinationDynamodbDynamodb(str, Enum):
+    DYNAMODB = 'dynamodb'
+
 class DestinationDynamodbDynamoDBRegion(str, Enum):
     r"""The region of the DynamoDB."""
     UNKNOWN = ''
@@ -38,7 +41,6 @@ class DestinationDynamodbDynamoDBRegion(str, Enum):
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class DestinationDynamodb:
     r"""The values required to configure the destination."""
@@ -48,7 +50,7 @@ class DestinationDynamodb:
     r"""The prefix to use when naming DynamoDB tables."""
     secret_access_key: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('secret_access_key') }})
     r"""The corresponding secret to the access key id."""
-    DESTINATION_TYPE: Final[str] = dataclasses.field(default='dynamodb', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('destinationType') }})
+    DESTINATION_TYPE: Final[DestinationDynamodbDynamodb] = dataclasses.field(default=DestinationDynamodbDynamodb.DYNAMODB, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('destinationType') }})
     dynamodb_endpoint: Optional[str] = dataclasses.field(default='', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('dynamodb_endpoint'), 'exclude': lambda f: f is None }})
     r"""This is your DynamoDB endpoint url.(if you are working with AWS DynamoDB, just leave empty)."""
     dynamodb_region: Optional[DestinationDynamodbDynamoDBRegion] = dataclasses.field(default=DestinationDynamodbDynamoDBRegion.UNKNOWN, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('dynamodb_region'), 'exclude': lambda f: f is None }})

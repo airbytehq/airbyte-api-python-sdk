@@ -4,11 +4,14 @@ from __future__ import annotations
 import dataclasses
 from airbyte import utils
 from dataclasses_json import Undefined, dataclass_json
-from typing import Final, Optional
+from enum import Enum
+from typing import Final, List, Optional
+
+class SourceQualarooQualaroo(str, Enum):
+    QUALAROO = 'qualaroo'
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class SourceQualaroo:
     r"""The values required to configure the source."""
@@ -18,8 +21,8 @@ class SourceQualaroo:
     r"""UTC date and time in the format 2017-01-25T00:00:00Z. Any data before this date will not be replicated."""
     token: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('token') }})
     r"""A Qualaroo token. See the <a href=\\"https://help.qualaroo.com/hc/en-us/articles/201969438-The-REST-Reporting-API\\">docs</a> for instructions on how to generate it."""
-    SOURCE_TYPE: Final[str] = dataclasses.field(default='qualaroo', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
-    survey_ids: Optional[list[str]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('survey_ids'), 'exclude': lambda f: f is None }})
+    SOURCE_TYPE: Final[SourceQualarooQualaroo] = dataclasses.field(default=SourceQualarooQualaroo.QUALAROO, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
+    survey_ids: Optional[List[str]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('survey_ids'), 'exclude': lambda f: f is None }})
     r"""IDs of the surveys from which you'd like to replicate data. If left empty, data from all surveys to which you have access will be replicated."""
     
 

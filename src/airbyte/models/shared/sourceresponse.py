@@ -207,7 +207,6 @@ from typing import Union
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class SourceResponse:
     r"""Provides details of a single source."""

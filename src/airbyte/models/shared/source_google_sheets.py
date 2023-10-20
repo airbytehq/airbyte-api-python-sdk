@@ -4,23 +4,28 @@ from __future__ import annotations
 import dataclasses
 from airbyte import utils
 from dataclasses_json import Undefined, dataclass_json
+from enum import Enum
 from typing import Final, Optional, Union
+
+class SourceGoogleSheetsAuthenticationServiceAccountKeyAuthenticationAuthType(str, Enum):
+    SERVICE = 'Service'
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class SourceGoogleSheetsAuthenticationServiceAccountKeyAuthentication:
     r"""Credentials for connecting to the Google Sheets API"""
     service_account_info: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('service_account_info') }})
     r"""The JSON key of the service account to use for authorization. Read more <a href=\\"https://cloud.google.com/iam/docs/creating-managing-service-account-keys#creating_service_account_keys\\">here</a>."""
-    AUTH_TYPE: Final[str] = dataclasses.field(default='Service', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_type') }})
+    AUTH_TYPE: Final[SourceGoogleSheetsAuthenticationServiceAccountKeyAuthenticationAuthType] = dataclasses.field(default=SourceGoogleSheetsAuthenticationServiceAccountKeyAuthenticationAuthType.SERVICE, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_type') }})
     
 
 
+class SourceGoogleSheetsAuthenticationAuthenticateViaGoogleOAuthAuthType(str, Enum):
+    CLIENT = 'Client'
+
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class SourceGoogleSheetsAuthenticationAuthenticateViaGoogleOAuth:
     r"""Credentials for connecting to the Google Sheets API"""
@@ -30,9 +35,8 @@ class SourceGoogleSheetsAuthenticationAuthenticateViaGoogleOAuth:
     r"""Enter your Google application's Client Secret. See <a href='https://developers.google.com/identity/protocols/oauth2'>Google's documentation</a> for more information."""
     refresh_token: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('refresh_token') }})
     r"""Enter your Google application's refresh token. See <a href='https://developers.google.com/identity/protocols/oauth2'>Google's documentation</a> for more information."""
-    AUTH_TYPE: Final[str] = dataclasses.field(default='Client', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_type') }})
+    AUTH_TYPE: Final[SourceGoogleSheetsAuthenticationAuthenticateViaGoogleOAuthAuthType] = dataclasses.field(default=SourceGoogleSheetsAuthenticationAuthenticateViaGoogleOAuthAuthType.CLIENT, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_type') }})
     
-
 
 
 
@@ -40,9 +44,11 @@ class SourceGoogleSheetsAuthenticationAuthenticateViaGoogleOAuth:
 class SourceGoogleSheetsAuthentication:
     pass
 
+class SourceGoogleSheetsGoogleSheets(str, Enum):
+    GOOGLE_SHEETS = 'google-sheets'
+
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class SourceGoogleSheets:
     r"""The values required to configure the source."""
@@ -50,7 +56,7 @@ class SourceGoogleSheets:
     r"""Credentials for connecting to the Google Sheets API"""
     spreadsheet_id: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('spreadsheet_id') }})
     r"""Enter the link to the Google spreadsheet you want to sync. To copy the link, click the 'Share' button in the top-right corner of the spreadsheet, then click 'Copy link'."""
-    SOURCE_TYPE: Final[str] = dataclasses.field(default='google-sheets', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
+    SOURCE_TYPE: Final[SourceGoogleSheetsGoogleSheets] = dataclasses.field(default=SourceGoogleSheetsGoogleSheets.GOOGLE_SHEETS, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     names_conversion: Optional[bool] = dataclasses.field(default=False, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('names_conversion'), 'exclude': lambda f: f is None }})
     r"""Enables the conversion of column names to a standardized, SQL-compliant format. For example, 'My Name' -> 'my_name'. Enable this option if your destination is SQL-based."""
     

@@ -5,7 +5,7 @@ Use the OpenAI API to embed text. This option is using the text-embedding-ada-00
 
 ## Fields
 
-| Field              | Type               | Required           | Description        |
-| ------------------ | ------------------ | ------------------ | ------------------ |
-| `mode`             | *Optional[str]*    | :heavy_minus_sign: | N/A                |
-| `openai_key`       | *Optional[str]*    | :heavy_check_mark: | N/A                |
+| Field                                                                                                         | Type                                                                                                          | Required                                                                                                      | Description                                                                                                   |
+| ------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------- |
+| `mode`                                                                                                        | [Optional[DestinationMilvusEmbeddingOpenAIMode]](../../models/shared/destinationmilvusembeddingopenaimode.md) | :heavy_minus_sign:                                                                                            | N/A                                                                                                           |
+| `openai_key`                                                                                                  | *str*                                                                                                         | :heavy_check_mark:                                                                                            | N/A                                                                                                           |

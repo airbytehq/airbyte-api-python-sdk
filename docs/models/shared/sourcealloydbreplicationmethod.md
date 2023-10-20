@@ -9,10 +9,10 @@
 sourceAlloydbReplicationMethod: shared.SourceAlloydbReplicationMethodStandardXmin = /* values here */
 ```
 
-### 
+### SourceAlloydbReplicationMethodLogicalReplicationCDC
 
 ```python
-sourceAlloydbReplicationMethod: dict[str, Any] = /* values here */
+sourceAlloydbReplicationMethod: shared.SourceAlloydbReplicationMethodLogicalReplicationCDC = /* values here */
 ```
 
 ### SourceAlloydbReplicationMethodStandard

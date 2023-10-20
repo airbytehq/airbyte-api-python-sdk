@@ -2,26 +2,32 @@
 
 from __future__ import annotations
 import dataclasses
+import dateutil.parser
 from airbyte import utils
 from dataclasses_json import Undefined, dataclass_json
 from datetime import date
+from enum import Enum
 from typing import Final, Optional, Union
+
+class SourceSquareAuthenticationAPIKeyAuthType(str, Enum):
+    API_KEY = 'API Key'
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class SourceSquareAuthenticationAPIKey:
     r"""Choose how to authenticate to Square."""
     api_key: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('api_key') }})
     r"""The API key for a Square application"""
-    AUTH_TYPE: Final[str] = dataclasses.field(default='API Key', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_type') }})
+    AUTH_TYPE: Final[SourceSquareAuthenticationAPIKeyAuthType] = dataclasses.field(default=SourceSquareAuthenticationAPIKeyAuthType.API_KEY, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_type') }})
     
 
 
+class SourceSquareAuthenticationOauthAuthenticationAuthType(str, Enum):
+    O_AUTH = 'OAuth'
+
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class SourceSquareAuthenticationOauthAuthentication:
     r"""Choose how to authenticate to Square."""
@@ -31,9 +37,8 @@ class SourceSquareAuthenticationOauthAuthentication:
     r"""The Square-issued application secret for your application"""
     refresh_token: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('refresh_token') }})
     r"""A refresh token generated using the above client ID and secret"""
-    AUTH_TYPE: Final[str] = dataclasses.field(default='OAuth', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_type') }})
+    AUTH_TYPE: Final[SourceSquareAuthenticationOauthAuthenticationAuthType] = dataclasses.field(default=SourceSquareAuthenticationOauthAuthenticationAuthType.O_AUTH, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_type') }})
     
-
 
 
 
@@ -41,13 +46,15 @@ class SourceSquareAuthenticationOauthAuthentication:
 class SourceSquareAuthentication:
     pass
 
+class SourceSquareSquare(str, Enum):
+    SQUARE = 'square'
+
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class SourceSquare:
     r"""The values required to configure the source."""
-    SOURCE_TYPE: Final[str] = dataclasses.field(default='square', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
+    SOURCE_TYPE: Final[SourceSquareSquare] = dataclasses.field(default=SourceSquareSquare.SQUARE, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     credentials: Optional[Union[SourceSquareAuthenticationOauthAuthentication, SourceSquareAuthenticationAPIKey]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credentials'), 'exclude': lambda f: f is None }})
     r"""Choose how to authenticate to Square."""
     include_deleted_objects: Optional[bool] = dataclasses.field(default=False, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('include_deleted_objects'), 'exclude': lambda f: f is None }})

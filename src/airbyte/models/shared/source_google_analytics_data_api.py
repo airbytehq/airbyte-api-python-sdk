@@ -5,23 +5,28 @@ import dataclasses
 from airbyte import utils
 from dataclasses_json import Undefined, dataclass_json
 from datetime import date
+from enum import Enum
 from typing import Final, Optional, Union
+
+class SourceGoogleAnalyticsDataAPICredentialsServiceAccountKeyAuthenticationAuthType(str, Enum):
+    SERVICE = 'Service'
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class SourceGoogleAnalyticsDataAPICredentialsServiceAccountKeyAuthentication:
     r"""Credentials for the service"""
     credentials_json: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credentials_json') }})
     r"""The JSON key linked to the service account used for authorization. For steps on obtaining this key, refer to <a href=\\"https://docs.airbyte.com/integrations/sources/google-analytics-data-api/#setup-guide\\">the setup guide</a>."""
-    AUTH_TYPE: Final[Optional[str]] = dataclasses.field(default='Service', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_type'), 'exclude': lambda f: f is None }})
+    AUTH_TYPE: Final[Optional[SourceGoogleAnalyticsDataAPICredentialsServiceAccountKeyAuthenticationAuthType]] = dataclasses.field(default=SourceGoogleAnalyticsDataAPICredentialsServiceAccountKeyAuthenticationAuthType.SERVICE, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_type'), 'exclude': lambda f: f is None }})
     
 
 
+class SourceGoogleAnalyticsDataAPICredentialsAuthenticateViaGoogleOauthAuthType(str, Enum):
+    CLIENT = 'Client'
+
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class SourceGoogleAnalyticsDataAPICredentialsAuthenticateViaGoogleOauth:
     r"""Credentials for the service"""
@@ -33,9 +38,8 @@ class SourceGoogleAnalyticsDataAPICredentialsAuthenticateViaGoogleOauth:
     r"""The token for obtaining a new access token."""
     access_token: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('access_token'), 'exclude': lambda f: f is None }})
     r"""Access Token for making authenticated requests."""
-    AUTH_TYPE: Final[Optional[str]] = dataclasses.field(default='Client', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_type'), 'exclude': lambda f: f is None }})
+    AUTH_TYPE: Final[Optional[SourceGoogleAnalyticsDataAPICredentialsAuthenticateViaGoogleOauthAuthType]] = dataclasses.field(default=SourceGoogleAnalyticsDataAPICredentialsAuthenticateViaGoogleOauthAuthType.CLIENT, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_type'), 'exclude': lambda f: f is None }})
     
-
 
 
 
@@ -43,9 +47,11 @@ class SourceGoogleAnalyticsDataAPICredentialsAuthenticateViaGoogleOauth:
 class SourceGoogleAnalyticsDataAPICredentials:
     pass
 
+class SourceGoogleAnalyticsDataAPIGoogleAnalyticsDataAPI(str, Enum):
+    GOOGLE_ANALYTICS_DATA_API = 'google-analytics-data-api'
+
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class SourceGoogleAnalyticsDataAPI:
     r"""The values required to configure the source."""
@@ -53,7 +59,7 @@ class SourceGoogleAnalyticsDataAPI:
     r"""The start date from which to replicate report data in the format YYYY-MM-DD. Data generated before this date will not be included in the report. Not applied to custom Cohort reports."""
     property_id: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('property_id') }})
     r"""The Property ID is a unique number assigned to each property in Google Analytics, found in your GA4 property URL. This ID allows the connector to track the specific events associated with your property. Refer to the <a href='https://developers.google.com/analytics/devguides/reporting/data/v1/property-id#what_is_my_property_id'>Google Analytics documentation</a> to locate your property ID."""
-    SOURCE_TYPE: Final[str] = dataclasses.field(default='google-analytics-data-api', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
+    SOURCE_TYPE: Final[SourceGoogleAnalyticsDataAPIGoogleAnalyticsDataAPI] = dataclasses.field(default=SourceGoogleAnalyticsDataAPIGoogleAnalyticsDataAPI.GOOGLE_ANALYTICS_DATA_API, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     credentials: Optional[Union[SourceGoogleAnalyticsDataAPICredentialsAuthenticateViaGoogleOauth, SourceGoogleAnalyticsDataAPICredentialsServiceAccountKeyAuthentication]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credentials'), 'exclude': lambda f: f is None }})
     r"""Credentials for the service"""
     custom_reports: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('custom_reports'), 'exclude': lambda f: f is None }})
