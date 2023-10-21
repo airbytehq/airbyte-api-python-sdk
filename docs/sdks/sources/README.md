@@ -36,8 +36,8 @@ req = shared.SourceCreateRequest(
         pokemon_name='luxray',
         source_type=shared.SourcePokeapiPokeapi.POKEAPI,
     ),
-    name='Carolina',
-    workspace_id='0f31f3dd-c984-48c3-8bdf-b109056aa6d6',
+    name='string',
+    workspace_id='2cf0f31f-3ddc-4984-8c34-bdfb109056aa',
 )
 
 res = s.sources.create_source(req)
@@ -79,7 +79,7 @@ s = airbyte.Airbyte(
 )
 
 req = operations.DeleteSourceRequest(
-    source_id='South',
+    source_id='string',
 )
 
 res = s.sources.delete_source(req)
@@ -121,7 +121,7 @@ s = airbyte.Airbyte(
 )
 
 req = operations.GetSourceRequest(
-    source_id='Dynamic',
+    source_id='string',
 )
 
 res = s.sources.get_source(req)
@@ -168,9 +168,9 @@ s = airbyte.Airbyte(
 
 req = shared.InitiateOauthRequest(
     o_auth_input_configuration=shared.OAuthInputConfiguration(),
-    redirect_url='Chips',
-    source_type=shared.OAuthActorNames.TRELLO,
-    workspace_id='28130d99-19ff-4ae6-bd4e-12eb0994476c',
+    redirect_url='string',
+    source_type=shared.OAuthActorNames.GOOGLE_ADS,
+    workspace_id='fd28130d-9919-4ffa-a67d-4e12eb099447',
 )
 
 res = s.sources.initiate_o_auth(req)
@@ -264,7 +264,7 @@ req = operations.PatchSourceRequest(
         ),
         name='My source',
     ),
-    source_id='Vanuatu',
+    source_id='string',
 )
 
 res = s.sources.patch_source(req)
@@ -312,9 +312,9 @@ req = operations.PutSourceRequest(
             pokemon_name='luxray',
             source_type=shared.SourcePokeapiPokeapi.POKEAPI,
         ),
-        name='Urbana',
+        name='string',
     ),
-    source_id='Program',
+    source_id='string',
 )
 
 res = s.sources.put_source(req)

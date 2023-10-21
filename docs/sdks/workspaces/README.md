@@ -36,7 +36,7 @@ req = operations.CreateOrUpdateWorkspaceOAuthCredentialsRequest(
         configuration=shared.AmazonAds(),
         name=shared.OAuthActorNames.AIRTABLE,
     ),
-    workspace_id='seamless',
+    workspace_id='string',
 )
 
 res = s.workspaces.create_or_update_workspace_o_auth_credentials(req)
@@ -78,7 +78,7 @@ s = airbyte.Airbyte(
 )
 
 req = shared.WorkspaceCreateRequest(
-    name='Armstrong',
+    name='string',
 )
 
 res = s.workspaces.create_workspace(req)
@@ -120,7 +120,7 @@ s = airbyte.Airbyte(
 )
 
 req = operations.DeleteWorkspaceRequest(
-    workspace_id='3rd',
+    workspace_id='string',
 )
 
 res = s.workspaces.delete_workspace(req)
@@ -162,7 +162,7 @@ s = airbyte.Airbyte(
 )
 
 req = operations.GetWorkspaceRequest(
-    workspace_id='Mercedes',
+    workspace_id='string',
 )
 
 res = s.workspaces.get_workspace(req)
@@ -249,9 +249,9 @@ s = airbyte.Airbyte(
 
 req = operations.UpdateWorkspaceRequest(
     workspace_update_request=shared.WorkspaceUpdateRequest(
-        name='Wagon',
+        name='string',
     ),
-    workspace_id='female',
+    workspace_id='string',
 )
 
 res = s.workspaces.update_workspace(req)

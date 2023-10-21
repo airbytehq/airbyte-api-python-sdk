@@ -32,18 +32,19 @@ s = airbyte.Airbyte(
 req = shared.DestinationCreateRequest(
     shared.DestinationAwsDatalake(
         aws_account_id='111111111111',
-        bucket_name='override',
-        shared.DestinationAwsDatalakeAuthenticationModeIAMRole(
-            role_arn='Maldives',
+        bucket_name='string',
+        shared.DestinationAwsDatalakeAuthenticationModeIAMUser(
+            aws_access_key_id='string',
+            aws_secret_access_key='string',
         ),
         destination_type=shared.DestinationAwsDatalakeAwsDatalake.AWS_DATALAKE,
         shared.DestinationAwsDatalakeOutputFormatWildcardJSONLinesNewlineDelimitedJSON(),
         lakeformation_database_default_tag_key='pii_level',
         lakeformation_database_default_tag_values='private,public',
-        lakeformation_database_name='Pflugerville',
+        lakeformation_database_name='string',
     ),
-    name='Dodge',
-    workspace_id='6e8e62f6-208e-45ba-9019-ef3492fc0eef',
+    name='string',
+    workspace_id='60860ad4-6e8e-462f-a208-e5ba5019ef34',
 )
 
 res = s.destinations.create_destination(req)
@@ -85,7 +86,7 @@ s = airbyte.Airbyte(
 )
 
 req = operations.DeleteDestinationRequest(
-    destination_id='virtual',
+    destination_id='string',
 )
 
 res = s.destinations.delete_destination(req)
@@ -127,7 +128,7 @@ s = airbyte.Airbyte(
 )
 
 req = operations.GetDestinationRequest(
-    destination_id='alarm',
+    destination_id='string',
 )
 
 res = s.destinations.get_destination(req)
@@ -216,19 +217,18 @@ req = operations.PatchDestinationRequest(
     destination_patch_request=shared.DestinationPatchRequest(
         shared.DestinationAwsDatalake(
             aws_account_id='111111111111',
-            bucket_name='Refined',
-            shared.DestinationAwsDatalakeAuthenticationModeIAMUser(
-                aws_access_key_id='silver',
-                aws_secret_access_key='Verde',
+            bucket_name='string',
+            shared.DestinationAwsDatalakeAuthenticationModeIAMRole(
+                role_arn='string',
             ),
             destination_type=shared.DestinationAwsDatalakeAwsDatalake.AWS_DATALAKE,
             shared.DestinationAwsDatalakeOutputFormatWildcardParquetColumnarStorage(),
             lakeformation_database_default_tag_key='pii_level',
             lakeformation_database_default_tag_values='private,public',
-            lakeformation_database_name='Latin',
+            lakeformation_database_name='string',
         ),
     ),
-    destination_id='henry',
+    destination_id='string',
 )
 
 res = s.destinations.patch_destination(req)
@@ -273,20 +273,19 @@ req = operations.PutDestinationRequest(
     destination_put_request=shared.DestinationPutRequest(
         shared.DestinationAwsDatalake(
             aws_account_id='111111111111',
-            bucket_name='Heights',
-            shared.DestinationAwsDatalakeAuthenticationModeIAMUser(
-                aws_access_key_id='except',
-                aws_secret_access_key='navigate',
+            bucket_name='string',
+            shared.DestinationAwsDatalakeAuthenticationModeIAMRole(
+                role_arn='string',
             ),
             destination_type=shared.DestinationAwsDatalakeAwsDatalake.AWS_DATALAKE,
-            shared.DestinationAwsDatalakeOutputFormatWildcardParquetColumnarStorage(),
+            shared.DestinationAwsDatalakeOutputFormatWildcardJSONLinesNewlineDelimitedJSON(),
             lakeformation_database_default_tag_key='pii_level',
             lakeformation_database_default_tag_values='private,public',
-            lakeformation_database_name='why',
+            lakeformation_database_name='string',
         ),
-        name='Missouri',
+        name='string',
     ),
-    destination_id='Market',
+    destination_id='string',
 )
 
 res = s.destinations.put_destination(req)

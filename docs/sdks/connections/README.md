@@ -33,23 +33,23 @@ req = shared.ConnectionCreateRequest(
         streams=[
             shared.StreamConfiguration(
                 cursor_field=[
-                    'violet',
+                    'string',
                 ],
-                name='Account',
+                name='string',
                 primary_key=[
                     [
-                        'BMW',
+                        'string',
                     ],
                 ],
             ),
         ],
     ),
-    destination_id='e362083e-afc8-4559-94e0-a570f6dd427d',
+    destination_id='c669dd1e-3620-483e-afc8-55914e0a570f',
     namespace_format='${SOURCE_NAMESPACE}',
     schedule=shared.ConnectionSchedule(
-        schedule_type=shared.ScheduleTypeEnum.CRON,
+        schedule_type=shared.ScheduleTypeEnum.MANUAL,
     ),
-    source_id='3a555847-8358-4423-a5b6-c7b3fd2fd307',
+    source_id='dd427d83-a555-4847-8358-42325b6c7b3f',
 )
 
 res = s.connections.create_connection(req)
@@ -91,7 +91,7 @@ s = airbyte.Airbyte(
 )
 
 req = operations.DeleteConnectionRequest(
-    connection_id='gold',
+    connection_id='string',
 )
 
 res = s.connections.delete_connection(req)
@@ -133,7 +133,7 @@ s = airbyte.Airbyte(
 )
 
 req = operations.GetConnectionRequest(
-    connection_id='ack',
+    connection_id='string',
 )
 
 res = s.connections.get_connection(req)
@@ -224,12 +224,12 @@ req = operations.PatchConnectionRequest(
             streams=[
                 shared.StreamConfiguration(
                     cursor_field=[
-                        'Northeast',
+                        'string',
                     ],
-                    name='modulo',
+                    name='string',
                     primary_key=[
                         [
-                            'Incredible',
+                            'string',
                         ],
                     ],
                 ),
@@ -237,10 +237,10 @@ req = operations.PatchConnectionRequest(
         ),
         namespace_format='${SOURCE_NAMESPACE}',
         schedule=shared.ConnectionSchedule(
-            schedule_type=shared.ScheduleTypeEnum.CRON,
+            schedule_type=shared.ScheduleTypeEnum.MANUAL,
         ),
     ),
-    connection_id='Automotive',
+    connection_id='string',
 )
 
 res = s.connections.patch_connection(req)
