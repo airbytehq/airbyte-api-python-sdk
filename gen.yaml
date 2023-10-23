@@ -25,7 +25,7 @@ python:
   author: Airbyte
   clientServerStatusCodesAsErrors: true
   description: Python Client SDK for Airbyte API
-  flattenGlobalSecurity: false
+  flattenGlobalSecurity: true
   installationURL: https://github.com/airbytehq/airbyte-api-python-sdk.git
   maxMethodParams: 0
   packageName: airbyte-api
