@@ -70,8 +70,8 @@ s = airbyte.Airbyte(
 )
 
 req = shared.JobCreateRequest(
-    connection_id='deploy',
-    job_type=shared.JobTypeEnum.RESET,
+    connection_id='string',
+    job_type=shared.JobTypeEnum.SYNC,
 )
 
 res = s.jobs.create_job(req)
