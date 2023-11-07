@@ -1,0 +1,9 @@
+# UsernameAndPassword
+
+
+## Fields
+
+| Field                                                                                                              | Type                                                                                                               | Required                                                                                                           | Description                                                                                                        |
+| ------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------ |
+| `auth_type`                                                                                                        | [Optional[shared.DestinationSnowflakeSchemasAuthType]](../../models/shared/destinationsnowflakeschemasauthtype.md) | :heavy_minus_sign:                                                                                                 | N/A                                                                                                                |
+| `password`                                                                                                         | *str*                                                                                                              | :heavy_check_mark:                                                                                                 | Enter the password associated with the username.                                                                   |

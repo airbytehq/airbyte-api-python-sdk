@@ -11,7 +11,7 @@ from typing import Final, List, Optional
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
-class SourceGoogleAdsGoogleCredentials:
+class GoogleCredentials:
     client_id: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('client_id') }})
     r"""The Client ID of your Google Ads developer application. For detailed instructions on finding this value, refer to our <a href=\\"https://docs.airbyte.com/integrations/sources/google-ads#setup-guide\\">documentation</a>."""
     client_secret: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('client_secret') }})
@@ -28,7 +28,7 @@ class SourceGoogleAdsGoogleCredentials:
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
-class SourceGoogleAdsCustomQueries:
+class CustomQueries:
     query: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('query') }})
     r"""A custom defined GAQL query for building the report. Avoid including the segments.date field; wherever possible, Airbyte will automatically include it for incremental syncs. For more information, refer to <a href=\\"https://developers.google.com/google-ads/api/fields/v11/overview_query_builder\\">Google's documentation</a>."""
     table_name: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('table_name') }})
@@ -44,13 +44,13 @@ class SourceGoogleAdsGoogleAds(str, Enum):
 @dataclasses.dataclass
 class SourceGoogleAds:
     r"""The values required to configure the source."""
-    credentials: SourceGoogleAdsGoogleCredentials = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credentials') }})
+    credentials: GoogleCredentials = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credentials') }})
     customer_id: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('customer_id') }})
     r"""Comma-separated list of (client) customer IDs. Each customer ID must be specified as a 10-digit number without dashes. For detailed instructions on finding this value, refer to our <a href=\\"https://docs.airbyte.com/integrations/sources/google-ads#setup-guide\\">documentation</a>."""
     SOURCE_TYPE: Final[SourceGoogleAdsGoogleAds] = dataclasses.field(default=SourceGoogleAdsGoogleAds.GOOGLE_ADS, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     conversion_window_days: Optional[int] = dataclasses.field(default=14, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('conversion_window_days'), 'exclude': lambda f: f is None }})
     r"""A conversion window is the number of days after an ad interaction (such as an ad click or video view) during which a conversion, such as a purchase, is recorded in Google Ads. For more information, see <a href=\\"https://support.google.com/google-ads/answer/3123169?hl=en\\">Google's documentation</a>."""
-    custom_queries: Optional[List[SourceGoogleAdsCustomQueries]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('custom_queries'), 'exclude': lambda f: f is None }})
+    custom_queries: Optional[List[CustomQueries]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('custom_queries'), 'exclude': lambda f: f is None }})
     end_date: Optional[date] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('end_date'), 'encoder': utils.dateisoformat(True), 'decoder': utils.datefromisoformat, 'exclude': lambda f: f is None }})
     r"""UTC date in the format YYYY-MM-DD. Any data after this date will not be replicated. (Default value of today is used if not set)"""
     login_customer_id: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('login_customer_id'), 'exclude': lambda f: f is None }})

@@ -7,7 +7,7 @@ from dataclasses_json import Undefined, dataclass_json
 from enum import Enum
 from typing import Final
 
-class SourceRailzRailz(str, Enum):
+class Railz(str, Enum):
     RAILZ = 'railz'
 
 
@@ -21,6 +21,6 @@ class SourceRailz:
     r"""Secret key (secret_key)"""
     start_date: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('start_date') }})
     r"""Start date"""
-    SOURCE_TYPE: Final[SourceRailzRailz] = dataclasses.field(default=SourceRailzRailz.RAILZ, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
+    SOURCE_TYPE: Final[Railz] = dataclasses.field(default=Railz.RAILZ, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     
 

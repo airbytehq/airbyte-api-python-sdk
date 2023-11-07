@@ -7,7 +7,7 @@ from dataclasses_json import Undefined, dataclass_json
 from enum import Enum
 from typing import Final, Optional
 
-class DestinationSftpJSONSftpJSON(str, Enum):
+class SftpJSON(str, Enum):
     SFTP_JSON = 'sftp-json'
 
 
@@ -23,7 +23,7 @@ class DestinationSftpJSON:
     r"""Password associated with the username."""
     username: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('username') }})
     r"""Username to use to access the SFTP server."""
-    DESTINATION_TYPE: Final[DestinationSftpJSONSftpJSON] = dataclasses.field(default=DestinationSftpJSONSftpJSON.SFTP_JSON, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('destinationType') }})
+    DESTINATION_TYPE: Final[SftpJSON] = dataclasses.field(default=SftpJSON.SFTP_JSON, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('destinationType') }})
     port: Optional[int] = dataclasses.field(default=22, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('port'), 'exclude': lambda f: f is None }})
     r"""Port of the SFTP server."""
     

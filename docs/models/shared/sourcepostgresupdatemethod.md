@@ -3,21 +3,21 @@
 
 ## Supported Types
 
-### SourcePostgresUpdateMethodReadChangesUsingWriteAheadLogCDC
+### ReadChangesUsingWriteAheadLogCDC
 
 ```python
-sourcePostgresUpdateMethod: shared.SourcePostgresUpdateMethodReadChangesUsingWriteAheadLogCDC = /* values here */
+sourcePostgresUpdateMethod: shared.ReadChangesUsingWriteAheadLogCDC = /* values here */
 ```
 
-### SourcePostgresUpdateMethodDetectChangesWithXminSystemColumn
+### DetectChangesWithXminSystemColumn
 
 ```python
-sourcePostgresUpdateMethod: shared.SourcePostgresUpdateMethodDetectChangesWithXminSystemColumn = /* values here */
+sourcePostgresUpdateMethod: shared.DetectChangesWithXminSystemColumn = /* values here */
 ```
 
-### SourcePostgresUpdateMethodScanChangesWithUserDefinedCursor
+### SourcePostgresScanChangesWithUserDefinedCursor
 
 ```python
-sourcePostgresUpdateMethod: shared.SourcePostgresUpdateMethodScanChangesWithUserDefinedCursor = /* values here */
+sourcePostgresUpdateMethod: shared.SourcePostgresScanChangesWithUserDefinedCursor = /* values here */
 ```
 

@@ -9,7 +9,7 @@ from datetime import datetime
 from enum import Enum
 from typing import Final, List, Optional
 
-class SourceJiraJira(str, Enum):
+class Jira(str, Enum):
     JIRA = 'jira'
 
 
@@ -23,7 +23,7 @@ class SourceJira:
     r"""The Domain for your Jira account, e.g. airbyteio.atlassian.net, airbyteio.jira.com, jira.your-domain.com"""
     email: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('email') }})
     r"""The user email for your Jira account which you used to generate the API token. This field is used for Authorization to your account by BasicAuth."""
-    SOURCE_TYPE: Final[SourceJiraJira] = dataclasses.field(default=SourceJiraJira.JIRA, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
+    SOURCE_TYPE: Final[Jira] = dataclasses.field(default=Jira.JIRA, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     enable_experimental_streams: Optional[bool] = dataclasses.field(default=False, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('enable_experimental_streams'), 'exclude': lambda f: f is None }})
     r"""Allow the use of experimental streams which rely on undocumented Jira API endpoints. See https://docs.airbyte.com/integrations/sources/jira#experimental-tables for more info."""
     expand_issue_changelog: Optional[bool] = dataclasses.field(default=False, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('expand_issue_changelog'), 'exclude': lambda f: f is None }})

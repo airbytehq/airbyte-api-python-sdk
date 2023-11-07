@@ -9,27 +9,27 @@ from datetime import datetime
 from enum import Enum
 from typing import Final, Optional, Union
 
-class SourceGithubAuthenticationPersonalAccessTokenOptionTitle(str, Enum):
+class SourceGithubOptionTitle(str, Enum):
     PAT_CREDENTIALS = 'PAT Credentials'
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
-class SourceGithubAuthenticationPersonalAccessToken:
+class SourceGithubPersonalAccessToken:
     r"""Choose how to authenticate to GitHub"""
     personal_access_token: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('personal_access_token') }})
     r"""Log into GitHub and then generate a <a href=\\"https://github.com/settings/tokens\\">personal access token</a>. To load balance your API quota consumption across multiple API tokens, input multiple tokens separated with \\",\\" """
-    OPTION_TITLE: Final[Optional[SourceGithubAuthenticationPersonalAccessTokenOptionTitle]] = dataclasses.field(default=SourceGithubAuthenticationPersonalAccessTokenOptionTitle.PAT_CREDENTIALS, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('option_title'), 'exclude': lambda f: f is None }})
+    OPTION_TITLE: Final[Optional[SourceGithubOptionTitle]] = dataclasses.field(default=SourceGithubOptionTitle.PAT_CREDENTIALS, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('option_title'), 'exclude': lambda f: f is None }})
     
 
 
-class SourceGithubAuthenticationOAuthOptionTitle(str, Enum):
+class OptionTitle(str, Enum):
     O_AUTH_CREDENTIALS = 'OAuth Credentials'
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
-class SourceGithubAuthenticationOAuth:
+class OAuth:
     r"""Choose how to authenticate to GitHub"""
     access_token: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('access_token') }})
     r"""OAuth access token"""
@@ -37,7 +37,7 @@ class SourceGithubAuthenticationOAuth:
     r"""OAuth Client Id"""
     client_secret: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('client_secret'), 'exclude': lambda f: f is None }})
     r"""OAuth Client secret"""
-    OPTION_TITLE: Final[Optional[SourceGithubAuthenticationOAuthOptionTitle]] = dataclasses.field(default=SourceGithubAuthenticationOAuthOptionTitle.O_AUTH_CREDENTIALS, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('option_title'), 'exclude': lambda f: f is None }})
+    OPTION_TITLE: Final[Optional[OptionTitle]] = dataclasses.field(default=OptionTitle.O_AUTH_CREDENTIALS, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('option_title'), 'exclude': lambda f: f is None }})
     
 
 
@@ -61,7 +61,7 @@ class SourceGithub:
     SOURCE_TYPE: Final[SourceGithubGithub] = dataclasses.field(default=SourceGithubGithub.GITHUB, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     branch: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('branch'), 'exclude': lambda f: f is None }})
     r"""Space-delimited list of GitHub repository branches to pull commits for, e.g. `airbytehq/airbyte/master`. If no branches are specified for a repository, the default branch will be pulled."""
-    credentials: Optional[Union[SourceGithubAuthenticationOAuth, SourceGithubAuthenticationPersonalAccessToken]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credentials'), 'exclude': lambda f: f is None }})
+    credentials: Optional[Union[OAuth, SourceGithubPersonalAccessToken]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credentials'), 'exclude': lambda f: f is None }})
     r"""Choose how to authenticate to GitHub"""
     requests_per_hour: Optional[int] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('requests_per_hour'), 'exclude': lambda f: f is None }})
     r"""The GitHub API allows for a maximum of 5000 requests per hour (15000 for Github Enterprise). You can specify a lower value to limit your use of the API quota."""

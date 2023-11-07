@@ -7,7 +7,7 @@ from dataclasses_json import Undefined, dataclass_json
 from enum import Enum
 from typing import Final
 
-class SourceOutreachOutreach(str, Enum):
+class Outreach(str, Enum):
     OUTREACH = 'outreach'
 
 
@@ -25,6 +25,6 @@ class SourceOutreach:
     r"""The token for obtaining the new access token."""
     start_date: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('start_date') }})
     r"""The date from which you'd like to replicate data for Outreach API, in the format YYYY-MM-DDT00:00:00Z. All data generated after this date will be replicated."""
-    SOURCE_TYPE: Final[SourceOutreachOutreach] = dataclasses.field(default=SourceOutreachOutreach.OUTREACH, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
+    SOURCE_TYPE: Final[Outreach] = dataclasses.field(default=Outreach.OUTREACH, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     
 

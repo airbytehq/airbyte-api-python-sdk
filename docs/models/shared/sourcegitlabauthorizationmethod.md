@@ -3,15 +3,15 @@
 
 ## Supported Types
 
-### SourceGitlabAuthorizationMethodOAuth20
+### SourceGitlabOAuth20
 
 ```python
-sourceGitlabAuthorizationMethod: shared.SourceGitlabAuthorizationMethodOAuth20 = /* values here */
+sourceGitlabAuthorizationMethod: shared.SourceGitlabOAuth20 = /* values here */
 ```
 
-### SourceGitlabAuthorizationMethodPrivateToken
+### PrivateToken
 
 ```python
-sourceGitlabAuthorizationMethod: shared.SourceGitlabAuthorizationMethodPrivateToken = /* values here */
+sourceGitlabAuthorizationMethod: shared.PrivateToken = /* values here */
 ```
 

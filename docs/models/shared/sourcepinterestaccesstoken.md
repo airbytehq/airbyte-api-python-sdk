@@ -1,0 +1,9 @@
+# SourcePinterestAccessToken
+
+
+## Fields
+
+| Field                                                                                              | Type                                                                                               | Required                                                                                           | Description                                                                                        |
+| -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- |
+| `access_token`                                                                                     | *str*                                                                                              | :heavy_check_mark:                                                                                 | The Access Token to make authenticated requests.                                                   |
+| `auth_method`                                                                                      | [shared.SourcePinterestSchemasAuthMethod](../../models/shared/sourcepinterestschemasauthmethod.md) | :heavy_check_mark:                                                                                 | N/A                                                                                                |

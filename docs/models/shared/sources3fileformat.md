@@ -3,27 +3,27 @@
 
 ## Supported Types
 
-### SourceS3FileFormatCSV
+### Csv
 
 ```python
-sourceS3FileFormat: shared.SourceS3FileFormatCSV = /* values here */
+sourceS3FileFormat: shared.Csv = /* values here */
 ```
 
-### SourceS3FileFormatParquet
+### Parquet
 
 ```python
-sourceS3FileFormat: shared.SourceS3FileFormatParquet = /* values here */
+sourceS3FileFormat: shared.Parquet = /* values here */
 ```
 
-### SourceS3FileFormatAvro
+### Avro
 
 ```python
-sourceS3FileFormat: shared.SourceS3FileFormatAvro = /* values here */
+sourceS3FileFormat: shared.Avro = /* values here */
 ```
 
-### SourceS3FileFormatJsonl
+### Jsonl
 
 ```python
-sourceS3FileFormat: shared.SourceS3FileFormatJsonl = /* values here */
+sourceS3FileFormat: shared.Jsonl = /* values here */
 ```
 

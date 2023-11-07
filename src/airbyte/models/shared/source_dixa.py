@@ -7,7 +7,7 @@ from dataclasses_json import Undefined, dataclass_json
 from enum import Enum
 from typing import Final, Optional
 
-class SourceDixaDixa(str, Enum):
+class Dixa(str, Enum):
     DIXA = 'dixa'
 
 
@@ -19,7 +19,7 @@ class SourceDixa:
     r"""Dixa API token"""
     start_date: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('start_date') }})
     r"""The connector pulls records updated from this date onwards."""
-    SOURCE_TYPE: Final[SourceDixaDixa] = dataclasses.field(default=SourceDixaDixa.DIXA, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
+    SOURCE_TYPE: Final[Dixa] = dataclasses.field(default=Dixa.DIXA, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     batch_size: Optional[int] = dataclasses.field(default=31, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('batch_size'), 'exclude': lambda f: f is None }})
     r"""Number of days to batch into one request. Max 31."""
     

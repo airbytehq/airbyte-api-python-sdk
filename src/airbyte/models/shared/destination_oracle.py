@@ -7,17 +7,17 @@ from dataclasses_json import Undefined, dataclass_json
 from enum import Enum
 from typing import Final, Optional, Union
 
-class DestinationOracleOracle(str, Enum):
+class Oracle(str, Enum):
     ORACLE = 'oracle'
 
-class DestinationOracleSSHTunnelMethodPasswordAuthenticationTunnelMethod(str, Enum):
+class DestinationOracleSchemasTunnelMethodTunnelMethod(str, Enum):
     r"""Connect through a jump server tunnel host using username and password authentication"""
     SSH_PASSWORD_AUTH = 'SSH_PASSWORD_AUTH'
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
-class DestinationOracleSSHTunnelMethodPasswordAuthentication:
+class DestinationOraclePasswordAuthentication:
     r"""Whether to initiate an SSH tunnel before connecting to the database, and if so, which kind of authentication to use."""
     tunnel_host: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('tunnel_host') }})
     r"""Hostname of the jump server host that allows inbound ssh tunnel."""
@@ -25,21 +25,21 @@ class DestinationOracleSSHTunnelMethodPasswordAuthentication:
     r"""OS-level username for logging into the jump server host"""
     tunnel_user_password: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('tunnel_user_password') }})
     r"""OS-level password for logging into the jump server host"""
-    TUNNEL_METHOD: Final[DestinationOracleSSHTunnelMethodPasswordAuthenticationTunnelMethod] = dataclasses.field(default=DestinationOracleSSHTunnelMethodPasswordAuthenticationTunnelMethod.SSH_PASSWORD_AUTH, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('tunnel_method') }})
+    TUNNEL_METHOD: Final[DestinationOracleSchemasTunnelMethodTunnelMethod] = dataclasses.field(default=DestinationOracleSchemasTunnelMethodTunnelMethod.SSH_PASSWORD_AUTH, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('tunnel_method') }})
     r"""Connect through a jump server tunnel host using username and password authentication"""
     tunnel_port: Optional[int] = dataclasses.field(default=22, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('tunnel_port'), 'exclude': lambda f: f is None }})
     r"""Port on the proxy/jump server that accepts inbound ssh connections."""
     
 
 
-class DestinationOracleSSHTunnelMethodSSHKeyAuthenticationTunnelMethod(str, Enum):
+class DestinationOracleSchemasTunnelMethod(str, Enum):
     r"""Connect through a jump server tunnel host using username and ssh key"""
     SSH_KEY_AUTH = 'SSH_KEY_AUTH'
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
-class DestinationOracleSSHTunnelMethodSSHKeyAuthentication:
+class DestinationOracleSSHKeyAuthentication:
     r"""Whether to initiate an SSH tunnel before connecting to the database, and if so, which kind of authentication to use."""
     ssh_key: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('ssh_key') }})
     r"""OS-level user account ssh key credentials in RSA PEM format ( created with ssh-keygen -t rsa -m PEM -f myuser_rsa )"""
@@ -47,23 +47,23 @@ class DestinationOracleSSHTunnelMethodSSHKeyAuthentication:
     r"""Hostname of the jump server host that allows inbound ssh tunnel."""
     tunnel_user: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('tunnel_user') }})
     r"""OS-level username for logging into the jump server host."""
-    TUNNEL_METHOD: Final[DestinationOracleSSHTunnelMethodSSHKeyAuthenticationTunnelMethod] = dataclasses.field(default=DestinationOracleSSHTunnelMethodSSHKeyAuthenticationTunnelMethod.SSH_KEY_AUTH, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('tunnel_method') }})
+    TUNNEL_METHOD: Final[DestinationOracleSchemasTunnelMethod] = dataclasses.field(default=DestinationOracleSchemasTunnelMethod.SSH_KEY_AUTH, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('tunnel_method') }})
     r"""Connect through a jump server tunnel host using username and ssh key"""
     tunnel_port: Optional[int] = dataclasses.field(default=22, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('tunnel_port'), 'exclude': lambda f: f is None }})
     r"""Port on the proxy/jump server that accepts inbound ssh connections."""
     
 
 
-class DestinationOracleSSHTunnelMethodNoTunnelTunnelMethod(str, Enum):
+class DestinationOracleTunnelMethod(str, Enum):
     r"""No ssh tunnel needed to connect to database"""
     NO_TUNNEL = 'NO_TUNNEL'
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
-class DestinationOracleSSHTunnelMethodNoTunnel:
+class DestinationOracleNoTunnel:
     r"""Whether to initiate an SSH tunnel before connecting to the database, and if so, which kind of authentication to use."""
-    TUNNEL_METHOD: Final[DestinationOracleSSHTunnelMethodNoTunnelTunnelMethod] = dataclasses.field(default=DestinationOracleSSHTunnelMethodNoTunnelTunnelMethod.NO_TUNNEL, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('tunnel_method') }})
+    TUNNEL_METHOD: Final[DestinationOracleTunnelMethod] = dataclasses.field(default=DestinationOracleTunnelMethod.NO_TUNNEL, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('tunnel_method') }})
     r"""No ssh tunnel needed to connect to database"""
     
 
@@ -84,7 +84,7 @@ class DestinationOracle:
     r"""The System Identifier uniquely distinguishes the instance from any other instance on the same computer."""
     username: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('username') }})
     r"""The username to access the database. This user must have CREATE USER privileges in the database."""
-    DESTINATION_TYPE: Final[DestinationOracleOracle] = dataclasses.field(default=DestinationOracleOracle.ORACLE, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('destinationType') }})
+    DESTINATION_TYPE: Final[Oracle] = dataclasses.field(default=Oracle.ORACLE, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('destinationType') }})
     jdbc_url_params: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('jdbc_url_params'), 'exclude': lambda f: f is None }})
     r"""Additional properties to pass to the JDBC URL string when connecting to the database formatted as 'key=value' pairs separated by the symbol '&'. (example: key1=value1&key2=value2&key3=value3)."""
     password: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('password'), 'exclude': lambda f: f is None }})
@@ -93,7 +93,7 @@ class DestinationOracle:
     r"""The port of the database."""
     schema: Optional[str] = dataclasses.field(default='airbyte', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('schema'), 'exclude': lambda f: f is None }})
     r"""The default schema is used as the target schema for all statements issued from the connection that do not explicitly specify a schema name. The usual value for this field is \\"airbyte\\".  In Oracle, schemas and users are the same thing, so the \\"user\\" parameter is used as the login credentials and this is used for the default Airbyte message schema."""
-    tunnel_method: Optional[Union[DestinationOracleSSHTunnelMethodNoTunnel, DestinationOracleSSHTunnelMethodSSHKeyAuthentication, DestinationOracleSSHTunnelMethodPasswordAuthentication]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('tunnel_method'), 'exclude': lambda f: f is None }})
+    tunnel_method: Optional[Union[DestinationOracleNoTunnel, DestinationOracleSSHKeyAuthentication, DestinationOraclePasswordAuthentication]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('tunnel_method'), 'exclude': lambda f: f is None }})
     r"""Whether to initiate an SSH tunnel before connecting to the database, and if so, which kind of authentication to use."""
     
 

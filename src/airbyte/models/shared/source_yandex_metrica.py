@@ -8,7 +8,7 @@ from datetime import date
 from enum import Enum
 from typing import Final, Optional
 
-class SourceYandexMetricaYandexMetrica(str, Enum):
+class YandexMetrica(str, Enum):
     YANDEX_METRICA = 'yandex-metrica'
 
 
@@ -22,7 +22,7 @@ class SourceYandexMetrica:
     r"""Counter ID"""
     start_date: date = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('start_date'), 'encoder': utils.dateisoformat(False), 'decoder': utils.datefromisoformat }})
     r"""Starting point for your data replication, in format of \\"YYYY-MM-DD\\"."""
-    SOURCE_TYPE: Final[SourceYandexMetricaYandexMetrica] = dataclasses.field(default=SourceYandexMetricaYandexMetrica.YANDEX_METRICA, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
+    SOURCE_TYPE: Final[YandexMetrica] = dataclasses.field(default=YandexMetrica.YANDEX_METRICA, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     end_date: Optional[date] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('end_date'), 'encoder': utils.dateisoformat(True), 'decoder': utils.datefromisoformat, 'exclude': lambda f: f is None }})
     r"""Starting point for your data replication, in format of \\"YYYY-MM-DD\\". If not provided will sync till most recent date."""
     

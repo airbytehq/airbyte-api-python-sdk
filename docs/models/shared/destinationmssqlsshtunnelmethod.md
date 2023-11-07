@@ -3,21 +3,21 @@
 
 ## Supported Types
 
-### DestinationMssqlSSHTunnelMethodNoTunnel
+### DestinationMssqlNoTunnel
 
 ```python
-destinationMssqlSSHTunnelMethod: shared.DestinationMssqlSSHTunnelMethodNoTunnel = /* values here */
+destinationMssqlSSHTunnelMethod: shared.DestinationMssqlNoTunnel = /* values here */
 ```
 
-### DestinationMssqlSSHTunnelMethodSSHKeyAuthentication
+### DestinationMssqlSSHKeyAuthentication
 
 ```python
-destinationMssqlSSHTunnelMethod: shared.DestinationMssqlSSHTunnelMethodSSHKeyAuthentication = /* values here */
+destinationMssqlSSHTunnelMethod: shared.DestinationMssqlSSHKeyAuthentication = /* values here */
 ```
 
-### DestinationMssqlSSHTunnelMethodPasswordAuthentication
+### DestinationMssqlPasswordAuthentication
 
 ```python
-destinationMssqlSSHTunnelMethod: shared.DestinationMssqlSSHTunnelMethodPasswordAuthentication = /* values here */
+destinationMssqlSSHTunnelMethod: shared.DestinationMssqlPasswordAuthentication = /* values here */
 ```
 

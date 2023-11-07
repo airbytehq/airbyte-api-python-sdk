@@ -7,7 +7,7 @@ from dataclasses_json import Undefined, dataclass_json
 from enum import Enum
 from typing import Final, Optional
 
-class DestinationTimeplusTimeplus(str, Enum):
+class Timeplus(str, Enum):
     TIMEPLUS = 'timeplus'
 
 
@@ -17,7 +17,7 @@ class DestinationTimeplus:
     r"""The values required to configure the destination."""
     apikey: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('apikey') }})
     r"""Personal API key"""
-    DESTINATION_TYPE: Final[DestinationTimeplusTimeplus] = dataclasses.field(default=DestinationTimeplusTimeplus.TIMEPLUS, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('destinationType') }})
+    DESTINATION_TYPE: Final[Timeplus] = dataclasses.field(default=Timeplus.TIMEPLUS, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('destinationType') }})
     endpoint: Optional[str] = dataclasses.field(default='https://us.timeplus.cloud/<workspace_id>', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('endpoint'), 'exclude': lambda f: f is None }})
     r"""Timeplus workspace endpoint"""
     

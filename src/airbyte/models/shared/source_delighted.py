@@ -9,7 +9,7 @@ from datetime import datetime
 from enum import Enum
 from typing import Final
 
-class SourceDelightedDelighted(str, Enum):
+class Delighted(str, Enum):
     DELIGHTED = 'delighted'
 
 
@@ -21,6 +21,6 @@ class SourceDelighted:
     r"""A Delighted API key."""
     since: datetime = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('since'), 'encoder': utils.datetimeisoformat(False), 'decoder': dateutil.parser.isoparse }})
     r"""The date from which you'd like to replicate the data"""
-    SOURCE_TYPE: Final[SourceDelightedDelighted] = dataclasses.field(default=SourceDelightedDelighted.DELIGHTED, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
+    SOURCE_TYPE: Final[Delighted] = dataclasses.field(default=Delighted.DELIGHTED, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     
 

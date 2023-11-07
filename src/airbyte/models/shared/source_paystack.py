@@ -9,7 +9,7 @@ from datetime import datetime
 from enum import Enum
 from typing import Final, Optional
 
-class SourcePaystackPaystack(str, Enum):
+class Paystack(str, Enum):
     PAYSTACK = 'paystack'
 
 
@@ -21,7 +21,7 @@ class SourcePaystack:
     r"""The Paystack API key (usually starts with 'sk_live_'; find yours <a href=\\"https://dashboard.paystack.com/#/settings/developer\\">here</a>)."""
     start_date: datetime = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('start_date'), 'encoder': utils.datetimeisoformat(False), 'decoder': dateutil.parser.isoparse }})
     r"""UTC date and time in the format 2017-01-25T00:00:00Z. Any data before this date will not be replicated."""
-    SOURCE_TYPE: Final[SourcePaystackPaystack] = dataclasses.field(default=SourcePaystackPaystack.PAYSTACK, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
+    SOURCE_TYPE: Final[Paystack] = dataclasses.field(default=Paystack.PAYSTACK, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     lookback_window_days: Optional[int] = dataclasses.field(default=0, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('lookback_window_days'), 'exclude': lambda f: f is None }})
     r"""When set, the connector will always reload data from the past N days, where N is the value set here. This is useful if your data is updated after creation."""
     

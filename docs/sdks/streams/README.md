@@ -1,5 +1,5 @@
 # Streams
-(*streams*)
+(*.streams*)
 
 ### Available Operations
 

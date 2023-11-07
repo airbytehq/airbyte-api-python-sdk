@@ -7,7 +7,7 @@ from dataclasses_json import Undefined, dataclass_json
 from enum import Enum
 from typing import Final, Optional
 
-class SourcePexelsAPIPexelsAPI(str, Enum):
+class PexelsAPI(str, Enum):
     PEXELS_API = 'pexels-api'
 
 
@@ -19,7 +19,7 @@ class SourcePexelsAPI:
     r"""API key is required to access pexels api, For getting your's goto https://www.pexels.com/api/documentation and create account for free."""
     query: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('query') }})
     r"""Optional, the search query, Example Ocean, Tigers, Pears, etc."""
-    SOURCE_TYPE: Final[SourcePexelsAPIPexelsAPI] = dataclasses.field(default=SourcePexelsAPIPexelsAPI.PEXELS_API, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
+    SOURCE_TYPE: Final[PexelsAPI] = dataclasses.field(default=PexelsAPI.PEXELS_API, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     color: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('color'), 'exclude': lambda f: f is None }})
     r"""Optional, Desired photo color. Supported colors red, orange, yellow, green, turquoise, blue, violet, pink, brown, black, gray, white or any hexidecimal color code."""
     locale: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('locale'), 'exclude': lambda f: f is None }})

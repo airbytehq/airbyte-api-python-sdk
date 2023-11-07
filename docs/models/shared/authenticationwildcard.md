@@ -1,0 +1,17 @@
+# AuthenticationWildcard
+
+
+## Supported Types
+
+### ServiceAccount
+
+```python
+authenticationWildcard: shared.ServiceAccount = /* values here */
+```
+
+### ProjectSecret
+
+```python
+authenticationWildcard: shared.ProjectSecret = /* values here */
+```
+

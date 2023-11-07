@@ -3,27 +3,27 @@
 
 ## Supported Types
 
-### SourceMysqlSSLModesPreferred
+### Preferred
 
 ```python
-sourceMysqlSSLModes: shared.SourceMysqlSSLModesPreferred = /* values here */
+sourceMysqlSSLModes: shared.Preferred = /* values here */
 ```
 
-### SourceMysqlSSLModesRequired
+### Required
 
 ```python
-sourceMysqlSSLModes: shared.SourceMysqlSSLModesRequired = /* values here */
+sourceMysqlSSLModes: shared.Required = /* values here */
 ```
 
-### SourceMysqlSSLModesVerifyCA
+### SourceMysqlVerifyCA
 
 ```python
-sourceMysqlSSLModes: shared.SourceMysqlSSLModesVerifyCA = /* values here */
+sourceMysqlSSLModes: shared.SourceMysqlVerifyCA = /* values here */
 ```
 
-### SourceMysqlSSLModesVerifyIdentity
+### VerifyIdentity
 
 ```python
-sourceMysqlSSLModes: shared.SourceMysqlSSLModesVerifyIdentity = /* values here */
+sourceMysqlSSLModes: shared.VerifyIdentity = /* values here */
 ```
 

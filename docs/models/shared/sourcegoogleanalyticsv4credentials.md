@@ -3,15 +3,15 @@
 
 ## Supported Types
 
-### SourceGoogleAnalyticsV4CredentialsAuthenticateViaGoogleOauth
+### SourceGoogleAnalyticsV4AuthenticateViaGoogleOauth
 
 ```python
-sourceGoogleAnalyticsV4Credentials: shared.SourceGoogleAnalyticsV4CredentialsAuthenticateViaGoogleOauth = /* values here */
+sourceGoogleAnalyticsV4Credentials: shared.SourceGoogleAnalyticsV4AuthenticateViaGoogleOauth = /* values here */
 ```
 
-### SourceGoogleAnalyticsV4CredentialsServiceAccountKeyAuthentication
+### SourceGoogleAnalyticsV4ServiceAccountKeyAuthentication
 
 ```python
-sourceGoogleAnalyticsV4Credentials: shared.SourceGoogleAnalyticsV4CredentialsServiceAccountKeyAuthentication = /* values here */
+sourceGoogleAnalyticsV4Credentials: shared.SourceGoogleAnalyticsV4ServiceAccountKeyAuthentication = /* values here */
 ```
 

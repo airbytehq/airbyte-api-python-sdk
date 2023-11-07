@@ -1,5 +1,5 @@
 # Workspaces
-(*workspaces*)
+(*.workspaces*)
 
 ### Available Operations
 

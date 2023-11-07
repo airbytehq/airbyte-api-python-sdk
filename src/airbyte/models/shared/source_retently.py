@@ -7,28 +7,28 @@ from dataclasses_json import Undefined, dataclass_json
 from enum import Enum
 from typing import Any, Dict, Final, Optional, Union
 
-class SourceRetentlyAuthenticationMechanismAuthenticateWithAPITokenAuthType(str, Enum):
+class SourceRetentlySchemasAuthType(str, Enum):
     TOKEN = 'Token'
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
-class SourceRetentlyAuthenticationMechanismAuthenticateWithAPIToken:
+class AuthenticateWithAPIToken:
     r"""Choose how to authenticate to Retently"""
     api_key: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('api_key') }})
     r"""Retently API Token. See the <a href=\\"https://app.retently.com/settings/api/tokens\\">docs</a> for more information on how to obtain this key."""
     additional_properties: Optional[Dict[str, Any]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'exclude': lambda f: f is None }})
-    AUTH_TYPE: Final[Optional[SourceRetentlyAuthenticationMechanismAuthenticateWithAPITokenAuthType]] = dataclasses.field(default=SourceRetentlyAuthenticationMechanismAuthenticateWithAPITokenAuthType.TOKEN, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_type'), 'exclude': lambda f: f is None }})
+    AUTH_TYPE: Final[Optional[SourceRetentlySchemasAuthType]] = dataclasses.field(default=SourceRetentlySchemasAuthType.TOKEN, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_type'), 'exclude': lambda f: f is None }})
     
 
 
-class SourceRetentlyAuthenticationMechanismAuthenticateViaRetentlyOAuthAuthType(str, Enum):
+class SourceRetentlyAuthType(str, Enum):
     CLIENT = 'Client'
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
-class SourceRetentlyAuthenticationMechanismAuthenticateViaRetentlyOAuth:
+class AuthenticateViaRetentlyOAuth:
     r"""Choose how to authenticate to Retently"""
     client_id: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('client_id') }})
     r"""The Client ID of your Retently developer application."""
@@ -37,7 +37,7 @@ class SourceRetentlyAuthenticationMechanismAuthenticateViaRetentlyOAuth:
     refresh_token: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('refresh_token') }})
     r"""Retently Refresh Token which can be used to fetch new Bearer Tokens when the current one expires."""
     additional_properties: Optional[Dict[str, Any]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'exclude': lambda f: f is None }})
-    AUTH_TYPE: Final[Optional[SourceRetentlyAuthenticationMechanismAuthenticateViaRetentlyOAuthAuthType]] = dataclasses.field(default=SourceRetentlyAuthenticationMechanismAuthenticateViaRetentlyOAuthAuthType.CLIENT, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_type'), 'exclude': lambda f: f is None }})
+    AUTH_TYPE: Final[Optional[SourceRetentlyAuthType]] = dataclasses.field(default=SourceRetentlyAuthType.CLIENT, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_type'), 'exclude': lambda f: f is None }})
     
 
 
@@ -54,7 +54,7 @@ class SourceRetentlyRetently(str, Enum):
 @dataclasses.dataclass
 class SourceRetently:
     r"""The values required to configure the source."""
-    credentials: Optional[Union[SourceRetentlyAuthenticationMechanismAuthenticateViaRetentlyOAuth, SourceRetentlyAuthenticationMechanismAuthenticateWithAPIToken]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credentials'), 'exclude': lambda f: f is None }})
+    credentials: Optional[Union[AuthenticateViaRetentlyOAuth, AuthenticateWithAPIToken]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credentials'), 'exclude': lambda f: f is None }})
     r"""Choose how to authenticate to Retently"""
     SOURCE_TYPE: Final[Optional[SourceRetentlyRetently]] = dataclasses.field(default=SourceRetentlyRetently.RETENTLY, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType'), 'exclude': lambda f: f is None }})
     

@@ -7,7 +7,7 @@ from dataclasses_json import Undefined, dataclass_json
 from enum import Enum
 from typing import Final
 
-class SourceOmnisendOmnisend(str, Enum):
+class Omnisend(str, Enum):
     OMNISEND = 'omnisend'
 
 
@@ -17,6 +17,6 @@ class SourceOmnisend:
     r"""The values required to configure the source."""
     api_key: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('api_key') }})
     r"""API Key"""
-    SOURCE_TYPE: Final[SourceOmnisendOmnisend] = dataclasses.field(default=SourceOmnisendOmnisend.OMNISEND, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
+    SOURCE_TYPE: Final[Omnisend] = dataclasses.field(default=Omnisend.OMNISEND, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     
 

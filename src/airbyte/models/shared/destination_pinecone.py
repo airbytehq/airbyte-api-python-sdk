@@ -7,44 +7,44 @@ from dataclasses_json import Undefined, dataclass_json
 from enum import Enum
 from typing import Final, List, Optional, Union
 
-class DestinationPineconePinecone(str, Enum):
+class Pinecone(str, Enum):
     PINECONE = 'pinecone'
 
-class DestinationPineconeEmbeddingFakeMode(str, Enum):
+class DestinationPineconeSchemasEmbeddingMode(str, Enum):
     FAKE = 'fake'
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
-class DestinationPineconeEmbeddingFake:
+class DestinationPineconeFake:
     r"""Use a fake embedding made out of random vectors with 1536 embedding dimensions. This is useful for testing the data pipeline without incurring any costs."""
-    MODE: Final[Optional[DestinationPineconeEmbeddingFakeMode]] = dataclasses.field(default=DestinationPineconeEmbeddingFakeMode.FAKE, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('mode'), 'exclude': lambda f: f is None }})
+    MODE: Final[Optional[DestinationPineconeSchemasEmbeddingMode]] = dataclasses.field(default=DestinationPineconeSchemasEmbeddingMode.FAKE, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('mode'), 'exclude': lambda f: f is None }})
     
 
 
-class DestinationPineconeEmbeddingCohereMode(str, Enum):
+class DestinationPineconeSchemasMode(str, Enum):
     COHERE = 'cohere'
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
-class DestinationPineconeEmbeddingCohere:
+class DestinationPineconeCohere:
     r"""Use the Cohere API to embed text."""
     cohere_key: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('cohere_key') }})
-    MODE: Final[Optional[DestinationPineconeEmbeddingCohereMode]] = dataclasses.field(default=DestinationPineconeEmbeddingCohereMode.COHERE, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('mode'), 'exclude': lambda f: f is None }})
+    MODE: Final[Optional[DestinationPineconeSchemasMode]] = dataclasses.field(default=DestinationPineconeSchemasMode.COHERE, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('mode'), 'exclude': lambda f: f is None }})
     
 
 
-class DestinationPineconeEmbeddingOpenAIMode(str, Enum):
+class DestinationPineconeMode(str, Enum):
     OPENAI = 'openai'
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
-class DestinationPineconeEmbeddingOpenAI:
+class DestinationPineconeOpenAI:
     r"""Use the OpenAI API to embed text. This option is using the text-embedding-ada-002 model with 1536 embedding dimensions."""
     openai_key: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('openai_key') }})
-    MODE: Final[Optional[DestinationPineconeEmbeddingOpenAIMode]] = dataclasses.field(default=DestinationPineconeEmbeddingOpenAIMode.OPENAI, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('mode'), 'exclude': lambda f: f is None }})
+    MODE: Final[Optional[DestinationPineconeMode]] = dataclasses.field(default=DestinationPineconeMode.OPENAI, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('mode'), 'exclude': lambda f: f is None }})
     
 
 
@@ -86,11 +86,11 @@ class DestinationPineconeProcessingConfigModel:
 @dataclasses.dataclass
 class DestinationPinecone:
     r"""The values required to configure the destination."""
-    embedding: Union[DestinationPineconeEmbeddingOpenAI, DestinationPineconeEmbeddingCohere, DestinationPineconeEmbeddingFake] = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('embedding') }})
+    embedding: Union[DestinationPineconeOpenAI, DestinationPineconeCohere, DestinationPineconeFake] = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('embedding') }})
     r"""Embedding configuration"""
     indexing: DestinationPineconeIndexing = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('indexing') }})
     r"""Pinecone is a popular vector store that can be used to store and retrieve embeddings."""
     processing: DestinationPineconeProcessingConfigModel = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('processing') }})
-    DESTINATION_TYPE: Final[DestinationPineconePinecone] = dataclasses.field(default=DestinationPineconePinecone.PINECONE, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('destinationType') }})
+    DESTINATION_TYPE: Final[Pinecone] = dataclasses.field(default=Pinecone.PINECONE, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('destinationType') }})
     
 

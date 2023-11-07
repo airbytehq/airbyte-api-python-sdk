@@ -3,15 +3,15 @@
 
 ## Supported Types
 
-### SourceSlackAuthenticationMechanismSignInViaSlackOAuth
+### SignInViaSlackOAuth
 
 ```python
-sourceSlackAuthenticationMechanism: shared.SourceSlackAuthenticationMechanismSignInViaSlackOAuth = /* values here */
+sourceSlackAuthenticationMechanism: shared.SignInViaSlackOAuth = /* values here */
 ```
 
-### SourceSlackAuthenticationMechanismAPIToken
+### SourceSlackAPIToken
 
 ```python
-sourceSlackAuthenticationMechanism: shared.SourceSlackAuthenticationMechanismAPIToken = /* values here */
+sourceSlackAuthenticationMechanism: shared.SourceSlackAPIToken = /* values here */
 ```
 

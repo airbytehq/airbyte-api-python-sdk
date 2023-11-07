@@ -7,7 +7,7 @@ from dataclasses_json import Undefined, dataclass_json
 from enum import Enum
 from typing import Final
 
-class SourceGetlagoGetlago(str, Enum):
+class Getlago(str, Enum):
     GETLAGO = 'getlago'
 
 
@@ -17,6 +17,6 @@ class SourceGetlago:
     r"""The values required to configure the source."""
     api_key: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('api_key') }})
     r"""Your API Key. See <a href=\\"https://doc.getlago.com/docs/api/intro\\">here</a>."""
-    SOURCE_TYPE: Final[SourceGetlagoGetlago] = dataclasses.field(default=SourceGetlagoGetlago.GETLAGO, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
+    SOURCE_TYPE: Final[Getlago] = dataclasses.field(default=Getlago.GETLAGO, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     
 

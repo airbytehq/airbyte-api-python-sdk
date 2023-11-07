@@ -7,12 +7,12 @@ from dataclasses_json import Undefined, dataclass_json
 from enum import Enum
 from typing import Final, Optional
 
-class SourceAmplitudeDataRegion(str, Enum):
+class DataRegion(str, Enum):
     r"""Amplitude data region server"""
     STANDARD_SERVER = 'Standard Server'
     EU_RESIDENCY_SERVER = 'EU Residency Server'
 
-class SourceAmplitudeAmplitude(str, Enum):
+class Amplitude(str, Enum):
     AMPLITUDE = 'amplitude'
 
 
@@ -26,8 +26,8 @@ class SourceAmplitude:
     r"""Amplitude Secret Key. See the <a href=\\"https://docs.airbyte.com/integrations/sources/amplitude#setup-guide\\">setup guide</a> for more information on how to obtain this key."""
     start_date: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('start_date') }})
     r"""UTC date and time in the format 2021-01-25T00:00:00Z. Any data before this date will not be replicated."""
-    SOURCE_TYPE: Final[SourceAmplitudeAmplitude] = dataclasses.field(default=SourceAmplitudeAmplitude.AMPLITUDE, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
-    data_region: Optional[SourceAmplitudeDataRegion] = dataclasses.field(default=SourceAmplitudeDataRegion.STANDARD_SERVER, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('data_region'), 'exclude': lambda f: f is None }})
+    SOURCE_TYPE: Final[Amplitude] = dataclasses.field(default=Amplitude.AMPLITUDE, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
+    data_region: Optional[DataRegion] = dataclasses.field(default=DataRegion.STANDARD_SERVER, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('data_region'), 'exclude': lambda f: f is None }})
     r"""Amplitude data region server"""
     request_time_range: Optional[int] = dataclasses.field(default=24, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('request_time_range'), 'exclude': lambda f: f is None }})
     r"""According to <a href=\\"https://www.docs.developers.amplitude.com/analytics/apis/export-api/#considerations\\">Considerations</a> too big time range in request can cause a timeout error. In this case, set shorter time interval in hours."""

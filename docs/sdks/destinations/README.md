@@ -1,5 +1,5 @@
 # Destinations
-(*destinations*)
+(*.destinations*)
 
 ### Available Operations
 
@@ -33,12 +33,12 @@ req = shared.DestinationCreateRequest(
     shared.DestinationAwsDatalake(
         aws_account_id='111111111111',
         bucket_name='string',
-        shared.DestinationAwsDatalakeAuthenticationModeIAMUser(
+        shared.IAMUser(
             aws_access_key_id='string',
             aws_secret_access_key='string',
         ),
-        destination_type=shared.DestinationAwsDatalakeAwsDatalake.AWS_DATALAKE,
-        shared.DestinationAwsDatalakeOutputFormatWildcardJSONLinesNewlineDelimitedJSON(),
+        destination_type=shared.AwsDatalake.AWS_DATALAKE,
+        shared.JSONLinesNewlineDelimitedJSON(),
         lakeformation_database_default_tag_key='pii_level',
         lakeformation_database_default_tag_values='private,public',
         lakeformation_database_name='string',
@@ -218,11 +218,11 @@ req = operations.PatchDestinationRequest(
         shared.DestinationAwsDatalake(
             aws_account_id='111111111111',
             bucket_name='string',
-            shared.DestinationAwsDatalakeAuthenticationModeIAMRole(
+            shared.IAMRole(
                 role_arn='string',
             ),
-            destination_type=shared.DestinationAwsDatalakeAwsDatalake.AWS_DATALAKE,
-            shared.DestinationAwsDatalakeOutputFormatWildcardParquetColumnarStorage(),
+            destination_type=shared.AwsDatalake.AWS_DATALAKE,
+            shared.ParquetColumnarStorage(),
             lakeformation_database_default_tag_key='pii_level',
             lakeformation_database_default_tag_values='private,public',
             lakeformation_database_name='string',
@@ -274,11 +274,11 @@ req = operations.PutDestinationRequest(
         shared.DestinationAwsDatalake(
             aws_account_id='111111111111',
             bucket_name='string',
-            shared.DestinationAwsDatalakeAuthenticationModeIAMRole(
+            shared.IAMRole(
                 role_arn='string',
             ),
-            destination_type=shared.DestinationAwsDatalakeAwsDatalake.AWS_DATALAKE,
-            shared.DestinationAwsDatalakeOutputFormatWildcardJSONLinesNewlineDelimitedJSON(),
+            destination_type=shared.AwsDatalake.AWS_DATALAKE,
+            shared.JSONLinesNewlineDelimitedJSON(),
             lakeformation_database_default_tag_key='pii_level',
             lakeformation_database_default_tag_values='private,public',
             lakeformation_database_name='string',

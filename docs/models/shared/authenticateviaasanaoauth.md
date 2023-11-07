@@ -1,0 +1,13 @@
+# AuthenticateViaAsanaOauth
+
+Choose how to authenticate to Github
+
+
+## Fields
+
+| Field                                                                                              | Type                                                                                               | Required                                                                                           | Description                                                                                        |
+| -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- |
+| `client_id`                                                                                        | *str*                                                                                              | :heavy_check_mark:                                                                                 | N/A                                                                                                |
+| `client_secret`                                                                                    | *str*                                                                                              | :heavy_check_mark:                                                                                 | N/A                                                                                                |
+| `option_title`                                                                                     | [Optional[shared.SourceAsanaCredentialsTitle]](../../models/shared/sourceasanacredentialstitle.md) | :heavy_minus_sign:                                                                                 | OAuth Credentials                                                                                  |
+| `refresh_token`                                                                                    | *str*                                                                                              | :heavy_check_mark:                                                                                 | N/A                                                                                                |

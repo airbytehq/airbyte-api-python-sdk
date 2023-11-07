@@ -3,21 +3,21 @@
 
 ## Supported Types
 
-### SourceMssqlSSHTunnelMethodNoTunnel
+### SourceMssqlNoTunnel
 
 ```python
-sourceMssqlSSHTunnelMethod: shared.SourceMssqlSSHTunnelMethodNoTunnel = /* values here */
+sourceMssqlSSHTunnelMethod: shared.SourceMssqlNoTunnel = /* values here */
 ```
 
-### SourceMssqlSSHTunnelMethodSSHKeyAuthentication
+### SourceMssqlSSHKeyAuthentication
 
 ```python
-sourceMssqlSSHTunnelMethod: shared.SourceMssqlSSHTunnelMethodSSHKeyAuthentication = /* values here */
+sourceMssqlSSHTunnelMethod: shared.SourceMssqlSSHKeyAuthentication = /* values here */
 ```
 
-### SourceMssqlSSHTunnelMethodPasswordAuthentication
+### SourceMssqlPasswordAuthentication
 
 ```python
-sourceMssqlSSHTunnelMethod: shared.SourceMssqlSSHTunnelMethodPasswordAuthentication = /* values here */
+sourceMssqlSSHTunnelMethod: shared.SourceMssqlPasswordAuthentication = /* values here */
 ```
 

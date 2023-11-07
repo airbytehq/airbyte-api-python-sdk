@@ -1,0 +1,11 @@
+# DestinationMilvusAPIToken
+
+Authenticate using an API token (suitable for Zilliz Cloud)
+
+
+## Fields
+
+| Field                                                                                                                | Type                                                                                                                 | Required                                                                                                             | Description                                                                                                          |
+| -------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------- |
+| `mode`                                                                                                               | [Optional[shared.DestinationMilvusSchemasIndexingMode]](../../models/shared/destinationmilvusschemasindexingmode.md) | :heavy_minus_sign:                                                                                                   | N/A                                                                                                                  |
+| `token`                                                                                                              | *str*                                                                                                                | :heavy_check_mark:                                                                                                   | API Token for the Milvus instance                                                                                    |

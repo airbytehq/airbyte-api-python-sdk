@@ -10,7 +10,7 @@ from typing import Final
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
-class DestinationGoogleSheetsAuthenticationViaGoogleOAuth:
+class AuthenticationViaGoogleOAuth:
     r"""Google API Credentials for connecting to Google Sheets and Google Drive APIs"""
     client_id: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('client_id') }})
     r"""The Client ID of your Google Sheets developer application."""
@@ -29,7 +29,7 @@ class DestinationGoogleSheetsGoogleSheets(str, Enum):
 @dataclasses.dataclass
 class DestinationGoogleSheets:
     r"""The values required to configure the destination."""
-    credentials: DestinationGoogleSheetsAuthenticationViaGoogleOAuth = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credentials') }})
+    credentials: AuthenticationViaGoogleOAuth = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credentials') }})
     r"""Google API Credentials for connecting to Google Sheets and Google Drive APIs"""
     spreadsheet_id: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('spreadsheet_id') }})
     r"""The link to your spreadsheet. See <a href='https://docs.airbyte.com/integrations/destinations/google-sheets#sheetlink'>this guide</a> for more details."""

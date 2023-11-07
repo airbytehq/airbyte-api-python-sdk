@@ -3,15 +3,15 @@
 
 ## Supported Types
 
-### DestinationRedisSSLModesDisable
+### DestinationRedisDisable
 
 ```python
-destinationRedisSSLModes: shared.DestinationRedisSSLModesDisable = /* values here */
+destinationRedisSSLModes: shared.DestinationRedisDisable = /* values here */
 ```
 
-### DestinationRedisSSLModesVerifyFull
+### DestinationRedisVerifyFull
 
 ```python
-destinationRedisSSLModes: shared.DestinationRedisSSLModesVerifyFull = /* values here */
+destinationRedisSSLModes: shared.DestinationRedisVerifyFull = /* values here */
 ```
 

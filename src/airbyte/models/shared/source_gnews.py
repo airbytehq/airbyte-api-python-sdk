@@ -7,7 +7,7 @@ from dataclasses_json import Undefined, dataclass_json
 from enum import Enum
 from typing import Final, List, Optional
 
-class SourceGnewsCountry(str, Enum):
+class Country(str, Enum):
     r"""This parameter allows you to specify the country where the news articles returned by the API were published, the contents of the articles are not necessarily related to the specified country. You have to set as value the 2 letters code of the country you want to filter."""
     AU = 'au'
     BR = 'br'
@@ -40,12 +40,12 @@ class SourceGnewsCountry(str, Enum):
     GB = 'gb'
     US = 'us'
 
-class SourceGnewsIn(str, Enum):
+class In(str, Enum):
     TITLE = 'title'
     DESCRIPTION = 'description'
     CONTENT = 'content'
 
-class SourceGnewsLanguage(str, Enum):
+class Language(str, Enum):
     AR = 'ar'
     ZH = 'zh'
     NL = 'nl'
@@ -69,12 +69,12 @@ class SourceGnewsLanguage(str, Enum):
     TE = 'te'
     UK = 'uk'
 
-class SourceGnewsNullable(str, Enum):
+class Nullable(str, Enum):
     TITLE = 'title'
     DESCRIPTION = 'description'
     CONTENT = 'content'
 
-class SourceGnewsSortBy(str, Enum):
+class SortBy(str, Enum):
     r"""This parameter allows you to choose with which type of sorting the articles should be returned. Two values  are possible:
       - publishedAt = sort by publication date, the articles with the most recent publication date are returned first
       - relevance = sort by best match to keywords, the articles with the best match are returned first
@@ -82,10 +82,10 @@ class SourceGnewsSortBy(str, Enum):
     PUBLISHED_AT = 'publishedAt'
     RELEVANCE = 'relevance'
 
-class SourceGnewsGnews(str, Enum):
+class Gnews(str, Enum):
     GNEWS = 'gnews'
 
-class SourceGnewsTopHeadlinesTopic(str, Enum):
+class TopHeadlinesTopic(str, Enum):
     r"""This parameter allows you to change the category for the request."""
     BREAKING_NEWS = 'breaking-news'
     WORLD = 'world'
@@ -120,17 +120,17 @@ class SourceGnews:
       For example the query: Apple NOT iPhone will return all articles matching the keyword Apple but not the keyword
       iPhone
     """
-    SOURCE_TYPE: Final[SourceGnewsGnews] = dataclasses.field(default=SourceGnewsGnews.GNEWS, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
-    country: Optional[SourceGnewsCountry] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('country'), 'exclude': lambda f: f is None }})
+    SOURCE_TYPE: Final[Gnews] = dataclasses.field(default=Gnews.GNEWS, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
+    country: Optional[Country] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('country'), 'exclude': lambda f: f is None }})
     r"""This parameter allows you to specify the country where the news articles returned by the API were published, the contents of the articles are not necessarily related to the specified country. You have to set as value the 2 letters code of the country you want to filter."""
     end_date: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('end_date'), 'exclude': lambda f: f is None }})
     r"""This parameter allows you to filter the articles that have a publication date smaller than or equal to the  specified value. The date must respect the following format: YYYY-MM-DD hh:mm:ss (in UTC)"""
-    in_: Optional[List[SourceGnewsIn]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('in'), 'exclude': lambda f: f is None }})
+    in_: Optional[List[In]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('in'), 'exclude': lambda f: f is None }})
     r"""This parameter allows you to choose in which attributes the keywords are searched. The attributes that can be set are title, description and content. It is possible to combine several attributes."""
-    language: Optional[SourceGnewsLanguage] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('language'), 'exclude': lambda f: f is None }})
-    nullable: Optional[List[SourceGnewsNullable]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('nullable'), 'exclude': lambda f: f is None }})
+    language: Optional[Language] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('language'), 'exclude': lambda f: f is None }})
+    nullable: Optional[List[Nullable]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('nullable'), 'exclude': lambda f: f is None }})
     r"""This parameter allows you to specify the attributes that you allow to return null values. The attributes that  can be set are title, description and content. It is possible to combine several attributes"""
-    sortby: Optional[SourceGnewsSortBy] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sortby'), 'exclude': lambda f: f is None }})
+    sortby: Optional[SortBy] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sortby'), 'exclude': lambda f: f is None }})
     r"""This parameter allows you to choose with which type of sorting the articles should be returned. Two values  are possible:
       - publishedAt = sort by publication date, the articles with the most recent publication date are returned first
       - relevance = sort by best match to keywords, the articles with the best match are returned first
@@ -153,7 +153,7 @@ class SourceGnews:
       For example the query: Apple NOT iPhone will return all articles matching the keyword Apple but not the keyword
       iPhone
     """
-    top_headlines_topic: Optional[SourceGnewsTopHeadlinesTopic] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('top_headlines_topic'), 'exclude': lambda f: f is None }})
+    top_headlines_topic: Optional[TopHeadlinesTopic] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('top_headlines_topic'), 'exclude': lambda f: f is None }})
     r"""This parameter allows you to change the category for the request."""
     
 

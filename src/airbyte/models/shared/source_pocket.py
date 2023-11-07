@@ -7,13 +7,13 @@ from dataclasses_json import Undefined, dataclass_json
 from enum import Enum
 from typing import Final, Optional
 
-class SourcePocketContentType(str, Enum):
+class ContentType(str, Enum):
     r"""Select the content type of the items to retrieve."""
     ARTICLE = 'article'
     VIDEO = 'video'
     IMAGE = 'image'
 
-class SourcePocketDetailType(str, Enum):
+class DetailType(str, Enum):
     r"""Select the granularity of the information about each item."""
     SIMPLE = 'simple'
     COMPLETE = 'complete'
@@ -25,10 +25,10 @@ class SourcePocketSortBy(str, Enum):
     TITLE = 'title'
     SITE = 'site'
 
-class SourcePocketPocket(str, Enum):
+class Pocket(str, Enum):
     POCKET = 'pocket'
 
-class SourcePocketState(str, Enum):
+class State(str, Enum):
     r"""Select the state of the items to retrieve."""
     UNREAD = 'unread'
     ARCHIVE = 'archive'
@@ -43,10 +43,10 @@ class SourcePocket:
     r"""The user's Pocket access token."""
     consumer_key: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('consumer_key') }})
     r"""Your application's Consumer Key."""
-    SOURCE_TYPE: Final[SourcePocketPocket] = dataclasses.field(default=SourcePocketPocket.POCKET, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
-    content_type: Optional[SourcePocketContentType] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('content_type'), 'exclude': lambda f: f is None }})
+    SOURCE_TYPE: Final[Pocket] = dataclasses.field(default=Pocket.POCKET, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
+    content_type: Optional[ContentType] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('content_type'), 'exclude': lambda f: f is None }})
     r"""Select the content type of the items to retrieve."""
-    detail_type: Optional[SourcePocketDetailType] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('detail_type'), 'exclude': lambda f: f is None }})
+    detail_type: Optional[DetailType] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('detail_type'), 'exclude': lambda f: f is None }})
     r"""Select the granularity of the information about each item."""
     domain: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('domain'), 'exclude': lambda f: f is None }})
     r"""Only return items from a particular `domain`."""
@@ -58,7 +58,7 @@ class SourcePocket:
     r"""Only return items modified since the given timestamp."""
     sort: Optional[SourcePocketSortBy] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sort'), 'exclude': lambda f: f is None }})
     r"""Sort retrieved items by the given criteria."""
-    state: Optional[SourcePocketState] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('state'), 'exclude': lambda f: f is None }})
+    state: Optional[State] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('state'), 'exclude': lambda f: f is None }})
     r"""Select the state of the items to retrieve."""
     tag: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('tag'), 'exclude': lambda f: f is None }})
     r"""Return only items tagged with this tag name. Use _untagged_ for retrieving only untagged items."""

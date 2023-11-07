@@ -7,7 +7,7 @@ from dataclasses_json import Undefined, dataclass_json
 from enum import Enum
 from typing import Final, List, Optional
 
-class SourceOrbOrb(str, Enum):
+class Orb(str, Enum):
     ORB = 'orb'
 
 
@@ -19,7 +19,7 @@ class SourceOrb:
     r"""Orb API Key, issued from the Orb admin console."""
     start_date: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('start_date') }})
     r"""UTC date and time in the format 2022-03-01T00:00:00Z. Any data with created_at before this data will not be synced. For Subscription Usage, this becomes the `timeframe_start` API parameter."""
-    SOURCE_TYPE: Final[SourceOrbOrb] = dataclasses.field(default=SourceOrbOrb.ORB, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
+    SOURCE_TYPE: Final[Orb] = dataclasses.field(default=Orb.ORB, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     lookback_window_days: Optional[int] = dataclasses.field(default=0, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('lookback_window_days'), 'exclude': lambda f: f is None }})
     r"""When set to N, the connector will always refresh resources created within the past N days. By default, updated objects that are not newly created are not incrementally synced."""
     numeric_event_properties_keys: Optional[List[str]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('numeric_event_properties_keys'), 'exclude': lambda f: f is None }})

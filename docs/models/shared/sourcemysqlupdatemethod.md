@@ -3,15 +3,15 @@
 
 ## Supported Types
 
-### SourceMysqlUpdateMethodReadChangesUsingBinaryLogCDC
+### ReadChangesUsingBinaryLogCDC
 
 ```python
-sourceMysqlUpdateMethod: shared.SourceMysqlUpdateMethodReadChangesUsingBinaryLogCDC = /* values here */
+sourceMysqlUpdateMethod: shared.ReadChangesUsingBinaryLogCDC = /* values here */
 ```
 
-### SourceMysqlUpdateMethodScanChangesWithUserDefinedCursor
+### SourceMysqlScanChangesWithUserDefinedCursor
 
 ```python
-sourceMysqlUpdateMethod: shared.SourceMysqlUpdateMethodScanChangesWithUserDefinedCursor = /* values here */
+sourceMysqlUpdateMethod: shared.SourceMysqlScanChangesWithUserDefinedCursor = /* values here */
 ```
 

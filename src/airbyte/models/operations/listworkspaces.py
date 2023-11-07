@@ -3,7 +3,7 @@
 from __future__ import annotations
 import dataclasses
 import requests as requests_http
-from ..shared import workspacesresponse as shared_workspacesresponse
+from ...models.shared import workspacesresponse as shared_workspacesresponse
 from typing import List, Optional
 
 

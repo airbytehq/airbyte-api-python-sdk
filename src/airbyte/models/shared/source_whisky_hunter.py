@@ -7,7 +7,7 @@ from dataclasses_json import Undefined, dataclass_json
 from enum import Enum
 from typing import Final, Optional
 
-class SourceWhiskyHunterWhiskyHunter(str, Enum):
+class WhiskyHunter(str, Enum):
     WHISKY_HUNTER = 'whisky-hunter'
 
 
@@ -15,6 +15,6 @@ class SourceWhiskyHunterWhiskyHunter(str, Enum):
 @dataclasses.dataclass
 class SourceWhiskyHunter:
     r"""The values required to configure the source."""
-    SOURCE_TYPE: Final[Optional[SourceWhiskyHunterWhiskyHunter]] = dataclasses.field(default=SourceWhiskyHunterWhiskyHunter.WHISKY_HUNTER, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType'), 'exclude': lambda f: f is None }})
+    SOURCE_TYPE: Final[Optional[WhiskyHunter]] = dataclasses.field(default=WhiskyHunter.WHISKY_HUNTER, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType'), 'exclude': lambda f: f is None }})
     
 

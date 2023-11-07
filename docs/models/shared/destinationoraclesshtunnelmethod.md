@@ -3,21 +3,21 @@
 
 ## Supported Types
 
-### DestinationOracleSSHTunnelMethodNoTunnel
+### DestinationOracleNoTunnel
 
 ```python
-destinationOracleSSHTunnelMethod: shared.DestinationOracleSSHTunnelMethodNoTunnel = /* values here */
+destinationOracleSSHTunnelMethod: shared.DestinationOracleNoTunnel = /* values here */
 ```
 
-### DestinationOracleSSHTunnelMethodSSHKeyAuthentication
+### DestinationOracleSSHKeyAuthentication
 
 ```python
-destinationOracleSSHTunnelMethod: shared.DestinationOracleSSHTunnelMethodSSHKeyAuthentication = /* values here */
+destinationOracleSSHTunnelMethod: shared.DestinationOracleSSHKeyAuthentication = /* values here */
 ```
 
-### DestinationOracleSSHTunnelMethodPasswordAuthentication
+### DestinationOraclePasswordAuthentication
 
 ```python
-destinationOracleSSHTunnelMethod: shared.DestinationOracleSSHTunnelMethodPasswordAuthentication = /* values here */
+destinationOracleSSHTunnelMethod: shared.DestinationOraclePasswordAuthentication = /* values here */
 ```
 

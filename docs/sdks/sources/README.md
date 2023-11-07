@@ -1,5 +1,5 @@
 # Sources
-(*sources*)
+(*.sources*)
 
 ### Available Operations
 
@@ -34,7 +34,7 @@ s = airbyte.Airbyte(
 req = shared.SourceCreateRequest(
     shared.SourcePokeapi(
         pokemon_name='luxray',
-        source_type=shared.SourcePokeapiPokeapi.POKEAPI,
+        source_type=shared.Pokeapi.POKEAPI,
     ),
     name='string',
     workspace_id='2cf0f31f-3ddc-4984-8c34-bdfb109056aa',
@@ -260,7 +260,7 @@ req = operations.PatchSourceRequest(
     source_patch_request=shared.SourcePatchRequest(
         shared.SourcePokeapi(
             pokemon_name='ditto',
-            source_type=shared.SourcePokeapiPokeapi.POKEAPI,
+            source_type=shared.Pokeapi.POKEAPI,
         ),
         name='My source',
     ),
@@ -310,7 +310,7 @@ req = operations.PutSourceRequest(
     source_put_request=shared.SourcePutRequest(
         shared.SourcePokeapi(
             pokemon_name='luxray',
-            source_type=shared.SourcePokeapiPokeapi.POKEAPI,
+            source_type=shared.Pokeapi.POKEAPI,
         ),
         name='string',
     ),

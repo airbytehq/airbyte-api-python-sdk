@@ -3,15 +3,15 @@
 
 ## Supported Types
 
-### SourceGoogleDirectoryGoogleCredentialsSignInViaGoogleOAuth
+### SignInViaGoogleOAuth
 
 ```python
-sourceGoogleDirectoryGoogleCredentials: shared.SourceGoogleDirectoryGoogleCredentialsSignInViaGoogleOAuth = /* values here */
+sourceGoogleDirectoryGoogleCredentials: shared.SignInViaGoogleOAuth = /* values here */
 ```
 
-### SourceGoogleDirectoryGoogleCredentialsServiceAccountKey
+### ServiceAccountKey
 
 ```python
-sourceGoogleDirectoryGoogleCredentials: shared.SourceGoogleDirectoryGoogleCredentialsServiceAccountKey = /* values here */
+sourceGoogleDirectoryGoogleCredentials: shared.ServiceAccountKey = /* values here */
 ```
 

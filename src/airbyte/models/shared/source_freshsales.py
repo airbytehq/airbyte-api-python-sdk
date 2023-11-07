@@ -7,7 +7,7 @@ from dataclasses_json import Undefined, dataclass_json
 from enum import Enum
 from typing import Final
 
-class SourceFreshsalesFreshsales(str, Enum):
+class Freshsales(str, Enum):
     FRESHSALES = 'freshsales'
 
 
@@ -19,6 +19,6 @@ class SourceFreshsales:
     r"""Freshsales API Key. See <a href=\\"https://crmsupport.freshworks.com/support/solutions/articles/50000002503-how-to-find-my-api-key-\\">here</a>. The key is case sensitive."""
     domain_name: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('domain_name') }})
     r"""The Name of your Freshsales domain"""
-    SOURCE_TYPE: Final[SourceFreshsalesFreshsales] = dataclasses.field(default=SourceFreshsalesFreshsales.FRESHSALES, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
+    SOURCE_TYPE: Final[Freshsales] = dataclasses.field(default=Freshsales.FRESHSALES, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     
 

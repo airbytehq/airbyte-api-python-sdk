@@ -3,21 +3,21 @@
 
 ## Supported Types
 
-### SourceClickhouseSSHTunnelMethodNoTunnel
+### SourceClickhouseNoTunnel
 
 ```python
-sourceClickhouseSSHTunnelMethod: shared.SourceClickhouseSSHTunnelMethodNoTunnel = /* values here */
+sourceClickhouseSSHTunnelMethod: shared.SourceClickhouseNoTunnel = /* values here */
 ```
 
-### SourceClickhouseSSHTunnelMethodSSHKeyAuthentication
+### SourceClickhouseSSHKeyAuthentication
 
 ```python
-sourceClickhouseSSHTunnelMethod: shared.SourceClickhouseSSHTunnelMethodSSHKeyAuthentication = /* values here */
+sourceClickhouseSSHTunnelMethod: shared.SourceClickhouseSSHKeyAuthentication = /* values here */
 ```
 
-### SourceClickhouseSSHTunnelMethodPasswordAuthentication
+### SourceClickhousePasswordAuthentication
 
 ```python
-sourceClickhouseSSHTunnelMethod: shared.SourceClickhouseSSHTunnelMethodPasswordAuthentication = /* values here */
+sourceClickhouseSSHTunnelMethod: shared.SourceClickhousePasswordAuthentication = /* values here */
 ```
 

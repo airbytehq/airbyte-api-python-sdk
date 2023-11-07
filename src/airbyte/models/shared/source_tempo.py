@@ -7,7 +7,7 @@ from dataclasses_json import Undefined, dataclass_json
 from enum import Enum
 from typing import Final
 
-class SourceTempoTempo(str, Enum):
+class Tempo(str, Enum):
     TEMPO = 'tempo'
 
 
@@ -17,6 +17,6 @@ class SourceTempo:
     r"""The values required to configure the source."""
     api_token: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('api_token') }})
     r"""Tempo API Token. Go to Tempo>Settings, scroll down to Data Access and select API integration."""
-    SOURCE_TYPE: Final[SourceTempoTempo] = dataclasses.field(default=SourceTempoTempo.TEMPO, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
+    SOURCE_TYPE: Final[Tempo] = dataclasses.field(default=Tempo.TEMPO, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     
 

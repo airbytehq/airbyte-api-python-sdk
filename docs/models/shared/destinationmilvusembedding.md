@@ -3,27 +3,27 @@
 
 ## Supported Types
 
-### DestinationMilvusEmbeddingOpenAI
+### DestinationMilvusOpenAI
 
 ```python
-destinationMilvusEmbedding: shared.DestinationMilvusEmbeddingOpenAI = /* values here */
+destinationMilvusEmbedding: shared.DestinationMilvusOpenAI = /* values here */
 ```
 
-### DestinationMilvusEmbeddingCohere
+### Cohere
 
 ```python
-destinationMilvusEmbedding: shared.DestinationMilvusEmbeddingCohere = /* values here */
+destinationMilvusEmbedding: shared.Cohere = /* values here */
 ```
 
-### DestinationMilvusEmbeddingFake
+### DestinationMilvusFake
 
 ```python
-destinationMilvusEmbedding: shared.DestinationMilvusEmbeddingFake = /* values here */
+destinationMilvusEmbedding: shared.DestinationMilvusFake = /* values here */
 ```
 
-### DestinationMilvusEmbeddingFromField
+### FromField
 
 ```python
-destinationMilvusEmbedding: shared.DestinationMilvusEmbeddingFromField = /* values here */
+destinationMilvusEmbedding: shared.FromField = /* values here */
 ```
 

@@ -3,15 +3,15 @@
 
 ## Supported Types
 
-### SourceZendeskTalkAuthenticationAPIToken
+### SourceZendeskTalkAPIToken
 
 ```python
-sourceZendeskTalkAuthentication: shared.SourceZendeskTalkAuthenticationAPIToken = /* values here */
+sourceZendeskTalkAuthentication: shared.SourceZendeskTalkAPIToken = /* values here */
 ```
 
-### SourceZendeskTalkAuthenticationOAuth20
+### SourceZendeskTalkOAuth20
 
 ```python
-sourceZendeskTalkAuthentication: shared.SourceZendeskTalkAuthenticationOAuth20 = /* values here */
+sourceZendeskTalkAuthentication: shared.SourceZendeskTalkOAuth20 = /* values here */
 ```
 

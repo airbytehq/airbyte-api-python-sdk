@@ -1,0 +1,9 @@
+# CustomReportConfig
+
+
+## Fields
+
+| Field                                                                                                          | Type                                                                                                           | Required                                                                                                       | Description                                                                                                    |
+| -------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------- |
+| `dimensions`                                                                                                   | List[[shared.SourceGoogleSearchConsoleValidEnums](../../models/shared/sourcegooglesearchconsolevalidenums.md)] | :heavy_check_mark:                                                                                             | A list of dimensions (country, date, device, page, query)                                                      |
+| `name`                                                                                                         | *str*                                                                                                          | :heavy_check_mark:                                                                                             | The name of the custom report, this name would be used as stream name                                          |

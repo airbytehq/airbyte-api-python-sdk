@@ -1,17 +1,8 @@
-# DestinationMssqlSSLMethod
+# DestinationMssqlSslMethod
 
 
-## Supported Types
+## Values
 
-### DestinationMssqlSSLMethodEncryptedTrustServerCertificate
-
-```python
-destinationMssqlSSLMethod: shared.DestinationMssqlSSLMethodEncryptedTrustServerCertificate = /* values here */
-```
-
-### DestinationMssqlSSLMethodEncryptedVerifyCertificate
-
-```python
-destinationMssqlSSLMethod: shared.DestinationMssqlSSLMethodEncryptedVerifyCertificate = /* values here */
-```
-
+| Name                                 | Value                                |
+| ------------------------------------ | ------------------------------------ |
+| `ENCRYPTED_TRUST_SERVER_CERTIFICATE` | encrypted_trust_server_certificate   |

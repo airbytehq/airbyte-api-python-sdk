@@ -3,9 +3,9 @@
 
 ## Supported Types
 
-### DestinationGcsAuthenticationHMACKey
+### HMACKey
 
 ```python
-destinationGcsAuthentication: shared.DestinationGcsAuthenticationHMACKey = /* values here */
+destinationGcsAuthentication: shared.HMACKey = /* values here */
 ```
 

@@ -7,7 +7,7 @@ from dataclasses_json import Undefined, dataclass_json
 from enum import Enum
 from typing import Final
 
-class SourceInstatusInstatus(str, Enum):
+class Instatus(str, Enum):
     INSTATUS = 'instatus'
 
 
@@ -17,6 +17,6 @@ class SourceInstatus:
     r"""The values required to configure the source."""
     api_key: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('api_key') }})
     r"""Instatus REST API key"""
-    SOURCE_TYPE: Final[SourceInstatusInstatus] = dataclasses.field(default=SourceInstatusInstatus.INSTATUS, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
+    SOURCE_TYPE: Final[Instatus] = dataclasses.field(default=Instatus.INSTATUS, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     
 

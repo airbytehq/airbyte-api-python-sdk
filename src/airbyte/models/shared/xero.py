@@ -9,7 +9,7 @@ from typing import Optional
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
-class XeroAuthentication:
+class Authentication:
     client_id: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('client_id'), 'exclude': lambda f: f is None }})
     r"""Enter your Xero application's Client ID"""
     client_secret: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('client_secret'), 'exclude': lambda f: f is None }})
@@ -22,6 +22,6 @@ class XeroAuthentication:
 @dataclasses.dataclass
 class Xero:
     r"""The values required to configure the source."""
-    authentication: Optional[XeroAuthentication] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('authentication'), 'exclude': lambda f: f is None }})
+    authentication: Optional[Authentication] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('authentication'), 'exclude': lambda f: f is None }})
     
 

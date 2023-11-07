@@ -7,7 +7,7 @@ from dataclasses_json import Undefined, dataclass_json
 from enum import Enum
 from typing import Final
 
-class SourceConfluenceConfluence(str, Enum):
+class Confluence(str, Enum):
     CONFLUENCE = 'confluence'
 
 
@@ -21,6 +21,6 @@ class SourceConfluence:
     r"""Your Confluence domain name"""
     email: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('email') }})
     r"""Your Confluence login email"""
-    SOURCE_TYPE: Final[SourceConfluenceConfluence] = dataclasses.field(default=SourceConfluenceConfluence.CONFLUENCE, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
+    SOURCE_TYPE: Final[Confluence] = dataclasses.field(default=Confluence.CONFLUENCE, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     
 

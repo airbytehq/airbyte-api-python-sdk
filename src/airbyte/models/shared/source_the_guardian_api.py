@@ -7,7 +7,7 @@ from dataclasses_json import Undefined, dataclass_json
 from enum import Enum
 from typing import Final, Optional
 
-class SourceTheGuardianAPITheGuardianAPI(str, Enum):
+class TheGuardianAPI(str, Enum):
     THE_GUARDIAN_API = 'the-guardian-api'
 
 
@@ -19,7 +19,7 @@ class SourceTheGuardianAPI:
     r"""Your API Key. See <a href=\\"https://open-platform.theguardian.com/access/\\">here</a>. The key is case sensitive."""
     start_date: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('start_date') }})
     r"""Use this to set the minimum date (YYYY-MM-DD) of the results. Results older than the start_date will not be shown."""
-    SOURCE_TYPE: Final[SourceTheGuardianAPITheGuardianAPI] = dataclasses.field(default=SourceTheGuardianAPITheGuardianAPI.THE_GUARDIAN_API, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
+    SOURCE_TYPE: Final[TheGuardianAPI] = dataclasses.field(default=TheGuardianAPI.THE_GUARDIAN_API, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     end_date: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('end_date'), 'exclude': lambda f: f is None }})
     r"""(Optional) Use this to set the maximum date (YYYY-MM-DD) of the results. Results newer than the end_date will not be shown. Default is set to the current date (today) for incremental syncs."""
     query: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('query'), 'exclude': lambda f: f is None }})

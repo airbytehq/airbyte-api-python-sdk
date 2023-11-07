@@ -3,9 +3,9 @@
 
 ## Supported Types
 
-### SourceQuickbooksAuthorizationMethodOAuth20
+### SourceQuickbooksOAuth20
 
 ```python
-sourceQuickbooksAuthorizationMethod: shared.SourceQuickbooksAuthorizationMethodOAuth20 = /* values here */
+sourceQuickbooksAuthorizationMethod: shared.SourceQuickbooksOAuth20 = /* values here */
 ```
 

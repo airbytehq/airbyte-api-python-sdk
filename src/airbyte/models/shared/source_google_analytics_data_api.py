@@ -8,27 +8,27 @@ from datetime import date
 from enum import Enum
 from typing import Final, Optional, Union
 
-class SourceGoogleAnalyticsDataAPICredentialsServiceAccountKeyAuthenticationAuthType(str, Enum):
+class SourceGoogleAnalyticsDataAPISchemasAuthType(str, Enum):
     SERVICE = 'Service'
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
-class SourceGoogleAnalyticsDataAPICredentialsServiceAccountKeyAuthentication:
+class ServiceAccountKeyAuthentication:
     r"""Credentials for the service"""
     credentials_json: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credentials_json') }})
     r"""The JSON key linked to the service account used for authorization. For steps on obtaining this key, refer to <a href=\\"https://docs.airbyte.com/integrations/sources/google-analytics-data-api/#setup-guide\\">the setup guide</a>."""
-    AUTH_TYPE: Final[Optional[SourceGoogleAnalyticsDataAPICredentialsServiceAccountKeyAuthenticationAuthType]] = dataclasses.field(default=SourceGoogleAnalyticsDataAPICredentialsServiceAccountKeyAuthenticationAuthType.SERVICE, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_type'), 'exclude': lambda f: f is None }})
+    AUTH_TYPE: Final[Optional[SourceGoogleAnalyticsDataAPISchemasAuthType]] = dataclasses.field(default=SourceGoogleAnalyticsDataAPISchemasAuthType.SERVICE, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_type'), 'exclude': lambda f: f is None }})
     
 
 
-class SourceGoogleAnalyticsDataAPICredentialsAuthenticateViaGoogleOauthAuthType(str, Enum):
+class SourceGoogleAnalyticsDataAPIAuthType(str, Enum):
     CLIENT = 'Client'
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
-class SourceGoogleAnalyticsDataAPICredentialsAuthenticateViaGoogleOauth:
+class AuthenticateViaGoogleOauth:
     r"""Credentials for the service"""
     client_id: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('client_id') }})
     r"""The Client ID of your Google Analytics developer application."""
@@ -38,7 +38,7 @@ class SourceGoogleAnalyticsDataAPICredentialsAuthenticateViaGoogleOauth:
     r"""The token for obtaining a new access token."""
     access_token: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('access_token'), 'exclude': lambda f: f is None }})
     r"""Access Token for making authenticated requests."""
-    AUTH_TYPE: Final[Optional[SourceGoogleAnalyticsDataAPICredentialsAuthenticateViaGoogleOauthAuthType]] = dataclasses.field(default=SourceGoogleAnalyticsDataAPICredentialsAuthenticateViaGoogleOauthAuthType.CLIENT, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_type'), 'exclude': lambda f: f is None }})
+    AUTH_TYPE: Final[Optional[SourceGoogleAnalyticsDataAPIAuthType]] = dataclasses.field(default=SourceGoogleAnalyticsDataAPIAuthType.CLIENT, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_type'), 'exclude': lambda f: f is None }})
     
 
 
@@ -60,7 +60,7 @@ class SourceGoogleAnalyticsDataAPI:
     property_id: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('property_id') }})
     r"""The Property ID is a unique number assigned to each property in Google Analytics, found in your GA4 property URL. This ID allows the connector to track the specific events associated with your property. Refer to the <a href='https://developers.google.com/analytics/devguides/reporting/data/v1/property-id#what_is_my_property_id'>Google Analytics documentation</a> to locate your property ID."""
     SOURCE_TYPE: Final[SourceGoogleAnalyticsDataAPIGoogleAnalyticsDataAPI] = dataclasses.field(default=SourceGoogleAnalyticsDataAPIGoogleAnalyticsDataAPI.GOOGLE_ANALYTICS_DATA_API, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
-    credentials: Optional[Union[SourceGoogleAnalyticsDataAPICredentialsAuthenticateViaGoogleOauth, SourceGoogleAnalyticsDataAPICredentialsServiceAccountKeyAuthentication]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credentials'), 'exclude': lambda f: f is None }})
+    credentials: Optional[Union[AuthenticateViaGoogleOauth, ServiceAccountKeyAuthentication]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credentials'), 'exclude': lambda f: f is None }})
     r"""Credentials for the service"""
     custom_reports: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('custom_reports'), 'exclude': lambda f: f is None }})
     r"""A JSON array describing the custom reports you want to sync from Google Analytics. See <a href=\\"https://docs.airbyte.com/integrations/sources/google-analytics-data-api/#custom-reports\\">the documentation</a> for more information about the exact format you can use to fill out this field."""

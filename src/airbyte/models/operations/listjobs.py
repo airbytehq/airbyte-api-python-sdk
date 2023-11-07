@@ -3,9 +3,9 @@
 from __future__ import annotations
 import dataclasses
 import requests as requests_http
-from ..shared import jobsresponse as shared_jobsresponse
-from ..shared import jobstatusenum as shared_jobstatusenum
-from ..shared import jobtypeenum as shared_jobtypeenum
+from ...models.shared import jobsresponse as shared_jobsresponse
+from ...models.shared import jobstatusenum as shared_jobstatusenum
+from ...models.shared import jobtypeenum as shared_jobtypeenum
 from datetime import datetime
 from typing import List, Optional
 

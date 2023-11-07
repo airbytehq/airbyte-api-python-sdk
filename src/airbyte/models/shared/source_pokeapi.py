@@ -7,7 +7,7 @@ from dataclasses_json import Undefined, dataclass_json
 from enum import Enum
 from typing import Final
 
-class SourcePokeapiPokeapi(str, Enum):
+class Pokeapi(str, Enum):
     POKEAPI = 'pokeapi'
 
 
@@ -17,6 +17,6 @@ class SourcePokeapi:
     r"""The values required to configure the source."""
     pokemon_name: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('pokemon_name') }})
     r"""Pokemon requested from the API."""
-    SOURCE_TYPE: Final[SourcePokeapiPokeapi] = dataclasses.field(default=SourcePokeapiPokeapi.POKEAPI, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
+    SOURCE_TYPE: Final[Pokeapi] = dataclasses.field(default=Pokeapi.POKEAPI, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     
 

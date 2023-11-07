@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 import dataclasses
-from ..shared import connectionsyncmodeenum as shared_connectionsyncmodeenum
+from .connectionsyncmodeenum import ConnectionSyncModeEnum
 from airbyte import utils
 from dataclasses_json import Undefined, dataclass_json
 from typing import List, Optional
@@ -17,6 +17,6 @@ class StreamProperties:
     source_defined_cursor_field: Optional[bool] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceDefinedCursorField'), 'exclude': lambda f: f is None }})
     source_defined_primary_key: Optional[List[List[str]]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceDefinedPrimaryKey'), 'exclude': lambda f: f is None }})
     stream_name: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('streamName'), 'exclude': lambda f: f is None }})
-    sync_modes: Optional[List[shared_connectionsyncmodeenum.ConnectionSyncModeEnum]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('syncModes'), 'exclude': lambda f: f is None }})
+    sync_modes: Optional[List[ConnectionSyncModeEnum]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('syncModes'), 'exclude': lambda f: f is None }})
     
 

@@ -3,7 +3,7 @@
 from __future__ import annotations
 import dataclasses
 import requests as requests_http
-from ..shared import streampropertiesresponse as shared_streampropertiesresponse
+from ...models.shared import streampropertiesresponse as shared_streampropertiesresponse
 from typing import Optional
 
 

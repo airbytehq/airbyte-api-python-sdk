@@ -8,7 +8,7 @@ from datetime import date
 from enum import Enum
 from typing import Final
 
-class SourcePrestashopPrestashop(str, Enum):
+class Prestashop(str, Enum):
     PRESTASHOP = 'prestashop'
 
 
@@ -22,6 +22,6 @@ class SourcePrestashop:
     r"""The Start date in the format YYYY-MM-DD."""
     url: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('url') }})
     r"""Shop URL without trailing slash."""
-    SOURCE_TYPE: Final[SourcePrestashopPrestashop] = dataclasses.field(default=SourcePrestashopPrestashop.PRESTASHOP, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
+    SOURCE_TYPE: Final[Prestashop] = dataclasses.field(default=Prestashop.PRESTASHOP, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     
 

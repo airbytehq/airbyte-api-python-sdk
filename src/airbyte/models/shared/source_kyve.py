@@ -7,7 +7,7 @@ from dataclasses_json import Undefined, dataclass_json
 from enum import Enum
 from typing import Final, Optional
 
-class SourceKyveKyve(str, Enum):
+class Kyve(str, Enum):
     KYVE = 'kyve'
 
 
@@ -19,7 +19,7 @@ class SourceKyve:
     r"""The IDs of the KYVE storage pool you want to archive. (Comma separated)"""
     start_ids: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('start_ids') }})
     r"""The start-id defines, from which bundle id the pipeline should start to extract the data (Comma separated)"""
-    SOURCE_TYPE: Final[SourceKyveKyve] = dataclasses.field(default=SourceKyveKyve.KYVE, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
+    SOURCE_TYPE: Final[Kyve] = dataclasses.field(default=Kyve.KYVE, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     max_pages: Optional[int] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('max_pages'), 'exclude': lambda f: f is None }})
     r"""The maximum amount of pages to go trough. Set to 'null' for all pages."""
     page_size: Optional[int] = dataclasses.field(default=100, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('page_size'), 'exclude': lambda f: f is None }})

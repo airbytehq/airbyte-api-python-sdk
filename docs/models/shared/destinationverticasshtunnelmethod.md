@@ -3,21 +3,21 @@
 
 ## Supported Types
 
-### DestinationVerticaSSHTunnelMethodNoTunnel
+### DestinationVerticaNoTunnel
 
 ```python
-destinationVerticaSSHTunnelMethod: shared.DestinationVerticaSSHTunnelMethodNoTunnel = /* values here */
+destinationVerticaSSHTunnelMethod: shared.DestinationVerticaNoTunnel = /* values here */
 ```
 
-### DestinationVerticaSSHTunnelMethodSSHKeyAuthentication
+### DestinationVerticaSSHKeyAuthentication
 
 ```python
-destinationVerticaSSHTunnelMethod: shared.DestinationVerticaSSHTunnelMethodSSHKeyAuthentication = /* values here */
+destinationVerticaSSHTunnelMethod: shared.DestinationVerticaSSHKeyAuthentication = /* values here */
 ```
 
-### DestinationVerticaSSHTunnelMethodPasswordAuthentication
+### DestinationVerticaPasswordAuthentication
 
 ```python
-destinationVerticaSSHTunnelMethod: shared.DestinationVerticaSSHTunnelMethodPasswordAuthentication = /* values here */
+destinationVerticaSSHTunnelMethod: shared.DestinationVerticaPasswordAuthentication = /* values here */
 ```
 

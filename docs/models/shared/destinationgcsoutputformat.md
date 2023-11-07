@@ -3,27 +3,27 @@
 
 ## Supported Types
 
-### DestinationGcsOutputFormatAvroApacheAvro
+### AvroApacheAvro
 
 ```python
-destinationGcsOutputFormat: shared.DestinationGcsOutputFormatAvroApacheAvro = /* values here */
+destinationGcsOutputFormat: shared.AvroApacheAvro = /* values here */
 ```
 
-### DestinationGcsOutputFormatCSVCommaSeparatedValues
+### DestinationGcsCSVCommaSeparatedValues
 
 ```python
-destinationGcsOutputFormat: shared.DestinationGcsOutputFormatCSVCommaSeparatedValues = /* values here */
+destinationGcsOutputFormat: shared.DestinationGcsCSVCommaSeparatedValues = /* values here */
 ```
 
-### DestinationGcsOutputFormatJSONLinesNewlineDelimitedJSON
+### DestinationGcsJSONLinesNewlineDelimitedJSON
 
 ```python
-destinationGcsOutputFormat: shared.DestinationGcsOutputFormatJSONLinesNewlineDelimitedJSON = /* values here */
+destinationGcsOutputFormat: shared.DestinationGcsJSONLinesNewlineDelimitedJSON = /* values here */
 ```
 
-### DestinationGcsOutputFormatParquetColumnarStorage
+### DestinationGcsParquetColumnarStorage
 
 ```python
-destinationGcsOutputFormat: shared.DestinationGcsOutputFormatParquetColumnarStorage = /* values here */
+destinationGcsOutputFormat: shared.DestinationGcsParquetColumnarStorage = /* values here */
 ```
 

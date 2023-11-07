@@ -7,7 +7,7 @@ from dataclasses_json import Undefined, dataclass_json
 from enum import Enum
 from typing import Final, Optional
 
-class SourceMyHoursMyHours(str, Enum):
+class MyHours(str, Enum):
     MY_HOURS = 'my-hours'
 
 
@@ -21,7 +21,7 @@ class SourceMyHours:
     r"""The password associated to the username"""
     start_date: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('start_date') }})
     r"""Start date for collecting time logs"""
-    SOURCE_TYPE: Final[SourceMyHoursMyHours] = dataclasses.field(default=SourceMyHoursMyHours.MY_HOURS, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
+    SOURCE_TYPE: Final[MyHours] = dataclasses.field(default=MyHours.MY_HOURS, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     logs_batch_size: Optional[int] = dataclasses.field(default=30, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('logs_batch_size'), 'exclude': lambda f: f is None }})
     r"""Pagination size used for retrieving logs in days"""
     

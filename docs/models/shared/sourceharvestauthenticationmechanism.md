@@ -3,15 +3,15 @@
 
 ## Supported Types
 
-### SourceHarvestAuthenticationMechanismAuthenticateViaHarvestOAuth
+### AuthenticateViaHarvestOAuth
 
 ```python
-sourceHarvestAuthenticationMechanism: shared.SourceHarvestAuthenticationMechanismAuthenticateViaHarvestOAuth = /* values here */
+sourceHarvestAuthenticationMechanism: shared.AuthenticateViaHarvestOAuth = /* values here */
 ```
 
-### SourceHarvestAuthenticationMechanismAuthenticateWithPersonalAccessToken
+### SourceHarvestAuthenticateWithPersonalAccessToken
 
 ```python
-sourceHarvestAuthenticationMechanism: shared.SourceHarvestAuthenticationMechanismAuthenticateWithPersonalAccessToken = /* values here */
+sourceHarvestAuthenticationMechanism: shared.SourceHarvestAuthenticateWithPersonalAccessToken = /* values here */
 ```
 

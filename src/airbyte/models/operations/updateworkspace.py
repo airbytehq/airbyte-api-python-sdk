@@ -3,8 +3,8 @@
 from __future__ import annotations
 import dataclasses
 import requests as requests_http
-from ..shared import workspaceresponse as shared_workspaceresponse
-from ..shared import workspaceupdaterequest as shared_workspaceupdaterequest
+from ...models.shared import workspaceresponse as shared_workspaceresponse
+from ...models.shared import workspaceupdaterequest as shared_workspaceupdaterequest
 from typing import Optional
 
 

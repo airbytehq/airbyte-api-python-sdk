@@ -3,15 +3,15 @@
 
 ## Supported Types
 
-### SourceMondayAuthorizationMethodOAuth20
+### SourceMondayOAuth20
 
 ```python
-sourceMondayAuthorizationMethod: shared.SourceMondayAuthorizationMethodOAuth20 = /* values here */
+sourceMondayAuthorizationMethod: shared.SourceMondayOAuth20 = /* values here */
 ```
 
-### SourceMondayAuthorizationMethodAPIToken
+### APIToken
 
 ```python
-sourceMondayAuthorizationMethod: shared.SourceMondayAuthorizationMethodAPIToken = /* values here */
+sourceMondayAuthorizationMethod: shared.APIToken = /* values here */
 ```
 

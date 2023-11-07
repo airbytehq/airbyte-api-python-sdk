@@ -3,15 +3,15 @@
 
 ## Supported Types
 
-### SourceGithubAuthenticationOAuth
+### OAuth
 
 ```python
-sourceGithubAuthentication: shared.SourceGithubAuthenticationOAuth = /* values here */
+sourceGithubAuthentication: shared.OAuth = /* values here */
 ```
 
-### SourceGithubAuthenticationPersonalAccessToken
+### SourceGithubPersonalAccessToken
 
 ```python
-sourceGithubAuthentication: shared.SourceGithubAuthenticationPersonalAccessToken = /* values here */
+sourceGithubAuthentication: shared.SourceGithubPersonalAccessToken = /* values here */
 ```
 

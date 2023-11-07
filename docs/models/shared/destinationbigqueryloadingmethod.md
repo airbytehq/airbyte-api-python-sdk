@@ -3,15 +3,15 @@
 
 ## Supported Types
 
-### DestinationBigqueryLoadingMethodStandardInserts
+### DestinationBigqueryStandardInserts
 
 ```python
-destinationBigqueryLoadingMethod: shared.DestinationBigqueryLoadingMethodStandardInserts = /* values here */
+destinationBigqueryLoadingMethod: shared.DestinationBigqueryStandardInserts = /* values here */
 ```
 
-### DestinationBigqueryLoadingMethodGCSStaging
+### DestinationBigqueryGCSStaging
 
 ```python
-destinationBigqueryLoadingMethod: shared.DestinationBigqueryLoadingMethodGCSStaging = /* values here */
+destinationBigqueryLoadingMethod: shared.DestinationBigqueryGCSStaging = /* values here */
 ```
 

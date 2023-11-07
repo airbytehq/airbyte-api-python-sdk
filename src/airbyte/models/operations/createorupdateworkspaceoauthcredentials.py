@@ -3,7 +3,7 @@
 from __future__ import annotations
 import dataclasses
 import requests as requests_http
-from ..shared import workspaceoauthcredentialsrequest as shared_workspaceoauthcredentialsrequest
+from ...models.shared import workspaceoauthcredentialsrequest as shared_workspaceoauthcredentialsrequest
 from typing import Optional
 
 

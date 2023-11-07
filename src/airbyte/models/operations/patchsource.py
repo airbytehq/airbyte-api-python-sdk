@@ -3,8 +3,8 @@
 from __future__ import annotations
 import dataclasses
 import requests as requests_http
-from ..shared import sourcepatchrequest as shared_sourcepatchrequest
-from ..shared import sourceresponse as shared_sourceresponse
+from ...models.shared import sourcepatchrequest as shared_sourcepatchrequest
+from ...models.shared import sourceresponse as shared_sourceresponse
 from typing import Optional
 
 

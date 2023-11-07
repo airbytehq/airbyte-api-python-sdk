@@ -3,9 +3,9 @@
 
 ## Supported Types
 
-### DestinationS3GlueOutputFormatJSONLinesNewlineDelimitedJSON
+### DestinationS3GlueJSONLinesNewlineDelimitedJSON
 
 ```python
-destinationS3GlueOutputFormat: shared.DestinationS3GlueOutputFormatJSONLinesNewlineDelimitedJSON = /* values here */
+destinationS3GlueOutputFormat: shared.DestinationS3GlueJSONLinesNewlineDelimitedJSON = /* values here */
 ```
 

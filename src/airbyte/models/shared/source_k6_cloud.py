@@ -7,7 +7,7 @@ from dataclasses_json import Undefined, dataclass_json
 from enum import Enum
 from typing import Final
 
-class SourceK6CloudK6Cloud(str, Enum):
+class K6Cloud(str, Enum):
     K6_CLOUD = 'k6-cloud'
 
 
@@ -17,6 +17,6 @@ class SourceK6Cloud:
     r"""The values required to configure the source."""
     api_token: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('api_token') }})
     r"""Your API Token. See <a href=\\"https://k6.io/docs/cloud/integrations/token/\\">here</a>. The key is case sensitive."""
-    SOURCE_TYPE: Final[SourceK6CloudK6Cloud] = dataclasses.field(default=SourceK6CloudK6Cloud.K6_CLOUD, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
+    SOURCE_TYPE: Final[K6Cloud] = dataclasses.field(default=K6Cloud.K6_CLOUD, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     
 

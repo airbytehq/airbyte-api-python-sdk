@@ -3,21 +3,21 @@
 
 ## Supported Types
 
-### DestinationMongodbSSHTunnelMethodNoTunnel
+### DestinationMongodbNoTunnel
 
 ```python
-destinationMongodbSSHTunnelMethod: shared.DestinationMongodbSSHTunnelMethodNoTunnel = /* values here */
+destinationMongodbSSHTunnelMethod: shared.DestinationMongodbNoTunnel = /* values here */
 ```
 
-### DestinationMongodbSSHTunnelMethodSSHKeyAuthentication
+### DestinationMongodbSSHKeyAuthentication
 
 ```python
-destinationMongodbSSHTunnelMethod: shared.DestinationMongodbSSHTunnelMethodSSHKeyAuthentication = /* values here */
+destinationMongodbSSHTunnelMethod: shared.DestinationMongodbSSHKeyAuthentication = /* values here */
 ```
 
-### DestinationMongodbSSHTunnelMethodPasswordAuthentication
+### DestinationMongodbPasswordAuthentication
 
 ```python
-destinationMongodbSSHTunnelMethod: shared.DestinationMongodbSSHTunnelMethodPasswordAuthentication = /* values here */
+destinationMongodbSSHTunnelMethod: shared.DestinationMongodbPasswordAuthentication = /* values here */
 ```
 

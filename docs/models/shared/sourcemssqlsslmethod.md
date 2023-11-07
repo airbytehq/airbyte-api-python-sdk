@@ -3,15 +3,15 @@
 
 ## Supported Types
 
-### SourceMssqlSSLMethodEncryptedTrustServerCertificate
+### SourceMssqlEncryptedTrustServerCertificate
 
 ```python
-sourceMssqlSSLMethod: shared.SourceMssqlSSLMethodEncryptedTrustServerCertificate = /* values here */
+sourceMssqlSSLMethod: shared.SourceMssqlEncryptedTrustServerCertificate = /* values here */
 ```
 
-### SourceMssqlSSLMethodEncryptedVerifyCertificate
+### SourceMssqlEncryptedVerifyCertificate
 
 ```python
-sourceMssqlSSLMethod: shared.SourceMssqlSSLMethodEncryptedVerifyCertificate = /* values here */
+sourceMssqlSSLMethod: shared.SourceMssqlEncryptedVerifyCertificate = /* values here */
 ```
 

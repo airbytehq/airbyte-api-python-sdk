@@ -7,7 +7,7 @@ from dataclasses_json import Undefined, dataclass_json
 from enum import Enum
 from typing import Final, Optional
 
-class SourceTvmazeScheduleTvmazeSchedule(str, Enum):
+class TvmazeSchedule(str, Enum):
     TVMAZE_SCHEDULE = 'tvmaze-schedule'
 
 
@@ -19,7 +19,7 @@ class SourceTvmazeSchedule:
     r"""Country code for domestic TV schedule retrieval."""
     start_date: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('start_date') }})
     r"""Start date for TV schedule retrieval. May be in the future."""
-    SOURCE_TYPE: Final[SourceTvmazeScheduleTvmazeSchedule] = dataclasses.field(default=SourceTvmazeScheduleTvmazeSchedule.TVMAZE_SCHEDULE, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
+    SOURCE_TYPE: Final[TvmazeSchedule] = dataclasses.field(default=TvmazeSchedule.TVMAZE_SCHEDULE, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     end_date: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('end_date'), 'exclude': lambda f: f is None }})
     r"""End date for TV schedule retrieval. May be in the future. Optional."""
     web_schedule_country_code: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('web_schedule_country_code'), 'exclude': lambda f: f is None }})

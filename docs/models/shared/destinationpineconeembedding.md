@@ -3,21 +3,21 @@
 
 ## Supported Types
 
-### DestinationPineconeEmbeddingOpenAI
+### DestinationPineconeOpenAI
 
 ```python
-destinationPineconeEmbedding: shared.DestinationPineconeEmbeddingOpenAI = /* values here */
+destinationPineconeEmbedding: shared.DestinationPineconeOpenAI = /* values here */
 ```
 
-### DestinationPineconeEmbeddingCohere
+### DestinationPineconeCohere
 
 ```python
-destinationPineconeEmbedding: shared.DestinationPineconeEmbeddingCohere = /* values here */
+destinationPineconeEmbedding: shared.DestinationPineconeCohere = /* values here */
 ```
 
-### DestinationPineconeEmbeddingFake
+### DestinationPineconeFake
 
 ```python
-destinationPineconeEmbedding: shared.DestinationPineconeEmbeddingFake = /* values here */
+destinationPineconeEmbedding: shared.DestinationPineconeFake = /* values here */
 ```
 

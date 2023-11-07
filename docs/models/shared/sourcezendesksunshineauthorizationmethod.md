@@ -3,15 +3,15 @@
 
 ## Supported Types
 
-### SourceZendeskSunshineAuthorizationMethodOAuth20
+### SourceZendeskSunshineOAuth20
 
 ```python
-sourceZendeskSunshineAuthorizationMethod: shared.SourceZendeskSunshineAuthorizationMethodOAuth20 = /* values here */
+sourceZendeskSunshineAuthorizationMethod: shared.SourceZendeskSunshineOAuth20 = /* values here */
 ```
 
-### SourceZendeskSunshineAuthorizationMethodAPIToken
+### SourceZendeskSunshineAPIToken
 
 ```python
-sourceZendeskSunshineAuthorizationMethod: shared.SourceZendeskSunshineAuthorizationMethodAPIToken = /* values here */
+sourceZendeskSunshineAuthorizationMethod: shared.SourceZendeskSunshineAPIToken = /* values here */
 ```
 

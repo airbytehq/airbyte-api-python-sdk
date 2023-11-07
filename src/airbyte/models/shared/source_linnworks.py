@@ -9,7 +9,7 @@ from datetime import datetime
 from enum import Enum
 from typing import Final
 
-class SourceLinnworksLinnworks(str, Enum):
+class Linnworks(str, Enum):
     LINNWORKS = 'linnworks'
 
 
@@ -24,6 +24,6 @@ class SourceLinnworks:
     start_date: datetime = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('start_date'), 'encoder': utils.datetimeisoformat(False), 'decoder': dateutil.parser.isoparse }})
     r"""UTC date and time in the format 2017-01-25T00:00:00Z. Any data before this date will not be replicated."""
     token: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('token') }})
-    SOURCE_TYPE: Final[SourceLinnworksLinnworks] = dataclasses.field(default=SourceLinnworksLinnworks.LINNWORKS, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
+    SOURCE_TYPE: Final[Linnworks] = dataclasses.field(default=Linnworks.LINNWORKS, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     
 

@@ -7,7 +7,7 @@ from dataclasses_json import Undefined, dataclass_json
 from enum import Enum
 from typing import Final
 
-class SourceDockerhubDockerhub(str, Enum):
+class Dockerhub(str, Enum):
     DOCKERHUB = 'dockerhub'
 
 
@@ -17,6 +17,6 @@ class SourceDockerhub:
     r"""The values required to configure the source."""
     docker_username: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('docker_username') }})
     r"""Username of DockerHub person or organization (for https://hub.docker.com/v2/repositories/USERNAME/ API call)"""
-    SOURCE_TYPE: Final[SourceDockerhubDockerhub] = dataclasses.field(default=SourceDockerhubDockerhub.DOCKERHUB, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
+    SOURCE_TYPE: Final[Dockerhub] = dataclasses.field(default=Dockerhub.DOCKERHUB, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     
 

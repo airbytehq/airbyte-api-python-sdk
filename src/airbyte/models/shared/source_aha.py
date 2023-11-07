@@ -7,7 +7,7 @@ from dataclasses_json import Undefined, dataclass_json
 from enum import Enum
 from typing import Final
 
-class SourceAhaAha(str, Enum):
+class Aha(str, Enum):
     AHA = 'aha'
 
 
@@ -19,6 +19,6 @@ class SourceAha:
     r"""API Key"""
     url: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('url') }})
     r"""URL"""
-    SOURCE_TYPE: Final[SourceAhaAha] = dataclasses.field(default=SourceAhaAha.AHA, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
+    SOURCE_TYPE: Final[Aha] = dataclasses.field(default=Aha.AHA, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     
 

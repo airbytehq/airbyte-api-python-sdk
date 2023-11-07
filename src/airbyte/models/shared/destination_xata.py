@@ -7,7 +7,7 @@ from dataclasses_json import Undefined, dataclass_json
 from enum import Enum
 from typing import Final
 
-class DestinationXataXata(str, Enum):
+class Xata(str, Enum):
     XATA = 'xata'
 
 
@@ -19,6 +19,6 @@ class DestinationXata:
     r"""API Key to connect."""
     db_url: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('db_url') }})
     r"""URL pointing to your workspace."""
-    DESTINATION_TYPE: Final[DestinationXataXata] = dataclasses.field(default=DestinationXataXata.XATA, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('destinationType') }})
+    DESTINATION_TYPE: Final[Xata] = dataclasses.field(default=Xata.XATA, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('destinationType') }})
     
 

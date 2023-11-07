@@ -7,7 +7,7 @@ from dataclasses_json import Undefined, dataclass_json
 from enum import Enum
 from typing import Final
 
-class SourceShortioShortio(str, Enum):
+class Shortio(str, Enum):
     SHORTIO = 'shortio'
 
 
@@ -20,6 +20,6 @@ class SourceShortio:
     r"""Short.io Secret Key"""
     start_date: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('start_date') }})
     r"""UTC date and time in the format 2017-01-25T00:00:00Z. Any data before this date will not be replicated."""
-    SOURCE_TYPE: Final[SourceShortioShortio] = dataclasses.field(default=SourceShortioShortio.SHORTIO, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
+    SOURCE_TYPE: Final[Shortio] = dataclasses.field(default=Shortio.SHORTIO, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     
 

@@ -3,15 +3,15 @@
 
 ## Supported Types
 
-### SourceTypeformAuthorizationMethodOAuth20
+### SourceTypeformOAuth20
 
 ```python
-sourceTypeformAuthorizationMethod: shared.SourceTypeformAuthorizationMethodOAuth20 = /* values here */
+sourceTypeformAuthorizationMethod: shared.SourceTypeformOAuth20 = /* values here */
 ```
 
-### SourceTypeformAuthorizationMethodPrivateToken
+### SourceTypeformPrivateToken
 
 ```python
-sourceTypeformAuthorizationMethod: shared.SourceTypeformAuthorizationMethodPrivateToken = /* values here */
+sourceTypeformAuthorizationMethod: shared.SourceTypeformPrivateToken = /* values here */
 ```
 

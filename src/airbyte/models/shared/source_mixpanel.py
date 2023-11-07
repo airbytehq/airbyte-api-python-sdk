@@ -8,39 +8,39 @@ from datetime import date
 from enum import Enum
 from typing import Final, Optional, Union
 
-class SourceMixpanelAuthenticationWildcardProjectSecretOptionTitle(str, Enum):
+class SourceMixpanelSchemasOptionTitle(str, Enum):
     PROJECT_SECRET = 'Project Secret'
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
-class SourceMixpanelAuthenticationWildcardProjectSecret:
+class ProjectSecret:
     r"""Choose how to authenticate to Mixpanel"""
     api_secret: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('api_secret') }})
     r"""Mixpanel project secret. See the <a href=\\"https://developer.mixpanel.com/reference/project-secret#managing-a-projects-secret\\">docs</a> for more information on how to obtain this."""
-    OPTION_TITLE: Final[Optional[SourceMixpanelAuthenticationWildcardProjectSecretOptionTitle]] = dataclasses.field(default=SourceMixpanelAuthenticationWildcardProjectSecretOptionTitle.PROJECT_SECRET, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('option_title'), 'exclude': lambda f: f is None }})
+    OPTION_TITLE: Final[Optional[SourceMixpanelSchemasOptionTitle]] = dataclasses.field(default=SourceMixpanelSchemasOptionTitle.PROJECT_SECRET, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('option_title'), 'exclude': lambda f: f is None }})
     
 
 
-class SourceMixpanelAuthenticationWildcardServiceAccountOptionTitle(str, Enum):
+class SourceMixpanelOptionTitle(str, Enum):
     SERVICE_ACCOUNT = 'Service Account'
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
-class SourceMixpanelAuthenticationWildcardServiceAccount:
+class ServiceAccount:
     r"""Choose how to authenticate to Mixpanel"""
     secret: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('secret') }})
     r"""Mixpanel Service Account Secret. See the <a href=\\"https://developer.mixpanel.com/reference/service-accounts\\">docs</a> for more information on how to obtain this."""
     username: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('username') }})
     r"""Mixpanel Service Account Username. See the <a href=\\"https://developer.mixpanel.com/reference/service-accounts\\">docs</a> for more information on how to obtain this."""
-    OPTION_TITLE: Final[Optional[SourceMixpanelAuthenticationWildcardServiceAccountOptionTitle]] = dataclasses.field(default=SourceMixpanelAuthenticationWildcardServiceAccountOptionTitle.SERVICE_ACCOUNT, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('option_title'), 'exclude': lambda f: f is None }})
+    OPTION_TITLE: Final[Optional[SourceMixpanelOptionTitle]] = dataclasses.field(default=SourceMixpanelOptionTitle.SERVICE_ACCOUNT, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('option_title'), 'exclude': lambda f: f is None }})
     
 
 
 
 @dataclasses.dataclass
-class SourceMixpanelAuthenticationWildcard:
+class AuthenticationWildcard:
     pass
 
 class SourceMixpanelRegion(str, Enum):
@@ -48,7 +48,7 @@ class SourceMixpanelRegion(str, Enum):
     US = 'US'
     EU = 'EU'
 
-class SourceMixpanelMixpanel(str, Enum):
+class Mixpanel(str, Enum):
     MIXPANEL = 'mixpanel'
 
 
@@ -58,7 +58,7 @@ class SourceMixpanel:
     r"""The values required to configure the source."""
     attribution_window: Optional[int] = dataclasses.field(default=5, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('attribution_window'), 'exclude': lambda f: f is None }})
     r"""A period of time for attributing results to ads and the lookback period after those actions occur during which ad results are counted. Default attribution window is 5 days."""
-    credentials: Optional[Union[SourceMixpanelAuthenticationWildcardServiceAccount, SourceMixpanelAuthenticationWildcardProjectSecret]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credentials'), 'exclude': lambda f: f is None }})
+    credentials: Optional[Union[ServiceAccount, ProjectSecret]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credentials'), 'exclude': lambda f: f is None }})
     r"""Choose how to authenticate to Mixpanel"""
     date_window_size: Optional[int] = dataclasses.field(default=30, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('date_window_size'), 'exclude': lambda f: f is None }})
     r"""Defines window size in days, that used to slice through data. You can reduce it, if amount of data in each window is too big for your environment."""
@@ -72,7 +72,7 @@ class SourceMixpanel:
     r"""The region of mixpanel domain instance either US or EU."""
     select_properties_by_default: Optional[bool] = dataclasses.field(default=True, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('select_properties_by_default'), 'exclude': lambda f: f is None }})
     r"""Setting this config parameter to TRUE ensures that new properties on events and engage records are captured. Otherwise new properties will be ignored."""
-    SOURCE_TYPE: Final[Optional[SourceMixpanelMixpanel]] = dataclasses.field(default=SourceMixpanelMixpanel.MIXPANEL, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType'), 'exclude': lambda f: f is None }})
+    SOURCE_TYPE: Final[Optional[Mixpanel]] = dataclasses.field(default=Mixpanel.MIXPANEL, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType'), 'exclude': lambda f: f is None }})
     start_date: Optional[date] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('start_date'), 'encoder': utils.dateisoformat(True), 'decoder': utils.datefromisoformat, 'exclude': lambda f: f is None }})
     r"""The date in the format YYYY-MM-DD. Any data before this date will not be replicated. If this option is not set, the connector will replicate data from up to one year ago by default."""
     

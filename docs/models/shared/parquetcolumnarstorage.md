@@ -1,0 +1,11 @@
+# ParquetColumnarStorage
+
+Format of the data output.
+
+
+## Fields
+
+| Field                                                                                                                                    | Type                                                                                                                                     | Required                                                                                                                                 | Description                                                                                                                              |
+| ---------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------- |
+| `compression_codec`                                                                                                                      | [Optional[shared.DestinationAwsDatalakeCompressionCodecOptional]](../../models/shared/destinationawsdatalakecompressioncodecoptional.md) | :heavy_minus_sign:                                                                                                                       | The compression algorithm used to compress data.                                                                                         |
+| `format_type`                                                                                                                            | [Optional[shared.DestinationAwsDatalakeFormatTypeWildcard]](../../models/shared/destinationawsdatalakeformattypewildcard.md)             | :heavy_minus_sign:                                                                                                                       | N/A                                                                                                                                      |

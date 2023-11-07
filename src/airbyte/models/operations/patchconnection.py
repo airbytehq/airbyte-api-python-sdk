@@ -3,8 +3,8 @@
 from __future__ import annotations
 import dataclasses
 import requests as requests_http
-from ..shared import connectionpatchrequest as shared_connectionpatchrequest
-from ..shared import connectionresponse as shared_connectionresponse
+from ...models.shared import connectionpatchrequest as shared_connectionpatchrequest
+from ...models.shared import connectionresponse as shared_connectionresponse
 from typing import Optional
 
 

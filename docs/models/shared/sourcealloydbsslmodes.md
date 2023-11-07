@@ -3,39 +3,39 @@
 
 ## Supported Types
 
-### SourceAlloydbSSLModesDisable
+### SourceAlloydbDisable
 
 ```python
-sourceAlloydbSSLModes: shared.SourceAlloydbSSLModesDisable = /* values here */
+sourceAlloydbSSLModes: shared.SourceAlloydbDisable = /* values here */
 ```
 
-### SourceAlloydbSSLModesAllow
+### SourceAlloydbAllow
 
 ```python
-sourceAlloydbSSLModes: shared.SourceAlloydbSSLModesAllow = /* values here */
+sourceAlloydbSSLModes: shared.SourceAlloydbAllow = /* values here */
 ```
 
-### SourceAlloydbSSLModesPrefer
+### SourceAlloydbPrefer
 
 ```python
-sourceAlloydbSSLModes: shared.SourceAlloydbSSLModesPrefer = /* values here */
+sourceAlloydbSSLModes: shared.SourceAlloydbPrefer = /* values here */
 ```
 
-### SourceAlloydbSSLModesRequire
+### SourceAlloydbRequire
 
 ```python
-sourceAlloydbSSLModes: shared.SourceAlloydbSSLModesRequire = /* values here */
+sourceAlloydbSSLModes: shared.SourceAlloydbRequire = /* values here */
 ```
 
-### SourceAlloydbSSLModesVerifyCa
+### SourceAlloydbVerifyCa
 
 ```python
-sourceAlloydbSSLModes: shared.SourceAlloydbSSLModesVerifyCa = /* values here */
+sourceAlloydbSSLModes: shared.SourceAlloydbVerifyCa = /* values here */
 ```
 
-### SourceAlloydbSSLModesVerifyFull
+### SourceAlloydbVerifyFull
 
 ```python
-sourceAlloydbSSLModes: shared.SourceAlloydbSSLModesVerifyFull = /* values here */
+sourceAlloydbSSLModes: shared.SourceAlloydbVerifyFull = /* values here */
 ```
 

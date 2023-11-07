@@ -3,15 +3,15 @@
 
 ## Supported Types
 
-### SourceHubspotAuthenticationOAuth
+### SourceHubspotOAuth
 
 ```python
-sourceHubspotAuthentication: shared.SourceHubspotAuthenticationOAuth = /* values here */
+sourceHubspotAuthentication: shared.SourceHubspotOAuth = /* values here */
 ```
 
-### SourceHubspotAuthenticationPrivateApp
+### PrivateApp
 
 ```python
-sourceHubspotAuthentication: shared.SourceHubspotAuthenticationPrivateApp = /* values here */
+sourceHubspotAuthentication: shared.PrivateApp = /* values here */
 ```
 

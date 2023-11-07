@@ -3,21 +3,21 @@
 
 ## Supported Types
 
-### SourceMongodbMongoDbInstanceTypeStandaloneMongoDbInstance
+### SourceMongodbStandaloneMongoDbInstance
 
 ```python
-sourceMongodbMongoDbInstanceType: shared.SourceMongodbMongoDbInstanceTypeStandaloneMongoDbInstance = /* values here */
+sourceMongodbMongoDbInstanceType: shared.SourceMongodbStandaloneMongoDbInstance = /* values here */
 ```
 
-### SourceMongodbMongoDbInstanceTypeReplicaSet
+### SourceMongodbReplicaSet
 
 ```python
-sourceMongodbMongoDbInstanceType: shared.SourceMongodbMongoDbInstanceTypeReplicaSet = /* values here */
+sourceMongodbMongoDbInstanceType: shared.SourceMongodbReplicaSet = /* values here */
 ```
 
-### SourceMongodbMongoDBInstanceTypeMongoDBAtlas
+### SourceMongodbMongoDBAtlas
 
 ```python
-sourceMongodbMongoDbInstanceType: shared.SourceMongodbMongoDBInstanceTypeMongoDBAtlas = /* values here */
+sourceMongodbMongoDbInstanceType: shared.SourceMongodbMongoDBAtlas = /* values here */
 ```
 

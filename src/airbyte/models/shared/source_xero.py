@@ -12,7 +12,7 @@ from typing import Final
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
-class SourceXeroAuthenticateViaXeroOAuth:
+class AuthenticateViaXeroOAuth:
     access_token: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('access_token') }})
     r"""Enter your Xero application's access token"""
     client_id: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('client_id') }})
@@ -34,7 +34,7 @@ class SourceXeroXero(str, Enum):
 @dataclasses.dataclass
 class SourceXero:
     r"""The values required to configure the source."""
-    authentication: SourceXeroAuthenticateViaXeroOAuth = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('authentication') }})
+    authentication: AuthenticateViaXeroOAuth = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('authentication') }})
     start_date: datetime = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('start_date'), 'encoder': utils.datetimeisoformat(False), 'decoder': dateutil.parser.isoparse }})
     r"""UTC date and time in the format YYYY-MM-DDTHH:mm:ssZ. Any data with created_at before this data will not be synced."""
     tenant_id: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('tenant_id') }})

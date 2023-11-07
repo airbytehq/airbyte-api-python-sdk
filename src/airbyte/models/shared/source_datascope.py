@@ -7,7 +7,7 @@ from dataclasses_json import Undefined, dataclass_json
 from enum import Enum
 from typing import Final
 
-class SourceDatascopeDatascope(str, Enum):
+class Datascope(str, Enum):
     DATASCOPE = 'datascope'
 
 
@@ -19,6 +19,6 @@ class SourceDatascope:
     r"""API Key"""
     start_date: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('start_date') }})
     r"""Start date for the data to be replicated"""
-    SOURCE_TYPE: Final[SourceDatascopeDatascope] = dataclasses.field(default=SourceDatascopeDatascope.DATASCOPE, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
+    SOURCE_TYPE: Final[Datascope] = dataclasses.field(default=Datascope.DATASCOPE, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     
 

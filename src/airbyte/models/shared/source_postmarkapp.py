@@ -7,7 +7,7 @@ from dataclasses_json import Undefined, dataclass_json
 from enum import Enum
 from typing import Final
 
-class SourcePostmarkappPostmarkapp(str, Enum):
+class Postmarkapp(str, Enum):
     POSTMARKAPP = 'postmarkapp'
 
 
@@ -19,6 +19,6 @@ class SourcePostmarkapp:
     r"""API Key for account"""
     x_postmark_server_token: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('X-Postmark-Server-Token') }})
     r"""API Key for server"""
-    SOURCE_TYPE: Final[SourcePostmarkappPostmarkapp] = dataclasses.field(default=SourcePostmarkappPostmarkapp.POSTMARKAPP, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
+    SOURCE_TYPE: Final[Postmarkapp] = dataclasses.field(default=Postmarkapp.POSTMARKAPP, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     
 

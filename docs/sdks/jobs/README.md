@@ -1,5 +1,5 @@
 # Jobs
-(*jobs*)
+(*.jobs*)
 
 ### Available Operations
 

@@ -3,21 +3,21 @@
 
 ## Supported Types
 
-### DestinationMysqlSSHTunnelMethodNoTunnel
+### DestinationMysqlNoTunnel
 
 ```python
-destinationMysqlSSHTunnelMethod: shared.DestinationMysqlSSHTunnelMethodNoTunnel = /* values here */
+destinationMysqlSSHTunnelMethod: shared.DestinationMysqlNoTunnel = /* values here */
 ```
 
-### DestinationMysqlSSHTunnelMethodSSHKeyAuthentication
+### DestinationMysqlSSHKeyAuthentication
 
 ```python
-destinationMysqlSSHTunnelMethod: shared.DestinationMysqlSSHTunnelMethodSSHKeyAuthentication = /* values here */
+destinationMysqlSSHTunnelMethod: shared.DestinationMysqlSSHKeyAuthentication = /* values here */
 ```
 
-### DestinationMysqlSSHTunnelMethodPasswordAuthentication
+### DestinationMysqlPasswordAuthentication
 
 ```python
-destinationMysqlSSHTunnelMethod: shared.DestinationMysqlSSHTunnelMethodPasswordAuthentication = /* values here */
+destinationMysqlSSHTunnelMethod: shared.DestinationMysqlPasswordAuthentication = /* values here */
 ```
 

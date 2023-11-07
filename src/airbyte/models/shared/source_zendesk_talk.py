@@ -9,18 +9,18 @@ from datetime import datetime
 from enum import Enum
 from typing import Any, Dict, Final, Optional, Union
 
-class SourceZendeskTalkAuthenticationOAuth20AuthType(str, Enum):
+class SourceZendeskTalkSchemasAuthType(str, Enum):
     OAUTH2_0 = 'oauth2.0'
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
-class SourceZendeskTalkAuthenticationOAuth20:
+class SourceZendeskTalkOAuth20:
     r"""Zendesk service provides two authentication methods. Choose between: `OAuth2.0` or `API token`."""
     access_token: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('access_token') }})
     r"""The value of the API token generated. See the <a href=\\"https://docs.airbyte.com/integrations/sources/zendesk-talk\\">docs</a> for more information."""
     additional_properties: Optional[Dict[str, Any]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'exclude': lambda f: f is None }})
-    AUTH_TYPE: Final[Optional[SourceZendeskTalkAuthenticationOAuth20AuthType]] = dataclasses.field(default=SourceZendeskTalkAuthenticationOAuth20AuthType.OAUTH2_0, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_type'), 'exclude': lambda f: f is None }})
+    AUTH_TYPE: Final[Optional[SourceZendeskTalkSchemasAuthType]] = dataclasses.field(default=SourceZendeskTalkSchemasAuthType.OAUTH2_0, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_type'), 'exclude': lambda f: f is None }})
     client_id: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('client_id'), 'exclude': lambda f: f is None }})
     r"""Client ID"""
     client_secret: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('client_secret'), 'exclude': lambda f: f is None }})
@@ -28,20 +28,20 @@ class SourceZendeskTalkAuthenticationOAuth20:
     
 
 
-class SourceZendeskTalkAuthenticationAPITokenAuthType(str, Enum):
+class SourceZendeskTalkAuthType(str, Enum):
     API_TOKEN = 'api_token'
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
-class SourceZendeskTalkAuthenticationAPIToken:
+class SourceZendeskTalkAPIToken:
     r"""Zendesk service provides two authentication methods. Choose between: `OAuth2.0` or `API token`."""
     api_token: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('api_token') }})
     r"""The value of the API token generated. See the <a href=\\"https://docs.airbyte.com/integrations/sources/zendesk-talk\\">docs</a> for more information."""
     email: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('email') }})
     r"""The user email for your Zendesk account."""
     additional_properties: Optional[Dict[str, Any]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'exclude': lambda f: f is None }})
-    AUTH_TYPE: Final[Optional[SourceZendeskTalkAuthenticationAPITokenAuthType]] = dataclasses.field(default=SourceZendeskTalkAuthenticationAPITokenAuthType.API_TOKEN, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_type'), 'exclude': lambda f: f is None }})
+    AUTH_TYPE: Final[Optional[SourceZendeskTalkAuthType]] = dataclasses.field(default=SourceZendeskTalkAuthType.API_TOKEN, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_type'), 'exclude': lambda f: f is None }})
     
 
 
@@ -63,7 +63,7 @@ class SourceZendeskTalk:
     subdomain: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('subdomain') }})
     r"""This is your Zendesk subdomain that can be found in your account URL. For example, in https://{MY_SUBDOMAIN}.zendesk.com/, where MY_SUBDOMAIN is the value of your subdomain."""
     SOURCE_TYPE: Final[SourceZendeskTalkZendeskTalk] = dataclasses.field(default=SourceZendeskTalkZendeskTalk.ZENDESK_TALK, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
-    credentials: Optional[Union[SourceZendeskTalkAuthenticationAPIToken, SourceZendeskTalkAuthenticationOAuth20]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credentials'), 'exclude': lambda f: f is None }})
+    credentials: Optional[Union[SourceZendeskTalkAPIToken, SourceZendeskTalkOAuth20]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credentials'), 'exclude': lambda f: f is None }})
     r"""Zendesk service provides two authentication methods. Choose between: `OAuth2.0` or `API token`."""
     
 
