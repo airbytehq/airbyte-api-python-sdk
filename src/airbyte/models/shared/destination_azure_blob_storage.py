@@ -42,11 +42,6 @@ class CSVCommaSeparatedValues:
 
 
 
-@dataclasses.dataclass
-class OutputFormat:
-    pass
-
-
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
 class DestinationAzureBlobStorage:

@@ -35,11 +35,6 @@ class NoneT:
     
 
 
-
-@dataclasses.dataclass
-class AuthorizationType:
-    pass
-
 class Mongodb(str, Enum):
     MONGODB = 'mongodb'
 
@@ -88,11 +83,6 @@ class StandaloneMongoDbInstance:
     r"""The Port of a Mongo database to be replicated."""
     
 
-
-
-@dataclasses.dataclass
-class MongoDbInstanceType:
-    pass
 
 class DestinationMongodbSchemasTunnelMethodTunnelMethod(str, Enum):
     r"""Connect through a jump server tunnel host using username and password authentication"""
@@ -151,11 +141,6 @@ class DestinationMongodbNoTunnel:
     r"""No ssh tunnel needed to connect to database"""
     
 
-
-
-@dataclasses.dataclass
-class DestinationMongodbSSHTunnelMethod:
-    pass
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)

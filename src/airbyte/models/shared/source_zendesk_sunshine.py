@@ -41,11 +41,6 @@ class SourceZendeskSunshineOAuth20:
     
 
 
-
-@dataclasses.dataclass
-class SourceZendeskSunshineAuthorizationMethod:
-    pass
-
 class SourceZendeskSunshineZendeskSunshine(str, Enum):
     ZENDESK_SUNSHINE = 'zendesk-sunshine'
 

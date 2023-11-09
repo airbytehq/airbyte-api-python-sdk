@@ -49,11 +49,6 @@ class DestinationPineconeOpenAI:
 
 
 
-@dataclasses.dataclass
-class DestinationPineconeEmbedding:
-    pass
-
-
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
 class DestinationPineconeIndexing:

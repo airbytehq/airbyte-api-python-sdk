@@ -34,11 +34,6 @@ class DestinationS3GlueNoCompression:
     
 
 
-
-@dataclasses.dataclass
-class DestinationS3GlueCompression:
-    pass
-
 class Flattening(str, Enum):
     r"""Whether the input json data should be normalized (flattened) in the output JSON Lines. Please refer to docs for details."""
     NO_FLATTENING = 'No flattening'
@@ -59,11 +54,6 @@ class DestinationS3GlueJSONLinesNewlineDelimitedJSON:
     format_type: Optional[DestinationS3GlueFormatType] = dataclasses.field(default=DestinationS3GlueFormatType.JSONL, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('format_type'), 'exclude': lambda f: f is None }})
     
 
-
-
-@dataclasses.dataclass
-class DestinationS3GlueOutputFormat:
-    pass
 
 class SerializationLibrary(str, Enum):
     r"""The library that your query engine will use for reading and writing data in your lake."""

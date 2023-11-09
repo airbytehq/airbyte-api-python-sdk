@@ -45,11 +45,6 @@ class SourceHubspotOAuth:
     
 
 
-
-@dataclasses.dataclass
-class SourceHubspotAuthentication:
-    pass
-
 class SourceHubspotHubspot(str, Enum):
     HUBSPOT = 'hubspot'
 

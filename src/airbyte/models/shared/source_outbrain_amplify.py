@@ -37,11 +37,6 @@ class SourceOutbrainAmplifyAccessToken:
     
 
 
-
-@dataclasses.dataclass
-class SourceOutbrainAmplifyAuthenticationMethod:
-    pass
-
 class GranularityForGeoLocationRegion(str, Enum):
     r"""The granularity used for geo location data in reports."""
     COUNTRY = 'country'

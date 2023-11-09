@@ -47,11 +47,6 @@ class ReadChangesUsingChangeDataCaptureCDC:
     
 
 
-
-@dataclasses.dataclass
-class UpdateMethod:
-    pass
-
 class SourceMssqlMssql(str, Enum):
     MSSQL = 'mssql'
 
@@ -80,11 +75,6 @@ class SourceMssqlEncryptedTrustServerCertificate:
     SSL_METHOD: Final[SourceMssqlSchemasSslMethod] = dataclasses.field(default=SourceMssqlSchemasSslMethod.ENCRYPTED_TRUST_SERVER_CERTIFICATE, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('ssl_method') }})
     
 
-
-
-@dataclasses.dataclass
-class SourceMssqlSSLMethod:
-    pass
 
 class SourceMssqlSchemasTunnelMethodTunnelMethod(str, Enum):
     r"""Connect through a jump server tunnel host using username and password authentication"""
@@ -143,11 +133,6 @@ class SourceMssqlNoTunnel:
     r"""No ssh tunnel needed to connect to database"""
     
 
-
-
-@dataclasses.dataclass
-class SourceMssqlSSHTunnelMethod:
-    pass
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)

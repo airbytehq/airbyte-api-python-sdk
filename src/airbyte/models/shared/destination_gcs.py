@@ -23,11 +23,6 @@ class HMACKey:
     
 
 
-
-@dataclasses.dataclass
-class DestinationGcsAuthentication:
-    pass
-
 class Gcs(str, Enum):
     GCS = 'gcs'
 
@@ -89,11 +84,6 @@ class DestinationGcsSchemasNoCompression:
     
 
 
-
-@dataclasses.dataclass
-class DestinationGcsCompression:
-    pass
-
 class DestinationGcsSchemasFormatFormatType(str, Enum):
     JSONL = 'JSONL'
 
@@ -131,11 +121,6 @@ class DestinationGcsNoCompression:
     compression_type: Optional[CompressionType] = dataclasses.field(default=CompressionType.NO_COMPRESSION, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('compression_type'), 'exclude': lambda f: f is None }})
     
 
-
-
-@dataclasses.dataclass
-class Compression:
-    pass
 
 class Normalization(str, Enum):
     r"""Whether the input JSON data should be normalized (flattened) in the output CSV. Please refer to docs for details."""
@@ -238,11 +223,6 @@ class NoCompression:
     
 
 
-
-@dataclasses.dataclass
-class CompressionCodec:
-    pass
-
 class DestinationGcsFormatType(str, Enum):
     AVRO = 'Avro'
 
@@ -256,11 +236,6 @@ class AvroApacheAvro:
     format_type: Optional[DestinationGcsFormatType] = dataclasses.field(default=DestinationGcsFormatType.AVRO, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('format_type'), 'exclude': lambda f: f is None }})
     
 
-
-
-@dataclasses.dataclass
-class DestinationGcsOutputFormat:
-    pass
 
 class GCSBucketRegion(str, Enum):
     r"""Select a Region of the GCS Bucket. Read more <a href=\\"https://cloud.google.com/storage/docs/locations\\">here</a>."""

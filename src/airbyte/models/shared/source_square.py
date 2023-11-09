@@ -41,11 +41,6 @@ class OauthAuthentication:
     
 
 
-
-@dataclasses.dataclass
-class SourceSquareAuthentication:
-    pass
-
 class SourceSquareSquare(str, Enum):
     SQUARE = 'square'
 

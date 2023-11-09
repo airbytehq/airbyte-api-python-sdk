@@ -31,11 +31,6 @@ class EUBasedAccount:
     
 
 
-
-@dataclasses.dataclass
-class BaseURL:
-    pass
-
 class SurveySparrow(str, Enum):
     SURVEY_SPARROW = 'survey-sparrow'
 

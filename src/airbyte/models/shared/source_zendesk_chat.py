@@ -41,11 +41,6 @@ class SourceZendeskChatOAuth20:
     
 
 
-
-@dataclasses.dataclass
-class SourceZendeskChatAuthorizationMethod:
-    pass
-
 class SourceZendeskChatZendeskChat(str, Enum):
     ZENDESK_CHAT = 'zendesk-chat'
 

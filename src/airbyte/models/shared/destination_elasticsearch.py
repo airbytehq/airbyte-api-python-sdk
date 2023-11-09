@@ -39,11 +39,6 @@ class APIKeySecret:
     
 
 
-
-@dataclasses.dataclass
-class AuthenticationMethod:
-    pass
-
 class Elasticsearch(str, Enum):
     ELASTICSEARCH = 'elasticsearch'
 

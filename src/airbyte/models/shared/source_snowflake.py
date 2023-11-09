@@ -41,11 +41,6 @@ class SourceSnowflakeOAuth20:
     
 
 
-
-@dataclasses.dataclass
-class SourceSnowflakeAuthorizationMethod:
-    pass
-
 class SourceSnowflakeSnowflake(str, Enum):
     SNOWFLAKE = 'snowflake'
 

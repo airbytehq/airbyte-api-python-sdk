@@ -1,5 +1,5 @@
 # Streams
-(*.streams*)
+(*streams*)
 
 ### Available Operations
 
@@ -46,4 +46,8 @@ if res.stream_properties_response is not None:
 ### Response
 
 **[operations.GetStreamPropertiesResponse](../../models/operations/getstreampropertiesresponse.md)**
+### Errors
 
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 400-600         | */*             |

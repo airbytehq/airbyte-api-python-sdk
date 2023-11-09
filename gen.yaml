@@ -2,8 +2,8 @@ configVersion: 1.0.0
 management:
   docChecksum: 5b9a9a6f493e89e080a57e42997074be
   docVersion: 1.0.0
-  speakeasyVersion: 1.114.1
-  generationVersion: 2.181.1
+  speakeasyVersion: 1.116.0
+  generationVersion: 2.185.0
 generation:
   comments: {}
   sdkClassName: airbyte
@@ -11,11 +11,11 @@ generation:
 features:
   python:
     additionalProperties: 0.1.0
-    core: 4.1.0
-    globalSecurity: 2.82.0
+    core: 4.1.2
+    globalSecurity: 2.83.0
     globalServerURLs: 2.82.0
 python:
-  version: 0.42.0
+  version: 0.43.0
   author: Airbyte
   clientServerStatusCodesAsErrors: true
   description: Python Client SDK for Airbyte API
@@ -28,8 +28,10 @@ python:
       operations: models/operations
       shared: models/shared
       webhooks: models/webhooks
+  inputModelSuffix: input
   installationURL: https://github.com/airbytehq/airbyte-api-python-sdk.git
   maxMethodParams: 0
+  outputModelSuffix: output
   packageName: airbyte-api
   published: true
   repoSubDirectory: .

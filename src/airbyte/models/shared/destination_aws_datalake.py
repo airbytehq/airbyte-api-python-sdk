@@ -41,11 +41,6 @@ class IAMRole:
     
 
 
-
-@dataclasses.dataclass
-class AuthenticationMode:
-    pass
-
 class AwsDatalake(str, Enum):
     AWS_DATALAKE = 'aws-datalake'
 
@@ -88,11 +83,6 @@ class JSONLinesNewlineDelimitedJSON:
     format_type: Optional[FormatTypeWildcard] = dataclasses.field(default=FormatTypeWildcard.JSONL, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('format_type'), 'exclude': lambda f: f is None }})
     
 
-
-
-@dataclasses.dataclass
-class OutputFormatWildcard:
-    pass
 
 class ChooseHowToPartitionData(str, Enum):
     r"""Partition data by cursor fields when a cursor field is a date"""

@@ -64,11 +64,6 @@ class DestinationMilvusOpenAI:
     
 
 
-
-@dataclasses.dataclass
-class DestinationMilvusEmbedding:
-    pass
-
 class DestinationMilvusSchemasIndexingAuthAuthenticationMode(str, Enum):
     NO_AUTH = 'no_auth'
 
@@ -110,11 +105,6 @@ class DestinationMilvusAPIToken:
     MODE: Final[Optional[DestinationMilvusSchemasIndexingMode]] = dataclasses.field(default=DestinationMilvusSchemasIndexingMode.TOKEN, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('mode'), 'exclude': lambda f: f is None }})
     
 
-
-
-@dataclasses.dataclass
-class DestinationMilvusAuthentication:
-    pass
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)

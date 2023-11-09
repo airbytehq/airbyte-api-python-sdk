@@ -43,11 +43,6 @@ class SourceSmartsheetsOAuth20:
     
 
 
-
-@dataclasses.dataclass
-class SourceSmartsheetsAuthorizationMethod:
-    pass
-
 class Validenums(str, Enum):
     SHEETCREATED_AT = 'sheetcreatedAt'
     SHEETID = 'sheetid'

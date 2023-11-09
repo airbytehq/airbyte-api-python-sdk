@@ -37,11 +37,6 @@ class SourceMailchimpOAuth20:
     
 
 
-
-@dataclasses.dataclass
-class SourceMailchimpAuthentication:
-    pass
-
 class SourceMailchimpMailchimp(str, Enum):
     MAILCHIMP = 'mailchimp'
 

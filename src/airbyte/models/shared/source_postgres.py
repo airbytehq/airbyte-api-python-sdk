@@ -65,11 +65,6 @@ class ReadChangesUsingWriteAheadLogCDC:
     
 
 
-
-@dataclasses.dataclass
-class SourcePostgresUpdateMethod:
-    pass
-
 class SourcePostgresPostgres(str, Enum):
     POSTGRES = 'postgres'
 
@@ -167,11 +162,6 @@ class SourcePostgresDisable:
     
 
 
-
-@dataclasses.dataclass
-class SourcePostgresSSLModes:
-    pass
-
 class SourcePostgresSchemasTunnelMethodTunnelMethod(str, Enum):
     r"""Connect through a jump server tunnel host using username and password authentication"""
     SSH_PASSWORD_AUTH = 'SSH_PASSWORD_AUTH'
@@ -229,11 +219,6 @@ class SourcePostgresNoTunnel:
     r"""No ssh tunnel needed to connect to database"""
     
 
-
-
-@dataclasses.dataclass
-class SourcePostgresSSHTunnelMethod:
-    pass
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)

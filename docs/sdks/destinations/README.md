@@ -1,5 +1,5 @@
 # Destinations
-(*.destinations*)
+(*destinations*)
 
 ### Available Operations
 
@@ -64,7 +64,11 @@ if res.destination_response is not None:
 ### Response
 
 **[operations.CreateDestinationResponse](../../models/operations/createdestinationresponse.md)**
+### Errors
 
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 400-600         | */*             |
 
 ## delete_destination
 
@@ -106,7 +110,11 @@ if res.status_code == 200:
 ### Response
 
 **[operations.DeleteDestinationResponse](../../models/operations/deletedestinationresponse.md)**
+### Errors
 
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 400-600         | */*             |
 
 ## get_destination
 
@@ -148,7 +156,11 @@ if res.destination_response is not None:
 ### Response
 
 **[operations.GetDestinationResponse](../../models/operations/getdestinationresponse.md)**
+### Errors
 
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 400-600         | */*             |
 
 ## list_destinations
 
@@ -192,7 +204,11 @@ if res.destinations_response is not None:
 ### Response
 
 **[operations.ListDestinationsResponse](../../models/operations/listdestinationsresponse.md)**
+### Errors
 
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 400-600         | */*             |
 
 ## patch_destination
 
@@ -248,7 +264,11 @@ if res.destination_response is not None:
 ### Response
 
 **[operations.PatchDestinationResponse](../../models/operations/patchdestinationresponse.md)**
+### Errors
 
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 400-600         | */*             |
 
 ## put_destination
 
@@ -305,4 +325,8 @@ if res.destination_response is not None:
 ### Response
 
 **[operations.PutDestinationResponse](../../models/operations/putdestinationresponse.md)**
+### Errors
 
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 400-600         | */*             |

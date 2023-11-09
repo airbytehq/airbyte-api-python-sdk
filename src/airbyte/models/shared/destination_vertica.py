@@ -69,11 +69,6 @@ class DestinationVerticaNoTunnel:
 
 
 
-@dataclasses.dataclass
-class DestinationVerticaSSHTunnelMethod:
-    pass
-
-
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
 class DestinationVertica:

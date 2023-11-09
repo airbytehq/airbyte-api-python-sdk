@@ -44,11 +44,6 @@ class SourceTrustpilotOAuth20:
     
 
 
-
-@dataclasses.dataclass
-class SourceTrustpilotAuthorizationMethod:
-    pass
-
 class Trustpilot(str, Enum):
     TRUSTPILOT = 'trustpilot'
 

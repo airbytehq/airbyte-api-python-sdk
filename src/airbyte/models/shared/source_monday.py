@@ -39,11 +39,6 @@ class SourceMondayOAuth20:
     
 
 
-
-@dataclasses.dataclass
-class SourceMondayAuthorizationMethod:
-    pass
-
 class SourceMondayMonday(str, Enum):
     MONDAY = 'monday'
 

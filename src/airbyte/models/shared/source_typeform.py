@@ -43,11 +43,6 @@ class SourceTypeformOAuth20:
     
 
 
-
-@dataclasses.dataclass
-class SourceTypeformAuthorizationMethod:
-    pass
-
 class SourceTypeformTypeform(str, Enum):
     TYPEFORM = 'typeform'
 

@@ -45,11 +45,6 @@ class AuthenticateViaMicrosoftOAuth20:
     
 
 
-
-@dataclasses.dataclass
-class SourceMicrosoftTeamsAuthenticationMechanism:
-    pass
-
 class SourceMicrosoftTeamsMicrosoftTeams(str, Enum):
     MICROSOFT_TEAMS = 'microsoft-teams'
 

@@ -68,11 +68,6 @@ class DestinationS3SchemasFormatNoCompression:
     
 
 
-
-@dataclasses.dataclass
-class DestinationS3SchemasCompression:
-    pass
-
 class DestinationS3SchemasFlattening(str, Enum):
     r"""Whether the input json data should be normalized (flattened) in the output JSON Lines. Please refer to docs for details."""
     NO_FLATTENING = 'No flattening'
@@ -117,11 +112,6 @@ class DestinationS3SchemasNoCompression:
     compression_type: Optional[DestinationS3CompressionType] = dataclasses.field(default=DestinationS3CompressionType.NO_COMPRESSION, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('compression_type'), 'exclude': lambda f: f is None }})
     
 
-
-
-@dataclasses.dataclass
-class DestinationS3Compression:
-    pass
 
 class DestinationS3Flattening(str, Enum):
     r"""Whether the input json data should be normalized (flattened) in the output CSV. Please refer to docs for details."""
@@ -224,11 +214,6 @@ class DestinationS3NoCompression:
     
 
 
-
-@dataclasses.dataclass
-class DestinationS3CompressionCodec:
-    pass
-
 class DestinationS3FormatType(str, Enum):
     AVRO = 'Avro'
 
@@ -242,11 +227,6 @@ class DestinationS3AvroApacheAvro:
     format_type: Optional[DestinationS3FormatType] = dataclasses.field(default=DestinationS3FormatType.AVRO, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('format_type'), 'exclude': lambda f: f is None }})
     
 
-
-
-@dataclasses.dataclass
-class DestinationS3OutputFormat:
-    pass
 
 class DestinationS3S3BucketRegion(str, Enum):
     r"""The region of the S3 bucket. See <a href=\\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-regions-availability-zones.html#concepts-available-regions\\">here</a> for all region codes."""

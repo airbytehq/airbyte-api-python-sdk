@@ -43,11 +43,6 @@ class SourceGitlabOAuth20:
     
 
 
-
-@dataclasses.dataclass
-class SourceGitlabAuthorizationMethod:
-    pass
-
 class SourceGitlabGitlab(str, Enum):
     GITLAB = 'gitlab'
 

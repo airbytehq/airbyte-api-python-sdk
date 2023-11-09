@@ -12,6 +12,7 @@ class Sources:
         self.sdk_configuration = sdk_config
         
     
+    
     def create_source(self, request: shared.SourceCreateRequest) -> operations.CreateSourceResponse:
         r"""Create a source
         Creates a source given a name, workspace id, and a json blob containing the configuration for the source.
@@ -26,7 +27,10 @@ class Sources:
         headers['Accept'] = 'application/json'
         headers['user-agent'] = self.sdk_configuration.user_agent
         
-        client = self.sdk_configuration.security_client
+        if callable(self.sdk_configuration.security):
+            client = utils.configure_security_client(self.sdk_configuration.client, self.sdk_configuration.security())
+        else:
+            client = utils.configure_security_client(self.sdk_configuration.client, self.sdk_configuration.security)
         
         http_res = client.request('POST', url, data=data, files=form, headers=headers)
         content_type = http_res.headers.get('Content-Type')
@@ -45,6 +49,7 @@ class Sources:
         return res
 
     
+    
     def delete_source(self, request: operations.DeleteSourceRequest) -> operations.DeleteSourceResponse:
         r"""Delete a Source"""
         base_url = utils.template_url(*self.sdk_configuration.get_server_details())
@@ -54,7 +59,10 @@ class Sources:
         headers['Accept'] = '*/*'
         headers['user-agent'] = self.sdk_configuration.user_agent
         
-        client = self.sdk_configuration.security_client
+        if callable(self.sdk_configuration.security):
+            client = utils.configure_security_client(self.sdk_configuration.client, self.sdk_configuration.security())
+        else:
+            client = utils.configure_security_client(self.sdk_configuration.client, self.sdk_configuration.security)
         
         http_res = client.request('DELETE', url, headers=headers)
         content_type = http_res.headers.get('Content-Type')
@@ -69,6 +77,7 @@ class Sources:
         return res
 
     
+    
     def get_source(self, request: operations.GetSourceRequest) -> operations.GetSourceResponse:
         r"""Get Source details"""
         base_url = utils.template_url(*self.sdk_configuration.get_server_details())
@@ -78,7 +87,10 @@ class Sources:
         headers['Accept'] = 'application/json'
         headers['user-agent'] = self.sdk_configuration.user_agent
         
-        client = self.sdk_configuration.security_client
+        if callable(self.sdk_configuration.security):
+            client = utils.configure_security_client(self.sdk_configuration.client, self.sdk_configuration.security())
+        else:
+            client = utils.configure_security_client(self.sdk_configuration.client, self.sdk_configuration.security)
         
         http_res = client.request('GET', url, headers=headers)
         content_type = http_res.headers.get('Content-Type')
@@ -96,6 +108,7 @@ class Sources:
 
         return res
 
+    
     
     def initiate_o_auth(self, request: shared.InitiateOauthRequest) -> operations.InitiateOAuthResponse:
         r"""Initiate OAuth for a source
@@ -117,7 +130,10 @@ class Sources:
         headers['Accept'] = '*/*'
         headers['user-agent'] = self.sdk_configuration.user_agent
         
-        client = self.sdk_configuration.security_client
+        if callable(self.sdk_configuration.security):
+            client = utils.configure_security_client(self.sdk_configuration.client, self.sdk_configuration.security())
+        else:
+            client = utils.configure_security_client(self.sdk_configuration.client, self.sdk_configuration.security)
         
         http_res = client.request('POST', url, data=data, files=form, headers=headers)
         content_type = http_res.headers.get('Content-Type')
@@ -132,6 +148,7 @@ class Sources:
         return res
 
     
+    
     def list_sources(self, request: operations.ListSourcesRequest) -> operations.ListSourcesResponse:
         r"""List sources"""
         base_url = utils.template_url(*self.sdk_configuration.get_server_details())
@@ -142,7 +159,10 @@ class Sources:
         headers['Accept'] = 'application/json'
         headers['user-agent'] = self.sdk_configuration.user_agent
         
-        client = self.sdk_configuration.security_client
+        if callable(self.sdk_configuration.security):
+            client = utils.configure_security_client(self.sdk_configuration.client, self.sdk_configuration.security())
+        else:
+            client = utils.configure_security_client(self.sdk_configuration.client, self.sdk_configuration.security)
         
         http_res = client.request('GET', url, params=query_params, headers=headers)
         content_type = http_res.headers.get('Content-Type')
@@ -161,6 +181,7 @@ class Sources:
         return res
 
     
+    
     def patch_source(self, request: operations.PatchSourceRequest) -> operations.PatchSourceResponse:
         r"""Update a Source"""
         base_url = utils.template_url(*self.sdk_configuration.get_server_details())
@@ -173,7 +194,10 @@ class Sources:
         headers['Accept'] = 'application/json'
         headers['user-agent'] = self.sdk_configuration.user_agent
         
-        client = self.sdk_configuration.security_client
+        if callable(self.sdk_configuration.security):
+            client = utils.configure_security_client(self.sdk_configuration.client, self.sdk_configuration.security())
+        else:
+            client = utils.configure_security_client(self.sdk_configuration.client, self.sdk_configuration.security)
         
         http_res = client.request('PATCH', url, data=data, files=form, headers=headers)
         content_type = http_res.headers.get('Content-Type')
@@ -192,6 +216,7 @@ class Sources:
         return res
 
     
+    
     def put_source(self, request: operations.PutSourceRequest) -> operations.PutSourceResponse:
         r"""Update a Source and fully overwrite it"""
         base_url = utils.template_url(*self.sdk_configuration.get_server_details())
@@ -204,7 +229,10 @@ class Sources:
         headers['Accept'] = 'application/json'
         headers['user-agent'] = self.sdk_configuration.user_agent
         
-        client = self.sdk_configuration.security_client
+        if callable(self.sdk_configuration.security):
+            client = utils.configure_security_client(self.sdk_configuration.client, self.sdk_configuration.security())
+        else:
+            client = utils.configure_security_client(self.sdk_configuration.client, self.sdk_configuration.security)
         
         http_res = client.request('PUT', url, data=data, files=form, headers=headers)
         content_type = http_res.headers.get('Content-Type')

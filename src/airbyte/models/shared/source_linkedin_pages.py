@@ -37,11 +37,6 @@ class SourceLinkedinPagesOAuth20:
     
 
 
-
-@dataclasses.dataclass
-class SourceLinkedinPagesAuthentication:
-    pass
-
 class LinkedinPages(str, Enum):
     LINKEDIN_PAGES = 'linkedin-pages'
 

@@ -37,11 +37,6 @@ class SourceOktaOAuth20:
     
 
 
-
-@dataclasses.dataclass
-class SourceOktaAuthorizationMethod:
-    pass
-
 class Okta(str, Enum):
     OKTA = 'okta'
 

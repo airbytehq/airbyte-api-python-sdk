@@ -45,11 +45,6 @@ class SourceTiktokMarketingOAuth20:
     
 
 
-
-@dataclasses.dataclass
-class SourceTiktokMarketingAuthenticationMethod:
-    pass
-
 class SourceTiktokMarketingTiktokMarketing(str, Enum):
     TIKTOK_MARKETING = 'tiktok-marketing'
 

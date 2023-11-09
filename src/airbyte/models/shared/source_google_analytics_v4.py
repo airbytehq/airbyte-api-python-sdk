@@ -42,11 +42,6 @@ class SourceGoogleAnalyticsV4AuthenticateViaGoogleOauth:
     
 
 
-
-@dataclasses.dataclass
-class SourceGoogleAnalyticsV4Credentials:
-    pass
-
 class SourceGoogleAnalyticsV4GoogleAnalyticsV4(str, Enum):
     GOOGLE_ANALYTICS_V4 = 'google-analytics-v4'
 

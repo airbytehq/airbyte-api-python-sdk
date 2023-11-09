@@ -40,11 +40,6 @@ class AuthenticateViaAsanaOauth:
     
 
 
-
-@dataclasses.dataclass
-class AuthenticationMechanism:
-    pass
-
 class SourceAsanaAsana(str, Enum):
     ASANA = 'asana'
 

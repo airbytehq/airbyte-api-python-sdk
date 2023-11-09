@@ -1,5 +1,5 @@
 # Jobs
-(*.jobs*)
+(*jobs*)
 
 ### Available Operations
 
@@ -48,7 +48,11 @@ if res.job_response is not None:
 ### Response
 
 **[operations.CancelJobResponse](../../models/operations/canceljobresponse.md)**
+### Errors
 
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 400-600         | */*             |
 
 ## create_job
 
@@ -91,7 +95,11 @@ if res.job_response is not None:
 ### Response
 
 **[operations.CreateJobResponse](../../models/operations/createjobresponse.md)**
+### Errors
 
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 400-600         | */*             |
 
 ## get_job
 
@@ -133,7 +141,11 @@ if res.job_response is not None:
 ### Response
 
 **[operations.GetJobResponse](../../models/operations/getjobresponse.md)**
+### Errors
 
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 400-600         | */*             |
 
 ## list_jobs
 
@@ -178,4 +190,8 @@ if res.jobs_response is not None:
 ### Response
 
 **[operations.ListJobsResponse](../../models/operations/listjobsresponse.md)**
+### Errors
 
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 400-600         | */*             |

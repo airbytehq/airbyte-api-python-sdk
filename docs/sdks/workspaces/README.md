@@ -1,5 +1,5 @@
 # Workspaces
-(*.workspaces*)
+(*workspaces*)
 
 ### Available Operations
 
@@ -56,7 +56,11 @@ if res.status_code == 200:
 ### Response
 
 **[operations.CreateOrUpdateWorkspaceOAuthCredentialsResponse](../../models/operations/createorupdateworkspaceoauthcredentialsresponse.md)**
+### Errors
 
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 400-600         | */*             |
 
 ## create_workspace
 
@@ -98,7 +102,11 @@ if res.workspace_response is not None:
 ### Response
 
 **[operations.CreateWorkspaceResponse](../../models/operations/createworkspaceresponse.md)**
+### Errors
 
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 400-600         | */*             |
 
 ## delete_workspace
 
@@ -140,7 +148,11 @@ if res.status_code == 200:
 ### Response
 
 **[operations.DeleteWorkspaceResponse](../../models/operations/deleteworkspaceresponse.md)**
+### Errors
 
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 400-600         | */*             |
 
 ## get_workspace
 
@@ -182,7 +194,11 @@ if res.workspace_response is not None:
 ### Response
 
 **[operations.GetWorkspaceResponse](../../models/operations/getworkspaceresponse.md)**
+### Errors
 
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 400-600         | */*             |
 
 ## list_workspaces
 
@@ -226,7 +242,11 @@ if res.workspaces_response is not None:
 ### Response
 
 **[operations.ListWorkspacesResponse](../../models/operations/listworkspacesresponse.md)**
+### Errors
 
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 400-600         | */*             |
 
 ## update_workspace
 
@@ -271,4 +291,8 @@ if res.workspace_response is not None:
 ### Response
 
 **[operations.UpdateWorkspaceResponse](../../models/operations/updateworkspaceresponse.md)**
+### Errors
 
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 400-600         | */*             |

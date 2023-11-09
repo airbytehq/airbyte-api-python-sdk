@@ -54,11 +54,6 @@ class SourceMongodbStandaloneMongoDbInstance:
     
 
 
-
-@dataclasses.dataclass
-class SourceMongodbMongoDbInstanceType:
-    pass
-
 class SourceMongodbMongodb(str, Enum):
     MONGODB = 'mongodb'
 

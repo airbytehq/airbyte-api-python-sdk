@@ -69,11 +69,6 @@ class DestinationOracleNoTunnel:
 
 
 
-@dataclasses.dataclass
-class DestinationOracleSSHTunnelMethod:
-    pass
-
-
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
 class DestinationOracle:

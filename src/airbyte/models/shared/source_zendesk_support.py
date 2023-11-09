@@ -45,11 +45,6 @@ class SourceZendeskSupportOAuth20:
     
 
 
-
-@dataclasses.dataclass
-class SourceZendeskSupportAuthentication:
-    pass
-
 class SourceZendeskSupportZendeskSupport(str, Enum):
     ZENDESK_SUPPORT = 'zendesk-support'
 

@@ -54,11 +54,6 @@ class OAuth20:
     
 
 
-
-@dataclasses.dataclass
-class AuthorizationMethod:
-    pass
-
 class DestinationSnowflakeSnowflake(str, Enum):
     SNOWFLAKE = 'snowflake'
 

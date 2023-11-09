@@ -38,11 +38,6 @@ class ServiceAccount:
     
 
 
-
-@dataclasses.dataclass
-class AuthenticationWildcard:
-    pass
-
 class SourceMixpanelRegion(str, Enum):
     r"""The region of mixpanel domain instance either US or EU."""
     US = 'US'

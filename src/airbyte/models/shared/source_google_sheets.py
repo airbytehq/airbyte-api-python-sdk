@@ -39,11 +39,6 @@ class SourceGoogleSheetsAuthenticateViaGoogleOAuth:
     
 
 
-
-@dataclasses.dataclass
-class SourceGoogleSheetsAuthentication:
-    pass
-
 class SourceGoogleSheetsGoogleSheets(str, Enum):
     GOOGLE_SHEETS = 'google-sheets'
 

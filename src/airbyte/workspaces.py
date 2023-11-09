@@ -12,6 +12,7 @@ class Workspaces:
         self.sdk_configuration = sdk_config
         
     
+    
     def create_or_update_workspace_o_auth_credentials(self, request: operations.CreateOrUpdateWorkspaceOAuthCredentialsRequest) -> operations.CreateOrUpdateWorkspaceOAuthCredentialsResponse:
         r"""Create OAuth override credentials for a workspace and source type.
         Create/update a set of OAuth credentials to override the Airbyte-provided OAuth credentials used for source/destination OAuth.
@@ -29,7 +30,10 @@ class Workspaces:
         headers['Accept'] = '*/*'
         headers['user-agent'] = self.sdk_configuration.user_agent
         
-        client = self.sdk_configuration.security_client
+        if callable(self.sdk_configuration.security):
+            client = utils.configure_security_client(self.sdk_configuration.client, self.sdk_configuration.security())
+        else:
+            client = utils.configure_security_client(self.sdk_configuration.client, self.sdk_configuration.security)
         
         http_res = client.request('PUT', url, data=data, files=form, headers=headers)
         content_type = http_res.headers.get('Content-Type')
@@ -43,6 +47,7 @@ class Workspaces:
 
         return res
 
+    
     
     def create_workspace(self, request: shared.WorkspaceCreateRequest) -> operations.CreateWorkspaceResponse:
         r"""Create a workspace"""
@@ -58,7 +63,10 @@ class Workspaces:
         headers['Accept'] = 'application/json'
         headers['user-agent'] = self.sdk_configuration.user_agent
         
-        client = self.sdk_configuration.security_client
+        if callable(self.sdk_configuration.security):
+            client = utils.configure_security_client(self.sdk_configuration.client, self.sdk_configuration.security())
+        else:
+            client = utils.configure_security_client(self.sdk_configuration.client, self.sdk_configuration.security)
         
         http_res = client.request('POST', url, data=data, files=form, headers=headers)
         content_type = http_res.headers.get('Content-Type')
@@ -77,6 +85,7 @@ class Workspaces:
         return res
 
     
+    
     def delete_workspace(self, request: operations.DeleteWorkspaceRequest) -> operations.DeleteWorkspaceResponse:
         r"""Delete a Workspace"""
         base_url = utils.template_url(*self.sdk_configuration.get_server_details())
@@ -86,7 +95,10 @@ class Workspaces:
         headers['Accept'] = '*/*'
         headers['user-agent'] = self.sdk_configuration.user_agent
         
-        client = self.sdk_configuration.security_client
+        if callable(self.sdk_configuration.security):
+            client = utils.configure_security_client(self.sdk_configuration.client, self.sdk_configuration.security())
+        else:
+            client = utils.configure_security_client(self.sdk_configuration.client, self.sdk_configuration.security)
         
         http_res = client.request('DELETE', url, headers=headers)
         content_type = http_res.headers.get('Content-Type')
@@ -101,6 +113,7 @@ class Workspaces:
         return res
 
     
+    
     def get_workspace(self, request: operations.GetWorkspaceRequest) -> operations.GetWorkspaceResponse:
         r"""Get Workspace details"""
         base_url = utils.template_url(*self.sdk_configuration.get_server_details())
@@ -110,7 +123,10 @@ class Workspaces:
         headers['Accept'] = 'application/json'
         headers['user-agent'] = self.sdk_configuration.user_agent
         
-        client = self.sdk_configuration.security_client
+        if callable(self.sdk_configuration.security):
+            client = utils.configure_security_client(self.sdk_configuration.client, self.sdk_configuration.security())
+        else:
+            client = utils.configure_security_client(self.sdk_configuration.client, self.sdk_configuration.security)
         
         http_res = client.request('GET', url, headers=headers)
         content_type = http_res.headers.get('Content-Type')
@@ -129,6 +145,7 @@ class Workspaces:
         return res
 
     
+    
     def list_workspaces(self, request: operations.ListWorkspacesRequest) -> operations.ListWorkspacesResponse:
         r"""List workspaces"""
         base_url = utils.template_url(*self.sdk_configuration.get_server_details())
@@ -139,7 +156,10 @@ class Workspaces:
         headers['Accept'] = 'application/json'
         headers['user-agent'] = self.sdk_configuration.user_agent
         
-        client = self.sdk_configuration.security_client
+        if callable(self.sdk_configuration.security):
+            client = utils.configure_security_client(self.sdk_configuration.client, self.sdk_configuration.security())
+        else:
+            client = utils.configure_security_client(self.sdk_configuration.client, self.sdk_configuration.security)
         
         http_res = client.request('GET', url, params=query_params, headers=headers)
         content_type = http_res.headers.get('Content-Type')
@@ -158,6 +178,7 @@ class Workspaces:
         return res
 
     
+    
     def update_workspace(self, request: operations.UpdateWorkspaceRequest) -> operations.UpdateWorkspaceResponse:
         r"""Update a workspace"""
         base_url = utils.template_url(*self.sdk_configuration.get_server_details())
@@ -172,7 +193,10 @@ class Workspaces:
         headers['Accept'] = 'application/json'
         headers['user-agent'] = self.sdk_configuration.user_agent
         
-        client = self.sdk_configuration.security_client
+        if callable(self.sdk_configuration.security):
+            client = utils.configure_security_client(self.sdk_configuration.client, self.sdk_configuration.security())
+        else:
+            client = utils.configure_security_client(self.sdk_configuration.client, self.sdk_configuration.security)
         
         http_res = client.request('PATCH', url, data=data, files=form, headers=headers)
         content_type = http_res.headers.get('Content-Type')

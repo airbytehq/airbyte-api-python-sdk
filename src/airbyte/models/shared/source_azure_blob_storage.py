@@ -19,11 +19,6 @@ class SourceAzureBlobStorageJSONLinesNewlineDelimitedJSON:
     
 
 
-
-@dataclasses.dataclass
-class InputFormat:
-    pass
-
 class SourceAzureBlobStorageAzureBlobStorage(str, Enum):
     AZURE_BLOB_STORAGE = 'azure-blob-storage'
 

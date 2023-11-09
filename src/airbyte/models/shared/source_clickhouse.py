@@ -69,11 +69,6 @@ class SourceClickhouseNoTunnel:
 
 
 
-@dataclasses.dataclass
-class SourceClickhouseSSHTunnelMethod:
-    pass
-
-
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
 class SourceClickhouse:

@@ -39,11 +39,6 @@ class SourceSftpPasswordAuthentication:
     
 
 
-
-@dataclasses.dataclass
-class SourceSftpAuthenticationWildcard:
-    pass
-
 class Sftp(str, Enum):
     SFTP = 'sftp'
 

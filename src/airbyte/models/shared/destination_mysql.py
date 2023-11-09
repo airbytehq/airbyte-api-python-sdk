@@ -69,11 +69,6 @@ class DestinationMysqlNoTunnel:
 
 
 
-@dataclasses.dataclass
-class DestinationMysqlSSHTunnelMethod:
-    pass
-
-
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
 class DestinationMysql:

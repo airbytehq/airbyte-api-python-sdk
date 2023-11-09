@@ -32,11 +32,6 @@ class SourceQuickbooksOAuth20:
     
 
 
-
-@dataclasses.dataclass
-class SourceQuickbooksAuthorizationMethod:
-    pass
-
 class Quickbooks(str, Enum):
     QUICKBOOKS = 'quickbooks'
 

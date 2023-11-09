@@ -68,11 +68,6 @@ class DestinationRedshiftNoTunnel:
     
 
 
-
-@dataclasses.dataclass
-class DestinationRedshiftSSHTunnelMethod:
-    pass
-
 class DestinationRedshiftEncryptionType(str, Enum):
     AES_CBC_ENVELOPE = 'aes_cbc_envelope'
 
@@ -98,11 +93,6 @@ class NoEncryption:
     ENCRYPTION_TYPE: Final[Optional[EncryptionType]] = dataclasses.field(default=EncryptionType.NONE, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('encryption_type'), 'exclude': lambda f: f is None }})
     
 
-
-
-@dataclasses.dataclass
-class DestinationRedshiftEncryption:
-    pass
 
 class DestinationRedshiftSchemasMethod(str, Enum):
     S3_STAGING = 'S3 Staging'
@@ -172,11 +162,6 @@ class Standard:
     METHOD: Final[DestinationRedshiftMethod] = dataclasses.field(default=DestinationRedshiftMethod.STANDARD, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('method') }})
     
 
-
-
-@dataclasses.dataclass
-class UploadingMethod:
-    pass
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)

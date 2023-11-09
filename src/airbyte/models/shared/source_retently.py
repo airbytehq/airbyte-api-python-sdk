@@ -41,11 +41,6 @@ class AuthenticateViaRetentlyOAuth:
     
 
 
-
-@dataclasses.dataclass
-class SourceRetentlyAuthenticationMechanism:
-    pass
-
 class SourceRetentlyRetently(str, Enum):
     RETENTLY = 'retently'
 

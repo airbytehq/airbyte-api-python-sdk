@@ -46,11 +46,6 @@ class DestinationRedisDisable:
     
 
 
-
-@dataclasses.dataclass
-class DestinationRedisSSLModes:
-    pass
-
 class DestinationRedisSchemasTunnelMethodTunnelMethod(str, Enum):
     r"""Connect through a jump server tunnel host using username and password authentication"""
     SSH_PASSWORD_AUTH = 'SSH_PASSWORD_AUTH'
@@ -108,11 +103,6 @@ class DestinationRedisNoTunnel:
     r"""No ssh tunnel needed to connect to database"""
     
 
-
-
-@dataclasses.dataclass
-class DestinationRedisSSHTunnelMethod:
-    pass
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)

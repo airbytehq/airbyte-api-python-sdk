@@ -43,11 +43,6 @@ class SourceAirtableOAuth20:
     
 
 
-
-@dataclasses.dataclass
-class SourceAirtableAuthentication:
-    pass
-
 class SourceAirtableAirtable(str, Enum):
     AIRTABLE = 'airtable'
 

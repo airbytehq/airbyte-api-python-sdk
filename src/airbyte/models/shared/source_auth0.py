@@ -37,11 +37,6 @@ class OAuth2ConfidentialApplication:
     
 
 
-
-@dataclasses.dataclass
-class SourceAuth0AuthenticationMethod:
-    pass
-
 class Auth0(str, Enum):
     AUTH0 = 'auth0'
 

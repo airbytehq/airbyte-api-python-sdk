@@ -92,11 +92,6 @@ class RecommendedManagedTables:
     
 
 
-
-@dataclasses.dataclass
-class DataSource:
-    pass
-
 class Databricks(str, Enum):
     DATABRICKS = 'databricks'
 

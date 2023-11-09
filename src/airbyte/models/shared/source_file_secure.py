@@ -128,11 +128,6 @@ class HTTPSPublicWeb:
     
 
 
-
-@dataclasses.dataclass
-class StorageProvider:
-    pass
-
 class FileSecure(str, Enum):
     FILE_SECURE = 'file-secure'
 

@@ -36,11 +36,6 @@ class EncryptedTrustServerCertificate:
     
 
 
-
-@dataclasses.dataclass
-class SSLMethod:
-    pass
-
 class DestinationMssqlSchemasTunnelMethodTunnelMethod(str, Enum):
     r"""Connect through a jump server tunnel host using username and password authentication"""
     SSH_PASSWORD_AUTH = 'SSH_PASSWORD_AUTH'
@@ -98,11 +93,6 @@ class DestinationMssqlNoTunnel:
     r"""No ssh tunnel needed to connect to database"""
     
 
-
-
-@dataclasses.dataclass
-class DestinationMssqlSSHTunnelMethod:
-    pass
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)

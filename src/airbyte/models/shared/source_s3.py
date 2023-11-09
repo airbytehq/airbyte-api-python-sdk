@@ -96,11 +96,6 @@ class Csv:
 
 
 
-@dataclasses.dataclass
-class SourceS3FileFormat:
-    pass
-
-
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
 class S3AmazonWebServices:
@@ -190,11 +185,6 @@ class FromCSV:
     
 
 
-
-@dataclasses.dataclass
-class CSVHeaderDefinition:
-    pass
-
 class InferenceType(str, Enum):
     r"""How to infer the types of the columns. If none, inference default to strings."""
     NONE = 'None'
@@ -248,11 +238,6 @@ class AvroFormat:
     FILETYPE: Final[Optional[SourceS3SchemasStreamsFiletype]] = dataclasses.field(default=SourceS3SchemasStreamsFiletype.AVRO, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('filetype'), 'exclude': lambda f: f is None }})
     
 
-
-
-@dataclasses.dataclass
-class Format:
-    pass
 
 class ValidationPolicy(str, Enum):
     r"""The name of the validation policy that dictates sync behavior when a record does not adhere to the stream schema."""

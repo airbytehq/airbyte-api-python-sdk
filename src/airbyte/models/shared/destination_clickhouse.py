@@ -69,11 +69,6 @@ class NoTunnel:
 
 
 
-@dataclasses.dataclass
-class SSHTunnelMethod:
-    pass
-
-
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
 class DestinationClickhouse:

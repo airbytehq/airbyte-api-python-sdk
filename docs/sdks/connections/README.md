@@ -1,5 +1,5 @@
 # Connections
-(*.connections*)
+(*connections*)
 
 ### Available Operations
 
@@ -69,7 +69,11 @@ if res.connection_response is not None:
 ### Response
 
 **[operations.CreateConnectionResponse](../../models/operations/createconnectionresponse.md)**
+### Errors
 
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 400-600         | */*             |
 
 ## delete_connection
 
@@ -111,7 +115,11 @@ if res.status_code == 200:
 ### Response
 
 **[operations.DeleteConnectionResponse](../../models/operations/deleteconnectionresponse.md)**
+### Errors
 
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 400-600         | */*             |
 
 ## get_connection
 
@@ -153,7 +161,11 @@ if res.connection_response is not None:
 ### Response
 
 **[operations.GetConnectionResponse](../../models/operations/getconnectionresponse.md)**
+### Errors
 
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 400-600         | */*             |
 
 ## list_connections
 
@@ -197,7 +209,11 @@ if res.connections_response is not None:
 ### Response
 
 **[operations.ListConnectionsResponse](../../models/operations/listconnectionsresponse.md)**
+### Errors
 
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 400-600         | */*             |
 
 ## patch_connection
 
@@ -260,4 +276,8 @@ if res.connection_response is not None:
 ### Response
 
 **[operations.PatchConnectionResponse](../../models/operations/patchconnectionresponse.md)**
+### Errors
 
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 400-600         | */*             |

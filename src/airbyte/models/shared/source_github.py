@@ -41,11 +41,6 @@ class OAuth:
     
 
 
-
-@dataclasses.dataclass
-class SourceGithubAuthentication:
-    pass
-
 class SourceGithubGithub(str, Enum):
     GITHUB = 'github'
 

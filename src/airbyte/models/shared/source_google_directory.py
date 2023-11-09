@@ -45,11 +45,6 @@ class SignInViaGoogleOAuth:
     
 
 
-
-@dataclasses.dataclass
-class SourceGoogleDirectoryGoogleCredentials:
-    pass
-
 class GoogleDirectory(str, Enum):
     GOOGLE_DIRECTORY = 'google-directory'
 

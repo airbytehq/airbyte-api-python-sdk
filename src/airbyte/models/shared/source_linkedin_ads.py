@@ -83,11 +83,6 @@ class SourceLinkedinAdsOAuth20:
     
 
 
-
-@dataclasses.dataclass
-class SourceLinkedinAdsAuthentication:
-    pass
-
 class SourceLinkedinAdsLinkedinAds(str, Enum):
     LINKEDIN_ADS = 'linkedin-ads'
 

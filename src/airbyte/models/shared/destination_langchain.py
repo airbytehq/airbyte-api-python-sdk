@@ -35,11 +35,6 @@ class OpenAI:
     
 
 
-
-@dataclasses.dataclass
-class Embedding:
-    pass
-
 class DestinationLangchainSchemasIndexingIndexingMode(str, Enum):
     CHROMA_LOCAL = 'chroma_local'
 
@@ -86,11 +81,6 @@ class DestinationLangchainPinecone:
     MODE: Final[Optional[DestinationLangchainSchemasMode]] = dataclasses.field(default=DestinationLangchainSchemasMode.PINECONE, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('mode'), 'exclude': lambda f: f is None }})
     
 
-
-
-@dataclasses.dataclass
-class Indexing:
-    pass
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)

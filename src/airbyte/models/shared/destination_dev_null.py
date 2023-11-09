@@ -23,11 +23,6 @@ class Silent:
 
 
 
-@dataclasses.dataclass
-class TestDestination:
-    pass
-
-
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
 class DestinationDevNull:

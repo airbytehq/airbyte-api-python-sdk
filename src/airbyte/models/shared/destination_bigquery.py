@@ -69,11 +69,6 @@ class DestinationBigqueryHMACKey:
     
 
 
-
-@dataclasses.dataclass
-class DestinationBigqueryCredential:
-    pass
-
 class DestinationBigqueryGCSTmpFilesAfterwardProcessing(str, Enum):
     r"""This upload method is supposed to temporary store records in GCS bucket. By this select you can chose if these records should be removed from GCS when migration has finished. The default \\"Delete all tmp files from GCS\\" value is used if not set explicitly."""
     DELETE_ALL_TMP_FILES_FROM_GCS = 'Delete all tmp files from GCS'
@@ -112,11 +107,6 @@ class DestinationBigqueryStandardInserts:
     METHOD: Final[DestinationBigqueryMethod] = dataclasses.field(default=DestinationBigqueryMethod.STANDARD, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('method') }})
     
 
-
-
-@dataclasses.dataclass
-class DestinationBigqueryLoadingMethod:
-    pass
 
 class TransformationQueryRunType(str, Enum):
     r"""Interactive run type means that the query is executed as soon as possible, and these queries count towards concurrent rate limit and daily limit. Read more about interactive run type <a href=\\"https://cloud.google.com/bigquery/docs/running-queries#queries\\">here</a>. Batch queries are queued and started as soon as idle resources are available in the BigQuery shared resource pool, which usually occurs within a few minutes. Batch queries don’t count towards your concurrent rate limit. Read more about batch queries <a href=\\"https://cloud.google.com/bigquery/docs/running-queries#batch\\">here</a>. The default \\"interactive\\" value is used if not set explicitly."""

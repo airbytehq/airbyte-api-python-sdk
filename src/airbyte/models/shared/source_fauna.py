@@ -42,11 +42,6 @@ class Disabled:
 
 
 
-@dataclasses.dataclass
-class DeletionMode:
-    pass
-
-
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
 class Collection:

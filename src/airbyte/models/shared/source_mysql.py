@@ -35,11 +35,6 @@ class ReadChangesUsingBinaryLogCDC:
     
 
 
-
-@dataclasses.dataclass
-class SourceMysqlUpdateMethod:
-    pass
-
 class SourceMysqlMysql(str, Enum):
     MYSQL = 'mysql'
 
@@ -107,11 +102,6 @@ class Preferred:
     
 
 
-
-@dataclasses.dataclass
-class SourceMysqlSSLModes:
-    pass
-
 class SourceMysqlSchemasTunnelMethodTunnelMethod(str, Enum):
     r"""Connect through a jump server tunnel host using username and password authentication"""
     SSH_PASSWORD_AUTH = 'SSH_PASSWORD_AUTH'
@@ -169,11 +159,6 @@ class SourceMysqlNoTunnel:
     r"""No ssh tunnel needed to connect to database"""
     
 
-
-
-@dataclasses.dataclass
-class SourceMysqlSSHTunnelMethod:
-    pass
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)

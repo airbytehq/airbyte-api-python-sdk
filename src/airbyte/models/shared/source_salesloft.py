@@ -43,11 +43,6 @@ class AuthenticateViaOAuth:
     
 
 
-
-@dataclasses.dataclass
-class SourceSalesloftCredentials:
-    pass
-
 class Salesloft(str, Enum):
     SALESLOFT = 'salesloft'
 

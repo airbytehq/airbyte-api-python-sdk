@@ -43,11 +43,6 @@ class AuthenticateViaHarvestOAuth:
     
 
 
-
-@dataclasses.dataclass
-class SourceHarvestAuthenticationMechanism:
-    pass
-
 class SourceHarvestHarvest(str, Enum):
     HARVEST = 'harvest'
 

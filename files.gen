@@ -365,6 +365,7 @@ src/airbyte/models/shared/workspacecreaterequest.py
 src/airbyte/models/shared/workspacesresponse.py
 src/airbyte/models/shared/workspaceupdaterequest.py
 src/airbyte/models/shared/security.py
+src/airbyte/models/shared/schemebasicauth.py
 src/airbyte/models/__init__.py
 src/airbyte/models/errors/__init__.py
 src/airbyte/models/operations/__init__.py
@@ -1779,8 +1780,8 @@ docs/models/shared/workspaceresponse.md
 docs/models/shared/workspacecreaterequest.md
 docs/models/shared/workspacesresponse.md
 docs/models/shared/workspaceupdaterequest.md
-docs/models/shared/schemebasicauth.md
 docs/models/shared/security.md
+docs/models/shared/schemebasicauth.md
 docs/sdks/airbyte/README.md
 docs/sdks/connections/README.md
 docs/sdks/destinations/README.md

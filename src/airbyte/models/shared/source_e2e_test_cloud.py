@@ -39,11 +39,6 @@ class SingleSchema:
     
 
 
-
-@dataclasses.dataclass
-class MockCatalog:
-    pass
-
 class E2eTestCloud(str, Enum):
     E2E_TEST_CLOUD = 'e2e-test-cloud'
 

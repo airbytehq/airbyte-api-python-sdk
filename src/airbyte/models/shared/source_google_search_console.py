@@ -43,11 +43,6 @@ class SourceGoogleSearchConsoleOAuth:
     
 
 
-
-@dataclasses.dataclass
-class AuthenticationType:
-    pass
-
 class SourceGoogleSearchConsoleValidEnums(str, Enum):
     r"""An enumeration of dimensions."""
     COUNTRY = 'country'

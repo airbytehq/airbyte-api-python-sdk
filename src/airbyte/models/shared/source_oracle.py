@@ -33,11 +33,6 @@ class ServiceName:
     
 
 
-
-@dataclasses.dataclass
-class ConnectBy:
-    pass
-
 class SourceOracleEncryptionMethod(str, Enum):
     ENCRYPTED_VERIFY_CERTIFICATE = 'encrypted_verify_certificate'
 
@@ -71,11 +66,6 @@ class NativeNetworkEncryptionNNE:
     ENCRYPTION_METHOD: Final[Optional[EncryptionMethod]] = dataclasses.field(default=EncryptionMethod.CLIENT_NNE, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('encryption_method'), 'exclude': lambda f: f is None }})
     
 
-
-
-@dataclasses.dataclass
-class Encryption:
-    pass
 
 class SourceOracleOracle(str, Enum):
     ORACLE = 'oracle'
@@ -137,11 +127,6 @@ class SourceOracleNoTunnel:
     r"""No ssh tunnel needed to connect to database"""
     
 
-
-
-@dataclasses.dataclass
-class SourceOracleSSHTunnelMethod:
-    pass
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)

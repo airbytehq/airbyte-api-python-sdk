@@ -94,11 +94,6 @@ class Disable:
     
 
 
-
-@dataclasses.dataclass
-class SSLModes:
-    pass
-
 class DestinationPostgresSchemasTunnelMethodTunnelMethod(str, Enum):
     r"""Connect through a jump server tunnel host using username and password authentication"""
     SSH_PASSWORD_AUTH = 'SSH_PASSWORD_AUTH'
@@ -156,11 +151,6 @@ class DestinationPostgresNoTunnel:
     r"""No ssh tunnel needed to connect to database"""
     
 
-
-
-@dataclasses.dataclass
-class DestinationPostgresSSHTunnelMethod:
-    pass
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)

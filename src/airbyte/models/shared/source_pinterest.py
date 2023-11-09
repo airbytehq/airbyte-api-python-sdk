@@ -38,11 +38,6 @@ class SourcePinterestOAuth20:
     
 
 
-
-@dataclasses.dataclass
-class SourcePinterestAuthorizationMethod:
-    pass
-
 class SourcePinterestPinterest(str, Enum):
     PINTEREST = 'pinterest'
 

@@ -65,11 +65,6 @@ class StandardXmin:
     
 
 
-
-@dataclasses.dataclass
-class ReplicationMethod:
-    pass
-
 class Alloydb(str, Enum):
     ALLOYDB = 'alloydb'
 
@@ -167,11 +162,6 @@ class SourceAlloydbDisable:
     
 
 
-
-@dataclasses.dataclass
-class SourceAlloydbSSLModes:
-    pass
-
 class SourceAlloydbSchemasTunnelMethodTunnelMethod(str, Enum):
     r"""Connect through a jump server tunnel host using username and password authentication"""
     SSH_PASSWORD_AUTH = 'SSH_PASSWORD_AUTH'
@@ -229,11 +219,6 @@ class SourceAlloydbNoTunnel:
     r"""No ssh tunnel needed to connect to database"""
     
 
-
-
-@dataclasses.dataclass
-class SourceAlloydbSSHTunnelMethod:
-    pass
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)

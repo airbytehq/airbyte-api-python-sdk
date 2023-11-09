@@ -41,11 +41,6 @@ class SourceShopifyOAuth20:
     
 
 
-
-@dataclasses.dataclass
-class ShopifyAuthorizationMethod:
-    pass
-
 class SourceShopifyShopify(str, Enum):
     SHOPIFY = 'shopify'
 

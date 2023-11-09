@@ -41,11 +41,6 @@ class SourceNotionOAuth20:
     
 
 
-
-@dataclasses.dataclass
-class AuthenticateUsing:
-    pass
-
 class SourceNotionNotion(str, Enum):
     NOTION = 'notion'
 

@@ -45,11 +45,6 @@ class SourceZendeskTalkAPIToken:
     
 
 
-
-@dataclasses.dataclass
-class SourceZendeskTalkAuthentication:
-    pass
-
 class SourceZendeskTalkZendeskTalk(str, Enum):
     ZENDESK_TALK = 'zendesk-talk'
 

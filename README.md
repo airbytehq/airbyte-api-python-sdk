@@ -72,7 +72,7 @@ if res.connection_response is not None:
 ## Available Resources and Operations
 
 
-### [.connections](docs/sdks/connections/README.md)
+### [connections](docs/sdks/connections/README.md)
 
 * [create_connection](docs/sdks/connections/README.md#create_connection) - Create a connection
 * [delete_connection](docs/sdks/connections/README.md#delete_connection) - Delete a Connection
@@ -80,7 +80,7 @@ if res.connection_response is not None:
 * [list_connections](docs/sdks/connections/README.md#list_connections) - List connections
 * [patch_connection](docs/sdks/connections/README.md#patch_connection) - Update Connection details
 
-### [.destinations](docs/sdks/destinations/README.md)
+### [destinations](docs/sdks/destinations/README.md)
 
 * [create_destination](docs/sdks/destinations/README.md#create_destination) - Create a destination
 * [delete_destination](docs/sdks/destinations/README.md#delete_destination) - Delete a Destination
@@ -89,14 +89,14 @@ if res.connection_response is not None:
 * [patch_destination](docs/sdks/destinations/README.md#patch_destination) - Update a Destination
 * [put_destination](docs/sdks/destinations/README.md#put_destination) - Update a Destination and fully overwrite it
 
-### [.jobs](docs/sdks/jobs/README.md)
+### [jobs](docs/sdks/jobs/README.md)
 
 * [cancel_job](docs/sdks/jobs/README.md#cancel_job) - Cancel a running Job
 * [create_job](docs/sdks/jobs/README.md#create_job) - Trigger a sync or reset job of a connection
 * [get_job](docs/sdks/jobs/README.md#get_job) - Get Job status and details
 * [list_jobs](docs/sdks/jobs/README.md#list_jobs) - List Jobs by sync type
 
-### [.sources](docs/sdks/sources/README.md)
+### [sources](docs/sdks/sources/README.md)
 
 * [create_source](docs/sdks/sources/README.md#create_source) - Create a source
 * [delete_source](docs/sdks/sources/README.md#delete_source) - Delete a Source
@@ -106,11 +106,11 @@ if res.connection_response is not None:
 * [patch_source](docs/sdks/sources/README.md#patch_source) - Update a Source
 * [put_source](docs/sdks/sources/README.md#put_source) - Update a Source and fully overwrite it
 
-### [.streams](docs/sdks/streams/README.md)
+### [streams](docs/sdks/streams/README.md)
 
 * [get_stream_properties](docs/sdks/streams/README.md#get_stream_properties) - Get stream properties
 
-### [.workspaces](docs/sdks/workspaces/README.md)
+### [workspaces](docs/sdks/workspaces/README.md)
 
 * [create_or_update_workspace_o_auth_credentials](docs/sdks/workspaces/README.md#create_or_update_workspace_o_auth_credentials) - Create OAuth override credentials for a workspace and source type.
 * [create_workspace](docs/sdks/workspaces/README.md#create_workspace) - Create a workspace
@@ -143,7 +143,64 @@ Here's an example of one such pagination call:
 <!-- Start Error Handling -->
 # Error Handling
 
-Handling errors in your SDK should largely match your expectations.  All operations return a response object or raise an error.  If Error objects are specified in your OpenAPI Spec, the SDK will raise the appropriate Error type.
+Handling errors in this SDK should largely match your expectations.  All operations return a response object or raise an error.  If Error objects are specified in your OpenAPI Spec, the SDK will raise the appropriate Error type.
+
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 400-600         | */*             |
+
+
+## Example
+
+```python
+import airbyte
+from airbyte.models import shared
+
+s = airbyte.Airbyte(
+    security=shared.Security(
+        basic_auth=shared.SchemeBasicAuth(
+            password="",
+            username="",
+        ),
+    ),
+)
+
+req = shared.ConnectionCreateRequest(
+    configurations=shared.StreamConfigurations(
+        streams=[
+            shared.StreamConfiguration(
+                cursor_field=[
+                    'string',
+                ],
+                name='string',
+                primary_key=[
+                    [
+                        'string',
+                    ],
+                ],
+            ),
+        ],
+    ),
+    destination_id='c669dd1e-3620-483e-afc8-55914e0a570f',
+    namespace_format='${SOURCE_NAMESPACE}',
+    schedule=shared.ConnectionSchedule(
+        schedule_type=shared.ScheduleTypeEnum.MANUAL,
+    ),
+    source_id='dd427d83-a555-4847-8358-42325b6c7b3f',
+)
+
+res = None
+try:
+    res = s.connections.create_connection(req)
+
+except (errors.SDKError) as e:
+    print(e) # handle exception
+
+
+if res.connection_response is not None:
+    # handle response
+    pass
+```
 <!-- End Error Handling -->
 
 
@@ -265,7 +322,7 @@ if res.connection_response is not None:
 The Python SDK makes API calls using the (requests)[https://pypi.org/project/requests/] HTTP library.  In order to provide a convenient way to configure timeouts, cookies, proxies, custom headers, and other low-level configuration, you can initialize the SDK client with a custom `requests.Session` object.
 
 
-For example, you could specify a header for every request that your sdk makes as follows:
+For example, you could specify a header for every request that this sdk makes as follows:
 
 ```python
 import airbyte
@@ -280,12 +337,11 @@ s = airbyte.Airbyte(client: http_client)
 
 
 <!-- Start Authentication -->
-
 # Authentication
 
 ## Per-Client Security Schemes
 
-Your SDK supports the following security schemes globally:
+This SDK supports the following security schemes globally:
 
 | Name          | Type          | Scheme        |
 | ------------- | ------------- | ------------- |

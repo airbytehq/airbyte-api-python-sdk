@@ -42,11 +42,6 @@ class AuthenticateViaGoogleOauth:
     
 
 
-
-@dataclasses.dataclass
-class SourceGoogleAnalyticsDataAPICredentials:
-    pass
-
 class SourceGoogleAnalyticsDataAPIGoogleAnalyticsDataAPI(str, Enum):
     GOOGLE_ANALYTICS_DATA_API = 'google-analytics-data-api'
 

@@ -1,5 +1,5 @@
 # Sources
-(*.sources*)
+(*sources*)
 
 ### Available Operations
 
@@ -57,7 +57,11 @@ if res.source_response is not None:
 ### Response
 
 **[operations.CreateSourceResponse](../../models/operations/createsourceresponse.md)**
+### Errors
 
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 400-600         | */*             |
 
 ## delete_source
 
@@ -99,7 +103,11 @@ if res.status_code == 200:
 ### Response
 
 **[operations.DeleteSourceResponse](../../models/operations/deletesourceresponse.md)**
+### Errors
 
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 400-600         | */*             |
 
 ## get_source
 
@@ -141,7 +149,11 @@ if res.source_response is not None:
 ### Response
 
 **[operations.GetSourceResponse](../../models/operations/getsourceresponse.md)**
+### Errors
 
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 400-600         | */*             |
 
 ## initiate_o_auth
 
@@ -190,7 +202,11 @@ if res.status_code == 200:
 ### Response
 
 **[operations.InitiateOAuthResponse](../../models/operations/initiateoauthresponse.md)**
+### Errors
 
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 400-600         | */*             |
 
 ## list_sources
 
@@ -234,7 +250,11 @@ if res.sources_response is not None:
 ### Response
 
 **[operations.ListSourcesResponse](../../models/operations/listsourcesresponse.md)**
+### Errors
 
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 400-600         | */*             |
 
 ## patch_source
 
@@ -284,7 +304,11 @@ if res.source_response is not None:
 ### Response
 
 **[operations.PatchSourceResponse](../../models/operations/patchsourceresponse.md)**
+### Errors
 
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 400-600         | */*             |
 
 ## put_source
 
@@ -334,4 +358,8 @@ if res.source_response is not None:
 ### Response
 
 **[operations.PutSourceResponse](../../models/operations/putsourceresponse.md)**
+### Errors
 
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 400-600         | */*             |

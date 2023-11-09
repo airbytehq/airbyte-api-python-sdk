@@ -43,11 +43,6 @@ class SQLInserts:
 
 
 
-@dataclasses.dataclass
-class DestinationFireboltLoadingMethod:
-    pass
-
-
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
 class DestinationFirebolt:

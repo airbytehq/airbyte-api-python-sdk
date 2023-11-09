@@ -41,11 +41,6 @@ class SignInViaSlackOAuth:
     
 
 
-
-@dataclasses.dataclass
-class SourceSlackAuthenticationMechanism:
-    pass
-
 class SourceSlackSlack(str, Enum):
     SLACK = 'slack'
 
