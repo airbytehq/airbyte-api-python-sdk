@@ -4,6 +4,7 @@ from __future__ import annotations
 import dataclasses
 from airbyte import utils
 from dataclasses_json import Undefined, dataclass_json
+from datetime import date
 from enum import Enum
 from typing import Final, List, Optional
 
@@ -57,7 +58,7 @@ class SourceAmazonAds:
     r"""Region to pull data from (EU/NA/FE). See <a href=\\"https://advertising.amazon.com/API/docs/en-us/info/api-overview#api-endpoints\\">docs</a> for more details."""
     report_record_types: Optional[List[ReportRecordTypes]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('report_record_types'), 'exclude': lambda f: f is None }})
     r"""Optional configuration which accepts an array of string of record types. Leave blank for default behaviour to pull all report types. Use this config option only if you want to pull specific report type(s). See <a href=\\"https://advertising.amazon.com/API/docs/en-us/reporting/v2/report-types\\">docs</a> for more details"""
-    start_date: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('start_date'), 'exclude': lambda f: f is None }})
+    start_date: Optional[date] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('start_date'), 'encoder': utils.dateisoformat(True), 'decoder': utils.datefromisoformat, 'exclude': lambda f: f is None }})
     r"""The Start date for collecting reports, should not be more than 60 days in the past. In YYYY-MM-DD format"""
     state_filter: Optional[List[StateFilter]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('state_filter'), 'exclude': lambda f: f is None }})
     r"""Reflects the state of the Display, Product, and Brand Campaign streams as enabled, paused, or archived. If you do not populate this field, it will be ignored completely."""

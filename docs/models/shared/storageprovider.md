@@ -15,10 +15,10 @@ storageProvider: shared.HTTPSPublicWeb = /* values here */
 storageProvider: shared.GCSGoogleCloudStorage = /* values here */
 ```
 
-### SourceFileSecureS3AmazonWebServices
+### SourceFileS3AmazonWebServices
 
 ```python
-storageProvider: shared.SourceFileSecureS3AmazonWebServices = /* values here */
+storageProvider: shared.SourceFileS3AmazonWebServices = /* values here */
 ```
 
 ### AzBlobAzureBlobStorage

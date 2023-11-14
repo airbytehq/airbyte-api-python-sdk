@@ -2,8 +2,10 @@
 
 from __future__ import annotations
 import dataclasses
+import dateutil.parser
 from airbyte import utils
 from dataclasses_json import Undefined, dataclass_json
+from datetime import datetime
 from enum import Enum
 from typing import Final, Optional
 
@@ -17,7 +19,7 @@ class SourceDixa:
     r"""The values required to configure the source."""
     api_token: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('api_token') }})
     r"""Dixa API token"""
-    start_date: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('start_date') }})
+    start_date: datetime = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('start_date'), 'encoder': utils.datetimeisoformat(False), 'decoder': dateutil.parser.isoparse }})
     r"""The connector pulls records updated from this date onwards."""
     SOURCE_TYPE: Final[Dixa] = dataclasses.field(default=Dixa.DIXA, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     batch_size: Optional[int] = dataclasses.field(default=31, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('batch_size'), 'exclude': lambda f: f is None }})

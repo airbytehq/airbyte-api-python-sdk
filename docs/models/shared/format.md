@@ -27,3 +27,9 @@ format: shared.JsonlFormat = /* values here */
 format: shared.ParquetFormat = /* values here */
 ```
 
+### DocumentFileTypeFormatExperimental
+
+```python
+format: shared.DocumentFileTypeFormatExperimental = /* values here */
+```
+

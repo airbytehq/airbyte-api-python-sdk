@@ -1,0 +1,11 @@
+# APIKeyAuth
+
+Method to authenticate with the Qdrant Instance
+
+
+## Fields
+
+| Field                                                                                                                | Type                                                                                                                 | Required                                                                                                             | Description                                                                                                          |
+| -------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------- |
+| `api_key`                                                                                                            | *str*                                                                                                                | :heavy_check_mark:                                                                                                   | API Key for the Qdrant instance                                                                                      |
+| `mode`                                                                                                               | [Optional[shared.DestinationQdrantSchemasIndexingMode]](../../models/shared/destinationqdrantschemasindexingmode.md) | :heavy_minus_sign:                                                                                                   | N/A                                                                                                                  |

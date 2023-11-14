@@ -68,6 +68,18 @@ class DestinationRedshiftNoTunnel:
     
 
 
+class DestinationRedshiftSchemasMethod(str, Enum):
+    STANDARD = 'Standard'
+
+
+@dataclass_json(undefined=Undefined.EXCLUDE)
+@dataclasses.dataclass
+class Standard:
+    r"""<i>(not recommended)</i> Direct loading using SQL INSERT statements. This method is extremely inefficient and provided only for quick testing. In all other cases, you should use S3 uploading."""
+    METHOD: Final[DestinationRedshiftSchemasMethod] = dataclasses.field(default=DestinationRedshiftSchemasMethod.STANDARD, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('method') }})
+    
+
+
 class DestinationRedshiftEncryptionType(str, Enum):
     AES_CBC_ENVELOPE = 'aes_cbc_envelope'
 
@@ -94,11 +106,11 @@ class NoEncryption:
     
 
 
-class DestinationRedshiftSchemasMethod(str, Enum):
+class DestinationRedshiftMethod(str, Enum):
     S3_STAGING = 'S3 Staging'
 
 class DestinationRedshiftS3BucketRegion(str, Enum):
-    r"""The region of the S3 staging bucket to use if utilising a COPY strategy. See <a href=\\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/creating-bucket.html#:~:text=In-,Region,-%2C%20choose%20the%20AWS\\">AWS docs</a> for details."""
+    r"""The region of the S3 staging bucket."""
     UNKNOWN = ''
     US_EAST_1 = 'us-east-1'
     US_EAST_2 = 'us-east-2'
@@ -128,14 +140,14 @@ class DestinationRedshiftS3BucketRegion(str, Enum):
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
 class S3Staging:
-    r"""The method how the data will be uploaded to the database."""
+    r"""<i>(recommended)</i> Uploads data to S3 and then uses a COPY to insert the data into Redshift. COPY is recommended for production workloads for better speed and scalability. See <a href=\\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/creating-bucket.html\\">AWS docs</a> for more details."""
     access_key_id: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('access_key_id') }})
     r"""This ID grants access to the above S3 staging bucket. Airbyte requires Read and Write permissions to the given bucket. See <a href=\\"https://docs.aws.amazon.com/general/latest/gr/aws-sec-cred-types.html#access-keys-and-secret-access-keys\\">AWS docs</a> on how to generate an access key ID and secret access key."""
     s3_bucket_name: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('s3_bucket_name') }})
-    r"""The name of the staging S3 bucket to use if utilising a COPY strategy. COPY is recommended for production workloads for better speed and scalability. See <a href=\\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/creating-bucket.html\\">AWS docs</a> for more details."""
+    r"""The name of the staging S3 bucket."""
     secret_access_key: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('secret_access_key') }})
     r"""The corresponding secret to the above access key id. See <a href=\\"https://docs.aws.amazon.com/general/latest/gr/aws-sec-cred-types.html#access-keys-and-secret-access-keys\\">AWS docs</a> on how to generate an access key ID and secret access key."""
-    METHOD: Final[DestinationRedshiftSchemasMethod] = dataclasses.field(default=DestinationRedshiftSchemasMethod.S3_STAGING, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('method') }})
+    METHOD: Final[DestinationRedshiftMethod] = dataclasses.field(default=DestinationRedshiftMethod.S3_STAGING, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('method') }})
     encryption: Optional[Union[NoEncryption, AESCBCEnvelopeEncryption]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('encryption'), 'exclude': lambda f: f is None }})
     r"""How to encrypt the staging data"""
     file_buffer_count: Optional[int] = dataclasses.field(default=10, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('file_buffer_count'), 'exclude': lambda f: f is None }})
@@ -147,19 +159,7 @@ class S3Staging:
     s3_bucket_path: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('s3_bucket_path'), 'exclude': lambda f: f is None }})
     r"""The directory under the S3 bucket where data will be written. If not provided, then defaults to the root directory. See <a href=\\"https://docs.aws.amazon.com/prescriptive-guidance/latest/defining-bucket-names-data-lakes/faq.html#:~:text=be%20globally%20unique.-,For%20S3%20bucket%20paths,-%2C%20you%20can%20use\\">path's name recommendations</a> for more details."""
     s3_bucket_region: Optional[DestinationRedshiftS3BucketRegion] = dataclasses.field(default=DestinationRedshiftS3BucketRegion.UNKNOWN, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('s3_bucket_region'), 'exclude': lambda f: f is None }})
-    r"""The region of the S3 staging bucket to use if utilising a COPY strategy. See <a href=\\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/creating-bucket.html#:~:text=In-,Region,-%2C%20choose%20the%20AWS\\">AWS docs</a> for details."""
-    
-
-
-class DestinationRedshiftMethod(str, Enum):
-    STANDARD = 'Standard'
-
-
-@dataclass_json(undefined=Undefined.EXCLUDE)
-@dataclasses.dataclass
-class Standard:
-    r"""The method how the data will be uploaded to the database."""
-    METHOD: Final[DestinationRedshiftMethod] = dataclasses.field(default=DestinationRedshiftMethod.STANDARD, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('method') }})
+    r"""The region of the S3 staging bucket."""
     
 
 
@@ -185,7 +185,7 @@ class DestinationRedshift:
     r"""The default schema tables are written to if the source does not specify a namespace. Unless specifically configured, the usual value for this field is \\"public\\"."""
     tunnel_method: Optional[Union[DestinationRedshiftNoTunnel, DestinationRedshiftSSHKeyAuthentication, DestinationRedshiftPasswordAuthentication]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('tunnel_method'), 'exclude': lambda f: f is None }})
     r"""Whether to initiate an SSH tunnel before connecting to the database, and if so, which kind of authentication to use."""
-    uploading_method: Optional[Union[Standard, S3Staging]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('uploading_method'), 'exclude': lambda f: f is None }})
-    r"""The method how the data will be uploaded to the database."""
+    uploading_method: Optional[Union[S3Staging, Standard]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('uploading_method'), 'exclude': lambda f: f is None }})
+    r"""The way data will be uploaded to Redshift."""
     
 

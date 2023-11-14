@@ -7,7 +7,7 @@ from airbyte import utils
 from dataclasses_json import Undefined, dataclass_json
 from datetime import datetime
 from enum import Enum
-from typing import Final, Optional, Union
+from typing import Final, List, Optional, Union
 
 class SourceGitlabSchemasAuthType(str, Enum):
     ACCESS_TOKEN = 'access_token'
@@ -52,14 +52,18 @@ class SourceGitlabGitlab(str, Enum):
 class SourceGitlab:
     r"""The values required to configure the source."""
     credentials: Union[SourceGitlabOAuth20, PrivateToken] = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credentials') }})
-    start_date: datetime = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('start_date'), 'encoder': utils.datetimeisoformat(False), 'decoder': dateutil.parser.isoparse }})
-    r"""The date from which you'd like to replicate data for GitLab API, in the format YYYY-MM-DDT00:00:00Z. All data generated after this date will be replicated."""
     SOURCE_TYPE: Final[SourceGitlabGitlab] = dataclasses.field(default=SourceGitlabGitlab.GITLAB, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     api_url: Optional[str] = dataclasses.field(default='gitlab.com', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('api_url'), 'exclude': lambda f: f is None }})
     r"""Please enter your basic URL from GitLab instance."""
     groups: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('groups'), 'exclude': lambda f: f is None }})
-    r"""Space-delimited list of groups. e.g. airbyte.io."""
+    r"""[DEPRECATED] Space-delimited list of groups. e.g. airbyte.io."""
+    groups_list: Optional[List[str]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('groups_list'), 'exclude': lambda f: f is None }})
+    r"""List of groups. e.g. airbyte.io."""
     projects: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('projects'), 'exclude': lambda f: f is None }})
+    r"""[DEPRECATED] Space-delimited list of projects. e.g. airbyte.io/documentation meltano/tap-gitlab."""
+    projects_list: Optional[List[str]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('projects_list'), 'exclude': lambda f: f is None }})
     r"""Space-delimited list of projects. e.g. airbyte.io/documentation meltano/tap-gitlab."""
+    start_date: Optional[datetime] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('start_date'), 'encoder': utils.datetimeisoformat(True), 'decoder': dateutil.parser.isoparse, 'exclude': lambda f: f is None }})
+    r"""The date from which you'd like to replicate data for GitLab API, in the format YYYY-MM-DDT00:00:00Z. Optional. If not set, all data will be replicated. All data generated after this date will be replicated."""
     
 

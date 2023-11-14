@@ -2,25 +2,10 @@
 
 from __future__ import annotations
 import dataclasses
-import dateutil.parser
 from airbyte import utils
 from dataclasses_json import Undefined, dataclass_json
-from datetime import datetime
 from enum import Enum
-from typing import Final, Optional
-
-class SourcePipedriveAuthType(str, Enum):
-    TOKEN = 'Token'
-
-
-@dataclass_json(undefined=Undefined.EXCLUDE)
-@dataclasses.dataclass
-class APIKeyAuthentication:
-    api_token: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('api_token') }})
-    r"""The Pipedrive API Token."""
-    AUTH_TYPE: Final[SourcePipedriveAuthType] = dataclasses.field(default=SourcePipedriveAuthType.TOKEN, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_type') }})
-    
-
+from typing import Final
 
 class Pipedrive(str, Enum):
     PIPEDRIVE = 'pipedrive'
@@ -30,9 +15,10 @@ class Pipedrive(str, Enum):
 @dataclasses.dataclass
 class SourcePipedrive:
     r"""The values required to configure the source."""
-    replication_start_date: datetime = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('replication_start_date'), 'encoder': utils.datetimeisoformat(False), 'decoder': dateutil.parser.isoparse }})
+    api_token: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('api_token') }})
+    r"""The Pipedrive API Token."""
+    replication_start_date: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('replication_start_date') }})
     r"""UTC date and time in the format 2017-01-25T00:00:00Z. Any data before this date will not be replicated. When specified and not None, then stream will behave as incremental"""
     SOURCE_TYPE: Final[Pipedrive] = dataclasses.field(default=Pipedrive.PIPEDRIVE, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
-    authorization: Optional[APIKeyAuthentication] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('authorization'), 'exclude': lambda f: f is None }})
     
 

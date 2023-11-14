@@ -37,13 +37,11 @@ req = shared.DestinationCreateRequest(
             aws_access_key_id='string',
             aws_secret_access_key='string',
         ),
-        destination_type=shared.AwsDatalake.AWS_DATALAKE,
         shared.JSONLinesNewlineDelimitedJSON(),
         lakeformation_database_default_tag_key='pii_level',
         lakeformation_database_default_tag_values='private,public',
         lakeformation_database_name='string',
     ),
-    name='string',
     workspace_id='60860ad4-6e8e-462f-a208-e5ba5019ef34',
 )
 
@@ -237,7 +235,6 @@ req = operations.PatchDestinationRequest(
             shared.IAMRole(
                 role_arn='string',
             ),
-            destination_type=shared.AwsDatalake.AWS_DATALAKE,
             shared.ParquetColumnarStorage(),
             lakeformation_database_default_tag_key='pii_level',
             lakeformation_database_default_tag_values='private,public',
@@ -297,7 +294,6 @@ req = operations.PutDestinationRequest(
             shared.IAMRole(
                 role_arn='string',
             ),
-            destination_type=shared.AwsDatalake.AWS_DATALAKE,
             shared.JSONLinesNewlineDelimitedJSON(),
             lakeformation_database_default_tag_key='pii_level',
             lakeformation_database_default_tag_values='private,public',

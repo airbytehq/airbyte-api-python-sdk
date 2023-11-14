@@ -3,9 +3,9 @@
 
 ## Supported Types
 
-### DestinationBigqueryDenormalizedHMACKey
+### DestinationBigqueryHMACKey
 
 ```python
-credential: shared.DestinationBigqueryDenormalizedHMACKey = /* values here */
+credential: shared.DestinationBigqueryHMACKey = /* values here */
 ```
 

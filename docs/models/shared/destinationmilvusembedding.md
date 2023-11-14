@@ -27,3 +27,15 @@ destinationMilvusEmbedding: shared.DestinationMilvusFake = /* values here */
 destinationMilvusEmbedding: shared.FromField = /* values here */
 ```
 
+### AzureOpenAI
+
+```python
+destinationMilvusEmbedding: shared.AzureOpenAI = /* values here */
+```
+
+### OpenAICompatible
+
+```python
+destinationMilvusEmbedding: shared.OpenAICompatible = /* values here */
+```
+

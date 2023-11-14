@@ -8,19 +8,6 @@ from datetime import date
 from enum import Enum
 from typing import Final, List, Optional, Union
 
-class SourcePinterestSchemasAuthMethod(str, Enum):
-    ACCESS_TOKEN = 'access_token'
-
-
-@dataclass_json(undefined=Undefined.EXCLUDE)
-@dataclasses.dataclass
-class SourcePinterestAccessToken:
-    access_token: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('access_token') }})
-    r"""The Access Token to make authenticated requests."""
-    AUTH_METHOD: Final[SourcePinterestSchemasAuthMethod] = dataclasses.field(default=SourcePinterestSchemasAuthMethod.ACCESS_TOKEN, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_method') }})
-    
-
-
 class SourcePinterestAuthMethod(str, Enum):
     OAUTH2_0 = 'oauth2.0'
 
@@ -54,7 +41,7 @@ class SourcePinterest:
     start_date: date = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('start_date'), 'encoder': utils.dateisoformat(False), 'decoder': utils.datefromisoformat }})
     r"""A date in the format YYYY-MM-DD. If you have not set a date, it would be defaulted to latest allowed date by api (89 days from today)."""
     SOURCE_TYPE: Final[SourcePinterestPinterest] = dataclasses.field(default=SourcePinterestPinterest.PINTEREST, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
-    credentials: Optional[Union[SourcePinterestOAuth20, SourcePinterestAccessToken]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credentials'), 'exclude': lambda f: f is None }})
+    credentials: Optional[Union[SourcePinterestOAuth20]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credentials'), 'exclude': lambda f: f is None }})
     status: Optional[List[Status]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('status') }})
     r"""Entity statuses based off of campaigns, ad_groups, and ads. If you do not have a status set, it will be ignored completely."""
     

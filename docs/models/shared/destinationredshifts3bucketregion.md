@@ -1,6 +1,6 @@
 # DestinationRedshiftS3BucketRegion
 
-The region of the S3 staging bucket to use if utilising a COPY strategy. See <a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/creating-bucket.html#:~:text=In-,Region,-%2C%20choose%20the%20AWS">AWS docs</a> for details.
+The region of the S3 staging bucket.
 
 
 ## Values

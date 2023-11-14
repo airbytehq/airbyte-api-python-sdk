@@ -15,8 +15,8 @@ class SpacexAPI(str, Enum):
 @dataclasses.dataclass
 class SourceSpacexAPI:
     r"""The values required to configure the source."""
+    SOURCE_TYPE: Final[SpacexAPI] = dataclasses.field(default=SpacexAPI.SPACEX_API, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     id: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('id'), 'exclude': lambda f: f is None }})
     options: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('options'), 'exclude': lambda f: f is None }})
-    SOURCE_TYPE: Final[Optional[SpacexAPI]] = dataclasses.field(default=SpacexAPI.SPACEX_API, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType'), 'exclude': lambda f: f is None }})
     
 

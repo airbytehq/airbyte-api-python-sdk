@@ -18,7 +18,6 @@ from .source_aws_cloudtrail import SourceAwsCloudtrail
 from .source_azure_blob_storage import SourceAzureBlobStorage
 from .source_azure_table import SourceAzureTable
 from .source_bamboo_hr import SourceBambooHr
-from .source_bigcommerce import SourceBigcommerce
 from .source_bigquery import SourceBigquery
 from .source_bing_ads import SourceBingAds
 from .source_braintree import SourceBraintree
@@ -48,7 +47,7 @@ from .source_facebook_marketing import SourceFacebookMarketing
 from .source_facebook_pages import SourceFacebookPages
 from .source_faker import SourceFaker
 from .source_fauna import SourceFauna
-from .source_file_secure import SourceFileSecure
+from .source_file import SourceFile
 from .source_firebolt import SourceFirebolt
 from .source_freshcaller import SourceFreshcaller
 from .source_freshdesk import SourceFreshdesk
@@ -62,8 +61,8 @@ from .source_glassfrog import SourceGlassfrog
 from .source_gnews import SourceGnews
 from .source_google_ads import SourceGoogleAds
 from .source_google_analytics_data_api import SourceGoogleAnalyticsDataAPI
-from .source_google_analytics_v4 import SourceGoogleAnalyticsV4
 from .source_google_directory import SourceGoogleDirectory
+from .source_google_drive import SourceGoogleDrive
 from .source_google_pagespeed_insights import SourceGooglePagespeedInsights
 from .source_google_search_console import SourceGoogleSearchConsole
 from .source_google_sheets import SourceGoogleSheets
@@ -101,8 +100,8 @@ from .source_metabase import SourceMetabase
 from .source_microsoft_teams import SourceMicrosoftTeams
 from .source_mixpanel import SourceMixpanel
 from .source_monday import SourceMonday
-from .source_mongodb import SourceMongodb
 from .source_mongodb_internal_poc import SourceMongodbInternalPoc
+from .source_mongodb_v2 import SourceMongodbV2
 from .source_mssql import SourceMssql
 from .source_my_hours import SourceMyHours
 from .source_mysql import SourceMysql
@@ -187,13 +186,12 @@ from .source_webflow import SourceWebflow
 from .source_whisky_hunter import SourceWhiskyHunter
 from .source_wikipedia_pageviews import SourceWikipediaPageviews
 from .source_woocommerce import SourceWoocommerce
-from .source_xero import SourceXero
 from .source_xkcd import SourceXkcd
 from .source_yandex_metrica import SourceYandexMetrica
 from .source_yotpo import SourceYotpo
-from .source_younium import SourceYounium
 from .source_youtube_analytics import SourceYoutubeAnalytics
 from .source_zendesk_chat import SourceZendeskChat
+from .source_zendesk_sell import SourceZendeskSell
 from .source_zendesk_sunshine import SourceZendeskSunshine
 from .source_zendesk_support import SourceZendeskSupport
 from .source_zendesk_talk import SourceZendeskTalk
@@ -209,10 +207,13 @@ from typing import Optional, Union
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
 class SourceCreateRequest:
-    configuration: Union[SourcePokeapi, SourceAha, SourceAircall, SourceAirtable, SourceAlloydb, SourceAmazonAds, SourceAmazonSellerPartner, SourceAmazonSqs, SourceAmplitude, SourceApifyDataset, SourceAppfollow, SourceAsana, SourceAuth0, SourceAwsCloudtrail, SourceAzureBlobStorage, SourceAzureTable, SourceBambooHr, SourceBigcommerce, SourceBigquery, SourceBingAds, SourceBraintree, SourceBraze, SourceChargebee, SourceChartmogul, SourceClickhouse, SourceClickupAPI, SourceClockify, SourceCloseCom, SourceCoda, SourceCoinAPI, SourceCoinmarketcap, SourceConfigcat, SourceConfluence, SourceConvex, SourceDatascope, SourceDelighted, SourceDixa, SourceDockerhub, SourceDremio, SourceDynamodb, SourceE2eTestCloud, SourceEmailoctopus, SourceExchangeRates, SourceFacebookMarketing, SourceFacebookPages, SourceFaker, SourceFauna, SourceFileSecure, SourceFirebolt, SourceFreshcaller, SourceFreshdesk, SourceFreshsales, SourceGainsightPx, SourceGcs, SourceGetlago, SourceGithub, SourceGitlab, SourceGlassfrog, SourceGnews, SourceGoogleAds, SourceGoogleAnalyticsDataAPI, SourceGoogleAnalyticsV4, SourceGoogleDirectory, SourceGooglePagespeedInsights, SourceGoogleSearchConsole, SourceGoogleSheets, SourceGoogleWebfonts, SourceGoogleWorkspaceAdminReports, SourceGreenhouse, SourceGridly, SourceHarvest, SourceHubplanner, SourceHubspot, SourceInsightly, SourceInstagram, SourceInstatus, SourceIntercom, SourceIp2whois, SourceIterable, SourceJira, SourceK6Cloud, SourceKlarna, SourceKlaviyo, SourceKustomerSinger, SourceKyve, SourceLaunchdarkly, SourceLemlist, SourceLeverHiring, SourceLinkedinAds, SourceLinkedinPages, SourceLinnworks, SourceLokalise, SourceMailchimp, SourceMailgun, SourceMailjetSms, SourceMarketo, SourceMetabase, SourceMicrosoftTeams, SourceMixpanel, SourceMonday, SourceMongodb, SourceMongodbInternalPoc, SourceMssql, SourceMyHours, SourceMysql, SourceNetsuite, SourceNotion, SourceNytimes, SourceOkta, SourceOmnisend, SourceOnesignal, SourceOracle, SourceOrb, SourceOrbit, SourceOutbrainAmplify, SourceOutreach, SourcePaypalTransaction, SourcePaystack, SourcePendo, SourcePersistiq, SourcePexelsAPI, SourcePinterest, SourcePipedrive, SourcePocket, SourcePolygonStockAPI, SourcePostgres, SourcePosthog, SourcePostmarkapp, SourcePrestashop, SourcePunkAPI, SourcePypi, SourceQualaroo, SourceQuickbooks, SourceRailz, SourceRecharge, SourceRecreation, SourceRecruitee, SourceRecurly, SourceRedshift, SourceRetently, SourceRkiCovid, SourceRss, SourceS3, SourceSalesforce, SourceSalesloft, SourceSapFieldglass, SourceSecoda, SourceSendgrid, SourceSendinblue, SourceSenseforce, SourceSentry, SourceSftp, SourceSftpBulk, SourceShopify, SourceShortio, SourceSlack, SourceSmaily, SourceSmartengage, SourceSmartsheets, SourceSnapchatMarketing, SourceSnowflake, SourceSonarCloud, SourceSpacexAPI, SourceSquare, SourceStrava, SourceStripe, SourceSurveySparrow, SourceSurveymonkey, SourceTempo, SourceTheGuardianAPI, SourceTiktokMarketing, SourceTodoist, SourceTrello, SourceTrustpilot, SourceTvmazeSchedule, SourceTwilio, SourceTwilioTaskrouter, SourceTwitter, SourceTypeform, SourceUsCensus, SourceVantage, SourceWebflow, SourceWhiskyHunter, SourceWikipediaPageviews, SourceWoocommerce, SourceXero, SourceXkcd, SourceYandexMetrica, SourceYotpo, SourceYounium, SourceYoutubeAnalytics, SourceZendeskChat, SourceZendeskSunshine, SourceZendeskSupport, SourceZendeskTalk, SourceZenloop, SourceZohoCrm, SourceZoom, SourceZuora] = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('configuration') }})
+    configuration: Union[SourcePokeapi, SourceAha, SourceAircall, SourceAirtable, SourceAlloydb, SourceAmazonAds, SourceAmazonSellerPartner, SourceAmazonSqs, SourceAmplitude, SourceApifyDataset, SourceAppfollow, SourceAsana, SourceAuth0, SourceAwsCloudtrail, SourceAzureBlobStorage, SourceAzureTable, SourceBambooHr, SourceBigquery, SourceBingAds, SourceBraintree, SourceBraze, SourceChargebee, SourceChartmogul, SourceClickhouse, SourceClickupAPI, SourceClockify, SourceCloseCom, SourceCoda, SourceCoinAPI, SourceCoinmarketcap, SourceConfigcat, SourceConfluence, SourceConvex, SourceDatascope, SourceDelighted, SourceDixa, SourceDockerhub, SourceDremio, SourceDynamodb, Union[ContinuousFeed], SourceEmailoctopus, SourceExchangeRates, SourceFacebookMarketing, SourceFacebookPages, SourceFaker, SourceFauna, SourceFile, SourceFirebolt, SourceFreshcaller, SourceFreshdesk, SourceFreshsales, SourceGainsightPx, SourceGcs, SourceGetlago, SourceGithub, SourceGitlab, SourceGlassfrog, SourceGnews, SourceGoogleAds, SourceGoogleAnalyticsDataAPI, SourceGoogleDirectory, SourceGoogleDrive, SourceGooglePagespeedInsights, SourceGoogleSearchConsole, SourceGoogleSheets, SourceGoogleWebfonts, SourceGoogleWorkspaceAdminReports, SourceGreenhouse, SourceGridly, SourceHarvest, SourceHubplanner, SourceHubspot, SourceInsightly, SourceInstagram, SourceInstatus, SourceIntercom, SourceIp2whois, SourceIterable, SourceJira, SourceK6Cloud, SourceKlarna, SourceKlaviyo, SourceKustomerSinger, SourceKyve, SourceLaunchdarkly, SourceLemlist, SourceLeverHiring, SourceLinkedinAds, SourceLinkedinPages, SourceLinnworks, SourceLokalise, SourceMailchimp, SourceMailgun, SourceMailjetSms, SourceMarketo, SourceMetabase, SourceMicrosoftTeams, SourceMixpanel, SourceMonday, SourceMongodbInternalPoc, SourceMongodbV2, SourceMssql, SourceMyHours, SourceMysql, SourceNetsuite, SourceNotion, SourceNytimes, SourceOkta, SourceOmnisend, SourceOnesignal, SourceOracle, SourceOrb, SourceOrbit, SourceOutbrainAmplify, SourceOutreach, SourcePaypalTransaction, SourcePaystack, SourcePendo, SourcePersistiq, SourcePexelsAPI, SourcePinterest, SourcePipedrive, SourcePocket, SourcePolygonStockAPI, SourcePostgres, SourcePosthog, SourcePostmarkapp, SourcePrestashop, SourcePunkAPI, SourcePypi, SourceQualaroo, SourceQuickbooks, SourceRailz, SourceRecharge, SourceRecreation, SourceRecruitee, SourceRecurly, SourceRedshift, SourceRetently, SourceRkiCovid, SourceRss, SourceS3, SourceSalesforce, SourceSalesloft, SourceSapFieldglass, SourceSecoda, SourceSendgrid, SourceSendinblue, SourceSenseforce, SourceSentry, SourceSftp, SourceSftpBulk, SourceShopify, SourceShortio, SourceSlack, SourceSmaily, SourceSmartengage, SourceSmartsheets, SourceSnapchatMarketing, SourceSnowflake, SourceSonarCloud, SourceSpacexAPI, SourceSquare, SourceStrava, SourceStripe, SourceSurveySparrow, SourceSurveymonkey, SourceTempo, SourceTheGuardianAPI, SourceTiktokMarketing, SourceTodoist, SourceTrello, SourceTrustpilot, SourceTvmazeSchedule, SourceTwilio, SourceTwilioTaskrouter, SourceTwitter, SourceTypeform, SourceUsCensus, SourceVantage, SourceWebflow, SourceWhiskyHunter, SourceWikipediaPageviews, SourceWoocommerce, SourceXkcd, SourceYandexMetrica, SourceYotpo, SourceYoutubeAnalytics, SourceZendeskChat, SourceZendeskSell, SourceZendeskSunshine, SourceZendeskSupport, SourceZendeskTalk, SourceZenloop, SourceZohoCrm, SourceZoom, SourceZuora] = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('configuration') }})
     r"""The values required to configure the source."""
-    name: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('name') }})
     workspace_id: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('workspaceId') }})
+    definition_id: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('definitionId'), 'exclude': lambda f: f is None }})
+    r"""The UUID of the connector definition. One of name or definitionId must be provided."""
+    name: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('name'), 'exclude': lambda f: f is None }})
+    r"""Name of the source type e.g. mysql. One of name or definitionId must be provided."""
     secret_id: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('secretId'), 'exclude': lambda f: f is None }})
     r"""Optional secretID obtained through the public API OAuth redirect flow."""
     

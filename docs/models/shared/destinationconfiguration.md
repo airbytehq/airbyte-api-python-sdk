@@ -21,12 +21,6 @@ destinationConfiguration: shared.DestinationAzureBlobStorage = /* values here */
 destinationConfiguration: shared.DestinationBigquery = /* values here */
 ```
 
-### DestinationBigqueryDenormalized
-
-```python
-destinationConfiguration: shared.DestinationBigqueryDenormalized = /* values here */
-```
-
 ### DestinationClickhouse
 
 ```python
@@ -61,6 +55,12 @@ destinationConfiguration: shared.DestinationDatabricks = /* values here */
 
 ```python
 destinationConfiguration: shared.DestinationDevNull = /* values here */
+```
+
+### DestinationDuckdb
+
+```python
+destinationConfiguration: shared.DestinationDuckdb = /* values here */
 ```
 
 ### DestinationDynamodb
@@ -165,6 +165,12 @@ destinationConfiguration: shared.DestinationPostgres = /* values here */
 destinationConfiguration: shared.DestinationPubsub = /* values here */
 ```
 
+### DestinationQdrant
+
+```python
+destinationConfiguration: shared.DestinationQdrant = /* values here */
+```
+
 ### DestinationRedis
 
 ```python
@@ -217,6 +223,12 @@ destinationConfiguration: shared.DestinationTypesense = /* values here */
 
 ```python
 destinationConfiguration: shared.DestinationVertica = /* values here */
+```
+
+### DestinationWeaviate
+
+```python
+destinationConfiguration: shared.DestinationWeaviate = /* values here */
 ```
 
 ### DestinationXata

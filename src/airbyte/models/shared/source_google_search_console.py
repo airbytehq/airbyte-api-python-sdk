@@ -54,9 +54,9 @@ class SourceGoogleSearchConsoleValidEnums(str, Enum):
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
-class CustomReportConfig:
+class SourceGoogleSearchConsoleCustomReportConfig:
     dimensions: List[SourceGoogleSearchConsoleValidEnums] = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('dimensions') }})
-    r"""A list of dimensions (country, date, device, page, query)"""
+    r"""A list of available dimensions. Please note, that for technical reasons `date` is the default dimension which will be included in your query whether you specify it or not. Primary key will consist of your custom dimensions and the default dimension along with `site_url` and `search_type`."""
     name: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('name') }})
     r"""The name of the custom report, this name would be used as stream name"""
     
@@ -81,7 +81,7 @@ class SourceGoogleSearchConsole:
     SOURCE_TYPE: Final[SourceGoogleSearchConsoleGoogleSearchConsole] = dataclasses.field(default=SourceGoogleSearchConsoleGoogleSearchConsole.GOOGLE_SEARCH_CONSOLE, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     custom_reports: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('custom_reports'), 'exclude': lambda f: f is None }})
     r"""(DEPRCATED) A JSON array describing the custom reports you want to sync from Google Search Console. See our <a href='https://docs.airbyte.com/integrations/sources/google-search-console'>documentation</a> for more information on formulating custom reports."""
-    custom_reports_array: Optional[List[CustomReportConfig]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('custom_reports_array'), 'exclude': lambda f: f is None }})
+    custom_reports_array: Optional[List[SourceGoogleSearchConsoleCustomReportConfig]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('custom_reports_array'), 'exclude': lambda f: f is None }})
     r"""You can add your Custom Analytics report by creating one."""
     data_state: Optional[DataFreshness] = dataclasses.field(default=DataFreshness.FINAL, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('data_state'), 'exclude': lambda f: f is None }})
     r"""If set to 'final', the returned data will include only finalized, stable data. If set to 'all', fresh data will be included. When using Incremental sync mode, we do not recommend setting this parameter to 'all' as it may cause data loss. More information can be found in our <a href='https://docs.airbyte.com/integrations/source/google-search-console'>full documentation</a>."""

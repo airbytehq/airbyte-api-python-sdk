@@ -25,6 +25,6 @@ class SourceTrello:
     r"""Trello API token. See the <a href=\\"https://developer.atlassian.com/cloud/trello/guides/rest-api/authorization/#using-basic-oauth\\">docs</a> for instructions on how to generate it."""
     SOURCE_TYPE: Final[Trello] = dataclasses.field(default=Trello.TRELLO, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     board_ids: Optional[List[str]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('board_ids'), 'exclude': lambda f: f is None }})
-    r"""IDs of the boards to replicate data from. If left empty, data from all boards to which you have access will be replicated."""
+    r"""IDs of the boards to replicate data from. If left empty, data from all boards to which you have access will be replicated. Please note that this is not the 8-character ID in the board's shortLink (URL of the board). Rather, what is required here is the 24-character ID usually returned by the API"""
     
 

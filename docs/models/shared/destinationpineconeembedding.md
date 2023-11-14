@@ -21,3 +21,15 @@ destinationPineconeEmbedding: shared.DestinationPineconeCohere = /* values here 
 destinationPineconeEmbedding: shared.DestinationPineconeFake = /* values here */
 ```
 
+### DestinationPineconeAzureOpenAI
+
+```python
+destinationPineconeEmbedding: shared.DestinationPineconeAzureOpenAI = /* values here */
+```
+
+### DestinationPineconeOpenAICompatible
+
+```python
+destinationPineconeEmbedding: shared.DestinationPineconeOpenAICompatible = /* values here */
+```
+

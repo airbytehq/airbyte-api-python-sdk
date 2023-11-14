@@ -7,7 +7,7 @@ from airbyte import utils
 from dataclasses_json import Undefined, dataclass_json
 from datetime import datetime
 from enum import Enum
-from typing import Final, Optional, Union
+from typing import Final, List, Optional, Union
 
 class SourceGithubOptionTitle(str, Enum):
     PAT_CREDENTIALS = 'PAT Credentials'
@@ -49,16 +49,22 @@ class SourceGithubGithub(str, Enum):
 @dataclasses.dataclass
 class SourceGithub:
     r"""The values required to configure the source."""
-    repository: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('repository') }})
-    r"""Space-delimited list of GitHub organizations/repositories, e.g. `airbytehq/airbyte` for single repository, `airbytehq/*` for get all repositories from organization and `airbytehq/airbyte airbytehq/another-repo` for multiple repositories."""
-    start_date: datetime = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('start_date'), 'encoder': utils.datetimeisoformat(False), 'decoder': dateutil.parser.isoparse }})
-    r"""The date from which you'd like to replicate data from GitHub in the format YYYY-MM-DDT00:00:00Z. For the streams which support this configuration, only data generated on or after the start date will be replicated. This field doesn't apply to all streams, see the <a href=\\"https://docs.airbyte.com/integrations/sources/github\\">docs</a> for more info"""
-    SOURCE_TYPE: Final[SourceGithubGithub] = dataclasses.field(default=SourceGithubGithub.GITHUB, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
-    branch: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('branch'), 'exclude': lambda f: f is None }})
-    r"""Space-delimited list of GitHub repository branches to pull commits for, e.g. `airbytehq/airbyte/master`. If no branches are specified for a repository, the default branch will be pulled."""
-    credentials: Optional[Union[OAuth, SourceGithubPersonalAccessToken]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credentials'), 'exclude': lambda f: f is None }})
+    credentials: Union[OAuth, SourceGithubPersonalAccessToken] = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credentials') }})
     r"""Choose how to authenticate to GitHub"""
+    repositories: List[str] = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('repositories') }})
+    r"""List of GitHub organizations/repositories, e.g. `airbytehq/airbyte` for single repository, `airbytehq/*` for get all repositories from organization and `airbytehq/airbyte airbytehq/another-repo` for multiple repositories."""
+    SOURCE_TYPE: Final[SourceGithubGithub] = dataclasses.field(default=SourceGithubGithub.GITHUB, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
+    api_url: Optional[str] = dataclasses.field(default='https://api.github.com/', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('api_url'), 'exclude': lambda f: f is None }})
+    r"""Please enter your basic URL from self-hosted GitHub instance or leave it empty to use GitHub."""
+    branch: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('branch'), 'exclude': lambda f: f is None }})
+    r"""(DEPRCATED) Space-delimited list of GitHub repository branches to pull commits for, e.g. `airbytehq/airbyte/master`. If no branches are specified for a repository, the default branch will be pulled."""
+    branches: Optional[List[str]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('branches'), 'exclude': lambda f: f is None }})
+    r"""List of GitHub repository branches to pull commits for, e.g. `airbytehq/airbyte/master`. If no branches are specified for a repository, the default branch will be pulled."""
+    repository: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('repository'), 'exclude': lambda f: f is None }})
+    r"""(DEPRCATED) Space-delimited list of GitHub organizations/repositories, e.g. `airbytehq/airbyte` for single repository, `airbytehq/*` for get all repositories from organization and `airbytehq/airbyte airbytehq/another-repo` for multiple repositories."""
     requests_per_hour: Optional[int] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('requests_per_hour'), 'exclude': lambda f: f is None }})
     r"""The GitHub API allows for a maximum of 5000 requests per hour (15000 for Github Enterprise). You can specify a lower value to limit your use of the API quota."""
+    start_date: Optional[datetime] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('start_date'), 'encoder': utils.datetimeisoformat(True), 'decoder': dateutil.parser.isoparse, 'exclude': lambda f: f is None }})
+    r"""The date from which you'd like to replicate data from GitHub in the format YYYY-MM-DDT00:00:00Z. If the date is not set, all data will be replicated.  For the streams which support this configuration, only data generated on or after the start date will be replicated. This field doesn't apply to all streams, see the <a href=\\"https://docs.airbyte.com/integrations/sources/github\\">docs</a> for more info"""
     
 

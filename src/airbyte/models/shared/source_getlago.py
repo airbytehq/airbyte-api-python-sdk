@@ -5,7 +5,7 @@ import dataclasses
 from airbyte import utils
 from dataclasses_json import Undefined, dataclass_json
 from enum import Enum
-from typing import Final
+from typing import Final, Optional
 
 class Getlago(str, Enum):
     GETLAGO = 'getlago'
@@ -18,5 +18,7 @@ class SourceGetlago:
     api_key: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('api_key') }})
     r"""Your API Key. See <a href=\\"https://doc.getlago.com/docs/api/intro\\">here</a>."""
     SOURCE_TYPE: Final[Getlago] = dataclasses.field(default=Getlago.GETLAGO, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
+    api_url: Optional[str] = dataclasses.field(default='https://api.getlago.com/api/v1', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('api_url'), 'exclude': lambda f: f is None }})
+    r"""Your Lago API URL"""
     
 

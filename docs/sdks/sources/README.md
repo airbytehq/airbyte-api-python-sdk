@@ -33,10 +33,8 @@ s = airbyte.Airbyte(
 
 req = shared.SourceCreateRequest(
     shared.SourcePokeapi(
-        pokemon_name='luxray',
-        source_type=shared.Pokeapi.POKEAPI,
+        pokemon_name=shared.PokemonName.LUXRAY,
     ),
-    name='string',
     workspace_id='2cf0f31f-3ddc-4984-8c34-bdfb109056aa',
 )
 
@@ -181,7 +179,7 @@ s = airbyte.Airbyte(
 req = shared.InitiateOauthRequest(
     o_auth_input_configuration=shared.OAuthInputConfiguration(),
     redirect_url='string',
-    source_type=shared.OAuthActorNames.GOOGLE_ADS,
+    source_type=shared.OAuthActorNames.GITLAB,
     workspace_id='fd28130d-9919-4ffa-a67d-4e12eb099447',
 )
 
@@ -279,8 +277,7 @@ s = airbyte.Airbyte(
 req = operations.PatchSourceRequest(
     source_patch_request=shared.SourcePatchRequest(
         shared.SourcePokeapi(
-            pokemon_name='ditto',
-            source_type=shared.Pokeapi.POKEAPI,
+            pokemon_name=shared.PokemonName.DITTO,
         ),
         name='My source',
     ),
@@ -333,8 +330,7 @@ s = airbyte.Airbyte(
 req = operations.PutSourceRequest(
     source_put_request=shared.SourcePutRequest(
         shared.SourcePokeapi(
-            pokemon_name='luxray',
-            source_type=shared.Pokeapi.POKEAPI,
+            pokemon_name=shared.PokemonName.LUXRAY,
         ),
         name='string',
     ),

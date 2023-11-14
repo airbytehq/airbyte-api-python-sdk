@@ -5,7 +5,7 @@ import dataclasses
 from airbyte import utils
 from dataclasses_json import Undefined, dataclass_json
 from enum import Enum
-from typing import Final, Optional, Union
+from typing import Any, Dict, Final, Optional, Union
 
 class SourceE2eTestCloudType(str, Enum):
     MULTI_STREAM = 'MULTI_STREAM'
@@ -48,16 +48,17 @@ class Type(str, Enum):
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
-class SourceE2eTestCloud:
+class ContinuousFeed:
     r"""The values required to configure the source."""
     mock_catalog: Union[SingleSchema, MultiSchema] = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('mock_catalog') }})
-    SOURCE_TYPE: Final[E2eTestCloud] = dataclasses.field(default=E2eTestCloud.E2E_TEST_CLOUD, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
+    additional_properties: Optional[Dict[str, Any]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'exclude': lambda f: f is None }})
     max_messages: Optional[int] = dataclasses.field(default=100, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('max_messages'), 'exclude': lambda f: f is None }})
     r"""Number of records to emit per stream. Min 1. Max 100 billion."""
     message_interval_ms: Optional[int] = dataclasses.field(default=0, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('message_interval_ms'), 'exclude': lambda f: f is None }})
     r"""Interval between messages in ms. Min 0 ms. Max 60000 ms (1 minute)."""
     seed: Optional[int] = dataclasses.field(default=0, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('seed'), 'exclude': lambda f: f is None }})
     r"""When the seed is unspecified, the current time millis will be used as the seed. Range: [0, 1000000]."""
+    SOURCE_TYPE: Final[Optional[E2eTestCloud]] = dataclasses.field(default=E2eTestCloud.E2E_TEST_CLOUD, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType'), 'exclude': lambda f: f is None }})
     TYPE: Final[Optional[Type]] = dataclasses.field(default=Type.CONTINUOUS_FEED, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('type'), 'exclude': lambda f: f is None }})
     
 

@@ -1,6 +1,6 @@
 # DatasetLocation
 
-The location of the dataset. Warning: Changes made after creation will not be applied. The default "US" value is used if not set explicitly. Read more <a href="https://cloud.google.com/bigquery/docs/locations">here</a>.
+The location of the dataset. Warning: Changes made after creation will not be applied. Read more <a href="https://cloud.google.com/bigquery/docs/locations">here</a>.
 
 
 ## Values
@@ -32,6 +32,9 @@ The location of the dataset. Warning: Changes made after creation will not be ap
 | `EUROPE_WEST7`            | europe-west7              |
 | `EUROPE_WEST8`            | europe-west8              |
 | `EUROPE_WEST9`            | europe-west9              |
+| `EUROPE_WEST12`           | europe-west12             |
+| `ME_CENTRAL1`             | me-central1               |
+| `ME_CENTRAL2`             | me-central2               |
 | `ME_WEST1`                | me-west1                  |
 | `NORTHAMERICA_NORTHEAST1` | northamerica-northeast1   |
 | `NORTHAMERICA_NORTHEAST2` | northamerica-northeast2   |
@@ -43,6 +46,7 @@ The location of the dataset. Warning: Changes made after creation will not be ap
 | `US_EAST3`                | us-east3                  |
 | `US_EAST4`                | us-east4                  |
 | `US_EAST5`                | us-east5                  |
+| `US_SOUTH1`               | us-south1                 |
 | `US_WEST1`                | us-west1                  |
 | `US_WEST2`                | us-west2                  |
 | `US_WEST3`                | us-west3                  |

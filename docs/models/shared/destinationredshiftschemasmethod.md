@@ -3,6 +3,6 @@
 
 ## Values
 
-| Name         | Value        |
-| ------------ | ------------ |
-| `S3_STAGING` | S3 Staging   |
+| Name       | Value      |
+| ---------- | ---------- |
+| `STANDARD` | Standard   |

@@ -1,0 +1,13 @@
+# SourceGoogleDriveAuthenticateViaGoogleOAuth
+
+Credentials for connecting to the Google Drive API
+
+
+## Fields
+
+| Field                                                                                          | Type                                                                                           | Required                                                                                       | Description                                                                                    |
+| ---------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- |
+| `auth_type`                                                                                    | [Optional[shared.SourceGoogleDriveAuthType]](../../models/shared/sourcegoogledriveauthtype.md) | :heavy_minus_sign:                                                                             | N/A                                                                                            |
+| `client_id`                                                                                    | *str*                                                                                          | :heavy_check_mark:                                                                             | Client ID for the Google Drive API                                                             |
+| `client_secret`                                                                                | *str*                                                                                          | :heavy_check_mark:                                                                             | Client Secret for the Google Drive API                                                         |
+| `refresh_token`                                                                                | *str*                                                                                          | :heavy_check_mark:                                                                             | Refresh Token for the Google Drive API                                                         |
