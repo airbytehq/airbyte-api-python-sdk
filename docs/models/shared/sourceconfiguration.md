@@ -3,12 +3,6 @@
 
 ## Supported Types
 
-### SourcePokeapi
-
-```python
-sourceConfiguration: shared.SourcePokeapi = /* values here */
-```
-
 ### SourceAha
 
 ```python
@@ -739,6 +733,12 @@ sourceConfiguration: shared.SourcePipedrive = /* values here */
 
 ```python
 sourceConfiguration: shared.SourcePocket = /* values here */
+```
+
+### SourcePokeapi
+
+```python
+sourceConfiguration: shared.SourcePokeapi = /* values here */
 ```
 
 ### SourcePolygonStockAPI

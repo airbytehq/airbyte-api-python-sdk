@@ -1,9 +1,9 @@
 configVersion: 1.0.0
 management:
-  docChecksum: 0a67114cdc878ccfed29fbe00f4f928f
+  docChecksum: 8f62e207fcdebe72da7eb9c7525220b5
   docVersion: 1.0.0
-  speakeasyVersion: 1.120.0
-  generationVersion: 2.188.3
+  speakeasyVersion: 1.120.1
+  generationVersion: 2.189.1
 generation:
   comments: {}
   sdkClassName: airbyte
@@ -17,7 +17,7 @@ features:
     globalSecurity: 2.83.0
     globalServerURLs: 2.82.0
 python:
-  version: 0.43.1
+  version: 0.43.2
   author: Airbyte
   clientServerStatusCodesAsErrors: true
   description: Python Client SDK for Airbyte API

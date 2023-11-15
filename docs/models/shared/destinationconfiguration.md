@@ -3,6 +3,12 @@
 
 ## Supported Types
 
+### DestinationGoogleSheets
+
+```python
+destinationConfiguration: shared.DestinationGoogleSheets = /* values here */
+```
+
 ### DestinationAwsDatalake
 
 ```python
@@ -91,12 +97,6 @@ destinationConfiguration: shared.DestinationFirestore = /* values here */
 
 ```python
 destinationConfiguration: shared.DestinationGcs = /* values here */
-```
-
-### DestinationGoogleSheets
-
-```python
-destinationConfiguration: shared.DestinationGoogleSheets = /* values here */
 ```
 
 ### DestinationKeen

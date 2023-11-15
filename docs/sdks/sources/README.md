@@ -32,10 +32,12 @@ s = airbyte.Airbyte(
 )
 
 req = shared.SourceCreateRequest(
-    shared.SourcePokeapi(
-        pokemon_name=shared.PokemonName.LUXRAY,
+    shared.SourceAha(
+        api_key='string',
+        url='https://complicated-seat.org',
     ),
-    workspace_id='2cf0f31f-3ddc-4984-8c34-bdfb109056aa',
+    name='string',
+    workspace_id='0f31f3dd-c984-48c3-8bdf-b109056aa6d6',
 )
 
 res = s.sources.create_source(req)
@@ -276,8 +278,9 @@ s = airbyte.Airbyte(
 
 req = operations.PatchSourceRequest(
     source_patch_request=shared.SourcePatchRequest(
-        shared.SourcePokeapi(
-            pokemon_name=shared.PokemonName.DITTO,
+        shared.SourceAha(
+            api_key='string',
+            url='http://apprehensive-visa.net',
         ),
         name='My source',
     ),
@@ -329,8 +332,9 @@ s = airbyte.Airbyte(
 
 req = operations.PutSourceRequest(
     source_put_request=shared.SourcePutRequest(
-        shared.SourcePokeapi(
-            pokemon_name=shared.PokemonName.LUXRAY,
+        shared.SourceAha(
+            api_key='string',
+            url='http://alienated-traveler.name',
         ),
         name='string',
     ),

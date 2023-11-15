@@ -30,19 +30,16 @@ s = airbyte.Airbyte(
 )
 
 req = shared.DestinationCreateRequest(
-    shared.DestinationAwsDatalake(
-        aws_account_id='111111111111',
-        bucket_name='string',
-        shared.IAMUser(
-            aws_access_key_id='string',
-            aws_secret_access_key='string',
+    shared.DestinationGoogleSheets(
+        credentials=shared.AuthenticationViaGoogleOAuth(
+            client_id='string',
+            client_secret='string',
+            refresh_token='string',
         ),
-        shared.JSONLinesNewlineDelimitedJSON(),
-        lakeformation_database_default_tag_key='pii_level',
-        lakeformation_database_default_tag_values='private,public',
-        lakeformation_database_name='string',
+        spreadsheet_id='https://docs.google.com/spreadsheets/d/1hLd9Qqti3UyLXZB2aFfUWDT7BG/edit',
     ),
-    workspace_id='60860ad4-6e8e-462f-a208-e5ba5019ef34',
+    name='string',
+    workspace_id='8360860a-d46e-48e6-af62-08e5ba5019ef',
 )
 
 res = s.destinations.create_destination(req)
@@ -229,16 +226,13 @@ s = airbyte.Airbyte(
 
 req = operations.PatchDestinationRequest(
     destination_patch_request=shared.DestinationPatchRequest(
-        shared.DestinationAwsDatalake(
-            aws_account_id='111111111111',
-            bucket_name='string',
-            shared.IAMRole(
-                role_arn='string',
+        shared.DestinationGoogleSheets(
+            credentials=shared.AuthenticationViaGoogleOAuth(
+                client_id='string',
+                client_secret='string',
+                refresh_token='string',
             ),
-            shared.ParquetColumnarStorage(),
-            lakeformation_database_default_tag_key='pii_level',
-            lakeformation_database_default_tag_values='private,public',
-            lakeformation_database_name='string',
+            spreadsheet_id='https://docs.google.com/spreadsheets/d/1hLd9Qqti3UyLXZB2aFfUWDT7BG/edit',
         ),
     ),
     destination_id='string',
@@ -288,16 +282,13 @@ s = airbyte.Airbyte(
 
 req = operations.PutDestinationRequest(
     destination_put_request=shared.DestinationPutRequest(
-        shared.DestinationAwsDatalake(
-            aws_account_id='111111111111',
-            bucket_name='string',
-            shared.IAMRole(
-                role_arn='string',
+        shared.DestinationGoogleSheets(
+            credentials=shared.AuthenticationViaGoogleOAuth(
+                client_id='string',
+                client_secret='string',
+                refresh_token='string',
             ),
-            shared.JSONLinesNewlineDelimitedJSON(),
-            lakeformation_database_default_tag_key='pii_level',
-            lakeformation_database_default_tag_values='private,public',
-            lakeformation_database_name='string',
+            spreadsheet_id='https://docs.google.com/spreadsheets/d/1hLd9Qqti3UyLXZB2aFfUWDT7BG/edit',
         ),
         name='string',
     ),
