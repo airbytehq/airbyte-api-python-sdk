@@ -13,6 +13,7 @@ src/airbyte/utils/__init__.py
 src/airbyte/utils/retries.py
 src/airbyte/utils/utils.py
 src/airbyte/models/errors/sdkerror.py
+tests/helpers.py
 src/airbyte/models/operations/createconnection.py
 src/airbyte/models/operations/deleteconnection.py
 src/airbyte/models/operations/getconnection.py

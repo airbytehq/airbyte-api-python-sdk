@@ -40,7 +40,7 @@ from .source_dixa import SourceDixa
 from .source_dockerhub import SourceDockerhub
 from .source_dremio import SourceDremio
 from .source_dynamodb import SourceDynamodb
-from .source_e2e_test_cloud import SourceE2eTestCloud
+from .source_e2e_test_cloud import ContinuousFeed
 from .source_emailoctopus import SourceEmailoctopus
 from .source_exchange_rates import SourceExchangeRates
 from .source_facebook_marketing import SourceFacebookMarketing

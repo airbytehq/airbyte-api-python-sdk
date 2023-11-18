@@ -30,14 +30,14 @@ s = airbyte.Airbyte(
 )
 
 req = shared.DestinationCreateRequest(
-    shared.DestinationGoogleSheets(
-        credentials=shared.AuthenticationViaGoogleOAuth(
-            client_id='string',
-            client_secret='string',
-            refresh_token='string',
-        ),
-        spreadsheet_id='https://docs.google.com/spreadsheets/d/1hLd9Qqti3UyLXZB2aFfUWDT7BG/edit',
+    configuration=shared.DestinationGoogleSheets(
+    credentials=shared.AuthenticationViaGoogleOAuth(
+        client_id='string',
+        client_secret='string',
+        refresh_token='string',
     ),
+    spreadsheet_id='https://docs.google.com/spreadsheets/d/1hLd9Qqti3UyLXZB2aFfUWDT7BG/edit',
+),
     name='string',
     workspace_id='8360860a-d46e-48e6-af62-08e5ba5019ef',
 )
@@ -226,14 +226,14 @@ s = airbyte.Airbyte(
 
 req = operations.PatchDestinationRequest(
     destination_patch_request=shared.DestinationPatchRequest(
-        shared.DestinationGoogleSheets(
-            credentials=shared.AuthenticationViaGoogleOAuth(
-                client_id='string',
-                client_secret='string',
-                refresh_token='string',
-            ),
-            spreadsheet_id='https://docs.google.com/spreadsheets/d/1hLd9Qqti3UyLXZB2aFfUWDT7BG/edit',
+        configuration=shared.DestinationGoogleSheets(
+        credentials=shared.AuthenticationViaGoogleOAuth(
+            client_id='string',
+            client_secret='string',
+            refresh_token='string',
         ),
+        spreadsheet_id='https://docs.google.com/spreadsheets/d/1hLd9Qqti3UyLXZB2aFfUWDT7BG/edit',
+    ),
     ),
     destination_id='string',
 )
@@ -282,14 +282,14 @@ s = airbyte.Airbyte(
 
 req = operations.PutDestinationRequest(
     destination_put_request=shared.DestinationPutRequest(
-        shared.DestinationGoogleSheets(
-            credentials=shared.AuthenticationViaGoogleOAuth(
-                client_id='string',
-                client_secret='string',
-                refresh_token='string',
-            ),
-            spreadsheet_id='https://docs.google.com/spreadsheets/d/1hLd9Qqti3UyLXZB2aFfUWDT7BG/edit',
+        configuration=shared.DestinationGoogleSheets(
+        credentials=shared.AuthenticationViaGoogleOAuth(
+            client_id='string',
+            client_secret='string',
+            refresh_token='string',
         ),
+        spreadsheet_id='https://docs.google.com/spreadsheets/d/1hLd9Qqti3UyLXZB2aFfUWDT7BG/edit',
+    ),
         name='string',
     ),
     destination_id='string',
