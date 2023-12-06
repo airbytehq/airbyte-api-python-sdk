@@ -193,7 +193,7 @@ class SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayFilterType(str, Enum)
 class Filter:
     r"""A primitive filter. In the same FilterExpression, all of the filter's field names need to be either all dimensions."""
     field_name: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('field_name') }})
-    filter: Union[StringFilter, InListFilter, NumericFilter, BetweenFilter] = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('filter') }})
+    filter_: Union[StringFilter, InListFilter, NumericFilter, BetweenFilter] = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('filter') }})
     FILTER_TYPE: Final[Optional[SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayFilterType]] = dataclasses.field(default=SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayFilterType.FILTER, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('filter_type'), 'exclude': lambda f: f is None }})
     
 
@@ -345,7 +345,7 @@ class SourceGoogleAnalyticsDataAPISchemasStringFilter:
 @dataclasses.dataclass
 class SourceGoogleAnalyticsDataAPISchemasExpression:
     field_name: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('field_name') }})
-    filter: Union[SourceGoogleAnalyticsDataAPISchemasStringFilter, SourceGoogleAnalyticsDataAPISchemasInListFilter, SourceGoogleAnalyticsDataAPISchemasNumericFilter, SourceGoogleAnalyticsDataAPISchemasBetweenFilter] = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('filter') }})
+    filter_: Union[SourceGoogleAnalyticsDataAPISchemasStringFilter, SourceGoogleAnalyticsDataAPISchemasInListFilter, SourceGoogleAnalyticsDataAPISchemasNumericFilter, SourceGoogleAnalyticsDataAPISchemasBetweenFilter] = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('filter') }})
     
 
 
@@ -509,7 +509,7 @@ class SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayDimensionFilterString
 @dataclasses.dataclass
 class SourceGoogleAnalyticsDataAPIExpression:
     field_name: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('field_name') }})
-    filter: Union[SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayDimensionFilterStringFilter, SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayDimensionFilterInListFilter, SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayDimensionFilterNumericFilter, SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayDimensionFilterBetweenFilter] = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('filter') }})
+    filter_: Union[SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayDimensionFilterStringFilter, SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayDimensionFilterInListFilter, SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayDimensionFilterNumericFilter, SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayDimensionFilterBetweenFilter] = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('filter') }})
     
 
 
@@ -673,7 +673,7 @@ class SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayStringFilter:
 @dataclasses.dataclass
 class Expression:
     field_name: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('field_name') }})
-    filter: Union[SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayStringFilter, SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayInListFilter, SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayNumericFilter, SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayBetweenFilter] = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('filter') }})
+    filter_: Union[SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayStringFilter, SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayInListFilter, SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayNumericFilter, SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayBetweenFilter] = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('filter') }})
     
 
 
@@ -841,7 +841,7 @@ class SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayMetricFilterMetricsFi
 class SourceGoogleAnalyticsDataAPIFilter:
     r"""A primitive filter. In the same FilterExpression, all of the filter's field names need to be either all metrics."""
     field_name: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('field_name') }})
-    filter: Union[SourceGoogleAnalyticsDataAPIStringFilter, SourceGoogleAnalyticsDataAPIInListFilter, SourceGoogleAnalyticsDataAPINumericFilter, SourceGoogleAnalyticsDataAPIBetweenFilter] = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('filter') }})
+    filter_: Union[SourceGoogleAnalyticsDataAPIStringFilter, SourceGoogleAnalyticsDataAPIInListFilter, SourceGoogleAnalyticsDataAPINumericFilter, SourceGoogleAnalyticsDataAPIBetweenFilter] = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('filter') }})
     FILTER_TYPE: Final[Optional[SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayMetricFilterMetricsFilter4FilterType]] = dataclasses.field(default=SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayMetricFilterMetricsFilter4FilterType.FILTER, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('filter_type'), 'exclude': lambda f: f is None }})
     
 
@@ -993,7 +993,7 @@ class SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayMetricFilterMetricsFi
 @dataclasses.dataclass
 class SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayMetricFilterMetricsFilterExpression:
     field_name: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('field_name') }})
-    filter: Union[SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayMetricFilterMetricsFilter3StringFilter, SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayMetricFilterMetricsFilter3InListFilter, SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayMetricFilterMetricsFilter3NumericFilter, SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayMetricFilterMetricsFilter3BetweenFilter] = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('filter') }})
+    filter_: Union[SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayMetricFilterMetricsFilter3StringFilter, SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayMetricFilterMetricsFilter3InListFilter, SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayMetricFilterMetricsFilter3NumericFilter, SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayMetricFilterMetricsFilter3BetweenFilter] = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('filter') }})
     
 
 
@@ -1157,7 +1157,7 @@ class SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayMetricFilterMetricsFi
 @dataclasses.dataclass
 class SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayMetricFilterExpression:
     field_name: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('field_name') }})
-    filter: Union[SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayMetricFilterMetricsFilterStringFilter, SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayMetricFilterMetricsFilterInListFilter, SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayMetricFilterMetricsFilterNumericFilter, SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayMetricFilterMetricsFilterBetweenFilter] = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('filter') }})
+    filter_: Union[SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayMetricFilterMetricsFilterStringFilter, SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayMetricFilterMetricsFilterInListFilter, SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayMetricFilterMetricsFilterNumericFilter, SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayMetricFilterMetricsFilterBetweenFilter] = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('filter') }})
     
 
 
@@ -1321,7 +1321,7 @@ class SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayMetricFilterStringFil
 @dataclasses.dataclass
 class SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayExpression:
     field_name: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('field_name') }})
-    filter: Union[SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayMetricFilterStringFilter, SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayMetricFilterInListFilter, SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayMetricFilterNumericFilter, SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayMetricFilterBetweenFilter] = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('filter') }})
+    filter_: Union[SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayMetricFilterStringFilter, SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayMetricFilterInListFilter, SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayMetricFilterNumericFilter, SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayMetricFilterBetweenFilter] = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('filter') }})
     
 
 

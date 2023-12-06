@@ -370,7 +370,6 @@ src/airbyte/models/__init__.py
 src/airbyte/models/errors/__init__.py
 src/airbyte/models/operations/__init__.py
 src/airbyte/models/shared/__init__.py
-USAGE.md
 docs/models/operations/createconnectionresponse.md
 docs/models/operations/deleteconnectionrequest.md
 docs/models/operations/deleteconnectionresponse.md
@@ -1224,7 +1223,7 @@ docs/models/shared/sourcegoogleanalyticsdataapivalidenums.md
 docs/models/shared/stringfilter.md
 docs/models/shared/sourcegoogleanalyticsdataapischemasfilter.md
 docs/models/shared/sourcegoogleanalyticsdataapischemascustomreportsarrayfiltertype.md
-docs/models/shared/filter.md
+docs/models/shared/filter_.md
 docs/models/shared/sourcegoogleanalyticsdataapischemascustomreportsarraydimensionfilterdimensionsfilter3expressionfilterfilterfiltername.md
 docs/models/shared/sourcegoogleanalyticsdataapischemascustomreportsarraydimensionfilterdimensionsfilter3expressionfilterfiltervaluetype.md
 docs/models/shared/sourcegoogleanalyticsdataapischemascustomreportsarraydimensionfilterdimensionsfilter3expressiondoublevalue.md
@@ -2153,4 +2152,5 @@ docs/sdks/jobs/README.md
 docs/sdks/sources/README.md
 docs/sdks/streams/README.md
 docs/sdks/workspaces/README.md
+USAGE.md
 .gitattributes
