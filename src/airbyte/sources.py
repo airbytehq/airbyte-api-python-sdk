@@ -13,7 +13,7 @@ class Sources:
         
     
     
-    def create_source(self, request: shared.SourceCreateRequest) -> operations.CreateSourceResponse:
+    def create_source(self, request: Optional[shared.SourceCreateRequest]) -> operations.CreateSourceResponse:
         r"""Create a source
         Creates a source given a name, workspace id, and a json blob containing the configuration for the source.
         """
@@ -21,7 +21,7 @@ class Sources:
         
         url = base_url + '/sources'
         headers = {}
-        req_content_type, data, form = utils.serialize_request_body(request, "request", False, True, 'json')
+        req_content_type, data, form = utils.serialize_request_body(request, Optional[shared.SourceCreateRequest], "request", False, True, 'json')
         if req_content_type not in ('multipart/form-data', 'multipart/mixed'):
             headers['content-type'] = req_content_type
         headers['Accept'] = 'application/json'
@@ -122,7 +122,7 @@ class Sources:
         
         url = base_url + '/sources/initiateOAuth'
         headers = {}
-        req_content_type, data, form = utils.serialize_request_body(request, "request", False, False, 'json')
+        req_content_type, data, form = utils.serialize_request_body(request, shared.InitiateOauthRequest, "request", False, False, 'json')
         if req_content_type not in ('multipart/form-data', 'multipart/mixed'):
             headers['content-type'] = req_content_type
         if data is None and form is None:
@@ -188,7 +188,7 @@ class Sources:
         
         url = utils.generate_url(operations.PatchSourceRequest, base_url, '/sources/{sourceId}', request)
         headers = {}
-        req_content_type, data, form = utils.serialize_request_body(request, "source_patch_request", False, True, 'json')
+        req_content_type, data, form = utils.serialize_request_body(request, operations.PatchSourceRequest, "source_patch_request", False, True, 'json')
         if req_content_type not in ('multipart/form-data', 'multipart/mixed'):
             headers['content-type'] = req_content_type
         headers['Accept'] = 'application/json'
@@ -223,7 +223,7 @@ class Sources:
         
         url = utils.generate_url(operations.PutSourceRequest, base_url, '/sources/{sourceId}', request)
         headers = {}
-        req_content_type, data, form = utils.serialize_request_body(request, "source_put_request", False, True, 'json')
+        req_content_type, data, form = utils.serialize_request_body(request, operations.PutSourceRequest, "source_put_request", False, True, 'json')
         if req_content_type not in ('multipart/form-data', 'multipart/mixed'):
             headers['content-type'] = req_content_type
         headers['Accept'] = 'application/json'

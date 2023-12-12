@@ -22,7 +22,7 @@ class Workspaces:
         
         url = utils.generate_url(operations.CreateOrUpdateWorkspaceOAuthCredentialsRequest, base_url, '/workspaces/{workspaceId}/oauthCredentials', request)
         headers = {}
-        req_content_type, data, form = utils.serialize_request_body(request, "workspace_o_auth_credentials_request", False, False, 'json')
+        req_content_type, data, form = utils.serialize_request_body(request, operations.CreateOrUpdateWorkspaceOAuthCredentialsRequest, "workspace_o_auth_credentials_request", False, False, 'json')
         if req_content_type not in ('multipart/form-data', 'multipart/mixed'):
             headers['content-type'] = req_content_type
         if data is None and form is None:
@@ -55,7 +55,7 @@ class Workspaces:
         
         url = base_url + '/workspaces'
         headers = {}
-        req_content_type, data, form = utils.serialize_request_body(request, "request", False, False, 'json')
+        req_content_type, data, form = utils.serialize_request_body(request, shared.WorkspaceCreateRequest, "request", False, False, 'json')
         if req_content_type not in ('multipart/form-data', 'multipart/mixed'):
             headers['content-type'] = req_content_type
         if data is None and form is None:
@@ -185,7 +185,7 @@ class Workspaces:
         
         url = utils.generate_url(operations.UpdateWorkspaceRequest, base_url, '/workspaces/{workspaceId}', request)
         headers = {}
-        req_content_type, data, form = utils.serialize_request_body(request, "workspace_update_request", False, False, 'json')
+        req_content_type, data, form = utils.serialize_request_body(request, operations.UpdateWorkspaceRequest, "workspace_update_request", False, False, 'json')
         if req_content_type not in ('multipart/form-data', 'multipart/mixed'):
             headers['content-type'] = req_content_type
         if data is None and form is None:

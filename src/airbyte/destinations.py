@@ -13,7 +13,7 @@ class Destinations:
         
     
     
-    def create_destination(self, request: shared.DestinationCreateRequest) -> operations.CreateDestinationResponse:
+    def create_destination(self, request: Optional[shared.DestinationCreateRequest]) -> operations.CreateDestinationResponse:
         r"""Create a destination
         Creates a destination given a name, workspace id, and a json blob containing the configuration for the source.
         """
@@ -21,7 +21,7 @@ class Destinations:
         
         url = base_url + '/destinations'
         headers = {}
-        req_content_type, data, form = utils.serialize_request_body(request, "request", False, True, 'json')
+        req_content_type, data, form = utils.serialize_request_body(request, Optional[shared.DestinationCreateRequest], "request", False, True, 'json')
         if req_content_type not in ('multipart/form-data', 'multipart/mixed'):
             headers['content-type'] = req_content_type
         headers['Accept'] = 'application/json'
@@ -149,7 +149,7 @@ class Destinations:
         
         url = utils.generate_url(operations.PatchDestinationRequest, base_url, '/destinations/{destinationId}', request)
         headers = {}
-        req_content_type, data, form = utils.serialize_request_body(request, "destination_patch_request", False, True, 'json')
+        req_content_type, data, form = utils.serialize_request_body(request, operations.PatchDestinationRequest, "destination_patch_request", False, True, 'json')
         if req_content_type not in ('multipart/form-data', 'multipart/mixed'):
             headers['content-type'] = req_content_type
         headers['Accept'] = 'application/json'
@@ -184,7 +184,7 @@ class Destinations:
         
         url = utils.generate_url(operations.PutDestinationRequest, base_url, '/destinations/{destinationId}', request)
         headers = {}
-        req_content_type, data, form = utils.serialize_request_body(request, "destination_put_request", False, True, 'json')
+        req_content_type, data, form = utils.serialize_request_body(request, operations.PutDestinationRequest, "destination_put_request", False, True, 'json')
         if req_content_type not in ('multipart/form-data', 'multipart/mixed'):
             headers['content-type'] = req_content_type
         headers['Accept'] = 'application/json'
