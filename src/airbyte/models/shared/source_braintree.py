@@ -23,7 +23,6 @@ class Braintree(str, Enum):
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
 class SourceBraintree:
-    r"""The values required to configure the source."""
     environment: SourceBraintreeEnvironment = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('environment') }})
     r"""Environment specifies where the data will come from."""
     merchant_id: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('merchant_id') }})

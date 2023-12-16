@@ -1,5 +1,7 @@
 # SourceSftpAuthenticationWildcard
 
+The server authentication method
+
 
 ## Supported Types
 

@@ -1,7 +1,5 @@
 # JSONLinesNewlineDelimitedJSON
 
-Format of the data output.
-
 
 ## Fields
 

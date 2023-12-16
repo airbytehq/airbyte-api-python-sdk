@@ -14,7 +14,6 @@ class Keen(str, Enum):
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
 class DestinationKeen:
-    r"""The values required to configure the destination."""
     api_key: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('api_key') }})
     r"""To get Keen Master API Key, navigate to the Access tab from the left-hand, side panel and check the Project Details section."""
     project_id: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('project_id') }})

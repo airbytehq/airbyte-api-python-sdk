@@ -14,7 +14,6 @@ class SourceRetentlySchemasAuthType(str, Enum):
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
 class AuthenticateWithAPIToken:
-    r"""Choose how to authenticate to Retently"""
     api_key: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('api_key') }})
     r"""Retently API Token. See the <a href=\\"https://app.retently.com/settings/api/tokens\\">docs</a> for more information on how to obtain this key."""
     additional_properties: Optional[Dict[str, Any]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'exclude': lambda f: f is None }})
@@ -29,7 +28,6 @@ class SourceRetentlyAuthType(str, Enum):
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
 class AuthenticateViaRetentlyOAuth:
-    r"""Choose how to authenticate to Retently"""
     client_id: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('client_id') }})
     r"""The Client ID of your Retently developer application."""
     client_secret: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('client_secret') }})
@@ -48,7 +46,6 @@ class SourceRetentlyRetently(str, Enum):
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
 class SourceRetently:
-    r"""The values required to configure the source."""
     credentials: Optional[Union[AuthenticateViaRetentlyOAuth, AuthenticateWithAPIToken]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credentials'), 'exclude': lambda f: f is None }})
     r"""Choose how to authenticate to Retently"""
     SOURCE_TYPE: Final[Optional[SourceRetentlyRetently]] = dataclasses.field(default=SourceRetentlyRetently.RETENTLY, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType'), 'exclude': lambda f: f is None }})

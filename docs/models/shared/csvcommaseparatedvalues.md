@@ -1,7 +1,5 @@
 # CSVCommaSeparatedValues
 
-Output data format
-
 
 ## Fields
 

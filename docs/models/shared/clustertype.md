@@ -1,5 +1,7 @@
 # ClusterType
 
+Configures the MongoDB cluster type.
+
 
 ## Supported Types
 

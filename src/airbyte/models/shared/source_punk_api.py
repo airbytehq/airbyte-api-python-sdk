@@ -14,7 +14,6 @@ class PunkAPI(str, Enum):
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
 class SourcePunkAPI:
-    r"""The values required to configure the source."""
     brewed_after: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('brewed_after') }})
     r"""To extract specific data with Unique ID"""
     brewed_before: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('brewed_before') }})

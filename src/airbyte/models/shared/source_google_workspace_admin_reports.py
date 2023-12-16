@@ -14,7 +14,6 @@ class GoogleWorkspaceAdminReports(str, Enum):
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
 class SourceGoogleWorkspaceAdminReports:
-    r"""The values required to configure the source."""
     credentials_json: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credentials_json') }})
     r"""The contents of the JSON service account key. See the <a href=\\"https://developers.google.com/admin-sdk/reports/v1/guides/delegation\\">docs</a> for more information on how to generate this key."""
     email: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('email') }})

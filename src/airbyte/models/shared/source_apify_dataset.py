@@ -14,7 +14,6 @@ class ApifyDataset(str, Enum):
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
 class SourceApifyDataset:
-    r"""The values required to configure the source."""
     dataset_id: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('dataset_id') }})
     r"""ID of the dataset you would like to load to Airbyte. In Apify Console, you can view your datasets in the <a href=\\"https://console.apify.com/storage/datasets\\">Storage section under the Datasets tab</a> after you login. See the <a href=\\"https://docs.apify.com/platform/storage/dataset\\">Apify Docs</a> for more information."""
     token: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('token') }})

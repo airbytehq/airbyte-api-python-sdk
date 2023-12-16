@@ -14,7 +14,6 @@ class Vantage(str, Enum):
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
 class SourceVantage:
-    r"""The values required to configure the source."""
     access_token: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('access_token') }})
     r"""Your API Access token. See <a href=\\"https://vantage.readme.io/reference/authentication\\">here</a>."""
     SOURCE_TYPE: Final[Vantage] = dataclasses.field(default=Vantage.VANTAGE, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})

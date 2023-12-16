@@ -15,7 +15,6 @@ class SourceSftpSchemasAuthMethod(str, Enum):
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
 class SourceSftpSSHKeyAuthentication:
-    r"""The server authentication method"""
     auth_ssh_key: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_ssh_key') }})
     r"""OS-level user account ssh key credentials in RSA PEM format ( created with ssh-keygen -t rsa -m PEM -f myuser_rsa )"""
     AUTH_METHOD: Final[SourceSftpSchemasAuthMethod] = dataclasses.field(default=SourceSftpSchemasAuthMethod.SSH_KEY_AUTH, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_method') }})
@@ -31,7 +30,6 @@ class SourceSftpAuthMethod(str, Enum):
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
 class SourceSftpPasswordAuthentication:
-    r"""The server authentication method"""
     auth_user_password: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_user_password') }})
     r"""OS-level password for logging into the jump server host"""
     AUTH_METHOD: Final[SourceSftpAuthMethod] = dataclasses.field(default=SourceSftpAuthMethod.SSH_PASSWORD_AUTH, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_method') }})
@@ -46,7 +44,6 @@ class Sftp(str, Enum):
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
 class SourceSftp:
-    r"""The values required to configure the source."""
     host: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('host') }})
     r"""The server host address"""
     user: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('user') }})

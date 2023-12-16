@@ -21,7 +21,6 @@ class Jira(str, Enum):
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
 class SourceJira:
-    r"""The values required to configure the source."""
     api_token: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('api_token') }})
     r"""Jira API Token. See the <a href=\\"https://docs.airbyte.com/integrations/sources/jira\\">docs</a> for more information on how to generate this key. API Token is used for Authorization to your account by BasicAuth."""
     domain: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('domain') }})

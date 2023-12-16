@@ -14,7 +14,6 @@ class Timeplus(str, Enum):
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
 class DestinationTimeplus:
-    r"""The values required to configure the destination."""
     apikey: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('apikey') }})
     r"""Personal API key"""
     DESTINATION_TYPE: Final[Timeplus] = dataclasses.field(default=Timeplus.TIMEPLUS, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('destinationType') }})

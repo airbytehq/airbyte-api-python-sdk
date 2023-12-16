@@ -14,7 +14,6 @@ class MongodbInternalPoc(str, Enum):
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
 class SourceMongodbInternalPoc:
-    r"""The values required to configure the source."""
     SOURCE_TYPE: Final[MongodbInternalPoc] = dataclasses.field(default=MongodbInternalPoc.MONGODB_INTERNAL_POC, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     auth_source: Optional[str] = dataclasses.field(default='admin', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_source'), 'exclude': lambda f: f is None }})
     r"""The authentication source where the user information is stored."""

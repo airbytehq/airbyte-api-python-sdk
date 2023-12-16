@@ -14,7 +14,6 @@ class Recurly(str, Enum):
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
 class SourceRecurly:
-    r"""The values required to configure the source."""
     api_key: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('api_key') }})
     r"""Recurly API Key. See the  <a href=\\"https://docs.airbyte.com/integrations/sources/recurly\\">docs</a> for more information on how to generate this key."""
     SOURCE_TYPE: Final[Recurly] = dataclasses.field(default=Recurly.RECURLY, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})

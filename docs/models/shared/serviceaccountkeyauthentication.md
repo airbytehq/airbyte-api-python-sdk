@@ -1,7 +1,5 @@
 # ServiceAccountKeyAuthentication
 
-Credentials for the service
-
 
 ## Fields
 

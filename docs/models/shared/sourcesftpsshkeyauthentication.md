@@ -1,7 +1,5 @@
 # SourceSftpSSHKeyAuthentication
 
-The server authentication method
-
 
 ## Fields
 

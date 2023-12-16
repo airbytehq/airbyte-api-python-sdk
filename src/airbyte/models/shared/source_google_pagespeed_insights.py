@@ -25,7 +25,6 @@ class Strategies(str, Enum):
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
 class SourceGooglePagespeedInsights:
-    r"""The values required to configure the source."""
     categories: List[Categories] = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('categories') }})
     r"""Defines which Lighthouse category to run. One or many of: \\"accessibility\\", \\"best-practices\\", \\"performance\\", \\"pwa\\", \\"seo\\"."""
     strategies: List[Strategies] = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('strategies') }})

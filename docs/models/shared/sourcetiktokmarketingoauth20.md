@@ -1,7 +1,5 @@
 # SourceTiktokMarketingOAuth20
 
-Authentication method
-
 
 ## Fields
 

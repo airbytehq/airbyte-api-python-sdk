@@ -50,7 +50,6 @@ class SourceTypeformTypeform(str, Enum):
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
 class SourceTypeform:
-    r"""The values required to configure the source."""
     credentials: Union[SourceTypeformOAuth20, SourceTypeformPrivateToken] = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credentials') }})
     SOURCE_TYPE: Final[SourceTypeformTypeform] = dataclasses.field(default=SourceTypeformTypeform.TYPEFORM, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     form_ids: Optional[List[str]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('form_ids'), 'exclude': lambda f: f is None }})

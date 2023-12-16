@@ -26,7 +26,6 @@ class Onesignal(str, Enum):
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
 class SourceOnesignal:
-    r"""The values required to configure the source."""
     applications: List[Applications] = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('applications') }})
     r"""Applications keys, see the <a href=\\"https://documentation.onesignal.com/docs/accounts-and-keys\\">docs</a> for more information on how to obtain this data"""
     outcome_names: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('outcome_names') }})

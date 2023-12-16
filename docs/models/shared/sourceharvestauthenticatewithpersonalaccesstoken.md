@@ -1,7 +1,5 @@
 # SourceHarvestAuthenticateWithPersonalAccessToken
 
-Choose how to authenticate to Harvest.
-
 
 ## Fields
 

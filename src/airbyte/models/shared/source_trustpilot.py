@@ -51,7 +51,6 @@ class Trustpilot(str, Enum):
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
 class SourceTrustpilot:
-    r"""The values required to configure the source."""
     business_units: List[str] = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('business_units') }})
     r"""The names of business units which shall be synchronized. Some streams e.g. configured_business_units or private_reviews use this configuration."""
     credentials: Union[SourceTrustpilotOAuth20, SourceTrustpilotAPIKey] = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credentials') }})

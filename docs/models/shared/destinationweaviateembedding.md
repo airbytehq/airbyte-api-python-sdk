@@ -1,5 +1,7 @@
 # DestinationWeaviateEmbedding
 
+Embedding configuration
+
 
 ## Supported Types
 

@@ -1,5 +1,7 @@
 # DestinationWeaviateAuthentication
 
+Authentication method
+
 
 ## Supported Types
 

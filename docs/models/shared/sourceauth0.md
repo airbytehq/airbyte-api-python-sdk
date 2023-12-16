@@ -1,7 +1,5 @@
 # SourceAuth0
 
-The values required to configure the source.
-
 
 ## Fields
 

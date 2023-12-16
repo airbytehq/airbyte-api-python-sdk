@@ -14,7 +14,6 @@ class KustomerSinger(str, Enum):
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
 class SourceKustomerSinger:
-    r"""The values required to configure the source."""
     api_token: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('api_token') }})
     r"""Kustomer API Token. See the <a href=\\"https://developer.kustomer.com/kustomer-api-docs/reference/authentication\\">docs</a> on how to obtain this"""
     start_date: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('start_date') }})

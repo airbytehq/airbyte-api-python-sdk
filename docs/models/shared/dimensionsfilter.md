@@ -1,5 +1,7 @@
 # DimensionsFilter
 
+Dimensions filter
+
 
 ## Supported Types
 

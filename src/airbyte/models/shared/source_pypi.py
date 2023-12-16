@@ -14,7 +14,6 @@ class Pypi(str, Enum):
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
 class SourcePypi:
-    r"""The values required to configure the source."""
     project_name: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('project_name') }})
     r"""Name of the project/package. Can only be in lowercase with hyphen. This is the name used using pip command for installing the package."""
     SOURCE_TYPE: Final[Pypi] = dataclasses.field(default=Pypi.PYPI, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})

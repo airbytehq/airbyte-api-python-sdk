@@ -14,7 +14,6 @@ class ZendeskSell(str, Enum):
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
 class SourceZendeskSell:
-    r"""The values required to configure the source."""
     api_token: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('api_token') }})
     r"""The API token for authenticating to Zendesk Sell"""
     SOURCE_TYPE: Final[ZendeskSell] = dataclasses.field(default=ZendeskSell.ZENDESK_SELL, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})

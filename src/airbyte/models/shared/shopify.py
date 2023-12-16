@@ -21,7 +21,6 @@ class ShopifyCredentials:
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
 class Shopify:
-    r"""The values required to configure the source."""
     credentials: Optional[ShopifyCredentials] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credentials'), 'exclude': lambda f: f is None }})
     
 

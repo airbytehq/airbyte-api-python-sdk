@@ -14,11 +14,6 @@ class SourceFaunaSchemasDeletionMode(str, Enum):
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
 class Enabled:
-    r"""<b>This only applies to incremental syncs.</b> <br>
-    Enabling deletion mode informs your destination of deleted documents.<br>
-    Disabled - Leave this feature disabled, and ignore deleted documents.<br>
-    Enabled - Enables this feature. When a document is deleted, the connector exports a record with a \"deleted at\" column containing the time that the document was deleted.
-    """
     DELETION_MODE: Final[SourceFaunaSchemasDeletionMode] = dataclasses.field(default=SourceFaunaSchemasDeletionMode.DELETED_FIELD, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('deletion_mode') }})
     column: Optional[str] = dataclasses.field(default='deleted_at', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('column'), 'exclude': lambda f: f is None }})
     r"""Name of the \\"deleted at\\" column."""
@@ -32,11 +27,6 @@ class SourceFaunaDeletionMode(str, Enum):
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
 class Disabled:
-    r"""<b>This only applies to incremental syncs.</b> <br>
-    Enabling deletion mode informs your destination of deleted documents.<br>
-    Disabled - Leave this feature disabled, and ignore deleted documents.<br>
-    Enabled - Enables this feature. When a document is deleted, the connector exports a record with a \"deleted at\" column containing the time that the document was deleted.
-    """
     DELETION_MODE: Final[SourceFaunaDeletionMode] = dataclasses.field(default=SourceFaunaDeletionMode.IGNORE, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('deletion_mode') }})
     
 
@@ -67,7 +57,6 @@ class Fauna(str, Enum):
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
 class SourceFauna:
-    r"""The values required to configure the source."""
     secret: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('secret') }})
     r"""Fauna secret, used when authenticating with the database."""
     SOURCE_TYPE: Final[Fauna] = dataclasses.field(default=Fauna.FAUNA, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})

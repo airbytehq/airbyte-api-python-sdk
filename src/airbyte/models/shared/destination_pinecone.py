@@ -196,7 +196,6 @@ class DestinationPineconeProcessingConfigModel:
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
 class DestinationPinecone:
-    r"""The values required to configure the destination."""
     embedding: Union[DestinationPineconeOpenAI, DestinationPineconeCohere, DestinationPineconeFake, DestinationPineconeAzureOpenAI, DestinationPineconeOpenAICompatible] = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('embedding') }})
     r"""Embedding configuration"""
     indexing: DestinationPineconeIndexing = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('indexing') }})

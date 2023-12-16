@@ -1,7 +1,5 @@
 # SourceMongodbV2
 
-The values required to configure the source.
-
 
 ## Fields
 

@@ -1,7 +1,5 @@
 # ParquetColumnarStorage
 
-Format of the data output.
-
 
 ## Fields
 

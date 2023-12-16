@@ -1,7 +1,5 @@
 # AuthenticateViaHarvestOAuth
 
-Choose how to authenticate to Harvest.
-
 
 ## Fields
 

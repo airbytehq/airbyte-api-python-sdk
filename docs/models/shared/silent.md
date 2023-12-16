@@ -1,7 +1,5 @@
 # Silent
 
-The type of destination to be used
-
 
 ## Fields
 

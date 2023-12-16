@@ -15,7 +15,6 @@ class SourceMixpanelSchemasOptionTitle(str, Enum):
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
 class ProjectSecret:
-    r"""Choose how to authenticate to Mixpanel"""
     api_secret: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('api_secret') }})
     r"""Mixpanel project secret. See the <a href=\\"https://developer.mixpanel.com/reference/project-secret#managing-a-projects-secret\\">docs</a> for more information on how to obtain this."""
     OPTION_TITLE: Final[Optional[SourceMixpanelSchemasOptionTitle]] = dataclasses.field(default=SourceMixpanelSchemasOptionTitle.PROJECT_SECRET, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('option_title'), 'exclude': lambda f: f is None }})
@@ -29,7 +28,6 @@ class SourceMixpanelOptionTitle(str, Enum):
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
 class ServiceAccount:
-    r"""Choose how to authenticate to Mixpanel"""
     project_id: int = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('project_id') }})
     r"""Your project ID number. See the <a href=\\"https://help.mixpanel.com/hc/en-us/articles/115004490503-Project-Settings#project-id\\">docs</a> for more information on how to obtain this."""
     secret: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('secret') }})
@@ -52,7 +50,6 @@ class Mixpanel(str, Enum):
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
 class SourceMixpanel:
-    r"""The values required to configure the source."""
     credentials: Union[ServiceAccount, ProjectSecret] = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credentials') }})
     r"""Choose how to authenticate to Mixpanel"""
     SOURCE_TYPE: Final[Mixpanel] = dataclasses.field(default=Mixpanel.MIXPANEL, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})

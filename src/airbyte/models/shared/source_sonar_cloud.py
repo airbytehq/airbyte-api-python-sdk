@@ -15,7 +15,6 @@ class SonarCloud(str, Enum):
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
 class SourceSonarCloud:
-    r"""The values required to configure the source."""
     component_keys: List[Any] = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('component_keys') }})
     r"""Comma-separated list of component keys."""
     organization: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('organization') }})

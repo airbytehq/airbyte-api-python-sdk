@@ -1,5 +1,7 @@
 # SourcePostgresUpdateMethod
 
+Configures how data is extracted from the database.
+
 
 ## Supported Types
 

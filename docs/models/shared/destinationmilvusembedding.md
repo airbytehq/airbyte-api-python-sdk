@@ -1,5 +1,7 @@
 # DestinationMilvusEmbedding
 
+Embedding configuration
+
 
 ## Supported Types
 

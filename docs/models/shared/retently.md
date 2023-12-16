@@ -1,7 +1,5 @@
 # Retently
 
-The values required to configure the source.
-
 
 ## Fields
 

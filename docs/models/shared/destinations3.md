@@ -1,7 +1,5 @@
 # DestinationS3
 
-The values required to configure the destination.
-
 
 ## Fields
 

@@ -14,7 +14,6 @@ class Instatus(str, Enum):
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
 class SourceInstatus:
-    r"""The values required to configure the source."""
     api_key: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('api_key') }})
     r"""Instatus REST API key"""
     SOURCE_TYPE: Final[Instatus] = dataclasses.field(default=Instatus.INSTATUS, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})

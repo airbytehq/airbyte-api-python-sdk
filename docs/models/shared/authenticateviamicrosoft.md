@@ -1,7 +1,5 @@
 # AuthenticateViaMicrosoft
 
-Choose how to authenticate to Microsoft
-
 
 ## Fields
 

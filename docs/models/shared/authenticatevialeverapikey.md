@@ -1,7 +1,5 @@
 # AuthenticateViaLeverAPIKey
 
-Choose how to authenticate to Lever Hiring.
-
 
 ## Fields
 

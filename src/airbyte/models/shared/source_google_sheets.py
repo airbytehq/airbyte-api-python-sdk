@@ -14,7 +14,6 @@ class SourceGoogleSheetsSchemasAuthType(str, Enum):
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
 class SourceGoogleSheetsServiceAccountKeyAuthentication:
-    r"""Credentials for connecting to the Google Sheets API"""
     service_account_info: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('service_account_info') }})
     r"""The JSON key of the service account to use for authorization. Read more <a href=\\"https://cloud.google.com/iam/docs/creating-managing-service-account-keys#creating_service_account_keys\\">here</a>."""
     AUTH_TYPE: Final[SourceGoogleSheetsSchemasAuthType] = dataclasses.field(default=SourceGoogleSheetsSchemasAuthType.SERVICE, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_type') }})
@@ -28,7 +27,6 @@ class SourceGoogleSheetsAuthType(str, Enum):
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
 class SourceGoogleSheetsAuthenticateViaGoogleOAuth:
-    r"""Credentials for connecting to the Google Sheets API"""
     client_id: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('client_id') }})
     r"""Enter your Google application's Client ID. See <a href='https://developers.google.com/identity/protocols/oauth2'>Google's documentation</a> for more information."""
     client_secret: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('client_secret') }})
@@ -46,7 +44,6 @@ class SourceGoogleSheetsGoogleSheets(str, Enum):
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
 class SourceGoogleSheets:
-    r"""The values required to configure the source."""
     credentials: Union[SourceGoogleSheetsAuthenticateViaGoogleOAuth, SourceGoogleSheetsServiceAccountKeyAuthentication] = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credentials') }})
     r"""Credentials for connecting to the Google Sheets API"""
     spreadsheet_id: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('spreadsheet_id') }})

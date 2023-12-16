@@ -16,7 +16,6 @@ class CloseCom(str, Enum):
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
 class SourceCloseCom:
-    r"""The values required to configure the source."""
     api_key: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('api_key') }})
     r"""Close.com API key (usually starts with 'api_'; find yours <a href=\\"https://app.close.com/settings/api/\\">here</a>)."""
     SOURCE_TYPE: Final[CloseCom] = dataclasses.field(default=CloseCom.CLOSE_COM, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})

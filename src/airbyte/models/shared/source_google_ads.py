@@ -43,7 +43,6 @@ class SourceGoogleAdsGoogleAds(str, Enum):
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
 class SourceGoogleAds:
-    r"""The values required to configure the source."""
     credentials: GoogleCredentials = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credentials') }})
     customer_id: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('customer_id') }})
     r"""Comma-separated list of (client) customer IDs. Each customer ID must be specified as a 10-digit number without dashes. For detailed instructions on finding this value, refer to our <a href=\\"https://docs.airbyte.com/integrations/sources/google-ads#setup-guide\\">documentation</a>."""

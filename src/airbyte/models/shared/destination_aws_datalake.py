@@ -15,7 +15,6 @@ class DestinationAwsDatalakeCredentialsTitle(str, Enum):
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
 class IAMUser:
-    r"""Choose How to Authenticate to AWS."""
     aws_access_key_id: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('aws_access_key_id') }})
     r"""AWS User Access Key Id"""
     aws_secret_access_key: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('aws_secret_access_key') }})
@@ -33,7 +32,6 @@ class CredentialsTitle(str, Enum):
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
 class IAMRole:
-    r"""Choose How to Authenticate to AWS."""
     role_arn: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('role_arn') }})
     r"""Will assume this role to write data to s3"""
     CREDENTIALS_TITLE: Final[Optional[CredentialsTitle]] = dataclasses.field(default=CredentialsTitle.IAM_ROLE, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credentials_title'), 'exclude': lambda f: f is None }})
@@ -58,7 +56,6 @@ class DestinationAwsDatalakeFormatTypeWildcard(str, Enum):
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
 class ParquetColumnarStorage:
-    r"""Format of the data output."""
     compression_codec: Optional[DestinationAwsDatalakeCompressionCodecOptional] = dataclasses.field(default=DestinationAwsDatalakeCompressionCodecOptional.SNAPPY, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('compression_codec'), 'exclude': lambda f: f is None }})
     r"""The compression algorithm used to compress data."""
     format_type: Optional[DestinationAwsDatalakeFormatTypeWildcard] = dataclasses.field(default=DestinationAwsDatalakeFormatTypeWildcard.PARQUET, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('format_type'), 'exclude': lambda f: f is None }})
@@ -77,7 +74,6 @@ class FormatTypeWildcard(str, Enum):
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
 class JSONLinesNewlineDelimitedJSON:
-    r"""Format of the data output."""
     compression_codec: Optional[CompressionCodecOptional] = dataclasses.field(default=CompressionCodecOptional.UNCOMPRESSED, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('compression_codec'), 'exclude': lambda f: f is None }})
     r"""The compression algorithm used to compress data."""
     format_type: Optional[FormatTypeWildcard] = dataclasses.field(default=FormatTypeWildcard.JSONL, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('format_type'), 'exclude': lambda f: f is None }})
@@ -127,7 +123,6 @@ class S3BucketRegion(str, Enum):
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
 class DestinationAwsDatalake:
-    r"""The values required to configure the destination."""
     bucket_name: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('bucket_name') }})
     r"""The name of the S3 bucket. Read more <a href=\\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/create-bucket-overview.html\\">here</a>."""
     credentials: Union[IAMRole, IAMUser] = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credentials') }})

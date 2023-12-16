@@ -17,7 +17,6 @@ class DestinationAzureBlobStorageFormatType(str, Enum):
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
 class DestinationAzureBlobStorageJSONLinesNewlineDelimitedJSON:
-    r"""Output data format"""
     FORMAT_TYPE: Final[DestinationAzureBlobStorageFormatType] = dataclasses.field(default=DestinationAzureBlobStorageFormatType.JSONL, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('format_type') }})
     
 
@@ -34,7 +33,6 @@ class FormatType(str, Enum):
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
 class CSVCommaSeparatedValues:
-    r"""Output data format"""
     FORMAT_TYPE: Final[FormatType] = dataclasses.field(default=FormatType.CSV, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('format_type') }})
     flattening: Optional[NormalizationFlattening] = dataclasses.field(default=NormalizationFlattening.NO_FLATTENING, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('flattening'), 'exclude': lambda f: f is None }})
     r"""Whether the input json data should be normalized (flattened) in the output CSV. Please refer to docs for details."""
@@ -45,7 +43,6 @@ class CSVCommaSeparatedValues:
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
 class DestinationAzureBlobStorage:
-    r"""The values required to configure the destination."""
     azure_blob_storage_account_key: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('azure_blob_storage_account_key') }})
     r"""The Azure blob storage account key."""
     azure_blob_storage_account_name: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('azure_blob_storage_account_name') }})

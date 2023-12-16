@@ -1,5 +1,7 @@
 # DestinationQdrantAuthenticationMethod
 
+Method to authenticate with the Qdrant Instance
+
 
 ## Supported Types
 

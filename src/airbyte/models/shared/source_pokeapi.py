@@ -915,7 +915,6 @@ class Pokeapi(str, Enum):
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
 class SourcePokeapi:
-    r"""The values required to configure the source."""
     pokemon_name: PokemonName = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('pokemon_name') }})
     r"""Pokemon requested from the API."""
     SOURCE_TYPE: Final[Pokeapi] = dataclasses.field(default=Pokeapi.POKEAPI, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})

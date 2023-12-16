@@ -1,7 +1,5 @@
 # AuthenticateWithPersonalAccessToken
 
-Choose how to authenticate to Github
-
 
 ## Fields
 

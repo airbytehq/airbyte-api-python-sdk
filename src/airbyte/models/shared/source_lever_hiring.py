@@ -14,7 +14,6 @@ class SourceLeverHiringSchemasAuthType(str, Enum):
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
 class AuthenticateViaLeverAPIKey:
-    r"""Choose how to authenticate to Lever Hiring."""
     api_key: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('api_key') }})
     r"""The Api Key of your Lever Hiring account."""
     AUTH_TYPE: Final[Optional[SourceLeverHiringSchemasAuthType]] = dataclasses.field(default=SourceLeverHiringSchemasAuthType.API_KEY, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_type'), 'exclude': lambda f: f is None }})
@@ -28,7 +27,6 @@ class SourceLeverHiringAuthType(str, Enum):
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
 class AuthenticateViaLeverOAuth:
-    r"""Choose how to authenticate to Lever Hiring."""
     refresh_token: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('refresh_token') }})
     r"""The token for obtaining new access token."""
     AUTH_TYPE: Final[Optional[SourceLeverHiringAuthType]] = dataclasses.field(default=SourceLeverHiringAuthType.CLIENT, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_type'), 'exclude': lambda f: f is None }})
@@ -51,7 +49,6 @@ class SourceLeverHiringLeverHiring(str, Enum):
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
 class SourceLeverHiring:
-    r"""The values required to configure the source."""
     start_date: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('start_date') }})
     r"""UTC date and time in the format 2017-01-25T00:00:00Z. Any data before this date will not be replicated. Note that it will be used only in the following incremental streams: comments, commits, and issues."""
     SOURCE_TYPE: Final[SourceLeverHiringLeverHiring] = dataclasses.field(default=SourceLeverHiringLeverHiring.LEVER_HIRING, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})

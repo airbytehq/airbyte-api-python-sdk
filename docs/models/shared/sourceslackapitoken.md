@@ -1,7 +1,5 @@
 # SourceSlackAPIToken
 
-Choose how to authenticate into Slack
-
 
 ## Fields
 

@@ -16,7 +16,6 @@ class AwsCloudtrail(str, Enum):
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
 class SourceAwsCloudtrail:
-    r"""The values required to configure the source."""
     aws_key_id: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('aws_key_id') }})
     r"""AWS CloudTrail Access Key ID. See the <a href=\\"https://docs.airbyte.com/integrations/sources/aws-cloudtrail\\">docs</a> for more information on how to obtain this key."""
     aws_region_name: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('aws_region_name') }})

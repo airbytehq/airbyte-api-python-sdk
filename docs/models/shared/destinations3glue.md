@@ -1,7 +1,5 @@
 # DestinationS3Glue
 
-The values required to configure the destination.
-
 
 ## Fields
 

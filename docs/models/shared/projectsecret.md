@@ -1,7 +1,5 @@
 # ProjectSecret
 
-Choose how to authenticate to Mixpanel
-
 
 ## Fields
 

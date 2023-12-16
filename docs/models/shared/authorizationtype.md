@@ -1,5 +1,7 @@
 # AuthorizationType
 
+Authorization type.
+
 
 ## Supported Types
 

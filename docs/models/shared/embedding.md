@@ -1,5 +1,7 @@
 # Embedding
 
+Embedding configuration
+
 
 ## Supported Types
 

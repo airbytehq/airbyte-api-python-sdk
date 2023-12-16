@@ -17,7 +17,6 @@ class DestinationFireboltSchemasMethod(str, Enum):
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
 class ExternalTableViaS3:
-    r"""Loading method used to select the way data will be uploaded to Firebolt"""
     aws_key_id: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('aws_key_id') }})
     r"""AWS access key granting read and write access to S3."""
     aws_key_secret: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('aws_key_secret') }})
@@ -37,7 +36,6 @@ class DestinationFireboltMethod(str, Enum):
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
 class SQLInserts:
-    r"""Loading method used to select the way data will be uploaded to Firebolt"""
     METHOD: Final[DestinationFireboltMethod] = dataclasses.field(default=DestinationFireboltMethod.SQL, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('method') }})
     
 
@@ -46,7 +44,6 @@ class SQLInserts:
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
 class DestinationFirebolt:
-    r"""The values required to configure the destination."""
     database: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('database') }})
     r"""The database to connect to."""
     password: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('password') }})

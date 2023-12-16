@@ -1,5 +1,7 @@
 # ReplicationMethod
 
+Replication method for extracting data from the database.
+
 
 ## Supported Types
 

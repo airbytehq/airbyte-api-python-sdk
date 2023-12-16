@@ -14,7 +14,6 @@ class Recruitee(str, Enum):
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
 class SourceRecruitee:
-    r"""The values required to configure the source."""
     api_key: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('api_key') }})
     r"""Recruitee API Key. See <a href=\\"https://docs.recruitee.com/reference/getting-started#generate-api-token\\">here</a>."""
     company_id: int = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('company_id') }})

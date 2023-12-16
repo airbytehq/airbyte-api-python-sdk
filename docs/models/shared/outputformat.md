@@ -1,5 +1,7 @@
 # OutputFormat
 
+Output data format
+
 
 ## Supported Types
 

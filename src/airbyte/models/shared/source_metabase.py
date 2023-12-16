@@ -14,7 +14,6 @@ class Metabase(str, Enum):
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
 class SourceMetabase:
-    r"""The values required to configure the source."""
     instance_api_url: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('instance_api_url') }})
     r"""URL to your metabase instance API"""
     SOURCE_TYPE: Final[Metabase] = dataclasses.field(default=Metabase.METABASE, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})

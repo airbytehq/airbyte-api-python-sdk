@@ -16,7 +16,6 @@ class SourceSlackSchemasOptionTitle(str, Enum):
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
 class SourceSlackAPIToken:
-    r"""Choose how to authenticate into Slack"""
     api_token: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('api_token') }})
     r"""A Slack bot token. See the <a href=\\"https://docs.airbyte.com/integrations/sources/slack\\">docs</a> for instructions on how to generate it."""
     OPTION_TITLE: Final[SourceSlackSchemasOptionTitle] = dataclasses.field(default=SourceSlackSchemasOptionTitle.API_TOKEN_CREDENTIALS, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('option_title') }})
@@ -30,7 +29,6 @@ class SourceSlackOptionTitle(str, Enum):
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
 class SignInViaSlackOAuth:
-    r"""Choose how to authenticate into Slack"""
     access_token: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('access_token') }})
     r"""Slack access_token. See our <a href=\\"https://docs.airbyte.com/integrations/sources/slack\\">docs</a> if you need help generating the token."""
     client_id: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('client_id') }})
@@ -48,7 +46,6 @@ class SourceSlackSlack(str, Enum):
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
 class SourceSlack:
-    r"""The values required to configure the source."""
     start_date: datetime = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('start_date'), 'encoder': utils.datetimeisoformat(False), 'decoder': dateutil.parser.isoparse }})
     r"""UTC date and time in the format 2017-01-25T00:00:00Z. Any data before this date will not be replicated."""
     SOURCE_TYPE: Final[SourceSlackSlack] = dataclasses.field(default=SourceSlackSlack.SLACK, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})

@@ -5,7 +5,7 @@ import dataclasses
 from airbyte import utils
 from dataclasses_json import Undefined, dataclass_json
 from enum import Enum
-from typing import Any, Final, List, Optional, Union
+from typing import Final, List, Optional, Union
 
 class Qdrant(str, Enum):
     QDRANT = 'qdrant'
@@ -108,7 +108,6 @@ class DestinationQdrantSchemasIndexingAuthMethodMode(str, Enum):
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
 class DestinationQdrantNoAuth:
-    r"""Method to authenticate with the Qdrant Instance"""
     MODE: Final[Optional[DestinationQdrantSchemasIndexingAuthMethodMode]] = dataclasses.field(default=DestinationQdrantSchemasIndexingAuthMethodMode.NO_AUTH, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('mode'), 'exclude': lambda f: f is None }})
     
 
@@ -120,23 +119,19 @@ class DestinationQdrantSchemasIndexingMode(str, Enum):
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
 class APIKeyAuth:
-    r"""Method to authenticate with the Qdrant Instance"""
     api_key: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('api_key') }})
     r"""API Key for the Qdrant instance"""
     MODE: Final[Optional[DestinationQdrantSchemasIndexingMode]] = dataclasses.field(default=DestinationQdrantSchemasIndexingMode.API_KEY_AUTH, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('mode'), 'exclude': lambda f: f is None }})
     
 
 
-class DestinationQdrantSchemasDistanceMetric(str, Enum):
-    r"""The Distance metric used to measure similarities among vectors. This field is only used if the collection defined in the does not exist yet and is created automatically by the connector."""
+class Three(str, Enum):
     EUC = 'euc'
 
-class DestinationQdrantDistanceMetric(str, Enum):
-    r"""The Distance metric used to measure similarities among vectors. This field is only used if the collection defined in the does not exist yet and is created automatically by the connector."""
+class Two(str, Enum):
     COS = 'cos'
 
-class DistanceMetric(str, Enum):
-    r"""The Distance metric used to measure similarities among vectors. This field is only used if the collection defined in the does not exist yet and is created automatically by the connector."""
+class One(str, Enum):
     DOT = 'dot'
 
 
@@ -150,7 +145,7 @@ class DestinationQdrantIndexing:
     r"""Public Endpoint of the Qdrant cluser"""
     auth_method: Optional[Union[APIKeyAuth, DestinationQdrantNoAuth]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_method'), 'exclude': lambda f: f is None }})
     r"""Method to authenticate with the Qdrant Instance"""
-    distance_metric: Optional[Any] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('distance_metric'), 'exclude': lambda f: f is None }})
+    distance_metric: Optional[Union[One, Two, Three]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('distance_metric'), 'exclude': lambda f: f is None }})
     r"""The Distance metric used to measure similarities among vectors. This field is only used if the collection defined in the does not exist yet and is created automatically by the connector."""
     prefer_grpc: Optional[bool] = dataclasses.field(default=True, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('prefer_grpc'), 'exclude': lambda f: f is None }})
     r"""Whether to prefer gRPC over HTTP. Set to true for Qdrant cloud clusters"""
@@ -256,7 +251,6 @@ class DestinationQdrantProcessingConfigModel:
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
 class DestinationQdrant:
-    r"""The values required to configure the destination."""
     embedding: Union[DestinationQdrantOpenAI, DestinationQdrantCohere, DestinationQdrantFake, DestinationQdrantFromField, DestinationQdrantAzureOpenAI, DestinationQdrantOpenAICompatible] = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('embedding') }})
     r"""Embedding configuration"""
     indexing: DestinationQdrantIndexing = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('indexing') }})

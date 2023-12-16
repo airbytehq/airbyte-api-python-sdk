@@ -1,5 +1,7 @@
 # DestinationPineconeEmbedding
 
+Embedding configuration
+
 
 ## Supported Types
 

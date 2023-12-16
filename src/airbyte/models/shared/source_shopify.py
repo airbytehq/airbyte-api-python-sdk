@@ -48,7 +48,6 @@ class SourceShopifyShopify(str, Enum):
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
 class SourceShopify:
-    r"""The values required to configure the source."""
     shop: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('shop') }})
     r"""The name of your Shopify store found in the URL. For example, if your URL was https://NAME.myshopify.com, then the name would be 'NAME' or 'NAME.myshopify.com'."""
     SOURCE_TYPE: Final[SourceShopifyShopify] = dataclasses.field(default=SourceShopifyShopify.SHOPIFY, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})

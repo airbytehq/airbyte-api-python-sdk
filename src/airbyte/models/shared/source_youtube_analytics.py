@@ -28,7 +28,6 @@ class SourceYoutubeAnalyticsYoutubeAnalytics(str, Enum):
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
 class SourceYoutubeAnalytics:
-    r"""The values required to configure the source."""
     credentials: AuthenticateViaOAuth20 = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credentials') }})
     SOURCE_TYPE: Final[SourceYoutubeAnalyticsYoutubeAnalytics] = dataclasses.field(default=SourceYoutubeAnalyticsYoutubeAnalytics.YOUTUBE_ANALYTICS, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     

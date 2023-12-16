@@ -14,7 +14,6 @@ class Recreation(str, Enum):
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
 class SourceRecreation:
-    r"""The values required to configure the source."""
     apikey: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('apikey') }})
     r"""API Key"""
     SOURCE_TYPE: Final[Recreation] = dataclasses.field(default=Recreation.RECREATION, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})

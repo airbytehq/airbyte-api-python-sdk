@@ -14,7 +14,6 @@ class AzureTable(str, Enum):
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
 class SourceAzureTable:
-    r"""The values required to configure the source."""
     storage_access_key: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('storage_access_key') }})
     r"""Azure Table Storage Access Key. See the <a href=\\"https://docs.airbyte.com/integrations/sources/azure-table\\">docs</a> for more information on how to obtain this key."""
     storage_account_name: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('storage_account_name') }})

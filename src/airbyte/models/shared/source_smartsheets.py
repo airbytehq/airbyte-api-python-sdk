@@ -69,7 +69,6 @@ class SourceSmartsheetsSmartsheets(str, Enum):
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
 class SourceSmartsheets:
-    r"""The values required to configure the source."""
     credentials: Union[SourceSmartsheetsOAuth20, APIAccessToken] = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credentials') }})
     spreadsheet_id: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('spreadsheet_id') }})
     r"""The spreadsheet ID. Find it by opening the spreadsheet then navigating to File > Properties"""

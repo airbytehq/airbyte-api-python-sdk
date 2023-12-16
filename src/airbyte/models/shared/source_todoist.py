@@ -14,7 +14,6 @@ class Todoist(str, Enum):
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
 class SourceTodoist:
-    r"""The values required to configure the source."""
     token: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('token') }})
     r"""Your API Token. See <a href=\\"https://todoist.com/app/settings/integrations/\\">here</a>. The token is case sensitive."""
     SOURCE_TYPE: Final[Todoist] = dataclasses.field(default=Todoist.TODOIST, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})

@@ -1,7 +1,5 @@
 # AuthenticateWithAPIToken
 
-Choose how to authenticate to Retently
-
 
 ## Fields
 

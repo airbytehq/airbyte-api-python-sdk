@@ -14,7 +14,6 @@ class Omnisend(str, Enum):
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
 class SourceOmnisend:
-    r"""The values required to configure the source."""
     api_key: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('api_key') }})
     r"""API Key"""
     SOURCE_TYPE: Final[Omnisend] = dataclasses.field(default=Omnisend.OMNISEND, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})

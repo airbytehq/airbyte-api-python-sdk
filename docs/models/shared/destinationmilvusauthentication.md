@@ -1,5 +1,7 @@
 # DestinationMilvusAuthentication
 
+Authentication method
+
 
 ## Supported Types
 

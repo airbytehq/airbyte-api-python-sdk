@@ -1,5 +1,7 @@
 # AuthenticationMechanism
 
+Choose how to authenticate to Github
+
 
 ## Supported Types
 

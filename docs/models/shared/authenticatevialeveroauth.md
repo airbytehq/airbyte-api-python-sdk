@@ -1,7 +1,5 @@
 # AuthenticateViaLeverOAuth
 
-Choose how to authenticate to Lever Hiring.
-
 
 ## Fields
 

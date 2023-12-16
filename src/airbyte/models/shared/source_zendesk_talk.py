@@ -16,7 +16,6 @@ class SourceZendeskTalkSchemasAuthType(str, Enum):
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
 class SourceZendeskTalkOAuth20:
-    r"""Zendesk service provides two authentication methods. Choose between: `OAuth2.0` or `API token`."""
     access_token: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('access_token') }})
     r"""The value of the API token generated. See the <a href=\\"https://docs.airbyte.com/integrations/sources/zendesk-talk\\">docs</a> for more information."""
     additional_properties: Optional[Dict[str, Any]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'exclude': lambda f: f is None }})
@@ -35,7 +34,6 @@ class SourceZendeskTalkAuthType(str, Enum):
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
 class SourceZendeskTalkAPIToken:
-    r"""Zendesk service provides two authentication methods. Choose between: `OAuth2.0` or `API token`."""
     api_token: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('api_token') }})
     r"""The value of the API token generated. See the <a href=\\"https://docs.airbyte.com/integrations/sources/zendesk-talk\\">docs</a> for more information."""
     email: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('email') }})
@@ -52,7 +50,6 @@ class SourceZendeskTalkZendeskTalk(str, Enum):
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
 class SourceZendeskTalk:
-    r"""The values required to configure the source."""
     start_date: datetime = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('start_date'), 'encoder': utils.datetimeisoformat(False), 'decoder': dateutil.parser.isoparse }})
     r"""The date from which you'd like to replicate data for Zendesk Talk API, in the format YYYY-MM-DDT00:00:00Z. All data generated after this date will be replicated."""
     subdomain: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('subdomain') }})

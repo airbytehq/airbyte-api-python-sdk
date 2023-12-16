@@ -1,5 +1,7 @@
 # DestinationRedshiftEncryption
 
+How to encrypt the staging data
+
 
 ## Supported Types
 

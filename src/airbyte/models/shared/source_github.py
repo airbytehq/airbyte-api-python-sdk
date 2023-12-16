@@ -16,7 +16,6 @@ class SourceGithubOptionTitle(str, Enum):
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
 class SourceGithubPersonalAccessToken:
-    r"""Choose how to authenticate to GitHub"""
     personal_access_token: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('personal_access_token') }})
     r"""Log into GitHub and then generate a <a href=\\"https://github.com/settings/tokens\\">personal access token</a>. To load balance your API quota consumption across multiple API tokens, input multiple tokens separated with \\",\\" """
     OPTION_TITLE: Final[Optional[SourceGithubOptionTitle]] = dataclasses.field(default=SourceGithubOptionTitle.PAT_CREDENTIALS, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('option_title'), 'exclude': lambda f: f is None }})
@@ -30,7 +29,6 @@ class OptionTitle(str, Enum):
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
 class OAuth:
-    r"""Choose how to authenticate to GitHub"""
     access_token: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('access_token') }})
     r"""OAuth access token"""
     client_id: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('client_id'), 'exclude': lambda f: f is None }})
@@ -48,7 +46,6 @@ class SourceGithubGithub(str, Enum):
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
 class SourceGithub:
-    r"""The values required to configure the source."""
     credentials: Union[OAuth, SourceGithubPersonalAccessToken] = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credentials') }})
     r"""Choose how to authenticate to GitHub"""
     repositories: List[str] = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('repositories') }})

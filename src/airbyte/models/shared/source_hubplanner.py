@@ -14,7 +14,6 @@ class Hubplanner(str, Enum):
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
 class SourceHubplanner:
-    r"""The values required to configure the source."""
     api_key: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('api_key') }})
     r"""Hubplanner API key. See https://github.com/hubplanner/API#authentication for more details."""
     SOURCE_TYPE: Final[Hubplanner] = dataclasses.field(default=Hubplanner.HUBPLANNER, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})

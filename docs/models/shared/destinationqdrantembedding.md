@@ -1,5 +1,7 @@
 # DestinationQdrantEmbedding
 
+Embedding configuration
+
 
 ## Supported Types
 

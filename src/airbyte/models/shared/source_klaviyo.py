@@ -16,7 +16,6 @@ class Klaviyo(str, Enum):
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
 class SourceKlaviyo:
-    r"""The values required to configure the source."""
     api_key: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('api_key') }})
     r"""Klaviyo API Key. See our <a href=\\"https://docs.airbyte.com/integrations/sources/klaviyo\\">docs</a> if you need help finding this key."""
     SOURCE_TYPE: Final[Klaviyo] = dataclasses.field(default=Klaviyo.KLAVIYO, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})

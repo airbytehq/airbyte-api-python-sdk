@@ -1,5 +1,7 @@
 # Indexing
 
+Indexing configuration
+
 
 ## Supported Types
 

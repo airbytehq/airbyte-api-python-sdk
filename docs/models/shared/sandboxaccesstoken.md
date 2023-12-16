@@ -1,7 +1,5 @@
 # SandboxAccessToken
 
-Authentication method
-
 
 ## Fields
 

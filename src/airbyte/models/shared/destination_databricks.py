@@ -14,7 +14,6 @@ class DestinationDatabricksSchemasDataSourceType(str, Enum):
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
 class DestinationDatabricksAzureBlobStorage:
-    r"""Storage on which the delta lake is built."""
     azure_blob_storage_account_name: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('azure_blob_storage_account_name') }})
     r"""The account's name of the Azure Blob Storage."""
     azure_blob_storage_container_name: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('azure_blob_storage_container_name') }})
@@ -63,7 +62,6 @@ class DestinationDatabricksS3BucketRegion(str, Enum):
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
 class AmazonS3:
-    r"""Storage on which the delta lake is built."""
     s3_access_key_id: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('s3_access_key_id') }})
     r"""The Access Key Id granting allow one to access the above S3 staging bucket. Airbyte requires Read and Write permissions to the given bucket."""
     s3_bucket_name: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('s3_bucket_name') }})
@@ -87,7 +85,6 @@ class DataSourceType(str, Enum):
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
 class RecommendedManagedTables:
-    r"""Storage on which the delta lake is built."""
     DATA_SOURCE_TYPE: Final[DataSourceType] = dataclasses.field(default=DataSourceType.MANAGED_TABLES_STORAGE, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('data_source_type') }})
     
 
@@ -99,7 +96,6 @@ class Databricks(str, Enum):
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
 class DestinationDatabricks:
-    r"""The values required to configure the destination."""
     data_source: Union[RecommendedManagedTables, AmazonS3, DestinationDatabricksAzureBlobStorage] = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('data_source') }})
     r"""Storage on which the delta lake is built."""
     databricks_http_path: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('databricks_http_path') }})

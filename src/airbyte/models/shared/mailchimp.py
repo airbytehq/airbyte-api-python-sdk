@@ -21,7 +21,6 @@ class MailchimpCredentials:
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
 class Mailchimp:
-    r"""The values required to configure the source."""
     credentials: Optional[MailchimpCredentials] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credentials'), 'exclude': lambda f: f is None }})
     
 

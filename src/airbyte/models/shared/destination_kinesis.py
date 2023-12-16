@@ -14,7 +14,6 @@ class Kinesis(str, Enum):
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
 class DestinationKinesis:
-    r"""The values required to configure the destination."""
     access_key: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('accessKey') }})
     r"""Generate the AWS Access Key for current user."""
     endpoint: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('endpoint') }})

@@ -74,7 +74,6 @@ class SourceGoogleSearchConsoleGoogleSearchConsole(str, Enum):
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
 class SourceGoogleSearchConsole:
-    r"""The values required to configure the source."""
     authorization: Union[SourceGoogleSearchConsoleOAuth, SourceGoogleSearchConsoleServiceAccountKeyAuthentication] = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('authorization') }})
     site_urls: List[str] = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('site_urls') }})
     r"""The URLs of the website property attached to your GSC account. Learn more about properties <a href=\\"https://support.google.com/webmasters/answer/34592?hl=en\\">here</a>."""

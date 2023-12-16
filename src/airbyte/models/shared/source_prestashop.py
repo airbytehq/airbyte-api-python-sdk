@@ -15,7 +15,6 @@ class Prestashop(str, Enum):
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
 class SourcePrestashop:
-    r"""The values required to configure the source."""
     access_key: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('access_key') }})
     r"""Your PrestaShop access key. See <a href=\\"https://devdocs.prestashop.com/1.7/webservice/tutorials/creating-access/#create-an-access-key\\"> the docs </a> for info on how to obtain this."""
     start_date: date = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('start_date'), 'encoder': utils.dateisoformat(False), 'decoder': utils.datefromisoformat }})

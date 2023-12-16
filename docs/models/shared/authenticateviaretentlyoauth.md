@@ -1,7 +1,5 @@
 # AuthenticateViaRetentlyOAuth
 
-Choose how to authenticate to Retently
-
 
 ## Fields
 

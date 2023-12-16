@@ -14,7 +14,6 @@ class SourceMicrosoftTeamsSchemasAuthType(str, Enum):
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
 class AuthenticateViaMicrosoft:
-    r"""Choose how to authenticate to Microsoft"""
     client_id: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('client_id') }})
     r"""The Client ID of your Microsoft Teams developer application."""
     client_secret: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('client_secret') }})
@@ -32,7 +31,6 @@ class SourceMicrosoftTeamsAuthType(str, Enum):
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
 class AuthenticateViaMicrosoftOAuth20:
-    r"""Choose how to authenticate to Microsoft"""
     client_id: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('client_id') }})
     r"""The Client ID of your Microsoft Teams developer application."""
     client_secret: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('client_secret') }})
@@ -52,7 +50,6 @@ class SourceMicrosoftTeamsMicrosoftTeams(str, Enum):
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
 class SourceMicrosoftTeams:
-    r"""The values required to configure the source."""
     period: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('period') }})
     r"""Specifies the length of time over which the Team Device Report stream is aggregated. The supported values are: D7, D30, D90, and D180."""
     SOURCE_TYPE: Final[SourceMicrosoftTeamsMicrosoftTeams] = dataclasses.field(default=SourceMicrosoftTeamsMicrosoftTeams.MICROSOFT_TEAMS, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})

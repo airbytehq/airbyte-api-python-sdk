@@ -745,8 +745,9 @@ docs/models/shared/destinationqdrantnoauth.md
 docs/models/shared/destinationqdrantschemasindexingmode.md
 docs/models/shared/apikeyauth.md
 docs/models/shared/destinationqdrantauthenticationmethod.md
-docs/models/shared/destinationqdrantschemasdistancemetric.md
-docs/models/shared/destinationqdrantdistancemetric.md
+docs/models/shared/three.md
+docs/models/shared/two.md
+docs/models/shared/one.md
 docs/models/shared/distancemetric.md
 docs/models/shared/destinationqdrantindexing.md
 docs/models/shared/destinationqdrantfieldnamemappingconfigmodel.md

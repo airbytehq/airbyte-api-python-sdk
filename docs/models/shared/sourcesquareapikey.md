@@ -1,7 +1,5 @@
 # SourceSquareAPIKey
 
-Choose how to authenticate to Square.
-
 
 ## Fields
 

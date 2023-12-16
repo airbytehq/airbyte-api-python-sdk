@@ -16,7 +16,6 @@ class Mailgun(str, Enum):
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
 class SourceMailgun:
-    r"""The values required to configure the source."""
     private_key: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('private_key') }})
     r"""Primary account API key to access your Mailgun data."""
     SOURCE_TYPE: Final[Mailgun] = dataclasses.field(default=Mailgun.MAILGUN, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})

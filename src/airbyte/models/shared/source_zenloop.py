@@ -14,7 +14,6 @@ class Zenloop(str, Enum):
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
 class SourceZenloop:
-    r"""The values required to configure the source."""
     api_token: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('api_token') }})
     r"""Zenloop API Token. You can get the API token in settings page <a href=\\"https://app.zenloop.com/settings/api\\">here</a>"""
     SOURCE_TYPE: Final[Zenloop] = dataclasses.field(default=Zenloop.ZENLOOP, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})

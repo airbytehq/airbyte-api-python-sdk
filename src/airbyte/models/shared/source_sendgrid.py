@@ -16,7 +16,6 @@ class Sendgrid(str, Enum):
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
 class SourceSendgrid:
-    r"""The values required to configure the source."""
     apikey: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('apikey') }})
     r"""API Key, use <a href=\\"https://app.sendgrid.com/settings/api_keys/\\">admin</a> to generate this key."""
     SOURCE_TYPE: Final[Sendgrid] = dataclasses.field(default=Sendgrid.SENDGRID, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})

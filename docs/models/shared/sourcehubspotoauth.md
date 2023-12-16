@@ -1,7 +1,5 @@
 # SourceHubspotOAuth
 
-Choose how to authenticate to HubSpot.
-
 
 ## Fields
 

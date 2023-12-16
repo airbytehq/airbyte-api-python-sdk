@@ -1,5 +1,7 @@
 # OutputFormatWildcard
 
+Format of the data output.
+
 
 ## Supported Types
 

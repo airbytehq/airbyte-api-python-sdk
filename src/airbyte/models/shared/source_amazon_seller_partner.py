@@ -49,7 +49,6 @@ class SourceAmazonSellerPartnerAmazonSellerPartner(str, Enum):
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
 class SourceAmazonSellerPartner:
-    r"""The values required to configure the source."""
     aws_access_key: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('aws_access_key') }})
     r"""Specifies the AWS access key used as part of the credentials to authenticate the user."""
     aws_secret_key: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('aws_secret_key') }})

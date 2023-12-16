@@ -14,7 +14,6 @@ class SourceSurveySparrowURLBase(str, Enum):
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
 class GlobalAccount:
-    r"""Is your account location is EU based? If yes, the base url to retrieve data will be different."""
     URL_BASE: Final[Optional[SourceSurveySparrowURLBase]] = dataclasses.field(default=SourceSurveySparrowURLBase.HTTPS_API_SURVEYSPARROW_COM_V3, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('url_base'), 'exclude': lambda f: f is None }})
     
 
@@ -26,7 +25,6 @@ class URLBase(str, Enum):
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
 class EUBasedAccount:
-    r"""Is your account location is EU based? If yes, the base url to retrieve data will be different."""
     URL_BASE: Final[Optional[URLBase]] = dataclasses.field(default=URLBase.HTTPS_EU_API_SURVEYSPARROW_COM_V3, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('url_base'), 'exclude': lambda f: f is None }})
     
 
@@ -38,7 +36,6 @@ class SurveySparrow(str, Enum):
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
 class SourceSurveySparrow:
-    r"""The values required to configure the source."""
     access_token: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('access_token') }})
     r"""Your access token. See <a href=\\"https://developers.surveysparrow.com/rest-apis#authentication\\">here</a>. The key is case sensitive."""
     SOURCE_TYPE: Final[SurveySparrow] = dataclasses.field(default=SurveySparrow.SURVEY_SPARROW, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})

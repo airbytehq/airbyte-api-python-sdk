@@ -14,7 +14,6 @@ class Rss(str, Enum):
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
 class SourceRss:
-    r"""The values required to configure the source."""
     url: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('url') }})
     r"""RSS Feed URL"""
     SOURCE_TYPE: Final[Rss] = dataclasses.field(default=Rss.RSS, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})

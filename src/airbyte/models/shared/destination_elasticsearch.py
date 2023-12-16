@@ -46,7 +46,6 @@ class Elasticsearch(str, Enum):
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
 class DestinationElasticsearch:
-    r"""The values required to configure the destination."""
     endpoint: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('endpoint') }})
     r"""The full url of the Elasticsearch server"""
     DESTINATION_TYPE: Final[Elasticsearch] = dataclasses.field(default=Elasticsearch.ELASTICSEARCH, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('destinationType') }})

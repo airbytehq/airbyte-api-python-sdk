@@ -1,7 +1,5 @@
 # OAuth
 
-Choose how to authenticate to GitHub
-
 
 ## Fields
 

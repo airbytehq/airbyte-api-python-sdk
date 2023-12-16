@@ -14,7 +14,6 @@ class Smaily(str, Enum):
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
 class SourceSmaily:
-    r"""The values required to configure the source."""
     api_password: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('api_password') }})
     r"""API user password. See https://smaily.com/help/api/general/create-api-user/"""
     api_subdomain: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('api_subdomain') }})

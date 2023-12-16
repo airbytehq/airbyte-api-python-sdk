@@ -14,7 +14,6 @@ class BothUsernameAndPasswordIsRequiredForAuthenticationRequest(str, Enum):
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
 class SourceOutbrainAmplifyUsernamePassword:
-    r"""Credentials for making authenticated requests requires either username/password or access_token."""
     password: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('password') }})
     r"""Add Password for authentication."""
     username: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('username') }})
@@ -30,7 +29,6 @@ class AccessTokenIsRequiredForAuthenticationRequests(str, Enum):
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
 class SourceOutbrainAmplifyAccessToken:
-    r"""Credentials for making authenticated requests requires either username/password or access_token."""
     access_token: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('access_token') }})
     r"""Access Token for making authenticated requests."""
     TYPE: Final[AccessTokenIsRequiredForAuthenticationRequests] = dataclasses.field(default=AccessTokenIsRequiredForAuthenticationRequests.ACCESS_TOKEN, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('type') }})
@@ -56,7 +54,6 @@ class OutbrainAmplify(str, Enum):
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
 class SourceOutbrainAmplify:
-    r"""The values required to configure the source."""
     credentials: Union[SourceOutbrainAmplifyAccessToken, SourceOutbrainAmplifyUsernamePassword] = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credentials') }})
     r"""Credentials for making authenticated requests requires either username/password or access_token."""
     start_date: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('start_date') }})

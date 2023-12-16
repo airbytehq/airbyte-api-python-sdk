@@ -1,7 +1,5 @@
 # DestinationAzureBlobStorageJSONLinesNewlineDelimitedJSON
 
-Output data format
-
 
 ## Fields
 

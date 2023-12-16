@@ -16,7 +16,6 @@ class SourceZendeskSupportSchemasCredentials(str, Enum):
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
 class SourceZendeskSupportAPIToken:
-    r"""Zendesk allows two authentication methods. We recommend using `OAuth2.0` for Airbyte Cloud users and `API token` for Airbyte Open Source users."""
     api_token: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('api_token') }})
     r"""The value of the API token generated. See our <a href=\\"https://docs.airbyte.com/integrations/sources/zendesk-support#setup-guide\\">full documentation</a> for more information on generating this token."""
     email: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('email') }})
@@ -33,7 +32,6 @@ class SourceZendeskSupportCredentials(str, Enum):
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
 class SourceZendeskSupportOAuth20:
-    r"""Zendesk allows two authentication methods. We recommend using `OAuth2.0` for Airbyte Cloud users and `API token` for Airbyte Open Source users."""
     access_token: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('access_token') }})
     r"""The OAuth access token. See the <a href=\\"https://developer.zendesk.com/documentation/ticketing/working-with-oauth/creating-and-using-oauth-tokens-with-the-api/\\">Zendesk docs</a> for more information on generating this token."""
     additional_properties: Optional[Dict[str, Any]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'exclude': lambda f: f is None }})
@@ -52,7 +50,6 @@ class SourceZendeskSupportZendeskSupport(str, Enum):
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
 class SourceZendeskSupport:
-    r"""The values required to configure the source."""
     subdomain: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('subdomain') }})
     r"""This is your unique Zendesk subdomain that can be found in your account URL. For example, in https://MY_SUBDOMAIN.zendesk.com/, MY_SUBDOMAIN is the value of your subdomain."""
     SOURCE_TYPE: Final[SourceZendeskSupportZendeskSupport] = dataclasses.field(default=SourceZendeskSupportZendeskSupport.ZENDESK_SUPPORT, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})

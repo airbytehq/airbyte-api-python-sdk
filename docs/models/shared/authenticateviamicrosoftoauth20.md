@@ -1,7 +1,5 @@
 # AuthenticateViaMicrosoftOAuth20
 
-Choose how to authenticate to Microsoft
-
 
 ## Fields
 

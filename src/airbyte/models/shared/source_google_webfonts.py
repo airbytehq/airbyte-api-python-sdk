@@ -14,7 +14,6 @@ class GoogleWebfonts(str, Enum):
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
 class SourceGoogleWebfonts:
-    r"""The values required to configure the source."""
     api_key: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('api_key') }})
     r"""API key is required to access google apis, For getting your's goto google console and generate api key for Webfonts"""
     SOURCE_TYPE: Final[GoogleWebfonts] = dataclasses.field(default=GoogleWebfonts.GOOGLE_WEBFONTS, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})

@@ -14,7 +14,6 @@ class Firestore(str, Enum):
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
 class DestinationFirestore:
-    r"""The values required to configure the destination."""
     project_id: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('project_id') }})
     r"""The GCP project ID for the project containing the target BigQuery dataset."""
     DESTINATION_TYPE: Final[Firestore] = dataclasses.field(default=Firestore.FIRESTORE, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('destinationType') }})

@@ -1,5 +1,7 @@
 # SourceGoogleAnalyticsDataAPICredentials
 
+Credentials for the service
+
 
 ## Supported Types
 

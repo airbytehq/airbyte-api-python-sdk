@@ -1,7 +1,5 @@
 # DestinationDatabricksAzureBlobStorage
 
-Storage on which the delta lake is built.
-
 
 ## Fields
 

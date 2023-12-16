@@ -14,7 +14,6 @@ class Duckdb(str, Enum):
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
 class DestinationDuckdb:
-    r"""The values required to configure the destination."""
     destination_path: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('destination_path') }})
     r"""Path to the .duckdb file, or the text 'md:' to connect to MotherDuck. The file will be placed inside that local mount. For more information check out our <a href=\\"https://docs.airbyte.io/integrations/destinations/duckdb\\">docs</a>"""
     DESTINATION_TYPE: Final[Duckdb] = dataclasses.field(default=Duckdb.DUCKDB, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('destinationType') }})

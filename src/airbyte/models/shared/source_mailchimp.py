@@ -44,7 +44,6 @@ class SourceMailchimpMailchimp(str, Enum):
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
 class SourceMailchimp:
-    r"""The values required to configure the source."""
     SOURCE_TYPE: Final[SourceMailchimpMailchimp] = dataclasses.field(default=SourceMailchimpMailchimp.MAILCHIMP, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     campaign_id: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('campaign_id'), 'exclude': lambda f: f is None }})
     credentials: Optional[Union[SourceMailchimpOAuth20, APIKey]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credentials'), 'exclude': lambda f: f is None }})

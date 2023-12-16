@@ -14,7 +14,6 @@ class Dremio(str, Enum):
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
 class SourceDremio:
-    r"""The values required to configure the source."""
     api_key: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('api_key') }})
     r"""API Key that is generated when you authenticate to Dremio API"""
     SOURCE_TYPE: Final[Dremio] = dataclasses.field(default=Dremio.DREMIO, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})

@@ -292,7 +292,6 @@ class DestinationWeaviateProcessingConfigModel:
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
 class DestinationWeaviate:
-    r"""The values required to configure the destination."""
     embedding: Union[NoExternalEmbedding, DestinationWeaviateAzureOpenAI, DestinationWeaviateOpenAI, DestinationWeaviateCohere, DestinationWeaviateFromField, DestinationWeaviateFake, DestinationWeaviateOpenAICompatible] = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('embedding') }})
     r"""Embedding configuration"""
     indexing: DestinationWeaviateIndexing = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('indexing') }})

@@ -14,7 +14,6 @@ class Kyve(str, Enum):
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
 class SourceKyve:
-    r"""The values required to configure the source."""
     pool_ids: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('pool_ids') }})
     r"""The IDs of the KYVE storage pool you want to archive. (Comma separated)"""
     start_ids: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('start_ids') }})

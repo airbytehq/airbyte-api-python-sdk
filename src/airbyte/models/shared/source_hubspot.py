@@ -17,7 +17,6 @@ class SourceHubspotSchemasAuthType(str, Enum):
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
 class PrivateApp:
-    r"""Choose how to authenticate to HubSpot."""
     access_token: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('access_token') }})
     r"""HubSpot Access token. See the <a href=\\"https://developers.hubspot.com/docs/api/private-apps\\">Hubspot docs</a> if you need help finding this token."""
     CREDENTIALS_TITLE: Final[SourceHubspotSchemasAuthType] = dataclasses.field(default=SourceHubspotSchemasAuthType.PRIVATE_APP_CREDENTIALS, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credentials_title') }})
@@ -33,7 +32,6 @@ class SourceHubspotAuthType(str, Enum):
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
 class SourceHubspotOAuth:
-    r"""Choose how to authenticate to HubSpot."""
     client_id: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('client_id') }})
     r"""The Client ID of your HubSpot developer application. See the <a href=\\"https://legacydocs.hubspot.com/docs/methods/oauth2/oauth2-quickstart\\">Hubspot docs</a> if you need help finding this ID."""
     client_secret: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('client_secret') }})
@@ -52,7 +50,6 @@ class SourceHubspotHubspot(str, Enum):
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
 class SourceHubspot:
-    r"""The values required to configure the source."""
     credentials: Union[SourceHubspotOAuth, PrivateApp] = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credentials') }})
     r"""Choose how to authenticate to HubSpot."""
     start_date: datetime = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('start_date'), 'encoder': utils.datetimeisoformat(False), 'decoder': dateutil.parser.isoparse }})

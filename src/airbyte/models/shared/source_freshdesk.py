@@ -16,7 +16,6 @@ class Freshdesk(str, Enum):
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
 class SourceFreshdesk:
-    r"""The values required to configure the source."""
     api_key: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('api_key') }})
     r"""Freshdesk API Key. See the <a href=\\"https://docs.airbyte.com/integrations/sources/freshdesk\\">docs</a> for more information on how to obtain this key."""
     domain: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('domain') }})

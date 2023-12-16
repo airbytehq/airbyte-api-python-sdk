@@ -14,7 +14,6 @@ class Xkcd(str, Enum):
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
 class SourceXkcd:
-    r"""The values required to configure the source."""
     SOURCE_TYPE: Final[Optional[Xkcd]] = dataclasses.field(default=Xkcd.XKCD, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType'), 'exclude': lambda f: f is None }})
     
 

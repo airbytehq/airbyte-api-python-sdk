@@ -37,7 +37,6 @@ class Status(str, Enum):
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
 class SourcePinterest:
-    r"""The values required to configure the source."""
     start_date: date = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('start_date'), 'encoder': utils.dateisoformat(False), 'decoder': utils.datefromisoformat }})
     r"""A date in the format YYYY-MM-DD. If you have not set a date, it would be defaulted to latest allowed date by api (89 days from today)."""
     SOURCE_TYPE: Final[SourcePinterestPinterest] = dataclasses.field(default=SourcePinterestPinterest.PINTEREST, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})

@@ -1,7 +1,5 @@
 # AuthenticateViaGoogleOauth
 
-Credentials for the service
-
 
 ## Fields
 

@@ -44,7 +44,6 @@ class LinkedinPages(str, Enum):
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
 class SourceLinkedinPages:
-    r"""The values required to configure the source."""
     org_id: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('org_id') }})
     r"""Specify the Organization ID"""
     SOURCE_TYPE: Final[LinkedinPages] = dataclasses.field(default=LinkedinPages.LINKEDIN_PAGES, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})

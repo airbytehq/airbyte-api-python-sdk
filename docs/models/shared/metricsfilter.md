@@ -1,5 +1,7 @@
 # MetricsFilter
 
+Metrics filter
+
 
 ## Supported Types
 

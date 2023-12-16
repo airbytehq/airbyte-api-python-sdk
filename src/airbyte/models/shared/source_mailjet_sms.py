@@ -14,7 +14,6 @@ class MailjetSms(str, Enum):
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
 class SourceMailjetSms:
-    r"""The values required to configure the source."""
     token: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('token') }})
     r"""Your access token. See <a href=\\"https://dev.mailjet.com/sms/reference/overview/authentication\\">here</a>."""
     SOURCE_TYPE: Final[MailjetSms] = dataclasses.field(default=MailjetSms.MAILJET_SMS, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})

@@ -50,7 +50,6 @@ class SourceGitlabGitlab(str, Enum):
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
 class SourceGitlab:
-    r"""The values required to configure the source."""
     credentials: Union[SourceGitlabOAuth20, PrivateToken] = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credentials') }})
     SOURCE_TYPE: Final[SourceGitlabGitlab] = dataclasses.field(default=SourceGitlabGitlab.GITLAB, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     api_url: Optional[str] = dataclasses.field(default='gitlab.com', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('api_url'), 'exclude': lambda f: f is None }})

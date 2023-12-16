@@ -1,5 +1,7 @@
 # SourceTiktokMarketingAuthenticationMethod
 
+Authentication method
+
 
 ## Supported Types
 

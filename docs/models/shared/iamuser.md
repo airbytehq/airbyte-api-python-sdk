@@ -1,7 +1,5 @@
 # IAMUser
 
-Choose How to Authenticate to AWS.
-
 
 ## Fields
 

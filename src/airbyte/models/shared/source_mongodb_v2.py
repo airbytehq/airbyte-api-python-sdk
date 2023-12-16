@@ -60,7 +60,6 @@ class MongodbV2(str, Enum):
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
 class SourceMongodbV2:
-    r"""The values required to configure the source."""
     database_config: Union[MongoDBAtlasReplicaSet, SelfManagedReplicaSet] = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('database_config') }})
     r"""Configures the MongoDB cluster type."""
     SOURCE_TYPE: Final[MongodbV2] = dataclasses.field(default=MongodbV2.MONGODB_V2, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})

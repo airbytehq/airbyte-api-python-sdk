@@ -99,7 +99,6 @@ class ProcessingConfigModel:
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
 class DestinationLangchain:
-    r"""The values required to configure the destination."""
     embedding: Union[OpenAI, Fake] = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('embedding') }})
     r"""Embedding configuration"""
     indexing: Union[DestinationLangchainPinecone, DocArrayHnswSearch, ChromaLocalPersistance] = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('indexing') }})

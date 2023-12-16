@@ -1,7 +1,5 @@
 # ServiceAccount
 
-Choose how to authenticate to Mixpanel
-
 
 ## Fields
 

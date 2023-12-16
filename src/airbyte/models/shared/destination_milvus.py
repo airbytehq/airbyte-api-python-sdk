@@ -260,7 +260,6 @@ class DestinationMilvusProcessingConfigModel:
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
 class DestinationMilvus:
-    r"""The values required to configure the destination."""
     embedding: Union[DestinationMilvusOpenAI, Cohere, DestinationMilvusFake, FromField, AzureOpenAI, OpenAICompatible] = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('embedding') }})
     r"""Embedding configuration"""
     indexing: DestinationMilvusIndexing = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('indexing') }})
