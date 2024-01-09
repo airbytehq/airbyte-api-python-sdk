@@ -3,15 +3,15 @@
 
 ## Supported Types
 
-### SourceSalesloftCredentialsAuthenticateViaOAuth
+### AuthenticateViaOAuth
 
 ```python
-sourceSalesloftCredentials: shared.SourceSalesloftCredentialsAuthenticateViaOAuth = /* values here */
+sourceSalesloftCredentials: shared.AuthenticateViaOAuth = /* values here */
 ```
 
-### SourceSalesloftCredentialsAuthenticateViaAPIKey
+### AuthenticateViaAPIKey
 
 ```python
-sourceSalesloftCredentials: shared.SourceSalesloftCredentialsAuthenticateViaAPIKey = /* values here */
+sourceSalesloftCredentials: shared.AuthenticateViaAPIKey = /* values here */
 ```
 

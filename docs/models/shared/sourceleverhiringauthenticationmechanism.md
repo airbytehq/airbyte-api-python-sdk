@@ -1,17 +1,19 @@
 # SourceLeverHiringAuthenticationMechanism
 
+Choose how to authenticate to Lever Hiring.
+
 
 ## Supported Types
 
-### SourceLeverHiringAuthenticationMechanismAuthenticateViaLeverOAuth
+### AuthenticateViaLeverOAuth
 
 ```python
-sourceLeverHiringAuthenticationMechanism: shared.SourceLeverHiringAuthenticationMechanismAuthenticateViaLeverOAuth = /* values here */
+sourceLeverHiringAuthenticationMechanism: shared.AuthenticateViaLeverOAuth = /* values here */
 ```
 
-### SourceLeverHiringAuthenticationMechanismAuthenticateViaLeverAPIKey
+### AuthenticateViaLeverAPIKey
 
 ```python
-sourceLeverHiringAuthenticationMechanism: shared.SourceLeverHiringAuthenticationMechanismAuthenticateViaLeverAPIKey = /* values here */
+sourceLeverHiringAuthenticationMechanism: shared.AuthenticateViaLeverAPIKey = /* values here */
 ```
 

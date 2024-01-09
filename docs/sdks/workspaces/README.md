@@ -24,8 +24,8 @@ from airbyte.models import operations, shared
 s = airbyte.Airbyte(
     security=shared.Security(
         basic_auth=shared.SchemeBasicAuth(
-            password="",
-            username="",
+            password="<YOUR_PASSWORD_HERE>",
+            username="<YOUR_USERNAME_HERE>",
         ),
     ),
 )
@@ -36,7 +36,7 @@ req = operations.CreateOrUpdateWorkspaceOAuthCredentialsRequest(
         configuration=shared.AmazonAds(),
         name=shared.OAuthActorNames.AIRTABLE,
     ),
-    workspace_id='seamless',
+    workspace_id='string',
 )
 
 res = s.workspaces.create_or_update_workspace_o_auth_credentials(req)
@@ -56,7 +56,11 @@ if res.status_code == 200:
 ### Response
 
 **[operations.CreateOrUpdateWorkspaceOAuthCredentialsResponse](../../models/operations/createorupdateworkspaceoauthcredentialsresponse.md)**
+### Errors
 
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 4x-5xx          | */*             |
 
 ## create_workspace
 
@@ -71,14 +75,14 @@ from airbyte.models import shared
 s = airbyte.Airbyte(
     security=shared.Security(
         basic_auth=shared.SchemeBasicAuth(
-            password="",
-            username="",
+            password="<YOUR_PASSWORD_HERE>",
+            username="<YOUR_USERNAME_HERE>",
         ),
     ),
 )
 
 req = shared.WorkspaceCreateRequest(
-    name='Armstrong',
+    name='string',
 )
 
 res = s.workspaces.create_workspace(req)
@@ -98,7 +102,11 @@ if res.workspace_response is not None:
 ### Response
 
 **[operations.CreateWorkspaceResponse](../../models/operations/createworkspaceresponse.md)**
+### Errors
 
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 4x-5xx          | */*             |
 
 ## delete_workspace
 
@@ -113,14 +121,14 @@ from airbyte.models import operations, shared
 s = airbyte.Airbyte(
     security=shared.Security(
         basic_auth=shared.SchemeBasicAuth(
-            password="",
-            username="",
+            password="<YOUR_PASSWORD_HERE>",
+            username="<YOUR_USERNAME_HERE>",
         ),
     ),
 )
 
 req = operations.DeleteWorkspaceRequest(
-    workspace_id='3rd',
+    workspace_id='string',
 )
 
 res = s.workspaces.delete_workspace(req)
@@ -140,7 +148,11 @@ if res.status_code == 200:
 ### Response
 
 **[operations.DeleteWorkspaceResponse](../../models/operations/deleteworkspaceresponse.md)**
+### Errors
 
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 4x-5xx          | */*             |
 
 ## get_workspace
 
@@ -155,14 +167,14 @@ from airbyte.models import operations, shared
 s = airbyte.Airbyte(
     security=shared.Security(
         basic_auth=shared.SchemeBasicAuth(
-            password="",
-            username="",
+            password="<YOUR_PASSWORD_HERE>",
+            username="<YOUR_USERNAME_HERE>",
         ),
     ),
 )
 
 req = operations.GetWorkspaceRequest(
-    workspace_id='Mercedes',
+    workspace_id='string',
 )
 
 res = s.workspaces.get_workspace(req)
@@ -182,7 +194,11 @@ if res.workspace_response is not None:
 ### Response
 
 **[operations.GetWorkspaceResponse](../../models/operations/getworkspaceresponse.md)**
+### Errors
 
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 4x-5xx          | */*             |
 
 ## list_workspaces
 
@@ -197,8 +213,8 @@ from airbyte.models import operations, shared
 s = airbyte.Airbyte(
     security=shared.Security(
         basic_auth=shared.SchemeBasicAuth(
-            password="",
-            username="",
+            password="<YOUR_PASSWORD_HERE>",
+            username="<YOUR_USERNAME_HERE>",
         ),
     ),
 )
@@ -226,7 +242,11 @@ if res.workspaces_response is not None:
 ### Response
 
 **[operations.ListWorkspacesResponse](../../models/operations/listworkspacesresponse.md)**
+### Errors
 
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 4x-5xx          | */*             |
 
 ## update_workspace
 
@@ -241,17 +261,17 @@ from airbyte.models import operations, shared
 s = airbyte.Airbyte(
     security=shared.Security(
         basic_auth=shared.SchemeBasicAuth(
-            password="",
-            username="",
+            password="<YOUR_PASSWORD_HERE>",
+            username="<YOUR_USERNAME_HERE>",
         ),
     ),
 )
 
 req = operations.UpdateWorkspaceRequest(
     workspace_update_request=shared.WorkspaceUpdateRequest(
-        name='Wagon',
+        name='string',
     ),
-    workspace_id='female',
+    workspace_id='string',
 )
 
 res = s.workspaces.update_workspace(req)
@@ -271,4 +291,8 @@ if res.workspace_response is not None:
 ### Response
 
 **[operations.UpdateWorkspaceResponse](../../models/operations/updateworkspaceresponse.md)**
+### Errors
 
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 4x-5xx          | */*             |

@@ -25,18 +25,18 @@ from airbyte.models import shared
 s = airbyte.Airbyte(
     security=shared.Security(
         basic_auth=shared.SchemeBasicAuth(
-            password="",
-            username="",
+            password="<YOUR_PASSWORD_HERE>",
+            username="<YOUR_USERNAME_HERE>",
         ),
     ),
 )
 
 req = shared.SourceCreateRequest(
-    shared.SourcePokeapi(
-        pokemon_name='luxray',
-        source_type=shared.SourcePokeapiPokeapi.POKEAPI,
-    ),
-    name='Carolina',
+    configuration=shared.SourceAha(
+    api_key='string',
+    url='https://complicated-seat.org',
+),
+    name='string',
     workspace_id='0f31f3dd-c984-48c3-8bdf-b109056aa6d6',
 )
 
@@ -57,7 +57,11 @@ if res.source_response is not None:
 ### Response
 
 **[operations.CreateSourceResponse](../../models/operations/createsourceresponse.md)**
+### Errors
 
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 4x-5xx          | */*             |
 
 ## delete_source
 
@@ -72,14 +76,14 @@ from airbyte.models import operations, shared
 s = airbyte.Airbyte(
     security=shared.Security(
         basic_auth=shared.SchemeBasicAuth(
-            password="",
-            username="",
+            password="<YOUR_PASSWORD_HERE>",
+            username="<YOUR_USERNAME_HERE>",
         ),
     ),
 )
 
 req = operations.DeleteSourceRequest(
-    source_id='South',
+    source_id='string',
 )
 
 res = s.sources.delete_source(req)
@@ -99,7 +103,11 @@ if res.status_code == 200:
 ### Response
 
 **[operations.DeleteSourceResponse](../../models/operations/deletesourceresponse.md)**
+### Errors
 
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 4x-5xx          | */*             |
 
 ## get_source
 
@@ -114,14 +122,14 @@ from airbyte.models import operations, shared
 s = airbyte.Airbyte(
     security=shared.Security(
         basic_auth=shared.SchemeBasicAuth(
-            password="",
-            username="",
+            password="<YOUR_PASSWORD_HERE>",
+            username="<YOUR_USERNAME_HERE>",
         ),
     ),
 )
 
 req = operations.GetSourceRequest(
-    source_id='Dynamic',
+    source_id='string',
 )
 
 res = s.sources.get_source(req)
@@ -141,7 +149,11 @@ if res.source_response is not None:
 ### Response
 
 **[operations.GetSourceResponse](../../models/operations/getsourceresponse.md)**
+### Errors
 
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 4x-5xx          | */*             |
 
 ## initiate_o_auth
 
@@ -160,17 +172,17 @@ from airbyte.models import shared
 s = airbyte.Airbyte(
     security=shared.Security(
         basic_auth=shared.SchemeBasicAuth(
-            password="",
-            username="",
+            password="<YOUR_PASSWORD_HERE>",
+            username="<YOUR_USERNAME_HERE>",
         ),
     ),
 )
 
 req = shared.InitiateOauthRequest(
     o_auth_input_configuration=shared.OAuthInputConfiguration(),
-    redirect_url='Chips',
-    source_type=shared.OAuthActorNames.TRELLO,
-    workspace_id='28130d99-19ff-4ae6-bd4e-12eb0994476c',
+    redirect_url='string',
+    source_type=shared.OAuthActorNames.GITLAB,
+    workspace_id='fd28130d-9919-4ffa-a67d-4e12eb099447',
 )
 
 res = s.sources.initiate_o_auth(req)
@@ -190,7 +202,11 @@ if res.status_code == 200:
 ### Response
 
 **[operations.InitiateOAuthResponse](../../models/operations/initiateoauthresponse.md)**
+### Errors
 
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 4x-5xx          | */*             |
 
 ## list_sources
 
@@ -205,8 +221,8 @@ from airbyte.models import operations, shared
 s = airbyte.Airbyte(
     security=shared.Security(
         basic_auth=shared.SchemeBasicAuth(
-            password="",
-            username="",
+            password="<YOUR_PASSWORD_HERE>",
+            username="<YOUR_USERNAME_HERE>",
         ),
     ),
 )
@@ -234,7 +250,11 @@ if res.sources_response is not None:
 ### Response
 
 **[operations.ListSourcesResponse](../../models/operations/listsourcesresponse.md)**
+### Errors
 
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 4x-5xx          | */*             |
 
 ## patch_source
 
@@ -250,21 +270,21 @@ from airbyte.models import operations, shared
 s = airbyte.Airbyte(
     security=shared.Security(
         basic_auth=shared.SchemeBasicAuth(
-            password="",
-            username="",
+            password="<YOUR_PASSWORD_HERE>",
+            username="<YOUR_USERNAME_HERE>",
         ),
     ),
 )
 
 req = operations.PatchSourceRequest(
     source_patch_request=shared.SourcePatchRequest(
-        shared.SourcePokeapi(
-            pokemon_name='ditto',
-            source_type=shared.SourcePokeapiPokeapi.POKEAPI,
-        ),
+        configuration=shared.SourceAha(
+        api_key='string',
+        url='http://apprehensive-visa.net',
+    ),
         name='My source',
     ),
-    source_id='Vanuatu',
+    source_id='string',
 )
 
 res = s.sources.patch_source(req)
@@ -284,7 +304,11 @@ if res.source_response is not None:
 ### Response
 
 **[operations.PatchSourceResponse](../../models/operations/patchsourceresponse.md)**
+### Errors
 
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 4x-5xx          | */*             |
 
 ## put_source
 
@@ -300,21 +324,21 @@ from airbyte.models import operations, shared
 s = airbyte.Airbyte(
     security=shared.Security(
         basic_auth=shared.SchemeBasicAuth(
-            password="",
-            username="",
+            password="<YOUR_PASSWORD_HERE>",
+            username="<YOUR_USERNAME_HERE>",
         ),
     ),
 )
 
 req = operations.PutSourceRequest(
     source_put_request=shared.SourcePutRequest(
-        shared.SourcePokeapi(
-            pokemon_name='luxray',
-            source_type=shared.SourcePokeapiPokeapi.POKEAPI,
-        ),
-        name='Urbana',
+        configuration=shared.SourceAha(
+        api_key='string',
+        url='http://alienated-traveler.name',
     ),
-    source_id='Program',
+        name='string',
+    ),
+    source_id='string',
 )
 
 res = s.sources.put_source(req)
@@ -334,4 +358,8 @@ if res.source_response is not None:
 ### Response
 
 **[operations.PutSourceResponse](../../models/operations/putsourceresponse.md)**
+### Errors
 
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 4x-5xx          | */*             |

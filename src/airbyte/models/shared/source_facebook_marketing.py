@@ -9,7 +9,7 @@ from datetime import datetime
 from enum import Enum
 from typing import Final, List, Optional
 
-class SourceFacebookMarketingInsightConfigValidActionBreakdowns(str, Enum):
+class ValidActionBreakdowns(str, Enum):
     r"""An enumeration."""
     ACTION_CANVAS_COMPONENT_NAME = 'action_canvas_component_name'
     ACTION_CAROUSEL_CARD_ID = 'action_carousel_card_id'
@@ -22,13 +22,13 @@ class SourceFacebookMarketingInsightConfigValidActionBreakdowns(str, Enum):
     ACTION_VIDEO_SOUND = 'action_video_sound'
     ACTION_VIDEO_TYPE = 'action_video_type'
 
-class SourceFacebookMarketingInsightConfigActionReportTime(str, Enum):
+class ActionReportTime(str, Enum):
     r"""Determines the report time of action stats. For example, if a person saw the ad on Jan 1st but converted on Jan 2nd, when you query the API with action_report_time=impression, you see a conversion on Jan 1st. When you query the API with action_report_time=conversion, you see a conversion on Jan 2nd."""
     CONVERSION = 'conversion'
     IMPRESSION = 'impression'
     MIXED = 'mixed'
 
-class SourceFacebookMarketingInsightConfigValidBreakdowns(str, Enum):
+class ValidBreakdowns(str, Enum):
     r"""An enumeration."""
     AD_FORMAT_ASSET = 'ad_format_asset'
     AGE = 'age'
@@ -63,7 +63,7 @@ class SourceFacebookMarketingInsightConfigValidBreakdowns(str, Enum):
     TITLE_ASSET = 'title_asset'
     VIDEO_ASSET = 'video_asset'
 
-class SourceFacebookMarketingInsightConfigValidEnums(str, Enum):
+class SourceFacebookMarketingValidEnums(str, Enum):
     r"""An enumeration."""
     ACCOUNT_CURRENCY = 'account_currency'
     ACCOUNT_ID = 'account_id'
@@ -198,7 +198,7 @@ class SourceFacebookMarketingInsightConfigValidEnums(str, Enum):
     WEBSITE_PURCHASE_ROAS = 'website_purchase_roas'
     WISH_BID = 'wish_bid'
 
-class SourceFacebookMarketingInsightConfigLevel(str, Enum):
+class Level(str, Enum):
     r"""Chosen level for API"""
     AD = 'ad'
     ADSET = 'adset'
@@ -208,23 +208,23 @@ class SourceFacebookMarketingInsightConfigLevel(str, Enum):
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
-class SourceFacebookMarketingInsightConfig:
+class InsightConfig:
     r"""Config for custom insights"""
     name: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('name') }})
     r"""The name value of insight"""
-    action_breakdowns: Optional[List[SourceFacebookMarketingInsightConfigValidActionBreakdowns]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('action_breakdowns'), 'exclude': lambda f: f is None }})
+    action_breakdowns: Optional[List[ValidActionBreakdowns]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('action_breakdowns'), 'exclude': lambda f: f is None }})
     r"""A list of chosen action_breakdowns for action_breakdowns"""
-    action_report_time: Optional[SourceFacebookMarketingInsightConfigActionReportTime] = dataclasses.field(default=SourceFacebookMarketingInsightConfigActionReportTime.MIXED, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('action_report_time'), 'exclude': lambda f: f is None }})
+    action_report_time: Optional[ActionReportTime] = dataclasses.field(default=ActionReportTime.MIXED, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('action_report_time'), 'exclude': lambda f: f is None }})
     r"""Determines the report time of action stats. For example, if a person saw the ad on Jan 1st but converted on Jan 2nd, when you query the API with action_report_time=impression, you see a conversion on Jan 1st. When you query the API with action_report_time=conversion, you see a conversion on Jan 2nd."""
-    breakdowns: Optional[List[SourceFacebookMarketingInsightConfigValidBreakdowns]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('breakdowns'), 'exclude': lambda f: f is None }})
+    breakdowns: Optional[List[ValidBreakdowns]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('breakdowns'), 'exclude': lambda f: f is None }})
     r"""A list of chosen breakdowns for breakdowns"""
     end_date: Optional[datetime] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('end_date'), 'encoder': utils.datetimeisoformat(True), 'decoder': dateutil.parser.isoparse, 'exclude': lambda f: f is None }})
     r"""The date until which you'd like to replicate data for this stream, in the format YYYY-MM-DDT00:00:00Z. All data generated between the start date and this end date will be replicated. Not setting this option will result in always syncing the latest data."""
-    fields_: Optional[List[SourceFacebookMarketingInsightConfigValidEnums]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('fields'), 'exclude': lambda f: f is None }})
+    fields: Optional[List[SourceFacebookMarketingValidEnums]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('fields'), 'exclude': lambda f: f is None }})
     r"""A list of chosen fields for fields parameter"""
     insights_lookback_window: Optional[int] = dataclasses.field(default=28, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('insights_lookback_window'), 'exclude': lambda f: f is None }})
     r"""The attribution window"""
-    level: Optional[SourceFacebookMarketingInsightConfigLevel] = dataclasses.field(default=SourceFacebookMarketingInsightConfigLevel.AD, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('level'), 'exclude': lambda f: f is None }})
+    level: Optional[Level] = dataclasses.field(default=Level.AD, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('level'), 'exclude': lambda f: f is None }})
     r"""Chosen level for API"""
     start_date: Optional[datetime] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('start_date'), 'encoder': utils.datetimeisoformat(True), 'decoder': dateutil.parser.isoparse, 'exclude': lambda f: f is None }})
     r"""The date from which you'd like to replicate data for this stream, in the format YYYY-MM-DDT00:00:00Z."""
@@ -240,13 +240,10 @@ class SourceFacebookMarketingFacebookMarketing(str, Enum):
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
 class SourceFacebookMarketing:
-    r"""The values required to configure the source."""
     access_token: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('access_token') }})
     r"""The value of the generated access token. From your App’s Dashboard, click on \\"Marketing API\\" then \\"Tools\\". Select permissions <b>ads_management, ads_read, read_insights, business_management</b>. Then click on \\"Get token\\". See the <a href=\\"https://docs.airbyte.com/integrations/sources/facebook-marketing\\">docs</a> for more information."""
     account_id: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('account_id') }})
-    r"""The Facebook Ad account ID to use when pulling data from the Facebook Marketing API. Open your Meta Ads Manager. The Ad account ID number is in the account dropdown menu or in your browser's address bar. See the <a href=\\"https://www.facebook.com/business/help/1492627900875762\\">docs</a> for more information."""
-    start_date: datetime = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('start_date'), 'encoder': utils.datetimeisoformat(False), 'decoder': dateutil.parser.isoparse }})
-    r"""The date from which you'd like to replicate data for all incremental streams, in the format YYYY-MM-DDT00:00:00Z. All data generated after this date will be replicated."""
+    r"""The Facebook Ad account ID to use when pulling data from the Facebook Marketing API. The Ad account ID number is in the account dropdown menu or in your browser's address bar of your <a href=\\"https://adsmanager.facebook.com/adsmanager/\\">Meta Ads Manager</a>. See the <a href=\\"https://www.facebook.com/business/help/1492627900875762\\">docs</a> for more information."""
     SOURCE_TYPE: Final[SourceFacebookMarketingFacebookMarketing] = dataclasses.field(default=SourceFacebookMarketingFacebookMarketing.FACEBOOK_MARKETING, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     action_breakdowns_allow_empty: Optional[bool] = dataclasses.field(default=True, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('action_breakdowns_allow_empty'), 'exclude': lambda f: f is None }})
     r"""Allows action_breakdowns to be an empty list"""
@@ -254,7 +251,7 @@ class SourceFacebookMarketing:
     r"""The Client Id for your OAuth app"""
     client_secret: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('client_secret'), 'exclude': lambda f: f is None }})
     r"""The Client Secret for your OAuth app"""
-    custom_insights: Optional[List[SourceFacebookMarketingInsightConfig]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('custom_insights'), 'exclude': lambda f: f is None }})
+    custom_insights: Optional[List[InsightConfig]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('custom_insights'), 'exclude': lambda f: f is None }})
     r"""A list which contains ad statistics entries, each entry must have a name and can contains fields, breakdowns or action_breakdowns. Click on \\"add\\" to fill this field."""
     end_date: Optional[datetime] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('end_date'), 'encoder': utils.datetimeisoformat(True), 'decoder': dateutil.parser.isoparse, 'exclude': lambda f: f is None }})
     r"""The date until which you'd like to replicate data for all incremental streams, in the format YYYY-MM-DDT00:00:00Z. All data generated between the start date and this end date will be replicated. Not setting this option will result in always syncing the latest data."""
@@ -264,9 +261,9 @@ class SourceFacebookMarketing:
     r"""Set to active if you want to include data from deleted Campaigns, Ads, and AdSets."""
     insights_lookback_window: Optional[int] = dataclasses.field(default=28, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('insights_lookback_window'), 'exclude': lambda f: f is None }})
     r"""The attribution window. Facebook freezes insight data 28 days after it was generated, which means that all data from the past 28 days may have changed since we last emitted it, so you can retrieve refreshed insights from the past by setting this parameter. If you set a custom lookback window value in Facebook account, please provide the same value here."""
-    max_batch_size: Optional[int] = dataclasses.field(default=50, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('max_batch_size'), 'exclude': lambda f: f is None }})
-    r"""Maximum batch size used when sending batch requests to Facebook API. Most users do not need to set this field unless they specifically need to tune the connector to address specific issues or use cases."""
     page_size: Optional[int] = dataclasses.field(default=100, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('page_size'), 'exclude': lambda f: f is None }})
     r"""Page size used when sending requests to Facebook API to specify number of records per page when response has pagination. Most users do not need to set this field unless they specifically need to tune the connector to address specific issues or use cases."""
+    start_date: Optional[datetime] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('start_date'), 'encoder': utils.datetimeisoformat(True), 'decoder': dateutil.parser.isoparse, 'exclude': lambda f: f is None }})
+    r"""The date from which you'd like to replicate data for all incremental streams, in the format YYYY-MM-DDT00:00:00Z. If not set then all data will be replicated for usual streams and only last 2 years for insight streams."""
     
 

@@ -5,45 +5,38 @@ import dataclasses
 from airbyte import utils
 from dataclasses_json import Undefined, dataclass_json
 from enum import Enum
-from typing import Final, Optional, Union
+from typing import Any, Final, List, Optional, Union
 
-class SourceAsanaAuthenticationMechanismAuthenticateWithPersonalAccessTokenCredentialsTitle(str, Enum):
+class SourceAsanaSchemasCredentialsTitle(str, Enum):
     r"""PAT Credentials"""
     PAT_CREDENTIALS = 'PAT Credentials'
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
-class SourceAsanaAuthenticationMechanismAuthenticateWithPersonalAccessToken:
-    r"""Choose how to authenticate to Github"""
+class AuthenticateWithPersonalAccessToken:
     personal_access_token: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('personal_access_token') }})
     r"""Asana Personal Access Token (generate yours <a href=\\"https://app.asana.com/0/developer-console\\">here</a>)."""
-    OPTION_TITLE: Final[Optional[SourceAsanaAuthenticationMechanismAuthenticateWithPersonalAccessTokenCredentialsTitle]] = dataclasses.field(default=SourceAsanaAuthenticationMechanismAuthenticateWithPersonalAccessTokenCredentialsTitle.PAT_CREDENTIALS, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('option_title'), 'exclude': lambda f: f is None }})
+    OPTION_TITLE: Final[Optional[SourceAsanaSchemasCredentialsTitle]] = dataclasses.field(default=SourceAsanaSchemasCredentialsTitle.PAT_CREDENTIALS, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('option_title'), 'exclude': lambda f: f is None }})
     r"""PAT Credentials"""
     
 
 
-class SourceAsanaAuthenticationMechanismAuthenticateViaAsanaOauthCredentialsTitle(str, Enum):
+class SourceAsanaCredentialsTitle(str, Enum):
     r"""OAuth Credentials"""
     O_AUTH_CREDENTIALS = 'OAuth Credentials'
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
-class SourceAsanaAuthenticationMechanismAuthenticateViaAsanaOauth:
-    r"""Choose how to authenticate to Github"""
+class AuthenticateViaAsanaOauth:
     client_id: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('client_id') }})
     client_secret: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('client_secret') }})
     refresh_token: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('refresh_token') }})
-    OPTION_TITLE: Final[Optional[SourceAsanaAuthenticationMechanismAuthenticateViaAsanaOauthCredentialsTitle]] = dataclasses.field(default=SourceAsanaAuthenticationMechanismAuthenticateViaAsanaOauthCredentialsTitle.O_AUTH_CREDENTIALS, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('option_title'), 'exclude': lambda f: f is None }})
+    OPTION_TITLE: Final[Optional[SourceAsanaCredentialsTitle]] = dataclasses.field(default=SourceAsanaCredentialsTitle.O_AUTH_CREDENTIALS, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('option_title'), 'exclude': lambda f: f is None }})
     r"""OAuth Credentials"""
     
 
-
-
-@dataclasses.dataclass
-class SourceAsanaAuthenticationMechanism:
-    pass
 
 class SourceAsanaAsana(str, Enum):
     ASANA = 'asana'
@@ -52,9 +45,12 @@ class SourceAsanaAsana(str, Enum):
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
 class SourceAsana:
-    r"""The values required to configure the source."""
-    credentials: Optional[Union[SourceAsanaAuthenticationMechanismAuthenticateViaAsanaOauth, SourceAsanaAuthenticationMechanismAuthenticateWithPersonalAccessToken]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credentials'), 'exclude': lambda f: f is None }})
+    credentials: Optional[Union[AuthenticateViaAsanaOauth, AuthenticateWithPersonalAccessToken]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credentials'), 'exclude': lambda f: f is None }})
     r"""Choose how to authenticate to Github"""
+    organization_export_ids: Optional[List[Any]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('organization_export_ids'), 'exclude': lambda f: f is None }})
+    r"""Globally unique identifiers for the organization exports"""
     SOURCE_TYPE: Final[Optional[SourceAsanaAsana]] = dataclasses.field(default=SourceAsanaAsana.ASANA, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType'), 'exclude': lambda f: f is None }})
+    test_mode: Optional[bool] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('test_mode'), 'exclude': lambda f: f is None }})
+    r"""This flag is used for testing purposes for certain streams that return a lot of data. This flag is not meant to be enabled for prod."""
     
 

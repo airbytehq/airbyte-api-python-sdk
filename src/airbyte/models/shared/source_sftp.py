@@ -7,57 +7,49 @@ from dataclasses_json import Undefined, dataclass_json
 from enum import Enum
 from typing import Final, Optional, Union
 
-class SourceSftpAuthenticationWildcardSSHKeyAuthenticationAuthMethod(str, Enum):
+class SourceSftpSchemasAuthMethod(str, Enum):
     r"""Connect through ssh key"""
     SSH_KEY_AUTH = 'SSH_KEY_AUTH'
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
-class SourceSftpAuthenticationWildcardSSHKeyAuthentication:
-    r"""The server authentication method"""
+class SourceSftpSSHKeyAuthentication:
     auth_ssh_key: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_ssh_key') }})
     r"""OS-level user account ssh key credentials in RSA PEM format ( created with ssh-keygen -t rsa -m PEM -f myuser_rsa )"""
-    AUTH_METHOD: Final[SourceSftpAuthenticationWildcardSSHKeyAuthenticationAuthMethod] = dataclasses.field(default=SourceSftpAuthenticationWildcardSSHKeyAuthenticationAuthMethod.SSH_KEY_AUTH, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_method') }})
+    AUTH_METHOD: Final[SourceSftpSchemasAuthMethod] = dataclasses.field(default=SourceSftpSchemasAuthMethod.SSH_KEY_AUTH, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_method') }})
     r"""Connect through ssh key"""
     
 
 
-class SourceSftpAuthenticationWildcardPasswordAuthenticationAuthMethod(str, Enum):
+class SourceSftpAuthMethod(str, Enum):
     r"""Connect through password authentication"""
     SSH_PASSWORD_AUTH = 'SSH_PASSWORD_AUTH'
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
-class SourceSftpAuthenticationWildcardPasswordAuthentication:
-    r"""The server authentication method"""
+class SourceSftpPasswordAuthentication:
     auth_user_password: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_user_password') }})
     r"""OS-level password for logging into the jump server host"""
-    AUTH_METHOD: Final[SourceSftpAuthenticationWildcardPasswordAuthenticationAuthMethod] = dataclasses.field(default=SourceSftpAuthenticationWildcardPasswordAuthenticationAuthMethod.SSH_PASSWORD_AUTH, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_method') }})
+    AUTH_METHOD: Final[SourceSftpAuthMethod] = dataclasses.field(default=SourceSftpAuthMethod.SSH_PASSWORD_AUTH, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_method') }})
     r"""Connect through password authentication"""
     
 
 
-
-@dataclasses.dataclass
-class SourceSftpAuthenticationWildcard:
-    pass
-
-class SourceSftpSftp(str, Enum):
+class Sftp(str, Enum):
     SFTP = 'sftp'
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
 class SourceSftp:
-    r"""The values required to configure the source."""
     host: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('host') }})
     r"""The server host address"""
     user: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('user') }})
     r"""The server user"""
-    SOURCE_TYPE: Final[SourceSftpSftp] = dataclasses.field(default=SourceSftpSftp.SFTP, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
-    credentials: Optional[Union[SourceSftpAuthenticationWildcardPasswordAuthentication, SourceSftpAuthenticationWildcardSSHKeyAuthentication]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credentials'), 'exclude': lambda f: f is None }})
+    SOURCE_TYPE: Final[Sftp] = dataclasses.field(default=Sftp.SFTP, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
+    credentials: Optional[Union[SourceSftpPasswordAuthentication, SourceSftpSSHKeyAuthentication]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credentials'), 'exclude': lambda f: f is None }})
     r"""The server authentication method"""
     file_pattern: Optional[str] = dataclasses.field(default='', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('file_pattern'), 'exclude': lambda f: f is None }})
     r"""The regular expression to specify files for sync in a chosen Folder Path"""

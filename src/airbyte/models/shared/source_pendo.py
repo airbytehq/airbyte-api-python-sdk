@@ -7,15 +7,14 @@ from dataclasses_json import Undefined, dataclass_json
 from enum import Enum
 from typing import Final
 
-class SourcePendoPendo(str, Enum):
+class Pendo(str, Enum):
     PENDO = 'pendo'
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
 class SourcePendo:
-    r"""The values required to configure the source."""
     api_key: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('api_key') }})
-    SOURCE_TYPE: Final[SourcePendoPendo] = dataclasses.field(default=SourcePendoPendo.PENDO, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
+    SOURCE_TYPE: Final[Pendo] = dataclasses.field(default=Pendo.PENDO, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     
 

@@ -12,6 +12,7 @@ class Workspaces:
         self.sdk_configuration = sdk_config
         
     
+    
     def create_or_update_workspace_o_auth_credentials(self, request: operations.CreateOrUpdateWorkspaceOAuthCredentialsRequest) -> operations.CreateOrUpdateWorkspaceOAuthCredentialsResponse:
         r"""Create OAuth override credentials for a workspace and source type.
         Create/update a set of OAuth credentials to override the Airbyte-provided OAuth credentials used for source/destination OAuth.
@@ -21,7 +22,7 @@ class Workspaces:
         
         url = utils.generate_url(operations.CreateOrUpdateWorkspaceOAuthCredentialsRequest, base_url, '/workspaces/{workspaceId}/oauthCredentials', request)
         headers = {}
-        req_content_type, data, form = utils.serialize_request_body(request, "workspace_o_auth_credentials_request", False, False, 'json')
+        req_content_type, data, form = utils.serialize_request_body(request, operations.CreateOrUpdateWorkspaceOAuthCredentialsRequest, "workspace_o_auth_credentials_request", False, False, 'json')
         if req_content_type not in ('multipart/form-data', 'multipart/mixed'):
             headers['content-type'] = req_content_type
         if data is None and form is None:
@@ -29,11 +30,14 @@ class Workspaces:
         headers['Accept'] = '*/*'
         headers['user-agent'] = self.sdk_configuration.user_agent
         
-        client = self.sdk_configuration.security_client
+        if callable(self.sdk_configuration.security):
+            client = utils.configure_security_client(self.sdk_configuration.client, self.sdk_configuration.security())
+        else:
+            client = utils.configure_security_client(self.sdk_configuration.client, self.sdk_configuration.security)
         
         http_res = client.request('PUT', url, data=data, files=form, headers=headers)
         content_type = http_res.headers.get('Content-Type')
-
+        
         res = operations.CreateOrUpdateWorkspaceOAuthCredentialsResponse(status_code=http_res.status_code, content_type=content_type, raw_response=http_res)
         
         if http_res.status_code == 200:
@@ -44,13 +48,14 @@ class Workspaces:
         return res
 
     
+    
     def create_workspace(self, request: shared.WorkspaceCreateRequest) -> operations.CreateWorkspaceResponse:
         r"""Create a workspace"""
         base_url = utils.template_url(*self.sdk_configuration.get_server_details())
         
         url = base_url + '/workspaces'
         headers = {}
-        req_content_type, data, form = utils.serialize_request_body(request, "request", False, False, 'json')
+        req_content_type, data, form = utils.serialize_request_body(request, shared.WorkspaceCreateRequest, "request", False, False, 'json')
         if req_content_type not in ('multipart/form-data', 'multipart/mixed'):
             headers['content-type'] = req_content_type
         if data is None and form is None:
@@ -58,11 +63,14 @@ class Workspaces:
         headers['Accept'] = 'application/json'
         headers['user-agent'] = self.sdk_configuration.user_agent
         
-        client = self.sdk_configuration.security_client
+        if callable(self.sdk_configuration.security):
+            client = utils.configure_security_client(self.sdk_configuration.client, self.sdk_configuration.security())
+        else:
+            client = utils.configure_security_client(self.sdk_configuration.client, self.sdk_configuration.security)
         
         http_res = client.request('POST', url, data=data, files=form, headers=headers)
         content_type = http_res.headers.get('Content-Type')
-
+        
         res = operations.CreateWorkspaceResponse(status_code=http_res.status_code, content_type=content_type, raw_response=http_res)
         
         if http_res.status_code == 200:
@@ -77,6 +85,7 @@ class Workspaces:
         return res
 
     
+    
     def delete_workspace(self, request: operations.DeleteWorkspaceRequest) -> operations.DeleteWorkspaceResponse:
         r"""Delete a Workspace"""
         base_url = utils.template_url(*self.sdk_configuration.get_server_details())
@@ -86,11 +95,14 @@ class Workspaces:
         headers['Accept'] = '*/*'
         headers['user-agent'] = self.sdk_configuration.user_agent
         
-        client = self.sdk_configuration.security_client
+        if callable(self.sdk_configuration.security):
+            client = utils.configure_security_client(self.sdk_configuration.client, self.sdk_configuration.security())
+        else:
+            client = utils.configure_security_client(self.sdk_configuration.client, self.sdk_configuration.security)
         
         http_res = client.request('DELETE', url, headers=headers)
         content_type = http_res.headers.get('Content-Type')
-
+        
         res = operations.DeleteWorkspaceResponse(status_code=http_res.status_code, content_type=content_type, raw_response=http_res)
         
         if http_res.status_code == 204:
@@ -101,6 +113,7 @@ class Workspaces:
         return res
 
     
+    
     def get_workspace(self, request: operations.GetWorkspaceRequest) -> operations.GetWorkspaceResponse:
         r"""Get Workspace details"""
         base_url = utils.template_url(*self.sdk_configuration.get_server_details())
@@ -110,11 +123,14 @@ class Workspaces:
         headers['Accept'] = 'application/json'
         headers['user-agent'] = self.sdk_configuration.user_agent
         
-        client = self.sdk_configuration.security_client
+        if callable(self.sdk_configuration.security):
+            client = utils.configure_security_client(self.sdk_configuration.client, self.sdk_configuration.security())
+        else:
+            client = utils.configure_security_client(self.sdk_configuration.client, self.sdk_configuration.security)
         
         http_res = client.request('GET', url, headers=headers)
         content_type = http_res.headers.get('Content-Type')
-
+        
         res = operations.GetWorkspaceResponse(status_code=http_res.status_code, content_type=content_type, raw_response=http_res)
         
         if http_res.status_code == 200:
@@ -129,6 +145,7 @@ class Workspaces:
         return res
 
     
+    
     def list_workspaces(self, request: operations.ListWorkspacesRequest) -> operations.ListWorkspacesResponse:
         r"""List workspaces"""
         base_url = utils.template_url(*self.sdk_configuration.get_server_details())
@@ -139,11 +156,14 @@ class Workspaces:
         headers['Accept'] = 'application/json'
         headers['user-agent'] = self.sdk_configuration.user_agent
         
-        client = self.sdk_configuration.security_client
+        if callable(self.sdk_configuration.security):
+            client = utils.configure_security_client(self.sdk_configuration.client, self.sdk_configuration.security())
+        else:
+            client = utils.configure_security_client(self.sdk_configuration.client, self.sdk_configuration.security)
         
         http_res = client.request('GET', url, params=query_params, headers=headers)
         content_type = http_res.headers.get('Content-Type')
-
+        
         res = operations.ListWorkspacesResponse(status_code=http_res.status_code, content_type=content_type, raw_response=http_res)
         
         if http_res.status_code == 200:
@@ -158,13 +178,14 @@ class Workspaces:
         return res
 
     
+    
     def update_workspace(self, request: operations.UpdateWorkspaceRequest) -> operations.UpdateWorkspaceResponse:
         r"""Update a workspace"""
         base_url = utils.template_url(*self.sdk_configuration.get_server_details())
         
         url = utils.generate_url(operations.UpdateWorkspaceRequest, base_url, '/workspaces/{workspaceId}', request)
         headers = {}
-        req_content_type, data, form = utils.serialize_request_body(request, "workspace_update_request", False, False, 'json')
+        req_content_type, data, form = utils.serialize_request_body(request, operations.UpdateWorkspaceRequest, "workspace_update_request", False, False, 'json')
         if req_content_type not in ('multipart/form-data', 'multipart/mixed'):
             headers['content-type'] = req_content_type
         if data is None and form is None:
@@ -172,11 +193,14 @@ class Workspaces:
         headers['Accept'] = 'application/json'
         headers['user-agent'] = self.sdk_configuration.user_agent
         
-        client = self.sdk_configuration.security_client
+        if callable(self.sdk_configuration.security):
+            client = utils.configure_security_client(self.sdk_configuration.client, self.sdk_configuration.security())
+        else:
+            client = utils.configure_security_client(self.sdk_configuration.client, self.sdk_configuration.security)
         
         http_res = client.request('PATCH', url, data=data, files=form, headers=headers)
         content_type = http_res.headers.get('Content-Type')
-
+        
         res = operations.UpdateWorkspaceResponse(status_code=http_res.status_code, content_type=content_type, raw_response=http_res)
         
         if http_res.status_code == 200:

@@ -1,17 +1,19 @@
 # SourceSftpAuthenticationWildcard
 
+The server authentication method
+
 
 ## Supported Types
 
-### SourceSftpAuthenticationWildcardPasswordAuthentication
+### SourceSftpPasswordAuthentication
 
 ```python
-sourceSftpAuthenticationWildcard: shared.SourceSftpAuthenticationWildcardPasswordAuthentication = /* values here */
+sourceSftpAuthenticationWildcard: shared.SourceSftpPasswordAuthentication = /* values here */
 ```
 
-### SourceSftpAuthenticationWildcardSSHKeyAuthentication
+### SourceSftpSSHKeyAuthentication
 
 ```python
-sourceSftpAuthenticationWildcard: shared.SourceSftpAuthenticationWildcardSSHKeyAuthentication = /* values here */
+sourceSftpAuthenticationWildcard: shared.SourceSftpSSHKeyAuthentication = /* values here */
 ```
 

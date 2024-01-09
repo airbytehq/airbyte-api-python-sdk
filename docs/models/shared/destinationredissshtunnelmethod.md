@@ -1,23 +1,25 @@
 # DestinationRedisSSHTunnelMethod
 
+Whether to initiate an SSH tunnel before connecting to the database, and if so, which kind of authentication to use.
+
 
 ## Supported Types
 
-### DestinationRedisSSHTunnelMethodNoTunnel
+### DestinationRedisNoTunnel
 
 ```python
-destinationRedisSSHTunnelMethod: shared.DestinationRedisSSHTunnelMethodNoTunnel = /* values here */
+destinationRedisSSHTunnelMethod: shared.DestinationRedisNoTunnel = /* values here */
 ```
 
-### DestinationRedisSSHTunnelMethodSSHKeyAuthentication
+### DestinationRedisSSHKeyAuthentication
 
 ```python
-destinationRedisSSHTunnelMethod: shared.DestinationRedisSSHTunnelMethodSSHKeyAuthentication = /* values here */
+destinationRedisSSHTunnelMethod: shared.DestinationRedisSSHKeyAuthentication = /* values here */
 ```
 
-### DestinationRedisSSHTunnelMethodPasswordAuthentication
+### DestinationRedisPasswordAuthentication
 
 ```python
-destinationRedisSSHTunnelMethod: shared.DestinationRedisSSHTunnelMethodPasswordAuthentication = /* values here */
+destinationRedisSSHTunnelMethod: shared.DestinationRedisPasswordAuthentication = /* values here */
 ```
 

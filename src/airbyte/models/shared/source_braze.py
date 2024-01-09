@@ -8,20 +8,19 @@ from datetime import date
 from enum import Enum
 from typing import Final
 
-class SourceBrazeBraze(str, Enum):
+class Braze(str, Enum):
     BRAZE = 'braze'
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
 class SourceBraze:
-    r"""The values required to configure the source."""
     api_key: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('api_key') }})
     r"""Braze REST API key"""
     start_date: date = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('start_date'), 'encoder': utils.dateisoformat(False), 'decoder': utils.datefromisoformat }})
     r"""Rows after this date will be synced"""
     url: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('url') }})
     r"""Braze REST API endpoint"""
-    SOURCE_TYPE: Final[SourceBrazeBraze] = dataclasses.field(default=SourceBrazeBraze.BRAZE, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
+    SOURCE_TYPE: Final[Braze] = dataclasses.field(default=Braze.BRAZE, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     
 

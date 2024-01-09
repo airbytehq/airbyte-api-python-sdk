@@ -1,17 +1,19 @@
 # SourceGoogleSheetsAuthentication
 
+Credentials for connecting to the Google Sheets API
+
 
 ## Supported Types
 
-### SourceGoogleSheetsAuthenticationAuthenticateViaGoogleOAuth
+### SourceGoogleSheetsAuthenticateViaGoogleOAuth
 
 ```python
-sourceGoogleSheetsAuthentication: shared.SourceGoogleSheetsAuthenticationAuthenticateViaGoogleOAuth = /* values here */
+sourceGoogleSheetsAuthentication: shared.SourceGoogleSheetsAuthenticateViaGoogleOAuth = /* values here */
 ```
 
-### SourceGoogleSheetsAuthenticationServiceAccountKeyAuthentication
+### SourceGoogleSheetsServiceAccountKeyAuthentication
 
 ```python
-sourceGoogleSheetsAuthentication: shared.SourceGoogleSheetsAuthenticationServiceAccountKeyAuthentication = /* values here */
+sourceGoogleSheetsAuthentication: shared.SourceGoogleSheetsServiceAccountKeyAuthentication = /* values here */
 ```
 

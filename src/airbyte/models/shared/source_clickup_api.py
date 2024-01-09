@@ -7,17 +7,16 @@ from dataclasses_json import Undefined, dataclass_json
 from enum import Enum
 from typing import Final, Optional
 
-class SourceClickupAPIClickupAPI(str, Enum):
+class ClickupAPI(str, Enum):
     CLICKUP_API = 'clickup-api'
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
 class SourceClickupAPI:
-    r"""The values required to configure the source."""
     api_token: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('api_token') }})
     r"""Every ClickUp API call required authentication. This field is your personal API token. See <a href=\\"https://clickup.com/api/developer-portal/authentication/#personal-token\\">here</a>."""
-    SOURCE_TYPE: Final[SourceClickupAPIClickupAPI] = dataclasses.field(default=SourceClickupAPIClickupAPI.CLICKUP_API, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
+    SOURCE_TYPE: Final[ClickupAPI] = dataclasses.field(default=ClickupAPI.CLICKUP_API, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     folder_id: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('folder_id'), 'exclude': lambda f: f is None }})
     r"""The ID of your folder in your space. Retrieve it from the `/space/{space_id}/folder` of the ClickUp API. See <a href=\\"https://clickup.com/api/clickupreference/operation/GetFolders/\\">here</a>."""
     include_closed_tasks: Optional[bool] = dataclasses.field(default=False, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('include_closed_tasks'), 'exclude': lambda f: f is None }})

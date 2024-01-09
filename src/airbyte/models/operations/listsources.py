@@ -3,7 +3,7 @@
 from __future__ import annotations
 import dataclasses
 import requests as requests_http
-from ..shared import sourcesresponse as shared_sourcesresponse
+from ...models.shared import sourcesresponse as shared_sourcesresponse
 from typing import List, Optional
 
 
@@ -25,10 +25,10 @@ class ListSourcesRequest:
 class ListSourcesResponse:
     content_type: str = dataclasses.field()
     r"""HTTP response content type for this operation"""
+    raw_response: requests_http.Response = dataclasses.field()
+    r"""Raw HTTP response; suitable for custom response parsing"""
     status_code: int = dataclasses.field()
     r"""HTTP response status code for this operation"""
-    raw_response: Optional[requests_http.Response] = dataclasses.field(default=None)
-    r"""Raw HTTP response; suitable for custom response parsing"""
     sources_response: Optional[shared_sourcesresponse.SourcesResponse] = dataclasses.field(default=None)
     r"""Successful operation"""
     

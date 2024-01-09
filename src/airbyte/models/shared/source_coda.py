@@ -7,16 +7,15 @@ from dataclasses_json import Undefined, dataclass_json
 from enum import Enum
 from typing import Final
 
-class SourceCodaCoda(str, Enum):
+class Coda(str, Enum):
     CODA = 'coda'
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
 class SourceCoda:
-    r"""The values required to configure the source."""
     auth_token: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_token') }})
     r"""Bearer token"""
-    SOURCE_TYPE: Final[SourceCodaCoda] = dataclasses.field(default=SourceCodaCoda.CODA, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
+    SOURCE_TYPE: Final[Coda] = dataclasses.field(default=Coda.CODA, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     
 

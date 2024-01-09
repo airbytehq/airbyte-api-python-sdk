@@ -9,42 +9,35 @@ from datetime import datetime
 from enum import Enum
 from typing import Final, List, Optional, Union
 
-class SourceSlackAuthenticationMechanismAPITokenOptionTitle(str, Enum):
+class SourceSlackSchemasOptionTitle(str, Enum):
     API_TOKEN_CREDENTIALS = 'API Token Credentials'
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
-class SourceSlackAuthenticationMechanismAPIToken:
-    r"""Choose how to authenticate into Slack"""
+class SourceSlackAPIToken:
     api_token: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('api_token') }})
     r"""A Slack bot token. See the <a href=\\"https://docs.airbyte.com/integrations/sources/slack\\">docs</a> for instructions on how to generate it."""
-    OPTION_TITLE: Final[SourceSlackAuthenticationMechanismAPITokenOptionTitle] = dataclasses.field(default=SourceSlackAuthenticationMechanismAPITokenOptionTitle.API_TOKEN_CREDENTIALS, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('option_title') }})
+    OPTION_TITLE: Final[SourceSlackSchemasOptionTitle] = dataclasses.field(default=SourceSlackSchemasOptionTitle.API_TOKEN_CREDENTIALS, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('option_title') }})
     
 
 
-class SourceSlackAuthenticationMechanismSignInViaSlackOAuthOptionTitle(str, Enum):
+class SourceSlackOptionTitle(str, Enum):
     DEFAULT_O_AUTH2_0_AUTHORIZATION = 'Default OAuth2.0 authorization'
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
-class SourceSlackAuthenticationMechanismSignInViaSlackOAuth:
-    r"""Choose how to authenticate into Slack"""
+class SignInViaSlackOAuth:
     access_token: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('access_token') }})
     r"""Slack access_token. See our <a href=\\"https://docs.airbyte.com/integrations/sources/slack\\">docs</a> if you need help generating the token."""
     client_id: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('client_id') }})
     r"""Slack client_id. See our <a href=\\"https://docs.airbyte.com/integrations/sources/slack\\">docs</a> if you need help finding this id."""
     client_secret: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('client_secret') }})
     r"""Slack client_secret. See our <a href=\\"https://docs.airbyte.com/integrations/sources/slack\\">docs</a> if you need help finding this secret."""
-    OPTION_TITLE: Final[SourceSlackAuthenticationMechanismSignInViaSlackOAuthOptionTitle] = dataclasses.field(default=SourceSlackAuthenticationMechanismSignInViaSlackOAuthOptionTitle.DEFAULT_O_AUTH2_0_AUTHORIZATION, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('option_title') }})
+    OPTION_TITLE: Final[SourceSlackOptionTitle] = dataclasses.field(default=SourceSlackOptionTitle.DEFAULT_O_AUTH2_0_AUTHORIZATION, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('option_title') }})
     
 
-
-
-@dataclasses.dataclass
-class SourceSlackAuthenticationMechanism:
-    pass
 
 class SourceSlackSlack(str, Enum):
     SLACK = 'slack'
@@ -53,13 +46,12 @@ class SourceSlackSlack(str, Enum):
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
 class SourceSlack:
-    r"""The values required to configure the source."""
     start_date: datetime = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('start_date'), 'encoder': utils.datetimeisoformat(False), 'decoder': dateutil.parser.isoparse }})
     r"""UTC date and time in the format 2017-01-25T00:00:00Z. Any data before this date will not be replicated."""
     SOURCE_TYPE: Final[SourceSlackSlack] = dataclasses.field(default=SourceSlackSlack.SLACK, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     channel_filter: Optional[List[str]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('channel_filter'), 'exclude': lambda f: f is None }})
     r"""A channel name list (without leading '#' char) which limit the channels from which you'd like to sync. Empty list means no filter."""
-    credentials: Optional[Union[SourceSlackAuthenticationMechanismSignInViaSlackOAuth, SourceSlackAuthenticationMechanismAPIToken]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credentials'), 'exclude': lambda f: f is None }})
+    credentials: Optional[Union[SignInViaSlackOAuth, SourceSlackAPIToken]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credentials'), 'exclude': lambda f: f is None }})
     r"""Choose how to authenticate into Slack"""
     join_channels: Optional[bool] = dataclasses.field(default=True, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('join_channels'), 'exclude': lambda f: f is None }})
     r"""Whether to join all channels or to sync data only from channels the bot is already in.  If false, you'll need to manually add the bot to all the channels from which you'd like to sync messages."""

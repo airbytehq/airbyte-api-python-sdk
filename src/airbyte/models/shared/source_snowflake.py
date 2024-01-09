@@ -7,44 +7,39 @@ from dataclasses_json import Undefined, dataclass_json
 from enum import Enum
 from typing import Final, Optional, Union
 
-class SourceSnowflakeAuthorizationMethodUsernameAndPasswordAuthType(str, Enum):
+class SourceSnowflakeSchemasAuthType(str, Enum):
     USERNAME_PASSWORD = 'username/password'
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
-class SourceSnowflakeAuthorizationMethodUsernameAndPassword:
+class SourceSnowflakeUsernameAndPassword:
     password: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('password') }})
     r"""The password associated with the username."""
     username: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('username') }})
     r"""The username you created to allow Airbyte to access the database."""
-    AUTH_TYPE: Final[SourceSnowflakeAuthorizationMethodUsernameAndPasswordAuthType] = dataclasses.field(default=SourceSnowflakeAuthorizationMethodUsernameAndPasswordAuthType.USERNAME_PASSWORD, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_type') }})
+    AUTH_TYPE: Final[SourceSnowflakeSchemasAuthType] = dataclasses.field(default=SourceSnowflakeSchemasAuthType.USERNAME_PASSWORD, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_type') }})
     
 
 
-class SourceSnowflakeAuthorizationMethodOAuth20AuthType(str, Enum):
+class SourceSnowflakeAuthType(str, Enum):
     O_AUTH = 'OAuth'
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
-class SourceSnowflakeAuthorizationMethodOAuth20:
+class SourceSnowflakeOAuth20:
     client_id: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('client_id') }})
     r"""The Client ID of your Snowflake developer application."""
     client_secret: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('client_secret') }})
     r"""The Client Secret of your Snowflake developer application."""
-    AUTH_TYPE: Final[SourceSnowflakeAuthorizationMethodOAuth20AuthType] = dataclasses.field(default=SourceSnowflakeAuthorizationMethodOAuth20AuthType.O_AUTH, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_type') }})
+    AUTH_TYPE: Final[SourceSnowflakeAuthType] = dataclasses.field(default=SourceSnowflakeAuthType.O_AUTH, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_type') }})
     access_token: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('access_token'), 'exclude': lambda f: f is None }})
     r"""Access Token for making authenticated requests."""
     refresh_token: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('refresh_token'), 'exclude': lambda f: f is None }})
     r"""Refresh Token for making authenticated requests."""
     
 
-
-
-@dataclasses.dataclass
-class SourceSnowflakeAuthorizationMethod:
-    pass
 
 class SourceSnowflakeSnowflake(str, Enum):
     SNOWFLAKE = 'snowflake'
@@ -53,7 +48,6 @@ class SourceSnowflakeSnowflake(str, Enum):
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
 class SourceSnowflake:
-    r"""The values required to configure the source."""
     database: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('database') }})
     r"""The database you created for Airbyte to access data."""
     host: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('host') }})
@@ -63,7 +57,7 @@ class SourceSnowflake:
     warehouse: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('warehouse') }})
     r"""The warehouse you created for Airbyte to access data."""
     SOURCE_TYPE: Final[SourceSnowflakeSnowflake] = dataclasses.field(default=SourceSnowflakeSnowflake.SNOWFLAKE, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
-    credentials: Optional[Union[SourceSnowflakeAuthorizationMethodOAuth20, SourceSnowflakeAuthorizationMethodUsernameAndPassword]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credentials'), 'exclude': lambda f: f is None }})
+    credentials: Optional[Union[SourceSnowflakeOAuth20, SourceSnowflakeUsernameAndPassword]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credentials'), 'exclude': lambda f: f is None }})
     jdbc_url_params: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('jdbc_url_params'), 'exclude': lambda f: f is None }})
     r"""Additional properties to pass to the JDBC URL string when connecting to the database formatted as 'key=value' pairs separated by the symbol '&'. (example: key1=value1&key2=value2&key3=value3)."""
     schema: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('schema'), 'exclude': lambda f: f is None }})

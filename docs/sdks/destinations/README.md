@@ -23,27 +23,23 @@ from airbyte.models import shared
 s = airbyte.Airbyte(
     security=shared.Security(
         basic_auth=shared.SchemeBasicAuth(
-            password="",
-            username="",
+            password="<YOUR_PASSWORD_HERE>",
+            username="<YOUR_USERNAME_HERE>",
         ),
     ),
 )
 
 req = shared.DestinationCreateRequest(
-    shared.DestinationAwsDatalake(
-        aws_account_id='111111111111',
-        bucket_name='override',
-        shared.DestinationAwsDatalakeAuthenticationModeIAMRole(
-            role_arn='Maldives',
-        ),
-        destination_type=shared.DestinationAwsDatalakeAwsDatalake.AWS_DATALAKE,
-        shared.DestinationAwsDatalakeOutputFormatWildcardJSONLinesNewlineDelimitedJSON(),
-        lakeformation_database_default_tag_key='pii_level',
-        lakeformation_database_default_tag_values='private,public',
-        lakeformation_database_name='Pflugerville',
+    configuration=shared.DestinationGoogleSheets(
+    credentials=shared.AuthenticationViaGoogleOAuth(
+        client_id='string',
+        client_secret='string',
+        refresh_token='string',
     ),
-    name='Dodge',
-    workspace_id='6e8e62f6-208e-45ba-9019-ef3492fc0eef',
+    spreadsheet_id='https://docs.google.com/spreadsheets/d/1hLd9Qqti3UyLXZB2aFfUWDT7BG/edit',
+),
+    name='string',
+    workspace_id='8360860a-d46e-48e6-af62-08e5ba5019ef',
 )
 
 res = s.destinations.create_destination(req)
@@ -63,7 +59,11 @@ if res.destination_response is not None:
 ### Response
 
 **[operations.CreateDestinationResponse](../../models/operations/createdestinationresponse.md)**
+### Errors
 
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 4x-5xx          | */*             |
 
 ## delete_destination
 
@@ -78,14 +78,14 @@ from airbyte.models import operations, shared
 s = airbyte.Airbyte(
     security=shared.Security(
         basic_auth=shared.SchemeBasicAuth(
-            password="",
-            username="",
+            password="<YOUR_PASSWORD_HERE>",
+            username="<YOUR_USERNAME_HERE>",
         ),
     ),
 )
 
 req = operations.DeleteDestinationRequest(
-    destination_id='virtual',
+    destination_id='string',
 )
 
 res = s.destinations.delete_destination(req)
@@ -105,7 +105,11 @@ if res.status_code == 200:
 ### Response
 
 **[operations.DeleteDestinationResponse](../../models/operations/deletedestinationresponse.md)**
+### Errors
 
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 4x-5xx          | */*             |
 
 ## get_destination
 
@@ -120,14 +124,14 @@ from airbyte.models import operations, shared
 s = airbyte.Airbyte(
     security=shared.Security(
         basic_auth=shared.SchemeBasicAuth(
-            password="",
-            username="",
+            password="<YOUR_PASSWORD_HERE>",
+            username="<YOUR_USERNAME_HERE>",
         ),
     ),
 )
 
 req = operations.GetDestinationRequest(
-    destination_id='alarm',
+    destination_id='string',
 )
 
 res = s.destinations.get_destination(req)
@@ -147,7 +151,11 @@ if res.destination_response is not None:
 ### Response
 
 **[operations.GetDestinationResponse](../../models/operations/getdestinationresponse.md)**
+### Errors
 
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 4x-5xx          | */*             |
 
 ## list_destinations
 
@@ -162,8 +170,8 @@ from airbyte.models import operations, shared
 s = airbyte.Airbyte(
     security=shared.Security(
         basic_auth=shared.SchemeBasicAuth(
-            password="",
-            username="",
+            password="<YOUR_PASSWORD_HERE>",
+            username="<YOUR_USERNAME_HERE>",
         ),
     ),
 )
@@ -191,7 +199,11 @@ if res.destinations_response is not None:
 ### Response
 
 **[operations.ListDestinationsResponse](../../models/operations/listdestinationsresponse.md)**
+### Errors
 
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 4x-5xx          | */*             |
 
 ## patch_destination
 
@@ -206,29 +218,24 @@ from airbyte.models import operations, shared
 s = airbyte.Airbyte(
     security=shared.Security(
         basic_auth=shared.SchemeBasicAuth(
-            password="",
-            username="",
+            password="<YOUR_PASSWORD_HERE>",
+            username="<YOUR_USERNAME_HERE>",
         ),
     ),
 )
 
 req = operations.PatchDestinationRequest(
     destination_patch_request=shared.DestinationPatchRequest(
-        shared.DestinationAwsDatalake(
-            aws_account_id='111111111111',
-            bucket_name='Refined',
-            shared.DestinationAwsDatalakeAuthenticationModeIAMUser(
-                aws_access_key_id='silver',
-                aws_secret_access_key='Verde',
-            ),
-            destination_type=shared.DestinationAwsDatalakeAwsDatalake.AWS_DATALAKE,
-            shared.DestinationAwsDatalakeOutputFormatWildcardParquetColumnarStorage(),
-            lakeformation_database_default_tag_key='pii_level',
-            lakeformation_database_default_tag_values='private,public',
-            lakeformation_database_name='Latin',
+        configuration=shared.DestinationGoogleSheets(
+        credentials=shared.AuthenticationViaGoogleOAuth(
+            client_id='string',
+            client_secret='string',
+            refresh_token='string',
         ),
+        spreadsheet_id='https://docs.google.com/spreadsheets/d/1hLd9Qqti3UyLXZB2aFfUWDT7BG/edit',
     ),
-    destination_id='henry',
+    ),
+    destination_id='string',
 )
 
 res = s.destinations.patch_destination(req)
@@ -248,7 +255,11 @@ if res.destination_response is not None:
 ### Response
 
 **[operations.PatchDestinationResponse](../../models/operations/patchdestinationresponse.md)**
+### Errors
 
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 4x-5xx          | */*             |
 
 ## put_destination
 
@@ -263,30 +274,25 @@ from airbyte.models import operations, shared
 s = airbyte.Airbyte(
     security=shared.Security(
         basic_auth=shared.SchemeBasicAuth(
-            password="",
-            username="",
+            password="<YOUR_PASSWORD_HERE>",
+            username="<YOUR_USERNAME_HERE>",
         ),
     ),
 )
 
 req = operations.PutDestinationRequest(
     destination_put_request=shared.DestinationPutRequest(
-        shared.DestinationAwsDatalake(
-            aws_account_id='111111111111',
-            bucket_name='Heights',
-            shared.DestinationAwsDatalakeAuthenticationModeIAMUser(
-                aws_access_key_id='except',
-                aws_secret_access_key='navigate',
-            ),
-            destination_type=shared.DestinationAwsDatalakeAwsDatalake.AWS_DATALAKE,
-            shared.DestinationAwsDatalakeOutputFormatWildcardParquetColumnarStorage(),
-            lakeformation_database_default_tag_key='pii_level',
-            lakeformation_database_default_tag_values='private,public',
-            lakeformation_database_name='why',
+        configuration=shared.DestinationGoogleSheets(
+        credentials=shared.AuthenticationViaGoogleOAuth(
+            client_id='string',
+            client_secret='string',
+            refresh_token='string',
         ),
-        name='Missouri',
+        spreadsheet_id='https://docs.google.com/spreadsheets/d/1hLd9Qqti3UyLXZB2aFfUWDT7BG/edit',
     ),
-    destination_id='Market',
+        name='string',
+    ),
+    destination_id='string',
 )
 
 res = s.destinations.put_destination(req)
@@ -306,4 +312,8 @@ if res.destination_response is not None:
 ### Response
 
 **[operations.PutDestinationResponse](../../models/operations/putdestinationresponse.md)**
+### Errors
 
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 4x-5xx          | */*             |

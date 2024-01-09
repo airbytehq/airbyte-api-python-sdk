@@ -1,23 +1,25 @@
 # SourceMysqlSSHTunnelMethod
 
+Whether to initiate an SSH tunnel before connecting to the database, and if so, which kind of authentication to use.
+
 
 ## Supported Types
 
-### SourceMysqlSSHTunnelMethodNoTunnel
+### SourceMysqlNoTunnel
 
 ```python
-sourceMysqlSSHTunnelMethod: shared.SourceMysqlSSHTunnelMethodNoTunnel = /* values here */
+sourceMysqlSSHTunnelMethod: shared.SourceMysqlNoTunnel = /* values here */
 ```
 
-### SourceMysqlSSHTunnelMethodSSHKeyAuthentication
+### SourceMysqlSSHKeyAuthentication
 
 ```python
-sourceMysqlSSHTunnelMethod: shared.SourceMysqlSSHTunnelMethodSSHKeyAuthentication = /* values here */
+sourceMysqlSSHTunnelMethod: shared.SourceMysqlSSHKeyAuthentication = /* values here */
 ```
 
-### SourceMysqlSSHTunnelMethodPasswordAuthentication
+### SourceMysqlPasswordAuthentication
 
 ```python
-sourceMysqlSSHTunnelMethod: shared.SourceMysqlSSHTunnelMethodPasswordAuthentication = /* values here */
+sourceMysqlSSHTunnelMethod: shared.SourceMysqlPasswordAuthentication = /* values here */
 ```
 

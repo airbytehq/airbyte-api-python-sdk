@@ -1,0 +1,29 @@
+# SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayMetricFilterMetricsFilterFilter
+
+
+## Supported Types
+
+### SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayMetricFilterMetricsFilterStringFilter
+
+```python
+sourceGoogleAnalyticsDataAPISchemasCustomReportsArrayMetricFilterMetricsFilterFilter: shared.SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayMetricFilterMetricsFilterStringFilter = /* values here */
+```
+
+### SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayMetricFilterMetricsFilterInListFilter
+
+```python
+sourceGoogleAnalyticsDataAPISchemasCustomReportsArrayMetricFilterMetricsFilterFilter: shared.SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayMetricFilterMetricsFilterInListFilter = /* values here */
+```
+
+### SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayMetricFilterMetricsFilterNumericFilter
+
+```python
+sourceGoogleAnalyticsDataAPISchemasCustomReportsArrayMetricFilterMetricsFilterFilter: shared.SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayMetricFilterMetricsFilterNumericFilter = /* values here */
+```
+
+### SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayMetricFilterMetricsFilterBetweenFilter
+
+```python
+sourceGoogleAnalyticsDataAPISchemasCustomReportsArrayMetricFilterMetricsFilterFilter: shared.SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayMetricFilterMetricsFilterBetweenFilter = /* values here */
+```
+

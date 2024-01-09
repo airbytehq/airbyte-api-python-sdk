@@ -7,14 +7,13 @@ from dataclasses_json import Undefined, dataclass_json
 from enum import Enum
 from typing import Final, Optional
 
-class SourceXkcdXkcd(str, Enum):
+class Xkcd(str, Enum):
     XKCD = 'xkcd'
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
 class SourceXkcd:
-    r"""The values required to configure the source."""
-    SOURCE_TYPE: Final[Optional[SourceXkcdXkcd]] = dataclasses.field(default=SourceXkcdXkcd.XKCD, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType'), 'exclude': lambda f: f is None }})
+    SOURCE_TYPE: Final[Optional[Xkcd]] = dataclasses.field(default=Xkcd.XKCD, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType'), 'exclude': lambda f: f is None }})
     
 

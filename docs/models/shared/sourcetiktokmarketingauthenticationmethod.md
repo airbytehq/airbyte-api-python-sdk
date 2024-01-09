@@ -1,17 +1,19 @@
 # SourceTiktokMarketingAuthenticationMethod
 
+Authentication method
+
 
 ## Supported Types
 
-### SourceTiktokMarketingAuthenticationMethodOAuth20
+### SourceTiktokMarketingOAuth20
 
 ```python
-sourceTiktokMarketingAuthenticationMethod: shared.SourceTiktokMarketingAuthenticationMethodOAuth20 = /* values here */
+sourceTiktokMarketingAuthenticationMethod: shared.SourceTiktokMarketingOAuth20 = /* values here */
 ```
 
-### SourceTiktokMarketingAuthenticationMethodSandboxAccessToken
+### SandboxAccessToken
 
 ```python
-sourceTiktokMarketingAuthenticationMethod: shared.SourceTiktokMarketingAuthenticationMethodSandboxAccessToken = /* values here */
+sourceTiktokMarketingAuthenticationMethod: shared.SandboxAccessToken = /* values here */
 ```
 

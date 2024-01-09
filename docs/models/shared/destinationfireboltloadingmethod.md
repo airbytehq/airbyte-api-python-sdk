@@ -1,17 +1,19 @@
 # DestinationFireboltLoadingMethod
 
+Loading method used to select the way data will be uploaded to Firebolt
+
 
 ## Supported Types
 
-### DestinationFireboltLoadingMethodSQLInserts
+### SQLInserts
 
 ```python
-destinationFireboltLoadingMethod: shared.DestinationFireboltLoadingMethodSQLInserts = /* values here */
+destinationFireboltLoadingMethod: shared.SQLInserts = /* values here */
 ```
 
-### DestinationFireboltLoadingMethodExternalTableViaS3
+### ExternalTableViaS3
 
 ```python
-destinationFireboltLoadingMethod: shared.DestinationFireboltLoadingMethodExternalTableViaS3 = /* values here */
+destinationFireboltLoadingMethod: shared.ExternalTableViaS3 = /* values here */
 ```
 

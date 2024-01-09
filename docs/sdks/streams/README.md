@@ -18,15 +18,15 @@ from airbyte.models import operations, shared
 s = airbyte.Airbyte(
     security=shared.Security(
         basic_auth=shared.SchemeBasicAuth(
-            password="",
-            username="",
+            password="<YOUR_PASSWORD_HERE>",
+            username="<YOUR_USERNAME_HERE>",
         ),
     ),
 )
 
 req = operations.GetStreamPropertiesRequest(
-    destination_id='East',
-    source_id='seldom',
+    destination_id='string',
+    source_id='string',
 )
 
 res = s.streams.get_stream_properties(req)
@@ -46,4 +46,8 @@ if res.stream_properties_response is not None:
 ### Response
 
 **[operations.GetStreamPropertiesResponse](../../models/operations/getstreampropertiesresponse.md)**
+### Errors
 
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 4x-5xx          | */*             |

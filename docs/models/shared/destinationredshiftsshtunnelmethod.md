@@ -1,23 +1,25 @@
 # DestinationRedshiftSSHTunnelMethod
 
+Whether to initiate an SSH tunnel before connecting to the database, and if so, which kind of authentication to use.
+
 
 ## Supported Types
 
-### DestinationRedshiftSSHTunnelMethodNoTunnel
+### DestinationRedshiftNoTunnel
 
 ```python
-destinationRedshiftSSHTunnelMethod: shared.DestinationRedshiftSSHTunnelMethodNoTunnel = /* values here */
+destinationRedshiftSSHTunnelMethod: shared.DestinationRedshiftNoTunnel = /* values here */
 ```
 
-### DestinationRedshiftSSHTunnelMethodSSHKeyAuthentication
+### DestinationRedshiftSSHKeyAuthentication
 
 ```python
-destinationRedshiftSSHTunnelMethod: shared.DestinationRedshiftSSHTunnelMethodSSHKeyAuthentication = /* values here */
+destinationRedshiftSSHTunnelMethod: shared.DestinationRedshiftSSHKeyAuthentication = /* values here */
 ```
 
-### DestinationRedshiftSSHTunnelMethodPasswordAuthentication
+### DestinationRedshiftPasswordAuthentication
 
 ```python
-destinationRedshiftSSHTunnelMethod: shared.DestinationRedshiftSSHTunnelMethodPasswordAuthentication = /* values here */
+destinationRedshiftSSHTunnelMethod: shared.DestinationRedshiftPasswordAuthentication = /* values here */
 ```
 

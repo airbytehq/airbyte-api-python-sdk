@@ -19,7 +19,6 @@ class SourceStravaStrava(str, Enum):
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
 class SourceStrava:
-    r"""The values required to configure the source."""
     athlete_id: int = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('athlete_id') }})
     r"""The Athlete ID of your Strava developer application."""
     client_id: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('client_id') }})

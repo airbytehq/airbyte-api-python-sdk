@@ -1,17 +1,19 @@
 # SourceSquareAuthentication
 
+Choose how to authenticate to Square.
+
 
 ## Supported Types
 
-### SourceSquareAuthenticationOauthAuthentication
+### OauthAuthentication
 
 ```python
-sourceSquareAuthentication: shared.SourceSquareAuthenticationOauthAuthentication = /* values here */
+sourceSquareAuthentication: shared.OauthAuthentication = /* values here */
 ```
 
-### SourceSquareAuthenticationAPIKey
+### SourceSquareAPIKey
 
 ```python
-sourceSquareAuthentication: shared.SourceSquareAuthenticationAPIKey = /* values here */
+sourceSquareAuthentication: shared.SourceSquareAPIKey = /* values here */
 ```
 

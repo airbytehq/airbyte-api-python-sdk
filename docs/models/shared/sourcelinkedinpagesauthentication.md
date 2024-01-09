@@ -3,15 +3,15 @@
 
 ## Supported Types
 
-### SourceLinkedinPagesAuthenticationOAuth20
+### SourceLinkedinPagesOAuth20
 
 ```python
-sourceLinkedinPagesAuthentication: shared.SourceLinkedinPagesAuthenticationOAuth20 = /* values here */
+sourceLinkedinPagesAuthentication: shared.SourceLinkedinPagesOAuth20 = /* values here */
 ```
 
-### SourceLinkedinPagesAuthenticationAccessToken
+### SourceLinkedinPagesAccessToken
 
 ```python
-sourceLinkedinPagesAuthentication: shared.SourceLinkedinPagesAuthenticationAccessToken = /* values here */
+sourceLinkedinPagesAuthentication: shared.SourceLinkedinPagesAccessToken = /* values here */
 ```
 

@@ -1,23 +1,25 @@
 # SourceAlloydbSSHTunnelMethod
 
+Whether to initiate an SSH tunnel before connecting to the database, and if so, which kind of authentication to use.
+
 
 ## Supported Types
 
-### SourceAlloydbSSHTunnelMethodNoTunnel
+### SourceAlloydbNoTunnel
 
 ```python
-sourceAlloydbSSHTunnelMethod: shared.SourceAlloydbSSHTunnelMethodNoTunnel = /* values here */
+sourceAlloydbSSHTunnelMethod: shared.SourceAlloydbNoTunnel = /* values here */
 ```
 
-### SourceAlloydbSSHTunnelMethodSSHKeyAuthentication
+### SourceAlloydbSSHKeyAuthentication
 
 ```python
-sourceAlloydbSSHTunnelMethod: shared.SourceAlloydbSSHTunnelMethodSSHKeyAuthentication = /* values here */
+sourceAlloydbSSHTunnelMethod: shared.SourceAlloydbSSHKeyAuthentication = /* values here */
 ```
 
-### SourceAlloydbSSHTunnelMethodPasswordAuthentication
+### SourceAlloydbPasswordAuthentication
 
 ```python
-sourceAlloydbSSHTunnelMethod: shared.SourceAlloydbSSHTunnelMethodPasswordAuthentication = /* values here */
+sourceAlloydbSSHTunnelMethod: shared.SourceAlloydbPasswordAuthentication = /* values here */
 ```
 

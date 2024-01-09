@@ -2,8 +2,8 @@
 
 from __future__ import annotations
 import dataclasses
-from ..shared import actortypeenum as shared_actortypeenum
-from ..shared import oauthactornames as shared_oauthactornames
+from .actortypeenum import ActorTypeEnum
+from .oauthactornames import OAuthActorNames
 from airbyte import utils
 from dataclasses_json import Undefined, dataclass_json
 from typing import Any
@@ -13,10 +13,10 @@ from typing import Any
 @dataclasses.dataclass
 class WorkspaceOAuthCredentialsRequest:
     r"""POST body for creating/updating workspace level OAuth credentials"""
-    actor_type: shared_actortypeenum.ActorTypeEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('actorType') }})
+    actor_type: ActorTypeEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('actorType') }})
     r"""Whether you're setting this override for a source or destination"""
     configuration: Any = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('configuration') }})
     r"""The values required to configure the source."""
-    name: shared_oauthactornames.OAuthActorNames = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('name') }})
+    name: OAuthActorNames = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('name') }})
     
 

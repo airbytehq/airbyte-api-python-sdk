@@ -1,0 +1,11 @@
+# NotExpression
+
+The FilterExpression is NOT of notExpression.
+
+
+## Fields
+
+| Field                                                                                                                                  | Type                                                                                                                                   | Required                                                                                                                               | Description                                                                                                                            |
+| -------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------- |
+| `expression`                                                                                                                           | [Optional[shared.SourceGoogleAnalyticsDataAPISchemasExpression]](../../models/shared/sourcegoogleanalyticsdataapischemasexpression.md) | :heavy_minus_sign:                                                                                                                     | N/A                                                                                                                                    |
+| `filter_type`                                                                                                                          | [Optional[shared.SourceGoogleAnalyticsDataAPISchemasFilterType]](../../models/shared/sourcegoogleanalyticsdataapischemasfiltertype.md) | :heavy_minus_sign:                                                                                                                     | N/A                                                                                                                                    |

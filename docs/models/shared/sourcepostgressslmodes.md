@@ -1,41 +1,44 @@
 # SourcePostgresSSLModes
 
+SSL connection modes. 
+  Read more <a href="https://jdbc.postgresql.org/documentation/head/ssl-client.html"> in the docs</a>.
+
 
 ## Supported Types
 
-### SourcePostgresSSLModesDisable
+### SourcePostgresDisable
 
 ```python
-sourcePostgresSSLModes: shared.SourcePostgresSSLModesDisable = /* values here */
+sourcePostgresSSLModes: shared.SourcePostgresDisable = /* values here */
 ```
 
-### SourcePostgresSSLModesAllow
+### SourcePostgresAllow
 
 ```python
-sourcePostgresSSLModes: shared.SourcePostgresSSLModesAllow = /* values here */
+sourcePostgresSSLModes: shared.SourcePostgresAllow = /* values here */
 ```
 
-### SourcePostgresSSLModesPrefer
+### SourcePostgresPrefer
 
 ```python
-sourcePostgresSSLModes: shared.SourcePostgresSSLModesPrefer = /* values here */
+sourcePostgresSSLModes: shared.SourcePostgresPrefer = /* values here */
 ```
 
-### SourcePostgresSSLModesRequire
+### SourcePostgresRequire
 
 ```python
-sourcePostgresSSLModes: shared.SourcePostgresSSLModesRequire = /* values here */
+sourcePostgresSSLModes: shared.SourcePostgresRequire = /* values here */
 ```
 
-### SourcePostgresSSLModesVerifyCa
+### SourcePostgresVerifyCa
 
 ```python
-sourcePostgresSSLModes: shared.SourcePostgresSSLModesVerifyCa = /* values here */
+sourcePostgresSSLModes: shared.SourcePostgresVerifyCa = /* values here */
 ```
 
-### SourcePostgresSSLModesVerifyFull
+### SourcePostgresVerifyFull
 
 ```python
-sourcePostgresSSLModes: shared.SourcePostgresSSLModesVerifyFull = /* values here */
+sourcePostgresSSLModes: shared.SourcePostgresVerifyFull = /* values here */
 ```
 

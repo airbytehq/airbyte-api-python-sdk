@@ -1,23 +1,37 @@
 # DestinationPineconeEmbedding
 
+Embedding configuration
+
 
 ## Supported Types
 
-### DestinationPineconeEmbeddingOpenAI
+### DestinationPineconeOpenAI
 
 ```python
-destinationPineconeEmbedding: shared.DestinationPineconeEmbeddingOpenAI = /* values here */
+destinationPineconeEmbedding: shared.DestinationPineconeOpenAI = /* values here */
 ```
 
-### DestinationPineconeEmbeddingCohere
+### DestinationPineconeCohere
 
 ```python
-destinationPineconeEmbedding: shared.DestinationPineconeEmbeddingCohere = /* values here */
+destinationPineconeEmbedding: shared.DestinationPineconeCohere = /* values here */
 ```
 
-### DestinationPineconeEmbeddingFake
+### DestinationPineconeFake
 
 ```python
-destinationPineconeEmbedding: shared.DestinationPineconeEmbeddingFake = /* values here */
+destinationPineconeEmbedding: shared.DestinationPineconeFake = /* values here */
+```
+
+### DestinationPineconeAzureOpenAI
+
+```python
+destinationPineconeEmbedding: shared.DestinationPineconeAzureOpenAI = /* values here */
+```
+
+### DestinationPineconeOpenAICompatible
+
+```python
+destinationPineconeEmbedding: shared.DestinationPineconeOpenAICompatible = /* values here */
 ```
 

@@ -12,13 +12,14 @@ class Connections:
         self.sdk_configuration = sdk_config
         
     
+    
     def create_connection(self, request: shared.ConnectionCreateRequest) -> operations.CreateConnectionResponse:
         r"""Create a connection"""
         base_url = utils.template_url(*self.sdk_configuration.get_server_details())
         
         url = base_url + '/connections'
         headers = {}
-        req_content_type, data, form = utils.serialize_request_body(request, "request", False, False, 'json')
+        req_content_type, data, form = utils.serialize_request_body(request, shared.ConnectionCreateRequest, "request", False, False, 'json')
         if req_content_type not in ('multipart/form-data', 'multipart/mixed'):
             headers['content-type'] = req_content_type
         if data is None and form is None:
@@ -26,11 +27,14 @@ class Connections:
         headers['Accept'] = 'application/json'
         headers['user-agent'] = self.sdk_configuration.user_agent
         
-        client = self.sdk_configuration.security_client
+        if callable(self.sdk_configuration.security):
+            client = utils.configure_security_client(self.sdk_configuration.client, self.sdk_configuration.security())
+        else:
+            client = utils.configure_security_client(self.sdk_configuration.client, self.sdk_configuration.security)
         
         http_res = client.request('POST', url, data=data, files=form, headers=headers)
         content_type = http_res.headers.get('Content-Type')
-
+        
         res = operations.CreateConnectionResponse(status_code=http_res.status_code, content_type=content_type, raw_response=http_res)
         
         if http_res.status_code == 200:
@@ -45,6 +49,7 @@ class Connections:
         return res
 
     
+    
     def delete_connection(self, request: operations.DeleteConnectionRequest) -> operations.DeleteConnectionResponse:
         r"""Delete a Connection"""
         base_url = utils.template_url(*self.sdk_configuration.get_server_details())
@@ -54,11 +59,14 @@ class Connections:
         headers['Accept'] = '*/*'
         headers['user-agent'] = self.sdk_configuration.user_agent
         
-        client = self.sdk_configuration.security_client
+        if callable(self.sdk_configuration.security):
+            client = utils.configure_security_client(self.sdk_configuration.client, self.sdk_configuration.security())
+        else:
+            client = utils.configure_security_client(self.sdk_configuration.client, self.sdk_configuration.security)
         
         http_res = client.request('DELETE', url, headers=headers)
         content_type = http_res.headers.get('Content-Type')
-
+        
         res = operations.DeleteConnectionResponse(status_code=http_res.status_code, content_type=content_type, raw_response=http_res)
         
         if http_res.status_code == 204:
@@ -69,6 +77,7 @@ class Connections:
         return res
 
     
+    
     def get_connection(self, request: operations.GetConnectionRequest) -> operations.GetConnectionResponse:
         r"""Get Connection details"""
         base_url = utils.template_url(*self.sdk_configuration.get_server_details())
@@ -78,11 +87,14 @@ class Connections:
         headers['Accept'] = 'application/json'
         headers['user-agent'] = self.sdk_configuration.user_agent
         
-        client = self.sdk_configuration.security_client
+        if callable(self.sdk_configuration.security):
+            client = utils.configure_security_client(self.sdk_configuration.client, self.sdk_configuration.security())
+        else:
+            client = utils.configure_security_client(self.sdk_configuration.client, self.sdk_configuration.security)
         
         http_res = client.request('GET', url, headers=headers)
         content_type = http_res.headers.get('Content-Type')
-
+        
         res = operations.GetConnectionResponse(status_code=http_res.status_code, content_type=content_type, raw_response=http_res)
         
         if http_res.status_code == 200:
@@ -97,6 +109,7 @@ class Connections:
         return res
 
     
+    
     def list_connections(self, request: operations.ListConnectionsRequest) -> operations.ListConnectionsResponse:
         r"""List connections"""
         base_url = utils.template_url(*self.sdk_configuration.get_server_details())
@@ -107,11 +120,14 @@ class Connections:
         headers['Accept'] = 'application/json'
         headers['user-agent'] = self.sdk_configuration.user_agent
         
-        client = self.sdk_configuration.security_client
+        if callable(self.sdk_configuration.security):
+            client = utils.configure_security_client(self.sdk_configuration.client, self.sdk_configuration.security())
+        else:
+            client = utils.configure_security_client(self.sdk_configuration.client, self.sdk_configuration.security)
         
         http_res = client.request('GET', url, params=query_params, headers=headers)
         content_type = http_res.headers.get('Content-Type')
-
+        
         res = operations.ListConnectionsResponse(status_code=http_res.status_code, content_type=content_type, raw_response=http_res)
         
         if http_res.status_code == 200:
@@ -126,13 +142,14 @@ class Connections:
         return res
 
     
+    
     def patch_connection(self, request: operations.PatchConnectionRequest) -> operations.PatchConnectionResponse:
         r"""Update Connection details"""
         base_url = utils.template_url(*self.sdk_configuration.get_server_details())
         
         url = utils.generate_url(operations.PatchConnectionRequest, base_url, '/connections/{connectionId}', request)
         headers = {}
-        req_content_type, data, form = utils.serialize_request_body(request, "connection_patch_request", False, False, 'json')
+        req_content_type, data, form = utils.serialize_request_body(request, operations.PatchConnectionRequest, "connection_patch_request", False, False, 'json')
         if req_content_type not in ('multipart/form-data', 'multipart/mixed'):
             headers['content-type'] = req_content_type
         if data is None and form is None:
@@ -140,11 +157,14 @@ class Connections:
         headers['Accept'] = 'application/json'
         headers['user-agent'] = self.sdk_configuration.user_agent
         
-        client = self.sdk_configuration.security_client
+        if callable(self.sdk_configuration.security):
+            client = utils.configure_security_client(self.sdk_configuration.client, self.sdk_configuration.security())
+        else:
+            client = utils.configure_security_client(self.sdk_configuration.client, self.sdk_configuration.security)
         
         http_res = client.request('PATCH', url, data=data, files=form, headers=headers)
         content_type = http_res.headers.get('Content-Type')
-
+        
         res = operations.PatchConnectionResponse(status_code=http_res.status_code, content_type=content_type, raw_response=http_res)
         
         if http_res.status_code == 200:

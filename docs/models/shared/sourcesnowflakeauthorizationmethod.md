@@ -3,15 +3,15 @@
 
 ## Supported Types
 
-### SourceSnowflakeAuthorizationMethodOAuth20
+### SourceSnowflakeOAuth20
 
 ```python
-sourceSnowflakeAuthorizationMethod: shared.SourceSnowflakeAuthorizationMethodOAuth20 = /* values here */
+sourceSnowflakeAuthorizationMethod: shared.SourceSnowflakeOAuth20 = /* values here */
 ```
 
-### SourceSnowflakeAuthorizationMethodUsernameAndPassword
+### SourceSnowflakeUsernameAndPassword
 
 ```python
-sourceSnowflakeAuthorizationMethod: shared.SourceSnowflakeAuthorizationMethodUsernameAndPassword = /* values here */
+sourceSnowflakeAuthorizationMethod: shared.SourceSnowflakeUsernameAndPassword = /* values here */
 ```
 

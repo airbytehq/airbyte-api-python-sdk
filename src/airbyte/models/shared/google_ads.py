@@ -23,7 +23,6 @@ class GoogleAdsCredentials:
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
 class GoogleAds:
-    r"""The values required to configure the source."""
     credentials: Optional[GoogleAdsCredentials] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credentials'), 'exclude': lambda f: f is None }})
     
 

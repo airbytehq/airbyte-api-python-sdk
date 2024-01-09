@@ -7,65 +7,52 @@ from dataclasses_json import Undefined, dataclass_json
 from enum import Enum
 from typing import Final, Optional, Union
 
-class DestinationS3GlueS3Glue(str, Enum):
+class S3Glue(str, Enum):
     S3_GLUE = 's3-glue'
 
-class DestinationS3GlueOutputFormatJSONLinesNewlineDelimitedJSONCompressionGZIPCompressionType(str, Enum):
+class DestinationS3GlueSchemasCompressionType(str, Enum):
     GZIP = 'GZIP'
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
-class DestinationS3GlueOutputFormatJSONLinesNewlineDelimitedJSONCompressionGZIP:
-    r"""Whether the output files should be compressed. If compression is selected, the output filename will have an extra extension (GZIP: \\".jsonl.gz\\")."""
-    compression_type: Optional[DestinationS3GlueOutputFormatJSONLinesNewlineDelimitedJSONCompressionGZIPCompressionType] = dataclasses.field(default=DestinationS3GlueOutputFormatJSONLinesNewlineDelimitedJSONCompressionGZIPCompressionType.GZIP, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('compression_type'), 'exclude': lambda f: f is None }})
+class DestinationS3GlueGZIP:
+    compression_type: Optional[DestinationS3GlueSchemasCompressionType] = dataclasses.field(default=DestinationS3GlueSchemasCompressionType.GZIP, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('compression_type'), 'exclude': lambda f: f is None }})
     
 
 
-class DestinationS3GlueOutputFormatJSONLinesNewlineDelimitedJSONCompressionNoCompressionCompressionType(str, Enum):
+class DestinationS3GlueCompressionType(str, Enum):
     NO_COMPRESSION = 'No Compression'
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
-class DestinationS3GlueOutputFormatJSONLinesNewlineDelimitedJSONCompressionNoCompression:
-    r"""Whether the output files should be compressed. If compression is selected, the output filename will have an extra extension (GZIP: \\".jsonl.gz\\")."""
-    compression_type: Optional[DestinationS3GlueOutputFormatJSONLinesNewlineDelimitedJSONCompressionNoCompressionCompressionType] = dataclasses.field(default=DestinationS3GlueOutputFormatJSONLinesNewlineDelimitedJSONCompressionNoCompressionCompressionType.NO_COMPRESSION, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('compression_type'), 'exclude': lambda f: f is None }})
+class DestinationS3GlueNoCompression:
+    compression_type: Optional[DestinationS3GlueCompressionType] = dataclasses.field(default=DestinationS3GlueCompressionType.NO_COMPRESSION, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('compression_type'), 'exclude': lambda f: f is None }})
     
 
 
-
-@dataclasses.dataclass
-class DestinationS3GlueOutputFormatJSONLinesNewlineDelimitedJSONCompression:
-    pass
-
-class DestinationS3GlueOutputFormatJSONLinesNewlineDelimitedJSONFlattening(str, Enum):
+class Flattening(str, Enum):
     r"""Whether the input json data should be normalized (flattened) in the output JSON Lines. Please refer to docs for details."""
     NO_FLATTENING = 'No flattening'
     ROOT_LEVEL_FLATTENING = 'Root level flattening'
 
-class DestinationS3GlueOutputFormatJSONLinesNewlineDelimitedJSONFormatType(str, Enum):
+class DestinationS3GlueFormatType(str, Enum):
     JSONL = 'JSONL'
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
-class DestinationS3GlueOutputFormatJSONLinesNewlineDelimitedJSON:
-    r"""Format of the data output. See <a href=\\"https://docs.airbyte.com/integrations/destinations/s3/#supported-output-schema\\">here</a> for more details"""
-    compression: Optional[Union[DestinationS3GlueOutputFormatJSONLinesNewlineDelimitedJSONCompressionNoCompression, DestinationS3GlueOutputFormatJSONLinesNewlineDelimitedJSONCompressionGZIP]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('compression'), 'exclude': lambda f: f is None }})
+class DestinationS3GlueJSONLinesNewlineDelimitedJSON:
+    compression: Optional[Union[DestinationS3GlueNoCompression, DestinationS3GlueGZIP]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('compression'), 'exclude': lambda f: f is None }})
     r"""Whether the output files should be compressed. If compression is selected, the output filename will have an extra extension (GZIP: \\".jsonl.gz\\")."""
-    flattening: Optional[DestinationS3GlueOutputFormatJSONLinesNewlineDelimitedJSONFlattening] = dataclasses.field(default=DestinationS3GlueOutputFormatJSONLinesNewlineDelimitedJSONFlattening.ROOT_LEVEL_FLATTENING, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('flattening'), 'exclude': lambda f: f is None }})
+    flattening: Optional[Flattening] = dataclasses.field(default=Flattening.ROOT_LEVEL_FLATTENING, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('flattening'), 'exclude': lambda f: f is None }})
     r"""Whether the input json data should be normalized (flattened) in the output JSON Lines. Please refer to docs for details."""
-    format_type: Optional[DestinationS3GlueOutputFormatJSONLinesNewlineDelimitedJSONFormatType] = dataclasses.field(default=DestinationS3GlueOutputFormatJSONLinesNewlineDelimitedJSONFormatType.JSONL, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('format_type'), 'exclude': lambda f: f is None }})
+    format_type: Optional[DestinationS3GlueFormatType] = dataclasses.field(default=DestinationS3GlueFormatType.JSONL, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('format_type'), 'exclude': lambda f: f is None }})
     
 
 
-
-@dataclasses.dataclass
-class DestinationS3GlueOutputFormat:
-    pass
-
-class DestinationS3GlueSerializationLibrary(str, Enum):
+class SerializationLibrary(str, Enum):
     r"""The library that your query engine will use for reading and writing data in your lake."""
     ORG_OPENX_DATA_JSONSERDE_JSON_SER_DE = 'org.openx.data.jsonserde.JsonSerDe'
     ORG_APACHE_HIVE_HCATALOG_DATA_JSON_SER_DE = 'org.apache.hive.hcatalog.data.JsonSerDe'
@@ -103,8 +90,7 @@ class DestinationS3GlueS3BucketRegion(str, Enum):
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
 class DestinationS3Glue:
-    r"""The values required to configure the destination."""
-    format: Union[DestinationS3GlueOutputFormatJSONLinesNewlineDelimitedJSON] = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('format') }})
+    format: Union[DestinationS3GlueJSONLinesNewlineDelimitedJSON] = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('format') }})
     r"""Format of the data output. See <a href=\\"https://docs.airbyte.com/integrations/destinations/s3/#supported-output-schema\\">here</a> for more details"""
     glue_database: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('glue_database') }})
     r"""Name of the glue database for creating the tables, leave blank if no integration"""
@@ -112,12 +98,12 @@ class DestinationS3Glue:
     r"""The name of the S3 bucket. Read more <a href=\\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/create-bucket-overview.html\\">here</a>."""
     s3_bucket_path: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('s3_bucket_path') }})
     r"""Directory under the S3 bucket where data will be written. Read more <a href=\\"https://docs.airbyte.com/integrations/destinations/s3#:~:text=to%20format%20the-,bucket%20path,-%3A\\">here</a>"""
-    DESTINATION_TYPE: Final[DestinationS3GlueS3Glue] = dataclasses.field(default=DestinationS3GlueS3Glue.S3_GLUE, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('destinationType') }})
+    DESTINATION_TYPE: Final[S3Glue] = dataclasses.field(default=S3Glue.S3_GLUE, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('destinationType') }})
     access_key_id: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('access_key_id'), 'exclude': lambda f: f is None }})
     r"""The access key ID to access the S3 bucket. Airbyte requires Read and Write permissions to the given bucket. Read more <a href=\\"https://docs.aws.amazon.com/general/latest/gr/aws-sec-cred-types.html#access-keys-and-secret-access-keys\\">here</a>."""
     file_name_pattern: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('file_name_pattern'), 'exclude': lambda f: f is None }})
     r"""The pattern allows you to set the file-name format for the S3 staging file(s)"""
-    glue_serialization_library: Optional[DestinationS3GlueSerializationLibrary] = dataclasses.field(default=DestinationS3GlueSerializationLibrary.ORG_OPENX_DATA_JSONSERDE_JSON_SER_DE, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('glue_serialization_library'), 'exclude': lambda f: f is None }})
+    glue_serialization_library: Optional[SerializationLibrary] = dataclasses.field(default=SerializationLibrary.ORG_OPENX_DATA_JSONSERDE_JSON_SER_DE, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('glue_serialization_library'), 'exclude': lambda f: f is None }})
     r"""The library that your query engine will use for reading and writing data in your lake."""
     s3_bucket_region: Optional[DestinationS3GlueS3BucketRegion] = dataclasses.field(default=DestinationS3GlueS3BucketRegion.UNKNOWN, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('s3_bucket_region'), 'exclude': lambda f: f is None }})
     r"""The region of the S3 bucket. See <a href=\\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-regions-availability-zones.html#concepts-available-regions\\">here</a> for all region codes."""

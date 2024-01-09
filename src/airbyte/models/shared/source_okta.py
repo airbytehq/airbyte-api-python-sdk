@@ -7,51 +7,45 @@ from dataclasses_json import Undefined, dataclass_json
 from enum import Enum
 from typing import Final, Optional, Union
 
-class SourceOktaAuthorizationMethodAPITokenAuthType(str, Enum):
+class SourceOktaSchemasAuthType(str, Enum):
     API_TOKEN = 'api_token'
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
-class SourceOktaAuthorizationMethodAPIToken:
+class SourceOktaAPIToken:
     api_token: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('api_token') }})
     r"""An Okta token. See the <a href=\\"https://docs.airbyte.com/integrations/sources/okta\\">docs</a> for instructions on how to generate it."""
-    AUTH_TYPE: Final[SourceOktaAuthorizationMethodAPITokenAuthType] = dataclasses.field(default=SourceOktaAuthorizationMethodAPITokenAuthType.API_TOKEN, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_type') }})
+    AUTH_TYPE: Final[SourceOktaSchemasAuthType] = dataclasses.field(default=SourceOktaSchemasAuthType.API_TOKEN, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_type') }})
     
 
 
-class SourceOktaAuthorizationMethodOAuth20AuthType(str, Enum):
+class SourceOktaAuthType(str, Enum):
     OAUTH2_0 = 'oauth2.0'
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
-class SourceOktaAuthorizationMethodOAuth20:
+class SourceOktaOAuth20:
     client_id: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('client_id') }})
     r"""The Client ID of your OAuth application."""
     client_secret: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('client_secret') }})
     r"""The Client Secret of your OAuth application."""
     refresh_token: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('refresh_token') }})
     r"""Refresh Token to obtain new Access Token, when it's expired."""
-    AUTH_TYPE: Final[SourceOktaAuthorizationMethodOAuth20AuthType] = dataclasses.field(default=SourceOktaAuthorizationMethodOAuth20AuthType.OAUTH2_0, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_type') }})
+    AUTH_TYPE: Final[SourceOktaAuthType] = dataclasses.field(default=SourceOktaAuthType.OAUTH2_0, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_type') }})
     
 
 
-
-@dataclasses.dataclass
-class SourceOktaAuthorizationMethod:
-    pass
-
-class SourceOktaOkta(str, Enum):
+class Okta(str, Enum):
     OKTA = 'okta'
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
 class SourceOkta:
-    r"""The values required to configure the source."""
-    SOURCE_TYPE: Final[SourceOktaOkta] = dataclasses.field(default=SourceOktaOkta.OKTA, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
-    credentials: Optional[Union[SourceOktaAuthorizationMethodOAuth20, SourceOktaAuthorizationMethodAPIToken]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credentials'), 'exclude': lambda f: f is None }})
+    SOURCE_TYPE: Final[Okta] = dataclasses.field(default=Okta.OKTA, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
+    credentials: Optional[Union[SourceOktaOAuth20, SourceOktaAPIToken]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credentials'), 'exclude': lambda f: f is None }})
     domain: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('domain'), 'exclude': lambda f: f is None }})
     r"""The Okta domain. See the <a href=\\"https://docs.airbyte.com/integrations/sources/okta\\">docs</a> for instructions on how to find it."""
     start_date: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('start_date'), 'exclude': lambda f: f is None }})

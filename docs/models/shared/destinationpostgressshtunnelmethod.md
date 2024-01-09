@@ -1,23 +1,25 @@
 # DestinationPostgresSSHTunnelMethod
 
+Whether to initiate an SSH tunnel before connecting to the database, and if so, which kind of authentication to use.
+
 
 ## Supported Types
 
-### DestinationPostgresSSHTunnelMethodNoTunnel
+### DestinationPostgresNoTunnel
 
 ```python
-destinationPostgresSSHTunnelMethod: shared.DestinationPostgresSSHTunnelMethodNoTunnel = /* values here */
+destinationPostgresSSHTunnelMethod: shared.DestinationPostgresNoTunnel = /* values here */
 ```
 
-### DestinationPostgresSSHTunnelMethodSSHKeyAuthentication
+### DestinationPostgresSSHKeyAuthentication
 
 ```python
-destinationPostgresSSHTunnelMethod: shared.DestinationPostgresSSHTunnelMethodSSHKeyAuthentication = /* values here */
+destinationPostgresSSHTunnelMethod: shared.DestinationPostgresSSHKeyAuthentication = /* values here */
 ```
 
-### DestinationPostgresSSHTunnelMethodPasswordAuthentication
+### DestinationPostgresPasswordAuthentication
 
 ```python
-destinationPostgresSSHTunnelMethod: shared.DestinationPostgresSSHTunnelMethodPasswordAuthentication = /* values here */
+destinationPostgresSSHTunnelMethod: shared.DestinationPostgresPasswordAuthentication = /* values here */
 ```
 

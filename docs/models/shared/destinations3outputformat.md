@@ -1,29 +1,31 @@
 # DestinationS3OutputFormat
 
+Format of the data output. See <a href="https://docs.airbyte.com/integrations/destinations/s3/#supported-output-schema">here</a> for more details
+
 
 ## Supported Types
 
-### DestinationS3OutputFormatAvroApacheAvro
+### DestinationS3AvroApacheAvro
 
 ```python
-destinationS3OutputFormat: shared.DestinationS3OutputFormatAvroApacheAvro = /* values here */
+destinationS3OutputFormat: shared.DestinationS3AvroApacheAvro = /* values here */
 ```
 
-### DestinationS3OutputFormatCSVCommaSeparatedValues
+### DestinationS3CSVCommaSeparatedValues
 
 ```python
-destinationS3OutputFormat: shared.DestinationS3OutputFormatCSVCommaSeparatedValues = /* values here */
+destinationS3OutputFormat: shared.DestinationS3CSVCommaSeparatedValues = /* values here */
 ```
 
-### DestinationS3OutputFormatJSONLinesNewlineDelimitedJSON
+### DestinationS3JSONLinesNewlineDelimitedJSON
 
 ```python
-destinationS3OutputFormat: shared.DestinationS3OutputFormatJSONLinesNewlineDelimitedJSON = /* values here */
+destinationS3OutputFormat: shared.DestinationS3JSONLinesNewlineDelimitedJSON = /* values here */
 ```
 
-### DestinationS3OutputFormatParquetColumnarStorage
+### DestinationS3ParquetColumnarStorage
 
 ```python
-destinationS3OutputFormat: shared.DestinationS3OutputFormatParquetColumnarStorage = /* values here */
+destinationS3OutputFormat: shared.DestinationS3ParquetColumnarStorage = /* values here */
 ```
 

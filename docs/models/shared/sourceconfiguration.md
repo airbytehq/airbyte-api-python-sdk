@@ -1,13 +1,9 @@
 # SourceConfiguration
 
+The values required to configure the source.
+
 
 ## Supported Types
-
-### SourcePokeapi
-
-```python
-sourceConfiguration: shared.SourcePokeapi = /* values here */
-```
 
 ### SourceAha
 
@@ -103,12 +99,6 @@ sourceConfiguration: shared.SourceAzureTable = /* values here */
 
 ```python
 sourceConfiguration: shared.SourceBambooHr = /* values here */
-```
-
-### SourceBigcommerce
-
-```python
-sourceConfiguration: shared.SourceBigcommerce = /* values here */
 ```
 
 ### SourceBigquery
@@ -246,7 +236,7 @@ sourceConfiguration: shared.SourceDynamodb = /* values here */
 ### SourceE2eTestCloud
 
 ```python
-sourceConfiguration: shared.SourceE2eTestCloud = /* values here */
+sourceConfiguration: Union[shared.ContinuousFeed] = /* values here */
 ```
 
 ### SourceEmailoctopus
@@ -285,10 +275,10 @@ sourceConfiguration: shared.SourceFaker = /* values here */
 sourceConfiguration: shared.SourceFauna = /* values here */
 ```
 
-### SourceFileSecure
+### SourceFile
 
 ```python
-sourceConfiguration: shared.SourceFileSecure = /* values here */
+sourceConfiguration: shared.SourceFile = /* values here */
 ```
 
 ### SourceFirebolt
@@ -369,16 +359,16 @@ sourceConfiguration: shared.SourceGoogleAds = /* values here */
 sourceConfiguration: shared.SourceGoogleAnalyticsDataAPI = /* values here */
 ```
 
-### SourceGoogleAnalyticsV4
-
-```python
-sourceConfiguration: shared.SourceGoogleAnalyticsV4 = /* values here */
-```
-
 ### SourceGoogleDirectory
 
 ```python
 sourceConfiguration: shared.SourceGoogleDirectory = /* values here */
+```
+
+### SourceGoogleDrive
+
+```python
+sourceConfiguration: shared.SourceGoogleDrive = /* values here */
 ```
 
 ### SourceGooglePagespeedInsights
@@ -603,16 +593,16 @@ sourceConfiguration: shared.SourceMixpanel = /* values here */
 sourceConfiguration: shared.SourceMonday = /* values here */
 ```
 
-### SourceMongodb
-
-```python
-sourceConfiguration: shared.SourceMongodb = /* values here */
-```
-
 ### SourceMongodbInternalPoc
 
 ```python
 sourceConfiguration: shared.SourceMongodbInternalPoc = /* values here */
+```
+
+### SourceMongodbV2
+
+```python
+sourceConfiguration: shared.SourceMongodbV2 = /* values here */
 ```
 
 ### SourceMssql
@@ -745,6 +735,12 @@ sourceConfiguration: shared.SourcePipedrive = /* values here */
 
 ```python
 sourceConfiguration: shared.SourcePocket = /* values here */
+```
+
+### SourcePokeapi
+
+```python
+sourceConfiguration: shared.SourcePokeapi = /* values here */
 ```
 
 ### SourcePolygonStockAPI
@@ -1113,12 +1109,6 @@ sourceConfiguration: shared.SourceWikipediaPageviews = /* values here */
 sourceConfiguration: shared.SourceWoocommerce = /* values here */
 ```
 
-### SourceXero
-
-```python
-sourceConfiguration: shared.SourceXero = /* values here */
-```
-
 ### SourceXkcd
 
 ```python
@@ -1137,12 +1127,6 @@ sourceConfiguration: shared.SourceYandexMetrica = /* values here */
 sourceConfiguration: shared.SourceYotpo = /* values here */
 ```
 
-### SourceYounium
-
-```python
-sourceConfiguration: shared.SourceYounium = /* values here */
-```
-
 ### SourceYoutubeAnalytics
 
 ```python
@@ -1153,6 +1137,12 @@ sourceConfiguration: shared.SourceYoutubeAnalytics = /* values here */
 
 ```python
 sourceConfiguration: shared.SourceZendeskChat = /* values here */
+```
+
+### SourceZendeskSell
+
+```python
+sourceConfiguration: shared.SourceZendeskSell = /* values here */
 ```
 
 ### SourceZendeskSunshine

@@ -3,15 +3,15 @@
 
 ## Supported Types
 
-### SourceOktaAuthorizationMethodOAuth20
+### SourceOktaOAuth20
 
 ```python
-sourceOktaAuthorizationMethod: shared.SourceOktaAuthorizationMethodOAuth20 = /* values here */
+sourceOktaAuthorizationMethod: shared.SourceOktaOAuth20 = /* values here */
 ```
 
-### SourceOktaAuthorizationMethodAPIToken
+### SourceOktaAPIToken
 
 ```python
-sourceOktaAuthorizationMethod: shared.SourceOktaAuthorizationMethodAPIToken = /* values here */
+sourceOktaAuthorizationMethod: shared.SourceOktaAPIToken = /* values here */
 ```
 

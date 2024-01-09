@@ -2,15 +2,8 @@
 
 from __future__ import annotations
 import dataclasses
+from .schemebasicauth import SchemeBasicAuth
 from typing import Optional
-
-
-@dataclasses.dataclass
-class SchemeBasicAuth:
-    password: str = dataclasses.field(metadata={'security': { 'field_name': 'password' }})
-    username: str = dataclasses.field(metadata={'security': { 'field_name': 'username' }})
-    
-
 
 
 @dataclasses.dataclass

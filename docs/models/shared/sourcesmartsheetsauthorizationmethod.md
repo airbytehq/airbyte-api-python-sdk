@@ -3,15 +3,15 @@
 
 ## Supported Types
 
-### SourceSmartsheetsAuthorizationMethodOAuth20
+### SourceSmartsheetsOAuth20
 
 ```python
-sourceSmartsheetsAuthorizationMethod: shared.SourceSmartsheetsAuthorizationMethodOAuth20 = /* values here */
+sourceSmartsheetsAuthorizationMethod: shared.SourceSmartsheetsOAuth20 = /* values here */
 ```
 
-### SourceSmartsheetsAuthorizationMethodAPIAccessToken
+### APIAccessToken
 
 ```python
-sourceSmartsheetsAuthorizationMethod: shared.SourceSmartsheetsAuthorizationMethodAPIAccessToken = /* values here */
+sourceSmartsheetsAuthorizationMethod: shared.APIAccessToken = /* values here */
 ```
 

@@ -8,14 +8,13 @@ from datetime import date
 from enum import Enum
 from typing import Final, Optional
 
-class SourcePolygonStockAPIPolygonStockAPI(str, Enum):
+class PolygonStockAPI(str, Enum):
     POLYGON_STOCK_API = 'polygon-stock-api'
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
 class SourcePolygonStockAPI:
-    r"""The values required to configure the source."""
     api_key: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('apiKey') }})
     r"""Your API ACCESS Key"""
     end_date: date = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('end_date'), 'encoder': utils.dateisoformat(False), 'decoder': utils.datefromisoformat }})
@@ -28,7 +27,7 @@ class SourcePolygonStockAPI:
     r"""The exchange symbol that this item is traded under."""
     timespan: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('timespan') }})
     r"""The size of the time window."""
-    SOURCE_TYPE: Final[SourcePolygonStockAPIPolygonStockAPI] = dataclasses.field(default=SourcePolygonStockAPIPolygonStockAPI.POLYGON_STOCK_API, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
+    SOURCE_TYPE: Final[PolygonStockAPI] = dataclasses.field(default=PolygonStockAPI.POLYGON_STOCK_API, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     adjusted: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('adjusted'), 'exclude': lambda f: f is None }})
     r"""Determines whether or not the results are adjusted for splits. By default, results are adjusted and set to true. Set this to false to get results that are NOT adjusted for splits."""
     limit: Optional[int] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('limit'), 'exclude': lambda f: f is None }})

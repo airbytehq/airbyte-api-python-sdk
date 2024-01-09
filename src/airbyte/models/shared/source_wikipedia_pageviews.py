@@ -7,14 +7,13 @@ from dataclasses_json import Undefined, dataclass_json
 from enum import Enum
 from typing import Final
 
-class SourceWikipediaPageviewsWikipediaPageviews(str, Enum):
+class WikipediaPageviews(str, Enum):
     WIKIPEDIA_PAGEVIEWS = 'wikipedia-pageviews'
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
 class SourceWikipediaPageviews:
-    r"""The values required to configure the source."""
     access: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('access') }})
     r"""If you want to filter by access method, use one of desktop, mobile-app or mobile-web. If you are interested in pageviews regardless of access method, use all-access."""
     agent: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('agent') }})
@@ -29,6 +28,6 @@ class SourceWikipediaPageviews:
     r"""If you want to filter by project, use the domain of any Wikimedia project."""
     start: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('start') }})
     r"""The date of the first day to include, in YYYYMMDD or YYYYMMDDHH format."""
-    SOURCE_TYPE: Final[SourceWikipediaPageviewsWikipediaPageviews] = dataclasses.field(default=SourceWikipediaPageviewsWikipediaPageviews.WIKIPEDIA_PAGEVIEWS, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
+    SOURCE_TYPE: Final[WikipediaPageviews] = dataclasses.field(default=WikipediaPageviews.WIKIPEDIA_PAGEVIEWS, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     
 

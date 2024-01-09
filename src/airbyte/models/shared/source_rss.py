@@ -7,16 +7,15 @@ from dataclasses_json import Undefined, dataclass_json
 from enum import Enum
 from typing import Final
 
-class SourceRssRss(str, Enum):
+class Rss(str, Enum):
     RSS = 'rss'
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
 class SourceRss:
-    r"""The values required to configure the source."""
     url: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('url') }})
     r"""RSS Feed URL"""
-    SOURCE_TYPE: Final[SourceRssRss] = dataclasses.field(default=SourceRssRss.RSS, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
+    SOURCE_TYPE: Final[Rss] = dataclasses.field(default=Rss.RSS, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     
 

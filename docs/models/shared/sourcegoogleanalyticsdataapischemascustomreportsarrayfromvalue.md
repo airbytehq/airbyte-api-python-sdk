@@ -1,0 +1,17 @@
+# SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayFromValue
+
+
+## Supported Types
+
+### SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayDimensionFilterDimensionsFilter1ExpressionsInt64Value
+
+```python
+sourceGoogleAnalyticsDataAPISchemasCustomReportsArrayFromValue: shared.SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayDimensionFilterDimensionsFilter1ExpressionsInt64Value = /* values here */
+```
+
+### SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayDimensionFilterDimensionsFilter1ExpressionsDoubleValue
+
+```python
+sourceGoogleAnalyticsDataAPISchemasCustomReportsArrayFromValue: shared.SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayDimensionFilterDimensionsFilter1ExpressionsDoubleValue = /* values here */
+```
+

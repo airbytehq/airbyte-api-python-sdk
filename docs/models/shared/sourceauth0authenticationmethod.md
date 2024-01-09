@@ -3,15 +3,15 @@
 
 ## Supported Types
 
-### SourceAuth0AuthenticationMethodOAuth2ConfidentialApplication
+### OAuth2ConfidentialApplication
 
 ```python
-sourceAuth0AuthenticationMethod: shared.SourceAuth0AuthenticationMethodOAuth2ConfidentialApplication = /* values here */
+sourceAuth0AuthenticationMethod: shared.OAuth2ConfidentialApplication = /* values here */
 ```
 
-### SourceAuth0AuthenticationMethodOAuth2AccessToken
+### OAuth2AccessToken
 
 ```python
-sourceAuth0AuthenticationMethod: shared.SourceAuth0AuthenticationMethodOAuth2AccessToken = /* values here */
+sourceAuth0AuthenticationMethod: shared.OAuth2AccessToken = /* values here */
 ```
 

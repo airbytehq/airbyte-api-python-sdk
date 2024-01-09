@@ -1,17 +1,19 @@
 # SourceRetentlyAuthenticationMechanism
 
+Choose how to authenticate to Retently
+
 
 ## Supported Types
 
-### SourceRetentlyAuthenticationMechanismAuthenticateViaRetentlyOAuth
+### AuthenticateViaRetentlyOAuth
 
 ```python
-sourceRetentlyAuthenticationMechanism: shared.SourceRetentlyAuthenticationMechanismAuthenticateViaRetentlyOAuth = /* values here */
+sourceRetentlyAuthenticationMechanism: shared.AuthenticateViaRetentlyOAuth = /* values here */
 ```
 
-### SourceRetentlyAuthenticationMechanismAuthenticateWithAPIToken
+### AuthenticateWithAPIToken
 
 ```python
-sourceRetentlyAuthenticationMechanism: shared.SourceRetentlyAuthenticationMechanismAuthenticateWithAPIToken = /* values here */
+sourceRetentlyAuthenticationMechanism: shared.AuthenticateWithAPIToken = /* values here */
 ```
 

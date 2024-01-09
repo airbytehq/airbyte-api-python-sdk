@@ -1,23 +1,25 @@
 # SourceMssqlSSHTunnelMethod
 
+Whether to initiate an SSH tunnel before connecting to the database, and if so, which kind of authentication to use.
+
 
 ## Supported Types
 
-### SourceMssqlSSHTunnelMethodNoTunnel
+### SourceMssqlNoTunnel
 
 ```python
-sourceMssqlSSHTunnelMethod: shared.SourceMssqlSSHTunnelMethodNoTunnel = /* values here */
+sourceMssqlSSHTunnelMethod: shared.SourceMssqlNoTunnel = /* values here */
 ```
 
-### SourceMssqlSSHTunnelMethodSSHKeyAuthentication
+### SourceMssqlSSHKeyAuthentication
 
 ```python
-sourceMssqlSSHTunnelMethod: shared.SourceMssqlSSHTunnelMethodSSHKeyAuthentication = /* values here */
+sourceMssqlSSHTunnelMethod: shared.SourceMssqlSSHKeyAuthentication = /* values here */
 ```
 
-### SourceMssqlSSHTunnelMethodPasswordAuthentication
+### SourceMssqlPasswordAuthentication
 
 ```python
-sourceMssqlSSHTunnelMethod: shared.SourceMssqlSSHTunnelMethodPasswordAuthentication = /* values here */
+sourceMssqlSSHTunnelMethod: shared.SourceMssqlPasswordAuthentication = /* values here */
 ```
 

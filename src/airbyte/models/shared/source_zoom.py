@@ -7,16 +7,15 @@ from dataclasses_json import Undefined, dataclass_json
 from enum import Enum
 from typing import Final
 
-class SourceZoomZoom(str, Enum):
+class Zoom(str, Enum):
     ZOOM = 'zoom'
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
 class SourceZoom:
-    r"""The values required to configure the source."""
     jwt_token: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('jwt_token') }})
     r"""JWT Token"""
-    SOURCE_TYPE: Final[SourceZoomZoom] = dataclasses.field(default=SourceZoomZoom.ZOOM, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
+    SOURCE_TYPE: Final[Zoom] = dataclasses.field(default=Zoom.ZOOM, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     
 

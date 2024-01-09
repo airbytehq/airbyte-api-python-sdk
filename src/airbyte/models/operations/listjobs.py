@@ -3,9 +3,9 @@
 from __future__ import annotations
 import dataclasses
 import requests as requests_http
-from ..shared import jobsresponse as shared_jobsresponse
-from ..shared import jobstatusenum as shared_jobstatusenum
-from ..shared import jobtypeenum as shared_jobtypeenum
+from ...models.shared import jobsresponse as shared_jobsresponse
+from ...models.shared import jobstatusenum as shared_jobstatusenum
+from ...models.shared import jobtypeenum as shared_jobtypeenum
 from datetime import datetime
 from typing import List, Optional
 
@@ -42,11 +42,11 @@ class ListJobsRequest:
 class ListJobsResponse:
     content_type: str = dataclasses.field()
     r"""HTTP response content type for this operation"""
+    raw_response: requests_http.Response = dataclasses.field()
+    r"""Raw HTTP response; suitable for custom response parsing"""
     status_code: int = dataclasses.field()
     r"""HTTP response status code for this operation"""
     jobs_response: Optional[shared_jobsresponse.JobsResponse] = dataclasses.field(default=None)
     r"""List all the Jobs by connectionId."""
-    raw_response: Optional[requests_http.Response] = dataclasses.field(default=None)
-    r"""Raw HTTP response; suitable for custom response parsing"""
     
 

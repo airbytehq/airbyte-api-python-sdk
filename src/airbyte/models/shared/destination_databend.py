@@ -7,21 +7,20 @@ from dataclasses_json import Undefined, dataclass_json
 from enum import Enum
 from typing import Final, Optional
 
-class DestinationDatabendDatabend(str, Enum):
+class Databend(str, Enum):
     DATABEND = 'databend'
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
 class DestinationDatabend:
-    r"""The values required to configure the destination."""
     database: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('database') }})
     r"""Name of the database."""
     host: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('host') }})
     r"""Hostname of the database."""
     username: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('username') }})
     r"""Username to use to access the database."""
-    DESTINATION_TYPE: Final[DestinationDatabendDatabend] = dataclasses.field(default=DestinationDatabendDatabend.DATABEND, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('destinationType') }})
+    DESTINATION_TYPE: Final[Databend] = dataclasses.field(default=Databend.DATABEND, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('destinationType') }})
     password: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('password'), 'exclude': lambda f: f is None }})
     r"""Password associated with the username."""
     port: Optional[int] = dataclasses.field(default=443, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('port'), 'exclude': lambda f: f is None }})

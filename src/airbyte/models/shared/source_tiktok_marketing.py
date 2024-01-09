@@ -9,30 +9,28 @@ from datetime import date
 from enum import Enum
 from typing import Final, Optional, Union
 
-class SourceTiktokMarketingAuthenticationMethodSandboxAccessTokenAuthType(str, Enum):
+class SourceTiktokMarketingSchemasAuthType(str, Enum):
     SANDBOX_ACCESS_TOKEN = 'sandbox_access_token'
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
-class SourceTiktokMarketingAuthenticationMethodSandboxAccessToken:
-    r"""Authentication method"""
+class SandboxAccessToken:
     access_token: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('access_token') }})
     r"""The long-term authorized access token."""
     advertiser_id: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('advertiser_id') }})
     r"""The Advertiser ID which generated for the developer's Sandbox application."""
-    AUTH_TYPE: Final[Optional[SourceTiktokMarketingAuthenticationMethodSandboxAccessTokenAuthType]] = dataclasses.field(default=SourceTiktokMarketingAuthenticationMethodSandboxAccessTokenAuthType.SANDBOX_ACCESS_TOKEN, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_type'), 'exclude': lambda f: f is None }})
+    AUTH_TYPE: Final[Optional[SourceTiktokMarketingSchemasAuthType]] = dataclasses.field(default=SourceTiktokMarketingSchemasAuthType.SANDBOX_ACCESS_TOKEN, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_type'), 'exclude': lambda f: f is None }})
     
 
 
-class SourceTiktokMarketingAuthenticationMethodOAuth20AuthType(str, Enum):
+class SourceTiktokMarketingAuthType(str, Enum):
     OAUTH2_0 = 'oauth2.0'
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
-class SourceTiktokMarketingAuthenticationMethodOAuth20:
-    r"""Authentication method"""
+class SourceTiktokMarketingOAuth20:
     access_token: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('access_token') }})
     r"""Long-term Authorized Access Token."""
     app_id: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('app_id') }})
@@ -41,14 +39,9 @@ class SourceTiktokMarketingAuthenticationMethodOAuth20:
     r"""The Developer Application Secret."""
     advertiser_id: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('advertiser_id'), 'exclude': lambda f: f is None }})
     r"""The Advertiser ID to filter reports and streams. Let this empty to retrieve all."""
-    AUTH_TYPE: Final[Optional[SourceTiktokMarketingAuthenticationMethodOAuth20AuthType]] = dataclasses.field(default=SourceTiktokMarketingAuthenticationMethodOAuth20AuthType.OAUTH2_0, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_type'), 'exclude': lambda f: f is None }})
+    AUTH_TYPE: Final[Optional[SourceTiktokMarketingAuthType]] = dataclasses.field(default=SourceTiktokMarketingAuthType.OAUTH2_0, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_type'), 'exclude': lambda f: f is None }})
     
 
-
-
-@dataclasses.dataclass
-class SourceTiktokMarketingAuthenticationMethod:
-    pass
 
 class SourceTiktokMarketingTiktokMarketing(str, Enum):
     TIKTOK_MARKETING = 'tiktok-marketing'
@@ -57,10 +50,9 @@ class SourceTiktokMarketingTiktokMarketing(str, Enum):
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
 class SourceTiktokMarketing:
-    r"""The values required to configure the source."""
     attribution_window: Optional[int] = dataclasses.field(default=3, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('attribution_window'), 'exclude': lambda f: f is None }})
     r"""The attribution window in days."""
-    credentials: Optional[Union[SourceTiktokMarketingAuthenticationMethodOAuth20, SourceTiktokMarketingAuthenticationMethodSandboxAccessToken]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credentials'), 'exclude': lambda f: f is None }})
+    credentials: Optional[Union[SourceTiktokMarketingOAuth20, SandboxAccessToken]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credentials'), 'exclude': lambda f: f is None }})
     r"""Authentication method"""
     end_date: Optional[date] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('end_date'), 'encoder': utils.dateisoformat(True), 'decoder': utils.datefromisoformat, 'exclude': lambda f: f is None }})
     r"""The date until which you'd like to replicate data for all incremental streams, in the format YYYY-MM-DD. All data generated between start_date and this date will be replicated. Not setting this option will result in always syncing the data till the current date."""

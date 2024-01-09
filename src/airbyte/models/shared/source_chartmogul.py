@@ -7,29 +7,19 @@ from airbyte import utils
 from dataclasses_json import Undefined, dataclass_json
 from datetime import datetime
 from enum import Enum
-from typing import Final, Optional
+from typing import Final
 
-class SourceChartmogulInterval(str, Enum):
-    r"""Some APIs such as <a href=\\"https://dev.chartmogul.com/reference/endpoint-overview-metrics-api\\">Metrics</a> require intervals to cluster data."""
-    DAY = 'day'
-    WEEK = 'week'
-    MONTH = 'month'
-    QUARTER = 'quarter'
-
-class SourceChartmogulChartmogul(str, Enum):
+class Chartmogul(str, Enum):
     CHARTMOGUL = 'chartmogul'
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
 class SourceChartmogul:
-    r"""The values required to configure the source."""
     api_key: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('api_key') }})
     r"""Your Chartmogul API key. See <a href=\\"https://help.chartmogul.com/hc/en-us/articles/4407796325906-Creating-and-Managing-API-keys#creating-an-api-key\\"> the docs </a> for info on how to obtain this."""
     start_date: datetime = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('start_date'), 'encoder': utils.datetimeisoformat(False), 'decoder': dateutil.parser.isoparse }})
     r"""UTC date and time in the format 2017-01-25T00:00:00Z. When feasible, any data before this date will not be replicated."""
-    SOURCE_TYPE: Final[SourceChartmogulChartmogul] = dataclasses.field(default=SourceChartmogulChartmogul.CHARTMOGUL, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
-    interval: Optional[SourceChartmogulInterval] = dataclasses.field(default=SourceChartmogulInterval.MONTH, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('interval'), 'exclude': lambda f: f is None }})
-    r"""Some APIs such as <a href=\\"https://dev.chartmogul.com/reference/endpoint-overview-metrics-api\\">Metrics</a> require intervals to cluster data."""
+    SOURCE_TYPE: Final[Chartmogul] = dataclasses.field(default=Chartmogul.CHARTMOGUL, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     
 

@@ -1,0 +1,11 @@
+# SourceMssqlEncryptedVerifyCertificate
+
+Verify and use the certificate provided by the server.
+
+
+## Fields
+
+| Field                                                                                                                 | Type                                                                                                                  | Required                                                                                                              | Description                                                                                                           |
+| --------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------- |
+| `host_name_in_certificate`                                                                                            | *Optional[str]*                                                                                                       | :heavy_minus_sign:                                                                                                    | Specifies the host name of the server. The value of this property must match the subject property of the certificate. |
+| `ssl_method`                                                                                                          | [shared.SourceMssqlSchemasSslMethodSslMethod](../../models/shared/sourcemssqlschemassslmethodsslmethod.md)            | :heavy_check_mark:                                                                                                    | N/A                                                                                                                   |

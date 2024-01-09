@@ -16,7 +16,6 @@ class SourceIntercomIntercom(str, Enum):
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
 class SourceIntercom:
-    r"""The values required to configure the source."""
     access_token: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('access_token') }})
     r"""Access token for making authenticated requests. See the <a href=\\"https://developers.intercom.com/building-apps/docs/authentication-types#how-to-get-your-access-token\\">Intercom docs</a> for more information."""
     start_date: datetime = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('start_date'), 'encoder': utils.datetimeisoformat(False), 'decoder': dateutil.parser.isoparse }})

@@ -21,7 +21,6 @@ class HubspotCredentials:
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
 class Hubspot:
-    r"""The values required to configure the source."""
     credentials: Optional[HubspotCredentials] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credentials'), 'exclude': lambda f: f is None }})
     
 

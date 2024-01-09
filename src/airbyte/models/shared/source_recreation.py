@@ -7,17 +7,16 @@ from dataclasses_json import Undefined, dataclass_json
 from enum import Enum
 from typing import Final, Optional
 
-class SourceRecreationRecreation(str, Enum):
+class Recreation(str, Enum):
     RECREATION = 'recreation'
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
 class SourceRecreation:
-    r"""The values required to configure the source."""
     apikey: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('apikey') }})
     r"""API Key"""
-    SOURCE_TYPE: Final[SourceRecreationRecreation] = dataclasses.field(default=SourceRecreationRecreation.RECREATION, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
+    SOURCE_TYPE: Final[Recreation] = dataclasses.field(default=Recreation.RECREATION, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     query_campsites: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('query_campsites'), 'exclude': lambda f: f is None }})
     
 

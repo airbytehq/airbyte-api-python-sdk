@@ -1,23 +1,25 @@
 # SourcePostgresSSHTunnelMethod
 
+Whether to initiate an SSH tunnel before connecting to the database, and if so, which kind of authentication to use.
+
 
 ## Supported Types
 
-### SourcePostgresSSHTunnelMethodNoTunnel
+### SourcePostgresNoTunnel
 
 ```python
-sourcePostgresSSHTunnelMethod: shared.SourcePostgresSSHTunnelMethodNoTunnel = /* values here */
+sourcePostgresSSHTunnelMethod: shared.SourcePostgresNoTunnel = /* values here */
 ```
 
-### SourcePostgresSSHTunnelMethodSSHKeyAuthentication
+### SourcePostgresSSHKeyAuthentication
 
 ```python
-sourcePostgresSSHTunnelMethod: shared.SourcePostgresSSHTunnelMethodSSHKeyAuthentication = /* values here */
+sourcePostgresSSHTunnelMethod: shared.SourcePostgresSSHKeyAuthentication = /* values here */
 ```
 
-### SourcePostgresSSHTunnelMethodPasswordAuthentication
+### SourcePostgresPasswordAuthentication
 
 ```python
-sourcePostgresSSHTunnelMethod: shared.SourcePostgresSSHTunnelMethodPasswordAuthentication = /* values here */
+sourcePostgresSSHTunnelMethod: shared.SourcePostgresPasswordAuthentication = /* values here */
 ```
 

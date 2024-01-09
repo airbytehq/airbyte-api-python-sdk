@@ -3,6 +3,6 @@
 
 ## Values
 
-| Name              | Value             |
-| ----------------- | ----------------- |
-| `CONTINUOUS_FEED` | CONTINUOUS_FEED   |
+| Name           | Value          |
+| -------------- | -------------- |
+| `MULTI_STREAM` | MULTI_STREAM   |

@@ -1,29 +1,31 @@
 # SourceMysqlSSLModes
 
+SSL connection modes. Read more <a href="https://dev.mysql.com/doc/connector-j/8.0/en/connector-j-reference-using-ssl.html"> in the docs</a>.
+
 
 ## Supported Types
 
-### SourceMysqlSSLModesPreferred
+### Preferred
 
 ```python
-sourceMysqlSSLModes: shared.SourceMysqlSSLModesPreferred = /* values here */
+sourceMysqlSSLModes: shared.Preferred = /* values here */
 ```
 
-### SourceMysqlSSLModesRequired
+### Required
 
 ```python
-sourceMysqlSSLModes: shared.SourceMysqlSSLModesRequired = /* values here */
+sourceMysqlSSLModes: shared.Required = /* values here */
 ```
 
-### SourceMysqlSSLModesVerifyCA
+### SourceMysqlVerifyCA
 
 ```python
-sourceMysqlSSLModes: shared.SourceMysqlSSLModesVerifyCA = /* values here */
+sourceMysqlSSLModes: shared.SourceMysqlVerifyCA = /* values here */
 ```
 
-### SourceMysqlSSLModesVerifyIdentity
+### VerifyIdentity
 
 ```python
-sourceMysqlSSLModes: shared.SourceMysqlSSLModesVerifyIdentity = /* values here */
+sourceMysqlSSLModes: shared.VerifyIdentity = /* values here */
 ```
 

@@ -21,8 +21,8 @@ from airbyte.models import operations, shared
 s = airbyte.Airbyte(
     security=shared.Security(
         basic_auth=shared.SchemeBasicAuth(
-            password="",
-            username="",
+            password="<YOUR_PASSWORD_HERE>",
+            username="<YOUR_USERNAME_HERE>",
         ),
     ),
 )
@@ -48,7 +48,11 @@ if res.job_response is not None:
 ### Response
 
 **[operations.CancelJobResponse](../../models/operations/canceljobresponse.md)**
+### Errors
 
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 4x-5xx          | */*             |
 
 ## create_job
 
@@ -63,15 +67,15 @@ from airbyte.models import shared
 s = airbyte.Airbyte(
     security=shared.Security(
         basic_auth=shared.SchemeBasicAuth(
-            password="",
-            username="",
+            password="<YOUR_PASSWORD_HERE>",
+            username="<YOUR_USERNAME_HERE>",
         ),
     ),
 )
 
 req = shared.JobCreateRequest(
-    connection_id='deploy',
-    job_type=shared.JobTypeEnum.RESET,
+    connection_id='string',
+    job_type=shared.JobTypeEnum.SYNC,
 )
 
 res = s.jobs.create_job(req)
@@ -91,7 +95,11 @@ if res.job_response is not None:
 ### Response
 
 **[operations.CreateJobResponse](../../models/operations/createjobresponse.md)**
+### Errors
 
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 4x-5xx          | */*             |
 
 ## get_job
 
@@ -106,8 +114,8 @@ from airbyte.models import operations, shared
 s = airbyte.Airbyte(
     security=shared.Security(
         basic_auth=shared.SchemeBasicAuth(
-            password="",
-            username="",
+            password="<YOUR_PASSWORD_HERE>",
+            username="<YOUR_USERNAME_HERE>",
         ),
     ),
 )
@@ -133,7 +141,11 @@ if res.job_response is not None:
 ### Response
 
 **[operations.GetJobResponse](../../models/operations/getjobresponse.md)**
+### Errors
 
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 4x-5xx          | */*             |
 
 ## list_jobs
 
@@ -149,8 +161,8 @@ from airbyte.models import operations, shared
 s = airbyte.Airbyte(
     security=shared.Security(
         basic_auth=shared.SchemeBasicAuth(
-            password="",
-            username="",
+            password="<YOUR_PASSWORD_HERE>",
+            username="<YOUR_USERNAME_HERE>",
         ),
     ),
 )
@@ -178,4 +190,8 @@ if res.jobs_response is not None:
 ### Response
 
 **[operations.ListJobsResponse](../../models/operations/listjobsresponse.md)**
+### Errors
 
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 4x-5xx          | */*             |

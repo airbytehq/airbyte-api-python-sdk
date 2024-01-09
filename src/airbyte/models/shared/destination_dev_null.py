@@ -7,33 +7,26 @@ from dataclasses_json import Undefined, dataclass_json
 from enum import Enum
 from typing import Final, Optional, Union
 
-class DestinationDevNullDevNull(str, Enum):
+class DevNull(str, Enum):
     DEV_NULL = 'dev-null'
 
-class DestinationDevNullTestDestinationSilentTestDestinationType(str, Enum):
+class TestDestinationType(str, Enum):
     SILENT = 'SILENT'
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
-class DestinationDevNullTestDestinationSilent:
-    r"""The type of destination to be used"""
-    TEST_DESTINATION_TYPE: Final[Optional[DestinationDevNullTestDestinationSilentTestDestinationType]] = dataclasses.field(default=DestinationDevNullTestDestinationSilentTestDestinationType.SILENT, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('test_destination_type'), 'exclude': lambda f: f is None }})
+class Silent:
+    TEST_DESTINATION_TYPE: Final[Optional[TestDestinationType]] = dataclasses.field(default=TestDestinationType.SILENT, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('test_destination_type'), 'exclude': lambda f: f is None }})
     
 
-
-
-@dataclasses.dataclass
-class DestinationDevNullTestDestination:
-    pass
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
 class DestinationDevNull:
-    r"""The values required to configure the destination."""
-    test_destination: Union[DestinationDevNullTestDestinationSilent] = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('test_destination') }})
+    test_destination: Union[Silent] = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('test_destination') }})
     r"""The type of destination to be used"""
-    DESTINATION_TYPE: Final[DestinationDevNullDevNull] = dataclasses.field(default=DestinationDevNullDevNull.DEV_NULL, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('destinationType') }})
+    DESTINATION_TYPE: Final[DevNull] = dataclasses.field(default=DevNull.DEV_NULL, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('destinationType') }})
     
 

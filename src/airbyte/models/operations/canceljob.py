@@ -3,7 +3,7 @@
 from __future__ import annotations
 import dataclasses
 import requests as requests_http
-from ..shared import jobresponse as shared_jobresponse
+from ...models.shared import jobresponse as shared_jobresponse
 from typing import Optional
 
 
@@ -18,11 +18,11 @@ class CancelJobRequest:
 class CancelJobResponse:
     content_type: str = dataclasses.field()
     r"""HTTP response content type for this operation"""
+    raw_response: requests_http.Response = dataclasses.field()
+    r"""Raw HTTP response; suitable for custom response parsing"""
     status_code: int = dataclasses.field()
     r"""HTTP response status code for this operation"""
     job_response: Optional[shared_jobresponse.JobResponse] = dataclasses.field(default=None)
     r"""Cancel a Job."""
-    raw_response: Optional[requests_http.Response] = dataclasses.field(default=None)
-    r"""Raw HTTP response; suitable for custom response parsing"""
     
 

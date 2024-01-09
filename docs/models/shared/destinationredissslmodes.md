@@ -1,17 +1,20 @@
 # DestinationRedisSSLModes
 
+SSL connection modes. 
+  <li><b>verify-full</b> - This is the most secure mode. Always require encryption and verifies the identity of the source database server
+
 
 ## Supported Types
 
-### DestinationRedisSSLModesDisable
+### DestinationRedisDisable
 
 ```python
-destinationRedisSSLModes: shared.DestinationRedisSSLModesDisable = /* values here */
+destinationRedisSSLModes: shared.DestinationRedisDisable = /* values here */
 ```
 
-### DestinationRedisSSLModesVerifyFull
+### DestinationRedisVerifyFull
 
 ```python
-destinationRedisSSLModes: shared.DestinationRedisSSLModesVerifyFull = /* values here */
+destinationRedisSSLModes: shared.DestinationRedisVerifyFull = /* values here */
 ```
 

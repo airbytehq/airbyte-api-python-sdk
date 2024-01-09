@@ -1,0 +1,17 @@
+# SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayMetricFilterMetricsFilter3Value
+
+
+## Supported Types
+
+### SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayMetricFilterMetricsFilter3Int64Value
+
+```python
+sourceGoogleAnalyticsDataAPISchemasCustomReportsArrayMetricFilterMetricsFilter3Value: shared.SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayMetricFilterMetricsFilter3Int64Value = /* values here */
+```
+
+### SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayMetricFilterMetricsFilter3DoubleValue
+
+```python
+sourceGoogleAnalyticsDataAPISchemasCustomReportsArrayMetricFilterMetricsFilter3Value: shared.SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayMetricFilterMetricsFilter3DoubleValue = /* values here */
+```
+

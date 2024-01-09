@@ -7,18 +7,17 @@ from dataclasses_json import Undefined, dataclass_json
 from enum import Enum
 from typing import Final
 
-class SourceConfigcatConfigcat(str, Enum):
+class Configcat(str, Enum):
     CONFIGCAT = 'configcat'
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
 class SourceConfigcat:
-    r"""The values required to configure the source."""
     password: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('password') }})
     r"""Basic auth password. See <a href=\\"https://api.configcat.com/docs/#section/Authentication\\">here</a>."""
     username: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('username') }})
     r"""Basic auth user name. See <a href=\\"https://api.configcat.com/docs/#section/Authentication\\">here</a>."""
-    SOURCE_TYPE: Final[SourceConfigcatConfigcat] = dataclasses.field(default=SourceConfigcatConfigcat.CONFIGCAT, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
+    SOURCE_TYPE: Final[Configcat] = dataclasses.field(default=Configcat.CONFIGCAT, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     
 

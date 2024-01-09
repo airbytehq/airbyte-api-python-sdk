@@ -1,17 +1,19 @@
 # SourceMicrosoftTeamsAuthenticationMechanism
 
+Choose how to authenticate to Microsoft
+
 
 ## Supported Types
 
-### SourceMicrosoftTeamsAuthenticationMechanismAuthenticateViaMicrosoftOAuth20
+### AuthenticateViaMicrosoftOAuth20
 
 ```python
-sourceMicrosoftTeamsAuthenticationMechanism: shared.SourceMicrosoftTeamsAuthenticationMechanismAuthenticateViaMicrosoftOAuth20 = /* values here */
+sourceMicrosoftTeamsAuthenticationMechanism: shared.AuthenticateViaMicrosoftOAuth20 = /* values here */
 ```
 
-### SourceMicrosoftTeamsAuthenticationMechanismAuthenticateViaMicrosoft
+### AuthenticateViaMicrosoft
 
 ```python
-sourceMicrosoftTeamsAuthenticationMechanism: shared.SourceMicrosoftTeamsAuthenticationMechanismAuthenticateViaMicrosoft = /* values here */
+sourceMicrosoftTeamsAuthenticationMechanism: shared.AuthenticateViaMicrosoft = /* values here */
 ```
 

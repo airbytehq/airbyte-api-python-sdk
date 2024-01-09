@@ -3,15 +3,15 @@
 
 ## Supported Types
 
-### SourceAirtableAuthenticationOAuth20
+### SourceAirtableOAuth20
 
 ```python
-sourceAirtableAuthentication: shared.SourceAirtableAuthenticationOAuth20 = /* values here */
+sourceAirtableAuthentication: shared.SourceAirtableOAuth20 = /* values here */
 ```
 
-### SourceAirtableAuthenticationPersonalAccessToken
+### PersonalAccessToken
 
 ```python
-sourceAirtableAuthentication: shared.SourceAirtableAuthenticationPersonalAccessToken = /* values here */
+sourceAirtableAuthentication: shared.PersonalAccessToken = /* values here */
 ```
 

@@ -3,15 +3,15 @@
 
 ## Supported Types
 
-### SourceTrustpilotAuthorizationMethodOAuth20
+### SourceTrustpilotOAuth20
 
 ```python
-sourceTrustpilotAuthorizationMethod: shared.SourceTrustpilotAuthorizationMethodOAuth20 = /* values here */
+sourceTrustpilotAuthorizationMethod: shared.SourceTrustpilotOAuth20 = /* values here */
 ```
 
-### SourceTrustpilotAuthorizationMethodAPIKey
+### SourceTrustpilotAPIKey
 
 ```python
-sourceTrustpilotAuthorizationMethod: shared.SourceTrustpilotAuthorizationMethodAPIKey = /* values here */
+sourceTrustpilotAuthorizationMethod: shared.SourceTrustpilotAPIKey = /* values here */
 ```
 

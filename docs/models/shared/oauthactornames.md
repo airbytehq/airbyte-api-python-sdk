@@ -16,7 +16,7 @@
 | `GITLAB`                    | gitlab                      |
 | `GOOGLE_ADS`                | google-ads                  |
 | `GOOGLE_ANALYTICS_DATA_API` | google-analytics-data-api   |
-| `GOOGLE_ANALYTICS_V4`       | google-analytics-v4         |
+| `GOOGLE_DRIVE`              | google-drive                |
 | `GOOGLE_SEARCH_CONSOLE`     | google-search-console       |
 | `GOOGLE_SHEETS`             | google-sheets               |
 | `HARVEST`                   | harvest                     |
@@ -43,7 +43,6 @@
 | `TIKTOK_MARKETING`          | tiktok-marketing            |
 | `TRELLO`                    | trello                      |
 | `TYPEFORM`                  | typeform                    |
-| `XERO`                      | xero                        |
 | `YOUTUBE_ANALYTICS`         | youtube-analytics           |
 | `ZENDESK_CHAT`              | zendesk-chat                |
 | `ZENDESK_SUNSHINE`          | zendesk-sunshine            |

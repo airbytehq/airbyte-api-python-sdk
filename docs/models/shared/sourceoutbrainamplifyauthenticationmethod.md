@@ -1,17 +1,19 @@
 # SourceOutbrainAmplifyAuthenticationMethod
 
+Credentials for making authenticated requests requires either username/password or access_token.
+
 
 ## Supported Types
 
-### SourceOutbrainAmplifyAuthenticationMethodAccessToken
+### SourceOutbrainAmplifyAccessToken
 
 ```python
-sourceOutbrainAmplifyAuthenticationMethod: shared.SourceOutbrainAmplifyAuthenticationMethodAccessToken = /* values here */
+sourceOutbrainAmplifyAuthenticationMethod: shared.SourceOutbrainAmplifyAccessToken = /* values here */
 ```
 
-### SourceOutbrainAmplifyAuthenticationMethodUsernamePassword
+### SourceOutbrainAmplifyUsernamePassword
 
 ```python
-sourceOutbrainAmplifyAuthenticationMethod: shared.SourceOutbrainAmplifyAuthenticationMethodUsernamePassword = /* values here */
+sourceOutbrainAmplifyAuthenticationMethod: shared.SourceOutbrainAmplifyUsernamePassword = /* values here */
 ```
 

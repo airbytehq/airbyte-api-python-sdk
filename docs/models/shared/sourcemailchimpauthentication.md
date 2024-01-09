@@ -3,15 +3,15 @@
 
 ## Supported Types
 
-### SourceMailchimpAuthenticationOAuth20
+### SourceMailchimpOAuth20
 
 ```python
-sourceMailchimpAuthentication: shared.SourceMailchimpAuthenticationOAuth20 = /* values here */
+sourceMailchimpAuthentication: shared.SourceMailchimpOAuth20 = /* values here */
 ```
 
-### SourceMailchimpAuthenticationAPIKey
+### APIKey
 
 ```python
-sourceMailchimpAuthentication: shared.SourceMailchimpAuthenticationAPIKey = /* values here */
+sourceMailchimpAuthentication: shared.APIKey = /* values here */
 ```
 

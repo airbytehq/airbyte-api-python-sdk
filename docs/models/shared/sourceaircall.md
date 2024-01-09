@@ -1,7 +1,5 @@
 # SourceAircall
 
-The values required to configure the source.
-
 
 ## Fields
 
@@ -9,5 +7,5 @@ The values required to configure the source.
 | ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- |
 | `api_id`                                                                              | *str*                                                                                 | :heavy_check_mark:                                                                    | App ID found at settings https://dashboard.aircall.io/integrations/api-keys           |                                                                                       |
 | `api_token`                                                                           | *str*                                                                                 | :heavy_check_mark:                                                                    | App token found at settings (Ref- https://dashboard.aircall.io/integrations/api-keys) |                                                                                       |
-| `source_type`                                                                         | [SourceAircallAircall](../../models/shared/sourceaircallaircall.md)                   | :heavy_check_mark:                                                                    | N/A                                                                                   |                                                                                       |
+| `source_type`                                                                         | [shared.Aircall](../../models/shared/aircall.md)                                      | :heavy_check_mark:                                                                    | N/A                                                                                   |                                                                                       |
 | `start_date`                                                                          | [date](https://docs.python.org/3/library/datetime.html#date-objects)                  | :heavy_check_mark:                                                                    | Date time filter for incremental filter, Specify which date to extract from.          | 2022-03-01T00:00:00.000Z                                                              |

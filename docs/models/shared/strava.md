@@ -1,7 +1,5 @@
 # Strava
 
-The values required to configure the source.
-
 
 ## Fields
 

@@ -3,15 +3,9 @@
 
 ## Supported Types
 
-### SourcePinterestAuthorizationMethodOAuth20
+### SourcePinterestOAuth20
 
 ```python
-sourcePinterestAuthorizationMethod: shared.SourcePinterestAuthorizationMethodOAuth20 = /* values here */
-```
-
-### SourcePinterestAuthorizationMethodAccessToken
-
-```python
-sourcePinterestAuthorizationMethod: shared.SourcePinterestAuthorizationMethodAccessToken = /* values here */
+sourcePinterestAuthorizationMethod: shared.SourcePinterestOAuth20 = /* values here */
 ```
 
