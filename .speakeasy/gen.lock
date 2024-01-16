@@ -4,7 +4,7 @@ management:
   docChecksum: 8f62e207fcdebe72da7eb9c7525220b5
   docVersion: 1.0.0
   speakeasyVersion: internal
-  generationVersion: 2.228.1
+  generationVersion: 2.233.2
   releaseVersion: 0.44.2
   configChecksum: bf17012ac6ba48ff08ca884c83be54d2
   repoURL: https://github.com/airbytehq/airbyte-api-python-sdk.git
