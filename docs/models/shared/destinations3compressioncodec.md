@@ -5,10 +5,10 @@ The compression algorithm used to compress data. Default to no compression.
 
 ## Supported Types
 
-### DestinationS3NoCompression
+### DestinationS3SchemasFormatNoCompression
 
 ```python
-destinationS3CompressionCodec: shared.DestinationS3NoCompression = /* values here */
+destinationS3CompressionCodec: shared.DestinationS3SchemasFormatNoCompression = /* values here */
 ```
 
 ### DestinationS3Deflate

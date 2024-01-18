@@ -5,12 +5,6 @@ Format of the data output. See <a href="https://docs.airbyte.com/integrations/de
 
 ## Supported Types
 
-### DestinationS3AvroApacheAvro
-
-```python
-destinationS3OutputFormat: shared.DestinationS3AvroApacheAvro = /* values here */
-```
-
 ### DestinationS3CSVCommaSeparatedValues
 
 ```python
@@ -21,6 +15,12 @@ destinationS3OutputFormat: shared.DestinationS3CSVCommaSeparatedValues = /* valu
 
 ```python
 destinationS3OutputFormat: shared.DestinationS3JSONLinesNewlineDelimitedJSON = /* values here */
+```
+
+### DestinationS3AvroApacheAvro
+
+```python
+destinationS3OutputFormat: shared.DestinationS3AvroApacheAvro = /* values here */
 ```
 
 ### DestinationS3ParquetColumnarStorage

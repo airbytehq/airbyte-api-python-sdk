@@ -47,7 +47,7 @@ class DestinationWeaviateSchemasEmbeddingEmbedding5Mode(str, Enum):
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
-class DestinationWeaviateFromField:
+class FromField:
     r"""Use a field in the record as the embedding. This is useful if you already have an embedding for your data and want to store it in the vector store."""
     dimensions: int = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('dimensions') }})
     r"""The number of dimensions the embedding model is generating"""
@@ -292,11 +292,24 @@ class DestinationWeaviateProcessingConfigModel:
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
 class DestinationWeaviate:
-    embedding: Union[NoExternalEmbedding, DestinationWeaviateAzureOpenAI, DestinationWeaviateOpenAI, DestinationWeaviateCohere, DestinationWeaviateFromField, DestinationWeaviateFake, DestinationWeaviateOpenAICompatible] = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('embedding') }})
+    r"""The configuration model for the Vector DB based destinations. This model is used to generate the UI for the destination configuration,
+    as well as to provide type safety for the configuration passed to the destination.
+
+    The configuration model is composed of four parts:
+    * Processing configuration
+    * Embedding configuration
+    * Indexing configuration
+    * Advanced configuration
+
+    Processing, embedding and advanced configuration are provided by this base class, while the indexing configuration is provided by the destination connector in the sub class.
+    """
+    embedding: Union[NoExternalEmbedding, DestinationWeaviateAzureOpenAI, DestinationWeaviateOpenAI, DestinationWeaviateCohere, FromField, DestinationWeaviateFake, DestinationWeaviateOpenAICompatible] = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('embedding') }})
     r"""Embedding configuration"""
     indexing: DestinationWeaviateIndexing = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('indexing') }})
     r"""Indexing configuration"""
     processing: DestinationWeaviateProcessingConfigModel = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('processing') }})
     DESTINATION_TYPE: Final[Weaviate] = dataclasses.field(default=Weaviate.WEAVIATE, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('destinationType') }})
+    omit_raw_text: Optional[bool] = dataclasses.field(default=False, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('omit_raw_text'), 'exclude': lambda f: f is None }})
+    r"""Do not store the text that gets embedded along with the vector and the metadata in the destination. If set to true, only the vector and the metadata will be stored - in this case raw text for LLM use cases needs to be retrieved from another source."""
     
 

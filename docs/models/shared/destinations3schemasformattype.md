@@ -3,6 +3,6 @@
 
 ## Values
 
-| Name  | Value |
-| ----- | ----- |
-| `CSV` | CSV   |
+| Name    | Value   |
+| ------- | ------- |
+| `JSONL` | JSONL   |

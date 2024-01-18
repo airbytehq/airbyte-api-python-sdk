@@ -8,6 +8,23 @@ from datetime import date
 from enum import Enum
 from typing import Final, List, Optional
 
+class Operator(str, Enum):
+    r"""An Operator that will be used to filter accounts. The Contains predicate has features for matching words, matching inflectional forms of words, searching using wildcard characters, and searching using proximity. The Equals is used to return all rows where account name is equal(=) to the string that you provided"""
+    CONTAINS = 'Contains'
+    EQUALS = 'Equals'
+
+
+@dataclass_json(undefined=Undefined.EXCLUDE)
+@dataclasses.dataclass
+class AccountNames:
+    r"""Account Names Predicates Config."""
+    name: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('name') }})
+    r"""Account Name is a string value for comparing with the specified predicate."""
+    operator: Operator = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('operator') }})
+    r"""An Operator that will be used to filter accounts. The Contains predicate has features for matching words, matching inflectional forms of words, searching using wildcard characters, and searching using proximity. The Equals is used to return all rows where account name is equal(=) to the string that you provided"""
+    
+
+
 class AuthMethod(str, Enum):
     OAUTH2_0 = 'oauth2.0'
 
@@ -77,6 +94,8 @@ class SourceBingAds:
     refresh_token: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('refresh_token') }})
     r"""Refresh Token to renew the expired Access Token."""
     SOURCE_TYPE: Final[SourceBingAdsBingAds] = dataclasses.field(default=SourceBingAdsBingAds.BING_ADS, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
+    account_names: Optional[List[AccountNames]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('account_names'), 'exclude': lambda f: f is None }})
+    r"""Predicates that will be used to sync data by specific accounts."""
     AUTH_METHOD: Final[Optional[AuthMethod]] = dataclasses.field(default=AuthMethod.OAUTH2_0, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_method'), 'exclude': lambda f: f is None }})
     client_secret: Optional[str] = dataclasses.field(default='', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('client_secret'), 'exclude': lambda f: f is None }})
     r"""The Client Secret of your Microsoft Advertising developer application."""

@@ -222,6 +222,8 @@ class InsightConfig:
     r"""The date until which you'd like to replicate data for this stream, in the format YYYY-MM-DDT00:00:00Z. All data generated between the start date and this end date will be replicated. Not setting this option will result in always syncing the latest data."""
     fields: Optional[List[SourceFacebookMarketingValidEnums]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('fields'), 'exclude': lambda f: f is None }})
     r"""A list of chosen fields for fields parameter"""
+    insights_job_timeout: Optional[int] = dataclasses.field(default=60, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('insights_job_timeout'), 'exclude': lambda f: f is None }})
+    r"""The insights job timeout"""
     insights_lookback_window: Optional[int] = dataclasses.field(default=28, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('insights_lookback_window'), 'exclude': lambda f: f is None }})
     r"""The attribution window"""
     level: Optional[Level] = dataclasses.field(default=Level.AD, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('level'), 'exclude': lambda f: f is None }})
@@ -242,8 +244,8 @@ class SourceFacebookMarketingFacebookMarketing(str, Enum):
 class SourceFacebookMarketing:
     access_token: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('access_token') }})
     r"""The value of the generated access token. From your App’s Dashboard, click on \\"Marketing API\\" then \\"Tools\\". Select permissions <b>ads_management, ads_read, read_insights, business_management</b>. Then click on \\"Get token\\". See the <a href=\\"https://docs.airbyte.com/integrations/sources/facebook-marketing\\">docs</a> for more information."""
-    account_id: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('account_id') }})
-    r"""The Facebook Ad account ID to use when pulling data from the Facebook Marketing API. The Ad account ID number is in the account dropdown menu or in your browser's address bar of your <a href=\\"https://adsmanager.facebook.com/adsmanager/\\">Meta Ads Manager</a>. See the <a href=\\"https://www.facebook.com/business/help/1492627900875762\\">docs</a> for more information."""
+    account_ids: List[str] = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('account_ids') }})
+    r"""The Facebook Ad account ID(s) to pull data from. The Ad account ID number is in the account dropdown menu or in your browser's address bar of your <a href=\\"https://adsmanager.facebook.com/adsmanager/\\">Meta Ads Manager</a>. See the <a href=\\"https://www.facebook.com/business/help/1492627900875762\\">docs</a> for more information."""
     SOURCE_TYPE: Final[SourceFacebookMarketingFacebookMarketing] = dataclasses.field(default=SourceFacebookMarketingFacebookMarketing.FACEBOOK_MARKETING, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     action_breakdowns_allow_empty: Optional[bool] = dataclasses.field(default=True, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('action_breakdowns_allow_empty'), 'exclude': lambda f: f is None }})
     r"""Allows action_breakdowns to be an empty list"""
@@ -259,6 +261,8 @@ class SourceFacebookMarketing:
     r"""Set to active if you want to fetch the thumbnail_url and store the result in thumbnail_data_url for each Ad Creative."""
     include_deleted: Optional[bool] = dataclasses.field(default=False, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('include_deleted'), 'exclude': lambda f: f is None }})
     r"""Set to active if you want to include data from deleted Campaigns, Ads, and AdSets."""
+    insights_job_timeout: Optional[int] = dataclasses.field(default=60, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('insights_job_timeout'), 'exclude': lambda f: f is None }})
+    r"""Insights Job Timeout establishes the maximum amount of time (in minutes) of waiting for the report job to complete. When timeout is reached the job is considered failed and we are trying to request smaller amount of data by breaking the job to few smaller ones. If you definitely know that 60 minutes is not enough for your report to be processed then you can decrease the timeout value, so we start breaking job to smaller parts faster."""
     insights_lookback_window: Optional[int] = dataclasses.field(default=28, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('insights_lookback_window'), 'exclude': lambda f: f is None }})
     r"""The attribution window. Facebook freezes insight data 28 days after it was generated, which means that all data from the past 28 days may have changed since we last emitted it, so you can retrieve refreshed insights from the past by setting this parameter. If you set a custom lookback window value in Facebook account, please provide the same value here."""
     page_size: Optional[int] = dataclasses.field(default=100, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('page_size'), 'exclude': lambda f: f is None }})

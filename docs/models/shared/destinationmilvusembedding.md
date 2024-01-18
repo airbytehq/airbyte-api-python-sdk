@@ -23,12 +23,6 @@ destinationMilvusEmbedding: shared.Cohere = /* values here */
 destinationMilvusEmbedding: shared.DestinationMilvusFake = /* values here */
 ```
 
-### FromField
-
-```python
-destinationMilvusEmbedding: shared.FromField = /* values here */
-```
-
 ### AzureOpenAI
 
 ```python

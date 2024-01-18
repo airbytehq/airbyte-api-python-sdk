@@ -7,7 +7,7 @@ generation:
   fixes:
     nameResolutionDec2023: false
 python:
-  version: 0.44.2
+  version: 0.44.3
   author: Airbyte
   clientServerStatusCodesAsErrors: true
   description: Python Client SDK for Airbyte API

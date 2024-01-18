@@ -76,6 +76,8 @@ class SourceClickhouse:
     username: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('username') }})
     r"""The username which is used to access the database."""
     SOURCE_TYPE: Final[SourceClickhouseClickhouse] = dataclasses.field(default=SourceClickhouseClickhouse.CLICKHOUSE, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
+    jdbc_url_params: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('jdbc_url_params'), 'exclude': lambda f: f is None }})
+    r"""Additional properties to pass to the JDBC URL string when connecting to the database formatted as 'key=value' pairs separated by the symbol '&'. (Eg. key1=value1&key2=value2&key3=value3). For more information read about <a href=\\"https://jdbc.postgresql.org/documentation/head/connect.html\\">JDBC URL parameters</a>."""
     password: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('password'), 'exclude': lambda f: f is None }})
     r"""The password associated with this username."""
     port: Optional[int] = dataclasses.field(default=8123, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('port'), 'exclude': lambda f: f is None }})

@@ -3,6 +3,6 @@
 
 ## Values
 
-| Name         | Value        |
-| ------------ | ------------ |
-| `FROM_FIELD` | from_field   |
+| Name           | Value          |
+| -------------- | -------------- |
+| `AZURE_OPENAI` | azure_openai   |

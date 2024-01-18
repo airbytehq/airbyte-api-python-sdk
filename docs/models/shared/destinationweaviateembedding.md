@@ -29,10 +29,10 @@ destinationWeaviateEmbedding: shared.DestinationWeaviateOpenAI = /* values here 
 destinationWeaviateEmbedding: shared.DestinationWeaviateCohere = /* values here */
 ```
 
-### DestinationWeaviateFromField
+### FromField
 
 ```python
-destinationWeaviateEmbedding: shared.DestinationWeaviateFromField = /* values here */
+destinationWeaviateEmbedding: shared.FromField = /* values here */
 ```
 
 ### DestinationWeaviateFake

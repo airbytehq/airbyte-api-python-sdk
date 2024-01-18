@@ -121,14 +121,37 @@ class SourceS3S3(str, Enum):
 class SourceS3SchemasStreamsFormatFormat5Filetype(str, Enum):
     UNSTRUCTURED = 'unstructured'
 
+class SourceS3Mode(str, Enum):
+    LOCAL = 'local'
+
+
+@dataclass_json(undefined=Undefined.EXCLUDE)
+@dataclasses.dataclass
+class SourceS3Local:
+    r"""Process files locally, supporting `fast` and `ocr` modes. This is the default option."""
+    MODE: Final[Optional[SourceS3Mode]] = dataclasses.field(default=SourceS3Mode.LOCAL, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('mode'), 'exclude': lambda f: f is None }})
+    
+
+
+class SourceS3ParsingStrategy(str, Enum):
+    r"""The strategy used to parse documents. `fast` extracts text directly from the document which doesn't work for all files. `ocr_only` is more reliable, but slower. `hi_res` is the most reliable, but requires an API key and a hosted instance of unstructured and can't be used with local mode. See the unstructured.io documentation for more details: https://unstructured-io.github.io/unstructured/core/partition.html#partition-pdf"""
+    AUTO = 'auto'
+    FAST = 'fast'
+    OCR_ONLY = 'ocr_only'
+    HI_RES = 'hi_res'
+
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
 class SourceS3DocumentFileTypeFormatExperimental:
     r"""Extract text from document formats (.pdf, .docx, .md, .pptx) and emit as one record per file."""
     FILETYPE: Final[Optional[SourceS3SchemasStreamsFormatFormat5Filetype]] = dataclasses.field(default=SourceS3SchemasStreamsFormatFormat5Filetype.UNSTRUCTURED, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('filetype'), 'exclude': lambda f: f is None }})
-    skip_unprocessable_file_types: Optional[bool] = dataclasses.field(default=True, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('skip_unprocessable_file_types'), 'exclude': lambda f: f is None }})
-    r"""If true, skip files that cannot be parsed because of their file type and log a warning. If false, fail the sync. Corrupted files with valid file types will still result in a failed sync."""
+    processing: Optional[Union[SourceS3Local]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('processing'), 'exclude': lambda f: f is None }})
+    r"""Processing configuration"""
+    skip_unprocessable_files: Optional[bool] = dataclasses.field(default=True, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('skip_unprocessable_files'), 'exclude': lambda f: f is None }})
+    r"""If true, skip files that cannot be parsed and pass the error message along as the _ab_source_file_parse_error field. If false, fail the sync."""
+    strategy: Optional[SourceS3ParsingStrategy] = dataclasses.field(default=SourceS3ParsingStrategy.AUTO, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('strategy'), 'exclude': lambda f: f is None }})
+    r"""The strategy used to parse documents. `fast` extracts text directly from the document which doesn't work for all files. `ocr_only` is more reliable, but slower. `hi_res` is the most reliable, but requires an API key and a hosted instance of unstructured and can't be used with local mode. See the unstructured.io documentation for more details: https://unstructured-io.github.io/unstructured/core/partition.html#partition-pdf"""
     
 
 
@@ -269,7 +292,7 @@ class SourceS3FileBasedStreamConfig:
     legacy_prefix: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('legacy_prefix'), 'exclude': lambda f: f is None }})
     r"""The path prefix configured in v3 versions of the S3 connector. This option is deprecated in favor of a single glob."""
     primary_key: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('primary_key'), 'exclude': lambda f: f is None }})
-    r"""The column or columns (for a composite key) that serves as the unique identifier of a record."""
+    r"""The column or columns (for a composite key) that serves as the unique identifier of a record. If empty, the primary key will default to the parser's default primary key."""
     schemaless: Optional[bool] = dataclasses.field(default=False, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('schemaless'), 'exclude': lambda f: f is None }})
     r"""When enabled, syncs will not validate or structure records against the stream's schema."""
     validation_policy: Optional[SourceS3ValidationPolicy] = dataclasses.field(default=SourceS3ValidationPolicy.EMIT_RECORD, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('validation_policy'), 'exclude': lambda f: f is None }})

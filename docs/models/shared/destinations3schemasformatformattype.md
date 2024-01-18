@@ -3,6 +3,6 @@
 
 ## Values
 
-| Name    | Value   |
-| ------- | ------- |
-| `JSONL` | JSONL   |
+| Name   | Value  |
+| ------ | ------ |
+| `AVRO` | Avro   |

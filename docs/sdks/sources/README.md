@@ -181,7 +181,7 @@ s = airbyte.Airbyte(
 req = shared.InitiateOauthRequest(
     o_auth_input_configuration=shared.OAuthInputConfiguration(),
     redirect_url='string',
-    source_type=shared.OAuthActorNames.GITLAB,
+    source_type=shared.OAuthActorNames.GOOGLE_ADS,
     workspace_id='fd28130d-9919-4ffa-a67d-4e12eb099447',
 )
 

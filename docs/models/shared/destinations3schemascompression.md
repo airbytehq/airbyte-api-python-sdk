@@ -5,10 +5,10 @@ Whether the output files should be compressed. If compression is selected, the o
 
 ## Supported Types
 
-### DestinationS3SchemasFormatNoCompression
+### DestinationS3SchemasNoCompression
 
 ```python
-destinationS3SchemasCompression: shared.DestinationS3SchemasFormatNoCompression = /* values here */
+destinationS3SchemasCompression: shared.DestinationS3SchemasNoCompression = /* values here */
 ```
 
 ### DestinationS3SchemasGZIP

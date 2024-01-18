@@ -3,6 +3,6 @@
 
 ## Values
 
-| Name   | Value  |
-| ------ | ------ |
-| `AVRO` | Avro   |
+| Name  | Value |
+| ----- | ----- |
+| `CSV` | CSV   |
