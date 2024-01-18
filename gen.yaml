@@ -3,6 +3,7 @@ generation:
   sdkClassName: airbyte
   usageSnippets:
     optionalPropertyRendering: withExample
+  useClassNamesForArrayFields: true
   fixes:
     nameResolutionDec2023: false
 python:
