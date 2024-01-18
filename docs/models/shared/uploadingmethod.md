@@ -5,10 +5,10 @@ The way data will be uploaded to Redshift.
 
 ## Supported Types
 
-### S3Staging
+### AWSS3Staging
 
 ```python
-uploadingMethod: shared.S3Staging = /* values here */
+uploadingMethod: shared.AWSS3Staging = /* values here */
 ```
 
 ### Standard

@@ -11,7 +11,6 @@
 | `ASANA`                     | asana                       |
 | `BING_ADS`                  | bing-ads                    |
 | `FACEBOOK_MARKETING`        | facebook-marketing          |
-| `FACEBOOK_PAGES`            | facebook-pages              |
 | `GITHUB`                    | github                      |
 | `GITLAB`                    | gitlab                      |
 | `GOOGLE_ADS`                | google-ads                  |

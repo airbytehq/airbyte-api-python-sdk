@@ -112,7 +112,7 @@ class SourceGCSStreamConfig:
     legacy_prefix: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('legacy_prefix'), 'exclude': lambda f: f is None }})
     r"""The path prefix configured in previous versions of the GCS connector. This option is deprecated in favor of a single glob."""
     primary_key: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('primary_key'), 'exclude': lambda f: f is None }})
-    r"""The column or columns (for a composite key) that serves as the unique identifier of a record."""
+    r"""The column or columns (for a composite key) that serves as the unique identifier of a record. If empty, the primary key will default to the parser's default primary key."""
     schemaless: Optional[bool] = dataclasses.field(default=False, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('schemaless'), 'exclude': lambda f: f is None }})
     r"""When enabled, syncs will not validate or structure records against the stream's schema."""
     validation_policy: Optional[SourceGcsValidationPolicy] = dataclasses.field(default=SourceGcsValidationPolicy.EMIT_RECORD, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('validation_policy'), 'exclude': lambda f: f is None }})

@@ -36,6 +36,8 @@ class SourceJira:
     r"""(DEPRECATED) Expand the transitions when replicating issues."""
     issues_stream_expand_with: Optional[List[IssuesStreamExpandWith]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('issues_stream_expand_with'), 'exclude': lambda f: f is None }})
     r"""Select fields to Expand the `Issues` stream when replicating with:"""
+    lookback_window_minutes: Optional[int] = dataclasses.field(default=0, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('lookback_window_minutes'), 'exclude': lambda f: f is None }})
+    r"""When set to N, the connector will always refresh resources created within the past N minutes. By default, updated objects that are not newly created are not incrementally synced."""
     projects: Optional[List[str]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('projects'), 'exclude': lambda f: f is None }})
     r"""List of Jira project keys to replicate data for, or leave it empty if you want to replicate data for all projects."""
     render_fields: Optional[bool] = dataclasses.field(default=False, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('render_fields'), 'exclude': lambda f: f is None }})

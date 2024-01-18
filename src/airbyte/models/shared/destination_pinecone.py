@@ -196,11 +196,24 @@ class DestinationPineconeProcessingConfigModel:
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
 class DestinationPinecone:
+    r"""The configuration model for the Vector DB based destinations. This model is used to generate the UI for the destination configuration,
+    as well as to provide type safety for the configuration passed to the destination.
+
+    The configuration model is composed of four parts:
+    * Processing configuration
+    * Embedding configuration
+    * Indexing configuration
+    * Advanced configuration
+
+    Processing, embedding and advanced configuration are provided by this base class, while the indexing configuration is provided by the destination connector in the sub class.
+    """
     embedding: Union[DestinationPineconeOpenAI, DestinationPineconeCohere, DestinationPineconeFake, DestinationPineconeAzureOpenAI, DestinationPineconeOpenAICompatible] = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('embedding') }})
     r"""Embedding configuration"""
     indexing: DestinationPineconeIndexing = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('indexing') }})
     r"""Pinecone is a popular vector store that can be used to store and retrieve embeddings."""
     processing: DestinationPineconeProcessingConfigModel = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('processing') }})
     DESTINATION_TYPE: Final[Pinecone] = dataclasses.field(default=Pinecone.PINECONE, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('destinationType') }})
+    omit_raw_text: Optional[bool] = dataclasses.field(default=False, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('omit_raw_text'), 'exclude': lambda f: f is None }})
+    r"""Do not store the text that gets embedded along with the vector and the metadata in the destination. If set to true, only the vector and the metadata will be stored - in this case raw text for LLM use cases needs to be retrieved from another source."""
     
 

@@ -43,7 +43,7 @@ class TLSEncryptedVerifyCertificate:
     r"""Verify and use the certificate provided by the server."""
     ssl_certificate: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('ssl_certificate') }})
     r"""Privacy Enhanced Mail (PEM) files are concatenated certificate containers frequently used in certificate installations."""
-    ENCRYPTION_METHOD: Final[Optional[SourceOracleEncryptionMethod]] = dataclasses.field(default=SourceOracleEncryptionMethod.ENCRYPTED_VERIFY_CERTIFICATE, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('encryption_method'), 'exclude': lambda f: f is None }})
+    ENCRYPTION_METHOD: Final[SourceOracleEncryptionMethod] = dataclasses.field(default=SourceOracleEncryptionMethod.ENCRYPTED_VERIFY_CERTIFICATE, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('encryption_method') }})
     
 
 
@@ -61,9 +61,9 @@ class EncryptionMethod(str, Enum):
 @dataclasses.dataclass
 class NativeNetworkEncryptionNNE:
     r"""The native network encryption gives you the ability to encrypt database connections, without the configuration overhead of TCP/IP and SSL/TLS and without the need to open and listen on different ports."""
+    ENCRYPTION_METHOD: Final[EncryptionMethod] = dataclasses.field(default=EncryptionMethod.CLIENT_NNE, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('encryption_method') }})
     encryption_algorithm: Optional[EncryptionAlgorithm] = dataclasses.field(default=EncryptionAlgorithm.AES256, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('encryption_algorithm'), 'exclude': lambda f: f is None }})
     r"""This parameter defines what encryption algorithm is used."""
-    ENCRYPTION_METHOD: Final[Optional[EncryptionMethod]] = dataclasses.field(default=EncryptionMethod.CLIENT_NNE, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('encryption_method'), 'exclude': lambda f: f is None }})
     
 
 

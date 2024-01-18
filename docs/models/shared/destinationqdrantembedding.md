@@ -23,12 +23,6 @@ destinationQdrantEmbedding: shared.DestinationQdrantCohere = /* values here */
 destinationQdrantEmbedding: shared.DestinationQdrantFake = /* values here */
 ```
 
-### DestinationQdrantFromField
-
-```python
-destinationQdrantEmbedding: shared.DestinationQdrantFromField = /* values here */
-```
-
 ### DestinationQdrantAzureOpenAI
 
 ```python

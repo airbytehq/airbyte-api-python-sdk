@@ -10,7 +10,7 @@ from typing import Final, List, Optional, Union
 class Qdrant(str, Enum):
     QDRANT = 'qdrant'
 
-class DestinationQdrantSchemasEmbeddingEmbedding6Mode(str, Enum):
+class DestinationQdrantSchemasEmbeddingEmbedding5Mode(str, Enum):
     OPENAI_COMPATIBLE = 'openai_compatible'
 
 
@@ -23,13 +23,13 @@ class DestinationQdrantOpenAICompatible:
     dimensions: int = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('dimensions') }})
     r"""The number of dimensions the embedding model is generating"""
     api_key: Optional[str] = dataclasses.field(default='', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('api_key'), 'exclude': lambda f: f is None }})
-    MODE: Final[Optional[DestinationQdrantSchemasEmbeddingEmbedding6Mode]] = dataclasses.field(default=DestinationQdrantSchemasEmbeddingEmbedding6Mode.OPENAI_COMPATIBLE, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('mode'), 'exclude': lambda f: f is None }})
+    MODE: Final[Optional[DestinationQdrantSchemasEmbeddingEmbedding5Mode]] = dataclasses.field(default=DestinationQdrantSchemasEmbeddingEmbedding5Mode.OPENAI_COMPATIBLE, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('mode'), 'exclude': lambda f: f is None }})
     model_name: Optional[str] = dataclasses.field(default='text-embedding-ada-002', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('model_name'), 'exclude': lambda f: f is None }})
     r"""The name of the model to use for embedding"""
     
 
 
-class DestinationQdrantSchemasEmbeddingEmbedding5Mode(str, Enum):
+class DestinationQdrantSchemasEmbeddingEmbeddingMode(str, Enum):
     AZURE_OPENAI = 'azure_openai'
 
 
@@ -43,23 +43,7 @@ class DestinationQdrantAzureOpenAI:
     r"""The deployment for your Azure OpenAI resource.  You can find this in the Azure portal under your Azure OpenAI resource"""
     openai_key: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('openai_key') }})
     r"""The API key for your Azure OpenAI resource.  You can find this in the Azure portal under your Azure OpenAI resource"""
-    MODE: Final[Optional[DestinationQdrantSchemasEmbeddingEmbedding5Mode]] = dataclasses.field(default=DestinationQdrantSchemasEmbeddingEmbedding5Mode.AZURE_OPENAI, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('mode'), 'exclude': lambda f: f is None }})
-    
-
-
-class DestinationQdrantSchemasEmbeddingEmbeddingMode(str, Enum):
-    FROM_FIELD = 'from_field'
-
-
-@dataclass_json(undefined=Undefined.EXCLUDE)
-@dataclasses.dataclass
-class DestinationQdrantFromField:
-    r"""Use a field in the record as the embedding. This is useful if you already have an embedding for your data and want to store it in the vector store."""
-    dimensions: int = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('dimensions') }})
-    r"""The number of dimensions the embedding model is generating"""
-    field_name: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('field_name') }})
-    r"""Name of the field in the record that contains the embedding"""
-    MODE: Final[Optional[DestinationQdrantSchemasEmbeddingEmbeddingMode]] = dataclasses.field(default=DestinationQdrantSchemasEmbeddingEmbeddingMode.FROM_FIELD, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('mode'), 'exclude': lambda f: f is None }})
+    MODE: Final[Optional[DestinationQdrantSchemasEmbeddingEmbeddingMode]] = dataclasses.field(default=DestinationQdrantSchemasEmbeddingEmbeddingMode.AZURE_OPENAI, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('mode'), 'exclude': lambda f: f is None }})
     
 
 
@@ -125,14 +109,11 @@ class APIKeyAuth:
     
 
 
-class Three(str, Enum):
-    EUC = 'euc'
-
-class Two(str, Enum):
-    COS = 'cos'
-
-class One(str, Enum):
+class DistanceMetric(str, Enum):
+    r"""The Distance metric used to measure similarities among vectors. This field is only used if the collection defined in the does not exist yet and is created automatically by the connector."""
     DOT = 'dot'
+    COS = 'cos'
+    EUC = 'euc'
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
@@ -145,7 +126,7 @@ class DestinationQdrantIndexing:
     r"""Public Endpoint of the Qdrant cluser"""
     auth_method: Optional[Union[APIKeyAuth, DestinationQdrantNoAuth]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_method'), 'exclude': lambda f: f is None }})
     r"""Method to authenticate with the Qdrant Instance"""
-    distance_metric: Optional[Union[One, Two, Three]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('distance_metric'), 'exclude': lambda f: f is None }})
+    distance_metric: Optional[DistanceMetric] = dataclasses.field(default=DistanceMetric.COS, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('distance_metric'), 'exclude': lambda f: f is None }})
     r"""The Distance metric used to measure similarities among vectors. This field is only used if the collection defined in the does not exist yet and is created automatically by the connector."""
     prefer_grpc: Optional[bool] = dataclasses.field(default=True, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('prefer_grpc'), 'exclude': lambda f: f is None }})
     r"""Whether to prefer gRPC over HTTP. Set to true for Qdrant cloud clusters"""
@@ -251,11 +232,24 @@ class DestinationQdrantProcessingConfigModel:
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
 class DestinationQdrant:
-    embedding: Union[DestinationQdrantOpenAI, DestinationQdrantCohere, DestinationQdrantFake, DestinationQdrantFromField, DestinationQdrantAzureOpenAI, DestinationQdrantOpenAICompatible] = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('embedding') }})
+    r"""The configuration model for the Vector DB based destinations. This model is used to generate the UI for the destination configuration,
+    as well as to provide type safety for the configuration passed to the destination.
+
+    The configuration model is composed of four parts:
+    * Processing configuration
+    * Embedding configuration
+    * Indexing configuration
+    * Advanced configuration
+
+    Processing, embedding and advanced configuration are provided by this base class, while the indexing configuration is provided by the destination connector in the sub class.
+    """
+    embedding: Union[DestinationQdrantOpenAI, DestinationQdrantCohere, DestinationQdrantFake, DestinationQdrantAzureOpenAI, DestinationQdrantOpenAICompatible] = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('embedding') }})
     r"""Embedding configuration"""
     indexing: DestinationQdrantIndexing = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('indexing') }})
     r"""Indexing configuration"""
     processing: DestinationQdrantProcessingConfigModel = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('processing') }})
     DESTINATION_TYPE: Final[Qdrant] = dataclasses.field(default=Qdrant.QDRANT, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('destinationType') }})
+    omit_raw_text: Optional[bool] = dataclasses.field(default=False, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('omit_raw_text'), 'exclude': lambda f: f is None }})
+    r"""Do not store the text that gets embedded along with the vector and the metadata in the destination. If set to true, only the vector and the metadata will be stored - in this case raw text for LLM use cases needs to be retrieved from another source."""
     
 

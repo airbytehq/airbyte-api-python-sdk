@@ -10,7 +10,7 @@ from typing import Final, List, Optional, Union
 class Milvus(str, Enum):
     MILVUS = 'milvus'
 
-class DestinationMilvusSchemasEmbeddingEmbedding6Mode(str, Enum):
+class DestinationMilvusSchemasEmbeddingEmbedding5Mode(str, Enum):
     OPENAI_COMPATIBLE = 'openai_compatible'
 
 
@@ -23,13 +23,13 @@ class OpenAICompatible:
     dimensions: int = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('dimensions') }})
     r"""The number of dimensions the embedding model is generating"""
     api_key: Optional[str] = dataclasses.field(default='', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('api_key'), 'exclude': lambda f: f is None }})
-    MODE: Final[Optional[DestinationMilvusSchemasEmbeddingEmbedding6Mode]] = dataclasses.field(default=DestinationMilvusSchemasEmbeddingEmbedding6Mode.OPENAI_COMPATIBLE, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('mode'), 'exclude': lambda f: f is None }})
+    MODE: Final[Optional[DestinationMilvusSchemasEmbeddingEmbedding5Mode]] = dataclasses.field(default=DestinationMilvusSchemasEmbeddingEmbedding5Mode.OPENAI_COMPATIBLE, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('mode'), 'exclude': lambda f: f is None }})
     model_name: Optional[str] = dataclasses.field(default='text-embedding-ada-002', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('model_name'), 'exclude': lambda f: f is None }})
     r"""The name of the model to use for embedding"""
     
 
 
-class DestinationMilvusSchemasEmbeddingEmbedding5Mode(str, Enum):
+class DestinationMilvusSchemasEmbeddingEmbeddingMode(str, Enum):
     AZURE_OPENAI = 'azure_openai'
 
 
@@ -43,23 +43,7 @@ class AzureOpenAI:
     r"""The deployment for your Azure OpenAI resource.  You can find this in the Azure portal under your Azure OpenAI resource"""
     openai_key: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('openai_key') }})
     r"""The API key for your Azure OpenAI resource.  You can find this in the Azure portal under your Azure OpenAI resource"""
-    MODE: Final[Optional[DestinationMilvusSchemasEmbeddingEmbedding5Mode]] = dataclasses.field(default=DestinationMilvusSchemasEmbeddingEmbedding5Mode.AZURE_OPENAI, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('mode'), 'exclude': lambda f: f is None }})
-    
-
-
-class DestinationMilvusSchemasEmbeddingEmbeddingMode(str, Enum):
-    FROM_FIELD = 'from_field'
-
-
-@dataclass_json(undefined=Undefined.EXCLUDE)
-@dataclasses.dataclass
-class FromField:
-    r"""Use a field in the record as the embedding. This is useful if you already have an embedding for your data and want to store it in the vector store."""
-    dimensions: int = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('dimensions') }})
-    r"""The number of dimensions the embedding model is generating"""
-    field_name: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('field_name') }})
-    r"""Name of the field in the record that contains the embedding"""
-    MODE: Final[Optional[DestinationMilvusSchemasEmbeddingEmbeddingMode]] = dataclasses.field(default=DestinationMilvusSchemasEmbeddingEmbeddingMode.FROM_FIELD, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('mode'), 'exclude': lambda f: f is None }})
+    MODE: Final[Optional[DestinationMilvusSchemasEmbeddingEmbeddingMode]] = dataclasses.field(default=DestinationMilvusSchemasEmbeddingEmbeddingMode.AZURE_OPENAI, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('mode'), 'exclude': lambda f: f is None }})
     
 
 
@@ -260,11 +244,24 @@ class DestinationMilvusProcessingConfigModel:
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
 class DestinationMilvus:
-    embedding: Union[DestinationMilvusOpenAI, Cohere, DestinationMilvusFake, FromField, AzureOpenAI, OpenAICompatible] = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('embedding') }})
+    r"""The configuration model for the Vector DB based destinations. This model is used to generate the UI for the destination configuration,
+    as well as to provide type safety for the configuration passed to the destination.
+
+    The configuration model is composed of four parts:
+    * Processing configuration
+    * Embedding configuration
+    * Indexing configuration
+    * Advanced configuration
+
+    Processing, embedding and advanced configuration are provided by this base class, while the indexing configuration is provided by the destination connector in the sub class.
+    """
+    embedding: Union[DestinationMilvusOpenAI, Cohere, DestinationMilvusFake, AzureOpenAI, OpenAICompatible] = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('embedding') }})
     r"""Embedding configuration"""
     indexing: DestinationMilvusIndexing = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('indexing') }})
     r"""Indexing configuration"""
     processing: DestinationMilvusProcessingConfigModel = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('processing') }})
     DESTINATION_TYPE: Final[Milvus] = dataclasses.field(default=Milvus.MILVUS, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('destinationType') }})
+    omit_raw_text: Optional[bool] = dataclasses.field(default=False, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('omit_raw_text'), 'exclude': lambda f: f is None }})
+    r"""Do not store the text that gets embedded along with the vector and the metadata in the destination. If set to true, only the vector and the metadata will be stored - in this case raw text for LLM use cases needs to be retrieved from another source."""
     
 

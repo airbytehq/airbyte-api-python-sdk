@@ -25,6 +25,8 @@ class SelfManagedReplicaSet:
     r"""The authentication source where the user information is stored."""
     password: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('password'), 'exclude': lambda f: f is None }})
     r"""The password associated with this username."""
+    schema_enforced: Optional[bool] = dataclasses.field(default=True, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('schema_enforced'), 'exclude': lambda f: f is None }})
+    r"""When enabled, syncs will validate and structure records against the stream's schema."""
     username: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('username'), 'exclude': lambda f: f is None }})
     r"""The username which is used to access the database."""
     
@@ -50,6 +52,8 @@ class MongoDBAtlasReplicaSet:
     additional_properties: Optional[Dict[str, Any]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'exclude': lambda f: f is None }})
     auth_source: Optional[str] = dataclasses.field(default='admin', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_source'), 'exclude': lambda f: f is None }})
     r"""The authentication source where the user information is stored.  See https://www.mongodb.com/docs/manual/reference/connection-string/#mongodb-urioption-urioption.authSource for more details."""
+    schema_enforced: Optional[bool] = dataclasses.field(default=True, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('schema_enforced'), 'exclude': lambda f: f is None }})
+    r"""When enabled, syncs will validate and structure records against the stream's schema."""
     
 
 

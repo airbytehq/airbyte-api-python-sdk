@@ -40,6 +40,87 @@ class AuthenticateViaGoogleOauth:
     
 
 
+
+@dataclass_json(undefined=Undefined.EXCLUDE)
+@dataclasses.dataclass
+class CohortReportSettings:
+    r"""Optional settings for a cohort report."""
+    accumulate: Optional[bool] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('accumulate'), 'exclude': lambda f: f is None }})
+    r"""If true, accumulates the result from first touch day to the end day"""
+    
+
+
+
+@dataclass_json(undefined=Undefined.EXCLUDE)
+@dataclasses.dataclass
+class DateRange:
+    end_date: date = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('endDate'), 'encoder': utils.dateisoformat(False), 'decoder': utils.datefromisoformat }})
+    start_date: date = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('startDate'), 'encoder': utils.dateisoformat(False), 'decoder': utils.datefromisoformat }})
+    
+
+
+class Dimension(str, Enum):
+    r"""Dimension used by the cohort. Required and only supports `firstSessionDate`"""
+    FIRST_SESSION_DATE = 'firstSessionDate'
+
+
+@dataclass_json(undefined=Undefined.EXCLUDE)
+@dataclasses.dataclass
+class Cohorts:
+    date_range: DateRange = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('dateRange') }})
+    dimension: Dimension = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('dimension') }})
+    r"""Dimension used by the cohort. Required and only supports `firstSessionDate`"""
+    name: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('name'), 'exclude': lambda f: f is None }})
+    r"""Assigns a name to this cohort. If not set, cohorts are named by their zero based index cohort_0, cohort_1, etc."""
+    
+
+
+class SourceGoogleAnalyticsDataAPIGranularity(str, Enum):
+    r"""The granularity used to interpret the startOffset and endOffset for the extended reporting date range for a cohort report."""
+    GRANULARITY_UNSPECIFIED = 'GRANULARITY_UNSPECIFIED'
+    DAILY = 'DAILY'
+    WEEKLY = 'WEEKLY'
+    MONTHLY = 'MONTHLY'
+
+
+@dataclass_json(undefined=Undefined.EXCLUDE)
+@dataclasses.dataclass
+class CohortsRange:
+    end_offset: int = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('endOffset') }})
+    r"""Specifies the end date of the extended reporting date range for a cohort report."""
+    granularity: SourceGoogleAnalyticsDataAPIGranularity = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('granularity') }})
+    r"""The granularity used to interpret the startOffset and endOffset for the extended reporting date range for a cohort report."""
+    start_offset: Optional[int] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('startOffset'), 'exclude': lambda f: f is None }})
+    r"""Specifies the start date of the extended reporting date range for a cohort report."""
+    
+
+
+class SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayEnabled(str, Enum):
+    TRUE = 'true'
+
+
+@dataclass_json(undefined=Undefined.EXCLUDE)
+@dataclasses.dataclass
+class SourceGoogleAnalyticsDataAPISchemasEnabled:
+    cohort_report_settings: Optional[CohortReportSettings] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('cohortReportSettings'), 'exclude': lambda f: f is None }})
+    r"""Optional settings for a cohort report."""
+    cohorts: Optional[List[Cohorts]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('cohorts'), 'exclude': lambda f: f is None }})
+    cohorts_range: Optional[CohortsRange] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('cohortsRange'), 'exclude': lambda f: f is None }})
+    ENABLED: Final[Optional[SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayEnabled]] = dataclasses.field(default=SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayEnabled.TRUE, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('enabled'), 'exclude': lambda f: f is None }})
+    
+
+
+class SourceGoogleAnalyticsDataAPIEnabled(str, Enum):
+    FALSE = 'false'
+
+
+@dataclass_json(undefined=Undefined.EXCLUDE)
+@dataclasses.dataclass
+class SourceGoogleAnalyticsDataAPIDisabled:
+    ENABLED: Final[Optional[SourceGoogleAnalyticsDataAPIEnabled]] = dataclasses.field(default=SourceGoogleAnalyticsDataAPIEnabled.FALSE, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('enabled'), 'exclude': lambda f: f is None }})
+    
+
+
 class SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayFilterName(str, Enum):
     BETWEEN_FILTER = 'betweenFilter'
 
@@ -1346,6 +1427,8 @@ class SourceGoogleAnalyticsDataAPICustomReportConfig:
     r"""A list of metrics."""
     name: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('name') }})
     r"""The name of the custom report, this name would be used as stream name."""
+    cohort_spec: Optional[Union[SourceGoogleAnalyticsDataAPIDisabled, SourceGoogleAnalyticsDataAPISchemasEnabled]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('cohortSpec'), 'exclude': lambda f: f is None }})
+    r"""Cohort reports creates a time series of user retention for the cohort."""
     dimension_filter: Optional[Union[AndGroup, OrGroup, NotExpression, Filter]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('dimensionFilter'), 'exclude': lambda f: f is None }})
     r"""Dimensions filter"""
     metric_filter: Optional[Union[SourceGoogleAnalyticsDataAPIAndGroup, SourceGoogleAnalyticsDataAPIOrGroup, SourceGoogleAnalyticsDataAPINotExpression, SourceGoogleAnalyticsDataAPIFilter]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('metricFilter'), 'exclude': lambda f: f is None }})
@@ -1369,6 +1452,8 @@ class SourceGoogleAnalyticsDataAPI:
     r"""You can add your Custom Analytics report by creating one."""
     date_ranges_start_date: Optional[date] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('date_ranges_start_date'), 'encoder': utils.dateisoformat(True), 'decoder': utils.datefromisoformat, 'exclude': lambda f: f is None }})
     r"""The start date from which to replicate report data in the format YYYY-MM-DD. Data generated before this date will not be included in the report. Not applied to custom Cohort reports."""
+    keep_empty_rows: Optional[bool] = dataclasses.field(default=False, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('keep_empty_rows'), 'exclude': lambda f: f is None }})
+    r"""If false, each row with all metrics equal to 0 will not be returned. If true, these rows will be returned if they are not separately removed by a filter. More information is available in <a href=\\"https://developers.google.com/analytics/devguides/reporting/data/v1/rest/v1beta/properties/runReport#request-body\\">the documentation</a>."""
     window_in_days: Optional[int] = dataclasses.field(default=1, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('window_in_days'), 'exclude': lambda f: f is None }})
     r"""The interval in days for each data request made to the Google Analytics API. A larger value speeds up data sync, but increases the chance of data sampling, which may result in inaccuracies. We recommend a value of 1 to minimize sampling, unless speed is an absolute priority over accuracy. Acceptable values range from 1 to 364. Does not apply to custom Cohort reports. More information is available in <a href=\\"https://docs.airbyte.com/integrations/sources/google-analytics-data-api\\">the documentation</a>."""
     

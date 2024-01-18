@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 07961597-3730-4940-9fd0-35eb4118eab3
 management:
-  docChecksum: 8f62e207fcdebe72da7eb9c7525220b5
+  docChecksum: c101e6356aa26bcdee80457c4dc64471
   docVersion: 1.0.0
   speakeasyVersion: internal
-  generationVersion: 2.233.2
-  releaseVersion: 0.44.2
-  configChecksum: bf17012ac6ba48ff08ca884c83be54d2
+  generationVersion: 2.237.2
+  releaseVersion: 0.44.3
+  configChecksum: e5234746f9bb8bf377f8400720a7b273
   repoURL: https://github.com/airbytehq/airbyte-api-python-sdk.git
   repoSubDirectory: .
   installationURL: https://github.com/airbytehq/airbyte-api-python-sdk.git
@@ -15,8 +15,8 @@ features:
   python:
     additionalProperties: 0.1.0
     constsAndDefaults: 0.1.2
-    core: 4.4.1
-    globalSecurity: 2.83.1
+    core: 4.4.2
+    globalSecurity: 2.83.2
     globalServerURLs: 2.82.1
     unions: 2.82.5
 generatedFiles:
@@ -120,6 +120,7 @@ generatedFiles:
   - src/airbyte/models/shared/destination_snowflake.py
   - src/airbyte/models/shared/destination_timeplus.py
   - src/airbyte/models/shared/destination_typesense.py
+  - src/airbyte/models/shared/destination_vectara.py
   - src/airbyte/models/shared/destination_vertica.py
   - src/airbyte/models/shared/destination_weaviate.py
   - src/airbyte/models/shared/destination_xata.py
@@ -153,6 +154,7 @@ generatedFiles:
   - src/airbyte/models/shared/source_bing_ads.py
   - src/airbyte/models/shared/source_braintree.py
   - src/airbyte/models/shared/source_braze.py
+  - src/airbyte/models/shared/source_cart.py
   - src/airbyte/models/shared/source_chargebee.py
   - src/airbyte/models/shared/source_chartmogul.py
   - src/airbyte/models/shared/source_clickhouse.py
@@ -175,7 +177,6 @@ generatedFiles:
   - src/airbyte/models/shared/source_emailoctopus.py
   - src/airbyte/models/shared/source_exchange_rates.py
   - src/airbyte/models/shared/source_facebook_marketing.py
-  - src/airbyte/models/shared/source_facebook_pages.py
   - src/airbyte/models/shared/source_faker.py
   - src/airbyte/models/shared/source_fauna.py
   - src/airbyte/models/shared/source_file.py
@@ -303,7 +304,6 @@ generatedFiles:
   - src/airbyte/models/shared/source_tempo.py
   - src/airbyte/models/shared/source_the_guardian_api.py
   - src/airbyte/models/shared/source_tiktok_marketing.py
-  - src/airbyte/models/shared/source_todoist.py
   - src/airbyte/models/shared/source_trello.py
   - src/airbyte/models/shared/source_trustpilot.py
   - src/airbyte/models/shared/source_tvmaze_schedule.py
@@ -615,12 +615,10 @@ generatedFiles:
   - docs/models/shared/processingconfigmodel.md
   - docs/models/shared/destinationlangchain.md
   - docs/models/shared/milvus.md
-  - docs/models/shared/destinationmilvusschemasembeddingembedding6mode.md
-  - docs/models/shared/openaicompatible.md
   - docs/models/shared/destinationmilvusschemasembeddingembedding5mode.md
-  - docs/models/shared/azureopenai.md
+  - docs/models/shared/openaicompatible.md
   - docs/models/shared/destinationmilvusschemasembeddingembeddingmode.md
-  - docs/models/shared/fromfield.md
+  - docs/models/shared/azureopenai.md
   - docs/models/shared/destinationmilvusschemasembeddingmode.md
   - docs/models/shared/destinationmilvusfake.md
   - docs/models/shared/destinationmilvusschemasmode.md
@@ -749,12 +747,10 @@ generatedFiles:
   - docs/models/shared/pubsub.md
   - docs/models/shared/destinationpubsub.md
   - docs/models/shared/qdrant.md
-  - docs/models/shared/destinationqdrantschemasembeddingembedding6mode.md
-  - docs/models/shared/destinationqdrantopenaicompatible.md
   - docs/models/shared/destinationqdrantschemasembeddingembedding5mode.md
-  - docs/models/shared/destinationqdrantazureopenai.md
+  - docs/models/shared/destinationqdrantopenaicompatible.md
   - docs/models/shared/destinationqdrantschemasembeddingembeddingmode.md
-  - docs/models/shared/destinationqdrantfromfield.md
+  - docs/models/shared/destinationqdrantazureopenai.md
   - docs/models/shared/destinationqdrantschemasembeddingmode.md
   - docs/models/shared/destinationqdrantfake.md
   - docs/models/shared/destinationqdrantschemasmode.md
@@ -767,9 +763,6 @@ generatedFiles:
   - docs/models/shared/destinationqdrantschemasindexingmode.md
   - docs/models/shared/apikeyauth.md
   - docs/models/shared/destinationqdrantauthenticationmethod.md
-  - docs/models/shared/three.md
-  - docs/models/shared/two.md
-  - docs/models/shared/one.md
   - docs/models/shared/distancemetric.md
   - docs/models/shared/destinationqdrantindexing.md
   - docs/models/shared/destinationqdrantfieldnamemappingconfigmodel.md
@@ -815,32 +808,16 @@ generatedFiles:
   - docs/models/shared/destinationredshiftencryption.md
   - docs/models/shared/destinationredshiftmethod.md
   - docs/models/shared/destinationredshifts3bucketregion.md
-  - docs/models/shared/s3staging.md
+  - docs/models/shared/awss3staging.md
   - docs/models/shared/uploadingmethod.md
   - docs/models/shared/destinationredshift.md
   - docs/models/shared/s3.md
   - docs/models/shared/destinations3schemascompressioncodec.md
   - docs/models/shared/destinations3schemasformatoutputformatformattype.md
   - docs/models/shared/destinations3parquetcolumnarstorage.md
-  - docs/models/shared/destinations3schemasformatoutputformatcompressiontype.md
-  - docs/models/shared/destinations3schemasgzip.md
-  - docs/models/shared/destinations3schemasformatcompressiontype.md
-  - docs/models/shared/destinations3schemasformatnocompression.md
-  - docs/models/shared/destinations3schemascompression.md
-  - docs/models/shared/destinations3schemasflattening.md
-  - docs/models/shared/destinations3schemasformatformattype.md
-  - docs/models/shared/destinations3jsonlinesnewlinedelimitedjson.md
-  - docs/models/shared/destinations3schemascompressiontype.md
-  - docs/models/shared/destinations3gzip.md
-  - docs/models/shared/destinations3compressiontype.md
-  - docs/models/shared/destinations3schemasnocompression.md
-  - docs/models/shared/destinations3compression.md
-  - docs/models/shared/destinations3flattening.md
-  - docs/models/shared/destinations3schemasformattype.md
-  - docs/models/shared/destinations3csvcommaseparatedvalues.md
-  - docs/models/shared/destinations3schemasformatoutputformat1compressioncodeccodec.md
+  - docs/models/shared/destinations3schemasformatoutputformat3compressioncodeccodec.md
   - docs/models/shared/destinations3snappy.md
-  - docs/models/shared/destinations3schemasformatoutputformat1codec.md
+  - docs/models/shared/destinations3schemasformatoutputformat3codec.md
   - docs/models/shared/destinations3zstandard.md
   - docs/models/shared/destinations3schemasformatoutputformatcodec.md
   - docs/models/shared/destinations3xz.md
@@ -849,10 +826,26 @@ generatedFiles:
   - docs/models/shared/destinations3schemascodec.md
   - docs/models/shared/destinations3deflate.md
   - docs/models/shared/destinations3codec.md
-  - docs/models/shared/destinations3nocompression.md
+  - docs/models/shared/destinations3schemasformatnocompression.md
   - docs/models/shared/destinations3compressioncodec.md
-  - docs/models/shared/destinations3formattype.md
+  - docs/models/shared/destinations3schemasformatformattype.md
   - docs/models/shared/destinations3avroapacheavro.md
+  - docs/models/shared/destinations3schemasformatoutputformatcompressiontype.md
+  - docs/models/shared/destinations3schemasgzip.md
+  - docs/models/shared/destinations3schemasformatcompressiontype.md
+  - docs/models/shared/destinations3schemasnocompression.md
+  - docs/models/shared/destinations3schemascompression.md
+  - docs/models/shared/destinations3schemasflattening.md
+  - docs/models/shared/destinations3schemasformattype.md
+  - docs/models/shared/destinations3jsonlinesnewlinedelimitedjson.md
+  - docs/models/shared/destinations3schemascompressiontype.md
+  - docs/models/shared/destinations3gzip.md
+  - docs/models/shared/destinations3compressiontype.md
+  - docs/models/shared/destinations3nocompression.md
+  - docs/models/shared/destinations3compression.md
+  - docs/models/shared/destinations3flattening.md
+  - docs/models/shared/destinations3formattype.md
+  - docs/models/shared/destinations3csvcommaseparatedvalues.md
   - docs/models/shared/destinations3outputformat.md
   - docs/models/shared/destinations3s3bucketregion.md
   - docs/models/shared/destinations3.md
@@ -876,7 +869,7 @@ generatedFiles:
   - docs/models/shared/destinationsnowflakeauthtype.md
   - docs/models/shared/keypairauthentication.md
   - docs/models/shared/destinationsnowflakeschemascredentialsauthtype.md
-  - docs/models/shared/oauth20.md
+  - docs/models/shared/destinationsnowflakeoauth20.md
   - docs/models/shared/authorizationmethod.md
   - docs/models/shared/destinationsnowflakesnowflake.md
   - docs/models/shared/destinationsnowflake.md
@@ -884,6 +877,9 @@ generatedFiles:
   - docs/models/shared/destinationtimeplus.md
   - docs/models/shared/typesense.md
   - docs/models/shared/destinationtypesense.md
+  - docs/models/shared/vectara.md
+  - docs/models/shared/oauth20credentials.md
+  - docs/models/shared/destinationvectara.md
   - docs/models/shared/vertica.md
   - docs/models/shared/destinationverticaschemastunnelmethodtunnelmethod.md
   - docs/models/shared/destinationverticapasswordauthentication.md
@@ -899,7 +895,7 @@ generatedFiles:
   - docs/models/shared/destinationweaviateschemasembeddingembedding6mode.md
   - docs/models/shared/destinationweaviatefake.md
   - docs/models/shared/destinationweaviateschemasembeddingembedding5mode.md
-  - docs/models/shared/destinationweaviatefromfield.md
+  - docs/models/shared/fromfield.md
   - docs/models/shared/destinationweaviateschemasembeddingembeddingmode.md
   - docs/models/shared/destinationweaviatecohere.md
   - docs/models/shared/destinationweaviateschemasembeddingmode.md
@@ -991,9 +987,13 @@ generatedFiles:
   - docs/models/shared/sourceamazonadsamazonads.md
   - docs/models/shared/statefilter.md
   - docs/models/shared/sourceamazonads.md
+  - docs/models/shared/awssellerpartneraccounttype.md
   - docs/models/shared/sourceamazonsellerpartnerauthtype.md
   - docs/models/shared/awsenvironment.md
   - docs/models/shared/awsregion.md
+  - docs/models/shared/optionslist.md
+  - docs/models/shared/streamname.md
+  - docs/models/shared/reportoptions.md
   - docs/models/shared/sourceamazonsellerpartneramazonsellerpartner.md
   - docs/models/shared/sourceamazonsellerpartner.md
   - docs/models/shared/sourceamazonsqsawsregion.md
@@ -1024,6 +1024,10 @@ generatedFiles:
   - docs/models/shared/sourceawscloudtrail.md
   - docs/models/shared/sourceazureblobstorageazureblobstorage.md
   - docs/models/shared/sourceazureblobstorageschemasstreamsformatfiletype.md
+  - docs/models/shared/sourceazureblobstoragemode.md
+  - docs/models/shared/local.md
+  - docs/models/shared/processing.md
+  - docs/models/shared/parsingstrategy.md
   - docs/models/shared/documentfiletypeformatexperimental.md
   - docs/models/shared/sourceazureblobstorageschemasstreamsfiletype.md
   - docs/models/shared/parquetformat.md
@@ -1051,6 +1055,8 @@ generatedFiles:
   - docs/models/shared/sourcebamboohr.md
   - docs/models/shared/sourcebigquerybigquery.md
   - docs/models/shared/sourcebigquery.md
+  - docs/models/shared/operator.md
+  - docs/models/shared/accountnames.md
   - docs/models/shared/authmethod.md
   - docs/models/shared/reportingdataobject.md
   - docs/models/shared/customreportconfig.md
@@ -1061,6 +1067,13 @@ generatedFiles:
   - docs/models/shared/sourcebraintree.md
   - docs/models/shared/braze.md
   - docs/models/shared/sourcebraze.md
+  - docs/models/shared/sourcecartschemasauthtype.md
+  - docs/models/shared/singlestoreaccesstoken.md
+  - docs/models/shared/sourcecartauthtype.md
+  - docs/models/shared/centralapirouter.md
+  - docs/models/shared/sourcecartauthorizationmethod.md
+  - docs/models/shared/cart.md
+  - docs/models/shared/sourcecart.md
   - docs/models/shared/productcatalog.md
   - docs/models/shared/chargebee.md
   - docs/models/shared/sourcechargebee.md
@@ -1129,8 +1142,6 @@ generatedFiles:
   - docs/models/shared/insightconfig.md
   - docs/models/shared/sourcefacebookmarketingfacebookmarketing.md
   - docs/models/shared/sourcefacebookmarketing.md
-  - docs/models/shared/facebookpages.md
-  - docs/models/shared/sourcefacebookpages.md
   - docs/models/shared/faker.md
   - docs/models/shared/sourcefaker.md
   - docs/models/shared/sourcefaunaschemasdeletionmode.md
@@ -1211,7 +1222,8 @@ generatedFiles:
   - docs/models/shared/topheadlinestopic.md
   - docs/models/shared/sourcegnews.md
   - docs/models/shared/googlecredentials.md
-  - docs/models/shared/customqueries.md
+  - docs/models/shared/customqueriesarray.md
+  - docs/models/shared/customerstatus.md
   - docs/models/shared/sourcegoogleadsgoogleads.md
   - docs/models/shared/sourcegoogleads.md
   - docs/models/shared/sourcegoogleanalyticsdataapischemasauthtype.md
@@ -1219,6 +1231,17 @@ generatedFiles:
   - docs/models/shared/sourcegoogleanalyticsdataapiauthtype.md
   - docs/models/shared/authenticateviagoogleoauth.md
   - docs/models/shared/sourcegoogleanalyticsdataapicredentials.md
+  - docs/models/shared/cohortreportsettings.md
+  - docs/models/shared/daterange.md
+  - docs/models/shared/dimension.md
+  - docs/models/shared/cohorts.md
+  - docs/models/shared/sourcegoogleanalyticsdataapigranularity.md
+  - docs/models/shared/cohortsrange.md
+  - docs/models/shared/sourcegoogleanalyticsdataapischemascustomreportsarrayenabled.md
+  - docs/models/shared/sourcegoogleanalyticsdataapischemasenabled.md
+  - docs/models/shared/sourcegoogleanalyticsdataapienabled.md
+  - docs/models/shared/sourcegoogleanalyticsdataapidisabled.md
+  - docs/models/shared/cohortreports.md
   - docs/models/shared/sourcegoogleanalyticsdataapischemascustomreportsarrayfiltername.md
   - docs/models/shared/sourcegoogleanalyticsdataapischemascustomreportsarrayvaluetype.md
   - docs/models/shared/sourcegoogleanalyticsdataapidoublevalue.md
@@ -1468,6 +1491,10 @@ generatedFiles:
   - docs/models/shared/sourcegoogledriveauthentication.md
   - docs/models/shared/sourcegoogledrivegoogledrive.md
   - docs/models/shared/sourcegoogledriveschemasstreamsformatformatfiletype.md
+  - docs/models/shared/sourcegoogledrivemode.md
+  - docs/models/shared/sourcegoogledrivelocal.md
+  - docs/models/shared/sourcegoogledriveprocessing.md
+  - docs/models/shared/sourcegoogledriveparsingstrategy.md
   - docs/models/shared/sourcegoogledrivedocumentfiletypeformatexperimental.md
   - docs/models/shared/sourcegoogledriveschemasstreamsformatfiletype.md
   - docs/models/shared/sourcegoogledriveparquetformat.md
@@ -1640,16 +1667,16 @@ generatedFiles:
   - docs/models/shared/sourcemongodbv2.md
   - docs/models/shared/sourcemssqlschemasmethod.md
   - docs/models/shared/scanchangeswithuserdefinedcursor.md
-  - docs/models/shared/datatosync.md
   - docs/models/shared/sourcemssqlmethod.md
-  - docs/models/shared/initialsnapshotisolationlevel.md
   - docs/models/shared/readchangesusingchangedatacapturecdc.md
   - docs/models/shared/updatemethod.md
   - docs/models/shared/sourcemssqlmssql.md
-  - docs/models/shared/sourcemssqlschemassslmethodsslmethod.md
+  - docs/models/shared/sourcemssqlschemassslmethodsslmethodsslmethod.md
   - docs/models/shared/sourcemssqlencryptedverifycertificate.md
-  - docs/models/shared/sourcemssqlschemassslmethod.md
+  - docs/models/shared/sourcemssqlschemassslmethodsslmethod.md
   - docs/models/shared/sourcemssqlencryptedtrustservercertificate.md
+  - docs/models/shared/sourcemssqlschemassslmethod.md
+  - docs/models/shared/unencrypted.md
   - docs/models/shared/sourcemssqlsslmethod.md
   - docs/models/shared/sourcemssqlschemastunnelmethodtunnelmethod.md
   - docs/models/shared/sourcemssqlpasswordauthentication.md
@@ -1755,8 +1782,16 @@ generatedFiles:
   - docs/models/shared/pexelsapi.md
   - docs/models/shared/sourcepexelsapi.md
   - docs/models/shared/sourcepinterestauthmethod.md
-  - docs/models/shared/sourcepinterestoauth20.md
-  - docs/models/shared/sourcepinterestauthorizationmethod.md
+  - docs/models/shared/oauth20.md
+  - docs/models/shared/sourcepinterestvalidenums.md
+  - docs/models/shared/clickwindowdays.md
+  - docs/models/shared/sourcepinterestschemasvalidenums.md
+  - docs/models/shared/conversionreporttime.md
+  - docs/models/shared/engagementwindowdays.md
+  - docs/models/shared/granularity.md
+  - docs/models/shared/sourcepinterestlevel.md
+  - docs/models/shared/viewwindowdays.md
+  - docs/models/shared/reportconfig.md
   - docs/models/shared/sourcepinterestpinterest.md
   - docs/models/shared/status.md
   - docs/models/shared/sourcepinterest.md
@@ -1857,6 +1892,10 @@ generatedFiles:
   - docs/models/shared/s3amazonwebservices.md
   - docs/models/shared/sources3s3.md
   - docs/models/shared/sources3schemasstreamsformatformat5filetype.md
+  - docs/models/shared/sources3mode.md
+  - docs/models/shared/sources3local.md
+  - docs/models/shared/sources3processing.md
+  - docs/models/shared/sources3parsingstrategy.md
   - docs/models/shared/sources3documentfiletypeformatexperimental.md
   - docs/models/shared/sources3schemasstreamsformatformat4filetype.md
   - docs/models/shared/sources3parquetformat.md
@@ -1988,8 +2027,6 @@ generatedFiles:
   - docs/models/shared/sourcetiktokmarketingauthenticationmethod.md
   - docs/models/shared/sourcetiktokmarketingtiktokmarketing.md
   - docs/models/shared/sourcetiktokmarketing.md
-  - docs/models/shared/todoist.md
-  - docs/models/shared/sourcetodoist.md
   - docs/models/shared/trello.md
   - docs/models/shared/sourcetrello.md
   - docs/models/shared/sourcetrustpilotschemasauthtype.md
@@ -2088,6 +2125,7 @@ generatedFiles:
   - docs/models/shared/streampropertiesresponse.md
   - docs/models/shared/streamproperties.md
   - docs/models/shared/workspaceoauthcredentialsrequest.md
+  - docs/models/shared/oauthcredentialsconfiguration.md
   - docs/models/shared/credentials.md
   - docs/models/shared/airtable.md
   - docs/models/shared/amazonads.md

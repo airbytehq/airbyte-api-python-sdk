@@ -43,109 +43,25 @@ class DestinationS3ParquetColumnarStorage:
     
 
 
-class DestinationS3SchemasFormatOutputFormatCompressionType(str, Enum):
-    GZIP = 'GZIP'
-
-
-@dataclass_json(undefined=Undefined.EXCLUDE)
-@dataclasses.dataclass
-class DestinationS3SchemasGZIP:
-    compression_type: Optional[DestinationS3SchemasFormatOutputFormatCompressionType] = dataclasses.field(default=DestinationS3SchemasFormatOutputFormatCompressionType.GZIP, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('compression_type'), 'exclude': lambda f: f is None }})
-    
-
-
-class DestinationS3SchemasFormatCompressionType(str, Enum):
-    NO_COMPRESSION = 'No Compression'
-
-
-@dataclass_json(undefined=Undefined.EXCLUDE)
-@dataclasses.dataclass
-class DestinationS3SchemasFormatNoCompression:
-    compression_type: Optional[DestinationS3SchemasFormatCompressionType] = dataclasses.field(default=DestinationS3SchemasFormatCompressionType.NO_COMPRESSION, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('compression_type'), 'exclude': lambda f: f is None }})
-    
-
-
-class DestinationS3SchemasFlattening(str, Enum):
-    r"""Whether the input json data should be normalized (flattened) in the output JSON Lines. Please refer to docs for details."""
-    NO_FLATTENING = 'No flattening'
-    ROOT_LEVEL_FLATTENING = 'Root level flattening'
-
-class DestinationS3SchemasFormatFormatType(str, Enum):
-    JSONL = 'JSONL'
-
-
-@dataclass_json(undefined=Undefined.EXCLUDE)
-@dataclasses.dataclass
-class DestinationS3JSONLinesNewlineDelimitedJSON:
-    compression: Optional[Union[DestinationS3SchemasFormatNoCompression, DestinationS3SchemasGZIP]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('compression'), 'exclude': lambda f: f is None }})
-    r"""Whether the output files should be compressed. If compression is selected, the output filename will have an extra extension (GZIP: \\".jsonl.gz\\")."""
-    flattening: Optional[DestinationS3SchemasFlattening] = dataclasses.field(default=DestinationS3SchemasFlattening.NO_FLATTENING, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('flattening'), 'exclude': lambda f: f is None }})
-    r"""Whether the input json data should be normalized (flattened) in the output JSON Lines. Please refer to docs for details."""
-    format_type: Optional[DestinationS3SchemasFormatFormatType] = dataclasses.field(default=DestinationS3SchemasFormatFormatType.JSONL, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('format_type'), 'exclude': lambda f: f is None }})
-    
-
-
-class DestinationS3SchemasCompressionType(str, Enum):
-    GZIP = 'GZIP'
-
-
-@dataclass_json(undefined=Undefined.EXCLUDE)
-@dataclasses.dataclass
-class DestinationS3GZIP:
-    compression_type: Optional[DestinationS3SchemasCompressionType] = dataclasses.field(default=DestinationS3SchemasCompressionType.GZIP, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('compression_type'), 'exclude': lambda f: f is None }})
-    
-
-
-class DestinationS3CompressionType(str, Enum):
-    NO_COMPRESSION = 'No Compression'
-
-
-@dataclass_json(undefined=Undefined.EXCLUDE)
-@dataclasses.dataclass
-class DestinationS3SchemasNoCompression:
-    compression_type: Optional[DestinationS3CompressionType] = dataclasses.field(default=DestinationS3CompressionType.NO_COMPRESSION, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('compression_type'), 'exclude': lambda f: f is None }})
-    
-
-
-class DestinationS3Flattening(str, Enum):
-    r"""Whether the input json data should be normalized (flattened) in the output CSV. Please refer to docs for details."""
-    NO_FLATTENING = 'No flattening'
-    ROOT_LEVEL_FLATTENING = 'Root level flattening'
-
-class DestinationS3SchemasFormatType(str, Enum):
-    CSV = 'CSV'
-
-
-@dataclass_json(undefined=Undefined.EXCLUDE)
-@dataclasses.dataclass
-class DestinationS3CSVCommaSeparatedValues:
-    compression: Optional[Union[DestinationS3SchemasNoCompression, DestinationS3GZIP]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('compression'), 'exclude': lambda f: f is None }})
-    r"""Whether the output files should be compressed. If compression is selected, the output filename will have an extra extension (GZIP: \\".csv.gz\\")."""
-    flattening: Optional[DestinationS3Flattening] = dataclasses.field(default=DestinationS3Flattening.NO_FLATTENING, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('flattening'), 'exclude': lambda f: f is None }})
-    r"""Whether the input json data should be normalized (flattened) in the output CSV. Please refer to docs for details."""
-    format_type: Optional[DestinationS3SchemasFormatType] = dataclasses.field(default=DestinationS3SchemasFormatType.CSV, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('format_type'), 'exclude': lambda f: f is None }})
-    
-
-
-class DestinationS3SchemasFormatOutputFormat1CompressionCodecCodec(str, Enum):
+class DestinationS3SchemasFormatOutputFormat3CompressionCodecCodec(str, Enum):
     SNAPPY = 'snappy'
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
 class DestinationS3Snappy:
-    codec: Optional[DestinationS3SchemasFormatOutputFormat1CompressionCodecCodec] = dataclasses.field(default=DestinationS3SchemasFormatOutputFormat1CompressionCodecCodec.SNAPPY, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('codec'), 'exclude': lambda f: f is None }})
+    codec: Optional[DestinationS3SchemasFormatOutputFormat3CompressionCodecCodec] = dataclasses.field(default=DestinationS3SchemasFormatOutputFormat3CompressionCodecCodec.SNAPPY, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('codec'), 'exclude': lambda f: f is None }})
     
 
 
-class DestinationS3SchemasFormatOutputFormat1Codec(str, Enum):
+class DestinationS3SchemasFormatOutputFormat3Codec(str, Enum):
     ZSTANDARD = 'zstandard'
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
 class DestinationS3Zstandard:
-    codec: Optional[DestinationS3SchemasFormatOutputFormat1Codec] = dataclasses.field(default=DestinationS3SchemasFormatOutputFormat1Codec.ZSTANDARD, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('codec'), 'exclude': lambda f: f is None }})
+    codec: Optional[DestinationS3SchemasFormatOutputFormat3Codec] = dataclasses.field(default=DestinationS3SchemasFormatOutputFormat3Codec.ZSTANDARD, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('codec'), 'exclude': lambda f: f is None }})
     compression_level: Optional[int] = dataclasses.field(default=3, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('compression_level'), 'exclude': lambda f: f is None }})
     r"""Negative levels are 'fast' modes akin to lz4 or snappy, levels above 9 are generally for archival purposes, and levels above 18 use a lot of memory."""
     include_checksum: Optional[bool] = dataclasses.field(default=False, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('include_checksum'), 'exclude': lambda f: f is None }})
@@ -196,58 +112,150 @@ class DestinationS3Codec(str, Enum):
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
-class DestinationS3NoCompression:
+class DestinationS3SchemasFormatNoCompression:
     codec: Optional[DestinationS3Codec] = dataclasses.field(default=DestinationS3Codec.NO_COMPRESSION, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('codec'), 'exclude': lambda f: f is None }})
     
 
 
-class DestinationS3FormatType(str, Enum):
+class DestinationS3SchemasFormatFormatType(str, Enum):
     AVRO = 'Avro'
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
 class DestinationS3AvroApacheAvro:
-    compression_codec: Union[DestinationS3NoCompression, DestinationS3Deflate, DestinationS3Bzip2, DestinationS3Xz, DestinationS3Zstandard, DestinationS3Snappy] = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('compression_codec') }})
+    compression_codec: Union[DestinationS3SchemasFormatNoCompression, DestinationS3Deflate, DestinationS3Bzip2, DestinationS3Xz, DestinationS3Zstandard, DestinationS3Snappy] = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('compression_codec') }})
     r"""The compression algorithm used to compress data. Default to no compression."""
-    format_type: Optional[DestinationS3FormatType] = dataclasses.field(default=DestinationS3FormatType.AVRO, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('format_type'), 'exclude': lambda f: f is None }})
+    format_type: Optional[DestinationS3SchemasFormatFormatType] = dataclasses.field(default=DestinationS3SchemasFormatFormatType.AVRO, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('format_type'), 'exclude': lambda f: f is None }})
+    
+
+
+class DestinationS3SchemasFormatOutputFormatCompressionType(str, Enum):
+    GZIP = 'GZIP'
+
+
+@dataclass_json(undefined=Undefined.EXCLUDE)
+@dataclasses.dataclass
+class DestinationS3SchemasGZIP:
+    compression_type: Optional[DestinationS3SchemasFormatOutputFormatCompressionType] = dataclasses.field(default=DestinationS3SchemasFormatOutputFormatCompressionType.GZIP, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('compression_type'), 'exclude': lambda f: f is None }})
+    
+
+
+class DestinationS3SchemasFormatCompressionType(str, Enum):
+    NO_COMPRESSION = 'No Compression'
+
+
+@dataclass_json(undefined=Undefined.EXCLUDE)
+@dataclasses.dataclass
+class DestinationS3SchemasNoCompression:
+    compression_type: Optional[DestinationS3SchemasFormatCompressionType] = dataclasses.field(default=DestinationS3SchemasFormatCompressionType.NO_COMPRESSION, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('compression_type'), 'exclude': lambda f: f is None }})
+    
+
+
+class DestinationS3SchemasFlattening(str, Enum):
+    r"""Whether the input json data should be normalized (flattened) in the output JSON Lines. Please refer to docs for details."""
+    NO_FLATTENING = 'No flattening'
+    ROOT_LEVEL_FLATTENING = 'Root level flattening'
+
+class DestinationS3SchemasFormatType(str, Enum):
+    JSONL = 'JSONL'
+
+
+@dataclass_json(undefined=Undefined.EXCLUDE)
+@dataclasses.dataclass
+class DestinationS3JSONLinesNewlineDelimitedJSON:
+    compression: Optional[Union[DestinationS3SchemasNoCompression, DestinationS3SchemasGZIP]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('compression'), 'exclude': lambda f: f is None }})
+    r"""Whether the output files should be compressed. If compression is selected, the output filename will have an extra extension (GZIP: \\".jsonl.gz\\")."""
+    flattening: Optional[DestinationS3SchemasFlattening] = dataclasses.field(default=DestinationS3SchemasFlattening.NO_FLATTENING, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('flattening'), 'exclude': lambda f: f is None }})
+    r"""Whether the input json data should be normalized (flattened) in the output JSON Lines. Please refer to docs for details."""
+    format_type: Optional[DestinationS3SchemasFormatType] = dataclasses.field(default=DestinationS3SchemasFormatType.JSONL, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('format_type'), 'exclude': lambda f: f is None }})
+    
+
+
+class DestinationS3SchemasCompressionType(str, Enum):
+    GZIP = 'GZIP'
+
+
+@dataclass_json(undefined=Undefined.EXCLUDE)
+@dataclasses.dataclass
+class DestinationS3GZIP:
+    compression_type: Optional[DestinationS3SchemasCompressionType] = dataclasses.field(default=DestinationS3SchemasCompressionType.GZIP, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('compression_type'), 'exclude': lambda f: f is None }})
+    
+
+
+class DestinationS3CompressionType(str, Enum):
+    NO_COMPRESSION = 'No Compression'
+
+
+@dataclass_json(undefined=Undefined.EXCLUDE)
+@dataclasses.dataclass
+class DestinationS3NoCompression:
+    compression_type: Optional[DestinationS3CompressionType] = dataclasses.field(default=DestinationS3CompressionType.NO_COMPRESSION, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('compression_type'), 'exclude': lambda f: f is None }})
+    
+
+
+class DestinationS3Flattening(str, Enum):
+    r"""Whether the input json data should be normalized (flattened) in the output CSV. Please refer to docs for details."""
+    NO_FLATTENING = 'No flattening'
+    ROOT_LEVEL_FLATTENING = 'Root level flattening'
+
+class DestinationS3FormatType(str, Enum):
+    CSV = 'CSV'
+
+
+@dataclass_json(undefined=Undefined.EXCLUDE)
+@dataclasses.dataclass
+class DestinationS3CSVCommaSeparatedValues:
+    compression: Optional[Union[DestinationS3NoCompression, DestinationS3GZIP]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('compression'), 'exclude': lambda f: f is None }})
+    r"""Whether the output files should be compressed. If compression is selected, the output filename will have an extra extension (GZIP: \\".csv.gz\\")."""
+    flattening: Optional[DestinationS3Flattening] = dataclasses.field(default=DestinationS3Flattening.NO_FLATTENING, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('flattening'), 'exclude': lambda f: f is None }})
+    r"""Whether the input json data should be normalized (flattened) in the output CSV. Please refer to docs for details."""
+    format_type: Optional[DestinationS3FormatType] = dataclasses.field(default=DestinationS3FormatType.CSV, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('format_type'), 'exclude': lambda f: f is None }})
     
 
 
 class DestinationS3S3BucketRegion(str, Enum):
     r"""The region of the S3 bucket. See <a href=\\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-regions-availability-zones.html#concepts-available-regions\\">here</a> for all region codes."""
     UNKNOWN = ''
-    US_EAST_1 = 'us-east-1'
-    US_EAST_2 = 'us-east-2'
-    US_WEST_1 = 'us-west-1'
-    US_WEST_2 = 'us-west-2'
     AF_SOUTH_1 = 'af-south-1'
     AP_EAST_1 = 'ap-east-1'
-    AP_SOUTH_1 = 'ap-south-1'
     AP_NORTHEAST_1 = 'ap-northeast-1'
     AP_NORTHEAST_2 = 'ap-northeast-2'
     AP_NORTHEAST_3 = 'ap-northeast-3'
+    AP_SOUTH_1 = 'ap-south-1'
+    AP_SOUTH_2 = 'ap-south-2'
     AP_SOUTHEAST_1 = 'ap-southeast-1'
     AP_SOUTHEAST_2 = 'ap-southeast-2'
+    AP_SOUTHEAST_3 = 'ap-southeast-3'
+    AP_SOUTHEAST_4 = 'ap-southeast-4'
     CA_CENTRAL_1 = 'ca-central-1'
+    CA_WEST_1 = 'ca-west-1'
     CN_NORTH_1 = 'cn-north-1'
     CN_NORTHWEST_1 = 'cn-northwest-1'
     EU_CENTRAL_1 = 'eu-central-1'
+    EU_CENTRAL_2 = 'eu-central-2'
     EU_NORTH_1 = 'eu-north-1'
     EU_SOUTH_1 = 'eu-south-1'
+    EU_SOUTH_2 = 'eu-south-2'
     EU_WEST_1 = 'eu-west-1'
     EU_WEST_2 = 'eu-west-2'
     EU_WEST_3 = 'eu-west-3'
-    SA_EAST_1 = 'sa-east-1'
+    IL_CENTRAL_1 = 'il-central-1'
+    ME_CENTRAL_1 = 'me-central-1'
     ME_SOUTH_1 = 'me-south-1'
+    SA_EAST_1 = 'sa-east-1'
+    US_EAST_1 = 'us-east-1'
+    US_EAST_2 = 'us-east-2'
     US_GOV_EAST_1 = 'us-gov-east-1'
     US_GOV_WEST_1 = 'us-gov-west-1'
+    US_WEST_1 = 'us-west-1'
+    US_WEST_2 = 'us-west-2'
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
 class DestinationS3:
-    format: Union[DestinationS3AvroApacheAvro, DestinationS3CSVCommaSeparatedValues, DestinationS3JSONLinesNewlineDelimitedJSON, DestinationS3ParquetColumnarStorage] = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('format') }})
+    format: Union[DestinationS3CSVCommaSeparatedValues, DestinationS3JSONLinesNewlineDelimitedJSON, DestinationS3AvroApacheAvro, DestinationS3ParquetColumnarStorage] = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('format') }})
     r"""Format of the data output. See <a href=\\"https://docs.airbyte.com/integrations/destinations/s3/#supported-output-schema\\">here</a> for more details"""
     s3_bucket_name: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('s3_bucket_name') }})
     r"""The name of the S3 bucket. Read more <a href=\\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/create-bucket-overview.html\\">here</a>."""

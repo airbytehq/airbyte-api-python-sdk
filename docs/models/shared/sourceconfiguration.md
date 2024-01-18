@@ -125,6 +125,12 @@ sourceConfiguration: shared.SourceBraintree = /* values here */
 sourceConfiguration: shared.SourceBraze = /* values here */
 ```
 
+### SourceCart
+
+```python
+sourceConfiguration: shared.SourceCart = /* values here */
+```
+
 ### SourceChargebee
 
 ```python
@@ -255,12 +261,6 @@ sourceConfiguration: shared.SourceExchangeRates = /* values here */
 
 ```python
 sourceConfiguration: shared.SourceFacebookMarketing = /* values here */
-```
-
-### SourceFacebookPages
-
-```python
-sourceConfiguration: shared.SourceFacebookPages = /* values here */
 ```
 
 ### SourceFaker
@@ -1023,12 +1023,6 @@ sourceConfiguration: shared.SourceTheGuardianAPI = /* values here */
 
 ```python
 sourceConfiguration: shared.SourceTiktokMarketing = /* values here */
-```
-
-### SourceTodoist
-
-```python
-sourceConfiguration: shared.SourceTodoist = /* values here */
 ```
 
 ### SourceTrello

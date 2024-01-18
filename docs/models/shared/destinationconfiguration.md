@@ -221,6 +221,12 @@ destinationConfiguration: shared.DestinationTimeplus = /* values here */
 destinationConfiguration: shared.DestinationTypesense = /* values here */
 ```
 
+### DestinationVectara
+
+```python
+destinationConfiguration: shared.DestinationVectara = /* values here */
+```
+
 ### DestinationVertica
 
 ```python

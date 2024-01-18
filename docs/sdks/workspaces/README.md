@@ -33,8 +33,10 @@ s = airbyte.Airbyte(
 req = operations.CreateOrUpdateWorkspaceOAuthCredentialsRequest(
     workspace_o_auth_credentials_request=shared.WorkspaceOAuthCredentialsRequest(
         actor_type=shared.ActorTypeEnum.DESTINATION,
-        configuration=shared.AmazonAds(),
-        name=shared.OAuthActorNames.AIRTABLE,
+        configuration=shared.Airtable(
+        credentials=shared.Credentials(),
+    ),
+        name=shared.OAuthActorNames.AMAZON_ADS,
     ),
     workspace_id='string',
 )

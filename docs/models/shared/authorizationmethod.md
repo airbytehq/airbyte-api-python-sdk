@@ -3,10 +3,10 @@
 
 ## Supported Types
 
-### OAuth20
+### DestinationSnowflakeOAuth20
 
 ```python
-authorizationMethod: shared.OAuth20 = /* values here */
+authorizationMethod: shared.DestinationSnowflakeOAuth20 = /* values here */
 ```
 
 ### KeyPairAuthentication
