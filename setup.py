@@ -10,7 +10,7 @@ except FileNotFoundError:
 
 setuptools.setup(
     name="airbyte-api",
-    version="0.45.0",
+    version="0.46.0",
     author="Airbyte",
     description="Python Client SDK for Airbyte API",
     long_description=long_description,
@@ -19,7 +19,7 @@ setuptools.setup(
     install_requires=[
         "certifi>=2023.7.22",
         "charset-normalizer>=3.2.0",
-        "dataclasses-json @ git+https://github.com/speakeasy-api/dataclasses-json@fix-union-deserialization",
+        "dataclasses-json-speakeasy>=0.5.11",
         "idna>=3.4",
         "jsonpath-python>=1.0.6 ",
         "marshmallow>=3.19.0",
