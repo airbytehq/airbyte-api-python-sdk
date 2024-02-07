@@ -16,7 +16,7 @@ class Recreation(str, Enum):
 class SourceRecreation:
     apikey: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('apikey') }})
     r"""API Key"""
-    SOURCE_TYPE: Final[Recreation] = dataclasses.field(default=Recreation.RECREATION, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     query_campsites: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('query_campsites'), 'exclude': lambda f: f is None }})
+    SOURCE_TYPE: Final[Recreation] = dataclasses.field(default=Recreation.RECREATION, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     
 

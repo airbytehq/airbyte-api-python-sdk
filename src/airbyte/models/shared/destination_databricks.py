@@ -20,9 +20,9 @@ class DestinationDatabricksAzureBlobStorage:
     r"""The name of the Azure blob storage container."""
     azure_blob_storage_sas_token: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('azure_blob_storage_sas_token') }})
     r"""Shared access signature (SAS) token to grant limited access to objects in your storage account."""
-    DATA_SOURCE_TYPE: Final[DestinationDatabricksSchemasDataSourceType] = dataclasses.field(default=DestinationDatabricksSchemasDataSourceType.AZURE_BLOB_STORAGE, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('data_source_type') }})
     azure_blob_storage_endpoint_domain_name: Optional[str] = dataclasses.field(default='blob.core.windows.net', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('azure_blob_storage_endpoint_domain_name'), 'exclude': lambda f: f is None }})
     r"""This is Azure Blob Storage endpoint domain name. Leave default value (or leave it empty if run container from command line) to use Microsoft native from example."""
+    DATA_SOURCE_TYPE: Final[DestinationDatabricksSchemasDataSourceType] = dataclasses.field(default=DestinationDatabricksSchemasDataSourceType.AZURE_BLOB_STORAGE, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('data_source_type') }})
     
 
 
@@ -104,13 +104,13 @@ class DestinationDatabricks:
     r"""Databricks Personal Access Token for making authenticated requests."""
     databricks_server_hostname: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('databricks_server_hostname') }})
     r"""Databricks Cluster Server Hostname."""
-    DESTINATION_TYPE: Final[Databricks] = dataclasses.field(default=Databricks.DATABRICKS, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('destinationType') }})
     accept_terms: Optional[bool] = dataclasses.field(default=False, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('accept_terms'), 'exclude': lambda f: f is None }})
     r"""You must agree to the Databricks JDBC Driver <a href=\\"https://databricks.com/jdbc-odbc-driver-license\\">Terms & Conditions</a> to use this connector."""
     database: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('database'), 'exclude': lambda f: f is None }})
     r"""The name of the catalog. If not specified otherwise, the \\"hive_metastore\\" will be used."""
     databricks_port: Optional[str] = dataclasses.field(default='443', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('databricks_port'), 'exclude': lambda f: f is None }})
     r"""Databricks Cluster Port."""
+    DESTINATION_TYPE: Final[Databricks] = dataclasses.field(default=Databricks.DATABRICKS, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('destinationType') }})
     enable_schema_evolution: Optional[bool] = dataclasses.field(default=False, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('enable_schema_evolution'), 'exclude': lambda f: f is None }})
     r"""Support schema evolution for all streams. If \\"false\\", the connector might fail when a stream's schema changes."""
     purge_staging_data: Optional[bool] = dataclasses.field(default=True, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('purge_staging_data'), 'exclude': lambda f: f is None }})

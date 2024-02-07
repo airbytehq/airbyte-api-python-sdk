@@ -50,9 +50,9 @@ class DestinationFirebolt:
     r"""Firebolt password."""
     username: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('username') }})
     r"""Firebolt email address you use to login."""
-    DESTINATION_TYPE: Final[Firebolt] = dataclasses.field(default=Firebolt.FIREBOLT, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('destinationType') }})
     account: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('account'), 'exclude': lambda f: f is None }})
     r"""Firebolt account to login."""
+    DESTINATION_TYPE: Final[Firebolt] = dataclasses.field(default=Firebolt.FIREBOLT, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('destinationType') }})
     engine: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('engine'), 'exclude': lambda f: f is None }})
     r"""Engine name or url to connect to."""
     host: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('host'), 'exclude': lambda f: f is None }})

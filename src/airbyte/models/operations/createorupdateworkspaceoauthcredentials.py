@@ -8,8 +8,8 @@ from ...models.shared import workspaceoauthcredentialsrequest as shared_workspac
 
 @dataclasses.dataclass
 class CreateOrUpdateWorkspaceOAuthCredentialsRequest:
-    workspace_id: str = dataclasses.field(metadata={'path_param': { 'field_name': 'workspaceId', 'style': 'simple', 'explode': False }})
     workspace_o_auth_credentials_request: shared_workspaceoauthcredentialsrequest.WorkspaceOAuthCredentialsRequest = dataclasses.field(metadata={'request': { 'media_type': 'application/json' }})
+    workspace_id: str = dataclasses.field(metadata={'path_param': { 'field_name': 'workspaceId', 'style': 'simple', 'explode': False }})
     
 
 
@@ -18,9 +18,9 @@ class CreateOrUpdateWorkspaceOAuthCredentialsRequest:
 class CreateOrUpdateWorkspaceOAuthCredentialsResponse:
     content_type: str = dataclasses.field()
     r"""HTTP response content type for this operation"""
-    raw_response: requests_http.Response = dataclasses.field()
-    r"""Raw HTTP response; suitable for custom response parsing"""
     status_code: int = dataclasses.field()
     r"""HTTP response status code for this operation"""
+    raw_response: requests_http.Response = dataclasses.field()
+    r"""Raw HTTP response; suitable for custom response parsing"""
     
 

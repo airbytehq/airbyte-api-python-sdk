@@ -39,9 +39,9 @@ class SourceZuora:
     r"""Start Date in format: YYYY-MM-DD"""
     tenant_endpoint: TenantEndpointLocation = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('tenant_endpoint') }})
     r"""Please choose the right endpoint where your Tenant is located. More info by this <a href=\\"https://www.zuora.com/developer/api-reference/#section/Introduction/Access-to-the-API\\">Link</a>"""
-    SOURCE_TYPE: Final[Zuora] = dataclasses.field(default=Zuora.ZUORA, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     data_query: Optional[DataQueryType] = dataclasses.field(default=DataQueryType.LIVE, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('data_query'), 'exclude': lambda f: f is None }})
     r"""Choose between `Live`, or `Unlimited` - the optimized, replicated database at 12 hours freshness for high volume extraction <a href=\\"https://knowledgecenter.zuora.com/Central_Platform/Query/Data_Query/A_Overview_of_Data_Query#Query_Processing_Limitations\\">Link</a>"""
+    SOURCE_TYPE: Final[Zuora] = dataclasses.field(default=Zuora.ZUORA, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     window_in_days: Optional[str] = dataclasses.field(default='90', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('window_in_days'), 'exclude': lambda f: f is None }})
     r"""The amount of days for each data-chunk begining from start_date. Bigger the value - faster the fetch. (0.1 - as for couple of hours, 1 - as for a Day; 364 - as for a Year)."""
     

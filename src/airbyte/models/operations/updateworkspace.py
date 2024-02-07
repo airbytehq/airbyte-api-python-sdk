@@ -10,8 +10,8 @@ from typing import Optional
 
 @dataclasses.dataclass
 class UpdateWorkspaceRequest:
-    workspace_id: str = dataclasses.field(metadata={'path_param': { 'field_name': 'workspaceId', 'style': 'simple', 'explode': False }})
     workspace_update_request: shared_workspaceupdaterequest.WorkspaceUpdateRequest = dataclasses.field(metadata={'request': { 'media_type': 'application/json' }})
+    workspace_id: str = dataclasses.field(metadata={'path_param': { 'field_name': 'workspaceId', 'style': 'simple', 'explode': False }})
     
 
 
@@ -20,10 +20,10 @@ class UpdateWorkspaceRequest:
 class UpdateWorkspaceResponse:
     content_type: str = dataclasses.field()
     r"""HTTP response content type for this operation"""
-    raw_response: requests_http.Response = dataclasses.field()
-    r"""Raw HTTP response; suitable for custom response parsing"""
     status_code: int = dataclasses.field()
     r"""HTTP response status code for this operation"""
+    raw_response: requests_http.Response = dataclasses.field()
+    r"""Raw HTTP response; suitable for custom response parsing"""
     workspace_response: Optional[shared_workspaceresponse.WorkspaceResponse] = dataclasses.field(default=None)
     r"""Successful operation"""
     

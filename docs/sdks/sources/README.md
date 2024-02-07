@@ -179,10 +179,10 @@ s = airbyte.Airbyte(
 )
 
 req = shared.InitiateOauthRequest(
-    o_auth_input_configuration=shared.OAuthInputConfiguration(),
     redirect_url='string',
     source_type=shared.OAuthActorNames.GOOGLE_ADS,
     workspace_id='fd28130d-9919-4ffa-a67d-4e12eb099447',
+    o_auth_input_configuration=shared.OAuthInputConfiguration(),
 )
 
 res = s.sources.initiate_o_auth(req)
@@ -277,6 +277,7 @@ s = airbyte.Airbyte(
 )
 
 req = operations.PatchSourceRequest(
+    source_id='string',
     source_patch_request=shared.SourcePatchRequest(
         configuration=shared.SourceAha(
         api_key='string',
@@ -284,7 +285,6 @@ req = operations.PatchSourceRequest(
     ),
         name='My source',
     ),
-    source_id='string',
 )
 
 res = s.sources.patch_source(req)
@@ -331,6 +331,7 @@ s = airbyte.Airbyte(
 )
 
 req = operations.PutSourceRequest(
+    source_id='string',
     source_put_request=shared.SourcePutRequest(
         configuration=shared.SourceAha(
         api_key='string',
@@ -338,7 +339,6 @@ req = operations.PutSourceRequest(
     ),
         name='string',
     ),
-    source_id='string',
 )
 
 res = s.sources.put_source(req)

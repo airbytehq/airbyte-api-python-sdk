@@ -235,8 +235,8 @@ class SourceGoogleAnalyticsDataAPIFilterName(str, Enum):
 @dataclasses.dataclass
 class InListFilter:
     values: List[str] = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('values') }})
-    FILTER_NAME: Final[SourceGoogleAnalyticsDataAPIFilterName] = dataclasses.field(default=SourceGoogleAnalyticsDataAPIFilterName.IN_LIST_FILTER, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('filter_name') }})
     case_sensitive: Optional[bool] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('caseSensitive'), 'exclude': lambda f: f is None }})
+    FILTER_NAME: Final[SourceGoogleAnalyticsDataAPIFilterName] = dataclasses.field(default=SourceGoogleAnalyticsDataAPIFilterName.IN_LIST_FILTER, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('filter_name') }})
     
 
 
@@ -257,8 +257,8 @@ class SourceGoogleAnalyticsDataAPIValidEnums(str, Enum):
 @dataclasses.dataclass
 class StringFilter:
     value: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('value') }})
-    FILTER_NAME: Final[FilterName] = dataclasses.field(default=FilterName.STRING_FILTER, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('filter_name') }})
     case_sensitive: Optional[bool] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('caseSensitive'), 'exclude': lambda f: f is None }})
+    FILTER_NAME: Final[FilterName] = dataclasses.field(default=FilterName.STRING_FILTER, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('filter_name') }})
     match_type: Optional[List[SourceGoogleAnalyticsDataAPIValidEnums]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('matchType'), 'exclude': lambda f: f is None }})
     
 
@@ -391,8 +391,8 @@ class SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayDimensionFilterDimens
 @dataclasses.dataclass
 class SourceGoogleAnalyticsDataAPISchemasInListFilter:
     values: List[str] = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('values') }})
-    FILTER_NAME: Final[SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayDimensionFilterDimensionsFilter3ExpressionFilterName] = dataclasses.field(default=SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayDimensionFilterDimensionsFilter3ExpressionFilterName.IN_LIST_FILTER, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('filter_name') }})
     case_sensitive: Optional[bool] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('caseSensitive'), 'exclude': lambda f: f is None }})
+    FILTER_NAME: Final[SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayDimensionFilterDimensionsFilter3ExpressionFilterName] = dataclasses.field(default=SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayDimensionFilterDimensionsFilter3ExpressionFilterName.IN_LIST_FILTER, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('filter_name') }})
     
 
 
@@ -413,8 +413,8 @@ class SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayDimensionFilterDimens
 @dataclasses.dataclass
 class SourceGoogleAnalyticsDataAPISchemasStringFilter:
     value: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('value') }})
-    FILTER_NAME: Final[SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayDimensionFilterDimensionsFilter3FilterName] = dataclasses.field(default=SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayDimensionFilterDimensionsFilter3FilterName.STRING_FILTER, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('filter_name') }})
     case_sensitive: Optional[bool] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('caseSensitive'), 'exclude': lambda f: f is None }})
+    FILTER_NAME: Final[SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayDimensionFilterDimensionsFilter3FilterName] = dataclasses.field(default=SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayDimensionFilterDimensionsFilter3FilterName.STRING_FILTER, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('filter_name') }})
     match_type: Optional[List[SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayDimensionFilterDimensionsFilterValidEnums]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('matchType'), 'exclude': lambda f: f is None }})
     
 
@@ -555,8 +555,8 @@ class SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayDimensionFilterDimens
 @dataclasses.dataclass
 class SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayDimensionFilterInListFilter:
     values: List[str] = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('values') }})
-    FILTER_NAME: Final[SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayDimensionFilterDimensionsFilterFilterName] = dataclasses.field(default=SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayDimensionFilterDimensionsFilterFilterName.IN_LIST_FILTER, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('filter_name') }})
     case_sensitive: Optional[bool] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('caseSensitive'), 'exclude': lambda f: f is None }})
+    FILTER_NAME: Final[SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayDimensionFilterDimensionsFilterFilterName] = dataclasses.field(default=SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayDimensionFilterDimensionsFilterFilterName.IN_LIST_FILTER, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('filter_name') }})
     
 
 
@@ -577,8 +577,8 @@ class SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayDimensionFilterDimens
 @dataclasses.dataclass
 class SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayDimensionFilterStringFilter:
     value: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('value') }})
-    FILTER_NAME: Final[SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayDimensionFilterFilterName] = dataclasses.field(default=SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayDimensionFilterFilterName.STRING_FILTER, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('filter_name') }})
     case_sensitive: Optional[bool] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('caseSensitive'), 'exclude': lambda f: f is None }})
+    FILTER_NAME: Final[SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayDimensionFilterFilterName] = dataclasses.field(default=SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayDimensionFilterFilterName.STRING_FILTER, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('filter_name') }})
     match_type: Optional[List[SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayDimensionFilterDimensionsFilter2ValidEnums]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('matchType'), 'exclude': lambda f: f is None }})
     
 
@@ -719,8 +719,8 @@ class SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayDimensionFilterDimens
 @dataclasses.dataclass
 class SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayInListFilter:
     values: List[str] = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('values') }})
-    FILTER_NAME: Final[SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayDimensionFilterDimensionsFilter1ExpressionsFilterName] = dataclasses.field(default=SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayDimensionFilterDimensionsFilter1ExpressionsFilterName.IN_LIST_FILTER, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('filter_name') }})
     case_sensitive: Optional[bool] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('caseSensitive'), 'exclude': lambda f: f is None }})
+    FILTER_NAME: Final[SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayDimensionFilterDimensionsFilter1ExpressionsFilterName] = dataclasses.field(default=SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayDimensionFilterDimensionsFilter1ExpressionsFilterName.IN_LIST_FILTER, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('filter_name') }})
     
 
 
@@ -741,8 +741,8 @@ class SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayDimensionFilterDimens
 @dataclasses.dataclass
 class SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayStringFilter:
     value: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('value') }})
-    FILTER_NAME: Final[SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayDimensionFilterDimensionsFilter1FilterName] = dataclasses.field(default=SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayDimensionFilterDimensionsFilter1FilterName.STRING_FILTER, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('filter_name') }})
     case_sensitive: Optional[bool] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('caseSensitive'), 'exclude': lambda f: f is None }})
+    FILTER_NAME: Final[SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayDimensionFilterDimensionsFilter1FilterName] = dataclasses.field(default=SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayDimensionFilterDimensionsFilter1FilterName.STRING_FILTER, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('filter_name') }})
     match_type: Optional[List[SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayDimensionFilterDimensionsFilter1ValidEnums]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('matchType'), 'exclude': lambda f: f is None }})
     
 
@@ -883,8 +883,8 @@ class SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayMetricFilterMetricsFi
 @dataclasses.dataclass
 class SourceGoogleAnalyticsDataAPIInListFilter:
     values: List[str] = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('values') }})
-    FILTER_NAME: Final[SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayMetricFilterMetricsFilterFilterName] = dataclasses.field(default=SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayMetricFilterMetricsFilterFilterName.IN_LIST_FILTER, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('filter_name') }})
     case_sensitive: Optional[bool] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('caseSensitive'), 'exclude': lambda f: f is None }})
+    FILTER_NAME: Final[SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayMetricFilterMetricsFilterFilterName] = dataclasses.field(default=SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayMetricFilterMetricsFilterFilterName.IN_LIST_FILTER, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('filter_name') }})
     
 
 
@@ -905,8 +905,8 @@ class SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayValidEnums(str, Enum)
 @dataclasses.dataclass
 class SourceGoogleAnalyticsDataAPIStringFilter:
     value: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('value') }})
-    FILTER_NAME: Final[SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayMetricFilterFilterName] = dataclasses.field(default=SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayMetricFilterFilterName.STRING_FILTER, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('filter_name') }})
     case_sensitive: Optional[bool] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('caseSensitive'), 'exclude': lambda f: f is None }})
+    FILTER_NAME: Final[SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayMetricFilterFilterName] = dataclasses.field(default=SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayMetricFilterFilterName.STRING_FILTER, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('filter_name') }})
     match_type: Optional[List[SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayValidEnums]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('matchType'), 'exclude': lambda f: f is None }})
     
 
@@ -1039,8 +1039,8 @@ class SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayMetricFilterMetricsFi
 @dataclasses.dataclass
 class SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayMetricFilterMetricsFilter3InListFilter:
     values: List[str] = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('values') }})
-    FILTER_NAME: Final[SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayMetricFilterMetricsFilter3ExpressionFilterName] = dataclasses.field(default=SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayMetricFilterMetricsFilter3ExpressionFilterName.IN_LIST_FILTER, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('filter_name') }})
     case_sensitive: Optional[bool] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('caseSensitive'), 'exclude': lambda f: f is None }})
+    FILTER_NAME: Final[SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayMetricFilterMetricsFilter3ExpressionFilterName] = dataclasses.field(default=SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayMetricFilterMetricsFilter3ExpressionFilterName.IN_LIST_FILTER, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('filter_name') }})
     
 
 
@@ -1061,8 +1061,8 @@ class SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayMetricFilterMetricsFi
 @dataclasses.dataclass
 class SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayMetricFilterMetricsFilter3StringFilter:
     value: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('value') }})
-    FILTER_NAME: Final[SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayMetricFilterMetricsFilter3FilterName] = dataclasses.field(default=SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayMetricFilterMetricsFilter3FilterName.STRING_FILTER, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('filter_name') }})
     case_sensitive: Optional[bool] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('caseSensitive'), 'exclude': lambda f: f is None }})
+    FILTER_NAME: Final[SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayMetricFilterMetricsFilter3FilterName] = dataclasses.field(default=SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayMetricFilterMetricsFilter3FilterName.STRING_FILTER, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('filter_name') }})
     match_type: Optional[List[SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayMetricFilterMetricsFilter3ValidEnums]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('matchType'), 'exclude': lambda f: f is None }})
     
 
@@ -1203,8 +1203,8 @@ class SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayMetricFilterMetricsFi
 @dataclasses.dataclass
 class SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayMetricFilterMetricsFilterInListFilter:
     values: List[str] = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('values') }})
-    FILTER_NAME: Final[SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayMetricFilterMetricsFilter2ExpressionsFilterName] = dataclasses.field(default=SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayMetricFilterMetricsFilter2ExpressionsFilterName.IN_LIST_FILTER, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('filter_name') }})
     case_sensitive: Optional[bool] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('caseSensitive'), 'exclude': lambda f: f is None }})
+    FILTER_NAME: Final[SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayMetricFilterMetricsFilter2ExpressionsFilterName] = dataclasses.field(default=SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayMetricFilterMetricsFilter2ExpressionsFilterName.IN_LIST_FILTER, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('filter_name') }})
     
 
 
@@ -1225,8 +1225,8 @@ class SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayMetricFilterMetricsFi
 @dataclasses.dataclass
 class SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayMetricFilterMetricsFilterStringFilter:
     value: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('value') }})
-    FILTER_NAME: Final[SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayMetricFilterMetricsFilter2FilterName] = dataclasses.field(default=SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayMetricFilterMetricsFilter2FilterName.STRING_FILTER, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('filter_name') }})
     case_sensitive: Optional[bool] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('caseSensitive'), 'exclude': lambda f: f is None }})
+    FILTER_NAME: Final[SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayMetricFilterMetricsFilter2FilterName] = dataclasses.field(default=SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayMetricFilterMetricsFilter2FilterName.STRING_FILTER, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('filter_name') }})
     match_type: Optional[List[SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayMetricFilterMetricsFilter2ValidEnums]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('matchType'), 'exclude': lambda f: f is None }})
     
 
@@ -1367,8 +1367,8 @@ class SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayMetricFilterMetricsFi
 @dataclasses.dataclass
 class SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayMetricFilterInListFilter:
     values: List[str] = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('values') }})
-    FILTER_NAME: Final[SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayMetricFilterMetricsFilter1ExpressionsFilterFilterFilterName] = dataclasses.field(default=SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayMetricFilterMetricsFilter1ExpressionsFilterFilterFilterName.IN_LIST_FILTER, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('filter_name') }})
     case_sensitive: Optional[bool] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('caseSensitive'), 'exclude': lambda f: f is None }})
+    FILTER_NAME: Final[SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayMetricFilterMetricsFilter1ExpressionsFilterFilterFilterName] = dataclasses.field(default=SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayMetricFilterMetricsFilter1ExpressionsFilterFilterFilterName.IN_LIST_FILTER, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('filter_name') }})
     
 
 
@@ -1389,8 +1389,8 @@ class SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayMetricFilterMetricsFi
 @dataclasses.dataclass
 class SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayMetricFilterStringFilter:
     value: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('value') }})
-    FILTER_NAME: Final[SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayMetricFilterMetricsFilter1ExpressionsFilterFilterName] = dataclasses.field(default=SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayMetricFilterMetricsFilter1ExpressionsFilterFilterName.STRING_FILTER, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('filter_name') }})
     case_sensitive: Optional[bool] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('caseSensitive'), 'exclude': lambda f: f is None }})
+    FILTER_NAME: Final[SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayMetricFilterMetricsFilter1ExpressionsFilterFilterName] = dataclasses.field(default=SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayMetricFilterMetricsFilter1ExpressionsFilterFilterName.STRING_FILTER, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('filter_name') }})
     match_type: Optional[List[SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayMetricFilterMetricsFilter1ValidEnums]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('matchType'), 'exclude': lambda f: f is None }})
     
 
@@ -1445,7 +1445,6 @@ class SourceGoogleAnalyticsDataAPIGoogleAnalyticsDataAPI(str, Enum):
 class SourceGoogleAnalyticsDataAPI:
     property_ids: List[str] = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('property_ids') }})
     r"""A list of your Property IDs. The Property ID is a unique number assigned to each property in Google Analytics, found in your GA4 property URL. This ID allows the connector to track the specific events associated with your property. Refer to the <a href='https://developers.google.com/analytics/devguides/reporting/data/v1/property-id#what_is_my_property_id'>Google Analytics documentation</a> to locate your property ID."""
-    SOURCE_TYPE: Final[SourceGoogleAnalyticsDataAPIGoogleAnalyticsDataAPI] = dataclasses.field(default=SourceGoogleAnalyticsDataAPIGoogleAnalyticsDataAPI.GOOGLE_ANALYTICS_DATA_API, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     credentials: Optional[Union[AuthenticateViaGoogleOauth, ServiceAccountKeyAuthentication]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credentials'), 'exclude': lambda f: f is None }})
     r"""Credentials for the service"""
     custom_reports_array: Optional[List[SourceGoogleAnalyticsDataAPICustomReportConfig]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('custom_reports_array'), 'exclude': lambda f: f is None }})
@@ -1454,6 +1453,7 @@ class SourceGoogleAnalyticsDataAPI:
     r"""The start date from which to replicate report data in the format YYYY-MM-DD. Data generated before this date will not be included in the report. Not applied to custom Cohort reports."""
     keep_empty_rows: Optional[bool] = dataclasses.field(default=False, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('keep_empty_rows'), 'exclude': lambda f: f is None }})
     r"""If false, each row with all metrics equal to 0 will not be returned. If true, these rows will be returned if they are not separately removed by a filter. More information is available in <a href=\\"https://developers.google.com/analytics/devguides/reporting/data/v1/rest/v1beta/properties/runReport#request-body\\">the documentation</a>."""
+    SOURCE_TYPE: Final[SourceGoogleAnalyticsDataAPIGoogleAnalyticsDataAPI] = dataclasses.field(default=SourceGoogleAnalyticsDataAPIGoogleAnalyticsDataAPI.GOOGLE_ANALYTICS_DATA_API, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     window_in_days: Optional[int] = dataclasses.field(default=1, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('window_in_days'), 'exclude': lambda f: f is None }})
     r"""The interval in days for each data request made to the Google Analytics API. A larger value speeds up data sync, but increases the chance of data sampling, which may result in inaccuracies. We recommend a value of 1 to minimize sampling, unless speed is an absolute priority over accuracy. Acceptable values range from 1 to 364. Does not apply to custom Cohort reports. More information is available in <a href=\\"https://docs.airbyte.com/integrations/sources/google-analytics-data-api\\">the documentation</a>."""
     

@@ -40,12 +40,12 @@ class LogicalReplicationCDC:
     r"""A Postgres publication used for consuming changes. Read about <a href=\\"https://docs.airbyte.com/integrations/sources/postgres#step-4-create-publications-and-replication-identities-for-tables\\">publications and replication identities</a>."""
     replication_slot: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('replication_slot') }})
     r"""A plugin logical replication slot. Read about <a href=\\"https://docs.airbyte.com/integrations/sources/postgres#step-3-create-replication-slot\\">replication slots</a>."""
-    METHOD: Final[SourceAlloydbSchemasMethod] = dataclasses.field(default=SourceAlloydbSchemasMethod.CDC, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('method') }})
     additional_properties: Optional[Dict[str, Any]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'exclude': lambda f: f is None }})
     initial_waiting_seconds: Optional[int] = dataclasses.field(default=300, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('initial_waiting_seconds'), 'exclude': lambda f: f is None }})
     r"""The amount of time the connector will wait when it launches to determine if there is new data to sync or not. Defaults to 300 seconds. Valid range: 120 seconds to 1200 seconds. Read about <a href=\\"https://docs.airbyte.com/integrations/sources/postgres#step-5-optional-set-up-initial-waiting-time\\">initial waiting time</a>."""
     lsn_commit_behaviour: Optional[LSNCommitBehaviour] = dataclasses.field(default=LSNCommitBehaviour.AFTER_LOADING_DATA_IN_THE_DESTINATION, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('lsn_commit_behaviour'), 'exclude': lambda f: f is None }})
     r"""Determines when Airbtye should flush the LSN of processed WAL logs in the source database. `After loading Data in the destination` is default. If `While reading Data` is selected, in case of a downstream failure (while loading data into the destination), next sync would result in a full sync."""
+    METHOD: Final[SourceAlloydbSchemasMethod] = dataclasses.field(default=SourceAlloydbSchemasMethod.CDC, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('method') }})
     plugin: Optional[Plugin] = dataclasses.field(default=Plugin.PGOUTPUT, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('plugin'), 'exclude': lambda f: f is None }})
     r"""A logical decoding plugin installed on the PostgreSQL server."""
     queue_size: Optional[int] = dataclasses.field(default=10000, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('queue_size'), 'exclude': lambda f: f is None }})
@@ -78,7 +78,6 @@ class SourceAlloydbVerifyFull:
     r"""This is the most secure mode. Always require encryption and verifies the identity of the source database server."""
     ca_certificate: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('ca_certificate') }})
     r"""CA certificate"""
-    MODE: Final[SourceAlloydbSchemasSSLModeSSLModes6Mode] = dataclasses.field(default=SourceAlloydbSchemasSSLModeSSLModes6Mode.VERIFY_FULL, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('mode') }})
     additional_properties: Optional[Dict[str, Any]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'exclude': lambda f: f is None }})
     client_certificate: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('client_certificate'), 'exclude': lambda f: f is None }})
     r"""Client certificate"""
@@ -86,6 +85,7 @@ class SourceAlloydbVerifyFull:
     r"""Client key"""
     client_key_password: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('client_key_password'), 'exclude': lambda f: f is None }})
     r"""Password for keystorage. If you do not add it - the password will be generated automatically."""
+    MODE: Final[SourceAlloydbSchemasSSLModeSSLModes6Mode] = dataclasses.field(default=SourceAlloydbSchemasSSLModeSSLModes6Mode.VERIFY_FULL, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('mode') }})
     
 
 
@@ -99,7 +99,6 @@ class SourceAlloydbVerifyCa:
     r"""Always require encryption and verifies that the source database server has a valid SSL certificate."""
     ca_certificate: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('ca_certificate') }})
     r"""CA certificate"""
-    MODE: Final[SourceAlloydbSchemasSSLModeSSLModes5Mode] = dataclasses.field(default=SourceAlloydbSchemasSSLModeSSLModes5Mode.VERIFY_CA, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('mode') }})
     additional_properties: Optional[Dict[str, Any]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'exclude': lambda f: f is None }})
     client_certificate: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('client_certificate'), 'exclude': lambda f: f is None }})
     r"""Client certificate"""
@@ -107,6 +106,7 @@ class SourceAlloydbVerifyCa:
     r"""Client key"""
     client_key_password: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('client_key_password'), 'exclude': lambda f: f is None }})
     r"""Password for keystorage. If you do not add it - the password will be generated automatically."""
+    MODE: Final[SourceAlloydbSchemasSSLModeSSLModes5Mode] = dataclasses.field(default=SourceAlloydbSchemasSSLModeSSLModes5Mode.VERIFY_CA, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('mode') }})
     
 
 
@@ -118,8 +118,8 @@ class SourceAlloydbSchemasSSLModeSSLModesMode(str, Enum):
 @dataclasses.dataclass
 class SourceAlloydbRequire:
     r"""Always require encryption. If the source database server does not support encryption, connection will fail."""
-    MODE: Final[SourceAlloydbSchemasSSLModeSSLModesMode] = dataclasses.field(default=SourceAlloydbSchemasSSLModeSSLModesMode.REQUIRE, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('mode') }})
     additional_properties: Optional[Dict[str, Any]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'exclude': lambda f: f is None }})
+    MODE: Final[SourceAlloydbSchemasSSLModeSSLModesMode] = dataclasses.field(default=SourceAlloydbSchemasSSLModeSSLModesMode.REQUIRE, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('mode') }})
     
 
 
@@ -131,8 +131,8 @@ class SourceAlloydbSchemasSslModeMode(str, Enum):
 @dataclasses.dataclass
 class SourceAlloydbPrefer:
     r"""Allows unencrypted connection only if the source database does not support encryption."""
-    MODE: Final[SourceAlloydbSchemasSslModeMode] = dataclasses.field(default=SourceAlloydbSchemasSslModeMode.PREFER, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('mode') }})
     additional_properties: Optional[Dict[str, Any]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'exclude': lambda f: f is None }})
+    MODE: Final[SourceAlloydbSchemasSslModeMode] = dataclasses.field(default=SourceAlloydbSchemasSslModeMode.PREFER, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('mode') }})
     
 
 
@@ -144,8 +144,8 @@ class SourceAlloydbSchemasMode(str, Enum):
 @dataclasses.dataclass
 class SourceAlloydbAllow:
     r"""Enables encryption only when required by the source database."""
-    MODE: Final[SourceAlloydbSchemasMode] = dataclasses.field(default=SourceAlloydbSchemasMode.ALLOW, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('mode') }})
     additional_properties: Optional[Dict[str, Any]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'exclude': lambda f: f is None }})
+    MODE: Final[SourceAlloydbSchemasMode] = dataclasses.field(default=SourceAlloydbSchemasMode.ALLOW, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('mode') }})
     
 
 
@@ -157,8 +157,8 @@ class SourceAlloydbMode(str, Enum):
 @dataclasses.dataclass
 class SourceAlloydbDisable:
     r"""Disables encryption of communication between Airbyte and source database."""
-    MODE: Final[SourceAlloydbMode] = dataclasses.field(default=SourceAlloydbMode.DISABLE, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('mode') }})
     additional_properties: Optional[Dict[str, Any]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'exclude': lambda f: f is None }})
+    MODE: Final[SourceAlloydbMode] = dataclasses.field(default=SourceAlloydbMode.DISABLE, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('mode') }})
     
 
 
@@ -227,7 +227,6 @@ class SourceAlloydb:
     r"""Hostname of the database."""
     username: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('username') }})
     r"""Username to access the database."""
-    SOURCE_TYPE: Final[Alloydb] = dataclasses.field(default=Alloydb.ALLOYDB, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     jdbc_url_params: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('jdbc_url_params'), 'exclude': lambda f: f is None }})
     r"""Additional properties to pass to the JDBC URL string when connecting to the database formatted as 'key=value' pairs separated by the symbol '&'. (Eg. key1=value1&key2=value2&key3=value3). For more information read about <a href=\\"https://jdbc.postgresql.org/documentation/head/connect.html\\">JDBC URL parameters</a>."""
     password: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('password'), 'exclude': lambda f: f is None }})
@@ -238,6 +237,7 @@ class SourceAlloydb:
     r"""Replication method for extracting data from the database."""
     schemas: Optional[List[str]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('schemas'), 'exclude': lambda f: f is None }})
     r"""The list of schemas (case sensitive) to sync from. Defaults to public."""
+    SOURCE_TYPE: Final[Alloydb] = dataclasses.field(default=Alloydb.ALLOYDB, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     ssl_mode: Optional[Union[SourceAlloydbDisable, SourceAlloydbAllow, SourceAlloydbPrefer, SourceAlloydbRequire, SourceAlloydbVerifyCa, SourceAlloydbVerifyFull]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('ssl_mode'), 'exclude': lambda f: f is None }})
     r"""SSL connection modes.
       Read more <a href=\"https://jdbc.postgresql.org/documentation/head/ssl-client.html\"> in the docs</a>.

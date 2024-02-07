@@ -261,9 +261,9 @@ class DestinationS3:
     r"""The name of the S3 bucket. Read more <a href=\\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/create-bucket-overview.html\\">here</a>."""
     s3_bucket_path: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('s3_bucket_path') }})
     r"""Directory under the S3 bucket where data will be written. Read more <a href=\\"https://docs.airbyte.com/integrations/destinations/s3#:~:text=to%20format%20the-,bucket%20path,-%3A\\">here</a>"""
-    DESTINATION_TYPE: Final[S3] = dataclasses.field(default=S3.S3, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('destinationType') }})
     access_key_id: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('access_key_id'), 'exclude': lambda f: f is None }})
     r"""The access key ID to access the S3 bucket. Airbyte requires Read and Write permissions to the given bucket. Read more <a href=\\"https://docs.aws.amazon.com/general/latest/gr/aws-sec-cred-types.html#access-keys-and-secret-access-keys\\">here</a>."""
+    DESTINATION_TYPE: Final[S3] = dataclasses.field(default=S3.S3, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('destinationType') }})
     file_name_pattern: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('file_name_pattern'), 'exclude': lambda f: f is None }})
     r"""The pattern allows you to set the file-name format for the S3 staging file(s)"""
     s3_bucket_region: Optional[DestinationS3S3BucketRegion] = dataclasses.field(default=DestinationS3S3BucketRegion.UNKNOWN, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('s3_bucket_region'), 'exclude': lambda f: f is None }})

@@ -20,9 +20,9 @@ class SourceFreshdesk:
     r"""Freshdesk API Key. See the <a href=\\"https://docs.airbyte.com/integrations/sources/freshdesk\\">docs</a> for more information on how to obtain this key."""
     domain: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('domain') }})
     r"""Freshdesk domain"""
-    SOURCE_TYPE: Final[Freshdesk] = dataclasses.field(default=Freshdesk.FRESHDESK, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     requests_per_minute: Optional[int] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('requests_per_minute'), 'exclude': lambda f: f is None }})
     r"""The number of requests per minute that this source allowed to use. There is a rate limit of 50 requests per minute per app per account."""
+    SOURCE_TYPE: Final[Freshdesk] = dataclasses.field(default=Freshdesk.FRESHDESK, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     start_date: Optional[datetime] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('start_date'), 'encoder': utils.datetimeisoformat(True), 'decoder': dateutil.parser.isoparse, 'exclude': lambda f: f is None }})
     r"""UTC date and time. Any data created after this date will be replicated. If this parameter is not set, all data will be replicated."""
     

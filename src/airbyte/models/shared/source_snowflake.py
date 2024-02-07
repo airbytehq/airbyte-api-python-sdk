@@ -33,9 +33,9 @@ class SourceSnowflakeOAuth20:
     r"""The Client ID of your Snowflake developer application."""
     client_secret: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('client_secret') }})
     r"""The Client Secret of your Snowflake developer application."""
-    AUTH_TYPE: Final[SourceSnowflakeAuthType] = dataclasses.field(default=SourceSnowflakeAuthType.O_AUTH, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_type') }})
     access_token: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('access_token'), 'exclude': lambda f: f is None }})
     r"""Access Token for making authenticated requests."""
+    AUTH_TYPE: Final[SourceSnowflakeAuthType] = dataclasses.field(default=SourceSnowflakeAuthType.O_AUTH, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_type') }})
     refresh_token: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('refresh_token'), 'exclude': lambda f: f is None }})
     r"""Refresh Token for making authenticated requests."""
     
@@ -56,11 +56,11 @@ class SourceSnowflake:
     r"""The role you created for Airbyte to access Snowflake."""
     warehouse: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('warehouse') }})
     r"""The warehouse you created for Airbyte to access data."""
-    SOURCE_TYPE: Final[SourceSnowflakeSnowflake] = dataclasses.field(default=SourceSnowflakeSnowflake.SNOWFLAKE, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     credentials: Optional[Union[SourceSnowflakeOAuth20, SourceSnowflakeUsernameAndPassword]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credentials'), 'exclude': lambda f: f is None }})
     jdbc_url_params: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('jdbc_url_params'), 'exclude': lambda f: f is None }})
     r"""Additional properties to pass to the JDBC URL string when connecting to the database formatted as 'key=value' pairs separated by the symbol '&'. (example: key1=value1&key2=value2&key3=value3)."""
     schema: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('schema'), 'exclude': lambda f: f is None }})
     r"""The source Snowflake schema tables. Leave empty to access tables from multiple schemas."""
+    SOURCE_TYPE: Final[SourceSnowflakeSnowflake] = dataclasses.field(default=SourceSnowflakeSnowflake.SNOWFLAKE, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     
 

@@ -42,11 +42,11 @@ class SourceSurveymonkeySurveymonkey(str, Enum):
 class SourceSurveymonkey:
     start_date: datetime = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('start_date'), 'encoder': utils.datetimeisoformat(False), 'decoder': dateutil.parser.isoparse }})
     r"""UTC date and time in the format 2017-01-25T00:00:00Z. Any data before this date will not be replicated."""
-    SOURCE_TYPE: Final[SourceSurveymonkeySurveymonkey] = dataclasses.field(default=SourceSurveymonkeySurveymonkey.SURVEYMONKEY, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     credentials: Optional[SurveyMonkeyAuthorizationMethod] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credentials'), 'exclude': lambda f: f is None }})
     r"""The authorization method to use to retrieve data from SurveyMonkey"""
     origin: Optional[OriginDatacenterOfTheSurveyMonkeyAccount] = dataclasses.field(default=OriginDatacenterOfTheSurveyMonkeyAccount.USA, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('origin'), 'exclude': lambda f: f is None }})
     r"""Depending on the originating datacenter of the SurveyMonkey account, the API access URL may be different."""
+    SOURCE_TYPE: Final[SourceSurveymonkeySurveymonkey] = dataclasses.field(default=SourceSurveymonkeySurveymonkey.SURVEYMONKEY, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     survey_ids: Optional[List[str]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('survey_ids'), 'exclude': lambda f: f is None }})
     r"""IDs of the surveys from which you'd like to replicate data. If left empty, data from all boards to which you have access will be replicated."""
     

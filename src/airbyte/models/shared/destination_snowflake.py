@@ -73,8 +73,8 @@ class DestinationSnowflake:
     r"""Enter the name of the user you want to use to access the database"""
     warehouse: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('warehouse') }})
     r"""Enter the name of the <a href=\\"https://docs.snowflake.com/en/user-guide/warehouses-overview.html#overview-of-warehouses\\">warehouse</a> that you want to sync data into"""
-    DESTINATION_TYPE: Final[DestinationSnowflakeSnowflake] = dataclasses.field(default=DestinationSnowflakeSnowflake.SNOWFLAKE, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('destinationType') }})
     credentials: Optional[Union[DestinationSnowflakeOAuth20, KeyPairAuthentication, UsernameAndPassword]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credentials'), 'exclude': lambda f: f is None }})
+    DESTINATION_TYPE: Final[DestinationSnowflakeSnowflake] = dataclasses.field(default=DestinationSnowflakeSnowflake.SNOWFLAKE, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('destinationType') }})
     disable_type_dedupe: Optional[bool] = dataclasses.field(default=False, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('disable_type_dedupe'), 'exclude': lambda f: f is None }})
     r"""Disable Writing Final Tables. WARNING! The data format in _airbyte_data is likely stable but there are no guarantees that other metadata columns will remain the same in future versions"""
     enable_incremental_final_table_updates: Optional[bool] = dataclasses.field(default=False, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('enable_incremental_final_table_updates'), 'exclude': lambda f: f is None }})

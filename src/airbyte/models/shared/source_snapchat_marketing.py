@@ -22,9 +22,9 @@ class SourceSnapchatMarketing:
     r"""The Client Secret of your Snapchat developer application."""
     refresh_token: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('refresh_token') }})
     r"""Refresh Token to renew the expired Access Token."""
-    SOURCE_TYPE: Final[SourceSnapchatMarketingSnapchatMarketing] = dataclasses.field(default=SourceSnapchatMarketingSnapchatMarketing.SNAPCHAT_MARKETING, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     end_date: Optional[date] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('end_date'), 'encoder': utils.dateisoformat(True), 'decoder': utils.datefromisoformat, 'exclude': lambda f: f is None }})
     r"""Date in the format 2017-01-25. Any data after this date will not be replicated."""
+    SOURCE_TYPE: Final[SourceSnapchatMarketingSnapchatMarketing] = dataclasses.field(default=SourceSnapchatMarketingSnapchatMarketing.SNAPCHAT_MARKETING, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     start_date: Optional[date] = dataclasses.field(default=dateutil.parser.parse('2022-01-01').date(), metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('start_date'), 'encoder': utils.dateisoformat(True), 'decoder': utils.datefromisoformat, 'exclude': lambda f: f is None }})
     r"""Date in the format 2022-01-01. Any data before this date will not be replicated."""
     

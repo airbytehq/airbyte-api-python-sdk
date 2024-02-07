@@ -14,7 +14,6 @@ class MongodbInternalPoc(str, Enum):
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
 class SourceMongodbInternalPoc:
-    SOURCE_TYPE: Final[MongodbInternalPoc] = dataclasses.field(default=MongodbInternalPoc.MONGODB_INTERNAL_POC, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     auth_source: Optional[str] = dataclasses.field(default='admin', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_source'), 'exclude': lambda f: f is None }})
     r"""The authentication source where the user information is stored."""
     connection_string: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('connection_string'), 'exclude': lambda f: f is None }})
@@ -23,6 +22,7 @@ class SourceMongodbInternalPoc:
     r"""The password associated with this username."""
     replica_set: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('replica_set'), 'exclude': lambda f: f is None }})
     r"""The name of the replica set to be replicated."""
+    SOURCE_TYPE: Final[MongodbInternalPoc] = dataclasses.field(default=MongodbInternalPoc.MONGODB_INTERNAL_POC, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     user: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('user'), 'exclude': lambda f: f is None }})
     r"""The username which is used to access the database."""
     

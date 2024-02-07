@@ -51,9 +51,9 @@ class SourceTypeformTypeform(str, Enum):
 @dataclasses.dataclass
 class SourceTypeform:
     credentials: Union[SourceTypeformOAuth20, SourceTypeformPrivateToken] = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credentials') }})
-    SOURCE_TYPE: Final[SourceTypeformTypeform] = dataclasses.field(default=SourceTypeformTypeform.TYPEFORM, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     form_ids: Optional[List[str]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('form_ids'), 'exclude': lambda f: f is None }})
     r"""When this parameter is set, the connector will replicate data only from the input forms. Otherwise, all forms in your Typeform account will be replicated. You can find form IDs in your form URLs. For example, in the URL \\"https://mysite.typeform.com/to/u6nXL7\\" the form_id is u6nXL7. You can find form URLs on Share panel"""
+    SOURCE_TYPE: Final[SourceTypeformTypeform] = dataclasses.field(default=SourceTypeformTypeform.TYPEFORM, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     start_date: Optional[datetime] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('start_date'), 'encoder': utils.datetimeisoformat(True), 'decoder': dateutil.parser.isoparse, 'exclude': lambda f: f is None }})
     r"""The date from which you'd like to replicate data for Typeform API, in the format YYYY-MM-DDT00:00:00Z. All data generated after this date will be replicated."""
     

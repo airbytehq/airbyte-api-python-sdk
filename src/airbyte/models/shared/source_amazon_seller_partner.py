@@ -127,7 +127,6 @@ class SourceAmazonSellerPartner:
     r"""Your Login with Amazon Client Secret."""
     refresh_token: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('refresh_token') }})
     r"""The Refresh Token obtained via OAuth flow authorization."""
-    SOURCE_TYPE: Final[SourceAmazonSellerPartnerAmazonSellerPartner] = dataclasses.field(default=SourceAmazonSellerPartnerAmazonSellerPartner.AMAZON_SELLER_PARTNER, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     account_type: Optional[AWSSellerPartnerAccountType] = dataclasses.field(default=AWSSellerPartnerAccountType.SELLER, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('account_type'), 'exclude': lambda f: f is None }})
     r"""Type of the Account you're going to authorize the Airbyte application by"""
     AUTH_TYPE: Final[Optional[SourceAmazonSellerPartnerAuthType]] = dataclasses.field(default=SourceAmazonSellerPartnerAuthType.OAUTH2_0, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_type'), 'exclude': lambda f: f is None }})
@@ -143,5 +142,6 @@ class SourceAmazonSellerPartner:
     r"""UTC date and time in the format 2017-01-25T00:00:00Z. Any data before this date will not be replicated. If start date is not provided, the date 2 years ago from today will be used."""
     report_options_list: Optional[List[ReportOptions]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('report_options_list'), 'exclude': lambda f: f is None }})
     r"""Additional information passed to reports. This varies by report type."""
+    SOURCE_TYPE: Final[SourceAmazonSellerPartnerAmazonSellerPartner] = dataclasses.field(default=SourceAmazonSellerPartnerAmazonSellerPartner.AMAZON_SELLER_PARTNER, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     
 

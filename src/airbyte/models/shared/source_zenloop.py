@@ -16,9 +16,9 @@ class Zenloop(str, Enum):
 class SourceZenloop:
     api_token: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('api_token') }})
     r"""Zenloop API Token. You can get the API token in settings page <a href=\\"https://app.zenloop.com/settings/api\\">here</a>"""
-    SOURCE_TYPE: Final[Zenloop] = dataclasses.field(default=Zenloop.ZENLOOP, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     date_from: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('date_from'), 'exclude': lambda f: f is None }})
     r"""Zenloop date_from. Format: 2021-10-24T03:30:30Z or 2021-10-24. Leave empty if only data from current data should be synced"""
+    SOURCE_TYPE: Final[Zenloop] = dataclasses.field(default=Zenloop.ZENLOOP, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     survey_group_id: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('survey_group_id'), 'exclude': lambda f: f is None }})
     r"""Zenloop Survey Group ID. Can be found by pulling All Survey Groups via SurveyGroups stream. Leave empty to pull answers from all survey groups"""
     survey_id: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('survey_id'), 'exclude': lambda f: f is None }})

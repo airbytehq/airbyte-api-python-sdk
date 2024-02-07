@@ -20,7 +20,6 @@ class DestinationPubsub:
     r"""The GCP project ID for the project containing the target PubSub."""
     topic_id: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('topic_id') }})
     r"""The PubSub topic ID in the given GCP project ID."""
-    DESTINATION_TYPE: Final[Pubsub] = dataclasses.field(default=Pubsub.PUBSUB, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('destinationType') }})
     batching_delay_threshold: Optional[int] = dataclasses.field(default=1, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('batching_delay_threshold'), 'exclude': lambda f: f is None }})
     r"""Number of ms before the buffer is flushed"""
     batching_element_count_threshold: Optional[int] = dataclasses.field(default=1, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('batching_element_count_threshold'), 'exclude': lambda f: f is None }})
@@ -29,6 +28,7 @@ class DestinationPubsub:
     r"""If TRUE messages will be buffered instead of sending them one by one"""
     batching_request_bytes_threshold: Optional[int] = dataclasses.field(default=1, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('batching_request_bytes_threshold'), 'exclude': lambda f: f is None }})
     r"""Number of bytes before the buffer is flushed"""
+    DESTINATION_TYPE: Final[Pubsub] = dataclasses.field(default=Pubsub.PUBSUB, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('destinationType') }})
     ordering_enabled: Optional[bool] = dataclasses.field(default=False, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('ordering_enabled'), 'exclude': lambda f: f is None }})
     r"""If TRUE PubSub publisher will have <a href=\\"https://cloud.google.com/pubsub/docs/ordering\\">message ordering</a> enabled. Every message will have an ordering key of stream"""
     

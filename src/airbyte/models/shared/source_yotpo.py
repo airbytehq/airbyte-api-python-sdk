@@ -22,8 +22,8 @@ class SourceYotpo:
     r"""App key found at settings (Ref- https://settings.yotpo.com/#/general_settings)"""
     start_date: datetime = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('start_date'), 'encoder': utils.datetimeisoformat(False), 'decoder': dateutil.parser.isoparse }})
     r"""Date time filter for incremental filter, Specify which date to extract from."""
-    SOURCE_TYPE: Final[Yotpo] = dataclasses.field(default=Yotpo.YOTPO, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     email: Optional[str] = dataclasses.field(default='example@gmail.com', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('email'), 'exclude': lambda f: f is None }})
     r"""Email address registered with yotpo."""
+    SOURCE_TYPE: Final[Yotpo] = dataclasses.field(default=Yotpo.YOTPO, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     
 

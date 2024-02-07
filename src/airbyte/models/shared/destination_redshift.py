@@ -154,13 +154,13 @@ class AWSS3Staging:
     r"""The name of the staging S3 bucket."""
     secret_access_key: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('secret_access_key') }})
     r"""The corresponding secret to the above access key id. See <a href=\\"https://docs.aws.amazon.com/general/latest/gr/aws-sec-cred-types.html#access-keys-and-secret-access-keys\\">AWS docs</a> on how to generate an access key ID and secret access key."""
-    METHOD: Final[DestinationRedshiftMethod] = dataclasses.field(default=DestinationRedshiftMethod.S3_STAGING, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('method') }})
     encryption: Optional[Union[NoEncryption, AESCBCEnvelopeEncryption]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('encryption'), 'exclude': lambda f: f is None }})
     r"""How to encrypt the staging data"""
     file_buffer_count: Optional[int] = dataclasses.field(default=10, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('file_buffer_count'), 'exclude': lambda f: f is None }})
     r"""Number of file buffers allocated for writing data. Increasing this number is beneficial for connections using Change Data Capture (CDC) and up to the number of streams within a connection. Increasing the number of file buffers past the maximum number of streams has deteriorating effects"""
     file_name_pattern: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('file_name_pattern'), 'exclude': lambda f: f is None }})
     r"""The pattern allows you to set the file-name format for the S3 staging file(s)"""
+    METHOD: Final[DestinationRedshiftMethod] = dataclasses.field(default=DestinationRedshiftMethod.S3_STAGING, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('method') }})
     purge_staging_data: Optional[bool] = dataclasses.field(default=True, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('purge_staging_data'), 'exclude': lambda f: f is None }})
     r"""Whether to delete the staging files from S3 after completing the sync. See <a href=\\"https://docs.airbyte.com/integrations/destinations/redshift/#:~:text=the%20root%20directory.-,Purge%20Staging%20Data,-Whether%20to%20delete\\"> docs</a> for details."""
     s3_bucket_path: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('s3_bucket_path'), 'exclude': lambda f: f is None }})

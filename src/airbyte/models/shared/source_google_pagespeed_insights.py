@@ -31,8 +31,8 @@ class SourceGooglePagespeedInsights:
     r"""The analyses strategy to use. Either \\"desktop\\" or \\"mobile\\"."""
     urls: List[str] = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('urls') }})
     r"""The URLs to retrieve pagespeed information from. The connector will attempt to sync PageSpeed reports for all the defined URLs. Format: https://(www.)url.domain"""
-    SOURCE_TYPE: Final[GooglePagespeedInsights] = dataclasses.field(default=GooglePagespeedInsights.GOOGLE_PAGESPEED_INSIGHTS, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     api_key: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('api_key'), 'exclude': lambda f: f is None }})
     r"""Google PageSpeed API Key. See <a href=\\"https://developers.google.com/speed/docs/insights/v5/get-started#APIKey\\">here</a>. The key is optional - however the API is heavily rate limited when using without API Key. Creating and using the API key therefore is recommended. The key is case sensitive."""
+    SOURCE_TYPE: Final[GooglePagespeedInsights] = dataclasses.field(default=GooglePagespeedInsights.GOOGLE_PAGESPEED_INSIGHTS, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     
 

@@ -26,9 +26,9 @@ class SourceNetsuite:
     r"""Access token key"""
     token_secret: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('token_secret') }})
     r"""Access token secret"""
-    SOURCE_TYPE: Final[Netsuite] = dataclasses.field(default=Netsuite.NETSUITE, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     object_types: Optional[List[str]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('object_types'), 'exclude': lambda f: f is None }})
     r"""The API names of the Netsuite objects you want to sync. Setting this speeds up the connection setup process by limiting the number of schemas that need to be retrieved from Netsuite."""
+    SOURCE_TYPE: Final[Netsuite] = dataclasses.field(default=Netsuite.NETSUITE, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     window_in_days: Optional[int] = dataclasses.field(default=30, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('window_in_days'), 'exclude': lambda f: f is None }})
     r"""The amount of days used to query the data with date chunks. Set smaller value, if you have lots of data."""
     

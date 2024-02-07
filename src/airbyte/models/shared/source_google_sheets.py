@@ -48,8 +48,8 @@ class SourceGoogleSheets:
     r"""Credentials for connecting to the Google Sheets API"""
     spreadsheet_id: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('spreadsheet_id') }})
     r"""Enter the link to the Google spreadsheet you want to sync. To copy the link, click the 'Share' button in the top-right corner of the spreadsheet, then click 'Copy link'."""
-    SOURCE_TYPE: Final[SourceGoogleSheetsGoogleSheets] = dataclasses.field(default=SourceGoogleSheetsGoogleSheets.GOOGLE_SHEETS, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     names_conversion: Optional[bool] = dataclasses.field(default=False, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('names_conversion'), 'exclude': lambda f: f is None }})
     r"""Enables the conversion of column names to a standardized, SQL-compliant format. For example, 'My Name' -> 'my_name'. Enable this option if your destination is SQL-based."""
+    SOURCE_TYPE: Final[SourceGoogleSheetsGoogleSheets] = dataclasses.field(default=SourceGoogleSheetsGoogleSheets.GOOGLE_SHEETS, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     
 

@@ -29,7 +29,6 @@ class SourceCoinAPI:
     r"""The symbol ID to use. See the documentation for a list.
     https://docs.coinapi.io/#list-all-symbols-get
     """
-    SOURCE_TYPE: Final[CoinAPI] = dataclasses.field(default=CoinAPI.COIN_API, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     end_date: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('end_date'), 'exclude': lambda f: f is None }})
     r"""The end date in ISO 8601 format. If not supplied, data will be returned
     from the start date to the current time, or when the count of result
@@ -42,5 +41,6 @@ class SourceCoinAPI:
     is 100. For numbers larger than 100, each 100 items is counted as one
     request for pricing purposes. Maximum value is 100000.
     """
+    SOURCE_TYPE: Final[CoinAPI] = dataclasses.field(default=CoinAPI.COIN_API, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     
 

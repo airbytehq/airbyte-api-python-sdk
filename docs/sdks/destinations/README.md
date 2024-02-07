@@ -225,6 +225,7 @@ s = airbyte.Airbyte(
 )
 
 req = operations.PatchDestinationRequest(
+    destination_id='string',
     destination_patch_request=shared.DestinationPatchRequest(
         configuration=shared.DestinationGoogleSheets(
         credentials=shared.AuthenticationViaGoogleOAuth(
@@ -235,7 +236,6 @@ req = operations.PatchDestinationRequest(
         spreadsheet_id='https://docs.google.com/spreadsheets/d/1hLd9Qqti3UyLXZB2aFfUWDT7BG/edit',
     ),
     ),
-    destination_id='string',
 )
 
 res = s.destinations.patch_destination(req)
@@ -281,6 +281,7 @@ s = airbyte.Airbyte(
 )
 
 req = operations.PutDestinationRequest(
+    destination_id='string',
     destination_put_request=shared.DestinationPutRequest(
         configuration=shared.DestinationGoogleSheets(
         credentials=shared.AuthenticationViaGoogleOAuth(
@@ -292,7 +293,6 @@ req = operations.PutDestinationRequest(
     ),
         name='string',
     ),
-    destination_id='string',
 )
 
 res = s.destinations.put_destination(req)

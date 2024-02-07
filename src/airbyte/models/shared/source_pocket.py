@@ -42,7 +42,6 @@ class SourcePocket:
     r"""The user's Pocket access token."""
     consumer_key: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('consumer_key') }})
     r"""Your application's Consumer Key."""
-    SOURCE_TYPE: Final[Pocket] = dataclasses.field(default=Pocket.POCKET, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     content_type: Optional[ContentType] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('content_type'), 'exclude': lambda f: f is None }})
     r"""Select the content type of the items to retrieve."""
     detail_type: Optional[DetailType] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('detail_type'), 'exclude': lambda f: f is None }})
@@ -57,6 +56,7 @@ class SourcePocket:
     r"""Only return items modified since the given timestamp."""
     sort: Optional[SourcePocketSortBy] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sort'), 'exclude': lambda f: f is None }})
     r"""Sort retrieved items by the given criteria."""
+    SOURCE_TYPE: Final[Pocket] = dataclasses.field(default=Pocket.POCKET, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     state: Optional[State] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('state'), 'exclude': lambda f: f is None }})
     r"""Select the state of the items to retrieve."""
     tag: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('tag'), 'exclude': lambda f: f is None }})

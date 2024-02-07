@@ -103,9 +103,9 @@ class GCSStaging:
     r"""The name of the GCS bucket. Read more <a href=\\"https://cloud.google.com/storage/docs/naming-buckets\\">here</a>."""
     gcs_bucket_path: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('gcs_bucket_path') }})
     r"""Directory under the GCS bucket where data will be written."""
-    METHOD: Final[Method] = dataclasses.field(default=Method.GCS_STAGING, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('method') }})
     keep_files_in_gcs_bucket: Optional[GCSTmpFilesAfterwardProcessing] = dataclasses.field(default=GCSTmpFilesAfterwardProcessing.DELETE_ALL_TMP_FILES_FROM_GCS, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('keep_files_in_gcs-bucket'), 'exclude': lambda f: f is None }})
     r"""This upload method is supposed to temporary store records in GCS bucket. By this select you can chose if these records should be removed from GCS when migration has finished. The default \\"Delete all tmp files from GCS\\" value is used if not set explicitly."""
+    METHOD: Final[Method] = dataclasses.field(default=Method.GCS_STAGING, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('method') }})
     
 
 
@@ -124,11 +124,11 @@ class DestinationBigquery:
     r"""The location of the dataset. Warning: Changes made after creation will not be applied. Read more <a href=\\"https://cloud.google.com/bigquery/docs/locations\\">here</a>."""
     project_id: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('project_id') }})
     r"""The GCP project ID for the project containing the target BigQuery dataset. Read more <a href=\\"https://cloud.google.com/resource-manager/docs/creating-managing-projects#identifying_projects\\">here</a>."""
-    DESTINATION_TYPE: Final[Bigquery] = dataclasses.field(default=Bigquery.BIGQUERY, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('destinationType') }})
     big_query_client_buffer_size_mb: Optional[int] = dataclasses.field(default=15, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('big_query_client_buffer_size_mb'), 'exclude': lambda f: f is None }})
     r"""Google BigQuery client's chunk (buffer) size (MIN=1, MAX = 15) for each table. The size that will be written by a single RPC. Written data will be buffered and only flushed upon reaching this size or closing the channel. The default 15MB value is used if not set explicitly. Read more <a href=\\"https://googleapis.dev/python/bigquery/latest/generated/google.cloud.bigquery.client.Client.html\\">here</a>."""
     credentials_json: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credentials_json'), 'exclude': lambda f: f is None }})
     r"""The contents of the JSON service account key. Check out the <a href=\\"https://docs.airbyte.com/integrations/destinations/bigquery#service-account-key\\">docs</a> if you need help generating this key. Default credentials will be used if this field is left empty."""
+    DESTINATION_TYPE: Final[Bigquery] = dataclasses.field(default=Bigquery.BIGQUERY, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('destinationType') }})
     disable_type_dedupe: Optional[bool] = dataclasses.field(default=False, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('disable_type_dedupe'), 'exclude': lambda f: f is None }})
     r"""Disable Writing Final Tables. WARNING! The data format in _airbyte_data is likely stable but there are no guarantees that other metadata columns will remain the same in future versions"""
     loading_method: Optional[Union[GCSStaging, StandardInserts]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('loading_method'), 'exclude': lambda f: f is None }})

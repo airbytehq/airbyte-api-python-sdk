@@ -27,12 +27,12 @@ class SourcePolygonStockAPI:
     r"""The exchange symbol that this item is traded under."""
     timespan: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('timespan') }})
     r"""The size of the time window."""
-    SOURCE_TYPE: Final[PolygonStockAPI] = dataclasses.field(default=PolygonStockAPI.POLYGON_STOCK_API, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     adjusted: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('adjusted'), 'exclude': lambda f: f is None }})
     r"""Determines whether or not the results are adjusted for splits. By default, results are adjusted and set to true. Set this to false to get results that are NOT adjusted for splits."""
     limit: Optional[int] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('limit'), 'exclude': lambda f: f is None }})
     r"""The target date for the aggregate window."""
     sort: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sort'), 'exclude': lambda f: f is None }})
     r"""Sort the results by timestamp. asc will return results in ascending order (oldest at the top), desc will return results in descending order (newest at the top)."""
+    SOURCE_TYPE: Final[PolygonStockAPI] = dataclasses.field(default=PolygonStockAPI.POLYGON_STOCK_API, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     
 

@@ -48,7 +48,6 @@ class SourceSftp:
     r"""The server host address"""
     user: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('user') }})
     r"""The server user"""
-    SOURCE_TYPE: Final[Sftp] = dataclasses.field(default=Sftp.SFTP, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     credentials: Optional[Union[SourceSftpPasswordAuthentication, SourceSftpSSHKeyAuthentication]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credentials'), 'exclude': lambda f: f is None }})
     r"""The server authentication method"""
     file_pattern: Optional[str] = dataclasses.field(default='', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('file_pattern'), 'exclude': lambda f: f is None }})
@@ -59,5 +58,6 @@ class SourceSftp:
     r"""The directory to search files for sync"""
     port: Optional[int] = dataclasses.field(default=22, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('port'), 'exclude': lambda f: f is None }})
     r"""The server port"""
+    SOURCE_TYPE: Final[Sftp] = dataclasses.field(default=Sftp.SFTP, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     
 

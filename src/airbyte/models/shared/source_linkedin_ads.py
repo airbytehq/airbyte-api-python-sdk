@@ -92,10 +92,10 @@ class SourceLinkedinAdsLinkedinAds(str, Enum):
 class SourceLinkedinAds:
     start_date: date = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('start_date'), 'encoder': utils.dateisoformat(False), 'decoder': utils.datefromisoformat }})
     r"""UTC date in the format YYYY-MM-DD. Any data before this date will not be replicated."""
-    SOURCE_TYPE: Final[SourceLinkedinAdsLinkedinAds] = dataclasses.field(default=SourceLinkedinAdsLinkedinAds.LINKEDIN_ADS, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     account_ids: Optional[List[int]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('account_ids'), 'exclude': lambda f: f is None }})
     r"""Specify the account IDs to pull data from, separated by a space. Leave this field empty if you want to pull the data from all accounts accessible by the authenticated user. See the <a href=\\"https://www.linkedin.com/help/linkedin/answer/a424270/find-linkedin-ads-account-details?lang=en\\">LinkedIn docs</a> to locate these IDs."""
     ad_analytics_reports: Optional[List[AdAnalyticsReportConfiguration]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('ad_analytics_reports'), 'exclude': lambda f: f is None }})
     credentials: Optional[Union[SourceLinkedinAdsOAuth20, AccessToken]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credentials'), 'exclude': lambda f: f is None }})
+    SOURCE_TYPE: Final[SourceLinkedinAdsLinkedinAds] = dataclasses.field(default=SourceLinkedinAdsLinkedinAds.LINKEDIN_ADS, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     
 

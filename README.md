@@ -40,13 +40,15 @@ s = airbyte.Airbyte(
 )
 
 req = shared.ConnectionCreateRequest(
+    destination_id='c669dd1e-3620-483e-afc8-55914e0a570f',
+    source_id='6dd427d8-3a55-4584-b835-842325b6c7b3',
     configurations=shared.StreamConfigurations(
         streams=[
             shared.StreamConfiguration(
+                name='string',
                 cursor_field=[
                     'string',
                 ],
-                name='string',
                 primary_key=[
                     [
                         'string',
@@ -55,12 +57,10 @@ req = shared.ConnectionCreateRequest(
             ),
         ],
     ),
-    destination_id='c669dd1e-3620-483e-afc8-55914e0a570f',
     namespace_format='${SOURCE_NAMESPACE}',
     schedule=shared.ConnectionSchedule(
-        schedule_type=shared.ScheduleTypeEnum.MANUAL,
+        schedule_type=shared.ScheduleTypeEnum.CRON,
     ),
-    source_id='dd427d83-a555-4847-8358-42325b6c7b3f',
 )
 
 res = s.connections.create_connection(req)
@@ -153,13 +153,15 @@ s = airbyte.Airbyte(
 )
 
 req = shared.ConnectionCreateRequest(
+    destination_id='c669dd1e-3620-483e-afc8-55914e0a570f',
+    source_id='6dd427d8-3a55-4584-b835-842325b6c7b3',
     configurations=shared.StreamConfigurations(
         streams=[
             shared.StreamConfiguration(
+                name='string',
                 cursor_field=[
                     'string',
                 ],
-                name='string',
                 primary_key=[
                     [
                         'string',
@@ -168,12 +170,10 @@ req = shared.ConnectionCreateRequest(
             ),
         ],
     ),
-    destination_id='c669dd1e-3620-483e-afc8-55914e0a570f',
     namespace_format='${SOURCE_NAMESPACE}',
     schedule=shared.ConnectionSchedule(
-        schedule_type=shared.ScheduleTypeEnum.MANUAL,
+        schedule_type=shared.ScheduleTypeEnum.CRON,
     ),
-    source_id='dd427d83-a555-4847-8358-42325b6c7b3f',
 )
 
 res = None
@@ -219,13 +219,15 @@ s = airbyte.Airbyte(
 )
 
 req = shared.ConnectionCreateRequest(
+    destination_id='c669dd1e-3620-483e-afc8-55914e0a570f',
+    source_id='6dd427d8-3a55-4584-b835-842325b6c7b3',
     configurations=shared.StreamConfigurations(
         streams=[
             shared.StreamConfiguration(
+                name='string',
                 cursor_field=[
                     'string',
                 ],
-                name='string',
                 primary_key=[
                     [
                         'string',
@@ -234,12 +236,10 @@ req = shared.ConnectionCreateRequest(
             ),
         ],
     ),
-    destination_id='c669dd1e-3620-483e-afc8-55914e0a570f',
     namespace_format='${SOURCE_NAMESPACE}',
     schedule=shared.ConnectionSchedule(
-        schedule_type=shared.ScheduleTypeEnum.MANUAL,
+        schedule_type=shared.ScheduleTypeEnum.CRON,
     ),
-    source_id='dd427d83-a555-4847-8358-42325b6c7b3f',
 )
 
 res = s.connections.create_connection(req)
@@ -268,13 +268,15 @@ s = airbyte.Airbyte(
 )
 
 req = shared.ConnectionCreateRequest(
+    destination_id='c669dd1e-3620-483e-afc8-55914e0a570f',
+    source_id='6dd427d8-3a55-4584-b835-842325b6c7b3',
     configurations=shared.StreamConfigurations(
         streams=[
             shared.StreamConfiguration(
+                name='string',
                 cursor_field=[
                     'string',
                 ],
-                name='string',
                 primary_key=[
                     [
                         'string',
@@ -283,12 +285,10 @@ req = shared.ConnectionCreateRequest(
             ),
         ],
     ),
-    destination_id='c669dd1e-3620-483e-afc8-55914e0a570f',
     namespace_format='${SOURCE_NAMESPACE}',
     schedule=shared.ConnectionSchedule(
-        schedule_type=shared.ScheduleTypeEnum.MANUAL,
+        schedule_type=shared.ScheduleTypeEnum.CRON,
     ),
-    source_id='dd427d83-a555-4847-8358-42325b6c7b3f',
 )
 
 res = s.connections.create_connection(req)
@@ -346,13 +346,15 @@ s = airbyte.Airbyte(
 )
 
 req = shared.ConnectionCreateRequest(
+    destination_id='c669dd1e-3620-483e-afc8-55914e0a570f',
+    source_id='6dd427d8-3a55-4584-b835-842325b6c7b3',
     configurations=shared.StreamConfigurations(
         streams=[
             shared.StreamConfiguration(
+                name='string',
                 cursor_field=[
                     'string',
                 ],
-                name='string',
                 primary_key=[
                     [
                         'string',
@@ -361,12 +363,10 @@ req = shared.ConnectionCreateRequest(
             ),
         ],
     ),
-    destination_id='c669dd1e-3620-483e-afc8-55914e0a570f',
     namespace_format='${SOURCE_NAMESPACE}',
     schedule=shared.ConnectionSchedule(
-        schedule_type=shared.ScheduleTypeEnum.MANUAL,
+        schedule_type=shared.ScheduleTypeEnum.CRON,
     ),
-    source_id='dd427d83-a555-4847-8358-42325b6c7b3f',
 )
 
 res = s.connections.create_connection(req)

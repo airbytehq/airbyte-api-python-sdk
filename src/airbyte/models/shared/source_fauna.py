@@ -14,9 +14,9 @@ class SourceFaunaSchemasDeletionMode(str, Enum):
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
 class Enabled:
-    DELETION_MODE: Final[SourceFaunaSchemasDeletionMode] = dataclasses.field(default=SourceFaunaSchemasDeletionMode.DELETED_FIELD, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('deletion_mode') }})
     column: Optional[str] = dataclasses.field(default='deleted_at', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('column'), 'exclude': lambda f: f is None }})
     r"""Name of the \\"deleted at\\" column."""
+    DELETION_MODE: Final[SourceFaunaSchemasDeletionMode] = dataclasses.field(default=SourceFaunaSchemasDeletionMode.DELETED_FIELD, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('deletion_mode') }})
     
 
 
@@ -59,7 +59,6 @@ class Fauna(str, Enum):
 class SourceFauna:
     secret: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('secret') }})
     r"""Fauna secret, used when authenticating with the database."""
-    SOURCE_TYPE: Final[Fauna] = dataclasses.field(default=Fauna.FAUNA, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     collection: Optional[Collection] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('collection'), 'exclude': lambda f: f is None }})
     r"""Settings for the Fauna Collection."""
     domain: Optional[str] = dataclasses.field(default='db.fauna.com', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('domain'), 'exclude': lambda f: f is None }})
@@ -68,5 +67,6 @@ class SourceFauna:
     r"""Endpoint port."""
     scheme: Optional[str] = dataclasses.field(default='https', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('scheme'), 'exclude': lambda f: f is None }})
     r"""URL scheme."""
+    SOURCE_TYPE: Final[Fauna] = dataclasses.field(default=Fauna.FAUNA, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     
 

@@ -52,8 +52,8 @@ class SourceMicrosoftTeamsMicrosoftTeams(str, Enum):
 class SourceMicrosoftTeams:
     period: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('period') }})
     r"""Specifies the length of time over which the Team Device Report stream is aggregated. The supported values are: D7, D30, D90, and D180."""
-    SOURCE_TYPE: Final[SourceMicrosoftTeamsMicrosoftTeams] = dataclasses.field(default=SourceMicrosoftTeamsMicrosoftTeams.MICROSOFT_TEAMS, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     credentials: Optional[Union[AuthenticateViaMicrosoftOAuth20, AuthenticateViaMicrosoft]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credentials'), 'exclude': lambda f: f is None }})
     r"""Choose how to authenticate to Microsoft"""
+    SOURCE_TYPE: Final[SourceMicrosoftTeamsMicrosoftTeams] = dataclasses.field(default=SourceMicrosoftTeamsMicrosoftTeams.MICROSOFT_TEAMS, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     
 

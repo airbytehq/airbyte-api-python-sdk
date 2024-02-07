@@ -54,8 +54,8 @@ class SourceHubspot:
     r"""Choose how to authenticate to HubSpot."""
     start_date: datetime = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('start_date'), 'encoder': utils.datetimeisoformat(False), 'decoder': dateutil.parser.isoparse }})
     r"""UTC date and time in the format 2017-01-25T00:00:00Z. Any data before this date will not be replicated."""
-    SOURCE_TYPE: Final[SourceHubspotHubspot] = dataclasses.field(default=SourceHubspotHubspot.HUBSPOT, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     enable_experimental_streams: Optional[bool] = dataclasses.field(default=False, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('enable_experimental_streams'), 'exclude': lambda f: f is None }})
     r"""If enabled then experimental streams become available for sync."""
+    SOURCE_TYPE: Final[SourceHubspotHubspot] = dataclasses.field(default=SourceHubspotHubspot.HUBSPOT, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     
 
