@@ -74,7 +74,7 @@ s = airbyte.Airbyte(
 )
 
 req = shared.JobCreateRequest(
-    connection_id='string',
+    connection_id='18dccc91-0ab1-4f72-9ed7-0b8fc27c5826',
     job_type=shared.JobTypeEnum.SYNC,
 )
 
@@ -155,7 +155,6 @@ List Jobs by sync type
 
 ```python
 import airbyte
-import dateutil.parser
 from airbyte.models import operations, shared
 
 s = airbyte.Airbyte(
@@ -167,11 +166,7 @@ s = airbyte.Airbyte(
     ),
 )
 
-req = operations.ListJobsRequest(
-    workspace_ids=[
-        'c60f91a7-de80-41f6-b5d3-71c05bc4dea6',
-    ],
-)
+req = operations.ListJobsRequest()
 
 res = s.jobs.list_jobs(req)
 

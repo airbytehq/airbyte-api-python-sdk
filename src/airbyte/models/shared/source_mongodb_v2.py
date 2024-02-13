@@ -15,6 +15,7 @@ class SourceMongodbV2SchemasClusterType(str, Enum):
 @dataclasses.dataclass
 class SelfManagedReplicaSet:
     r"""MongoDB self-hosted cluster configured as a replica set"""
+    UNSET='__SPEAKEASY_UNSET__'
     connection_string: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('connection_string') }})
     r"""The connection string of the cluster that you want to replicate.  https://www.mongodb.com/docs/manual/reference/connection-string/#find-your-self-hosted-deployment-s-connection-string for more information."""
     database: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('database') }})
@@ -40,6 +41,7 @@ class SourceMongodbV2ClusterType(str, Enum):
 @dataclasses.dataclass
 class MongoDBAtlasReplicaSet:
     r"""MongoDB Atlas-hosted cluster configured as a replica set"""
+    UNSET='__SPEAKEASY_UNSET__'
     connection_string: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('connection_string') }})
     r"""The connection string of the cluster that you want to replicate."""
     database: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('database') }})

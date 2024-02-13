@@ -16,6 +16,7 @@ class SourceZendeskSupportSchemasCredentials(str, Enum):
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
 class SourceZendeskSupportAPIToken:
+    UNSET='__SPEAKEASY_UNSET__'
     api_token: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('api_token') }})
     r"""The value of the API token generated. See our <a href=\\"https://docs.airbyte.com/integrations/sources/zendesk-support#setup-guide\\">full documentation</a> for more information on generating this token."""
     email: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('email') }})
@@ -32,6 +33,7 @@ class SourceZendeskSupportCredentials(str, Enum):
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
 class SourceZendeskSupportOAuth20:
+    UNSET='__SPEAKEASY_UNSET__'
     access_token: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('access_token') }})
     r"""The OAuth access token. See the <a href=\\"https://developer.zendesk.com/documentation/ticketing/working-with-oauth/creating-and-using-oauth-tokens-with-the-api/\\">Zendesk docs</a> for more information on generating this token."""
     additional_properties: Optional[Dict[str, Any]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'exclude': lambda f: f is None }})

@@ -36,6 +36,7 @@ class Plugin(str, Enum):
 @dataclasses.dataclass
 class LogicalReplicationCDC:
     r"""Logical replication uses the Postgres write-ahead log (WAL) to detect inserts, updates, and deletes. This needs to be configured on the source database itself. Only available on Postgres 10 and above. Read the <a href=\\"https://docs.airbyte.com/integrations/sources/postgres\\">docs</a>."""
+    UNSET='__SPEAKEASY_UNSET__'
     publication: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('publication') }})
     r"""A Postgres publication used for consuming changes. Read about <a href=\\"https://docs.airbyte.com/integrations/sources/postgres#step-4-create-publications-and-replication-identities-for-tables\\">publications and replication identities</a>."""
     replication_slot: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('replication_slot') }})
@@ -76,6 +77,7 @@ class SourceAlloydbSchemasSSLModeSSLModes6Mode(str, Enum):
 @dataclasses.dataclass
 class SourceAlloydbVerifyFull:
     r"""This is the most secure mode. Always require encryption and verifies the identity of the source database server."""
+    UNSET='__SPEAKEASY_UNSET__'
     ca_certificate: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('ca_certificate') }})
     r"""CA certificate"""
     additional_properties: Optional[Dict[str, Any]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'exclude': lambda f: f is None }})
@@ -97,6 +99,7 @@ class SourceAlloydbSchemasSSLModeSSLModes5Mode(str, Enum):
 @dataclasses.dataclass
 class SourceAlloydbVerifyCa:
     r"""Always require encryption and verifies that the source database server has a valid SSL certificate."""
+    UNSET='__SPEAKEASY_UNSET__'
     ca_certificate: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('ca_certificate') }})
     r"""CA certificate"""
     additional_properties: Optional[Dict[str, Any]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'exclude': lambda f: f is None }})
@@ -118,6 +121,7 @@ class SourceAlloydbSchemasSSLModeSSLModesMode(str, Enum):
 @dataclasses.dataclass
 class SourceAlloydbRequire:
     r"""Always require encryption. If the source database server does not support encryption, connection will fail."""
+    UNSET='__SPEAKEASY_UNSET__'
     additional_properties: Optional[Dict[str, Any]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'exclude': lambda f: f is None }})
     MODE: Final[SourceAlloydbSchemasSSLModeSSLModesMode] = dataclasses.field(default=SourceAlloydbSchemasSSLModeSSLModesMode.REQUIRE, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('mode') }})
     
@@ -131,6 +135,7 @@ class SourceAlloydbSchemasSslModeMode(str, Enum):
 @dataclasses.dataclass
 class SourceAlloydbPrefer:
     r"""Allows unencrypted connection only if the source database does not support encryption."""
+    UNSET='__SPEAKEASY_UNSET__'
     additional_properties: Optional[Dict[str, Any]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'exclude': lambda f: f is None }})
     MODE: Final[SourceAlloydbSchemasSslModeMode] = dataclasses.field(default=SourceAlloydbSchemasSslModeMode.PREFER, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('mode') }})
     
@@ -144,6 +149,7 @@ class SourceAlloydbSchemasMode(str, Enum):
 @dataclasses.dataclass
 class SourceAlloydbAllow:
     r"""Enables encryption only when required by the source database."""
+    UNSET='__SPEAKEASY_UNSET__'
     additional_properties: Optional[Dict[str, Any]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'exclude': lambda f: f is None }})
     MODE: Final[SourceAlloydbSchemasMode] = dataclasses.field(default=SourceAlloydbSchemasMode.ALLOW, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('mode') }})
     
@@ -157,6 +163,7 @@ class SourceAlloydbMode(str, Enum):
 @dataclasses.dataclass
 class SourceAlloydbDisable:
     r"""Disables encryption of communication between Airbyte and source database."""
+    UNSET='__SPEAKEASY_UNSET__'
     additional_properties: Optional[Dict[str, Any]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'exclude': lambda f: f is None }})
     MODE: Final[SourceAlloydbMode] = dataclasses.field(default=SourceAlloydbMode.DISABLE, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('mode') }})
     

@@ -42,25 +42,7 @@ s = airbyte.Airbyte(
 req = shared.ConnectionCreateRequest(
     destination_id='c669dd1e-3620-483e-afc8-55914e0a570f',
     source_id='6dd427d8-3a55-4584-b835-842325b6c7b3',
-    configurations=shared.StreamConfigurations(
-        streams=[
-            shared.StreamConfiguration(
-                name='string',
-                cursor_field=[
-                    'string',
-                ],
-                primary_key=[
-                    [
-                        'string',
-                    ],
-                ],
-            ),
-        ],
-    ),
     namespace_format='${SOURCE_NAMESPACE}',
-    schedule=shared.ConnectionSchedule(
-        schedule_type=shared.ScheduleTypeEnum.CRON,
-    ),
 )
 
 res = s.connections.create_connection(req)
@@ -141,7 +123,7 @@ Handling errors in this SDK should largely match your expectations.  All operati
 
 ```python
 import airbyte
-from airbyte.models import shared
+from airbyte.models import errors, shared
 
 s = airbyte.Airbyte(
     security=shared.Security(
@@ -155,32 +137,14 @@ s = airbyte.Airbyte(
 req = shared.ConnectionCreateRequest(
     destination_id='c669dd1e-3620-483e-afc8-55914e0a570f',
     source_id='6dd427d8-3a55-4584-b835-842325b6c7b3',
-    configurations=shared.StreamConfigurations(
-        streams=[
-            shared.StreamConfiguration(
-                name='string',
-                cursor_field=[
-                    'string',
-                ],
-                primary_key=[
-                    [
-                        'string',
-                    ],
-                ],
-            ),
-        ],
-    ),
     namespace_format='${SOURCE_NAMESPACE}',
-    schedule=shared.ConnectionSchedule(
-        schedule_type=shared.ScheduleTypeEnum.CRON,
-    ),
 )
 
 res = None
 try:
     res = s.connections.create_connection(req)
 except errors.SDKError as e:
-    print(e)  # handle exception
+    # handle exception
     raise(e)
 
 if res.connection_response is not None:
@@ -221,25 +185,7 @@ s = airbyte.Airbyte(
 req = shared.ConnectionCreateRequest(
     destination_id='c669dd1e-3620-483e-afc8-55914e0a570f',
     source_id='6dd427d8-3a55-4584-b835-842325b6c7b3',
-    configurations=shared.StreamConfigurations(
-        streams=[
-            shared.StreamConfiguration(
-                name='string',
-                cursor_field=[
-                    'string',
-                ],
-                primary_key=[
-                    [
-                        'string',
-                    ],
-                ],
-            ),
-        ],
-    ),
     namespace_format='${SOURCE_NAMESPACE}',
-    schedule=shared.ConnectionSchedule(
-        schedule_type=shared.ScheduleTypeEnum.CRON,
-    ),
 )
 
 res = s.connections.create_connection(req)
@@ -270,25 +216,7 @@ s = airbyte.Airbyte(
 req = shared.ConnectionCreateRequest(
     destination_id='c669dd1e-3620-483e-afc8-55914e0a570f',
     source_id='6dd427d8-3a55-4584-b835-842325b6c7b3',
-    configurations=shared.StreamConfigurations(
-        streams=[
-            shared.StreamConfiguration(
-                name='string',
-                cursor_field=[
-                    'string',
-                ],
-                primary_key=[
-                    [
-                        'string',
-                    ],
-                ],
-            ),
-        ],
-    ),
     namespace_format='${SOURCE_NAMESPACE}',
-    schedule=shared.ConnectionSchedule(
-        schedule_type=shared.ScheduleTypeEnum.CRON,
-    ),
 )
 
 res = s.connections.create_connection(req)
@@ -348,25 +276,7 @@ s = airbyte.Airbyte(
 req = shared.ConnectionCreateRequest(
     destination_id='c669dd1e-3620-483e-afc8-55914e0a570f',
     source_id='6dd427d8-3a55-4584-b835-842325b6c7b3',
-    configurations=shared.StreamConfigurations(
-        streams=[
-            shared.StreamConfiguration(
-                name='string',
-                cursor_field=[
-                    'string',
-                ],
-                primary_key=[
-                    [
-                        'string',
-                    ],
-                ],
-            ),
-        ],
-    ),
     namespace_format='${SOURCE_NAMESPACE}',
-    schedule=shared.ConnectionSchedule(
-        schedule_type=shared.ScheduleTypeEnum.CRON,
-    ),
 )
 
 res = s.connections.create_connection(req)

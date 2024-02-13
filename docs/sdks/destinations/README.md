@@ -31,13 +31,13 @@ s = airbyte.Airbyte(
 
 req = shared.DestinationCreateRequest(
     configuration=shared.DestinationGoogleSheets(
-    credentials=shared.AuthenticationViaGoogleOAuth(
-        client_id='string',
-        client_secret='string',
-        refresh_token='string',
+        credentials=shared.AuthenticationViaGoogleOAuth(
+            client_id='string',
+            client_secret='string',
+            refresh_token='string',
+        ),
+        spreadsheet_id='https://docs.google.com/spreadsheets/d/1hLd9Qqti3UyLXZB2aFfUWDT7BG/edit',
     ),
-    spreadsheet_id='https://docs.google.com/spreadsheets/d/1hLd9Qqti3UyLXZB2aFfUWDT7BG/edit',
-),
     name='string',
     workspace_id='8360860a-d46e-48e6-af62-08e5ba5019ef',
 )
@@ -176,11 +176,7 @@ s = airbyte.Airbyte(
     ),
 )
 
-req = operations.ListDestinationsRequest(
-    workspace_ids=[
-        'c2980b9a-8317-4202-845c-d26fb4455227',
-    ],
-)
+req = operations.ListDestinationsRequest()
 
 res = s.destinations.list_destinations(req)
 
@@ -226,16 +222,6 @@ s = airbyte.Airbyte(
 
 req = operations.PatchDestinationRequest(
     destination_id='string',
-    destination_patch_request=shared.DestinationPatchRequest(
-        configuration=shared.DestinationGoogleSheets(
-        credentials=shared.AuthenticationViaGoogleOAuth(
-            client_id='string',
-            client_secret='string',
-            refresh_token='string',
-        ),
-        spreadsheet_id='https://docs.google.com/spreadsheets/d/1hLd9Qqti3UyLXZB2aFfUWDT7BG/edit',
-    ),
-    ),
 )
 
 res = s.destinations.patch_destination(req)
@@ -282,17 +268,6 @@ s = airbyte.Airbyte(
 
 req = operations.PutDestinationRequest(
     destination_id='string',
-    destination_put_request=shared.DestinationPutRequest(
-        configuration=shared.DestinationGoogleSheets(
-        credentials=shared.AuthenticationViaGoogleOAuth(
-            client_id='string',
-            client_secret='string',
-            refresh_token='string',
-        ),
-        spreadsheet_id='https://docs.google.com/spreadsheets/d/1hLd9Qqti3UyLXZB2aFfUWDT7BG/edit',
-    ),
-        name='string',
-    ),
 )
 
 res = s.destinations.put_destination(req)
