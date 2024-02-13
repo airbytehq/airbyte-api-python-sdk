@@ -109,9 +109,9 @@ class DestinationRedis:
     r"""Redis host to connect to."""
     username: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('username') }})
     r"""Username associated with Redis."""
-    DESTINATION_TYPE: Final[Redis] = dataclasses.field(default=Redis.REDIS, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('destinationType') }})
     cache_type: Optional[CacheType] = dataclasses.field(default=CacheType.HASH, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('cache_type'), 'exclude': lambda f: f is None }})
     r"""Redis cache type to store data in."""
+    DESTINATION_TYPE: Final[Redis] = dataclasses.field(default=Redis.REDIS, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('destinationType') }})
     password: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('password'), 'exclude': lambda f: f is None }})
     r"""Password associated with Redis."""
     port: Optional[int] = dataclasses.field(default=6379, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('port'), 'exclude': lambda f: f is None }})

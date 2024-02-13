@@ -46,9 +46,9 @@ class SourceMailchimpMailchimp(str, Enum):
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
 class SourceMailchimp:
-    SOURCE_TYPE: Final[SourceMailchimpMailchimp] = dataclasses.field(default=SourceMailchimpMailchimp.MAILCHIMP, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     campaign_id: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('campaign_id'), 'exclude': lambda f: f is None }})
     credentials: Optional[Union[SourceMailchimpOAuth20, APIKey]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credentials'), 'exclude': lambda f: f is None }})
+    SOURCE_TYPE: Final[SourceMailchimpMailchimp] = dataclasses.field(default=SourceMailchimpMailchimp.MAILCHIMP, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     start_date: Optional[datetime] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('start_date'), 'encoder': utils.datetimeisoformat(True), 'decoder': dateutil.parser.isoparse, 'exclude': lambda f: f is None }})
     r"""The date from which you want to start syncing data for Incremental streams. Only records that have been created or modified since this date will be synced. If left blank, all data will by synced."""
     

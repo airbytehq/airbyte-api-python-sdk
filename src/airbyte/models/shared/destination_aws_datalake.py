@@ -137,11 +137,11 @@ class DestinationAwsDatalake:
     r"""Choose How to Authenticate to AWS."""
     lakeformation_database_name: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('lakeformation_database_name') }})
     r"""The default database this destination will use to create tables in per stream. Can be changed per connection by customizing the namespace."""
-    DESTINATION_TYPE: Final[AwsDatalake] = dataclasses.field(default=AwsDatalake.AWS_DATALAKE, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('destinationType') }})
     aws_account_id: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('aws_account_id'), 'exclude': lambda f: f is None }})
     r"""target aws account id"""
     bucket_prefix: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('bucket_prefix'), 'exclude': lambda f: f is None }})
     r"""S3 prefix"""
+    DESTINATION_TYPE: Final[AwsDatalake] = dataclasses.field(default=AwsDatalake.AWS_DATALAKE, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('destinationType') }})
     format: Optional[Union[JSONLinesNewlineDelimitedJSON, ParquetColumnarStorage]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('format'), 'exclude': lambda f: f is None }})
     r"""Format of the data output."""
     glue_catalog_float_as_decimal: Optional[bool] = dataclasses.field(default=False, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('glue_catalog_float_as_decimal'), 'exclude': lambda f: f is None }})

@@ -18,8 +18,8 @@ class SourceUsCensus:
     r"""Your API Key. Get your key <a href=\\"https://api.census.gov/data/key_signup.html\\">here</a>."""
     query_path: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('query_path') }})
     r"""The path portion of the GET request"""
-    SOURCE_TYPE: Final[UsCensus] = dataclasses.field(default=UsCensus.US_CENSUS, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     query_params: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('query_params'), 'exclude': lambda f: f is None }})
     r"""The query parameters portion of the GET request, without the api key"""
+    SOURCE_TYPE: Final[UsCensus] = dataclasses.field(default=UsCensus.US_CENSUS, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     
 

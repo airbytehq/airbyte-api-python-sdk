@@ -14,7 +14,6 @@ class Faker(str, Enum):
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
 class SourceFaker:
-    SOURCE_TYPE: Final[Faker] = dataclasses.field(default=Faker.FAKER, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     always_updated: Optional[bool] = dataclasses.field(default=True, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('always_updated'), 'exclude': lambda f: f is None }})
     r"""Should the updated_at values for every record be new each sync?  Setting this to false will case the source to stop emitting records after COUNT records have been emitted."""
     count: Optional[int] = dataclasses.field(default=1000, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('count'), 'exclude': lambda f: f is None }})
@@ -25,5 +24,6 @@ class SourceFaker:
     r"""How many fake records will be in each page (stream slice), before a state message is emitted?"""
     seed: Optional[int] = dataclasses.field(default=-1, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('seed'), 'exclude': lambda f: f is None }})
     r"""Manually control the faker random seed to return the same values on subsequent runs (leave -1 for random)"""
+    SOURCE_TYPE: Final[Faker] = dataclasses.field(default=Faker.FAKER, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     
 

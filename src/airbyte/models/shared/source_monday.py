@@ -46,7 +46,7 @@ class SourceMondayMonday(str, Enum):
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
 class SourceMonday:
-    SOURCE_TYPE: Final[SourceMondayMonday] = dataclasses.field(default=SourceMondayMonday.MONDAY, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     credentials: Optional[Union[SourceMondayOAuth20, APIToken]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credentials'), 'exclude': lambda f: f is None }})
+    SOURCE_TYPE: Final[SourceMondayMonday] = dataclasses.field(default=SourceMondayMonday.MONDAY, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     
 

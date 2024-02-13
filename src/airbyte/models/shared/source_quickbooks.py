@@ -42,8 +42,8 @@ class SourceQuickbooks:
     credentials: Union[SourceQuickbooksOAuth20] = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credentials') }})
     start_date: datetime = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('start_date'), 'encoder': utils.datetimeisoformat(False), 'decoder': dateutil.parser.isoparse }})
     r"""The default value to use if no bookmark exists for an endpoint (rfc3339 date string). E.g, 2021-03-20T00:00:00Z. Any data before this date will not be replicated."""
-    SOURCE_TYPE: Final[Quickbooks] = dataclasses.field(default=Quickbooks.QUICKBOOKS, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     sandbox: Optional[bool] = dataclasses.field(default=False, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sandbox'), 'exclude': lambda f: f is None }})
     r"""Determines whether to use the sandbox or production environment."""
+    SOURCE_TYPE: Final[Quickbooks] = dataclasses.field(default=Quickbooks.QUICKBOOKS, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     
 

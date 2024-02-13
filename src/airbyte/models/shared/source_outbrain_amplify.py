@@ -58,12 +58,12 @@ class SourceOutbrainAmplify:
     r"""Credentials for making authenticated requests requires either username/password or access_token."""
     start_date: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('start_date') }})
     r"""Date in the format YYYY-MM-DD eg. 2017-01-25. Any data before this date will not be replicated."""
-    SOURCE_TYPE: Final[OutbrainAmplify] = dataclasses.field(default=OutbrainAmplify.OUTBRAIN_AMPLIFY, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     end_date: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('end_date'), 'exclude': lambda f: f is None }})
     r"""Date in the format YYYY-MM-DD."""
     geo_location_breakdown: Optional[GranularityForGeoLocationRegion] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('geo_location_breakdown'), 'exclude': lambda f: f is None }})
     r"""The granularity used for geo location data in reports."""
     report_granularity: Optional[GranularityForPeriodicReports] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('report_granularity'), 'exclude': lambda f: f is None }})
     r"""The granularity used for periodic data in reports. See <a href=\\"https://amplifyv01.docs.apiary.io/#reference/performance-reporting/periodic/retrieve-performance-statistics-for-all-marketer-campaigns-by-periodic-breakdown\\">the docs</a>."""
+    SOURCE_TYPE: Final[OutbrainAmplify] = dataclasses.field(default=OutbrainAmplify.OUTBRAIN_AMPLIFY, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     
 

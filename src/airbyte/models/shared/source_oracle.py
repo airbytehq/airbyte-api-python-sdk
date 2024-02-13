@@ -61,9 +61,9 @@ class EncryptionMethod(str, Enum):
 @dataclasses.dataclass
 class NativeNetworkEncryptionNNE:
     r"""The native network encryption gives you the ability to encrypt database connections, without the configuration overhead of TCP/IP and SSL/TLS and without the need to open and listen on different ports."""
-    ENCRYPTION_METHOD: Final[EncryptionMethod] = dataclasses.field(default=EncryptionMethod.CLIENT_NNE, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('encryption_method') }})
     encryption_algorithm: Optional[EncryptionAlgorithm] = dataclasses.field(default=EncryptionAlgorithm.AES256, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('encryption_algorithm'), 'exclude': lambda f: f is None }})
     r"""This parameter defines what encryption algorithm is used."""
+    ENCRYPTION_METHOD: Final[EncryptionMethod] = dataclasses.field(default=EncryptionMethod.CLIENT_NNE, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('encryption_method') }})
     
 
 
@@ -135,7 +135,6 @@ class SourceOracle:
     r"""Hostname of the database."""
     username: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('username') }})
     r"""The username which is used to access the database."""
-    SOURCE_TYPE: Final[SourceOracleOracle] = dataclasses.field(default=SourceOracleOracle.ORACLE, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     connection_data: Optional[Union[ServiceName, SystemIDSID]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('connection_data'), 'exclude': lambda f: f is None }})
     r"""Connect data that will be used for DB connection"""
     jdbc_url_params: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('jdbc_url_params'), 'exclude': lambda f: f is None }})
@@ -150,6 +149,7 @@ class SourceOracle:
     """
     schemas: Optional[List[str]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('schemas'), 'exclude': lambda f: f is None }})
     r"""The list of schemas to sync from. Defaults to user. Case sensitive."""
+    SOURCE_TYPE: Final[SourceOracleOracle] = dataclasses.field(default=SourceOracleOracle.ORACLE, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     tunnel_method: Optional[Union[SourceOracleNoTunnel, SourceOracleSSHKeyAuthentication, SourceOraclePasswordAuthentication]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('tunnel_method'), 'exclude': lambda f: f is None }})
     r"""Whether to initiate an SSH tunnel before connecting to the database, and if so, which kind of authentication to use."""
     

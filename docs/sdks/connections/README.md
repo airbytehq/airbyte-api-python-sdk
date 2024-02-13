@@ -29,27 +29,9 @@ s = airbyte.Airbyte(
 )
 
 req = shared.ConnectionCreateRequest(
-    configurations=shared.StreamConfigurations(
-        streams=[
-            shared.StreamConfiguration(
-                cursor_field=[
-                    'string',
-                ],
-                name='string',
-                primary_key=[
-                    [
-                        'string',
-                    ],
-                ],
-            ),
-        ],
-    ),
     destination_id='c669dd1e-3620-483e-afc8-55914e0a570f',
+    source_id='6dd427d8-3a55-4584-b835-842325b6c7b3',
     namespace_format='${SOURCE_NAMESPACE}',
-    schedule=shared.ConnectionSchedule(
-        schedule_type=shared.ScheduleTypeEnum.MANUAL,
-    ),
-    source_id='dd427d83-a555-4847-8358-42325b6c7b3f',
 )
 
 res = s.connections.create_connection(req)
@@ -186,11 +168,7 @@ s = airbyte.Airbyte(
     ),
 )
 
-req = operations.ListConnectionsRequest(
-    workspace_ids=[
-        'bed8f6e5-32a5-45f7-9c2b-30682edc8796',
-    ],
-)
+req = operations.ListConnectionsRequest()
 
 res = s.connections.list_connections(req)
 
@@ -236,25 +214,7 @@ s = airbyte.Airbyte(
 
 req = operations.PatchConnectionRequest(
     connection_patch_request=shared.ConnectionPatchRequest(
-        configurations=shared.StreamConfigurations(
-            streams=[
-                shared.StreamConfiguration(
-                    cursor_field=[
-                        'string',
-                    ],
-                    name='string',
-                    primary_key=[
-                        [
-                            'string',
-                        ],
-                    ],
-                ),
-            ],
-        ),
         namespace_format='${SOURCE_NAMESPACE}',
-        schedule=shared.ConnectionSchedule(
-            schedule_type=shared.ScheduleTypeEnum.MANUAL,
-        ),
     ),
     connection_id='string',
 )

@@ -29,7 +29,7 @@ class SourceStrava:
     r"""The Refresh Token with the activity: read_all permissions."""
     start_date: datetime = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('start_date'), 'encoder': utils.datetimeisoformat(False), 'decoder': dateutil.parser.isoparse }})
     r"""UTC date and time. Any data before this date will not be replicated."""
-    SOURCE_TYPE: Final[SourceStravaStrava] = dataclasses.field(default=SourceStravaStrava.STRAVA, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     AUTH_TYPE: Final[Optional[SourceStravaAuthType]] = dataclasses.field(default=SourceStravaAuthType.CLIENT, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_type'), 'exclude': lambda f: f is None }})
+    SOURCE_TYPE: Final[SourceStravaStrava] = dataclasses.field(default=SourceStravaStrava.STRAVA, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     
 

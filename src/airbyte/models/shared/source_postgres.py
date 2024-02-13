@@ -48,16 +48,17 @@ class SourcePostgresPlugin(str, Enum):
 @dataclasses.dataclass
 class ReadChangesUsingWriteAheadLogCDC:
     r"""<i>Recommended</i> - Incrementally reads new inserts, updates, and deletes using the Postgres <a href=\\"https://docs.airbyte.com/integrations/sources/postgres/#cdc\\">write-ahead log (WAL)</a>. This needs to be configured on the source database itself. Recommended for tables of any size."""
+    UNSET='__SPEAKEASY_UNSET__'
     publication: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('publication') }})
     r"""A Postgres publication used for consuming changes. Read about <a href=\\"https://docs.airbyte.com/integrations/sources/postgres#step-4-create-publications-and-replication-identities-for-tables\\">publications and replication identities</a>."""
     replication_slot: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('replication_slot') }})
     r"""A plugin logical replication slot. Read about <a href=\\"https://docs.airbyte.com/integrations/sources/postgres#step-3-create-replication-slot\\">replication slots</a>."""
-    METHOD: Final[SourcePostgresMethod] = dataclasses.field(default=SourcePostgresMethod.CDC, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('method') }})
     additional_properties: Optional[Dict[str, Any]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'exclude': lambda f: f is None }})
     initial_waiting_seconds: Optional[int] = dataclasses.field(default=1200, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('initial_waiting_seconds'), 'exclude': lambda f: f is None }})
     r"""The amount of time the connector will wait when it launches to determine if there is new data to sync or not. Defaults to 1200 seconds. Valid range: 120 seconds to 2400 seconds. Read about <a href=\\"https://docs.airbyte.com/integrations/sources/postgres#step-5-optional-set-up-initial-waiting-time\\">initial waiting time</a>."""
     lsn_commit_behaviour: Optional[SourcePostgresLSNCommitBehaviour] = dataclasses.field(default=SourcePostgresLSNCommitBehaviour.AFTER_LOADING_DATA_IN_THE_DESTINATION, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('lsn_commit_behaviour'), 'exclude': lambda f: f is None }})
     r"""Determines when Airbyte should flush the LSN of processed WAL logs in the source database. `After loading Data in the destination` is default. If `While reading Data` is selected, in case of a downstream failure (while loading data into the destination), next sync would result in a full sync."""
+    METHOD: Final[SourcePostgresMethod] = dataclasses.field(default=SourcePostgresMethod.CDC, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('method') }})
     plugin: Optional[SourcePostgresPlugin] = dataclasses.field(default=SourcePostgresPlugin.PGOUTPUT, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('plugin'), 'exclude': lambda f: f is None }})
     r"""A logical decoding plugin installed on the PostgreSQL server."""
     queue_size: Optional[int] = dataclasses.field(default=10000, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('queue_size'), 'exclude': lambda f: f is None }})
@@ -76,9 +77,9 @@ class SourcePostgresSchemasSSLModeSSLModes6Mode(str, Enum):
 @dataclasses.dataclass
 class SourcePostgresVerifyFull:
     r"""This is the most secure mode. Always require encryption and verifies the identity of the source database server."""
+    UNSET='__SPEAKEASY_UNSET__'
     ca_certificate: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('ca_certificate') }})
     r"""CA certificate"""
-    MODE: Final[SourcePostgresSchemasSSLModeSSLModes6Mode] = dataclasses.field(default=SourcePostgresSchemasSSLModeSSLModes6Mode.VERIFY_FULL, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('mode') }})
     additional_properties: Optional[Dict[str, Any]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'exclude': lambda f: f is None }})
     client_certificate: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('client_certificate'), 'exclude': lambda f: f is None }})
     r"""Client certificate"""
@@ -86,6 +87,7 @@ class SourcePostgresVerifyFull:
     r"""Client key"""
     client_key_password: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('client_key_password'), 'exclude': lambda f: f is None }})
     r"""Password for keystorage. If you do not add it - the password will be generated automatically."""
+    MODE: Final[SourcePostgresSchemasSSLModeSSLModes6Mode] = dataclasses.field(default=SourcePostgresSchemasSSLModeSSLModes6Mode.VERIFY_FULL, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('mode') }})
     
 
 
@@ -97,9 +99,9 @@ class SourcePostgresSchemasSSLModeSSLModes5Mode(str, Enum):
 @dataclasses.dataclass
 class SourcePostgresVerifyCa:
     r"""Always require encryption and verifies that the source database server has a valid SSL certificate."""
+    UNSET='__SPEAKEASY_UNSET__'
     ca_certificate: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('ca_certificate') }})
     r"""CA certificate"""
-    MODE: Final[SourcePostgresSchemasSSLModeSSLModes5Mode] = dataclasses.field(default=SourcePostgresSchemasSSLModeSSLModes5Mode.VERIFY_CA, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('mode') }})
     additional_properties: Optional[Dict[str, Any]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'exclude': lambda f: f is None }})
     client_certificate: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('client_certificate'), 'exclude': lambda f: f is None }})
     r"""Client certificate"""
@@ -107,6 +109,7 @@ class SourcePostgresVerifyCa:
     r"""Client key"""
     client_key_password: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('client_key_password'), 'exclude': lambda f: f is None }})
     r"""Password for keystorage. If you do not add it - the password will be generated automatically."""
+    MODE: Final[SourcePostgresSchemasSSLModeSSLModes5Mode] = dataclasses.field(default=SourcePostgresSchemasSSLModeSSLModes5Mode.VERIFY_CA, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('mode') }})
     
 
 
@@ -118,8 +121,9 @@ class SourcePostgresSchemasSSLModeSSLModesMode(str, Enum):
 @dataclasses.dataclass
 class SourcePostgresRequire:
     r"""Always require encryption. If the source database server does not support encryption, connection will fail."""
-    MODE: Final[SourcePostgresSchemasSSLModeSSLModesMode] = dataclasses.field(default=SourcePostgresSchemasSSLModeSSLModesMode.REQUIRE, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('mode') }})
+    UNSET='__SPEAKEASY_UNSET__'
     additional_properties: Optional[Dict[str, Any]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'exclude': lambda f: f is None }})
+    MODE: Final[SourcePostgresSchemasSSLModeSSLModesMode] = dataclasses.field(default=SourcePostgresSchemasSSLModeSSLModesMode.REQUIRE, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('mode') }})
     
 
 
@@ -131,8 +135,9 @@ class SourcePostgresSchemasSslModeMode(str, Enum):
 @dataclasses.dataclass
 class SourcePostgresPrefer:
     r"""Allows unencrypted connection only if the source database does not support encryption."""
-    MODE: Final[SourcePostgresSchemasSslModeMode] = dataclasses.field(default=SourcePostgresSchemasSslModeMode.PREFER, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('mode') }})
+    UNSET='__SPEAKEASY_UNSET__'
     additional_properties: Optional[Dict[str, Any]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'exclude': lambda f: f is None }})
+    MODE: Final[SourcePostgresSchemasSslModeMode] = dataclasses.field(default=SourcePostgresSchemasSslModeMode.PREFER, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('mode') }})
     
 
 
@@ -144,8 +149,9 @@ class SourcePostgresSchemasMode(str, Enum):
 @dataclasses.dataclass
 class SourcePostgresAllow:
     r"""Enables encryption only when required by the source database."""
-    MODE: Final[SourcePostgresSchemasMode] = dataclasses.field(default=SourcePostgresSchemasMode.ALLOW, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('mode') }})
+    UNSET='__SPEAKEASY_UNSET__'
     additional_properties: Optional[Dict[str, Any]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'exclude': lambda f: f is None }})
+    MODE: Final[SourcePostgresSchemasMode] = dataclasses.field(default=SourcePostgresSchemasMode.ALLOW, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('mode') }})
     
 
 
@@ -157,8 +163,9 @@ class SourcePostgresMode(str, Enum):
 @dataclasses.dataclass
 class SourcePostgresDisable:
     r"""Disables encryption of communication between Airbyte and source database."""
-    MODE: Final[SourcePostgresMode] = dataclasses.field(default=SourcePostgresMode.DISABLE, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('mode') }})
+    UNSET='__SPEAKEASY_UNSET__'
     additional_properties: Optional[Dict[str, Any]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'exclude': lambda f: f is None }})
+    MODE: Final[SourcePostgresMode] = dataclasses.field(default=SourcePostgresMode.DISABLE, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('mode') }})
     
 
 
@@ -227,7 +234,6 @@ class SourcePostgres:
     r"""Hostname of the database."""
     username: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('username') }})
     r"""Username to access the database."""
-    SOURCE_TYPE: Final[SourcePostgresPostgres] = dataclasses.field(default=SourcePostgresPostgres.POSTGRES, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     jdbc_url_params: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('jdbc_url_params'), 'exclude': lambda f: f is None }})
     r"""Additional properties to pass to the JDBC URL string when connecting to the database formatted as 'key=value' pairs separated by the symbol '&'. (Eg. key1=value1&key2=value2&key3=value3). For more information read about <a href=\\"https://jdbc.postgresql.org/documentation/head/connect.html\\">JDBC URL parameters</a>."""
     password: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('password'), 'exclude': lambda f: f is None }})
@@ -238,6 +244,7 @@ class SourcePostgres:
     r"""Configures how data is extracted from the database."""
     schemas: Optional[List[str]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('schemas'), 'exclude': lambda f: f is None }})
     r"""The list of schemas (case sensitive) to sync from. Defaults to public."""
+    SOURCE_TYPE: Final[SourcePostgresPostgres] = dataclasses.field(default=SourcePostgresPostgres.POSTGRES, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     ssl_mode: Optional[Union[SourcePostgresDisable, SourcePostgresAllow, SourcePostgresPrefer, SourcePostgresRequire, SourcePostgresVerifyCa, SourcePostgresVerifyFull]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('ssl_mode'), 'exclude': lambda f: f is None }})
     r"""SSL connection modes.
       Read more <a href=\"https://jdbc.postgresql.org/documentation/head/ssl-client.html\"> in the docs</a>.

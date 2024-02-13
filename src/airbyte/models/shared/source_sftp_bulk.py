@@ -29,7 +29,6 @@ class SourceSftpBulk:
     r"""The name of the stream or table you want to create"""
     username: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('username') }})
     r"""The server user"""
-    SOURCE_TYPE: Final[SftpBulk] = dataclasses.field(default=SftpBulk.SFTP_BULK, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     file_most_recent: Optional[bool] = dataclasses.field(default=False, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('file_most_recent'), 'exclude': lambda f: f is None }})
     r"""Sync only the most recent file for the configured folder path and file pattern"""
     file_pattern: Optional[str] = dataclasses.field(default='', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('file_pattern'), 'exclude': lambda f: f is None }})
@@ -46,5 +45,6 @@ class SourceSftpBulk:
     r"""The private key"""
     separator: Optional[str] = dataclasses.field(default=',', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('separator'), 'exclude': lambda f: f is None }})
     r"""The separator used in the CSV files. Define None if you want to use the Sniffer functionality"""
+    SOURCE_TYPE: Final[SftpBulk] = dataclasses.field(default=SftpBulk.SFTP_BULK, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     
 

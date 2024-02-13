@@ -27,9 +27,9 @@ class SourceMssqlMethod(str, Enum):
 @dataclasses.dataclass
 class ReadChangesUsingChangeDataCaptureCDC:
     r"""<i>Recommended</i> - Incrementally reads new inserts, updates, and deletes using the SQL Server's <a href=\\"https://docs.airbyte.com/integrations/sources/mssql/#change-data-capture-cdc\\">change data capture feature</a>. This must be enabled on your database."""
-    METHOD: Final[SourceMssqlMethod] = dataclasses.field(default=SourceMssqlMethod.CDC, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('method') }})
     initial_waiting_seconds: Optional[int] = dataclasses.field(default=300, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('initial_waiting_seconds'), 'exclude': lambda f: f is None }})
     r"""The amount of time the connector will wait when it launches to determine if there is new data to sync or not. Defaults to 300 seconds. Valid range: 120 seconds to 1200 seconds. Read about <a href=\\"https://docs.airbyte.com/integrations/sources/mysql/#change-data-capture-cdc\\">initial waiting time</a>."""
+    METHOD: Final[SourceMssqlMethod] = dataclasses.field(default=SourceMssqlMethod.CDC, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('method') }})
     
 
 
@@ -44,11 +44,11 @@ class SourceMssqlSchemasSSLMethodSSLMethodSSLMethod(str, Enum):
 @dataclasses.dataclass
 class SourceMssqlEncryptedVerifyCertificate:
     r"""Verify and use the certificate provided by the server."""
-    SSL_METHOD: Final[SourceMssqlSchemasSSLMethodSSLMethodSSLMethod] = dataclasses.field(default=SourceMssqlSchemasSSLMethodSSLMethodSSLMethod.ENCRYPTED_VERIFY_CERTIFICATE, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('ssl_method') }})
     certificate: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('certificate'), 'exclude': lambda f: f is None }})
     r"""certificate of the server, or of the CA that signed the server certificate"""
     host_name_in_certificate: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('hostNameInCertificate'), 'exclude': lambda f: f is None }})
     r"""Specifies the host name of the server. The value of this property must match the subject property of the certificate."""
+    SSL_METHOD: Final[SourceMssqlSchemasSSLMethodSSLMethodSSLMethod] = dataclasses.field(default=SourceMssqlSchemasSSLMethodSSLMethodSSLMethod.ENCRYPTED_VERIFY_CERTIFICATE, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('ssl_method') }})
     
 
 
@@ -145,13 +145,13 @@ class SourceMssql:
     r"""The port of the database."""
     username: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('username') }})
     r"""The username which is used to access the database."""
-    SOURCE_TYPE: Final[SourceMssqlMssql] = dataclasses.field(default=SourceMssqlMssql.MSSQL, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     jdbc_url_params: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('jdbc_url_params'), 'exclude': lambda f: f is None }})
     r"""Additional properties to pass to the JDBC URL string when connecting to the database formatted as 'key=value' pairs separated by the symbol '&'. (example: key1=value1&key2=value2&key3=value3)."""
     replication_method: Optional[Union[ReadChangesUsingChangeDataCaptureCDC, ScanChangesWithUserDefinedCursor]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('replication_method'), 'exclude': lambda f: f is None }})
     r"""Configures how data is extracted from the database."""
     schemas: Optional[List[str]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('schemas'), 'exclude': lambda f: f is None }})
     r"""The list of schemas to sync from. Defaults to user. Case sensitive."""
+    SOURCE_TYPE: Final[SourceMssqlMssql] = dataclasses.field(default=SourceMssqlMssql.MSSQL, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     ssl_method: Optional[Union[Unencrypted, SourceMssqlEncryptedTrustServerCertificate, SourceMssqlEncryptedVerifyCertificate]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('ssl_method'), 'exclude': lambda f: f is None }})
     r"""The encryption method which is used when communicating with the database."""
     tunnel_method: Optional[Union[SourceMssqlNoTunnel, SourceMssqlSSHKeyAuthentication, SourceMssqlPasswordAuthentication]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('tunnel_method'), 'exclude': lambda f: f is None }})

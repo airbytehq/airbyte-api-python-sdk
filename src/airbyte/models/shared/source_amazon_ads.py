@@ -45,7 +45,6 @@ class SourceAmazonAds:
     r"""The client secret of your Amazon Ads developer application. See the <a href=\\"https://advertising.amazon.com/API/docs/en-us/get-started/generate-api-tokens#retrieve-your-client-id-and-client-secret\\">docs</a> for more information."""
     refresh_token: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('refresh_token') }})
     r"""Amazon Ads refresh token. See the <a href=\\"https://advertising.amazon.com/API/docs/en-us/get-started/generate-api-tokens\\">docs</a> for more information on how to obtain this token."""
-    SOURCE_TYPE: Final[SourceAmazonAdsAmazonAds] = dataclasses.field(default=SourceAmazonAdsAmazonAds.AMAZON_ADS, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     AUTH_TYPE: Final[Optional[SourceAmazonAdsAuthType]] = dataclasses.field(default=SourceAmazonAdsAuthType.OAUTH2_0, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_type'), 'exclude': lambda f: f is None }})
     look_back_window: Optional[int] = dataclasses.field(default=3, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('look_back_window'), 'exclude': lambda f: f is None }})
     r"""The amount of days to go back in time to get the updated data from Amazon Ads"""
@@ -57,6 +56,7 @@ class SourceAmazonAds:
     r"""Region to pull data from (EU/NA/FE). See <a href=\\"https://advertising.amazon.com/API/docs/en-us/info/api-overview#api-endpoints\\">docs</a> for more details."""
     report_record_types: Optional[List[ReportRecordTypes]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('report_record_types'), 'exclude': lambda f: f is None }})
     r"""Optional configuration which accepts an array of string of record types. Leave blank for default behaviour to pull all report types. Use this config option only if you want to pull specific report type(s). See <a href=\\"https://advertising.amazon.com/API/docs/en-us/reporting/v2/report-types\\">docs</a> for more details"""
+    SOURCE_TYPE: Final[SourceAmazonAdsAmazonAds] = dataclasses.field(default=SourceAmazonAdsAmazonAds.AMAZON_ADS, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     start_date: Optional[date] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('start_date'), 'encoder': utils.dateisoformat(True), 'decoder': utils.datefromisoformat, 'exclude': lambda f: f is None }})
     r"""The Start date for collecting reports, should not be more than 60 days in the past. In YYYY-MM-DD format"""
     state_filter: Optional[List[StateFilter]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('state_filter'), 'exclude': lambda f: f is None }})

@@ -14,8 +14,8 @@ class Appfollow(str, Enum):
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
 class SourceAppfollow:
-    SOURCE_TYPE: Final[Appfollow] = dataclasses.field(default=Appfollow.APPFOLLOW, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     api_secret: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('api_secret'), 'exclude': lambda f: f is None }})
     r"""API Key provided by Appfollow"""
+    SOURCE_TYPE: Final[Appfollow] = dataclasses.field(default=Appfollow.APPFOLLOW, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     
 

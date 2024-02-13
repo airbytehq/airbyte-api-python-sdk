@@ -39,6 +39,7 @@ class ZohoCrm(str, Enum):
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
 class SourceZohoCrm:
+    UNSET='__SPEAKEASY_UNSET__'
     client_id: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('client_id') }})
     r"""OAuth2.0 Client ID"""
     client_secret: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('client_secret') }})
@@ -49,10 +50,10 @@ class SourceZohoCrm:
     r"""Please choose the environment"""
     refresh_token: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('refresh_token') }})
     r"""OAuth2.0 Refresh Token"""
-    SOURCE_TYPE: Final[ZohoCrm] = dataclasses.field(default=ZohoCrm.ZOHO_CRM, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     edition: Optional[ZohoCRMEdition] = dataclasses.field(default=ZohoCRMEdition.FREE, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('edition'), 'exclude': lambda f: f is None }})
     r"""Choose your Edition of Zoho CRM to determine API Concurrency Limits"""
-    start_datetime: Optional[datetime] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('start_datetime'), 'encoder': utils.datetimeisoformat(True), 'decoder': dateutil.parser.isoparse }})
+    SOURCE_TYPE: Final[ZohoCrm] = dataclasses.field(default=ZohoCrm.ZOHO_CRM, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
+    start_datetime: Optional[datetime] = dataclasses.field(default=UNSET, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('start_datetime'), 'encoder': utils.datetimeisoformat(True), 'decoder': dateutil.parser.isoparse, 'exclude': lambda f: f is SourceZohoCrm.UNSET }})
     r"""ISO 8601, for instance: `YYYY-MM-DD`, `YYYY-MM-DD HH:MM:SS+HH:MM`"""
     
 

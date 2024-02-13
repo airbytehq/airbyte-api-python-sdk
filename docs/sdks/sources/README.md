@@ -19,7 +19,6 @@ Creates a source given a name, workspace id, and a json blob containing the conf
 
 ```python
 import airbyte
-import dateutil.parser
 from airbyte.models import shared
 
 s = airbyte.Airbyte(
@@ -33,9 +32,9 @@ s = airbyte.Airbyte(
 
 req = shared.SourceCreateRequest(
     configuration=shared.SourceAha(
-    api_key='string',
-    url='https://complicated-seat.org',
-),
+        api_key='string',
+        url='https://complicated-seat.org',
+    ),
     name='string',
     workspace_id='0f31f3dd-c984-48c3-8bdf-b109056aa6d6',
 )
@@ -179,10 +178,10 @@ s = airbyte.Airbyte(
 )
 
 req = shared.InitiateOauthRequest(
-    o_auth_input_configuration=shared.OAuthInputConfiguration(),
-    redirect_url='string',
+    redirect_url='https://cloud.airbyte.io/v1/api/oauth/callback',
     source_type=shared.OAuthActorNames.GOOGLE_ADS,
-    workspace_id='fd28130d-9919-4ffa-a67d-4e12eb099447',
+    workspace_id='871d9b60-11d1-44cb-8c92-c246d53bf87e',
+    o_auth_input_configuration=shared.OAuthInputConfiguration(),
 )
 
 res = s.sources.initiate_o_auth(req)
@@ -227,11 +226,7 @@ s = airbyte.Airbyte(
     ),
 )
 
-req = operations.ListSourcesRequest(
-    workspace_ids=[
-        '74dbbb77-f80b-457c-8540-0c5d47a64428',
-    ],
-)
+req = operations.ListSourcesRequest()
 
 res = s.sources.list_sources(req)
 
@@ -264,7 +259,6 @@ Update a Source
 
 ```python
 import airbyte
-import dateutil.parser
 from airbyte.models import operations, shared
 
 s = airbyte.Airbyte(
@@ -277,13 +271,6 @@ s = airbyte.Airbyte(
 )
 
 req = operations.PatchSourceRequest(
-    source_patch_request=shared.SourcePatchRequest(
-        configuration=shared.SourceAha(
-        api_key='string',
-        url='http://apprehensive-visa.net',
-    ),
-        name='My source',
-    ),
     source_id='string',
 )
 
@@ -318,7 +305,6 @@ Update a Source and fully overwrite it
 
 ```python
 import airbyte
-import dateutil.parser
 from airbyte.models import operations, shared
 
 s = airbyte.Airbyte(
@@ -331,13 +317,6 @@ s = airbyte.Airbyte(
 )
 
 req = operations.PutSourceRequest(
-    source_put_request=shared.SourcePutRequest(
-        configuration=shared.SourceAha(
-        api_key='string',
-        url='http://alienated-traveler.name',
-    ),
-        name='string',
-    ),
     source_id='string',
 )
 

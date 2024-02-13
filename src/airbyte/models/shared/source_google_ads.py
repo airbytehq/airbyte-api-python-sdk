@@ -52,7 +52,6 @@ class SourceGoogleAdsGoogleAds(str, Enum):
 @dataclasses.dataclass
 class SourceGoogleAds:
     credentials: GoogleCredentials = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credentials') }})
-    SOURCE_TYPE: Final[SourceGoogleAdsGoogleAds] = dataclasses.field(default=SourceGoogleAdsGoogleAds.GOOGLE_ADS, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     conversion_window_days: Optional[int] = dataclasses.field(default=14, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('conversion_window_days'), 'exclude': lambda f: f is None }})
     r"""A conversion window is the number of days after an ad interaction (such as an ad click or video view) during which a conversion, such as a purchase, is recorded in Google Ads. For more information, see <a href=\\"https://support.google.com/google-ads/answer/3123169?hl=en\\">Google's documentation</a>."""
     custom_queries_array: Optional[List[CustomQueriesArray]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('custom_queries_array'), 'exclude': lambda f: f is None }})
@@ -62,6 +61,7 @@ class SourceGoogleAds:
     r"""A list of customer statuses to filter on. For detailed info about what each status mean refer to Google Ads <a href=\\"https://developers.google.com/google-ads/api/reference/rpc/v15/CustomerStatusEnum.CustomerStatus\\">documentation</a>."""
     end_date: Optional[date] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('end_date'), 'encoder': utils.dateisoformat(True), 'decoder': utils.datefromisoformat, 'exclude': lambda f: f is None }})
     r"""UTC date in the format YYYY-MM-DD. Any data after this date will not be replicated. (Default value of today is used if not set)"""
+    SOURCE_TYPE: Final[SourceGoogleAdsGoogleAds] = dataclasses.field(default=SourceGoogleAdsGoogleAds.GOOGLE_ADS, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     start_date: Optional[date] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('start_date'), 'encoder': utils.dateisoformat(True), 'decoder': utils.datefromisoformat, 'exclude': lambda f: f is None }})
     r"""UTC date in the format YYYY-MM-DD. Any data before this date will not be replicated. (Default value of two years ago is used if not set)"""
     

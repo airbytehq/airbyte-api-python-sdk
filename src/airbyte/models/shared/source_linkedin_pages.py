@@ -46,7 +46,7 @@ class LinkedinPages(str, Enum):
 class SourceLinkedinPages:
     org_id: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('org_id') }})
     r"""Specify the Organization ID"""
-    SOURCE_TYPE: Final[LinkedinPages] = dataclasses.field(default=LinkedinPages.LINKEDIN_PAGES, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     credentials: Optional[Union[SourceLinkedinPagesOAuth20, SourceLinkedinPagesAccessToken]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credentials'), 'exclude': lambda f: f is None }})
+    SOURCE_TYPE: Final[LinkedinPages] = dataclasses.field(default=LinkedinPages.LINKEDIN_PAGES, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     
 

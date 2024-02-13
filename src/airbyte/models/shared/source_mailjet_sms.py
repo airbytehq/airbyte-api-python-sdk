@@ -16,9 +16,9 @@ class MailjetSms(str, Enum):
 class SourceMailjetSms:
     token: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('token') }})
     r"""Your access token. See <a href=\\"https://dev.mailjet.com/sms/reference/overview/authentication\\">here</a>."""
-    SOURCE_TYPE: Final[MailjetSms] = dataclasses.field(default=MailjetSms.MAILJET_SMS, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     end_date: Optional[int] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('end_date'), 'exclude': lambda f: f is None }})
     r"""Retrieve SMS messages created before the specified timestamp. Required format - Unix timestamp."""
+    SOURCE_TYPE: Final[MailjetSms] = dataclasses.field(default=MailjetSms.MAILJET_SMS, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     start_date: Optional[int] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('start_date'), 'exclude': lambda f: f is None }})
     r"""Retrieve SMS messages created after the specified timestamp. Required format - Unix timestamp."""
     

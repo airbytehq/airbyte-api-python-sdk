@@ -93,7 +93,6 @@ class SourceBingAds:
     r"""Developer token associated with user. See more info <a href=\\"https://docs.microsoft.com/en-us/advertising/guides/get-started?view=bingads-13#get-developer-token\\"> in the docs</a>."""
     refresh_token: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('refresh_token') }})
     r"""Refresh Token to renew the expired Access Token."""
-    SOURCE_TYPE: Final[SourceBingAdsBingAds] = dataclasses.field(default=SourceBingAdsBingAds.BING_ADS, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     account_names: Optional[List[AccountNames]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('account_names'), 'exclude': lambda f: f is None }})
     r"""Predicates that will be used to sync data by specific accounts."""
     AUTH_METHOD: Final[Optional[AuthMethod]] = dataclasses.field(default=AuthMethod.OAUTH2_0, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_method'), 'exclude': lambda f: f is None }})
@@ -105,6 +104,7 @@ class SourceBingAds:
     r"""Also known as attribution or conversion window. How far into the past to look for records (in days). If your conversion window has an hours/minutes granularity, round it up to the number of days exceeding. Used only for performance report streams in incremental mode without specified Reports Start Date."""
     reports_start_date: Optional[date] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('reports_start_date'), 'encoder': utils.dateisoformat(True), 'decoder': utils.datefromisoformat, 'exclude': lambda f: f is None }})
     r"""The start date from which to begin replicating report data. Any data generated before this date will not be replicated in reports. This is a UTC date in YYYY-MM-DD format. If not set, data from previous and current calendar year will be replicated."""
+    SOURCE_TYPE: Final[SourceBingAdsBingAds] = dataclasses.field(default=SourceBingAdsBingAds.BING_ADS, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     tenant_id: Optional[str] = dataclasses.field(default='common', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('tenant_id'), 'exclude': lambda f: f is None }})
     r"""The Tenant ID of your Microsoft Advertising developer application. Set this to \\"common\\" unless you know you need a different value."""
     

@@ -29,13 +29,13 @@ class SourceZendeskChatCredentials(str, Enum):
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
 class SourceZendeskChatOAuth20:
-    CREDENTIALS: Final[SourceZendeskChatCredentials] = dataclasses.field(default=SourceZendeskChatCredentials.OAUTH2_0, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credentials') }})
     access_token: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('access_token'), 'exclude': lambda f: f is None }})
     r"""Access Token for making authenticated requests."""
     client_id: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('client_id'), 'exclude': lambda f: f is None }})
     r"""The Client ID of your OAuth application"""
     client_secret: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('client_secret'), 'exclude': lambda f: f is None }})
     r"""The Client Secret of your OAuth application."""
+    CREDENTIALS: Final[SourceZendeskChatCredentials] = dataclasses.field(default=SourceZendeskChatCredentials.OAUTH2_0, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credentials') }})
     refresh_token: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('refresh_token'), 'exclude': lambda f: f is None }})
     r"""Refresh Token to obtain new Access Token, when it's expired."""
     
@@ -50,8 +50,8 @@ class SourceZendeskChatZendeskChat(str, Enum):
 class SourceZendeskChat:
     start_date: datetime = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('start_date'), 'encoder': utils.datetimeisoformat(False), 'decoder': dateutil.parser.isoparse }})
     r"""The date from which you'd like to replicate data for Zendesk Chat API, in the format YYYY-MM-DDT00:00:00Z."""
-    SOURCE_TYPE: Final[SourceZendeskChatZendeskChat] = dataclasses.field(default=SourceZendeskChatZendeskChat.ZENDESK_CHAT, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     credentials: Optional[Union[SourceZendeskChatOAuth20, SourceZendeskChatAccessToken]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credentials'), 'exclude': lambda f: f is None }})
+    SOURCE_TYPE: Final[SourceZendeskChatZendeskChat] = dataclasses.field(default=SourceZendeskChatZendeskChat.ZENDESK_CHAT, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     subdomain: Optional[str] = dataclasses.field(default='', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('subdomain'), 'exclude': lambda f: f is None }})
     r"""Required if you access Zendesk Chat from a Zendesk Support subdomain."""
     
