@@ -77,7 +77,7 @@ s = airbyte.Airbyte(
 )
 
 req = operations.DeleteConnectionRequest(
-    connection_id='string',
+    connection_id='<value>',
 )
 
 res = s.connections.delete_connection(req)
@@ -123,7 +123,7 @@ s = airbyte.Airbyte(
 )
 
 req = operations.GetConnectionRequest(
-    connection_id='string',
+    connection_id='<value>',
 )
 
 res = s.connections.get_connection(req)
@@ -216,7 +216,7 @@ req = operations.PatchConnectionRequest(
     connection_patch_request=shared.ConnectionPatchRequest(
         namespace_format='${SOURCE_NAMESPACE}',
     ),
-    connection_id='string',
+    connection_id='<value>',
 )
 
 res = s.connections.patch_connection(req)

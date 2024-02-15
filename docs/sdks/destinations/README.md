@@ -32,13 +32,13 @@ s = airbyte.Airbyte(
 req = shared.DestinationCreateRequest(
     configuration=shared.DestinationGoogleSheets(
         credentials=shared.AuthenticationViaGoogleOAuth(
-            client_id='string',
-            client_secret='string',
-            refresh_token='string',
+            client_id='<value>',
+            client_secret='<value>',
+            refresh_token='<value>',
         ),
         spreadsheet_id='https://docs.google.com/spreadsheets/d/1hLd9Qqti3UyLXZB2aFfUWDT7BG/edit',
     ),
-    name='string',
+    name='<value>',
     workspace_id='8360860a-d46e-48e6-af62-08e5ba5019ef',
 )
 
@@ -85,7 +85,7 @@ s = airbyte.Airbyte(
 )
 
 req = operations.DeleteDestinationRequest(
-    destination_id='string',
+    destination_id='<value>',
 )
 
 res = s.destinations.delete_destination(req)
@@ -131,7 +131,7 @@ s = airbyte.Airbyte(
 )
 
 req = operations.GetDestinationRequest(
-    destination_id='string',
+    destination_id='<value>',
 )
 
 res = s.destinations.get_destination(req)
@@ -221,7 +221,7 @@ s = airbyte.Airbyte(
 )
 
 req = operations.PatchDestinationRequest(
-    destination_id='string',
+    destination_id='<value>',
 )
 
 res = s.destinations.patch_destination(req)
@@ -267,7 +267,7 @@ s = airbyte.Airbyte(
 )
 
 req = operations.PutDestinationRequest(
-    destination_id='string',
+    destination_id='<value>',
 )
 
 res = s.destinations.put_destination(req)
