@@ -17,11 +17,11 @@ python:
   imports:
     option: openapi
     paths:
-      callbacks: models/callbacks
-      errors: models/errors
-      operations: models/operations
-      shared: models/shared
-      webhooks: models/webhooks
+      callbacks: ""
+      errors: ""
+      operations: ""
+      shared: ""
+      webhooks: ""
   inputModelSuffix: input
   maxMethodParams: 0
   outputModelSuffix: output
