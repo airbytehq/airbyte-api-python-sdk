@@ -1,6 +1,6 @@
 configVersion: 2.0.0
 generation:
-  sdkClassName: airbyte-api
+  sdkClassName: airbyte-sdk
   usageSnippets:
     optionalPropertyRendering: withExample
   useClassNamesForArrayFields: true
