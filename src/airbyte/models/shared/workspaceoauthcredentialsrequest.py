@@ -23,6 +23,7 @@ from .intercom import Intercom
 from .lever_hiring import LeverHiring
 from .linkedin_ads import LinkedinAds
 from .mailchimp import Mailchimp
+from .microsoft_sharepoint import MicrosoftSharepoint
 from .microsoft_teams import MicrosoftTeams
 from .monday import Monday
 from .notion import Notion
@@ -56,7 +57,7 @@ class WorkspaceOAuthCredentialsRequest:
     r"""POST body for creating/updating workspace level OAuth credentials"""
     actor_type: ActorTypeEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('actorType') }})
     r"""Whether you're setting this override for a source or destination"""
-    configuration: Union[Airtable, AmazonAds, AmazonSellerPartner, Asana, BingAds, FacebookMarketing, Github, Gitlab, GoogleAds, GoogleAnalyticsDataAPI, GoogleDrive, GoogleSearchConsole, GoogleSheets, Harvest, Hubspot, Instagram, Intercom, LeverHiring, LinkedinAds, Mailchimp, MicrosoftTeams, Monday, Notion, Pinterest, Retently, Salesforce, Shopify, Slack, Smartsheets, SnapchatMarketing, Snowflake, Square, Strava, Surveymonkey, TiktokMarketing, Any, Typeform, YoutubeAnalytics, ZendeskChat, ZendeskSunshine, ZendeskSupport, ZendeskTalk] = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('configuration') }})
+    configuration: Union[Airtable, AmazonAds, AmazonSellerPartner, Asana, BingAds, FacebookMarketing, Github, Gitlab, GoogleAds, GoogleAnalyticsDataAPI, GoogleDrive, GoogleSearchConsole, GoogleSheets, Harvest, Hubspot, Instagram, Intercom, LeverHiring, LinkedinAds, Mailchimp, MicrosoftSharepoint, MicrosoftTeams, Monday, Notion, Pinterest, Retently, Salesforce, Shopify, Slack, Smartsheets, SnapchatMarketing, Snowflake, Square, Strava, Surveymonkey, TiktokMarketing, Any, Typeform, YoutubeAnalytics, ZendeskChat, ZendeskSunshine, ZendeskSupport, ZendeskTalk] = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('configuration') }})
     r"""The values required to configure the source."""
     name: OAuthActorNames = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('name') }})
     

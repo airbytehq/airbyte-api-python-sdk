@@ -192,14 +192,12 @@ class DestinationRedshift:
     port: Optional[int] = dataclasses.field(default=5439, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('port'), 'exclude': lambda f: f is None }})
     r"""Port of the database."""
     raw_data_schema: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('raw_data_schema'), 'exclude': lambda f: f is None }})
-    r"""(Early Access) The schema to write raw tables into"""
+    r"""The schema to write raw tables into"""
     schema: Optional[str] = dataclasses.field(default='public', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('schema'), 'exclude': lambda f: f is None }})
     r"""The default schema tables are written to if the source does not specify a namespace. Unless specifically configured, the usual value for this field is \\"public\\"."""
     tunnel_method: Optional[Union[DestinationRedshiftNoTunnel, DestinationRedshiftSSHKeyAuthentication, DestinationRedshiftPasswordAuthentication]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('tunnel_method'), 'exclude': lambda f: f is None }})
     r"""Whether to initiate an SSH tunnel before connecting to the database, and if so, which kind of authentication to use."""
     uploading_method: Optional[Union[AWSS3Staging, Standard]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('uploading_method'), 'exclude': lambda f: f is None }})
     r"""The way data will be uploaded to Redshift."""
-    use_1s1t_format: Optional[bool] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('use_1s1t_format'), 'exclude': lambda f: f is None }})
-    r"""(Early Access) Use <a href=\\"https://docs.airbyte.com/understanding-airbyte/typing-deduping\\" target=\\"_blank\\">Destinations V2</a>."""
     
 

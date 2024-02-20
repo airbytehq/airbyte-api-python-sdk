@@ -25,13 +25,13 @@
 | `LEVER_HIRING`              | lever-hiring                |
 | `LINKEDIN_ADS`              | linkedin-ads                |
 | `MAILCHIMP`                 | mailchimp                   |
+| `MICROSOFT_SHAREPOINT`      | microsoft-sharepoint        |
 | `MICROSOFT_TEAMS`           | microsoft-teams             |
 | `MONDAY`                    | monday                      |
 | `NOTION`                    | notion                      |
 | `PINTEREST`                 | pinterest                   |
 | `RETENTLY`                  | retently                    |
 | `SALESFORCE`                | salesforce                  |
-| `SHOPIFY`                   | shopify                     |
 | `SLACK`                     | slack                       |
 | `SMARTSHEETS`               | smartsheets                 |
 | `SNAPCHAT_MARKETING`        | snapchat-marketing          |

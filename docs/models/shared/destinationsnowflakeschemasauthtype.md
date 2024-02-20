@@ -3,6 +3,6 @@
 
 ## Values
 
-| Name                    | Value                   |
-| ----------------------- | ----------------------- |
-| `USERNAME_AND_PASSWORD` | Username and Password   |
+| Name        | Value       |
+| ----------- | ----------- |
+| `O_AUTH2_0` | OAuth2.0    |

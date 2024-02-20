@@ -11,6 +11,12 @@ The values required to configure the destination.
 destinationConfiguration: shared.DestinationGoogleSheets = /* values here */
 ```
 
+### DestinationAstra
+
+```python
+destinationConfiguration: shared.DestinationAstra = /* values here */
+```
+
 ### DestinationAwsDatalake
 
 ```python
@@ -207,6 +213,12 @@ destinationConfiguration: shared.DestinationSftpJSON = /* values here */
 
 ```python
 destinationConfiguration: shared.DestinationSnowflake = /* values here */
+```
+
+### DestinationTeradata
+
+```python
+destinationConfiguration: shared.DestinationTeradata = /* values here */
 ```
 
 ### DestinationTimeplus

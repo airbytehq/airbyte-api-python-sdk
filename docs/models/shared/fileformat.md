@@ -12,6 +12,7 @@ The Format of the file which should be replicated (Warning: some formats may be 
 | `JSONL`        | jsonl          |
 | `EXCEL`        | excel          |
 | `EXCEL_BINARY` | excel_binary   |
+| `FWF`          | fwf            |
 | `FEATHER`      | feather        |
 | `PARQUET`      | parquet        |
 | `YAML`         | yaml           |

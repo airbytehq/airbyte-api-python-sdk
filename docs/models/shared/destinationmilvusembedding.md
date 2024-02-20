@@ -11,10 +11,10 @@ Embedding configuration
 destinationMilvusEmbedding: shared.DestinationMilvusOpenAI = /* values here */
 ```
 
-### Cohere
+### DestinationMilvusCohere
 
 ```python
-destinationMilvusEmbedding: shared.Cohere = /* values here */
+destinationMilvusEmbedding: shared.DestinationMilvusCohere = /* values here */
 ```
 
 ### DestinationMilvusFake
@@ -23,15 +23,15 @@ destinationMilvusEmbedding: shared.Cohere = /* values here */
 destinationMilvusEmbedding: shared.DestinationMilvusFake = /* values here */
 ```
 
-### AzureOpenAI
+### DestinationMilvusAzureOpenAI
 
 ```python
-destinationMilvusEmbedding: shared.AzureOpenAI = /* values here */
+destinationMilvusEmbedding: shared.DestinationMilvusAzureOpenAI = /* values here */
 ```
 
-### OpenAICompatible
+### DestinationMilvusOpenAICompatible
 
 ```python
-destinationMilvusEmbedding: shared.OpenAICompatible = /* values here */
+destinationMilvusEmbedding: shared.DestinationMilvusOpenAICompatible = /* values here */
 ```
 

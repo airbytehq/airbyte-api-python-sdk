@@ -5,7 +5,6 @@ import dataclasses
 from .source_aha import SourceAha
 from .source_aircall import SourceAircall
 from .source_airtable import SourceAirtable
-from .source_alloydb import SourceAlloydb
 from .source_amazon_ads import SourceAmazonAds
 from .source_amazon_seller_partner import SourceAmazonSellerPartner
 from .source_amazon_sqs import SourceAmazonSqs
@@ -61,6 +60,7 @@ from .source_glassfrog import SourceGlassfrog
 from .source_gnews import SourceGnews
 from .source_google_ads import SourceGoogleAds
 from .source_google_analytics_data_api import SourceGoogleAnalyticsDataAPI
+from .source_google_analytics_v4_service_account_only import SourceGoogleAnalyticsV4ServiceAccountOnly
 from .source_google_directory import SourceGoogleDirectory
 from .source_google_drive import SourceGoogleDrive
 from .source_google_pagespeed_insights import SourceGooglePagespeedInsights
@@ -83,20 +83,19 @@ from .source_jira import SourceJira
 from .source_k6_cloud import SourceK6Cloud
 from .source_klarna import SourceKlarna
 from .source_klaviyo import SourceKlaviyo
-from .source_kustomer_singer import SourceKustomerSinger
 from .source_kyve import SourceKyve
 from .source_launchdarkly import SourceLaunchdarkly
 from .source_lemlist import SourceLemlist
 from .source_lever_hiring import SourceLeverHiring
 from .source_linkedin_ads import SourceLinkedinAds
 from .source_linkedin_pages import SourceLinkedinPages
-from .source_linnworks import SourceLinnworks
 from .source_lokalise import SourceLokalise
 from .source_mailchimp import SourceMailchimp
 from .source_mailgun import SourceMailgun
 from .source_mailjet_sms import SourceMailjetSms
 from .source_marketo import SourceMarketo
 from .source_metabase import SourceMetabase
+from .source_microsoft_sharepoint import SourceMicrosoftSharepoint
 from .source_microsoft_teams import SourceMicrosoftTeams
 from .source_mixpanel import SourceMixpanel
 from .source_monday import SourceMonday
@@ -138,7 +137,6 @@ from .source_railz import SourceRailz
 from .source_recharge import SourceRecharge
 from .source_recreation import SourceRecreation
 from .source_recruitee import SourceRecruitee
-from .source_recurly import SourceRecurly
 from .source_redshift import SourceRedshift
 from .source_retently import SourceRetently
 from .source_rki_covid import SourceRkiCovid
@@ -197,7 +195,6 @@ from .source_zendesk_talk import SourceZendeskTalk
 from .source_zenloop import SourceZenloop
 from .source_zoho_crm import SourceZohoCrm
 from .source_zoom import SourceZoom
-from .source_zuora import SourceZuora
 from airbyte import utils
 from dataclasses_json import Undefined, dataclass_json
 from typing import Union
@@ -206,7 +203,7 @@ from typing import Union
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
 class SourcePutRequest:
-    configuration: Union[SourceAha, SourceAircall, SourceAirtable, SourceAlloydb, SourceAmazonAds, SourceAmazonSellerPartner, SourceAmazonSqs, SourceAmplitude, SourceApifyDataset, SourceAppfollow, SourceAsana, SourceAuth0, SourceAwsCloudtrail, SourceAzureBlobStorage, SourceAzureTable, SourceBambooHr, SourceBigquery, SourceBingAds, SourceBraintree, SourceBraze, SourceCart, SourceChargebee, SourceChartmogul, SourceClickhouse, SourceClickupAPI, SourceClockify, SourceCloseCom, SourceCoda, SourceCoinAPI, SourceCoinmarketcap, SourceConfigcat, SourceConfluence, SourceConvex, SourceDatascope, SourceDelighted, SourceDixa, SourceDockerhub, SourceDremio, SourceDynamodb, Union[ContinuousFeed], SourceEmailoctopus, SourceExchangeRates, SourceFacebookMarketing, SourceFaker, SourceFauna, SourceFile, SourceFirebolt, SourceFreshcaller, SourceFreshdesk, SourceFreshsales, SourceGainsightPx, SourceGcs, SourceGetlago, SourceGithub, SourceGitlab, SourceGlassfrog, SourceGnews, SourceGoogleAds, SourceGoogleAnalyticsDataAPI, SourceGoogleDirectory, SourceGoogleDrive, SourceGooglePagespeedInsights, SourceGoogleSearchConsole, SourceGoogleSheets, SourceGoogleWebfonts, SourceGoogleWorkspaceAdminReports, SourceGreenhouse, SourceGridly, SourceHarvest, SourceHubplanner, SourceHubspot, SourceInsightly, SourceInstagram, SourceInstatus, SourceIntercom, SourceIp2whois, SourceIterable, SourceJira, SourceK6Cloud, SourceKlarna, SourceKlaviyo, SourceKustomerSinger, SourceKyve, SourceLaunchdarkly, SourceLemlist, SourceLeverHiring, SourceLinkedinAds, SourceLinkedinPages, SourceLinnworks, SourceLokalise, SourceMailchimp, SourceMailgun, SourceMailjetSms, SourceMarketo, SourceMetabase, SourceMicrosoftTeams, SourceMixpanel, SourceMonday, SourceMongodbInternalPoc, SourceMongodbV2, SourceMssql, SourceMyHours, SourceMysql, SourceNetsuite, SourceNotion, SourceNytimes, SourceOkta, SourceOmnisend, SourceOnesignal, SourceOracle, SourceOrb, SourceOrbit, SourceOutbrainAmplify, SourceOutreach, SourcePaypalTransaction, SourcePaystack, SourcePendo, SourcePersistiq, SourcePexelsAPI, SourcePinterest, SourcePipedrive, SourcePocket, SourcePokeapi, SourcePolygonStockAPI, SourcePostgres, SourcePosthog, SourcePostmarkapp, SourcePrestashop, SourcePunkAPI, SourcePypi, SourceQualaroo, SourceQuickbooks, SourceRailz, SourceRecharge, SourceRecreation, SourceRecruitee, SourceRecurly, SourceRedshift, SourceRetently, SourceRkiCovid, SourceRss, SourceS3, SourceSalesforce, SourceSalesloft, SourceSapFieldglass, SourceSecoda, SourceSendgrid, SourceSendinblue, SourceSenseforce, SourceSentry, SourceSftp, SourceSftpBulk, SourceShopify, SourceShortio, SourceSlack, SourceSmaily, SourceSmartengage, SourceSmartsheets, SourceSnapchatMarketing, SourceSnowflake, SourceSonarCloud, SourceSpacexAPI, SourceSquare, SourceStrava, SourceStripe, SourceSurveySparrow, SourceSurveymonkey, SourceTempo, SourceTheGuardianAPI, SourceTiktokMarketing, SourceTrello, SourceTrustpilot, SourceTvmazeSchedule, SourceTwilio, SourceTwilioTaskrouter, SourceTwitter, SourceTypeform, SourceUsCensus, SourceVantage, SourceWebflow, SourceWhiskyHunter, SourceWikipediaPageviews, SourceWoocommerce, SourceXkcd, SourceYandexMetrica, SourceYotpo, SourceYoutubeAnalytics, SourceZendeskChat, SourceZendeskSell, SourceZendeskSunshine, SourceZendeskSupport, SourceZendeskTalk, SourceZenloop, SourceZohoCrm, SourceZoom, SourceZuora] = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('configuration') }})
+    configuration: Union[SourceAha, SourceAircall, SourceAirtable, SourceAmazonAds, SourceAmazonSellerPartner, SourceAmazonSqs, SourceAmplitude, SourceApifyDataset, SourceAppfollow, SourceAsana, SourceAuth0, SourceAwsCloudtrail, SourceAzureBlobStorage, SourceAzureTable, SourceBambooHr, SourceBigquery, SourceBingAds, SourceBraintree, SourceBraze, SourceCart, SourceChargebee, SourceChartmogul, SourceClickhouse, SourceClickupAPI, SourceClockify, SourceCloseCom, SourceCoda, SourceCoinAPI, SourceCoinmarketcap, SourceConfigcat, SourceConfluence, SourceConvex, SourceDatascope, SourceDelighted, SourceDixa, SourceDockerhub, SourceDremio, SourceDynamodb, Union[ContinuousFeed], SourceEmailoctopus, SourceExchangeRates, SourceFacebookMarketing, SourceFaker, SourceFauna, SourceFile, SourceFirebolt, SourceFreshcaller, SourceFreshdesk, SourceFreshsales, SourceGainsightPx, SourceGcs, SourceGetlago, SourceGithub, SourceGitlab, SourceGlassfrog, SourceGnews, SourceGoogleAds, SourceGoogleAnalyticsDataAPI, SourceGoogleAnalyticsV4ServiceAccountOnly, SourceGoogleDirectory, SourceGoogleDrive, SourceGooglePagespeedInsights, SourceGoogleSearchConsole, SourceGoogleSheets, SourceGoogleWebfonts, SourceGoogleWorkspaceAdminReports, SourceGreenhouse, SourceGridly, SourceHarvest, SourceHubplanner, SourceHubspot, SourceInsightly, SourceInstagram, SourceInstatus, SourceIntercom, SourceIp2whois, SourceIterable, SourceJira, SourceK6Cloud, SourceKlarna, SourceKlaviyo, SourceKyve, SourceLaunchdarkly, SourceLemlist, SourceLeverHiring, SourceLinkedinAds, SourceLinkedinPages, SourceLokalise, SourceMailchimp, SourceMailgun, SourceMailjetSms, SourceMarketo, SourceMetabase, SourceMicrosoftSharepoint, SourceMicrosoftTeams, SourceMixpanel, SourceMonday, SourceMongodbInternalPoc, SourceMongodbV2, SourceMssql, SourceMyHours, SourceMysql, SourceNetsuite, SourceNotion, SourceNytimes, SourceOkta, SourceOmnisend, SourceOnesignal, SourceOracle, SourceOrb, SourceOrbit, SourceOutbrainAmplify, SourceOutreach, SourcePaypalTransaction, SourcePaystack, SourcePendo, SourcePersistiq, SourcePexelsAPI, SourcePinterest, SourcePipedrive, SourcePocket, SourcePokeapi, SourcePolygonStockAPI, SourcePostgres, SourcePosthog, SourcePostmarkapp, SourcePrestashop, SourcePunkAPI, SourcePypi, SourceQualaroo, SourceQuickbooks, SourceRailz, SourceRecharge, SourceRecreation, SourceRecruitee, SourceRedshift, SourceRetently, SourceRkiCovid, SourceRss, SourceS3, SourceSalesforce, SourceSalesloft, SourceSapFieldglass, SourceSecoda, SourceSendgrid, SourceSendinblue, SourceSenseforce, SourceSentry, SourceSftp, SourceSftpBulk, SourceShopify, SourceShortio, SourceSlack, SourceSmaily, SourceSmartengage, SourceSmartsheets, SourceSnapchatMarketing, SourceSnowflake, SourceSonarCloud, SourceSpacexAPI, SourceSquare, SourceStrava, SourceStripe, SourceSurveySparrow, SourceSurveymonkey, SourceTempo, SourceTheGuardianAPI, SourceTiktokMarketing, SourceTrello, SourceTrustpilot, SourceTvmazeSchedule, SourceTwilio, SourceTwilioTaskrouter, SourceTwitter, SourceTypeform, SourceUsCensus, SourceVantage, SourceWebflow, SourceWhiskyHunter, SourceWikipediaPageviews, SourceWoocommerce, SourceXkcd, SourceYandexMetrica, SourceYotpo, SourceYoutubeAnalytics, SourceZendeskChat, SourceZendeskSell, SourceZendeskSunshine, SourceZendeskSupport, SourceZendeskTalk, SourceZenloop, SourceZohoCrm, SourceZoom] = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('configuration') }})
     r"""The values required to configure the source."""
     name: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('name') }})
     

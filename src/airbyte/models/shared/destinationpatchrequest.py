@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 import dataclasses
+from .destination_astra import DestinationAstra
 from .destination_aws_datalake import DestinationAwsDatalake
 from .destination_azure_blob_storage import DestinationAzureBlobStorage
 from .destination_bigquery import DestinationBigquery
@@ -36,6 +37,7 @@ from .destination_s3 import DestinationS3
 from .destination_s3_glue import DestinationS3Glue
 from .destination_sftp_json import DestinationSftpJSON
 from .destination_snowflake import DestinationSnowflake
+from .destination_teradata import DestinationTeradata
 from .destination_timeplus import DestinationTimeplus
 from .destination_typesense import DestinationTypesense
 from .destination_vectara import DestinationVectara
@@ -50,7 +52,7 @@ from typing import Optional, Union
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
 class DestinationPatchRequest:
-    configuration: Optional[Union[DestinationGoogleSheets, DestinationAwsDatalake, DestinationAzureBlobStorage, DestinationBigquery, DestinationClickhouse, DestinationConvex, DestinationCumulio, DestinationDatabend, DestinationDatabricks, DestinationDevNull, DestinationDuckdb, DestinationDynamodb, DestinationElasticsearch, DestinationFirebolt, DestinationFirestore, DestinationGcs, DestinationKeen, DestinationKinesis, DestinationLangchain, DestinationMilvus, DestinationMongodb, DestinationMssql, DestinationMysql, DestinationOracle, DestinationPinecone, DestinationPostgres, DestinationPubsub, DestinationQdrant, DestinationRedis, DestinationRedshift, DestinationS3, DestinationS3Glue, DestinationSftpJSON, DestinationSnowflake, DestinationTimeplus, DestinationTypesense, DestinationVectara, DestinationVertica, DestinationWeaviate, DestinationXata]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('configuration'), 'exclude': lambda f: f is None }})
+    configuration: Optional[Union[DestinationGoogleSheets, DestinationAstra, DestinationAwsDatalake, DestinationAzureBlobStorage, DestinationBigquery, DestinationClickhouse, DestinationConvex, DestinationCumulio, DestinationDatabend, DestinationDatabricks, DestinationDevNull, DestinationDuckdb, DestinationDynamodb, DestinationElasticsearch, DestinationFirebolt, DestinationFirestore, DestinationGcs, DestinationKeen, DestinationKinesis, DestinationLangchain, DestinationMilvus, DestinationMongodb, DestinationMssql, DestinationMysql, DestinationOracle, DestinationPinecone, DestinationPostgres, DestinationPubsub, DestinationQdrant, DestinationRedis, DestinationRedshift, DestinationS3, DestinationS3Glue, DestinationSftpJSON, DestinationSnowflake, DestinationTeradata, DestinationTimeplus, DestinationTypesense, DestinationVectara, DestinationVertica, DestinationWeaviate, DestinationXata]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('configuration'), 'exclude': lambda f: f is None }})
     r"""The values required to configure the destination."""
     name: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('name'), 'exclude': lambda f: f is None }})
     

@@ -3,6 +3,6 @@
 
 ## Values
 
-| Name       | Value      |
-| ---------- | ---------- |
-| `PINECONE` | pinecone   |
+| Name   | Value  |
+| ------ | ------ |
+| `FAKE` | fake   |

@@ -16,7 +16,7 @@ class DestinationMilvusSchemasEmbeddingEmbedding5Mode(str, Enum):
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
-class OpenAICompatible:
+class DestinationMilvusOpenAICompatible:
     r"""Use a service that's compatible with the OpenAI API to embed text."""
     base_url: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('base_url') }})
     r"""The base URL for your OpenAI-compatible service"""
@@ -35,7 +35,7 @@ class DestinationMilvusSchemasEmbeddingEmbeddingMode(str, Enum):
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
-class AzureOpenAI:
+class DestinationMilvusAzureOpenAI:
     r"""Use the Azure-hosted OpenAI API to embed text. This option is using the text-embedding-ada-002 model with 1536 embedding dimensions."""
     api_base: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('api_base') }})
     r"""The base URL for your Azure OpenAI resource.  You can find this in the Azure portal under your Azure OpenAI resource"""
@@ -65,7 +65,7 @@ class DestinationMilvusSchemasMode(str, Enum):
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
-class Cohere:
+class DestinationMilvusCohere:
     r"""Use the Cohere API to embed text."""
     cohere_key: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('cohere_key') }})
     MODE: Final[Optional[DestinationMilvusSchemasMode]] = dataclasses.field(default=DestinationMilvusSchemasMode.COHERE, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('mode'), 'exclude': lambda f: f is None }})
@@ -150,7 +150,7 @@ class DestinationMilvusIndexing:
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
-class FieldNameMappingConfigModel:
+class DestinationMilvusFieldNameMappingConfigModel:
     from_field: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('from_field') }})
     r"""The field name in the source"""
     to_field: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('to_field') }})
@@ -183,7 +183,7 @@ class DestinationMilvusSchemasProcessingTextSplitterTextSplitterMode(str, Enum):
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
-class ByProgrammingLanguage:
+class DestinationMilvusByProgrammingLanguage:
     r"""Split the text by suitable delimiters based on the programming language. This is useful for splitting code into chunks."""
     language: DestinationMilvusLanguage = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('language') }})
     r"""Split code in suitable places based on the programming language"""
@@ -197,7 +197,7 @@ class DestinationMilvusSchemasProcessingTextSplitterMode(str, Enum):
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
-class ByMarkdownHeader:
+class DestinationMilvusByMarkdownHeader:
     r"""Split the text by Markdown headers down to the specified header level. If the chunk size fits multiple sections, they will be combined into a single chunk."""
     MODE: Final[Optional[DestinationMilvusSchemasProcessingTextSplitterMode]] = dataclasses.field(default=DestinationMilvusSchemasProcessingTextSplitterMode.MARKDOWN, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('mode'), 'exclude': lambda f: f is None }})
     split_level: Optional[int] = dataclasses.field(default=1, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('split_level'), 'exclude': lambda f: f is None }})
@@ -211,7 +211,7 @@ class DestinationMilvusSchemasProcessingMode(str, Enum):
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
-class BySeparator:
+class DestinationMilvusBySeparator:
     r"""Split the text by the list of separators until the chunk size is reached, using the earlier mentioned separators where possible. This is useful for splitting text fields by paragraphs, sentences, words, etc."""
     keep_separator: Optional[bool] = dataclasses.field(default=False, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('keep_separator'), 'exclude': lambda f: f is None }})
     r"""Whether to keep the separator in the resulting chunks"""
@@ -229,13 +229,13 @@ class DestinationMilvusProcessingConfigModel:
     r"""Size of chunks in tokens to store in vector store (make sure it is not too big for the context if your LLM)"""
     chunk_overlap: Optional[int] = dataclasses.field(default=0, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('chunk_overlap'), 'exclude': lambda f: f is None }})
     r"""Size of overlap between chunks in tokens to store in vector store to better capture relevant context"""
-    field_name_mappings: Optional[List[FieldNameMappingConfigModel]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('field_name_mappings'), 'exclude': lambda f: f is None }})
+    field_name_mappings: Optional[List[DestinationMilvusFieldNameMappingConfigModel]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('field_name_mappings'), 'exclude': lambda f: f is None }})
     r"""List of fields to rename. Not applicable for nested fields, but can be used to rename fields already flattened via dot notation."""
     metadata_fields: Optional[List[str]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('metadata_fields'), 'exclude': lambda f: f is None }})
     r"""List of fields in the record that should be stored as metadata. The field list is applied to all streams in the same way and non-existing fields are ignored. If none are defined, all fields are considered metadata fields. When specifying text fields, you can access nested fields in the record by using dot notation, e.g. `user.name` will access the `name` field in the `user` object. It's also possible to use wildcards to access all fields in an object, e.g. `users.*.name` will access all `names` fields in all entries of the `users` array. When specifying nested paths, all matching values are flattened into an array set to a field named by the path."""
     text_fields: Optional[List[str]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('text_fields'), 'exclude': lambda f: f is None }})
     r"""List of fields in the record that should be used to calculate the embedding. The field list is applied to all streams in the same way and non-existing fields are ignored. If none are defined, all fields are considered text fields. When specifying text fields, you can access nested fields in the record by using dot notation, e.g. `user.name` will access the `name` field in the `user` object. It's also possible to use wildcards to access all fields in an object, e.g. `users.*.name` will access all `names` fields in all entries of the `users` array."""
-    text_splitter: Optional[Union[BySeparator, ByMarkdownHeader, ByProgrammingLanguage]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('text_splitter'), 'exclude': lambda f: f is None }})
+    text_splitter: Optional[Union[DestinationMilvusBySeparator, DestinationMilvusByMarkdownHeader, DestinationMilvusByProgrammingLanguage]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('text_splitter'), 'exclude': lambda f: f is None }})
     r"""Split text fields into chunks based on the specified method."""
     
 
@@ -255,7 +255,7 @@ class DestinationMilvus:
 
     Processing, embedding and advanced configuration are provided by this base class, while the indexing configuration is provided by the destination connector in the sub class.
     """
-    embedding: Union[DestinationMilvusOpenAI, Cohere, DestinationMilvusFake, AzureOpenAI, OpenAICompatible] = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('embedding') }})
+    embedding: Union[DestinationMilvusOpenAI, DestinationMilvusCohere, DestinationMilvusFake, DestinationMilvusAzureOpenAI, DestinationMilvusOpenAICompatible] = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('embedding') }})
     r"""Embedding configuration"""
     indexing: DestinationMilvusIndexing = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('indexing') }})
     r"""Indexing configuration"""

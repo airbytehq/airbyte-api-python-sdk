@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 07961597-3730-4940-9fd0-35eb4118eab3
 management:
-  docChecksum: c101e6356aa26bcdee80457c4dc64471
+  docChecksum: f32864912d3a716aa1b28aee6ebab024
   docVersion: 1.0.0
   speakeasyVersion: internal
-  generationVersion: 2.258.0
-  releaseVersion: 0.47.1
-  configChecksum: fbb6dc853075b3156830a4cae4b1caf1
+  generationVersion: 2.263.3
+  releaseVersion: 0.47.2
+  configChecksum: 9115e8329fbc55180f61b95c76773f12
   repoURL: https://github.com/airbytehq/airbyte-api-python-sdk.git
   repoSubDirectory: .
   installationURL: https://github.com/airbytehq/airbyte-api-python-sdk.git
@@ -85,6 +85,7 @@ generatedFiles:
   - src/airbyte/models/shared/geographyenumnodefault.py
   - src/airbyte/models/shared/destinationresponse.py
   - src/airbyte/models/shared/destination_google_sheets.py
+  - src/airbyte/models/shared/destination_astra.py
   - src/airbyte/models/shared/destination_aws_datalake.py
   - src/airbyte/models/shared/destination_azure_blob_storage.py
   - src/airbyte/models/shared/destination_bigquery.py
@@ -118,6 +119,7 @@ generatedFiles:
   - src/airbyte/models/shared/destination_s3_glue.py
   - src/airbyte/models/shared/destination_sftp_json.py
   - src/airbyte/models/shared/destination_snowflake.py
+  - src/airbyte/models/shared/destination_teradata.py
   - src/airbyte/models/shared/destination_timeplus.py
   - src/airbyte/models/shared/destination_typesense.py
   - src/airbyte/models/shared/destination_vectara.py
@@ -137,7 +139,6 @@ generatedFiles:
   - src/airbyte/models/shared/source_aha.py
   - src/airbyte/models/shared/source_aircall.py
   - src/airbyte/models/shared/source_airtable.py
-  - src/airbyte/models/shared/source_alloydb.py
   - src/airbyte/models/shared/source_amazon_ads.py
   - src/airbyte/models/shared/source_amazon_seller_partner.py
   - src/airbyte/models/shared/source_amazon_sqs.py
@@ -193,6 +194,7 @@ generatedFiles:
   - src/airbyte/models/shared/source_gnews.py
   - src/airbyte/models/shared/source_google_ads.py
   - src/airbyte/models/shared/source_google_analytics_data_api.py
+  - src/airbyte/models/shared/source_google_analytics_v4_service_account_only.py
   - src/airbyte/models/shared/source_google_directory.py
   - src/airbyte/models/shared/source_google_drive.py
   - src/airbyte/models/shared/source_google_pagespeed_insights.py
@@ -215,20 +217,19 @@ generatedFiles:
   - src/airbyte/models/shared/source_k6_cloud.py
   - src/airbyte/models/shared/source_klarna.py
   - src/airbyte/models/shared/source_klaviyo.py
-  - src/airbyte/models/shared/source_kustomer_singer.py
   - src/airbyte/models/shared/source_kyve.py
   - src/airbyte/models/shared/source_launchdarkly.py
   - src/airbyte/models/shared/source_lemlist.py
   - src/airbyte/models/shared/source_lever_hiring.py
   - src/airbyte/models/shared/source_linkedin_ads.py
   - src/airbyte/models/shared/source_linkedin_pages.py
-  - src/airbyte/models/shared/source_linnworks.py
   - src/airbyte/models/shared/source_lokalise.py
   - src/airbyte/models/shared/source_mailchimp.py
   - src/airbyte/models/shared/source_mailgun.py
   - src/airbyte/models/shared/source_mailjet_sms.py
   - src/airbyte/models/shared/source_marketo.py
   - src/airbyte/models/shared/source_metabase.py
+  - src/airbyte/models/shared/source_microsoft_sharepoint.py
   - src/airbyte/models/shared/source_microsoft_teams.py
   - src/airbyte/models/shared/source_mixpanel.py
   - src/airbyte/models/shared/source_monday.py
@@ -270,7 +271,6 @@ generatedFiles:
   - src/airbyte/models/shared/source_recharge.py
   - src/airbyte/models/shared/source_recreation.py
   - src/airbyte/models/shared/source_recruitee.py
-  - src/airbyte/models/shared/source_recurly.py
   - src/airbyte/models/shared/source_redshift.py
   - src/airbyte/models/shared/source_retently.py
   - src/airbyte/models/shared/source_rki_covid.py
@@ -329,7 +329,6 @@ generatedFiles:
   - src/airbyte/models/shared/source_zenloop.py
   - src/airbyte/models/shared/source_zoho_crm.py
   - src/airbyte/models/shared/source_zoom.py
-  - src/airbyte/models/shared/source_zuora.py
   - src/airbyte/models/shared/sourcecreaterequest.py
   - src/airbyte/models/shared/initiateoauthrequest.py
   - src/airbyte/models/shared/oauthactornames.py
@@ -360,6 +359,7 @@ generatedFiles:
   - src/airbyte/models/shared/lever_hiring.py
   - src/airbyte/models/shared/linkedin_ads.py
   - src/airbyte/models/shared/mailchimp.py
+  - src/airbyte/models/shared/microsoft_sharepoint.py
   - src/airbyte/models/shared/microsoft_teams.py
   - src/airbyte/models/shared/monday.py
   - src/airbyte/models/shared/notion.py
@@ -467,6 +467,30 @@ generatedFiles:
   - docs/models/shared/authenticationviagoogleoauth.md
   - docs/models/shared/destinationgooglesheetsgooglesheets.md
   - docs/models/shared/destinationgooglesheets.md
+  - docs/models/shared/astra.md
+  - docs/models/shared/destinationastraschemasembeddingembeddingmode.md
+  - docs/models/shared/openaicompatible.md
+  - docs/models/shared/destinationastraschemasembeddingmode.md
+  - docs/models/shared/azureopenai.md
+  - docs/models/shared/destinationastraschemasmode.md
+  - docs/models/shared/fake.md
+  - docs/models/shared/destinationastramode.md
+  - docs/models/shared/cohere.md
+  - docs/models/shared/destinationastraschemasembeddingembedding1mode.md
+  - docs/models/shared/openai.md
+  - docs/models/shared/embedding.md
+  - docs/models/shared/indexing.md
+  - docs/models/shared/fieldnamemappingconfigmodel.md
+  - docs/models/shared/destinationastralanguage.md
+  - docs/models/shared/destinationastraschemasprocessingtextsplittertextsplittermode.md
+  - docs/models/shared/byprogramminglanguage.md
+  - docs/models/shared/destinationastraschemasprocessingtextsplittermode.md
+  - docs/models/shared/bymarkdownheader.md
+  - docs/models/shared/destinationastraschemasprocessingmode.md
+  - docs/models/shared/byseparator.md
+  - docs/models/shared/textsplitter.md
+  - docs/models/shared/processingconfigmodel.md
+  - docs/models/shared/destinationastra.md
   - docs/models/shared/destinationawsdatalakecredentialstitle.md
   - docs/models/shared/iamuser.md
   - docs/models/shared/credentialstitle.md
@@ -600,29 +624,29 @@ generatedFiles:
   - docs/models/shared/kinesis.md
   - docs/models/shared/destinationkinesis.md
   - docs/models/shared/langchain.md
-  - docs/models/shared/destinationlangchainmode.md
-  - docs/models/shared/fake.md
-  - docs/models/shared/destinationlangchainschemasembeddingmode.md
-  - docs/models/shared/openai.md
-  - docs/models/shared/embedding.md
-  - docs/models/shared/destinationlangchainschemasindexingindexingmode.md
-  - docs/models/shared/chromalocalpersistance.md
-  - docs/models/shared/destinationlangchainschemasindexingmode.md
-  - docs/models/shared/docarrayhnswsearch.md
   - docs/models/shared/destinationlangchainschemasmode.md
+  - docs/models/shared/destinationlangchainfake.md
+  - docs/models/shared/destinationlangchainmode.md
+  - docs/models/shared/destinationlangchainopenai.md
+  - docs/models/shared/destinationlangchainembedding.md
+  - docs/models/shared/destinationlangchainschemasindexingindexing3mode.md
+  - docs/models/shared/chromalocalpersistance.md
+  - docs/models/shared/destinationlangchainschemasindexingindexingmode.md
+  - docs/models/shared/docarrayhnswsearch.md
+  - docs/models/shared/destinationlangchainschemasindexingmode.md
   - docs/models/shared/destinationlangchainpinecone.md
-  - docs/models/shared/indexing.md
-  - docs/models/shared/processingconfigmodel.md
+  - docs/models/shared/destinationlangchainindexing.md
+  - docs/models/shared/destinationlangchainprocessingconfigmodel.md
   - docs/models/shared/destinationlangchain.md
   - docs/models/shared/milvus.md
   - docs/models/shared/destinationmilvusschemasembeddingembedding5mode.md
-  - docs/models/shared/openaicompatible.md
+  - docs/models/shared/destinationmilvusopenaicompatible.md
   - docs/models/shared/destinationmilvusschemasembeddingembeddingmode.md
-  - docs/models/shared/azureopenai.md
+  - docs/models/shared/destinationmilvusazureopenai.md
   - docs/models/shared/destinationmilvusschemasembeddingmode.md
   - docs/models/shared/destinationmilvusfake.md
   - docs/models/shared/destinationmilvusschemasmode.md
-  - docs/models/shared/cohere.md
+  - docs/models/shared/destinationmilvuscohere.md
   - docs/models/shared/destinationmilvusmode.md
   - docs/models/shared/destinationmilvusopenai.md
   - docs/models/shared/destinationmilvusembedding.md
@@ -634,15 +658,15 @@ generatedFiles:
   - docs/models/shared/destinationmilvusapitoken.md
   - docs/models/shared/destinationmilvusauthentication.md
   - docs/models/shared/destinationmilvusindexing.md
-  - docs/models/shared/fieldnamemappingconfigmodel.md
+  - docs/models/shared/destinationmilvusfieldnamemappingconfigmodel.md
   - docs/models/shared/destinationmilvuslanguage.md
   - docs/models/shared/destinationmilvusschemasprocessingtextsplittertextsplittermode.md
-  - docs/models/shared/byprogramminglanguage.md
+  - docs/models/shared/destinationmilvusbyprogramminglanguage.md
   - docs/models/shared/destinationmilvusschemasprocessingtextsplittermode.md
-  - docs/models/shared/bymarkdownheader.md
+  - docs/models/shared/destinationmilvusbymarkdownheader.md
   - docs/models/shared/destinationmilvusschemasprocessingmode.md
-  - docs/models/shared/byseparator.md
-  - docs/models/shared/textsplitter.md
+  - docs/models/shared/destinationmilvusbyseparator.md
+  - docs/models/shared/destinationmilvustextsplitter.md
   - docs/models/shared/destinationmilvusprocessingconfigmodel.md
   - docs/models/shared/destinationmilvus.md
   - docs/models/shared/destinationmongodbauthorization.md
@@ -865,14 +889,29 @@ generatedFiles:
   - docs/models/shared/sftpjson.md
   - docs/models/shared/destinationsftpjson.md
   - docs/models/shared/destinationsnowflakeschemasauthtype.md
-  - docs/models/shared/usernameandpassword.md
-  - docs/models/shared/destinationsnowflakeauthtype.md
-  - docs/models/shared/keypairauthentication.md
-  - docs/models/shared/destinationsnowflakeschemascredentialsauthtype.md
   - docs/models/shared/destinationsnowflakeoauth20.md
+  - docs/models/shared/destinationsnowflakeauthtype.md
+  - docs/models/shared/usernameandpassword.md
+  - docs/models/shared/destinationsnowflakeschemascredentialsauthtype.md
+  - docs/models/shared/keypairauthentication.md
   - docs/models/shared/authorizationmethod.md
   - docs/models/shared/destinationsnowflakesnowflake.md
   - docs/models/shared/destinationsnowflake.md
+  - docs/models/shared/teradata.md
+  - docs/models/shared/destinationteradataschemassslmodesslmodes6mode.md
+  - docs/models/shared/destinationteradataverifyfull.md
+  - docs/models/shared/destinationteradataschemassslmodesslmodes5mode.md
+  - docs/models/shared/destinationteradataverifyca.md
+  - docs/models/shared/destinationteradataschemassslmodesslmodesmode.md
+  - docs/models/shared/destinationteradatarequire.md
+  - docs/models/shared/destinationteradataschemassslmodemode.md
+  - docs/models/shared/destinationteradataprefer.md
+  - docs/models/shared/destinationteradataschemasmode.md
+  - docs/models/shared/destinationteradataallow.md
+  - docs/models/shared/destinationteradatamode.md
+  - docs/models/shared/destinationteradatadisable.md
+  - docs/models/shared/destinationteradatasslmodes.md
+  - docs/models/shared/destinationteradata.md
   - docs/models/shared/timeplus.md
   - docs/models/shared/destinationtimeplus.md
   - docs/models/shared/typesense.md
@@ -950,37 +989,6 @@ generatedFiles:
   - docs/models/shared/sourceairtableauthentication.md
   - docs/models/shared/sourceairtableairtable.md
   - docs/models/shared/sourceairtable.md
-  - docs/models/shared/sourcealloydbschemasreplicationmethodmethod.md
-  - docs/models/shared/sourcealloydbstandard.md
-  - docs/models/shared/lsncommitbehaviour.md
-  - docs/models/shared/sourcealloydbschemasmethod.md
-  - docs/models/shared/plugin.md
-  - docs/models/shared/logicalreplicationcdc.md
-  - docs/models/shared/sourcealloydbmethod.md
-  - docs/models/shared/standardxmin.md
-  - docs/models/shared/replicationmethod.md
-  - docs/models/shared/alloydb.md
-  - docs/models/shared/sourcealloydbschemassslmodesslmodes6mode.md
-  - docs/models/shared/sourcealloydbverifyfull.md
-  - docs/models/shared/sourcealloydbschemassslmodesslmodes5mode.md
-  - docs/models/shared/sourcealloydbverifyca.md
-  - docs/models/shared/sourcealloydbschemassslmodesslmodesmode.md
-  - docs/models/shared/sourcealloydbrequire.md
-  - docs/models/shared/sourcealloydbschemassslmodemode.md
-  - docs/models/shared/sourcealloydbprefer.md
-  - docs/models/shared/sourcealloydbschemasmode.md
-  - docs/models/shared/sourcealloydballow.md
-  - docs/models/shared/sourcealloydbmode.md
-  - docs/models/shared/sourcealloydbdisable.md
-  - docs/models/shared/sourcealloydbsslmodes.md
-  - docs/models/shared/sourcealloydbschemastunnelmethodtunnelmethod.md
-  - docs/models/shared/sourcealloydbpasswordauthentication.md
-  - docs/models/shared/sourcealloydbschemastunnelmethod.md
-  - docs/models/shared/sourcealloydbsshkeyauthentication.md
-  - docs/models/shared/sourcealloydbtunnelmethod.md
-  - docs/models/shared/sourcealloydbnotunnel.md
-  - docs/models/shared/sourcealloydbsshtunnelmethod.md
-  - docs/models/shared/sourcealloydb.md
   - docs/models/shared/sourceamazonadsauthtype.md
   - docs/models/shared/region.md
   - docs/models/shared/reportrecordtypes.md
@@ -1477,6 +1485,11 @@ generatedFiles:
   - docs/models/shared/sourcegoogleanalyticsdataapicustomreportconfig.md
   - docs/models/shared/sourcegoogleanalyticsdataapigoogleanalyticsdataapi.md
   - docs/models/shared/sourcegoogleanalyticsdataapi.md
+  - docs/models/shared/sourcegoogleanalyticsv4serviceaccountonlyauthtype.md
+  - docs/models/shared/sourcegoogleanalyticsv4serviceaccountonlyserviceaccountkeyauthentication.md
+  - docs/models/shared/sourcegoogleanalyticsv4serviceaccountonlycredentials.md
+  - docs/models/shared/googleanalyticsv4serviceaccountonly.md
+  - docs/models/shared/sourcegoogleanalyticsv4serviceaccountonly.md
   - docs/models/shared/sourcegoogledirectoryschemascredentialstitle.md
   - docs/models/shared/serviceaccountkey.md
   - docs/models/shared/sourcegoogledirectorycredentialstitle.md
@@ -1582,8 +1595,6 @@ generatedFiles:
   - docs/models/shared/sourceklarna.md
   - docs/models/shared/klaviyo.md
   - docs/models/shared/sourceklaviyo.md
-  - docs/models/shared/kustomersinger.md
-  - docs/models/shared/sourcekustomersinger.md
   - docs/models/shared/kyve.md
   - docs/models/shared/sourcekyve.md
   - docs/models/shared/launchdarkly.md
@@ -1615,8 +1626,6 @@ generatedFiles:
   - docs/models/shared/sourcelinkedinpagesauthentication.md
   - docs/models/shared/linkedinpages.md
   - docs/models/shared/sourcelinkedinpages.md
-  - docs/models/shared/linnworks.md
-  - docs/models/shared/sourcelinnworks.md
   - docs/models/shared/lokalise.md
   - docs/models/shared/sourcelokalise.md
   - docs/models/shared/sourcemailchimpschemasauthtype.md
@@ -1634,6 +1643,37 @@ generatedFiles:
   - docs/models/shared/sourcemarketo.md
   - docs/models/shared/metabase.md
   - docs/models/shared/sourcemetabase.md
+  - docs/models/shared/sourcemicrosoftsharepointschemasauthtype.md
+  - docs/models/shared/servicekeyauthentication.md
+  - docs/models/shared/sourcemicrosoftsharepointauthtype.md
+  - docs/models/shared/authenticateviamicrosoftoauth.md
+  - docs/models/shared/sourcemicrosoftsharepointauthentication.md
+  - docs/models/shared/sourcemicrosoftsharepointmicrosoftsharepoint.md
+  - docs/models/shared/sourcemicrosoftsharepointschemasstreamsformatformatfiletype.md
+  - docs/models/shared/sourcemicrosoftsharepointmode.md
+  - docs/models/shared/sourcemicrosoftsharepointlocal.md
+  - docs/models/shared/sourcemicrosoftsharepointprocessing.md
+  - docs/models/shared/sourcemicrosoftsharepointparsingstrategy.md
+  - docs/models/shared/sourcemicrosoftsharepointdocumentfiletypeformatexperimental.md
+  - docs/models/shared/sourcemicrosoftsharepointschemasstreamsformatfiletype.md
+  - docs/models/shared/sourcemicrosoftsharepointparquetformat.md
+  - docs/models/shared/sourcemicrosoftsharepointschemasstreamsfiletype.md
+  - docs/models/shared/sourcemicrosoftsharepointjsonlformat.md
+  - docs/models/shared/sourcemicrosoftsharepointschemasfiletype.md
+  - docs/models/shared/sourcemicrosoftsharepointschemasstreamsheaderdefinitiontype.md
+  - docs/models/shared/sourcemicrosoftsharepointuserprovided.md
+  - docs/models/shared/sourcemicrosoftsharepointschemasheaderdefinitiontype.md
+  - docs/models/shared/sourcemicrosoftsharepointautogenerated.md
+  - docs/models/shared/sourcemicrosoftsharepointheaderdefinitiontype.md
+  - docs/models/shared/sourcemicrosoftsharepointfromcsv.md
+  - docs/models/shared/sourcemicrosoftsharepointcsvheaderdefinition.md
+  - docs/models/shared/sourcemicrosoftsharepointcsvformat.md
+  - docs/models/shared/sourcemicrosoftsharepointfiletype.md
+  - docs/models/shared/sourcemicrosoftsharepointavroformat.md
+  - docs/models/shared/sourcemicrosoftsharepointformat.md
+  - docs/models/shared/sourcemicrosoftsharepointvalidationpolicy.md
+  - docs/models/shared/sourcemicrosoftsharepointfilebasedstreamconfig.md
+  - docs/models/shared/sourcemicrosoftsharepoint.md
   - docs/models/shared/sourcemicrosoftteamsschemasauthtype.md
   - docs/models/shared/authenticateviamicrosoft.md
   - docs/models/shared/sourcemicrosoftteamsauthtype.md
@@ -1812,9 +1852,9 @@ generatedFiles:
   - docs/models/shared/sourcepostgresscanchangeswithuserdefinedcursor.md
   - docs/models/shared/sourcepostgresschemasmethod.md
   - docs/models/shared/detectchangeswithxminsystemcolumn.md
-  - docs/models/shared/sourcepostgreslsncommitbehaviour.md
+  - docs/models/shared/lsncommitbehaviour.md
   - docs/models/shared/sourcepostgresmethod.md
-  - docs/models/shared/sourcepostgresplugin.md
+  - docs/models/shared/plugin.md
   - docs/models/shared/readchangesusingwriteaheadlogcdc.md
   - docs/models/shared/sourcepostgresupdatemethod.md
   - docs/models/shared/sourcepostgrespostgres.md
@@ -1864,8 +1904,6 @@ generatedFiles:
   - docs/models/shared/sourcerecreation.md
   - docs/models/shared/recruitee.md
   - docs/models/shared/sourcerecruitee.md
-  - docs/models/shared/recurly.md
-  - docs/models/shared/sourcerecurly.md
   - docs/models/shared/sourceredshiftredshift.md
   - docs/models/shared/sourceredshift.md
   - docs/models/shared/sourceretentlyschemasauthtype.md
@@ -1945,7 +1983,7 @@ generatedFiles:
   - docs/models/shared/sourcesftpsshkeyauthentication.md
   - docs/models/shared/sourcesftpauthmethod.md
   - docs/models/shared/sourcesftppasswordauthentication.md
-  - docs/models/shared/sourcesftpauthenticationwildcard.md
+  - docs/models/shared/sourcesftpauthentication.md
   - docs/models/shared/sftp.md
   - docs/models/shared/sourcesftp.md
   - docs/models/shared/filetype.md
@@ -2111,10 +2149,6 @@ generatedFiles:
   - docs/models/shared/sourcezohocrm.md
   - docs/models/shared/zoom.md
   - docs/models/shared/sourcezoom.md
-  - docs/models/shared/dataquerytype.md
-  - docs/models/shared/zuora.md
-  - docs/models/shared/tenantendpointlocation.md
-  - docs/models/shared/sourcezuora.md
   - docs/models/shared/sourcecreaterequest.md
   - docs/models/shared/initiateoauthrequest.md
   - docs/models/shared/oauthactornames.md
@@ -2160,6 +2194,8 @@ generatedFiles:
   - docs/models/shared/linkedinads.md
   - docs/models/shared/mailchimpcredentials.md
   - docs/models/shared/mailchimp.md
+  - docs/models/shared/microsoftsharepointcredentials.md
+  - docs/models/shared/microsoftsharepoint.md
   - docs/models/shared/microsoftteamscredentials.md
   - docs/models/shared/microsoftteams.md
   - docs/models/shared/mondaycredentials.md

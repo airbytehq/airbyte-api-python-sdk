@@ -190,6 +190,8 @@ class DestinationWeaviateIndexing:
     r"""The number of records to send to Weaviate in each batch"""
     default_vectorizer: Optional[DefaultVectorizer] = dataclasses.field(default=DefaultVectorizer.NONE, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('default_vectorizer'), 'exclude': lambda f: f is None }})
     r"""The vectorizer to use if new classes need to be created"""
+    tenant_id: Optional[str] = dataclasses.field(default='', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('tenant_id'), 'exclude': lambda f: f is None }})
+    r"""The tenant ID to use for multi tenancy"""
     text_field: Optional[str] = dataclasses.field(default='text', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('text_field'), 'exclude': lambda f: f is None }})
     r"""The field in the object that contains the embedded text"""
     
