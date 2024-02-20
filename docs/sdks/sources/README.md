@@ -32,10 +32,10 @@ s = airbyte.Airbyte(
 
 req = shared.SourceCreateRequest(
     configuration=shared.SourceAha(
-        api_key='string',
+        api_key='<value>',
         url='https://complicated-seat.org',
     ),
-    name='string',
+    name='<value>',
     workspace_id='0f31f3dd-c984-48c3-8bdf-b109056aa6d6',
 )
 
@@ -82,7 +82,7 @@ s = airbyte.Airbyte(
 )
 
 req = operations.DeleteSourceRequest(
-    source_id='string',
+    source_id='<value>',
 )
 
 res = s.sources.delete_source(req)
@@ -128,7 +128,7 @@ s = airbyte.Airbyte(
 )
 
 req = operations.GetSourceRequest(
-    source_id='string',
+    source_id='<value>',
 )
 
 res = s.sources.get_source(req)
@@ -271,7 +271,7 @@ s = airbyte.Airbyte(
 )
 
 req = operations.PatchSourceRequest(
-    source_id='string',
+    source_id='<value>',
 )
 
 res = s.sources.patch_source(req)
@@ -317,7 +317,7 @@ s = airbyte.Airbyte(
 )
 
 req = operations.PutSourceRequest(
-    source_id='string',
+    source_id='<value>',
 )
 
 res = s.sources.put_source(req)

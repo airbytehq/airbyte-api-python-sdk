@@ -36,7 +36,7 @@ req = operations.CreateOrUpdateWorkspaceOAuthCredentialsRequest(
         configuration=shared.Airtable(),
         name=shared.OAuthActorNames.AMAZON_ADS,
     ),
-    workspace_id='string',
+    workspace_id='<value>',
 )
 
 res = s.workspaces.create_or_update_workspace_o_auth_credentials(req)
@@ -82,7 +82,7 @@ s = airbyte.Airbyte(
 )
 
 req = shared.WorkspaceCreateRequest(
-    name='string',
+    name='<value>',
 )
 
 res = s.workspaces.create_workspace(req)
@@ -128,7 +128,7 @@ s = airbyte.Airbyte(
 )
 
 req = operations.DeleteWorkspaceRequest(
-    workspace_id='string',
+    workspace_id='<value>',
 )
 
 res = s.workspaces.delete_workspace(req)
@@ -174,7 +174,7 @@ s = airbyte.Airbyte(
 )
 
 req = operations.GetWorkspaceRequest(
-    workspace_id='string',
+    workspace_id='<value>',
 )
 
 res = s.workspaces.get_workspace(req)
@@ -265,9 +265,9 @@ s = airbyte.Airbyte(
 
 req = operations.UpdateWorkspaceRequest(
     workspace_update_request=shared.WorkspaceUpdateRequest(
-        name='string',
+        name='<value>',
     ),
-    workspace_id='string',
+    workspace_id='<value>',
 )
 
 res = s.workspaces.update_workspace(req)
