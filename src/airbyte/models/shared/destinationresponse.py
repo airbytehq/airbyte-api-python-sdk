@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 import dataclasses
+from .destination_astra import DestinationAstra
 from .destination_aws_datalake import DestinationAwsDatalake
 from .destination_azure_blob_storage import DestinationAzureBlobStorage
 from .destination_bigquery import DestinationBigquery
@@ -36,6 +37,7 @@ from .destination_s3 import DestinationS3
 from .destination_s3_glue import DestinationS3Glue
 from .destination_sftp_json import DestinationSftpJSON
 from .destination_snowflake import DestinationSnowflake
+from .destination_teradata import DestinationTeradata
 from .destination_timeplus import DestinationTimeplus
 from .destination_typesense import DestinationTypesense
 from .destination_vectara import DestinationVectara
@@ -51,7 +53,7 @@ from typing import Union
 @dataclasses.dataclass
 class DestinationResponse:
     r"""Provides details of a single destination."""
-    configuration: Union[DestinationGoogleSheets, DestinationAwsDatalake, DestinationAzureBlobStorage, DestinationBigquery, DestinationClickhouse, DestinationConvex, DestinationCumulio, DestinationDatabend, DestinationDatabricks, DestinationDevNull, DestinationDuckdb, DestinationDynamodb, DestinationElasticsearch, DestinationFirebolt, DestinationFirestore, DestinationGcs, DestinationKeen, DestinationKinesis, DestinationLangchain, DestinationMilvus, DestinationMongodb, DestinationMssql, DestinationMysql, DestinationOracle, DestinationPinecone, DestinationPostgres, DestinationPubsub, DestinationQdrant, DestinationRedis, DestinationRedshift, DestinationS3, DestinationS3Glue, DestinationSftpJSON, DestinationSnowflake, DestinationTimeplus, DestinationTypesense, DestinationVectara, DestinationVertica, DestinationWeaviate, DestinationXata] = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('configuration') }})
+    configuration: Union[DestinationGoogleSheets, DestinationAstra, DestinationAwsDatalake, DestinationAzureBlobStorage, DestinationBigquery, DestinationClickhouse, DestinationConvex, DestinationCumulio, DestinationDatabend, DestinationDatabricks, DestinationDevNull, DestinationDuckdb, DestinationDynamodb, DestinationElasticsearch, DestinationFirebolt, DestinationFirestore, DestinationGcs, DestinationKeen, DestinationKinesis, DestinationLangchain, DestinationMilvus, DestinationMongodb, DestinationMssql, DestinationMysql, DestinationOracle, DestinationPinecone, DestinationPostgres, DestinationPubsub, DestinationQdrant, DestinationRedis, DestinationRedshift, DestinationS3, DestinationS3Glue, DestinationSftpJSON, DestinationSnowflake, DestinationTeradata, DestinationTimeplus, DestinationTypesense, DestinationVectara, DestinationVertica, DestinationWeaviate, DestinationXata] = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('configuration') }})
     r"""The values required to configure the destination."""
     destination_id: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('destinationId') }})
     destination_type: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('destinationType') }})

@@ -14,6 +14,7 @@ class FileFormat(str, Enum):
     JSONL = 'jsonl'
     EXCEL = 'excel'
     EXCEL_BINARY = 'excel_binary'
+    FWF = 'fwf'
     FEATHER = 'feather'
     PARQUET = 'parquet'
     YAML = 'yaml'

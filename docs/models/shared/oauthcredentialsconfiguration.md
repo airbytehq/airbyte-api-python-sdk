@@ -125,6 +125,12 @@ oAuthCredentialsConfiguration: shared.LinkedinAds = /* values here */
 oAuthCredentialsConfiguration: shared.Mailchimp = /* values here */
 ```
 
+### MicrosoftSharepoint
+
+```python
+oAuthCredentialsConfiguration: shared.MicrosoftSharepoint = /* values here */
+```
+
 ### MicrosoftTeams
 
 ```python

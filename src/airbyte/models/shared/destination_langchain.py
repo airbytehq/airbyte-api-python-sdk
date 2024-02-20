@@ -10,32 +10,32 @@ from typing import Final, List, Optional, Union
 class Langchain(str, Enum):
     LANGCHAIN = 'langchain'
 
-class DestinationLangchainMode(str, Enum):
+class DestinationLangchainSchemasMode(str, Enum):
     FAKE = 'fake'
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
-class Fake:
+class DestinationLangchainFake:
     r"""Use a fake embedding made out of random vectors with 1536 embedding dimensions. This is useful for testing the data pipeline without incurring any costs."""
-    MODE: Final[Optional[DestinationLangchainMode]] = dataclasses.field(default=DestinationLangchainMode.FAKE, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('mode'), 'exclude': lambda f: f is None }})
+    MODE: Final[Optional[DestinationLangchainSchemasMode]] = dataclasses.field(default=DestinationLangchainSchemasMode.FAKE, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('mode'), 'exclude': lambda f: f is None }})
     
 
 
-class DestinationLangchainSchemasEmbeddingMode(str, Enum):
+class DestinationLangchainMode(str, Enum):
     OPENAI = 'openai'
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
-class OpenAI:
+class DestinationLangchainOpenAI:
     r"""Use the OpenAI API to embed text. This option is using the text-embedding-ada-002 model with 1536 embedding dimensions."""
     openai_key: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('openai_key') }})
-    MODE: Final[Optional[DestinationLangchainSchemasEmbeddingMode]] = dataclasses.field(default=DestinationLangchainSchemasEmbeddingMode.OPENAI, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('mode'), 'exclude': lambda f: f is None }})
+    MODE: Final[Optional[DestinationLangchainMode]] = dataclasses.field(default=DestinationLangchainMode.OPENAI, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('mode'), 'exclude': lambda f: f is None }})
     
 
 
-class DestinationLangchainSchemasIndexingIndexingMode(str, Enum):
+class DestinationLangchainSchemasIndexingIndexing3Mode(str, Enum):
     CHROMA_LOCAL = 'chroma_local'
 
 
@@ -47,11 +47,11 @@ class ChromaLocalPersistance:
     r"""Path to the directory where chroma files will be written. The files will be placed inside that local mount."""
     collection_name: Optional[str] = dataclasses.field(default='langchain', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('collection_name'), 'exclude': lambda f: f is None }})
     r"""Name of the collection to use."""
-    MODE: Final[Optional[DestinationLangchainSchemasIndexingIndexingMode]] = dataclasses.field(default=DestinationLangchainSchemasIndexingIndexingMode.CHROMA_LOCAL, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('mode'), 'exclude': lambda f: f is None }})
+    MODE: Final[Optional[DestinationLangchainSchemasIndexingIndexing3Mode]] = dataclasses.field(default=DestinationLangchainSchemasIndexingIndexing3Mode.CHROMA_LOCAL, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('mode'), 'exclude': lambda f: f is None }})
     
 
 
-class DestinationLangchainSchemasIndexingMode(str, Enum):
+class DestinationLangchainSchemasIndexingIndexingMode(str, Enum):
     DOC_ARRAY_HNSW_SEARCH = 'DocArrayHnswSearch'
 
 
@@ -61,11 +61,11 @@ class DocArrayHnswSearch:
     r"""DocArrayHnswSearch is a lightweight Document Index implementation provided by Docarray that runs fully locally and is best suited for small- to medium-sized datasets. It stores vectors on disk in hnswlib, and stores all other data in SQLite."""
     destination_path: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('destination_path') }})
     r"""Path to the directory where hnswlib and meta data files will be written. The files will be placed inside that local mount. All files in the specified destination directory will be deleted on each run."""
-    MODE: Final[Optional[DestinationLangchainSchemasIndexingMode]] = dataclasses.field(default=DestinationLangchainSchemasIndexingMode.DOC_ARRAY_HNSW_SEARCH, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('mode'), 'exclude': lambda f: f is None }})
+    MODE: Final[Optional[DestinationLangchainSchemasIndexingIndexingMode]] = dataclasses.field(default=DestinationLangchainSchemasIndexingIndexingMode.DOC_ARRAY_HNSW_SEARCH, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('mode'), 'exclude': lambda f: f is None }})
     
 
 
-class DestinationLangchainSchemasMode(str, Enum):
+class DestinationLangchainSchemasIndexingMode(str, Enum):
     PINECONE = 'pinecone'
 
 
@@ -78,14 +78,14 @@ class DestinationLangchainPinecone:
     pinecone_environment: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('pinecone_environment') }})
     r"""Pinecone environment to use"""
     pinecone_key: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('pinecone_key') }})
-    MODE: Final[Optional[DestinationLangchainSchemasMode]] = dataclasses.field(default=DestinationLangchainSchemasMode.PINECONE, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('mode'), 'exclude': lambda f: f is None }})
+    MODE: Final[Optional[DestinationLangchainSchemasIndexingMode]] = dataclasses.field(default=DestinationLangchainSchemasIndexingMode.PINECONE, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('mode'), 'exclude': lambda f: f is None }})
     
 
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
-class ProcessingConfigModel:
+class DestinationLangchainProcessingConfigModel:
     chunk_size: int = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('chunk_size') }})
     r"""Size of chunks in tokens to store in vector store (make sure it is not too big for the context if your LLM)"""
     text_fields: List[str] = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('text_fields') }})
@@ -99,11 +99,11 @@ class ProcessingConfigModel:
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
 class DestinationLangchain:
-    embedding: Union[OpenAI, Fake] = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('embedding') }})
+    embedding: Union[DestinationLangchainOpenAI, DestinationLangchainFake] = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('embedding') }})
     r"""Embedding configuration"""
     indexing: Union[DestinationLangchainPinecone, DocArrayHnswSearch, ChromaLocalPersistance] = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('indexing') }})
     r"""Indexing configuration"""
-    processing: ProcessingConfigModel = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('processing') }})
+    processing: DestinationLangchainProcessingConfigModel = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('processing') }})
     DESTINATION_TYPE: Final[Langchain] = dataclasses.field(default=Langchain.LANGCHAIN, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('destinationType') }})
     
 

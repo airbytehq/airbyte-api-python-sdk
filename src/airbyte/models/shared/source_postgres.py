@@ -31,7 +31,7 @@ class DetectChangesWithXminSystemColumn:
     
 
 
-class SourcePostgresLSNCommitBehaviour(str, Enum):
+class LSNCommitBehaviour(str, Enum):
     r"""Determines when Airbyte should flush the LSN of processed WAL logs in the source database. `After loading Data in the destination` is default. If `While reading Data` is selected, in case of a downstream failure (while loading data into the destination), next sync would result in a full sync."""
     WHILE_READING_DATA = 'While reading Data'
     AFTER_LOADING_DATA_IN_THE_DESTINATION = 'After loading Data in the destination'
@@ -39,7 +39,7 @@ class SourcePostgresLSNCommitBehaviour(str, Enum):
 class SourcePostgresMethod(str, Enum):
     CDC = 'CDC'
 
-class SourcePostgresPlugin(str, Enum):
+class Plugin(str, Enum):
     r"""A logical decoding plugin installed on the PostgreSQL server."""
     PGOUTPUT = 'pgoutput'
 
@@ -54,12 +54,14 @@ class ReadChangesUsingWriteAheadLogCDC:
     replication_slot: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('replication_slot') }})
     r"""A plugin logical replication slot. Read about <a href=\\"https://docs.airbyte.com/integrations/sources/postgres#step-3-create-replication-slot\\">replication slots</a>."""
     additional_properties: Optional[Dict[str, Any]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'exclude': lambda f: f is None }})
+    heartbeat_action_query: Optional[str] = dataclasses.field(default='', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('heartbeat_action_query'), 'exclude': lambda f: f is None }})
+    r"""Specifies a query that the connector executes on the source database when the connector sends a heartbeat message. Please see the <a href=\\"https://docs.airbyte.com/integrations/sources/postgres/postgres-wal-disk-consumption-and-heartbeat-action-query\\">setup guide</a> for how and when to configure this setting."""
     initial_waiting_seconds: Optional[int] = dataclasses.field(default=1200, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('initial_waiting_seconds'), 'exclude': lambda f: f is None }})
     r"""The amount of time the connector will wait when it launches to determine if there is new data to sync or not. Defaults to 1200 seconds. Valid range: 120 seconds to 2400 seconds. Read about <a href=\\"https://docs.airbyte.com/integrations/sources/postgres#step-5-optional-set-up-initial-waiting-time\\">initial waiting time</a>."""
-    lsn_commit_behaviour: Optional[SourcePostgresLSNCommitBehaviour] = dataclasses.field(default=SourcePostgresLSNCommitBehaviour.AFTER_LOADING_DATA_IN_THE_DESTINATION, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('lsn_commit_behaviour'), 'exclude': lambda f: f is None }})
+    lsn_commit_behaviour: Optional[LSNCommitBehaviour] = dataclasses.field(default=LSNCommitBehaviour.AFTER_LOADING_DATA_IN_THE_DESTINATION, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('lsn_commit_behaviour'), 'exclude': lambda f: f is None }})
     r"""Determines when Airbyte should flush the LSN of processed WAL logs in the source database. `After loading Data in the destination` is default. If `While reading Data` is selected, in case of a downstream failure (while loading data into the destination), next sync would result in a full sync."""
     METHOD: Final[SourcePostgresMethod] = dataclasses.field(default=SourcePostgresMethod.CDC, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('method') }})
-    plugin: Optional[SourcePostgresPlugin] = dataclasses.field(default=SourcePostgresPlugin.PGOUTPUT, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('plugin'), 'exclude': lambda f: f is None }})
+    plugin: Optional[Plugin] = dataclasses.field(default=Plugin.PGOUTPUT, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('plugin'), 'exclude': lambda f: f is None }})
     r"""A logical decoding plugin installed on the PostgreSQL server."""
     queue_size: Optional[int] = dataclasses.field(default=10000, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('queue_size'), 'exclude': lambda f: f is None }})
     r"""The size of the internal queue. This may interfere with memory consumption and efficiency of the connector, please be careful."""

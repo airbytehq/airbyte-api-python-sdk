@@ -7,7 +7,7 @@ from airbyte import utils
 from dataclasses_json import Undefined, dataclass_json
 from datetime import datetime
 from enum import Enum
-from typing import Final
+from typing import Final, Optional
 
 class Recharge(str, Enum):
     RECHARGE = 'recharge'
@@ -21,5 +21,7 @@ class SourceRecharge:
     start_date: datetime = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('start_date'), 'encoder': utils.datetimeisoformat(False), 'decoder': dateutil.parser.isoparse }})
     r"""The date from which you'd like to replicate data for Recharge API, in the format YYYY-MM-DDT00:00:00Z. Any data before this date will not be replicated."""
     SOURCE_TYPE: Final[Recharge] = dataclasses.field(default=Recharge.RECHARGE, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
+    use_orders_deprecated_api: Optional[bool] = dataclasses.field(default=True, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('use_orders_deprecated_api'), 'exclude': lambda f: f is None }})
+    r"""Define whether or not the `Orders` stream should use the deprecated `2021-01` API version, or use `2021-11`, otherwise."""
     
 

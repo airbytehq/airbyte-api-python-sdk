@@ -3,6 +3,6 @@
 
 ## Values
 
-| Name           | Value          |
-| -------------- | -------------- |
-| `CHROMA_LOCAL` | chroma_local   |
+| Name                    | Value                   |
+| ----------------------- | ----------------------- |
+| `DOC_ARRAY_HNSW_SEARCH` | DocArrayHnswSearch      |

@@ -23,12 +23,6 @@ sourceConfiguration: shared.SourceAircall = /* values here */
 sourceConfiguration: shared.SourceAirtable = /* values here */
 ```
 
-### SourceAlloydb
-
-```python
-sourceConfiguration: shared.SourceAlloydb = /* values here */
-```
-
 ### SourceAmazonAds
 
 ```python
@@ -359,6 +353,12 @@ sourceConfiguration: shared.SourceGoogleAds = /* values here */
 sourceConfiguration: shared.SourceGoogleAnalyticsDataAPI = /* values here */
 ```
 
+### SourceGoogleAnalyticsV4ServiceAccountOnly
+
+```python
+sourceConfiguration: shared.SourceGoogleAnalyticsV4ServiceAccountOnly = /* values here */
+```
+
 ### SourceGoogleDirectory
 
 ```python
@@ -491,12 +491,6 @@ sourceConfiguration: shared.SourceKlarna = /* values here */
 sourceConfiguration: shared.SourceKlaviyo = /* values here */
 ```
 
-### SourceKustomerSinger
-
-```python
-sourceConfiguration: shared.SourceKustomerSinger = /* values here */
-```
-
 ### SourceKyve
 
 ```python
@@ -533,12 +527,6 @@ sourceConfiguration: shared.SourceLinkedinAds = /* values here */
 sourceConfiguration: shared.SourceLinkedinPages = /* values here */
 ```
 
-### SourceLinnworks
-
-```python
-sourceConfiguration: shared.SourceLinnworks = /* values here */
-```
-
 ### SourceLokalise
 
 ```python
@@ -573,6 +561,12 @@ sourceConfiguration: shared.SourceMarketo = /* values here */
 
 ```python
 sourceConfiguration: shared.SourceMetabase = /* values here */
+```
+
+### SourceMicrosoftSharepoint
+
+```python
+sourceConfiguration: shared.SourceMicrosoftSharepoint = /* values here */
 ```
 
 ### SourceMicrosoftTeams
@@ -819,12 +813,6 @@ sourceConfiguration: shared.SourceRecreation = /* values here */
 
 ```python
 sourceConfiguration: shared.SourceRecruitee = /* values here */
-```
-
-### SourceRecurly
-
-```python
-sourceConfiguration: shared.SourceRecurly = /* values here */
 ```
 
 ### SourceRedshift
@@ -1173,11 +1161,5 @@ sourceConfiguration: shared.SourceZohoCrm = /* values here */
 
 ```python
 sourceConfiguration: shared.SourceZoom = /* values here */
-```
-
-### SourceZuora
-
-```python
-sourceConfiguration: shared.SourceZuora = /* values here */
 ```
 
