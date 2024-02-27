@@ -4,9 +4,9 @@ management:
   docChecksum: f32864912d3a716aa1b28aee6ebab024
   docVersion: 1.0.0
   speakeasyVersion: internal
-  generationVersion: 2.263.3
-  releaseVersion: 0.47.2
-  configChecksum: 9115e8329fbc55180f61b95c76773f12
+  generationVersion: 2.272.4
+  releaseVersion: 0.47.3
+  configChecksum: 68885b14db26f61ceed06a1c3f3211b8
   repoURL: https://github.com/airbytehq/airbyte-api-python-sdk.git
   repoSubDirectory: .
   installationURL: https://github.com/airbytehq/airbyte-api-python-sdk.git
@@ -15,8 +15,8 @@ features:
   python:
     additionalProperties: 0.1.0
     constsAndDefaults: 0.1.2
-    core: 4.4.6
-    globalSecurity: 2.83.2
+    core: 4.4.7
+    globalSecurity: 2.83.3
     globalServerURLs: 2.82.1
     unions: 2.82.5
 generatedFiles:
