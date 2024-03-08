@@ -47,6 +47,7 @@ res = s.destinations.create_destination(req)
 if res.destination_response is not None:
     # handle response
     pass
+
 ```
 
 ### Parameters
@@ -90,9 +91,10 @@ req = operations.DeleteDestinationRequest(
 
 res = s.destinations.delete_destination(req)
 
-if res.status_code == 200:
+if res is not None:
     # handle response
     pass
+
 ```
 
 ### Parameters
@@ -139,6 +141,7 @@ res = s.destinations.get_destination(req)
 if res.destination_response is not None:
     # handle response
     pass
+
 ```
 
 ### Parameters
@@ -183,6 +186,7 @@ res = s.destinations.list_destinations(req)
 if res.destinations_response is not None:
     # handle response
     pass
+
 ```
 
 ### Parameters
@@ -229,6 +233,7 @@ res = s.destinations.patch_destination(req)
 if res.destination_response is not None:
     # handle response
     pass
+
 ```
 
 ### Parameters
@@ -275,6 +280,7 @@ res = s.destinations.put_destination(req)
 if res.destination_response is not None:
     # handle response
     pass
+
 ```
 
 ### Parameters

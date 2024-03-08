@@ -41,9 +41,10 @@ req = operations.CreateOrUpdateWorkspaceOAuthCredentialsRequest(
 
 res = s.workspaces.create_or_update_workspace_o_auth_credentials(req)
 
-if res.status_code == 200:
+if res is not None:
     # handle response
     pass
+
 ```
 
 ### Parameters
@@ -90,6 +91,7 @@ res = s.workspaces.create_workspace(req)
 if res.workspace_response is not None:
     # handle response
     pass
+
 ```
 
 ### Parameters
@@ -133,9 +135,10 @@ req = operations.DeleteWorkspaceRequest(
 
 res = s.workspaces.delete_workspace(req)
 
-if res.status_code == 200:
+if res is not None:
     # handle response
     pass
+
 ```
 
 ### Parameters
@@ -182,6 +185,7 @@ res = s.workspaces.get_workspace(req)
 if res.workspace_response is not None:
     # handle response
     pass
+
 ```
 
 ### Parameters
@@ -226,6 +230,7 @@ res = s.workspaces.list_workspaces(req)
 if res.workspaces_response is not None:
     # handle response
     pass
+
 ```
 
 ### Parameters
@@ -275,6 +280,7 @@ res = s.workspaces.update_workspace(req)
 if res.workspace_response is not None:
     # handle response
     pass
+
 ```
 
 ### Parameters

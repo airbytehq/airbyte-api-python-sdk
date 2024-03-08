@@ -36,6 +36,7 @@ res = s.jobs.cancel_job(req)
 if res.job_response is not None:
     # handle response
     pass
+
 ```
 
 ### Parameters
@@ -83,6 +84,7 @@ res = s.jobs.create_job(req)
 if res.job_response is not None:
     # handle response
     pass
+
 ```
 
 ### Parameters
@@ -129,6 +131,7 @@ res = s.jobs.get_job(req)
 if res.job_response is not None:
     # handle response
     pass
+
 ```
 
 ### Parameters
@@ -173,6 +176,7 @@ res = s.jobs.list_jobs(req)
 if res.jobs_response is not None:
     # handle response
     pass
+
 ```
 
 ### Parameters

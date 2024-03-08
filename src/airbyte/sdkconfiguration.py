@@ -24,9 +24,9 @@ class SDKConfiguration:
     server_idx: int = 0
     language: str = 'python'
     openapi_doc_version: str = '1.0.0'
-    sdk_version: str = '0.48.0'
-    gen_version: str = '2.275.4'
-    user_agent: str = 'speakeasy-sdk/python 0.48.0 2.275.4 1.0.0 airbyte-api'
+    sdk_version: str = '0.49.0'
+    gen_version: str = '2.279.1'
+    user_agent: str = 'speakeasy-sdk/python 0.49.0 2.279.1 1.0.0 airbyte-api'
     retry_config: RetryConfig = None
     _hooks: SDKHooks = None
 

@@ -44,6 +44,7 @@ res = s.sources.create_source(req)
 if res.source_response is not None:
     # handle response
     pass
+
 ```
 
 ### Parameters
@@ -87,9 +88,10 @@ req = operations.DeleteSourceRequest(
 
 res = s.sources.delete_source(req)
 
-if res.status_code == 200:
+if res is not None:
     # handle response
     pass
+
 ```
 
 ### Parameters
@@ -136,6 +138,7 @@ res = s.sources.get_source(req)
 if res.source_response is not None:
     # handle response
     pass
+
 ```
 
 ### Parameters
@@ -186,9 +189,10 @@ req = shared.InitiateOauthRequest(
 
 res = s.sources.initiate_o_auth(req)
 
-if res.status_code == 200:
+if res is not None:
     # handle response
     pass
+
 ```
 
 ### Parameters
@@ -233,6 +237,7 @@ res = s.sources.list_sources(req)
 if res.sources_response is not None:
     # handle response
     pass
+
 ```
 
 ### Parameters
@@ -279,6 +284,7 @@ res = s.sources.patch_source(req)
 if res.source_response is not None:
     # handle response
     pass
+
 ```
 
 ### Parameters
@@ -325,6 +331,7 @@ res = s.sources.put_source(req)
 if res.source_response is not None:
     # handle response
     pass
+
 ```
 
 ### Parameters

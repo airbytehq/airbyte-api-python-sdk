@@ -34,6 +34,7 @@ res = s.streams.get_stream_properties(req)
 if res.stream_properties_response is not None:
     # handle response
     pass
+
 ```
 
 ### Parameters
