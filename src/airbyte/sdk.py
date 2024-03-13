@@ -11,7 +11,7 @@ from .workspaces import Workspaces
 from airbyte import utils
 from airbyte._hooks import SDKHooks
 from airbyte.models import shared
-from typing import Callable, Dict, Union
+from typing import Callable, Dict, Optional, Union
 
 class Airbyte:
     r"""airbyte-api: Programatically control Airbyte Cloud, OSS & Enterprise."""
@@ -26,14 +26,14 @@ class Airbyte:
 
     def __init__(self,
                  security: Union[shared.Security,Callable[[], shared.Security]] = None,
-                 server_idx: int = None,
-                 server_url: str = None,
-                 url_params: Dict[str, str] = None,
-                 client: requests_http.Session = None,
-                 retry_config: utils.RetryConfig = None
+                 server_idx: Optional[int] = None,
+                 server_url: Optional[str] = None,
+                 url_params: Optional[Dict[str, str]] = None,
+                 client: Optional[requests_http.Session] = None,
+                 retry_config: Optional[utils.RetryConfig] = None
                  ) -> None:
         """Instantiates the SDK configuring it with the provided parameters.
-        
+
         :param security: The security details required for authentication
         :type security: Union[shared.Security,Callable[[], shared.Security]]
         :param server_idx: The index of the server to use for all operations
@@ -49,12 +49,18 @@ class Airbyte:
         """
         if client is None:
             client = requests_http.Session()
-        
+
         if server_url is not None:
             if url_params is not None:
                 server_url = utils.template_url(server_url, url_params)
 
-        self.sdk_configuration = SDKConfiguration(client, security, server_url, server_idx, retry_config=retry_config)
+        self.sdk_configuration = SDKConfiguration(
+            client,
+            security,
+            server_url,
+            server_idx,
+            retry_config=retry_config
+        )
 
         hooks = SDKHooks()
 
@@ -64,10 +70,11 @@ class Airbyte:
             self.sdk_configuration.server_url = server_url
 
         # pylint: disable=protected-access
-        self.sdk_configuration._hooks=hooks
-       
+        self.sdk_configuration._hooks = hooks
+
         self._init_sdks()
-    
+
+
     def _init_sdks(self):
         self.connections = Connections(self.sdk_configuration)
         self.destinations = Destinations(self.sdk_configuration)
@@ -75,4 +82,3 @@ class Airbyte:
         self.sources = Sources(self.sdk_configuration)
         self.streams = Streams(self.sdk_configuration)
         self.workspaces = Workspaces(self.sdk_configuration)
-    
