@@ -39,6 +39,7 @@ res = s.connections.create_connection(req)
 if res.connection_response is not None:
     # handle response
     pass
+
 ```
 
 ### Parameters
@@ -82,9 +83,10 @@ req = operations.DeleteConnectionRequest(
 
 res = s.connections.delete_connection(req)
 
-if res.status_code == 200:
+if res is not None:
     # handle response
     pass
+
 ```
 
 ### Parameters
@@ -131,6 +133,7 @@ res = s.connections.get_connection(req)
 if res.connection_response is not None:
     # handle response
     pass
+
 ```
 
 ### Parameters
@@ -175,6 +178,7 @@ res = s.connections.list_connections(req)
 if res.connections_response is not None:
     # handle response
     pass
+
 ```
 
 ### Parameters
@@ -224,6 +228,7 @@ res = s.connections.patch_connection(req)
 if res.connection_response is not None:
     # handle response
     pass
+
 ```
 
 ### Parameters

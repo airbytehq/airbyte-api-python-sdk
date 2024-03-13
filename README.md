@@ -50,6 +50,7 @@ res = s.connections.create_connection(req)
 if res.connection_response is not None:
     # handle response
     pass
+
 ```
 <!-- End SDK Example Usage [usage] -->
 
@@ -150,6 +151,7 @@ except errors.SDKError as e:
 if res.connection_response is not None:
     # handle response
     pass
+
 ```
 <!-- End Error Handling [errors] -->
 
@@ -193,6 +195,7 @@ res = s.connections.create_connection(req)
 if res.connection_response is not None:
     # handle response
     pass
+
 ```
 
 
@@ -224,6 +227,7 @@ res = s.connections.create_connection(req)
 if res.connection_response is not None:
     # handle response
     pass
+
 ```
 <!-- End Server Selection [server] -->
 
@@ -284,6 +288,7 @@ res = s.connections.create_connection(req)
 if res.connection_response is not None:
     # handle response
     pass
+
 ```
 <!-- End Authentication [security] -->
 

@@ -23,5 +23,6 @@ res = s.connections.create_connection(req)
 if res.connection_response is not None:
     # handle response
     pass
+
 ```
 <!-- End SDK Example Usage [usage] -->
