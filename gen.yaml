@@ -1,6 +1,6 @@
 configVersion: 2.0.0
 generation:
-  sdkClassName: airbyte
+  sdkClassName: airbyte-api
   usageSnippets:
     optionalPropertyRendering: withExample
   useClassNamesForArrayFields: true
@@ -11,7 +11,7 @@ generation:
   auth:
     oAuth2ClientCredentialsEnabled: false
 python:
-  version: 0.47.3
+  version: 0.48.0
   author: Airbyte
   clientServerStatusCodesAsErrors: true
   description: Python Client SDK for Airbyte API
@@ -19,11 +19,11 @@ python:
   imports:
     option: openapi
     paths:
-      callbacks: models/callbacks
-      errors: models/errors
-      operations: models/operations
-      shared: models/shared
-      webhooks: models/webhooks
+      callbacks: ""
+      errors: ""
+      operations: ""
+      shared: ""
+      webhooks: ""
   inputModelSuffix: input
   maxMethodParams: 0
   outputModelSuffix: output
