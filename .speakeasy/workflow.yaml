@@ -1,0 +1,12 @@
+workflowVersion: 1.0.0
+sources:
+    my-source:
+        inputs:
+            - location: https://raw.githubusercontent.com/airbytehq/airbyte-platform-internal/master/oss/airbyte-api/src/main/openapi/api.yaml?token=GHSAT0AAAAAACDVUN64TXJ2AESIYXH277MMZQUPCAA
+targets:
+    python-api:
+        target: python
+        source: my-source
+        publish:
+            pypi:
+                token: $PYPI_TOKEN
