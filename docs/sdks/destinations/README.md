@@ -17,27 +17,12 @@ Creates a destination given a name, workspace id, and a json blob containing the
 ### Example Usage
 
 ```python
-import airbyte
-from airbyte.models import shared
+import airbyte_api
 
-s = airbyte.Airbyte(
-    security=shared.Security(
-        basic_auth=shared.SchemeBasicAuth(
-            password="<YOUR_PASSWORD_HERE>",
-            username="<YOUR_USERNAME_HERE>",
-        ),
-    ),
-)
+s = airbyte_api.AirbyteAPI()
 
-req = shared.DestinationCreateRequest(
-    configuration=shared.DestinationGoogleSheets(
-        credentials=shared.AuthenticationViaGoogleOAuth(
-            client_id='<value>',
-            client_secret='<value>',
-            refresh_token='<value>',
-        ),
-        spreadsheet_id='https://docs.google.com/spreadsheets/d/1hLd9Qqti3UyLXZB2aFfUWDT7BG/edit',
-    ),
+req = airbyte_api.DestinationCreateRequest(
+    configuration='<value>',
     name='<value>',
     workspace_id='8360860a-d46e-48e6-af62-08e5ba5019ef',
 )
@@ -47,23 +32,24 @@ res = s.destinations.create_destination(req)
 if res.destination_response is not None:
     # handle response
     pass
+
 ```
 
 ### Parameters
 
-| Parameter                                                                          | Type                                                                               | Required                                                                           | Description                                                                        |
-| ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
-| `request`                                                                          | [shared.DestinationCreateRequest](../../models/shared/destinationcreaterequest.md) | :heavy_check_mark:                                                                 | The request object to use for the request.                                         |
+| Parameter                                                                   | Type                                                                        | Required                                                                    | Description                                                                 |
+| --------------------------------------------------------------------------- | --------------------------------------------------------------------------- | --------------------------------------------------------------------------- | --------------------------------------------------------------------------- |
+| `request`                                                                   | [models.DestinationCreateRequest](../../models/destinationcreaterequest.md) | :heavy_check_mark:                                                          | The request object to use for the request.                                  |
 
 
 ### Response
 
-**[operations.CreateDestinationResponse](../../models/operations/createdestinationresponse.md)**
+**[models.CreateDestinationResponse](../../models/createdestinationresponse.md)**
 ### Errors
 
 | Error Object    | Status Code     | Content Type    |
 | --------------- | --------------- | --------------- |
-| errors.SDKError | 4x-5xx          | */*             |
+| models.SDKError | 4xx-5xx         | */*             |
 
 ## delete_destination
 
@@ -72,44 +58,37 @@ Delete a Destination
 ### Example Usage
 
 ```python
-import airbyte
-from airbyte.models import operations, shared
+import airbyte_api
 
-s = airbyte.Airbyte(
-    security=shared.Security(
-        basic_auth=shared.SchemeBasicAuth(
-            password="<YOUR_PASSWORD_HERE>",
-            username="<YOUR_USERNAME_HERE>",
-        ),
-    ),
-)
+s = airbyte_api.AirbyteAPI()
 
-req = operations.DeleteDestinationRequest(
+req = airbyte_api.DeleteDestinationRequest(
     destination_id='<value>',
 )
 
 res = s.destinations.delete_destination(req)
 
-if res.status_code == 200:
+if res is not None:
     # handle response
     pass
+
 ```
 
 ### Parameters
 
-| Parameter                                                                                  | Type                                                                                       | Required                                                                                   | Description                                                                                |
-| ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ |
-| `request`                                                                                  | [operations.DeleteDestinationRequest](../../models/operations/deletedestinationrequest.md) | :heavy_check_mark:                                                                         | The request object to use for the request.                                                 |
+| Parameter                                                                   | Type                                                                        | Required                                                                    | Description                                                                 |
+| --------------------------------------------------------------------------- | --------------------------------------------------------------------------- | --------------------------------------------------------------------------- | --------------------------------------------------------------------------- |
+| `request`                                                                   | [models.DeleteDestinationRequest](../../models/deletedestinationrequest.md) | :heavy_check_mark:                                                          | The request object to use for the request.                                  |
 
 
 ### Response
 
-**[operations.DeleteDestinationResponse](../../models/operations/deletedestinationresponse.md)**
+**[models.DeleteDestinationResponse](../../models/deletedestinationresponse.md)**
 ### Errors
 
 | Error Object    | Status Code     | Content Type    |
 | --------------- | --------------- | --------------- |
-| errors.SDKError | 4x-5xx          | */*             |
+| models.SDKError | 4xx-5xx         | */*             |
 
 ## get_destination
 
@@ -118,19 +97,11 @@ Get Destination details
 ### Example Usage
 
 ```python
-import airbyte
-from airbyte.models import operations, shared
+import airbyte_api
 
-s = airbyte.Airbyte(
-    security=shared.Security(
-        basic_auth=shared.SchemeBasicAuth(
-            password="<YOUR_PASSWORD_HERE>",
-            username="<YOUR_USERNAME_HERE>",
-        ),
-    ),
-)
+s = airbyte_api.AirbyteAPI()
 
-req = operations.GetDestinationRequest(
+req = airbyte_api.GetDestinationRequest(
     destination_id='<value>',
 )
 
@@ -139,23 +110,24 @@ res = s.destinations.get_destination(req)
 if res.destination_response is not None:
     # handle response
     pass
+
 ```
 
 ### Parameters
 
-| Parameter                                                                            | Type                                                                                 | Required                                                                             | Description                                                                          |
-| ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ |
-| `request`                                                                            | [operations.GetDestinationRequest](../../models/operations/getdestinationrequest.md) | :heavy_check_mark:                                                                   | The request object to use for the request.                                           |
+| Parameter                                                             | Type                                                                  | Required                                                              | Description                                                           |
+| --------------------------------------------------------------------- | --------------------------------------------------------------------- | --------------------------------------------------------------------- | --------------------------------------------------------------------- |
+| `request`                                                             | [models.GetDestinationRequest](../../models/getdestinationrequest.md) | :heavy_check_mark:                                                    | The request object to use for the request.                            |
 
 
 ### Response
 
-**[operations.GetDestinationResponse](../../models/operations/getdestinationresponse.md)**
+**[models.GetDestinationResponse](../../models/getdestinationresponse.md)**
 ### Errors
 
 | Error Object    | Status Code     | Content Type    |
 | --------------- | --------------- | --------------- |
-| errors.SDKError | 4x-5xx          | */*             |
+| models.SDKError | 4xx-5xx         | */*             |
 
 ## list_destinations
 
@@ -164,42 +136,35 @@ List destinations
 ### Example Usage
 
 ```python
-import airbyte
-from airbyte.models import operations, shared
+import airbyte_api
 
-s = airbyte.Airbyte(
-    security=shared.Security(
-        basic_auth=shared.SchemeBasicAuth(
-            password="<YOUR_PASSWORD_HERE>",
-            username="<YOUR_USERNAME_HERE>",
-        ),
-    ),
-)
+s = airbyte_api.AirbyteAPI()
 
-req = operations.ListDestinationsRequest()
+req = airbyte_api.ListDestinationsRequest()
 
 res = s.destinations.list_destinations(req)
 
 if res.destinations_response is not None:
     # handle response
     pass
+
 ```
 
 ### Parameters
 
-| Parameter                                                                                | Type                                                                                     | Required                                                                                 | Description                                                                              |
-| ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
-| `request`                                                                                | [operations.ListDestinationsRequest](../../models/operations/listdestinationsrequest.md) | :heavy_check_mark:                                                                       | The request object to use for the request.                                               |
+| Parameter                                                                 | Type                                                                      | Required                                                                  | Description                                                               |
+| ------------------------------------------------------------------------- | ------------------------------------------------------------------------- | ------------------------------------------------------------------------- | ------------------------------------------------------------------------- |
+| `request`                                                                 | [models.ListDestinationsRequest](../../models/listdestinationsrequest.md) | :heavy_check_mark:                                                        | The request object to use for the request.                                |
 
 
 ### Response
 
-**[operations.ListDestinationsResponse](../../models/operations/listdestinationsresponse.md)**
+**[models.ListDestinationsResponse](../../models/listdestinationsresponse.md)**
 ### Errors
 
 | Error Object    | Status Code     | Content Type    |
 | --------------- | --------------- | --------------- |
-| errors.SDKError | 4x-5xx          | */*             |
+| models.SDKError | 4xx-5xx         | */*             |
 
 ## patch_destination
 
@@ -208,19 +173,11 @@ Update a Destination
 ### Example Usage
 
 ```python
-import airbyte
-from airbyte.models import operations, shared
+import airbyte_api
 
-s = airbyte.Airbyte(
-    security=shared.Security(
-        basic_auth=shared.SchemeBasicAuth(
-            password="<YOUR_PASSWORD_HERE>",
-            username="<YOUR_USERNAME_HERE>",
-        ),
-    ),
-)
+s = airbyte_api.AirbyteAPI()
 
-req = operations.PatchDestinationRequest(
+req = airbyte_api.PatchDestinationRequest(
     destination_id='<value>',
 )
 
@@ -229,23 +186,24 @@ res = s.destinations.patch_destination(req)
 if res.destination_response is not None:
     # handle response
     pass
+
 ```
 
 ### Parameters
 
-| Parameter                                                                                | Type                                                                                     | Required                                                                                 | Description                                                                              |
-| ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
-| `request`                                                                                | [operations.PatchDestinationRequest](../../models/operations/patchdestinationrequest.md) | :heavy_check_mark:                                                                       | The request object to use for the request.                                               |
+| Parameter                                                                 | Type                                                                      | Required                                                                  | Description                                                               |
+| ------------------------------------------------------------------------- | ------------------------------------------------------------------------- | ------------------------------------------------------------------------- | ------------------------------------------------------------------------- |
+| `request`                                                                 | [models.PatchDestinationRequest](../../models/patchdestinationrequest.md) | :heavy_check_mark:                                                        | The request object to use for the request.                                |
 
 
 ### Response
 
-**[operations.PatchDestinationResponse](../../models/operations/patchdestinationresponse.md)**
+**[models.PatchDestinationResponse](../../models/patchdestinationresponse.md)**
 ### Errors
 
 | Error Object    | Status Code     | Content Type    |
 | --------------- | --------------- | --------------- |
-| errors.SDKError | 4x-5xx          | */*             |
+| models.SDKError | 4xx-5xx         | */*             |
 
 ## put_destination
 
@@ -254,19 +212,11 @@ Update a Destination and fully overwrite it
 ### Example Usage
 
 ```python
-import airbyte
-from airbyte.models import operations, shared
+import airbyte_api
 
-s = airbyte.Airbyte(
-    security=shared.Security(
-        basic_auth=shared.SchemeBasicAuth(
-            password="<YOUR_PASSWORD_HERE>",
-            username="<YOUR_USERNAME_HERE>",
-        ),
-    ),
-)
+s = airbyte_api.AirbyteAPI()
 
-req = operations.PutDestinationRequest(
+req = airbyte_api.PutDestinationRequest(
     destination_id='<value>',
 )
 
@@ -275,20 +225,21 @@ res = s.destinations.put_destination(req)
 if res.destination_response is not None:
     # handle response
     pass
+
 ```
 
 ### Parameters
 
-| Parameter                                                                            | Type                                                                                 | Required                                                                             | Description                                                                          |
-| ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ |
-| `request`                                                                            | [operations.PutDestinationRequest](../../models/operations/putdestinationrequest.md) | :heavy_check_mark:                                                                   | The request object to use for the request.                                           |
+| Parameter                                                             | Type                                                                  | Required                                                              | Description                                                           |
+| --------------------------------------------------------------------- | --------------------------------------------------------------------- | --------------------------------------------------------------------- | --------------------------------------------------------------------- |
+| `request`                                                             | [models.PutDestinationRequest](../../models/putdestinationrequest.md) | :heavy_check_mark:                                                    | The request object to use for the request.                            |
 
 
 ### Response
 
-**[operations.PutDestinationResponse](../../models/operations/putdestinationresponse.md)**
+**[models.PutDestinationResponse](../../models/putdestinationresponse.md)**
 ### Errors
 
 | Error Object    | Status Code     | Content Type    |
 | --------------- | --------------- | --------------- |
-| errors.SDKError | 4x-5xx          | */*             |
+| models.SDKError | 4xx-5xx         | */*             |

@@ -1,27 +1,15 @@
 <!-- Start SDK Example Usage [usage] -->
 ```python
-import airbyte
-from airbyte.models import shared
+import airbyte_api
 
-s = airbyte.Airbyte(
-    security=shared.Security(
-        basic_auth=shared.SchemeBasicAuth(
-            password="<YOUR_PASSWORD_HERE>",
-            username="<YOUR_USERNAME_HERE>",
-        ),
-    ),
-)
+s = airbyte_api.AirbyteAPI()
 
-req = shared.ConnectionCreateRequest(
-    destination_id='c669dd1e-3620-483e-afc8-55914e0a570f',
-    source_id='6dd427d8-3a55-4584-b835-842325b6c7b3',
-    namespace_format='${SOURCE_NAMESPACE}',
-)
 
-res = s.connections.create_connection(req)
+res = s.root.get_documentation()
 
-if res.connection_response is not None:
+if res is not None:
     # handle response
     pass
+
 ```
 <!-- End SDK Example Usage [usage] -->

@@ -18,49 +18,42 @@ In order to determine what the credential configuration needs to be, please see 
 ### Example Usage
 
 ```python
-import airbyte
-from airbyte.models import operations, shared
+import airbyte_api
 
-s = airbyte.Airbyte(
-    security=shared.Security(
-        basic_auth=shared.SchemeBasicAuth(
-            password="<YOUR_PASSWORD_HERE>",
-            username="<YOUR_USERNAME_HERE>",
-        ),
-    ),
-)
+s = airbyte_api.AirbyteAPI()
 
-req = operations.CreateOrUpdateWorkspaceOAuthCredentialsRequest(
-    workspace_o_auth_credentials_request=shared.WorkspaceOAuthCredentialsRequest(
-        actor_type=shared.ActorTypeEnum.DESTINATION,
-        configuration=shared.Airtable(),
-        name=shared.OAuthActorNames.AMAZON_ADS,
+req = airbyte_api.CreateOrUpdateWorkspaceOAuthCredentialsRequest(
+    workspace_o_auth_credentials_request=airbyte_api.WorkspaceOAuthCredentialsRequest(
+        actor_type=airbyte_api.ActorTypeEnum.DESTINATION,
+        configuration=airbyte_api.OAuthCredentialsConfiguration(),
+        name='<value>',
     ),
     workspace_id='<value>',
 )
 
 res = s.workspaces.create_or_update_workspace_o_auth_credentials(req)
 
-if res.status_code == 200:
+if res is not None:
     # handle response
     pass
+
 ```
 
 ### Parameters
 
-| Parameter                                                                                                                              | Type                                                                                                                                   | Required                                                                                                                               | Description                                                                                                                            |
-| -------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------- |
-| `request`                                                                                                                              | [operations.CreateOrUpdateWorkspaceOAuthCredentialsRequest](../../models/operations/createorupdateworkspaceoauthcredentialsrequest.md) | :heavy_check_mark:                                                                                                                     | The request object to use for the request.                                                                                             |
+| Parameter                                                                                                               | Type                                                                                                                    | Required                                                                                                                | Description                                                                                                             |
+| ----------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------- |
+| `request`                                                                                                               | [models.CreateOrUpdateWorkspaceOAuthCredentialsRequest](../../models/createorupdateworkspaceoauthcredentialsrequest.md) | :heavy_check_mark:                                                                                                      | The request object to use for the request.                                                                              |
 
 
 ### Response
 
-**[operations.CreateOrUpdateWorkspaceOAuthCredentialsResponse](../../models/operations/createorupdateworkspaceoauthcredentialsresponse.md)**
+**[models.CreateOrUpdateWorkspaceOAuthCredentialsResponse](../../models/createorupdateworkspaceoauthcredentialsresponse.md)**
 ### Errors
 
 | Error Object    | Status Code     | Content Type    |
 | --------------- | --------------- | --------------- |
-| errors.SDKError | 4x-5xx          | */*             |
+| models.SDKError | 4xx-5xx         | */*             |
 
 ## create_workspace
 
@@ -69,19 +62,11 @@ Create a workspace
 ### Example Usage
 
 ```python
-import airbyte
-from airbyte.models import shared
+import airbyte_api
 
-s = airbyte.Airbyte(
-    security=shared.Security(
-        basic_auth=shared.SchemeBasicAuth(
-            password="<YOUR_PASSWORD_HERE>",
-            username="<YOUR_USERNAME_HERE>",
-        ),
-    ),
-)
+s = airbyte_api.AirbyteAPI()
 
-req = shared.WorkspaceCreateRequest(
+req = airbyte_api.WorkspaceCreateRequest(
     name='<value>',
 )
 
@@ -90,23 +75,24 @@ res = s.workspaces.create_workspace(req)
 if res.workspace_response is not None:
     # handle response
     pass
+
 ```
 
 ### Parameters
 
-| Parameter                                                                      | Type                                                                           | Required                                                                       | Description                                                                    |
-| ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ |
-| `request`                                                                      | [shared.WorkspaceCreateRequest](../../models/shared/workspacecreaterequest.md) | :heavy_check_mark:                                                             | The request object to use for the request.                                     |
+| Parameter                                                               | Type                                                                    | Required                                                                | Description                                                             |
+| ----------------------------------------------------------------------- | ----------------------------------------------------------------------- | ----------------------------------------------------------------------- | ----------------------------------------------------------------------- |
+| `request`                                                               | [models.WorkspaceCreateRequest](../../models/workspacecreaterequest.md) | :heavy_check_mark:                                                      | The request object to use for the request.                              |
 
 
 ### Response
 
-**[operations.CreateWorkspaceResponse](../../models/operations/createworkspaceresponse.md)**
+**[models.CreateWorkspaceResponse](../../models/createworkspaceresponse.md)**
 ### Errors
 
 | Error Object    | Status Code     | Content Type    |
 | --------------- | --------------- | --------------- |
-| errors.SDKError | 4x-5xx          | */*             |
+| models.SDKError | 4xx-5xx         | */*             |
 
 ## delete_workspace
 
@@ -115,44 +101,37 @@ Delete a Workspace
 ### Example Usage
 
 ```python
-import airbyte
-from airbyte.models import operations, shared
+import airbyte_api
 
-s = airbyte.Airbyte(
-    security=shared.Security(
-        basic_auth=shared.SchemeBasicAuth(
-            password="<YOUR_PASSWORD_HERE>",
-            username="<YOUR_USERNAME_HERE>",
-        ),
-    ),
-)
+s = airbyte_api.AirbyteAPI()
 
-req = operations.DeleteWorkspaceRequest(
+req = airbyte_api.DeleteWorkspaceRequest(
     workspace_id='<value>',
 )
 
 res = s.workspaces.delete_workspace(req)
 
-if res.status_code == 200:
+if res is not None:
     # handle response
     pass
+
 ```
 
 ### Parameters
 
-| Parameter                                                                              | Type                                                                                   | Required                                                                               | Description                                                                            |
-| -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- |
-| `request`                                                                              | [operations.DeleteWorkspaceRequest](../../models/operations/deleteworkspacerequest.md) | :heavy_check_mark:                                                                     | The request object to use for the request.                                             |
+| Parameter                                                               | Type                                                                    | Required                                                                | Description                                                             |
+| ----------------------------------------------------------------------- | ----------------------------------------------------------------------- | ----------------------------------------------------------------------- | ----------------------------------------------------------------------- |
+| `request`                                                               | [models.DeleteWorkspaceRequest](../../models/deleteworkspacerequest.md) | :heavy_check_mark:                                                      | The request object to use for the request.                              |
 
 
 ### Response
 
-**[operations.DeleteWorkspaceResponse](../../models/operations/deleteworkspaceresponse.md)**
+**[models.DeleteWorkspaceResponse](../../models/deleteworkspaceresponse.md)**
 ### Errors
 
 | Error Object    | Status Code     | Content Type    |
 | --------------- | --------------- | --------------- |
-| errors.SDKError | 4x-5xx          | */*             |
+| models.SDKError | 4xx-5xx         | */*             |
 
 ## get_workspace
 
@@ -161,19 +140,11 @@ Get Workspace details
 ### Example Usage
 
 ```python
-import airbyte
-from airbyte.models import operations, shared
+import airbyte_api
 
-s = airbyte.Airbyte(
-    security=shared.Security(
-        basic_auth=shared.SchemeBasicAuth(
-            password="<YOUR_PASSWORD_HERE>",
-            username="<YOUR_USERNAME_HERE>",
-        ),
-    ),
-)
+s = airbyte_api.AirbyteAPI()
 
-req = operations.GetWorkspaceRequest(
+req = airbyte_api.GetWorkspaceRequest(
     workspace_id='<value>',
 )
 
@@ -182,23 +153,24 @@ res = s.workspaces.get_workspace(req)
 if res.workspace_response is not None:
     # handle response
     pass
+
 ```
 
 ### Parameters
 
-| Parameter                                                                        | Type                                                                             | Required                                                                         | Description                                                                      |
-| -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
-| `request`                                                                        | [operations.GetWorkspaceRequest](../../models/operations/getworkspacerequest.md) | :heavy_check_mark:                                                               | The request object to use for the request.                                       |
+| Parameter                                                         | Type                                                              | Required                                                          | Description                                                       |
+| ----------------------------------------------------------------- | ----------------------------------------------------------------- | ----------------------------------------------------------------- | ----------------------------------------------------------------- |
+| `request`                                                         | [models.GetWorkspaceRequest](../../models/getworkspacerequest.md) | :heavy_check_mark:                                                | The request object to use for the request.                        |
 
 
 ### Response
 
-**[operations.GetWorkspaceResponse](../../models/operations/getworkspaceresponse.md)**
+**[models.GetWorkspaceResponse](../../models/getworkspaceresponse.md)**
 ### Errors
 
 | Error Object    | Status Code     | Content Type    |
 | --------------- | --------------- | --------------- |
-| errors.SDKError | 4x-5xx          | */*             |
+| models.SDKError | 4xx-5xx         | */*             |
 
 ## list_workspaces
 
@@ -207,42 +179,35 @@ List workspaces
 ### Example Usage
 
 ```python
-import airbyte
-from airbyte.models import operations, shared
+import airbyte_api
 
-s = airbyte.Airbyte(
-    security=shared.Security(
-        basic_auth=shared.SchemeBasicAuth(
-            password="<YOUR_PASSWORD_HERE>",
-            username="<YOUR_USERNAME_HERE>",
-        ),
-    ),
-)
+s = airbyte_api.AirbyteAPI()
 
-req = operations.ListWorkspacesRequest()
+req = airbyte_api.ListWorkspacesRequest()
 
 res = s.workspaces.list_workspaces(req)
 
 if res.workspaces_response is not None:
     # handle response
     pass
+
 ```
 
 ### Parameters
 
-| Parameter                                                                            | Type                                                                                 | Required                                                                             | Description                                                                          |
-| ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ |
-| `request`                                                                            | [operations.ListWorkspacesRequest](../../models/operations/listworkspacesrequest.md) | :heavy_check_mark:                                                                   | The request object to use for the request.                                           |
+| Parameter                                                             | Type                                                                  | Required                                                              | Description                                                           |
+| --------------------------------------------------------------------- | --------------------------------------------------------------------- | --------------------------------------------------------------------- | --------------------------------------------------------------------- |
+| `request`                                                             | [models.ListWorkspacesRequest](../../models/listworkspacesrequest.md) | :heavy_check_mark:                                                    | The request object to use for the request.                            |
 
 
 ### Response
 
-**[operations.ListWorkspacesResponse](../../models/operations/listworkspacesresponse.md)**
+**[models.ListWorkspacesResponse](../../models/listworkspacesresponse.md)**
 ### Errors
 
 | Error Object    | Status Code     | Content Type    |
 | --------------- | --------------- | --------------- |
-| errors.SDKError | 4x-5xx          | */*             |
+| models.SDKError | 4xx-5xx         | */*             |
 
 ## update_workspace
 
@@ -251,20 +216,12 @@ Update a workspace
 ### Example Usage
 
 ```python
-import airbyte
-from airbyte.models import operations, shared
+import airbyte_api
 
-s = airbyte.Airbyte(
-    security=shared.Security(
-        basic_auth=shared.SchemeBasicAuth(
-            password="<YOUR_PASSWORD_HERE>",
-            username="<YOUR_USERNAME_HERE>",
-        ),
-    ),
-)
+s = airbyte_api.AirbyteAPI()
 
-req = operations.UpdateWorkspaceRequest(
-    workspace_update_request=shared.WorkspaceUpdateRequest(
+req = airbyte_api.UpdateWorkspaceRequest(
+    workspace_update_request=airbyte_api.WorkspaceUpdateRequest(
         name='<value>',
     ),
     workspace_id='<value>',
@@ -275,20 +232,21 @@ res = s.workspaces.update_workspace(req)
 if res.workspace_response is not None:
     # handle response
     pass
+
 ```
 
 ### Parameters
 
-| Parameter                                                                              | Type                                                                                   | Required                                                                               | Description                                                                            |
-| -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- |
-| `request`                                                                              | [operations.UpdateWorkspaceRequest](../../models/operations/updateworkspacerequest.md) | :heavy_check_mark:                                                                     | The request object to use for the request.                                             |
+| Parameter                                                               | Type                                                                    | Required                                                                | Description                                                             |
+| ----------------------------------------------------------------------- | ----------------------------------------------------------------------- | ----------------------------------------------------------------------- | ----------------------------------------------------------------------- |
+| `request`                                                               | [models.UpdateWorkspaceRequest](../../models/updateworkspacerequest.md) | :heavy_check_mark:                                                      | The request object to use for the request.                              |
 
 
 ### Response
 
-**[operations.UpdateWorkspaceResponse](../../models/operations/updateworkspaceresponse.md)**
+**[models.UpdateWorkspaceResponse](../../models/updateworkspaceresponse.md)**
 ### Errors
 
 | Error Object    | Status Code     | Content Type    |
 | --------------- | --------------- | --------------- |
-| errors.SDKError | 4x-5xx          | */*             |
+| models.SDKError | 4xx-5xx         | */*             |

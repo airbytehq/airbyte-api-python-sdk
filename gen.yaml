@@ -12,6 +12,10 @@ generation:
     oAuth2ClientCredentialsEnabled: false
 python:
   version: 0.48.0
+  additionalDependencies:
+    dependencies: {}
+    extraDependencies:
+      dev: {}
   author: Airbyte
   clientServerStatusCodesAsErrors: true
   description: Python Client SDK for Airbyte API
@@ -28,3 +32,5 @@ python:
   maxMethodParams: 0
   outputModelSuffix: output
   packageName: airbyte-api
+  projectUrls: {}
+  responseFormat: envelope

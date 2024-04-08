@@ -1,9 +1,0 @@
-# SourceMonday
-
-
-## Fields
-
-| Field                                                                                                                  | Type                                                                                                                   | Required                                                                                                               | Description                                                                                                            |
-| ---------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------- |
-| `credentials`                                                                                                          | [Optional[Union[shared.SourceMondayOAuth20, shared.APIToken]]](../../models/shared/sourcemondayauthorizationmethod.md) | :heavy_minus_sign:                                                                                                     | N/A                                                                                                                    |
-| `source_type`                                                                                                          | [shared.SourceMondayMonday](../../models/shared/sourcemondaymonday.md)                                                 | :heavy_check_mark:                                                                                                     | N/A                                                                                                                    |
