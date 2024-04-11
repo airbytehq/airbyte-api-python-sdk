@@ -2,7 +2,7 @@
 
 import requests as requests_http
 from .sdkconfiguration import SDKConfiguration
-from airbyte_api import models, utils
+from airbyte_api import api, errors, models, utils
 from airbyte_api._hooks import AfterErrorContext, AfterSuccessContext, BeforeRequestContext, HookContext
 from typing import Optional
 
@@ -14,7 +14,7 @@ class Jobs:
         
     
     
-    def cancel_job(self, request: models.CancelJobRequest) -> models.CancelJobResponse:
+    def cancel_job(self, request: api.CancelJobRequest) -> api.CancelJobResponse:
         r"""Cancel a running Job"""
         hook_ctx = HookContext(operation_id='cancelJob', oauth2_scopes=[], security_source=self.sdk_configuration.security)
         base_url = utils.template_url(*self.sdk_configuration.get_server_details())
@@ -50,7 +50,7 @@ class Jobs:
             
         
         
-        res = models.CancelJobResponse(status_code=http_res.status_code, content_type=http_res.headers.get('Content-Type') or '', raw_response=http_res)
+        res = api.CancelJobResponse(status_code=http_res.status_code, content_type=http_res.headers.get('Content-Type') or '', raw_response=http_res)
         
         if http_res.status_code == 200:
             if utils.match_content_type(http_res.headers.get('Content-Type') or '', 'application/json'):                
@@ -58,17 +58,17 @@ class Jobs:
                 res.job_response = out
             else:
                 content_type = http_res.headers.get('Content-Type')
-                raise models.SDKError(f'unknown content-type received: {content_type}', http_res.status_code, http_res.text, http_res)
+                raise errors.SDKError(f'unknown content-type received: {content_type}', http_res.status_code, http_res.text, http_res)
         elif http_res.status_code == 403 or http_res.status_code == 404 or http_res.status_code >= 400 and http_res.status_code < 500 or http_res.status_code >= 500 and http_res.status_code < 600:
-            raise models.SDKError('API error occurred', http_res.status_code, http_res.text, http_res)
+            raise errors.SDKError('API error occurred', http_res.status_code, http_res.text, http_res)
         else:
-            raise models.SDKError('unknown status code received', http_res.status_code, http_res.text, http_res)
+            raise errors.SDKError('unknown status code received', http_res.status_code, http_res.text, http_res)
 
         return res
 
     
     
-    def create_job(self, request: models.JobCreateRequest) -> models.CreateJobResponse:
+    def create_job(self, request: models.JobCreateRequest) -> api.CreateJobResponse:
         r"""Trigger a sync or reset job of a connection"""
         hook_ctx = HookContext(operation_id='createJob', oauth2_scopes=[], security_source=self.sdk_configuration.security)
         base_url = utils.template_url(*self.sdk_configuration.get_server_details())
@@ -109,7 +109,7 @@ class Jobs:
             
         
         
-        res = models.CreateJobResponse(status_code=http_res.status_code, content_type=http_res.headers.get('Content-Type') or '', raw_response=http_res)
+        res = api.CreateJobResponse(status_code=http_res.status_code, content_type=http_res.headers.get('Content-Type') or '', raw_response=http_res)
         
         if http_res.status_code == 200:
             if utils.match_content_type(http_res.headers.get('Content-Type') or '', 'application/json'):                
@@ -117,17 +117,17 @@ class Jobs:
                 res.job_response = out
             else:
                 content_type = http_res.headers.get('Content-Type')
-                raise models.SDKError(f'unknown content-type received: {content_type}', http_res.status_code, http_res.text, http_res)
+                raise errors.SDKError(f'unknown content-type received: {content_type}', http_res.status_code, http_res.text, http_res)
         elif http_res.status_code == 400 or http_res.status_code == 403 or http_res.status_code >= 400 and http_res.status_code < 500 or http_res.status_code >= 500 and http_res.status_code < 600:
-            raise models.SDKError('API error occurred', http_res.status_code, http_res.text, http_res)
+            raise errors.SDKError('API error occurred', http_res.status_code, http_res.text, http_res)
         else:
-            raise models.SDKError('unknown status code received', http_res.status_code, http_res.text, http_res)
+            raise errors.SDKError('unknown status code received', http_res.status_code, http_res.text, http_res)
 
         return res
 
     
     
-    def get_job(self, request: models.GetJobRequest) -> models.GetJobResponse:
+    def get_job(self, request: api.GetJobRequest) -> api.GetJobResponse:
         r"""Get Job status and details"""
         hook_ctx = HookContext(operation_id='getJob', oauth2_scopes=[], security_source=self.sdk_configuration.security)
         base_url = utils.template_url(*self.sdk_configuration.get_server_details())
@@ -163,7 +163,7 @@ class Jobs:
             
         
         
-        res = models.GetJobResponse(status_code=http_res.status_code, content_type=http_res.headers.get('Content-Type') or '', raw_response=http_res)
+        res = api.GetJobResponse(status_code=http_res.status_code, content_type=http_res.headers.get('Content-Type') or '', raw_response=http_res)
         
         if http_res.status_code == 200:
             if utils.match_content_type(http_res.headers.get('Content-Type') or '', 'application/json'):                
@@ -171,17 +171,17 @@ class Jobs:
                 res.job_response = out
             else:
                 content_type = http_res.headers.get('Content-Type')
-                raise models.SDKError(f'unknown content-type received: {content_type}', http_res.status_code, http_res.text, http_res)
+                raise errors.SDKError(f'unknown content-type received: {content_type}', http_res.status_code, http_res.text, http_res)
         elif http_res.status_code == 403 or http_res.status_code == 404 or http_res.status_code >= 400 and http_res.status_code < 500 or http_res.status_code >= 500 and http_res.status_code < 600:
-            raise models.SDKError('API error occurred', http_res.status_code, http_res.text, http_res)
+            raise errors.SDKError('API error occurred', http_res.status_code, http_res.text, http_res)
         else:
-            raise models.SDKError('unknown status code received', http_res.status_code, http_res.text, http_res)
+            raise errors.SDKError('unknown status code received', http_res.status_code, http_res.text, http_res)
 
         return res
 
     
     
-    def list_jobs(self, request: models.ListJobsRequest) -> models.ListJobsResponse:
+    def list_jobs(self, request: api.ListJobsRequest) -> api.ListJobsResponse:
         r"""List Jobs by sync type"""
         hook_ctx = HookContext(operation_id='listJobs', oauth2_scopes=[], security_source=self.sdk_configuration.security)
         base_url = utils.template_url(*self.sdk_configuration.get_server_details())
@@ -218,7 +218,7 @@ class Jobs:
             
         
         
-        res = models.ListJobsResponse(status_code=http_res.status_code, content_type=http_res.headers.get('Content-Type') or '', raw_response=http_res)
+        res = api.ListJobsResponse(status_code=http_res.status_code, content_type=http_res.headers.get('Content-Type') or '', raw_response=http_res)
         
         if http_res.status_code == 200:
             if utils.match_content_type(http_res.headers.get('Content-Type') or '', 'application/json'):                
@@ -226,11 +226,11 @@ class Jobs:
                 res.jobs_response = out
             else:
                 content_type = http_res.headers.get('Content-Type')
-                raise models.SDKError(f'unknown content-type received: {content_type}', http_res.status_code, http_res.text, http_res)
+                raise errors.SDKError(f'unknown content-type received: {content_type}', http_res.status_code, http_res.text, http_res)
         elif http_res.status_code == 403 or http_res.status_code >= 400 and http_res.status_code < 500 or http_res.status_code >= 500 and http_res.status_code < 600:
-            raise models.SDKError('API error occurred', http_res.status_code, http_res.text, http_res)
+            raise errors.SDKError('API error occurred', http_res.status_code, http_res.text, http_res)
         else:
-            raise models.SDKError('unknown status code received', http_res.status_code, http_res.text, http_res)
+            raise errors.SDKError('unknown status code received', http_res.status_code, http_res.text, http_res)
 
         return res
 

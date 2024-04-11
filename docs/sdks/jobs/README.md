@@ -16,17 +16,18 @@ Cancel a running Job
 
 ```python
 import airbyte_api
+from airbyte_api import api, models
 
 s = airbyte_api.AirbyteAPI(
-    security=airbyte_api.Security(
-        basic_auth=airbyte_api.SchemeBasicAuth(
+    security=models.Security(
+        basic_auth=models.SchemeBasicAuth(
             password="<YOUR_PASSWORD_HERE>",
             username="<YOUR_USERNAME_HERE>",
         ),
     ),
 )
 
-req = airbyte_api.CancelJobRequest(
+req = api.CancelJobRequest(
     job_id=801771,
 )
 
@@ -40,19 +41,19 @@ if res.job_response is not None:
 
 ### Parameters
 
-| Parameter                                                   | Type                                                        | Required                                                    | Description                                                 |
-| ----------------------------------------------------------- | ----------------------------------------------------------- | ----------------------------------------------------------- | ----------------------------------------------------------- |
-| `request`                                                   | [models.CancelJobRequest](../../models/canceljobrequest.md) | :heavy_check_mark:                                          | The request object to use for the request.                  |
+| Parameter                                             | Type                                                  | Required                                              | Description                                           |
+| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
+| `request`                                             | [api.CancelJobRequest](../../api/canceljobrequest.md) | :heavy_check_mark:                                    | The request object to use for the request.            |
 
 
 ### Response
 
-**[models.CancelJobResponse](../../models/canceljobresponse.md)**
+**[api.CancelJobResponse](../../api/canceljobresponse.md)**
 ### Errors
 
 | Error Object    | Status Code     | Content Type    |
 | --------------- | --------------- | --------------- |
-| models.SDKError | 4xx-5xx         | */*             |
+| errors.SDKError | 4xx-5xx         | */*             |
 
 ## create_job
 
@@ -62,19 +63,20 @@ Trigger a sync or reset job of a connection
 
 ```python
 import airbyte_api
+from airbyte_api import models
 
 s = airbyte_api.AirbyteAPI(
-    security=airbyte_api.Security(
-        basic_auth=airbyte_api.SchemeBasicAuth(
+    security=models.Security(
+        basic_auth=models.SchemeBasicAuth(
             password="<YOUR_PASSWORD_HERE>",
             username="<YOUR_USERNAME_HERE>",
         ),
     ),
 )
 
-req = airbyte_api.JobCreateRequest(
+req = models.JobCreateRequest(
     connection_id='18dccc91-0ab1-4f72-9ed7-0b8fc27c5826',
-    job_type=airbyte_api.JobTypeEnum.SYNC,
+    job_type=models.JobTypeEnum.SYNC,
 )
 
 res = s.jobs.create_job(req)
@@ -94,12 +96,12 @@ if res.job_response is not None:
 
 ### Response
 
-**[models.CreateJobResponse](../../models/createjobresponse.md)**
+**[api.CreateJobResponse](../../api/createjobresponse.md)**
 ### Errors
 
 | Error Object    | Status Code     | Content Type    |
 | --------------- | --------------- | --------------- |
-| models.SDKError | 4xx-5xx         | */*             |
+| errors.SDKError | 4xx-5xx         | */*             |
 
 ## get_job
 
@@ -109,17 +111,18 @@ Get Job status and details
 
 ```python
 import airbyte_api
+from airbyte_api import api, models
 
 s = airbyte_api.AirbyteAPI(
-    security=airbyte_api.Security(
-        basic_auth=airbyte_api.SchemeBasicAuth(
+    security=models.Security(
+        basic_auth=models.SchemeBasicAuth(
             password="<YOUR_PASSWORD_HERE>",
             username="<YOUR_USERNAME_HERE>",
         ),
     ),
 )
 
-req = airbyte_api.GetJobRequest(
+req = api.GetJobRequest(
     job_id=131101,
 )
 
@@ -133,19 +136,19 @@ if res.job_response is not None:
 
 ### Parameters
 
-| Parameter                                             | Type                                                  | Required                                              | Description                                           |
-| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
-| `request`                                             | [models.GetJobRequest](../../models/getjobrequest.md) | :heavy_check_mark:                                    | The request object to use for the request.            |
+| Parameter                                       | Type                                            | Required                                        | Description                                     |
+| ----------------------------------------------- | ----------------------------------------------- | ----------------------------------------------- | ----------------------------------------------- |
+| `request`                                       | [api.GetJobRequest](../../api/getjobrequest.md) | :heavy_check_mark:                              | The request object to use for the request.      |
 
 
 ### Response
 
-**[models.GetJobResponse](../../models/getjobresponse.md)**
+**[api.GetJobResponse](../../api/getjobresponse.md)**
 ### Errors
 
 | Error Object    | Status Code     | Content Type    |
 | --------------- | --------------- | --------------- |
-| models.SDKError | 4xx-5xx         | */*             |
+| errors.SDKError | 4xx-5xx         | */*             |
 
 ## list_jobs
 
@@ -155,17 +158,18 @@ List Jobs by sync type
 
 ```python
 import airbyte_api
+from airbyte_api import api, models
 
 s = airbyte_api.AirbyteAPI(
-    security=airbyte_api.Security(
-        basic_auth=airbyte_api.SchemeBasicAuth(
+    security=models.Security(
+        basic_auth=models.SchemeBasicAuth(
             password="<YOUR_PASSWORD_HERE>",
             username="<YOUR_USERNAME_HERE>",
         ),
     ),
 )
 
-req = airbyte_api.ListJobsRequest()
+req = api.ListJobsRequest()
 
 res = s.jobs.list_jobs(req)
 
@@ -177,16 +181,16 @@ if res.jobs_response is not None:
 
 ### Parameters
 
-| Parameter                                                 | Type                                                      | Required                                                  | Description                                               |
-| --------------------------------------------------------- | --------------------------------------------------------- | --------------------------------------------------------- | --------------------------------------------------------- |
-| `request`                                                 | [models.ListJobsRequest](../../models/listjobsrequest.md) | :heavy_check_mark:                                        | The request object to use for the request.                |
+| Parameter                                           | Type                                                | Required                                            | Description                                         |
+| --------------------------------------------------- | --------------------------------------------------- | --------------------------------------------------- | --------------------------------------------------- |
+| `request`                                           | [api.ListJobsRequest](../../api/listjobsrequest.md) | :heavy_check_mark:                                  | The request object to use for the request.          |
 
 
 ### Response
 
-**[models.ListJobsResponse](../../models/listjobsresponse.md)**
+**[api.ListJobsResponse](../../api/listjobsresponse.md)**
 ### Errors
 
 | Error Object    | Status Code     | Content Type    |
 | --------------- | --------------- | --------------- |
-| models.SDKError | 4xx-5xx         | */*             |
+| errors.SDKError | 4xx-5xx         | */*             |

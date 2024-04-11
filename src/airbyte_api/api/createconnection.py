@@ -3,19 +3,19 @@
 from __future__ import annotations
 import dataclasses
 import requests as requests_http
-from .jobresponse import JobResponse
+from ..models import connectionresponse as models_connectionresponse
 from typing import Optional
 
 
 @dataclasses.dataclass
-class CreateJobResponse:
+class CreateConnectionResponse:
     content_type: str = dataclasses.field()
     r"""HTTP response content type for this operation"""
     status_code: int = dataclasses.field()
     r"""HTTP response status code for this operation"""
     raw_response: requests_http.Response = dataclasses.field()
     r"""Raw HTTP response; suitable for custom response parsing"""
-    job_response: Optional[JobResponse] = dataclasses.field(default=None)
-    r"""Kicks off a new Job based on the JobType. The connectionId is the resource that Job will be run for."""
+    connection_response: Optional[models_connectionresponse.ConnectionResponse] = dataclasses.field(default=None)
+    r"""Successful operation"""
     
 

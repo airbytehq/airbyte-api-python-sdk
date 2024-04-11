@@ -3,24 +3,19 @@
 from __future__ import annotations
 import dataclasses
 import requests as requests_http
-from .workspaceoauthcredentialsrequest import WorkspaceOAuthCredentialsRequest
+from ..models import workspaceresponse as models_workspaceresponse
+from typing import Optional
 
 
 @dataclasses.dataclass
-class CreateOrUpdateWorkspaceOAuthCredentialsRequest:
-    workspace_o_auth_credentials_request: WorkspaceOAuthCredentialsRequest = dataclasses.field(metadata={'request': { 'media_type': 'application/json' }})
-    workspace_id: str = dataclasses.field(metadata={'path_param': { 'field_name': 'workspaceId', 'style': 'simple', 'explode': False }})
-    
-
-
-
-@dataclasses.dataclass
-class CreateOrUpdateWorkspaceOAuthCredentialsResponse:
+class CreateWorkspaceResponse:
     content_type: str = dataclasses.field()
     r"""HTTP response content type for this operation"""
     status_code: int = dataclasses.field()
     r"""HTTP response status code for this operation"""
     raw_response: requests_http.Response = dataclasses.field()
     r"""Raw HTTP response; suitable for custom response parsing"""
+    workspace_response: Optional[models_workspaceresponse.WorkspaceResponse] = dataclasses.field(default=None)
+    r"""Successful operation"""
     
 

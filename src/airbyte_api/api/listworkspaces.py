@@ -3,7 +3,7 @@
 from __future__ import annotations
 import dataclasses
 import requests as requests_http
-from .workspacesresponse import WorkspacesResponse
+from ..models import workspacesresponse as models_workspacesresponse
 from typing import List, Optional
 
 
@@ -29,7 +29,7 @@ class ListWorkspacesResponse:
     r"""HTTP response status code for this operation"""
     raw_response: requests_http.Response = dataclasses.field()
     r"""Raw HTTP response; suitable for custom response parsing"""
-    workspaces_response: Optional[WorkspacesResponse] = dataclasses.field(default=None)
+    workspaces_response: Optional[models_workspacesresponse.WorkspacesResponse] = dataclasses.field(default=None)
     r"""Successful operation"""
     
 

@@ -2,7 +2,7 @@
 
 import requests as requests_http
 from .sdkconfiguration import SDKConfiguration
-from airbyte_api import models, utils
+from airbyte_api import api, errors, models, utils
 from airbyte_api._hooks import AfterErrorContext, AfterSuccessContext, BeforeRequestContext, HookContext
 from typing import Optional
 
@@ -14,7 +14,7 @@ class Destinations:
         
     
     
-    def create_destination(self, request: Optional[models.DestinationCreateRequest]) -> models.CreateDestinationResponse:
+    def create_destination(self, request: Optional[models.DestinationCreateRequest]) -> api.CreateDestinationResponse:
         r"""Create a destination
         Creates a destination given a name, workspace id, and a json blob containing the configuration for the source.
         """
@@ -55,7 +55,7 @@ class Destinations:
             
         
         
-        res = models.CreateDestinationResponse(status_code=http_res.status_code, content_type=http_res.headers.get('Content-Type') or '', raw_response=http_res)
+        res = api.CreateDestinationResponse(status_code=http_res.status_code, content_type=http_res.headers.get('Content-Type') or '', raw_response=http_res)
         
         if http_res.status_code == 200:
             if utils.match_content_type(http_res.headers.get('Content-Type') or '', 'application/json'):                
@@ -63,17 +63,17 @@ class Destinations:
                 res.destination_response = out
             else:
                 content_type = http_res.headers.get('Content-Type')
-                raise models.SDKError(f'unknown content-type received: {content_type}', http_res.status_code, http_res.text, http_res)
+                raise errors.SDKError(f'unknown content-type received: {content_type}', http_res.status_code, http_res.text, http_res)
         elif http_res.status_code == 400 or http_res.status_code == 403 or http_res.status_code == 404 or http_res.status_code >= 400 and http_res.status_code < 500 or http_res.status_code >= 500 and http_res.status_code < 600:
-            raise models.SDKError('API error occurred', http_res.status_code, http_res.text, http_res)
+            raise errors.SDKError('API error occurred', http_res.status_code, http_res.text, http_res)
         else:
-            raise models.SDKError('unknown status code received', http_res.status_code, http_res.text, http_res)
+            raise errors.SDKError('unknown status code received', http_res.status_code, http_res.text, http_res)
 
         return res
 
     
     
-    def delete_destination(self, request: models.DeleteDestinationRequest) -> models.DeleteDestinationResponse:
+    def delete_destination(self, request: api.DeleteDestinationRequest) -> api.DeleteDestinationResponse:
         r"""Delete a Destination"""
         hook_ctx = HookContext(operation_id='deleteDestination', oauth2_scopes=[], security_source=self.sdk_configuration.security)
         base_url = utils.template_url(*self.sdk_configuration.get_server_details())
@@ -109,20 +109,20 @@ class Destinations:
             
         
         
-        res = models.DeleteDestinationResponse(status_code=http_res.status_code, content_type=http_res.headers.get('Content-Type') or '', raw_response=http_res)
+        res = api.DeleteDestinationResponse(status_code=http_res.status_code, content_type=http_res.headers.get('Content-Type') or '', raw_response=http_res)
         
         if http_res.status_code == 204:
             pass
         elif http_res.status_code == 403 or http_res.status_code == 404 or http_res.status_code >= 400 and http_res.status_code < 500 or http_res.status_code >= 500 and http_res.status_code < 600:
-            raise models.SDKError('API error occurred', http_res.status_code, http_res.text, http_res)
+            raise errors.SDKError('API error occurred', http_res.status_code, http_res.text, http_res)
         else:
-            raise models.SDKError('unknown status code received', http_res.status_code, http_res.text, http_res)
+            raise errors.SDKError('unknown status code received', http_res.status_code, http_res.text, http_res)
 
         return res
 
     
     
-    def get_destination(self, request: models.GetDestinationRequest) -> models.GetDestinationResponse:
+    def get_destination(self, request: api.GetDestinationRequest) -> api.GetDestinationResponse:
         r"""Get Destination details"""
         hook_ctx = HookContext(operation_id='getDestination', oauth2_scopes=[], security_source=self.sdk_configuration.security)
         base_url = utils.template_url(*self.sdk_configuration.get_server_details())
@@ -158,7 +158,7 @@ class Destinations:
             
         
         
-        res = models.GetDestinationResponse(status_code=http_res.status_code, content_type=http_res.headers.get('Content-Type') or '', raw_response=http_res)
+        res = api.GetDestinationResponse(status_code=http_res.status_code, content_type=http_res.headers.get('Content-Type') or '', raw_response=http_res)
         
         if http_res.status_code == 200:
             if utils.match_content_type(http_res.headers.get('Content-Type') or '', 'application/json'):                
@@ -166,17 +166,17 @@ class Destinations:
                 res.destination_response = out
             else:
                 content_type = http_res.headers.get('Content-Type')
-                raise models.SDKError(f'unknown content-type received: {content_type}', http_res.status_code, http_res.text, http_res)
+                raise errors.SDKError(f'unknown content-type received: {content_type}', http_res.status_code, http_res.text, http_res)
         elif http_res.status_code == 403 or http_res.status_code == 404 or http_res.status_code >= 400 and http_res.status_code < 500 or http_res.status_code >= 500 and http_res.status_code < 600:
-            raise models.SDKError('API error occurred', http_res.status_code, http_res.text, http_res)
+            raise errors.SDKError('API error occurred', http_res.status_code, http_res.text, http_res)
         else:
-            raise models.SDKError('unknown status code received', http_res.status_code, http_res.text, http_res)
+            raise errors.SDKError('unknown status code received', http_res.status_code, http_res.text, http_res)
 
         return res
 
     
     
-    def list_destinations(self, request: models.ListDestinationsRequest) -> models.ListDestinationsResponse:
+    def list_destinations(self, request: api.ListDestinationsRequest) -> api.ListDestinationsResponse:
         r"""List destinations"""
         hook_ctx = HookContext(operation_id='listDestinations', oauth2_scopes=[], security_source=self.sdk_configuration.security)
         base_url = utils.template_url(*self.sdk_configuration.get_server_details())
@@ -213,7 +213,7 @@ class Destinations:
             
         
         
-        res = models.ListDestinationsResponse(status_code=http_res.status_code, content_type=http_res.headers.get('Content-Type') or '', raw_response=http_res)
+        res = api.ListDestinationsResponse(status_code=http_res.status_code, content_type=http_res.headers.get('Content-Type') or '', raw_response=http_res)
         
         if http_res.status_code == 200:
             if utils.match_content_type(http_res.headers.get('Content-Type') or '', 'application/json'):                
@@ -221,17 +221,17 @@ class Destinations:
                 res.destinations_response = out
             else:
                 content_type = http_res.headers.get('Content-Type')
-                raise models.SDKError(f'unknown content-type received: {content_type}', http_res.status_code, http_res.text, http_res)
+                raise errors.SDKError(f'unknown content-type received: {content_type}', http_res.status_code, http_res.text, http_res)
         elif http_res.status_code == 403 or http_res.status_code == 404 or http_res.status_code >= 400 and http_res.status_code < 500 or http_res.status_code >= 500 and http_res.status_code < 600:
-            raise models.SDKError('API error occurred', http_res.status_code, http_res.text, http_res)
+            raise errors.SDKError('API error occurred', http_res.status_code, http_res.text, http_res)
         else:
-            raise models.SDKError('unknown status code received', http_res.status_code, http_res.text, http_res)
+            raise errors.SDKError('unknown status code received', http_res.status_code, http_res.text, http_res)
 
         return res
 
     
     
-    def patch_destination(self, request: models.PatchDestinationRequest) -> models.PatchDestinationResponse:
+    def patch_destination(self, request: api.PatchDestinationRequest) -> api.PatchDestinationResponse:
         r"""Update a Destination"""
         hook_ctx = HookContext(operation_id='patchDestination', oauth2_scopes=[], security_source=self.sdk_configuration.security)
         base_url = utils.template_url(*self.sdk_configuration.get_server_details())
@@ -243,7 +243,7 @@ class Destinations:
         else:
             headers, query_params = utils.get_security(self.sdk_configuration.security)
         
-        req_content_type, data, form = utils.serialize_request_body(request, models.PatchDestinationRequest, "destination_patch_request", False, True, 'json')
+        req_content_type, data, form = utils.serialize_request_body(request, api.PatchDestinationRequest, "destination_patch_request", False, True, 'json')
         if req_content_type is not None and req_content_type not in ('multipart/form-data', 'multipart/mixed'):
             headers['content-type'] = req_content_type
         headers['Accept'] = 'application/json'
@@ -270,7 +270,7 @@ class Destinations:
             
         
         
-        res = models.PatchDestinationResponse(status_code=http_res.status_code, content_type=http_res.headers.get('Content-Type') or '', raw_response=http_res)
+        res = api.PatchDestinationResponse(status_code=http_res.status_code, content_type=http_res.headers.get('Content-Type') or '', raw_response=http_res)
         
         if http_res.status_code == 200:
             if utils.match_content_type(http_res.headers.get('Content-Type') or '', 'application/json'):                
@@ -278,17 +278,17 @@ class Destinations:
                 res.destination_response = out
             else:
                 content_type = http_res.headers.get('Content-Type')
-                raise models.SDKError(f'unknown content-type received: {content_type}', http_res.status_code, http_res.text, http_res)
+                raise errors.SDKError(f'unknown content-type received: {content_type}', http_res.status_code, http_res.text, http_res)
         elif http_res.status_code == 403 or http_res.status_code == 404 or http_res.status_code >= 400 and http_res.status_code < 500 or http_res.status_code >= 500 and http_res.status_code < 600:
-            raise models.SDKError('API error occurred', http_res.status_code, http_res.text, http_res)
+            raise errors.SDKError('API error occurred', http_res.status_code, http_res.text, http_res)
         else:
-            raise models.SDKError('unknown status code received', http_res.status_code, http_res.text, http_res)
+            raise errors.SDKError('unknown status code received', http_res.status_code, http_res.text, http_res)
 
         return res
 
     
     
-    def put_destination(self, request: models.PutDestinationRequest) -> models.PutDestinationResponse:
+    def put_destination(self, request: api.PutDestinationRequest) -> api.PutDestinationResponse:
         r"""Update a Destination and fully overwrite it"""
         hook_ctx = HookContext(operation_id='putDestination', oauth2_scopes=[], security_source=self.sdk_configuration.security)
         base_url = utils.template_url(*self.sdk_configuration.get_server_details())
@@ -300,7 +300,7 @@ class Destinations:
         else:
             headers, query_params = utils.get_security(self.sdk_configuration.security)
         
-        req_content_type, data, form = utils.serialize_request_body(request, models.PutDestinationRequest, "destination_put_request", False, True, 'json')
+        req_content_type, data, form = utils.serialize_request_body(request, api.PutDestinationRequest, "destination_put_request", False, True, 'json')
         if req_content_type is not None and req_content_type not in ('multipart/form-data', 'multipart/mixed'):
             headers['content-type'] = req_content_type
         headers['Accept'] = 'application/json'
@@ -327,7 +327,7 @@ class Destinations:
             
         
         
-        res = models.PutDestinationResponse(status_code=http_res.status_code, content_type=http_res.headers.get('Content-Type') or '', raw_response=http_res)
+        res = api.PutDestinationResponse(status_code=http_res.status_code, content_type=http_res.headers.get('Content-Type') or '', raw_response=http_res)
         
         if http_res.status_code == 200:
             if utils.match_content_type(http_res.headers.get('Content-Type') or '', 'application/json'):                
@@ -335,11 +335,11 @@ class Destinations:
                 res.destination_response = out
             else:
                 content_type = http_res.headers.get('Content-Type')
-                raise models.SDKError(f'unknown content-type received: {content_type}', http_res.status_code, http_res.text, http_res)
+                raise errors.SDKError(f'unknown content-type received: {content_type}', http_res.status_code, http_res.text, http_res)
         elif http_res.status_code == 403 or http_res.status_code == 404 or http_res.status_code >= 400 and http_res.status_code < 500 or http_res.status_code >= 500 and http_res.status_code < 600:
-            raise models.SDKError('API error occurred', http_res.status_code, http_res.text, http_res)
+            raise errors.SDKError('API error occurred', http_res.status_code, http_res.text, http_res)
         else:
-            raise models.SDKError('unknown status code received', http_res.status_code, http_res.text, http_res)
+            raise errors.SDKError('unknown status code received', http_res.status_code, http_res.text, http_res)
 
         return res
 

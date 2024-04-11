@@ -3,26 +3,26 @@
 from __future__ import annotations
 import dataclasses
 import requests as requests_http
-from .jobresponse import JobResponse
+from ..models import jobresponse as models_jobresponse
 from typing import Optional
 
 
 @dataclasses.dataclass
-class CancelJobRequest:
+class GetJobRequest:
     job_id: int = dataclasses.field(metadata={'path_param': { 'field_name': 'jobId', 'style': 'simple', 'explode': False }})
     
 
 
 
 @dataclasses.dataclass
-class CancelJobResponse:
+class GetJobResponse:
     content_type: str = dataclasses.field()
     r"""HTTP response content type for this operation"""
     status_code: int = dataclasses.field()
     r"""HTTP response status code for this operation"""
     raw_response: requests_http.Response = dataclasses.field()
     r"""Raw HTTP response; suitable for custom response parsing"""
-    job_response: Optional[JobResponse] = dataclasses.field(default=None)
-    r"""Cancel a Job."""
+    job_response: Optional[models_jobresponse.JobResponse] = dataclasses.field(default=None)
+    r"""Get a Job by the id in the path."""
     
 

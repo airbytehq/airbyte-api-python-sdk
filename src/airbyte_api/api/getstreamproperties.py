@@ -3,7 +3,7 @@
 from __future__ import annotations
 import dataclasses
 import requests as requests_http
-from .streampropertiesresponse import StreamPropertiesResponse
+from ..models import streampropertiesresponse as models_streampropertiesresponse
 from typing import Optional
 
 
@@ -27,7 +27,7 @@ class GetStreamPropertiesResponse:
     r"""HTTP response status code for this operation"""
     raw_response: requests_http.Response = dataclasses.field()
     r"""Raw HTTP response; suitable for custom response parsing"""
-    stream_properties_response: Optional[StreamPropertiesResponse] = dataclasses.field(default=None)
+    stream_properties_response: Optional[models_streampropertiesresponse.StreamPropertiesResponse] = dataclasses.field(default=None)
     r"""Get the available streams properties for a source/destination pair."""
     
 

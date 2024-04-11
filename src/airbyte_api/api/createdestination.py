@@ -3,19 +3,19 @@
 from __future__ import annotations
 import dataclasses
 import requests as requests_http
-from .connectionresponse import ConnectionResponse
+from ..models import destinationresponse as models_destinationresponse
 from typing import Optional
 
 
 @dataclasses.dataclass
-class CreateConnectionResponse:
+class CreateDestinationResponse:
     content_type: str = dataclasses.field()
     r"""HTTP response content type for this operation"""
     status_code: int = dataclasses.field()
     r"""HTTP response status code for this operation"""
     raw_response: requests_http.Response = dataclasses.field()
     r"""Raw HTTP response; suitable for custom response parsing"""
-    connection_response: Optional[ConnectionResponse] = dataclasses.field(default=None)
+    destination_response: Optional[models_destinationresponse.DestinationResponse] = dataclasses.field(default=None)
     r"""Successful operation"""
     
 

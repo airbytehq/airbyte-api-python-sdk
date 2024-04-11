@@ -3,26 +3,26 @@
 from __future__ import annotations
 import dataclasses
 import requests as requests_http
-from .connectionresponse import ConnectionResponse
+from ..models import sourceresponse as models_sourceresponse
 from typing import Optional
 
 
 @dataclasses.dataclass
-class GetConnectionRequest:
-    connection_id: str = dataclasses.field(metadata={'path_param': { 'field_name': 'connectionId', 'style': 'simple', 'explode': False }})
+class GetSourceRequest:
+    source_id: str = dataclasses.field(metadata={'path_param': { 'field_name': 'sourceId', 'style': 'simple', 'explode': False }})
     
 
 
 
 @dataclasses.dataclass
-class GetConnectionResponse:
+class GetSourceResponse:
     content_type: str = dataclasses.field()
     r"""HTTP response content type for this operation"""
     status_code: int = dataclasses.field()
     r"""HTTP response status code for this operation"""
     raw_response: requests_http.Response = dataclasses.field()
     r"""Raw HTTP response; suitable for custom response parsing"""
-    connection_response: Optional[ConnectionResponse] = dataclasses.field(default=None)
-    r"""Get a Connection by the id in the path."""
+    source_response: Optional[models_sourceresponse.SourceResponse] = dataclasses.field(default=None)
+    r"""Get a Source by the id in the path."""
     
 

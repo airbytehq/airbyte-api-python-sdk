@@ -2,7 +2,7 @@
 
 import requests as requests_http
 from .sdkconfiguration import SDKConfiguration
-from airbyte_api import models, utils
+from airbyte_api import api, errors, models, utils
 from airbyte_api._hooks import AfterErrorContext, AfterSuccessContext, BeforeRequestContext, HookContext
 from typing import Optional
 
@@ -14,7 +14,7 @@ class Workspaces:
         
     
     
-    def create_or_update_workspace_o_auth_credentials(self, request: models.CreateOrUpdateWorkspaceOAuthCredentialsRequest) -> models.CreateOrUpdateWorkspaceOAuthCredentialsResponse:
+    def create_or_update_workspace_o_auth_credentials(self, request: api.CreateOrUpdateWorkspaceOAuthCredentialsRequest) -> api.CreateOrUpdateWorkspaceOAuthCredentialsResponse:
         r"""Create OAuth override credentials for a workspace and source type.
         Create/update a set of OAuth credentials to override the Airbyte-provided OAuth credentials used for source/destination OAuth.
         In order to determine what the credential configuration needs to be, please see the connector specification of the relevant  source/destination.
@@ -29,7 +29,7 @@ class Workspaces:
         else:
             headers, query_params = utils.get_security(self.sdk_configuration.security)
         
-        req_content_type, data, form = utils.serialize_request_body(request, models.CreateOrUpdateWorkspaceOAuthCredentialsRequest, "workspace_o_auth_credentials_request", False, False, 'json')
+        req_content_type, data, form = utils.serialize_request_body(request, api.CreateOrUpdateWorkspaceOAuthCredentialsRequest, "workspace_o_auth_credentials_request", False, False, 'json')
         if req_content_type is not None and req_content_type not in ('multipart/form-data', 'multipart/mixed'):
             headers['content-type'] = req_content_type
         if data is None and form is None:
@@ -58,20 +58,20 @@ class Workspaces:
             
         
         
-        res = models.CreateOrUpdateWorkspaceOAuthCredentialsResponse(status_code=http_res.status_code, content_type=http_res.headers.get('Content-Type') or '', raw_response=http_res)
+        res = api.CreateOrUpdateWorkspaceOAuthCredentialsResponse(status_code=http_res.status_code, content_type=http_res.headers.get('Content-Type') or '', raw_response=http_res)
         
         if http_res.status_code == 200:
             pass
         elif http_res.status_code == 400 or http_res.status_code == 403 or http_res.status_code >= 400 and http_res.status_code < 500 or http_res.status_code >= 500 and http_res.status_code < 600:
-            raise models.SDKError('API error occurred', http_res.status_code, http_res.text, http_res)
+            raise errors.SDKError('API error occurred', http_res.status_code, http_res.text, http_res)
         else:
-            raise models.SDKError('unknown status code received', http_res.status_code, http_res.text, http_res)
+            raise errors.SDKError('unknown status code received', http_res.status_code, http_res.text, http_res)
 
         return res
 
     
     
-    def create_workspace(self, request: models.WorkspaceCreateRequest) -> models.CreateWorkspaceResponse:
+    def create_workspace(self, request: models.WorkspaceCreateRequest) -> api.CreateWorkspaceResponse:
         r"""Create a workspace"""
         hook_ctx = HookContext(operation_id='createWorkspace', oauth2_scopes=[], security_source=self.sdk_configuration.security)
         base_url = utils.template_url(*self.sdk_configuration.get_server_details())
@@ -112,7 +112,7 @@ class Workspaces:
             
         
         
-        res = models.CreateWorkspaceResponse(status_code=http_res.status_code, content_type=http_res.headers.get('Content-Type') or '', raw_response=http_res)
+        res = api.CreateWorkspaceResponse(status_code=http_res.status_code, content_type=http_res.headers.get('Content-Type') or '', raw_response=http_res)
         
         if http_res.status_code == 200:
             if utils.match_content_type(http_res.headers.get('Content-Type') or '', 'application/json'):                
@@ -120,17 +120,17 @@ class Workspaces:
                 res.workspace_response = out
             else:
                 content_type = http_res.headers.get('Content-Type')
-                raise models.SDKError(f'unknown content-type received: {content_type}', http_res.status_code, http_res.text, http_res)
+                raise errors.SDKError(f'unknown content-type received: {content_type}', http_res.status_code, http_res.text, http_res)
         elif http_res.status_code == 400 or http_res.status_code == 403 or http_res.status_code >= 400 and http_res.status_code < 500 or http_res.status_code >= 500 and http_res.status_code < 600:
-            raise models.SDKError('API error occurred', http_res.status_code, http_res.text, http_res)
+            raise errors.SDKError('API error occurred', http_res.status_code, http_res.text, http_res)
         else:
-            raise models.SDKError('unknown status code received', http_res.status_code, http_res.text, http_res)
+            raise errors.SDKError('unknown status code received', http_res.status_code, http_res.text, http_res)
 
         return res
 
     
     
-    def delete_workspace(self, request: models.DeleteWorkspaceRequest) -> models.DeleteWorkspaceResponse:
+    def delete_workspace(self, request: api.DeleteWorkspaceRequest) -> api.DeleteWorkspaceResponse:
         r"""Delete a Workspace"""
         hook_ctx = HookContext(operation_id='deleteWorkspace', oauth2_scopes=[], security_source=self.sdk_configuration.security)
         base_url = utils.template_url(*self.sdk_configuration.get_server_details())
@@ -166,20 +166,20 @@ class Workspaces:
             
         
         
-        res = models.DeleteWorkspaceResponse(status_code=http_res.status_code, content_type=http_res.headers.get('Content-Type') or '', raw_response=http_res)
+        res = api.DeleteWorkspaceResponse(status_code=http_res.status_code, content_type=http_res.headers.get('Content-Type') or '', raw_response=http_res)
         
         if http_res.status_code == 204:
             pass
         elif http_res.status_code == 403 or http_res.status_code == 404 or http_res.status_code >= 400 and http_res.status_code < 500 or http_res.status_code >= 500 and http_res.status_code < 600:
-            raise models.SDKError('API error occurred', http_res.status_code, http_res.text, http_res)
+            raise errors.SDKError('API error occurred', http_res.status_code, http_res.text, http_res)
         else:
-            raise models.SDKError('unknown status code received', http_res.status_code, http_res.text, http_res)
+            raise errors.SDKError('unknown status code received', http_res.status_code, http_res.text, http_res)
 
         return res
 
     
     
-    def get_workspace(self, request: models.GetWorkspaceRequest) -> models.GetWorkspaceResponse:
+    def get_workspace(self, request: api.GetWorkspaceRequest) -> api.GetWorkspaceResponse:
         r"""Get Workspace details"""
         hook_ctx = HookContext(operation_id='getWorkspace', oauth2_scopes=[], security_source=self.sdk_configuration.security)
         base_url = utils.template_url(*self.sdk_configuration.get_server_details())
@@ -215,7 +215,7 @@ class Workspaces:
             
         
         
-        res = models.GetWorkspaceResponse(status_code=http_res.status_code, content_type=http_res.headers.get('Content-Type') or '', raw_response=http_res)
+        res = api.GetWorkspaceResponse(status_code=http_res.status_code, content_type=http_res.headers.get('Content-Type') or '', raw_response=http_res)
         
         if http_res.status_code == 200:
             if utils.match_content_type(http_res.headers.get('Content-Type') or '', 'application/json'):                
@@ -223,17 +223,17 @@ class Workspaces:
                 res.workspace_response = out
             else:
                 content_type = http_res.headers.get('Content-Type')
-                raise models.SDKError(f'unknown content-type received: {content_type}', http_res.status_code, http_res.text, http_res)
+                raise errors.SDKError(f'unknown content-type received: {content_type}', http_res.status_code, http_res.text, http_res)
         elif http_res.status_code == 403 or http_res.status_code == 404 or http_res.status_code >= 400 and http_res.status_code < 500 or http_res.status_code >= 500 and http_res.status_code < 600:
-            raise models.SDKError('API error occurred', http_res.status_code, http_res.text, http_res)
+            raise errors.SDKError('API error occurred', http_res.status_code, http_res.text, http_res)
         else:
-            raise models.SDKError('unknown status code received', http_res.status_code, http_res.text, http_res)
+            raise errors.SDKError('unknown status code received', http_res.status_code, http_res.text, http_res)
 
         return res
 
     
     
-    def list_workspaces(self, request: models.ListWorkspacesRequest) -> models.ListWorkspacesResponse:
+    def list_workspaces(self, request: api.ListWorkspacesRequest) -> api.ListWorkspacesResponse:
         r"""List workspaces"""
         hook_ctx = HookContext(operation_id='listWorkspaces', oauth2_scopes=[], security_source=self.sdk_configuration.security)
         base_url = utils.template_url(*self.sdk_configuration.get_server_details())
@@ -270,7 +270,7 @@ class Workspaces:
             
         
         
-        res = models.ListWorkspacesResponse(status_code=http_res.status_code, content_type=http_res.headers.get('Content-Type') or '', raw_response=http_res)
+        res = api.ListWorkspacesResponse(status_code=http_res.status_code, content_type=http_res.headers.get('Content-Type') or '', raw_response=http_res)
         
         if http_res.status_code == 200:
             if utils.match_content_type(http_res.headers.get('Content-Type') or '', 'application/json'):                
@@ -278,17 +278,17 @@ class Workspaces:
                 res.workspaces_response = out
             else:
                 content_type = http_res.headers.get('Content-Type')
-                raise models.SDKError(f'unknown content-type received: {content_type}', http_res.status_code, http_res.text, http_res)
+                raise errors.SDKError(f'unknown content-type received: {content_type}', http_res.status_code, http_res.text, http_res)
         elif http_res.status_code == 403 or http_res.status_code == 404 or http_res.status_code >= 400 and http_res.status_code < 500 or http_res.status_code >= 500 and http_res.status_code < 600:
-            raise models.SDKError('API error occurred', http_res.status_code, http_res.text, http_res)
+            raise errors.SDKError('API error occurred', http_res.status_code, http_res.text, http_res)
         else:
-            raise models.SDKError('unknown status code received', http_res.status_code, http_res.text, http_res)
+            raise errors.SDKError('unknown status code received', http_res.status_code, http_res.text, http_res)
 
         return res
 
     
     
-    def update_workspace(self, request: models.UpdateWorkspaceRequest) -> models.UpdateWorkspaceResponse:
+    def update_workspace(self, request: api.UpdateWorkspaceRequest) -> api.UpdateWorkspaceResponse:
         r"""Update a workspace"""
         hook_ctx = HookContext(operation_id='updateWorkspace', oauth2_scopes=[], security_source=self.sdk_configuration.security)
         base_url = utils.template_url(*self.sdk_configuration.get_server_details())
@@ -300,7 +300,7 @@ class Workspaces:
         else:
             headers, query_params = utils.get_security(self.sdk_configuration.security)
         
-        req_content_type, data, form = utils.serialize_request_body(request, models.UpdateWorkspaceRequest, "workspace_update_request", False, False, 'json')
+        req_content_type, data, form = utils.serialize_request_body(request, api.UpdateWorkspaceRequest, "workspace_update_request", False, False, 'json')
         if req_content_type is not None and req_content_type not in ('multipart/form-data', 'multipart/mixed'):
             headers['content-type'] = req_content_type
         if data is None and form is None:
@@ -329,7 +329,7 @@ class Workspaces:
             
         
         
-        res = models.UpdateWorkspaceResponse(status_code=http_res.status_code, content_type=http_res.headers.get('Content-Type') or '', raw_response=http_res)
+        res = api.UpdateWorkspaceResponse(status_code=http_res.status_code, content_type=http_res.headers.get('Content-Type') or '', raw_response=http_res)
         
         if http_res.status_code == 200:
             if utils.match_content_type(http_res.headers.get('Content-Type') or '', 'application/json'):                
@@ -337,11 +337,11 @@ class Workspaces:
                 res.workspace_response = out
             else:
                 content_type = http_res.headers.get('Content-Type')
-                raise models.SDKError(f'unknown content-type received: {content_type}', http_res.status_code, http_res.text, http_res)
+                raise errors.SDKError(f'unknown content-type received: {content_type}', http_res.status_code, http_res.text, http_res)
         elif http_res.status_code == 400 or http_res.status_code == 403 or http_res.status_code >= 400 and http_res.status_code < 500 or http_res.status_code >= 500 and http_res.status_code < 600:
-            raise models.SDKError('API error occurred', http_res.status_code, http_res.text, http_res)
+            raise errors.SDKError('API error occurred', http_res.status_code, http_res.text, http_res)
         else:
-            raise models.SDKError('unknown status code received', http_res.status_code, http_res.text, http_res)
+            raise errors.SDKError('unknown status code received', http_res.status_code, http_res.text, http_res)
 
         return res
 

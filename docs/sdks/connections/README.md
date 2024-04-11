@@ -17,17 +17,18 @@ Create a connection
 
 ```python
 import airbyte_api
+from airbyte_api import models
 
 s = airbyte_api.AirbyteAPI(
-    security=airbyte_api.Security(
-        basic_auth=airbyte_api.SchemeBasicAuth(
+    security=models.Security(
+        basic_auth=models.SchemeBasicAuth(
             password="<YOUR_PASSWORD_HERE>",
             username="<YOUR_USERNAME_HERE>",
         ),
     ),
 )
 
-req = airbyte_api.ConnectionCreateRequest(
+req = models.ConnectionCreateRequest(
     destination_id='c669dd1e-3620-483e-afc8-55914e0a570f',
     source_id='6dd427d8-3a55-4584-b835-842325b6c7b3',
     namespace_format='${SOURCE_NAMESPACE}',
@@ -50,12 +51,12 @@ if res.connection_response is not None:
 
 ### Response
 
-**[models.CreateConnectionResponse](../../models/createconnectionresponse.md)**
+**[api.CreateConnectionResponse](../../api/createconnectionresponse.md)**
 ### Errors
 
 | Error Object    | Status Code     | Content Type    |
 | --------------- | --------------- | --------------- |
-| models.SDKError | 4xx-5xx         | */*             |
+| errors.SDKError | 4xx-5xx         | */*             |
 
 ## delete_connection
 
@@ -65,17 +66,18 @@ Delete a Connection
 
 ```python
 import airbyte_api
+from airbyte_api import api, models
 
 s = airbyte_api.AirbyteAPI(
-    security=airbyte_api.Security(
-        basic_auth=airbyte_api.SchemeBasicAuth(
+    security=models.Security(
+        basic_auth=models.SchemeBasicAuth(
             password="<YOUR_PASSWORD_HERE>",
             username="<YOUR_USERNAME_HERE>",
         ),
     ),
 )
 
-req = airbyte_api.DeleteConnectionRequest(
+req = api.DeleteConnectionRequest(
     connection_id='<value>',
 )
 
@@ -89,19 +91,19 @@ if res is not None:
 
 ### Parameters
 
-| Parameter                                                                 | Type                                                                      | Required                                                                  | Description                                                               |
-| ------------------------------------------------------------------------- | ------------------------------------------------------------------------- | ------------------------------------------------------------------------- | ------------------------------------------------------------------------- |
-| `request`                                                                 | [models.DeleteConnectionRequest](../../models/deleteconnectionrequest.md) | :heavy_check_mark:                                                        | The request object to use for the request.                                |
+| Parameter                                                           | Type                                                                | Required                                                            | Description                                                         |
+| ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
+| `request`                                                           | [api.DeleteConnectionRequest](../../api/deleteconnectionrequest.md) | :heavy_check_mark:                                                  | The request object to use for the request.                          |
 
 
 ### Response
 
-**[models.DeleteConnectionResponse](../../models/deleteconnectionresponse.md)**
+**[api.DeleteConnectionResponse](../../api/deleteconnectionresponse.md)**
 ### Errors
 
 | Error Object    | Status Code     | Content Type    |
 | --------------- | --------------- | --------------- |
-| models.SDKError | 4xx-5xx         | */*             |
+| errors.SDKError | 4xx-5xx         | */*             |
 
 ## get_connection
 
@@ -111,17 +113,18 @@ Get Connection details
 
 ```python
 import airbyte_api
+from airbyte_api import api, models
 
 s = airbyte_api.AirbyteAPI(
-    security=airbyte_api.Security(
-        basic_auth=airbyte_api.SchemeBasicAuth(
+    security=models.Security(
+        basic_auth=models.SchemeBasicAuth(
             password="<YOUR_PASSWORD_HERE>",
             username="<YOUR_USERNAME_HERE>",
         ),
     ),
 )
 
-req = airbyte_api.GetConnectionRequest(
+req = api.GetConnectionRequest(
     connection_id='<value>',
 )
 
@@ -135,19 +138,19 @@ if res.connection_response is not None:
 
 ### Parameters
 
-| Parameter                                                           | Type                                                                | Required                                                            | Description                                                         |
-| ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
-| `request`                                                           | [models.GetConnectionRequest](../../models/getconnectionrequest.md) | :heavy_check_mark:                                                  | The request object to use for the request.                          |
+| Parameter                                                     | Type                                                          | Required                                                      | Description                                                   |
+| ------------------------------------------------------------- | ------------------------------------------------------------- | ------------------------------------------------------------- | ------------------------------------------------------------- |
+| `request`                                                     | [api.GetConnectionRequest](../../api/getconnectionrequest.md) | :heavy_check_mark:                                            | The request object to use for the request.                    |
 
 
 ### Response
 
-**[models.GetConnectionResponse](../../models/getconnectionresponse.md)**
+**[api.GetConnectionResponse](../../api/getconnectionresponse.md)**
 ### Errors
 
 | Error Object    | Status Code     | Content Type    |
 | --------------- | --------------- | --------------- |
-| models.SDKError | 4xx-5xx         | */*             |
+| errors.SDKError | 4xx-5xx         | */*             |
 
 ## list_connections
 
@@ -157,17 +160,18 @@ List connections
 
 ```python
 import airbyte_api
+from airbyte_api import api, models
 
 s = airbyte_api.AirbyteAPI(
-    security=airbyte_api.Security(
-        basic_auth=airbyte_api.SchemeBasicAuth(
+    security=models.Security(
+        basic_auth=models.SchemeBasicAuth(
             password="<YOUR_PASSWORD_HERE>",
             username="<YOUR_USERNAME_HERE>",
         ),
     ),
 )
 
-req = airbyte_api.ListConnectionsRequest()
+req = api.ListConnectionsRequest()
 
 res = s.connections.list_connections(req)
 
@@ -179,19 +183,19 @@ if res.connections_response is not None:
 
 ### Parameters
 
-| Parameter                                                               | Type                                                                    | Required                                                                | Description                                                             |
-| ----------------------------------------------------------------------- | ----------------------------------------------------------------------- | ----------------------------------------------------------------------- | ----------------------------------------------------------------------- |
-| `request`                                                               | [models.ListConnectionsRequest](../../models/listconnectionsrequest.md) | :heavy_check_mark:                                                      | The request object to use for the request.                              |
+| Parameter                                                         | Type                                                              | Required                                                          | Description                                                       |
+| ----------------------------------------------------------------- | ----------------------------------------------------------------- | ----------------------------------------------------------------- | ----------------------------------------------------------------- |
+| `request`                                                         | [api.ListConnectionsRequest](../../api/listconnectionsrequest.md) | :heavy_check_mark:                                                | The request object to use for the request.                        |
 
 
 ### Response
 
-**[models.ListConnectionsResponse](../../models/listconnectionsresponse.md)**
+**[api.ListConnectionsResponse](../../api/listconnectionsresponse.md)**
 ### Errors
 
 | Error Object    | Status Code     | Content Type    |
 | --------------- | --------------- | --------------- |
-| models.SDKError | 4xx-5xx         | */*             |
+| errors.SDKError | 4xx-5xx         | */*             |
 
 ## patch_connection
 
@@ -201,18 +205,19 @@ Update Connection details
 
 ```python
 import airbyte_api
+from airbyte_api import api, models
 
 s = airbyte_api.AirbyteAPI(
-    security=airbyte_api.Security(
-        basic_auth=airbyte_api.SchemeBasicAuth(
+    security=models.Security(
+        basic_auth=models.SchemeBasicAuth(
             password="<YOUR_PASSWORD_HERE>",
             username="<YOUR_USERNAME_HERE>",
         ),
     ),
 )
 
-req = airbyte_api.PatchConnectionRequest(
-    connection_patch_request=airbyte_api.ConnectionPatchRequest(
+req = api.PatchConnectionRequest(
+    connection_patch_request=models.ConnectionPatchRequest(
         namespace_format='${SOURCE_NAMESPACE}',
     ),
     connection_id='<value>',
@@ -228,16 +233,16 @@ if res.connection_response is not None:
 
 ### Parameters
 
-| Parameter                                                               | Type                                                                    | Required                                                                | Description                                                             |
-| ----------------------------------------------------------------------- | ----------------------------------------------------------------------- | ----------------------------------------------------------------------- | ----------------------------------------------------------------------- |
-| `request`                                                               | [models.PatchConnectionRequest](../../models/patchconnectionrequest.md) | :heavy_check_mark:                                                      | The request object to use for the request.                              |
+| Parameter                                                         | Type                                                              | Required                                                          | Description                                                       |
+| ----------------------------------------------------------------- | ----------------------------------------------------------------- | ----------------------------------------------------------------- | ----------------------------------------------------------------- |
+| `request`                                                         | [api.PatchConnectionRequest](../../api/patchconnectionrequest.md) | :heavy_check_mark:                                                | The request object to use for the request.                        |
 
 
 ### Response
 
-**[models.PatchConnectionResponse](../../models/patchconnectionresponse.md)**
+**[api.PatchConnectionResponse](../../api/patchconnectionresponse.md)**
 ### Errors
 
 | Error Object    | Status Code     | Content Type    |
 | --------------- | --------------- | --------------- |
-| models.SDKError | 4xx-5xx         | */*             |
+| errors.SDKError | 4xx-5xx         | */*             |

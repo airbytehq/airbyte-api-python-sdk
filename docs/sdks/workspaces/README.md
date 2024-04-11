@@ -19,21 +19,22 @@ In order to determine what the credential configuration needs to be, please see 
 
 ```python
 import airbyte_api
+from airbyte_api import api, models
 
 s = airbyte_api.AirbyteAPI(
-    security=airbyte_api.Security(
-        basic_auth=airbyte_api.SchemeBasicAuth(
+    security=models.Security(
+        basic_auth=models.SchemeBasicAuth(
             password="<YOUR_PASSWORD_HERE>",
             username="<YOUR_USERNAME_HERE>",
         ),
     ),
 )
 
-req = airbyte_api.CreateOrUpdateWorkspaceOAuthCredentialsRequest(
-    workspace_o_auth_credentials_request=airbyte_api.WorkspaceOAuthCredentialsRequest(
-        actor_type=airbyte_api.ActorTypeEnum.DESTINATION,
-        configuration=airbyte_api.Airtable(),
-        name=airbyte_api.OAuthActorNames.AMAZON_ADS,
+req = api.CreateOrUpdateWorkspaceOAuthCredentialsRequest(
+    workspace_o_auth_credentials_request=models.WorkspaceOAuthCredentialsRequest(
+        actor_type=models.ActorTypeEnum.DESTINATION,
+        configuration=models.Airtable(),
+        name=models.OAuthActorNames.AMAZON_ADS,
     ),
     workspace_id='<value>',
 )
@@ -48,19 +49,19 @@ if res is not None:
 
 ### Parameters
 
-| Parameter                                                                                                               | Type                                                                                                                    | Required                                                                                                                | Description                                                                                                             |
-| ----------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------- |
-| `request`                                                                                                               | [models.CreateOrUpdateWorkspaceOAuthCredentialsRequest](../../models/createorupdateworkspaceoauthcredentialsrequest.md) | :heavy_check_mark:                                                                                                      | The request object to use for the request.                                                                              |
+| Parameter                                                                                                         | Type                                                                                                              | Required                                                                                                          | Description                                                                                                       |
+| ----------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------- |
+| `request`                                                                                                         | [api.CreateOrUpdateWorkspaceOAuthCredentialsRequest](../../api/createorupdateworkspaceoauthcredentialsrequest.md) | :heavy_check_mark:                                                                                                | The request object to use for the request.                                                                        |
 
 
 ### Response
 
-**[models.CreateOrUpdateWorkspaceOAuthCredentialsResponse](../../models/createorupdateworkspaceoauthcredentialsresponse.md)**
+**[api.CreateOrUpdateWorkspaceOAuthCredentialsResponse](../../api/createorupdateworkspaceoauthcredentialsresponse.md)**
 ### Errors
 
 | Error Object    | Status Code     | Content Type    |
 | --------------- | --------------- | --------------- |
-| models.SDKError | 4xx-5xx         | */*             |
+| errors.SDKError | 4xx-5xx         | */*             |
 
 ## create_workspace
 
@@ -70,17 +71,18 @@ Create a workspace
 
 ```python
 import airbyte_api
+from airbyte_api import models
 
 s = airbyte_api.AirbyteAPI(
-    security=airbyte_api.Security(
-        basic_auth=airbyte_api.SchemeBasicAuth(
+    security=models.Security(
+        basic_auth=models.SchemeBasicAuth(
             password="<YOUR_PASSWORD_HERE>",
             username="<YOUR_USERNAME_HERE>",
         ),
     ),
 )
 
-req = airbyte_api.WorkspaceCreateRequest(
+req = models.WorkspaceCreateRequest(
     name='<value>',
 )
 
@@ -101,12 +103,12 @@ if res.workspace_response is not None:
 
 ### Response
 
-**[models.CreateWorkspaceResponse](../../models/createworkspaceresponse.md)**
+**[api.CreateWorkspaceResponse](../../api/createworkspaceresponse.md)**
 ### Errors
 
 | Error Object    | Status Code     | Content Type    |
 | --------------- | --------------- | --------------- |
-| models.SDKError | 4xx-5xx         | */*             |
+| errors.SDKError | 4xx-5xx         | */*             |
 
 ## delete_workspace
 
@@ -116,17 +118,18 @@ Delete a Workspace
 
 ```python
 import airbyte_api
+from airbyte_api import api, models
 
 s = airbyte_api.AirbyteAPI(
-    security=airbyte_api.Security(
-        basic_auth=airbyte_api.SchemeBasicAuth(
+    security=models.Security(
+        basic_auth=models.SchemeBasicAuth(
             password="<YOUR_PASSWORD_HERE>",
             username="<YOUR_USERNAME_HERE>",
         ),
     ),
 )
 
-req = airbyte_api.DeleteWorkspaceRequest(
+req = api.DeleteWorkspaceRequest(
     workspace_id='<value>',
 )
 
@@ -140,19 +143,19 @@ if res is not None:
 
 ### Parameters
 
-| Parameter                                                               | Type                                                                    | Required                                                                | Description                                                             |
-| ----------------------------------------------------------------------- | ----------------------------------------------------------------------- | ----------------------------------------------------------------------- | ----------------------------------------------------------------------- |
-| `request`                                                               | [models.DeleteWorkspaceRequest](../../models/deleteworkspacerequest.md) | :heavy_check_mark:                                                      | The request object to use for the request.                              |
+| Parameter                                                         | Type                                                              | Required                                                          | Description                                                       |
+| ----------------------------------------------------------------- | ----------------------------------------------------------------- | ----------------------------------------------------------------- | ----------------------------------------------------------------- |
+| `request`                                                         | [api.DeleteWorkspaceRequest](../../api/deleteworkspacerequest.md) | :heavy_check_mark:                                                | The request object to use for the request.                        |
 
 
 ### Response
 
-**[models.DeleteWorkspaceResponse](../../models/deleteworkspaceresponse.md)**
+**[api.DeleteWorkspaceResponse](../../api/deleteworkspaceresponse.md)**
 ### Errors
 
 | Error Object    | Status Code     | Content Type    |
 | --------------- | --------------- | --------------- |
-| models.SDKError | 4xx-5xx         | */*             |
+| errors.SDKError | 4xx-5xx         | */*             |
 
 ## get_workspace
 
@@ -162,17 +165,18 @@ Get Workspace details
 
 ```python
 import airbyte_api
+from airbyte_api import api, models
 
 s = airbyte_api.AirbyteAPI(
-    security=airbyte_api.Security(
-        basic_auth=airbyte_api.SchemeBasicAuth(
+    security=models.Security(
+        basic_auth=models.SchemeBasicAuth(
             password="<YOUR_PASSWORD_HERE>",
             username="<YOUR_USERNAME_HERE>",
         ),
     ),
 )
 
-req = airbyte_api.GetWorkspaceRequest(
+req = api.GetWorkspaceRequest(
     workspace_id='<value>',
 )
 
@@ -186,19 +190,19 @@ if res.workspace_response is not None:
 
 ### Parameters
 
-| Parameter                                                         | Type                                                              | Required                                                          | Description                                                       |
-| ----------------------------------------------------------------- | ----------------------------------------------------------------- | ----------------------------------------------------------------- | ----------------------------------------------------------------- |
-| `request`                                                         | [models.GetWorkspaceRequest](../../models/getworkspacerequest.md) | :heavy_check_mark:                                                | The request object to use for the request.                        |
+| Parameter                                                   | Type                                                        | Required                                                    | Description                                                 |
+| ----------------------------------------------------------- | ----------------------------------------------------------- | ----------------------------------------------------------- | ----------------------------------------------------------- |
+| `request`                                                   | [api.GetWorkspaceRequest](../../api/getworkspacerequest.md) | :heavy_check_mark:                                          | The request object to use for the request.                  |
 
 
 ### Response
 
-**[models.GetWorkspaceResponse](../../models/getworkspaceresponse.md)**
+**[api.GetWorkspaceResponse](../../api/getworkspaceresponse.md)**
 ### Errors
 
 | Error Object    | Status Code     | Content Type    |
 | --------------- | --------------- | --------------- |
-| models.SDKError | 4xx-5xx         | */*             |
+| errors.SDKError | 4xx-5xx         | */*             |
 
 ## list_workspaces
 
@@ -208,17 +212,18 @@ List workspaces
 
 ```python
 import airbyte_api
+from airbyte_api import api, models
 
 s = airbyte_api.AirbyteAPI(
-    security=airbyte_api.Security(
-        basic_auth=airbyte_api.SchemeBasicAuth(
+    security=models.Security(
+        basic_auth=models.SchemeBasicAuth(
             password="<YOUR_PASSWORD_HERE>",
             username="<YOUR_USERNAME_HERE>",
         ),
     ),
 )
 
-req = airbyte_api.ListWorkspacesRequest()
+req = api.ListWorkspacesRequest()
 
 res = s.workspaces.list_workspaces(req)
 
@@ -230,19 +235,19 @@ if res.workspaces_response is not None:
 
 ### Parameters
 
-| Parameter                                                             | Type                                                                  | Required                                                              | Description                                                           |
-| --------------------------------------------------------------------- | --------------------------------------------------------------------- | --------------------------------------------------------------------- | --------------------------------------------------------------------- |
-| `request`                                                             | [models.ListWorkspacesRequest](../../models/listworkspacesrequest.md) | :heavy_check_mark:                                                    | The request object to use for the request.                            |
+| Parameter                                                       | Type                                                            | Required                                                        | Description                                                     |
+| --------------------------------------------------------------- | --------------------------------------------------------------- | --------------------------------------------------------------- | --------------------------------------------------------------- |
+| `request`                                                       | [api.ListWorkspacesRequest](../../api/listworkspacesrequest.md) | :heavy_check_mark:                                              | The request object to use for the request.                      |
 
 
 ### Response
 
-**[models.ListWorkspacesResponse](../../models/listworkspacesresponse.md)**
+**[api.ListWorkspacesResponse](../../api/listworkspacesresponse.md)**
 ### Errors
 
 | Error Object    | Status Code     | Content Type    |
 | --------------- | --------------- | --------------- |
-| models.SDKError | 4xx-5xx         | */*             |
+| errors.SDKError | 4xx-5xx         | */*             |
 
 ## update_workspace
 
@@ -252,18 +257,19 @@ Update a workspace
 
 ```python
 import airbyte_api
+from airbyte_api import api, models
 
 s = airbyte_api.AirbyteAPI(
-    security=airbyte_api.Security(
-        basic_auth=airbyte_api.SchemeBasicAuth(
+    security=models.Security(
+        basic_auth=models.SchemeBasicAuth(
             password="<YOUR_PASSWORD_HERE>",
             username="<YOUR_USERNAME_HERE>",
         ),
     ),
 )
 
-req = airbyte_api.UpdateWorkspaceRequest(
-    workspace_update_request=airbyte_api.WorkspaceUpdateRequest(
+req = api.UpdateWorkspaceRequest(
+    workspace_update_request=models.WorkspaceUpdateRequest(
         name='<value>',
     ),
     workspace_id='<value>',
@@ -279,16 +285,16 @@ if res.workspace_response is not None:
 
 ### Parameters
 
-| Parameter                                                               | Type                                                                    | Required                                                                | Description                                                             |
-| ----------------------------------------------------------------------- | ----------------------------------------------------------------------- | ----------------------------------------------------------------------- | ----------------------------------------------------------------------- |
-| `request`                                                               | [models.UpdateWorkspaceRequest](../../models/updateworkspacerequest.md) | :heavy_check_mark:                                                      | The request object to use for the request.                              |
+| Parameter                                                         | Type                                                              | Required                                                          | Description                                                       |
+| ----------------------------------------------------------------- | ----------------------------------------------------------------- | ----------------------------------------------------------------- | ----------------------------------------------------------------- |
+| `request`                                                         | [api.UpdateWorkspaceRequest](../../api/updateworkspacerequest.md) | :heavy_check_mark:                                                | The request object to use for the request.                        |
 
 
 ### Response
 
-**[models.UpdateWorkspaceResponse](../../models/updateworkspaceresponse.md)**
+**[api.UpdateWorkspaceResponse](../../api/updateworkspaceresponse.md)**
 ### Errors
 
 | Error Object    | Status Code     | Content Type    |
 | --------------- | --------------- | --------------- |
-| models.SDKError | 4xx-5xx         | */*             |
+| errors.SDKError | 4xx-5xx         | */*             |

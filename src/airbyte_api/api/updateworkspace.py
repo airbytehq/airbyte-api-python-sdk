@@ -3,14 +3,14 @@
 from __future__ import annotations
 import dataclasses
 import requests as requests_http
-from .workspaceresponse import WorkspaceResponse
-from .workspaceupdaterequest import WorkspaceUpdateRequest
+from ..models import workspaceresponse as models_workspaceresponse
+from ..models import workspaceupdaterequest as models_workspaceupdaterequest
 from typing import Optional
 
 
 @dataclasses.dataclass
 class UpdateWorkspaceRequest:
-    workspace_update_request: WorkspaceUpdateRequest = dataclasses.field(metadata={'request': { 'media_type': 'application/json' }})
+    workspace_update_request: models_workspaceupdaterequest.WorkspaceUpdateRequest = dataclasses.field(metadata={'request': { 'media_type': 'application/json' }})
     workspace_id: str = dataclasses.field(metadata={'path_param': { 'field_name': 'workspaceId', 'style': 'simple', 'explode': False }})
     
 
@@ -24,7 +24,7 @@ class UpdateWorkspaceResponse:
     r"""HTTP response status code for this operation"""
     raw_response: requests_http.Response = dataclasses.field()
     r"""Raw HTTP response; suitable for custom response parsing"""
-    workspace_response: Optional[WorkspaceResponse] = dataclasses.field(default=None)
+    workspace_response: Optional[models_workspaceresponse.WorkspaceResponse] = dataclasses.field(default=None)
     r"""Successful operation"""
     
 

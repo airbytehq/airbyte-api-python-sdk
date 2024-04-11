@@ -13,17 +13,18 @@ Get stream properties
 
 ```python
 import airbyte_api
+from airbyte_api import api, models
 
 s = airbyte_api.AirbyteAPI(
-    security=airbyte_api.Security(
-        basic_auth=airbyte_api.SchemeBasicAuth(
+    security=models.Security(
+        basic_auth=models.SchemeBasicAuth(
             password="<YOUR_PASSWORD_HERE>",
             username="<YOUR_USERNAME_HERE>",
         ),
     ),
 )
 
-req = airbyte_api.GetStreamPropertiesRequest(
+req = api.GetStreamPropertiesRequest(
     destination_id='<value>',
     source_id='<value>',
 )
@@ -38,16 +39,16 @@ if res.stream_properties_response is not None:
 
 ### Parameters
 
-| Parameter                                                                       | Type                                                                            | Required                                                                        | Description                                                                     |
-| ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- |
-| `request`                                                                       | [models.GetStreamPropertiesRequest](../../models/getstreampropertiesrequest.md) | :heavy_check_mark:                                                              | The request object to use for the request.                                      |
+| Parameter                                                                 | Type                                                                      | Required                                                                  | Description                                                               |
+| ------------------------------------------------------------------------- | ------------------------------------------------------------------------- | ------------------------------------------------------------------------- | ------------------------------------------------------------------------- |
+| `request`                                                                 | [api.GetStreamPropertiesRequest](../../api/getstreampropertiesrequest.md) | :heavy_check_mark:                                                        | The request object to use for the request.                                |
 
 
 ### Response
 
-**[models.GetStreamPropertiesResponse](../../models/getstreampropertiesresponse.md)**
+**[api.GetStreamPropertiesResponse](../../api/getstreampropertiesresponse.md)**
 ### Errors
 
 | Error Object    | Status Code     | Content Type    |
 | --------------- | --------------- | --------------- |
-| models.SDKError | 4xx-5xx         | */*             |
+| errors.SDKError | 4xx-5xx         | */*             |

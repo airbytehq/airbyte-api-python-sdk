@@ -2,7 +2,7 @@
 
 import requests as requests_http
 from .sdkconfiguration import SDKConfiguration
-from airbyte_api import models, utils
+from airbyte_api import api, errors, models, utils
 from airbyte_api._hooks import AfterErrorContext, AfterSuccessContext, BeforeRequestContext, HookContext
 from typing import Optional
 
@@ -14,7 +14,7 @@ class Connections:
         
     
     
-    def create_connection(self, request: models.ConnectionCreateRequest) -> models.CreateConnectionResponse:
+    def create_connection(self, request: models.ConnectionCreateRequest) -> api.CreateConnectionResponse:
         r"""Create a connection"""
         hook_ctx = HookContext(operation_id='createConnection', oauth2_scopes=[], security_source=self.sdk_configuration.security)
         base_url = utils.template_url(*self.sdk_configuration.get_server_details())
@@ -55,7 +55,7 @@ class Connections:
             
         
         
-        res = models.CreateConnectionResponse(status_code=http_res.status_code, content_type=http_res.headers.get('Content-Type') or '', raw_response=http_res)
+        res = api.CreateConnectionResponse(status_code=http_res.status_code, content_type=http_res.headers.get('Content-Type') or '', raw_response=http_res)
         
         if http_res.status_code == 200:
             if utils.match_content_type(http_res.headers.get('Content-Type') or '', 'application/json'):                
@@ -63,17 +63,17 @@ class Connections:
                 res.connection_response = out
             else:
                 content_type = http_res.headers.get('Content-Type')
-                raise models.SDKError(f'unknown content-type received: {content_type}', http_res.status_code, http_res.text, http_res)
+                raise errors.SDKError(f'unknown content-type received: {content_type}', http_res.status_code, http_res.text, http_res)
         elif http_res.status_code == 400 or http_res.status_code == 403 or http_res.status_code >= 400 and http_res.status_code < 500 or http_res.status_code >= 500 and http_res.status_code < 600:
-            raise models.SDKError('API error occurred', http_res.status_code, http_res.text, http_res)
+            raise errors.SDKError('API error occurred', http_res.status_code, http_res.text, http_res)
         else:
-            raise models.SDKError('unknown status code received', http_res.status_code, http_res.text, http_res)
+            raise errors.SDKError('unknown status code received', http_res.status_code, http_res.text, http_res)
 
         return res
 
     
     
-    def delete_connection(self, request: models.DeleteConnectionRequest) -> models.DeleteConnectionResponse:
+    def delete_connection(self, request: api.DeleteConnectionRequest) -> api.DeleteConnectionResponse:
         r"""Delete a Connection"""
         hook_ctx = HookContext(operation_id='deleteConnection', oauth2_scopes=[], security_source=self.sdk_configuration.security)
         base_url = utils.template_url(*self.sdk_configuration.get_server_details())
@@ -109,20 +109,20 @@ class Connections:
             
         
         
-        res = models.DeleteConnectionResponse(status_code=http_res.status_code, content_type=http_res.headers.get('Content-Type') or '', raw_response=http_res)
+        res = api.DeleteConnectionResponse(status_code=http_res.status_code, content_type=http_res.headers.get('Content-Type') or '', raw_response=http_res)
         
         if http_res.status_code == 204:
             pass
         elif http_res.status_code == 403 or http_res.status_code == 404 or http_res.status_code >= 400 and http_res.status_code < 500 or http_res.status_code >= 500 and http_res.status_code < 600:
-            raise models.SDKError('API error occurred', http_res.status_code, http_res.text, http_res)
+            raise errors.SDKError('API error occurred', http_res.status_code, http_res.text, http_res)
         else:
-            raise models.SDKError('unknown status code received', http_res.status_code, http_res.text, http_res)
+            raise errors.SDKError('unknown status code received', http_res.status_code, http_res.text, http_res)
 
         return res
 
     
     
-    def get_connection(self, request: models.GetConnectionRequest) -> models.GetConnectionResponse:
+    def get_connection(self, request: api.GetConnectionRequest) -> api.GetConnectionResponse:
         r"""Get Connection details"""
         hook_ctx = HookContext(operation_id='getConnection', oauth2_scopes=[], security_source=self.sdk_configuration.security)
         base_url = utils.template_url(*self.sdk_configuration.get_server_details())
@@ -158,7 +158,7 @@ class Connections:
             
         
         
-        res = models.GetConnectionResponse(status_code=http_res.status_code, content_type=http_res.headers.get('Content-Type') or '', raw_response=http_res)
+        res = api.GetConnectionResponse(status_code=http_res.status_code, content_type=http_res.headers.get('Content-Type') or '', raw_response=http_res)
         
         if http_res.status_code == 200:
             if utils.match_content_type(http_res.headers.get('Content-Type') or '', 'application/json'):                
@@ -166,17 +166,17 @@ class Connections:
                 res.connection_response = out
             else:
                 content_type = http_res.headers.get('Content-Type')
-                raise models.SDKError(f'unknown content-type received: {content_type}', http_res.status_code, http_res.text, http_res)
+                raise errors.SDKError(f'unknown content-type received: {content_type}', http_res.status_code, http_res.text, http_res)
         elif http_res.status_code == 403 or http_res.status_code == 404 or http_res.status_code >= 400 and http_res.status_code < 500 or http_res.status_code >= 500 and http_res.status_code < 600:
-            raise models.SDKError('API error occurred', http_res.status_code, http_res.text, http_res)
+            raise errors.SDKError('API error occurred', http_res.status_code, http_res.text, http_res)
         else:
-            raise models.SDKError('unknown status code received', http_res.status_code, http_res.text, http_res)
+            raise errors.SDKError('unknown status code received', http_res.status_code, http_res.text, http_res)
 
         return res
 
     
     
-    def list_connections(self, request: models.ListConnectionsRequest) -> models.ListConnectionsResponse:
+    def list_connections(self, request: api.ListConnectionsRequest) -> api.ListConnectionsResponse:
         r"""List connections"""
         hook_ctx = HookContext(operation_id='listConnections', oauth2_scopes=[], security_source=self.sdk_configuration.security)
         base_url = utils.template_url(*self.sdk_configuration.get_server_details())
@@ -213,7 +213,7 @@ class Connections:
             
         
         
-        res = models.ListConnectionsResponse(status_code=http_res.status_code, content_type=http_res.headers.get('Content-Type') or '', raw_response=http_res)
+        res = api.ListConnectionsResponse(status_code=http_res.status_code, content_type=http_res.headers.get('Content-Type') or '', raw_response=http_res)
         
         if http_res.status_code == 200:
             if utils.match_content_type(http_res.headers.get('Content-Type') or '', 'application/json'):                
@@ -221,17 +221,17 @@ class Connections:
                 res.connections_response = out
             else:
                 content_type = http_res.headers.get('Content-Type')
-                raise models.SDKError(f'unknown content-type received: {content_type}', http_res.status_code, http_res.text, http_res)
+                raise errors.SDKError(f'unknown content-type received: {content_type}', http_res.status_code, http_res.text, http_res)
         elif http_res.status_code == 403 or http_res.status_code == 404 or http_res.status_code >= 400 and http_res.status_code < 500 or http_res.status_code >= 500 and http_res.status_code < 600:
-            raise models.SDKError('API error occurred', http_res.status_code, http_res.text, http_res)
+            raise errors.SDKError('API error occurred', http_res.status_code, http_res.text, http_res)
         else:
-            raise models.SDKError('unknown status code received', http_res.status_code, http_res.text, http_res)
+            raise errors.SDKError('unknown status code received', http_res.status_code, http_res.text, http_res)
 
         return res
 
     
     
-    def patch_connection(self, request: models.PatchConnectionRequest) -> models.PatchConnectionResponse:
+    def patch_connection(self, request: api.PatchConnectionRequest) -> api.PatchConnectionResponse:
         r"""Update Connection details"""
         hook_ctx = HookContext(operation_id='patchConnection', oauth2_scopes=[], security_source=self.sdk_configuration.security)
         base_url = utils.template_url(*self.sdk_configuration.get_server_details())
@@ -243,7 +243,7 @@ class Connections:
         else:
             headers, query_params = utils.get_security(self.sdk_configuration.security)
         
-        req_content_type, data, form = utils.serialize_request_body(request, models.PatchConnectionRequest, "connection_patch_request", False, False, 'json')
+        req_content_type, data, form = utils.serialize_request_body(request, api.PatchConnectionRequest, "connection_patch_request", False, False, 'json')
         if req_content_type is not None and req_content_type not in ('multipart/form-data', 'multipart/mixed'):
             headers['content-type'] = req_content_type
         if data is None and form is None:
@@ -272,7 +272,7 @@ class Connections:
             
         
         
-        res = models.PatchConnectionResponse(status_code=http_res.status_code, content_type=http_res.headers.get('Content-Type') or '', raw_response=http_res)
+        res = api.PatchConnectionResponse(status_code=http_res.status_code, content_type=http_res.headers.get('Content-Type') or '', raw_response=http_res)
         
         if http_res.status_code == 200:
             if utils.match_content_type(http_res.headers.get('Content-Type') or '', 'application/json'):                
@@ -280,11 +280,11 @@ class Connections:
                 res.connection_response = out
             else:
                 content_type = http_res.headers.get('Content-Type')
-                raise models.SDKError(f'unknown content-type received: {content_type}', http_res.status_code, http_res.text, http_res)
+                raise errors.SDKError(f'unknown content-type received: {content_type}', http_res.status_code, http_res.text, http_res)
         elif http_res.status_code == 403 or http_res.status_code == 404 or http_res.status_code >= 400 and http_res.status_code < 500 or http_res.status_code >= 500 and http_res.status_code < 600:
-            raise models.SDKError('API error occurred', http_res.status_code, http_res.text, http_res)
+            raise errors.SDKError('API error occurred', http_res.status_code, http_res.text, http_res)
         else:
-            raise models.SDKError('unknown status code received', http_res.status_code, http_res.text, http_res)
+            raise errors.SDKError('unknown status code received', http_res.status_code, http_res.text, http_res)
 
         return res
 
