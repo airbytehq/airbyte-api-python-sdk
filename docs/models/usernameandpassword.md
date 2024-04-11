@@ -1,0 +1,9 @@
+# UsernameAndPassword
+
+
+## Fields
+
+| Field                                                                                      | Type                                                                                       | Required                                                                                   | Description                                                                                |
+| ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ |
+| `password`                                                                                 | *str*                                                                                      | :heavy_check_mark:                                                                         | Enter the password associated with the username.                                           |
+| `auth_type`                                                                                | [Optional[models.DestinationSnowflakeAuthType]](../models/destinationsnowflakeauthtype.md) | :heavy_minus_sign:                                                                         | N/A                                                                                        |

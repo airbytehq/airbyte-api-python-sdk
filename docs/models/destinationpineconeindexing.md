@@ -1,0 +1,12 @@
+# DestinationPineconeIndexing
+
+Pinecone is a popular vector store that can be used to store and retrieve embeddings.
+
+
+## Fields
+
+| Field                                                                             | Type                                                                              | Required                                                                          | Description                                                                       | Example                                                                           |
+| --------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- |
+| `index`                                                                           | *str*                                                                             | :heavy_check_mark:                                                                | Pinecone index in your project to load data into                                  |                                                                                   |
+| `pinecone_environment`                                                            | *str*                                                                             | :heavy_check_mark:                                                                | Pinecone Cloud environment to use                                                 | us-west1-gcp                                                                      |
+| `pinecone_key`                                                                    | *str*                                                                             | :heavy_check_mark:                                                                | The Pinecone API key to use matching the environment (copy from Pinecone console) |                                                                                   |

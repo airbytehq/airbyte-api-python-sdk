@@ -1,0 +1,17 @@
+# SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayFromValue
+
+
+## Supported Types
+
+### SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayDimensionFilterDimensionsFilter1ExpressionsInt64Value
+
+```python
+sourceGoogleAnalyticsDataAPISchemasCustomReportsArrayFromValue: models.SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayDimensionFilterDimensionsFilter1ExpressionsInt64Value = /* values here */
+```
+
+### SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayDimensionFilterDimensionsFilter1ExpressionsDoubleValue
+
+```python
+sourceGoogleAnalyticsDataAPISchemasCustomReportsArrayFromValue: models.SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayDimensionFilterDimensionsFilter1ExpressionsDoubleValue = /* values here */
+```
+

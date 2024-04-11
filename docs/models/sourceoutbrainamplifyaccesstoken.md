@@ -1,0 +1,9 @@
+# SourceOutbrainAmplifyAccessToken
+
+
+## Fields
+
+| Field                                                                                                                | Type                                                                                                                 | Required                                                                                                             | Description                                                                                                          |
+| -------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------- |
+| `access_token`                                                                                                       | *str*                                                                                                                | :heavy_check_mark:                                                                                                   | Access Token for making authenticated requests.                                                                      |
+| `type`                                                                                                               | [models.AccessTokenIsRequiredForAuthenticationRequests](../models/accesstokenisrequiredforauthenticationrequests.md) | :heavy_check_mark:                                                                                                   | N/A                                                                                                                  |

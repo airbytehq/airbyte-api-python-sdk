@@ -18,7 +18,14 @@ Create a connection
 ```python
 import airbyte_api
 
-s = airbyte_api.AirbyteAPI()
+s = airbyte_api.AirbyteAPI(
+    security=airbyte_api.Security(
+        basic_auth=airbyte_api.SchemeBasicAuth(
+            password="<YOUR_PASSWORD_HERE>",
+            username="<YOUR_USERNAME_HERE>",
+        ),
+    ),
+)
 
 req = airbyte_api.ConnectionCreateRequest(
     destination_id='c669dd1e-3620-483e-afc8-55914e0a570f',
@@ -59,7 +66,14 @@ Delete a Connection
 ```python
 import airbyte_api
 
-s = airbyte_api.AirbyteAPI()
+s = airbyte_api.AirbyteAPI(
+    security=airbyte_api.Security(
+        basic_auth=airbyte_api.SchemeBasicAuth(
+            password="<YOUR_PASSWORD_HERE>",
+            username="<YOUR_USERNAME_HERE>",
+        ),
+    ),
+)
 
 req = airbyte_api.DeleteConnectionRequest(
     connection_id='<value>',
@@ -98,7 +112,14 @@ Get Connection details
 ```python
 import airbyte_api
 
-s = airbyte_api.AirbyteAPI()
+s = airbyte_api.AirbyteAPI(
+    security=airbyte_api.Security(
+        basic_auth=airbyte_api.SchemeBasicAuth(
+            password="<YOUR_PASSWORD_HERE>",
+            username="<YOUR_USERNAME_HERE>",
+        ),
+    ),
+)
 
 req = airbyte_api.GetConnectionRequest(
     connection_id='<value>',
@@ -137,7 +158,14 @@ List connections
 ```python
 import airbyte_api
 
-s = airbyte_api.AirbyteAPI()
+s = airbyte_api.AirbyteAPI(
+    security=airbyte_api.Security(
+        basic_auth=airbyte_api.SchemeBasicAuth(
+            password="<YOUR_PASSWORD_HERE>",
+            username="<YOUR_USERNAME_HERE>",
+        ),
+    ),
+)
 
 req = airbyte_api.ListConnectionsRequest()
 
@@ -174,7 +202,14 @@ Update Connection details
 ```python
 import airbyte_api
 
-s = airbyte_api.AirbyteAPI()
+s = airbyte_api.AirbyteAPI(
+    security=airbyte_api.Security(
+        basic_auth=airbyte_api.SchemeBasicAuth(
+            password="<YOUR_PASSWORD_HERE>",
+            username="<YOUR_USERNAME_HERE>",
+        ),
+    ),
+)
 
 req = airbyte_api.PatchConnectionRequest(
     connection_patch_request=airbyte_api.ConnectionPatchRequest(

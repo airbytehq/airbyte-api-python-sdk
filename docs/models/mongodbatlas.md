@@ -1,0 +1,9 @@
+# MongoDBAtlas
+
+
+## Fields
+
+| Field                                                                                                | Type                                                                                                 | Required                                                                                             | Description                                                                                          |
+| ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- |
+| `cluster_url`                                                                                        | *str*                                                                                                | :heavy_check_mark:                                                                                   | URL of a cluster to connect to.                                                                      |
+| `instance`                                                                                           | [Optional[models.DestinationMongodbSchemasInstance]](../models/destinationmongodbschemasinstance.md) | :heavy_minus_sign:                                                                                   | N/A                                                                                                  |

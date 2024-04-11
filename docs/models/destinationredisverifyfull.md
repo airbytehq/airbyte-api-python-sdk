@@ -1,0 +1,14 @@
+# DestinationRedisVerifyFull
+
+Verify-full SSL mode.
+
+
+## Fields
+
+| Field                                                                                         | Type                                                                                          | Required                                                                                      | Description                                                                                   |
+| --------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- |
+| `ca_certificate`                                                                              | *str*                                                                                         | :heavy_check_mark:                                                                            | CA certificate                                                                                |
+| `client_certificate`                                                                          | *str*                                                                                         | :heavy_check_mark:                                                                            | Client certificate                                                                            |
+| `client_key`                                                                                  | *str*                                                                                         | :heavy_check_mark:                                                                            | Client key                                                                                    |
+| `client_key_password`                                                                         | *Optional[str]*                                                                               | :heavy_minus_sign:                                                                            | Password for keystorage. If you do not add it - the password will be generated automatically. |
+| `mode`                                                                                        | [Optional[models.DestinationRedisSchemasMode]](../models/destinationredisschemasmode.md)      | :heavy_minus_sign:                                                                            | N/A                                                                                           |

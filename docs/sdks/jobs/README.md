@@ -17,7 +17,14 @@ Cancel a running Job
 ```python
 import airbyte_api
 
-s = airbyte_api.AirbyteAPI()
+s = airbyte_api.AirbyteAPI(
+    security=airbyte_api.Security(
+        basic_auth=airbyte_api.SchemeBasicAuth(
+            password="<YOUR_PASSWORD_HERE>",
+            username="<YOUR_USERNAME_HERE>",
+        ),
+    ),
+)
 
 req = airbyte_api.CancelJobRequest(
     job_id=801771,
@@ -56,7 +63,14 @@ Trigger a sync or reset job of a connection
 ```python
 import airbyte_api
 
-s = airbyte_api.AirbyteAPI()
+s = airbyte_api.AirbyteAPI(
+    security=airbyte_api.Security(
+        basic_auth=airbyte_api.SchemeBasicAuth(
+            password="<YOUR_PASSWORD_HERE>",
+            username="<YOUR_USERNAME_HERE>",
+        ),
+    ),
+)
 
 req = airbyte_api.JobCreateRequest(
     connection_id='18dccc91-0ab1-4f72-9ed7-0b8fc27c5826',
@@ -96,7 +110,14 @@ Get Job status and details
 ```python
 import airbyte_api
 
-s = airbyte_api.AirbyteAPI()
+s = airbyte_api.AirbyteAPI(
+    security=airbyte_api.Security(
+        basic_auth=airbyte_api.SchemeBasicAuth(
+            password="<YOUR_PASSWORD_HERE>",
+            username="<YOUR_USERNAME_HERE>",
+        ),
+    ),
+)
 
 req = airbyte_api.GetJobRequest(
     job_id=131101,
@@ -135,7 +156,14 @@ List Jobs by sync type
 ```python
 import airbyte_api
 
-s = airbyte_api.AirbyteAPI()
+s = airbyte_api.AirbyteAPI(
+    security=airbyte_api.Security(
+        basic_auth=airbyte_api.SchemeBasicAuth(
+            password="<YOUR_PASSWORD_HERE>",
+            username="<YOUR_USERNAME_HERE>",
+        ),
+    ),
+)
 
 req = airbyte_api.ListJobsRequest()
 

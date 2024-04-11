@@ -1,0 +1,19 @@
+# DestinationS3Compression
+
+Whether the output files should be compressed. If compression is selected, the output filename will have an extra extension (GZIP: ".csv.gz").
+
+
+## Supported Types
+
+### DestinationS3NoCompression
+
+```python
+destinationS3Compression: models.DestinationS3NoCompression = /* values here */
+```
+
+### DestinationS3GZIP
+
+```python
+destinationS3Compression: models.DestinationS3GZIP = /* values here */
+```
+

@@ -20,13 +20,20 @@ In order to determine what the credential configuration needs to be, please see 
 ```python
 import airbyte_api
 
-s = airbyte_api.AirbyteAPI()
+s = airbyte_api.AirbyteAPI(
+    security=airbyte_api.Security(
+        basic_auth=airbyte_api.SchemeBasicAuth(
+            password="<YOUR_PASSWORD_HERE>",
+            username="<YOUR_USERNAME_HERE>",
+        ),
+    ),
+)
 
 req = airbyte_api.CreateOrUpdateWorkspaceOAuthCredentialsRequest(
     workspace_o_auth_credentials_request=airbyte_api.WorkspaceOAuthCredentialsRequest(
         actor_type=airbyte_api.ActorTypeEnum.DESTINATION,
-        configuration=airbyte_api.OAuthCredentialsConfiguration(),
-        name='<value>',
+        configuration=airbyte_api.Airtable(),
+        name=airbyte_api.OAuthActorNames.AMAZON_ADS,
     ),
     workspace_id='<value>',
 )
@@ -64,7 +71,14 @@ Create a workspace
 ```python
 import airbyte_api
 
-s = airbyte_api.AirbyteAPI()
+s = airbyte_api.AirbyteAPI(
+    security=airbyte_api.Security(
+        basic_auth=airbyte_api.SchemeBasicAuth(
+            password="<YOUR_PASSWORD_HERE>",
+            username="<YOUR_USERNAME_HERE>",
+        ),
+    ),
+)
 
 req = airbyte_api.WorkspaceCreateRequest(
     name='<value>',
@@ -103,7 +117,14 @@ Delete a Workspace
 ```python
 import airbyte_api
 
-s = airbyte_api.AirbyteAPI()
+s = airbyte_api.AirbyteAPI(
+    security=airbyte_api.Security(
+        basic_auth=airbyte_api.SchemeBasicAuth(
+            password="<YOUR_PASSWORD_HERE>",
+            username="<YOUR_USERNAME_HERE>",
+        ),
+    ),
+)
 
 req = airbyte_api.DeleteWorkspaceRequest(
     workspace_id='<value>',
@@ -142,7 +163,14 @@ Get Workspace details
 ```python
 import airbyte_api
 
-s = airbyte_api.AirbyteAPI()
+s = airbyte_api.AirbyteAPI(
+    security=airbyte_api.Security(
+        basic_auth=airbyte_api.SchemeBasicAuth(
+            password="<YOUR_PASSWORD_HERE>",
+            username="<YOUR_USERNAME_HERE>",
+        ),
+    ),
+)
 
 req = airbyte_api.GetWorkspaceRequest(
     workspace_id='<value>',
@@ -181,7 +209,14 @@ List workspaces
 ```python
 import airbyte_api
 
-s = airbyte_api.AirbyteAPI()
+s = airbyte_api.AirbyteAPI(
+    security=airbyte_api.Security(
+        basic_auth=airbyte_api.SchemeBasicAuth(
+            password="<YOUR_PASSWORD_HERE>",
+            username="<YOUR_USERNAME_HERE>",
+        ),
+    ),
+)
 
 req = airbyte_api.ListWorkspacesRequest()
 
@@ -218,7 +253,14 @@ Update a workspace
 ```python
 import airbyte_api
 
-s = airbyte_api.AirbyteAPI()
+s = airbyte_api.AirbyteAPI(
+    security=airbyte_api.Security(
+        basic_auth=airbyte_api.SchemeBasicAuth(
+            password="<YOUR_PASSWORD_HERE>",
+            username="<YOUR_USERNAME_HERE>",
+        ),
+    ),
+)
 
 req = airbyte_api.UpdateWorkspaceRequest(
     workspace_update_request=airbyte_api.WorkspaceUpdateRequest(

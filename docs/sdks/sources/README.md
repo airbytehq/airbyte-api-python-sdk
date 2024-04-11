@@ -20,12 +20,22 @@ Creates a source given a name, workspace id, and a json blob containing the conf
 ```python
 import airbyte_api
 
-s = airbyte_api.AirbyteAPI()
+s = airbyte_api.AirbyteAPI(
+    security=airbyte_api.Security(
+        basic_auth=airbyte_api.SchemeBasicAuth(
+            password="<YOUR_PASSWORD_HERE>",
+            username="<YOUR_USERNAME_HERE>",
+        ),
+    ),
+)
 
 req = airbyte_api.SourceCreateRequest(
-    configuration='<value>',
+    configuration=airbyte_api.SourceAha(
+        api_key='<value>',
+        url='https://complicated-seat.org',
+    ),
     name='<value>',
-    workspace_id='a2cf0f31-f3dd-4c98-88c3-4bdfb109056a',
+    workspace_id='0f31f3dd-c984-48c3-8bdf-b109056aa6d6',
 )
 
 res = s.sources.create_source(req)
@@ -61,7 +71,14 @@ Delete a Source
 ```python
 import airbyte_api
 
-s = airbyte_api.AirbyteAPI()
+s = airbyte_api.AirbyteAPI(
+    security=airbyte_api.Security(
+        basic_auth=airbyte_api.SchemeBasicAuth(
+            password="<YOUR_PASSWORD_HERE>",
+            username="<YOUR_USERNAME_HERE>",
+        ),
+    ),
+)
 
 req = airbyte_api.DeleteSourceRequest(
     source_id='<value>',
@@ -100,7 +117,14 @@ Get Source details
 ```python
 import airbyte_api
 
-s = airbyte_api.AirbyteAPI()
+s = airbyte_api.AirbyteAPI(
+    security=airbyte_api.Security(
+        basic_auth=airbyte_api.SchemeBasicAuth(
+            password="<YOUR_PASSWORD_HERE>",
+            username="<YOUR_USERNAME_HERE>",
+        ),
+    ),
+)
 
 req = airbyte_api.GetSourceRequest(
     source_id='<value>',
@@ -143,10 +167,18 @@ That secret ID can be used to create a source with credentials in place of actua
 ```python
 import airbyte_api
 
-s = airbyte_api.AirbyteAPI()
+s = airbyte_api.AirbyteAPI(
+    security=airbyte_api.Security(
+        basic_auth=airbyte_api.SchemeBasicAuth(
+            password="<YOUR_PASSWORD_HERE>",
+            username="<YOUR_USERNAME_HERE>",
+        ),
+    ),
+)
 
 req = airbyte_api.InitiateOauthRequest(
     redirect_url='https://cloud.airbyte.io/v1/api/oauth/callback',
+    source_type=airbyte_api.OAuthActorNames.GOOGLE_ADS,
     workspace_id='871d9b60-11d1-44cb-8c92-c246d53bf87e',
     o_auth_input_configuration=airbyte_api.OAuthInputConfiguration(),
 )
@@ -184,7 +216,14 @@ List sources
 ```python
 import airbyte_api
 
-s = airbyte_api.AirbyteAPI()
+s = airbyte_api.AirbyteAPI(
+    security=airbyte_api.Security(
+        basic_auth=airbyte_api.SchemeBasicAuth(
+            password="<YOUR_PASSWORD_HERE>",
+            username="<YOUR_USERNAME_HERE>",
+        ),
+    ),
+)
 
 req = airbyte_api.ListSourcesRequest()
 
@@ -221,7 +260,14 @@ Update a Source
 ```python
 import airbyte_api
 
-s = airbyte_api.AirbyteAPI()
+s = airbyte_api.AirbyteAPI(
+    security=airbyte_api.Security(
+        basic_auth=airbyte_api.SchemeBasicAuth(
+            password="<YOUR_PASSWORD_HERE>",
+            username="<YOUR_USERNAME_HERE>",
+        ),
+    ),
+)
 
 req = airbyte_api.PatchSourceRequest(
     source_id='<value>',
@@ -260,7 +306,14 @@ Update a Source and fully overwrite it
 ```python
 import airbyte_api
 
-s = airbyte_api.AirbyteAPI()
+s = airbyte_api.AirbyteAPI(
+    security=airbyte_api.Security(
+        basic_auth=airbyte_api.SchemeBasicAuth(
+            password="<YOUR_PASSWORD_HERE>",
+            username="<YOUR_USERNAME_HERE>",
+        ),
+    ),
+)
 
 req = airbyte_api.PutSourceRequest(
     source_id='<value>',

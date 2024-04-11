@@ -1,0 +1,15 @@
+# AuthenticateViaMicrosoftOAuth
+
+OAuthCredentials class to hold authentication details for Microsoft OAuth authentication.
+This class uses pydantic for data validation and settings management.
+
+
+## Fields
+
+| Field                                                                                            | Type                                                                                             | Required                                                                                         | Description                                                                                      |
+| ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ |
+| `client_id`                                                                                      | *str*                                                                                            | :heavy_check_mark:                                                                               | Client ID of your Microsoft developer application                                                |
+| `client_secret`                                                                                  | *str*                                                                                            | :heavy_check_mark:                                                                               | Client Secret of your Microsoft developer application                                            |
+| `refresh_token`                                                                                  | *str*                                                                                            | :heavy_check_mark:                                                                               | Refresh Token of your Microsoft developer application                                            |
+| `tenant_id`                                                                                      | *str*                                                                                            | :heavy_check_mark:                                                                               | Tenant ID of the Microsoft OneDrive user                                                         |
+| `auth_type`                                                                                      | [Optional[models.SourceMicrosoftOnedriveAuthType]](../models/sourcemicrosoftonedriveauthtype.md) | :heavy_minus_sign:                                                                               | N/A                                                                                              |

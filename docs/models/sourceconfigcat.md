@@ -1,0 +1,10 @@
+# SourceConfigcat
+
+
+## Fields
+
+| Field                                                                                                | Type                                                                                                 | Required                                                                                             | Description                                                                                          |
+| ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- |
+| `password`                                                                                           | *str*                                                                                                | :heavy_check_mark:                                                                                   | Basic auth password. See <a href="https://api.configcat.com/docs/#section/Authentication">here</a>.  |
+| `username`                                                                                           | *str*                                                                                                | :heavy_check_mark:                                                                                   | Basic auth user name. See <a href="https://api.configcat.com/docs/#section/Authentication">here</a>. |
+| `source_type`                                                                                        | [models.Configcat](../models/configcat.md)                                                           | :heavy_check_mark:                                                                                   | N/A                                                                                                  |

@@ -1,0 +1,11 @@
+# SourceOrbit
+
+
+## Fields
+
+| Field                                                                                       | Type                                                                                        | Required                                                                                    | Description                                                                                 |
+| ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- |
+| `api_token`                                                                                 | *str*                                                                                       | :heavy_check_mark:                                                                          | Authorizes you to work with Orbit workspaces associated with the token.                     |
+| `workspace`                                                                                 | *str*                                                                                       | :heavy_check_mark:                                                                          | The unique name of the workspace that your API token is associated with.                    |
+| `source_type`                                                                               | [models.Orbit](../models/orbit.md)                                                          | :heavy_check_mark:                                                                          | N/A                                                                                         |
+| `start_date`                                                                                | *Optional[str]*                                                                             | :heavy_minus_sign:                                                                          | Date in the format 2022-06-26. Only load members whose last activities are after this date. |

@@ -1,0 +1,12 @@
+# DestinationWeaviateUsernamePassword
+
+Authenticate using username and password (suitable for self-managed Weaviate clusters)
+
+
+## Fields
+
+| Field                                                                                                                  | Type                                                                                                                   | Required                                                                                                               | Description                                                                                                            |
+| ---------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------- |
+| `password`                                                                                                             | *str*                                                                                                                  | :heavy_check_mark:                                                                                                     | Password for the Weaviate cluster                                                                                      |
+| `username`                                                                                                             | *str*                                                                                                                  | :heavy_check_mark:                                                                                                     | Username for the Weaviate cluster                                                                                      |
+| `mode`                                                                                                                 | [Optional[models.DestinationWeaviateSchemasIndexingAuthMode]](../models/destinationweaviateschemasindexingauthmode.md) | :heavy_minus_sign:                                                                                                     | N/A                                                                                                                    |

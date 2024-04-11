@@ -1,0 +1,17 @@
+# SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayMetricFilterToValue
+
+
+## Supported Types
+
+### SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayMetricFilterMetricsFilter1Int64Value
+
+```python
+sourceGoogleAnalyticsDataAPISchemasCustomReportsArrayMetricFilterToValue: models.SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayMetricFilterMetricsFilter1Int64Value = /* values here */
+```
+
+### SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayMetricFilterMetricsFilter1DoubleValue
+
+```python
+sourceGoogleAnalyticsDataAPISchemasCustomReportsArrayMetricFilterToValue: models.SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayMetricFilterMetricsFilter1DoubleValue = /* values here */
+```
+

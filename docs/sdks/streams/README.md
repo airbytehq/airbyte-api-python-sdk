@@ -14,7 +14,14 @@ Get stream properties
 ```python
 import airbyte_api
 
-s = airbyte_api.AirbyteAPI()
+s = airbyte_api.AirbyteAPI(
+    security=airbyte_api.Security(
+        basic_auth=airbyte_api.SchemeBasicAuth(
+            password="<YOUR_PASSWORD_HERE>",
+            username="<YOUR_USERNAME_HERE>",
+        ),
+    ),
+)
 
 req = airbyte_api.GetStreamPropertiesRequest(
     destination_id='<value>',
