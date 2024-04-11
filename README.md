@@ -28,13 +28,26 @@ pip install airbyte-api
 
 ```python
 import airbyte_api
+from airbyte_api import models
 
-s = airbyte_api.AirbyteAPI()
+s = airbyte_api.AirbyteAPI(
+    security=models.Security(
+        basic_auth=models.SchemeBasicAuth(
+            password="<YOUR_PASSWORD_HERE>",
+            username="<YOUR_USERNAME_HERE>",
+        ),
+    ),
+)
 
+req = models.ConnectionCreateRequest(
+    destination_id='c669dd1e-3620-483e-afc8-55914e0a570f',
+    source_id='6dd427d8-3a55-4584-b835-842325b6c7b3',
+    namespace_format='${SOURCE_NAMESPACE}',
+)
 
-res = s.root.get_documentation()
+res = s.connections.create_connection(req)
 
-if res is not None:
+if res.connection_response is not None:
     # handle response
     pass
 
@@ -43,10 +56,6 @@ if res is not None:
 
 <!-- Start Available Resources and Operations [operations] -->
 ## Available Resources and Operations
-
-### [root](docs/sdks/root/README.md)
-
-* [get_documentation](docs/sdks/root/README.md#get_documentation) - Root path, currently returns a redirect to the documentation
 
 ### [connections](docs/sdks/connections/README.md)
 
@@ -65,20 +74,12 @@ if res is not None:
 * [patch_destination](docs/sdks/destinations/README.md#patch_destination) - Update a Destination
 * [put_destination](docs/sdks/destinations/README.md#put_destination) - Update a Destination and fully overwrite it
 
-### [health](docs/sdks/health/README.md)
-
-* [get_health_check](docs/sdks/health/README.md#get_health_check) - Health Check
-
 ### [jobs](docs/sdks/jobs/README.md)
 
 * [cancel_job](docs/sdks/jobs/README.md#cancel_job) - Cancel a running Job
 * [create_job](docs/sdks/jobs/README.md#create_job) - Trigger a sync or reset job of a connection
 * [get_job](docs/sdks/jobs/README.md#get_job) - Get Job status and details
 * [list_jobs](docs/sdks/jobs/README.md#list_jobs) - List Jobs by sync type
-
-### [o_auth](docs/sdks/oauth/README.md)
-
-* [oauth_callback](docs/sdks/oauth/README.md#oauth_callback) - Receive OAuth callbacks
 
 ### [sources](docs/sdks/sources/README.md)
 
@@ -117,25 +118,37 @@ Handling errors in this SDK should largely match your expectations.  All operati
 
 | Error Object    | Status Code     | Content Type    |
 | --------------- | --------------- | --------------- |
-| models.SDKError | 4xx-5xx         | */*             |
+| errors.SDKError | 4xx-5xx         | */*             |
 
 ### Example
 
 ```python
 import airbyte_api
-from airbyte_api import models
+from airbyte_api import errors, models
 
-s = airbyte_api.AirbyteAPI()
+s = airbyte_api.AirbyteAPI(
+    security=models.Security(
+        basic_auth=models.SchemeBasicAuth(
+            password="<YOUR_PASSWORD_HERE>",
+            username="<YOUR_USERNAME_HERE>",
+        ),
+    ),
+)
 
+req = models.ConnectionCreateRequest(
+    destination_id='c669dd1e-3620-483e-afc8-55914e0a570f',
+    source_id='6dd427d8-3a55-4584-b835-842325b6c7b3',
+    namespace_format='${SOURCE_NAMESPACE}',
+)
 
 res = None
 try:
-    res = s.root.get_documentation()
-except models.SDKError as e:
+    res = s.connections.create_connection(req)
+except errors.SDKError as e:
     # handle exception
     raise(e)
 
-if res is not None:
+if res.connection_response is not None:
     # handle response
     pass
 
@@ -153,21 +166,33 @@ You can override the default server globally by passing a server index to the `s
 
 | # | Server | Variables |
 | - | ------ | --------- |
-| 0 | `http://localhost:8006/v1` | None |
+| 0 | `https://api.airbyte.com/v1` | None |
 
 #### Example
 
 ```python
 import airbyte_api
+from airbyte_api import models
 
 s = airbyte_api.AirbyteAPI(
     server_idx=0,
+    security=models.Security(
+        basic_auth=models.SchemeBasicAuth(
+            password="<YOUR_PASSWORD_HERE>",
+            username="<YOUR_USERNAME_HERE>",
+        ),
+    ),
 )
 
+req = models.ConnectionCreateRequest(
+    destination_id='c669dd1e-3620-483e-afc8-55914e0a570f',
+    source_id='6dd427d8-3a55-4584-b835-842325b6c7b3',
+    namespace_format='${SOURCE_NAMESPACE}',
+)
 
-res = s.root.get_documentation()
+res = s.connections.create_connection(req)
 
-if res is not None:
+if res.connection_response is not None:
     # handle response
     pass
 
@@ -179,32 +204,27 @@ if res is not None:
 The default server can also be overridden globally by passing a URL to the `server_url: str` optional parameter when initializing the SDK client instance. For example:
 ```python
 import airbyte_api
+from airbyte_api import models
 
 s = airbyte_api.AirbyteAPI(
-    server_url="http://localhost:8006/v1",
+    server_url="https://api.airbyte.com/v1",
+    security=models.Security(
+        basic_auth=models.SchemeBasicAuth(
+            password="<YOUR_PASSWORD_HERE>",
+            username="<YOUR_USERNAME_HERE>",
+        ),
+    ),
 )
 
+req = models.ConnectionCreateRequest(
+    destination_id='c669dd1e-3620-483e-afc8-55914e0a570f',
+    source_id='6dd427d8-3a55-4584-b835-842325b6c7b3',
+    namespace_format='${SOURCE_NAMESPACE}',
+)
 
-res = s.root.get_documentation()
+res = s.connections.create_connection(req)
 
-if res is not None:
-    # handle response
-    pass
-
-```
-
-### Override Server URL Per-Operation
-
-The server URL can also be overridden on a per-operation basis, provided a server list was specified for the operation. For example:
-```python
-import airbyte_api
-
-s = airbyte_api.AirbyteAPI()
-
-
-res = s.root.get_documentation(server_url="http://localhost:8006")
-
-if res is not None:
+if res.connection_response is not None:
     # handle response
     pass
 
@@ -230,6 +250,47 @@ s = airbyte_api.AirbyteAPI(client=http_client)
 <!-- End Custom HTTP Client [http-client] -->
 
 
+
+<!-- Start Authentication [security] -->
+## Authentication
+
+### Per-Client Security Schemes
+
+This SDK supports the following security schemes globally:
+
+| Name          | Type          | Scheme        |
+| ------------- | ------------- | ------------- |
+| `basic_auth`  | http          | HTTP Basic    |
+| `bearer_auth` | http          | HTTP Bearer   |
+
+You can set the security parameters through the `security` optional parameter when initializing the SDK client instance. The selected scheme will be used by default to authenticate with the API for all operations that support it. For example:
+```python
+import airbyte_api
+from airbyte_api import models
+
+s = airbyte_api.AirbyteAPI(
+    security=models.Security(
+        basic_auth=models.SchemeBasicAuth(
+            password="<YOUR_PASSWORD_HERE>",
+            username="<YOUR_USERNAME_HERE>",
+        ),
+    ),
+)
+
+req = models.ConnectionCreateRequest(
+    destination_id='c669dd1e-3620-483e-afc8-55914e0a570f',
+    source_id='6dd427d8-3a55-4584-b835-842325b6c7b3',
+    namespace_format='${SOURCE_NAMESPACE}',
+)
+
+res = s.connections.create_connection(req)
+
+if res.connection_response is not None:
+    # handle response
+    pass
+
+```
+<!-- End Authentication [security] -->
 
 <!-- Placeholder for Future Speakeasy SDK Sections -->
 
