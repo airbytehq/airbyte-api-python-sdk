@@ -24,9 +24,9 @@ class SDKConfiguration:
     server_idx: Optional[int] = 0
     language: str = 'python'
     openapi_doc_version: str = '1.0.0'
-    sdk_version: str = '0.49.1'
+    sdk_version: str = '0.49.2'
     gen_version: str = '2.304.1'
-    user_agent: str = 'speakeasy-sdk/python 0.49.1 2.304.1 1.0.0 airbyte-api'
+    user_agent: str = 'speakeasy-sdk/python 0.49.2 2.304.1 1.0.0 airbyte-api'
     retry_config: Optional[RetryConfig] = None
 
     def __post_init__(self):
