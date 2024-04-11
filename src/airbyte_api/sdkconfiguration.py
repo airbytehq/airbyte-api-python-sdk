@@ -5,12 +5,13 @@ import requests as requests_http
 from ._hooks import SDKHooks
 from .utils import utils
 from .utils.retries import RetryConfig
+from airbyte_api import models
 from dataclasses import dataclass
-from typing import Dict, Optional, Tuple
+from typing import Callable, Dict, Optional, Tuple, Union
 
 
 SERVERS = [
-    'http://localhost:8006/v1',
+    'https://api.airbyte.com/v1',
     # Airbyte API v1
 ]
 """Contains the list of servers available to the SDK"""
@@ -18,13 +19,14 @@ SERVERS = [
 @dataclass
 class SDKConfiguration:
     client: requests_http.Session
+    security: Union[models.Security,Callable[[], models.Security]] = None
     server_url: Optional[str] = ''
     server_idx: Optional[int] = 0
     language: str = 'python'
     openapi_doc_version: str = '1.0.0'
-    sdk_version: str = '0.48.0'
+    sdk_version: str = '0.49.0'
     gen_version: str = '2.301.0'
-    user_agent: str = 'speakeasy-sdk/python 0.48.0 2.301.0 1.0.0 airbyte-api'
+    user_agent: str = 'speakeasy-sdk/python 0.49.0 2.301.0 1.0.0 airbyte-api'
     retry_config: Optional[RetryConfig] = None
 
     def __post_init__(self):

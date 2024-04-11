@@ -16,12 +16,15 @@ class Connections:
     
     def create_connection(self, request: models.ConnectionCreateRequest) -> models.CreateConnectionResponse:
         r"""Create a connection"""
-        hook_ctx = HookContext(operation_id='createConnection', oauth2_scopes=[], security_source=None)
+        hook_ctx = HookContext(operation_id='createConnection', oauth2_scopes=[], security_source=self.sdk_configuration.security)
         base_url = utils.template_url(*self.sdk_configuration.get_server_details())
         
         url = base_url + '/connections'
         
-        headers = {}
+        if callable(self.sdk_configuration.security):
+            headers, query_params = utils.get_security(self.sdk_configuration.security())
+        else:
+            headers, query_params = utils.get_security(self.sdk_configuration.security)
         
         req_content_type, data, form = utils.serialize_request_body(request, models.ConnectionCreateRequest, "request", False, False, 'json')
         if req_content_type is not None and req_content_type not in ('multipart/form-data', 'multipart/mixed'):
@@ -33,7 +36,7 @@ class Connections:
         client = self.sdk_configuration.client
         
         try:
-            req = client.prepare_request(requests_http.Request('POST', url, data=data, files=form, headers=headers))
+            req = client.prepare_request(requests_http.Request('POST', url, params=query_params, data=data, files=form, headers=headers))
             req = self.sdk_configuration.get_hooks().before_request(BeforeRequestContext(hook_ctx), req)
             http_res = client.send(req)
         except Exception as e:
@@ -72,19 +75,22 @@ class Connections:
     
     def delete_connection(self, request: models.DeleteConnectionRequest) -> models.DeleteConnectionResponse:
         r"""Delete a Connection"""
-        hook_ctx = HookContext(operation_id='deleteConnection', oauth2_scopes=[], security_source=None)
+        hook_ctx = HookContext(operation_id='deleteConnection', oauth2_scopes=[], security_source=self.sdk_configuration.security)
         base_url = utils.template_url(*self.sdk_configuration.get_server_details())
         
         url = utils.generate_url(base_url, '/connections/{connectionId}', request)
         
-        headers = {}
+        if callable(self.sdk_configuration.security):
+            headers, query_params = utils.get_security(self.sdk_configuration.security())
+        else:
+            headers, query_params = utils.get_security(self.sdk_configuration.security)
         
         headers['Accept'] = '*/*'
         headers['user-agent'] = self.sdk_configuration.user_agent
         client = self.sdk_configuration.client
         
         try:
-            req = client.prepare_request(requests_http.Request('DELETE', url, headers=headers))
+            req = client.prepare_request(requests_http.Request('DELETE', url, params=query_params, headers=headers))
             req = self.sdk_configuration.get_hooks().before_request(BeforeRequestContext(hook_ctx), req)
             http_res = client.send(req)
         except Exception as e:
@@ -118,19 +124,22 @@ class Connections:
     
     def get_connection(self, request: models.GetConnectionRequest) -> models.GetConnectionResponse:
         r"""Get Connection details"""
-        hook_ctx = HookContext(operation_id='getConnection', oauth2_scopes=[], security_source=None)
+        hook_ctx = HookContext(operation_id='getConnection', oauth2_scopes=[], security_source=self.sdk_configuration.security)
         base_url = utils.template_url(*self.sdk_configuration.get_server_details())
         
         url = utils.generate_url(base_url, '/connections/{connectionId}', request)
         
-        headers = {}
+        if callable(self.sdk_configuration.security):
+            headers, query_params = utils.get_security(self.sdk_configuration.security())
+        else:
+            headers, query_params = utils.get_security(self.sdk_configuration.security)
         
         headers['Accept'] = 'application/json'
         headers['user-agent'] = self.sdk_configuration.user_agent
         client = self.sdk_configuration.client
         
         try:
-            req = client.prepare_request(requests_http.Request('GET', url, headers=headers))
+            req = client.prepare_request(requests_http.Request('GET', url, params=query_params, headers=headers))
             req = self.sdk_configuration.get_hooks().before_request(BeforeRequestContext(hook_ctx), req)
             http_res = client.send(req)
         except Exception as e:
@@ -169,13 +178,15 @@ class Connections:
     
     def list_connections(self, request: models.ListConnectionsRequest) -> models.ListConnectionsResponse:
         r"""List connections"""
-        hook_ctx = HookContext(operation_id='listConnections', oauth2_scopes=[], security_source=None)
+        hook_ctx = HookContext(operation_id='listConnections', oauth2_scopes=[], security_source=self.sdk_configuration.security)
         base_url = utils.template_url(*self.sdk_configuration.get_server_details())
         
         url = base_url + '/connections'
         
-        headers = {}
-        query_params = {}
+        if callable(self.sdk_configuration.security):
+            headers, query_params = utils.get_security(self.sdk_configuration.security())
+        else:
+            headers, query_params = utils.get_security(self.sdk_configuration.security)
         
         query_params = { **utils.get_query_params(request), **query_params }
         headers['Accept'] = 'application/json'
@@ -222,12 +233,15 @@ class Connections:
     
     def patch_connection(self, request: models.PatchConnectionRequest) -> models.PatchConnectionResponse:
         r"""Update Connection details"""
-        hook_ctx = HookContext(operation_id='patchConnection', oauth2_scopes=[], security_source=None)
+        hook_ctx = HookContext(operation_id='patchConnection', oauth2_scopes=[], security_source=self.sdk_configuration.security)
         base_url = utils.template_url(*self.sdk_configuration.get_server_details())
         
         url = utils.generate_url(base_url, '/connections/{connectionId}', request)
         
-        headers = {}
+        if callable(self.sdk_configuration.security):
+            headers, query_params = utils.get_security(self.sdk_configuration.security())
+        else:
+            headers, query_params = utils.get_security(self.sdk_configuration.security)
         
         req_content_type, data, form = utils.serialize_request_body(request, models.PatchConnectionRequest, "connection_patch_request", False, False, 'json')
         if req_content_type is not None and req_content_type not in ('multipart/form-data', 'multipart/mixed'):
@@ -239,7 +253,7 @@ class Connections:
         client = self.sdk_configuration.client
         
         try:
-            req = client.prepare_request(requests_http.Request('PATCH', url, data=data, files=form, headers=headers))
+            req = client.prepare_request(requests_http.Request('PATCH', url, params=query_params, data=data, files=form, headers=headers))
             req = self.sdk_configuration.get_hooks().before_request(BeforeRequestContext(hook_ctx), req)
             http_res = client.send(req)
         except Exception as e:

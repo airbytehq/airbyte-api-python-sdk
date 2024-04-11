@@ -25,7 +25,7 @@ class ListJobsRequest:
     offset: Optional[int] = dataclasses.field(default=0, metadata={'query_param': { 'field_name': 'offset', 'style': 'form', 'explode': True }})
     r"""Set the offset to start at when returning Jobs. The default is 0."""
     order_by: Optional[str] = dataclasses.field(default=None, metadata={'query_param': { 'field_name': 'orderBy', 'style': 'form', 'explode': True }})
-    r"""The field and method to use for ordering"""
+    r"""The field and method to use for ordering. Currently allowed are createdAt and updatedAt."""
     status: Optional[JobStatusEnum] = dataclasses.field(default=None, metadata={'query_param': { 'field_name': 'status', 'style': 'form', 'explode': True }})
     r"""The Job status you want to filter by"""
     updated_at_end: Optional[datetime] = dataclasses.field(default=None, metadata={'query_param': { 'field_name': 'updatedAtEnd', 'style': 'form', 'explode': True }})

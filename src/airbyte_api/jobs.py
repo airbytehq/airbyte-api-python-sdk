@@ -16,19 +16,22 @@ class Jobs:
     
     def cancel_job(self, request: models.CancelJobRequest) -> models.CancelJobResponse:
         r"""Cancel a running Job"""
-        hook_ctx = HookContext(operation_id='cancelJob', oauth2_scopes=[], security_source=None)
+        hook_ctx = HookContext(operation_id='cancelJob', oauth2_scopes=[], security_source=self.sdk_configuration.security)
         base_url = utils.template_url(*self.sdk_configuration.get_server_details())
         
         url = utils.generate_url(base_url, '/jobs/{jobId}', request)
         
-        headers = {}
+        if callable(self.sdk_configuration.security):
+            headers, query_params = utils.get_security(self.sdk_configuration.security())
+        else:
+            headers, query_params = utils.get_security(self.sdk_configuration.security)
         
         headers['Accept'] = 'application/json'
         headers['user-agent'] = self.sdk_configuration.user_agent
         client = self.sdk_configuration.client
         
         try:
-            req = client.prepare_request(requests_http.Request('DELETE', url, headers=headers))
+            req = client.prepare_request(requests_http.Request('DELETE', url, params=query_params, headers=headers))
             req = self.sdk_configuration.get_hooks().before_request(BeforeRequestContext(hook_ctx), req)
             http_res = client.send(req)
         except Exception as e:
@@ -67,12 +70,15 @@ class Jobs:
     
     def create_job(self, request: models.JobCreateRequest) -> models.CreateJobResponse:
         r"""Trigger a sync or reset job of a connection"""
-        hook_ctx = HookContext(operation_id='createJob', oauth2_scopes=[], security_source=None)
+        hook_ctx = HookContext(operation_id='createJob', oauth2_scopes=[], security_source=self.sdk_configuration.security)
         base_url = utils.template_url(*self.sdk_configuration.get_server_details())
         
         url = base_url + '/jobs'
         
-        headers = {}
+        if callable(self.sdk_configuration.security):
+            headers, query_params = utils.get_security(self.sdk_configuration.security())
+        else:
+            headers, query_params = utils.get_security(self.sdk_configuration.security)
         
         req_content_type, data, form = utils.serialize_request_body(request, models.JobCreateRequest, "request", False, False, 'json')
         if req_content_type is not None and req_content_type not in ('multipart/form-data', 'multipart/mixed'):
@@ -84,7 +90,7 @@ class Jobs:
         client = self.sdk_configuration.client
         
         try:
-            req = client.prepare_request(requests_http.Request('POST', url, data=data, files=form, headers=headers))
+            req = client.prepare_request(requests_http.Request('POST', url, params=query_params, data=data, files=form, headers=headers))
             req = self.sdk_configuration.get_hooks().before_request(BeforeRequestContext(hook_ctx), req)
             http_res = client.send(req)
         except Exception as e:
@@ -123,19 +129,22 @@ class Jobs:
     
     def get_job(self, request: models.GetJobRequest) -> models.GetJobResponse:
         r"""Get Job status and details"""
-        hook_ctx = HookContext(operation_id='getJob', oauth2_scopes=[], security_source=None)
+        hook_ctx = HookContext(operation_id='getJob', oauth2_scopes=[], security_source=self.sdk_configuration.security)
         base_url = utils.template_url(*self.sdk_configuration.get_server_details())
         
         url = utils.generate_url(base_url, '/jobs/{jobId}', request)
         
-        headers = {}
+        if callable(self.sdk_configuration.security):
+            headers, query_params = utils.get_security(self.sdk_configuration.security())
+        else:
+            headers, query_params = utils.get_security(self.sdk_configuration.security)
         
         headers['Accept'] = 'application/json'
         headers['user-agent'] = self.sdk_configuration.user_agent
         client = self.sdk_configuration.client
         
         try:
-            req = client.prepare_request(requests_http.Request('GET', url, headers=headers))
+            req = client.prepare_request(requests_http.Request('GET', url, params=query_params, headers=headers))
             req = self.sdk_configuration.get_hooks().before_request(BeforeRequestContext(hook_ctx), req)
             http_res = client.send(req)
         except Exception as e:
@@ -174,13 +183,15 @@ class Jobs:
     
     def list_jobs(self, request: models.ListJobsRequest) -> models.ListJobsResponse:
         r"""List Jobs by sync type"""
-        hook_ctx = HookContext(operation_id='listJobs', oauth2_scopes=[], security_source=None)
+        hook_ctx = HookContext(operation_id='listJobs', oauth2_scopes=[], security_source=self.sdk_configuration.security)
         base_url = utils.template_url(*self.sdk_configuration.get_server_details())
         
         url = base_url + '/jobs'
         
-        headers = {}
-        query_params = {}
+        if callable(self.sdk_configuration.security):
+            headers, query_params = utils.get_security(self.sdk_configuration.security())
+        else:
+            headers, query_params = utils.get_security(self.sdk_configuration.security)
         
         query_params = { **utils.get_query_params(request), **query_params }
         headers['Accept'] = 'application/json'

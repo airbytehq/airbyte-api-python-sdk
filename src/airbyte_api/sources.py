@@ -18,12 +18,15 @@ class Sources:
         r"""Create a source
         Creates a source given a name, workspace id, and a json blob containing the configuration for the source.
         """
-        hook_ctx = HookContext(operation_id='createSource', oauth2_scopes=[], security_source=None)
+        hook_ctx = HookContext(operation_id='createSource', oauth2_scopes=[], security_source=self.sdk_configuration.security)
         base_url = utils.template_url(*self.sdk_configuration.get_server_details())
         
         url = base_url + '/sources'
         
-        headers = {}
+        if callable(self.sdk_configuration.security):
+            headers, query_params = utils.get_security(self.sdk_configuration.security())
+        else:
+            headers, query_params = utils.get_security(self.sdk_configuration.security)
         
         req_content_type, data, form = utils.serialize_request_body(request, Optional[models.SourceCreateRequest], "request", False, True, 'json')
         if req_content_type is not None and req_content_type not in ('multipart/form-data', 'multipart/mixed'):
@@ -33,7 +36,7 @@ class Sources:
         client = self.sdk_configuration.client
         
         try:
-            req = client.prepare_request(requests_http.Request('POST', url, data=data, files=form, headers=headers))
+            req = client.prepare_request(requests_http.Request('POST', url, params=query_params, data=data, files=form, headers=headers))
             req = self.sdk_configuration.get_hooks().before_request(BeforeRequestContext(hook_ctx), req)
             http_res = client.send(req)
         except Exception as e:
@@ -72,19 +75,22 @@ class Sources:
     
     def delete_source(self, request: models.DeleteSourceRequest) -> models.DeleteSourceResponse:
         r"""Delete a Source"""
-        hook_ctx = HookContext(operation_id='deleteSource', oauth2_scopes=[], security_source=None)
+        hook_ctx = HookContext(operation_id='deleteSource', oauth2_scopes=[], security_source=self.sdk_configuration.security)
         base_url = utils.template_url(*self.sdk_configuration.get_server_details())
         
         url = utils.generate_url(base_url, '/sources/{sourceId}', request)
         
-        headers = {}
+        if callable(self.sdk_configuration.security):
+            headers, query_params = utils.get_security(self.sdk_configuration.security())
+        else:
+            headers, query_params = utils.get_security(self.sdk_configuration.security)
         
         headers['Accept'] = '*/*'
         headers['user-agent'] = self.sdk_configuration.user_agent
         client = self.sdk_configuration.client
         
         try:
-            req = client.prepare_request(requests_http.Request('DELETE', url, headers=headers))
+            req = client.prepare_request(requests_http.Request('DELETE', url, params=query_params, headers=headers))
             req = self.sdk_configuration.get_hooks().before_request(BeforeRequestContext(hook_ctx), req)
             http_res = client.send(req)
         except Exception as e:
@@ -118,19 +124,22 @@ class Sources:
     
     def get_source(self, request: models.GetSourceRequest) -> models.GetSourceResponse:
         r"""Get Source details"""
-        hook_ctx = HookContext(operation_id='getSource', oauth2_scopes=[], security_source=None)
+        hook_ctx = HookContext(operation_id='getSource', oauth2_scopes=[], security_source=self.sdk_configuration.security)
         base_url = utils.template_url(*self.sdk_configuration.get_server_details())
         
         url = utils.generate_url(base_url, '/sources/{sourceId}', request)
         
-        headers = {}
+        if callable(self.sdk_configuration.security):
+            headers, query_params = utils.get_security(self.sdk_configuration.security())
+        else:
+            headers, query_params = utils.get_security(self.sdk_configuration.security)
         
         headers['Accept'] = 'application/json'
         headers['user-agent'] = self.sdk_configuration.user_agent
         client = self.sdk_configuration.client
         
         try:
-            req = client.prepare_request(requests_http.Request('GET', url, headers=headers))
+            req = client.prepare_request(requests_http.Request('GET', url, params=query_params, headers=headers))
             req = self.sdk_configuration.get_hooks().before_request(BeforeRequestContext(hook_ctx), req)
             http_res = client.send(req)
         except Exception as e:
@@ -175,12 +184,15 @@ class Sources:
 
         That secret ID can be used to create a source with credentials in place of actual tokens.
         """
-        hook_ctx = HookContext(operation_id='initiateOAuth', oauth2_scopes=[], security_source=None)
+        hook_ctx = HookContext(operation_id='initiateOAuth', oauth2_scopes=[], security_source=self.sdk_configuration.security)
         base_url = utils.template_url(*self.sdk_configuration.get_server_details())
         
         url = base_url + '/sources/initiateOAuth'
         
-        headers = {}
+        if callable(self.sdk_configuration.security):
+            headers, query_params = utils.get_security(self.sdk_configuration.security())
+        else:
+            headers, query_params = utils.get_security(self.sdk_configuration.security)
         
         req_content_type, data, form = utils.serialize_request_body(request, models.InitiateOauthRequest, "request", False, False, 'json')
         if req_content_type is not None and req_content_type not in ('multipart/form-data', 'multipart/mixed'):
@@ -192,7 +204,7 @@ class Sources:
         client = self.sdk_configuration.client
         
         try:
-            req = client.prepare_request(requests_http.Request('POST', url, data=data, files=form, headers=headers))
+            req = client.prepare_request(requests_http.Request('POST', url, params=query_params, data=data, files=form, headers=headers))
             req = self.sdk_configuration.get_hooks().before_request(BeforeRequestContext(hook_ctx), req)
             http_res = client.send(req)
         except Exception as e:
@@ -226,13 +238,15 @@ class Sources:
     
     def list_sources(self, request: models.ListSourcesRequest) -> models.ListSourcesResponse:
         r"""List sources"""
-        hook_ctx = HookContext(operation_id='listSources', oauth2_scopes=[], security_source=None)
+        hook_ctx = HookContext(operation_id='listSources', oauth2_scopes=[], security_source=self.sdk_configuration.security)
         base_url = utils.template_url(*self.sdk_configuration.get_server_details())
         
         url = base_url + '/sources'
         
-        headers = {}
-        query_params = {}
+        if callable(self.sdk_configuration.security):
+            headers, query_params = utils.get_security(self.sdk_configuration.security())
+        else:
+            headers, query_params = utils.get_security(self.sdk_configuration.security)
         
         query_params = { **utils.get_query_params(request), **query_params }
         headers['Accept'] = 'application/json'
@@ -279,12 +293,15 @@ class Sources:
     
     def patch_source(self, request: models.PatchSourceRequest) -> models.PatchSourceResponse:
         r"""Update a Source"""
-        hook_ctx = HookContext(operation_id='patchSource', oauth2_scopes=[], security_source=None)
+        hook_ctx = HookContext(operation_id='patchSource', oauth2_scopes=[], security_source=self.sdk_configuration.security)
         base_url = utils.template_url(*self.sdk_configuration.get_server_details())
         
         url = utils.generate_url(base_url, '/sources/{sourceId}', request)
         
-        headers = {}
+        if callable(self.sdk_configuration.security):
+            headers, query_params = utils.get_security(self.sdk_configuration.security())
+        else:
+            headers, query_params = utils.get_security(self.sdk_configuration.security)
         
         req_content_type, data, form = utils.serialize_request_body(request, models.PatchSourceRequest, "source_patch_request", False, True, 'json')
         if req_content_type is not None and req_content_type not in ('multipart/form-data', 'multipart/mixed'):
@@ -294,7 +311,7 @@ class Sources:
         client = self.sdk_configuration.client
         
         try:
-            req = client.prepare_request(requests_http.Request('PATCH', url, data=data, files=form, headers=headers))
+            req = client.prepare_request(requests_http.Request('PATCH', url, params=query_params, data=data, files=form, headers=headers))
             req = self.sdk_configuration.get_hooks().before_request(BeforeRequestContext(hook_ctx), req)
             http_res = client.send(req)
         except Exception as e:
@@ -333,12 +350,15 @@ class Sources:
     
     def put_source(self, request: models.PutSourceRequest) -> models.PutSourceResponse:
         r"""Update a Source and fully overwrite it"""
-        hook_ctx = HookContext(operation_id='putSource', oauth2_scopes=[], security_source=None)
+        hook_ctx = HookContext(operation_id='putSource', oauth2_scopes=[], security_source=self.sdk_configuration.security)
         base_url = utils.template_url(*self.sdk_configuration.get_server_details())
         
         url = utils.generate_url(base_url, '/sources/{sourceId}', request)
         
-        headers = {}
+        if callable(self.sdk_configuration.security):
+            headers, query_params = utils.get_security(self.sdk_configuration.security())
+        else:
+            headers, query_params = utils.get_security(self.sdk_configuration.security)
         
         req_content_type, data, form = utils.serialize_request_body(request, models.PutSourceRequest, "source_put_request", False, True, 'json')
         if req_content_type is not None and req_content_type not in ('multipart/form-data', 'multipart/mixed'):
@@ -348,7 +368,7 @@ class Sources:
         client = self.sdk_configuration.client
         
         try:
-            req = client.prepare_request(requests_http.Request('PUT', url, data=data, files=form, headers=headers))
+            req = client.prepare_request(requests_http.Request('PUT', url, params=query_params, data=data, files=form, headers=headers))
             req = self.sdk_configuration.get_hooks().before_request(BeforeRequestContext(hook_ctx), req)
             http_res = client.send(req)
         except Exception as e:

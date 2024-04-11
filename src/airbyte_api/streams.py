@@ -16,13 +16,15 @@ class Streams:
     
     def get_stream_properties(self, request: models.GetStreamPropertiesRequest) -> models.GetStreamPropertiesResponse:
         r"""Get stream properties"""
-        hook_ctx = HookContext(operation_id='getStreamProperties', oauth2_scopes=[], security_source=None)
+        hook_ctx = HookContext(operation_id='getStreamProperties', oauth2_scopes=[], security_source=self.sdk_configuration.security)
         base_url = utils.template_url(*self.sdk_configuration.get_server_details())
         
         url = base_url + '/streams'
         
-        headers = {}
-        query_params = {}
+        if callable(self.sdk_configuration.security):
+            headers, query_params = utils.get_security(self.sdk_configuration.security())
+        else:
+            headers, query_params = utils.get_security(self.sdk_configuration.security)
         
         query_params = { **utils.get_query_params(request), **query_params }
         headers['Accept'] = 'application/json'

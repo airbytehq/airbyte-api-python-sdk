@@ -3,26 +3,21 @@
 import requests as requests_http
 from .connections import Connections
 from .destinations import Destinations
-from .health import Health
 from .jobs import Jobs
-from .oauth import OAuth
-from .root import Root
 from .sdkconfiguration import SDKConfiguration
 from .sources import Sources
 from .streams import Streams
 from .utils.retries import RetryConfig
 from .workspaces import Workspaces
-from airbyte_api import utils
+from airbyte_api import models, utils
 from airbyte_api._hooks import SDKHooks
-from typing import Dict, Optional
+from typing import Callable, Dict, Optional, Union
 
 class AirbyteAPI:
-    root: Root
+    r"""airbyte-api: Programmatically control Airbyte Cloud, OSS & Enterprise."""
     connections: Connections
     destinations: Destinations
-    health: Health
     jobs: Jobs
-    o_auth: OAuth
     sources: Sources
     streams: Streams
     workspaces: Workspaces
@@ -30,6 +25,7 @@ class AirbyteAPI:
     sdk_configuration: SDKConfiguration
 
     def __init__(self,
+                 security: Union[models.Security,Callable[[], models.Security]] = None,
                  server_idx: Optional[int] = None,
                  server_url: Optional[str] = None,
                  url_params: Optional[Dict[str, str]] = None,
@@ -38,6 +34,8 @@ class AirbyteAPI:
                  ) -> None:
         """Instantiates the SDK configuring it with the provided parameters.
 
+        :param security: The security details required for authentication
+        :type security: Union[models.Security,Callable[[], models.Security]]
         :param server_idx: The index of the server to use for all operations
         :type server_idx: int
         :param server_url: The server URL to use for all operations
@@ -59,6 +57,7 @@ class AirbyteAPI:
 
         self.sdk_configuration = SDKConfiguration(
             client,
+            security,
             server_url,
             server_idx,
             retry_config=retry_config
@@ -78,12 +77,9 @@ class AirbyteAPI:
 
 
     def _init_sdks(self):
-        self.root = Root(self.sdk_configuration)
         self.connections = Connections(self.sdk_configuration)
         self.destinations = Destinations(self.sdk_configuration)
-        self.health = Health(self.sdk_configuration)
         self.jobs = Jobs(self.sdk_configuration)
-        self.o_auth = OAuth(self.sdk_configuration)
         self.sources = Sources(self.sdk_configuration)
         self.streams = Streams(self.sdk_configuration)
         self.workspaces = Workspaces(self.sdk_configuration)

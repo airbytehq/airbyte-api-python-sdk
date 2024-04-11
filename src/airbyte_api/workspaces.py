@@ -19,12 +19,15 @@ class Workspaces:
         Create/update a set of OAuth credentials to override the Airbyte-provided OAuth credentials used for source/destination OAuth.
         In order to determine what the credential configuration needs to be, please see the connector specification of the relevant  source/destination.
         """
-        hook_ctx = HookContext(operation_id='createOrUpdateWorkspaceOAuthCredentials', oauth2_scopes=[], security_source=None)
+        hook_ctx = HookContext(operation_id='createOrUpdateWorkspaceOAuthCredentials', oauth2_scopes=[], security_source=self.sdk_configuration.security)
         base_url = utils.template_url(*self.sdk_configuration.get_server_details())
         
         url = utils.generate_url(base_url, '/workspaces/{workspaceId}/oauthCredentials', request)
         
-        headers = {}
+        if callable(self.sdk_configuration.security):
+            headers, query_params = utils.get_security(self.sdk_configuration.security())
+        else:
+            headers, query_params = utils.get_security(self.sdk_configuration.security)
         
         req_content_type, data, form = utils.serialize_request_body(request, models.CreateOrUpdateWorkspaceOAuthCredentialsRequest, "workspace_o_auth_credentials_request", False, False, 'json')
         if req_content_type is not None and req_content_type not in ('multipart/form-data', 'multipart/mixed'):
@@ -36,7 +39,7 @@ class Workspaces:
         client = self.sdk_configuration.client
         
         try:
-            req = client.prepare_request(requests_http.Request('PUT', url, data=data, files=form, headers=headers))
+            req = client.prepare_request(requests_http.Request('PUT', url, params=query_params, data=data, files=form, headers=headers))
             req = self.sdk_configuration.get_hooks().before_request(BeforeRequestContext(hook_ctx), req)
             http_res = client.send(req)
         except Exception as e:
@@ -70,12 +73,15 @@ class Workspaces:
     
     def create_workspace(self, request: models.WorkspaceCreateRequest) -> models.CreateWorkspaceResponse:
         r"""Create a workspace"""
-        hook_ctx = HookContext(operation_id='createWorkspace', oauth2_scopes=[], security_source=None)
+        hook_ctx = HookContext(operation_id='createWorkspace', oauth2_scopes=[], security_source=self.sdk_configuration.security)
         base_url = utils.template_url(*self.sdk_configuration.get_server_details())
         
         url = base_url + '/workspaces'
         
-        headers = {}
+        if callable(self.sdk_configuration.security):
+            headers, query_params = utils.get_security(self.sdk_configuration.security())
+        else:
+            headers, query_params = utils.get_security(self.sdk_configuration.security)
         
         req_content_type, data, form = utils.serialize_request_body(request, models.WorkspaceCreateRequest, "request", False, False, 'json')
         if req_content_type is not None and req_content_type not in ('multipart/form-data', 'multipart/mixed'):
@@ -87,7 +93,7 @@ class Workspaces:
         client = self.sdk_configuration.client
         
         try:
-            req = client.prepare_request(requests_http.Request('POST', url, data=data, files=form, headers=headers))
+            req = client.prepare_request(requests_http.Request('POST', url, params=query_params, data=data, files=form, headers=headers))
             req = self.sdk_configuration.get_hooks().before_request(BeforeRequestContext(hook_ctx), req)
             http_res = client.send(req)
         except Exception as e:
@@ -126,19 +132,22 @@ class Workspaces:
     
     def delete_workspace(self, request: models.DeleteWorkspaceRequest) -> models.DeleteWorkspaceResponse:
         r"""Delete a Workspace"""
-        hook_ctx = HookContext(operation_id='deleteWorkspace', oauth2_scopes=[], security_source=None)
+        hook_ctx = HookContext(operation_id='deleteWorkspace', oauth2_scopes=[], security_source=self.sdk_configuration.security)
         base_url = utils.template_url(*self.sdk_configuration.get_server_details())
         
         url = utils.generate_url(base_url, '/workspaces/{workspaceId}', request)
         
-        headers = {}
+        if callable(self.sdk_configuration.security):
+            headers, query_params = utils.get_security(self.sdk_configuration.security())
+        else:
+            headers, query_params = utils.get_security(self.sdk_configuration.security)
         
         headers['Accept'] = '*/*'
         headers['user-agent'] = self.sdk_configuration.user_agent
         client = self.sdk_configuration.client
         
         try:
-            req = client.prepare_request(requests_http.Request('DELETE', url, headers=headers))
+            req = client.prepare_request(requests_http.Request('DELETE', url, params=query_params, headers=headers))
             req = self.sdk_configuration.get_hooks().before_request(BeforeRequestContext(hook_ctx), req)
             http_res = client.send(req)
         except Exception as e:
@@ -172,19 +181,22 @@ class Workspaces:
     
     def get_workspace(self, request: models.GetWorkspaceRequest) -> models.GetWorkspaceResponse:
         r"""Get Workspace details"""
-        hook_ctx = HookContext(operation_id='getWorkspace', oauth2_scopes=[], security_source=None)
+        hook_ctx = HookContext(operation_id='getWorkspace', oauth2_scopes=[], security_source=self.sdk_configuration.security)
         base_url = utils.template_url(*self.sdk_configuration.get_server_details())
         
         url = utils.generate_url(base_url, '/workspaces/{workspaceId}', request)
         
-        headers = {}
+        if callable(self.sdk_configuration.security):
+            headers, query_params = utils.get_security(self.sdk_configuration.security())
+        else:
+            headers, query_params = utils.get_security(self.sdk_configuration.security)
         
         headers['Accept'] = 'application/json'
         headers['user-agent'] = self.sdk_configuration.user_agent
         client = self.sdk_configuration.client
         
         try:
-            req = client.prepare_request(requests_http.Request('GET', url, headers=headers))
+            req = client.prepare_request(requests_http.Request('GET', url, params=query_params, headers=headers))
             req = self.sdk_configuration.get_hooks().before_request(BeforeRequestContext(hook_ctx), req)
             http_res = client.send(req)
         except Exception as e:
@@ -223,13 +235,15 @@ class Workspaces:
     
     def list_workspaces(self, request: models.ListWorkspacesRequest) -> models.ListWorkspacesResponse:
         r"""List workspaces"""
-        hook_ctx = HookContext(operation_id='listWorkspaces', oauth2_scopes=[], security_source=None)
+        hook_ctx = HookContext(operation_id='listWorkspaces', oauth2_scopes=[], security_source=self.sdk_configuration.security)
         base_url = utils.template_url(*self.sdk_configuration.get_server_details())
         
         url = base_url + '/workspaces'
         
-        headers = {}
-        query_params = {}
+        if callable(self.sdk_configuration.security):
+            headers, query_params = utils.get_security(self.sdk_configuration.security())
+        else:
+            headers, query_params = utils.get_security(self.sdk_configuration.security)
         
         query_params = { **utils.get_query_params(request), **query_params }
         headers['Accept'] = 'application/json'
@@ -276,12 +290,15 @@ class Workspaces:
     
     def update_workspace(self, request: models.UpdateWorkspaceRequest) -> models.UpdateWorkspaceResponse:
         r"""Update a workspace"""
-        hook_ctx = HookContext(operation_id='updateWorkspace', oauth2_scopes=[], security_source=None)
+        hook_ctx = HookContext(operation_id='updateWorkspace', oauth2_scopes=[], security_source=self.sdk_configuration.security)
         base_url = utils.template_url(*self.sdk_configuration.get_server_details())
         
         url = utils.generate_url(base_url, '/workspaces/{workspaceId}', request)
         
-        headers = {}
+        if callable(self.sdk_configuration.security):
+            headers, query_params = utils.get_security(self.sdk_configuration.security())
+        else:
+            headers, query_params = utils.get_security(self.sdk_configuration.security)
         
         req_content_type, data, form = utils.serialize_request_body(request, models.UpdateWorkspaceRequest, "workspace_update_request", False, False, 'json')
         if req_content_type is not None and req_content_type not in ('multipart/form-data', 'multipart/mixed'):
@@ -293,7 +310,7 @@ class Workspaces:
         client = self.sdk_configuration.client
         
         try:
-            req = client.prepare_request(requests_http.Request('PATCH', url, data=data, files=form, headers=headers))
+            req = client.prepare_request(requests_http.Request('PATCH', url, params=query_params, data=data, files=form, headers=headers))
             req = self.sdk_configuration.get_hooks().before_request(BeforeRequestContext(hook_ctx), req)
             http_res = client.send(req)
         except Exception as e:

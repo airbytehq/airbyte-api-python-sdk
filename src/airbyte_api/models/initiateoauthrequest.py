@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 import dataclasses
+from .oauthactornames import OAuthActorNames
 from .oauthinputconfiguration import OAuthInputConfiguration
 from airbyte_api import utils
 from dataclasses_json import Undefined, dataclass_json
@@ -11,15 +12,13 @@ from typing import Optional
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
 class InitiateOauthRequest:
+    r"""POST body for initiating OAuth via the public API"""
     redirect_url: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('redirectUrl') }})
     r"""The URL to redirect the user to with the OAuth secret stored in the secret_id query string parameter after authentication is complete."""
+    source_type: OAuthActorNames = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     workspace_id: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('workspaceId') }})
     r"""The workspace to create the secret and eventually the full source."""
-    name: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('name'), 'exclude': lambda f: f is None }})
-    r"""The name of the source to authenticate to. Deprecated - use sourceType instead."""
     o_auth_input_configuration: Optional[OAuthInputConfiguration] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('oAuthInputConfiguration'), 'exclude': lambda f: f is None }})
     r"""Arbitrary vars to pass for OAuth depending on what the source/destination spec requires."""
-    source_type: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType'), 'exclude': lambda f: f is None }})
-    r"""The name of the source to authenticate to"""
     
 
