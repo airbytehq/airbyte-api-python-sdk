@@ -1,0 +1,13 @@
+# SourceGitlabOAuth20
+
+
+## Fields
+
+| Field                                                                      | Type                                                                       | Required                                                                   | Description                                                                |
+| -------------------------------------------------------------------------- | -------------------------------------------------------------------------- | -------------------------------------------------------------------------- | -------------------------------------------------------------------------- |
+| `access_token`                                                             | *str*                                                                      | :heavy_check_mark:                                                         | Access Token for making authenticated requests.                            |
+| `client_id`                                                                | *str*                                                                      | :heavy_check_mark:                                                         | The API ID of the Gitlab developer application.                            |
+| `client_secret`                                                            | *str*                                                                      | :heavy_check_mark:                                                         | The API Secret the Gitlab developer application.                           |
+| `refresh_token`                                                            | *str*                                                                      | :heavy_check_mark:                                                         | The key to refresh the expired access_token.                               |
+| `token_expiry_date`                                                        | [date](https://docs.python.org/3/library/datetime.html#date-objects)       | :heavy_check_mark:                                                         | The date-time when the access token should be refreshed.                   |
+| `auth_type`                                                                | [Optional[models.SourceGitlabAuthType]](../models/sourcegitlabauthtype.md) | :heavy_minus_sign:                                                         | N/A                                                                        |

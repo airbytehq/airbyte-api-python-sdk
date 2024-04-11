@@ -1,0 +1,9 @@
+# CSVCommaSeparatedValues
+
+
+## Fields
+
+| Field                                                                                                             | Type                                                                                                              | Required                                                                                                          | Description                                                                                                       |
+| ----------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------- |
+| `flattening`                                                                                                      | [Optional[models.NormalizationFlattening]](../models/normalizationflattening.md)                                  | :heavy_minus_sign:                                                                                                | Whether the input json data should be normalized (flattened) in the output CSV. Please refer to docs for details. |
+| `format_type`                                                                                                     | [models.FormatType](../models/formattype.md)                                                                      | :heavy_check_mark:                                                                                                | N/A                                                                                                               |

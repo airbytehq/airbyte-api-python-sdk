@@ -15,19 +15,19 @@ Cancel a running Job
 ### Example Usage
 
 ```python
-import airbyte
-from airbyte.models import operations, shared
+import airbyte_api
+from airbyte_api import api, models
 
-s = airbyte.Airbyte(
-    security=shared.Security(
-        basic_auth=shared.SchemeBasicAuth(
+s = airbyte_api.AirbyteAPI(
+    security=models.Security(
+        basic_auth=models.SchemeBasicAuth(
             password="<YOUR_PASSWORD_HERE>",
             username="<YOUR_USERNAME_HERE>",
         ),
     ),
 )
 
-req = operations.CancelJobRequest(
+req = api.CancelJobRequest(
     job_id=801771,
 )
 
@@ -36,23 +36,24 @@ res = s.jobs.cancel_job(req)
 if res.job_response is not None:
     # handle response
     pass
+
 ```
 
 ### Parameters
 
-| Parameter                                                                  | Type                                                                       | Required                                                                   | Description                                                                |
-| -------------------------------------------------------------------------- | -------------------------------------------------------------------------- | -------------------------------------------------------------------------- | -------------------------------------------------------------------------- |
-| `request`                                                                  | [operations.CancelJobRequest](../../models/operations/canceljobrequest.md) | :heavy_check_mark:                                                         | The request object to use for the request.                                 |
+| Parameter                                             | Type                                                  | Required                                              | Description                                           |
+| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
+| `request`                                             | [api.CancelJobRequest](../../api/canceljobrequest.md) | :heavy_check_mark:                                    | The request object to use for the request.            |
 
 
 ### Response
 
-**[operations.CancelJobResponse](../../models/operations/canceljobresponse.md)**
+**[api.CancelJobResponse](../../api/canceljobresponse.md)**
 ### Errors
 
 | Error Object    | Status Code     | Content Type    |
 | --------------- | --------------- | --------------- |
-| errors.SDKError | 4x-5xx          | */*             |
+| errors.SDKError | 4xx-5xx         | */*             |
 
 ## create_job
 
@@ -61,21 +62,21 @@ Trigger a sync or reset job of a connection
 ### Example Usage
 
 ```python
-import airbyte
-from airbyte.models import shared
+import airbyte_api
+from airbyte_api import models
 
-s = airbyte.Airbyte(
-    security=shared.Security(
-        basic_auth=shared.SchemeBasicAuth(
+s = airbyte_api.AirbyteAPI(
+    security=models.Security(
+        basic_auth=models.SchemeBasicAuth(
             password="<YOUR_PASSWORD_HERE>",
             username="<YOUR_USERNAME_HERE>",
         ),
     ),
 )
 
-req = shared.JobCreateRequest(
+req = models.JobCreateRequest(
     connection_id='18dccc91-0ab1-4f72-9ed7-0b8fc27c5826',
-    job_type=shared.JobTypeEnum.SYNC,
+    job_type=models.JobTypeEnum.SYNC,
 )
 
 res = s.jobs.create_job(req)
@@ -83,23 +84,24 @@ res = s.jobs.create_job(req)
 if res.job_response is not None:
     # handle response
     pass
+
 ```
 
 ### Parameters
 
-| Parameter                                                          | Type                                                               | Required                                                           | Description                                                        |
-| ------------------------------------------------------------------ | ------------------------------------------------------------------ | ------------------------------------------------------------------ | ------------------------------------------------------------------ |
-| `request`                                                          | [shared.JobCreateRequest](../../models/shared/jobcreaterequest.md) | :heavy_check_mark:                                                 | The request object to use for the request.                         |
+| Parameter                                                   | Type                                                        | Required                                                    | Description                                                 |
+| ----------------------------------------------------------- | ----------------------------------------------------------- | ----------------------------------------------------------- | ----------------------------------------------------------- |
+| `request`                                                   | [models.JobCreateRequest](../../models/jobcreaterequest.md) | :heavy_check_mark:                                          | The request object to use for the request.                  |
 
 
 ### Response
 
-**[operations.CreateJobResponse](../../models/operations/createjobresponse.md)**
+**[api.CreateJobResponse](../../api/createjobresponse.md)**
 ### Errors
 
 | Error Object    | Status Code     | Content Type    |
 | --------------- | --------------- | --------------- |
-| errors.SDKError | 4x-5xx          | */*             |
+| errors.SDKError | 4xx-5xx         | */*             |
 
 ## get_job
 
@@ -108,19 +110,19 @@ Get Job status and details
 ### Example Usage
 
 ```python
-import airbyte
-from airbyte.models import operations, shared
+import airbyte_api
+from airbyte_api import api, models
 
-s = airbyte.Airbyte(
-    security=shared.Security(
-        basic_auth=shared.SchemeBasicAuth(
+s = airbyte_api.AirbyteAPI(
+    security=models.Security(
+        basic_auth=models.SchemeBasicAuth(
             password="<YOUR_PASSWORD_HERE>",
             username="<YOUR_USERNAME_HERE>",
         ),
     ),
 )
 
-req = operations.GetJobRequest(
+req = api.GetJobRequest(
     job_id=131101,
 )
 
@@ -129,23 +131,24 @@ res = s.jobs.get_job(req)
 if res.job_response is not None:
     # handle response
     pass
+
 ```
 
 ### Parameters
 
-| Parameter                                                            | Type                                                                 | Required                                                             | Description                                                          |
-| -------------------------------------------------------------------- | -------------------------------------------------------------------- | -------------------------------------------------------------------- | -------------------------------------------------------------------- |
-| `request`                                                            | [operations.GetJobRequest](../../models/operations/getjobrequest.md) | :heavy_check_mark:                                                   | The request object to use for the request.                           |
+| Parameter                                       | Type                                            | Required                                        | Description                                     |
+| ----------------------------------------------- | ----------------------------------------------- | ----------------------------------------------- | ----------------------------------------------- |
+| `request`                                       | [api.GetJobRequest](../../api/getjobrequest.md) | :heavy_check_mark:                              | The request object to use for the request.      |
 
 
 ### Response
 
-**[operations.GetJobResponse](../../models/operations/getjobresponse.md)**
+**[api.GetJobResponse](../../api/getjobresponse.md)**
 ### Errors
 
 | Error Object    | Status Code     | Content Type    |
 | --------------- | --------------- | --------------- |
-| errors.SDKError | 4x-5xx          | */*             |
+| errors.SDKError | 4xx-5xx         | */*             |
 
 ## list_jobs
 
@@ -154,39 +157,40 @@ List Jobs by sync type
 ### Example Usage
 
 ```python
-import airbyte
-from airbyte.models import operations, shared
+import airbyte_api
+from airbyte_api import api, models
 
-s = airbyte.Airbyte(
-    security=shared.Security(
-        basic_auth=shared.SchemeBasicAuth(
+s = airbyte_api.AirbyteAPI(
+    security=models.Security(
+        basic_auth=models.SchemeBasicAuth(
             password="<YOUR_PASSWORD_HERE>",
             username="<YOUR_USERNAME_HERE>",
         ),
     ),
 )
 
-req = operations.ListJobsRequest()
+req = api.ListJobsRequest()
 
 res = s.jobs.list_jobs(req)
 
 if res.jobs_response is not None:
     # handle response
     pass
+
 ```
 
 ### Parameters
 
-| Parameter                                                                | Type                                                                     | Required                                                                 | Description                                                              |
-| ------------------------------------------------------------------------ | ------------------------------------------------------------------------ | ------------------------------------------------------------------------ | ------------------------------------------------------------------------ |
-| `request`                                                                | [operations.ListJobsRequest](../../models/operations/listjobsrequest.md) | :heavy_check_mark:                                                       | The request object to use for the request.                               |
+| Parameter                                           | Type                                                | Required                                            | Description                                         |
+| --------------------------------------------------- | --------------------------------------------------- | --------------------------------------------------- | --------------------------------------------------- |
+| `request`                                           | [api.ListJobsRequest](../../api/listjobsrequest.md) | :heavy_check_mark:                                  | The request object to use for the request.          |
 
 
 ### Response
 
-**[operations.ListJobsResponse](../../models/operations/listjobsresponse.md)**
+**[api.ListJobsResponse](../../api/listjobsresponse.md)**
 ### Errors
 
 | Error Object    | Status Code     | Content Type    |
 | --------------- | --------------- | --------------- |
-| errors.SDKError | 4x-5xx          | */*             |
+| errors.SDKError | 4xx-5xx         | */*             |

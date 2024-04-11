@@ -16,19 +16,19 @@ Create a connection
 ### Example Usage
 
 ```python
-import airbyte
-from airbyte.models import shared
+import airbyte_api
+from airbyte_api import models
 
-s = airbyte.Airbyte(
-    security=shared.Security(
-        basic_auth=shared.SchemeBasicAuth(
+s = airbyte_api.AirbyteAPI(
+    security=models.Security(
+        basic_auth=models.SchemeBasicAuth(
             password="<YOUR_PASSWORD_HERE>",
             username="<YOUR_USERNAME_HERE>",
         ),
     ),
 )
 
-req = shared.ConnectionCreateRequest(
+req = models.ConnectionCreateRequest(
     destination_id='c669dd1e-3620-483e-afc8-55914e0a570f',
     source_id='6dd427d8-3a55-4584-b835-842325b6c7b3',
     namespace_format='${SOURCE_NAMESPACE}',
@@ -39,23 +39,24 @@ res = s.connections.create_connection(req)
 if res.connection_response is not None:
     # handle response
     pass
+
 ```
 
 ### Parameters
 
-| Parameter                                                                        | Type                                                                             | Required                                                                         | Description                                                                      |
-| -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
-| `request`                                                                        | [shared.ConnectionCreateRequest](../../models/shared/connectioncreaterequest.md) | :heavy_check_mark:                                                               | The request object to use for the request.                                       |
+| Parameter                                                                 | Type                                                                      | Required                                                                  | Description                                                               |
+| ------------------------------------------------------------------------- | ------------------------------------------------------------------------- | ------------------------------------------------------------------------- | ------------------------------------------------------------------------- |
+| `request`                                                                 | [models.ConnectionCreateRequest](../../models/connectioncreaterequest.md) | :heavy_check_mark:                                                        | The request object to use for the request.                                |
 
 
 ### Response
 
-**[operations.CreateConnectionResponse](../../models/operations/createconnectionresponse.md)**
+**[api.CreateConnectionResponse](../../api/createconnectionresponse.md)**
 ### Errors
 
 | Error Object    | Status Code     | Content Type    |
 | --------------- | --------------- | --------------- |
-| errors.SDKError | 4x-5xx          | */*             |
+| errors.SDKError | 4xx-5xx         | */*             |
 
 ## delete_connection
 
@@ -64,44 +65,45 @@ Delete a Connection
 ### Example Usage
 
 ```python
-import airbyte
-from airbyte.models import operations, shared
+import airbyte_api
+from airbyte_api import api, models
 
-s = airbyte.Airbyte(
-    security=shared.Security(
-        basic_auth=shared.SchemeBasicAuth(
+s = airbyte_api.AirbyteAPI(
+    security=models.Security(
+        basic_auth=models.SchemeBasicAuth(
             password="<YOUR_PASSWORD_HERE>",
             username="<YOUR_USERNAME_HERE>",
         ),
     ),
 )
 
-req = operations.DeleteConnectionRequest(
+req = api.DeleteConnectionRequest(
     connection_id='<value>',
 )
 
 res = s.connections.delete_connection(req)
 
-if res.status_code == 200:
+if res is not None:
     # handle response
     pass
+
 ```
 
 ### Parameters
 
-| Parameter                                                                                | Type                                                                                     | Required                                                                                 | Description                                                                              |
-| ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
-| `request`                                                                                | [operations.DeleteConnectionRequest](../../models/operations/deleteconnectionrequest.md) | :heavy_check_mark:                                                                       | The request object to use for the request.                                               |
+| Parameter                                                           | Type                                                                | Required                                                            | Description                                                         |
+| ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
+| `request`                                                           | [api.DeleteConnectionRequest](../../api/deleteconnectionrequest.md) | :heavy_check_mark:                                                  | The request object to use for the request.                          |
 
 
 ### Response
 
-**[operations.DeleteConnectionResponse](../../models/operations/deleteconnectionresponse.md)**
+**[api.DeleteConnectionResponse](../../api/deleteconnectionresponse.md)**
 ### Errors
 
 | Error Object    | Status Code     | Content Type    |
 | --------------- | --------------- | --------------- |
-| errors.SDKError | 4x-5xx          | */*             |
+| errors.SDKError | 4xx-5xx         | */*             |
 
 ## get_connection
 
@@ -110,19 +112,19 @@ Get Connection details
 ### Example Usage
 
 ```python
-import airbyte
-from airbyte.models import operations, shared
+import airbyte_api
+from airbyte_api import api, models
 
-s = airbyte.Airbyte(
-    security=shared.Security(
-        basic_auth=shared.SchemeBasicAuth(
+s = airbyte_api.AirbyteAPI(
+    security=models.Security(
+        basic_auth=models.SchemeBasicAuth(
             password="<YOUR_PASSWORD_HERE>",
             username="<YOUR_USERNAME_HERE>",
         ),
     ),
 )
 
-req = operations.GetConnectionRequest(
+req = api.GetConnectionRequest(
     connection_id='<value>',
 )
 
@@ -131,23 +133,24 @@ res = s.connections.get_connection(req)
 if res.connection_response is not None:
     # handle response
     pass
+
 ```
 
 ### Parameters
 
-| Parameter                                                                          | Type                                                                               | Required                                                                           | Description                                                                        |
-| ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
-| `request`                                                                          | [operations.GetConnectionRequest](../../models/operations/getconnectionrequest.md) | :heavy_check_mark:                                                                 | The request object to use for the request.                                         |
+| Parameter                                                     | Type                                                          | Required                                                      | Description                                                   |
+| ------------------------------------------------------------- | ------------------------------------------------------------- | ------------------------------------------------------------- | ------------------------------------------------------------- |
+| `request`                                                     | [api.GetConnectionRequest](../../api/getconnectionrequest.md) | :heavy_check_mark:                                            | The request object to use for the request.                    |
 
 
 ### Response
 
-**[operations.GetConnectionResponse](../../models/operations/getconnectionresponse.md)**
+**[api.GetConnectionResponse](../../api/getconnectionresponse.md)**
 ### Errors
 
 | Error Object    | Status Code     | Content Type    |
 | --------------- | --------------- | --------------- |
-| errors.SDKError | 4x-5xx          | */*             |
+| errors.SDKError | 4xx-5xx         | */*             |
 
 ## list_connections
 
@@ -156,42 +159,43 @@ List connections
 ### Example Usage
 
 ```python
-import airbyte
-from airbyte.models import operations, shared
+import airbyte_api
+from airbyte_api import api, models
 
-s = airbyte.Airbyte(
-    security=shared.Security(
-        basic_auth=shared.SchemeBasicAuth(
+s = airbyte_api.AirbyteAPI(
+    security=models.Security(
+        basic_auth=models.SchemeBasicAuth(
             password="<YOUR_PASSWORD_HERE>",
             username="<YOUR_USERNAME_HERE>",
         ),
     ),
 )
 
-req = operations.ListConnectionsRequest()
+req = api.ListConnectionsRequest()
 
 res = s.connections.list_connections(req)
 
 if res.connections_response is not None:
     # handle response
     pass
+
 ```
 
 ### Parameters
 
-| Parameter                                                                              | Type                                                                                   | Required                                                                               | Description                                                                            |
-| -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- |
-| `request`                                                                              | [operations.ListConnectionsRequest](../../models/operations/listconnectionsrequest.md) | :heavy_check_mark:                                                                     | The request object to use for the request.                                             |
+| Parameter                                                         | Type                                                              | Required                                                          | Description                                                       |
+| ----------------------------------------------------------------- | ----------------------------------------------------------------- | ----------------------------------------------------------------- | ----------------------------------------------------------------- |
+| `request`                                                         | [api.ListConnectionsRequest](../../api/listconnectionsrequest.md) | :heavy_check_mark:                                                | The request object to use for the request.                        |
 
 
 ### Response
 
-**[operations.ListConnectionsResponse](../../models/operations/listconnectionsresponse.md)**
+**[api.ListConnectionsResponse](../../api/listconnectionsresponse.md)**
 ### Errors
 
 | Error Object    | Status Code     | Content Type    |
 | --------------- | --------------- | --------------- |
-| errors.SDKError | 4x-5xx          | */*             |
+| errors.SDKError | 4xx-5xx         | */*             |
 
 ## patch_connection
 
@@ -200,20 +204,20 @@ Update Connection details
 ### Example Usage
 
 ```python
-import airbyte
-from airbyte.models import operations, shared
+import airbyte_api
+from airbyte_api import api, models
 
-s = airbyte.Airbyte(
-    security=shared.Security(
-        basic_auth=shared.SchemeBasicAuth(
+s = airbyte_api.AirbyteAPI(
+    security=models.Security(
+        basic_auth=models.SchemeBasicAuth(
             password="<YOUR_PASSWORD_HERE>",
             username="<YOUR_USERNAME_HERE>",
         ),
     ),
 )
 
-req = operations.PatchConnectionRequest(
-    connection_patch_request=shared.ConnectionPatchRequest(
+req = api.PatchConnectionRequest(
+    connection_patch_request=models.ConnectionPatchRequest(
         namespace_format='${SOURCE_NAMESPACE}',
     ),
     connection_id='<value>',
@@ -224,20 +228,21 @@ res = s.connections.patch_connection(req)
 if res.connection_response is not None:
     # handle response
     pass
+
 ```
 
 ### Parameters
 
-| Parameter                                                                              | Type                                                                                   | Required                                                                               | Description                                                                            |
-| -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- |
-| `request`                                                                              | [operations.PatchConnectionRequest](../../models/operations/patchconnectionrequest.md) | :heavy_check_mark:                                                                     | The request object to use for the request.                                             |
+| Parameter                                                         | Type                                                              | Required                                                          | Description                                                       |
+| ----------------------------------------------------------------- | ----------------------------------------------------------------- | ----------------------------------------------------------------- | ----------------------------------------------------------------- |
+| `request`                                                         | [api.PatchConnectionRequest](../../api/patchconnectionrequest.md) | :heavy_check_mark:                                                | The request object to use for the request.                        |
 
 
 ### Response
 
-**[operations.PatchConnectionResponse](../../models/operations/patchconnectionresponse.md)**
+**[api.PatchConnectionResponse](../../api/patchconnectionresponse.md)**
 ### Errors
 
 | Error Object    | Status Code     | Content Type    |
 | --------------- | --------------- | --------------- |
-| errors.SDKError | 4x-5xx          | */*             |
+| errors.SDKError | 4xx-5xx         | */*             |

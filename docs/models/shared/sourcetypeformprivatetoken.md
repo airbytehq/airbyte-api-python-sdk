@@ -1,9 +1,0 @@
-# SourceTypeformPrivateToken
-
-
-## Fields
-
-| Field                                                                                                  | Type                                                                                                   | Required                                                                                               | Description                                                                                            |
-| ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ |
-| `access_token`                                                                                         | *str*                                                                                                  | :heavy_check_mark:                                                                                     | Log into your Typeform account and then generate a personal Access Token.                              |
-| `auth_type`                                                                                            | [Optional[shared.SourceTypeformSchemasAuthType]](../../models/shared/sourcetypeformschemasauthtype.md) | :heavy_minus_sign:                                                                                     | N/A                                                                                                    |

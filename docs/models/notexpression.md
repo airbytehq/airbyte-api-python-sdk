@@ -1,0 +1,11 @@
+# NotExpression
+
+The FilterExpression is NOT of notExpression.
+
+
+## Fields
+
+| Field                                                                                                                        | Type                                                                                                                         | Required                                                                                                                     | Description                                                                                                                  |
+| ---------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------- |
+| `expression`                                                                                                                 | [Optional[models.SourceGoogleAnalyticsDataAPISchemasExpression]](../models/sourcegoogleanalyticsdataapischemasexpression.md) | :heavy_minus_sign:                                                                                                           | N/A                                                                                                                          |
+| `filter_type`                                                                                                                | [Optional[models.SourceGoogleAnalyticsDataAPISchemasFilterType]](../models/sourcegoogleanalyticsdataapischemasfiltertype.md) | :heavy_minus_sign:                                                                                                           | N/A                                                                                                                          |

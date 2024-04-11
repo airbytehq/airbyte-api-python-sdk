@@ -1,0 +1,9 @@
+# SourceYoutubeAnalytics
+
+
+## Fields
+
+| Field                                                                                                | Type                                                                                                 | Required                                                                                             | Description                                                                                          |
+| ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- |
+| `credentials`                                                                                        | [models.AuthenticateViaOAuth20](../models/authenticateviaoauth20.md)                                 | :heavy_check_mark:                                                                                   | N/A                                                                                                  |
+| `source_type`                                                                                        | [models.SourceYoutubeAnalyticsYoutubeAnalytics](../models/sourceyoutubeanalyticsyoutubeanalytics.md) | :heavy_check_mark:                                                                                   | N/A                                                                                                  |

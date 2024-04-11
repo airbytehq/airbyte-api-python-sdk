@@ -27,19 +27,19 @@ pip install airbyte-api
 ### Example
 
 ```python
-import airbyte
-from airbyte.models import shared
+import airbyte_api
+from airbyte_api import models
 
-s = airbyte.Airbyte(
-    security=shared.Security(
-        basic_auth=shared.SchemeBasicAuth(
+s = airbyte_api.AirbyteAPI(
+    security=models.Security(
+        basic_auth=models.SchemeBasicAuth(
             password="<YOUR_PASSWORD_HERE>",
             username="<YOUR_USERNAME_HERE>",
         ),
     ),
 )
 
-req = shared.ConnectionCreateRequest(
+req = models.ConnectionCreateRequest(
     destination_id='c669dd1e-3620-483e-afc8-55914e0a570f',
     source_id='6dd427d8-3a55-4584-b835-842325b6c7b3',
     namespace_format='${SOURCE_NAMESPACE}',
@@ -50,6 +50,7 @@ res = s.connections.create_connection(req)
 if res.connection_response is not None:
     # handle response
     pass
+
 ```
 <!-- End SDK Example Usage [usage] -->
 
@@ -117,24 +118,24 @@ Handling errors in this SDK should largely match your expectations.  All operati
 
 | Error Object    | Status Code     | Content Type    |
 | --------------- | --------------- | --------------- |
-| errors.SDKError | 4x-5xx          | */*             |
+| errors.SDKError | 4xx-5xx         | */*             |
 
 ### Example
 
 ```python
-import airbyte
-from airbyte.models import errors, shared
+import airbyte_api
+from airbyte_api import errors, models
 
-s = airbyte.Airbyte(
-    security=shared.Security(
-        basic_auth=shared.SchemeBasicAuth(
+s = airbyte_api.AirbyteAPI(
+    security=models.Security(
+        basic_auth=models.SchemeBasicAuth(
             password="<YOUR_PASSWORD_HERE>",
             username="<YOUR_USERNAME_HERE>",
         ),
     ),
 )
 
-req = shared.ConnectionCreateRequest(
+req = models.ConnectionCreateRequest(
     destination_id='c669dd1e-3620-483e-afc8-55914e0a570f',
     source_id='6dd427d8-3a55-4584-b835-842325b6c7b3',
     namespace_format='${SOURCE_NAMESPACE}',
@@ -150,6 +151,7 @@ except errors.SDKError as e:
 if res.connection_response is not None:
     # handle response
     pass
+
 ```
 <!-- End Error Handling [errors] -->
 
@@ -169,20 +171,20 @@ You can override the default server globally by passing a server index to the `s
 #### Example
 
 ```python
-import airbyte
-from airbyte.models import shared
+import airbyte_api
+from airbyte_api import models
 
-s = airbyte.Airbyte(
+s = airbyte_api.AirbyteAPI(
     server_idx=0,
-    security=shared.Security(
-        basic_auth=shared.SchemeBasicAuth(
+    security=models.Security(
+        basic_auth=models.SchemeBasicAuth(
             password="<YOUR_PASSWORD_HERE>",
             username="<YOUR_USERNAME_HERE>",
         ),
     ),
 )
 
-req = shared.ConnectionCreateRequest(
+req = models.ConnectionCreateRequest(
     destination_id='c669dd1e-3620-483e-afc8-55914e0a570f',
     source_id='6dd427d8-3a55-4584-b835-842325b6c7b3',
     namespace_format='${SOURCE_NAMESPACE}',
@@ -193,6 +195,7 @@ res = s.connections.create_connection(req)
 if res.connection_response is not None:
     # handle response
     pass
+
 ```
 
 
@@ -200,20 +203,20 @@ if res.connection_response is not None:
 
 The default server can also be overridden globally by passing a URL to the `server_url: str` optional parameter when initializing the SDK client instance. For example:
 ```python
-import airbyte
-from airbyte.models import shared
+import airbyte_api
+from airbyte_api import models
 
-s = airbyte.Airbyte(
+s = airbyte_api.AirbyteAPI(
     server_url="https://api.airbyte.com/v1",
-    security=shared.Security(
-        basic_auth=shared.SchemeBasicAuth(
+    security=models.Security(
+        basic_auth=models.SchemeBasicAuth(
             password="<YOUR_PASSWORD_HERE>",
             username="<YOUR_USERNAME_HERE>",
         ),
     ),
 )
 
-req = shared.ConnectionCreateRequest(
+req = models.ConnectionCreateRequest(
     destination_id='c669dd1e-3620-483e-afc8-55914e0a570f',
     source_id='6dd427d8-3a55-4584-b835-842325b6c7b3',
     namespace_format='${SOURCE_NAMESPACE}',
@@ -224,6 +227,7 @@ res = s.connections.create_connection(req)
 if res.connection_response is not None:
     # handle response
     pass
+
 ```
 <!-- End Server Selection [server] -->
 
@@ -236,12 +240,12 @@ The Python SDK makes API calls using the [requests](https://pypi.org/project/req
 
 For example, you could specify a header for every request that this sdk makes as follows:
 ```python
-import airbyte
+import airbyte_api
 import requests
 
 http_client = requests.Session()
 http_client.headers.update({'x-custom-header': 'someValue'})
-s = airbyte.Airbyte(client: http_client)
+s = airbyte_api.AirbyteAPI(client=http_client)
 ```
 <!-- End Custom HTTP Client [http-client] -->
 
@@ -261,19 +265,19 @@ This SDK supports the following security schemes globally:
 
 You can set the security parameters through the `security` optional parameter when initializing the SDK client instance. The selected scheme will be used by default to authenticate with the API for all operations that support it. For example:
 ```python
-import airbyte
-from airbyte.models import shared
+import airbyte_api
+from airbyte_api import models
 
-s = airbyte.Airbyte(
-    security=shared.Security(
-        basic_auth=shared.SchemeBasicAuth(
+s = airbyte_api.AirbyteAPI(
+    security=models.Security(
+        basic_auth=models.SchemeBasicAuth(
             password="<YOUR_PASSWORD_HERE>",
             username="<YOUR_USERNAME_HERE>",
         ),
     ),
 )
 
-req = shared.ConnectionCreateRequest(
+req = models.ConnectionCreateRequest(
     destination_id='c669dd1e-3620-483e-afc8-55914e0a570f',
     source_id='6dd427d8-3a55-4584-b835-842325b6c7b3',
     namespace_format='${SOURCE_NAMESPACE}',
@@ -284,6 +288,7 @@ res = s.connections.create_connection(req)
 if res.connection_response is not None:
     # handle response
     pass
+
 ```
 <!-- End Authentication [security] -->
 

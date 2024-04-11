@@ -1,0 +1,10 @@
+# InListFilter
+
+
+## Fields
+
+| Field                                                                                                | Type                                                                                                 | Required                                                                                             | Description                                                                                          |
+| ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- |
+| `values`                                                                                             | List[*str*]                                                                                          | :heavy_check_mark:                                                                                   | N/A                                                                                                  |
+| `case_sensitive`                                                                                     | *Optional[bool]*                                                                                     | :heavy_minus_sign:                                                                                   | N/A                                                                                                  |
+| `filter_name`                                                                                        | [models.SourceGoogleAnalyticsDataAPIFilterName](../models/sourcegoogleanalyticsdataapifiltername.md) | :heavy_check_mark:                                                                                   | N/A                                                                                                  |

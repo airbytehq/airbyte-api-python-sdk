@@ -1,9 +1,0 @@
-# AuthenticateWithPersonalAccessToken
-
-
-## Fields
-
-| Field                                                                                                            | Type                                                                                                             | Required                                                                                                         | Description                                                                                                      |
-| ---------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------- |
-| `personal_access_token`                                                                                          | *str*                                                                                                            | :heavy_check_mark:                                                                                               | Asana Personal Access Token (generate yours <a href="https://app.asana.com/0/developer-console">here</a>).       |
-| `option_title`                                                                                                   | [Optional[shared.SourceAsanaSchemasCredentialsTitle]](../../models/shared/sourceasanaschemascredentialstitle.md) | :heavy_minus_sign:                                                                                               | PAT Credentials                                                                                                  |

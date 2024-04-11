@@ -1,0 +1,9 @@
+# SourceMonday
+
+
+## Fields
+
+| Field                                                                                                        | Type                                                                                                         | Required                                                                                                     | Description                                                                                                  |
+| ------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------ |
+| `credentials`                                                                                                | [Optional[Union[models.SourceMondayOAuth20, models.APIToken]]](../models/sourcemondayauthorizationmethod.md) | :heavy_minus_sign:                                                                                           | N/A                                                                                                          |
+| `source_type`                                                                                                | [models.SourceMondayMonday](../models/sourcemondaymonday.md)                                                 | :heavy_check_mark:                                                                                           | N/A                                                                                                          |
