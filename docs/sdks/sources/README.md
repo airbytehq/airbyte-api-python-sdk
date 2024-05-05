@@ -35,8 +35,8 @@ req = models.SourceCreateRequest(
         api_key='<value>',
         url='https://complicated-seat.org',
     ),
-    name='<value>',
-    workspace_id='0f31f3dd-c984-48c3-8bdf-b109056aa6d6',
+    name='My Source',
+    workspace_id='744cc0ed-7f05-4949-9e60-2a814f90c035',
 )
 
 res = s.sources.create_source(req)
@@ -230,7 +230,83 @@ s = airbyte_api.AirbyteAPI(
     ),
 )
 
-req = api.ListSourcesRequest()
+req = api.ListSourcesRequest(
+    workspace_ids=[
+        'd',
+        'f',
+        '0',
+        '8',
+        'f',
+        '6',
+        'b',
+        '0',
+        '-',
+        'b',
+        '3',
+        '6',
+        '4',
+        '-',
+        '4',
+        'c',
+        'c',
+        '1',
+        '-',
+        '9',
+        'b',
+        '3',
+        'f',
+        '-',
+        '9',
+        '6',
+        'f',
+        '5',
+        'd',
+        '2',
+        'f',
+        'c',
+        'c',
+        'f',
+        'b',
+        '2',
+        ',',
+        'b',
+        '0',
+        '7',
+        '9',
+        '6',
+        '7',
+        '9',
+        '7',
+        '-',
+        'd',
+        'e',
+        '2',
+        '3',
+        '-',
+        '4',
+        'f',
+        'c',
+        '7',
+        '-',
+        'a',
+        '5',
+        'e',
+        '2',
+        '-',
+        '7',
+        'e',
+        '1',
+        '3',
+        '1',
+        '3',
+        '1',
+        '4',
+        '7',
+        '1',
+        '8',
+        'c',
+    ],
+)
 
 res = s.sources.list_sources(req)
 
@@ -277,6 +353,13 @@ s = airbyte_api.AirbyteAPI(
 
 req = api.PatchSourceRequest(
     source_id='<value>',
+    source_patch_request=models.SourcePatchRequest(
+        configuration=models.SourceAha(
+            api_key='<value>',
+            url='http://apprehensive-visa.net',
+        ),
+        name='My source',
+    ),
 )
 
 res = s.sources.patch_source(req)
@@ -324,6 +407,13 @@ s = airbyte_api.AirbyteAPI(
 
 req = api.PutSourceRequest(
     source_id='<value>',
+    source_put_request=models.SourcePutRequest(
+        configuration=models.SourceAha(
+            api_key='<value>',
+            url='http://alienated-traveler.name',
+        ),
+        name='<value>',
+    ),
 )
 
 res = s.sources.put_source(req)

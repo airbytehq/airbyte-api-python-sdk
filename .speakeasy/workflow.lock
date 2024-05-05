@@ -1,0 +1,31 @@
+speakeasyVersion: 1.279.0
+sources:
+    my-source:
+        sourceNamespace: my-source
+        sourceRevisionDigest: sha256:2eda19513bbb7855d2ab0147cf136b5888a6a74b1eda2073a59d83494d11b85e
+        sourceBlobDigest: sha256:c53f423f5b9a72166a6bea9f7a2839fb4e506bc7c05d9ec5595fdecbbea08458
+        tags:
+            - latest
+targets:
+    python-api:
+        source: my-source
+        sourceNamespace: my-source
+        sourceRevisionDigest: sha256:2eda19513bbb7855d2ab0147cf136b5888a6a74b1eda2073a59d83494d11b85e
+        sourceBlobDigest: sha256:c53f423f5b9a72166a6bea9f7a2839fb4e506bc7c05d9ec5595fdecbbea08458
+        outLocation: /github/workspace/repo
+workflow:
+    workflowVersion: 1.0.0
+    speakeasyVersion: latest
+    sources:
+        my-source:
+            inputs:
+                - location: ./airbyte-api.openapi.yaml
+            registry:
+                location: registry.speakeasyapi.dev/airbyte/airbyte-prod/my-source
+    targets:
+        python-api:
+            target: python
+            source: my-source
+            publish:
+                pypi:
+                    token: $PYPI_TOKEN

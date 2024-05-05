@@ -75,7 +75,7 @@ s = airbyte_api.AirbyteAPI(
 )
 
 req = models.JobCreateRequest(
-    connection_id='18dccc91-0ab1-4f72-9ed7-0b8fc27c5826',
+    connection_id='e735894a-e773-4938-969f-45f53957b75b',
     job_type=models.JobTypeEnum.SYNC,
 )
 
@@ -158,6 +158,7 @@ List Jobs by sync type
 
 ```python
 import airbyte_api
+import dateutil.parser
 from airbyte_api import api, models
 
 s = airbyte_api.AirbyteAPI(
@@ -169,7 +170,13 @@ s = airbyte_api.AirbyteAPI(
     ),
 )
 
-req = api.ListJobsRequest()
+req = api.ListJobsRequest(
+    created_at_end=dateutil.parser.isoparse('2023-06-22T16:15:00Z'),
+    created_at_start=dateutil.parser.isoparse('2023-06-22T16:15:00Z'),
+    order_by='updatedAt|DESC',
+    updated_at_end=dateutil.parser.isoparse('2023-06-22T16:15:00Z'),
+    updated_at_start=dateutil.parser.isoparse('2023-06-22T16:15:00Z'),
+)
 
 res = s.jobs.list_jobs(req)
 

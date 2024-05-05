@@ -38,8 +38,8 @@ req = models.DestinationCreateRequest(
         ),
         spreadsheet_id='https://docs.google.com/spreadsheets/d/1hLd9Qqti3UyLXZB2aFfUWDT7BG/edit',
     ),
-    name='<value>',
-    workspace_id='8360860a-d46e-48e6-af62-08e5ba5019ef',
+    name='Postgres',
+    workspace_id='2155ae5a-de39-4808-af6a-16fe7b8b4ed2',
 )
 
 res = s.destinations.create_destination(req)
@@ -226,6 +226,16 @@ s = airbyte_api.AirbyteAPI(
 
 req = api.PatchDestinationRequest(
     destination_id='<value>',
+    destination_patch_request=models.DestinationPatchRequest(
+        configuration=models.DestinationGoogleSheets(
+            credentials=models.AuthenticationViaGoogleOAuth(
+                client_id='<value>',
+                client_secret='<value>',
+                refresh_token='<value>',
+            ),
+            spreadsheet_id='https://docs.google.com/spreadsheets/d/1hLd9Qqti3UyLXZB2aFfUWDT7BG/edit',
+        ),
+    ),
 )
 
 res = s.destinations.patch_destination(req)
@@ -273,6 +283,17 @@ s = airbyte_api.AirbyteAPI(
 
 req = api.PutDestinationRequest(
     destination_id='<value>',
+    destination_put_request=models.DestinationPutRequest(
+        configuration=models.DestinationGoogleSheets(
+            credentials=models.AuthenticationViaGoogleOAuth(
+                client_id='<value>',
+                client_secret='<value>',
+                refresh_token='<value>',
+            ),
+            spreadsheet_id='https://docs.google.com/spreadsheets/d/1hLd9Qqti3UyLXZB2aFfUWDT7BG/edit',
+        ),
+        name='<value>',
+    ),
 )
 
 res = s.destinations.put_destination(req)

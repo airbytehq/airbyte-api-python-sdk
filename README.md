@@ -40,8 +40,9 @@ s = airbyte_api.AirbyteAPI(
 )
 
 req = models.ConnectionCreateRequest(
-    destination_id='c669dd1e-3620-483e-afc8-55914e0a570f',
-    source_id='6dd427d8-3a55-4584-b835-842325b6c7b3',
+    destination_id='e478de0d-a3a0-475c-b019-25f7dd29e281',
+    source_id='95e66a59-8045-4307-9678-63bc3c9b8c93',
+    name='Postgres-to-Bigquery',
     namespace_format='${SOURCE_NAMESPACE}',
 )
 
@@ -136,8 +137,9 @@ s = airbyte_api.AirbyteAPI(
 )
 
 req = models.ConnectionCreateRequest(
-    destination_id='c669dd1e-3620-483e-afc8-55914e0a570f',
-    source_id='6dd427d8-3a55-4584-b835-842325b6c7b3',
+    destination_id='e478de0d-a3a0-475c-b019-25f7dd29e281',
+    source_id='95e66a59-8045-4307-9678-63bc3c9b8c93',
+    name='Postgres-to-Bigquery',
     namespace_format='${SOURCE_NAMESPACE}',
 )
 
@@ -185,8 +187,9 @@ s = airbyte_api.AirbyteAPI(
 )
 
 req = models.ConnectionCreateRequest(
-    destination_id='c669dd1e-3620-483e-afc8-55914e0a570f',
-    source_id='6dd427d8-3a55-4584-b835-842325b6c7b3',
+    destination_id='e478de0d-a3a0-475c-b019-25f7dd29e281',
+    source_id='95e66a59-8045-4307-9678-63bc3c9b8c93',
+    name='Postgres-to-Bigquery',
     namespace_format='${SOURCE_NAMESPACE}',
 )
 
@@ -217,8 +220,9 @@ s = airbyte_api.AirbyteAPI(
 )
 
 req = models.ConnectionCreateRequest(
-    destination_id='c669dd1e-3620-483e-afc8-55914e0a570f',
-    source_id='6dd427d8-3a55-4584-b835-842325b6c7b3',
+    destination_id='e478de0d-a3a0-475c-b019-25f7dd29e281',
+    source_id='95e66a59-8045-4307-9678-63bc3c9b8c93',
+    name='Postgres-to-Bigquery',
     namespace_format='${SOURCE_NAMESPACE}',
 )
 
@@ -278,8 +282,9 @@ s = airbyte_api.AirbyteAPI(
 )
 
 req = models.ConnectionCreateRequest(
-    destination_id='c669dd1e-3620-483e-afc8-55914e0a570f',
-    source_id='6dd427d8-3a55-4584-b835-842325b6c7b3',
+    destination_id='e478de0d-a3a0-475c-b019-25f7dd29e281',
+    source_id='95e66a59-8045-4307-9678-63bc3c9b8c93',
+    name='Postgres-to-Bigquery',
     namespace_format='${SOURCE_NAMESPACE}',
 )
 

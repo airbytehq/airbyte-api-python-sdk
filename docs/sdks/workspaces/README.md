@@ -83,7 +83,7 @@ s = airbyte_api.AirbyteAPI(
 )
 
 req = models.WorkspaceCreateRequest(
-    name='<value>',
+    name='Company Workspace Name',
 )
 
 res = s.workspaces.create_workspace(req)

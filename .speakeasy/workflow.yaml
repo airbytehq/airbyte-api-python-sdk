@@ -1,8 +1,11 @@
 workflowVersion: 1.0.0
+speakeasyVersion: latest
 sources:
     my-source:
         inputs:
             - location: ./airbyte-api.openapi.yaml
+        registry:
+            location: registry.speakeasyapi.dev/airbyte/airbyte-prod/my-source
 targets:
     python-api:
         target: python
