@@ -69,7 +69,7 @@ paths:
           format: "date-time"
         in: "query"
         required: false
-        example: "2023-06-22T16:15:00Z"
+        example: 1687450500000
       - name: "createdAtEnd"
         description: "The end date to filter by"
         schema:
@@ -77,13 +77,13 @@ paths:
           format: "date-time"
         in: "query"
         required: false
-        example: "2023-06-22T16:15:00Z"
+        example: 1687450500000
       - name: "updatedAtStart"
         description: "The start date to filter by"
         schema:
           type: "string"
           format: "date-time"
-        example: "2023-06-22T16:15:00Z"
+        example: 1687450500000
         in: "query"
         required: false
       - name: "updatedAtEnd"
@@ -93,7 +93,7 @@ paths:
           format: "date-time"
         in: "query"
         required: false
-        example: "2023-06-22T16:15:00Z"
+        example: 1687450500000
       - name: "orderBy"
         description: "The field and method to use for ordering"
         schema:
@@ -122,6 +122,7 @@ paths:
           description: "Not allowed"
       operationId: "listJobs"
       summary: "List Jobs by sync type"
+      x-speakeasy-alias: "listJobs"
     post:
       requestBody:
         content:
@@ -156,8 +157,9 @@ paths:
           description: "Invalid data"
         "403":
           description: "Not allowed"
-      operationId: "publicCreateJob"
+      operationId: "createJob"
       summary: "Trigger a sync or reset job of a connection"
+      x-speakeasy-alias: "createJob"
   /jobs/{jobId}:
     get:
       tags:
@@ -182,6 +184,7 @@ paths:
         "404":
           description: "Not found"
       operationId: "getJob"
+      x-speakeasy-alias: "getJob"
       summary: "Get Job status and details"
     delete:
       tags:
@@ -199,7 +202,8 @@ paths:
           description: "Not allowed"
         "404":
           description: "Not found"
-      operationId: "publicCancelJob"
+      operationId: "cancelJob"
+      x-speakeasy-alias: "cancelJob"
       summary: "Cancel a running Job"
     parameters:
     - name: "jobId"
@@ -225,7 +229,8 @@ paths:
           description: "Not allowed"
         "404":
           description: "Not found"
-      operationId: "listSources"
+      operationId: "listSourcesj"
+      x-speakeasy-alias: "listSourcesj"
       summary: "List sources"
       parameters:
       - name: "workspaceIds"
@@ -278,8 +283,8 @@ paths:
                     airbyte_source_name: "google-ads"
                     conversion_window_days: 14
                     customer_id: "1234567890"
-                    start_date: "2023-01-01T00:00:00Z"
-                    end_date: "2024-01-01T00:00:00Z"
+                    start_date: 1672531200000
+                    end_date: 1704067200000
                   name: "My Source"
                   workspaceId: "744cc0ed-7f05-4949-9e60-2a814f90c035"
       tags:
@@ -301,7 +306,8 @@ paths:
           description: "Invalid data"
         "403":
           description: "Not allowed"
-      operationId: "publicCreateSource"
+      operationId: "createSource"
+      x-speakeasy-alias: "createSource"
       summary: "Create a source"
       description: "Creates a source given a name, workspace id, and a json blob containing\
         \ the configuration for the source."
@@ -329,7 +335,8 @@ paths:
           description: "Not allowed"
         "404":
           description: "Not found"
-      operationId: "publicGetSource"
+      operationId: "getSource"
+      x-speakeasy-alias: "getSource"
       summary: "Get Source details"
     patch:
       tags:
@@ -348,8 +355,8 @@ paths:
                     airbyte_source_name: "google-ads"
                     conversion_window_days: 14
                     customer_id: "1234567890"
-                    start_date: "2023-01-01T00:00:00Z"
-                    end_date: "2024-01-01T00:00:00Z"
+                    start_date: 1672531200000
+                    end_date: 1704067200000
                   name: "My Source"
                   workspaceId: "744cc0ed-7f05-4949-9e60-2a814f90c035"
       responses:
@@ -370,7 +377,7 @@ paths:
           description: "Not allowed"
         "404":
           description: "Not found"
-      operationId: "patchSource"
+      operationId: null
       summary: "Update a Source"
     put:
       tags:
@@ -389,8 +396,8 @@ paths:
                     airbyte_source_name: "google-ads"
                     conversion_window_days: 14
                     customer_id: "1234567890"
-                    start_date: "2023-01-01T00:00:00Z"
-                    end_date: "2024-01-01T00:00:00Z"
+                    start_date: 1672531200000
+                    end_date: 1704067200000
                   name: "My Source"
                   workspaceId: "744cc0ed-7f05-4949-9e60-2a814f90c035"
       responses:
@@ -412,6 +419,7 @@ paths:
         "404":
           description: "Not found"
       operationId: "putSource"
+      x-speakeasy-alias: "putSource"
       summary: "Update a Source and fully overwrite it"
       x-speakeasy-entity-operation: "Source#update"
     delete:
@@ -426,7 +434,8 @@ paths:
           description: "Not allowed"
         "404":
           description: "Not found"
-      operationId: "publicDeleteSource"
+      operationId: "deleteSource"
+      x-speakeasy-alias: "deleteSource"
       summary: "Delete a Source"
     parameters:
     - name: "sourceId"
@@ -453,6 +462,7 @@ paths:
         "404":
           description: "Not found"
       operationId: "listDestinations"
+      x-speakeasy-alias: "listDestinations"
       summary: "List destinations"
       parameters:
       - name: "workspaceIds"
@@ -535,7 +545,8 @@ paths:
           description: "Not allowed"
         "404":
           description: "Not found"
-      operationId: "publicCreateDestination"
+      operationId: "createDestination"
+      x-speakeasy-alias: "createDestination"
       summary: "Create a destination"
       description: "Creates a destination given a name, workspace id, and a json blob\
         \ containing the configuration for the source."
@@ -561,14 +572,15 @@ paths:
                     configuration:
                       conversion_window_days: 14
                       customer_id: "1234567890"
-                      start_date: "2023-01-01T00:00:00Z"
-                      end_date: "2024-01-01T00:00:00Z"
+                      start_date: 1672531200000
+                      end_date: 1704067200000
           description: "Get a Destination by the id in the path."
         "403":
           description: "Not allowed"
         "404":
           description: "Not found"
-      operationId: "publicGetDestination"
+      operationId: "getDestination"
+      x-speakeasy-alias: "getDestination"
       summary: "Get Destination details"
     delete:
       tags:
@@ -582,7 +594,8 @@ paths:
           description: "Not allowed"
         "404":
           description: "Not found"
-      operationId: "publicDeleteDestination"
+      operationId: "deleteDestination"
+      x-speakeasy-alias: "deleteDestination"
       summary: "Delete a Destination"
     patch:
       tags:
@@ -600,8 +613,8 @@ paths:
                   configuration:
                     conversion_window_days: 14
                     customer_id: "1234567890"
-                    start_date: "2023-01-01T00:00:00Z"
-                    end_date: "2024-01-01T00:00:00Z"
+                    start_date: 1672531200000
+                    end_date: 1704067200000
                   name: "My Destination"
       responses:
         "200":
@@ -619,14 +632,15 @@ paths:
                     configuration:
                       conversion_window_days: 14
                       customer_id: "1234567890"
-                      start_date: "2023-01-01T00:00:00Z"
-                      end_date: "2024-01-01T00:00:00Z"
+                      start_date: 1672531200000
+                      end_date: 1704067200000
           description: "Update a Destination"
         "403":
           description: "Not allowed"
         "404":
           description: "Not found"
       operationId: "patchDestination"
+      x-speakeasy-alias: "patchDestination"
       summary: "Update a Destination"
     put:
       tags:
@@ -644,8 +658,8 @@ paths:
                   configuration:
                     conversion_window_days: 14
                     customer_id: "1234567890"
-                    start_date: "2023-01-01T00:00:00Z"
-                    end_date: "2024-01-01T00:00:00Z"
+                    start_date: 1672531200000
+                    end_date: 1704067200000
                   name: "My Destination"
       responses:
         "200":
@@ -663,14 +677,15 @@ paths:
                     configuration:
                       conversion_window_days: 14
                       customer_id: "1234567890"
-                      start_date: "2023-01-01T00:00:00Z"
-                      end_date: "2024-01-01T00:00:00Z"
+                      start_date: 1672531200000
+                      end_date: 1704067200000
           description: "Update a Destination and fully overwrite it"
         "403":
           description: "Not allowed"
         "404":
           description: "Not found"
       operationId: "putDestination"
+      x-speakeasy-alias: "putDestination"
       summary: "Update a Destination and fully overwrite it"
       x-speakeasy-entity-operation: "Destination#update"
     parameters:
@@ -700,6 +715,7 @@ paths:
         "403":
           description: "API key is invalid."
       operationId: "initiateOAuth"
+      x-speakeasy-alias: "initiateOAuth"
       summary: "Initiate OAuth for a source"
       description: "Given a source ID, workspace ID, and redirect URL, initiates OAuth\
         \ for the source.\n\nThis returns a fully formed URL for performing user authentication\
@@ -742,7 +758,8 @@ paths:
           description: "Invalid data"
         "403":
           description: "Not allowed"
-      operationId: "publicCreateConnection"
+      operationId: "createConnection"
+      x-speakeasy-alias: "createConnection"
       summary: "Create a connection"
       x-speakeasy-entity-operation: "Connection#create"
     get:
@@ -762,6 +779,7 @@ paths:
         "404":
           description: "Not found"
       operationId: "listConnections"
+      x-speakeasy-alias: "listConnections"
       summary: "List connections"
       x-speakeasy-entity-operation: "Connection#list"
       parameters:
@@ -825,7 +843,8 @@ paths:
           description: "Not allowed"
         "404":
           description: "Not found"
-      operationId: "publicGetConnection"
+      operationId: "getConnection"
+      x-speakeasy-alias: "getConnection"
       summary: "Get Connection details"
       x-speakeasy-entity-operation: "Connection#read"
     patch:
@@ -864,6 +883,7 @@ paths:
         "404":
           description: "Not found"
       operationId: "patchConnection"
+      x-speakeasy-alias: "patchConnection"
       summary: "Update Connection details"
       x-speakeasy-entity-operation: "Connection#update"
     delete:
@@ -878,7 +898,8 @@ paths:
           description: "Not allowed"
         "404":
           description: "Not found"
-      operationId: "publicDeleteConnection"
+      operationId: "deleteConnection"
+      x-speakeasy-alias: "deleteConnection"
       summary: "Delete a Connection"
       x-speakeasy-entity-operation: "Connection#delete"
     parameters:
@@ -909,6 +930,7 @@ paths:
         "404":
           description: "Not found"
       operationId: "getStreamProperties"
+      x-speakeasy-alias: "getStreamProperties"
       summary: "Get stream properties"
       parameters:
       - name: "sourceId"
@@ -950,7 +972,8 @@ paths:
           description: "Not allowed"
         "404":
           description: "Not found"
-      operationId: "publicListWorkspaces"
+      operationId: "listWorkspaces"
+      x-speakeasy-alias: "listWorkspaces"
       summary: "List workspaces"
       x-speakeasy-entity-operation: "Workspace#list"
       parameters:
@@ -1020,7 +1043,8 @@ paths:
           description: "Invalid data"
         "403":
           description: "Not allowed"
-      operationId: "publicCreateWorkspace"
+      operationId: "createWorkspace"
+      x-speakeasy-alias: "createWorkspace"
       summary: "Create a workspace"
       x-speakeasy-entity-operation: "Workspace#create"
   /workspaces/{workspaceId}:
@@ -1053,7 +1077,8 @@ paths:
           description: "Not allowed"
         "404":
           description: "Not found"
-      operationId: "publicGetWorkspace"
+      operationId: "getWorkspace"
+      x-speakeasy-alias: "getWorkspace"
       summary: "Get Workspace details"
       x-speakeasy-entity-operation: "Workspace#read"
     patch:
@@ -1086,7 +1111,8 @@ paths:
           description: "Invalid data"
         "403":
           description: "Not allowed"
-      operationId: "publicUpdateWorkspace"
+      operationId: "updateWorkspace"
+      x-speakeasy-alias: "updateWorkspace"
       summary: "Update a workspace"
       x-speakeasy-entity-operation: "Workspace#update"
     delete:
@@ -1101,7 +1127,8 @@ paths:
           description: "Not allowed"
         "404":
           description: "Not found"
-      operationId: "publicDeleteWorkspace"
+      operationId: "deleteWorkspace"
+      x-speakeasy-alias: "deleteWorkspace"
       summary: "Delete a Workspace"
       x-speakeasy-entity-operation: "Workspace#delete"
   /workspaces/{workspaceId}/oauthCredentials:
@@ -1124,6 +1151,7 @@ paths:
         "403":
           description: "API key is invalid."
       operationId: "createOrUpdateWorkspaceOAuthCredentials"
+      x-speakeasy-alias: "createOrUpdateWorkspaceOAuthCredentials"
       summary: "Create OAuth override credentials for a workspace and source type."
       description: "Create/update a set of OAuth credentials to override the Airbyte-provided\
         \ OAuth credentials used for source/destination OAuth.\nIn order to determine\
