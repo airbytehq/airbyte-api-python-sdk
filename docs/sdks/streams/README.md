@@ -24,12 +24,9 @@ s = airbyte_api.AirbyteAPI(
     ),
 )
 
-req = api.GetStreamPropertiesRequest(
-    destination_id='<value>',
+res = s.streams.get_stream_properties(request=api.GetStreamPropertiesRequest(
     source_id='<value>',
-)
-
-res = s.streams.get_stream_properties(req)
+))
 
 if res.stream_properties_response is not None:
     # handle response

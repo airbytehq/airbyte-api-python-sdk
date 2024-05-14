@@ -7,6 +7,7 @@ from .airtable import Airtable
 from .amazon_ads import AmazonAds
 from .amazon_seller_partner import AmazonSellerPartner
 from .asana import Asana
+from .azure_blob_storage import AzureBlobStorage
 from .bing_ads import BingAds
 from .facebook_marketing import FacebookMarketing
 from .github import Github
@@ -16,7 +17,6 @@ from .google_analytics_data_api import GoogleAnalyticsDataAPI
 from .google_drive import GoogleDrive
 from .google_search_console import GoogleSearchConsole
 from .google_sheets import GoogleSheets
-from .harvest import Harvest
 from .hubspot import Hubspot
 from .instagram import Instagram
 from .intercom import Intercom
@@ -58,7 +58,7 @@ class WorkspaceOAuthCredentialsRequest:
     r"""POST body for creating/updating workspace level OAuth credentials"""
     actor_type: ActorTypeEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('actorType') }})
     r"""Whether you're setting this override for a source or destination"""
-    configuration: Union[Airtable, AmazonAds, AmazonSellerPartner, Asana, BingAds, FacebookMarketing, Github, Gitlab, GoogleAds, GoogleAnalyticsDataAPI, GoogleDrive, GoogleSearchConsole, GoogleSheets, Harvest, Hubspot, Instagram, Intercom, LeverHiring, LinkedinAds, Mailchimp, MicrosoftOnedrive, MicrosoftSharepoint, MicrosoftTeams, Monday, Notion, Pinterest, Retently, Salesforce, Shopify, Slack, Smartsheets, SnapchatMarketing, Snowflake, Square, Strava, Surveymonkey, TiktokMarketing, Any, Typeform, YoutubeAnalytics, ZendeskChat, ZendeskSunshine, ZendeskSupport, ZendeskTalk] = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('configuration') }})
+    configuration: Union[Airtable, AmazonAds, AmazonSellerPartner, Asana, AzureBlobStorage, BingAds, FacebookMarketing, Github, Gitlab, GoogleAds, GoogleAnalyticsDataAPI, GoogleDrive, GoogleSearchConsole, GoogleSheets, Hubspot, Instagram, Intercom, LeverHiring, LinkedinAds, Mailchimp, MicrosoftOnedrive, MicrosoftSharepoint, MicrosoftTeams, Monday, Notion, Pinterest, Retently, Salesforce, Shopify, Slack, Smartsheets, SnapchatMarketing, Snowflake, Square, Strava, Surveymonkey, TiktokMarketing, Any, Typeform, YoutubeAnalytics, ZendeskChat, ZendeskSunshine, ZendeskSupport, ZendeskTalk] = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('configuration') }})
     r"""The values required to configure the source."""
     name: OAuthActorNames = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('name') }})
     

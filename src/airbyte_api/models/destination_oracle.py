@@ -82,6 +82,8 @@ class DestinationOracle:
     r"""The password associated with the username."""
     port: Optional[int] = dataclasses.field(default=1521, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('port'), 'exclude': lambda f: f is None }})
     r"""The port of the database."""
+    raw_data_schema: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('raw_data_schema'), 'exclude': lambda f: f is None }})
+    r"""The schema to write raw tables into (default: airbyte_internal)"""
     schema: Optional[str] = dataclasses.field(default='airbyte', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('schema'), 'exclude': lambda f: f is None }})
     r"""The default schema is used as the target schema for all statements issued from the connection that do not explicitly specify a schema name. The usual value for this field is \\"airbyte\\".  In Oracle, schemas and users are the same thing, so the \\"user\\" parameter is used as the login credentials and this is used for the default Airbyte message schema."""
     tunnel_method: Optional[Union[DestinationOracleNoTunnel, DestinationOracleSSHKeyAuthentication, DestinationOraclePasswordAuthentication]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('tunnel_method'), 'exclude': lambda f: f is None }})

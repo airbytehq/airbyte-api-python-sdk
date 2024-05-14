@@ -28,13 +28,12 @@ s = airbyte_api.AirbyteAPI(
     ),
 )
 
-req = models.ConnectionCreateRequest(
-    destination_id='c669dd1e-3620-483e-afc8-55914e0a570f',
-    source_id='6dd427d8-3a55-4584-b835-842325b6c7b3',
+res = s.connections.create_connection(request=models.ConnectionCreateRequest(
+    destination_id='e478de0d-a3a0-475c-b019-25f7dd29e281',
+    source_id='95e66a59-8045-4307-9678-63bc3c9b8c93',
+    name='Postgres-to-Bigquery',
     namespace_format='${SOURCE_NAMESPACE}',
-)
-
-res = s.connections.create_connection(req)
+))
 
 if res.connection_response is not None:
     # handle response
@@ -77,11 +76,9 @@ s = airbyte_api.AirbyteAPI(
     ),
 )
 
-req = api.DeleteConnectionRequest(
+res = s.connections.delete_connection(request=api.DeleteConnectionRequest(
     connection_id='<value>',
-)
-
-res = s.connections.delete_connection(req)
+))
 
 if res is not None:
     # handle response
@@ -124,11 +121,9 @@ s = airbyte_api.AirbyteAPI(
     ),
 )
 
-req = api.GetConnectionRequest(
+res = s.connections.get_connection(request=api.GetConnectionRequest(
     connection_id='<value>',
-)
-
-res = s.connections.get_connection(req)
+))
 
 if res.connection_response is not None:
     # handle response
@@ -171,9 +166,7 @@ s = airbyte_api.AirbyteAPI(
     ),
 )
 
-req = api.ListConnectionsRequest()
-
-res = s.connections.list_connections(req)
+res = s.connections.list_connections(request=api.ListConnectionsRequest())
 
 if res.connections_response is not None:
     # handle response
@@ -216,14 +209,12 @@ s = airbyte_api.AirbyteAPI(
     ),
 )
 
-req = api.PatchConnectionRequest(
+res = s.connections.patch_connection(request=api.PatchConnectionRequest(
     connection_patch_request=models.ConnectionPatchRequest(
         namespace_format='${SOURCE_NAMESPACE}',
     ),
     connection_id='<value>',
-)
-
-res = s.connections.patch_connection(req)
+))
 
 if res.connection_response is not None:
     # handle response

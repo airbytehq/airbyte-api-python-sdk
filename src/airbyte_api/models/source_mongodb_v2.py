@@ -67,6 +67,11 @@ class InvalidCDCPositionBehaviorAdvanced(str, Enum):
 class MongodbV2(str, Enum):
     MONGODB_V2 = 'mongodb-v2'
 
+class CaptureModeAdvanced(str, Enum):
+    r"""Determines how Airbyte looks up the value of an updated document. If 'Lookup' is chosen, the current value of the document will be read. If 'Post Image' is chosen, then the version of the document immediately after an update will be read. WARNING : Severe data loss will occur if this option is chosen and the appropriate settings are not set on your Mongo instance : https://www.mongodb.com/docs/manual/changeStreams/#change-streams-with-document-pre-and-post-images."""
+    LOOKUP = 'Lookup'
+    POST_IMAGE = 'Post Image'
+
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
@@ -82,5 +87,7 @@ class SourceMongodbV2:
     queue_size: Optional[int] = dataclasses.field(default=10000, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('queue_size'), 'exclude': lambda f: f is None }})
     r"""The size of the internal queue. This may interfere with memory consumption and efficiency of the connector, please be careful."""
     SOURCE_TYPE: Final[MongodbV2] = dataclasses.field(default=MongodbV2.MONGODB_V2, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
+    update_capture_mode: Optional[CaptureModeAdvanced] = dataclasses.field(default=CaptureModeAdvanced.LOOKUP, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('update_capture_mode'), 'exclude': lambda f: f is None }})
+    r"""Determines how Airbyte looks up the value of an updated document. If 'Lookup' is chosen, the current value of the document will be read. If 'Post Image' is chosen, then the version of the document immediately after an update will be read. WARNING : Severe data loss will occur if this option is chosen and the appropriate settings are not set on your Mongo instance : https://www.mongodb.com/docs/manual/changeStreams/#change-streams-with-document-pre-and-post-images."""
     
 

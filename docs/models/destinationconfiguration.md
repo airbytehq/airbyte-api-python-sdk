@@ -209,3 +209,9 @@ destinationConfiguration: models.DestinationVectara = /* values here */
 destinationConfiguration: models.DestinationWeaviate = /* values here */
 ```
 
+### DestinationYellowbrick
+
+```python
+destinationConfiguration: models.DestinationYellowbrick = /* values here */
+```
+

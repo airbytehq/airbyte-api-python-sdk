@@ -7,7 +7,7 @@ from dataclasses_json import Undefined, dataclass_json
 from enum import Enum
 from typing import Final, Optional, Union
 
-class AzureBlobStorage(str, Enum):
+class DestinationAzureBlobStorageAzureBlobStorage(str, Enum):
     AZURE_BLOB_STORAGE = 'azure-blob-storage'
 
 class DestinationAzureBlobStorageFormatType(str, Enum):
@@ -57,6 +57,6 @@ class DestinationAzureBlobStorage:
     r"""The amount of megabytes to buffer for the output stream to Azure. This will impact memory footprint on workers, but may need adjustment for performance and appropriate block size in Azure."""
     azure_blob_storage_spill_size: Optional[int] = dataclasses.field(default=500, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('azure_blob_storage_spill_size'), 'exclude': lambda f: f is None }})
     r"""The amount of megabytes after which the connector should spill the records in a new blob object. Make sure to configure size greater than individual records. Enter 0 if not applicable"""
-    DESTINATION_TYPE: Final[AzureBlobStorage] = dataclasses.field(default=AzureBlobStorage.AZURE_BLOB_STORAGE, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('destinationType') }})
+    DESTINATION_TYPE: Final[DestinationAzureBlobStorageAzureBlobStorage] = dataclasses.field(default=DestinationAzureBlobStorageAzureBlobStorage.AZURE_BLOB_STORAGE, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('destinationType') }})
     
 

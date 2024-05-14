@@ -5,7 +5,37 @@ import dataclasses
 from airbyte_api import utils
 from dataclasses_json import Undefined, dataclass_json
 from enum import Enum
-from typing import Final, Optional
+from typing import Any, Dict, Final, Optional, Union
+
+class SourceDynamodbSchemasAuthType(str, Enum):
+    ROLE = 'Role'
+
+
+@dataclass_json(undefined=Undefined.EXCLUDE)
+@dataclasses.dataclass
+class RoleBasedAuthentication:
+    UNSET='__SPEAKEASY_UNSET__'
+    additional_properties: Optional[Dict[str, Any]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'exclude': lambda f: f is None }})
+    AUTH_TYPE: Final[Optional[SourceDynamodbSchemasAuthType]] = dataclasses.field(default=SourceDynamodbSchemasAuthType.ROLE, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_type'), 'exclude': lambda f: f is None }})
+    
+
+
+class SourceDynamodbAuthType(str, Enum):
+    USER = 'User'
+
+
+@dataclass_json(undefined=Undefined.EXCLUDE)
+@dataclasses.dataclass
+class AuthenticateViaAccessKeys:
+    UNSET='__SPEAKEASY_UNSET__'
+    access_key_id: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('access_key_id') }})
+    r"""The access key id to access Dynamodb. Airbyte requires read permissions to the database"""
+    secret_access_key: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('secret_access_key') }})
+    r"""The corresponding secret to the access key id."""
+    additional_properties: Optional[Dict[str, Any]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'exclude': lambda f: f is None }})
+    AUTH_TYPE: Final[Optional[SourceDynamodbAuthType]] = dataclasses.field(default=SourceDynamodbAuthType.USER, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_type'), 'exclude': lambda f: f is None }})
+    
+
 
 class SourceDynamodbDynamodbRegion(str, Enum):
     r"""The region of the Dynamodb database"""
@@ -51,16 +81,17 @@ class SourceDynamodbDynamodb(str, Enum):
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
 class SourceDynamodb:
-    access_key_id: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('access_key_id') }})
-    r"""The access key id to access Dynamodb. Airbyte requires read permissions to the database"""
-    secret_access_key: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('secret_access_key') }})
-    r"""The corresponding secret to the access key id."""
+    UNSET='__SPEAKEASY_UNSET__'
+    credentials: Optional[Union[AuthenticateViaAccessKeys, RoleBasedAuthentication]] = dataclasses.field(default=UNSET, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credentials'), 'exclude': lambda f: f is SourceDynamodb.UNSET }})
+    r"""Credentials for the service"""
     endpoint: Optional[str] = dataclasses.field(default='', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('endpoint'), 'exclude': lambda f: f is None }})
     r"""the URL of the Dynamodb database"""
+    ignore_missing_read_permissions_tables: Optional[bool] = dataclasses.field(default=False, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('ignore_missing_read_permissions_tables'), 'exclude': lambda f: f is None }})
+    r"""Ignore tables with missing scan/read permissions"""
     region: Optional[SourceDynamodbDynamodbRegion] = dataclasses.field(default=SourceDynamodbDynamodbRegion.UNKNOWN, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('region'), 'exclude': lambda f: f is None }})
     r"""The region of the Dynamodb database"""
     reserved_attribute_names: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('reserved_attribute_names'), 'exclude': lambda f: f is None }})
     r"""Comma separated reserved attribute names present in your tables"""
-    SOURCE_TYPE: Final[SourceDynamodbDynamodb] = dataclasses.field(default=SourceDynamodbDynamodb.DYNAMODB, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
+    SOURCE_TYPE: Final[Optional[SourceDynamodbDynamodb]] = dataclasses.field(default=SourceDynamodbDynamodb.DYNAMODB, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType'), 'exclude': lambda f: f is None }})
     
 

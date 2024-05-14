@@ -45,11 +45,11 @@ class SourceMicrosoftSharepointAuthenticateViaMicrosoftOAuth:
     r"""Client ID of your Microsoft developer application"""
     client_secret: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('client_secret') }})
     r"""Client Secret of your Microsoft developer application"""
-    refresh_token: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('refresh_token') }})
-    r"""Refresh Token of your Microsoft developer application"""
     tenant_id: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('tenant_id') }})
     r"""Tenant ID of the Microsoft SharePoint user"""
     AUTH_TYPE: Final[Optional[SourceMicrosoftSharepointAuthType]] = dataclasses.field(default=SourceMicrosoftSharepointAuthType.CLIENT, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_type'), 'exclude': lambda f: f is None }})
+    refresh_token: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('refresh_token'), 'exclude': lambda f: f is None }})
+    r"""Refresh Token of your Microsoft developer application"""
     
 
 

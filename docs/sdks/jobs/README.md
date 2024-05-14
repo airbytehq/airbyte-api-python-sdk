@@ -27,11 +27,9 @@ s = airbyte_api.AirbyteAPI(
     ),
 )
 
-req = api.CancelJobRequest(
+res = s.jobs.cancel_job(request=api.CancelJobRequest(
     job_id=801771,
-)
-
-res = s.jobs.cancel_job(req)
+))
 
 if res.job_response is not None:
     # handle response
@@ -74,12 +72,10 @@ s = airbyte_api.AirbyteAPI(
     ),
 )
 
-req = models.JobCreateRequest(
-    connection_id='18dccc91-0ab1-4f72-9ed7-0b8fc27c5826',
+res = s.jobs.create_job(request=models.JobCreateRequest(
+    connection_id='e735894a-e773-4938-969f-45f53957b75b',
     job_type=models.JobTypeEnum.SYNC,
-)
-
-res = s.jobs.create_job(req)
+))
 
 if res.job_response is not None:
     # handle response
@@ -122,11 +118,9 @@ s = airbyte_api.AirbyteAPI(
     ),
 )
 
-req = api.GetJobRequest(
+res = s.jobs.get_job(request=api.GetJobRequest(
     job_id=131101,
-)
-
-res = s.jobs.get_job(req)
+))
 
 if res.job_response is not None:
     # handle response
@@ -158,6 +152,7 @@ List Jobs by sync type
 
 ```python
 import airbyte_api
+import dateutil.parser
 from airbyte_api import api, models
 
 s = airbyte_api.AirbyteAPI(
@@ -169,9 +164,13 @@ s = airbyte_api.AirbyteAPI(
     ),
 )
 
-req = api.ListJobsRequest()
-
-res = s.jobs.list_jobs(req)
+res = s.jobs.list_jobs(request=api.ListJobsRequest(
+    created_at_end=dateutil.parser.isoparse('1687450500000'),
+    created_at_start=dateutil.parser.isoparse('1687450500000'),
+    order_by='updatedAt|DESC',
+    updated_at_end=dateutil.parser.isoparse('1687450500000'),
+    updated_at_start=dateutil.parser.isoparse('1687450500000'),
+))
 
 if res.jobs_response is not None:
     # handle response

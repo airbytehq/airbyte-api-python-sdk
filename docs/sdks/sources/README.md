@@ -30,16 +30,14 @@ s = airbyte_api.AirbyteAPI(
     ),
 )
 
-req = models.SourceCreateRequest(
+res = s.sources.create_source(request=models.SourceCreateRequest(
     configuration=models.SourceAha(
         api_key='<value>',
         url='https://complicated-seat.org',
     ),
-    name='<value>',
-    workspace_id='0f31f3dd-c984-48c3-8bdf-b109056aa6d6',
-)
-
-res = s.sources.create_source(req)
+    name='My Source',
+    workspace_id='744cc0ed-7f05-4949-9e60-2a814f90c035',
+))
 
 if res.source_response is not None:
     # handle response
@@ -82,11 +80,9 @@ s = airbyte_api.AirbyteAPI(
     ),
 )
 
-req = api.DeleteSourceRequest(
+res = s.sources.delete_source(request=api.DeleteSourceRequest(
     source_id='<value>',
-)
-
-res = s.sources.delete_source(req)
+))
 
 if res is not None:
     # handle response
@@ -129,11 +125,9 @@ s = airbyte_api.AirbyteAPI(
     ),
 )
 
-req = api.GetSourceRequest(
+res = s.sources.get_source(request=api.GetSourceRequest(
     source_id='<value>',
-)
-
-res = s.sources.get_source(req)
+))
 
 if res.source_response is not None:
     # handle response
@@ -180,14 +174,11 @@ s = airbyte_api.AirbyteAPI(
     ),
 )
 
-req = models.InitiateOauthRequest(
+res = s.sources.initiate_o_auth(request=models.InitiateOauthRequest(
     redirect_url='https://cloud.airbyte.io/v1/api/oauth/callback',
-    source_type=models.OAuthActorNames.GOOGLE_ADS,
+    source_type=models.OAuthActorNames.GITLAB,
     workspace_id='871d9b60-11d1-44cb-8c92-c246d53bf87e',
-    o_auth_input_configuration=models.OAuthInputConfiguration(),
-)
-
-res = s.sources.initiate_o_auth(req)
+))
 
 if res is not None:
     # handle response
@@ -230,9 +221,83 @@ s = airbyte_api.AirbyteAPI(
     ),
 )
 
-req = api.ListSourcesRequest()
-
-res = s.sources.list_sources(req)
+res = s.sources.list_sources(request=api.ListSourcesRequest(
+    workspace_ids=[
+        'd',
+        'f',
+        '0',
+        '8',
+        'f',
+        '6',
+        'b',
+        '0',
+        '-',
+        'b',
+        '3',
+        '6',
+        '4',
+        '-',
+        '4',
+        'c',
+        'c',
+        '1',
+        '-',
+        '9',
+        'b',
+        '3',
+        'f',
+        '-',
+        '9',
+        '6',
+        'f',
+        '5',
+        'd',
+        '2',
+        'f',
+        'c',
+        'c',
+        'f',
+        'b',
+        '2',
+        ',',
+        'b',
+        '0',
+        '7',
+        '9',
+        '6',
+        '7',
+        '9',
+        '7',
+        '-',
+        'd',
+        'e',
+        '2',
+        '3',
+        '-',
+        '4',
+        'f',
+        'c',
+        '7',
+        '-',
+        'a',
+        '5',
+        'e',
+        '2',
+        '-',
+        '7',
+        'e',
+        '1',
+        '3',
+        '1',
+        '3',
+        '1',
+        '4',
+        '7',
+        '1',
+        '8',
+        'c',
+    ],
+))
 
 if res.sources_response is not None:
     # handle response
@@ -275,11 +340,16 @@ s = airbyte_api.AirbyteAPI(
     ),
 )
 
-req = api.PatchSourceRequest(
+res = s.sources.patch_source(request=api.PatchSourceRequest(
     source_id='<value>',
-)
-
-res = s.sources.patch_source(req)
+    source_patch_request=models.SourcePatchRequest(
+        configuration=models.SourceAha(
+            api_key='<value>',
+            url='http://apprehensive-visa.net',
+        ),
+        name='My source',
+    ),
+))
 
 if res.source_response is not None:
     # handle response
@@ -322,11 +392,16 @@ s = airbyte_api.AirbyteAPI(
     ),
 )
 
-req = api.PutSourceRequest(
+res = s.sources.put_source(request=api.PutSourceRequest(
     source_id='<value>',
-)
-
-res = s.sources.put_source(req)
+    source_put_request=models.SourcePutRequest(
+        configuration=models.SourceAha(
+            api_key='<value>',
+            url='http://alienated-traveler.name',
+        ),
+        name='<value>',
+    ),
+))
 
 if res.source_response is not None:
     # handle response

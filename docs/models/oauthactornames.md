@@ -9,6 +9,7 @@
 | `AMAZON_ADS`                | amazon-ads                  |
 | `AMAZON_SELLER_PARTNER`     | amazon-seller-partner       |
 | `ASANA`                     | asana                       |
+| `AZURE_BLOB_STORAGE`        | azure-blob-storage          |
 | `BING_ADS`                  | bing-ads                    |
 | `FACEBOOK_MARKETING`        | facebook-marketing          |
 | `GITHUB`                    | github                      |
@@ -18,7 +19,6 @@
 | `GOOGLE_DRIVE`              | google-drive                |
 | `GOOGLE_SEARCH_CONSOLE`     | google-search-console       |
 | `GOOGLE_SHEETS`             | google-sheets               |
-| `HARVEST`                   | harvest                     |
 | `HUBSPOT`                   | hubspot                     |
 | `INSTAGRAM`                 | instagram                   |
 | `INTERCOM`                  | intercom                    |

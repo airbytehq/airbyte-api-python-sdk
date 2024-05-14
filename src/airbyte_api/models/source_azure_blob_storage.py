@@ -9,6 +9,38 @@ from datetime import datetime
 from enum import Enum
 from typing import Final, List, Optional, Union
 
+class SourceAzureBlobStorageSchemasAuthType(str, Enum):
+    STORAGE_ACCOUNT_KEY = 'storage_account_key'
+
+
+@dataclass_json(undefined=Undefined.EXCLUDE)
+@dataclasses.dataclass
+class AuthenticateViaStorageAccountKey:
+    azure_blob_storage_account_key: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('azure_blob_storage_account_key') }})
+    r"""The Azure blob storage account key."""
+    AUTH_TYPE: Final[Optional[SourceAzureBlobStorageSchemasAuthType]] = dataclasses.field(default=SourceAzureBlobStorageSchemasAuthType.STORAGE_ACCOUNT_KEY, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_type'), 'exclude': lambda f: f is None }})
+    
+
+
+class SourceAzureBlobStorageAuthType(str, Enum):
+    OAUTH2 = 'oauth2'
+
+
+@dataclass_json(undefined=Undefined.EXCLUDE)
+@dataclasses.dataclass
+class AuthenticateViaOauth2:
+    client_id: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('client_id') }})
+    r"""Client ID of your Microsoft developer application"""
+    client_secret: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('client_secret') }})
+    r"""Client Secret of your Microsoft developer application"""
+    refresh_token: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('refresh_token') }})
+    r"""Refresh Token of your Microsoft developer application"""
+    tenant_id: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('tenant_id') }})
+    r"""Tenant ID of the Microsoft Azure Application user"""
+    AUTH_TYPE: Final[Optional[SourceAzureBlobStorageAuthType]] = dataclasses.field(default=SourceAzureBlobStorageAuthType.OAUTH2, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_type'), 'exclude': lambda f: f is None }})
+    
+
+
 class SourceAzureBlobStorageAzureBlobStorage(str, Enum):
     AZURE_BLOB_STORAGE = 'azure-blob-storage'
 
@@ -203,12 +235,12 @@ class SourceAzureBlobStorage:
     r"""NOTE: When this Spec is changed, legacy_config_transformer.py must also be modified to uptake the changes
     because it is responsible for converting legacy Azure Blob Storage v0 configs into v1 configs using the File-Based CDK.
     """
-    azure_blob_storage_account_key: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('azure_blob_storage_account_key') }})
-    r"""The Azure blob storage account key."""
     azure_blob_storage_account_name: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('azure_blob_storage_account_name') }})
     r"""The account's name of the Azure Blob Storage."""
     azure_blob_storage_container_name: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('azure_blob_storage_container_name') }})
     r"""The name of the Azure blob storage container."""
+    credentials: Union[AuthenticateViaOauth2, AuthenticateViaStorageAccountKey] = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credentials') }})
+    r"""Credentials for connecting to the Azure Blob Storage"""
     streams: List[FileBasedStreamConfig] = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('streams') }})
     r"""Each instance of this configuration defines a <a href=\\"https://docs.airbyte.com/cloud/core-concepts#stream\\">stream</a>. Use this to define which files belong in the stream, their format, and how they should be parsed and validated. When sending data to warehouse destination such as Snowflake or BigQuery, each stream is a separate table."""
     azure_blob_storage_endpoint: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('azure_blob_storage_endpoint'), 'exclude': lambda f: f is None }})
