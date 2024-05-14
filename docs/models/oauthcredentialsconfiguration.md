@@ -29,6 +29,12 @@ oAuthCredentialsConfiguration: models.AmazonSellerPartner = /* values here */
 oAuthCredentialsConfiguration: models.Asana = /* values here */
 ```
 
+### AzureBlobStorage
+
+```python
+oAuthCredentialsConfiguration: models.AzureBlobStorage = /* values here */
+```
+
 ### BingAds
 
 ```python
@@ -81,12 +87,6 @@ oAuthCredentialsConfiguration: models.GoogleSearchConsole = /* values here */
 
 ```python
 oAuthCredentialsConfiguration: models.GoogleSheets = /* values here */
-```
-
-### Harvest
-
-```python
-oAuthCredentialsConfiguration: models.Harvest = /* values here */
 ```
 
 ### Hubspot

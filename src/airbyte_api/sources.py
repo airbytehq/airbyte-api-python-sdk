@@ -14,7 +14,7 @@ class Sources:
         
     
     
-    def create_source(self, request: Optional[models.SourceCreateRequest]) -> api.CreateSourceResponse:
+    def create_source(self, request: Optional[models.SourceCreateRequest] = None) -> api.CreateSourceResponse:
         r"""Create a source
         Creates a source given a name, workspace id, and a json blob containing the configuration for the source.
         """
@@ -58,6 +58,7 @@ class Sources:
         res = api.CreateSourceResponse(status_code=http_res.status_code, content_type=http_res.headers.get('Content-Type') or '', raw_response=http_res)
         
         if http_res.status_code == 200:
+            # pylint: disable=no-else-return
             if utils.match_content_type(http_res.headers.get('Content-Type') or '', 'application/json'):                
                 out = utils.unmarshal_json(http_res.text, Optional[models.SourceResponse])
                 res.source_response = out
@@ -161,6 +162,7 @@ class Sources:
         res = api.GetSourceResponse(status_code=http_res.status_code, content_type=http_res.headers.get('Content-Type') or '', raw_response=http_res)
         
         if http_res.status_code == 200:
+            # pylint: disable=no-else-return
             if utils.match_content_type(http_res.headers.get('Content-Type') or '', 'application/json'):                
                 out = utils.unmarshal_json(http_res.text, Optional[models.SourceResponse])
                 res.source_response = out
@@ -276,6 +278,7 @@ class Sources:
         res = api.ListSourcesResponse(status_code=http_res.status_code, content_type=http_res.headers.get('Content-Type') or '', raw_response=http_res)
         
         if http_res.status_code == 200:
+            # pylint: disable=no-else-return
             if utils.match_content_type(http_res.headers.get('Content-Type') or '', 'application/json'):                
                 out = utils.unmarshal_json(http_res.text, Optional[models.SourcesResponse])
                 res.sources_response = out
@@ -333,6 +336,7 @@ class Sources:
         res = api.PatchSourceResponse(status_code=http_res.status_code, content_type=http_res.headers.get('Content-Type') or '', raw_response=http_res)
         
         if http_res.status_code == 200:
+            # pylint: disable=no-else-return
             if utils.match_content_type(http_res.headers.get('Content-Type') or '', 'application/json'):                
                 out = utils.unmarshal_json(http_res.text, Optional[models.SourceResponse])
                 res.source_response = out
@@ -390,6 +394,7 @@ class Sources:
         res = api.PutSourceResponse(status_code=http_res.status_code, content_type=http_res.headers.get('Content-Type') or '', raw_response=http_res)
         
         if http_res.status_code == 200:
+            # pylint: disable=no-else-return
             if utils.match_content_type(http_res.headers.get('Content-Type') or '', 'application/json'):                
                 out = utils.unmarshal_json(http_res.text, Optional[models.SourceResponse])
                 res.source_response = out

@@ -791,12 +791,6 @@ sourceConfiguration: models.SourcePypi = /* values here */
 sourceConfiguration: models.SourceQualaroo = /* values here */
 ```
 
-### SourceQuickbooks
-
-```python
-sourceConfiguration: models.SourceQuickbooks = /* values here */
-```
-
 ### SourceRailz
 
 ```python

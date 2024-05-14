@@ -14,7 +14,7 @@ class Destinations:
         
     
     
-    def create_destination(self, request: Optional[models.DestinationCreateRequest]) -> api.CreateDestinationResponse:
+    def create_destination(self, request: Optional[models.DestinationCreateRequest] = None) -> api.CreateDestinationResponse:
         r"""Create a destination
         Creates a destination given a name, workspace id, and a json blob containing the configuration for the source.
         """
@@ -58,6 +58,7 @@ class Destinations:
         res = api.CreateDestinationResponse(status_code=http_res.status_code, content_type=http_res.headers.get('Content-Type') or '', raw_response=http_res)
         
         if http_res.status_code == 200:
+            # pylint: disable=no-else-return
             if utils.match_content_type(http_res.headers.get('Content-Type') or '', 'application/json'):                
                 out = utils.unmarshal_json(http_res.text, Optional[models.DestinationResponse])
                 res.destination_response = out
@@ -161,6 +162,7 @@ class Destinations:
         res = api.GetDestinationResponse(status_code=http_res.status_code, content_type=http_res.headers.get('Content-Type') or '', raw_response=http_res)
         
         if http_res.status_code == 200:
+            # pylint: disable=no-else-return
             if utils.match_content_type(http_res.headers.get('Content-Type') or '', 'application/json'):                
                 out = utils.unmarshal_json(http_res.text, Optional[models.DestinationResponse])
                 res.destination_response = out
@@ -216,6 +218,7 @@ class Destinations:
         res = api.ListDestinationsResponse(status_code=http_res.status_code, content_type=http_res.headers.get('Content-Type') or '', raw_response=http_res)
         
         if http_res.status_code == 200:
+            # pylint: disable=no-else-return
             if utils.match_content_type(http_res.headers.get('Content-Type') or '', 'application/json'):                
                 out = utils.unmarshal_json(http_res.text, Optional[models.DestinationsResponse])
                 res.destinations_response = out
@@ -273,6 +276,7 @@ class Destinations:
         res = api.PatchDestinationResponse(status_code=http_res.status_code, content_type=http_res.headers.get('Content-Type') or '', raw_response=http_res)
         
         if http_res.status_code == 200:
+            # pylint: disable=no-else-return
             if utils.match_content_type(http_res.headers.get('Content-Type') or '', 'application/json'):                
                 out = utils.unmarshal_json(http_res.text, Optional[models.DestinationResponse])
                 res.destination_response = out
@@ -330,6 +334,7 @@ class Destinations:
         res = api.PutDestinationResponse(status_code=http_res.status_code, content_type=http_res.headers.get('Content-Type') or '', raw_response=http_res)
         
         if http_res.status_code == 200:
+            # pylint: disable=no-else-return
             if utils.match_content_type(http_res.headers.get('Content-Type') or '', 'application/json'):                
                 out = utils.unmarshal_json(http_res.text, Optional[models.DestinationResponse])
                 res.destination_response = out

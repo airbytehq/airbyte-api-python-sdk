@@ -1,11 +1,8 @@
-# FileType
-
-The file type you want to sync. Currently only 'csv' and 'json' files are supported.
+# Filetype
 
 
 ## Values
 
-| Name   | Value  |
-| ------ | ------ |
-| `CSV`  | csv    |
-| `JSON` | json   |
+| Name  | Value |
+| ----- | ----- |
+| `CSV` | csv   |

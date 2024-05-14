@@ -4,7 +4,7 @@ import requests as requests_http
 from .sdkconfiguration import SDKConfiguration
 from airbyte_api import api, errors, models, utils
 from airbyte_api._hooks import AfterErrorContext, AfterSuccessContext, BeforeRequestContext, HookContext
-from typing import Optional
+from typing import List, Optional
 
 class Streams:
     sdk_configuration: SDKConfiguration
@@ -54,8 +54,9 @@ class Streams:
         res = api.GetStreamPropertiesResponse(status_code=http_res.status_code, content_type=http_res.headers.get('Content-Type') or '', raw_response=http_res)
         
         if http_res.status_code == 200:
+            # pylint: disable=no-else-return
             if utils.match_content_type(http_res.headers.get('Content-Type') or '', 'application/json'):                
-                out = utils.unmarshal_json(http_res.text, Optional[models.StreamPropertiesResponse])
+                out = utils.unmarshal_json(http_res.text, Optional[List[models.StreamProperties]])
                 res.stream_properties_response = out
             else:
                 content_type = http_res.headers.get('Content-Type')

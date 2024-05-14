@@ -30,16 +30,14 @@ s = airbyte_api.AirbyteAPI(
     ),
 )
 
-req = api.CreateOrUpdateWorkspaceOAuthCredentialsRequest(
+res = s.workspaces.create_or_update_workspace_o_auth_credentials(request=api.CreateOrUpdateWorkspaceOAuthCredentialsRequest(
     workspace_o_auth_credentials_request=models.WorkspaceOAuthCredentialsRequest(
         actor_type=models.ActorTypeEnum.DESTINATION,
         configuration=models.Airtable(),
         name=models.OAuthActorNames.AMAZON_ADS,
     ),
     workspace_id='<value>',
-)
-
-res = s.workspaces.create_or_update_workspace_o_auth_credentials(req)
+))
 
 if res is not None:
     # handle response
@@ -82,11 +80,9 @@ s = airbyte_api.AirbyteAPI(
     ),
 )
 
-req = models.WorkspaceCreateRequest(
-    name='<value>',
-)
-
-res = s.workspaces.create_workspace(req)
+res = s.workspaces.create_workspace(request=models.WorkspaceCreateRequest(
+    name='Company Workspace Name',
+))
 
 if res.workspace_response is not None:
     # handle response
@@ -129,11 +125,9 @@ s = airbyte_api.AirbyteAPI(
     ),
 )
 
-req = api.DeleteWorkspaceRequest(
+res = s.workspaces.delete_workspace(request=api.DeleteWorkspaceRequest(
     workspace_id='<value>',
-)
-
-res = s.workspaces.delete_workspace(req)
+))
 
 if res is not None:
     # handle response
@@ -176,11 +170,9 @@ s = airbyte_api.AirbyteAPI(
     ),
 )
 
-req = api.GetWorkspaceRequest(
+res = s.workspaces.get_workspace(request=api.GetWorkspaceRequest(
     workspace_id='<value>',
-)
-
-res = s.workspaces.get_workspace(req)
+))
 
 if res.workspace_response is not None:
     # handle response
@@ -223,9 +215,7 @@ s = airbyte_api.AirbyteAPI(
     ),
 )
 
-req = api.ListWorkspacesRequest()
-
-res = s.workspaces.list_workspaces(req)
+res = s.workspaces.list_workspaces(request=api.ListWorkspacesRequest())
 
 if res.workspaces_response is not None:
     # handle response
@@ -268,14 +258,12 @@ s = airbyte_api.AirbyteAPI(
     ),
 )
 
-req = api.UpdateWorkspaceRequest(
+res = s.workspaces.update_workspace(request=api.UpdateWorkspaceRequest(
     workspace_update_request=models.WorkspaceUpdateRequest(
         name='<value>',
     ),
     workspace_id='<value>',
-)
-
-res = s.workspaces.update_workspace(req)
+))
 
 if res.workspace_response is not None:
     # handle response

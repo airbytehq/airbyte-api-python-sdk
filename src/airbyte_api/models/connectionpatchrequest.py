@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 import dataclasses
-from .connectionschedule import ConnectionSchedule
+from .airbyteapiconnectionschedule import AirbyteAPIConnectionSchedule
 from .connectionstatusenum import ConnectionStatusEnum
 from .geographyenumnodefault import GeographyEnumNoDefault
 from .namespacedefinitionenumnodefault import NamespaceDefinitionEnumNoDefault
@@ -29,7 +29,7 @@ class ConnectionPatchRequest:
     r"""Set how Airbyte handles syncs when it detects a non-breaking schema change in the source"""
     prefix: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('prefix'), 'exclude': lambda f: f is None }})
     r"""Prefix that will be prepended to the name of each stream when it is written to the destination (ex. “airbyte_” causes “projects” => “airbyte_projects”)."""
-    schedule: Optional[ConnectionSchedule] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('schedule'), 'exclude': lambda f: f is None }})
+    schedule: Optional[AirbyteAPIConnectionSchedule] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('schedule'), 'exclude': lambda f: f is None }})
     r"""schedule for when the the connection should run, per the schedule type"""
     status: Optional[ConnectionStatusEnum] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('status'), 'exclude': lambda f: f is None }})
     

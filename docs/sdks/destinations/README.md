@@ -29,7 +29,7 @@ s = airbyte_api.AirbyteAPI(
     ),
 )
 
-req = models.DestinationCreateRequest(
+res = s.destinations.create_destination(request=models.DestinationCreateRequest(
     configuration=models.DestinationGoogleSheets(
         credentials=models.AuthenticationViaGoogleOAuth(
             client_id='<value>',
@@ -38,11 +38,9 @@ req = models.DestinationCreateRequest(
         ),
         spreadsheet_id='https://docs.google.com/spreadsheets/d/1hLd9Qqti3UyLXZB2aFfUWDT7BG/edit',
     ),
-    name='<value>',
-    workspace_id='8360860a-d46e-48e6-af62-08e5ba5019ef',
-)
-
-res = s.destinations.create_destination(req)
+    name='Postgres',
+    workspace_id='2155ae5a-de39-4808-af6a-16fe7b8b4ed2',
+))
 
 if res.destination_response is not None:
     # handle response
@@ -85,11 +83,9 @@ s = airbyte_api.AirbyteAPI(
     ),
 )
 
-req = api.DeleteDestinationRequest(
+res = s.destinations.delete_destination(request=api.DeleteDestinationRequest(
     destination_id='<value>',
-)
-
-res = s.destinations.delete_destination(req)
+))
 
 if res is not None:
     # handle response
@@ -132,11 +128,9 @@ s = airbyte_api.AirbyteAPI(
     ),
 )
 
-req = api.GetDestinationRequest(
+res = s.destinations.get_destination(request=api.GetDestinationRequest(
     destination_id='<value>',
-)
-
-res = s.destinations.get_destination(req)
+))
 
 if res.destination_response is not None:
     # handle response
@@ -179,9 +173,7 @@ s = airbyte_api.AirbyteAPI(
     ),
 )
 
-req = api.ListDestinationsRequest()
-
-res = s.destinations.list_destinations(req)
+res = s.destinations.list_destinations(request=api.ListDestinationsRequest())
 
 if res.destinations_response is not None:
     # handle response
@@ -224,11 +216,19 @@ s = airbyte_api.AirbyteAPI(
     ),
 )
 
-req = api.PatchDestinationRequest(
+res = s.destinations.patch_destination(request=api.PatchDestinationRequest(
     destination_id='<value>',
-)
-
-res = s.destinations.patch_destination(req)
+    destination_patch_request=models.DestinationPatchRequest(
+        configuration=models.DestinationGoogleSheets(
+            credentials=models.AuthenticationViaGoogleOAuth(
+                client_id='<value>',
+                client_secret='<value>',
+                refresh_token='<value>',
+            ),
+            spreadsheet_id='https://docs.google.com/spreadsheets/d/1hLd9Qqti3UyLXZB2aFfUWDT7BG/edit',
+        ),
+    ),
+))
 
 if res.destination_response is not None:
     # handle response
@@ -271,11 +271,20 @@ s = airbyte_api.AirbyteAPI(
     ),
 )
 
-req = api.PutDestinationRequest(
+res = s.destinations.put_destination(request=api.PutDestinationRequest(
     destination_id='<value>',
-)
-
-res = s.destinations.put_destination(req)
+    destination_put_request=models.DestinationPutRequest(
+        configuration=models.DestinationGoogleSheets(
+            credentials=models.AuthenticationViaGoogleOAuth(
+                client_id='<value>',
+                client_secret='<value>',
+                refresh_token='<value>',
+            ),
+            spreadsheet_id='https://docs.google.com/spreadsheets/d/1hLd9Qqti3UyLXZB2aFfUWDT7BG/edit',
+        ),
+        name='<value>',
+    ),
+))
 
 if res.destination_response is not None:
     # handle response

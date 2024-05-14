@@ -3,16 +3,16 @@
 from __future__ import annotations
 import dataclasses
 import requests as requests_http
-from ..models import streampropertiesresponse as models_streampropertiesresponse
-from typing import Optional
+from ..models import streamproperties as models_streamproperties
+from typing import List, Optional
 
 
 @dataclasses.dataclass
 class GetStreamPropertiesRequest:
-    destination_id: str = dataclasses.field(metadata={'query_param': { 'field_name': 'destinationId', 'style': 'form', 'explode': True }})
-    r"""ID of the destination"""
     source_id: str = dataclasses.field(metadata={'query_param': { 'field_name': 'sourceId', 'style': 'form', 'explode': True }})
     r"""ID of the source"""
+    destination_id: Optional[str] = dataclasses.field(default=None, metadata={'query_param': { 'field_name': 'destinationId', 'style': 'form', 'explode': True }})
+    r"""ID of the destination"""
     ignore_cache: Optional[bool] = dataclasses.field(default=False, metadata={'query_param': { 'field_name': 'ignoreCache', 'style': 'form', 'explode': True }})
     r"""If true pull the latest schema from the source, else pull from cache (default false)"""
     
@@ -27,7 +27,7 @@ class GetStreamPropertiesResponse:
     r"""HTTP response status code for this operation"""
     raw_response: requests_http.Response = dataclasses.field()
     r"""Raw HTTP response; suitable for custom response parsing"""
-    stream_properties_response: Optional[models_streampropertiesresponse.StreamPropertiesResponse] = dataclasses.field(default=None)
+    stream_properties_response: Optional[List[models_streamproperties.StreamProperties]] = dataclasses.field(default=None)
     r"""Get the available streams properties for a source/destination pair."""
     
 

@@ -30,6 +30,7 @@ python:
       webhooks: api
   inputModelSuffix: input
   maxMethodParams: 0
+  methodArguments: require-security-and-request
   outputModelSuffix: output
   packageName: airbyte-api
   projectUrls: {}
