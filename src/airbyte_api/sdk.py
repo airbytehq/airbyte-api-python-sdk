@@ -4,10 +4,12 @@ import requests as requests_http
 from .connections import Connections
 from .destinations import Destinations
 from .jobs import Jobs
+from .permissions import Permissions
 from .public import Public
 from .public_connections import PublicConnections
 from .public_destinations import PublicDestinations
 from .public_jobs import PublicJobs
+from .public_permissions import PublicPermissions
 from .public_sources import PublicSources
 from .public_streams import PublicStreams
 from .public_workspaces import PublicWorkspaces
@@ -29,6 +31,8 @@ class AirbyteAPI:
     destinations: Destinations
     public_jobs: PublicJobs
     jobs: Jobs
+    public_permissions: PublicPermissions
+    permissions: Permissions
     public_sources: PublicSources
     sources: Sources
     public_streams: PublicStreams
@@ -98,6 +102,8 @@ class AirbyteAPI:
         self.destinations = Destinations(self.sdk_configuration)
         self.public_jobs = PublicJobs(self.sdk_configuration)
         self.jobs = Jobs(self.sdk_configuration)
+        self.public_permissions = PublicPermissions(self.sdk_configuration)
+        self.permissions = Permissions(self.sdk_configuration)
         self.public_sources = PublicSources(self.sdk_configuration)
         self.sources = Sources(self.sdk_configuration)
         self.public_streams = PublicStreams(self.sdk_configuration)

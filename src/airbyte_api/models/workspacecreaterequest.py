@@ -4,6 +4,7 @@ from __future__ import annotations
 import dataclasses
 from airbyte_api import utils
 from dataclasses_json import Undefined, dataclass_json
+from typing import Optional
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
@@ -11,5 +12,7 @@ from dataclasses_json import Undefined, dataclass_json
 class WorkspaceCreateRequest:
     name: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('name') }})
     r"""Name of the workspace"""
+    organization_id: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('organizationId'), 'exclude': lambda f: f is None }})
+    r"""ID of organization to add workspace to."""
     
 
