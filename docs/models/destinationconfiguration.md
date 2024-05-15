@@ -185,6 +185,12 @@ destinationConfiguration: models.DestinationSftpJSON = /* values here */
 destinationConfiguration: models.DestinationSnowflake = /* values here */
 ```
 
+### DestinationSnowflakeCortex
+
+```python
+destinationConfiguration: models.DestinationSnowflakeCortex = /* values here */
+```
+
 ### DestinationTeradata
 
 ```python

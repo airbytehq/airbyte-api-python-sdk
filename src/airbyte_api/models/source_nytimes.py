@@ -8,15 +8,18 @@ from datetime import date
 from enum import Enum
 from typing import Final, Optional
 
+
 class PeriodUsedForMostPopularStreams(int, Enum):
     r"""Period of time (in days)"""
     ONE = 1
     SEVEN = 7
     THIRTY = 30
 
+
 class ShareTypeUsedForMostPopularSharedStream(str, Enum):
     r"""Share Type"""
     FACEBOOK = 'facebook'
+
 
 class Nytimes(str, Enum):
     NYTIMES = 'nytimes'

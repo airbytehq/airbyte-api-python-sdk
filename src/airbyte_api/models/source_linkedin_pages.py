@@ -7,6 +7,7 @@ from dataclasses_json import Undefined, dataclass_json
 from enum import Enum
 from typing import Final, Optional, Union
 
+
 class SourceLinkedinPagesSchemasAuthMethod(str, Enum):
     ACCESS_TOKEN = 'access_token'
 
@@ -18,6 +19,7 @@ class SourceLinkedinPagesAccessToken:
     r"""The token value generated using the LinkedIn Developers OAuth Token Tools. See the <a href=\\"https://docs.airbyte.com/integrations/sources/linkedin-pages/\\">docs</a> to obtain yours."""
     AUTH_METHOD: Final[Optional[SourceLinkedinPagesSchemasAuthMethod]] = dataclasses.field(default=SourceLinkedinPagesSchemasAuthMethod.ACCESS_TOKEN, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_method'), 'exclude': lambda f: f is None }})
     
+
 
 
 class SourceLinkedinPagesAuthMethod(str, Enum):
@@ -35,6 +37,7 @@ class SourceLinkedinPagesOAuth20:
     r"""The token value generated using the LinkedIn Developers OAuth Token Tools. See the <a href=\\"https://docs.airbyte.com/integrations/sources/linkedin-pages/\\">docs</a> to obtain yours."""
     AUTH_METHOD: Final[Optional[SourceLinkedinPagesAuthMethod]] = dataclasses.field(default=SourceLinkedinPagesAuthMethod.O_AUTH2_0, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_method'), 'exclude': lambda f: f is None }})
     
+
 
 
 class LinkedinPages(str, Enum):

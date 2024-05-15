@@ -8,6 +8,7 @@ from datetime import date
 from enum import Enum
 from typing import Final, Optional
 
+
 class PolygonStockAPI(str, Enum):
     POLYGON_STOCK_API = 'polygon-stock-api'
 

@@ -3,6 +3,7 @@
 from __future__ import annotations
 from enum import Enum
 
+
 class NonBreakingSchemaUpdatesBehaviorEnum(str, Enum):
     r"""Set how Airbyte handles syncs when it detects a non-breaking schema change in the source"""
     IGNORE = 'ignore'

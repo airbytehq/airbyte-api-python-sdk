@@ -7,6 +7,7 @@ from dataclasses_json import Undefined, dataclass_json
 from enum import Enum
 from typing import Final, Optional, Union
 
+
 class DestinationElasticsearchSchemasMethod(str, Enum):
     BASIC = 'basic'
 
@@ -23,6 +24,7 @@ class UsernamePassword:
     
 
 
+
 class DestinationElasticsearchMethod(str, Enum):
     SECRET = 'secret'
 
@@ -37,6 +39,7 @@ class APIKeySecret:
     r"""The secret associated with the API Key ID."""
     METHOD: Final[DestinationElasticsearchMethod] = dataclasses.field(default=DestinationElasticsearchMethod.SECRET, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('method') }})
     
+
 
 
 class Elasticsearch(str, Enum):

@@ -9,6 +9,7 @@ from datetime import datetime
 from enum import Enum
 from typing import Final, Optional, Union
 
+
 class SourceZendeskSunshineSchemasAuthMethod(str, Enum):
     API_TOKEN = 'api_token'
 
@@ -22,6 +23,7 @@ class SourceZendeskSunshineAPIToken:
     r"""The user email for your Zendesk account"""
     AUTH_METHOD: Final[Optional[SourceZendeskSunshineSchemasAuthMethod]] = dataclasses.field(default=SourceZendeskSunshineSchemasAuthMethod.API_TOKEN, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_method'), 'exclude': lambda f: f is None }})
     
+
 
 
 class SourceZendeskSunshineAuthMethod(str, Enum):
@@ -39,6 +41,7 @@ class SourceZendeskSunshineOAuth20:
     r"""The Client Secret of your OAuth application."""
     AUTH_METHOD: Final[Optional[SourceZendeskSunshineAuthMethod]] = dataclasses.field(default=SourceZendeskSunshineAuthMethod.OAUTH2_0, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_method'), 'exclude': lambda f: f is None }})
     
+
 
 
 class SourceZendeskSunshineZendeskSunshine(str, Enum):

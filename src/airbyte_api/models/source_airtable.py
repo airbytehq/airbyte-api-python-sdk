@@ -9,6 +9,7 @@ from datetime import datetime
 from enum import Enum
 from typing import Final, Optional, Union
 
+
 class SourceAirtableAuthMethod(str, Enum):
     API_KEY = 'api_key'
 
@@ -20,6 +21,7 @@ class PersonalAccessToken:
     r"""The Personal Access Token for the Airtable account. See the <a href=\\"https://airtable.com/developers/web/guides/personal-access-tokens\\">Support Guide</a> for more information on how to obtain this token."""
     AUTH_METHOD: Final[Optional[SourceAirtableAuthMethod]] = dataclasses.field(default=SourceAirtableAuthMethod.API_KEY, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_method'), 'exclude': lambda f: f is None }})
     
+
 
 
 class SourceAirtableSchemasAuthMethod(str, Enum):
@@ -41,6 +43,7 @@ class SourceAirtableOAuth20:
     token_expiry_date: Optional[datetime] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('token_expiry_date'), 'encoder': utils.datetimeisoformat(True), 'decoder': dateutil.parser.isoparse, 'exclude': lambda f: f is None }})
     r"""The date-time when the access token should be refreshed."""
     
+
 
 
 class SourceAirtableAirtable(str, Enum):

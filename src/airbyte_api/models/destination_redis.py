@@ -7,12 +7,15 @@ from dataclasses_json import Undefined, dataclass_json
 from enum import Enum
 from typing import Final, Optional, Union
 
+
 class CacheType(str, Enum):
     r"""Redis cache type to store data in."""
     HASH = 'hash'
 
+
 class Redis(str, Enum):
     REDIS = 'redis'
+
 
 class DestinationRedisSchemasMode(str, Enum):
     VERIFY_FULL = 'verify-full'
@@ -34,6 +37,7 @@ class DestinationRedisVerifyFull:
     
 
 
+
 class DestinationRedisMode(str, Enum):
     DISABLE = 'disable'
 
@@ -44,6 +48,7 @@ class DestinationRedisDisable:
     r"""Disable SSL."""
     MODE: Final[Optional[DestinationRedisMode]] = dataclasses.field(default=DestinationRedisMode.DISABLE, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('mode'), 'exclude': lambda f: f is None }})
     
+
 
 
 class DestinationRedisSchemasTunnelMethodTunnelMethod(str, Enum):
@@ -67,6 +72,7 @@ class DestinationRedisPasswordAuthentication:
     
 
 
+
 class DestinationRedisSchemasTunnelMethod(str, Enum):
     r"""Connect through a jump server tunnel host using username and ssh key"""
     SSH_KEY_AUTH = 'SSH_KEY_AUTH'
@@ -86,6 +92,7 @@ class DestinationRedisSSHKeyAuthentication:
     tunnel_port: Optional[int] = dataclasses.field(default=22, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('tunnel_port'), 'exclude': lambda f: f is None }})
     r"""Port on the proxy/jump server that accepts inbound ssh connections."""
     
+
 
 
 class DestinationRedisTunnelMethod(str, Enum):

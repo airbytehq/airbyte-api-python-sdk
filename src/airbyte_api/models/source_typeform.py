@@ -9,6 +9,7 @@ from datetime import datetime
 from enum import Enum
 from typing import Final, List, Optional, Union
 
+
 class SourceTypeformSchemasAuthType(str, Enum):
     ACCESS_TOKEN = 'access_token'
 
@@ -20,6 +21,7 @@ class SourceTypeformPrivateToken:
     r"""Log into your Typeform account and then generate a personal Access Token."""
     AUTH_TYPE: Final[Optional[SourceTypeformSchemasAuthType]] = dataclasses.field(default=SourceTypeformSchemasAuthType.ACCESS_TOKEN, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_type'), 'exclude': lambda f: f is None }})
     
+
 
 
 class SourceTypeformAuthType(str, Enum):
@@ -41,6 +43,7 @@ class SourceTypeformOAuth20:
     r"""The date-time when the access token should be refreshed."""
     AUTH_TYPE: Final[Optional[SourceTypeformAuthType]] = dataclasses.field(default=SourceTypeformAuthType.OAUTH2_0, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_type'), 'exclude': lambda f: f is None }})
     
+
 
 
 class SourceTypeformTypeform(str, Enum):

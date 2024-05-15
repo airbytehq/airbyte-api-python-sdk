@@ -9,6 +9,7 @@ from datetime import datetime
 from enum import Enum
 from typing import Final, Optional, Union
 
+
 class SourceNotionSchemasAuthType(str, Enum):
     TOKEN = 'token'
 
@@ -20,6 +21,7 @@ class SourceNotionAccessToken:
     r"""The Access Token for your private Notion integration. See the <a href='https://docs.airbyte.com/integrations/sources/notion#step-1-create-an-integration-in-notion'>docs</a> for more information on how to obtain this token."""
     AUTH_TYPE: Final[SourceNotionSchemasAuthType] = dataclasses.field(default=SourceNotionSchemasAuthType.TOKEN, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_type') }})
     
+
 
 
 class SourceNotionAuthType(str, Enum):
@@ -37,6 +39,7 @@ class SourceNotionOAuth20:
     r"""The Client Secret of your Notion integration. See our <a href='https://docs.airbyte.com/integrations/sources/notion#step-2-set-permissions-and-acquire-authorization-credentials'>docs</a> for more information."""
     AUTH_TYPE: Final[SourceNotionAuthType] = dataclasses.field(default=SourceNotionAuthType.O_AUTH2_0, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_type') }})
     
+
 
 
 class SourceNotionNotion(str, Enum):

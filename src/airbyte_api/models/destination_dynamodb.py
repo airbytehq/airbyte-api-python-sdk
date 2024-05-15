@@ -7,8 +7,10 @@ from dataclasses_json import Undefined, dataclass_json
 from enum import Enum
 from typing import Final, Optional
 
+
 class Dynamodb(str, Enum):
     DYNAMODB = 'dynamodb'
+
 
 class DynamoDBRegion(str, Enum):
     r"""The region of the DynamoDB."""

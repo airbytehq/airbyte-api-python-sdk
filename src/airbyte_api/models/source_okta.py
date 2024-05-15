@@ -7,6 +7,7 @@ from dataclasses_json import Undefined, dataclass_json
 from enum import Enum
 from typing import Final, Optional, Union
 
+
 class SourceOktaSchemasAuthType(str, Enum):
     API_TOKEN = 'api_token'
 
@@ -18,6 +19,7 @@ class SourceOktaAPIToken:
     r"""An Okta token. See the <a href=\\"https://docs.airbyte.com/integrations/sources/okta\\">docs</a> for instructions on how to generate it."""
     AUTH_TYPE: Final[SourceOktaSchemasAuthType] = dataclasses.field(default=SourceOktaSchemasAuthType.API_TOKEN, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_type') }})
     
+
 
 
 class SourceOktaAuthType(str, Enum):
@@ -35,6 +37,7 @@ class SourceOktaOAuth20:
     r"""Refresh Token to obtain new Access Token, when it's expired."""
     AUTH_TYPE: Final[SourceOktaAuthType] = dataclasses.field(default=SourceOktaAuthType.OAUTH2_0, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_type') }})
     
+
 
 
 class Okta(str, Enum):

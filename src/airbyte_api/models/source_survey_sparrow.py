@@ -7,6 +7,7 @@ from dataclasses_json import Undefined, dataclass_json
 from enum import Enum
 from typing import Any, Final, List, Optional, Union
 
+
 class SourceSurveySparrowURLBase(str, Enum):
     HTTPS_API_SURVEYSPARROW_COM_V3 = 'https://api.surveysparrow.com/v3'
 
@@ -18,6 +19,7 @@ class GlobalAccount:
     
 
 
+
 class URLBase(str, Enum):
     HTTPS_EU_API_SURVEYSPARROW_COM_V3 = 'https://eu-api.surveysparrow.com/v3'
 
@@ -27,6 +29,7 @@ class URLBase(str, Enum):
 class EUBasedAccount:
     URL_BASE: Final[Optional[URLBase]] = dataclasses.field(default=URLBase.HTTPS_EU_API_SURVEYSPARROW_COM_V3, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('url_base'), 'exclude': lambda f: f is None }})
     
+
 
 
 class SurveySparrow(str, Enum):

@@ -7,6 +7,7 @@ from dataclasses_json import Undefined, dataclass_json
 from enum import Enum
 from typing import Final, Optional, Union
 
+
 class SourceFaunaSchemasDeletionMode(str, Enum):
     DELETED_FIELD = 'deleted_field'
 
@@ -18,6 +19,7 @@ class Enabled:
     r"""Name of the \\"deleted at\\" column."""
     DELETION_MODE: Final[SourceFaunaSchemasDeletionMode] = dataclasses.field(default=SourceFaunaSchemasDeletionMode.DELETED_FIELD, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('deletion_mode') }})
     
+
 
 
 class SourceFaunaDeletionMode(str, Enum):
@@ -48,6 +50,7 @@ class Collection:
     See <a href=\"https://docs.fauna.com/fauna/current/learn/understanding/types#page\">the docs</a>.
     """
     
+
 
 
 class Fauna(str, Enum):

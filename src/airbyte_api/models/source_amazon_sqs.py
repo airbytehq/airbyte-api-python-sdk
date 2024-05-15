@@ -7,6 +7,7 @@ from dataclasses_json import Undefined, dataclass_json
 from enum import Enum
 from typing import Final, Optional
 
+
 class SourceAmazonSqsAWSRegion(str, Enum):
     r"""AWS Region of the SQS Queue"""
     AF_SOUTH_1 = 'af-south-1'
@@ -42,6 +43,7 @@ class SourceAmazonSqsAWSRegion(str, Enum):
     US_GOV_WEST_1 = 'us-gov-west-1'
     US_WEST_1 = 'us-west-1'
     US_WEST_2 = 'us-west-2'
+
 
 class AmazonSqs(str, Enum):
     AMAZON_SQS = 'amazon-sqs'

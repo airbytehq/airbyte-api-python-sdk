@@ -9,6 +9,7 @@ from datetime import datetime
 from enum import Enum
 from typing import Any, Dict, Final, Optional, Union
 
+
 class SourceZendeskTalkSchemasAuthType(str, Enum):
     API_TOKEN = 'api_token'
 
@@ -24,6 +25,7 @@ class SourceZendeskTalkAPIToken:
     additional_properties: Optional[Dict[str, Any]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'exclude': lambda f: f is None }})
     AUTH_TYPE: Final[Optional[SourceZendeskTalkSchemasAuthType]] = dataclasses.field(default=SourceZendeskTalkSchemasAuthType.API_TOKEN, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_type'), 'exclude': lambda f: f is None }})
     
+
 
 
 class SourceZendeskTalkAuthType(str, Enum):
@@ -43,6 +45,7 @@ class SourceZendeskTalkOAuth20:
     client_secret: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('client_secret'), 'exclude': lambda f: f is None }})
     r"""Client Secret"""
     
+
 
 
 class SourceZendeskTalkZendeskTalk(str, Enum):

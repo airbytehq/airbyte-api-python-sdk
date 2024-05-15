@@ -9,6 +9,7 @@ from datetime import datetime
 from enum import Enum
 from typing import Final, Optional, Union
 
+
 class SourceMailchimpSchemasAuthType(str, Enum):
     APIKEY = 'apikey'
 
@@ -20,6 +21,7 @@ class APIKey:
     r"""Mailchimp API Key. See the <a href=\\"https://docs.airbyte.com/integrations/sources/mailchimp\\">docs</a> for information on how to generate this key."""
     AUTH_TYPE: Final[SourceMailchimpSchemasAuthType] = dataclasses.field(default=SourceMailchimpSchemasAuthType.APIKEY, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_type') }})
     
+
 
 
 class SourceMailchimpAuthType(str, Enum):
@@ -37,6 +39,7 @@ class SourceMailchimpOAuth20:
     client_secret: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('client_secret'), 'exclude': lambda f: f is None }})
     r"""The Client Secret of your OAuth application."""
     
+
 
 
 class SourceMailchimpMailchimp(str, Enum):

@@ -7,6 +7,7 @@ from dataclasses_json import Undefined, dataclass_json
 from enum import Enum
 from typing import Final, Optional, Union
 
+
 class DatasetLocation(str, Enum):
     r"""The location of the dataset. Warning: Changes made after creation will not be applied. Read more <a href=\\"https://cloud.google.com/bigquery/docs/locations\\">here</a>."""
     US = 'US'
@@ -54,8 +55,10 @@ class DatasetLocation(str, Enum):
     US_WEST3 = 'us-west3'
     US_WEST4 = 'us-west4'
 
+
 class Bigquery(str, Enum):
     BIGQUERY = 'bigquery'
+
 
 class DestinationBigqueryMethod(str, Enum):
     STANDARD = 'Standard'
@@ -67,6 +70,7 @@ class StandardInserts:
     r"""<i>(not recommended)</i> Direct loading using SQL INSERT statements. This method is extremely inefficient and provided only for quick testing. In all other cases, you should use GCS staging."""
     METHOD: Final[DestinationBigqueryMethod] = dataclasses.field(default=DestinationBigqueryMethod.STANDARD, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('method') }})
     
+
 
 
 class DestinationBigqueryCredentialType(str, Enum):
@@ -84,10 +88,12 @@ class DestinationBigqueryHMACKey:
     
 
 
+
 class GCSTmpFilesAfterwardProcessing(str, Enum):
     r"""This upload method is supposed to temporary store records in GCS bucket. By this select you can chose if these records should be removed from GCS when migration has finished. The default \\"Delete all tmp files from GCS\\" value is used if not set explicitly."""
     DELETE_ALL_TMP_FILES_FROM_GCS = 'Delete all tmp files from GCS'
     KEEP_ALL_TMP_FILES_IN_GCS = 'Keep all tmp files in GCS'
+
 
 class Method(str, Enum):
     GCS_STAGING = 'GCS Staging'
@@ -107,6 +113,7 @@ class GCSStaging:
     r"""This upload method is supposed to temporary store records in GCS bucket. By this select you can chose if these records should be removed from GCS when migration has finished. The default \\"Delete all tmp files from GCS\\" value is used if not set explicitly."""
     METHOD: Final[Method] = dataclasses.field(default=Method.GCS_STAGING, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('method') }})
     
+
 
 
 class TransformationQueryRunType(str, Enum):

@@ -9,6 +9,7 @@ from datetime import datetime
 from enum import Enum
 from typing import Final, Union
 
+
 class SourceSalesloftSchemasAuthType(str, Enum):
     API_KEY = 'api_key'
 
@@ -20,6 +21,7 @@ class AuthenticateViaAPIKey:
     r"""API Key for making authenticated requests. More instruction on how to find this value in our <a href=\\"https://docs.airbyte.com/integrations/sources/salesloft#setup-guide\\">docs</a>"""
     AUTH_TYPE: Final[SourceSalesloftSchemasAuthType] = dataclasses.field(default=SourceSalesloftSchemasAuthType.API_KEY, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_type') }})
     
+
 
 
 class SourceSalesloftAuthType(str, Enum):
@@ -41,6 +43,7 @@ class AuthenticateViaOAuth:
     r"""The date-time when the access token should be refreshed."""
     AUTH_TYPE: Final[SourceSalesloftAuthType] = dataclasses.field(default=SourceSalesloftAuthType.OAUTH2_0, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_type') }})
     
+
 
 
 class Salesloft(str, Enum):

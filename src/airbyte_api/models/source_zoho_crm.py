@@ -9,6 +9,7 @@ from datetime import datetime
 from enum import Enum
 from typing import Final, Optional
 
+
 class DataCenterLocation(str, Enum):
     r"""Please choose the region of your Data Center location. More info by this <a href=\\"https://www.zoho.com/crm/developer/docs/api/v2/multi-dc.html\\">Link</a>"""
     US = 'US'
@@ -18,6 +19,7 @@ class DataCenterLocation(str, Enum):
     CN = 'CN'
     JP = 'JP'
 
+
 class ZohoCRMEdition(str, Enum):
     r"""Choose your Edition of Zoho CRM to determine API Concurrency Limits"""
     FREE = 'Free'
@@ -26,11 +28,13 @@ class ZohoCRMEdition(str, Enum):
     ENTERPRISE = 'Enterprise'
     ULTIMATE = 'Ultimate'
 
+
 class SourceZohoCrmEnvironment(str, Enum):
     r"""Please choose the environment"""
     PRODUCTION = 'Production'
     DEVELOPER = 'Developer'
     SANDBOX = 'Sandbox'
+
 
 class ZohoCrm(str, Enum):
     ZOHO_CRM = 'zoho-crm'

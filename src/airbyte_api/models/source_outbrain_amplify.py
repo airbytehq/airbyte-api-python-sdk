@@ -7,6 +7,7 @@ from dataclasses_json import Undefined, dataclass_json
 from enum import Enum
 from typing import Final, Optional, Union
 
+
 class BothUsernameAndPasswordIsRequiredForAuthenticationRequest(str, Enum):
     USERNAME_PASSWORD = 'username_password'
 
@@ -22,6 +23,7 @@ class SourceOutbrainAmplifyUsernamePassword:
     
 
 
+
 class AccessTokenIsRequiredForAuthenticationRequests(str, Enum):
     ACCESS_TOKEN = 'access_token'
 
@@ -35,17 +37,20 @@ class SourceOutbrainAmplifyAccessToken:
     
 
 
+
 class GranularityForGeoLocationRegion(str, Enum):
     r"""The granularity used for geo location data in reports."""
     COUNTRY = 'country'
     REGION = 'region'
     SUBREGION = 'subregion'
 
+
 class GranularityForPeriodicReports(str, Enum):
     r"""The granularity used for periodic data in reports. See <a href=\\"https://amplifyv01.docs.apiary.io/#reference/performance-reporting/periodic/retrieve-performance-statistics-for-all-marketer-campaigns-by-periodic-breakdown\\">the docs</a>."""
     DAILY = 'daily'
     WEEKLY = 'weekly'
     MONTHLY = 'monthly'
+
 
 class OutbrainAmplify(str, Enum):
     OUTBRAIN_AMPLIFY = 'outbrain-amplify'

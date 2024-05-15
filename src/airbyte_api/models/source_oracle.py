@@ -7,6 +7,7 @@ from dataclasses_json import Undefined, dataclass_json
 from enum import Enum
 from typing import Final, List, Optional, Union
 
+
 class SourceOracleConnectionType(str, Enum):
     SID = 'sid'
 
@@ -20,6 +21,7 @@ class SystemIDSID:
     
 
 
+
 class ConnectionType(str, Enum):
     SERVICE_NAME = 'service_name'
 
@@ -31,6 +33,7 @@ class ServiceName:
     service_name: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('service_name') }})
     CONNECTION_TYPE: Final[Optional[ConnectionType]] = dataclasses.field(default=ConnectionType.SERVICE_NAME, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('connection_type'), 'exclude': lambda f: f is None }})
     
+
 
 
 class SourceOracleEncryptionMethod(str, Enum):
@@ -47,11 +50,13 @@ class TLSEncryptedVerifyCertificate:
     
 
 
+
 class EncryptionAlgorithm(str, Enum):
     r"""This parameter defines what encryption algorithm is used."""
     AES256 = 'AES256'
     RC4_56 = 'RC4_56'
     THREE_DES168 = '3DES168'
+
 
 class EncryptionMethod(str, Enum):
     CLIENT_NNE = 'client_nne'
@@ -67,8 +72,10 @@ class NativeNetworkEncryptionNNE:
     
 
 
+
 class SourceOracleOracle(str, Enum):
     ORACLE = 'oracle'
+
 
 class SourceOracleSchemasTunnelMethodTunnelMethod(str, Enum):
     r"""Connect through a jump server tunnel host using username and password authentication"""
@@ -91,6 +98,7 @@ class SourceOraclePasswordAuthentication:
     
 
 
+
 class SourceOracleSchemasTunnelMethod(str, Enum):
     r"""Connect through a jump server tunnel host using username and ssh key"""
     SSH_KEY_AUTH = 'SSH_KEY_AUTH'
@@ -110,6 +118,7 @@ class SourceOracleSSHKeyAuthentication:
     tunnel_port: Optional[int] = dataclasses.field(default=22, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('tunnel_port'), 'exclude': lambda f: f is None }})
     r"""Port on the proxy/jump server that accepts inbound ssh connections."""
     
+
 
 
 class SourceOracleTunnelMethod(str, Enum):

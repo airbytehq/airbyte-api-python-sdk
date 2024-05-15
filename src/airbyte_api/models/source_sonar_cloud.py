@@ -8,6 +8,7 @@ from datetime import date
 from enum import Enum
 from typing import Any, Final, List, Optional
 
+
 class SonarCloud(str, Enum):
     SONAR_CLOUD = 'sonar-cloud'
 

@@ -7,6 +7,7 @@ from dataclasses_json import Undefined, dataclass_json
 from enum import Enum
 from typing import Final, List, Optional
 
+
 class Country(str, Enum):
     r"""This parameter allows you to specify the country where the news articles returned by the API were published, the contents of the articles are not necessarily related to the specified country. You have to set as value the 2 letters code of the country you want to filter."""
     AU = 'au'
@@ -40,10 +41,12 @@ class Country(str, Enum):
     GB = 'gb'
     US = 'us'
 
+
 class In(str, Enum):
     TITLE = 'title'
     DESCRIPTION = 'description'
     CONTENT = 'content'
+
 
 class Language(str, Enum):
     AR = 'ar'
@@ -69,10 +72,12 @@ class Language(str, Enum):
     TE = 'te'
     UK = 'uk'
 
+
 class Nullable(str, Enum):
     TITLE = 'title'
     DESCRIPTION = 'description'
     CONTENT = 'content'
+
 
 class SortBy(str, Enum):
     r"""This parameter allows you to choose with which type of sorting the articles should be returned. Two values  are possible:
@@ -82,8 +87,10 @@ class SortBy(str, Enum):
     PUBLISHED_AT = 'publishedAt'
     RELEVANCE = 'relevance'
 
+
 class Gnews(str, Enum):
     GNEWS = 'gnews'
+
 
 class TopHeadlinesTopic(str, Enum):
     r"""This parameter allows you to change the category for the request."""

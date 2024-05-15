@@ -7,16 +7,19 @@ from dataclasses_json import Undefined, dataclass_json
 from enum import Enum
 from typing import Final, Optional
 
+
 class ContentType(str, Enum):
     r"""Select the content type of the items to retrieve."""
     ARTICLE = 'article'
     VIDEO = 'video'
     IMAGE = 'image'
 
+
 class DetailType(str, Enum):
     r"""Select the granularity of the information about each item."""
     SIMPLE = 'simple'
     COMPLETE = 'complete'
+
 
 class SourcePocketSortBy(str, Enum):
     r"""Sort retrieved items by the given criteria."""
@@ -25,8 +28,10 @@ class SourcePocketSortBy(str, Enum):
     TITLE = 'title'
     SITE = 'site'
 
+
 class Pocket(str, Enum):
     POCKET = 'pocket'
+
 
 class State(str, Enum):
     r"""Select the state of the items to retrieve."""

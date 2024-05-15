@@ -7,6 +7,7 @@ from dataclasses_json import Undefined, dataclass_json
 from enum import Enum
 from typing import Final
 
+
 class PokemonName(str, Enum):
     r"""Pokemon requested from the API."""
     BULBASAUR = 'bulbasaur'
@@ -907,6 +908,7 @@ class PokemonName(str, Enum):
     GLASTRIER = 'glastrier'
     SPECTRIER = 'spectrier'
     CALYREX = 'calyrex'
+
 
 class Pokeapi(str, Enum):
     POKEAPI = 'pokeapi'

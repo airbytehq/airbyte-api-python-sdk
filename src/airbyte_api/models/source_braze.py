@@ -8,6 +8,7 @@ from datetime import date
 from enum import Enum
 from typing import Final
 
+
 class Braze(str, Enum):
     BRAZE = 'braze'
 

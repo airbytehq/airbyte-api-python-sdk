@@ -7,6 +7,7 @@ from dataclasses_json import Undefined, dataclass_json
 from enum import Enum
 from typing import Final, Optional, Union
 
+
 class DestinationMongodbAuthorization(str, Enum):
     LOGIN_PASSWORD = 'login/password'
 
@@ -23,6 +24,7 @@ class LoginPassword:
     
 
 
+
 class DestinationMongodbSchemasAuthorization(str, Enum):
     NONE = 'none'
 
@@ -35,8 +37,10 @@ class NoneT:
     
 
 
+
 class Mongodb(str, Enum):
     MONGODB = 'mongodb'
+
 
 class DestinationMongodbSchemasInstance(str, Enum):
     ATLAS = 'atlas'
@@ -49,6 +53,7 @@ class MongoDBAtlas:
     r"""URL of a cluster to connect to."""
     instance: Optional[DestinationMongodbSchemasInstance] = dataclasses.field(default=DestinationMongodbSchemasInstance.ATLAS, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('instance'), 'exclude': lambda f: f is None }})
     
+
 
 
 class DestinationMongodbInstance(str, Enum):
@@ -66,6 +71,7 @@ class ReplicaSet:
     
 
 
+
 class Instance(str, Enum):
     STANDALONE = 'standalone'
 
@@ -79,6 +85,7 @@ class StandaloneMongoDbInstance:
     port: Optional[int] = dataclasses.field(default=27017, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('port'), 'exclude': lambda f: f is None }})
     r"""The Port of a Mongo database to be replicated."""
     
+
 
 
 class DestinationMongodbSchemasTunnelMethodTunnelMethod(str, Enum):
@@ -102,6 +109,7 @@ class DestinationMongodbPasswordAuthentication:
     
 
 
+
 class DestinationMongodbSchemasTunnelMethod(str, Enum):
     r"""Connect through a jump server tunnel host using username and ssh key"""
     SSH_KEY_AUTH = 'SSH_KEY_AUTH'
@@ -121,6 +129,7 @@ class DestinationMongodbSSHKeyAuthentication:
     tunnel_port: Optional[int] = dataclasses.field(default=22, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('tunnel_port'), 'exclude': lambda f: f is None }})
     r"""Port on the proxy/jump server that accepts inbound ssh connections."""
     
+
 
 
 class DestinationMongodbTunnelMethod(str, Enum):

@@ -9,6 +9,7 @@ from datetime import date
 from enum import Enum
 from typing import Final, Optional, Union
 
+
 class SourceShopifySchemasAuthMethod(str, Enum):
     API_PASSWORD = 'api_password'
 
@@ -21,6 +22,7 @@ class APIPassword:
     r"""The API Password for your private application in the `Shopify` store."""
     AUTH_METHOD: Final[SourceShopifySchemasAuthMethod] = dataclasses.field(default=SourceShopifySchemasAuthMethod.API_PASSWORD, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_method') }})
     
+
 
 
 class SourceShopifyAuthMethod(str, Enum):
@@ -39,6 +41,7 @@ class SourceShopifyOAuth20:
     client_secret: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('client_secret'), 'exclude': lambda f: f is None }})
     r"""The Client Secret of the Shopify developer application."""
     
+
 
 
 class SourceShopifyShopify(str, Enum):

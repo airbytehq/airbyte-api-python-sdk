@@ -7,6 +7,7 @@ from dataclasses_json import Undefined, dataclass_json
 from enum import Enum
 from typing import Any, Dict, Final, Optional, Union
 
+
 class SourceMongodbV2SchemasClusterType(str, Enum):
     SELF_MANAGED_REPLICA_SET = 'SELF_MANAGED_REPLICA_SET'
 
@@ -31,6 +32,7 @@ class SelfManagedReplicaSet:
     username: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('username'), 'exclude': lambda f: f is None }})
     r"""The username which is used to access the database."""
     
+
 
 
 class SourceMongodbV2ClusterType(str, Enum):
@@ -59,13 +61,16 @@ class MongoDBAtlasReplicaSet:
     
 
 
+
 class InvalidCDCPositionBehaviorAdvanced(str, Enum):
     r"""Determines whether Airbyte should fail or re-sync data in case of an stale/invalid cursor value into the WAL. If 'Fail sync' is chosen, a user will have to manually reset the connection before being able to continue syncing data. If 'Re-sync data' is chosen, Airbyte will automatically trigger a refresh but could lead to higher cloud costs and data loss."""
     FAIL_SYNC = 'Fail sync'
     RE_SYNC_DATA = 'Re-sync data'
 
+
 class MongodbV2(str, Enum):
     MONGODB_V2 = 'mongodb-v2'
+
 
 class CaptureModeAdvanced(str, Enum):
     r"""Determines how Airbyte looks up the value of an updated document. If 'Lookup' is chosen, the current value of the document will be read. If 'Post Image' is chosen, then the version of the document immediately after an update will be read. WARNING : Severe data loss will occur if this option is chosen and the appropriate settings are not set on your Mongo instance : https://www.mongodb.com/docs/manual/changeStreams/#change-streams-with-document-pre-and-post-images."""

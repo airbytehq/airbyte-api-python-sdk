@@ -9,6 +9,7 @@ from datetime import datetime
 from enum import Enum
 from typing import Any, Dict, Final, Optional, Union
 
+
 class SourceZendeskSupportSchemasCredentials(str, Enum):
     API_TOKEN = 'api_token'
 
@@ -24,6 +25,7 @@ class SourceZendeskSupportAPIToken:
     additional_properties: Optional[Dict[str, Any]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'exclude': lambda f: f is None }})
     CREDENTIALS: Final[Optional[SourceZendeskSupportSchemasCredentials]] = dataclasses.field(default=SourceZendeskSupportSchemasCredentials.API_TOKEN, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credentials'), 'exclude': lambda f: f is None }})
     
+
 
 
 class SourceZendeskSupportCredentials(str, Enum):
@@ -43,6 +45,7 @@ class SourceZendeskSupportOAuth20:
     r"""The OAuth client secret. See <a href=\\"https://docs.searchunify.com/Content/Content-Sources/Zendesk-Authentication-OAuth-Client-ID-Secret.htm#:~:text=Get%20Client%20ID%20and%20Client%20Secret&text=Go%20to%20OAuth%20Clients%20and,will%20be%20displayed%20only%20once.\\">this guide</a> for more information."""
     CREDENTIALS: Final[Optional[SourceZendeskSupportCredentials]] = dataclasses.field(default=SourceZendeskSupportCredentials.OAUTH2_0, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credentials'), 'exclude': lambda f: f is None }})
     
+
 
 
 class SourceZendeskSupportZendeskSupport(str, Enum):

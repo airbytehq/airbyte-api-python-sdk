@@ -7,8 +7,10 @@ from dataclasses_json import Undefined, dataclass_json
 from enum import Enum
 from typing import Final, List, Optional, Union
 
+
 class Langchain(str, Enum):
     LANGCHAIN = 'langchain'
+
 
 class DestinationLangchainSchemasMode(str, Enum):
     FAKE = 'fake'
@@ -22,6 +24,7 @@ class DestinationLangchainFake:
     
 
 
+
 class DestinationLangchainMode(str, Enum):
     OPENAI = 'openai'
 
@@ -33,6 +36,7 @@ class DestinationLangchainOpenAI:
     openai_key: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('openai_key') }})
     MODE: Final[Optional[DestinationLangchainMode]] = dataclasses.field(default=DestinationLangchainMode.OPENAI, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('mode'), 'exclude': lambda f: f is None }})
     
+
 
 
 class DestinationLangchainSchemasIndexingIndexing3Mode(str, Enum):
@@ -51,6 +55,7 @@ class ChromaLocalPersistance:
     
 
 
+
 class DestinationLangchainSchemasIndexingIndexingMode(str, Enum):
     DOC_ARRAY_HNSW_SEARCH = 'DocArrayHnswSearch'
 
@@ -63,6 +68,7 @@ class DocArrayHnswSearch:
     r"""Path to the directory where hnswlib and meta data files will be written. The files will be placed inside that local mount. All files in the specified destination directory will be deleted on each run."""
     MODE: Final[Optional[DestinationLangchainSchemasIndexingIndexingMode]] = dataclasses.field(default=DestinationLangchainSchemasIndexingIndexingMode.DOC_ARRAY_HNSW_SEARCH, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('mode'), 'exclude': lambda f: f is None }})
     
+
 
 
 class DestinationLangchainSchemasIndexingMode(str, Enum):

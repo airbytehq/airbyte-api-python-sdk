@@ -8,6 +8,7 @@ from datetime import date
 from enum import Enum
 from typing import Final, Optional, Union
 
+
 class SourceGoogleAnalyticsV4ServiceAccountOnlyAuthType(str, Enum):
     SERVICE = 'Service'
 
@@ -19,6 +20,7 @@ class SourceGoogleAnalyticsV4ServiceAccountOnlyServiceAccountKeyAuthentication:
     r"""The JSON key of the service account to use for authorization"""
     AUTH_TYPE: Final[Optional[SourceGoogleAnalyticsV4ServiceAccountOnlyAuthType]] = dataclasses.field(default=SourceGoogleAnalyticsV4ServiceAccountOnlyAuthType.SERVICE, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_type'), 'exclude': lambda f: f is None }})
     
+
 
 
 class GoogleAnalyticsV4ServiceAccountOnly(str, Enum):

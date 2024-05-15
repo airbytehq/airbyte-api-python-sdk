@@ -9,6 +9,7 @@ from datetime import date
 from enum import Enum
 from typing import Final, List, Optional, Union
 
+
 class SourceGoogleSearchConsoleSchemasAuthType(str, Enum):
     SERVICE = 'Service'
 
@@ -22,6 +23,7 @@ class SourceGoogleSearchConsoleServiceAccountKeyAuthentication:
     r"""The JSON key of the service account to use for authorization. Read more <a href=\\"https://cloud.google.com/iam/docs/creating-managing-service-account-keys\\">here</a>."""
     AUTH_TYPE: Final[SourceGoogleSearchConsoleSchemasAuthType] = dataclasses.field(default=SourceGoogleSearchConsoleSchemasAuthType.SERVICE, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_type') }})
     
+
 
 
 class SourceGoogleSearchConsoleAuthType(str, Enum):
@@ -43,6 +45,7 @@ class SourceGoogleSearchConsoleOAuth:
     
 
 
+
 class SourceGoogleSearchConsoleValidEnums(str, Enum):
     r"""An enumeration of dimensions."""
     COUNTRY = 'country'
@@ -62,10 +65,12 @@ class SourceGoogleSearchConsoleCustomReportConfig:
     
 
 
+
 class DataFreshness(str, Enum):
     r"""If set to 'final', the returned data will include only finalized, stable data. If set to 'all', fresh data will be included. When using Incremental sync mode, we do not recommend setting this parameter to 'all' as it may cause data loss. More information can be found in our <a href='https://docs.airbyte.com/integrations/source/google-search-console'>full documentation</a>."""
     FINAL = 'final'
     ALL = 'all'
+
 
 class SourceGoogleSearchConsoleGoogleSearchConsole(str, Enum):
     GOOGLE_SEARCH_CONSOLE = 'google-search-console'

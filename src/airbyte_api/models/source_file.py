@@ -7,6 +7,7 @@ from dataclasses_json import Undefined, dataclass_json
 from enum import Enum
 from typing import Final, Optional, Union
 
+
 class FileFormat(str, Enum):
     r"""The Format of the file which should be replicated (Warning: some formats may be experimental, please refer to the docs)."""
     CSV = 'csv'
@@ -18,6 +19,7 @@ class FileFormat(str, Enum):
     FEATHER = 'feather'
     PARQUET = 'parquet'
     YAML = 'yaml'
+
 
 class SourceFileSchemasProviderStorageProvider7Storage(str, Enum):
     SFTP = 'SFTP'
@@ -32,6 +34,7 @@ class SFTPSecureFileTransferProtocol:
     port: Optional[str] = dataclasses.field(default='22', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('port'), 'exclude': lambda f: f is None }})
     STORAGE: Final[SourceFileSchemasProviderStorageProvider7Storage] = dataclasses.field(default=SourceFileSchemasProviderStorageProvider7Storage.SFTP, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('storage') }})
     
+
 
 
 class SourceFileSchemasProviderStorageProvider6Storage(str, Enum):
@@ -49,6 +52,7 @@ class SCPSecureCopyProtocol:
     
 
 
+
 class SourceFileSchemasProviderStorageProviderStorage(str, Enum):
     SSH = 'SSH'
 
@@ -62,6 +66,7 @@ class SSHSecureShell:
     port: Optional[str] = dataclasses.field(default='22', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('port'), 'exclude': lambda f: f is None }})
     STORAGE: Final[SourceFileSchemasProviderStorageProviderStorage] = dataclasses.field(default=SourceFileSchemasProviderStorageProviderStorage.SSH, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('storage') }})
     
+
 
 
 class SourceFileSchemasProviderStorage(str, Enum):
@@ -81,6 +86,7 @@ class AzBlobAzureBlobStorage:
     
 
 
+
 class SourceFileSchemasStorage(str, Enum):
     S3 = 'S3'
 
@@ -96,6 +102,7 @@ class SourceFileS3AmazonWebServices:
     
 
 
+
 class SourceFileStorage(str, Enum):
     GCS = 'GCS'
 
@@ -109,6 +116,7 @@ class GCSGoogleCloudStorage:
     
 
 
+
 class Storage(str, Enum):
     HTTPS = 'HTTPS'
 
@@ -120,6 +128,7 @@ class HTTPSPublicWeb:
     user_agent: Optional[bool] = dataclasses.field(default=False, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('user_agent'), 'exclude': lambda f: f is None }})
     r"""Add User-Agent to request"""
     
+
 
 
 class File(str, Enum):

@@ -7,6 +7,7 @@ from dataclasses_json import Undefined, dataclass_json
 from enum import Enum
 from typing import Final, Optional, Union
 
+
 class SourceMysqlSchemasMethod(str, Enum):
     STANDARD = 'STANDARD'
 
@@ -19,10 +20,12 @@ class SourceMysqlScanChangesWithUserDefinedCursor:
     
 
 
+
 class SourceMysqlInvalidCDCPositionBehaviorAdvanced(str, Enum):
     r"""Determines whether Airbyte should fail or re-sync data in case of an stale/invalid cursor value into the WAL. If 'Fail sync' is chosen, a user will have to manually reset the connection before being able to continue syncing data. If 'Re-sync data' is chosen, Airbyte will automatically trigger a refresh but could lead to higher cloud costs and data loss."""
     FAIL_SYNC = 'Fail sync'
     RE_SYNC_DATA = 'Re-sync data'
+
 
 class SourceMysqlMethod(str, Enum):
     CDC = 'CDC'
@@ -42,8 +45,10 @@ class ReadChangesUsingBinaryLogCDC:
     
 
 
+
 class SourceMysqlMysql(str, Enum):
     MYSQL = 'mysql'
+
 
 class SourceMysqlSchemasSSLModeSSLModesMode(str, Enum):
     VERIFY_IDENTITY = 'verify_identity'
@@ -63,6 +68,7 @@ class VerifyIdentity:
     r"""Password for keystorage. This field is optional. If you do not add it - the password will be generated automatically."""
     MODE: Final[SourceMysqlSchemasSSLModeSSLModesMode] = dataclasses.field(default=SourceMysqlSchemasSSLModeSSLModesMode.VERIFY_IDENTITY, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('mode') }})
     
+
 
 
 class SourceMysqlSchemasSslModeMode(str, Enum):
@@ -85,6 +91,7 @@ class SourceMysqlVerifyCA:
     
 
 
+
 class SourceMysqlSchemasMode(str, Enum):
     REQUIRED = 'required'
 
@@ -97,6 +104,7 @@ class Required:
     
 
 
+
 class SourceMysqlMode(str, Enum):
     PREFERRED = 'preferred'
 
@@ -107,6 +115,7 @@ class Preferred:
     r"""Automatically attempt SSL connection. If the MySQL server does not support SSL, continue with a regular connection."""
     MODE: Final[SourceMysqlMode] = dataclasses.field(default=SourceMysqlMode.PREFERRED, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('mode') }})
     
+
 
 
 class SourceMysqlSchemasTunnelMethodTunnelMethod(str, Enum):
@@ -130,6 +139,7 @@ class SourceMysqlPasswordAuthentication:
     
 
 
+
 class SourceMysqlSchemasTunnelMethod(str, Enum):
     r"""Connect through a jump server tunnel host using username and ssh key"""
     SSH_KEY_AUTH = 'SSH_KEY_AUTH'
@@ -149,6 +159,7 @@ class SourceMysqlSSHKeyAuthentication:
     tunnel_port: Optional[int] = dataclasses.field(default=22, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('tunnel_port'), 'exclude': lambda f: f is None }})
     r"""Port on the proxy/jump server that accepts inbound ssh connections."""
     
+
 
 
 class SourceMysqlTunnelMethod(str, Enum):

@@ -7,6 +7,7 @@ from dataclasses_json import Undefined, dataclass_json
 from enum import Enum
 from typing import Final, Optional, Union
 
+
 class SourceGoogleDirectorySchemasCredentialsTitle(str, Enum):
     r"""Authentication Scenario"""
     SERVICE_ACCOUNTS = 'Service accounts'
@@ -23,6 +24,7 @@ class ServiceAccountKey:
     CREDENTIALS_TITLE: Final[Optional[SourceGoogleDirectorySchemasCredentialsTitle]] = dataclasses.field(default=SourceGoogleDirectorySchemasCredentialsTitle.SERVICE_ACCOUNTS, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credentials_title'), 'exclude': lambda f: f is None }})
     r"""Authentication Scenario"""
     
+
 
 
 class SourceGoogleDirectoryCredentialsTitle(str, Enum):
@@ -43,6 +45,7 @@ class SignInViaGoogleOAuth:
     CREDENTIALS_TITLE: Final[Optional[SourceGoogleDirectoryCredentialsTitle]] = dataclasses.field(default=SourceGoogleDirectoryCredentialsTitle.WEB_SERVER_APP, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credentials_title'), 'exclude': lambda f: f is None }})
     r"""Authentication Scenario"""
     
+
 
 
 class GoogleDirectory(str, Enum):

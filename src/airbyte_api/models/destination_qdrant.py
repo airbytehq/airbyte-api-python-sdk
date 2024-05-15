@@ -7,8 +7,10 @@ from dataclasses_json import Undefined, dataclass_json
 from enum import Enum
 from typing import Final, List, Optional, Union
 
+
 class Qdrant(str, Enum):
     QDRANT = 'qdrant'
+
 
 class DestinationQdrantSchemasEmbeddingEmbedding5Mode(str, Enum):
     OPENAI_COMPATIBLE = 'openai_compatible'
@@ -29,6 +31,7 @@ class DestinationQdrantOpenAICompatible:
     
 
 
+
 class DestinationQdrantSchemasEmbeddingEmbeddingMode(str, Enum):
     AZURE_OPENAI = 'azure_openai'
 
@@ -47,6 +50,7 @@ class DestinationQdrantAzureOpenAI:
     
 
 
+
 class DestinationQdrantSchemasEmbeddingMode(str, Enum):
     FAKE = 'fake'
 
@@ -57,6 +61,7 @@ class DestinationQdrantFake:
     r"""Use a fake embedding made out of random vectors with 1536 embedding dimensions. This is useful for testing the data pipeline without incurring any costs."""
     MODE: Final[Optional[DestinationQdrantSchemasEmbeddingMode]] = dataclasses.field(default=DestinationQdrantSchemasEmbeddingMode.FAKE, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('mode'), 'exclude': lambda f: f is None }})
     
+
 
 
 class DestinationQdrantSchemasMode(str, Enum):
@@ -72,6 +77,7 @@ class DestinationQdrantCohere:
     
 
 
+
 class DestinationQdrantMode(str, Enum):
     OPENAI = 'openai'
 
@@ -85,6 +91,7 @@ class DestinationQdrantOpenAI:
     
 
 
+
 class DestinationQdrantSchemasIndexingAuthMethodMode(str, Enum):
     NO_AUTH = 'no_auth'
 
@@ -94,6 +101,7 @@ class DestinationQdrantSchemasIndexingAuthMethodMode(str, Enum):
 class DestinationQdrantNoAuth:
     MODE: Final[Optional[DestinationQdrantSchemasIndexingAuthMethodMode]] = dataclasses.field(default=DestinationQdrantSchemasIndexingAuthMethodMode.NO_AUTH, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('mode'), 'exclude': lambda f: f is None }})
     
+
 
 
 class DestinationQdrantSchemasIndexingMode(str, Enum):
@@ -107,6 +115,7 @@ class APIKeyAuth:
     r"""API Key for the Qdrant instance"""
     MODE: Final[Optional[DestinationQdrantSchemasIndexingMode]] = dataclasses.field(default=DestinationQdrantSchemasIndexingMode.API_KEY_AUTH, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('mode'), 'exclude': lambda f: f is None }})
     
+
 
 
 class DistanceMetric(str, Enum):
@@ -146,6 +155,7 @@ class DestinationQdrantFieldNameMappingConfigModel:
     
 
 
+
 class DestinationQdrantLanguage(str, Enum):
     r"""Split code in suitable places based on the programming language"""
     CPP = 'cpp'
@@ -165,6 +175,7 @@ class DestinationQdrantLanguage(str, Enum):
     HTML = 'html'
     SOL = 'sol'
 
+
 class DestinationQdrantSchemasProcessingTextSplitterTextSplitterMode(str, Enum):
     CODE = 'code'
 
@@ -179,6 +190,7 @@ class DestinationQdrantByProgrammingLanguage:
     
 
 
+
 class DestinationQdrantSchemasProcessingTextSplitterMode(str, Enum):
     MARKDOWN = 'markdown'
 
@@ -191,6 +203,7 @@ class DestinationQdrantByMarkdownHeader:
     split_level: Optional[int] = dataclasses.field(default=1, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('split_level'), 'exclude': lambda f: f is None }})
     r"""Level of markdown headers to split text fields by. Headings down to the specified level will be used as split points"""
     
+
 
 
 class DestinationQdrantSchemasProcessingMode(str, Enum):

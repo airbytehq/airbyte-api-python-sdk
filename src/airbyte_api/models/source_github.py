@@ -9,6 +9,7 @@ from datetime import datetime
 from enum import Enum
 from typing import Final, List, Optional, Union
 
+
 class SourceGithubOptionTitle(str, Enum):
     PAT_CREDENTIALS = 'PAT Credentials'
 
@@ -20,6 +21,7 @@ class SourceGithubPersonalAccessToken:
     r"""Log into GitHub and then generate a <a href=\\"https://github.com/settings/tokens\\">personal access token</a>. To load balance your API quota consumption across multiple API tokens, input multiple tokens separated with \\",\\" """
     OPTION_TITLE: Final[Optional[SourceGithubOptionTitle]] = dataclasses.field(default=SourceGithubOptionTitle.PAT_CREDENTIALS, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('option_title'), 'exclude': lambda f: f is None }})
     
+
 
 
 class OptionTitle(str, Enum):
@@ -37,6 +39,7 @@ class OAuth:
     r"""OAuth Client secret"""
     OPTION_TITLE: Final[Optional[OptionTitle]] = dataclasses.field(default=OptionTitle.O_AUTH_CREDENTIALS, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('option_title'), 'exclude': lambda f: f is None }})
     
+
 
 
 class SourceGithubGithub(str, Enum):

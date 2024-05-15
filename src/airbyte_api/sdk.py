@@ -3,16 +3,9 @@
 import requests as requests_http
 from .connections import Connections
 from .destinations import Destinations
+from .health import Health
 from .jobs import Jobs
 from .permissions import Permissions
-from .public import Public
-from .public_connections import PublicConnections
-from .public_destinations import PublicDestinations
-from .public_jobs import PublicJobs
-from .public_permissions import PublicPermissions
-from .public_sources import PublicSources
-from .public_streams import PublicStreams
-from .public_workspaces import PublicWorkspaces
 from .sdkconfiguration import SDKConfiguration
 from .sources import Sources
 from .streams import Streams
@@ -24,20 +17,13 @@ from typing import Callable, Dict, Optional, Union
 
 class AirbyteAPI:
     r"""airbyte-api: Programatically control Airbyte Cloud, OSS & Enterprise."""
-    public_connections: PublicConnections
-    public: Public
     connections: Connections
-    public_destinations: PublicDestinations
     destinations: Destinations
-    public_jobs: PublicJobs
+    health: Health
     jobs: Jobs
-    public_permissions: PublicPermissions
     permissions: Permissions
-    public_sources: PublicSources
     sources: Sources
-    public_streams: PublicStreams
     streams: Streams
-    public_workspaces: PublicWorkspaces
     workspaces: Workspaces
 
     sdk_configuration: SDKConfiguration
@@ -95,18 +81,11 @@ class AirbyteAPI:
 
 
     def _init_sdks(self):
-        self.public_connections = PublicConnections(self.sdk_configuration)
-        self.public = Public(self.sdk_configuration)
         self.connections = Connections(self.sdk_configuration)
-        self.public_destinations = PublicDestinations(self.sdk_configuration)
         self.destinations = Destinations(self.sdk_configuration)
-        self.public_jobs = PublicJobs(self.sdk_configuration)
+        self.health = Health(self.sdk_configuration)
         self.jobs = Jobs(self.sdk_configuration)
-        self.public_permissions = PublicPermissions(self.sdk_configuration)
         self.permissions = Permissions(self.sdk_configuration)
-        self.public_sources = PublicSources(self.sdk_configuration)
         self.sources = Sources(self.sdk_configuration)
-        self.public_streams = PublicStreams(self.sdk_configuration)
         self.streams = Streams(self.sdk_configuration)
-        self.public_workspaces = PublicWorkspaces(self.sdk_configuration)
         self.workspaces = Workspaces(self.sdk_configuration)

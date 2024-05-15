@@ -7,8 +7,10 @@ from dataclasses_json import Undefined, dataclass_json
 from enum import Enum
 from typing import Final, Optional, Union
 
+
 class S3(str, Enum):
     S3 = 's3'
+
 
 class DestinationS3SchemasCompressionCodec(str, Enum):
     r"""The compression algorithm used to compress data pages."""
@@ -19,6 +21,7 @@ class DestinationS3SchemasCompressionCodec(str, Enum):
     BROTLI = 'BROTLI'
     LZ4 = 'LZ4'
     ZSTD = 'ZSTD'
+
 
 class DestinationS3SchemasFormatOutputFormatFormatType(str, Enum):
     PARQUET = 'Parquet'
@@ -43,6 +46,7 @@ class DestinationS3ParquetColumnarStorage:
     
 
 
+
 class DestinationS3SchemasFormatOutputFormat3CompressionCodecCodec(str, Enum):
     SNAPPY = 'snappy'
 
@@ -52,6 +56,7 @@ class DestinationS3SchemasFormatOutputFormat3CompressionCodecCodec(str, Enum):
 class DestinationS3Snappy:
     codec: Optional[DestinationS3SchemasFormatOutputFormat3CompressionCodecCodec] = dataclasses.field(default=DestinationS3SchemasFormatOutputFormat3CompressionCodecCodec.SNAPPY, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('codec'), 'exclude': lambda f: f is None }})
     
+
 
 
 class DestinationS3SchemasFormatOutputFormat3Codec(str, Enum):
@@ -69,6 +74,7 @@ class DestinationS3Zstandard:
     
 
 
+
 class DestinationS3SchemasFormatOutputFormatCodec(str, Enum):
     XZ = 'xz'
 
@@ -82,6 +88,7 @@ class DestinationS3Xz:
     
 
 
+
 class DestinationS3SchemasFormatCodec(str, Enum):
     BZIP2 = 'bzip2'
 
@@ -91,6 +98,7 @@ class DestinationS3SchemasFormatCodec(str, Enum):
 class DestinationS3Bzip2:
     codec: Optional[DestinationS3SchemasFormatCodec] = dataclasses.field(default=DestinationS3SchemasFormatCodec.BZIP2, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('codec'), 'exclude': lambda f: f is None }})
     
+
 
 
 class DestinationS3SchemasCodec(str, Enum):
@@ -106,6 +114,7 @@ class DestinationS3Deflate:
     
 
 
+
 class DestinationS3Codec(str, Enum):
     NO_COMPRESSION = 'no compression'
 
@@ -115,6 +124,7 @@ class DestinationS3Codec(str, Enum):
 class DestinationS3SchemasFormatNoCompression:
     codec: Optional[DestinationS3Codec] = dataclasses.field(default=DestinationS3Codec.NO_COMPRESSION, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('codec'), 'exclude': lambda f: f is None }})
     
+
 
 
 class DestinationS3SchemasFormatFormatType(str, Enum):
@@ -130,6 +140,7 @@ class DestinationS3AvroApacheAvro:
     
 
 
+
 class DestinationS3SchemasFormatOutputFormatCompressionType(str, Enum):
     GZIP = 'GZIP'
 
@@ -139,6 +150,7 @@ class DestinationS3SchemasFormatOutputFormatCompressionType(str, Enum):
 class DestinationS3SchemasGZIP:
     compression_type: Optional[DestinationS3SchemasFormatOutputFormatCompressionType] = dataclasses.field(default=DestinationS3SchemasFormatOutputFormatCompressionType.GZIP, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('compression_type'), 'exclude': lambda f: f is None }})
     
+
 
 
 class DestinationS3SchemasFormatCompressionType(str, Enum):
@@ -152,10 +164,12 @@ class DestinationS3SchemasNoCompression:
     
 
 
+
 class DestinationS3SchemasFlattening(str, Enum):
     r"""Whether the input json data should be normalized (flattened) in the output JSON Lines. Please refer to docs for details."""
     NO_FLATTENING = 'No flattening'
     ROOT_LEVEL_FLATTENING = 'Root level flattening'
+
 
 class DestinationS3SchemasFormatType(str, Enum):
     JSONL = 'JSONL'
@@ -172,6 +186,7 @@ class DestinationS3JSONLinesNewlineDelimitedJSON:
     
 
 
+
 class DestinationS3SchemasCompressionType(str, Enum):
     GZIP = 'GZIP'
 
@@ -181,6 +196,7 @@ class DestinationS3SchemasCompressionType(str, Enum):
 class DestinationS3GZIP:
     compression_type: Optional[DestinationS3SchemasCompressionType] = dataclasses.field(default=DestinationS3SchemasCompressionType.GZIP, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('compression_type'), 'exclude': lambda f: f is None }})
     
+
 
 
 class DestinationS3CompressionType(str, Enum):
@@ -194,10 +210,12 @@ class DestinationS3NoCompression:
     
 
 
+
 class DestinationS3Flattening(str, Enum):
     r"""Whether the input json data should be normalized (flattened) in the output CSV. Please refer to docs for details."""
     NO_FLATTENING = 'No flattening'
     ROOT_LEVEL_FLATTENING = 'Root level flattening'
+
 
 class DestinationS3FormatType(str, Enum):
     CSV = 'CSV'
@@ -212,6 +230,7 @@ class DestinationS3CSVCommaSeparatedValues:
     r"""Whether the input json data should be normalized (flattened) in the output CSV. Please refer to docs for details."""
     format_type: Optional[DestinationS3FormatType] = dataclasses.field(default=DestinationS3FormatType.CSV, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('format_type'), 'exclude': lambda f: f is None }})
     
+
 
 
 class DestinationS3S3BucketRegion(str, Enum):

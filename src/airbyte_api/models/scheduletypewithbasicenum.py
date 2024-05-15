@@ -3,6 +3,7 @@
 from __future__ import annotations
 from enum import Enum
 
+
 class ScheduleTypeWithBasicEnum(str, Enum):
     MANUAL = 'manual'
     CRON = 'cron'

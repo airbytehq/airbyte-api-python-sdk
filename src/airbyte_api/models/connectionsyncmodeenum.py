@@ -3,6 +3,7 @@
 from __future__ import annotations
 from enum import Enum
 
+
 class ConnectionSyncModeEnum(str, Enum):
     FULL_REFRESH_OVERWRITE = 'full_refresh_overwrite'
     FULL_REFRESH_APPEND = 'full_refresh_append'

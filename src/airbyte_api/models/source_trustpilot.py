@@ -9,6 +9,7 @@ from datetime import datetime
 from enum import Enum
 from typing import Final, List, Optional, Union
 
+
 class SourceTrustpilotSchemasAuthType(str, Enum):
     APIKEY = 'apikey'
 
@@ -21,6 +22,7 @@ class SourceTrustpilotAPIKey:
     r"""The API key of the Trustpilot API application."""
     AUTH_TYPE: Final[Optional[SourceTrustpilotSchemasAuthType]] = dataclasses.field(default=SourceTrustpilotSchemasAuthType.APIKEY, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_type'), 'exclude': lambda f: f is None }})
     
+
 
 
 class SourceTrustpilotAuthType(str, Enum):
@@ -42,6 +44,7 @@ class SourceTrustpilotOAuth20:
     r"""The date-time when the access token should be refreshed."""
     AUTH_TYPE: Final[Optional[SourceTrustpilotAuthType]] = dataclasses.field(default=SourceTrustpilotAuthType.OAUTH2_0, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_type'), 'exclude': lambda f: f is None }})
     
+
 
 
 class Trustpilot(str, Enum):

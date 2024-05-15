@@ -7,6 +7,7 @@ from dataclasses_json import Undefined, dataclass_json
 from enum import Enum
 from typing import Final, Optional, Union
 
+
 class SourceLeverHiringSchemasAuthType(str, Enum):
     API_KEY = 'Api Key'
 
@@ -18,6 +19,7 @@ class AuthenticateViaLeverAPIKey:
     r"""The Api Key of your Lever Hiring account."""
     AUTH_TYPE: Final[Optional[SourceLeverHiringSchemasAuthType]] = dataclasses.field(default=SourceLeverHiringSchemasAuthType.API_KEY, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_type'), 'exclude': lambda f: f is None }})
     
+
 
 
 class SourceLeverHiringAuthType(str, Enum):
@@ -37,10 +39,12 @@ class AuthenticateViaLeverOAuth:
     
 
 
+
 class SourceLeverHiringEnvironment(str, Enum):
     r"""The environment in which you'd like to replicate data for Lever. This is used to determine which Lever API endpoint to use."""
     PRODUCTION = 'Production'
     SANDBOX = 'Sandbox'
+
 
 class SourceLeverHiringLeverHiring(str, Enum):
     LEVER_HIRING = 'lever-hiring'

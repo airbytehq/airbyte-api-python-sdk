@@ -7,6 +7,7 @@ from dataclasses_json import Undefined, dataclass_json
 from enum import Enum
 from typing import Final, List, Optional
 
+
 class SourceRedshiftRedshift(str, Enum):
     REDSHIFT = 'redshift'
 

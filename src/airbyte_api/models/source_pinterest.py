@@ -8,6 +8,7 @@ from datetime import date
 from enum import Enum
 from typing import Final, List, Optional
 
+
 class SourcePinterestAuthMethod(str, Enum):
     OAUTH2_0 = 'oauth2.0'
 
@@ -25,10 +26,12 @@ class OAuth20:
     
 
 
+
 class SourcePinterestValidEnums(str, Enum):
     r"""An enumeration."""
     INDIVIDUAL = 'INDIVIDUAL'
     HOUSEHOLD = 'HOUSEHOLD'
+
 
 class ClickWindowDays(int, Enum):
     r"""Number of days to use as the conversion attribution window for a pin click action."""
@@ -38,6 +41,7 @@ class ClickWindowDays(int, Enum):
     FOURTEEN = 14
     THIRTY = 30
     SIXTY = 60
+
 
 class SourcePinterestSchemasValidEnums(str, Enum):
     r"""An enumeration."""
@@ -154,10 +158,12 @@ class SourcePinterestSchemasValidEnums(str, Enum):
     WEB_SESSIONS_1 = 'WEB_SESSIONS_1'
     WEB_SESSIONS_2 = 'WEB_SESSIONS_2'
 
+
 class ConversionReportTime(str, Enum):
     r"""The date by which the conversion metrics returned from this endpoint will be reported. There are two dates associated with a conversion event: the date that the user interacted with the ad, and the date that the user completed a conversion event.."""
     TIME_OF_AD_ACTION = 'TIME_OF_AD_ACTION'
     TIME_OF_CONVERSION = 'TIME_OF_CONVERSION'
+
 
 class EngagementWindowDays(int, Enum):
     r"""Number of days to use as the conversion attribution window for an engagement action."""
@@ -168,6 +174,7 @@ class EngagementWindowDays(int, Enum):
     THIRTY = 30
     SIXTY = 60
 
+
 class Granularity(str, Enum):
     r"""Chosen granularity for API"""
     TOTAL = 'TOTAL'
@@ -175,6 +182,7 @@ class Granularity(str, Enum):
     HOUR = 'HOUR'
     WEEK = 'WEEK'
     MONTH = 'MONTH'
+
 
 class SourcePinterestLevel(str, Enum):
     r"""Chosen level for API"""
@@ -190,6 +198,7 @@ class SourcePinterestLevel(str, Enum):
     PRODUCT_GROUP = 'PRODUCT_GROUP'
     PRODUCT_GROUP_TARGETING = 'PRODUCT_GROUP_TARGETING'
     PRODUCT_ITEM = 'PRODUCT_ITEM'
+
 
 class ViewWindowDays(int, Enum):
     r"""Number of days to use as the conversion attribution window for a view action."""
@@ -228,8 +237,10 @@ class ReportConfig:
     
 
 
+
 class SourcePinterestPinterest(str, Enum):
     PINTEREST = 'pinterest'
+
 
 class Status(str, Enum):
     ACTIVE = 'ACTIVE'

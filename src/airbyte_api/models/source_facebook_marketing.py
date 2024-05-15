@@ -9,6 +9,7 @@ from datetime import datetime
 from enum import Enum
 from typing import Final, List, Optional
 
+
 class ValidAdStatuses(str, Enum):
     r"""An enumeration."""
     ACTIVE = 'ACTIVE'
@@ -24,6 +25,7 @@ class ValidAdStatuses(str, Enum):
     PREAPPROVED = 'PREAPPROVED'
     WITH_ISSUES = 'WITH_ISSUES'
 
+
 class ValidAdSetStatuses(str, Enum):
     r"""An enumeration."""
     ACTIVE = 'ACTIVE'
@@ -34,6 +36,7 @@ class ValidAdSetStatuses(str, Enum):
     PAUSED = 'PAUSED'
     WITH_ISSUES = 'WITH_ISSUES'
 
+
 class ValidCampaignStatuses(str, Enum):
     r"""An enumeration."""
     ACTIVE = 'ACTIVE'
@@ -42,6 +45,7 @@ class ValidCampaignStatuses(str, Enum):
     IN_PROCESS = 'IN_PROCESS'
     PAUSED = 'PAUSED'
     WITH_ISSUES = 'WITH_ISSUES'
+
 
 class ValidActionBreakdowns(str, Enum):
     r"""An enumeration."""
@@ -57,11 +61,13 @@ class ValidActionBreakdowns(str, Enum):
     ACTION_VIDEO_TYPE = 'action_video_type'
     STANDARD_EVENT_CONTENT_TYPE = 'standard_event_content_type'
 
+
 class SourceFacebookMarketingActionReportTime(str, Enum):
     r"""Determines the report time of action stats. For example, if a person saw the ad on Jan 1st but converted on Jan 2nd, when you query the API with action_report_time=impression, you see a conversion on Jan 1st. When you query the API with action_report_time=conversion, you see a conversion on Jan 2nd."""
     CONVERSION = 'conversion'
     IMPRESSION = 'impression'
     MIXED = 'mixed'
+
 
 class ValidBreakdowns(str, Enum):
     r"""An enumeration."""
@@ -108,6 +114,7 @@ class ValidBreakdowns(str, Enum):
     STANDARD_EVENT_CONTENT_TYPE = 'standard_event_content_type'
     TITLE_ASSET = 'title_asset'
     VIDEO_ASSET = 'video_asset'
+
 
 class SourceFacebookMarketingValidEnums(str, Enum):
     r"""An enumeration."""
@@ -246,6 +253,7 @@ class SourceFacebookMarketingValidEnums(str, Enum):
     WEBSITE_PURCHASE_ROAS = 'website_purchase_roas'
     WISH_BID = 'wish_bid'
 
+
 class Level(str, Enum):
     r"""Chosen level for API"""
     AD = 'ad'
@@ -281,6 +289,7 @@ class InsightConfig:
     time_increment: Optional[int] = dataclasses.field(default=1, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('time_increment'), 'exclude': lambda f: f is None }})
     r"""Time window in days by which to aggregate statistics. The sync will be chunked into N day intervals, where N is the number of days you specified. For example, if you set this value to 7, then all statistics will be reported as 7-day aggregates by starting from the start_date. If the start and end dates are October 1st and October 30th, then the connector will output 5 records: 01 - 06, 07 - 13, 14 - 20, 21 - 27, and 28 - 30 (3 days only)."""
     
+
 
 
 class SourceFacebookMarketingFacebookMarketing(str, Enum):

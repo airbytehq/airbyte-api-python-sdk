@@ -7,6 +7,7 @@ from dataclasses_json import Undefined, dataclass_json
 from enum import Enum
 from typing import Any, Dict, Final, Optional, Union
 
+
 class SourceDynamodbSchemasAuthType(str, Enum):
     ROLE = 'Role'
 
@@ -18,6 +19,7 @@ class RoleBasedAuthentication:
     additional_properties: Optional[Dict[str, Any]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'exclude': lambda f: f is None }})
     AUTH_TYPE: Final[Optional[SourceDynamodbSchemasAuthType]] = dataclasses.field(default=SourceDynamodbSchemasAuthType.ROLE, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_type'), 'exclude': lambda f: f is None }})
     
+
 
 
 class SourceDynamodbAuthType(str, Enum):
@@ -35,6 +37,7 @@ class AuthenticateViaAccessKeys:
     additional_properties: Optional[Dict[str, Any]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'exclude': lambda f: f is None }})
     AUTH_TYPE: Final[Optional[SourceDynamodbAuthType]] = dataclasses.field(default=SourceDynamodbAuthType.USER, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_type'), 'exclude': lambda f: f is None }})
     
+
 
 
 class SourceDynamodbDynamodbRegion(str, Enum):
@@ -73,6 +76,7 @@ class SourceDynamodbDynamodbRegion(str, Enum):
     US_GOV_WEST_1 = 'us-gov-west-1'
     US_WEST_1 = 'us-west-1'
     US_WEST_2 = 'us-west-2'
+
 
 class SourceDynamodbDynamodb(str, Enum):
     DYNAMODB = 'dynamodb'

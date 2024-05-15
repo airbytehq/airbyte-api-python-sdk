@@ -8,6 +8,7 @@ from datetime import date
 from enum import Enum
 from typing import Final, List, Optional, Union
 
+
 class SourceGoogleAnalyticsDataAPISchemasAuthType(str, Enum):
     SERVICE = 'Service'
 
@@ -19,6 +20,7 @@ class ServiceAccountKeyAuthentication:
     r"""The JSON key linked to the service account used for authorization. For steps on obtaining this key, refer to <a href=\\"https://docs.airbyte.com/integrations/sources/google-analytics-data-api/#setup-guide\\">the setup guide</a>."""
     AUTH_TYPE: Final[Optional[SourceGoogleAnalyticsDataAPISchemasAuthType]] = dataclasses.field(default=SourceGoogleAnalyticsDataAPISchemasAuthType.SERVICE, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_type'), 'exclude': lambda f: f is None }})
     
+
 
 
 class SourceGoogleAnalyticsDataAPIAuthType(str, Enum):
@@ -59,6 +61,7 @@ class DateRange:
     
 
 
+
 class Dimension(str, Enum):
     r"""Dimension used by the cohort. Required and only supports `firstSessionDate`"""
     FIRST_SESSION_DATE = 'firstSessionDate'
@@ -73,6 +76,7 @@ class Cohorts:
     name: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('name'), 'exclude': lambda f: f is None }})
     r"""Assigns a name to this cohort. If not set, cohorts are named by their zero based index cohort_0, cohort_1, etc."""
     
+
 
 
 class SourceGoogleAnalyticsDataAPIGranularity(str, Enum):
@@ -95,6 +99,7 @@ class CohortsRange:
     
 
 
+
 class SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayEnabled(str, Enum):
     TRUE = 'true'
 
@@ -110,6 +115,7 @@ class SourceGoogleAnalyticsDataAPISchemasEnabled:
     
 
 
+
 class SourceGoogleAnalyticsDataAPIEnabled(str, Enum):
     FALSE = 'false'
 
@@ -121,8 +127,10 @@ class SourceGoogleAnalyticsDataAPIDisabled:
     
 
 
+
 class SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayFilterName(str, Enum):
     BETWEEN_FILTER = 'betweenFilter'
+
 
 class SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayValueType(str, Enum):
     DOUBLE_VALUE = 'doubleValue'
@@ -134,6 +142,7 @@ class SourceGoogleAnalyticsDataAPIDoubleValue:
     value: float = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('value') }})
     VALUE_TYPE: Final[SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayValueType] = dataclasses.field(default=SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayValueType.DOUBLE_VALUE, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('value_type') }})
     
+
 
 
 class SourceGoogleAnalyticsDataAPISchemasValueType(str, Enum):
@@ -148,6 +157,7 @@ class SourceGoogleAnalyticsDataAPIInt64Value:
     
 
 
+
 class SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayDimensionFilterDimensionsFilterValueType(str, Enum):
     DOUBLE_VALUE = 'doubleValue'
 
@@ -158,6 +168,7 @@ class SourceGoogleAnalyticsDataAPISchemasDoubleValue:
     value: float = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('value') }})
     VALUE_TYPE: Final[SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayDimensionFilterDimensionsFilterValueType] = dataclasses.field(default=SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayDimensionFilterDimensionsFilterValueType.DOUBLE_VALUE, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('value_type') }})
     
+
 
 
 class SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayDimensionFilterValueType(str, Enum):
@@ -182,8 +193,10 @@ class BetweenFilter:
     
 
 
+
 class SourceGoogleAnalyticsDataAPISchemasFilterName(str, Enum):
     NUMERIC_FILTER = 'numericFilter'
+
 
 class SourceGoogleAnalyticsDataAPISchemasValidEnums(str, Enum):
     OPERATION_UNSPECIFIED = 'OPERATION_UNSPECIFIED'
@@ -192,6 +205,7 @@ class SourceGoogleAnalyticsDataAPISchemasValidEnums(str, Enum):
     LESS_THAN_OR_EQUAL = 'LESS_THAN_OR_EQUAL'
     GREATER_THAN = 'GREATER_THAN'
     GREATER_THAN_OR_EQUAL = 'GREATER_THAN_OR_EQUAL'
+
 
 class SourceGoogleAnalyticsDataAPIValueType(str, Enum):
     DOUBLE_VALUE = 'doubleValue'
@@ -203,6 +217,7 @@ class DoubleValue:
     value: float = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('value') }})
     VALUE_TYPE: Final[SourceGoogleAnalyticsDataAPIValueType] = dataclasses.field(default=SourceGoogleAnalyticsDataAPIValueType.DOUBLE_VALUE, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('value_type') }})
     
+
 
 
 class ValueType(str, Enum):
@@ -227,6 +242,7 @@ class NumericFilter:
     
 
 
+
 class SourceGoogleAnalyticsDataAPIFilterName(str, Enum):
     IN_LIST_FILTER = 'inListFilter'
 
@@ -240,8 +256,10 @@ class InListFilter:
     
 
 
+
 class FilterName(str, Enum):
     STRING_FILTER = 'stringFilter'
+
 
 class SourceGoogleAnalyticsDataAPIValidEnums(str, Enum):
     MATCH_TYPE_UNSPECIFIED = 'MATCH_TYPE_UNSPECIFIED'
@@ -263,6 +281,7 @@ class StringFilter:
     
 
 
+
 class SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayFilterType(str, Enum):
     FILTER = 'filter'
 
@@ -277,8 +296,10 @@ class Filter:
     
 
 
+
 class SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayDimensionFilterDimensionsFilter3ExpressionFilterFilterFilterName(str, Enum):
     BETWEEN_FILTER = 'betweenFilter'
+
 
 class SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayDimensionFilterDimensionsFilter3ExpressionFilterFilterValueType(str, Enum):
     DOUBLE_VALUE = 'doubleValue'
@@ -290,6 +311,7 @@ class SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayDimensionFilterDimens
     value: float = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('value') }})
     VALUE_TYPE: Final[SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayDimensionFilterDimensionsFilter3ExpressionFilterFilterValueType] = dataclasses.field(default=SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayDimensionFilterDimensionsFilter3ExpressionFilterFilterValueType.DOUBLE_VALUE, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('value_type') }})
     
+
 
 
 class SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayDimensionFilterDimensionsFilter3ExpressionFilterValueType(str, Enum):
@@ -304,6 +326,7 @@ class SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayDimensionFilterDimens
     
 
 
+
 class SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayDimensionFilterDimensionsFilter3ExpressionFilterFilter4ToValueValueType(str, Enum):
     DOUBLE_VALUE = 'doubleValue'
 
@@ -314,6 +337,7 @@ class SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayDimensionFilterDimens
     value: float = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('value') }})
     VALUE_TYPE: Final[SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayDimensionFilterDimensionsFilter3ExpressionFilterFilter4ToValueValueType] = dataclasses.field(default=SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayDimensionFilterDimensionsFilter3ExpressionFilterFilter4ToValueValueType.DOUBLE_VALUE, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('value_type') }})
     
+
 
 
 class SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayDimensionFilterDimensionsFilter3ExpressionFilterFilter4ValueType(str, Enum):
@@ -338,8 +362,10 @@ class SourceGoogleAnalyticsDataAPISchemasBetweenFilter:
     
 
 
+
 class SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayDimensionFilterDimensionsFilter3ExpressionFilterFilterName(str, Enum):
     NUMERIC_FILTER = 'numericFilter'
+
 
 class SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayDimensionFilterDimensionsFilter3ValidEnums(str, Enum):
     OPERATION_UNSPECIFIED = 'OPERATION_UNSPECIFIED'
@@ -348,6 +374,7 @@ class SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayDimensionFilterDimens
     LESS_THAN_OR_EQUAL = 'LESS_THAN_OR_EQUAL'
     GREATER_THAN = 'GREATER_THAN'
     GREATER_THAN_OR_EQUAL = 'GREATER_THAN_OR_EQUAL'
+
 
 class SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayDimensionFilterDimensionsFilter3ExpressionValueType(str, Enum):
     DOUBLE_VALUE = 'doubleValue'
@@ -359,6 +386,7 @@ class SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayDimensionFilterDimens
     value: float = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('value') }})
     VALUE_TYPE: Final[SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayDimensionFilterDimensionsFilter3ExpressionValueType] = dataclasses.field(default=SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayDimensionFilterDimensionsFilter3ExpressionValueType.DOUBLE_VALUE, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('value_type') }})
     
+
 
 
 class SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayDimensionFilterDimensionsFilter3ValueType(str, Enum):
@@ -383,6 +411,7 @@ class SourceGoogleAnalyticsDataAPISchemasNumericFilter:
     
 
 
+
 class SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayDimensionFilterDimensionsFilter3ExpressionFilterName(str, Enum):
     IN_LIST_FILTER = 'inListFilter'
 
@@ -396,8 +425,10 @@ class SourceGoogleAnalyticsDataAPISchemasInListFilter:
     
 
 
+
 class SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayDimensionFilterDimensionsFilter3FilterName(str, Enum):
     STRING_FILTER = 'stringFilter'
+
 
 class SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayDimensionFilterDimensionsFilterValidEnums(str, Enum):
     MATCH_TYPE_UNSPECIFIED = 'MATCH_TYPE_UNSPECIFIED'
@@ -428,6 +459,7 @@ class SourceGoogleAnalyticsDataAPISchemasExpression:
     
 
 
+
 class SourceGoogleAnalyticsDataAPISchemasFilterType(str, Enum):
     NOT_EXPRESSION = 'notExpression'
 
@@ -441,8 +473,10 @@ class NotExpression:
     
 
 
+
 class SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayDimensionFilterDimensionsFilter2ExpressionsFilterName(str, Enum):
     BETWEEN_FILTER = 'betweenFilter'
+
 
 class SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayDimensionFilterDimensionsFilter2ExpressionsFilterFilterValueType(str, Enum):
     DOUBLE_VALUE = 'doubleValue'
@@ -454,6 +488,7 @@ class SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayDimensionFilterDouble
     value: float = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('value') }})
     VALUE_TYPE: Final[SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayDimensionFilterDimensionsFilter2ExpressionsFilterFilterValueType] = dataclasses.field(default=SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayDimensionFilterDimensionsFilter2ExpressionsFilterFilterValueType.DOUBLE_VALUE, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('value_type') }})
     
+
 
 
 class SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayDimensionFilterDimensionsFilter2ExpressionsFilterValueType(str, Enum):
@@ -468,6 +503,7 @@ class SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayDimensionFilterInt64V
     
 
 
+
 class SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayDimensionFilterDimensionsFilter2ExpressionsFilterFilter4ToValueValueType(str, Enum):
     DOUBLE_VALUE = 'doubleValue'
 
@@ -478,6 +514,7 @@ class SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayDimensionFilterDimens
     value: float = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('value') }})
     VALUE_TYPE: Final[SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayDimensionFilterDimensionsFilter2ExpressionsFilterFilter4ToValueValueType] = dataclasses.field(default=SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayDimensionFilterDimensionsFilter2ExpressionsFilterFilter4ToValueValueType.DOUBLE_VALUE, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('value_type') }})
     
+
 
 
 class SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayDimensionFilterDimensionsFilter2ExpressionsFilterFilter4ValueType(str, Enum):
@@ -502,8 +539,10 @@ class SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayDimensionFilterBetwee
     
 
 
+
 class SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayDimensionFilterDimensionsFilter2FilterName(str, Enum):
     NUMERIC_FILTER = 'numericFilter'
+
 
 class SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayDimensionFilterValidEnums(str, Enum):
     OPERATION_UNSPECIFIED = 'OPERATION_UNSPECIFIED'
@@ -512,6 +551,7 @@ class SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayDimensionFilterValidE
     LESS_THAN_OR_EQUAL = 'LESS_THAN_OR_EQUAL'
     GREATER_THAN = 'GREATER_THAN'
     GREATER_THAN_OR_EQUAL = 'GREATER_THAN_OR_EQUAL'
+
 
 class SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayDimensionFilterDimensionsFilter2ExpressionsValueType(str, Enum):
     DOUBLE_VALUE = 'doubleValue'
@@ -523,6 +563,7 @@ class SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayDimensionFilterDimens
     value: float = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('value') }})
     VALUE_TYPE: Final[SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayDimensionFilterDimensionsFilter2ExpressionsValueType] = dataclasses.field(default=SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayDimensionFilterDimensionsFilter2ExpressionsValueType.DOUBLE_VALUE, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('value_type') }})
     
+
 
 
 class SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayDimensionFilterDimensionsFilter2ValueType(str, Enum):
@@ -547,6 +588,7 @@ class SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayDimensionFilterNumeri
     
 
 
+
 class SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayDimensionFilterDimensionsFilterFilterName(str, Enum):
     IN_LIST_FILTER = 'inListFilter'
 
@@ -560,8 +602,10 @@ class SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayDimensionFilterInList
     
 
 
+
 class SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayDimensionFilterFilterName(str, Enum):
     STRING_FILTER = 'stringFilter'
+
 
 class SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayDimensionFilterDimensionsFilter2ValidEnums(str, Enum):
     MATCH_TYPE_UNSPECIFIED = 'MATCH_TYPE_UNSPECIFIED'
@@ -592,6 +636,7 @@ class SourceGoogleAnalyticsDataAPIExpression:
     
 
 
+
 class SourceGoogleAnalyticsDataAPIFilterType(str, Enum):
     OR_GROUP = 'orGroup'
 
@@ -605,8 +650,10 @@ class OrGroup:
     
 
 
+
 class SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayDimensionFilterDimensionsFilter1ExpressionsFilterFilterFilterName(str, Enum):
     BETWEEN_FILTER = 'betweenFilter'
+
 
 class SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayDimensionFilterDimensionsFilter1ExpressionsFilterFilterValueType(str, Enum):
     DOUBLE_VALUE = 'doubleValue'
@@ -618,6 +665,7 @@ class SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayDimensionFilterDimens
     value: float = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('value') }})
     VALUE_TYPE: Final[SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayDimensionFilterDimensionsFilter1ExpressionsFilterFilterValueType] = dataclasses.field(default=SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayDimensionFilterDimensionsFilter1ExpressionsFilterFilterValueType.DOUBLE_VALUE, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('value_type') }})
     
+
 
 
 class SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayDimensionFilterDimensionsFilter1ExpressionsFilterValueType(str, Enum):
@@ -632,6 +680,7 @@ class SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayDimensionFilterDimens
     
 
 
+
 class SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayDimensionFilterDimensionsFilter1ExpressionsFilterFilter4ToValueValueType(str, Enum):
     DOUBLE_VALUE = 'doubleValue'
 
@@ -642,6 +691,7 @@ class SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayDimensionFilterDimens
     value: float = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('value') }})
     VALUE_TYPE: Final[SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayDimensionFilterDimensionsFilter1ExpressionsFilterFilter4ToValueValueType] = dataclasses.field(default=SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayDimensionFilterDimensionsFilter1ExpressionsFilterFilter4ToValueValueType.DOUBLE_VALUE, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('value_type') }})
     
+
 
 
 class SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayDimensionFilterDimensionsFilter1ExpressionsFilterFilter4ValueType(str, Enum):
@@ -666,8 +716,10 @@ class SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayBetweenFilter:
     
 
 
+
 class SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayDimensionFilterDimensionsFilter1ExpressionsFilterFilterName(str, Enum):
     NUMERIC_FILTER = 'numericFilter'
+
 
 class SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayDimensionFilterDimensionsFilter1ExpressionsValidEnums(str, Enum):
     OPERATION_UNSPECIFIED = 'OPERATION_UNSPECIFIED'
@@ -676,6 +728,7 @@ class SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayDimensionFilterDimens
     LESS_THAN_OR_EQUAL = 'LESS_THAN_OR_EQUAL'
     GREATER_THAN = 'GREATER_THAN'
     GREATER_THAN_OR_EQUAL = 'GREATER_THAN_OR_EQUAL'
+
 
 class SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayDimensionFilterDimensionsFilter1ExpressionsValueType(str, Enum):
     DOUBLE_VALUE = 'doubleValue'
@@ -687,6 +740,7 @@ class SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayDimensionFilterDimens
     value: float = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('value') }})
     VALUE_TYPE: Final[SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayDimensionFilterDimensionsFilter1ExpressionsValueType] = dataclasses.field(default=SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayDimensionFilterDimensionsFilter1ExpressionsValueType.DOUBLE_VALUE, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('value_type') }})
     
+
 
 
 class SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayDimensionFilterDimensionsFilter1ValueType(str, Enum):
@@ -711,6 +765,7 @@ class SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayNumericFilter:
     
 
 
+
 class SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayDimensionFilterDimensionsFilter1ExpressionsFilterName(str, Enum):
     IN_LIST_FILTER = 'inListFilter'
 
@@ -724,8 +779,10 @@ class SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayInListFilter:
     
 
 
+
 class SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayDimensionFilterDimensionsFilter1FilterName(str, Enum):
     STRING_FILTER = 'stringFilter'
+
 
 class SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayDimensionFilterDimensionsFilter1ValidEnums(str, Enum):
     MATCH_TYPE_UNSPECIFIED = 'MATCH_TYPE_UNSPECIFIED'
@@ -756,6 +813,7 @@ class Expression:
     
 
 
+
 class FilterType(str, Enum):
     AND_GROUP = 'andGroup'
 
@@ -769,8 +827,10 @@ class AndGroup:
     
 
 
+
 class SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayMetricFilterMetricsFilter4FilterFilterName(str, Enum):
     BETWEEN_FILTER = 'betweenFilter'
+
 
 class SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayMetricFilterMetricsFilter4FilterValueType(str, Enum):
     DOUBLE_VALUE = 'doubleValue'
@@ -782,6 +842,7 @@ class SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayMetricFilterDoubleVal
     value: float = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('value') }})
     VALUE_TYPE: Final[SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayMetricFilterMetricsFilter4FilterValueType] = dataclasses.field(default=SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayMetricFilterMetricsFilter4FilterValueType.DOUBLE_VALUE, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('value_type') }})
     
+
 
 
 class SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayMetricFilterMetricsFilter4ValueType(str, Enum):
@@ -796,6 +857,7 @@ class SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayMetricFilterInt64Valu
     
 
 
+
 class SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayMetricFilterMetricsFilter4FilterFilter4ValueType(str, Enum):
     DOUBLE_VALUE = 'doubleValue'
 
@@ -806,6 +868,7 @@ class SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayMetricFilterMetricsFi
     value: float = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('value') }})
     VALUE_TYPE: Final[SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayMetricFilterMetricsFilter4FilterFilter4ValueType] = dataclasses.field(default=SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayMetricFilterMetricsFilter4FilterFilter4ValueType.DOUBLE_VALUE, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('value_type') }})
     
+
 
 
 class SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayMetricFilterMetricsFilter4FilterFilterValueType(str, Enum):
@@ -830,8 +893,10 @@ class SourceGoogleAnalyticsDataAPIBetweenFilter:
     
 
 
+
 class SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayMetricFilterMetricsFilter4FilterName(str, Enum):
     NUMERIC_FILTER = 'numericFilter'
+
 
 class SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayMetricFilterValidEnums(str, Enum):
     OPERATION_UNSPECIFIED = 'OPERATION_UNSPECIFIED'
@@ -840,6 +905,7 @@ class SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayMetricFilterValidEnum
     LESS_THAN_OR_EQUAL = 'LESS_THAN_OR_EQUAL'
     GREATER_THAN = 'GREATER_THAN'
     GREATER_THAN_OR_EQUAL = 'GREATER_THAN_OR_EQUAL'
+
 
 class SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayMetricFilterMetricsFilterValueType(str, Enum):
     DOUBLE_VALUE = 'doubleValue'
@@ -851,6 +917,7 @@ class SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayDoubleValue:
     value: float = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('value') }})
     VALUE_TYPE: Final[SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayMetricFilterMetricsFilterValueType] = dataclasses.field(default=SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayMetricFilterMetricsFilterValueType.DOUBLE_VALUE, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('value_type') }})
     
+
 
 
 class SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayMetricFilterValueType(str, Enum):
@@ -875,6 +942,7 @@ class SourceGoogleAnalyticsDataAPINumericFilter:
     
 
 
+
 class SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayMetricFilterMetricsFilterFilterName(str, Enum):
     IN_LIST_FILTER = 'inListFilter'
 
@@ -888,8 +956,10 @@ class SourceGoogleAnalyticsDataAPIInListFilter:
     
 
 
+
 class SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayMetricFilterFilterName(str, Enum):
     STRING_FILTER = 'stringFilter'
+
 
 class SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayValidEnums(str, Enum):
     MATCH_TYPE_UNSPECIFIED = 'MATCH_TYPE_UNSPECIFIED'
@@ -911,6 +981,7 @@ class SourceGoogleAnalyticsDataAPIStringFilter:
     
 
 
+
 class SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayMetricFilterMetricsFilter4FilterType(str, Enum):
     FILTER = 'filter'
 
@@ -925,8 +996,10 @@ class SourceGoogleAnalyticsDataAPIFilter:
     
 
 
+
 class SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayMetricFilterMetricsFilter3ExpressionFilterFilterFilterName(str, Enum):
     BETWEEN_FILTER = 'betweenFilter'
+
 
 class SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayMetricFilterMetricsFilter3ExpressionFilterFilterValueType(str, Enum):
     DOUBLE_VALUE = 'doubleValue'
@@ -938,6 +1011,7 @@ class SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayMetricFilterMetricsFi
     value: float = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('value') }})
     VALUE_TYPE: Final[SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayMetricFilterMetricsFilter3ExpressionFilterFilterValueType] = dataclasses.field(default=SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayMetricFilterMetricsFilter3ExpressionFilterFilterValueType.DOUBLE_VALUE, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('value_type') }})
     
+
 
 
 class SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayMetricFilterMetricsFilter3ExpressionFilterValueType(str, Enum):
@@ -952,6 +1026,7 @@ class SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayMetricFilterMetricsFi
     
 
 
+
 class SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayMetricFilterMetricsFilter3ExpressionFilterFilter4ToValueValueType(str, Enum):
     DOUBLE_VALUE = 'doubleValue'
 
@@ -962,6 +1037,7 @@ class SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayMetricFilterMetricsFi
     value: float = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('value') }})
     VALUE_TYPE: Final[SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayMetricFilterMetricsFilter3ExpressionFilterFilter4ToValueValueType] = dataclasses.field(default=SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayMetricFilterMetricsFilter3ExpressionFilterFilter4ToValueValueType.DOUBLE_VALUE, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('value_type') }})
     
+
 
 
 class SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayMetricFilterMetricsFilter3ExpressionFilterFilter4ValueType(str, Enum):
@@ -986,8 +1062,10 @@ class SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayMetricFilterMetricsFi
     
 
 
+
 class SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayMetricFilterMetricsFilter3ExpressionFilterFilterName(str, Enum):
     NUMERIC_FILTER = 'numericFilter'
+
 
 class SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayMetricFilterMetricsFilter3ExpressionValidEnums(str, Enum):
     OPERATION_UNSPECIFIED = 'OPERATION_UNSPECIFIED'
@@ -996,6 +1074,7 @@ class SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayMetricFilterMetricsFi
     LESS_THAN_OR_EQUAL = 'LESS_THAN_OR_EQUAL'
     GREATER_THAN = 'GREATER_THAN'
     GREATER_THAN_OR_EQUAL = 'GREATER_THAN_OR_EQUAL'
+
 
 class SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayMetricFilterMetricsFilter3ExpressionValueType(str, Enum):
     DOUBLE_VALUE = 'doubleValue'
@@ -1007,6 +1086,7 @@ class SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayMetricFilterMetricsFi
     value: float = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('value') }})
     VALUE_TYPE: Final[SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayMetricFilterMetricsFilter3ExpressionValueType] = dataclasses.field(default=SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayMetricFilterMetricsFilter3ExpressionValueType.DOUBLE_VALUE, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('value_type') }})
     
+
 
 
 class SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayMetricFilterMetricsFilter3ValueType(str, Enum):
@@ -1031,6 +1111,7 @@ class SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayMetricFilterMetricsFi
     
 
 
+
 class SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayMetricFilterMetricsFilter3ExpressionFilterName(str, Enum):
     IN_LIST_FILTER = 'inListFilter'
 
@@ -1044,8 +1125,10 @@ class SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayMetricFilterMetricsFi
     
 
 
+
 class SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayMetricFilterMetricsFilter3FilterName(str, Enum):
     STRING_FILTER = 'stringFilter'
+
 
 class SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayMetricFilterMetricsFilter3ValidEnums(str, Enum):
     MATCH_TYPE_UNSPECIFIED = 'MATCH_TYPE_UNSPECIFIED'
@@ -1076,6 +1159,7 @@ class SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayMetricFilterMetricsFi
     
 
 
+
 class SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayMetricFilterMetricsFilter3FilterType(str, Enum):
     NOT_EXPRESSION = 'notExpression'
 
@@ -1089,8 +1173,10 @@ class SourceGoogleAnalyticsDataAPINotExpression:
     
 
 
+
 class SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayMetricFilterMetricsFilter2ExpressionsFilterFilterFilterName(str, Enum):
     BETWEEN_FILTER = 'betweenFilter'
+
 
 class SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayMetricFilterMetricsFilter2ExpressionsFilterFilterValueType(str, Enum):
     DOUBLE_VALUE = 'doubleValue'
@@ -1102,6 +1188,7 @@ class SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayMetricFilterMetricsFi
     value: float = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('value') }})
     VALUE_TYPE: Final[SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayMetricFilterMetricsFilter2ExpressionsFilterFilterValueType] = dataclasses.field(default=SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayMetricFilterMetricsFilter2ExpressionsFilterFilterValueType.DOUBLE_VALUE, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('value_type') }})
     
+
 
 
 class SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayMetricFilterMetricsFilter2ExpressionsFilterValueType(str, Enum):
@@ -1116,6 +1203,7 @@ class SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayMetricFilterMetricsFi
     
 
 
+
 class SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayMetricFilterMetricsFilter2ExpressionsFilterFilter4ToValueValueType(str, Enum):
     DOUBLE_VALUE = 'doubleValue'
 
@@ -1126,6 +1214,7 @@ class SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayMetricFilterMetricsFi
     value: float = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('value') }})
     VALUE_TYPE: Final[SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayMetricFilterMetricsFilter2ExpressionsFilterFilter4ToValueValueType] = dataclasses.field(default=SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayMetricFilterMetricsFilter2ExpressionsFilterFilter4ToValueValueType.DOUBLE_VALUE, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('value_type') }})
     
+
 
 
 class SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayMetricFilterMetricsFilter2ExpressionsFilterFilter4ValueType(str, Enum):
@@ -1150,8 +1239,10 @@ class SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayMetricFilterMetricsFi
     
 
 
+
 class SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayMetricFilterMetricsFilter2ExpressionsFilterFilterName(str, Enum):
     NUMERIC_FILTER = 'numericFilter'
+
 
 class SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayMetricFilterMetricsFilter2ExpressionsValidEnums(str, Enum):
     OPERATION_UNSPECIFIED = 'OPERATION_UNSPECIFIED'
@@ -1160,6 +1251,7 @@ class SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayMetricFilterMetricsFi
     LESS_THAN_OR_EQUAL = 'LESS_THAN_OR_EQUAL'
     GREATER_THAN = 'GREATER_THAN'
     GREATER_THAN_OR_EQUAL = 'GREATER_THAN_OR_EQUAL'
+
 
 class SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayMetricFilterMetricsFilter2ExpressionsValueType(str, Enum):
     DOUBLE_VALUE = 'doubleValue'
@@ -1171,6 +1263,7 @@ class SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayMetricFilterMetricsFi
     value: float = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('value') }})
     VALUE_TYPE: Final[SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayMetricFilterMetricsFilter2ExpressionsValueType] = dataclasses.field(default=SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayMetricFilterMetricsFilter2ExpressionsValueType.DOUBLE_VALUE, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('value_type') }})
     
+
 
 
 class SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayMetricFilterMetricsFilter2ValueType(str, Enum):
@@ -1195,6 +1288,7 @@ class SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayMetricFilterMetricsFi
     
 
 
+
 class SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayMetricFilterMetricsFilter2ExpressionsFilterName(str, Enum):
     IN_LIST_FILTER = 'inListFilter'
 
@@ -1208,8 +1302,10 @@ class SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayMetricFilterMetricsFi
     
 
 
+
 class SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayMetricFilterMetricsFilter2FilterName(str, Enum):
     STRING_FILTER = 'stringFilter'
+
 
 class SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayMetricFilterMetricsFilter2ValidEnums(str, Enum):
     MATCH_TYPE_UNSPECIFIED = 'MATCH_TYPE_UNSPECIFIED'
@@ -1240,6 +1336,7 @@ class SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayMetricFilterExpressio
     
 
 
+
 class SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayMetricFilterMetricsFilterFilterType(str, Enum):
     OR_GROUP = 'orGroup'
 
@@ -1253,8 +1350,10 @@ class SourceGoogleAnalyticsDataAPIOrGroup:
     
 
 
+
 class SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayMetricFilterMetricsFilter1ExpressionsFilterName(str, Enum):
     BETWEEN_FILTER = 'betweenFilter'
+
 
 class SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayMetricFilterMetricsFilter1ExpressionsValueType(str, Enum):
     DOUBLE_VALUE = 'doubleValue'
@@ -1266,6 +1365,7 @@ class SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayMetricFilterMetricsFi
     value: float = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('value') }})
     VALUE_TYPE: Final[SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayMetricFilterMetricsFilter1ExpressionsValueType] = dataclasses.field(default=SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayMetricFilterMetricsFilter1ExpressionsValueType.DOUBLE_VALUE, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('value_type') }})
     
+
 
 
 class SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayMetricFilterMetricsFilter1ValueType(str, Enum):
@@ -1280,6 +1380,7 @@ class SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayMetricFilterMetricsFi
     
 
 
+
 class SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayMetricFilterMetricsFilter1ExpressionsFilterFilterValueType(str, Enum):
     DOUBLE_VALUE = 'doubleValue'
 
@@ -1290,6 +1391,7 @@ class SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayMetricFilterMetricsFi
     value: float = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('value') }})
     VALUE_TYPE: Final[SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayMetricFilterMetricsFilter1ExpressionsFilterFilterValueType] = dataclasses.field(default=SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayMetricFilterMetricsFilter1ExpressionsFilterFilterValueType.DOUBLE_VALUE, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('value_type') }})
     
+
 
 
 class SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayMetricFilterMetricsFilter1ExpressionsFilterValueType(str, Enum):
@@ -1314,8 +1416,10 @@ class SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayMetricFilterBetweenFi
     
 
 
+
 class SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayMetricFilterMetricsFilter1FilterName(str, Enum):
     NUMERIC_FILTER = 'numericFilter'
+
 
 class SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayMetricFilterMetricsFilterValidEnums(str, Enum):
     OPERATION_UNSPECIFIED = 'OPERATION_UNSPECIFIED'
@@ -1324,6 +1428,7 @@ class SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayMetricFilterMetricsFi
     LESS_THAN_OR_EQUAL = 'LESS_THAN_OR_EQUAL'
     GREATER_THAN = 'GREATER_THAN'
     GREATER_THAN_OR_EQUAL = 'GREATER_THAN_OR_EQUAL'
+
 
 class SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayMetricFilterMetricsFilter1ExpressionsFilterFilter3ValueValueType(str, Enum):
     DOUBLE_VALUE = 'doubleValue'
@@ -1335,6 +1440,7 @@ class SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayMetricFilterMetricsFi
     value: float = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('value') }})
     VALUE_TYPE: Final[SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayMetricFilterMetricsFilter1ExpressionsFilterFilter3ValueValueType] = dataclasses.field(default=SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayMetricFilterMetricsFilter1ExpressionsFilterFilter3ValueValueType.DOUBLE_VALUE, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('value_type') }})
     
+
 
 
 class SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayMetricFilterMetricsFilter1ExpressionsFilterFilter3ValueType(str, Enum):
@@ -1359,6 +1465,7 @@ class SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayMetricFilterNumericFi
     
 
 
+
 class SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayMetricFilterMetricsFilter1ExpressionsFilterFilterFilterName(str, Enum):
     IN_LIST_FILTER = 'inListFilter'
 
@@ -1372,8 +1479,10 @@ class SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayMetricFilterInListFil
     
 
 
+
 class SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayMetricFilterMetricsFilter1ExpressionsFilterFilterName(str, Enum):
     STRING_FILTER = 'stringFilter'
+
 
 class SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayMetricFilterMetricsFilter1ValidEnums(str, Enum):
     MATCH_TYPE_UNSPECIFIED = 'MATCH_TYPE_UNSPECIFIED'
@@ -1402,6 +1511,7 @@ class SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayExpression:
     field_name: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('field_name') }})
     filter_: Union[SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayMetricFilterStringFilter, SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayMetricFilterInListFilter, SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayMetricFilterNumericFilter, SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayMetricFilterBetweenFilter] = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('filter') }})
     
+
 
 
 class SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayMetricFilterFilterType(str, Enum):
@@ -1434,6 +1544,7 @@ class SourceGoogleAnalyticsDataAPICustomReportConfig:
     metric_filter: Optional[Union[SourceGoogleAnalyticsDataAPIAndGroup, SourceGoogleAnalyticsDataAPIOrGroup, SourceGoogleAnalyticsDataAPINotExpression, SourceGoogleAnalyticsDataAPIFilter]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('metricFilter'), 'exclude': lambda f: f is None }})
     r"""Metrics filter"""
     
+
 
 
 class SourceGoogleAnalyticsDataAPIGoogleAnalyticsDataAPI(str, Enum):

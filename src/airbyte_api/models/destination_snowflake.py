@@ -7,6 +7,7 @@ from dataclasses_json import Undefined, dataclass_json
 from enum import Enum
 from typing import Final, Optional, Union
 
+
 class DestinationSnowflakeSchemasAuthType(str, Enum):
     O_AUTH2_0 = 'OAuth2.0'
 
@@ -26,6 +27,7 @@ class DestinationSnowflakeOAuth20:
     
 
 
+
 class DestinationSnowflakeAuthType(str, Enum):
     USERNAME_AND_PASSWORD = 'Username and Password'
 
@@ -37,6 +39,7 @@ class UsernameAndPassword:
     r"""Enter the password associated with the username."""
     AUTH_TYPE: Final[Optional[DestinationSnowflakeAuthType]] = dataclasses.field(default=DestinationSnowflakeAuthType.USERNAME_AND_PASSWORD, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_type'), 'exclude': lambda f: f is None }})
     
+
 
 
 class DestinationSnowflakeSchemasCredentialsAuthType(str, Enum):
@@ -52,6 +55,7 @@ class KeyPairAuthentication:
     private_key_password: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('private_key_password'), 'exclude': lambda f: f is None }})
     r"""Passphrase for private key"""
     
+
 
 
 class DestinationSnowflakeSnowflake(str, Enum):

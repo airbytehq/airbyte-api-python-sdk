@@ -7,10 +7,12 @@ from dataclasses_json import Undefined, dataclass_json
 from enum import Enum
 from typing import Final, Optional
 
+
 class Environment(str, Enum):
     r"""The environment to use. Either sandbox or production."""
     SANDBOX = 'sandbox'
     PRODUCTION = 'production'
+
 
 class CoinAPI(str, Enum):
     COIN_API = 'coin-api'

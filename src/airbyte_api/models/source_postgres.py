@@ -7,6 +7,7 @@ from dataclasses_json import Undefined, dataclass_json
 from enum import Enum
 from typing import Any, Dict, Final, List, Optional, Union
 
+
 class SourcePostgresSchemasReplicationMethodMethod(str, Enum):
     STANDARD = 'Standard'
 
@@ -17,6 +18,7 @@ class SourcePostgresScanChangesWithUserDefinedCursor:
     r"""Incrementally detects new inserts and updates using the <a href=\\"https://docs.airbyte.com/understanding-airbyte/connections/incremental-append/#user-defined-cursor\\">cursor column</a> chosen when configuring a connection (e.g. created_at, updated_at)."""
     METHOD: Final[SourcePostgresSchemasReplicationMethodMethod] = dataclasses.field(default=SourcePostgresSchemasReplicationMethodMethod.STANDARD, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('method') }})
     
+
 
 
 class SourcePostgresSchemasMethod(str, Enum):
@@ -31,18 +33,22 @@ class DetectChangesWithXminSystemColumn:
     
 
 
+
 class SourcePostgresInvalidCDCPositionBehaviorAdvanced(str, Enum):
     r"""Determines whether Airbyte should fail or re-sync data in case of an stale/invalid cursor value into the WAL. If 'Fail sync' is chosen, a user will have to manually reset the connection before being able to continue syncing data. If 'Re-sync data' is chosen, Airbyte will automatically trigger a refresh but could lead to higher cloud costs and data loss."""
     FAIL_SYNC = 'Fail sync'
     RE_SYNC_DATA = 'Re-sync data'
+
 
 class LSNCommitBehaviour(str, Enum):
     r"""Determines when Airbyte should flush the LSN of processed WAL logs in the source database. `After loading Data in the destination` is default. If `While reading Data` is selected, in case of a downstream failure (while loading data into the destination), next sync would result in a full sync."""
     WHILE_READING_DATA = 'While reading Data'
     AFTER_LOADING_DATA_IN_THE_DESTINATION = 'After loading Data in the destination'
 
+
 class SourcePostgresMethod(str, Enum):
     CDC = 'CDC'
+
 
 class Plugin(str, Enum):
     r"""A logical decoding plugin installed on the PostgreSQL server."""
@@ -75,8 +81,10 @@ class ReadChangesUsingWriteAheadLogCDC:
     
 
 
+
 class SourcePostgresPostgres(str, Enum):
     POSTGRES = 'postgres'
+
 
 class SourcePostgresSchemasSSLModeSSLModes6Mode(str, Enum):
     VERIFY_FULL = 'verify-full'
@@ -98,6 +106,7 @@ class SourcePostgresVerifyFull:
     r"""Password for keystorage. If you do not add it - the password will be generated automatically."""
     MODE: Final[SourcePostgresSchemasSSLModeSSLModes6Mode] = dataclasses.field(default=SourcePostgresSchemasSSLModeSSLModes6Mode.VERIFY_FULL, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('mode') }})
     
+
 
 
 class SourcePostgresSchemasSSLModeSSLModes5Mode(str, Enum):
@@ -122,6 +131,7 @@ class SourcePostgresVerifyCa:
     
 
 
+
 class SourcePostgresSchemasSSLModeSSLModesMode(str, Enum):
     REQUIRE = 'require'
 
@@ -134,6 +144,7 @@ class SourcePostgresRequire:
     additional_properties: Optional[Dict[str, Any]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'exclude': lambda f: f is None }})
     MODE: Final[SourcePostgresSchemasSSLModeSSLModesMode] = dataclasses.field(default=SourcePostgresSchemasSSLModeSSLModesMode.REQUIRE, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('mode') }})
     
+
 
 
 class SourcePostgresSchemasSslModeMode(str, Enum):
@@ -150,6 +161,7 @@ class SourcePostgresPrefer:
     
 
 
+
 class SourcePostgresSchemasMode(str, Enum):
     ALLOW = 'allow'
 
@@ -164,6 +176,7 @@ class SourcePostgresAllow:
     
 
 
+
 class SourcePostgresMode(str, Enum):
     DISABLE = 'disable'
 
@@ -176,6 +189,7 @@ class SourcePostgresDisable:
     additional_properties: Optional[Dict[str, Any]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'exclude': lambda f: f is None }})
     MODE: Final[SourcePostgresMode] = dataclasses.field(default=SourcePostgresMode.DISABLE, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('mode') }})
     
+
 
 
 class SourcePostgresSchemasTunnelMethodTunnelMethod(str, Enum):
@@ -199,6 +213,7 @@ class SourcePostgresPasswordAuthentication:
     
 
 
+
 class SourcePostgresSchemasTunnelMethod(str, Enum):
     r"""Connect through a jump server tunnel host using username and ssh key"""
     SSH_KEY_AUTH = 'SSH_KEY_AUTH'
@@ -218,6 +233,7 @@ class SourcePostgresSSHKeyAuthentication:
     tunnel_port: Optional[int] = dataclasses.field(default=22, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('tunnel_port'), 'exclude': lambda f: f is None }})
     r"""Port on the proxy/jump server that accepts inbound ssh connections."""
     
+
 
 
 class SourcePostgresTunnelMethod(str, Enum):

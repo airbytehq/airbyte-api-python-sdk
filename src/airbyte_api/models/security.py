@@ -3,6 +3,7 @@
 from __future__ import annotations
 import dataclasses
 from .schemebasicauth import SchemeBasicAuth
+from .schemeclientcredentials import SchemeClientCredentials
 from typing import Optional
 
 
@@ -10,6 +11,6 @@ from typing import Optional
 class Security:
     basic_auth: Optional[SchemeBasicAuth] = dataclasses.field(default=None, metadata={'security': { 'scheme': True, 'type': 'http', 'sub_type': 'basic' }})
     bearer_auth: Optional[str] = dataclasses.field(default=None, metadata={'security': { 'scheme': True, 'type': 'http', 'sub_type': 'bearer', 'field_name': 'Authorization' }})
-    client_credentials: Optional[str] = dataclasses.field(default=None, metadata={'security': { 'scheme': True, 'type': 'oauth2', 'field_name': 'Authorization' }})
+    client_credentials: Optional[SchemeClientCredentials] = dataclasses.field(default=None, metadata={'security': { 'scheme': True, 'type': 'oauth2', 'sub_type': 'client_credentials' }})
     
 

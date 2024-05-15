@@ -3,6 +3,7 @@
 from __future__ import annotations
 from enum import Enum
 
+
 class PermissionType(str, Enum):
     r"""Describes what actions/endpoints the permission entitles to"""
     INSTANCE_ADMIN = 'instance_admin'

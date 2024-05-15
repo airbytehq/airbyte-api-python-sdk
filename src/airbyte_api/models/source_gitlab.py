@@ -9,6 +9,7 @@ from datetime import datetime
 from enum import Enum
 from typing import Final, List, Optional, Union
 
+
 class SourceGitlabSchemasAuthType(str, Enum):
     ACCESS_TOKEN = 'access_token'
 
@@ -20,6 +21,7 @@ class PrivateToken:
     r"""Log into your Gitlab account and then generate a personal Access Token."""
     AUTH_TYPE: Final[Optional[SourceGitlabSchemasAuthType]] = dataclasses.field(default=SourceGitlabSchemasAuthType.ACCESS_TOKEN, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_type'), 'exclude': lambda f: f is None }})
     
+
 
 
 class SourceGitlabAuthType(str, Enum):
@@ -41,6 +43,7 @@ class SourceGitlabOAuth20:
     r"""The date-time when the access token should be refreshed."""
     AUTH_TYPE: Final[Optional[SourceGitlabAuthType]] = dataclasses.field(default=SourceGitlabAuthType.OAUTH2_0, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_type'), 'exclude': lambda f: f is None }})
     
+
 
 
 class SourceGitlabGitlab(str, Enum):

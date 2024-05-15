@@ -8,6 +8,7 @@ from datetime import date
 from enum import Enum
 from typing import Final, Optional
 
+
 class YandexMetrica(str, Enum):
     YANDEX_METRICA = 'yandex-metrica'
 

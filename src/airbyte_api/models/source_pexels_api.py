@@ -7,6 +7,7 @@ from dataclasses_json import Undefined, dataclass_json
 from enum import Enum
 from typing import Final, Optional
 
+
 class PexelsAPI(str, Enum):
     PEXELS_API = 'pexels-api'
 

@@ -7,6 +7,7 @@ from dataclasses_json import Undefined, dataclass_json
 from enum import Enum
 from typing import Final, Optional
 
+
 class Ip2whois(str, Enum):
     IP2WHOIS = 'ip2whois'
 
