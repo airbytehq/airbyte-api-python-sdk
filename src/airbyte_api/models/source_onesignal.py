@@ -19,6 +19,7 @@ class Applications:
     
 
 
+
 class Onesignal(str, Enum):
     ONESIGNAL = 'onesignal'
 

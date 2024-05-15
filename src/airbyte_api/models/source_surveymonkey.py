@@ -9,6 +9,7 @@ from datetime import datetime
 from enum import Enum
 from typing import Final, List, Optional
 
+
 class SourceSurveymonkeyAuthMethod(str, Enum):
     OAUTH2_0 = 'oauth2.0'
 
@@ -27,11 +28,13 @@ class SurveyMonkeyAuthorizationMethod:
     
 
 
+
 class OriginDatacenterOfTheSurveyMonkeyAccount(str, Enum):
     r"""Depending on the originating datacenter of the SurveyMonkey account, the API access URL may be different."""
     USA = 'USA'
     EUROPE = 'Europe'
     CANADA = 'Canada'
+
 
 class SourceSurveymonkeySurveymonkey(str, Enum):
     SURVEYMONKEY = 'surveymonkey'

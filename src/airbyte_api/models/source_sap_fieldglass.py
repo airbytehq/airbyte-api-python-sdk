@@ -7,6 +7,7 @@ from dataclasses_json import Undefined, dataclass_json
 from enum import Enum
 from typing import Final
 
+
 class SapFieldglass(str, Enum):
     SAP_FIELDGLASS = 'sap-fieldglass'
 

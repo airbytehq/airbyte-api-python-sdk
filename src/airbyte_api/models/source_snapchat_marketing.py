@@ -9,19 +9,23 @@ from datetime import date
 from enum import Enum
 from typing import Final, Optional
 
+
 class ActionReportTime(str, Enum):
     r"""Specifies the principle for conversion reporting."""
     CONVERSION = 'conversion'
     IMPRESSION = 'impression'
 
+
 class SourceSnapchatMarketingSnapchatMarketing(str, Enum):
     SNAPCHAT_MARKETING = 'snapchat-marketing'
+
 
 class SwipeUpAttributionWindow(str, Enum):
     r"""Attribution window for swipe ups."""
     ONE_DAY = '1_DAY'
     SEVEN_DAY = '7_DAY'
     TWENTY_EIGHT_DAY = '28_DAY'
+
 
 class ViewAttributionWindow(str, Enum):
     r"""Attribution window for views."""

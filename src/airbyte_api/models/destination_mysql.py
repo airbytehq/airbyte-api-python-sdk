@@ -7,8 +7,10 @@ from dataclasses_json import Undefined, dataclass_json
 from enum import Enum
 from typing import Final, Optional, Union
 
+
 class Mysql(str, Enum):
     MYSQL = 'mysql'
+
 
 class DestinationMysqlSchemasTunnelMethodTunnelMethod(str, Enum):
     r"""Connect through a jump server tunnel host using username and password authentication"""
@@ -31,6 +33,7 @@ class DestinationMysqlPasswordAuthentication:
     
 
 
+
 class DestinationMysqlSchemasTunnelMethod(str, Enum):
     r"""Connect through a jump server tunnel host using username and ssh key"""
     SSH_KEY_AUTH = 'SSH_KEY_AUTH'
@@ -50,6 +53,7 @@ class DestinationMysqlSSHKeyAuthentication:
     tunnel_port: Optional[int] = dataclasses.field(default=22, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('tunnel_port'), 'exclude': lambda f: f is None }})
     r"""Port on the proxy/jump server that accepts inbound ssh connections."""
     
+
 
 
 class DestinationMysqlTunnelMethod(str, Enum):

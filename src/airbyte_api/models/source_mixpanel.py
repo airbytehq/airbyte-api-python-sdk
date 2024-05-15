@@ -8,6 +8,7 @@ from datetime import date
 from enum import Enum
 from typing import Final, Optional, Union
 
+
 class SourceMixpanelSchemasOptionTitle(str, Enum):
     PROJECT_SECRET = 'Project Secret'
 
@@ -19,6 +20,7 @@ class ProjectSecret:
     r"""Mixpanel project secret. See the <a href=\\"https://developer.mixpanel.com/reference/project-secret#managing-a-projects-secret\\">docs</a> for more information on how to obtain this."""
     OPTION_TITLE: Final[Optional[SourceMixpanelSchemasOptionTitle]] = dataclasses.field(default=SourceMixpanelSchemasOptionTitle.PROJECT_SECRET, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('option_title'), 'exclude': lambda f: f is None }})
     
+
 
 
 class SourceMixpanelOptionTitle(str, Enum):
@@ -38,10 +40,12 @@ class ServiceAccount:
     
 
 
+
 class SourceMixpanelRegion(str, Enum):
     r"""The region of mixpanel domain instance either US or EU."""
     US = 'US'
     EU = 'EU'
+
 
 class Mixpanel(str, Enum):
     MIXPANEL = 'mixpanel'

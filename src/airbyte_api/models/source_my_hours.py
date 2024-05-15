@@ -7,6 +7,7 @@ from dataclasses_json import Undefined, dataclass_json
 from enum import Enum
 from typing import Final, Optional
 
+
 class MyHours(str, Enum):
     MY_HOURS = 'my-hours'
 

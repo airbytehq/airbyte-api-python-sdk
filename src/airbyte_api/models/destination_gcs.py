@@ -7,6 +7,7 @@ from dataclasses_json import Undefined, dataclass_json
 from enum import Enum
 from typing import Final, Optional, Union
 
+
 class CredentialType(str, Enum):
     HMAC_KEY = 'HMAC_KEY'
 
@@ -22,8 +23,10 @@ class HMACKey:
     
 
 
+
 class Gcs(str, Enum):
     GCS = 'gcs'
+
 
 class DestinationGcsCompressionCodec(str, Enum):
     r"""The compression algorithm used to compress data pages."""
@@ -34,6 +37,7 @@ class DestinationGcsCompressionCodec(str, Enum):
     BROTLI = 'BROTLI'
     LZ4 = 'LZ4'
     ZSTD = 'ZSTD'
+
 
 class DestinationGcsSchemasFormatOutputFormatFormatType(str, Enum):
     PARQUET = 'Parquet'
@@ -58,6 +62,7 @@ class DestinationGcsParquetColumnarStorage:
     
 
 
+
 class DestinationGcsSchemasFormatCompressionType(str, Enum):
     GZIP = 'GZIP'
 
@@ -69,6 +74,7 @@ class DestinationGcsGZIP:
     
 
 
+
 class DestinationGcsSchemasCompressionType(str, Enum):
     NO_COMPRESSION = 'No Compression'
 
@@ -78,6 +84,7 @@ class DestinationGcsSchemasCompressionType(str, Enum):
 class DestinationGcsSchemasNoCompression:
     compression_type: Optional[DestinationGcsSchemasCompressionType] = dataclasses.field(default=DestinationGcsSchemasCompressionType.NO_COMPRESSION, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('compression_type'), 'exclude': lambda f: f is None }})
     
+
 
 
 class DestinationGcsSchemasFormatFormatType(str, Enum):
@@ -93,6 +100,7 @@ class DestinationGcsJSONLinesNewlineDelimitedJSON:
     
 
 
+
 class DestinationGcsCompressionType(str, Enum):
     GZIP = 'GZIP'
 
@@ -102,6 +110,7 @@ class DestinationGcsCompressionType(str, Enum):
 class Gzip:
     compression_type: Optional[DestinationGcsCompressionType] = dataclasses.field(default=DestinationGcsCompressionType.GZIP, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('compression_type'), 'exclude': lambda f: f is None }})
     
+
 
 
 class CompressionType(str, Enum):
@@ -115,10 +124,12 @@ class DestinationGcsNoCompression:
     
 
 
+
 class Normalization(str, Enum):
     r"""Whether the input JSON data should be normalized (flattened) in the output CSV. Please refer to docs for details."""
     NO_FLATTENING = 'No flattening'
     ROOT_LEVEL_FLATTENING = 'Root level flattening'
+
 
 class DestinationGcsSchemasFormatType(str, Enum):
     CSV = 'CSV'
@@ -135,6 +146,7 @@ class DestinationGcsCSVCommaSeparatedValues:
     
 
 
+
 class DestinationGcsSchemasFormatOutputFormat1Codec(str, Enum):
     SNAPPY = 'snappy'
 
@@ -144,6 +156,7 @@ class DestinationGcsSchemasFormatOutputFormat1Codec(str, Enum):
 class Snappy:
     codec: Optional[DestinationGcsSchemasFormatOutputFormat1Codec] = dataclasses.field(default=DestinationGcsSchemasFormatOutputFormat1Codec.SNAPPY, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('codec'), 'exclude': lambda f: f is None }})
     
+
 
 
 class DestinationGcsSchemasFormatOutputFormatCodec(str, Enum):
@@ -161,6 +174,7 @@ class Zstandard:
     
 
 
+
 class DestinationGcsSchemasFormatCodec(str, Enum):
     XZ = 'xz'
 
@@ -174,6 +188,7 @@ class Xz:
     
 
 
+
 class DestinationGcsSchemasCodec(str, Enum):
     BZIP2 = 'bzip2'
 
@@ -183,6 +198,7 @@ class DestinationGcsSchemasCodec(str, Enum):
 class Bzip2:
     codec: Optional[DestinationGcsSchemasCodec] = dataclasses.field(default=DestinationGcsSchemasCodec.BZIP2, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('codec'), 'exclude': lambda f: f is None }})
     
+
 
 
 class DestinationGcsCodec(str, Enum):
@@ -198,6 +214,7 @@ class Deflate:
     
 
 
+
 class Codec(str, Enum):
     NO_COMPRESSION = 'no compression'
 
@@ -207,6 +224,7 @@ class Codec(str, Enum):
 class NoCompression:
     codec: Optional[Codec] = dataclasses.field(default=Codec.NO_COMPRESSION, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('codec'), 'exclude': lambda f: f is None }})
     
+
 
 
 class DestinationGcsFormatType(str, Enum):
@@ -220,6 +238,7 @@ class AvroApacheAvro:
     r"""The compression algorithm used to compress data. Default to no compression."""
     format_type: Optional[DestinationGcsFormatType] = dataclasses.field(default=DestinationGcsFormatType.AVRO, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('format_type'), 'exclude': lambda f: f is None }})
     
+
 
 
 class GCSBucketRegion(str, Enum):

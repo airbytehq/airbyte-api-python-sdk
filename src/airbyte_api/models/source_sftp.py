@@ -7,6 +7,7 @@ from dataclasses_json import Undefined, dataclass_json
 from enum import Enum
 from typing import Final, Optional, Union
 
+
 class SourceSftpSchemasAuthMethod(str, Enum):
     r"""Connect through ssh key"""
     SSH_KEY_AUTH = 'SSH_KEY_AUTH'
@@ -22,6 +23,7 @@ class SourceSftpSSHKeyAuthentication:
     
 
 
+
 class SourceSftpAuthMethod(str, Enum):
     r"""Connect through password authentication"""
     SSH_PASSWORD_AUTH = 'SSH_PASSWORD_AUTH'
@@ -35,6 +37,7 @@ class SourceSftpPasswordAuthentication:
     AUTH_METHOD: Final[SourceSftpAuthMethod] = dataclasses.field(default=SourceSftpAuthMethod.SSH_PASSWORD_AUTH, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_method') }})
     r"""Connect through password authentication"""
     
+
 
 
 class Sftp(str, Enum):

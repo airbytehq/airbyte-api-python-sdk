@@ -9,10 +9,12 @@ from datetime import datetime
 from enum import Enum
 from typing import Final, Optional
 
+
 class DataRegion(str, Enum):
     r"""Amplitude data region server"""
     STANDARD_SERVER = 'Standard Server'
     EU_RESIDENCY_SERVER = 'EU Residency Server'
+
 
 class Amplitude(str, Enum):
     AMPLITUDE = 'amplitude'

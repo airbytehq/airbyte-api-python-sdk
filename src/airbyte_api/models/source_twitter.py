@@ -9,6 +9,7 @@ from datetime import datetime
 from enum import Enum
 from typing import Final, Optional
 
+
 class Twitter(str, Enum):
     TWITTER = 'twitter'
 

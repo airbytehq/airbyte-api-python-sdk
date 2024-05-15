@@ -7,6 +7,7 @@ from dataclasses_json import Undefined, dataclass_json
 from enum import Enum
 from typing import Final, Optional, Union
 
+
 class SourceMicrosoftTeamsSchemasAuthType(str, Enum):
     TOKEN = 'Token'
 
@@ -22,6 +23,7 @@ class AuthenticateViaMicrosoft:
     r"""A globally unique identifier (GUID) that is different than your organization name or domain. Follow these steps to obtain: open one of the Teams where you belong inside the Teams Application -> Click on the … next to the Team title -> Click on Get link to team -> Copy the link to the team and grab the tenant ID form the URL"""
     AUTH_TYPE: Final[Optional[SourceMicrosoftTeamsSchemasAuthType]] = dataclasses.field(default=SourceMicrosoftTeamsSchemasAuthType.TOKEN, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_type'), 'exclude': lambda f: f is None }})
     
+
 
 
 class SourceMicrosoftTeamsAuthType(str, Enum):
@@ -41,6 +43,7 @@ class AuthenticateViaMicrosoftOAuth20:
     r"""A globally unique identifier (GUID) that is different than your organization name or domain. Follow these steps to obtain: open one of the Teams where you belong inside the Teams Application -> Click on the … next to the Team title -> Click on Get link to team -> Copy the link to the team and grab the tenant ID form the URL"""
     AUTH_TYPE: Final[Optional[SourceMicrosoftTeamsAuthType]] = dataclasses.field(default=SourceMicrosoftTeamsAuthType.CLIENT, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_type'), 'exclude': lambda f: f is None }})
     
+
 
 
 class SourceMicrosoftTeamsMicrosoftTeams(str, Enum):

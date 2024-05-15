@@ -9,6 +9,7 @@ from datetime import datetime
 from enum import Enum
 from typing import Final, List, Optional, Union
 
+
 class SourceSlackSchemasOptionTitle(str, Enum):
     API_TOKEN_CREDENTIALS = 'API Token Credentials'
 
@@ -20,6 +21,7 @@ class SourceSlackAPIToken:
     r"""A Slack bot token. See the <a href=\\"https://docs.airbyte.com/integrations/sources/slack\\">docs</a> for instructions on how to generate it."""
     OPTION_TITLE: Final[SourceSlackSchemasOptionTitle] = dataclasses.field(default=SourceSlackSchemasOptionTitle.API_TOKEN_CREDENTIALS, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('option_title') }})
     
+
 
 
 class SourceSlackOptionTitle(str, Enum):
@@ -37,6 +39,7 @@ class SignInViaSlackOAuth:
     r"""Slack client_secret. See our <a href=\\"https://docs.airbyte.com/integrations/sources/slack\\">docs</a> if you need help finding this secret."""
     OPTION_TITLE: Final[SourceSlackOptionTitle] = dataclasses.field(default=SourceSlackOptionTitle.DEFAULT_O_AUTH2_0_AUTHORIZATION, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('option_title') }})
     
+
 
 
 class SourceSlackSlack(str, Enum):

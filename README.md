@@ -39,7 +39,7 @@ s = airbyte_api.AirbyteAPI(
     ),
 )
 
-res = s.public_connections.create_connection(request=models.ConnectionCreateRequest(
+res = s.connections.create_connection(request=models.ConnectionCreateRequest(
     destination_id='e478de0d-a3a0-475c-b019-25f7dd29e281',
     source_id='95e66a59-8045-4307-9678-63bc3c9b8c93',
     name='Postgres-to-Bigquery',
@@ -56,47 +56,6 @@ if res.connection_response is not None:
 <!-- Start Available Resources and Operations [operations] -->
 ## Available Resources and Operations
 
-### [public_connections](docs/sdks/publicconnections/README.md)
-
-* [create_connection](docs/sdks/publicconnections/README.md#create_connection) - Create a connection
-* [delete_connection](docs/sdks/publicconnections/README.md#delete_connection) - Delete a Connection
-* [get_connection](docs/sdks/publicconnections/README.md#get_connection) - Get Connection details
-* [list_connections](docs/sdks/publicconnections/README.md#list_connections) - List connections
-* [patch_connection](docs/sdks/publicconnections/README.md#patch_connection) - Update Connection details
-
-### [public](docs/sdks/public/README.md)
-
-* [cancel_job](docs/sdks/public/README.md#cancel_job) - Cancel a running Job
-* [create_connection](docs/sdks/public/README.md#create_connection) - Create a connection
-* [create_destination](docs/sdks/public/README.md#create_destination) - Create a destination
-* [create_job](docs/sdks/public/README.md#create_job) - Trigger a sync or reset job of a connection
-* [create_or_update_workspace_o_auth_credentials](docs/sdks/public/README.md#create_or_update_workspace_o_auth_credentials) - Create OAuth override credentials for a workspace and source type.
-* [create_permission](docs/sdks/public/README.md#create_permission) - Create a permission
-* [create_source](docs/sdks/public/README.md#create_source) - Create a source
-* [create_workspace](docs/sdks/public/README.md#create_workspace) - Create a workspace
-* [delete_connection](docs/sdks/public/README.md#delete_connection) - Delete a Connection
-* [delete_destination](docs/sdks/public/README.md#delete_destination) - Delete a Destination
-* [delete_source](docs/sdks/public/README.md#delete_source) - Delete a Source
-* [delete_workspace](docs/sdks/public/README.md#delete_workspace) - Delete a Workspace
-* [get_connection](docs/sdks/public/README.md#get_connection) - Get Connection details
-* [get_destination](docs/sdks/public/README.md#get_destination) - Get Destination details
-* [get_job](docs/sdks/public/README.md#get_job) - Get Job status and details
-* [get_source](docs/sdks/public/README.md#get_source) - Get Source details
-* [get_stream_properties](docs/sdks/public/README.md#get_stream_properties) - Get stream properties
-* [get_workspace](docs/sdks/public/README.md#get_workspace) - Get Workspace details
-* [initiate_o_auth](docs/sdks/public/README.md#initiate_o_auth) - Initiate OAuth for a source
-* [list_connections](docs/sdks/public/README.md#list_connections) - List connections
-* [list_destinations](docs/sdks/public/README.md#list_destinations) - List destinations
-* [list_jobs](docs/sdks/public/README.md#list_jobs) - List Jobs by sync type
-* [list_sources](docs/sdks/public/README.md#list_sources) - List sources
-* [list_workspaces](docs/sdks/public/README.md#list_workspaces) - List workspaces
-* [patch_connection](docs/sdks/public/README.md#patch_connection) - Update Connection details
-* [patch_destination](docs/sdks/public/README.md#patch_destination) - Update a Destination
-* [patch_source](docs/sdks/public/README.md#patch_source) - Update a Source
-* [put_destination](docs/sdks/public/README.md#put_destination) - Update a Destination and fully overwrite it
-* [put_source](docs/sdks/public/README.md#put_source) - Update a Source and fully overwrite it
-* [update_workspace](docs/sdks/public/README.md#update_workspace) - Update a workspace
-
 ### [connections](docs/sdks/connections/README.md)
 
 * [create_connection](docs/sdks/connections/README.md#create_connection) - Create a connection
@@ -104,15 +63,6 @@ if res.connection_response is not None:
 * [get_connection](docs/sdks/connections/README.md#get_connection) - Get Connection details
 * [list_connections](docs/sdks/connections/README.md#list_connections) - List connections
 * [patch_connection](docs/sdks/connections/README.md#patch_connection) - Update Connection details
-
-### [public_destinations](docs/sdks/publicdestinations/README.md)
-
-* [create_destination](docs/sdks/publicdestinations/README.md#create_destination) - Create a destination
-* [delete_destination](docs/sdks/publicdestinations/README.md#delete_destination) - Delete a Destination
-* [get_destination](docs/sdks/publicdestinations/README.md#get_destination) - Get Destination details
-* [list_destinations](docs/sdks/publicdestinations/README.md#list_destinations) - List destinations
-* [patch_destination](docs/sdks/publicdestinations/README.md#patch_destination) - Update a Destination
-* [put_destination](docs/sdks/publicdestinations/README.md#put_destination) - Update a Destination and fully overwrite it
 
 ### [destinations](docs/sdks/destinations/README.md)
 
@@ -123,12 +73,9 @@ if res.connection_response is not None:
 * [patch_destination](docs/sdks/destinations/README.md#patch_destination) - Update a Destination
 * [put_destination](docs/sdks/destinations/README.md#put_destination) - Update a Destination and fully overwrite it
 
-### [public_jobs](docs/sdks/publicjobs/README.md)
+### [health](docs/sdks/health/README.md)
 
-* [cancel_job](docs/sdks/publicjobs/README.md#cancel_job) - Cancel a running Job
-* [create_job](docs/sdks/publicjobs/README.md#create_job) - Trigger a sync or reset job of a connection
-* [get_job](docs/sdks/publicjobs/README.md#get_job) - Get Job status and details
-* [list_jobs](docs/sdks/publicjobs/README.md#list_jobs) - List Jobs by sync type
+* [get_health_check](docs/sdks/health/README.md#get_health_check) - Health Check
 
 ### [jobs](docs/sdks/jobs/README.md)
 
@@ -137,23 +84,13 @@ if res.connection_response is not None:
 * [get_job](docs/sdks/jobs/README.md#get_job) - Get Job status and details
 * [list_jobs](docs/sdks/jobs/README.md#list_jobs) - List Jobs by sync type
 
-### [public_permissions](docs/sdks/publicpermissions/README.md)
-
-* [create_permission](docs/sdks/publicpermissions/README.md#create_permission) - Create a permission
-
 ### [permissions](docs/sdks/permissions/README.md)
 
 * [create_permission](docs/sdks/permissions/README.md#create_permission) - Create a permission
-
-### [public_sources](docs/sdks/publicsources/README.md)
-
-* [create_source](docs/sdks/publicsources/README.md#create_source) - Create a source
-* [delete_source](docs/sdks/publicsources/README.md#delete_source) - Delete a Source
-* [get_source](docs/sdks/publicsources/README.md#get_source) - Get Source details
-* [initiate_o_auth](docs/sdks/publicsources/README.md#initiate_o_auth) - Initiate OAuth for a source
-* [list_sources](docs/sdks/publicsources/README.md#list_sources) - List sources
-* [patch_source](docs/sdks/publicsources/README.md#patch_source) - Update a Source
-* [put_source](docs/sdks/publicsources/README.md#put_source) - Update a Source and fully overwrite it
+* [delete_permission](docs/sdks/permissions/README.md#delete_permission) - Delete a Permission
+* [get_permission](docs/sdks/permissions/README.md#get_permission) - Get Permission details
+* [list_permissions](docs/sdks/permissions/README.md#list_permissions) - List Permissions by user id
+* [update_permission](docs/sdks/permissions/README.md#update_permission) - Update a permission
 
 ### [sources](docs/sdks/sources/README.md)
 
@@ -165,22 +102,9 @@ if res.connection_response is not None:
 * [patch_source](docs/sdks/sources/README.md#patch_source) - Update a Source
 * [put_source](docs/sdks/sources/README.md#put_source) - Update a Source and fully overwrite it
 
-### [public_streams](docs/sdks/publicstreams/README.md)
-
-* [get_stream_properties](docs/sdks/publicstreams/README.md#get_stream_properties) - Get stream properties
-
 ### [streams](docs/sdks/streams/README.md)
 
 * [get_stream_properties](docs/sdks/streams/README.md#get_stream_properties) - Get stream properties
-
-### [public_workspaces](docs/sdks/publicworkspaces/README.md)
-
-* [create_or_update_workspace_o_auth_credentials](docs/sdks/publicworkspaces/README.md#create_or_update_workspace_o_auth_credentials) - Create OAuth override credentials for a workspace and source type.
-* [create_workspace](docs/sdks/publicworkspaces/README.md#create_workspace) - Create a workspace
-* [delete_workspace](docs/sdks/publicworkspaces/README.md#delete_workspace) - Delete a Workspace
-* [get_workspace](docs/sdks/publicworkspaces/README.md#get_workspace) - Get Workspace details
-* [list_workspaces](docs/sdks/publicworkspaces/README.md#list_workspaces) - List workspaces
-* [update_workspace](docs/sdks/publicworkspaces/README.md#update_workspace) - Update a workspace
 
 ### [workspaces](docs/sdks/workspaces/README.md)
 
@@ -224,7 +148,7 @@ s = airbyte_api.AirbyteAPI(
 
 res = None
 try:
-    res = s.public_connections.create_connection(request=models.ConnectionCreateRequest(
+    res = s.connections.create_connection(request=models.ConnectionCreateRequest(
     destination_id='e478de0d-a3a0-475c-b019-25f7dd29e281',
     source_id='95e66a59-8045-4307-9678-63bc3c9b8c93',
     name='Postgres-to-Bigquery',
@@ -270,7 +194,7 @@ s = airbyte_api.AirbyteAPI(
     ),
 )
 
-res = s.public_connections.create_connection(request=models.ConnectionCreateRequest(
+res = s.connections.create_connection(request=models.ConnectionCreateRequest(
     destination_id='e478de0d-a3a0-475c-b019-25f7dd29e281',
     source_id='95e66a59-8045-4307-9678-63bc3c9b8c93',
     name='Postgres-to-Bigquery',
@@ -301,7 +225,7 @@ s = airbyte_api.AirbyteAPI(
     ),
 )
 
-res = s.public_connections.create_connection(request=models.ConnectionCreateRequest(
+res = s.connections.create_connection(request=models.ConnectionCreateRequest(
     destination_id='e478de0d-a3a0-475c-b019-25f7dd29e281',
     source_id='95e66a59-8045-4307-9678-63bc3c9b8c93',
     name='Postgres-to-Bigquery',
@@ -362,7 +286,7 @@ s = airbyte_api.AirbyteAPI(
     ),
 )
 
-res = s.public_connections.create_connection(request=models.ConnectionCreateRequest(
+res = s.connections.create_connection(request=models.ConnectionCreateRequest(
     destination_id='e478de0d-a3a0-475c-b019-25f7dd29e281',
     source_id='95e66a59-8045-4307-9678-63bc3c9b8c93',
     name='Postgres-to-Bigquery',

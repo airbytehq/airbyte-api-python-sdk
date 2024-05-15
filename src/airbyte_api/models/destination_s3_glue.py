@@ -7,8 +7,10 @@ from dataclasses_json import Undefined, dataclass_json
 from enum import Enum
 from typing import Final, Optional, Union
 
+
 class S3Glue(str, Enum):
     S3_GLUE = 's3-glue'
+
 
 class DestinationS3GlueSchemasCompressionType(str, Enum):
     GZIP = 'GZIP'
@@ -19,6 +21,7 @@ class DestinationS3GlueSchemasCompressionType(str, Enum):
 class DestinationS3GlueGZIP:
     compression_type: Optional[DestinationS3GlueSchemasCompressionType] = dataclasses.field(default=DestinationS3GlueSchemasCompressionType.GZIP, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('compression_type'), 'exclude': lambda f: f is None }})
     
+
 
 
 class DestinationS3GlueCompressionType(str, Enum):
@@ -32,10 +35,12 @@ class DestinationS3GlueNoCompression:
     
 
 
+
 class Flattening(str, Enum):
     r"""Whether the input json data should be normalized (flattened) in the output JSON Lines. Please refer to docs for details."""
     NO_FLATTENING = 'No flattening'
     ROOT_LEVEL_FLATTENING = 'Root level flattening'
+
 
 class DestinationS3GlueFormatType(str, Enum):
     JSONL = 'JSONL'
@@ -52,10 +57,12 @@ class DestinationS3GlueJSONLinesNewlineDelimitedJSON:
     
 
 
+
 class SerializationLibrary(str, Enum):
     r"""The library that your query engine will use for reading and writing data in your lake."""
     ORG_OPENX_DATA_JSONSERDE_JSON_SER_DE = 'org.openx.data.jsonserde.JsonSerDe'
     ORG_APACHE_HIVE_HCATALOG_DATA_JSON_SER_DE = 'org.apache.hive.hcatalog.data.JsonSerDe'
+
 
 class DestinationS3GlueS3BucketRegion(str, Enum):
     r"""The region of the S3 bucket. See <a href=\\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-regions-availability-zones.html#concepts-available-regions\\">here</a> for all region codes."""

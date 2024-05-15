@@ -7,8 +7,10 @@ from dataclasses_json import Undefined, dataclass_json
 from enum import Enum
 from typing import Final, Optional, Union
 
+
 class Mssql(str, Enum):
     MSSQL = 'mssql'
+
 
 class DestinationMssqlSchemasSslMethod(str, Enum):
     ENCRYPTED_VERIFY_CERTIFICATE = 'encrypted_verify_certificate'
@@ -24,6 +26,7 @@ class EncryptedVerifyCertificate:
     
 
 
+
 class DestinationMssqlSslMethod(str, Enum):
     ENCRYPTED_TRUST_SERVER_CERTIFICATE = 'encrypted_trust_server_certificate'
 
@@ -34,6 +37,7 @@ class EncryptedTrustServerCertificate:
     r"""Use the certificate provided by the server without verification. (For testing purposes only!)"""
     SSL_METHOD: Final[Optional[DestinationMssqlSslMethod]] = dataclasses.field(default=DestinationMssqlSslMethod.ENCRYPTED_TRUST_SERVER_CERTIFICATE, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('ssl_method'), 'exclude': lambda f: f is None }})
     
+
 
 
 class DestinationMssqlSchemasTunnelMethodTunnelMethod(str, Enum):
@@ -57,6 +61,7 @@ class DestinationMssqlPasswordAuthentication:
     
 
 
+
 class DestinationMssqlSchemasTunnelMethod(str, Enum):
     r"""Connect through a jump server tunnel host using username and ssh key"""
     SSH_KEY_AUTH = 'SSH_KEY_AUTH'
@@ -76,6 +81,7 @@ class DestinationMssqlSSHKeyAuthentication:
     tunnel_port: Optional[int] = dataclasses.field(default=22, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('tunnel_port'), 'exclude': lambda f: f is None }})
     r"""Port on the proxy/jump server that accepts inbound ssh connections."""
     
+
 
 
 class DestinationMssqlTunnelMethod(str, Enum):

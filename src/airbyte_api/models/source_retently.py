@@ -7,6 +7,7 @@ from dataclasses_json import Undefined, dataclass_json
 from enum import Enum
 from typing import Any, Dict, Final, Optional, Union
 
+
 class SourceRetentlySchemasAuthType(str, Enum):
     TOKEN = 'Token'
 
@@ -20,6 +21,7 @@ class AuthenticateWithAPIToken:
     additional_properties: Optional[Dict[str, Any]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'exclude': lambda f: f is None }})
     AUTH_TYPE: Final[Optional[SourceRetentlySchemasAuthType]] = dataclasses.field(default=SourceRetentlySchemasAuthType.TOKEN, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_type'), 'exclude': lambda f: f is None }})
     
+
 
 
 class SourceRetentlyAuthType(str, Enum):
@@ -39,6 +41,7 @@ class AuthenticateViaRetentlyOAuth:
     additional_properties: Optional[Dict[str, Any]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'exclude': lambda f: f is None }})
     AUTH_TYPE: Final[Optional[SourceRetentlyAuthType]] = dataclasses.field(default=SourceRetentlyAuthType.CLIENT, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_type'), 'exclude': lambda f: f is None }})
     
+
 
 
 class SourceRetentlyRetently(str, Enum):

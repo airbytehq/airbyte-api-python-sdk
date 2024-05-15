@@ -7,8 +7,10 @@ from dataclasses_json import Undefined, dataclass_json
 from enum import Enum
 from typing import Final, Optional, Union
 
+
 class Teradata(str, Enum):
     TERADATA = 'teradata'
+
 
 class DestinationTeradataSchemasSSLModeSSLModes6Mode(str, Enum):
     VERIFY_FULL = 'verify-full'
@@ -24,6 +26,7 @@ class DestinationTeradataVerifyFull:
     """
     MODE: Final[Optional[DestinationTeradataSchemasSSLModeSSLModes6Mode]] = dataclasses.field(default=DestinationTeradataSchemasSSLModeSSLModes6Mode.VERIFY_FULL, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('mode'), 'exclude': lambda f: f is None }})
     
+
 
 
 class DestinationTeradataSchemasSSLModeSSLModes5Mode(str, Enum):
@@ -42,6 +45,7 @@ class DestinationTeradataVerifyCa:
     
 
 
+
 class DestinationTeradataSchemasSSLModeSSLModesMode(str, Enum):
     REQUIRE = 'require'
 
@@ -52,6 +56,7 @@ class DestinationTeradataRequire:
     r"""Require SSL mode."""
     MODE: Final[Optional[DestinationTeradataSchemasSSLModeSSLModesMode]] = dataclasses.field(default=DestinationTeradataSchemasSSLModeSSLModesMode.REQUIRE, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('mode'), 'exclude': lambda f: f is None }})
     
+
 
 
 class DestinationTeradataSchemasSslModeMode(str, Enum):
@@ -66,6 +71,7 @@ class DestinationTeradataPrefer:
     
 
 
+
 class DestinationTeradataSchemasMode(str, Enum):
     ALLOW = 'allow'
 
@@ -76,6 +82,7 @@ class DestinationTeradataAllow:
     r"""Allow SSL mode."""
     MODE: Final[Optional[DestinationTeradataSchemasMode]] = dataclasses.field(default=DestinationTeradataSchemasMode.ALLOW, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('mode'), 'exclude': lambda f: f is None }})
     
+
 
 
 class DestinationTeradataMode(str, Enum):

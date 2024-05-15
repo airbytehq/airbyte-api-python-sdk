@@ -7,8 +7,10 @@ from dataclasses_json import Undefined, dataclass_json
 from enum import Enum
 from typing import Final, List, Optional, Union
 
+
 class Weaviate(str, Enum):
     WEAVIATE = 'weaviate'
+
 
 class DestinationWeaviateSchemasEmbeddingEmbedding7Mode(str, Enum):
     OPENAI_COMPATIBLE = 'openai_compatible'
@@ -29,6 +31,7 @@ class DestinationWeaviateOpenAICompatible:
     
 
 
+
 class DestinationWeaviateSchemasEmbeddingEmbedding6Mode(str, Enum):
     FAKE = 'fake'
 
@@ -39,6 +42,7 @@ class DestinationWeaviateFake:
     r"""Use a fake embedding made out of random vectors with 1536 embedding dimensions. This is useful for testing the data pipeline without incurring any costs."""
     MODE: Final[Optional[DestinationWeaviateSchemasEmbeddingEmbedding6Mode]] = dataclasses.field(default=DestinationWeaviateSchemasEmbeddingEmbedding6Mode.FAKE, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('mode'), 'exclude': lambda f: f is None }})
     
+
 
 
 class DestinationWeaviateSchemasEmbeddingEmbedding5Mode(str, Enum):
@@ -57,6 +61,7 @@ class FromField:
     
 
 
+
 class DestinationWeaviateSchemasEmbeddingEmbeddingMode(str, Enum):
     COHERE = 'cohere'
 
@@ -70,6 +75,7 @@ class DestinationWeaviateCohere:
     
 
 
+
 class DestinationWeaviateSchemasEmbeddingMode(str, Enum):
     OPENAI = 'openai'
 
@@ -81,6 +87,7 @@ class DestinationWeaviateOpenAI:
     openai_key: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('openai_key') }})
     MODE: Final[Optional[DestinationWeaviateSchemasEmbeddingMode]] = dataclasses.field(default=DestinationWeaviateSchemasEmbeddingMode.OPENAI, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('mode'), 'exclude': lambda f: f is None }})
     
+
 
 
 class DestinationWeaviateSchemasMode(str, Enum):
@@ -99,6 +106,7 @@ class DestinationWeaviateAzureOpenAI:
     r"""The API key for your Azure OpenAI resource.  You can find this in the Azure portal under your Azure OpenAI resource"""
     MODE: Final[Optional[DestinationWeaviateSchemasMode]] = dataclasses.field(default=DestinationWeaviateSchemasMode.AZURE_OPENAI, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('mode'), 'exclude': lambda f: f is None }})
     
+
 
 
 class DestinationWeaviateMode(str, Enum):
@@ -122,6 +130,7 @@ class Header:
     
 
 
+
 class DestinationWeaviateSchemasIndexingAuthAuthenticationMode(str, Enum):
     NO_AUTH = 'no_auth'
 
@@ -132,6 +141,7 @@ class NoAuthentication:
     r"""Do not authenticate (suitable for locally running test clusters, do not use for clusters with public IP addresses)"""
     MODE: Final[Optional[DestinationWeaviateSchemasIndexingAuthAuthenticationMode]] = dataclasses.field(default=DestinationWeaviateSchemasIndexingAuthAuthenticationMode.NO_AUTH, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('mode'), 'exclude': lambda f: f is None }})
     
+
 
 
 class DestinationWeaviateSchemasIndexingAuthMode(str, Enum):
@@ -150,6 +160,7 @@ class DestinationWeaviateUsernamePassword:
     
 
 
+
 class DestinationWeaviateSchemasIndexingMode(str, Enum):
     TOKEN = 'token'
 
@@ -162,6 +173,7 @@ class DestinationWeaviateAPIToken:
     r"""API Token for the Weaviate instance"""
     MODE: Final[Optional[DestinationWeaviateSchemasIndexingMode]] = dataclasses.field(default=DestinationWeaviateSchemasIndexingMode.TOKEN, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('mode'), 'exclude': lambda f: f is None }})
     
+
 
 
 class DefaultVectorizer(str, Enum):
@@ -208,6 +220,7 @@ class DestinationWeaviateFieldNameMappingConfigModel:
     
 
 
+
 class DestinationWeaviateLanguage(str, Enum):
     r"""Split code in suitable places based on the programming language"""
     CPP = 'cpp'
@@ -227,6 +240,7 @@ class DestinationWeaviateLanguage(str, Enum):
     HTML = 'html'
     SOL = 'sol'
 
+
 class DestinationWeaviateSchemasProcessingTextSplitterTextSplitterMode(str, Enum):
     CODE = 'code'
 
@@ -241,6 +255,7 @@ class DestinationWeaviateByProgrammingLanguage:
     
 
 
+
 class DestinationWeaviateSchemasProcessingTextSplitterMode(str, Enum):
     MARKDOWN = 'markdown'
 
@@ -253,6 +268,7 @@ class DestinationWeaviateByMarkdownHeader:
     split_level: Optional[int] = dataclasses.field(default=1, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('split_level'), 'exclude': lambda f: f is None }})
     r"""Level of markdown headers to split text fields by. Headings down to the specified level will be used as split points"""
     
+
 
 
 class DestinationWeaviateSchemasProcessingMode(str, Enum):

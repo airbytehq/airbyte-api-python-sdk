@@ -7,6 +7,7 @@ from dataclasses_json import Undefined, dataclass_json
 from enum import Enum
 from typing import Final, Optional, Union
 
+
 class SourceCartSchemasAuthType(str, Enum):
     SINGLE_STORE_ACCESS_TOKEN = 'SINGLE_STORE_ACCESS_TOKEN'
 
@@ -20,6 +21,7 @@ class SingleStoreAccessToken:
     r"""The name of Cart.com Online Store. All API URLs start with https://[mystorename.com]/api/v1/, where [mystorename.com] is the domain name of your store."""
     AUTH_TYPE: Final[SourceCartSchemasAuthType] = dataclasses.field(default=SourceCartSchemasAuthType.SINGLE_STORE_ACCESS_TOKEN, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_type') }})
     
+
 
 
 class SourceCartAuthType(str, Enum):
@@ -37,6 +39,7 @@ class CentralAPIRouter:
     r"""Enter your application's User Secret"""
     AUTH_TYPE: Final[SourceCartAuthType] = dataclasses.field(default=SourceCartAuthType.CENTRAL_API_ROUTER, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_type') }})
     
+
 
 
 class Cart(str, Enum):

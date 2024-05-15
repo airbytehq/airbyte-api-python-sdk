@@ -36,6 +36,7 @@ class CustomQueriesArray:
     
 
 
+
 class CustomerStatus(str, Enum):
     r"""An enumeration."""
     UNKNOWN = 'UNKNOWN'
@@ -43,6 +44,7 @@ class CustomerStatus(str, Enum):
     CANCELED = 'CANCELED'
     SUSPENDED = 'SUSPENDED'
     CLOSED = 'CLOSED'
+
 
 class SourceGoogleAdsGoogleAds(str, Enum):
     GOOGLE_ADS = 'google-ads'

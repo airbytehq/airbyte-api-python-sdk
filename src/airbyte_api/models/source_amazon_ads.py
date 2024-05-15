@@ -8,14 +8,17 @@ from datetime import date
 from enum import Enum
 from typing import Final, List, Optional
 
+
 class SourceAmazonAdsAuthType(str, Enum):
     OAUTH2_0 = 'oauth2.0'
+
 
 class Region(str, Enum):
     r"""Region to pull data from (EU/NA/FE). See <a href=\\"https://advertising.amazon.com/API/docs/en-us/info/api-overview#api-endpoints\\">docs</a> for more details."""
     NA = 'NA'
     EU = 'EU'
     FE = 'FE'
+
 
 class ReportRecordTypes(str, Enum):
     AD_GROUPS = 'adGroups'
@@ -27,8 +30,10 @@ class ReportRecordTypes(str, Enum):
     PRODUCT_ADS = 'productAds'
     TARGETS = 'targets'
 
+
 class SourceAmazonAdsAmazonAds(str, Enum):
     AMAZON_ADS = 'amazon-ads'
+
 
 class StateFilter(str, Enum):
     ENABLED = 'enabled'

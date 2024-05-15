@@ -7,6 +7,7 @@ from dataclasses_json import Undefined, dataclass_json
 from enum import Enum
 from typing import Final, Optional, Union
 
+
 class DestinationDatabricksSchemasDataSourceType(str, Enum):
     AZURE_BLOB_STORAGE = 'AZURE_BLOB_STORAGE'
 
@@ -26,8 +27,10 @@ class DestinationDatabricksAzureBlobStorage:
     
 
 
+
 class DestinationDatabricksDataSourceType(str, Enum):
     S3_STORAGE = 'S3_STORAGE'
+
 
 class DestinationDatabricksS3BucketRegion(str, Enum):
     r"""The region of the S3 staging bucket to use if utilising a copy strategy."""
@@ -78,6 +81,7 @@ class AmazonS3:
     
 
 
+
 class DataSourceType(str, Enum):
     MANAGED_TABLES_STORAGE = 'MANAGED_TABLES_STORAGE'
 
@@ -87,6 +91,7 @@ class DataSourceType(str, Enum):
 class RecommendedManagedTables:
     DATA_SOURCE_TYPE: Final[DataSourceType] = dataclasses.field(default=DataSourceType.MANAGED_TABLES_STORAGE, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('data_source_type') }})
     
+
 
 
 class Databricks(str, Enum):

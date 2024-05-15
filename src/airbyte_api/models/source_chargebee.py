@@ -9,10 +9,12 @@ from datetime import datetime
 from enum import Enum
 from typing import Final, Optional
 
+
 class ProductCatalog(str, Enum):
     r"""Product Catalog version of your Chargebee site. Instructions on how to find your version you may find <a href=\\"https://apidocs.chargebee.com/docs/api?prod_cat_ver=2\\">here</a> under `API Version` section. If left blank, the product catalog version will be set to 2.0."""
     ONE_0 = '1.0'
     TWO_0 = '2.0'
+
 
 class Chargebee(str, Enum):
     CHARGEBEE = 'chargebee'

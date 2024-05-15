@@ -4,6 +4,10 @@
 ### Available Operations
 
 * [create_permission](#create_permission) - Create a permission
+* [delete_permission](#delete_permission) - Delete a Permission
+* [get_permission](#get_permission) - Get Permission details
+* [list_permissions](#list_permissions) - List Permissions by user id
+* [update_permission](#update_permission) - Update a permission
 
 ## create_permission
 
@@ -46,6 +50,187 @@ if res.permission_response is not None:
 ### Response
 
 **[api.CreatePermissionResponse](../../api/createpermissionresponse.md)**
+### Errors
+
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 4xx-5xx         | */*             |
+
+## delete_permission
+
+Delete a Permission
+
+### Example Usage
+
+```python
+import airbyte_api
+from airbyte_api import api, models
+
+s = airbyte_api.AirbyteAPI(
+    security=models.Security(
+        basic_auth=models.SchemeBasicAuth(
+            password="<YOUR_PASSWORD_HERE>",
+            username="<YOUR_USERNAME_HERE>",
+        ),
+    ),
+)
+
+res = s.permissions.delete_permission(request=api.DeletePermissionRequest(
+    permission_id='<value>',
+))
+
+if res is not None:
+    # handle response
+    pass
+
+```
+
+### Parameters
+
+| Parameter                                                           | Type                                                                | Required                                                            | Description                                                         |
+| ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
+| `request`                                                           | [api.DeletePermissionRequest](../../api/deletepermissionrequest.md) | :heavy_check_mark:                                                  | The request object to use for the request.                          |
+
+
+### Response
+
+**[api.DeletePermissionResponse](../../api/deletepermissionresponse.md)**
+### Errors
+
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 4xx-5xx         | */*             |
+
+## get_permission
+
+Get Permission details
+
+### Example Usage
+
+```python
+import airbyte_api
+from airbyte_api import api, models
+
+s = airbyte_api.AirbyteAPI(
+    security=models.Security(
+        basic_auth=models.SchemeBasicAuth(
+            password="<YOUR_PASSWORD_HERE>",
+            username="<YOUR_USERNAME_HERE>",
+        ),
+    ),
+)
+
+res = s.permissions.get_permission(request=api.GetPermissionRequest(
+    permission_id='<value>',
+))
+
+if res.permission_response is not None:
+    # handle response
+    pass
+
+```
+
+### Parameters
+
+| Parameter                                                     | Type                                                          | Required                                                      | Description                                                   |
+| ------------------------------------------------------------- | ------------------------------------------------------------- | ------------------------------------------------------------- | ------------------------------------------------------------- |
+| `request`                                                     | [api.GetPermissionRequest](../../api/getpermissionrequest.md) | :heavy_check_mark:                                            | The request object to use for the request.                    |
+
+
+### Response
+
+**[api.GetPermissionResponse](../../api/getpermissionresponse.md)**
+### Errors
+
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 4xx-5xx         | */*             |
+
+## list_permissions
+
+List Permissions by user id
+
+### Example Usage
+
+```python
+import airbyte_api
+from airbyte_api import api, models
+
+s = airbyte_api.AirbyteAPI(
+    security=models.Security(
+        basic_auth=models.SchemeBasicAuth(
+            password="<YOUR_PASSWORD_HERE>",
+            username="<YOUR_USERNAME_HERE>",
+        ),
+    ),
+)
+
+res = s.permissions.list_permissions(request=api.ListPermissionsRequest())
+
+if res.permissions_response is not None:
+    # handle response
+    pass
+
+```
+
+### Parameters
+
+| Parameter                                                         | Type                                                              | Required                                                          | Description                                                       |
+| ----------------------------------------------------------------- | ----------------------------------------------------------------- | ----------------------------------------------------------------- | ----------------------------------------------------------------- |
+| `request`                                                         | [api.ListPermissionsRequest](../../api/listpermissionsrequest.md) | :heavy_check_mark:                                                | The request object to use for the request.                        |
+
+
+### Response
+
+**[api.ListPermissionsResponse](../../api/listpermissionsresponse.md)**
+### Errors
+
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 4xx-5xx         | */*             |
+
+## update_permission
+
+Update a permission
+
+### Example Usage
+
+```python
+import airbyte_api
+from airbyte_api import api, models
+
+s = airbyte_api.AirbyteAPI(
+    security=models.Security(
+        basic_auth=models.SchemeBasicAuth(
+            password="<YOUR_PASSWORD_HERE>",
+            username="<YOUR_USERNAME_HERE>",
+        ),
+    ),
+)
+
+res = s.permissions.update_permission(request=api.UpdatePermissionRequest(
+    permission_update_request=models.PermissionUpdateRequest(
+        permission_type=models.PermissionType.ORGANIZATION_MEMBER,
+    ),
+    permission_id='<value>',
+))
+
+if res.permission_response is not None:
+    # handle response
+    pass
+
+```
+
+### Parameters
+
+| Parameter                                                           | Type                                                                | Required                                                            | Description                                                         |
+| ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
+| `request`                                                           | [api.UpdatePermissionRequest](../../api/updatepermissionrequest.md) | :heavy_check_mark:                                                  | The request object to use for the request.                          |
+
+
+### Response
+
+**[api.UpdatePermissionResponse](../../api/updatepermissionresponse.md)**
 ### Errors
 
 | Error Object    | Status Code     | Content Type    |

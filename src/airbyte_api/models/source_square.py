@@ -9,6 +9,7 @@ from datetime import date
 from enum import Enum
 from typing import Final, Optional, Union
 
+
 class SourceSquareSchemasAuthType(str, Enum):
     API_KEY = 'API Key'
 
@@ -20,6 +21,7 @@ class SourceSquareAPIKey:
     r"""The API key for a Square application"""
     AUTH_TYPE: Final[SourceSquareSchemasAuthType] = dataclasses.field(default=SourceSquareSchemasAuthType.API_KEY, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_type') }})
     
+
 
 
 class SourceSquareAuthType(str, Enum):
@@ -37,6 +39,7 @@ class OauthAuthentication:
     r"""A refresh token generated using the above client ID and secret"""
     AUTH_TYPE: Final[SourceSquareAuthType] = dataclasses.field(default=SourceSquareAuthType.O_AUTH, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_type') }})
     
+
 
 
 class SourceSquareSquare(str, Enum):

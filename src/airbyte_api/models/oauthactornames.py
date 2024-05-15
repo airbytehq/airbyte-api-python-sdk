@@ -3,6 +3,7 @@
 from __future__ import annotations
 from enum import Enum
 
+
 class OAuthActorNames(str, Enum):
     AIRTABLE = 'airtable'
     AMAZON_ADS = 'amazon-ads'

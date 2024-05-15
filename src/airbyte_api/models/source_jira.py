@@ -9,10 +9,12 @@ from datetime import datetime
 from enum import Enum
 from typing import Final, List, Optional
 
+
 class IssuesStreamExpandWith(str, Enum):
     RENDERED_FIELDS = 'renderedFields'
     TRANSITIONS = 'transitions'
     CHANGELOG = 'changelog'
+
 
 class Jira(str, Enum):
     JIRA = 'jira'

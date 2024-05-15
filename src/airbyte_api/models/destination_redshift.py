@@ -7,8 +7,10 @@ from dataclasses_json import Undefined, dataclass_json
 from enum import Enum
 from typing import Final, Optional, Union
 
+
 class Redshift(str, Enum):
     REDSHIFT = 'redshift'
+
 
 class DestinationRedshiftSchemasTunnelMethodTunnelMethod(str, Enum):
     r"""Connect through a jump server tunnel host using username and password authentication"""
@@ -29,6 +31,7 @@ class DestinationRedshiftPasswordAuthentication:
     tunnel_port: Optional[int] = dataclasses.field(default=22, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('tunnel_port'), 'exclude': lambda f: f is None }})
     r"""Port on the proxy/jump server that accepts inbound ssh connections."""
     
+
 
 
 class DestinationRedshiftSchemasTunnelMethod(str, Enum):
@@ -52,6 +55,7 @@ class DestinationRedshiftSSHKeyAuthentication:
     
 
 
+
 class DestinationRedshiftTunnelMethod(str, Enum):
     r"""No ssh tunnel needed to connect to database"""
     NO_TUNNEL = 'NO_TUNNEL'
@@ -65,6 +69,7 @@ class DestinationRedshiftNoTunnel:
     
 
 
+
 class DestinationRedshiftSchemasMethod(str, Enum):
     STANDARD = 'Standard'
 
@@ -75,6 +80,7 @@ class Standard:
     r"""<i>(not recommended)</i> Direct loading using SQL INSERT statements. This method is extremely inefficient and provided only for quick testing. In all other cases, you should use S3 uploading."""
     METHOD: Final[DestinationRedshiftSchemasMethod] = dataclasses.field(default=DestinationRedshiftSchemasMethod.STANDARD, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('method') }})
     
+
 
 
 class DestinationRedshiftEncryptionType(str, Enum):
@@ -91,6 +97,7 @@ class AESCBCEnvelopeEncryption:
     
 
 
+
 class EncryptionType(str, Enum):
     NONE = 'none'
 
@@ -103,8 +110,10 @@ class NoEncryption:
     
 
 
+
 class DestinationRedshiftMethod(str, Enum):
     S3_STAGING = 'S3 Staging'
+
 
 class DestinationRedshiftS3BucketRegion(str, Enum):
     r"""The region of the S3 staging bucket."""
@@ -183,6 +192,8 @@ class DestinationRedshift:
     DESTINATION_TYPE: Final[Redshift] = dataclasses.field(default=Redshift.REDSHIFT, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('destinationType') }})
     disable_type_dedupe: Optional[bool] = dataclasses.field(default=False, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('disable_type_dedupe'), 'exclude': lambda f: f is None }})
     r"""Disable Writing Final Tables. WARNING! The data format in _airbyte_data is likely stable but there are no guarantees that other metadata columns will remain the same in future versions"""
+    drop_cascade: Optional[bool] = dataclasses.field(default=False, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('drop_cascade'), 'exclude': lambda f: f is None }})
+    r"""Drop tables with CASCADE. WARNING! This will delete all data in all dependent objects (views, etc.). Use with caution. This option is intended for usecases which can easily rebuild the dependent objects."""
     jdbc_url_params: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('jdbc_url_params'), 'exclude': lambda f: f is None }})
     r"""Additional properties to pass to the JDBC URL string when connecting to the database formatted as 'key=value' pairs separated by the symbol '&'. (example: key1=value1&key2=value2&key3=value3)."""
     port: Optional[int] = dataclasses.field(default=5439, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('port'), 'exclude': lambda f: f is None }})

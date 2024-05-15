@@ -9,6 +9,7 @@ from datetime import datetime
 from enum import Enum
 from typing import Final, Optional, Union
 
+
 class SourceZendeskChatSchemasCredentials(str, Enum):
     ACCESS_TOKEN = 'access_token'
 
@@ -20,6 +21,7 @@ class SourceZendeskChatAccessToken:
     r"""The Access Token to make authenticated requests."""
     CREDENTIALS: Final[SourceZendeskChatSchemasCredentials] = dataclasses.field(default=SourceZendeskChatSchemasCredentials.ACCESS_TOKEN, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credentials') }})
     
+
 
 
 class SourceZendeskChatCredentials(str, Enum):
@@ -39,6 +41,7 @@ class SourceZendeskChatOAuth20:
     refresh_token: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('refresh_token'), 'exclude': lambda f: f is None }})
     r"""Refresh Token to obtain new Access Token, when it's expired."""
     
+
 
 
 class SourceZendeskChatZendeskChat(str, Enum):

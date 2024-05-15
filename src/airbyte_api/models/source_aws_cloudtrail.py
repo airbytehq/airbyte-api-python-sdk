@@ -9,6 +9,7 @@ from datetime import date
 from enum import Enum
 from typing import Final, Optional
 
+
 class AwsCloudtrail(str, Enum):
     AWS_CLOUDTRAIL = 'aws-cloudtrail'
 

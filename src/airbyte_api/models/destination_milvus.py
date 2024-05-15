@@ -7,8 +7,10 @@ from dataclasses_json import Undefined, dataclass_json
 from enum import Enum
 from typing import Final, List, Optional, Union
 
+
 class Milvus(str, Enum):
     MILVUS = 'milvus'
+
 
 class DestinationMilvusSchemasEmbeddingEmbedding5Mode(str, Enum):
     OPENAI_COMPATIBLE = 'openai_compatible'
@@ -29,6 +31,7 @@ class DestinationMilvusOpenAICompatible:
     
 
 
+
 class DestinationMilvusSchemasEmbeddingEmbeddingMode(str, Enum):
     AZURE_OPENAI = 'azure_openai'
 
@@ -47,6 +50,7 @@ class DestinationMilvusAzureOpenAI:
     
 
 
+
 class DestinationMilvusSchemasEmbeddingMode(str, Enum):
     FAKE = 'fake'
 
@@ -57,6 +61,7 @@ class DestinationMilvusFake:
     r"""Use a fake embedding made out of random vectors with 1536 embedding dimensions. This is useful for testing the data pipeline without incurring any costs."""
     MODE: Final[Optional[DestinationMilvusSchemasEmbeddingMode]] = dataclasses.field(default=DestinationMilvusSchemasEmbeddingMode.FAKE, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('mode'), 'exclude': lambda f: f is None }})
     
+
 
 
 class DestinationMilvusSchemasMode(str, Enum):
@@ -72,6 +77,7 @@ class DestinationMilvusCohere:
     
 
 
+
 class DestinationMilvusMode(str, Enum):
     OPENAI = 'openai'
 
@@ -85,6 +91,7 @@ class DestinationMilvusOpenAI:
     
 
 
+
 class DestinationMilvusSchemasIndexingAuthAuthenticationMode(str, Enum):
     NO_AUTH = 'no_auth'
 
@@ -95,6 +102,7 @@ class NoAuth:
     r"""Do not authenticate (suitable for locally running test clusters, do not use for clusters with public IP addresses)"""
     MODE: Final[Optional[DestinationMilvusSchemasIndexingAuthAuthenticationMode]] = dataclasses.field(default=DestinationMilvusSchemasIndexingAuthAuthenticationMode.NO_AUTH, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('mode'), 'exclude': lambda f: f is None }})
     
+
 
 
 class DestinationMilvusSchemasIndexingAuthMode(str, Enum):
@@ -111,6 +119,7 @@ class DestinationMilvusUsernamePassword:
     r"""Username for the Milvus instance"""
     MODE: Final[Optional[DestinationMilvusSchemasIndexingAuthMode]] = dataclasses.field(default=DestinationMilvusSchemasIndexingAuthMode.USERNAME_PASSWORD, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('mode'), 'exclude': lambda f: f is None }})
     
+
 
 
 class DestinationMilvusSchemasIndexingMode(str, Enum):
@@ -158,6 +167,7 @@ class DestinationMilvusFieldNameMappingConfigModel:
     
 
 
+
 class DestinationMilvusLanguage(str, Enum):
     r"""Split code in suitable places based on the programming language"""
     CPP = 'cpp'
@@ -177,6 +187,7 @@ class DestinationMilvusLanguage(str, Enum):
     HTML = 'html'
     SOL = 'sol'
 
+
 class DestinationMilvusSchemasProcessingTextSplitterTextSplitterMode(str, Enum):
     CODE = 'code'
 
@@ -191,6 +202,7 @@ class DestinationMilvusByProgrammingLanguage:
     
 
 
+
 class DestinationMilvusSchemasProcessingTextSplitterMode(str, Enum):
     MARKDOWN = 'markdown'
 
@@ -203,6 +215,7 @@ class DestinationMilvusByMarkdownHeader:
     split_level: Optional[int] = dataclasses.field(default=1, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('split_level'), 'exclude': lambda f: f is None }})
     r"""Level of markdown headers to split text fields by. Headings down to the specified level will be used as split points"""
     
+
 
 
 class DestinationMilvusSchemasProcessingMode(str, Enum):

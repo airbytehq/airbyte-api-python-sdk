@@ -7,8 +7,10 @@ from dataclasses_json import Undefined, dataclass_json
 from enum import Enum
 from typing import Final, Optional, Union
 
+
 class Yellowbrick(str, Enum):
     YELLOWBRICK = 'yellowbrick'
+
 
 class DestinationYellowbrickSchemasSSLModeSSLModes6Mode(str, Enum):
     VERIFY_FULL = 'verify-full'
@@ -30,6 +32,7 @@ class DestinationYellowbrickVerifyFull:
     
 
 
+
 class DestinationYellowbrickSchemasSSLModeSSLModes5Mode(str, Enum):
     VERIFY_CA = 'verify-ca'
 
@@ -46,6 +49,7 @@ class DestinationYellowbrickVerifyCa:
     
 
 
+
 class DestinationYellowbrickSchemasSSLModeSSLModesMode(str, Enum):
     REQUIRE = 'require'
 
@@ -56,6 +60,7 @@ class DestinationYellowbrickRequire:
     r"""Require SSL mode."""
     MODE: Final[Optional[DestinationYellowbrickSchemasSSLModeSSLModesMode]] = dataclasses.field(default=DestinationYellowbrickSchemasSSLModeSSLModesMode.REQUIRE, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('mode'), 'exclude': lambda f: f is None }})
     
+
 
 
 class DestinationYellowbrickSchemasSslModeMode(str, Enum):
@@ -70,6 +75,7 @@ class DestinationYellowbrickPrefer:
     
 
 
+
 class DestinationYellowbrickSchemasMode(str, Enum):
     ALLOW = 'allow'
 
@@ -82,6 +88,7 @@ class DestinationYellowbrickAllow:
     
 
 
+
 class DestinationYellowbrickMode(str, Enum):
     DISABLE = 'disable'
 
@@ -92,6 +99,7 @@ class DestinationYellowbrickDisable:
     r"""Disable SSL."""
     MODE: Final[Optional[DestinationYellowbrickMode]] = dataclasses.field(default=DestinationYellowbrickMode.DISABLE, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('mode'), 'exclude': lambda f: f is None }})
     
+
 
 
 class DestinationYellowbrickSchemasTunnelMethodTunnelMethod(str, Enum):
@@ -115,6 +123,7 @@ class DestinationYellowbrickPasswordAuthentication:
     
 
 
+
 class DestinationYellowbrickSchemasTunnelMethod(str, Enum):
     r"""Connect through a jump server tunnel host using username and ssh key"""
     SSH_KEY_AUTH = 'SSH_KEY_AUTH'
@@ -134,6 +143,7 @@ class DestinationYellowbrickSSHKeyAuthentication:
     tunnel_port: Optional[int] = dataclasses.field(default=22, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('tunnel_port'), 'exclude': lambda f: f is None }})
     r"""Port on the proxy/jump server that accepts inbound ssh connections."""
     
+
 
 
 class DestinationYellowbrickTunnelMethod(str, Enum):

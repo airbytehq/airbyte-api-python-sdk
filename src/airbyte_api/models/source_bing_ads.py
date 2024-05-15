@@ -8,6 +8,7 @@ from datetime import date
 from enum import Enum
 from typing import Final, List, Optional
 
+
 class Operator(str, Enum):
     r"""An Operator that will be used to filter accounts. The Contains predicate has features for matching words, matching inflectional forms of words, searching using wildcard characters, and searching using proximity. The Equals is used to return all rows where account name is equal(=) to the string that you provided"""
     CONTAINS = 'Contains'
@@ -25,8 +26,10 @@ class AccountNames:
     
 
 
+
 class AuthMethod(str, Enum):
     OAUTH2_0 = 'oauth2.0'
+
 
 class ReportingDataObject(str, Enum):
     r"""The name of the the object derives from the ReportRequest object. You can find it in Bing Ads Api docs - Reporting API - Reporting Data Objects."""
@@ -78,6 +81,7 @@ class CustomReportConfig:
     report_aggregation: Optional[str] = dataclasses.field(default='[Hourly]', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('report_aggregation'), 'exclude': lambda f: f is None }})
     r"""A list of available aggregations."""
     
+
 
 
 class SourceBingAdsBingAds(str, Enum):

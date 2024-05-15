@@ -3,6 +3,7 @@
 from __future__ import annotations
 from enum import Enum
 
+
 class ActorTypeEnum(str, Enum):
     r"""Whether you're setting this override for a source or destination"""
     SOURCE = 'source'

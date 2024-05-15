@@ -7,6 +7,7 @@ from dataclasses_json import Undefined, dataclass_json
 from enum import Enum
 from typing import Any, Dict, Final, Optional, Union
 
+
 class SourceE2eTestCloudType(str, Enum):
     MULTI_STREAM = 'MULTI_STREAM'
 
@@ -19,6 +20,7 @@ class MultiSchema:
     r"""A Json object specifying multiple data streams and their schemas. Each key in this object is one stream name. Each value is the schema for that stream. The schema should be compatible with <a href=\\"https://json-schema.org/draft-07/json-schema-release-notes.html\\">draft-07</a>. See <a href=\\"https://cswr.github.io/JsonSchema/spec/introduction/\\">this doc</a> for examples."""
     TYPE: Final[Optional[SourceE2eTestCloudType]] = dataclasses.field(default=SourceE2eTestCloudType.MULTI_STREAM, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('type'), 'exclude': lambda f: f is None }})
     
+
 
 
 class SourceE2eTestCloudSchemasType(str, Enum):
@@ -39,8 +41,10 @@ class SingleSchema:
     
 
 
+
 class E2eTestCloud(str, Enum):
     E2E_TEST_CLOUD = 'e2e-test-cloud'
+
 
 class Type(str, Enum):
     CONTINUOUS_FEED = 'CONTINUOUS_FEED'

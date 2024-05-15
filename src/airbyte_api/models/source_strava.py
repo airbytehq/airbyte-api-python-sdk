@@ -9,8 +9,10 @@ from datetime import datetime
 from enum import Enum
 from typing import Final, Optional
 
+
 class SourceStravaAuthType(str, Enum):
     CLIENT = 'Client'
+
 
 class SourceStravaStrava(str, Enum):
     STRAVA = 'strava'

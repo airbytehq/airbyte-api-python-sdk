@@ -7,6 +7,7 @@ from dataclasses_json import Undefined, dataclass_json
 from enum import Enum
 from typing import Final, List, Optional, Union
 
+
 class SourceMssqlSchemasMethod(str, Enum):
     STANDARD = 'STANDARD'
 
@@ -19,10 +20,12 @@ class ScanChangesWithUserDefinedCursor:
     
 
 
+
 class SourceMssqlInvalidCDCPositionBehaviorAdvanced(str, Enum):
     r"""Determines whether Airbyte should fail or re-sync data in case of an stale/invalid cursor value into the WAL. If 'Fail sync' is chosen, a user will have to manually reset the connection before being able to continue syncing data. If 'Re-sync data' is chosen, Airbyte will automatically trigger a refresh but could lead to higher cloud costs and data loss."""
     FAIL_SYNC = 'Fail sync'
     RE_SYNC_DATA = 'Re-sync data'
+
 
 class SourceMssqlMethod(str, Enum):
     CDC = 'CDC'
@@ -42,8 +45,10 @@ class ReadChangesUsingChangeDataCaptureCDC:
     
 
 
+
 class SourceMssqlMssql(str, Enum):
     MSSQL = 'mssql'
+
 
 class SourceMssqlSchemasSSLMethodSSLMethodSSLMethod(str, Enum):
     ENCRYPTED_VERIFY_CERTIFICATE = 'encrypted_verify_certificate'
@@ -61,6 +66,7 @@ class SourceMssqlEncryptedVerifyCertificate:
     
 
 
+
 class SourceMssqlSchemasSslMethodSslMethod(str, Enum):
     ENCRYPTED_TRUST_SERVER_CERTIFICATE = 'encrypted_trust_server_certificate'
 
@@ -73,6 +79,7 @@ class SourceMssqlEncryptedTrustServerCertificate:
     
 
 
+
 class SourceMssqlSchemasSslMethod(str, Enum):
     UNENCRYPTED = 'unencrypted'
 
@@ -83,6 +90,7 @@ class Unencrypted:
     r"""Data transfer will not be encrypted."""
     SSL_METHOD: Final[SourceMssqlSchemasSslMethod] = dataclasses.field(default=SourceMssqlSchemasSslMethod.UNENCRYPTED, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('ssl_method') }})
     
+
 
 
 class SourceMssqlSchemasTunnelMethodTunnelMethod(str, Enum):
@@ -106,6 +114,7 @@ class SourceMssqlPasswordAuthentication:
     
 
 
+
 class SourceMssqlSchemasTunnelMethod(str, Enum):
     r"""Connect through a jump server tunnel host using username and ssh key"""
     SSH_KEY_AUTH = 'SSH_KEY_AUTH'
@@ -125,6 +134,7 @@ class SourceMssqlSSHKeyAuthentication:
     tunnel_port: Optional[int] = dataclasses.field(default=22, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('tunnel_port'), 'exclude': lambda f: f is None }})
     r"""Port on the proxy/jump server that accepts inbound ssh connections."""
     
+
 
 
 class SourceMssqlTunnelMethod(str, Enum):

@@ -7,6 +7,7 @@ from dataclasses_json import Undefined, dataclass_json
 from enum import Enum
 from typing import Final
 
+
 class GainsightPx(str, Enum):
     GAINSIGHT_PX = 'gainsight-px'
 

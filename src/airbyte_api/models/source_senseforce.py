@@ -8,6 +8,7 @@ from datetime import date
 from enum import Enum
 from typing import Final, Optional
 
+
 class Senseforce(str, Enum):
     SENSEFORCE = 'senseforce'
 

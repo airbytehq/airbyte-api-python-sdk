@@ -9,11 +9,14 @@ from datetime import datetime
 from enum import Enum
 from typing import Final, List, Optional
 
+
 class AuthType(str, Enum):
     CLIENT = 'Client'
 
+
 class SourceSalesforceSalesforce(str, Enum):
     SALESFORCE = 'salesforce'
+
 
 class SearchCriteria(str, Enum):
     STARTS_WITH = 'starts with'

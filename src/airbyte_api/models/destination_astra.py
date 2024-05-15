@@ -7,8 +7,10 @@ from dataclasses_json import Undefined, dataclass_json
 from enum import Enum
 from typing import Final, List, Optional, Union
 
+
 class Astra(str, Enum):
     ASTRA = 'astra'
+
 
 class DestinationAstraSchemasEmbeddingEmbeddingMode(str, Enum):
     OPENAI_COMPATIBLE = 'openai_compatible'
@@ -29,6 +31,7 @@ class OpenAICompatible:
     
 
 
+
 class DestinationAstraSchemasEmbeddingMode(str, Enum):
     AZURE_OPENAI = 'azure_openai'
 
@@ -47,6 +50,7 @@ class AzureOpenAI:
     
 
 
+
 class DestinationAstraSchemasMode(str, Enum):
     FAKE = 'fake'
 
@@ -57,6 +61,7 @@ class Fake:
     r"""Use a fake embedding made out of random vectors with 1536 embedding dimensions. This is useful for testing the data pipeline without incurring any costs."""
     MODE: Final[Optional[DestinationAstraSchemasMode]] = dataclasses.field(default=DestinationAstraSchemasMode.FAKE, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('mode'), 'exclude': lambda f: f is None }})
     
+
 
 
 class DestinationAstraMode(str, Enum):
@@ -70,6 +75,7 @@ class Cohere:
     cohere_key: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('cohere_key') }})
     MODE: Final[Optional[DestinationAstraMode]] = dataclasses.field(default=DestinationAstraMode.COHERE, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('mode'), 'exclude': lambda f: f is None }})
     
+
 
 
 class DestinationAstraSchemasEmbeddingEmbedding1Mode(str, Enum):
@@ -112,6 +118,7 @@ class FieldNameMappingConfigModel:
     
 
 
+
 class DestinationAstraLanguage(str, Enum):
     r"""Split code in suitable places based on the programming language"""
     CPP = 'cpp'
@@ -131,6 +138,7 @@ class DestinationAstraLanguage(str, Enum):
     HTML = 'html'
     SOL = 'sol'
 
+
 class DestinationAstraSchemasProcessingTextSplitterTextSplitterMode(str, Enum):
     CODE = 'code'
 
@@ -145,6 +153,7 @@ class ByProgrammingLanguage:
     
 
 
+
 class DestinationAstraSchemasProcessingTextSplitterMode(str, Enum):
     MARKDOWN = 'markdown'
 
@@ -157,6 +166,7 @@ class ByMarkdownHeader:
     split_level: Optional[int] = dataclasses.field(default=1, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('split_level'), 'exclude': lambda f: f is None }})
     r"""Level of markdown headers to split text fields by. Headings down to the specified level will be used as split points"""
     
+
 
 
 class DestinationAstraSchemasProcessingMode(str, Enum):

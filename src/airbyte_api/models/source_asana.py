@@ -7,6 +7,7 @@ from dataclasses_json import Undefined, dataclass_json
 from enum import Enum
 from typing import Any, Final, List, Optional, Union
 
+
 class SourceAsanaSchemasCredentialsTitle(str, Enum):
     r"""PAT Credentials"""
     PAT_CREDENTIALS = 'PAT Credentials'
@@ -20,6 +21,7 @@ class AuthenticateWithPersonalAccessToken:
     OPTION_TITLE: Final[Optional[SourceAsanaSchemasCredentialsTitle]] = dataclasses.field(default=SourceAsanaSchemasCredentialsTitle.PAT_CREDENTIALS, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('option_title'), 'exclude': lambda f: f is None }})
     r"""PAT Credentials"""
     
+
 
 
 class SourceAsanaCredentialsTitle(str, Enum):
@@ -36,6 +38,7 @@ class AuthenticateViaAsanaOauth:
     OPTION_TITLE: Final[Optional[SourceAsanaCredentialsTitle]] = dataclasses.field(default=SourceAsanaCredentialsTitle.O_AUTH_CREDENTIALS, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('option_title'), 'exclude': lambda f: f is None }})
     r"""OAuth Credentials"""
     
+
 
 
 class SourceAsanaAsana(str, Enum):

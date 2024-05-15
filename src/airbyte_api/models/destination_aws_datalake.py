@@ -7,6 +7,7 @@ from dataclasses_json import Undefined, dataclass_json
 from enum import Enum
 from typing import Final, Optional, Union
 
+
 class DestinationAwsDatalakeCredentialsTitle(str, Enum):
     r"""Name of the credentials"""
     IAM_USER = 'IAM User'
@@ -24,6 +25,7 @@ class IAMUser:
     
 
 
+
 class CredentialsTitle(str, Enum):
     r"""Name of the credentials"""
     IAM_ROLE = 'IAM Role'
@@ -39,8 +41,10 @@ class IAMRole:
     
 
 
+
 class AwsDatalake(str, Enum):
     AWS_DATALAKE = 'aws-datalake'
+
 
 class DestinationAwsDatalakeCompressionCodecOptional(str, Enum):
     r"""The compression algorithm used to compress data."""
@@ -48,6 +52,7 @@ class DestinationAwsDatalakeCompressionCodecOptional(str, Enum):
     SNAPPY = 'SNAPPY'
     GZIP = 'GZIP'
     ZSTD = 'ZSTD'
+
 
 class DestinationAwsDatalakeFormatTypeWildcard(str, Enum):
     PARQUET = 'Parquet'
@@ -62,10 +67,12 @@ class ParquetColumnarStorage:
     
 
 
+
 class CompressionCodecOptional(str, Enum):
     r"""The compression algorithm used to compress data."""
     UNCOMPRESSED = 'UNCOMPRESSED'
     GZIP = 'GZIP'
+
 
 class FormatTypeWildcard(str, Enum):
     JSONL = 'JSONL'
@@ -80,6 +87,7 @@ class JSONLinesNewlineDelimitedJSON:
     
 
 
+
 class ChooseHowToPartitionData(str, Enum):
     r"""Partition data by cursor fields when a cursor field is a date"""
     NO_PARTITIONING = 'NO PARTITIONING'
@@ -89,6 +97,7 @@ class ChooseHowToPartitionData(str, Enum):
     DAY = 'DAY'
     YEAR_MONTH = 'YEAR/MONTH'
     YEAR_MONTH_DAY = 'YEAR/MONTH/DAY'
+
 
 class S3BucketRegion(str, Enum):
     r"""The region of the S3 bucket. See <a href=\\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-regions-availability-zones.html#concepts-available-regions\\">here</a> for all region codes."""

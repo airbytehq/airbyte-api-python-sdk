@@ -9,6 +9,7 @@ from datetime import date
 from enum import Enum
 from typing import Final, Optional, Union
 
+
 class SourceTiktokMarketingSchemasAuthType(str, Enum):
     SANDBOX_ACCESS_TOKEN = 'sandbox_access_token'
 
@@ -22,6 +23,7 @@ class SandboxAccessToken:
     r"""The Advertiser ID which generated for the developer's Sandbox application."""
     AUTH_TYPE: Final[Optional[SourceTiktokMarketingSchemasAuthType]] = dataclasses.field(default=SourceTiktokMarketingSchemasAuthType.SANDBOX_ACCESS_TOKEN, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_type'), 'exclude': lambda f: f is None }})
     
+
 
 
 class SourceTiktokMarketingAuthType(str, Enum):
@@ -41,6 +43,7 @@ class SourceTiktokMarketingOAuth20:
     r"""The Advertiser ID to filter reports and streams. Let this empty to retrieve all."""
     AUTH_TYPE: Final[Optional[SourceTiktokMarketingAuthType]] = dataclasses.field(default=SourceTiktokMarketingAuthType.OAUTH2_0, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_type'), 'exclude': lambda f: f is None }})
     
+
 
 
 class SourceTiktokMarketingTiktokMarketing(str, Enum):

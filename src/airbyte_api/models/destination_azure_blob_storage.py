@@ -7,8 +7,10 @@ from dataclasses_json import Undefined, dataclass_json
 from enum import Enum
 from typing import Final, Optional, Union
 
+
 class DestinationAzureBlobStorageAzureBlobStorage(str, Enum):
     AZURE_BLOB_STORAGE = 'azure-blob-storage'
+
 
 class DestinationAzureBlobStorageFormatType(str, Enum):
     JSONL = 'JSONL'
@@ -21,10 +23,12 @@ class DestinationAzureBlobStorageJSONLinesNewlineDelimitedJSON:
     
 
 
+
 class NormalizationFlattening(str, Enum):
     r"""Whether the input json data should be normalized (flattened) in the output CSV. Please refer to docs for details."""
     NO_FLATTENING = 'No flattening'
     ROOT_LEVEL_FLATTENING = 'Root level flattening'
+
 
 class FormatType(str, Enum):
     CSV = 'CSV'

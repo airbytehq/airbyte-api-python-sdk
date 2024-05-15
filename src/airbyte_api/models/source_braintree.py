@@ -9,12 +9,14 @@ from datetime import datetime
 from enum import Enum
 from typing import Final, Optional
 
+
 class SourceBraintreeEnvironment(str, Enum):
     r"""Environment specifies where the data will come from."""
     DEVELOPMENT = 'Development'
     SANDBOX = 'Sandbox'
     QA = 'Qa'
     PRODUCTION = 'Production'
+
 
 class Braintree(str, Enum):
     BRAINTREE = 'braintree'

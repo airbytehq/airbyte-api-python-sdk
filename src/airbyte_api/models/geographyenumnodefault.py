@@ -3,6 +3,7 @@
 from __future__ import annotations
 from enum import Enum
 
+
 class GeographyEnumNoDefault(str, Enum):
     AUTO = 'auto'
     US = 'us'

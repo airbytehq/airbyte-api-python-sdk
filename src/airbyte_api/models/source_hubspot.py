@@ -9,6 +9,7 @@ from datetime import datetime
 from enum import Enum
 from typing import Final, Optional, Union
 
+
 class SourceHubspotSchemasAuthType(str, Enum):
     r"""Name of the credentials set"""
     PRIVATE_APP_CREDENTIALS = 'Private App Credentials'
@@ -22,6 +23,7 @@ class PrivateApp:
     CREDENTIALS_TITLE: Final[SourceHubspotSchemasAuthType] = dataclasses.field(default=SourceHubspotSchemasAuthType.PRIVATE_APP_CREDENTIALS, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credentials_title') }})
     r"""Name of the credentials set"""
     
+
 
 
 class SourceHubspotAuthType(str, Enum):
@@ -41,6 +43,7 @@ class SourceHubspotOAuth:
     CREDENTIALS_TITLE: Final[SourceHubspotAuthType] = dataclasses.field(default=SourceHubspotAuthType.O_AUTH_CREDENTIALS, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credentials_title') }})
     r"""Name of the credentials"""
     
+
 
 
 class SourceHubspotHubspot(str, Enum):

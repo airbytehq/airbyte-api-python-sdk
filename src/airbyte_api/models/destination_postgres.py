@@ -7,8 +7,10 @@ from dataclasses_json import Undefined, dataclass_json
 from enum import Enum
 from typing import Final, Optional, Union
 
+
 class Postgres(str, Enum):
     POSTGRES = 'postgres'
+
 
 class DestinationPostgresSchemasSSLModeSSLModes6Mode(str, Enum):
     VERIFY_FULL = 'verify-full'
@@ -30,6 +32,7 @@ class VerifyFull:
     
 
 
+
 class DestinationPostgresSchemasSSLModeSSLModesMode(str, Enum):
     VERIFY_CA = 'verify-ca'
 
@@ -46,6 +49,7 @@ class VerifyCa:
     
 
 
+
 class DestinationPostgresSchemasSslModeMode(str, Enum):
     REQUIRE = 'require'
 
@@ -56,6 +60,7 @@ class Require:
     r"""Require SSL mode."""
     MODE: Final[Optional[DestinationPostgresSchemasSslModeMode]] = dataclasses.field(default=DestinationPostgresSchemasSslModeMode.REQUIRE, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('mode'), 'exclude': lambda f: f is None }})
     
+
 
 
 class DestinationPostgresSchemasMode(str, Enum):
@@ -70,6 +75,7 @@ class Prefer:
     
 
 
+
 class DestinationPostgresMode(str, Enum):
     ALLOW = 'allow'
 
@@ -82,6 +88,7 @@ class Allow:
     
 
 
+
 class Mode(str, Enum):
     DISABLE = 'disable'
 
@@ -92,6 +99,7 @@ class Disable:
     r"""Disable SSL."""
     MODE: Final[Optional[Mode]] = dataclasses.field(default=Mode.DISABLE, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('mode'), 'exclude': lambda f: f is None }})
     
+
 
 
 class DestinationPostgresSchemasTunnelMethodTunnelMethod(str, Enum):
@@ -115,6 +123,7 @@ class DestinationPostgresPasswordAuthentication:
     
 
 
+
 class DestinationPostgresSchemasTunnelMethod(str, Enum):
     r"""Connect through a jump server tunnel host using username and ssh key"""
     SSH_KEY_AUTH = 'SSH_KEY_AUTH'
@@ -134,6 +143,7 @@ class DestinationPostgresSSHKeyAuthentication:
     tunnel_port: Optional[int] = dataclasses.field(default=22, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('tunnel_port'), 'exclude': lambda f: f is None }})
     r"""Port on the proxy/jump server that accepts inbound ssh connections."""
     
+
 
 
 class DestinationPostgresTunnelMethod(str, Enum):

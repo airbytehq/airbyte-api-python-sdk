@@ -7,8 +7,10 @@ from dataclasses_json import Undefined, dataclass_json
 from enum import Enum
 from typing import Final, Optional, Union
 
+
 class DevNull(str, Enum):
     DEV_NULL = 'dev-null'
+
 
 class TestDestinationType(str, Enum):
     SILENT = 'SILENT'

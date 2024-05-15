@@ -3,6 +3,7 @@
 from __future__ import annotations
 from enum import Enum
 
+
 class NamespaceDefinitionEnumNoDefault(str, Enum):
     r"""Define the location where the data will be stored in the destination"""
     SOURCE = 'source'

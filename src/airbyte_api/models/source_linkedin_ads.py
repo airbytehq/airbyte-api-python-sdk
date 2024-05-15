@@ -8,6 +8,7 @@ from datetime import date
 from enum import Enum
 from typing import Final, List, Optional, Union
 
+
 class PivotCategory(str, Enum):
     r"""Choose a category to pivot your analytics report around. This selection will organize your data based on the chosen attribute, allowing you to analyze trends and performance from different perspectives."""
     COMPANY = 'COMPANY'
@@ -32,6 +33,7 @@ class PivotCategory(str, Enum):
     PLACEMENT_NAME = 'PLACEMENT_NAME'
     IMPRESSION_DEVICE_TYPE = 'IMPRESSION_DEVICE_TYPE'
 
+
 class TimeGranularity(str, Enum):
     r"""Choose how to group the data in your report by time. The options are:<br>- 'ALL': A single result summarizing the entire time range.<br>- 'DAILY': Group results by each day.<br>- 'MONTHLY': Group results by each month.<br>- 'YEARLY': Group results by each year.<br>Selecting a time grouping helps you analyze trends and patterns over different time periods."""
     ALL = 'ALL'
@@ -53,6 +55,7 @@ class AdAnalyticsReportConfiguration:
     
 
 
+
 class SourceLinkedinAdsSchemasAuthMethod(str, Enum):
     ACCESS_TOKEN = 'access_token'
 
@@ -64,6 +67,7 @@ class AccessToken:
     r"""The access token generated for your developer application. Refer to our <a href='https://docs.airbyte.com/integrations/sources/linkedin-ads#setup-guide'>documentation</a> for more information."""
     AUTH_METHOD: Final[Optional[SourceLinkedinAdsSchemasAuthMethod]] = dataclasses.field(default=SourceLinkedinAdsSchemasAuthMethod.ACCESS_TOKEN, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_method'), 'exclude': lambda f: f is None }})
     
+
 
 
 class SourceLinkedinAdsAuthMethod(str, Enum):
@@ -81,6 +85,7 @@ class SourceLinkedinAdsOAuth20:
     r"""The key to refresh the expired access token. Refer to our <a href='https://docs.airbyte.com/integrations/sources/linkedin-ads#setup-guide'>documentation</a> for more information."""
     AUTH_METHOD: Final[Optional[SourceLinkedinAdsAuthMethod]] = dataclasses.field(default=SourceLinkedinAdsAuthMethod.O_AUTH2_0, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_method'), 'exclude': lambda f: f is None }})
     
+
 
 
 class SourceLinkedinAdsLinkedinAds(str, Enum):

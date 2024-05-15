@@ -9,18 +9,22 @@ from datetime import datetime
 from enum import Enum
 from typing import Final, List, Optional
 
+
 class AWSSellerPartnerAccountType(str, Enum):
     r"""Type of the Account you're going to authorize the Airbyte application by"""
     SELLER = 'Seller'
     VENDOR = 'Vendor'
 
+
 class SourceAmazonSellerPartnerAuthType(str, Enum):
     OAUTH2_0 = 'oauth2.0'
+
 
 class AWSEnvironment(str, Enum):
     r"""Select the AWS Environment."""
     PRODUCTION = 'PRODUCTION'
     SANDBOX = 'SANDBOX'
+
 
 class AWSRegion(str, Enum):
     r"""Select the AWS Region."""
@@ -54,6 +58,7 @@ class OptionsList:
     option_name: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('option_name') }})
     option_value: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('option_value') }})
     
+
 
 
 class StreamName(str, Enum):
@@ -102,6 +107,7 @@ class ReportOptions:
     r"""List of options"""
     stream_name: StreamName = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('stream_name') }})
     
+
 
 
 class SourceAmazonSellerPartnerAmazonSellerPartner(str, Enum):

@@ -7,6 +7,7 @@ from dataclasses_json import Undefined, dataclass_json
 from enum import Enum
 from typing import Final, Optional, Union
 
+
 class SourceMondaySchemasAuthType(str, Enum):
     API_TOKEN = 'api_token'
 
@@ -18,6 +19,7 @@ class APIToken:
     r"""API Token for making authenticated requests."""
     AUTH_TYPE: Final[SourceMondaySchemasAuthType] = dataclasses.field(default=SourceMondaySchemasAuthType.API_TOKEN, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_type') }})
     
+
 
 
 class SourceMondayAuthType(str, Enum):
@@ -37,6 +39,7 @@ class SourceMondayOAuth20:
     subdomain: Optional[str] = dataclasses.field(default='', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('subdomain'), 'exclude': lambda f: f is None }})
     r"""Slug/subdomain of the account, or the first part of the URL that comes before .monday.com"""
     
+
 
 
 class SourceMondayMonday(str, Enum):

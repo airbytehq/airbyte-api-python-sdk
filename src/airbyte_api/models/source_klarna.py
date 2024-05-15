@@ -7,11 +7,13 @@ from dataclasses_json import Undefined, dataclass_json
 from enum import Enum
 from typing import Final, Optional
 
+
 class SourceKlarnaRegion(str, Enum):
     r"""Base url region (For playground eu https://docs.klarna.com/klarna-payments/api/payments-api/#tag/API-URLs). Supported 'eu', 'us', 'oc'"""
     EU = 'eu'
     US = 'us'
     OC = 'oc'
+
 
 class Klarna(str, Enum):
     KLARNA = 'klarna'

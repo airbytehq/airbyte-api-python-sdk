@@ -7,6 +7,7 @@ from dataclasses_json import Undefined, dataclass_json
 from enum import Enum
 from typing import Final, List, Optional
 
+
 class Categories(str, Enum):
     ACCESSIBILITY = 'accessibility'
     BEST_PRACTICES = 'best-practices'
@@ -14,8 +15,10 @@ class Categories(str, Enum):
     PWA = 'pwa'
     SEO = 'seo'
 
+
 class GooglePagespeedInsights(str, Enum):
     GOOGLE_PAGESPEED_INSIGHTS = 'google-pagespeed-insights'
+
 
 class Strategies(str, Enum):
     DESKTOP = 'desktop'
