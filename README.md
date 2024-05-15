@@ -71,6 +71,7 @@ if res.connection_response is not None:
 * [create_destination](docs/sdks/public/README.md#create_destination) - Create a destination
 * [create_job](docs/sdks/public/README.md#create_job) - Trigger a sync or reset job of a connection
 * [create_or_update_workspace_o_auth_credentials](docs/sdks/public/README.md#create_or_update_workspace_o_auth_credentials) - Create OAuth override credentials for a workspace and source type.
+* [create_permission](docs/sdks/public/README.md#create_permission) - Create a permission
 * [create_source](docs/sdks/public/README.md#create_source) - Create a source
 * [create_workspace](docs/sdks/public/README.md#create_workspace) - Create a workspace
 * [delete_connection](docs/sdks/public/README.md#delete_connection) - Delete a Connection
@@ -135,6 +136,14 @@ if res.connection_response is not None:
 * [create_job](docs/sdks/jobs/README.md#create_job) - Trigger a sync or reset job of a connection
 * [get_job](docs/sdks/jobs/README.md#get_job) - Get Job status and details
 * [list_jobs](docs/sdks/jobs/README.md#list_jobs) - List Jobs by sync type
+
+### [public_permissions](docs/sdks/publicpermissions/README.md)
+
+* [create_permission](docs/sdks/publicpermissions/README.md#create_permission) - Create a permission
+
+### [permissions](docs/sdks/permissions/README.md)
+
+* [create_permission](docs/sdks/permissions/README.md#create_permission) - Create a permission
 
 ### [public_sources](docs/sdks/publicsources/README.md)
 

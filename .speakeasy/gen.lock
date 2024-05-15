@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 07961597-3730-4940-9fd0-35eb4118eab3
 management:
-  docChecksum: 7cdaac2367e7b50dfb925372c2676292
+  docChecksum: ab106dd2601bf059efdd48ec5506ba14
   docVersion: 1.0.0
-  speakeasyVersion: 1.286.3
-  generationVersion: 2.329.0
-  releaseVersion: 0.49.3
-  configChecksum: a0b48f0835859d47a081e7a74aa38c66
+  speakeasyVersion: 1.289.0
+  generationVersion: 2.331.0
+  releaseVersion: 0.49.4
+  configChecksum: 3ab75753027013306c692a8ac7dd20ae
   repoURL: https://github.com/airbytehq/airbyte-api-python-sdk.git
   repoSubDirectory: .
   installationURL: https://github.com/airbytehq/airbyte-api-python-sdk.git
@@ -33,6 +33,8 @@ generatedFiles:
   - src/airbyte_api/destinations.py
   - src/airbyte_api/public_jobs.py
   - src/airbyte_api/jobs.py
+  - src/airbyte_api/public_permissions.py
+  - src/airbyte_api/permissions.py
   - src/airbyte_api/public_sources.py
   - src/airbyte_api/sources.py
   - src/airbyte_api/public_streams.py
@@ -57,6 +59,7 @@ generatedFiles:
   - src/airbyte_api/api/createdestination.py
   - src/airbyte_api/api/createjob.py
   - src/airbyte_api/api/createorupdateworkspaceoauthcredentials.py
+  - src/airbyte_api/api/createpermission.py
   - src/airbyte_api/api/createsource.py
   - src/airbyte_api/api/createworkspace.py
   - src/airbyte_api/api/deletedestination.py
@@ -182,6 +185,9 @@ generatedFiles:
   - src/airbyte_api/models/zendesk_support.py
   - src/airbyte_api/models/zendesk_talk.py
   - src/airbyte_api/models/actortypeenum.py
+  - src/airbyte_api/models/permissionresponse.py
+  - src/airbyte_api/models/permissiontype.py
+  - src/airbyte_api/models/permissioncreaterequest.py
   - src/airbyte_api/models/sourceresponse.py
   - src/airbyte_api/models/source_aha.py
   - src/airbyte_api/models/source_aircall.py
@@ -411,6 +417,7 @@ generatedFiles:
   - docs/api/createjobresponse.md
   - docs/api/createorupdateworkspaceoauthcredentialsrequest.md
   - docs/api/createorupdateworkspaceoauthcredentialsresponse.md
+  - docs/api/createpermissionresponse.md
   - docs/api/createsourceresponse.md
   - docs/api/createworkspaceresponse.md
   - docs/api/deletedestinationrequest.md
@@ -1051,6 +1058,9 @@ generatedFiles:
   - docs/models/zendesktalkcredentials.md
   - docs/models/zendesktalk.md
   - docs/models/actortypeenum.md
+  - docs/models/permissionresponse.md
+  - docs/models/permissiontype.md
+  - docs/models/permissioncreaterequest.md
   - docs/models/sourceresponse.md
   - docs/models/sourceconfiguration.md
   - docs/models/aha.md
@@ -2331,6 +2341,8 @@ generatedFiles:
   - docs/sdks/destinations/README.md
   - docs/sdks/publicjobs/README.md
   - docs/sdks/jobs/README.md
+  - docs/sdks/publicpermissions/README.md
+  - docs/sdks/permissions/README.md
   - docs/sdks/publicsources/README.md
   - docs/sdks/sources/README.md
   - docs/sdks/publicstreams/README.md
