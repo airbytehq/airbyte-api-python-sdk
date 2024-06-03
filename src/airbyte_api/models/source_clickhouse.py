@@ -69,6 +69,8 @@ class SourceClickhouseNoTunnel:
     
 
 
+SourceClickhouseSSHTunnelMethod = Union['SourceClickhouseNoTunnel', 'SourceClickhouseSSHKeyAuthentication', 'SourceClickhousePasswordAuthentication']
+
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
@@ -86,7 +88,7 @@ class SourceClickhouse:
     port: Optional[int] = dataclasses.field(default=8123, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('port'), 'exclude': lambda f: f is None }})
     r"""The port of the database."""
     SOURCE_TYPE: Final[SourceClickhouseClickhouse] = dataclasses.field(default=SourceClickhouseClickhouse.CLICKHOUSE, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
-    tunnel_method: Optional[Union[SourceClickhouseNoTunnel, SourceClickhouseSSHKeyAuthentication, SourceClickhousePasswordAuthentication]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('tunnel_method'), 'exclude': lambda f: f is None }})
+    tunnel_method: Optional[SourceClickhouseSSHTunnelMethod] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('tunnel_method'), 'exclude': lambda f: f is None }})
     r"""Whether to initiate an SSH tunnel before connecting to the database, and if so, which kind of authentication to use."""
     
 

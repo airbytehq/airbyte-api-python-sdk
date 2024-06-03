@@ -31,6 +31,8 @@ class EUBasedAccount:
     
 
 
+BaseURL = Union['EUBasedAccount', 'GlobalAccount']
+
 
 class SurveySparrow(str, Enum):
     SURVEY_SPARROW = 'survey-sparrow'
@@ -41,7 +43,7 @@ class SurveySparrow(str, Enum):
 class SourceSurveySparrow:
     access_token: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('access_token') }})
     r"""Your access token. See <a href=\\"https://developers.surveysparrow.com/rest-apis#authentication\\">here</a>. The key is case sensitive."""
-    region: Optional[Union[EUBasedAccount, GlobalAccount]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('region'), 'exclude': lambda f: f is None }})
+    region: Optional[BaseURL] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('region'), 'exclude': lambda f: f is None }})
     r"""Is your account location is EU based? If yes, the base url to retrieve data will be different."""
     SOURCE_TYPE: Final[SurveySparrow] = dataclasses.field(default=SurveySparrow.SURVEY_SPARROW, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     survey_id: Optional[List[Any]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('survey_id'), 'exclude': lambda f: f is None }})

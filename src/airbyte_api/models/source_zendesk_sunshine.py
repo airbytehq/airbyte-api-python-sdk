@@ -43,6 +43,8 @@ class SourceZendeskSunshineOAuth20:
     
 
 
+SourceZendeskSunshineAuthorizationMethod = Union['SourceZendeskSunshineOAuth20', 'SourceZendeskSunshineAPIToken']
+
 
 class SourceZendeskSunshineZendeskSunshine(str, Enum):
     ZENDESK_SUNSHINE = 'zendesk-sunshine'
@@ -55,7 +57,7 @@ class SourceZendeskSunshine:
     r"""The date from which you'd like to replicate data for Zendesk Sunshine API, in the format YYYY-MM-DDT00:00:00Z."""
     subdomain: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('subdomain') }})
     r"""The subdomain for your Zendesk Account."""
-    credentials: Optional[Union[SourceZendeskSunshineOAuth20, SourceZendeskSunshineAPIToken]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credentials'), 'exclude': lambda f: f is None }})
+    credentials: Optional[SourceZendeskSunshineAuthorizationMethod] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credentials'), 'exclude': lambda f: f is None }})
     SOURCE_TYPE: Final[SourceZendeskSunshineZendeskSunshine] = dataclasses.field(default=SourceZendeskSunshineZendeskSunshine.ZENDESK_SUNSHINE, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     
 

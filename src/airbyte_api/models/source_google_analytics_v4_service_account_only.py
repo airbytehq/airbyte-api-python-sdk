@@ -22,6 +22,8 @@ class SourceGoogleAnalyticsV4ServiceAccountOnlyServiceAccountKeyAuthentication:
     
 
 
+SourceGoogleAnalyticsV4ServiceAccountOnlyCredentials = Union['SourceGoogleAnalyticsV4ServiceAccountOnlyServiceAccountKeyAuthentication']
+
 
 class GoogleAnalyticsV4ServiceAccountOnly(str, Enum):
     GOOGLE_ANALYTICS_V4_SERVICE_ACCOUNT_ONLY = 'google-analytics-v4-service-account-only'
@@ -34,7 +36,7 @@ class SourceGoogleAnalyticsV4ServiceAccountOnly:
     r"""The date in the format YYYY-MM-DD. Any data before this date will not be replicated."""
     view_id: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('view_id') }})
     r"""The ID for the Google Analytics View you want to fetch data from. This can be found from the <a href=\\"https://ga-dev-tools.appspot.com/account-explorer/\\">Google Analytics Account Explorer</a>."""
-    credentials: Optional[Union[SourceGoogleAnalyticsV4ServiceAccountOnlyServiceAccountKeyAuthentication]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credentials'), 'exclude': lambda f: f is None }})
+    credentials: Optional[SourceGoogleAnalyticsV4ServiceAccountOnlyCredentials] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credentials'), 'exclude': lambda f: f is None }})
     r"""Credentials for the service"""
     custom_reports: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('custom_reports'), 'exclude': lambda f: f is None }})
     r"""A JSON array describing the custom reports you want to sync from Google Analytics. See <a href=\\"https://docs.airbyte.com/integrations/sources/google-analytics-v4#data-processing-latency\\">the docs</a> for more information about the exact format you can use to fill out this field."""

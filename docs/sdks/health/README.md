@@ -16,6 +16,7 @@ import airbyte_api
 
 s = airbyte_api.AirbyteAPI()
 
+
 res = s.health.get_health_check()
 
 if res is not None:

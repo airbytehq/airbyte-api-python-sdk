@@ -69,6 +69,8 @@ class DestinationMysqlNoTunnel:
     
 
 
+DestinationMysqlSSHTunnelMethod = Union['DestinationMysqlNoTunnel', 'DestinationMysqlSSHKeyAuthentication', 'DestinationMysqlPasswordAuthentication']
+
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
@@ -90,7 +92,7 @@ class DestinationMysql:
     r"""Port of the database."""
     raw_data_schema: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('raw_data_schema'), 'exclude': lambda f: f is None }})
     r"""The database to write raw tables into"""
-    tunnel_method: Optional[Union[DestinationMysqlNoTunnel, DestinationMysqlSSHKeyAuthentication, DestinationMysqlPasswordAuthentication]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('tunnel_method'), 'exclude': lambda f: f is None }})
+    tunnel_method: Optional[DestinationMysqlSSHTunnelMethod] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('tunnel_method'), 'exclude': lambda f: f is None }})
     r"""Whether to initiate an SSH tunnel before connecting to the database, and if so, which kind of authentication to use."""
     
 

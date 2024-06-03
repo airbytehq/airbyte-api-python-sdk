@@ -69,6 +69,8 @@ class DestinationOracleNoTunnel:
     
 
 
+DestinationOracleSSHTunnelMethod = Union['DestinationOracleNoTunnel', 'DestinationOracleSSHKeyAuthentication', 'DestinationOraclePasswordAuthentication']
+
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
@@ -90,7 +92,7 @@ class DestinationOracle:
     r"""The schema to write raw tables into (default: airbyte_internal)"""
     schema: Optional[str] = dataclasses.field(default='airbyte', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('schema'), 'exclude': lambda f: f is None }})
     r"""The default schema is used as the target schema for all statements issued from the connection that do not explicitly specify a schema name. The usual value for this field is \\"airbyte\\".  In Oracle, schemas and users are the same thing, so the \\"user\\" parameter is used as the login credentials and this is used for the default Airbyte message schema."""
-    tunnel_method: Optional[Union[DestinationOracleNoTunnel, DestinationOracleSSHKeyAuthentication, DestinationOraclePasswordAuthentication]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('tunnel_method'), 'exclude': lambda f: f is None }})
+    tunnel_method: Optional[DestinationOracleSSHTunnelMethod] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('tunnel_method'), 'exclude': lambda f: f is None }})
     r"""Whether to initiate an SSH tunnel before connecting to the database, and if so, which kind of authentication to use."""
     
 

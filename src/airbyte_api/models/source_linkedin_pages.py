@@ -39,6 +39,8 @@ class SourceLinkedinPagesOAuth20:
     
 
 
+SourceLinkedinPagesAuthentication = Union['SourceLinkedinPagesOAuth20', 'SourceLinkedinPagesAccessToken']
+
 
 class LinkedinPages(str, Enum):
     LINKEDIN_PAGES = 'linkedin-pages'
@@ -49,7 +51,7 @@ class LinkedinPages(str, Enum):
 class SourceLinkedinPages:
     org_id: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('org_id') }})
     r"""Specify the Organization ID"""
-    credentials: Optional[Union[SourceLinkedinPagesOAuth20, SourceLinkedinPagesAccessToken]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credentials'), 'exclude': lambda f: f is None }})
+    credentials: Optional[SourceLinkedinPagesAuthentication] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credentials'), 'exclude': lambda f: f is None }})
     SOURCE_TYPE: Final[LinkedinPages] = dataclasses.field(default=LinkedinPages.LINKEDIN_PAGES, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     
 

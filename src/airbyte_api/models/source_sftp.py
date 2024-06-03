@@ -39,6 +39,8 @@ class SourceSftpPasswordAuthentication:
     
 
 
+SourceSftpAuthentication = Union['SourceSftpPasswordAuthentication', 'SourceSftpSSHKeyAuthentication']
+
 
 class Sftp(str, Enum):
     SFTP = 'sftp'
@@ -51,7 +53,7 @@ class SourceSftp:
     r"""The server host address"""
     user: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('user') }})
     r"""The server user"""
-    credentials: Optional[Union[SourceSftpPasswordAuthentication, SourceSftpSSHKeyAuthentication]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credentials'), 'exclude': lambda f: f is None }})
+    credentials: Optional[SourceSftpAuthentication] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credentials'), 'exclude': lambda f: f is None }})
     r"""The server authentication method"""
     file_pattern: Optional[str] = dataclasses.field(default='', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('file_pattern'), 'exclude': lambda f: f is None }})
     r"""The regular expression to specify files for sync in a chosen Folder Path"""

@@ -236,7 +236,7 @@ sourceConfiguration: models.SourceDynamodb = /* values here */
 ### SourceE2eTestCloud
 
 ```python
-sourceConfiguration: Union[models.ContinuousFeed] = /* values here */
+sourceConfiguration: models.SourceE2eTestCloud = /* values here */
 ```
 
 ### SourceEmailoctopus

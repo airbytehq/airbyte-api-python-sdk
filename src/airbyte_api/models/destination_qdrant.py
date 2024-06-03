@@ -91,6 +91,8 @@ class DestinationQdrantOpenAI:
     
 
 
+DestinationQdrantEmbedding = Union['DestinationQdrantOpenAI', 'DestinationQdrantCohere', 'DestinationQdrantFake', 'DestinationQdrantAzureOpenAI', 'DestinationQdrantOpenAICompatible']
+
 
 class DestinationQdrantSchemasIndexingAuthMethodMode(str, Enum):
     NO_AUTH = 'no_auth'
@@ -117,6 +119,8 @@ class APIKeyAuth:
     
 
 
+DestinationQdrantAuthenticationMethod = Union['APIKeyAuth', 'DestinationQdrantNoAuth']
+
 
 class DistanceMetric(str, Enum):
     r"""The Distance metric used to measure similarities among vectors. This field is only used if the collection defined in the does not exist yet and is created automatically by the connector."""
@@ -133,7 +137,7 @@ class DestinationQdrantIndexing:
     r"""The collection to load data into"""
     url: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('url') }})
     r"""Public Endpoint of the Qdrant cluser"""
-    auth_method: Optional[Union[APIKeyAuth, DestinationQdrantNoAuth]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_method'), 'exclude': lambda f: f is None }})
+    auth_method: Optional[DestinationQdrantAuthenticationMethod] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_method'), 'exclude': lambda f: f is None }})
     r"""Method to authenticate with the Qdrant Instance"""
     distance_metric: Optional[DistanceMetric] = dataclasses.field(default=DistanceMetric.COS, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('distance_metric'), 'exclude': lambda f: f is None }})
     r"""The Distance metric used to measure similarities among vectors. This field is only used if the collection defined in the does not exist yet and is created automatically by the connector."""
@@ -222,6 +226,8 @@ class DestinationQdrantBySeparator:
     
 
 
+DestinationQdrantTextSplitter = Union['DestinationQdrantBySeparator', 'DestinationQdrantByMarkdownHeader', 'DestinationQdrantByProgrammingLanguage']
+
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
@@ -236,7 +242,7 @@ class DestinationQdrantProcessingConfigModel:
     r"""List of fields in the record that should be stored as metadata. The field list is applied to all streams in the same way and non-existing fields are ignored. If none are defined, all fields are considered metadata fields. When specifying text fields, you can access nested fields in the record by using dot notation, e.g. `user.name` will access the `name` field in the `user` object. It's also possible to use wildcards to access all fields in an object, e.g. `users.*.name` will access all `names` fields in all entries of the `users` array. When specifying nested paths, all matching values are flattened into an array set to a field named by the path."""
     text_fields: Optional[List[str]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('text_fields'), 'exclude': lambda f: f is None }})
     r"""List of fields in the record that should be used to calculate the embedding. The field list is applied to all streams in the same way and non-existing fields are ignored. If none are defined, all fields are considered text fields. When specifying text fields, you can access nested fields in the record by using dot notation, e.g. `user.name` will access the `name` field in the `user` object. It's also possible to use wildcards to access all fields in an object, e.g. `users.*.name` will access all `names` fields in all entries of the `users` array."""
-    text_splitter: Optional[Union[DestinationQdrantBySeparator, DestinationQdrantByMarkdownHeader, DestinationQdrantByProgrammingLanguage]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('text_splitter'), 'exclude': lambda f: f is None }})
+    text_splitter: Optional[DestinationQdrantTextSplitter] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('text_splitter'), 'exclude': lambda f: f is None }})
     r"""Split text fields into chunks based on the specified method."""
     
 
@@ -256,7 +262,7 @@ class DestinationQdrant:
 
     Processing, embedding and advanced configuration are provided by this base class, while the indexing configuration is provided by the destination connector in the sub class.
     """
-    embedding: Union[DestinationQdrantOpenAI, DestinationQdrantCohere, DestinationQdrantFake, DestinationQdrantAzureOpenAI, DestinationQdrantOpenAICompatible] = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('embedding') }})
+    embedding: DestinationQdrantEmbedding = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('embedding') }})
     r"""Embedding configuration"""
     indexing: DestinationQdrantIndexing = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('indexing') }})
     r"""Indexing configuration"""

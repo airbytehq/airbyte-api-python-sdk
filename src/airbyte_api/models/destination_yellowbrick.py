@@ -101,6 +101,8 @@ class DestinationYellowbrickDisable:
     
 
 
+DestinationYellowbrickSSLModes = Union['DestinationYellowbrickDisable', 'DestinationYellowbrickAllow', 'DestinationYellowbrickPrefer', 'DestinationYellowbrickRequire', 'DestinationYellowbrickVerifyCa', 'DestinationYellowbrickVerifyFull']
+
 
 class DestinationYellowbrickSchemasTunnelMethodTunnelMethod(str, Enum):
     r"""Connect through a jump server tunnel host using username and password authentication"""
@@ -159,6 +161,8 @@ class DestinationYellowbrickNoTunnel:
     
 
 
+DestinationYellowbrickSSHTunnelMethod = Union['DestinationYellowbrickNoTunnel', 'DestinationYellowbrickSSHKeyAuthentication', 'DestinationYellowbrickPasswordAuthentication']
+
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
@@ -180,7 +184,7 @@ class DestinationYellowbrick:
     r"""The default schema tables are written to if the source does not specify a namespace. The usual value for this field is \\"public\\"."""
     ssl: Optional[bool] = dataclasses.field(default=False, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('ssl'), 'exclude': lambda f: f is None }})
     r"""Encrypt data using SSL. When activating SSL, please select one of the connection modes."""
-    ssl_mode: Optional[Union[DestinationYellowbrickDisable, DestinationYellowbrickAllow, DestinationYellowbrickPrefer, DestinationYellowbrickRequire, DestinationYellowbrickVerifyCa, DestinationYellowbrickVerifyFull]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('ssl_mode'), 'exclude': lambda f: f is None }})
+    ssl_mode: Optional[DestinationYellowbrickSSLModes] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('ssl_mode'), 'exclude': lambda f: f is None }})
     r"""SSL connection modes.
      <b>disable</b> - Chose this mode to disable encryption of communication between Airbyte and destination database
      <b>allow</b> - Chose this mode to enable encryption only when required by the source database
@@ -190,7 +194,7 @@ class DestinationYellowbrick:
       <b>verify-full</b> - This is the most secure mode. Chose this mode to always require encryption and to verify the identity of the source database server
      See more information - <a href=\"https://jdbc.postgresql.org/documentation/head/ssl-client.html\"> in the docs</a>.
     """
-    tunnel_method: Optional[Union[DestinationYellowbrickNoTunnel, DestinationYellowbrickSSHKeyAuthentication, DestinationYellowbrickPasswordAuthentication]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('tunnel_method'), 'exclude': lambda f: f is None }})
+    tunnel_method: Optional[DestinationYellowbrickSSHTunnelMethod] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('tunnel_method'), 'exclude': lambda f: f is None }})
     r"""Whether to initiate an SSH tunnel before connecting to the database, and if so, which kind of authentication to use."""
     
 

@@ -41,6 +41,8 @@ class OAuth:
     
 
 
+SourceGithubAuthentication = Union['OAuth', 'SourceGithubPersonalAccessToken']
+
 
 class SourceGithubGithub(str, Enum):
     GITHUB = 'github'
@@ -49,7 +51,7 @@ class SourceGithubGithub(str, Enum):
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
 class SourceGithub:
-    credentials: Union[OAuth, SourceGithubPersonalAccessToken] = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credentials') }})
+    credentials: SourceGithubAuthentication = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credentials') }})
     r"""Choose how to authenticate to GitHub"""
     repositories: List[str] = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('repositories') }})
     r"""List of GitHub organizations/repositories, e.g. `airbytehq/airbyte` for single repository, `airbytehq/*` for get all repositories from organization and `airbytehq/a* for matching multiple repositories by pattern."""
@@ -59,6 +61,8 @@ class SourceGithub:
     r"""(DEPRCATED) Space-delimited list of GitHub repository branches to pull commits for, e.g. `airbytehq/airbyte/master`. If no branches are specified for a repository, the default branch will be pulled."""
     branches: Optional[List[str]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('branches'), 'exclude': lambda f: f is None }})
     r"""List of GitHub repository branches to pull commits for, e.g. `airbytehq/airbyte/master`. If no branches are specified for a repository, the default branch will be pulled."""
+    max_waiting_time: Optional[int] = dataclasses.field(default=10, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('max_waiting_time'), 'exclude': lambda f: f is None }})
+    r"""Max Waiting Time for rate limit. Set higher value to wait till rate limits will be resetted to continue sync"""
     repository: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('repository'), 'exclude': lambda f: f is None }})
     r"""(DEPRCATED) Space-delimited list of GitHub organizations/repositories, e.g. `airbytehq/airbyte` for single repository, `airbytehq/*` for get all repositories from organization and `airbytehq/airbyte airbytehq/another-repo` for multiple repositories."""
     SOURCE_TYPE: Final[SourceGithubGithub] = dataclasses.field(default=SourceGithubGithub.GITHUB, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})

@@ -35,6 +35,8 @@ class DestinationS3GlueNoCompression:
     
 
 
+DestinationS3GlueCompression = Union['DestinationS3GlueNoCompression', 'DestinationS3GlueGZIP']
+
 
 class Flattening(str, Enum):
     r"""Whether the input json data should be normalized (flattened) in the output JSON Lines. Please refer to docs for details."""
@@ -49,13 +51,15 @@ class DestinationS3GlueFormatType(str, Enum):
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
 class DestinationS3GlueJSONLinesNewlineDelimitedJSON:
-    compression: Optional[Union[DestinationS3GlueNoCompression, DestinationS3GlueGZIP]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('compression'), 'exclude': lambda f: f is None }})
+    compression: Optional[DestinationS3GlueCompression] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('compression'), 'exclude': lambda f: f is None }})
     r"""Whether the output files should be compressed. If compression is selected, the output filename will have an extra extension (GZIP: \\".jsonl.gz\\")."""
     flattening: Optional[Flattening] = dataclasses.field(default=Flattening.ROOT_LEVEL_FLATTENING, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('flattening'), 'exclude': lambda f: f is None }})
     r"""Whether the input json data should be normalized (flattened) in the output JSON Lines. Please refer to docs for details."""
     format_type: Optional[DestinationS3GlueFormatType] = dataclasses.field(default=DestinationS3GlueFormatType.JSONL, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('format_type'), 'exclude': lambda f: f is None }})
     
 
+
+DestinationS3GlueOutputFormat = Union['DestinationS3GlueJSONLinesNewlineDelimitedJSON']
 
 
 class SerializationLibrary(str, Enum):
@@ -105,7 +109,7 @@ class DestinationS3GlueS3BucketRegion(str, Enum):
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
 class DestinationS3Glue:
-    format: Union[DestinationS3GlueJSONLinesNewlineDelimitedJSON] = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('format') }})
+    format: DestinationS3GlueOutputFormat = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('format') }})
     r"""Format of the data output. See <a href=\\"https://docs.airbyte.com/integrations/destinations/s3/#supported-output-schema\\">here</a> for more details"""
     glue_database: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('glue_database') }})
     r"""Name of the glue database for creating the tables, leave blank if no integration"""

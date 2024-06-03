@@ -50,6 +50,8 @@ class DestinationRedisDisable:
     
 
 
+DestinationRedisSSLModes = Union['DestinationRedisDisable', 'DestinationRedisVerifyFull']
+
 
 class DestinationRedisSchemasTunnelMethodTunnelMethod(str, Enum):
     r"""Connect through a jump server tunnel host using username and password authentication"""
@@ -108,6 +110,8 @@ class DestinationRedisNoTunnel:
     
 
 
+DestinationRedisSSHTunnelMethod = Union['DestinationRedisNoTunnel', 'DestinationRedisSSHKeyAuthentication', 'DestinationRedisPasswordAuthentication']
+
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
@@ -125,11 +129,11 @@ class DestinationRedis:
     r"""Port of Redis."""
     ssl: Optional[bool] = dataclasses.field(default=False, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('ssl'), 'exclude': lambda f: f is None }})
     r"""Indicates whether SSL encryption protocol will be used to connect to Redis. It is recommended to use SSL connection if possible."""
-    ssl_mode: Optional[Union[DestinationRedisDisable, DestinationRedisVerifyFull]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('ssl_mode'), 'exclude': lambda f: f is None }})
+    ssl_mode: Optional[DestinationRedisSSLModes] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('ssl_mode'), 'exclude': lambda f: f is None }})
     r"""SSL connection modes.
       <li><b>verify-full</b> - This is the most secure mode. Always require encryption and verifies the identity of the source database server
     """
-    tunnel_method: Optional[Union[DestinationRedisNoTunnel, DestinationRedisSSHKeyAuthentication, DestinationRedisPasswordAuthentication]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('tunnel_method'), 'exclude': lambda f: f is None }})
+    tunnel_method: Optional[DestinationRedisSSHTunnelMethod] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('tunnel_method'), 'exclude': lambda f: f is None }})
     r"""Whether to initiate an SSH tunnel before connecting to the database, and if so, which kind of authentication to use."""
     
 

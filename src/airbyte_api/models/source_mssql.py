@@ -45,6 +45,8 @@ class ReadChangesUsingChangeDataCaptureCDC:
     
 
 
+UpdateMethod = Union['ReadChangesUsingChangeDataCaptureCDC', 'ScanChangesWithUserDefinedCursor']
+
 
 class SourceMssqlMssql(str, Enum):
     MSSQL = 'mssql'
@@ -91,6 +93,8 @@ class Unencrypted:
     SSL_METHOD: Final[SourceMssqlSchemasSslMethod] = dataclasses.field(default=SourceMssqlSchemasSslMethod.UNENCRYPTED, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('ssl_method') }})
     
 
+
+SourceMssqlSSLMethod = Union['Unencrypted', 'SourceMssqlEncryptedTrustServerCertificate', 'SourceMssqlEncryptedVerifyCertificate']
 
 
 class SourceMssqlSchemasTunnelMethodTunnelMethod(str, Enum):
@@ -150,6 +154,8 @@ class SourceMssqlNoTunnel:
     
 
 
+SourceMssqlSSHTunnelMethod = Union['SourceMssqlNoTunnel', 'SourceMssqlSSHKeyAuthentication', 'SourceMssqlPasswordAuthentication']
+
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
@@ -166,14 +172,14 @@ class SourceMssql:
     r"""The username which is used to access the database."""
     jdbc_url_params: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('jdbc_url_params'), 'exclude': lambda f: f is None }})
     r"""Additional properties to pass to the JDBC URL string when connecting to the database formatted as 'key=value' pairs separated by the symbol '&'. (example: key1=value1&key2=value2&key3=value3)."""
-    replication_method: Optional[Union[ReadChangesUsingChangeDataCaptureCDC, ScanChangesWithUserDefinedCursor]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('replication_method'), 'exclude': lambda f: f is None }})
+    replication_method: Optional[UpdateMethod] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('replication_method'), 'exclude': lambda f: f is None }})
     r"""Configures how data is extracted from the database."""
     schemas: Optional[List[str]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('schemas'), 'exclude': lambda f: f is None }})
     r"""The list of schemas to sync from. Defaults to user. Case sensitive."""
     SOURCE_TYPE: Final[SourceMssqlMssql] = dataclasses.field(default=SourceMssqlMssql.MSSQL, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
-    ssl_method: Optional[Union[Unencrypted, SourceMssqlEncryptedTrustServerCertificate, SourceMssqlEncryptedVerifyCertificate]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('ssl_method'), 'exclude': lambda f: f is None }})
+    ssl_method: Optional[SourceMssqlSSLMethod] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('ssl_method'), 'exclude': lambda f: f is None }})
     r"""The encryption method which is used when communicating with the database."""
-    tunnel_method: Optional[Union[SourceMssqlNoTunnel, SourceMssqlSSHKeyAuthentication, SourceMssqlPasswordAuthentication]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('tunnel_method'), 'exclude': lambda f: f is None }})
+    tunnel_method: Optional[SourceMssqlSSHTunnelMethod] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('tunnel_method'), 'exclude': lambda f: f is None }})
     r"""Whether to initiate an SSH tunnel before connecting to the database, and if so, which kind of authentication to use."""
     
 

@@ -45,6 +45,8 @@ class ReadChangesUsingBinaryLogCDC:
     
 
 
+SourceMysqlUpdateMethod = Union['ReadChangesUsingBinaryLogCDC', 'SourceMysqlScanChangesWithUserDefinedCursor']
+
 
 class SourceMysqlMysql(str, Enum):
     MYSQL = 'mysql'
@@ -117,6 +119,8 @@ class Preferred:
     
 
 
+SourceMysqlSSLModes = Union['Preferred', 'Required', 'SourceMysqlVerifyCA', 'VerifyIdentity']
+
 
 class SourceMysqlSchemasTunnelMethodTunnelMethod(str, Enum):
     r"""Connect through a jump server tunnel host using username and password authentication"""
@@ -175,6 +179,8 @@ class SourceMysqlNoTunnel:
     
 
 
+SourceMysqlSSHTunnelMethod = Union['SourceMysqlNoTunnel', 'SourceMysqlSSHKeyAuthentication', 'SourceMysqlPasswordAuthentication']
+
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
@@ -183,7 +189,7 @@ class SourceMysql:
     r"""The database name."""
     host: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('host') }})
     r"""The host name of the database."""
-    replication_method: Union[ReadChangesUsingBinaryLogCDC, SourceMysqlScanChangesWithUserDefinedCursor] = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('replication_method') }})
+    replication_method: SourceMysqlUpdateMethod = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('replication_method') }})
     r"""Configures how data is extracted from the database."""
     username: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('username') }})
     r"""The username which is used to access the database."""
@@ -194,9 +200,9 @@ class SourceMysql:
     port: Optional[int] = dataclasses.field(default=3306, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('port'), 'exclude': lambda f: f is None }})
     r"""The port to connect to."""
     SOURCE_TYPE: Final[SourceMysqlMysql] = dataclasses.field(default=SourceMysqlMysql.MYSQL, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
-    ssl_mode: Optional[Union[Preferred, Required, SourceMysqlVerifyCA, VerifyIdentity]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('ssl_mode'), 'exclude': lambda f: f is None }})
+    ssl_mode: Optional[SourceMysqlSSLModes] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('ssl_mode'), 'exclude': lambda f: f is None }})
     r"""SSL connection modes. Read more <a href=\\"https://dev.mysql.com/doc/connector-j/8.0/en/connector-j-reference-using-ssl.html\\"> in the docs</a>."""
-    tunnel_method: Optional[Union[SourceMysqlNoTunnel, SourceMysqlSSHKeyAuthentication, SourceMysqlPasswordAuthentication]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('tunnel_method'), 'exclude': lambda f: f is None }})
+    tunnel_method: Optional[SourceMysqlSSHTunnelMethod] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('tunnel_method'), 'exclude': lambda f: f is None }})
     r"""Whether to initiate an SSH tunnel before connecting to the database, and if so, which kind of authentication to use."""
     
 

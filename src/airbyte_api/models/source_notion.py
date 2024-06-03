@@ -41,6 +41,8 @@ class SourceNotionOAuth20:
     
 
 
+SourceNotionAuthenticationMethod = Union['SourceNotionOAuth20', 'SourceNotionAccessToken']
+
 
 class SourceNotionNotion(str, Enum):
     NOTION = 'notion'
@@ -49,7 +51,7 @@ class SourceNotionNotion(str, Enum):
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
 class SourceNotion:
-    credentials: Optional[Union[SourceNotionOAuth20, SourceNotionAccessToken]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credentials'), 'exclude': lambda f: f is None }})
+    credentials: Optional[SourceNotionAuthenticationMethod] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credentials'), 'exclude': lambda f: f is None }})
     r"""Choose either OAuth (recommended for Airbyte Cloud) or Access Token. See our <a href='https://docs.airbyte.com/integrations/sources/notion#setup-guide'>docs</a> for more information."""
     SOURCE_TYPE: Final[Optional[SourceNotionNotion]] = dataclasses.field(default=SourceNotionNotion.NOTION, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType'), 'exclude': lambda f: f is None }})
     start_date: Optional[datetime] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('start_date'), 'encoder': utils.datetimeisoformat(True), 'decoder': dateutil.parser.isoparse, 'exclude': lambda f: f is None }})

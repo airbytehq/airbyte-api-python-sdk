@@ -39,6 +39,8 @@ class SourceGoogleSheetsAuthenticateViaGoogleOAuth:
     
 
 
+SourceGoogleSheetsAuthentication = Union['SourceGoogleSheetsAuthenticateViaGoogleOAuth', 'SourceGoogleSheetsServiceAccountKeyAuthentication']
+
 
 class SourceGoogleSheetsGoogleSheets(str, Enum):
     GOOGLE_SHEETS = 'google-sheets'
@@ -47,7 +49,7 @@ class SourceGoogleSheetsGoogleSheets(str, Enum):
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
 class SourceGoogleSheets:
-    credentials: Union[SourceGoogleSheetsAuthenticateViaGoogleOAuth, SourceGoogleSheetsServiceAccountKeyAuthentication] = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credentials') }})
+    credentials: SourceGoogleSheetsAuthentication = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credentials') }})
     r"""Credentials for connecting to the Google Sheets API"""
     spreadsheet_id: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('spreadsheet_id') }})
     r"""Enter the link to the Google spreadsheet you want to sync. To copy the link, click the 'Share' button in the top-right corner of the spreadsheet, then click 'Copy link'."""

@@ -88,6 +88,8 @@ class DestinationBigqueryHMACKey:
     
 
 
+Credential = Union['DestinationBigqueryHMACKey']
+
 
 class GCSTmpFilesAfterwardProcessing(str, Enum):
     r"""This upload method is supposed to temporary store records in GCS bucket. By this select you can chose if these records should be removed from GCS when migration has finished. The default \\"Delete all tmp files from GCS\\" value is used if not set explicitly."""
@@ -103,7 +105,7 @@ class Method(str, Enum):
 @dataclasses.dataclass
 class GCSStaging:
     r"""<i>(recommended)</i> Writes large batches of records to a file, uploads the file to GCS, then uses COPY INTO to load your data into BigQuery. Provides best-in-class speed, reliability and scalability. Read more about GCS Staging <a href=\\"https://docs.airbyte.com/integrations/destinations/bigquery#gcs-staging\\">here</a>."""
-    credential: Union[DestinationBigqueryHMACKey] = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credential') }})
+    credential: Credential = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credential') }})
     r"""An HMAC key is a type of credential and can be associated with a service account or a user account in Cloud Storage. Read more <a href=\\"https://cloud.google.com/storage/docs/authentication/hmackeys\\">here</a>."""
     gcs_bucket_name: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('gcs_bucket_name') }})
     r"""The name of the GCS bucket. Read more <a href=\\"https://cloud.google.com/storage/docs/naming-buckets\\">here</a>."""
@@ -114,6 +116,8 @@ class GCSStaging:
     METHOD: Final[Method] = dataclasses.field(default=Method.GCS_STAGING, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('method') }})
     
 
+
+LoadingMethod = Union['GCSStaging', 'StandardInserts']
 
 
 class TransformationQueryRunType(str, Enum):
@@ -138,7 +142,7 @@ class DestinationBigquery:
     DESTINATION_TYPE: Final[Bigquery] = dataclasses.field(default=Bigquery.BIGQUERY, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('destinationType') }})
     disable_type_dedupe: Optional[bool] = dataclasses.field(default=False, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('disable_type_dedupe'), 'exclude': lambda f: f is None }})
     r"""Disable Writing Final Tables. WARNING! The data format in _airbyte_data is likely stable but there are no guarantees that other metadata columns will remain the same in future versions"""
-    loading_method: Optional[Union[GCSStaging, StandardInserts]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('loading_method'), 'exclude': lambda f: f is None }})
+    loading_method: Optional[LoadingMethod] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('loading_method'), 'exclude': lambda f: f is None }})
     r"""The way data will be uploaded to BigQuery."""
     raw_data_dataset: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('raw_data_dataset'), 'exclude': lambda f: f is None }})
     r"""The dataset to write raw tables into (default: airbyte_internal)"""

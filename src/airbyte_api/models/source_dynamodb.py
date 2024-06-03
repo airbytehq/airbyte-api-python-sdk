@@ -39,6 +39,8 @@ class AuthenticateViaAccessKeys:
     
 
 
+SourceDynamodbCredentials = Union['AuthenticateViaAccessKeys', 'RoleBasedAuthentication']
+
 
 class SourceDynamodbDynamodbRegion(str, Enum):
     r"""The region of the Dynamodb database"""
@@ -86,7 +88,7 @@ class SourceDynamodbDynamodb(str, Enum):
 @dataclasses.dataclass
 class SourceDynamodb:
     UNSET='__SPEAKEASY_UNSET__'
-    credentials: Optional[Union[AuthenticateViaAccessKeys, RoleBasedAuthentication]] = dataclasses.field(default=UNSET, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credentials'), 'exclude': lambda f: f is SourceDynamodb.UNSET }})
+    credentials: Optional[SourceDynamodbCredentials] = dataclasses.field(default=UNSET, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credentials'), 'exclude': lambda f: f is SourceDynamodb.UNSET }})
     r"""Credentials for the service"""
     endpoint: Optional[str] = dataclasses.field(default='', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('endpoint'), 'exclude': lambda f: f is None }})
     r"""the URL of the Dynamodb database"""

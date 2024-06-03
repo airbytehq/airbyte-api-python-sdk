@@ -1,4 +1,4 @@
-# StreamName
+# ReportName
 
 
 ## Values
@@ -41,3 +41,4 @@
 | `GET_V2_SETTLEMENT_REPORT_DATA_FLAT_FILE`                | GET_V2_SETTLEMENT_REPORT_DATA_FLAT_FILE                  |
 | `GET_XML_ALL_ORDERS_DATA_BY_ORDER_DATE_GENERAL`          | GET_XML_ALL_ORDERS_DATA_BY_ORDER_DATE_GENERAL            |
 | `GET_XML_BROWSE_TREE_DATA`                               | GET_XML_BROWSE_TREE_DATA                                 |
+| `GET_VENDOR_REAL_TIME_INVENTORY_REPORT`                  | GET_VENDOR_REAL_TIME_INVENTORY_REPORT                    |

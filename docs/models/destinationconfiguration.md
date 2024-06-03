@@ -77,6 +77,12 @@ destinationConfiguration: models.DestinationDynamodb = /* values here */
 destinationConfiguration: models.DestinationElasticsearch = /* values here */
 ```
 
+### DestinationFirebolt
+
+```python
+destinationConfiguration: models.DestinationFirebolt = /* values here */
+```
+
 ### DestinationFirestore
 
 ```python

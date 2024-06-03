@@ -69,6 +69,8 @@ class DestinationRedshiftNoTunnel:
     
 
 
+DestinationRedshiftSSHTunnelMethod = Union['DestinationRedshiftNoTunnel', 'DestinationRedshiftSSHKeyAuthentication', 'DestinationRedshiftPasswordAuthentication']
+
 
 class DestinationRedshiftSchemasMethod(str, Enum):
     STANDARD = 'Standard'
@@ -109,6 +111,8 @@ class NoEncryption:
     ENCRYPTION_TYPE: Final[Optional[EncryptionType]] = dataclasses.field(default=EncryptionType.NONE, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('encryption_type'), 'exclude': lambda f: f is None }})
     
 
+
+DestinationRedshiftEncryption = Union['NoEncryption', 'AESCBCEnvelopeEncryption']
 
 
 class DestinationRedshiftMethod(str, Enum):
@@ -163,7 +167,7 @@ class AWSS3Staging:
     r"""The name of the staging S3 bucket."""
     secret_access_key: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('secret_access_key') }})
     r"""The corresponding secret to the above access key id. See <a href=\\"https://docs.aws.amazon.com/general/latest/gr/aws-sec-cred-types.html#access-keys-and-secret-access-keys\\">AWS docs</a> on how to generate an access key ID and secret access key."""
-    encryption: Optional[Union[NoEncryption, AESCBCEnvelopeEncryption]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('encryption'), 'exclude': lambda f: f is None }})
+    encryption: Optional[DestinationRedshiftEncryption] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('encryption'), 'exclude': lambda f: f is None }})
     r"""How to encrypt the staging data"""
     file_name_pattern: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('file_name_pattern'), 'exclude': lambda f: f is None }})
     r"""The pattern allows you to set the file-name format for the S3 staging file(s)"""
@@ -176,6 +180,8 @@ class AWSS3Staging:
     r"""The region of the S3 staging bucket."""
     
 
+
+UploadingMethod = Union['AWSS3Staging', 'Standard']
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
@@ -202,9 +208,9 @@ class DestinationRedshift:
     r"""The schema to write raw tables into (default: airbyte_internal)."""
     schema: Optional[str] = dataclasses.field(default='public', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('schema'), 'exclude': lambda f: f is None }})
     r"""The default schema tables are written to if the source does not specify a namespace. Unless specifically configured, the usual value for this field is \\"public\\"."""
-    tunnel_method: Optional[Union[DestinationRedshiftNoTunnel, DestinationRedshiftSSHKeyAuthentication, DestinationRedshiftPasswordAuthentication]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('tunnel_method'), 'exclude': lambda f: f is None }})
+    tunnel_method: Optional[DestinationRedshiftSSHTunnelMethod] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('tunnel_method'), 'exclude': lambda f: f is None }})
     r"""Whether to initiate an SSH tunnel before connecting to the database, and if so, which kind of authentication to use."""
-    uploading_method: Optional[Union[AWSS3Staging, Standard]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('uploading_method'), 'exclude': lambda f: f is None }})
+    uploading_method: Optional[UploadingMethod] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('uploading_method'), 'exclude': lambda f: f is None }})
     r"""The way data will be uploaded to Redshift."""
     
 

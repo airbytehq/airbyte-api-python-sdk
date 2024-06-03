@@ -37,6 +37,8 @@ class SourceOutbrainAmplifyAccessToken:
     
 
 
+SourceOutbrainAmplifyAuthenticationMethod = Union['SourceOutbrainAmplifyAccessToken', 'SourceOutbrainAmplifyUsernamePassword']
+
 
 class GranularityForGeoLocationRegion(str, Enum):
     r"""The granularity used for geo location data in reports."""
@@ -59,7 +61,7 @@ class OutbrainAmplify(str, Enum):
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
 class SourceOutbrainAmplify:
-    credentials: Union[SourceOutbrainAmplifyAccessToken, SourceOutbrainAmplifyUsernamePassword] = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credentials') }})
+    credentials: SourceOutbrainAmplifyAuthenticationMethod = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credentials') }})
     r"""Credentials for making authenticated requests requires either username/password or access_token."""
     start_date: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('start_date') }})
     r"""Date in the format YYYY-MM-DD eg. 2017-01-25. Any data before this date will not be replicated."""

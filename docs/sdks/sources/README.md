@@ -30,6 +30,7 @@ s = airbyte_api.AirbyteAPI(
     ),
 )
 
+
 res = s.sources.create_source(request=models.SourceCreateRequest(
     configuration=models.SourceAha(
         api_key='<value>',
@@ -80,6 +81,7 @@ s = airbyte_api.AirbyteAPI(
     ),
 )
 
+
 res = s.sources.delete_source(request=api.DeleteSourceRequest(
     source_id='<value>',
 ))
@@ -124,6 +126,7 @@ s = airbyte_api.AirbyteAPI(
         ),
     ),
 )
+
 
 res = s.sources.get_source(request=api.GetSourceRequest(
     source_id='<value>',
@@ -174,6 +177,7 @@ s = airbyte_api.AirbyteAPI(
     ),
 )
 
+
 res = s.sources.initiate_o_auth(request=models.InitiateOauthRequest(
     redirect_url='https://cloud.airbyte.io/v1/api/oauth/callback',
     source_type=models.OAuthActorNames.GITLAB,
@@ -220,6 +224,7 @@ s = airbyte_api.AirbyteAPI(
         ),
     ),
 )
+
 
 res = s.sources.list_sources(request=api.ListSourcesRequest(
     workspace_ids=[
@@ -340,6 +345,7 @@ s = airbyte_api.AirbyteAPI(
     ),
 )
 
+
 res = s.sources.patch_source(request=api.PatchSourceRequest(
     source_id='<value>',
     source_patch_request=models.SourcePatchRequest(
@@ -391,6 +397,7 @@ s = airbyte_api.AirbyteAPI(
         ),
     ),
 )
+
 
 res = s.sources.put_source(request=api.PutSourceRequest(
     source_id='<value>',

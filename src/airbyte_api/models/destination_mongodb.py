@@ -37,6 +37,8 @@ class NoneT:
     
 
 
+AuthorizationType = Union['NoneT', 'LoginPassword']
+
 
 class Mongodb(str, Enum):
     MONGODB = 'mongodb'
@@ -86,6 +88,8 @@ class StandaloneMongoDbInstance:
     r"""The Port of a Mongo database to be replicated."""
     
 
+
+MongoDbInstanceType = Union['StandaloneMongoDbInstance', 'ReplicaSet', 'MongoDBAtlas']
 
 
 class DestinationMongodbSchemasTunnelMethodTunnelMethod(str, Enum):
@@ -145,18 +149,20 @@ class DestinationMongodbNoTunnel:
     
 
 
+DestinationMongodbSSHTunnelMethod = Union['DestinationMongodbNoTunnel', 'DestinationMongodbSSHKeyAuthentication', 'DestinationMongodbPasswordAuthentication']
+
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
 class DestinationMongodb:
-    auth_type: Union[NoneT, LoginPassword] = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_type') }})
+    auth_type: AuthorizationType = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_type') }})
     r"""Authorization type."""
     database: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('database') }})
     r"""Name of the database."""
     DESTINATION_TYPE: Final[Mongodb] = dataclasses.field(default=Mongodb.MONGODB, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('destinationType') }})
-    instance_type: Optional[Union[StandaloneMongoDbInstance, ReplicaSet, MongoDBAtlas]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('instance_type'), 'exclude': lambda f: f is None }})
+    instance_type: Optional[MongoDbInstanceType] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('instance_type'), 'exclude': lambda f: f is None }})
     r"""MongoDb instance to connect to. For MongoDB Atlas and Replica Set TLS connection is used by default."""
-    tunnel_method: Optional[Union[DestinationMongodbNoTunnel, DestinationMongodbSSHKeyAuthentication, DestinationMongodbPasswordAuthentication]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('tunnel_method'), 'exclude': lambda f: f is None }})
+    tunnel_method: Optional[DestinationMongodbSSHTunnelMethod] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('tunnel_method'), 'exclude': lambda f: f is None }})
     r"""Whether to initiate an SSH tunnel before connecting to the database, and if so, which kind of authentication to use."""
     
 

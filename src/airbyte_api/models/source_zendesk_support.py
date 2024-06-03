@@ -47,6 +47,8 @@ class SourceZendeskSupportOAuth20:
     
 
 
+SourceZendeskSupportAuthentication = Union['SourceZendeskSupportOAuth20', 'SourceZendeskSupportAPIToken']
+
 
 class SourceZendeskSupportZendeskSupport(str, Enum):
     ZENDESK_SUPPORT = 'zendesk-support'
@@ -57,7 +59,7 @@ class SourceZendeskSupportZendeskSupport(str, Enum):
 class SourceZendeskSupport:
     subdomain: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('subdomain') }})
     r"""This is your unique Zendesk subdomain that can be found in your account URL. For example, in https://MY_SUBDOMAIN.zendesk.com/, MY_SUBDOMAIN is the value of your subdomain."""
-    credentials: Optional[Union[SourceZendeskSupportOAuth20, SourceZendeskSupportAPIToken]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credentials'), 'exclude': lambda f: f is None }})
+    credentials: Optional[SourceZendeskSupportAuthentication] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credentials'), 'exclude': lambda f: f is None }})
     r"""Zendesk allows two authentication methods. We recommend using `OAuth2.0` for Airbyte Cloud users and `API token` for Airbyte Open Source users."""
     ignore_pagination: Optional[bool] = dataclasses.field(default=False, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('ignore_pagination'), 'exclude': lambda f: f is None }})
     r"""Makes each stream read a single page of data."""
