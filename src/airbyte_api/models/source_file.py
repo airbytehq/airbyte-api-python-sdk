@@ -130,6 +130,8 @@ class HTTPSPublicWeb:
     
 
 
+StorageProvider = Union['HTTPSPublicWeb', 'GCSGoogleCloudStorage', 'SourceFileS3AmazonWebServices', 'AzBlobAzureBlobStorage', 'SSHSecureShell', 'SCPSecureCopyProtocol', 'SFTPSecureFileTransferProtocol']
+
 
 class File(str, Enum):
     FILE = 'file'
@@ -140,7 +142,7 @@ class File(str, Enum):
 class SourceFile:
     dataset_name: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('dataset_name') }})
     r"""The Name of the final table to replicate this file into (should include letters, numbers dash and underscores only)."""
-    provider: Union[HTTPSPublicWeb, GCSGoogleCloudStorage, SourceFileS3AmazonWebServices, AzBlobAzureBlobStorage, SSHSecureShell, SCPSecureCopyProtocol, SFTPSecureFileTransferProtocol] = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('provider') }})
+    provider: StorageProvider = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('provider') }})
     r"""The storage Provider or Location of the file(s) which should be replicated."""
     url: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('url') }})
     r"""The URL path to access the file which should be replicated."""

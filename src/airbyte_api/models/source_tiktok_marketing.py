@@ -45,6 +45,8 @@ class SourceTiktokMarketingOAuth20:
     
 
 
+SourceTiktokMarketingAuthenticationMethod = Union['SourceTiktokMarketingOAuth20', 'SandboxAccessToken']
+
 
 class SourceTiktokMarketingTiktokMarketing(str, Enum):
     TIKTOK_MARKETING = 'tiktok-marketing'
@@ -55,7 +57,7 @@ class SourceTiktokMarketingTiktokMarketing(str, Enum):
 class SourceTiktokMarketing:
     attribution_window: Optional[int] = dataclasses.field(default=3, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('attribution_window'), 'exclude': lambda f: f is None }})
     r"""The attribution window in days."""
-    credentials: Optional[Union[SourceTiktokMarketingOAuth20, SandboxAccessToken]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credentials'), 'exclude': lambda f: f is None }})
+    credentials: Optional[SourceTiktokMarketingAuthenticationMethod] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credentials'), 'exclude': lambda f: f is None }})
     r"""Authentication method"""
     end_date: Optional[date] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('end_date'), 'encoder': utils.dateisoformat(True), 'decoder': utils.datefromisoformat, 'exclude': lambda f: f is None }})
     r"""The date until which you'd like to replicate data for all incremental streams, in the format YYYY-MM-DD. All data generated between start_date and this date will be replicated. Not setting this option will result in always syncing the data till the current date."""

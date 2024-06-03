@@ -27,6 +27,7 @@ s = airbyte_api.AirbyteAPI(
     ),
 )
 
+
 res = s.jobs.cancel_job(request=api.CancelJobRequest(
     job_id=801771,
 ))
@@ -71,6 +72,7 @@ s = airbyte_api.AirbyteAPI(
         ),
     ),
 )
+
 
 res = s.jobs.create_job(request=models.JobCreateRequest(
     connection_id='e735894a-e773-4938-969f-45f53957b75b',
@@ -118,6 +120,7 @@ s = airbyte_api.AirbyteAPI(
     ),
 )
 
+
 res = s.jobs.get_job(request=api.GetJobRequest(
     job_id=131101,
 ))
@@ -163,6 +166,7 @@ s = airbyte_api.AirbyteAPI(
         ),
     ),
 )
+
 
 res = s.jobs.list_jobs(request=api.ListJobsRequest(
     created_at_end=dateutil.parser.isoparse('1687450500000'),

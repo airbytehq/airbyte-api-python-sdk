@@ -45,6 +45,8 @@ class AuthenticateViaOAuth:
     
 
 
+SourceSalesloftCredentials = Union['AuthenticateViaOAuth', 'AuthenticateViaAPIKey']
+
 
 class Salesloft(str, Enum):
     SALESLOFT = 'salesloft'
@@ -53,7 +55,7 @@ class Salesloft(str, Enum):
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
 class SourceSalesloft:
-    credentials: Union[AuthenticateViaOAuth, AuthenticateViaAPIKey] = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credentials') }})
+    credentials: SourceSalesloftCredentials = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credentials') }})
     start_date: datetime = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('start_date'), 'encoder': utils.datetimeisoformat(False), 'decoder': dateutil.parser.isoparse }})
     r"""The date from which you'd like to replicate data for Salesloft API, in the format YYYY-MM-DDT00:00:00Z. All data generated after this date will be replicated."""
     SOURCE_TYPE: Final[Salesloft] = dataclasses.field(default=Salesloft.SALESLOFT, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})

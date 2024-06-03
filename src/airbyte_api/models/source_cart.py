@@ -41,6 +41,8 @@ class CentralAPIRouter:
     
 
 
+SourceCartAuthorizationMethod = Union['CentralAPIRouter', 'SingleStoreAccessToken']
+
 
 class Cart(str, Enum):
     CART = 'cart'
@@ -51,7 +53,7 @@ class Cart(str, Enum):
 class SourceCart:
     start_date: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('start_date') }})
     r"""The date from which you'd like to replicate the data"""
-    credentials: Optional[Union[CentralAPIRouter, SingleStoreAccessToken]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credentials'), 'exclude': lambda f: f is None }})
+    credentials: Optional[SourceCartAuthorizationMethod] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credentials'), 'exclude': lambda f: f is None }})
     SOURCE_TYPE: Final[Cart] = dataclasses.field(default=Cart.CART, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     
 

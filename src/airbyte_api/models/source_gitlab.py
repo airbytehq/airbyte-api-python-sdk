@@ -45,6 +45,8 @@ class SourceGitlabOAuth20:
     
 
 
+SourceGitlabAuthorizationMethod = Union['SourceGitlabOAuth20', 'PrivateToken']
+
 
 class SourceGitlabGitlab(str, Enum):
     GITLAB = 'gitlab'
@@ -53,7 +55,7 @@ class SourceGitlabGitlab(str, Enum):
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
 class SourceGitlab:
-    credentials: Union[SourceGitlabOAuth20, PrivateToken] = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credentials') }})
+    credentials: SourceGitlabAuthorizationMethod = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credentials') }})
     api_url: Optional[str] = dataclasses.field(default='gitlab.com', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('api_url'), 'exclude': lambda f: f is None }})
     r"""Please enter your basic URL from GitLab instance."""
     groups: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('groups'), 'exclude': lambda f: f is None }})

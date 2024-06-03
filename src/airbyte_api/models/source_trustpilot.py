@@ -46,6 +46,8 @@ class SourceTrustpilotOAuth20:
     
 
 
+SourceTrustpilotAuthorizationMethod = Union['SourceTrustpilotOAuth20', 'SourceTrustpilotAPIKey']
+
 
 class Trustpilot(str, Enum):
     TRUSTPILOT = 'trustpilot'
@@ -56,7 +58,7 @@ class Trustpilot(str, Enum):
 class SourceTrustpilot:
     business_units: List[str] = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('business_units') }})
     r"""The names of business units which shall be synchronized. Some streams e.g. configured_business_units or private_reviews use this configuration."""
-    credentials: Union[SourceTrustpilotOAuth20, SourceTrustpilotAPIKey] = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credentials') }})
+    credentials: SourceTrustpilotAuthorizationMethod = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credentials') }})
     start_date: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('start_date') }})
     r"""For streams with sync. method incremental the start date time to be used"""
     SOURCE_TYPE: Final[Trustpilot] = dataclasses.field(default=Trustpilot.TRUSTPILOT, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})

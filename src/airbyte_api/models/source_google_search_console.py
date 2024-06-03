@@ -45,6 +45,8 @@ class SourceGoogleSearchConsoleOAuth:
     
 
 
+AuthenticationType = Union['SourceGoogleSearchConsoleOAuth', 'SourceGoogleSearchConsoleServiceAccountKeyAuthentication']
+
 
 class SourceGoogleSearchConsoleValidEnums(str, Enum):
     r"""An enumeration of dimensions."""
@@ -79,7 +81,7 @@ class SourceGoogleSearchConsoleGoogleSearchConsole(str, Enum):
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
 class SourceGoogleSearchConsole:
-    authorization: Union[SourceGoogleSearchConsoleOAuth, SourceGoogleSearchConsoleServiceAccountKeyAuthentication] = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('authorization') }})
+    authorization: AuthenticationType = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('authorization') }})
     site_urls: List[str] = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('site_urls') }})
     r"""The URLs of the website property attached to your GSC account. Learn more about properties <a href=\\"https://support.google.com/webmasters/answer/34592?hl=en\\">here</a>."""
     custom_reports: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('custom_reports'), 'exclude': lambda f: f is None }})

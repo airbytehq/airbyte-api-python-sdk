@@ -61,7 +61,7 @@ class OptionsList:
 
 
 
-class StreamName(str, Enum):
+class ReportName(str, Enum):
     GET_AFN_INVENTORY_DATA = 'GET_AFN_INVENTORY_DATA'
     GET_AFN_INVENTORY_DATA_BY_COUNTRY = 'GET_AFN_INVENTORY_DATA_BY_COUNTRY'
     GET_AMAZON_FULFILLED_SHIPMENTS_DATA_GENERAL = 'GET_AMAZON_FULFILLED_SHIPMENTS_DATA_GENERAL'
@@ -98,6 +98,7 @@ class StreamName(str, Enum):
     GET_V2_SETTLEMENT_REPORT_DATA_FLAT_FILE = 'GET_V2_SETTLEMENT_REPORT_DATA_FLAT_FILE'
     GET_XML_ALL_ORDERS_DATA_BY_ORDER_DATE_GENERAL = 'GET_XML_ALL_ORDERS_DATA_BY_ORDER_DATE_GENERAL'
     GET_XML_BROWSE_TREE_DATA = 'GET_XML_BROWSE_TREE_DATA'
+    GET_VENDOR_REAL_TIME_INVENTORY_REPORT = 'GET_VENDOR_REAL_TIME_INVENTORY_REPORT'
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
@@ -105,7 +106,8 @@ class StreamName(str, Enum):
 class ReportOptions:
     options_list: List[OptionsList] = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('options_list') }})
     r"""List of options"""
-    stream_name: StreamName = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('stream_name') }})
+    report_name: ReportName = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('report_name') }})
+    stream_name: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('stream_name') }})
     
 
 

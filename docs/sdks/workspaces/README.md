@@ -30,6 +30,7 @@ s = airbyte_api.AirbyteAPI(
     ),
 )
 
+
 res = s.workspaces.create_or_update_workspace_o_auth_credentials(request=api.CreateOrUpdateWorkspaceOAuthCredentialsRequest(
     workspace_o_auth_credentials_request=models.WorkspaceOAuthCredentialsRequest(
         actor_type=models.ActorTypeEnum.DESTINATION,
@@ -80,6 +81,7 @@ s = airbyte_api.AirbyteAPI(
     ),
 )
 
+
 res = s.workspaces.create_workspace(request=models.WorkspaceCreateRequest(
     name='Company Workspace Name',
 ))
@@ -124,6 +126,7 @@ s = airbyte_api.AirbyteAPI(
         ),
     ),
 )
+
 
 res = s.workspaces.delete_workspace(request=api.DeleteWorkspaceRequest(
     workspace_id='<value>',
@@ -170,6 +173,7 @@ s = airbyte_api.AirbyteAPI(
     ),
 )
 
+
 res = s.workspaces.get_workspace(request=api.GetWorkspaceRequest(
     workspace_id='<value>',
 ))
@@ -215,6 +219,7 @@ s = airbyte_api.AirbyteAPI(
     ),
 )
 
+
 res = s.workspaces.list_workspaces(request=api.ListWorkspacesRequest())
 
 if res.workspaces_response is not None:
@@ -257,6 +262,7 @@ s = airbyte_api.AirbyteAPI(
         ),
     ),
 )
+
 
 res = s.workspaces.update_workspace(request=api.UpdateWorkspaceRequest(
     workspace_update_request=models.WorkspaceUpdateRequest(

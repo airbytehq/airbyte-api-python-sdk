@@ -10,6 +10,12 @@ from enum import Enum
 from typing import Final, Optional
 
 
+class DomainRegionCode(str, Enum):
+    r"""Domain region code. 'EU' or 'US' are possible values. The default is 'US'."""
+    US = 'US'
+    EU = 'EU'
+
+
 class Mailgun(str, Enum):
     MAILGUN = 'mailgun'
 
@@ -19,7 +25,7 @@ class Mailgun(str, Enum):
 class SourceMailgun:
     private_key: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('private_key') }})
     r"""Primary account API key to access your Mailgun data."""
-    domain_region: Optional[str] = dataclasses.field(default='US', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('domain_region'), 'exclude': lambda f: f is None }})
+    domain_region: Optional[DomainRegionCode] = dataclasses.field(default=DomainRegionCode.US, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('domain_region'), 'exclude': lambda f: f is None }})
     r"""Domain region code. 'EU' or 'US' are possible values. The default is 'US'."""
     SOURCE_TYPE: Final[Mailgun] = dataclasses.field(default=Mailgun.MAILGUN, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     start_date: Optional[datetime] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('start_date'), 'encoder': utils.datetimeisoformat(True), 'decoder': dateutil.parser.isoparse, 'exclude': lambda f: f is None }})

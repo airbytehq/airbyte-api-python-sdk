@@ -40,6 +40,8 @@ class AuthenticateViaAsanaOauth:
     
 
 
+AuthenticationMechanism = Union['AuthenticateViaAsanaOauth', 'AuthenticateWithPersonalAccessToken']
+
 
 class SourceAsanaAsana(str, Enum):
     ASANA = 'asana'
@@ -48,7 +50,7 @@ class SourceAsanaAsana(str, Enum):
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
 class SourceAsana:
-    credentials: Optional[Union[AuthenticateViaAsanaOauth, AuthenticateWithPersonalAccessToken]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credentials'), 'exclude': lambda f: f is None }})
+    credentials: Optional[AuthenticationMechanism] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credentials'), 'exclude': lambda f: f is None }})
     r"""Choose how to authenticate to Github"""
     organization_export_ids: Optional[List[Any]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('organization_export_ids'), 'exclude': lambda f: f is None }})
     r"""Globally unique identifiers for the organization exports"""

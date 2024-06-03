@@ -57,6 +57,8 @@ class KeyPairAuthentication:
     
 
 
+AuthorizationMethod = Union['KeyPairAuthentication', 'UsernameAndPassword', 'DestinationSnowflakeOAuth20']
+
 
 class DestinationSnowflakeSnowflake(str, Enum):
     SNOWFLAKE = 'snowflake'
@@ -77,7 +79,7 @@ class DestinationSnowflake:
     r"""Enter the name of the user you want to use to access the database"""
     warehouse: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('warehouse') }})
     r"""Enter the name of the <a href=\\"https://docs.snowflake.com/en/user-guide/warehouses-overview.html#overview-of-warehouses\\">warehouse</a> that you want to sync data into"""
-    credentials: Optional[Union[KeyPairAuthentication, UsernameAndPassword, DestinationSnowflakeOAuth20]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credentials'), 'exclude': lambda f: f is None }})
+    credentials: Optional[AuthorizationMethod] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credentials'), 'exclude': lambda f: f is None }})
     DESTINATION_TYPE: Final[DestinationSnowflakeSnowflake] = dataclasses.field(default=DestinationSnowflakeSnowflake.SNOWFLAKE, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('destinationType') }})
     disable_type_dedupe: Optional[bool] = dataclasses.field(default=False, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('disable_type_dedupe'), 'exclude': lambda f: f is None }})
     r"""Disable Writing Final Tables. WARNING! The data format in _airbyte_data is likely stable but there are no guarantees that other metadata columns will remain the same in future versions"""

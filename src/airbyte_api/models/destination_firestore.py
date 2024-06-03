@@ -18,7 +18,7 @@ class DestinationFirestore:
     project_id: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('project_id') }})
     r"""The GCP project ID for the project containing the target BigQuery dataset."""
     credentials_json: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credentials_json'), 'exclude': lambda f: f is None }})
-    r"""The contents of the JSON service account key. Check out the <a href=\\"https://docs.airbyte.io/integrations/destinations/firestore\\">docs</a> if you need help generating this key. Default credentials will be used if this field is left empty."""
+    r"""The contents of the JSON service account key. Check out the <a href=\\"https://docs.airbyte.com/integrations/destinations/firestore\\">docs</a> if you need help generating this key. Default credentials will be used if this field is left empty."""
     DESTINATION_TYPE: Final[Firestore] = dataclasses.field(default=Firestore.FIRESTORE, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('destinationType') }})
     
 

@@ -97,6 +97,8 @@ class DestinationTeradataDisable:
     
 
 
+DestinationTeradataSSLModes = Union['DestinationTeradataDisable', 'DestinationTeradataAllow', 'DestinationTeradataPrefer', 'DestinationTeradataRequire', 'DestinationTeradataVerifyCa', 'DestinationTeradataVerifyFull']
+
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
@@ -114,7 +116,7 @@ class DestinationTeradata:
     r"""The default schema tables are written to if the source does not specify a namespace. The usual value for this field is \\"public\\"."""
     ssl: Optional[bool] = dataclasses.field(default=False, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('ssl'), 'exclude': lambda f: f is None }})
     r"""Encrypt data using SSL. When activating SSL, please select one of the connection modes."""
-    ssl_mode: Optional[Union[DestinationTeradataDisable, DestinationTeradataAllow, DestinationTeradataPrefer, DestinationTeradataRequire, DestinationTeradataVerifyCa, DestinationTeradataVerifyFull]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('ssl_mode'), 'exclude': lambda f: f is None }})
+    ssl_mode: Optional[DestinationTeradataSSLModes] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('ssl_mode'), 'exclude': lambda f: f is None }})
     r"""SSL connection modes.
      <b>disable</b> - Chose this mode to disable encryption of communication between Airbyte and destination database
      <b>allow</b> - Chose this mode to enable encryption only when required by the destination database

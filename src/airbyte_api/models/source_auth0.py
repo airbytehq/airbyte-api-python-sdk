@@ -39,6 +39,8 @@ class OAuth2ConfidentialApplication:
     
 
 
+SourceAuth0AuthenticationMethod = Union['OAuth2ConfidentialApplication', 'OAuth2AccessToken']
+
 
 class Auth0(str, Enum):
     AUTH0 = 'auth0'
@@ -49,7 +51,7 @@ class Auth0(str, Enum):
 class SourceAuth0:
     base_url: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('base_url') }})
     r"""The Authentication API is served over HTTPS. All URLs referenced in the documentation have the following base `https://YOUR_DOMAIN`"""
-    credentials: Union[OAuth2ConfidentialApplication, OAuth2AccessToken] = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credentials') }})
+    credentials: SourceAuth0AuthenticationMethod = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credentials') }})
     SOURCE_TYPE: Final[Auth0] = dataclasses.field(default=Auth0.AUTH0, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     start_date: Optional[str] = dataclasses.field(default='2023-08-05T00:43:59.244Z', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('start_date'), 'exclude': lambda f: f is None }})
     r"""UTC date and time in the format 2017-01-25T00:00:00Z. Any data before this date will not be replicated."""

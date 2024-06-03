@@ -41,6 +41,8 @@ class SignInViaSlackOAuth:
     
 
 
+SourceSlackAuthenticationMechanism = Union['SignInViaSlackOAuth', 'SourceSlackAPIToken']
+
 
 class SourceSlackSlack(str, Enum):
     SLACK = 'slack'
@@ -53,7 +55,7 @@ class SourceSlack:
     r"""UTC date and time in the format 2017-01-25T00:00:00Z. Any data before this date will not be replicated."""
     channel_filter: Optional[List[str]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('channel_filter'), 'exclude': lambda f: f is None }})
     r"""A channel name list (without leading '#' char) which limit the channels from which you'd like to sync. Empty list means no filter."""
-    credentials: Optional[Union[SignInViaSlackOAuth, SourceSlackAPIToken]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credentials'), 'exclude': lambda f: f is None }})
+    credentials: Optional[SourceSlackAuthenticationMechanism] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credentials'), 'exclude': lambda f: f is None }})
     r"""Choose how to authenticate into Slack"""
     include_private_channels: Optional[bool] = dataclasses.field(default=False, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('include_private_channels'), 'exclude': lambda f: f is None }})
     r"""Whether to read information from private channels that the bot is already in.  If false, only public channels will be read.  If true, the bot must be manually added to private channels."""

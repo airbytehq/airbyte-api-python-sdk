@@ -93,6 +93,8 @@ class RecommendedManagedTables:
     
 
 
+DataSource = Union['RecommendedManagedTables', 'AmazonS3', 'DestinationDatabricksAzureBlobStorage']
+
 
 class Databricks(str, Enum):
     DATABRICKS = 'databricks'
@@ -101,7 +103,7 @@ class Databricks(str, Enum):
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
 class DestinationDatabricks:
-    data_source: Union[RecommendedManagedTables, AmazonS3, DestinationDatabricksAzureBlobStorage] = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('data_source') }})
+    data_source: DataSource = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('data_source') }})
     r"""Storage on which the delta lake is built."""
     databricks_http_path: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('databricks_http_path') }})
     r"""Databricks Cluster HTTP Path."""

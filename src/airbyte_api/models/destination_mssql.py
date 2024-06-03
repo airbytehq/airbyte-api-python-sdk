@@ -39,6 +39,8 @@ class EncryptedTrustServerCertificate:
     
 
 
+SSLMethod = Union['EncryptedTrustServerCertificate', 'EncryptedVerifyCertificate']
+
 
 class DestinationMssqlSchemasTunnelMethodTunnelMethod(str, Enum):
     r"""Connect through a jump server tunnel host using username and password authentication"""
@@ -97,6 +99,8 @@ class DestinationMssqlNoTunnel:
     
 
 
+DestinationMssqlSSHTunnelMethod = Union['DestinationMssqlNoTunnel', 'DestinationMssqlSSHKeyAuthentication', 'DestinationMssqlPasswordAuthentication']
+
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
@@ -118,9 +122,9 @@ class DestinationMssql:
     r"""The schema to write raw tables into (default: airbyte_internal)"""
     schema: Optional[str] = dataclasses.field(default='public', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('schema'), 'exclude': lambda f: f is None }})
     r"""The default schema tables are written to if the source does not specify a namespace. The usual value for this field is \\"public\\"."""
-    ssl_method: Optional[Union[EncryptedTrustServerCertificate, EncryptedVerifyCertificate]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('ssl_method'), 'exclude': lambda f: f is None }})
+    ssl_method: Optional[SSLMethod] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('ssl_method'), 'exclude': lambda f: f is None }})
     r"""The encryption method which is used to communicate with the database."""
-    tunnel_method: Optional[Union[DestinationMssqlNoTunnel, DestinationMssqlSSHKeyAuthentication, DestinationMssqlPasswordAuthentication]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('tunnel_method'), 'exclude': lambda f: f is None }})
+    tunnel_method: Optional[DestinationMssqlSSHTunnelMethod] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('tunnel_method'), 'exclude': lambda f: f is None }})
     r"""Whether to initiate an SSH tunnel before connecting to the database, and if so, which kind of authentication to use."""
     
 

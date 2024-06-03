@@ -45,6 +45,8 @@ class SourceSmartsheetsOAuth20:
     
 
 
+SourceSmartsheetsAuthorizationMethod = Union['SourceSmartsheetsOAuth20', 'APIAccessToken']
+
 
 class Validenums(str, Enum):
     SHEETCREATED_AT = 'sheetcreatedAt'
@@ -73,7 +75,7 @@ class SourceSmartsheetsSmartsheets(str, Enum):
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
 class SourceSmartsheets:
-    credentials: Union[SourceSmartsheetsOAuth20, APIAccessToken] = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credentials') }})
+    credentials: SourceSmartsheetsAuthorizationMethod = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credentials') }})
     spreadsheet_id: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('spreadsheet_id') }})
     r"""The spreadsheet ID. Find it by opening the spreadsheet then navigating to File > Properties"""
     metadata_fields: Optional[List[Validenums]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('metadata_fields'), 'exclude': lambda f: f is None }})

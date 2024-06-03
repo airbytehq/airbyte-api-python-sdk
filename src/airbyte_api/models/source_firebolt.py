@@ -8,7 +8,7 @@ from enum import Enum
 from typing import Final, Optional
 
 
-class Firebolt(str, Enum):
+class SourceFireboltFirebolt(str, Enum):
     FIREBOLT = 'firebolt'
 
 
@@ -27,6 +27,6 @@ class SourceFirebolt:
     r"""Engine name to connect to."""
     host: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('host'), 'exclude': lambda f: f is None }})
     r"""The host name of your Firebolt database."""
-    SOURCE_TYPE: Final[Firebolt] = dataclasses.field(default=Firebolt.FIREBOLT, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
+    SOURCE_TYPE: Final[SourceFireboltFirebolt] = dataclasses.field(default=SourceFireboltFirebolt.FIREBOLT, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     
 

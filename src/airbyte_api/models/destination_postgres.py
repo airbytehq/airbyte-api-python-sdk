@@ -101,6 +101,8 @@ class Disable:
     
 
 
+SSLModes = Union['Disable', 'Allow', 'Prefer', 'Require', 'VerifyCa', 'VerifyFull']
+
 
 class DestinationPostgresSchemasTunnelMethodTunnelMethod(str, Enum):
     r"""Connect through a jump server tunnel host using username and password authentication"""
@@ -159,6 +161,8 @@ class DestinationPostgresNoTunnel:
     
 
 
+DestinationPostgresSSHTunnelMethod = Union['DestinationPostgresNoTunnel', 'DestinationPostgresSSHKeyAuthentication', 'DestinationPostgresPasswordAuthentication']
+
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
@@ -184,7 +188,7 @@ class DestinationPostgres:
     r"""The schema to write raw tables into"""
     schema: Optional[str] = dataclasses.field(default='public', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('schema'), 'exclude': lambda f: f is None }})
     r"""The default schema tables are written to if the source does not specify a namespace. The usual value for this field is \\"public\\"."""
-    ssl_mode: Optional[Union[Disable, Allow, Prefer, Require, VerifyCa, VerifyFull]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('ssl_mode'), 'exclude': lambda f: f is None }})
+    ssl_mode: Optional[SSLModes] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('ssl_mode'), 'exclude': lambda f: f is None }})
     r"""SSL connection modes.
      <b>disable</b> - Chose this mode to disable encryption of communication between Airbyte and destination database
      <b>allow</b> - Chose this mode to enable encryption only when required by the source database
@@ -194,7 +198,7 @@ class DestinationPostgres:
       <b>verify-full</b> - This is the most secure mode. Chose this mode to always require encryption and to verify the identity of the source database server
      See more information - <a href=\"https://jdbc.postgresql.org/documentation/head/ssl-client.html\"> in the docs</a>.
     """
-    tunnel_method: Optional[Union[DestinationPostgresNoTunnel, DestinationPostgresSSHKeyAuthentication, DestinationPostgresPasswordAuthentication]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('tunnel_method'), 'exclude': lambda f: f is None }})
+    tunnel_method: Optional[DestinationPostgresSSHTunnelMethod] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('tunnel_method'), 'exclude': lambda f: f is None }})
     r"""Whether to initiate an SSH tunnel before connecting to the database, and if so, which kind of authentication to use."""
     
 

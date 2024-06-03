@@ -38,6 +38,8 @@ class DestinationLangchainOpenAI:
     
 
 
+DestinationLangchainEmbedding = Union['DestinationLangchainOpenAI', 'DestinationLangchainFake']
+
 
 class DestinationLangchainSchemasIndexingIndexing3Mode(str, Enum):
     CHROMA_LOCAL = 'chroma_local'
@@ -88,6 +90,8 @@ class DestinationLangchainPinecone:
     
 
 
+DestinationLangchainIndexing = Union['DestinationLangchainPinecone', 'DocArrayHnswSearch', 'ChromaLocalPersistance']
+
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
@@ -105,9 +109,9 @@ class DestinationLangchainProcessingConfigModel:
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
 class DestinationLangchain:
-    embedding: Union[DestinationLangchainOpenAI, DestinationLangchainFake] = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('embedding') }})
+    embedding: DestinationLangchainEmbedding = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('embedding') }})
     r"""Embedding configuration"""
-    indexing: Union[DestinationLangchainPinecone, DocArrayHnswSearch, ChromaLocalPersistance] = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('indexing') }})
+    indexing: DestinationLangchainIndexing = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('indexing') }})
     r"""Indexing configuration"""
     processing: DestinationLangchainProcessingConfigModel = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('processing') }})
     DESTINATION_TYPE: Final[Langchain] = dataclasses.field(default=Langchain.LANGCHAIN, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('destinationType') }})

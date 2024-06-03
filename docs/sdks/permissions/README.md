@@ -28,8 +28,9 @@ s = airbyte_api.AirbyteAPI(
     ),
 )
 
+
 res = s.permissions.create_permission(request=models.PermissionCreateRequest(
-    permission_type=models.PermissionType.WORKSPACE_ADMIN,
+    permission_type=models.PublicPermissionType.WORKSPACE_ADMIN,
     user_id='7d08fd6c-531e-4a00-937e-3d355f253e63',
     workspace_id='9924bcd0-99be-453d-ba47-c2c9766f7da5',
 ))
@@ -74,6 +75,7 @@ s = airbyte_api.AirbyteAPI(
         ),
     ),
 )
+
 
 res = s.permissions.delete_permission(request=api.DeletePermissionRequest(
     permission_id='<value>',
@@ -120,6 +122,7 @@ s = airbyte_api.AirbyteAPI(
     ),
 )
 
+
 res = s.permissions.get_permission(request=api.GetPermissionRequest(
     permission_id='<value>',
 ))
@@ -165,6 +168,7 @@ s = airbyte_api.AirbyteAPI(
     ),
 )
 
+
 res = s.permissions.list_permissions(request=api.ListPermissionsRequest())
 
 if res.permissions_response is not None:
@@ -207,6 +211,7 @@ s = airbyte_api.AirbyteAPI(
         ),
     ),
 )
+
 
 res = s.permissions.update_permission(request=api.UpdatePermissionRequest(
     permission_update_request=models.PermissionUpdateRequest(
