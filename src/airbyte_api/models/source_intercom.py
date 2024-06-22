@@ -21,6 +21,8 @@ class SourceIntercom:
     r"""Access token for making authenticated requests. See the <a href=\\"https://developers.intercom.com/building-apps/docs/authentication-types#how-to-get-your-access-token\\">Intercom docs</a> for more information."""
     start_date: datetime = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('start_date'), 'encoder': utils.datetimeisoformat(False), 'decoder': dateutil.parser.isoparse }})
     r"""UTC date and time in the format 2017-01-25T00:00:00Z. Any data before this date will not be replicated."""
+    activity_logs_time_step: Optional[int] = dataclasses.field(default=30, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('activity_logs_time_step'), 'exclude': lambda f: f is None }})
+    r"""Set lower value in case of failing long running sync of Activity Logs stream."""
     client_id: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('client_id'), 'exclude': lambda f: f is None }})
     r"""Client Id for your Intercom application."""
     client_secret: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('client_secret'), 'exclude': lambda f: f is None }})

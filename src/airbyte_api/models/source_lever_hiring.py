@@ -39,6 +39,8 @@ class AuthenticateViaLeverOAuth:
     
 
 
+SourceLeverHiringAuthenticationMechanism = Union['AuthenticateViaLeverOAuth', 'AuthenticateViaLeverAPIKey']
+
 
 class SourceLeverHiringEnvironment(str, Enum):
     r"""The environment in which you'd like to replicate data for Lever. This is used to determine which Lever API endpoint to use."""
@@ -55,7 +57,7 @@ class SourceLeverHiringLeverHiring(str, Enum):
 class SourceLeverHiring:
     start_date: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('start_date') }})
     r"""UTC date and time in the format 2017-01-25T00:00:00Z. Any data before this date will not be replicated. Note that it will be used only in the following incremental streams: comments, commits, and issues."""
-    credentials: Optional[Union[AuthenticateViaLeverOAuth, AuthenticateViaLeverAPIKey]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credentials'), 'exclude': lambda f: f is None }})
+    credentials: Optional[SourceLeverHiringAuthenticationMechanism] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credentials'), 'exclude': lambda f: f is None }})
     r"""Choose how to authenticate to Lever Hiring."""
     environment: Optional[SourceLeverHiringEnvironment] = dataclasses.field(default=SourceLeverHiringEnvironment.SANDBOX, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('environment'), 'exclude': lambda f: f is None }})
     r"""The environment in which you'd like to replicate data for Lever. This is used to determine which Lever API endpoint to use."""

@@ -24,6 +24,7 @@ s = airbyte_api.AirbyteAPI(
     ),
 )
 
+
 res = s.streams.get_stream_properties(request=api.GetStreamPropertiesRequest(
     source_id='<value>',
 ))

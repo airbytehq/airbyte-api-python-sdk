@@ -47,6 +47,8 @@ class SignInViaGoogleOAuth:
     
 
 
+SourceGoogleDirectoryGoogleCredentials = Union['SignInViaGoogleOAuth', 'ServiceAccountKey']
+
 
 class GoogleDirectory(str, Enum):
     GOOGLE_DIRECTORY = 'google-directory'
@@ -55,7 +57,7 @@ class GoogleDirectory(str, Enum):
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
 class SourceGoogleDirectory:
-    credentials: Optional[Union[SignInViaGoogleOAuth, ServiceAccountKey]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credentials'), 'exclude': lambda f: f is None }})
+    credentials: Optional[SourceGoogleDirectoryGoogleCredentials] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credentials'), 'exclude': lambda f: f is None }})
     r"""Google APIs use the OAuth 2.0 protocol for authentication and authorization. The Source supports <a href=\\"https://developers.google.com/identity/protocols/oauth2#webserver\\" target=\\"_blank\\">Web server application</a> and <a href=\\"https://developers.google.com/identity/protocols/oauth2#serviceaccount\\" target=\\"_blank\\">Service accounts</a> scenarios."""
     SOURCE_TYPE: Final[GoogleDirectory] = dataclasses.field(default=GoogleDirectory.GOOGLE_DIRECTORY, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     

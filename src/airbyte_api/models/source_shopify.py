@@ -43,6 +43,8 @@ class SourceShopifyOAuth20:
     
 
 
+ShopifyAuthorizationMethod = Union['SourceShopifyOAuth20', 'APIPassword']
+
 
 class SourceShopifyShopify(str, Enum):
     SHOPIFY = 'shopify'
@@ -55,7 +57,7 @@ class SourceShopify:
     r"""The name of your Shopify store found in the URL. For example, if your URL was https://NAME.myshopify.com, then the name would be 'NAME' or 'NAME.myshopify.com'."""
     bulk_window_in_days: Optional[int] = dataclasses.field(default=30, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('bulk_window_in_days'), 'exclude': lambda f: f is None }})
     r"""Defines what would be a date range per single BULK Job"""
-    credentials: Optional[Union[SourceShopifyOAuth20, APIPassword]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credentials'), 'exclude': lambda f: f is None }})
+    credentials: Optional[ShopifyAuthorizationMethod] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credentials'), 'exclude': lambda f: f is None }})
     r"""The authorization method to use to retrieve data from Shopify"""
     fetch_transactions_user_id: Optional[bool] = dataclasses.field(default=False, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('fetch_transactions_user_id'), 'exclude': lambda f: f is None }})
     r"""Defines which API type (REST/BULK) to use to fetch `Transactions` data. If you are a `Shopify Plus` user, leave the default value to speed up the fetch."""

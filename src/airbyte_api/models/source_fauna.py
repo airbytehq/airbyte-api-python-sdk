@@ -33,12 +33,14 @@ class Disabled:
     
 
 
+DeletionMode = Union['Disabled', 'Enabled']
+
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
 class Collection:
     r"""Settings for the Fauna Collection."""
-    deletions: Union[Disabled, Enabled] = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('deletions') }})
+    deletions: DeletionMode = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('deletions') }})
     r"""<b>This only applies to incremental syncs.</b> <br>
     Enabling deletion mode informs your destination of deleted documents.<br>
     Disabled - Leave this feature disabled, and ignore deleted documents.<br>

@@ -39,6 +39,7 @@ s = airbyte_api.AirbyteAPI(
     ),
 )
 
+
 res = s.connections.create_connection(request=models.ConnectionCreateRequest(
     destination_id='e478de0d-a3a0-475c-b019-25f7dd29e281',
     source_id='95e66a59-8045-4307-9678-63bc3c9b8c93',
@@ -106,6 +107,10 @@ if res.connection_response is not None:
 
 * [get_stream_properties](docs/sdks/streams/README.md#get_stream_properties) - Get stream properties
 
+### [users](docs/sdks/users/README.md)
+
+* [list_users](docs/sdks/users/README.md#list_users) - List users
+
 ### [workspaces](docs/sdks/workspaces/README.md)
 
 * [create_or_update_workspace_o_auth_credentials](docs/sdks/workspaces/README.md#create_or_update_workspace_o_auth_credentials) - Create OAuth override credentials for a workspace and source type.
@@ -154,6 +159,7 @@ try:
     name='Postgres-to-Bigquery',
     namespace_format='${SOURCE_NAMESPACE}',
 ))
+
 except errors.SDKError as e:
     # handle exception
     raise(e)
@@ -194,6 +200,7 @@ s = airbyte_api.AirbyteAPI(
     ),
 )
 
+
 res = s.connections.create_connection(request=models.ConnectionCreateRequest(
     destination_id='e478de0d-a3a0-475c-b019-25f7dd29e281',
     source_id='95e66a59-8045-4307-9678-63bc3c9b8c93',
@@ -224,6 +231,7 @@ s = airbyte_api.AirbyteAPI(
         ),
     ),
 )
+
 
 res = s.connections.create_connection(request=models.ConnectionCreateRequest(
     destination_id='e478de0d-a3a0-475c-b019-25f7dd29e281',
@@ -285,6 +293,7 @@ s = airbyte_api.AirbyteAPI(
         ),
     ),
 )
+
 
 res = s.connections.create_connection(request=models.ConnectionCreateRequest(
     destination_id='e478de0d-a3a0-475c-b019-25f7dd29e281',

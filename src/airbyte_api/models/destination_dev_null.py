@@ -23,11 +23,13 @@ class Silent:
     
 
 
+TestDestination = Union['Silent']
+
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
 class DestinationDevNull:
-    test_destination: Union[Silent] = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('test_destination') }})
+    test_destination: TestDestination = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('test_destination') }})
     r"""The type of destination to be used"""
     DESTINATION_TYPE: Final[DevNull] = dataclasses.field(default=DevNull.DEV_NULL, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('destinationType') }})
     

@@ -29,6 +29,7 @@ s = airbyte_api.AirbyteAPI(
     ),
 )
 
+
 res = s.destinations.create_destination(request=models.DestinationCreateRequest(
     configuration=models.DestinationGoogleSheets(
         credentials=models.AuthenticationViaGoogleOAuth(
@@ -83,6 +84,7 @@ s = airbyte_api.AirbyteAPI(
     ),
 )
 
+
 res = s.destinations.delete_destination(request=api.DeleteDestinationRequest(
     destination_id='<value>',
 ))
@@ -127,6 +129,7 @@ s = airbyte_api.AirbyteAPI(
         ),
     ),
 )
+
 
 res = s.destinations.get_destination(request=api.GetDestinationRequest(
     destination_id='<value>',
@@ -173,6 +176,7 @@ s = airbyte_api.AirbyteAPI(
     ),
 )
 
+
 res = s.destinations.list_destinations(request=api.ListDestinationsRequest())
 
 if res.destinations_response is not None:
@@ -215,6 +219,7 @@ s = airbyte_api.AirbyteAPI(
         ),
     ),
 )
+
 
 res = s.destinations.patch_destination(request=api.PatchDestinationRequest(
     destination_id='<value>',
@@ -270,6 +275,7 @@ s = airbyte_api.AirbyteAPI(
         ),
     ),
 )
+
 
 res = s.destinations.put_destination(request=api.PutDestinationRequest(
     destination_id='<value>',

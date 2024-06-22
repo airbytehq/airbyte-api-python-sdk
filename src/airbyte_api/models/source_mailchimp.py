@@ -41,6 +41,8 @@ class SourceMailchimpOAuth20:
     
 
 
+SourceMailchimpAuthentication = Union['SourceMailchimpOAuth20', 'APIKey']
+
 
 class SourceMailchimpMailchimp(str, Enum):
     MAILCHIMP = 'mailchimp'
@@ -49,7 +51,7 @@ class SourceMailchimpMailchimp(str, Enum):
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
 class SourceMailchimp:
-    credentials: Optional[Union[SourceMailchimpOAuth20, APIKey]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credentials'), 'exclude': lambda f: f is None }})
+    credentials: Optional[SourceMailchimpAuthentication] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credentials'), 'exclude': lambda f: f is None }})
     data_center: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('data_center'), 'exclude': lambda f: f is None }})
     r"""Technical fields used to identify datacenter to send request to"""
     SOURCE_TYPE: Final[SourceMailchimpMailchimp] = dataclasses.field(default=SourceMailchimpMailchimp.MAILCHIMP, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})

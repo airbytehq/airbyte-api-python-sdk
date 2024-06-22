@@ -45,6 +45,8 @@ class SourceTypeformOAuth20:
     
 
 
+SourceTypeformAuthorizationMethod = Union['SourceTypeformOAuth20', 'SourceTypeformPrivateToken']
+
 
 class SourceTypeformTypeform(str, Enum):
     TYPEFORM = 'typeform'
@@ -53,7 +55,7 @@ class SourceTypeformTypeform(str, Enum):
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
 class SourceTypeform:
-    credentials: Union[SourceTypeformOAuth20, SourceTypeformPrivateToken] = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credentials') }})
+    credentials: SourceTypeformAuthorizationMethod = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credentials') }})
     form_ids: Optional[List[str]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('form_ids'), 'exclude': lambda f: f is None }})
     r"""When this parameter is set, the connector will replicate data only from the input forms. Otherwise, all forms in your Typeform account will be replicated. You can find form IDs in your form URLs. For example, in the URL \\"https://mysite.typeform.com/to/u6nXL7\\" the form_id is u6nXL7. You can find form URLs on Share panel"""
     SOURCE_TYPE: Final[SourceTypeformTypeform] = dataclasses.field(default=SourceTypeformTypeform.TYPEFORM, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})

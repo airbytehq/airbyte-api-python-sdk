@@ -61,6 +61,8 @@ class MongoDBAtlasReplicaSet:
     
 
 
+ClusterType = Union['MongoDBAtlasReplicaSet', 'SelfManagedReplicaSet']
+
 
 class InvalidCDCPositionBehaviorAdvanced(str, Enum):
     r"""Determines whether Airbyte should fail or re-sync data in case of an stale/invalid cursor value into the WAL. If 'Fail sync' is chosen, a user will have to manually reset the connection before being able to continue syncing data. If 'Re-sync data' is chosen, Airbyte will automatically trigger a refresh but could lead to higher cloud costs and data loss."""
@@ -81,7 +83,7 @@ class CaptureModeAdvanced(str, Enum):
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
 class SourceMongodbV2:
-    database_config: Union[MongoDBAtlasReplicaSet, SelfManagedReplicaSet] = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('database_config') }})
+    database_config: ClusterType = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('database_config') }})
     r"""Configures the MongoDB cluster type."""
     discover_sample_size: Optional[int] = dataclasses.field(default=10000, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('discover_sample_size'), 'exclude': lambda f: f is None }})
     r"""The maximum number of documents to sample when attempting to discover the unique fields for a collection."""

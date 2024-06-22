@@ -45,6 +45,8 @@ class SourceHubspotOAuth:
     
 
 
+SourceHubspotAuthentication = Union['SourceHubspotOAuth', 'PrivateApp']
+
 
 class SourceHubspotHubspot(str, Enum):
     HUBSPOT = 'hubspot'
@@ -53,7 +55,7 @@ class SourceHubspotHubspot(str, Enum):
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
 class SourceHubspot:
-    credentials: Union[SourceHubspotOAuth, PrivateApp] = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credentials') }})
+    credentials: SourceHubspotAuthentication = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credentials') }})
     r"""Choose how to authenticate to HubSpot."""
     enable_experimental_streams: Optional[bool] = dataclasses.field(default=False, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('enable_experimental_streams'), 'exclude': lambda f: f is None }})
     r"""If enabled then experimental streams become available for sync."""

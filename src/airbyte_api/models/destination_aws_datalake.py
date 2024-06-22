@@ -41,6 +41,8 @@ class IAMRole:
     
 
 
+AuthenticationMode = Union['IAMRole', 'IAMUser']
+
 
 class AwsDatalake(str, Enum):
     AWS_DATALAKE = 'aws-datalake'
@@ -86,6 +88,8 @@ class JSONLinesNewlineDelimitedJSON:
     format_type: Optional[FormatTypeWildcard] = dataclasses.field(default=FormatTypeWildcard.JSONL, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('format_type'), 'exclude': lambda f: f is None }})
     
 
+
+OutputFormatWildcard = Union['JSONLinesNewlineDelimitedJSON', 'ParquetColumnarStorage']
 
 
 class ChooseHowToPartitionData(str, Enum):
@@ -142,7 +146,7 @@ class S3BucketRegion(str, Enum):
 class DestinationAwsDatalake:
     bucket_name: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('bucket_name') }})
     r"""The name of the S3 bucket. Read more <a href=\\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/create-bucket-overview.html\\">here</a>."""
-    credentials: Union[IAMRole, IAMUser] = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credentials') }})
+    credentials: AuthenticationMode = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credentials') }})
     r"""Choose How to Authenticate to AWS."""
     lakeformation_database_name: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('lakeformation_database_name') }})
     r"""The default database this destination will use to create tables in per stream. Can be changed per connection by customizing the namespace."""
@@ -151,7 +155,7 @@ class DestinationAwsDatalake:
     bucket_prefix: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('bucket_prefix'), 'exclude': lambda f: f is None }})
     r"""S3 prefix"""
     DESTINATION_TYPE: Final[AwsDatalake] = dataclasses.field(default=AwsDatalake.AWS_DATALAKE, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('destinationType') }})
-    format: Optional[Union[JSONLinesNewlineDelimitedJSON, ParquetColumnarStorage]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('format'), 'exclude': lambda f: f is None }})
+    format: Optional[OutputFormatWildcard] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('format'), 'exclude': lambda f: f is None }})
     r"""Format of the data output."""
     glue_catalog_float_as_decimal: Optional[bool] = dataclasses.field(default=False, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('glue_catalog_float_as_decimal'), 'exclude': lambda f: f is None }})
     r"""Cast float/double as decimal(38,18). This can help achieve higher accuracy and represent numbers correctly as received from the source."""

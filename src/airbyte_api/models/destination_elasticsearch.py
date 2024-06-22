@@ -41,6 +41,8 @@ class APIKeySecret:
     
 
 
+AuthenticationMethod = Union['APIKeySecret', 'UsernamePassword']
+
 
 class Elasticsearch(str, Enum):
     ELASTICSEARCH = 'elasticsearch'
@@ -51,7 +53,7 @@ class Elasticsearch(str, Enum):
 class DestinationElasticsearch:
     endpoint: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('endpoint') }})
     r"""The full url of the Elasticsearch server"""
-    authentication_method: Optional[Union[APIKeySecret, UsernamePassword]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('authenticationMethod'), 'exclude': lambda f: f is None }})
+    authentication_method: Optional[AuthenticationMethod] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('authenticationMethod'), 'exclude': lambda f: f is None }})
     r"""The type of authentication to be used"""
     ca_certificate: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('ca_certificate'), 'exclude': lambda f: f is None }})
     r"""CA certificate"""

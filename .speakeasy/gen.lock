@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 07961597-3730-4940-9fd0-35eb4118eab3
 management:
-  docChecksum: 241d5a786e59837e86f30500836a2a90
+  docChecksum: d90db45a44e468bd5d9ffc93c6e415c9
   docVersion: 1.0.0
-  speakeasyVersion: 1.291.0
-  generationVersion: 2.332.4
-  releaseVersion: 0.50.0
-  configChecksum: 3419a83e7a383d870cd14092010722a7
+  speakeasyVersion: 1.299.4
+  generationVersion: 2.338.7
+  releaseVersion: 0.50.1
+  configChecksum: fbcdc2ce57f888d9af79756839bf1a17
   repoURL: https://github.com/airbytehq/airbyte-api-python-sdk.git
   repoSubDirectory: .
   installationURL: https://github.com/airbytehq/airbyte-api-python-sdk.git
@@ -16,7 +16,7 @@ features:
     additionalDependencies: 0.1.0
     additionalProperties: 0.1.0
     constsAndDefaults: 0.1.3
-    core: 4.6.7
+    core: 4.6.8
     globalSecurity: 2.83.5
     globalSecurityCallbacks: 0.1.0
     globalServerURLs: 2.82.2
@@ -25,7 +25,7 @@ features:
     oauth2ClientCredentials: 0.1.2
     responseFormat: 0.1.0
     sdkHooks: 0.1.0
-    unions: 2.82.6
+    unions: 2.82.7
 generatedFiles:
   - src/airbyte_api/sdkconfiguration.py
   - src/airbyte_api/connections.py
@@ -35,6 +35,7 @@ generatedFiles:
   - src/airbyte_api/permissions.py
   - src/airbyte_api/sources.py
   - src/airbyte_api/streams.py
+  - src/airbyte_api/users.py
   - src/airbyte_api/workspaces.py
   - src/airbyte_api/sdk.py
   - py.typed
@@ -74,6 +75,7 @@ generatedFiles:
   - src/airbyte_api/api/patchsource.py
   - src/airbyte_api/api/putsource.py
   - src/airbyte_api/api/getstreamproperties.py
+  - src/airbyte_api/api/listusers.py
   - src/airbyte_api/api/createorupdateworkspaceoauthcredentials.py
   - src/airbyte_api/api/createworkspace.py
   - src/airbyte_api/api/deleteworkspace.py
@@ -90,6 +92,7 @@ generatedFiles:
   - src/airbyte_api/models/streamconfigurations.py
   - src/airbyte_api/models/streamconfiguration.py
   - src/airbyte_api/models/connectionsyncmodeenum.py
+  - src/airbyte_api/models/selectedfieldinfo.py
   - src/airbyte_api/models/connectioncreaterequest.py
   - src/airbyte_api/models/airbyteapiconnectionschedule.py
   - src/airbyte_api/models/scheduletypeenum.py
@@ -99,6 +102,7 @@ generatedFiles:
   - src/airbyte_api/models/namespacedefinitionenumnodefault.py
   - src/airbyte_api/models/geographyenumnodefault.py
   - src/airbyte_api/models/destinationresponse.py
+  - src/airbyte_api/models/destinationconfiguration.py
   - src/airbyte_api/models/destination_google_sheets.py
   - src/airbyte_api/models/destination_astra.py
   - src/airbyte_api/models/destination_aws_datalake.py
@@ -111,6 +115,7 @@ generatedFiles:
   - src/airbyte_api/models/destination_duckdb.py
   - src/airbyte_api/models/destination_dynamodb.py
   - src/airbyte_api/models/destination_elasticsearch.py
+  - src/airbyte_api/models/destination_firebolt.py
   - src/airbyte_api/models/destination_firestore.py
   - src/airbyte_api/models/destination_gcs.py
   - src/airbyte_api/models/destination_langchain.py
@@ -147,11 +152,13 @@ generatedFiles:
   - src/airbyte_api/models/permissionresponse.py
   - src/airbyte_api/models/permissiontype.py
   - src/airbyte_api/models/permissioncreaterequest.py
+  - src/airbyte_api/models/publicpermissiontype.py
   - src/airbyte_api/models/permissionsresponse.py
   - src/airbyte_api/models/permissionresponseread.py
   - src/airbyte_api/models/permissionscope.py
   - src/airbyte_api/models/permissionupdaterequest.py
   - src/airbyte_api/models/sourceresponse.py
+  - src/airbyte_api/models/sourceconfiguration.py
   - src/airbyte_api/models/source_aha.py
   - src/airbyte_api/models/source_aircall.py
   - src/airbyte_api/models/source_airtable.py
@@ -353,7 +360,10 @@ generatedFiles:
   - src/airbyte_api/models/sourcepatchrequest.py
   - src/airbyte_api/models/sourceputrequest.py
   - src/airbyte_api/models/streamproperties.py
+  - src/airbyte_api/models/usersresponse.py
+  - src/airbyte_api/models/userresponse.py
   - src/airbyte_api/models/workspaceoauthcredentialsrequest.py
+  - src/airbyte_api/models/oauthcredentialsconfiguration.py
   - src/airbyte_api/models/airtable.py
   - src/airbyte_api/models/amazon_ads.py
   - src/airbyte_api/models/amazon_seller_partner.py
@@ -459,6 +469,8 @@ generatedFiles:
   - docs/api/putsourceresponse.md
   - docs/api/getstreampropertiesrequest.md
   - docs/api/getstreampropertiesresponse.md
+  - docs/api/listusersrequest.md
+  - docs/api/listusersresponse.md
   - docs/api/createorupdateworkspaceoauthcredentialsrequest.md
   - docs/api/createorupdateworkspaceoauthcredentialsresponse.md
   - docs/api/createworkspaceresponse.md
@@ -480,6 +492,7 @@ generatedFiles:
   - docs/models/streamconfigurations.md
   - docs/models/streamconfiguration.md
   - docs/models/connectionsyncmodeenum.md
+  - docs/models/selectedfieldinfo.md
   - docs/models/connectioncreaterequest.md
   - docs/models/airbyteapiconnectionschedule.md
   - docs/models/scheduletypeenum.md
@@ -592,6 +605,13 @@ generatedFiles:
   - docs/models/authenticationmethod.md
   - docs/models/elasticsearch.md
   - docs/models/destinationelasticsearch.md
+  - docs/models/firebolt.md
+  - docs/models/destinationfireboltschemasmethod.md
+  - docs/models/externaltablevias3.md
+  - docs/models/destinationfireboltmethod.md
+  - docs/models/sqlinserts.md
+  - docs/models/destinationfireboltloadingmethod.md
+  - docs/models/destinationfirebolt.md
   - docs/models/firestore.md
   - docs/models/destinationfirestore.md
   - docs/models/credentialtype.md
@@ -1024,6 +1044,7 @@ generatedFiles:
   - docs/models/permissionresponse.md
   - docs/models/permissiontype.md
   - docs/models/permissioncreaterequest.md
+  - docs/models/publicpermissiontype.md
   - docs/models/permissionsresponse.md
   - docs/models/permissionresponseread.md
   - docs/models/permissionscope.md
@@ -1052,7 +1073,7 @@ generatedFiles:
   - docs/models/awsenvironment.md
   - docs/models/awsregion.md
   - docs/models/optionslist.md
-  - docs/models/streamname.md
+  - docs/models/reportname.md
   - docs/models/reportoptions.md
   - docs/models/sourceamazonsellerpartneramazonsellerpartner.md
   - docs/models/sourceamazonsellerpartner.md
@@ -1243,7 +1264,7 @@ generatedFiles:
   - docs/models/storageprovider.md
   - docs/models/file.md
   - docs/models/sourcefile.md
-  - docs/models/firebolt.md
+  - docs/models/sourcefireboltfirebolt.md
   - docs/models/sourcefirebolt.md
   - docs/models/freshcaller.md
   - docs/models/sourcefreshcaller.md
@@ -1700,6 +1721,7 @@ generatedFiles:
   - docs/models/sourcemailchimpauthentication.md
   - docs/models/sourcemailchimpmailchimp.md
   - docs/models/sourcemailchimp.md
+  - docs/models/domainregioncode.md
   - docs/models/mailgun.md
   - docs/models/sourcemailgun.md
   - docs/models/mailjetsms.md
@@ -2291,6 +2313,8 @@ generatedFiles:
   - docs/models/sourcepatchrequest.md
   - docs/models/sourceputrequest.md
   - docs/models/streamproperties.md
+  - docs/models/usersresponse.md
+  - docs/models/userresponse.md
   - docs/models/workspaceoauthcredentialsrequest.md
   - docs/models/oauthcredentialsconfiguration.md
   - docs/models/credentials.md
@@ -2386,6 +2410,7 @@ generatedFiles:
   - docs/sdks/permissions/README.md
   - docs/sdks/sources/README.md
   - docs/sdks/streams/README.md
+  - docs/sdks/users/README.md
   - docs/sdks/workspaces/README.md
   - USAGE.md
   - .gitattributes

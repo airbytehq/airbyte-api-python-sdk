@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 import dataclasses
-from .permissiontype import PermissionType
+from .publicpermissiontype import PublicPermissionType
 from airbyte_api import utils
 from dataclasses_json import Undefined, dataclass_json
 from typing import Optional
@@ -11,8 +11,8 @@ from typing import Optional
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
 class PermissionCreateRequest:
-    permission_type: PermissionType = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('permissionType') }})
-    r"""Describes what actions/endpoints the permission entitles to"""
+    permission_type: PublicPermissionType = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('permissionType') }})
+    r"""Subset of `PermissionType` (removing `instance_admin`), could be used in public-api."""
     user_id: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('userId') }})
     r"""Internal Airbyte user ID"""
     organization_id: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('organizationId'), 'exclude': lambda f: f is None }})

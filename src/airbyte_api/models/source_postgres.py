@@ -81,6 +81,8 @@ class ReadChangesUsingWriteAheadLogCDC:
     
 
 
+SourcePostgresUpdateMethod = Union['ReadChangesUsingWriteAheadLogCDC', 'DetectChangesWithXminSystemColumn', 'SourcePostgresScanChangesWithUserDefinedCursor']
+
 
 class SourcePostgresPostgres(str, Enum):
     POSTGRES = 'postgres'
@@ -191,6 +193,8 @@ class SourcePostgresDisable:
     
 
 
+SourcePostgresSSLModes = Union['SourcePostgresDisable', 'SourcePostgresAllow', 'SourcePostgresPrefer', 'SourcePostgresRequire', 'SourcePostgresVerifyCa', 'SourcePostgresVerifyFull']
+
 
 class SourcePostgresSchemasTunnelMethodTunnelMethod(str, Enum):
     r"""Connect through a jump server tunnel host using username and password authentication"""
@@ -249,6 +253,8 @@ class SourcePostgresNoTunnel:
     
 
 
+SourcePostgresSSHTunnelMethod = Union['SourcePostgresNoTunnel', 'SourcePostgresSSHKeyAuthentication', 'SourcePostgresPasswordAuthentication']
+
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
@@ -265,16 +271,16 @@ class SourcePostgres:
     r"""Password associated with the username."""
     port: Optional[int] = dataclasses.field(default=5432, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('port'), 'exclude': lambda f: f is None }})
     r"""Port of the database."""
-    replication_method: Optional[Union[ReadChangesUsingWriteAheadLogCDC, DetectChangesWithXminSystemColumn, SourcePostgresScanChangesWithUserDefinedCursor]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('replication_method'), 'exclude': lambda f: f is None }})
+    replication_method: Optional[SourcePostgresUpdateMethod] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('replication_method'), 'exclude': lambda f: f is None }})
     r"""Configures how data is extracted from the database."""
     schemas: Optional[List[str]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('schemas'), 'exclude': lambda f: f is None }})
     r"""The list of schemas (case sensitive) to sync from. Defaults to public."""
     SOURCE_TYPE: Final[SourcePostgresPostgres] = dataclasses.field(default=SourcePostgresPostgres.POSTGRES, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
-    ssl_mode: Optional[Union[SourcePostgresDisable, SourcePostgresAllow, SourcePostgresPrefer, SourcePostgresRequire, SourcePostgresVerifyCa, SourcePostgresVerifyFull]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('ssl_mode'), 'exclude': lambda f: f is None }})
+    ssl_mode: Optional[SourcePostgresSSLModes] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('ssl_mode'), 'exclude': lambda f: f is None }})
     r"""SSL connection modes.
       Read more <a href=\"https://jdbc.postgresql.org/documentation/head/ssl-client.html\"> in the docs</a>.
     """
-    tunnel_method: Optional[Union[SourcePostgresNoTunnel, SourcePostgresSSHKeyAuthentication, SourcePostgresPasswordAuthentication]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('tunnel_method'), 'exclude': lambda f: f is None }})
+    tunnel_method: Optional[SourcePostgresSSHTunnelMethod] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('tunnel_method'), 'exclude': lambda f: f is None }})
     r"""Whether to initiate an SSH tunnel before connecting to the database, and if so, which kind of authentication to use."""
     
 

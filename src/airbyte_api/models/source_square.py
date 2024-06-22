@@ -41,6 +41,8 @@ class OauthAuthentication:
     
 
 
+SourceSquareAuthentication = Union['OauthAuthentication', 'SourceSquareAPIKey']
+
 
 class SourceSquareSquare(str, Enum):
     SQUARE = 'square'
@@ -49,7 +51,7 @@ class SourceSquareSquare(str, Enum):
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
 class SourceSquare:
-    credentials: Optional[Union[OauthAuthentication, SourceSquareAPIKey]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credentials'), 'exclude': lambda f: f is None }})
+    credentials: Optional[SourceSquareAuthentication] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credentials'), 'exclude': lambda f: f is None }})
     r"""Choose how to authenticate to Square."""
     include_deleted_objects: Optional[bool] = dataclasses.field(default=False, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('include_deleted_objects'), 'exclude': lambda f: f is None }})
     r"""In some streams there is an option to include deleted objects (Items, Categories, Discounts, Taxes)"""

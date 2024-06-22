@@ -41,6 +41,8 @@ class SourceMondayOAuth20:
     
 
 
+SourceMondayAuthorizationMethod = Union['SourceMondayOAuth20', 'APIToken']
+
 
 class SourceMondayMonday(str, Enum):
     MONDAY = 'monday'
@@ -49,7 +51,7 @@ class SourceMondayMonday(str, Enum):
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
 class SourceMonday:
-    credentials: Optional[Union[SourceMondayOAuth20, APIToken]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credentials'), 'exclude': lambda f: f is None }})
+    credentials: Optional[SourceMondayAuthorizationMethod] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credentials'), 'exclude': lambda f: f is None }})
     SOURCE_TYPE: Final[SourceMondayMonday] = dataclasses.field(default=SourceMondayMonday.MONDAY, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     
 

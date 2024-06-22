@@ -41,6 +41,8 @@ class SingleSchema:
     
 
 
+MockCatalog = Union['SingleSchema', 'MultiSchema']
+
 
 class E2eTestCloud(str, Enum):
     E2E_TEST_CLOUD = 'e2e-test-cloud'
@@ -54,7 +56,7 @@ class Type(str, Enum):
 @dataclasses.dataclass
 class ContinuousFeed:
     UNSET='__SPEAKEASY_UNSET__'
-    mock_catalog: Union[SingleSchema, MultiSchema] = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('mock_catalog') }})
+    mock_catalog: MockCatalog = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('mock_catalog') }})
     additional_properties: Optional[Dict[str, Any]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'exclude': lambda f: f is None }})
     max_messages: Optional[int] = dataclasses.field(default=100, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('max_messages'), 'exclude': lambda f: f is None }})
     r"""Number of records to emit per stream. Min 1. Max 100 billion."""
@@ -66,3 +68,5 @@ class ContinuousFeed:
     TYPE: Final[Optional[Type]] = dataclasses.field(default=Type.CONTINUOUS_FEED, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('type'), 'exclude': lambda f: f is None }})
     
 
+
+SourceE2eTestCloud = Union['ContinuousFeed']

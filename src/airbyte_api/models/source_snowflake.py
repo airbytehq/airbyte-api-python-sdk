@@ -43,6 +43,8 @@ class SourceSnowflakeOAuth20:
     
 
 
+SourceSnowflakeAuthorizationMethod = Union['SourceSnowflakeOAuth20', 'SourceSnowflakeUsernameAndPassword']
+
 
 class SourceSnowflakeSnowflake(str, Enum):
     SNOWFLAKE = 'snowflake'
@@ -59,7 +61,7 @@ class SourceSnowflake:
     r"""The role you created for Airbyte to access Snowflake."""
     warehouse: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('warehouse') }})
     r"""The warehouse you created for Airbyte to access data."""
-    credentials: Optional[Union[SourceSnowflakeOAuth20, SourceSnowflakeUsernameAndPassword]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credentials'), 'exclude': lambda f: f is None }})
+    credentials: Optional[SourceSnowflakeAuthorizationMethod] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credentials'), 'exclude': lambda f: f is None }})
     jdbc_url_params: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('jdbc_url_params'), 'exclude': lambda f: f is None }})
     r"""Additional properties to pass to the JDBC URL string when connecting to the database formatted as 'key=value' pairs separated by the symbol '&'. (example: key1=value1&key2=value2&key3=value3)."""
     schema: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('schema'), 'exclude': lambda f: f is None }})

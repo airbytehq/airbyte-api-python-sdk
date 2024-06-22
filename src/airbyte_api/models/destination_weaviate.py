@@ -121,6 +121,8 @@ class NoExternalEmbedding:
     
 
 
+DestinationWeaviateEmbedding = Union['NoExternalEmbedding', 'DestinationWeaviateAzureOpenAI', 'DestinationWeaviateOpenAI', 'DestinationWeaviateCohere', 'FromField', 'DestinationWeaviateFake', 'DestinationWeaviateOpenAICompatible']
+
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
@@ -175,6 +177,8 @@ class DestinationWeaviateAPIToken:
     
 
 
+DestinationWeaviateAuthentication = Union['DestinationWeaviateAPIToken', 'DestinationWeaviateUsernamePassword', 'NoAuthentication']
+
 
 class DefaultVectorizer(str, Enum):
     r"""The vectorizer to use if new classes need to be created"""
@@ -192,7 +196,7 @@ class DefaultVectorizer(str, Enum):
 @dataclasses.dataclass
 class DestinationWeaviateIndexing:
     r"""Indexing configuration"""
-    auth: Union[DestinationWeaviateAPIToken, DestinationWeaviateUsernamePassword, NoAuthentication] = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth') }})
+    auth: DestinationWeaviateAuthentication = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth') }})
     r"""Authentication method"""
     host: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('host') }})
     r"""The public endpoint of the Weaviate cluster."""
@@ -287,6 +291,8 @@ class DestinationWeaviateBySeparator:
     
 
 
+DestinationWeaviateTextSplitter = Union['DestinationWeaviateBySeparator', 'DestinationWeaviateByMarkdownHeader', 'DestinationWeaviateByProgrammingLanguage']
+
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
@@ -301,7 +307,7 @@ class DestinationWeaviateProcessingConfigModel:
     r"""List of fields in the record that should be stored as metadata. The field list is applied to all streams in the same way and non-existing fields are ignored. If none are defined, all fields are considered metadata fields. When specifying text fields, you can access nested fields in the record by using dot notation, e.g. `user.name` will access the `name` field in the `user` object. It's also possible to use wildcards to access all fields in an object, e.g. `users.*.name` will access all `names` fields in all entries of the `users` array. When specifying nested paths, all matching values are flattened into an array set to a field named by the path."""
     text_fields: Optional[List[str]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('text_fields'), 'exclude': lambda f: f is None }})
     r"""List of fields in the record that should be used to calculate the embedding. The field list is applied to all streams in the same way and non-existing fields are ignored. If none are defined, all fields are considered text fields. When specifying text fields, you can access nested fields in the record by using dot notation, e.g. `user.name` will access the `name` field in the `user` object. It's also possible to use wildcards to access all fields in an object, e.g. `users.*.name` will access all `names` fields in all entries of the `users` array."""
-    text_splitter: Optional[Union[DestinationWeaviateBySeparator, DestinationWeaviateByMarkdownHeader, DestinationWeaviateByProgrammingLanguage]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('text_splitter'), 'exclude': lambda f: f is None }})
+    text_splitter: Optional[DestinationWeaviateTextSplitter] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('text_splitter'), 'exclude': lambda f: f is None }})
     r"""Split text fields into chunks based on the specified method."""
     
 
@@ -321,7 +327,7 @@ class DestinationWeaviate:
 
     Processing, embedding and advanced configuration are provided by this base class, while the indexing configuration is provided by the destination connector in the sub class.
     """
-    embedding: Union[NoExternalEmbedding, DestinationWeaviateAzureOpenAI, DestinationWeaviateOpenAI, DestinationWeaviateCohere, FromField, DestinationWeaviateFake, DestinationWeaviateOpenAICompatible] = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('embedding') }})
+    embedding: DestinationWeaviateEmbedding = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('embedding') }})
     r"""Embedding configuration"""
     indexing: DestinationWeaviateIndexing = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('indexing') }})
     r"""Indexing configuration"""
