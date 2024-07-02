@@ -39,8 +39,6 @@ class SourceSftpPasswordAuthentication:
     
 
 
-SourceSftpAuthentication = Union['SourceSftpPasswordAuthentication', 'SourceSftpSSHKeyAuthentication']
-
 
 class Sftp(str, Enum):
     SFTP = 'sftp'
@@ -66,3 +64,5 @@ class SourceSftp:
     SOURCE_TYPE: Final[Sftp] = dataclasses.field(default=Sftp.SFTP, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     
 
+
+SourceSftpAuthentication = Union[SourceSftpPasswordAuthentication, SourceSftpSSHKeyAuthentication]

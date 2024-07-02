@@ -37,8 +37,6 @@ class SourceOutbrainAmplifyAccessToken:
     
 
 
-SourceOutbrainAmplifyAuthenticationMethod = Union['SourceOutbrainAmplifyAccessToken', 'SourceOutbrainAmplifyUsernamePassword']
-
 
 class GranularityForGeoLocationRegion(str, Enum):
     r"""The granularity used for geo location data in reports."""
@@ -74,3 +72,5 @@ class SourceOutbrainAmplify:
     SOURCE_TYPE: Final[OutbrainAmplify] = dataclasses.field(default=OutbrainAmplify.OUTBRAIN_AMPLIFY, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     
 
+
+SourceOutbrainAmplifyAuthenticationMethod = Union[SourceOutbrainAmplifyAccessToken, SourceOutbrainAmplifyUsernamePassword]

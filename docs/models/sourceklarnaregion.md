@@ -1,6 +1,6 @@
 # SourceKlarnaRegion
 
-Base url region (For playground eu https://docs.klarna.com/klarna-payments/api/payments-api/#tag/API-URLs). Supported 'eu', 'us', 'oc'
+Base url region (For playground eu https://docs.klarna.com/klarna-payments/api/payments-api/#tag/API-URLs). Supported 'eu', 'na', 'oc'
 
 
 ## Values
@@ -8,5 +8,5 @@ Base url region (For playground eu https://docs.klarna.com/klarna-payments/api/p
 | Name  | Value |
 | ----- | ----- |
 | `EU`  | eu    |
-| `US`  | us    |
+| `NA`  | na    |
 | `OC`  | oc    |

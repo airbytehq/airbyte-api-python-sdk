@@ -38,8 +38,6 @@ class DestinationLangchainOpenAI:
     
 
 
-DestinationLangchainEmbedding = Union['DestinationLangchainOpenAI', 'DestinationLangchainFake']
-
 
 class DestinationLangchainSchemasIndexingIndexing3Mode(str, Enum):
     CHROMA_LOCAL = 'chroma_local'
@@ -90,8 +88,6 @@ class DestinationLangchainPinecone:
     
 
 
-DestinationLangchainIndexing = Union['DestinationLangchainPinecone', 'DocArrayHnswSearch', 'ChromaLocalPersistance']
-
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
@@ -117,3 +113,7 @@ class DestinationLangchain:
     DESTINATION_TYPE: Final[Langchain] = dataclasses.field(default=Langchain.LANGCHAIN, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('destinationType') }})
     
 
+
+DestinationLangchainEmbedding = Union[DestinationLangchainOpenAI, DestinationLangchainFake]
+
+DestinationLangchainIndexing = Union[DestinationLangchainPinecone, DocArrayHnswSearch, ChromaLocalPersistance]

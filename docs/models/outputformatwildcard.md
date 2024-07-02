@@ -5,15 +5,15 @@ Format of the data output.
 
 ## Supported Types
 
-### JSONLinesNewlineDelimitedJSON
+### `models.JSONLinesNewlineDelimitedJSON`
 
 ```python
-outputFormatWildcard: models.JSONLinesNewlineDelimitedJSON = /* values here */
+value: models.JSONLinesNewlineDelimitedJSON = /* values here */
 ```
 
-### ParquetColumnarStorage
+### `models.ParquetColumnarStorage`
 
 ```python
-outputFormatWildcard: models.ParquetColumnarStorage = /* values here */
+value: models.ParquetColumnarStorage = /* values here */
 ```
 

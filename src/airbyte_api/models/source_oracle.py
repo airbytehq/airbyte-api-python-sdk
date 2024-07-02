@@ -35,8 +35,6 @@ class ServiceName:
     
 
 
-ConnectBy = Union['ServiceName', 'SystemIDSID']
-
 
 class SourceOracleEncryptionMethod(str, Enum):
     ENCRYPTED_VERIFY_CERTIFICATE = 'encrypted_verify_certificate'
@@ -73,8 +71,6 @@ class NativeNetworkEncryptionNNE:
     ENCRYPTION_METHOD: Final[EncryptionMethod] = dataclasses.field(default=EncryptionMethod.CLIENT_NNE, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('encryption_method') }})
     
 
-
-Encryption = Union['NativeNetworkEncryptionNNE', 'TLSEncryptedVerifyCertificate']
 
 
 class SourceOracleOracle(str, Enum):
@@ -138,8 +134,6 @@ class SourceOracleNoTunnel:
     
 
 
-SourceOracleSSHTunnelMethod = Union['SourceOracleNoTunnel', 'SourceOracleSSHKeyAuthentication', 'SourceOraclePasswordAuthentication']
-
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
@@ -169,3 +163,9 @@ class SourceOracle:
     r"""Whether to initiate an SSH tunnel before connecting to the database, and if so, which kind of authentication to use."""
     
 
+
+ConnectBy = Union[ServiceName, SystemIDSID]
+
+Encryption = Union[NativeNetworkEncryptionNNE, TLSEncryptedVerifyCertificate]
+
+SourceOracleSSHTunnelMethod = Union[SourceOracleNoTunnel, SourceOracleSSHKeyAuthentication, SourceOraclePasswordAuthentication]

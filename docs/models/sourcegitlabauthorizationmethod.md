@@ -3,15 +3,15 @@
 
 ## Supported Types
 
-### SourceGitlabOAuth20
+### `models.SourceGitlabOAuth20`
 
 ```python
-sourceGitlabAuthorizationMethod: models.SourceGitlabOAuth20 = /* values here */
+value: models.SourceGitlabOAuth20 = /* values here */
 ```
 
-### PrivateToken
+### `models.PrivateToken`
 
 ```python
-sourceGitlabAuthorizationMethod: models.PrivateToken = /* values here */
+value: models.PrivateToken = /* values here */
 ```
 

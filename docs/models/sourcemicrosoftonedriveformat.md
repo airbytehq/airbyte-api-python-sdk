@@ -5,33 +5,33 @@ The configuration options that are used to alter how to read incoming files that
 
 ## Supported Types
 
-### SourceMicrosoftOnedriveAvroFormat
+### `models.SourceMicrosoftOnedriveAvroFormat`
 
 ```python
-sourceMicrosoftOnedriveFormat: models.SourceMicrosoftOnedriveAvroFormat = /* values here */
+value: models.SourceMicrosoftOnedriveAvroFormat = /* values here */
 ```
 
-### SourceMicrosoftOnedriveCSVFormat
+### `models.SourceMicrosoftOnedriveCSVFormat`
 
 ```python
-sourceMicrosoftOnedriveFormat: models.SourceMicrosoftOnedriveCSVFormat = /* values here */
+value: models.SourceMicrosoftOnedriveCSVFormat = /* values here */
 ```
 
-### SourceMicrosoftOnedriveJsonlFormat
+### `models.SourceMicrosoftOnedriveJsonlFormat`
 
 ```python
-sourceMicrosoftOnedriveFormat: models.SourceMicrosoftOnedriveJsonlFormat = /* values here */
+value: models.SourceMicrosoftOnedriveJsonlFormat = /* values here */
 ```
 
-### SourceMicrosoftOnedriveParquetFormat
+### `models.SourceMicrosoftOnedriveParquetFormat`
 
 ```python
-sourceMicrosoftOnedriveFormat: models.SourceMicrosoftOnedriveParquetFormat = /* values here */
+value: models.SourceMicrosoftOnedriveParquetFormat = /* values here */
 ```
 
-### SourceMicrosoftOnedriveDocumentFileTypeFormatExperimental
+### `models.SourceMicrosoftOnedriveDocumentFileTypeFormatExperimental`
 
 ```python
-sourceMicrosoftOnedriveFormat: models.SourceMicrosoftOnedriveDocumentFileTypeFormatExperimental = /* values here */
+value: models.SourceMicrosoftOnedriveDocumentFileTypeFormatExperimental = /* values here */
 ```
 

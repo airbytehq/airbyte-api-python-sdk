@@ -41,8 +41,6 @@ class SourceOktaOAuth20:
     
 
 
-SourceOktaAuthorizationMethod = Union['SourceOktaOAuth20', 'SourceOktaAPIToken']
-
 
 class Okta(str, Enum):
     OKTA = 'okta'
@@ -59,3 +57,5 @@ class SourceOkta:
     r"""UTC date and time in the format YYYY-MM-DDTHH:MM:SSZ. Any data before this date will not be replicated."""
     
 
+
+SourceOktaAuthorizationMethod = Union[SourceOktaOAuth20, SourceOktaAPIToken]

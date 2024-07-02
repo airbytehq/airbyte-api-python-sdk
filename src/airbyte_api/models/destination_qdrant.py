@@ -91,8 +91,6 @@ class DestinationQdrantOpenAI:
     
 
 
-DestinationQdrantEmbedding = Union['DestinationQdrantOpenAI', 'DestinationQdrantCohere', 'DestinationQdrantFake', 'DestinationQdrantAzureOpenAI', 'DestinationQdrantOpenAICompatible']
-
 
 class DestinationQdrantSchemasIndexingAuthMethodMode(str, Enum):
     NO_AUTH = 'no_auth'
@@ -118,8 +116,6 @@ class APIKeyAuth:
     MODE: Final[Optional[DestinationQdrantSchemasIndexingMode]] = dataclasses.field(default=DestinationQdrantSchemasIndexingMode.API_KEY_AUTH, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('mode'), 'exclude': lambda f: f is None }})
     
 
-
-DestinationQdrantAuthenticationMethod = Union['APIKeyAuth', 'DestinationQdrantNoAuth']
 
 
 class DistanceMetric(str, Enum):
@@ -226,8 +222,6 @@ class DestinationQdrantBySeparator:
     
 
 
-DestinationQdrantTextSplitter = Union['DestinationQdrantBySeparator', 'DestinationQdrantByMarkdownHeader', 'DestinationQdrantByProgrammingLanguage']
-
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
@@ -272,3 +266,9 @@ class DestinationQdrant:
     r"""Do not store the text that gets embedded along with the vector and the metadata in the destination. If set to true, only the vector and the metadata will be stored - in this case raw text for LLM use cases needs to be retrieved from another source."""
     
 
+
+DestinationQdrantEmbedding = Union[DestinationQdrantOpenAI, DestinationQdrantCohere, DestinationQdrantFake, DestinationQdrantAzureOpenAI, DestinationQdrantOpenAICompatible]
+
+DestinationQdrantAuthenticationMethod = Union[APIKeyAuth, DestinationQdrantNoAuth]
+
+DestinationQdrantTextSplitter = Union[DestinationQdrantBySeparator, DestinationQdrantByMarkdownHeader, DestinationQdrantByProgrammingLanguage]

@@ -5,9 +5,9 @@ Credentials for the service
 
 ## Supported Types
 
-### SourceGoogleAnalyticsV4ServiceAccountOnlyServiceAccountKeyAuthentication
+### `models.SourceGoogleAnalyticsV4ServiceAccountOnlyServiceAccountKeyAuthentication`
 
 ```python
-sourceGoogleAnalyticsV4ServiceAccountOnlyCredentials: models.SourceGoogleAnalyticsV4ServiceAccountOnlyServiceAccountKeyAuthentication = /* values here */
+value: models.SourceGoogleAnalyticsV4ServiceAccountOnlyServiceAccountKeyAuthentication = /* values here */
 ```
 

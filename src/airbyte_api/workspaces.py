@@ -17,7 +17,7 @@ class Workspaces:
     def create_or_update_workspace_o_auth_credentials(self, request: api.CreateOrUpdateWorkspaceOAuthCredentialsRequest) -> api.CreateOrUpdateWorkspaceOAuthCredentialsResponse:
         r"""Create OAuth override credentials for a workspace and source type.
         Create/update a set of OAuth credentials to override the Airbyte-provided OAuth credentials used for source/destination OAuth.
-        In order to determine what the credential configuration needs to be, please see the connector specification of the relevant  source/destination.
+        In order to determine what the credential configuration needs to be, please see the connector specification of the relevant source/destination.
         """
         hook_ctx = HookContext(operation_id='createOrUpdateWorkspaceOAuthCredentials', oauth2_scopes=[], security_source=self.sdk_configuration.security)
         base_url = utils.template_url(*self.sdk_configuration.get_server_details())

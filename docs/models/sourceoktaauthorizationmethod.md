@@ -3,15 +3,15 @@
 
 ## Supported Types
 
-### SourceOktaOAuth20
+### `models.SourceOktaOAuth20`
 
 ```python
-sourceOktaAuthorizationMethod: models.SourceOktaOAuth20 = /* values here */
+value: models.SourceOktaOAuth20 = /* values here */
 ```
 
-### SourceOktaAPIToken
+### `models.SourceOktaAPIToken`
 
 ```python
-sourceOktaAuthorizationMethod: models.SourceOktaAPIToken = /* values here */
+value: models.SourceOktaAPIToken = /* values here */
 ```
 

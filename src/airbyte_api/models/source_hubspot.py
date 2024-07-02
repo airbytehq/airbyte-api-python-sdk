@@ -45,8 +45,6 @@ class SourceHubspotOAuth:
     
 
 
-SourceHubspotAuthentication = Union['SourceHubspotOAuth', 'PrivateApp']
-
 
 class SourceHubspotHubspot(str, Enum):
     HUBSPOT = 'hubspot'
@@ -64,3 +62,5 @@ class SourceHubspot:
     r"""UTC date and time in the format 2017-01-25T00:00:00Z. Any data before this date will not be replicated. If not set, \\"2006-06-01T00:00:00Z\\" (Hubspot creation date) will be used as start date. It's recommended to provide relevant to your data start date value to optimize synchronization."""
     
 
+
+SourceHubspotAuthentication = Union[SourceHubspotOAuth, PrivateApp]

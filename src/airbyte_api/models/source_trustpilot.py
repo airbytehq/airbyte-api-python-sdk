@@ -46,8 +46,6 @@ class SourceTrustpilotOAuth20:
     
 
 
-SourceTrustpilotAuthorizationMethod = Union['SourceTrustpilotOAuth20', 'SourceTrustpilotAPIKey']
-
 
 class Trustpilot(str, Enum):
     TRUSTPILOT = 'trustpilot'
@@ -64,3 +62,5 @@ class SourceTrustpilot:
     SOURCE_TYPE: Final[Trustpilot] = dataclasses.field(default=Trustpilot.TRUSTPILOT, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     
 
+
+SourceTrustpilotAuthorizationMethod = Union[SourceTrustpilotOAuth20, SourceTrustpilotAPIKey]

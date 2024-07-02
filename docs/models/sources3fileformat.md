@@ -5,27 +5,27 @@ Deprecated and will be removed soon. Please do not use this field anymore and us
 
 ## Supported Types
 
-### Csv
+### `models.Csv`
 
 ```python
-sourceS3FileFormat: models.Csv = /* values here */
+value: models.Csv = /* values here */
 ```
 
-### Parquet
+### `models.Parquet`
 
 ```python
-sourceS3FileFormat: models.Parquet = /* values here */
+value: models.Parquet = /* values here */
 ```
 
-### Avro
+### `models.Avro`
 
 ```python
-sourceS3FileFormat: models.Avro = /* values here */
+value: models.Avro = /* values here */
 ```
 
-### Jsonl
+### `models.Jsonl`
 
 ```python
-sourceS3FileFormat: models.Jsonl = /* values here */
+value: models.Jsonl = /* values here */
 ```
 

@@ -91,8 +91,6 @@ class DestinationPineconeOpenAI:
     
 
 
-DestinationPineconeEmbedding = Union['DestinationPineconeOpenAI', 'DestinationPineconeCohere', 'DestinationPineconeFake', 'DestinationPineconeAzureOpenAI', 'DestinationPineconeOpenAICompatible']
-
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
@@ -185,8 +183,6 @@ class DestinationPineconeBySeparator:
     
 
 
-DestinationPineconeTextSplitter = Union['DestinationPineconeBySeparator', 'DestinationPineconeByMarkdownHeader', 'DestinationPineconeByProgrammingLanguage']
-
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
@@ -231,3 +227,7 @@ class DestinationPinecone:
     r"""Do not store the text that gets embedded along with the vector and the metadata in the destination. If set to true, only the vector and the metadata will be stored - in this case raw text for LLM use cases needs to be retrieved from another source."""
     
 
+
+DestinationPineconeEmbedding = Union[DestinationPineconeOpenAI, DestinationPineconeCohere, DestinationPineconeFake, DestinationPineconeAzureOpenAI, DestinationPineconeOpenAICompatible]
+
+DestinationPineconeTextSplitter = Union[DestinationPineconeBySeparator, DestinationPineconeByMarkdownHeader, DestinationPineconeByProgrammingLanguage]

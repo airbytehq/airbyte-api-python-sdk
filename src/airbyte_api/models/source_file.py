@@ -130,8 +130,6 @@ class HTTPSPublicWeb:
     
 
 
-StorageProvider = Union['HTTPSPublicWeb', 'GCSGoogleCloudStorage', 'SourceFileS3AmazonWebServices', 'AzBlobAzureBlobStorage', 'SSHSecureShell', 'SCPSecureCopyProtocol', 'SFTPSecureFileTransferProtocol']
-
 
 class File(str, Enum):
     FILE = 'file'
@@ -153,3 +151,5 @@ class SourceFile:
     SOURCE_TYPE: Final[File] = dataclasses.field(default=File.FILE, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     
 
+
+StorageProvider = Union[HTTPSPublicWeb, GCSGoogleCloudStorage, SourceFileS3AmazonWebServices, AzBlobAzureBlobStorage, SSHSecureShell, SCPSecureCopyProtocol, SFTPSecureFileTransferProtocol]

@@ -41,8 +41,6 @@ class ServiceAccount:
     
 
 
-AuthenticationWildcard = Union['ServiceAccount', 'ProjectSecret']
-
 
 class SourceMixpanelRegion(str, Enum):
     r"""The region of mixpanel domain instance either US or EU."""
@@ -76,3 +74,5 @@ class SourceMixpanel:
     r"""The date in the format YYYY-MM-DD. Any data before this date will not be replicated. If this option is not set, the connector will replicate data from up to one year ago by default."""
     
 
+
+AuthenticationWildcard = Union[ServiceAccount, ProjectSecret]

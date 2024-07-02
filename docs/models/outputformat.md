@@ -5,15 +5,15 @@ Output data format
 
 ## Supported Types
 
-### CSVCommaSeparatedValues
+### `models.CSVCommaSeparatedValues`
 
 ```python
-outputFormat: models.CSVCommaSeparatedValues = /* values here */
+value: models.CSVCommaSeparatedValues = /* values here */
 ```
 
-### DestinationAzureBlobStorageJSONLinesNewlineDelimitedJSON
+### `models.DestinationAzureBlobStorageJSONLinesNewlineDelimitedJSON`
 
 ```python
-outputFormat: models.DestinationAzureBlobStorageJSONLinesNewlineDelimitedJSON = /* values here */
+value: models.DestinationAzureBlobStorageJSONLinesNewlineDelimitedJSON = /* values here */
 ```
 

@@ -5,9 +5,9 @@ Processing configuration
 
 ## Supported Types
 
-### SourceMicrosoftSharepointLocal
+### `models.SourceMicrosoftSharepointLocal`
 
 ```python
-sourceMicrosoftSharepointProcessing: models.SourceMicrosoftSharepointLocal = /* values here */
+value: models.SourceMicrosoftSharepointLocal = /* values here */
 ```
 

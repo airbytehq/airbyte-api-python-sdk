@@ -3,15 +3,15 @@
 
 ## Supported Types
 
-### SourceMondayOAuth20
+### `models.SourceMondayOAuth20`
 
 ```python
-sourceMondayAuthorizationMethod: models.SourceMondayOAuth20 = /* values here */
+value: models.SourceMondayOAuth20 = /* values here */
 ```
 
-### APIToken
+### `models.APIToken`
 
 ```python
-sourceMondayAuthorizationMethod: models.APIToken = /* values here */
+value: models.APIToken = /* values here */
 ```
 

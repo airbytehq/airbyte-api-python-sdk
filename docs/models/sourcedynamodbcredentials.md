@@ -5,15 +5,15 @@ Credentials for the service
 
 ## Supported Types
 
-### AuthenticateViaAccessKeys
+### `models.AuthenticateViaAccessKeys`
 
 ```python
-sourceDynamodbCredentials: models.AuthenticateViaAccessKeys = /* values here */
+value: models.AuthenticateViaAccessKeys = /* values here */
 ```
 
-### RoleBasedAuthentication
+### `models.RoleBasedAuthentication`
 
 ```python
-sourceDynamodbCredentials: models.RoleBasedAuthentication = /* values here */
+value: models.RoleBasedAuthentication = /* values here */
 ```
 

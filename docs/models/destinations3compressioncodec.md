@@ -5,39 +5,39 @@ The compression algorithm used to compress data. Default to no compression.
 
 ## Supported Types
 
-### DestinationS3SchemasFormatNoCompression
+### `models.DestinationS3SchemasFormatNoCompression`
 
 ```python
-destinationS3CompressionCodec: models.DestinationS3SchemasFormatNoCompression = /* values here */
+value: models.DestinationS3SchemasFormatNoCompression = /* values here */
 ```
 
-### DestinationS3Deflate
+### `models.DestinationS3Deflate`
 
 ```python
-destinationS3CompressionCodec: models.DestinationS3Deflate = /* values here */
+value: models.DestinationS3Deflate = /* values here */
 ```
 
-### DestinationS3Bzip2
+### `models.DestinationS3Bzip2`
 
 ```python
-destinationS3CompressionCodec: models.DestinationS3Bzip2 = /* values here */
+value: models.DestinationS3Bzip2 = /* values here */
 ```
 
-### DestinationS3Xz
+### `models.DestinationS3Xz`
 
 ```python
-destinationS3CompressionCodec: models.DestinationS3Xz = /* values here */
+value: models.DestinationS3Xz = /* values here */
 ```
 
-### DestinationS3Zstandard
+### `models.DestinationS3Zstandard`
 
 ```python
-destinationS3CompressionCodec: models.DestinationS3Zstandard = /* values here */
+value: models.DestinationS3Zstandard = /* values here */
 ```
 
-### DestinationS3Snappy
+### `models.DestinationS3Snappy`
 
 ```python
-destinationS3CompressionCodec: models.DestinationS3Snappy = /* values here */
+value: models.DestinationS3Snappy = /* values here */
 ```
 

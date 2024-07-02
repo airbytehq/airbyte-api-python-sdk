@@ -43,8 +43,6 @@ class SourceZendeskChatOAuth20:
     
 
 
-SourceZendeskChatAuthorizationMethod = Union['SourceZendeskChatOAuth20', 'SourceZendeskChatAccessToken']
-
 
 class SourceZendeskChatZendeskChat(str, Enum):
     ZENDESK_CHAT = 'zendesk-chat'
@@ -61,3 +59,5 @@ class SourceZendeskChat:
     r"""Required if you access Zendesk Chat from a Zendesk Support subdomain."""
     
 
+
+SourceZendeskChatAuthorizationMethod = Union[SourceZendeskChatOAuth20, SourceZendeskChatAccessToken]

@@ -45,8 +45,6 @@ class AuthenticateViaOAuth:
     
 
 
-SourceSalesloftCredentials = Union['AuthenticateViaOAuth', 'AuthenticateViaAPIKey']
-
 
 class Salesloft(str, Enum):
     SALESLOFT = 'salesloft'
@@ -61,3 +59,5 @@ class SourceSalesloft:
     SOURCE_TYPE: Final[Salesloft] = dataclasses.field(default=Salesloft.SALESLOFT, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     
 
+
+SourceSalesloftCredentials = Union[AuthenticateViaOAuth, AuthenticateViaAPIKey]

@@ -41,8 +41,6 @@ class SourceMailchimpOAuth20:
     
 
 
-SourceMailchimpAuthentication = Union['SourceMailchimpOAuth20', 'APIKey']
-
 
 class SourceMailchimpMailchimp(str, Enum):
     MAILCHIMP = 'mailchimp'
@@ -59,3 +57,5 @@ class SourceMailchimp:
     r"""The date from which you want to start syncing data for Incremental streams. Only records that have been created or modified since this date will be synced. If left blank, all data will by synced."""
     
 
+
+SourceMailchimpAuthentication = Union[SourceMailchimpOAuth20, APIKey]

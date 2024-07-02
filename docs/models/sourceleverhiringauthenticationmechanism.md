@@ -5,15 +5,15 @@ Choose how to authenticate to Lever Hiring.
 
 ## Supported Types
 
-### AuthenticateViaLeverOAuth
+### `models.AuthenticateViaLeverOAuth`
 
 ```python
-sourceLeverHiringAuthenticationMechanism: models.AuthenticateViaLeverOAuth = /* values here */
+value: models.AuthenticateViaLeverOAuth = /* values here */
 ```
 
-### AuthenticateViaLeverAPIKey
+### `models.AuthenticateViaLeverAPIKey`
 
 ```python
-sourceLeverHiringAuthenticationMechanism: models.AuthenticateViaLeverAPIKey = /* values here */
+value: models.AuthenticateViaLeverAPIKey = /* values here */
 ```
 

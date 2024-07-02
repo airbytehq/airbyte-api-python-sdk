@@ -5,9 +5,9 @@ The configuration options that are used to alter how to read incoming files that
 
 ## Supported Types
 
-### SourceGcsCSVFormat
+### `models.SourceGcsCSVFormat`
 
 ```python
-sourceGcsFormat: models.SourceGcsCSVFormat = /* values here */
+value: models.SourceGcsCSVFormat = /* values here */
 ```
 

@@ -19,6 +19,8 @@ class DestinationAzureBlobStorageFormatType(str, Enum):
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
 class DestinationAzureBlobStorageJSONLinesNewlineDelimitedJSON:
+    file_extension: Optional[bool] = dataclasses.field(default=False, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('file_extension'), 'exclude': lambda f: f is None }})
+    r"""Add file extensions to the output file."""
     FORMAT_TYPE: Final[DestinationAzureBlobStorageFormatType] = dataclasses.field(default=DestinationAzureBlobStorageFormatType.JSONL, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('format_type') }})
     
 
@@ -37,13 +39,13 @@ class FormatType(str, Enum):
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
 class CSVCommaSeparatedValues:
+    file_extension: Optional[bool] = dataclasses.field(default=False, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('file_extension'), 'exclude': lambda f: f is None }})
+    r"""Add file extensions to the output file."""
     flattening: Optional[NormalizationFlattening] = dataclasses.field(default=NormalizationFlattening.NO_FLATTENING, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('flattening'), 'exclude': lambda f: f is None }})
     r"""Whether the input json data should be normalized (flattened) in the output CSV. Please refer to docs for details."""
     FORMAT_TYPE: Final[FormatType] = dataclasses.field(default=FormatType.CSV, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('format_type') }})
     
 
-
-OutputFormat = Union['CSVCommaSeparatedValues', 'DestinationAzureBlobStorageJSONLinesNewlineDelimitedJSON']
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
@@ -66,3 +68,5 @@ class DestinationAzureBlobStorage:
     DESTINATION_TYPE: Final[DestinationAzureBlobStorageAzureBlobStorage] = dataclasses.field(default=DestinationAzureBlobStorageAzureBlobStorage.AZURE_BLOB_STORAGE, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('destinationType') }})
     
 
+
+OutputFormat = Union[CSVCommaSeparatedValues, DestinationAzureBlobStorageJSONLinesNewlineDelimitedJSON]

@@ -6,39 +6,39 @@ SSL connection modes.
 
 ## Supported Types
 
-### SourcePostgresDisable
+### `models.SourcePostgresDisable`
 
 ```python
-sourcePostgresSSLModes: models.SourcePostgresDisable = /* values here */
+value: models.SourcePostgresDisable = /* values here */
 ```
 
-### SourcePostgresAllow
+### `models.SourcePostgresAllow`
 
 ```python
-sourcePostgresSSLModes: models.SourcePostgresAllow = /* values here */
+value: models.SourcePostgresAllow = /* values here */
 ```
 
-### SourcePostgresPrefer
+### `models.SourcePostgresPrefer`
 
 ```python
-sourcePostgresSSLModes: models.SourcePostgresPrefer = /* values here */
+value: models.SourcePostgresPrefer = /* values here */
 ```
 
-### SourcePostgresRequire
+### `models.SourcePostgresRequire`
 
 ```python
-sourcePostgresSSLModes: models.SourcePostgresRequire = /* values here */
+value: models.SourcePostgresRequire = /* values here */
 ```
 
-### SourcePostgresVerifyCa
+### `models.SourcePostgresVerifyCa`
 
 ```python
-sourcePostgresSSLModes: models.SourcePostgresVerifyCa = /* values here */
+value: models.SourcePostgresVerifyCa = /* values here */
 ```
 
-### SourcePostgresVerifyFull
+### `models.SourcePostgresVerifyFull`
 
 ```python
-sourcePostgresSSLModes: models.SourcePostgresVerifyFull = /* values here */
+value: models.SourcePostgresVerifyFull = /* values here */
 ```
 

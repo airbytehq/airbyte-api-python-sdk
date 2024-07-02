@@ -45,8 +45,6 @@ class SourceGitlabOAuth20:
     
 
 
-SourceGitlabAuthorizationMethod = Union['SourceGitlabOAuth20', 'PrivateToken']
-
 
 class SourceGitlabGitlab(str, Enum):
     GITLAB = 'gitlab'
@@ -71,3 +69,5 @@ class SourceGitlab:
     r"""The date from which you'd like to replicate data for GitLab API, in the format YYYY-MM-DDT00:00:00Z. Optional. If not set, all data will be replicated. All data generated after this date will be replicated."""
     
 
+
+SourceGitlabAuthorizationMethod = Union[SourceGitlabOAuth20, PrivateToken]

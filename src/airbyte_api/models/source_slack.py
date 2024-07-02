@@ -41,8 +41,6 @@ class SignInViaSlackOAuth:
     
 
 
-SourceSlackAuthenticationMechanism = Union['SignInViaSlackOAuth', 'SourceSlackAPIToken']
-
 
 class SourceSlackSlack(str, Enum):
     SLACK = 'slack'
@@ -66,3 +64,5 @@ class SourceSlack:
     SOURCE_TYPE: Final[SourceSlackSlack] = dataclasses.field(default=SourceSlackSlack.SLACK, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     
 
+
+SourceSlackAuthenticationMechanism = Union[SignInViaSlackOAuth, SourceSlackAPIToken]

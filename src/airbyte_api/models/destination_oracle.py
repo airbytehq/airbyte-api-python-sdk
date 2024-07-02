@@ -69,8 +69,6 @@ class DestinationOracleNoTunnel:
     
 
 
-DestinationOracleSSHTunnelMethod = Union['DestinationOracleNoTunnel', 'DestinationOracleSSHKeyAuthentication', 'DestinationOraclePasswordAuthentication']
-
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
@@ -96,3 +94,5 @@ class DestinationOracle:
     r"""Whether to initiate an SSH tunnel before connecting to the database, and if so, which kind of authentication to use."""
     
 
+
+DestinationOracleSSHTunnelMethod = Union[DestinationOracleNoTunnel, DestinationOracleSSHKeyAuthentication, DestinationOraclePasswordAuthentication]

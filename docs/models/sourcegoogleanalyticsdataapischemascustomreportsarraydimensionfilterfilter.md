@@ -3,27 +3,27 @@
 
 ## Supported Types
 
-### SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayDimensionFilterStringFilter
+### `models.SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayDimensionFilterStringFilter`
 
 ```python
-sourceGoogleAnalyticsDataAPISchemasCustomReportsArrayDimensionFilterFilter: models.SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayDimensionFilterStringFilter = /* values here */
+value: models.SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayDimensionFilterStringFilter = /* values here */
 ```
 
-### SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayDimensionFilterInListFilter
+### `models.SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayDimensionFilterInListFilter`
 
 ```python
-sourceGoogleAnalyticsDataAPISchemasCustomReportsArrayDimensionFilterFilter: models.SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayDimensionFilterInListFilter = /* values here */
+value: models.SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayDimensionFilterInListFilter = /* values here */
 ```
 
-### SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayDimensionFilterNumericFilter
+### `models.SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayDimensionFilterNumericFilter`
 
 ```python
-sourceGoogleAnalyticsDataAPISchemasCustomReportsArrayDimensionFilterFilter: models.SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayDimensionFilterNumericFilter = /* values here */
+value: models.SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayDimensionFilterNumericFilter = /* values here */
 ```
 
-### SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayDimensionFilterBetweenFilter
+### `models.SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayDimensionFilterBetweenFilter`
 
 ```python
-sourceGoogleAnalyticsDataAPISchemasCustomReportsArrayDimensionFilterFilter: models.SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayDimensionFilterBetweenFilter = /* values here */
+value: models.SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayDimensionFilterBetweenFilter = /* values here */
 ```
 

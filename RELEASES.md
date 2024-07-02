@@ -929,3 +929,13 @@ Based on:
 - [python v0.50.1] .
 ### Releases
 - [PyPI v0.50.1] https://pypi.org/project/airbyte-api/0.50.1 - .
+
+## 2024-07-02 00:15:05
+### Changes
+Based on:
+- OpenAPI Doc  
+- Speakeasy CLI 1.325.0 (2.356.0) https://github.com/speakeasy-api/speakeasy
+### Generated
+- [python v0.50.2] .
+### Releases
+- [PyPI v0.50.2] https://pypi.org/project/airbyte-api/0.50.2 - .

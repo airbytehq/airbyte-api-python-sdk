@@ -5,15 +5,15 @@ Credentials for connecting to the One Drive API
 
 ## Supported Types
 
-### AuthenticateViaMicrosoftOAuth
+### `models.AuthenticateViaMicrosoftOAuth`
 
 ```python
-sourceMicrosoftOnedriveAuthentication: models.AuthenticateViaMicrosoftOAuth = /* values here */
+value: models.AuthenticateViaMicrosoftOAuth = /* values here */
 ```
 
-### ServiceKeyAuthentication
+### `models.ServiceKeyAuthentication`
 
 ```python
-sourceMicrosoftOnedriveAuthentication: models.ServiceKeyAuthentication = /* values here */
+value: models.ServiceKeyAuthentication = /* values here */
 ```
 

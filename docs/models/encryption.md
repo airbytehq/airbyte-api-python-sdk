@@ -5,15 +5,15 @@ The encryption method with is used when communicating with the database.
 
 ## Supported Types
 
-### NativeNetworkEncryptionNNE
+### `models.NativeNetworkEncryptionNNE`
 
 ```python
-encryption: models.NativeNetworkEncryptionNNE = /* values here */
+value: models.NativeNetworkEncryptionNNE = /* values here */
 ```
 
-### TLSEncryptedVerifyCertificate
+### `models.TLSEncryptedVerifyCertificate`
 
 ```python
-encryption: models.TLSEncryptedVerifyCertificate = /* values here */
+value: models.TLSEncryptedVerifyCertificate = /* values here */
 ```
 

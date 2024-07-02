@@ -5,15 +5,15 @@ Credentials for making authenticated requests requires either username/password 
 
 ## Supported Types
 
-### SourceOutbrainAmplifyAccessToken
+### `models.SourceOutbrainAmplifyAccessToken`
 
 ```python
-sourceOutbrainAmplifyAuthenticationMethod: models.SourceOutbrainAmplifyAccessToken = /* values here */
+value: models.SourceOutbrainAmplifyAccessToken = /* values here */
 ```
 
-### SourceOutbrainAmplifyUsernamePassword
+### `models.SourceOutbrainAmplifyUsernamePassword`
 
 ```python
-sourceOutbrainAmplifyAuthenticationMethod: models.SourceOutbrainAmplifyUsernamePassword = /* values here */
+value: models.SourceOutbrainAmplifyUsernamePassword = /* values here */
 ```
 

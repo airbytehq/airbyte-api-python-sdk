@@ -5,33 +5,33 @@ The configuration options that are used to alter how to read incoming files that
 
 ## Supported Types
 
-### SourceSftpBulkAvroFormat
+### `models.SourceSftpBulkAvroFormat`
 
 ```python
-sourceSftpBulkFormat: models.SourceSftpBulkAvroFormat = /* values here */
+value: models.SourceSftpBulkAvroFormat = /* values here */
 ```
 
-### SourceSftpBulkCSVFormat
+### `models.SourceSftpBulkCSVFormat`
 
 ```python
-sourceSftpBulkFormat: models.SourceSftpBulkCSVFormat = /* values here */
+value: models.SourceSftpBulkCSVFormat = /* values here */
 ```
 
-### SourceSftpBulkJsonlFormat
+### `models.SourceSftpBulkJsonlFormat`
 
 ```python
-sourceSftpBulkFormat: models.SourceSftpBulkJsonlFormat = /* values here */
+value: models.SourceSftpBulkJsonlFormat = /* values here */
 ```
 
-### SourceSftpBulkParquetFormat
+### `models.SourceSftpBulkParquetFormat`
 
 ```python
-sourceSftpBulkFormat: models.SourceSftpBulkParquetFormat = /* values here */
+value: models.SourceSftpBulkParquetFormat = /* values here */
 ```
 
-### SourceSftpBulkDocumentFileTypeFormatExperimental
+### `models.SourceSftpBulkDocumentFileTypeFormatExperimental`
 
 ```python
-sourceSftpBulkFormat: models.SourceSftpBulkDocumentFileTypeFormatExperimental = /* values here */
+value: models.SourceSftpBulkDocumentFileTypeFormatExperimental = /* values here */
 ```
 

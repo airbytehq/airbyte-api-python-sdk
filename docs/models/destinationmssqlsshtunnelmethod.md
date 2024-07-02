@@ -5,21 +5,21 @@ Whether to initiate an SSH tunnel before connecting to the database, and if so, 
 
 ## Supported Types
 
-### DestinationMssqlNoTunnel
+### `models.DestinationMssqlNoTunnel`
 
 ```python
-destinationMssqlSSHTunnelMethod: models.DestinationMssqlNoTunnel = /* values here */
+value: models.DestinationMssqlNoTunnel = /* values here */
 ```
 
-### DestinationMssqlSSHKeyAuthentication
+### `models.DestinationMssqlSSHKeyAuthentication`
 
 ```python
-destinationMssqlSSHTunnelMethod: models.DestinationMssqlSSHKeyAuthentication = /* values here */
+value: models.DestinationMssqlSSHKeyAuthentication = /* values here */
 ```
 
-### DestinationMssqlPasswordAuthentication
+### `models.DestinationMssqlPasswordAuthentication`
 
 ```python
-destinationMssqlSSHTunnelMethod: models.DestinationMssqlPasswordAuthentication = /* values here */
+value: models.DestinationMssqlPasswordAuthentication = /* values here */
 ```
 

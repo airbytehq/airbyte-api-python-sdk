@@ -3,21 +3,21 @@
 
 ## Supported Types
 
-### KeyPairAuthentication
+### `models.KeyPairAuthentication`
 
 ```python
-authorizationMethod: models.KeyPairAuthentication = /* values here */
+value: models.KeyPairAuthentication = /* values here */
 ```
 
-### UsernameAndPassword
+### `models.UsernameAndPassword`
 
 ```python
-authorizationMethod: models.UsernameAndPassword = /* values here */
+value: models.UsernameAndPassword = /* values here */
 ```
 
-### DestinationSnowflakeOAuth20
+### `models.DestinationSnowflakeOAuth20`
 
 ```python
-authorizationMethod: models.DestinationSnowflakeOAuth20 = /* values here */
+value: models.DestinationSnowflakeOAuth20 = /* values here */
 ```
 

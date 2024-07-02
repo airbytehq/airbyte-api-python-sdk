@@ -31,8 +31,6 @@ class EUBasedAccount:
     
 
 
-BaseURL = Union['EUBasedAccount', 'GlobalAccount']
-
 
 class SurveySparrow(str, Enum):
     SURVEY_SPARROW = 'survey-sparrow'
@@ -50,3 +48,5 @@ class SourceSurveySparrow:
     r"""A List of your survey ids for survey-specific stream"""
     
 
+
+BaseURL = Union[EUBasedAccount, GlobalAccount]

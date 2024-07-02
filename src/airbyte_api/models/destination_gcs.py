@@ -23,8 +23,6 @@ class HMACKey:
     
 
 
-Authentication = Union['HMACKey']
-
 
 class Gcs(str, Enum):
     GCS = 'gcs'
@@ -88,8 +86,6 @@ class DestinationGcsSchemasNoCompression:
     
 
 
-DestinationGcsCompression = Union['DestinationGcsSchemasNoCompression', 'DestinationGcsGZIP']
-
 
 class DestinationGcsSchemasFormatFormatType(str, Enum):
     JSONL = 'JSONL'
@@ -127,8 +123,6 @@ class DestinationGcsNoCompression:
     compression_type: Optional[CompressionType] = dataclasses.field(default=CompressionType.NO_COMPRESSION, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('compression_type'), 'exclude': lambda f: f is None }})
     
 
-
-Compression = Union['DestinationGcsNoCompression', 'Gzip']
 
 
 class Normalization(str, Enum):
@@ -232,8 +226,6 @@ class NoCompression:
     
 
 
-CompressionCodec = Union['NoCompression', 'Deflate', 'Bzip2', 'Xz', 'Zstandard', 'Snappy']
-
 
 class DestinationGcsFormatType(str, Enum):
     AVRO = 'Avro'
@@ -247,8 +239,6 @@ class AvroApacheAvro:
     format_type: Optional[DestinationGcsFormatType] = dataclasses.field(default=DestinationGcsFormatType.AVRO, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('format_type'), 'exclude': lambda f: f is None }})
     
 
-
-DestinationGcsOutputFormat = Union['AvroApacheAvro', 'DestinationGcsCSVCommaSeparatedValues', 'DestinationGcsJSONLinesNewlineDelimitedJSON', 'DestinationGcsParquetColumnarStorage']
 
 
 class GCSBucketRegion(str, Enum):
@@ -306,3 +296,13 @@ class DestinationGcs:
     r"""Select a Region of the GCS Bucket. Read more <a href=\\"https://cloud.google.com/storage/docs/locations\\">here</a>."""
     
 
+
+Authentication = Union[HMACKey]
+
+DestinationGcsCompression = Union[DestinationGcsSchemasNoCompression, DestinationGcsGZIP]
+
+Compression = Union[DestinationGcsNoCompression, Gzip]
+
+CompressionCodec = Union[NoCompression, Deflate, Bzip2, Xz, Zstandard, Snappy]
+
+DestinationGcsOutputFormat = Union[AvroApacheAvro, DestinationGcsCSVCommaSeparatedValues, DestinationGcsJSONLinesNewlineDelimitedJSON, DestinationGcsParquetColumnarStorage]

@@ -5,21 +5,21 @@ Authentication method
 
 ## Supported Types
 
-### DestinationWeaviateAPIToken
+### `models.DestinationWeaviateAPIToken`
 
 ```python
-destinationWeaviateAuthentication: models.DestinationWeaviateAPIToken = /* values here */
+value: models.DestinationWeaviateAPIToken = /* values here */
 ```
 
-### DestinationWeaviateUsernamePassword
+### `models.DestinationWeaviateUsernamePassword`
 
 ```python
-destinationWeaviateAuthentication: models.DestinationWeaviateUsernamePassword = /* values here */
+value: models.DestinationWeaviateUsernamePassword = /* values here */
 ```
 
-### NoAuthentication
+### `models.NoAuthentication`
 
 ```python
-destinationWeaviateAuthentication: models.NoAuthentication = /* values here */
+value: models.NoAuthentication = /* values here */
 ```
 

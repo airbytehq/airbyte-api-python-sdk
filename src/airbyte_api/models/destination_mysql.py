@@ -69,8 +69,6 @@ class DestinationMysqlNoTunnel:
     
 
 
-DestinationMysqlSSHTunnelMethod = Union['DestinationMysqlNoTunnel', 'DestinationMysqlSSHKeyAuthentication', 'DestinationMysqlPasswordAuthentication']
-
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
@@ -96,3 +94,5 @@ class DestinationMysql:
     r"""Whether to initiate an SSH tunnel before connecting to the database, and if so, which kind of authentication to use."""
     
 
+
+DestinationMysqlSSHTunnelMethod = Union[DestinationMysqlNoTunnel, DestinationMysqlSSHKeyAuthentication, DestinationMysqlPasswordAuthentication]

@@ -45,8 +45,6 @@ class SourceTiktokMarketingOAuth20:
     
 
 
-SourceTiktokMarketingAuthenticationMethod = Union['SourceTiktokMarketingOAuth20', 'SandboxAccessToken']
-
 
 class SourceTiktokMarketingTiktokMarketing(str, Enum):
     TIKTOK_MARKETING = 'tiktok-marketing'
@@ -68,3 +66,5 @@ class SourceTiktokMarketing:
     r"""The Start Date in format: YYYY-MM-DD. Any data before this date will not be replicated. If this parameter is not set, all data will be replicated."""
     
 
+
+SourceTiktokMarketingAuthenticationMethod = Union[SourceTiktokMarketingOAuth20, SandboxAccessToken]

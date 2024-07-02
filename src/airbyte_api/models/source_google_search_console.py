@@ -45,8 +45,6 @@ class SourceGoogleSearchConsoleOAuth:
     
 
 
-AuthenticationType = Union['SourceGoogleSearchConsoleOAuth', 'SourceGoogleSearchConsoleServiceAccountKeyAuthentication']
-
 
 class SourceGoogleSearchConsoleValidEnums(str, Enum):
     r"""An enumeration of dimensions."""
@@ -97,3 +95,5 @@ class SourceGoogleSearchConsole:
     r"""UTC date in the format YYYY-MM-DD. Any data before this date will not be replicated."""
     
 
+
+AuthenticationType = Union[SourceGoogleSearchConsoleOAuth, SourceGoogleSearchConsoleServiceAccountKeyAuthentication]

@@ -101,8 +101,6 @@ class DestinationYellowbrickDisable:
     
 
 
-DestinationYellowbrickSSLModes = Union['DestinationYellowbrickDisable', 'DestinationYellowbrickAllow', 'DestinationYellowbrickPrefer', 'DestinationYellowbrickRequire', 'DestinationYellowbrickVerifyCa', 'DestinationYellowbrickVerifyFull']
-
 
 class DestinationYellowbrickSchemasTunnelMethodTunnelMethod(str, Enum):
     r"""Connect through a jump server tunnel host using username and password authentication"""
@@ -161,8 +159,6 @@ class DestinationYellowbrickNoTunnel:
     
 
 
-DestinationYellowbrickSSHTunnelMethod = Union['DestinationYellowbrickNoTunnel', 'DestinationYellowbrickSSHKeyAuthentication', 'DestinationYellowbrickPasswordAuthentication']
-
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
@@ -198,3 +194,7 @@ class DestinationYellowbrick:
     r"""Whether to initiate an SSH tunnel before connecting to the database, and if so, which kind of authentication to use."""
     
 
+
+DestinationYellowbrickSSLModes = Union[DestinationYellowbrickDisable, DestinationYellowbrickAllow, DestinationYellowbrickPrefer, DestinationYellowbrickRequire, DestinationYellowbrickVerifyCa, DestinationYellowbrickVerifyFull]
+
+DestinationYellowbrickSSHTunnelMethod = Union[DestinationYellowbrickNoTunnel, DestinationYellowbrickSSHKeyAuthentication, DestinationYellowbrickPasswordAuthentication]

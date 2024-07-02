@@ -41,8 +41,6 @@ class OauthAuthentication:
     
 
 
-SourceSquareAuthentication = Union['OauthAuthentication', 'SourceSquareAPIKey']
-
 
 class SourceSquareSquare(str, Enum):
     SQUARE = 'square'
@@ -62,3 +60,5 @@ class SourceSquare:
     r"""UTC date in the format YYYY-MM-DD. Any data before this date will not be replicated. If not set, all data will be replicated."""
     
 
+
+SourceSquareAuthentication = Union[OauthAuthentication, SourceSquareAPIKey]

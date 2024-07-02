@@ -5,21 +5,21 @@ Split text fields into chunks based on the specified method.
 
 ## Supported Types
 
-### DestinationSnowflakeCortexBySeparator
+### `models.DestinationSnowflakeCortexBySeparator`
 
 ```python
-destinationSnowflakeCortexTextSplitter: models.DestinationSnowflakeCortexBySeparator = /* values here */
+value: models.DestinationSnowflakeCortexBySeparator = /* values here */
 ```
 
-### DestinationSnowflakeCortexByMarkdownHeader
+### `models.DestinationSnowflakeCortexByMarkdownHeader`
 
 ```python
-destinationSnowflakeCortexTextSplitter: models.DestinationSnowflakeCortexByMarkdownHeader = /* values here */
+value: models.DestinationSnowflakeCortexByMarkdownHeader = /* values here */
 ```
 
-### DestinationSnowflakeCortexByProgrammingLanguage
+### `models.DestinationSnowflakeCortexByProgrammingLanguage`
 
 ```python
-destinationSnowflakeCortexTextSplitter: models.DestinationSnowflakeCortexByProgrammingLanguage = /* values here */
+value: models.DestinationSnowflakeCortexByProgrammingLanguage = /* values here */
 ```
 

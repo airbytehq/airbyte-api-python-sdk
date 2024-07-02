@@ -16,7 +16,6 @@ class SourceMongodbV2SchemasClusterType(str, Enum):
 @dataclasses.dataclass
 class SelfManagedReplicaSet:
     r"""MongoDB self-hosted cluster configured as a replica set"""
-    UNSET='__SPEAKEASY_UNSET__'
     connection_string: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('connection_string') }})
     r"""The connection string of the cluster that you want to replicate.  https://www.mongodb.com/docs/manual/reference/connection-string/#find-your-self-hosted-deployment-s-connection-string for more information."""
     database: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('database') }})
@@ -43,7 +42,6 @@ class SourceMongodbV2ClusterType(str, Enum):
 @dataclasses.dataclass
 class MongoDBAtlasReplicaSet:
     r"""MongoDB Atlas-hosted cluster configured as a replica set"""
-    UNSET='__SPEAKEASY_UNSET__'
     connection_string: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('connection_string') }})
     r"""The connection string of the cluster that you want to replicate."""
     database: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('database') }})
@@ -60,8 +58,6 @@ class MongoDBAtlasReplicaSet:
     r"""When enabled, syncs will validate and structure records against the stream's schema."""
     
 
-
-ClusterType = Union['MongoDBAtlasReplicaSet', 'SelfManagedReplicaSet']
 
 
 class InvalidCDCPositionBehaviorAdvanced(str, Enum):
@@ -98,3 +94,5 @@ class SourceMongodbV2:
     r"""Determines how Airbyte looks up the value of an updated document. If 'Lookup' is chosen, the current value of the document will be read. If 'Post Image' is chosen, then the version of the document immediately after an update will be read. WARNING : Severe data loss will occur if this option is chosen and the appropriate settings are not set on your Mongo instance : https://www.mongodb.com/docs/manual/changeStreams/#change-streams-with-document-pre-and-post-images."""
     
 
+
+ClusterType = Union[MongoDBAtlasReplicaSet, SelfManagedReplicaSet]

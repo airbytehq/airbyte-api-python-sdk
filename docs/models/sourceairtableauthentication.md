@@ -3,15 +3,15 @@
 
 ## Supported Types
 
-### SourceAirtableOAuth20
+### `models.SourceAirtableOAuth20`
 
 ```python
-sourceAirtableAuthentication: models.SourceAirtableOAuth20 = /* values here */
+value: models.SourceAirtableOAuth20 = /* values here */
 ```
 
-### PersonalAccessToken
+### `models.PersonalAccessToken`
 
 ```python
-sourceAirtableAuthentication: models.PersonalAccessToken = /* values here */
+value: models.PersonalAccessToken = /* values here */
 ```
 

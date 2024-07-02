@@ -5,21 +5,21 @@ The encryption method which is used when communicating with the database.
 
 ## Supported Types
 
-### Unencrypted
+### `models.Unencrypted`
 
 ```python
-sourceMssqlSSLMethod: models.Unencrypted = /* values here */
+value: models.Unencrypted = /* values here */
 ```
 
-### SourceMssqlEncryptedTrustServerCertificate
+### `models.SourceMssqlEncryptedTrustServerCertificate`
 
 ```python
-sourceMssqlSSLMethod: models.SourceMssqlEncryptedTrustServerCertificate = /* values here */
+value: models.SourceMssqlEncryptedTrustServerCertificate = /* values here */
 ```
 
-### SourceMssqlEncryptedVerifyCertificate
+### `models.SourceMssqlEncryptedVerifyCertificate`
 
 ```python
-sourceMssqlSSLMethod: models.SourceMssqlEncryptedVerifyCertificate = /* values here */
+value: models.SourceMssqlEncryptedVerifyCertificate = /* values here */
 ```
 
