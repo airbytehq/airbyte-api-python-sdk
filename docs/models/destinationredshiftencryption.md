@@ -5,15 +5,15 @@ How to encrypt the staging data
 
 ## Supported Types
 
-### NoEncryption
+### `models.NoEncryption`
 
 ```python
-destinationRedshiftEncryption: models.NoEncryption = /* values here */
+value: models.NoEncryption = /* values here */
 ```
 
-### AESCBCEnvelopeEncryption
+### `models.AESCBCEnvelopeEncryption`
 
 ```python
-destinationRedshiftEncryption: models.AESCBCEnvelopeEncryption = /* values here */
+value: models.AESCBCEnvelopeEncryption = /* values here */
 ```
 

@@ -8,18 +8,18 @@ from typing import List, Optional
 
 
 @dataclasses.dataclass
-class ListUsersRequest:
+class ListUsersWithinAnOrganizationRequest:
+    organization_id: str = dataclasses.field(metadata={'query_param': { 'field_name': 'organizationId', 'style': 'form', 'explode': True }})
     emails: Optional[List[str]] = dataclasses.field(default=None, metadata={'query_param': { 'field_name': 'emails', 'style': 'form', 'explode': True }})
     r"""List of user emails to filter by"""
     ids: Optional[List[str]] = dataclasses.field(default=None, metadata={'query_param': { 'field_name': 'ids', 'style': 'form', 'explode': True }})
     r"""List of user IDs to filter by"""
-    organization_id: Optional[str] = dataclasses.field(default=None, metadata={'query_param': { 'field_name': 'organizationId', 'style': 'form', 'explode': True }})
     
 
 
 
 @dataclasses.dataclass
-class ListUsersResponse:
+class ListUsersWithinAnOrganizationResponse:
     content_type: str = dataclasses.field()
     r"""HTTP response content type for this operation"""
     status_code: int = dataclasses.field()

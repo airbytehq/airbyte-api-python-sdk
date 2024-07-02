@@ -3,15 +3,15 @@
 
 ## Supported Types
 
-### CentralAPIRouter
+### `models.CentralAPIRouter`
 
 ```python
-sourceCartAuthorizationMethod: models.CentralAPIRouter = /* values here */
+value: models.CentralAPIRouter = /* values here */
 ```
 
-### SingleStoreAccessToken
+### `models.SingleStoreAccessToken`
 
 ```python
-sourceCartAuthorizationMethod: models.SingleStoreAccessToken = /* values here */
+value: models.SingleStoreAccessToken = /* values here */
 ```
 

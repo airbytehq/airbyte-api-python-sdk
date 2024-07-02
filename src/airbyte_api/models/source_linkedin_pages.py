@@ -2,8 +2,10 @@
 
 from __future__ import annotations
 import dataclasses
+import dateutil.parser
 from airbyte_api import utils
 from dataclasses_json import Undefined, dataclass_json
+from datetime import datetime
 from enum import Enum
 from typing import Final, Optional, Union
 
@@ -39,11 +41,15 @@ class SourceLinkedinPagesOAuth20:
     
 
 
-SourceLinkedinPagesAuthentication = Union['SourceLinkedinPagesOAuth20', 'SourceLinkedinPagesAccessToken']
-
 
 class LinkedinPages(str, Enum):
     LINKEDIN_PAGES = 'linkedin-pages'
+
+
+class TimeGranularityType(str, Enum):
+    r"""Granularity of the statistics for metrics per time period. Must be either \\"DAY\\" or \\"MONTH\\" """
+    DAY = 'DAY'
+    MONTH = 'MONTH'
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
@@ -53,5 +59,11 @@ class SourceLinkedinPages:
     r"""Specify the Organization ID"""
     credentials: Optional[SourceLinkedinPagesAuthentication] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credentials'), 'exclude': lambda f: f is None }})
     SOURCE_TYPE: Final[LinkedinPages] = dataclasses.field(default=LinkedinPages.LINKEDIN_PAGES, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
+    start_date: Optional[datetime] = dataclasses.field(default=dateutil.parser.isoparse('2023-01-01T00:00:00Z'), metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('start_date'), 'encoder': utils.datetimeisoformat(True), 'decoder': dateutil.parser.isoparse, 'exclude': lambda f: f is None }})
+    r"""Start date for getting metrics per time period. Must be atmost 12 months before the request date (UTC) and atleast 2 days prior to the request date (UTC). See https://bit.ly/linkedin-pages-date-rules {{\"{{\"}} \\"\n\\" }} {{\"{{\"}} response.errorDetails }}"""
+    time_granularity_type: Optional[TimeGranularityType] = dataclasses.field(default=TimeGranularityType.DAY, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('time_granularity_type'), 'exclude': lambda f: f is None }})
+    r"""Granularity of the statistics for metrics per time period. Must be either \\"DAY\\" or \\"MONTH\\" """
     
 
+
+SourceLinkedinPagesAuthentication = Union[SourceLinkedinPagesOAuth20, SourceLinkedinPagesAccessToken]

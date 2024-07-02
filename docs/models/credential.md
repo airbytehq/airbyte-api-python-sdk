@@ -5,9 +5,9 @@ An HMAC key is a type of credential and can be associated with a service account
 
 ## Supported Types
 
-### DestinationBigqueryHMACKey
+### `models.DestinationBigqueryHMACKey`
 
 ```python
-credential: models.DestinationBigqueryHMACKey = /* values here */
+value: models.DestinationBigqueryHMACKey = /* values here */
 ```
 

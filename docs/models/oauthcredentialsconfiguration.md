@@ -5,267 +5,267 @@ The values required to configure the source.
 
 ## Supported Types
 
-### Airtable
+### `models.Airtable`
 
 ```python
-oAuthCredentialsConfiguration: models.Airtable = /* values here */
+value: models.Airtable = /* values here */
 ```
 
-### AmazonAds
+### `models.AmazonAds`
 
 ```python
-oAuthCredentialsConfiguration: models.AmazonAds = /* values here */
+value: models.AmazonAds = /* values here */
 ```
 
-### AmazonSellerPartner
+### `models.AmazonSellerPartner`
 
 ```python
-oAuthCredentialsConfiguration: models.AmazonSellerPartner = /* values here */
+value: models.AmazonSellerPartner = /* values here */
 ```
 
-### Asana
+### `models.Asana`
 
 ```python
-oAuthCredentialsConfiguration: models.Asana = /* values here */
+value: models.Asana = /* values here */
 ```
 
-### AzureBlobStorage
+### `models.AzureBlobStorage`
 
 ```python
-oAuthCredentialsConfiguration: models.AzureBlobStorage = /* values here */
+value: models.AzureBlobStorage = /* values here */
 ```
 
-### BingAds
+### `models.BingAds`
 
 ```python
-oAuthCredentialsConfiguration: models.BingAds = /* values here */
+value: models.BingAds = /* values here */
 ```
 
-### FacebookMarketing
+### `models.FacebookMarketing`
 
 ```python
-oAuthCredentialsConfiguration: models.FacebookMarketing = /* values here */
+value: models.FacebookMarketing = /* values here */
 ```
 
-### Github
+### `models.Github`
 
 ```python
-oAuthCredentialsConfiguration: models.Github = /* values here */
+value: models.Github = /* values here */
 ```
 
-### Gitlab
+### `models.Gitlab`
 
 ```python
-oAuthCredentialsConfiguration: models.Gitlab = /* values here */
+value: models.Gitlab = /* values here */
 ```
 
-### GoogleAds
+### `models.GoogleAds`
 
 ```python
-oAuthCredentialsConfiguration: models.GoogleAds = /* values here */
+value: models.GoogleAds = /* values here */
 ```
 
-### GoogleAnalyticsDataAPI
+### `models.GoogleAnalyticsDataAPI`
 
 ```python
-oAuthCredentialsConfiguration: models.GoogleAnalyticsDataAPI = /* values here */
+value: models.GoogleAnalyticsDataAPI = /* values here */
 ```
 
-### GoogleDrive
+### `models.GoogleDrive`
 
 ```python
-oAuthCredentialsConfiguration: models.GoogleDrive = /* values here */
+value: models.GoogleDrive = /* values here */
 ```
 
-### GoogleSearchConsole
+### `models.GoogleSearchConsole`
 
 ```python
-oAuthCredentialsConfiguration: models.GoogleSearchConsole = /* values here */
+value: models.GoogleSearchConsole = /* values here */
 ```
 
-### GoogleSheets
+### `models.GoogleSheets`
 
 ```python
-oAuthCredentialsConfiguration: models.GoogleSheets = /* values here */
+value: models.GoogleSheets = /* values here */
 ```
 
-### Hubspot
+### `models.Hubspot`
 
 ```python
-oAuthCredentialsConfiguration: models.Hubspot = /* values here */
+value: models.Hubspot = /* values here */
 ```
 
-### Instagram
+### `models.Instagram`
 
 ```python
-oAuthCredentialsConfiguration: models.Instagram = /* values here */
+value: models.Instagram = /* values here */
 ```
 
-### Intercom
+### `models.Intercom`
 
 ```python
-oAuthCredentialsConfiguration: models.Intercom = /* values here */
+value: models.Intercom = /* values here */
 ```
 
-### LeverHiring
+### `models.LeverHiring`
 
 ```python
-oAuthCredentialsConfiguration: models.LeverHiring = /* values here */
+value: models.LeverHiring = /* values here */
 ```
 
-### LinkedinAds
+### `models.LinkedinAds`
 
 ```python
-oAuthCredentialsConfiguration: models.LinkedinAds = /* values here */
+value: models.LinkedinAds = /* values here */
 ```
 
-### Mailchimp
+### `models.Mailchimp`
 
 ```python
-oAuthCredentialsConfiguration: models.Mailchimp = /* values here */
+value: models.Mailchimp = /* values here */
 ```
 
-### MicrosoftOnedrive
+### `models.MicrosoftOnedrive`
 
 ```python
-oAuthCredentialsConfiguration: models.MicrosoftOnedrive = /* values here */
+value: models.MicrosoftOnedrive = /* values here */
 ```
 
-### MicrosoftSharepoint
+### `models.MicrosoftSharepoint`
 
 ```python
-oAuthCredentialsConfiguration: models.MicrosoftSharepoint = /* values here */
+value: models.MicrosoftSharepoint = /* values here */
 ```
 
-### MicrosoftTeams
+### `models.MicrosoftTeams`
 
 ```python
-oAuthCredentialsConfiguration: models.MicrosoftTeams = /* values here */
+value: models.MicrosoftTeams = /* values here */
 ```
 
-### Monday
+### `models.Monday`
 
 ```python
-oAuthCredentialsConfiguration: models.Monday = /* values here */
+value: models.Monday = /* values here */
 ```
 
-### Notion
+### `models.Notion`
 
 ```python
-oAuthCredentialsConfiguration: models.Notion = /* values here */
+value: models.Notion = /* values here */
 ```
 
-### Pinterest
+### `models.Pinterest`
 
 ```python
-oAuthCredentialsConfiguration: models.Pinterest = /* values here */
+value: models.Pinterest = /* values here */
 ```
 
-### Retently
+### `models.Retently`
 
 ```python
-oAuthCredentialsConfiguration: models.Retently = /* values here */
+value: models.Retently = /* values here */
 ```
 
-### Salesforce
+### `models.Salesforce`
 
 ```python
-oAuthCredentialsConfiguration: models.Salesforce = /* values here */
+value: models.Salesforce = /* values here */
 ```
 
-### Shopify
+### `models.Shopify`
 
 ```python
-oAuthCredentialsConfiguration: models.Shopify = /* values here */
+value: models.Shopify = /* values here */
 ```
 
-### Slack
+### `models.Slack`
 
 ```python
-oAuthCredentialsConfiguration: models.Slack = /* values here */
+value: models.Slack = /* values here */
 ```
 
-### Smartsheets
+### `models.Smartsheets`
 
 ```python
-oAuthCredentialsConfiguration: models.Smartsheets = /* values here */
+value: models.Smartsheets = /* values here */
 ```
 
-### SnapchatMarketing
+### `models.SnapchatMarketing`
 
 ```python
-oAuthCredentialsConfiguration: models.SnapchatMarketing = /* values here */
+value: models.SnapchatMarketing = /* values here */
 ```
 
-### Snowflake
+### `models.Snowflake`
 
 ```python
-oAuthCredentialsConfiguration: models.Snowflake = /* values here */
+value: models.Snowflake = /* values here */
 ```
 
-### Square
+### `models.Square`
 
 ```python
-oAuthCredentialsConfiguration: models.Square = /* values here */
+value: models.Square = /* values here */
 ```
 
-### Strava
+### `models.Strava`
 
 ```python
-oAuthCredentialsConfiguration: models.Strava = /* values here */
+value: models.Strava = /* values here */
 ```
 
-### Surveymonkey
+### `models.Surveymonkey`
 
 ```python
-oAuthCredentialsConfiguration: models.Surveymonkey = /* values here */
+value: models.Surveymonkey = /* values here */
 ```
 
-### TiktokMarketing
+### `models.TiktokMarketing`
 
 ```python
-oAuthCredentialsConfiguration: models.TiktokMarketing = /* values here */
+value: models.TiktokMarketing = /* values here */
 ```
 
-### 
+### `Any`
 
 ```python
-oAuthCredentialsConfiguration: Any = /* values here */
+value: Any = /* values here */
 ```
 
-### Typeform
+### `models.Typeform`
 
 ```python
-oAuthCredentialsConfiguration: models.Typeform = /* values here */
+value: models.Typeform = /* values here */
 ```
 
-### YoutubeAnalytics
+### `models.YoutubeAnalytics`
 
 ```python
-oAuthCredentialsConfiguration: models.YoutubeAnalytics = /* values here */
+value: models.YoutubeAnalytics = /* values here */
 ```
 
-### ZendeskChat
+### `models.ZendeskChat`
 
 ```python
-oAuthCredentialsConfiguration: models.ZendeskChat = /* values here */
+value: models.ZendeskChat = /* values here */
 ```
 
-### ZendeskSunshine
+### `models.ZendeskSunshine`
 
 ```python
-oAuthCredentialsConfiguration: models.ZendeskSunshine = /* values here */
+value: models.ZendeskSunshine = /* values here */
 ```
 
-### ZendeskSupport
+### `models.ZendeskSupport`
 
 ```python
-oAuthCredentialsConfiguration: models.ZendeskSupport = /* values here */
+value: models.ZendeskSupport = /* values here */
 ```
 
-### ZendeskTalk
+### `models.ZendeskTalk`
 
 ```python
-oAuthCredentialsConfiguration: models.ZendeskTalk = /* values here */
+value: models.ZendeskTalk = /* values here */
 ```
 

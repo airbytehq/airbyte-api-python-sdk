@@ -5,15 +5,15 @@ Is your account location is EU based? If yes, the base url to retrieve data will
 
 ## Supported Types
 
-### EUBasedAccount
+### `models.EUBasedAccount`
 
 ```python
-baseURL: models.EUBasedAccount = /* values here */
+value: models.EUBasedAccount = /* values here */
 ```
 
-### GlobalAccount
+### `models.GlobalAccount`
 
 ```python
-baseURL: models.GlobalAccount = /* values here */
+value: models.GlobalAccount = /* values here */
 ```
 

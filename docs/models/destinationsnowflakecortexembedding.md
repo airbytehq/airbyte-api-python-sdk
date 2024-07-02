@@ -5,33 +5,33 @@ Embedding configuration
 
 ## Supported Types
 
-### DestinationSnowflakeCortexOpenAI
+### `models.DestinationSnowflakeCortexOpenAI`
 
 ```python
-destinationSnowflakeCortexEmbedding: models.DestinationSnowflakeCortexOpenAI = /* values here */
+value: models.DestinationSnowflakeCortexOpenAI = /* values here */
 ```
 
-### DestinationSnowflakeCortexCohere
+### `models.DestinationSnowflakeCortexCohere`
 
 ```python
-destinationSnowflakeCortexEmbedding: models.DestinationSnowflakeCortexCohere = /* values here */
+value: models.DestinationSnowflakeCortexCohere = /* values here */
 ```
 
-### DestinationSnowflakeCortexFake
+### `models.DestinationSnowflakeCortexFake`
 
 ```python
-destinationSnowflakeCortexEmbedding: models.DestinationSnowflakeCortexFake = /* values here */
+value: models.DestinationSnowflakeCortexFake = /* values here */
 ```
 
-### DestinationSnowflakeCortexAzureOpenAI
+### `models.DestinationSnowflakeCortexAzureOpenAI`
 
 ```python
-destinationSnowflakeCortexEmbedding: models.DestinationSnowflakeCortexAzureOpenAI = /* values here */
+value: models.DestinationSnowflakeCortexAzureOpenAI = /* values here */
 ```
 
-### DestinationSnowflakeCortexOpenAICompatible
+### `models.DestinationSnowflakeCortexOpenAICompatible`
 
 ```python
-destinationSnowflakeCortexEmbedding: models.DestinationSnowflakeCortexOpenAICompatible = /* values here */
+value: models.DestinationSnowflakeCortexOpenAICompatible = /* values here */
 ```
 

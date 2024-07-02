@@ -5,45 +5,45 @@ The storage Provider or Location of the file(s) which should be replicated.
 
 ## Supported Types
 
-### HTTPSPublicWeb
+### `models.HTTPSPublicWeb`
 
 ```python
-storageProvider: models.HTTPSPublicWeb = /* values here */
+value: models.HTTPSPublicWeb = /* values here */
 ```
 
-### GCSGoogleCloudStorage
+### `models.GCSGoogleCloudStorage`
 
 ```python
-storageProvider: models.GCSGoogleCloudStorage = /* values here */
+value: models.GCSGoogleCloudStorage = /* values here */
 ```
 
-### SourceFileS3AmazonWebServices
+### `models.SourceFileS3AmazonWebServices`
 
 ```python
-storageProvider: models.SourceFileS3AmazonWebServices = /* values here */
+value: models.SourceFileS3AmazonWebServices = /* values here */
 ```
 
-### AzBlobAzureBlobStorage
+### `models.AzBlobAzureBlobStorage`
 
 ```python
-storageProvider: models.AzBlobAzureBlobStorage = /* values here */
+value: models.AzBlobAzureBlobStorage = /* values here */
 ```
 
-### SSHSecureShell
+### `models.SSHSecureShell`
 
 ```python
-storageProvider: models.SSHSecureShell = /* values here */
+value: models.SSHSecureShell = /* values here */
 ```
 
-### SCPSecureCopyProtocol
+### `models.SCPSecureCopyProtocol`
 
 ```python
-storageProvider: models.SCPSecureCopyProtocol = /* values here */
+value: models.SCPSecureCopyProtocol = /* values here */
 ```
 
-### SFTPSecureFileTransferProtocol
+### `models.SFTPSecureFileTransferProtocol`
 
 ```python
-storageProvider: models.SFTPSecureFileTransferProtocol = /* values here */
+value: models.SFTPSecureFileTransferProtocol = /* values here */
 ```
 

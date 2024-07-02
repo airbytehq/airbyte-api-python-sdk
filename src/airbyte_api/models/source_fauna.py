@@ -33,8 +33,6 @@ class Disabled:
     
 
 
-DeletionMode = Union['Disabled', 'Enabled']
-
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
@@ -75,3 +73,5 @@ class SourceFauna:
     SOURCE_TYPE: Final[Fauna] = dataclasses.field(default=Fauna.FAUNA, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     
 
+
+DeletionMode = Union[Disabled, Enabled]

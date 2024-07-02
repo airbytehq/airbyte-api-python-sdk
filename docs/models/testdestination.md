@@ -5,9 +5,9 @@ The type of destination to be used
 
 ## Supported Types
 
-### Silent
+### `models.Silent`
 
 ```python
-testDestination: models.Silent = /* values here */
+value: models.Silent = /* values here */
 ```
 

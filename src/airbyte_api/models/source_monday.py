@@ -41,8 +41,6 @@ class SourceMondayOAuth20:
     
 
 
-SourceMondayAuthorizationMethod = Union['SourceMondayOAuth20', 'APIToken']
-
 
 class SourceMondayMonday(str, Enum):
     MONDAY = 'monday'
@@ -55,3 +53,5 @@ class SourceMonday:
     SOURCE_TYPE: Final[SourceMondayMonday] = dataclasses.field(default=SourceMondayMonday.MONDAY, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     
 
+
+SourceMondayAuthorizationMethod = Union[SourceMondayOAuth20, APIToken]

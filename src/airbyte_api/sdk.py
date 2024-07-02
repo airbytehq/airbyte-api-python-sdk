@@ -5,6 +5,7 @@ from .connections import Connections
 from .destinations import Destinations
 from .health import Health
 from .jobs import Jobs
+from .organizations import Organizations
 from .permissions import Permissions
 from .sdkconfiguration import SDKConfiguration
 from .sources import Sources
@@ -22,6 +23,7 @@ class AirbyteAPI:
     destinations: Destinations
     health: Health
     jobs: Jobs
+    organizations: Organizations
     permissions: Permissions
     sources: Sources
     streams: Streams
@@ -87,6 +89,7 @@ class AirbyteAPI:
         self.destinations = Destinations(self.sdk_configuration)
         self.health = Health(self.sdk_configuration)
         self.jobs = Jobs(self.sdk_configuration)
+        self.organizations = Organizations(self.sdk_configuration)
         self.permissions = Permissions(self.sdk_configuration)
         self.sources = Sources(self.sdk_configuration)
         self.streams = Streams(self.sdk_configuration)

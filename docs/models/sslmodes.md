@@ -12,39 +12,39 @@ SSL connection modes.
 
 ## Supported Types
 
-### Disable
+### `models.Disable`
 
 ```python
-sslModes: models.Disable = /* values here */
+value: models.Disable = /* values here */
 ```
 
-### Allow
+### `models.Allow`
 
 ```python
-sslModes: models.Allow = /* values here */
+value: models.Allow = /* values here */
 ```
 
-### Prefer
+### `models.Prefer`
 
 ```python
-sslModes: models.Prefer = /* values here */
+value: models.Prefer = /* values here */
 ```
 
-### Require
+### `models.Require`
 
 ```python
-sslModes: models.Require = /* values here */
+value: models.Require = /* values here */
 ```
 
-### VerifyCa
+### `models.VerifyCa`
 
 ```python
-sslModes: models.VerifyCa = /* values here */
+value: models.VerifyCa = /* values here */
 ```
 
-### VerifyFull
+### `models.VerifyFull`
 
 ```python
-sslModes: models.VerifyFull = /* values here */
+value: models.VerifyFull = /* values here */
 ```
 

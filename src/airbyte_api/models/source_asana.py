@@ -40,8 +40,6 @@ class AuthenticateViaAsanaOauth:
     
 
 
-AuthenticationMechanism = Union['AuthenticateViaAsanaOauth', 'AuthenticateWithPersonalAccessToken']
-
 
 class SourceAsanaAsana(str, Enum):
     ASANA = 'asana'
@@ -59,3 +57,5 @@ class SourceAsana:
     r"""This flag is used for testing purposes for certain streams that return a lot of data. This flag is not meant to be enabled for prod."""
     
 
+
+AuthenticationMechanism = Union[AuthenticateViaAsanaOauth, AuthenticateWithPersonalAccessToken]

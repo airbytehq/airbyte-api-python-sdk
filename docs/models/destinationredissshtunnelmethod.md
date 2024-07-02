@@ -5,21 +5,21 @@ Whether to initiate an SSH tunnel before connecting to the database, and if so, 
 
 ## Supported Types
 
-### DestinationRedisNoTunnel
+### `models.DestinationRedisNoTunnel`
 
 ```python
-destinationRedisSSHTunnelMethod: models.DestinationRedisNoTunnel = /* values here */
+value: models.DestinationRedisNoTunnel = /* values here */
 ```
 
-### DestinationRedisSSHKeyAuthentication
+### `models.DestinationRedisSSHKeyAuthentication`
 
 ```python
-destinationRedisSSHTunnelMethod: models.DestinationRedisSSHKeyAuthentication = /* values here */
+value: models.DestinationRedisSSHKeyAuthentication = /* values here */
 ```
 
-### DestinationRedisPasswordAuthentication
+### `models.DestinationRedisPasswordAuthentication`
 
 ```python
-destinationRedisSSHTunnelMethod: models.DestinationRedisPasswordAuthentication = /* values here */
+value: models.DestinationRedisPasswordAuthentication = /* values here */
 ```
 

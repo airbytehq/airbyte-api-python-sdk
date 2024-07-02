@@ -5,9 +5,9 @@ Processing configuration
 
 ## Supported Types
 
-### SourceGoogleDriveLocal
+### `models.SourceGoogleDriveLocal`
 
 ```python
-sourceGoogleDriveProcessing: models.SourceGoogleDriveLocal = /* values here */
+value: models.SourceGoogleDriveLocal = /* values here */
 ```
 

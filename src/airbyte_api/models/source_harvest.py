@@ -17,7 +17,6 @@ class SourceHarvestSchemasAuthType(str, Enum):
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
 class SourceHarvestAuthenticateWithPersonalAccessToken:
-    UNSET='__SPEAKEASY_UNSET__'
     api_token: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('api_token') }})
     r"""Log into Harvest and then create new <a href=\\"https://id.getharvest.com/developers\\"> personal access token</a>."""
     additional_properties: Optional[Dict[str, Any]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'exclude': lambda f: f is None }})
@@ -33,7 +32,6 @@ class SourceHarvestAuthType(str, Enum):
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
 class AuthenticateViaHarvestOAuth:
-    UNSET='__SPEAKEASY_UNSET__'
     client_id: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('client_id') }})
     r"""The Client ID of your Harvest developer application."""
     client_secret: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('client_secret') }})
@@ -44,8 +42,6 @@ class AuthenticateViaHarvestOAuth:
     AUTH_TYPE: Final[Optional[SourceHarvestAuthType]] = dataclasses.field(default=SourceHarvestAuthType.CLIENT, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_type'), 'exclude': lambda f: f is None }})
     
 
-
-SourceHarvestAuthenticationMechanism = Union['AuthenticateViaHarvestOAuth', 'SourceHarvestAuthenticateWithPersonalAccessToken']
 
 
 class Harvest(str, Enum):
@@ -66,3 +62,5 @@ class SourceHarvest:
     SOURCE_TYPE: Final[Harvest] = dataclasses.field(default=Harvest.HARVEST, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     
 
+
+SourceHarvestAuthenticationMechanism = Union[AuthenticateViaHarvestOAuth, SourceHarvestAuthenticateWithPersonalAccessToken]

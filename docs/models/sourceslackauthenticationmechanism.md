@@ -5,15 +5,15 @@ Choose how to authenticate into Slack
 
 ## Supported Types
 
-### SignInViaSlackOAuth
+### `models.SignInViaSlackOAuth`
 
 ```python
-sourceSlackAuthenticationMechanism: models.SignInViaSlackOAuth = /* values here */
+value: models.SignInViaSlackOAuth = /* values here */
 ```
 
-### SourceSlackAPIToken
+### `models.SourceSlackAPIToken`
 
 ```python
-sourceSlackAuthenticationMechanism: models.SourceSlackAPIToken = /* values here */
+value: models.SourceSlackAPIToken = /* values here */
 ```
 

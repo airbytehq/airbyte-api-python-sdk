@@ -39,8 +39,6 @@ class EncryptedTrustServerCertificate:
     
 
 
-SSLMethod = Union['EncryptedTrustServerCertificate', 'EncryptedVerifyCertificate']
-
 
 class DestinationMssqlSchemasTunnelMethodTunnelMethod(str, Enum):
     r"""Connect through a jump server tunnel host using username and password authentication"""
@@ -99,8 +97,6 @@ class DestinationMssqlNoTunnel:
     
 
 
-DestinationMssqlSSHTunnelMethod = Union['DestinationMssqlNoTunnel', 'DestinationMssqlSSHKeyAuthentication', 'DestinationMssqlPasswordAuthentication']
-
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
@@ -128,3 +124,7 @@ class DestinationMssql:
     r"""Whether to initiate an SSH tunnel before connecting to the database, and if so, which kind of authentication to use."""
     
 
+
+SSLMethod = Union[EncryptedTrustServerCertificate, EncryptedVerifyCertificate]
+
+DestinationMssqlSSHTunnelMethod = Union[DestinationMssqlNoTunnel, DestinationMssqlSSHKeyAuthentication, DestinationMssqlPasswordAuthentication]

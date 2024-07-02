@@ -47,8 +47,6 @@ class SignInViaGoogleOAuth:
     
 
 
-SourceGoogleDirectoryGoogleCredentials = Union['SignInViaGoogleOAuth', 'ServiceAccountKey']
-
 
 class GoogleDirectory(str, Enum):
     GOOGLE_DIRECTORY = 'google-directory'
@@ -62,3 +60,5 @@ class SourceGoogleDirectory:
     SOURCE_TYPE: Final[GoogleDirectory] = dataclasses.field(default=GoogleDirectory.GOOGLE_DIRECTORY, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     
 
+
+SourceGoogleDirectoryGoogleCredentials = Union[SignInViaGoogleOAuth, ServiceAccountKey]

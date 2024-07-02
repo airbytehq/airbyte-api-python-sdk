@@ -5,15 +5,15 @@ Configures how data is extracted from the database.
 
 ## Supported Types
 
-### ReadChangesUsingChangeDataCaptureCDC
+### `models.ReadChangesUsingChangeDataCaptureCDC`
 
 ```python
-updateMethod: models.ReadChangesUsingChangeDataCaptureCDC = /* values here */
+value: models.ReadChangesUsingChangeDataCaptureCDC = /* values here */
 ```
 
-### ScanChangesWithUserDefinedCursor
+### `models.ScanChangesWithUserDefinedCursor`
 
 ```python
-updateMethod: models.ScanChangesWithUserDefinedCursor = /* values here */
+value: models.ScanChangesWithUserDefinedCursor = /* values here */
 ```
 

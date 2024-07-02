@@ -43,8 +43,6 @@ class SourceShopifyOAuth20:
     
 
 
-ShopifyAuthorizationMethod = Union['SourceShopifyOAuth20', 'APIPassword']
-
 
 class SourceShopifyShopify(str, Enum):
     SHOPIFY = 'shopify'
@@ -66,3 +64,5 @@ class SourceShopify:
     r"""The date you would like to replicate data from. Format: YYYY-MM-DD. Any data before this date will not be replicated."""
     
 
+
+ShopifyAuthorizationMethod = Union[SourceShopifyOAuth20, APIPassword]

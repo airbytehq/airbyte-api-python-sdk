@@ -22,8 +22,6 @@ class SourceGoogleAnalyticsV4ServiceAccountOnlyServiceAccountKeyAuthentication:
     
 
 
-SourceGoogleAnalyticsV4ServiceAccountOnlyCredentials = Union['SourceGoogleAnalyticsV4ServiceAccountOnlyServiceAccountKeyAuthentication']
-
 
 class GoogleAnalyticsV4ServiceAccountOnly(str, Enum):
     GOOGLE_ANALYTICS_V4_SERVICE_ACCOUNT_ONLY = 'google-analytics-v4-service-account-only'
@@ -47,3 +45,5 @@ class SourceGoogleAnalyticsV4ServiceAccountOnly:
     r"""The time increment used by the connector when requesting data from the Google Analytics API. More information is available in the <a href=\\"https://docs.airbyte.com/integrations/sources/google-analytics-v4/#sampling-in-reports\\">the docs</a>. The bigger this value is, the faster the sync will be, but the more likely that sampling will be applied to your data, potentially causing inaccuracies in the returned results. We recommend setting this to 1 unless you have a hard requirement to make the sync faster at the expense of accuracy. The minimum allowed value for this field is 1, and the maximum is 364."""
     
 
+
+SourceGoogleAnalyticsV4ServiceAccountOnlyCredentials = Union[SourceGoogleAnalyticsV4ServiceAccountOnlyServiceAccountKeyAuthentication]

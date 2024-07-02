@@ -5,15 +5,15 @@ The type of authentication to be used
 
 ## Supported Types
 
-### APIKeySecret
+### `models.APIKeySecret`
 
 ```python
-authenticationMethod: models.APIKeySecret = /* values here */
+value: models.APIKeySecret = /* values here */
 ```
 
-### UsernamePassword
+### `models.UsernamePassword`
 
 ```python
-authenticationMethod: models.UsernamePassword = /* values here */
+value: models.UsernamePassword = /* values here */
 ```
 

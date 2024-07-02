@@ -5,9 +5,9 @@ Processing configuration
 
 ## Supported Types
 
-### SourceMicrosoftOnedriveLocal
+### `models.SourceMicrosoftOnedriveLocal`
 
 ```python
-sourceMicrosoftOnedriveProcessing: models.SourceMicrosoftOnedriveLocal = /* values here */
+value: models.SourceMicrosoftOnedriveLocal = /* values here */
 ```
 

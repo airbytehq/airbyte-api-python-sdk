@@ -5,33 +5,33 @@ The configuration options that are used to alter how to read incoming files that
 
 ## Supported Types
 
-### SourceMicrosoftSharepointAvroFormat
+### `models.SourceMicrosoftSharepointAvroFormat`
 
 ```python
-sourceMicrosoftSharepointFormat: models.SourceMicrosoftSharepointAvroFormat = /* values here */
+value: models.SourceMicrosoftSharepointAvroFormat = /* values here */
 ```
 
-### SourceMicrosoftSharepointCSVFormat
+### `models.SourceMicrosoftSharepointCSVFormat`
 
 ```python
-sourceMicrosoftSharepointFormat: models.SourceMicrosoftSharepointCSVFormat = /* values here */
+value: models.SourceMicrosoftSharepointCSVFormat = /* values here */
 ```
 
-### SourceMicrosoftSharepointJsonlFormat
+### `models.SourceMicrosoftSharepointJsonlFormat`
 
 ```python
-sourceMicrosoftSharepointFormat: models.SourceMicrosoftSharepointJsonlFormat = /* values here */
+value: models.SourceMicrosoftSharepointJsonlFormat = /* values here */
 ```
 
-### SourceMicrosoftSharepointParquetFormat
+### `models.SourceMicrosoftSharepointParquetFormat`
 
 ```python
-sourceMicrosoftSharepointFormat: models.SourceMicrosoftSharepointParquetFormat = /* values here */
+value: models.SourceMicrosoftSharepointParquetFormat = /* values here */
 ```
 
-### SourceMicrosoftSharepointDocumentFileTypeFormatExperimental
+### `models.SourceMicrosoftSharepointDocumentFileTypeFormatExperimental`
 
 ```python
-sourceMicrosoftSharepointFormat: models.SourceMicrosoftSharepointDocumentFileTypeFormatExperimental = /* values here */
+value: models.SourceMicrosoftSharepointDocumentFileTypeFormatExperimental = /* values here */
 ```
 

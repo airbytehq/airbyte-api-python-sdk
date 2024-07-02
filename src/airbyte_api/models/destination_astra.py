@@ -91,8 +91,6 @@ class OpenAI:
     
 
 
-Embedding = Union['OpenAI', 'Cohere', 'Fake', 'AzureOpenAI', 'OpenAICompatible']
-
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
@@ -187,8 +185,6 @@ class BySeparator:
     
 
 
-TextSplitter = Union['BySeparator', 'ByMarkdownHeader', 'ByProgrammingLanguage']
-
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
@@ -233,3 +229,7 @@ class DestinationAstra:
     r"""Do not store the text that gets embedded along with the vector and the metadata in the destination. If set to true, only the vector and the metadata will be stored - in this case raw text for LLM use cases needs to be retrieved from another source."""
     
 
+
+Embedding = Union[OpenAI, Cohere, Fake, AzureOpenAI, OpenAICompatible]
+
+TextSplitter = Union[BySeparator, ByMarkdownHeader, ByProgrammingLanguage]

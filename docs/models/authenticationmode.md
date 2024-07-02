@@ -5,15 +5,15 @@ Choose How to Authenticate to AWS.
 
 ## Supported Types
 
-### IAMRole
+### `models.IAMRole`
 
 ```python
-authenticationMode: models.IAMRole = /* values here */
+value: models.IAMRole = /* values here */
 ```
 
-### IAMUser
+### `models.IAMUser`
 
 ```python
-authenticationMode: models.IAMUser = /* values here */
+value: models.IAMUser = /* values here */
 ```
 

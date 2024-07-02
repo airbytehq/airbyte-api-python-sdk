@@ -5,15 +5,15 @@ Choose how to authenticate to Github
 
 ## Supported Types
 
-### AuthenticateViaAsanaOauth
+### `models.AuthenticateViaAsanaOauth`
 
 ```python
-authenticationMechanism: models.AuthenticateViaAsanaOauth = /* values here */
+value: models.AuthenticateViaAsanaOauth = /* values here */
 ```
 
-### AuthenticateWithPersonalAccessToken
+### `models.AuthenticateWithPersonalAccessToken`
 
 ```python
-authenticationMechanism: models.AuthenticateWithPersonalAccessToken = /* values here */
+value: models.AuthenticateWithPersonalAccessToken = /* values here */
 ```
 

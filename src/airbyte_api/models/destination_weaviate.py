@@ -121,8 +121,6 @@ class NoExternalEmbedding:
     
 
 
-DestinationWeaviateEmbedding = Union['NoExternalEmbedding', 'DestinationWeaviateAzureOpenAI', 'DestinationWeaviateOpenAI', 'DestinationWeaviateCohere', 'FromField', 'DestinationWeaviateFake', 'DestinationWeaviateOpenAICompatible']
-
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
@@ -176,8 +174,6 @@ class DestinationWeaviateAPIToken:
     MODE: Final[Optional[DestinationWeaviateSchemasIndexingMode]] = dataclasses.field(default=DestinationWeaviateSchemasIndexingMode.TOKEN, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('mode'), 'exclude': lambda f: f is None }})
     
 
-
-DestinationWeaviateAuthentication = Union['DestinationWeaviateAPIToken', 'DestinationWeaviateUsernamePassword', 'NoAuthentication']
 
 
 class DefaultVectorizer(str, Enum):
@@ -291,8 +287,6 @@ class DestinationWeaviateBySeparator:
     
 
 
-DestinationWeaviateTextSplitter = Union['DestinationWeaviateBySeparator', 'DestinationWeaviateByMarkdownHeader', 'DestinationWeaviateByProgrammingLanguage']
-
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
@@ -337,3 +331,9 @@ class DestinationWeaviate:
     r"""Do not store the text that gets embedded along with the vector and the metadata in the destination. If set to true, only the vector and the metadata will be stored - in this case raw text for LLM use cases needs to be retrieved from another source."""
     
 
+
+DestinationWeaviateEmbedding = Union[NoExternalEmbedding, DestinationWeaviateAzureOpenAI, DestinationWeaviateOpenAI, DestinationWeaviateCohere, FromField, DestinationWeaviateFake, DestinationWeaviateOpenAICompatible]
+
+DestinationWeaviateAuthentication = Union[DestinationWeaviateAPIToken, DestinationWeaviateUsernamePassword, NoAuthentication]
+
+DestinationWeaviateTextSplitter = Union[DestinationWeaviateBySeparator, DestinationWeaviateByMarkdownHeader, DestinationWeaviateByProgrammingLanguage]

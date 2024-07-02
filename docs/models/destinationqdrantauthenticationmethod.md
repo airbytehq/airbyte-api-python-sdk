@@ -5,15 +5,15 @@ Method to authenticate with the Qdrant Instance
 
 ## Supported Types
 
-### APIKeyAuth
+### `models.APIKeyAuth`
 
 ```python
-destinationQdrantAuthenticationMethod: models.APIKeyAuth = /* values here */
+value: models.APIKeyAuth = /* values here */
 ```
 
-### DestinationQdrantNoAuth
+### `models.DestinationQdrantNoAuth`
 
 ```python
-destinationQdrantAuthenticationMethod: models.DestinationQdrantNoAuth = /* values here */
+value: models.DestinationQdrantNoAuth = /* values here */
 ```
 

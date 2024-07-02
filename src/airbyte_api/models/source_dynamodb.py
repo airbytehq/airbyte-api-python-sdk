@@ -15,7 +15,6 @@ class SourceDynamodbSchemasAuthType(str, Enum):
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
 class RoleBasedAuthentication:
-    UNSET='__SPEAKEASY_UNSET__'
     additional_properties: Optional[Dict[str, Any]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'exclude': lambda f: f is None }})
     AUTH_TYPE: Final[Optional[SourceDynamodbSchemasAuthType]] = dataclasses.field(default=SourceDynamodbSchemasAuthType.ROLE, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_type'), 'exclude': lambda f: f is None }})
     
@@ -29,7 +28,6 @@ class SourceDynamodbAuthType(str, Enum):
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
 class AuthenticateViaAccessKeys:
-    UNSET='__SPEAKEASY_UNSET__'
     access_key_id: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('access_key_id') }})
     r"""The access key id to access Dynamodb. Airbyte requires read permissions to the database"""
     secret_access_key: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('secret_access_key') }})
@@ -38,8 +36,6 @@ class AuthenticateViaAccessKeys:
     AUTH_TYPE: Final[Optional[SourceDynamodbAuthType]] = dataclasses.field(default=SourceDynamodbAuthType.USER, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_type'), 'exclude': lambda f: f is None }})
     
 
-
-SourceDynamodbCredentials = Union['AuthenticateViaAccessKeys', 'RoleBasedAuthentication']
 
 
 class SourceDynamodbDynamodbRegion(str, Enum):
@@ -101,3 +97,5 @@ class SourceDynamodb:
     SOURCE_TYPE: Final[Optional[SourceDynamodbDynamodb]] = dataclasses.field(default=SourceDynamodbDynamodb.DYNAMODB, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType'), 'exclude': lambda f: f is None }})
     
 
+
+SourceDynamodbCredentials = Union[AuthenticateViaAccessKeys, RoleBasedAuthentication]

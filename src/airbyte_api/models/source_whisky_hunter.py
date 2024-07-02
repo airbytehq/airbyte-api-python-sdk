@@ -5,7 +5,7 @@ import dataclasses
 from airbyte_api import utils
 from dataclasses_json import Undefined, dataclass_json
 from enum import Enum
-from typing import Final, Optional
+from typing import Final
 
 
 class WhiskyHunter(str, Enum):
@@ -15,6 +15,6 @@ class WhiskyHunter(str, Enum):
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
 class SourceWhiskyHunter:
-    SOURCE_TYPE: Final[Optional[WhiskyHunter]] = dataclasses.field(default=WhiskyHunter.WHISKY_HUNTER, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType'), 'exclude': lambda f: f is None }})
+    SOURCE_TYPE: Final[WhiskyHunter] = dataclasses.field(default=WhiskyHunter.WHISKY_HUNTER, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     
 

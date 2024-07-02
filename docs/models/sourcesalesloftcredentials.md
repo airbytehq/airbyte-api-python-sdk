@@ -3,15 +3,15 @@
 
 ## Supported Types
 
-### AuthenticateViaOAuth
+### `models.AuthenticateViaOAuth`
 
 ```python
-sourceSalesloftCredentials: models.AuthenticateViaOAuth = /* values here */
+value: models.AuthenticateViaOAuth = /* values here */
 ```
 
-### AuthenticateViaAPIKey
+### `models.AuthenticateViaAPIKey`
 
 ```python
-sourceSalesloftCredentials: models.AuthenticateViaAPIKey = /* values here */
+value: models.AuthenticateViaAPIKey = /* values here */
 ```
 

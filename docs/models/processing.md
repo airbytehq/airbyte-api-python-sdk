@@ -5,9 +5,9 @@ Processing configuration
 
 ## Supported Types
 
-### Local
+### `models.Local`
 
 ```python
-processing: models.Local = /* values here */
+value: models.Local = /* values here */
 ```
 

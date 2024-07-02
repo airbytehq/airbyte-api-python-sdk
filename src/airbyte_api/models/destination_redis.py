@@ -50,8 +50,6 @@ class DestinationRedisDisable:
     
 
 
-DestinationRedisSSLModes = Union['DestinationRedisDisable', 'DestinationRedisVerifyFull']
-
 
 class DestinationRedisSchemasTunnelMethodTunnelMethod(str, Enum):
     r"""Connect through a jump server tunnel host using username and password authentication"""
@@ -110,8 +108,6 @@ class DestinationRedisNoTunnel:
     
 
 
-DestinationRedisSSHTunnelMethod = Union['DestinationRedisNoTunnel', 'DestinationRedisSSHKeyAuthentication', 'DestinationRedisPasswordAuthentication']
-
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
@@ -137,3 +133,7 @@ class DestinationRedis:
     r"""Whether to initiate an SSH tunnel before connecting to the database, and if so, which kind of authentication to use."""
     
 
+
+DestinationRedisSSLModes = Union[DestinationRedisDisable, DestinationRedisVerifyFull]
+
+DestinationRedisSSHTunnelMethod = Union[DestinationRedisNoTunnel, DestinationRedisSSHKeyAuthentication, DestinationRedisPasswordAuthentication]

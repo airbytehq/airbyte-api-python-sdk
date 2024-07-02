@@ -1,6 +1,6 @@
 # UsersResponse
 
-List/Array of multiple users
+List/Array of multiple users in an organization
 
 
 ## Fields

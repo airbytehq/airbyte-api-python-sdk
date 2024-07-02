@@ -5,21 +5,21 @@ Storage on which the delta lake is built.
 
 ## Supported Types
 
-### RecommendedManagedTables
+### `models.RecommendedManagedTables`
 
 ```python
-dataSource: models.RecommendedManagedTables = /* values here */
+value: models.RecommendedManagedTables = /* values here */
 ```
 
-### AmazonS3
+### `models.AmazonS3`
 
 ```python
-dataSource: models.AmazonS3 = /* values here */
+value: models.AmazonS3 = /* values here */
 ```
 
-### DestinationDatabricksAzureBlobStorage
+### `models.DestinationDatabricksAzureBlobStorage`
 
 ```python
-dataSource: models.DestinationDatabricksAzureBlobStorage = /* values here */
+value: models.DestinationDatabricksAzureBlobStorage = /* values here */
 ```
 
