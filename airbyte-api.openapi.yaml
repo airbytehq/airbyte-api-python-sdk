@@ -1525,6 +1525,76 @@ components:
     OAuthInputConfiguration:
       $ref: "#/components/schemas/OAuthConfiguration"
       x-speakeasy-component: true
+    ApplicationCreate:
+      required:
+      - "name"
+      type: "object"
+      properties:
+        name:
+          type: "string"
+      x-speakeasy-component: true
+    ApplicationReadList:
+      required:
+      - "applications"
+      type: "object"
+      properties:
+        applications:
+          type: "array"
+          items:
+            $ref: "#/components/schemas/ApplicationRead"
+      x-speakeasy-component: true
+    ApplicationRead:
+      required:
+      - "id"
+      - "name"
+      - "clientId"
+      - "clientSecret"
+      - "createdAt"
+      type: "object"
+      properties:
+        id:
+          type: "string"
+        name:
+          type: "string"
+        clientId:
+          type: "string"
+        clientSecret:
+          type: "string"
+        createdAt:
+          type: "integer"
+          format: "int64"
+      x-speakeasy-component: true
+    ApplicationTokenRequestWithGrant:
+      required:
+      - "client_id"
+      - "client_secret"
+      - "grant_type"
+      type: "object"
+      properties:
+        client_id:
+          type: "string"
+        client_secret:
+          type: "string"
+        grant-type:
+          enum:
+          - "client_credentials"
+      x-speakeasy-component: true
+    PublicAccessTokenResponse:
+      required:
+      - "access_token"
+      - "token_type"
+      - "expires_in"
+      type: "object"
+      properties:
+        access_token:
+          type: "string"
+        token_type:
+          enum:
+          - "Bearer"
+        expires_in:
+          type: "integer"
+          format: "int64"
+      x-speakeasy-component: true
     RedirectUrlResponse:
       title: "Root Type for RedirectUrlResponse"
       description: ""
@@ -3579,6 +3649,214 @@ components:
           order: 1
       required:
       - "api_key"
+    source-datadog:
+      title: "Datadog Source Spec"
+      type: "object"
+      required:
+      - "api_key"
+      - "application_key"
+      - "sourceType"
+      properties:
+        api_key:
+          title: "API Key"
+          description: "Datadog API key"
+          type: "string"
+          airbyte_secret: true
+          order: 1
+          x-speakeasy-param-sensitive: true
+        application_key:
+          title: "Application Key"
+          description: "Datadog application key"
+          type: "string"
+          airbyte_secret: true
+          order: 2
+          x-speakeasy-param-sensitive: true
+        query:
+          title: "Query"
+          description: "The search query. This just applies to Incremental syncs.\
+            \ If empty, it'll collect all logs."
+          type: "string"
+          order: 3
+        start_date:
+          title: "Start date"
+          pattern: "^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}Z$"
+          description: "UTC date and time in the format 2017-01-25T00:00:00Z. Any\
+            \ data before this date will not be replicated. This just applies to Incremental\
+            \ syncs."
+          type: "string"
+          examples:
+          - "2022-10-01T00:00:00Z"
+          order: 4
+        site:
+          title: "Site"
+          description: "The site where Datadog data resides in."
+          type: "string"
+          enum:
+          - "datadoghq.com"
+          - "us3.datadoghq.com"
+          - "us5.datadoghq.com"
+          - "datadoghq.eu"
+          - "ddog-gov.com"
+          default: "datadoghq.com"
+          order: 5
+        end_date:
+          title: "End date"
+          pattern: "^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}Z$"
+          description: "UTC date and time in the format 2017-01-25T00:00:00Z. Data\
+            \ after this date will  not be replicated. An empty value will represent\
+            \ the current datetime for each  execution. This just applies to Incremental\
+            \ syncs."
+          examples:
+          - "2022-10-01T00:00:00Z"
+          type: "string"
+          order: 6
+        max_records_per_request:
+          type: "integer"
+          title: "Max records per requests"
+          default: 5000
+          minimum: 1
+          maximum: 5000
+          description: "Maximum number of records to collect per request."
+          order: 7
+        queries:
+          title: "Queries"
+          description: "List of queries to be run and used as inputs."
+          type: "array"
+          order: 8
+          default: []
+          items:
+            type: "object"
+            required:
+            - "name"
+            - "data_source"
+            - "query"
+            properties:
+              name:
+                title: "Query Name"
+                description: "The variable name for use in queries."
+                type: "string"
+                order: 1
+              data_source:
+                title: "Data Source"
+                description: "A data source that is powered by the platform."
+                type: "string"
+                enum:
+                - "metrics"
+                - "cloud_cost"
+                - "logs"
+                - "rum"
+                order: 2
+              query:
+                title: "Query"
+                description: "A classic query string."
+                type: "string"
+                order: 3
+        sourceType:
+          title: "datadog"
+          const: "datadog"
+          enum:
+          - "datadog"
+          order: 0
+          type: "string"
+    source-datadog-update:
+      title: "Datadog Source Spec"
+      type: "object"
+      required:
+      - "api_key"
+      - "application_key"
+      properties:
+        api_key:
+          title: "API Key"
+          description: "Datadog API key"
+          type: "string"
+          airbyte_secret: true
+          order: 1
+        application_key:
+          title: "Application Key"
+          description: "Datadog application key"
+          type: "string"
+          airbyte_secret: true
+          order: 2
+        query:
+          title: "Query"
+          description: "The search query. This just applies to Incremental syncs.\
+            \ If empty, it'll collect all logs."
+          type: "string"
+          order: 3
+        start_date:
+          title: "Start date"
+          pattern: "^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}Z$"
+          description: "UTC date and time in the format 2017-01-25T00:00:00Z. Any\
+            \ data before this date will not be replicated. This just applies to Incremental\
+            \ syncs."
+          type: "string"
+          examples:
+          - "2022-10-01T00:00:00Z"
+          order: 4
+        site:
+          title: "Site"
+          description: "The site where Datadog data resides in."
+          type: "string"
+          enum:
+          - "datadoghq.com"
+          - "us3.datadoghq.com"
+          - "us5.datadoghq.com"
+          - "datadoghq.eu"
+          - "ddog-gov.com"
+          default: "datadoghq.com"
+          order: 5
+        end_date:
+          title: "End date"
+          pattern: "^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}Z$"
+          description: "UTC date and time in the format 2017-01-25T00:00:00Z. Data\
+            \ after this date will  not be replicated. An empty value will represent\
+            \ the current datetime for each  execution. This just applies to Incremental\
+            \ syncs."
+          examples:
+          - "2022-10-01T00:00:00Z"
+          type: "string"
+          order: 6
+        max_records_per_request:
+          type: "integer"
+          title: "Max records per requests"
+          default: 5000
+          minimum: 1
+          maximum: 5000
+          description: "Maximum number of records to collect per request."
+          order: 7
+        queries:
+          title: "Queries"
+          description: "List of queries to be run and used as inputs."
+          type: "array"
+          order: 8
+          default: []
+          items:
+            type: "object"
+            required:
+            - "name"
+            - "data_source"
+            - "query"
+            properties:
+              name:
+                title: "Query Name"
+                description: "The variable name for use in queries."
+                type: "string"
+                order: 1
+              data_source:
+                title: "Data Source"
+                description: "A data source that is powered by the platform."
+                type: "string"
+                enum:
+                - "metrics"
+                - "cloud_cost"
+                - "logs"
+                - "rum"
+                order: 2
+              query:
+                title: "Query"
+                description: "A classic query string."
+                type: "string"
+                order: 3
     source-dockerhub:
       type: "object"
       required:
@@ -3679,27 +3957,17 @@ components:
           example: "1.0.0"
           order: 2
     source-wikipedia-pageviews:
-      title: "Wikipedia Pageviews Spec"
       type: "object"
       required:
-      - "project"
       - "access"
       - "agent"
       - "article"
-      - "start"
-      - "end"
       - "country"
+      - "end"
+      - "project"
+      - "start"
       - "sourceType"
       properties:
-        project:
-          type: "string"
-          title: "Project"
-          description: "If you want to filter by project, use the domain of any Wikimedia\
-            \ project."
-          examples:
-          - "en.wikipedia.org"
-          - "www.mediawiki.org"
-          - "commons.wikimedia.org"
         access:
           type: "string"
           title: "Access"
@@ -3711,6 +3979,7 @@ components:
           - "desktop"
           - "mobile-app"
           - "mobile-web"
+          order: 0
         agent:
           type: "string"
           title: "Agent"
@@ -3722,6 +3991,7 @@ components:
           - "user"
           - "spider"
           - "automated"
+          order: 1
         article:
           type: "string"
           title: "Article"
@@ -3730,16 +4000,7 @@ components:
             \ so that non-URI-safe characters like %, / or ? are accepted."
           examples:
           - "Are_You_the_One%3F"
-        start:
-          type: "string"
-          title: "Start"
-          description: "The date of the first day to include, in YYYYMMDD or YYYYMMDDHH\
-            \ format."
-        end:
-          type: "string"
-          title: "End"
-          description: "The date of the last day to include, in YYYYMMDD or YYYYMMDDHH\
-            \ format."
+          order: 2
         country:
           type: "string"
           title: "Country"
@@ -3748,6 +4009,29 @@ components:
           examples:
           - "FR"
           - "IN"
+          order: 3
+        end:
+          type: "string"
+          title: "End"
+          description: "The date of the last day to include, in YYYYMMDD or YYYYMMDDHH\
+            \ format."
+          order: 4
+        project:
+          type: "string"
+          title: "Project"
+          description: "If you want to filter by project, use the domain of any Wikimedia\
+            \ project."
+          examples:
+          - "en.wikipedia.org"
+          - "www.mediawiki.org"
+          - "commons.wikimedia.org"
+          order: 5
+        start:
+          type: "string"
+          title: "Start"
+          description: "The date of the first day to include, in YYYYMMDD or YYYYMMDDHH\
+            \ format. Also serves as the date to retrieve data for the top articles."
+          order: 6
         sourceType:
           title: "wikipedia-pageviews"
           const: "wikipedia-pageviews"
@@ -3756,26 +4040,16 @@ components:
           order: 0
           type: "string"
     source-wikipedia-pageviews-update:
-      title: "Wikipedia Pageviews Spec"
       type: "object"
       required:
-      - "project"
       - "access"
       - "agent"
       - "article"
-      - "start"
-      - "end"
       - "country"
+      - "end"
+      - "project"
+      - "start"
       properties:
-        project:
-          type: "string"
-          title: "Project"
-          description: "If you want to filter by project, use the domain of any Wikimedia\
-            \ project."
-          examples:
-          - "en.wikipedia.org"
-          - "www.mediawiki.org"
-          - "commons.wikimedia.org"
         access:
           type: "string"
           title: "Access"
@@ -3787,6 +4061,7 @@ components:
           - "desktop"
           - "mobile-app"
           - "mobile-web"
+          order: 0
         agent:
           type: "string"
           title: "Agent"
@@ -3798,6 +4073,7 @@ components:
           - "user"
           - "spider"
           - "automated"
+          order: 1
         article:
           type: "string"
           title: "Article"
@@ -3806,16 +4082,7 @@ components:
             \ so that non-URI-safe characters like %, / or ? are accepted."
           examples:
           - "Are_You_the_One%3F"
-        start:
-          type: "string"
-          title: "Start"
-          description: "The date of the first day to include, in YYYYMMDD or YYYYMMDDHH\
-            \ format."
-        end:
-          type: "string"
-          title: "End"
-          description: "The date of the last day to include, in YYYYMMDD or YYYYMMDDHH\
-            \ format."
+          order: 2
         country:
           type: "string"
           title: "Country"
@@ -3824,6 +4091,29 @@ components:
           examples:
           - "FR"
           - "IN"
+          order: 3
+        end:
+          type: "string"
+          title: "End"
+          description: "The date of the last day to include, in YYYYMMDD or YYYYMMDDHH\
+            \ format."
+          order: 4
+        project:
+          type: "string"
+          title: "Project"
+          description: "If you want to filter by project, use the domain of any Wikimedia\
+            \ project."
+          examples:
+          - "en.wikipedia.org"
+          - "www.mediawiki.org"
+          - "commons.wikimedia.org"
+          order: 5
+        start:
+          type: "string"
+          title: "Start"
+          description: "The date of the first day to include, in YYYYMMDD or YYYYMMDDHH\
+            \ format. Also serves as the date to retrieve data for the top articles."
+          order: 6
     source-google-directory:
       title: "Google Directory Spec"
       type: "object"
@@ -7207,6 +7497,14 @@ components:
             \ data. If you are a `Shopify Plus` user, leave the default value to speed\
             \ up the fetch."
           default: false
+        job_termination_threshold:
+          type: "integer"
+          title: "BULK Job termination threshold"
+          description: "The max time in seconds, after which the single BULK Job should\
+            \ be `CANCELED` and retried. The bigger the value the longer the BULK\
+            \ Job is allowed to run."
+          default: 3600
+          minimum: 1
         sourceType:
           title: "shopify"
           const: "shopify"
@@ -7308,18 +7606,26 @@ components:
             \ data. If you are a `Shopify Plus` user, leave the default value to speed\
             \ up the fetch."
           default: false
+        job_termination_threshold:
+          type: "integer"
+          title: "BULK Job termination threshold"
+          description: "The max time in seconds, after which the single BULK Job should\
+            \ be `CANCELED` and retried. The bigger the value the longer the BULK\
+            \ Job is allowed to run."
+          default: 3600
+          minimum: 1
     source-omnisend:
-      title: "Omnisend Spec"
       type: "object"
       required:
       - "api_key"
       - "sourceType"
       properties:
         api_key:
-          title: "API Key"
           type: "string"
-          description: "API Key"
+          title: "API Key"
           airbyte_secret: true
+          description: "API Key"
+          order: 0
           x-speakeasy-param-sensitive: true
         sourceType:
           title: "omnisend"
@@ -7329,16 +7635,16 @@ components:
           order: 0
           type: "string"
     source-omnisend-update:
-      title: "Omnisend Spec"
       type: "object"
       required:
       - "api_key"
       properties:
         api_key:
-          title: "API Key"
           type: "string"
-          description: "API Key"
+          title: "API Key"
           airbyte_secret: true
+          description: "API Key"
+          order: 0
     source-mongodb-v2:
       title: "MongoDb Source Spec"
       type: "object"
@@ -8368,7 +8674,7 @@ components:
                       type: "boolean"
                   required:
                   - "filetype"
-                - title: "Document File Type Format (Experimental)"
+                - title: "Unstructured Document Format"
                   type: "object"
                   properties:
                     filetype:
@@ -9139,7 +9445,7 @@ components:
                       type: "boolean"
                   required:
                   - "filetype"
-                - title: "Document File Type Format (Experimental)"
+                - title: "Unstructured Document Format"
                   type: "object"
                   properties:
                     filetype:
@@ -12192,13 +12498,51 @@ components:
                 airbyte_secret: true
                 order: 4
                 x-speakeasy-param-sensitive: true
+          - title: "Key Pair Authentication"
+            type: "object"
+            order: 1
+            required:
+            - "username"
+            - "private_key"
+            properties:
+              auth_type:
+                type: "string"
+                const: "Key Pair Authentication"
+                order: 0
+                enum:
+                - "Key Pair Authentication"
+              username:
+                description: "The username you created to allow Airbyte to access\
+                  \ the database."
+                examples:
+                - "AIRBYTE_USER"
+                type: "string"
+                title: "Username"
+                order: 1
+              private_key:
+                type: "string"
+                title: "Private Key"
+                description: "RSA Private key to use for Snowflake connection. See\
+                  \ the <a href=\"https://docs.airbyte.com/integrations/sources/snowflake#key-pair-authentication\"\
+                  >docs</a> for more information on how to obtain this key."
+                multiline: true
+                airbyte_secret: true
+                order: 2
+                x-speakeasy-param-sensitive: true
+              private_key_password:
+                type: "string"
+                title: "Passphrase"
+                description: "Passphrase for private key"
+                airbyte_secret: true
+                order: 3
+                x-speakeasy-param-sensitive: true
           - title: "Username and Password"
             type: "object"
             required:
             - "username"
             - "password"
             - "auth_type"
-            order: 1
+            order: 2
             properties:
               auth_type:
                 type: "string"
@@ -12325,13 +12669,49 @@ components:
                 description: "Refresh Token for making authenticated requests."
                 airbyte_secret: true
                 order: 4
+          - title: "Key Pair Authentication"
+            type: "object"
+            order: 1
+            required:
+            - "username"
+            - "private_key"
+            properties:
+              auth_type:
+                type: "string"
+                const: "Key Pair Authentication"
+                order: 0
+                enum:
+                - "Key Pair Authentication"
+              username:
+                description: "The username you created to allow Airbyte to access\
+                  \ the database."
+                examples:
+                - "AIRBYTE_USER"
+                type: "string"
+                title: "Username"
+                order: 1
+              private_key:
+                type: "string"
+                title: "Private Key"
+                description: "RSA Private key to use for Snowflake connection. See\
+                  \ the <a href=\"https://docs.airbyte.com/integrations/sources/snowflake#key-pair-authentication\"\
+                  >docs</a> for more information on how to obtain this key."
+                multiline: true
+                airbyte_secret: true
+                order: 2
+              private_key_password:
+                type: "string"
+                title: "Passphrase"
+                description: "Passphrase for private key"
+                airbyte_secret: true
+                order: 3
           - title: "Username and Password"
             type: "object"
             required:
             - "username"
             - "password"
             - "auth_type"
-            order: 1
+            order: 2
             properties:
               auth_type:
                 type: "string"
@@ -12956,7 +13336,7 @@ components:
                       type: "boolean"
                   required:
                   - "filetype"
-                - title: "Document File Type Format (Experimental)"
+                - title: "Unstructured Document Format"
                   type: "object"
                   properties:
                     filetype:
@@ -13445,7 +13825,7 @@ components:
                       type: "boolean"
                   required:
                   - "filetype"
-                - title: "Document File Type Format (Experimental)"
+                - title: "Unstructured Document Format"
                   type: "object"
                   properties:
                     filetype:
@@ -14822,6 +15202,16 @@ components:
                 default: "Fail sync"
                 order: 3
                 always_show: true
+              initial_load_timeout_hours:
+                type: "integer"
+                title: "Initial Load Timeout in Hours (Advanced)"
+                description: "The amount of time an initial load is allowed to continue\
+                  \ for before catching up on CDC logs."
+                default: 8
+                min: 4
+                max: 24
+                order: 4
+                always_show: true
           - title: "Scan Changes with User Defined Cursor"
             description: "Incrementally detects new inserts and updates using the\
               \ <a href=\"https://docs.airbyte.com/understanding-airbyte/connections/incremental-append/#user-defined-cursor\"\
@@ -15185,6 +15575,16 @@ components:
                 - "Re-sync data"
                 default: "Fail sync"
                 order: 3
+                always_show: true
+              initial_load_timeout_hours:
+                type: "integer"
+                title: "Initial Load Timeout in Hours (Advanced)"
+                description: "The amount of time an initial load is allowed to continue\
+                  \ for before catching up on CDC logs."
+                default: 8
+                min: 4
+                max: 24
+                order: 4
                 always_show: true
           - title: "Scan Changes with User Defined Cursor"
             description: "Incrementally detects new inserts and updates using the\
@@ -15710,11 +16110,10 @@ components:
           maximum: 100000
           default: 100
     source-orb:
-      title: "Orb Spec"
       type: "object"
       required:
-      - "api_key"
       - "start_date"
+      - "api_key"
       - "sourceType"
       properties:
         api_key:
@@ -15722,18 +16121,19 @@ components:
           title: "Orb API Key"
           description: "Orb API Key, issued from the Orb admin console."
           airbyte_secret: true
-          order: 1
+          order: 0
           x-speakeasy-param-sensitive: true
         start_date:
           type: "string"
           title: "Start Date"
+          format: "date-time"
           pattern: "^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}Z$"
           description: "UTC date and time in the format 2022-03-01T00:00:00Z. Any\
             \ data with created_at before this data will not be synced. For Subscription\
             \ Usage, this becomes the `timeframe_start` API parameter."
           examples:
           - "2022-03-01T00:00:00Z"
-          order: 2
+          order: 1
         end_date:
           type: "string"
           title: "End Date"
@@ -15743,7 +16143,7 @@ components:
             \ Usage, this becomes the `timeframe_start` API parameter."
           examples:
           - "2024-03-01T00:00:00Z"
-          order: 3
+          order: 2
         lookback_window_days:
           type: "integer"
           title: "Lookback Window (in days)"
@@ -15752,7 +16152,7 @@ components:
           description: "When set to N, the connector will always refresh resources\
             \ created within the past N days. By default, updated objects that are\
             \ not newly created are not incrementally synced."
-          order: 4
+          order: 3
         string_event_properties_keys:
           type: "array"
           items:
@@ -15760,7 +16160,7 @@ components:
           title: "Event properties keys (string values)"
           description: "Property key names to extract from all events, in order to\
             \ enrich ledger entries corresponding to an event deduction."
-          order: 5
+          order: 4
           x-speakeasy-param-sensitive: true
         numeric_event_properties_keys:
           type: "array"
@@ -15769,18 +16169,20 @@ components:
           title: "Event properties keys (numeric values)"
           description: "Property key names to extract from all events, in order to\
             \ enrich ledger entries corresponding to an event deduction."
-          order: 6
+          order: 5
           x-speakeasy-param-sensitive: true
         subscription_usage_grouping_key:
           type: "string"
           title: "Subscription usage grouping key (string value)"
           description: "Property key name to group subscription usage by."
+          order: 6
           x-speakeasy-param-sensitive: true
         plan_id:
           type: "string"
           title: "Orb Plan ID for Subscription Usage (string value)"
           description: "Orb Plan ID to filter subscriptions that should have usage\
             \ fetched."
+          order: 7
         sourceType:
           title: "orb"
           const: "orb"
@@ -15789,28 +16191,28 @@ components:
           order: 0
           type: "string"
     source-orb-update:
-      title: "Orb Spec"
       type: "object"
       required:
-      - "api_key"
       - "start_date"
+      - "api_key"
       properties:
         api_key:
           type: "string"
           title: "Orb API Key"
           description: "Orb API Key, issued from the Orb admin console."
           airbyte_secret: true
-          order: 1
+          order: 0
         start_date:
           type: "string"
           title: "Start Date"
+          format: "date-time"
           pattern: "^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}Z$"
           description: "UTC date and time in the format 2022-03-01T00:00:00Z. Any\
             \ data with created_at before this data will not be synced. For Subscription\
             \ Usage, this becomes the `timeframe_start` API parameter."
           examples:
           - "2022-03-01T00:00:00Z"
-          order: 2
+          order: 1
         end_date:
           type: "string"
           title: "End Date"
@@ -15820,7 +16222,7 @@ components:
             \ Usage, this becomes the `timeframe_start` API parameter."
           examples:
           - "2024-03-01T00:00:00Z"
-          order: 3
+          order: 2
         lookback_window_days:
           type: "integer"
           title: "Lookback Window (in days)"
@@ -15829,7 +16231,7 @@ components:
           description: "When set to N, the connector will always refresh resources\
             \ created within the past N days. By default, updated objects that are\
             \ not newly created are not incrementally synced."
-          order: 4
+          order: 3
         string_event_properties_keys:
           type: "array"
           items:
@@ -15837,7 +16239,7 @@ components:
           title: "Event properties keys (string values)"
           description: "Property key names to extract from all events, in order to\
             \ enrich ledger entries corresponding to an event deduction."
-          order: 5
+          order: 4
         numeric_event_properties_keys:
           type: "array"
           items:
@@ -15845,16 +16247,18 @@ components:
           title: "Event properties keys (numeric values)"
           description: "Property key names to extract from all events, in order to\
             \ enrich ledger entries corresponding to an event deduction."
-          order: 6
+          order: 5
         subscription_usage_grouping_key:
           type: "string"
           title: "Subscription usage grouping key (string value)"
           description: "Property key name to group subscription usage by."
+          order: 6
         plan_id:
           type: "string"
           title: "Orb Plan ID for Subscription Usage (string value)"
           description: "Orb Plan ID to filter subscriptions that should have usage\
             \ fetched."
+          order: 7
     source-sentry:
       title: "Sentry Spec"
       type: "object"
@@ -18664,8 +19068,9 @@ components:
         replication_start_date:
           title: "Start Date"
           description: "UTC date and time in the format 2017-01-25T00:00:00Z. Any\
-            \ data before this date will not be replicated. If start date is not provided,\
-            \ the date 2 years ago from today will be used."
+            \ data before this date will not be replicated. If start date is not provided\
+            \ or older than 2 years ago from today, the date 2 years ago from today\
+            \ will be used."
           pattern: "^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}Z$"
           examples:
           - "2017-01-25T00:00:00Z"
@@ -18864,8 +19269,9 @@ components:
         replication_start_date:
           title: "Start Date"
           description: "UTC date and time in the format 2017-01-25T00:00:00Z. Any\
-            \ data before this date will not be replicated. If start date is not provided,\
-            \ the date 2 years ago from today will be used."
+            \ data before this date will not be replicated. If start date is not provided\
+            \ or older than 2 years ago from today, the date 2 years ago from today\
+            \ will be used."
           pattern: "^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}Z$"
           examples:
           - "2017-01-25T00:00:00Z"
@@ -19367,6 +19773,37 @@ components:
           type: "string"
           description: "Your API Key. Get your key <a href=\"https://api.census.gov/data/key_signup.html\"\
             >here</a>."
+          airbyte_secret: true
+    source-goldcast:
+      title: "goldcast.io Source Spec"
+      type: "object"
+      required:
+      - "access_key"
+      - "sourceType"
+      properties:
+        access_key:
+          type: "string"
+          description: "Your API Access Key. See <a href=\"https://help.goldcast.io/hc/en-us/articles/22931655725723-How-To-Create-an-API-Token-in-Goldcast\"\
+            >here</a>. The key is case sensitive."
+          airbyte_secret: true
+          x-speakeasy-param-sensitive: true
+        sourceType:
+          title: "goldcast"
+          const: "goldcast"
+          enum:
+          - "goldcast"
+          order: 0
+          type: "string"
+    source-goldcast-update:
+      title: "goldcast.io Source Spec"
+      type: "object"
+      required:
+      - "access_key"
+      properties:
+        access_key:
+          type: "string"
+          description: "Your API Access Key. See <a href=\"https://help.goldcast.io/hc/en-us/articles/22931655725723-How-To-Create-an-API-Token-in-Goldcast\"\
+            >here</a>. The key is case sensitive."
           airbyte_secret: true
     source-pinterest:
       title: "Pinterest Spec"
@@ -20046,190 +20483,6 @@ components:
           desciption: "Optional, Possible values for an endpoint. Example values for\
             \ launches-latest, upcoming, past"
           order: 1
-    source-google-analytics-v4-service-account-only:
-      title: "Google Analytics (V4) Spec"
-      type: "object"
-      required:
-      - "view_id"
-      - "start_date"
-      - "sourceType"
-      properties:
-        credentials:
-          order: 0
-          type: "object"
-          title: "Credentials"
-          description: "Credentials for the service"
-          oneOf:
-          - type: "object"
-            title: "Service Account Key Authentication"
-            required:
-            - "credentials_json"
-            properties:
-              auth_type:
-                type: "string"
-                const: "Service"
-                order: 0
-                enum:
-                - "Service"
-              credentials_json:
-                title: "Service Account JSON Key"
-                type: "string"
-                description: "The JSON key of the service account to use for authorization"
-                examples:
-                - "{ \"type\": \"service_account\", \"project_id\": YOUR_PROJECT_ID,\
-                  \ \"private_key_id\": YOUR_PRIVATE_KEY, ... }"
-                airbyte_secret: true
-        start_date:
-          order: 1
-          type: "string"
-          title: "Replication Start Date"
-          description: "The date in the format YYYY-MM-DD. Any data before this date\
-            \ will not be replicated."
-          examples:
-          - "2020-06-01"
-          pattern: "^[0-9]{4}-[0-9]{2}-[0-9]{2}$|^$|[\\s\\S]+$"
-          format: "date"
-        view_id:
-          order: 2
-          type: "string"
-          title: "View ID"
-          description: "The ID for the Google Analytics View you want to fetch data\
-            \ from. This can be found from the <a href=\"https://ga-dev-tools.appspot.com/account-explorer/\"\
-            >Google Analytics Account Explorer</a>."
-        end_date:
-          order: 3
-          type: "string"
-          title: "Replication End Date"
-          description: "The date in the format YYYY-MM-DD. Any data after this date\
-            \ will not be replicated."
-          examples:
-          - "2020-06-01"
-          pattern: "^[0-9]{4}-[0-9]{2}-[0-9]{2}$|^$|[\\s\\S]+$"
-          format: "date"
-        custom_reports:
-          order: 4
-          type: "string"
-          title: "Custom Reports"
-          description: "A JSON array describing the custom reports you want to sync\
-            \ from Google Analytics. See <a href=\"https://docs.airbyte.com/integrations/sources/google-analytics-v4#data-processing-latency\"\
-            >the docs</a> for more information about the exact format you can use\
-            \ to fill out this field."
-        window_in_days:
-          type: "integer"
-          title: "Data request time increment in days"
-          description: "The time increment used by the connector when requesting data\
-            \ from the Google Analytics API. More information is available in the\
-            \ <a href=\"https://docs.airbyte.com/integrations/sources/google-analytics-v4/#sampling-in-reports\"\
-            >the docs</a>. The bigger this value is, the faster the sync will be,\
-            \ but the more likely that sampling will be applied to your data, potentially\
-            \ causing inaccuracies in the returned results. We recommend setting this\
-            \ to 1 unless you have a hard requirement to make the sync faster at the\
-            \ expense of accuracy. The minimum allowed value for this field is 1,\
-            \ and the maximum is 364. "
-          examples:
-          - 30
-          - 60
-          - 90
-          - 120
-          - 200
-          - 364
-          default: 1
-          order: 5
-        sourceType:
-          title: "google-analytics-v4-service-account-only"
-          const: "google-analytics-v4-service-account-only"
-          enum:
-          - "google-analytics-v4-service-account-only"
-          order: 0
-          type: "string"
-    source-google-analytics-v4-service-account-only-update:
-      title: "Google Analytics (V4) Spec"
-      type: "object"
-      required:
-      - "view_id"
-      - "start_date"
-      properties:
-        credentials:
-          order: 0
-          type: "object"
-          title: "Credentials"
-          description: "Credentials for the service"
-          oneOf:
-          - type: "object"
-            title: "Service Account Key Authentication"
-            required:
-            - "credentials_json"
-            properties:
-              auth_type:
-                type: "string"
-                const: "Service"
-                order: 0
-                enum:
-                - "Service"
-              credentials_json:
-                title: "Service Account JSON Key"
-                type: "string"
-                description: "The JSON key of the service account to use for authorization"
-                examples:
-                - "{ \"type\": \"service_account\", \"project_id\": YOUR_PROJECT_ID,\
-                  \ \"private_key_id\": YOUR_PRIVATE_KEY, ... }"
-                airbyte_secret: true
-        start_date:
-          order: 1
-          type: "string"
-          title: "Replication Start Date"
-          description: "The date in the format YYYY-MM-DD. Any data before this date\
-            \ will not be replicated."
-          examples:
-          - "2020-06-01"
-          pattern: "^[0-9]{4}-[0-9]{2}-[0-9]{2}$|^$|[\\s\\S]+$"
-          format: "date"
-        view_id:
-          order: 2
-          type: "string"
-          title: "View ID"
-          description: "The ID for the Google Analytics View you want to fetch data\
-            \ from. This can be found from the <a href=\"https://ga-dev-tools.appspot.com/account-explorer/\"\
-            >Google Analytics Account Explorer</a>."
-        end_date:
-          order: 3
-          type: "string"
-          title: "Replication End Date"
-          description: "The date in the format YYYY-MM-DD. Any data after this date\
-            \ will not be replicated."
-          examples:
-          - "2020-06-01"
-          pattern: "^[0-9]{4}-[0-9]{2}-[0-9]{2}$|^$|[\\s\\S]+$"
-          format: "date"
-        custom_reports:
-          order: 4
-          type: "string"
-          title: "Custom Reports"
-          description: "A JSON array describing the custom reports you want to sync\
-            \ from Google Analytics. See <a href=\"https://docs.airbyte.com/integrations/sources/google-analytics-v4#data-processing-latency\"\
-            >the docs</a> for more information about the exact format you can use\
-            \ to fill out this field."
-        window_in_days:
-          type: "integer"
-          title: "Data request time increment in days"
-          description: "The time increment used by the connector when requesting data\
-            \ from the Google Analytics API. More information is available in the\
-            \ <a href=\"https://docs.airbyte.com/integrations/sources/google-analytics-v4/#sampling-in-reports\"\
-            >the docs</a>. The bigger this value is, the faster the sync will be,\
-            \ but the more likely that sampling will be applied to your data, potentially\
-            \ causing inaccuracies in the returned results. We recommend setting this\
-            \ to 1 unless you have a hard requirement to make the sync faster at the\
-            \ expense of accuracy. The minimum allowed value for this field is 1,\
-            \ and the maximum is 364. "
-          examples:
-          - 30
-          - 60
-          - 90
-          - 120
-          - 200
-          - 364
-          default: 1
-          order: 5
     source-bamboo-hr:
       title: "Bamboo HR Spec"
       type: "object"
@@ -22421,7 +22674,7 @@ components:
                       type: "boolean"
                   required:
                   - "filetype"
-                - title: "Document File Type Format (Experimental)"
+                - title: "Unstructured Document Format"
                   type: "object"
                   properties:
                     filetype:
@@ -22916,7 +23169,7 @@ components:
                       type: "boolean"
                   required:
                   - "filetype"
-                - title: "Document File Type Format (Experimental)"
+                - title: "Unstructured Document Format"
                   type: "object"
                   properties:
                     filetype:
@@ -23099,70 +23352,6 @@ components:
       required:
       - "streams"
       - "credentials"
-    source-punk-api:
-      title: "Punk Api Spec"
-      type: "object"
-      required:
-      - "brewed_before"
-      - "brewed_after"
-      - "sourceType"
-      properties:
-        id:
-          title: "Beers with specific ID"
-          type: "string"
-          description: "To extract specific data with Unique ID"
-          examples:
-          - 1
-          - 22
-        brewed_before:
-          title: "Brewed before data to get incremental reads"
-          type: "string"
-          description: "To extract specific data with Unique ID"
-          pattern: "^[0-9]{2}-[0-9]{4}$"
-          examples:
-          - "MM-YYYY"
-        brewed_after:
-          title: "Brewed after data to get incremental reads"
-          type: "string"
-          description: "To extract specific data with Unique ID"
-          pattern: "^[0-9]{2}-[0-9]{4}$"
-          examples:
-          - "MM-YYYY"
-        sourceType:
-          title: "punk-api"
-          const: "punk-api"
-          enum:
-          - "punk-api"
-          order: 0
-          type: "string"
-    source-punk-api-update:
-      title: "Punk Api Spec"
-      type: "object"
-      required:
-      - "brewed_before"
-      - "brewed_after"
-      properties:
-        id:
-          title: "Beers with specific ID"
-          type: "string"
-          description: "To extract specific data with Unique ID"
-          examples:
-          - 1
-          - 22
-        brewed_before:
-          title: "Brewed before data to get incremental reads"
-          type: "string"
-          description: "To extract specific data with Unique ID"
-          pattern: "^[0-9]{2}-[0-9]{4}$"
-          examples:
-          - "MM-YYYY"
-        brewed_after:
-          title: "Brewed after data to get incremental reads"
-          type: "string"
-          description: "To extract specific data with Unique ID"
-          pattern: "^[0-9]{2}-[0-9]{4}$"
-          examples:
-          - "MM-YYYY"
     source-tiktok-marketing:
       title: "TikTok Marketing Source Spec"
       type: "object"
@@ -23262,8 +23451,10 @@ components:
           order: 3
           type: "integer"
         include_deleted:
-          title: "Include Deleted Data in Reports"
-          description: "Set to active if you want to include deleted data in reports."
+          title: "Include Deleted Data in Reports and Ads, Ad Groups and Campaign\
+            \ streams."
+          description: "Set to active if you want to include deleted data in report\
+            \ based streams and Ads, Ad Groups and Campaign streams."
           default: false
           order: 4
           type: "boolean"
@@ -23371,8 +23562,10 @@ components:
           order: 3
           type: "integer"
         include_deleted:
-          title: "Include Deleted Data in Reports"
-          description: "Set to active if you want to include deleted data in reports."
+          title: "Include Deleted Data in Reports and Ads, Ad Groups and Campaign\
+            \ streams."
+          description: "Set to active if you want to include deleted data in report\
+            \ based streams and Ads, Ad Groups and Campaign streams."
           default: false
           order: 4
           type: "boolean"
@@ -23383,7 +23576,6 @@ components:
       - "aws_key_id"
       - "aws_secret_key"
       - "aws_region_name"
-      - "start_date"
       - "sourceType"
       properties:
         aws_key_id:
@@ -23406,6 +23598,7 @@ components:
           description: "The default AWS Region to use, for example, us-west-1 or us-west-2.\
             \ When specifying a Region inline during client initialization, this property\
             \ is named region_name."
+          default: "us-east-1"
         start_date:
           type: "string"
           title: "Start Date"
@@ -23413,9 +23606,30 @@ components:
             \ is available for last 90 days only. Format: YYYY-MM-DD."
           examples:
           - "2021-01-01"
-          default: "1970-01-01"
           pattern: "^[0-9]{4}-[0-9]{2}-[0-9]{2}$"
           format: "date"
+        lookup_attributes_filter:
+          title: "Filter applied while fetching records based on AttributeKey and\
+            \ AttributeValue which will be appended on the request body"
+          type: "object"
+          required:
+          - "attribute_key"
+          - "attribute_value"
+          properties:
+            attribute_key:
+              type: "string"
+              title: "Attribute Key from the response to filter"
+              examples:
+              - "EventName"
+              default: "EventName"
+              x-speakeasy-param-sensitive: true
+            attribute_value:
+              type: "string"
+              title: "Corresponding value to the given attribute key"
+              examples:
+              - "ListInstanceAssociations"
+              - "ConsoleLogin"
+              default: "ListInstanceAssociations"
         sourceType:
           title: "aws-cloudtrail"
           const: "aws-cloudtrail"
@@ -23430,7 +23644,6 @@ components:
       - "aws_key_id"
       - "aws_secret_key"
       - "aws_region_name"
-      - "start_date"
       properties:
         aws_key_id:
           type: "string"
@@ -23450,6 +23663,7 @@ components:
           description: "The default AWS Region to use, for example, us-west-1 or us-west-2.\
             \ When specifying a Region inline during client initialization, this property\
             \ is named region_name."
+          default: "us-east-1"
         start_date:
           type: "string"
           title: "Start Date"
@@ -23457,9 +23671,29 @@ components:
             \ is available for last 90 days only. Format: YYYY-MM-DD."
           examples:
           - "2021-01-01"
-          default: "1970-01-01"
           pattern: "^[0-9]{4}-[0-9]{2}-[0-9]{2}$"
           format: "date"
+        lookup_attributes_filter:
+          title: "Filter applied while fetching records based on AttributeKey and\
+            \ AttributeValue which will be appended on the request body"
+          type: "object"
+          required:
+          - "attribute_key"
+          - "attribute_value"
+          properties:
+            attribute_key:
+              type: "string"
+              title: "Attribute Key from the response to filter"
+              examples:
+              - "EventName"
+              default: "EventName"
+            attribute_value:
+              type: "string"
+              title: "Corresponding value to the given attribute key"
+              examples:
+              - "ListInstanceAssociations"
+              - "ConsoleLogin"
+              default: "ListInstanceAssociations"
     source-jira:
       title: "Jira Spec"
       type: "object"
@@ -29451,6 +29685,68 @@ components:
           airbyte_secret: true
           type: "string"
           x-speakeasy-param-sensitive: true
+        credentials:
+          title: "Authentication"
+          description: "Credentials for connecting to the Facebook Marketing API"
+          type: "object"
+          oneOf:
+          - title: "Authenticate via Facebook Marketing (Oauth)"
+            type: "object"
+            properties:
+              auth_type:
+                title: "Auth Type"
+                default: "Client"
+                const: "Client"
+                enum:
+                - "Client"
+                type: "string"
+              client_id:
+                title: "Client ID"
+                description: "Client ID for the Facebook Marketing API"
+                airbyte_secret: true
+                type: "string"
+              client_secret:
+                title: "Client Secret"
+                description: "Client Secret for the Facebook Marketing API"
+                airbyte_secret: true
+                type: "string"
+              access_token:
+                title: "Access Token"
+                description: "The value of the generated access token. From your App’\
+                  s Dashboard, click on \"Marketing API\" then \"Tools\". Select permissions\
+                  \ <b>ads_management, ads_read, read_insights, business_management</b>.\
+                  \ Then click on \"Get token\". See the <a href=\"https://docs.airbyte.com/integrations/sources/facebook-marketing\"\
+                  >docs</a> for more information."
+                airbyte_secret: true
+                type: "string"
+                x-speakeasy-param-sensitive: true
+            required:
+            - "client_id"
+            - "client_secret"
+            - "auth_type"
+          - title: "Service Account Key Authentication"
+            type: "object"
+            properties:
+              auth_type:
+                title: "Auth Type"
+                default: "Service"
+                const: "Service"
+                enum:
+                - "Service"
+                type: "string"
+              access_token:
+                title: "Access Token"
+                description: "The value of the generated access token. From your App’\
+                  s Dashboard, click on \"Marketing API\" then \"Tools\". Select permissions\
+                  \ <b>ads_management, ads_read, read_insights, business_management</b>.\
+                  \ Then click on \"Get token\". See the <a href=\"https://docs.airbyte.com/integrations/sources/facebook-marketing\"\
+                  >docs</a> for more information."
+                airbyte_secret: true
+                type: "string"
+                x-speakeasy-param-sensitive: true
+            required:
+            - "access_token"
+            - "auth_type"
         start_date:
           title: "Start Date"
           description: "The date from which you'd like to replicate data for all incremental\
@@ -29590,7 +29886,6 @@ components:
                   - "adset_end"
                   - "adset_id"
                   - "adset_name"
-                  - "adset_start"
                   - "age_targeting"
                   - "attribution_setting"
                   - "auction_bid"
@@ -29947,6 +30242,66 @@ components:
           order: 1
           airbyte_secret: true
           type: "string"
+        credentials:
+          title: "Authentication"
+          description: "Credentials for connecting to the Facebook Marketing API"
+          type: "object"
+          oneOf:
+          - title: "Authenticate via Facebook Marketing (Oauth)"
+            type: "object"
+            properties:
+              auth_type:
+                title: "Auth Type"
+                default: "Client"
+                const: "Client"
+                enum:
+                - "Client"
+                type: "string"
+              client_id:
+                title: "Client ID"
+                description: "Client ID for the Facebook Marketing API"
+                airbyte_secret: true
+                type: "string"
+              client_secret:
+                title: "Client Secret"
+                description: "Client Secret for the Facebook Marketing API"
+                airbyte_secret: true
+                type: "string"
+              access_token:
+                title: "Access Token"
+                description: "The value of the generated access token. From your App’\
+                  s Dashboard, click on \"Marketing API\" then \"Tools\". Select permissions\
+                  \ <b>ads_management, ads_read, read_insights, business_management</b>.\
+                  \ Then click on \"Get token\". See the <a href=\"https://docs.airbyte.com/integrations/sources/facebook-marketing\"\
+                  >docs</a> for more information."
+                airbyte_secret: true
+                type: "string"
+            required:
+            - "client_id"
+            - "client_secret"
+            - "auth_type"
+          - title: "Service Account Key Authentication"
+            type: "object"
+            properties:
+              auth_type:
+                title: "Auth Type"
+                default: "Service"
+                const: "Service"
+                enum:
+                - "Service"
+                type: "string"
+              access_token:
+                title: "Access Token"
+                description: "The value of the generated access token. From your App’\
+                  s Dashboard, click on \"Marketing API\" then \"Tools\". Select permissions\
+                  \ <b>ads_management, ads_read, read_insights, business_management</b>.\
+                  \ Then click on \"Get token\". See the <a href=\"https://docs.airbyte.com/integrations/sources/facebook-marketing\"\
+                  >docs</a> for more information."
+                airbyte_secret: true
+                type: "string"
+            required:
+            - "access_token"
+            - "auth_type"
         start_date:
           title: "Start Date"
           description: "The date from which you'd like to replicate data for all incremental\
@@ -30086,7 +30441,6 @@ components:
                   - "adset_end"
                   - "adset_id"
                   - "adset_name"
-                  - "adset_start"
                   - "age_targeting"
                   - "attribution_setting"
                   - "auction_bid"
@@ -30405,7 +30759,6 @@ components:
       required:
       - "account_ids"
     source-recruitee:
-      title: "Recruitee Spec"
       type: "object"
       required:
       - "api_key"
@@ -30413,18 +30766,20 @@ components:
       - "sourceType"
       properties:
         api_key:
-          title: "API Key"
           type: "string"
+          title: "API Key"
+          airbyte_secret: true
           description: "Recruitee API Key. See <a href=\"https://docs.recruitee.com/reference/getting-started#generate-api-token\"\
             >here</a>."
-          airbyte_secret: true
+          order: 0
           x-speakeasy-param-sensitive: true
         company_id:
-          title: "Company ID"
           type: "integer"
+          title: "Company ID"
           description: "Recruitee Company ID. You can also find this ID on the <a\
             \ href=\"https://app.recruitee.com/#/settings/api_tokens\">Recruitee API\
             \ tokens page</a>."
+          order: 1
         sourceType:
           title: "recruitee"
           const: "recruitee"
@@ -30433,24 +30788,25 @@ components:
           order: 0
           type: "string"
     source-recruitee-update:
-      title: "Recruitee Spec"
       type: "object"
       required:
       - "api_key"
       - "company_id"
       properties:
         api_key:
-          title: "API Key"
           type: "string"
+          title: "API Key"
+          airbyte_secret: true
           description: "Recruitee API Key. See <a href=\"https://docs.recruitee.com/reference/getting-started#generate-api-token\"\
             >here</a>."
-          airbyte_secret: true
+          order: 0
         company_id:
-          title: "Company ID"
           type: "integer"
+          title: "Company ID"
           description: "Recruitee Company ID. You can also find this ID on the <a\
             \ href=\"https://app.recruitee.com/#/settings/api_tokens\">Recruitee API\
             \ tokens page</a>."
+          order: 1
     source-survey-sparrow:
       type: "object"
       required:
@@ -33431,18 +33787,18 @@ components:
       - "client_secret"
       - "refresh_token"
     source-sendinblue:
-      title: "Sendinblue Spec"
       type: "object"
       required:
       - "api_key"
       - "sourceType"
       properties:
         api_key:
-          title: "API Key"
           type: "string"
+          title: "API Key"
+          airbyte_secret: true
           description: "Your API Key. See <a href=\"https://developers.sendinblue.com/docs/getting-started\"\
             >here</a>."
-          airbyte_secret: true
+          order: 0
           x-speakeasy-param-sensitive: true
         sourceType:
           title: "sendinblue"
@@ -33452,17 +33808,17 @@ components:
           order: 0
           type: "string"
     source-sendinblue-update:
-      title: "Sendinblue Spec"
       type: "object"
       required:
       - "api_key"
       properties:
         api_key:
-          title: "API Key"
           type: "string"
+          title: "API Key"
+          airbyte_secret: true
           description: "Your API Key. See <a href=\"https://developers.sendinblue.com/docs/getting-started\"\
             >here</a>."
-          airbyte_secret: true
+          order: 0
     source-github:
       title: "GitHub Source Spec"
       type: "object"
@@ -33954,6 +34310,46 @@ components:
           type: "string"
           title: "Engine"
           description: "Engine name to connect to."
+    source-clazar:
+      type: "object"
+      required:
+      - "client_id"
+      - "client_secret"
+      - "sourceType"
+      properties:
+        client_id:
+          type: "string"
+          order: 0
+          title: "Client ID"
+          airbyte_secret: true
+        client_secret:
+          type: "string"
+          order: 1
+          title: "Client secret"
+          airbyte_secret: true
+        sourceType:
+          title: "clazar"
+          const: "clazar"
+          enum:
+          - "clazar"
+          order: 0
+          type: "string"
+    source-clazar-update:
+      type: "object"
+      required:
+      - "client_id"
+      - "client_secret"
+      properties:
+        client_id:
+          type: "string"
+          order: 0
+          title: "Client ID"
+          airbyte_secret: true
+        client_secret:
+          type: "string"
+          order: 1
+          title: "Client secret"
+          airbyte_secret: true
     source-outreach:
       title: "Source Outreach Spec"
       type: "object"
@@ -36285,31 +36681,22 @@ components:
           default: false
           order: 3
     source-paystack:
-      title: "Paystack Source Spec"
       type: "object"
       required:
-      - "secret_key"
       - "start_date"
+      - "secret_key"
       - "sourceType"
       properties:
-        secret_key:
-          type: "string"
-          title: "Secret Key"
-          pattern: "^(s|r)k_(live|test)_[a-zA-Z0-9]+$"
-          description: "The Paystack API key (usually starts with 'sk_live_'; find\
-            \ yours <a href=\"https://dashboard.paystack.com/#/settings/developer\"\
-            >here</a>)."
-          airbyte_secret: true
-          x-speakeasy-param-sensitive: true
         start_date:
           type: "string"
           title: "Start Date"
+          format: "date-time"
           pattern: "^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}Z$"
           description: "UTC date and time in the format 2017-01-25T00:00:00Z. Any\
             \ data before this date will not be replicated."
           examples:
           - "2017-01-25T00:00:00Z"
-          format: "date-time"
+          order: 0
         lookback_window_days:
           type: "integer"
           title: "Lookback Window (in days)"
@@ -36318,6 +36705,17 @@ components:
           description: "When set, the connector will always reload data from the past\
             \ N days, where N is the value set here. This is useful if your data is\
             \ updated after creation."
+          order: 1
+        secret_key:
+          type: "string"
+          title: "Secret Key"
+          pattern: "^(s|r)k_(live|test)_[a-zA-Z0-9]+$"
+          description: "The Paystack API key (usually starts with 'sk_live_'; find\
+            \ yours <a href=\"https://dashboard.paystack.com/#/settings/developer\"\
+            >here</a>)."
+          airbyte_secret: true
+          order: 2
+          x-speakeasy-param-sensitive: true
         sourceType:
           title: "paystack"
           const: "paystack"
@@ -36326,29 +36724,21 @@ components:
           order: 0
           type: "string"
     source-paystack-update:
-      title: "Paystack Source Spec"
       type: "object"
       required:
-      - "secret_key"
       - "start_date"
+      - "secret_key"
       properties:
-        secret_key:
-          type: "string"
-          title: "Secret Key"
-          pattern: "^(s|r)k_(live|test)_[a-zA-Z0-9]+$"
-          description: "The Paystack API key (usually starts with 'sk_live_'; find\
-            \ yours <a href=\"https://dashboard.paystack.com/#/settings/developer\"\
-            >here</a>)."
-          airbyte_secret: true
         start_date:
           type: "string"
           title: "Start Date"
+          format: "date-time"
           pattern: "^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}Z$"
           description: "UTC date and time in the format 2017-01-25T00:00:00Z. Any\
             \ data before this date will not be replicated."
           examples:
           - "2017-01-25T00:00:00Z"
-          format: "date-time"
+          order: 0
         lookback_window_days:
           type: "integer"
           title: "Lookback Window (in days)"
@@ -36357,6 +36747,16 @@ components:
           description: "When set, the connector will always reload data from the past\
             \ N days, where N is the value set here. This is useful if your data is\
             \ updated after creation."
+          order: 1
+        secret_key:
+          type: "string"
+          title: "Secret Key"
+          pattern: "^(s|r)k_(live|test)_[a-zA-Z0-9]+$"
+          description: "The Paystack API key (usually starts with 'sk_live_'; find\
+            \ yours <a href=\"https://dashboard.paystack.com/#/settings/developer\"\
+            >here</a>)."
+          airbyte_secret: true
+          order: 2
     source-redshift:
       title: "Redshift Source Spec"
       type: "object"
@@ -40593,7 +40993,6 @@ components:
           examples:
           - "2022-08"
           - "1851-01"
-          format: "date"
           order: 1
         end_date:
           type: "string"
@@ -40603,7 +41002,6 @@ components:
           examples:
           - "2022-08"
           - "1851-01"
-          format: "date"
           order: 2
         period:
           type: "integer"
@@ -40650,7 +41048,6 @@ components:
           examples:
           - "2022-08"
           - "1851-01"
-          format: "date"
           order: 1
         end_date:
           type: "string"
@@ -40660,7 +41057,6 @@ components:
           examples:
           - "2022-08"
           - "1851-01"
-          format: "date"
           order: 2
         period:
           type: "integer"
@@ -45965,8 +46361,8 @@ components:
               type: "string"
             warehouse:
               title: "Warehouse"
-              description: "Enter the name of the warehouse that you want to sync\
-                \ data into"
+              description: "Enter the name of the warehouse that you want to use as\
+                \ a compute cluster"
               order: 3
               examples:
               - "AIRBYTE_WAREHOUSE"
@@ -46402,8 +46798,8 @@ components:
               type: "string"
             warehouse:
               title: "Warehouse"
-              description: "Enter the name of the warehouse that you want to sync\
-                \ data into"
+              description: "Enter the name of the warehouse that you want to use as\
+                \ a compute cluster"
               order: 3
               examples:
               - "AIRBYTE_WAREHOUSE"
@@ -46750,6 +47146,7 @@ components:
                   > docs</a> for details."
                 default: true
                 order: 6
+<<<<<<< Updated upstream
               encryption:
                 title: "Encryption"
                 type: "object"
@@ -46791,6 +47188,8 @@ components:
                       airbyte_secret: true
                       x-speakeasy-param-sensitive: true
                 order: 7
+=======
+>>>>>>> Stashed changes
         raw_data_schema:
           type: "string"
           description: "The schema to write raw tables into (default: airbyte_internal)."
@@ -47123,6 +47522,7 @@ components:
                   > docs</a> for details."
                 default: true
                 order: 6
+<<<<<<< Updated upstream
               encryption:
                 title: "Encryption"
                 type: "object"
@@ -47163,6 +47563,8 @@ components:
                         \ key for each sync."
                       airbyte_secret: true
                 order: 7
+=======
+>>>>>>> Stashed changes
         raw_data_schema:
           type: "string"
           description: "The schema to write raw tables into (default: airbyte_internal)."
@@ -48366,7 +48768,7 @@ components:
           order: 1
         warehouse:
           description: "Enter the name of the <a href=\"https://docs.snowflake.com/en/user-guide/warehouses-overview.html#overview-of-warehouses\"\
-            >warehouse</a> that you want to sync data into"
+            >warehouse</a> that you want to use as a compute cluster"
           examples:
           - "AIRBYTE_WAREHOUSE"
           type: "string"
@@ -48556,7 +48958,7 @@ components:
           order: 1
         warehouse:
           description: "Enter the name of the <a href=\"https://docs.snowflake.com/en/user-guide/warehouses-overview.html#overview-of-warehouses\"\
-            >warehouse</a> that you want to sync data into"
+            >warehouse</a> that you want to use as a compute cluster"
           examples:
           - "AIRBYTE_WAREHOUSE"
           type: "string"
@@ -55486,6 +55888,7 @@ components:
                 type: "boolean"
                 default: false
                 description: "Add file extensions to the output file."
+<<<<<<< Updated upstream
     destination-langchain:
       title: "Langchain Destination Config"
       type: "object"
@@ -55852,6 +56255,8 @@ components:
         title: "Embedding"
       - id: "indexing"
         title: "Indexing"
+=======
+>>>>>>> Stashed changes
     destination-yellowbrick:
       title: "Yellowbrick Destination Spec"
       type: "object"
@@ -57305,6 +57710,8 @@ components:
           $ref: "#/components/schemas/source-chargebee"
         - title: source-chartmogul
           $ref: "#/components/schemas/source-chartmogul"
+        - title: source-clazar
+          $ref: "#/components/schemas/source-clazar"
         - title: source-clickhouse
           $ref: "#/components/schemas/source-clickhouse"
         - title: source-clickup-api
@@ -57325,6 +57732,8 @@ components:
           $ref: "#/components/schemas/source-confluence"
         - title: source-convex
           $ref: "#/components/schemas/source-convex"
+        - title: source-datadog
+          $ref: "#/components/schemas/source-datadog"
         - title: source-datascope
           $ref: "#/components/schemas/source-datascope"
         - title: source-delighted
@@ -57375,12 +57784,12 @@ components:
           $ref: "#/components/schemas/source-glassfrog"
         - title: source-gnews
           $ref: "#/components/schemas/source-gnews"
+        - title: source-goldcast
+          $ref: "#/components/schemas/source-goldcast"
         - title: source-google-ads
           $ref: "#/components/schemas/source-google-ads"
         - title: source-google-analytics-data-api
           $ref: "#/components/schemas/source-google-analytics-data-api"
-        - title: source-google-analytics-v4-service-account-only
-          $ref: "#/components/schemas/source-google-analytics-v4-service-account-only"
         - title: source-google-directory
           $ref: "#/components/schemas/source-google-directory"
         - title: source-google-drive
@@ -57519,8 +57928,6 @@ components:
           $ref: "#/components/schemas/source-postmarkapp"
         - title: source-prestashop
           $ref: "#/components/schemas/source-prestashop"
-        - title: source-punk-api
-          $ref: "#/components/schemas/source-punk-api"
         - title: source-pypi
           $ref: "#/components/schemas/source-pypi"
         - title: source-qualaroo
@@ -57685,8 +58092,6 @@ components:
           $ref: "#/components/schemas/destination-firestore"
         - title: destination-gcs
           $ref: "#/components/schemas/destination-gcs"
-        - title: destination-langchain
-          $ref: "#/components/schemas/destination-langchain"
         - title: destination-milvus
           $ref: "#/components/schemas/destination-milvus"
         - title: destination-mongodb
@@ -57833,7 +58238,7 @@ components:
       type: oauth2
       flows:
         clientCredentials:
-          tokenUrl: /api/v1/applications/token
+          tokenUrl: /applications/token
           scopes: {}
 security:
   - bearerAuth: []
