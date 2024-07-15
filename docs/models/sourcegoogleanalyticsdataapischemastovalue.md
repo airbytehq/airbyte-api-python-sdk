@@ -3,15 +3,15 @@
 
 ## Supported Types
 
-### SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayDimensionFilterDimensionsFilter3ExpressionFilterInt64Value
+### `models.SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayDimensionFilterDimensionsFilter3ExpressionFilterInt64Value`
 
 ```python
-sourceGoogleAnalyticsDataAPISchemasToValue: models.SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayDimensionFilterDimensionsFilter3ExpressionFilterInt64Value = /* values here */
+value: models.SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayDimensionFilterDimensionsFilter3ExpressionFilterInt64Value = /* values here */
 ```
 
-### SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayDimensionFilterDimensionsFilter3ExpressionFilterDoubleValue
+### `models.SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayDimensionFilterDimensionsFilter3ExpressionFilterDoubleValue`
 
 ```python
-sourceGoogleAnalyticsDataAPISchemasToValue: models.SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayDimensionFilterDimensionsFilter3ExpressionFilterDoubleValue = /* values here */
+value: models.SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayDimensionFilterDimensionsFilter3ExpressionFilterDoubleValue = /* values here */
 ```
 

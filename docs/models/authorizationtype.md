@@ -5,15 +5,15 @@ Authorization type.
 
 ## Supported Types
 
-### NoneT
+### `models.NoneT`
 
 ```python
-authorizationType: models.NoneT = /* values here */
+value: models.NoneT = /* values here */
 ```
 
-### LoginPassword
+### `models.LoginPassword`
 
 ```python
-authorizationType: models.LoginPassword = /* values here */
+value: models.LoginPassword = /* values here */
 ```
 

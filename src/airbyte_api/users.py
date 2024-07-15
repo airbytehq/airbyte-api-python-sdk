@@ -14,11 +14,11 @@ class Users:
         
     
     
-    def list_users(self, request: api.ListUsersRequest) -> api.ListUsersResponse:
-        r"""List users
-        Lists users based on provided filters. You can filter on either a list of IDs or a list of emails, but not both. If no filters provided we will list all users by default.
+    def list_users_within_an_organization(self, request: api.ListUsersWithinAnOrganizationRequest) -> api.ListUsersWithinAnOrganizationResponse:
+        r"""List all users within an organization
+        Organization Admin user can list all users within the same organization. Also provide filtering on a list of user IDs or/and a list of user emails.
         """
-        hook_ctx = HookContext(operation_id='listUsers', oauth2_scopes=[], security_source=self.sdk_configuration.security)
+        hook_ctx = HookContext(operation_id='listUsersWithinAnOrganization', oauth2_scopes=[], security_source=self.sdk_configuration.security)
         base_url = utils.template_url(*self.sdk_configuration.get_server_details())
         
         url = base_url + '/users'
@@ -53,7 +53,7 @@ class Users:
             
         
         
-        res = api.ListUsersResponse(status_code=http_res.status_code, content_type=http_res.headers.get('Content-Type') or '', raw_response=http_res)
+        res = api.ListUsersWithinAnOrganizationResponse(status_code=http_res.status_code, content_type=http_res.headers.get('Content-Type') or '', raw_response=http_res)
         
         if http_res.status_code == 200:
             # pylint: disable=no-else-return

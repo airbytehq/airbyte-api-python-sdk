@@ -41,8 +41,6 @@ class IAMRole:
     
 
 
-AuthenticationMode = Union['IAMRole', 'IAMUser']
-
 
 class AwsDatalake(str, Enum):
     AWS_DATALAKE = 'aws-datalake'
@@ -88,8 +86,6 @@ class JSONLinesNewlineDelimitedJSON:
     format_type: Optional[FormatTypeWildcard] = dataclasses.field(default=FormatTypeWildcard.JSONL, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('format_type'), 'exclude': lambda f: f is None }})
     
 
-
-OutputFormatWildcard = Union['JSONLinesNewlineDelimitedJSON', 'ParquetColumnarStorage']
 
 
 class ChooseHowToPartitionData(str, Enum):
@@ -171,3 +167,7 @@ class DestinationAwsDatalake:
     r"""The region of the S3 bucket. See <a href=\\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-regions-availability-zones.html#concepts-available-regions\\">here</a> for all region codes."""
     
 
+
+AuthenticationMode = Union[IAMRole, IAMUser]
+
+OutputFormatWildcard = Union[JSONLinesNewlineDelimitedJSON, ParquetColumnarStorage]

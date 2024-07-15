@@ -5,7 +5,9 @@ Enum that describes the different types of jobs that the platform runs.
 
 ## Values
 
-| Name    | Value   |
-| ------- | ------- |
-| `SYNC`  | sync    |
-| `RESET` | reset   |
+| Name      | Value     |
+| --------- | --------- |
+| `SYNC`    | sync      |
+| `RESET`   | reset     |
+| `REFRESH` | refresh   |
+| `CLEAR`   | clear     |

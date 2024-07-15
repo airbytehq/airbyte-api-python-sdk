@@ -5,9 +5,9 @@ Format of the data output. See <a href="https://docs.airbyte.com/integrations/de
 
 ## Supported Types
 
-### DestinationS3GlueJSONLinesNewlineDelimitedJSON
+### `models.DestinationS3GlueJSONLinesNewlineDelimitedJSON`
 
 ```python
-destinationS3GlueOutputFormat: models.DestinationS3GlueJSONLinesNewlineDelimitedJSON = /* values here */
+value: models.DestinationS3GlueJSONLinesNewlineDelimitedJSON = /* values here */
 ```
 

@@ -69,51 +69,6 @@ class DestinationRedshiftNoTunnel:
     
 
 
-DestinationRedshiftSSHTunnelMethod = Union['DestinationRedshiftNoTunnel', 'DestinationRedshiftSSHKeyAuthentication', 'DestinationRedshiftPasswordAuthentication']
-
-
-class DestinationRedshiftSchemasMethod(str, Enum):
-    STANDARD = 'Standard'
-
-
-@dataclass_json(undefined=Undefined.EXCLUDE)
-@dataclasses.dataclass
-class Standard:
-    r"""<i>(not recommended)</i> Direct loading using SQL INSERT statements. This method is extremely inefficient and provided only for quick testing. In all other cases, you should use S3 uploading."""
-    METHOD: Final[DestinationRedshiftSchemasMethod] = dataclasses.field(default=DestinationRedshiftSchemasMethod.STANDARD, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('method') }})
-    
-
-
-
-class DestinationRedshiftEncryptionType(str, Enum):
-    AES_CBC_ENVELOPE = 'aes_cbc_envelope'
-
-
-@dataclass_json(undefined=Undefined.EXCLUDE)
-@dataclasses.dataclass
-class AESCBCEnvelopeEncryption:
-    r"""Staging data will be encrypted using AES-CBC envelope encryption."""
-    ENCRYPTION_TYPE: Final[Optional[DestinationRedshiftEncryptionType]] = dataclasses.field(default=DestinationRedshiftEncryptionType.AES_CBC_ENVELOPE, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('encryption_type'), 'exclude': lambda f: f is None }})
-    key_encrypting_key: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('key_encrypting_key'), 'exclude': lambda f: f is None }})
-    r"""The key, base64-encoded. Must be either 128, 192, or 256 bits. Leave blank to have Airbyte generate an ephemeral key for each sync."""
-    
-
-
-
-class EncryptionType(str, Enum):
-    NONE = 'none'
-
-
-@dataclass_json(undefined=Undefined.EXCLUDE)
-@dataclasses.dataclass
-class NoEncryption:
-    r"""Staging data will be stored in plaintext."""
-    ENCRYPTION_TYPE: Final[Optional[EncryptionType]] = dataclasses.field(default=EncryptionType.NONE, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('encryption_type'), 'exclude': lambda f: f is None }})
-    
-
-
-DestinationRedshiftEncryption = Union['NoEncryption', 'AESCBCEnvelopeEncryption']
-
 
 class DestinationRedshiftMethod(str, Enum):
     S3_STAGING = 'S3 Staging'
@@ -167,8 +122,6 @@ class AWSS3Staging:
     r"""The name of the staging S3 bucket."""
     secret_access_key: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('secret_access_key') }})
     r"""The corresponding secret to the above access key id. See <a href=\\"https://docs.aws.amazon.com/general/latest/gr/aws-sec-cred-types.html#access-keys-and-secret-access-keys\\">AWS docs</a> on how to generate an access key ID and secret access key."""
-    encryption: Optional[DestinationRedshiftEncryption] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('encryption'), 'exclude': lambda f: f is None }})
-    r"""How to encrypt the staging data"""
     file_name_pattern: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('file_name_pattern'), 'exclude': lambda f: f is None }})
     r"""The pattern allows you to set the file-name format for the S3 staging file(s)"""
     METHOD: Final[DestinationRedshiftMethod] = dataclasses.field(default=DestinationRedshiftMethod.S3_STAGING, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('method') }})
@@ -180,8 +133,6 @@ class AWSS3Staging:
     r"""The region of the S3 staging bucket."""
     
 
-
-UploadingMethod = Union['AWSS3Staging', 'Standard']
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
@@ -214,3 +165,7 @@ class DestinationRedshift:
     r"""The way data will be uploaded to Redshift."""
     
 
+
+DestinationRedshiftSSHTunnelMethod = Union[DestinationRedshiftNoTunnel, DestinationRedshiftSSHKeyAuthentication, DestinationRedshiftPasswordAuthentication]
+
+UploadingMethod = Union[AWSS3Staging]

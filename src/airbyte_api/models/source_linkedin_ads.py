@@ -87,8 +87,6 @@ class SourceLinkedinAdsOAuth20:
     
 
 
-SourceLinkedinAdsAuthentication = Union['SourceLinkedinAdsOAuth20', 'AccessToken']
-
 
 class SourceLinkedinAdsLinkedinAds(str, Enum):
     LINKEDIN_ADS = 'linkedin-ads'
@@ -106,3 +104,5 @@ class SourceLinkedinAds:
     SOURCE_TYPE: Final[SourceLinkedinAdsLinkedinAds] = dataclasses.field(default=SourceLinkedinAdsLinkedinAds.LINKEDIN_ADS, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     
 
+
+SourceLinkedinAdsAuthentication = Union[SourceLinkedinAdsOAuth20, AccessToken]

@@ -5,15 +5,15 @@ Credentials for connecting to the Azure Blob Storage
 
 ## Supported Types
 
-### AuthenticateViaOauth2
+### `models.AuthenticateViaOauth2`
 
 ```python
-sourceAzureBlobStorageAuthentication: models.AuthenticateViaOauth2 = /* values here */
+value: models.AuthenticateViaOauth2 = /* values here */
 ```
 
-### AuthenticateViaStorageAccountKey
+### `models.AuthenticateViaStorageAccountKey`
 
 ```python
-sourceAzureBlobStorageAuthentication: models.AuthenticateViaStorageAccountKey = /* values here */
+value: models.AuthenticateViaStorageAccountKey = /* values here */
 ```
 

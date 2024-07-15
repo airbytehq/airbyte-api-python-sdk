@@ -3,15 +3,15 @@
 
 ## Supported Types
 
-### SourceTrustpilotOAuth20
+### `models.SourceTrustpilotOAuth20`
 
 ```python
-sourceTrustpilotAuthorizationMethod: models.SourceTrustpilotOAuth20 = /* values here */
+value: models.SourceTrustpilotOAuth20 = /* values here */
 ```
 
-### SourceTrustpilotAPIKey
+### `models.SourceTrustpilotAPIKey`
 
 ```python
-sourceTrustpilotAuthorizationMethod: models.SourceTrustpilotAPIKey = /* values here */
+value: models.SourceTrustpilotAPIKey = /* values here */
 ```
 

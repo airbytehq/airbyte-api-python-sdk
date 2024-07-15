@@ -5,15 +5,15 @@ Configures how data is extracted from the database.
 
 ## Supported Types
 
-### ReadChangesUsingBinaryLogCDC
+### `models.ReadChangesUsingBinaryLogCDC`
 
 ```python
-sourceMysqlUpdateMethod: models.ReadChangesUsingBinaryLogCDC = /* values here */
+value: models.ReadChangesUsingBinaryLogCDC = /* values here */
 ```
 
-### SourceMysqlScanChangesWithUserDefinedCursor
+### `models.SourceMysqlScanChangesWithUserDefinedCursor`
 
 ```python
-sourceMysqlUpdateMethod: models.SourceMysqlScanChangesWithUserDefinedCursor = /* values here */
+value: models.SourceMysqlScanChangesWithUserDefinedCursor = /* values here */
 ```
 

@@ -5,15 +5,15 @@ Choose how to authenticate to Harvest.
 
 ## Supported Types
 
-### AuthenticateViaHarvestOAuth
+### `models.AuthenticateViaHarvestOAuth`
 
 ```python
-sourceHarvestAuthenticationMechanism: models.AuthenticateViaHarvestOAuth = /* values here */
+value: models.AuthenticateViaHarvestOAuth = /* values here */
 ```
 
-### SourceHarvestAuthenticateWithPersonalAccessToken
+### `models.SourceHarvestAuthenticateWithPersonalAccessToken`
 
 ```python
-sourceHarvestAuthenticationMechanism: models.SourceHarvestAuthenticateWithPersonalAccessToken = /* values here */
+value: models.SourceHarvestAuthenticateWithPersonalAccessToken = /* values here */
 ```
 

@@ -3,15 +3,21 @@
 
 ## Supported Types
 
-### SourceSnowflakeOAuth20
+### `models.SourceSnowflakeOAuth20`
 
 ```python
-sourceSnowflakeAuthorizationMethod: models.SourceSnowflakeOAuth20 = /* values here */
+value: models.SourceSnowflakeOAuth20 = /* values here */
 ```
 
-### SourceSnowflakeUsernameAndPassword
+### `models.SourceSnowflakeKeyPairAuthentication`
 
 ```python
-sourceSnowflakeAuthorizationMethod: models.SourceSnowflakeUsernameAndPassword = /* values here */
+value: models.SourceSnowflakeKeyPairAuthentication = /* values here */
+```
+
+### `models.SourceSnowflakeUsernameAndPassword`
+
+```python
+value: models.SourceSnowflakeUsernameAndPassword = /* values here */
 ```
 

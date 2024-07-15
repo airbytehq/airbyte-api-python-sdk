@@ -3,15 +3,15 @@
 
 ## Supported Types
 
-### SourceGoogleAnalyticsDataAPIInt64Value
+### `models.SourceGoogleAnalyticsDataAPIInt64Value`
 
 ```python
-fromValue: models.SourceGoogleAnalyticsDataAPIInt64Value = /* values here */
+value: models.SourceGoogleAnalyticsDataAPIInt64Value = /* values here */
 ```
 
-### SourceGoogleAnalyticsDataAPIDoubleValue
+### `models.SourceGoogleAnalyticsDataAPIDoubleValue`
 
 ```python
-fromValue: models.SourceGoogleAnalyticsDataAPIDoubleValue = /* values here */
+value: models.SourceGoogleAnalyticsDataAPIDoubleValue = /* values here */
 ```
 

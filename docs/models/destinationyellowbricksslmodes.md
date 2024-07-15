@@ -12,39 +12,39 @@ SSL connection modes.
 
 ## Supported Types
 
-### DestinationYellowbrickDisable
+### `models.DestinationYellowbrickDisable`
 
 ```python
-destinationYellowbrickSSLModes: models.DestinationYellowbrickDisable = /* values here */
+value: models.DestinationYellowbrickDisable = /* values here */
 ```
 
-### DestinationYellowbrickAllow
+### `models.DestinationYellowbrickAllow`
 
 ```python
-destinationYellowbrickSSLModes: models.DestinationYellowbrickAllow = /* values here */
+value: models.DestinationYellowbrickAllow = /* values here */
 ```
 
-### DestinationYellowbrickPrefer
+### `models.DestinationYellowbrickPrefer`
 
 ```python
-destinationYellowbrickSSLModes: models.DestinationYellowbrickPrefer = /* values here */
+value: models.DestinationYellowbrickPrefer = /* values here */
 ```
 
-### DestinationYellowbrickRequire
+### `models.DestinationYellowbrickRequire`
 
 ```python
-destinationYellowbrickSSLModes: models.DestinationYellowbrickRequire = /* values here */
+value: models.DestinationYellowbrickRequire = /* values here */
 ```
 
-### DestinationYellowbrickVerifyCa
+### `models.DestinationYellowbrickVerifyCa`
 
 ```python
-destinationYellowbrickSSLModes: models.DestinationYellowbrickVerifyCa = /* values here */
+value: models.DestinationYellowbrickVerifyCa = /* values here */
 ```
 
-### DestinationYellowbrickVerifyFull
+### `models.DestinationYellowbrickVerifyFull`
 
 ```python
-destinationYellowbrickSSLModes: models.DestinationYellowbrickVerifyFull = /* values here */
+value: models.DestinationYellowbrickVerifyFull = /* values here */
 ```
 

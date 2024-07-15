@@ -5,15 +5,15 @@ The encryption method which is used to communicate with the database.
 
 ## Supported Types
 
-### EncryptedTrustServerCertificate
+### `models.EncryptedTrustServerCertificate`
 
 ```python
-sslMethod: models.EncryptedTrustServerCertificate = /* values here */
+value: models.EncryptedTrustServerCertificate = /* values here */
 ```
 
-### EncryptedVerifyCertificate
+### `models.EncryptedVerifyCertificate`
 
 ```python
-sslMethod: models.EncryptedVerifyCertificate = /* values here */
+value: models.EncryptedVerifyCertificate = /* values here */
 ```
 

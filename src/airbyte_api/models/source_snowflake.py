@@ -8,7 +8,7 @@ from enum import Enum
 from typing import Final, Optional, Union
 
 
-class SourceSnowflakeSchemasAuthType(str, Enum):
+class SourceSnowflakeSchemasCredentialsAuthType(str, Enum):
     USERNAME_PASSWORD = 'username/password'
 
 
@@ -19,7 +19,25 @@ class SourceSnowflakeUsernameAndPassword:
     r"""The password associated with the username."""
     username: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('username') }})
     r"""The username you created to allow Airbyte to access the database."""
-    AUTH_TYPE: Final[SourceSnowflakeSchemasAuthType] = dataclasses.field(default=SourceSnowflakeSchemasAuthType.USERNAME_PASSWORD, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_type') }})
+    AUTH_TYPE: Final[SourceSnowflakeSchemasCredentialsAuthType] = dataclasses.field(default=SourceSnowflakeSchemasCredentialsAuthType.USERNAME_PASSWORD, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_type') }})
+    
+
+
+
+class SourceSnowflakeSchemasAuthType(str, Enum):
+    KEY_PAIR_AUTHENTICATION = 'Key Pair Authentication'
+
+
+@dataclass_json(undefined=Undefined.EXCLUDE)
+@dataclasses.dataclass
+class SourceSnowflakeKeyPairAuthentication:
+    private_key: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('private_key') }})
+    r"""RSA Private key to use for Snowflake connection. See the <a href=\\"https://docs.airbyte.com/integrations/sources/snowflake#key-pair-authentication\\">docs</a> for more information on how to obtain this key."""
+    username: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('username') }})
+    r"""The username you created to allow Airbyte to access the database."""
+    AUTH_TYPE: Final[Optional[SourceSnowflakeSchemasAuthType]] = dataclasses.field(default=SourceSnowflakeSchemasAuthType.KEY_PAIR_AUTHENTICATION, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_type'), 'exclude': lambda f: f is None }})
+    private_key_password: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('private_key_password'), 'exclude': lambda f: f is None }})
+    r"""Passphrase for private key"""
     
 
 
@@ -42,8 +60,6 @@ class SourceSnowflakeOAuth20:
     r"""Refresh Token for making authenticated requests."""
     
 
-
-SourceSnowflakeAuthorizationMethod = Union['SourceSnowflakeOAuth20', 'SourceSnowflakeUsernameAndPassword']
 
 
 class SourceSnowflakeSnowflake(str, Enum):
@@ -69,3 +85,5 @@ class SourceSnowflake:
     SOURCE_TYPE: Final[SourceSnowflakeSnowflake] = dataclasses.field(default=SourceSnowflakeSnowflake.SNOWFLAKE, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     
 
+
+SourceSnowflakeAuthorizationMethod = Union[SourceSnowflakeOAuth20, SourceSnowflakeKeyPairAuthentication, SourceSnowflakeUsernameAndPassword]

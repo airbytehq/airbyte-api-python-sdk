@@ -5,21 +5,21 @@ Configures how data is extracted from the database.
 
 ## Supported Types
 
-### ReadChangesUsingWriteAheadLogCDC
+### `models.ReadChangesUsingWriteAheadLogCDC`
 
 ```python
-sourcePostgresUpdateMethod: models.ReadChangesUsingWriteAheadLogCDC = /* values here */
+value: models.ReadChangesUsingWriteAheadLogCDC = /* values here */
 ```
 
-### DetectChangesWithXminSystemColumn
+### `models.DetectChangesWithXminSystemColumn`
 
 ```python
-sourcePostgresUpdateMethod: models.DetectChangesWithXminSystemColumn = /* values here */
+value: models.DetectChangesWithXminSystemColumn = /* values here */
 ```
 
-### SourcePostgresScanChangesWithUserDefinedCursor
+### `models.SourcePostgresScanChangesWithUserDefinedCursor`
 
 ```python
-sourcePostgresUpdateMethod: models.SourcePostgresScanChangesWithUserDefinedCursor = /* values here */
+value: models.SourcePostgresScanChangesWithUserDefinedCursor = /* values here */
 ```
 

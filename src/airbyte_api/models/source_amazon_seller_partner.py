@@ -137,7 +137,7 @@ class SourceAmazonSellerPartner:
     replication_end_date: Optional[datetime] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('replication_end_date'), 'encoder': utils.datetimeisoformat(True), 'decoder': dateutil.parser.isoparse, 'exclude': lambda f: f is None }})
     r"""UTC date and time in the format 2017-01-25T00:00:00Z. Any data after this date will not be replicated."""
     replication_start_date: Optional[datetime] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('replication_start_date'), 'encoder': utils.datetimeisoformat(True), 'decoder': dateutil.parser.isoparse, 'exclude': lambda f: f is None }})
-    r"""UTC date and time in the format 2017-01-25T00:00:00Z. Any data before this date will not be replicated. If start date is not provided, the date 2 years ago from today will be used."""
+    r"""UTC date and time in the format 2017-01-25T00:00:00Z. Any data before this date will not be replicated. If start date is not provided or older than 2 years ago from today, the date 2 years ago from today will be used."""
     report_options_list: Optional[List[ReportOptions]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('report_options_list'), 'exclude': lambda f: f is None }})
     r"""Additional information passed to reports. This varies by report type."""
     SOURCE_TYPE: Final[SourceAmazonSellerPartnerAmazonSellerPartner] = dataclasses.field(default=SourceAmazonSellerPartnerAmazonSellerPartner.AMAZON_SELLER_PARTNER, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})

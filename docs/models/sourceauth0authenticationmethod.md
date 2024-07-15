@@ -3,15 +3,15 @@
 
 ## Supported Types
 
-### OAuth2ConfidentialApplication
+### `models.OAuth2ConfidentialApplication`
 
 ```python
-sourceAuth0AuthenticationMethod: models.OAuth2ConfidentialApplication = /* values here */
+value: models.OAuth2ConfidentialApplication = /* values here */
 ```
 
-### OAuth2AccessToken
+### `models.OAuth2AccessToken`
 
 ```python
-sourceAuth0AuthenticationMethod: models.OAuth2AccessToken = /* values here */
+value: models.OAuth2AccessToken = /* values here */
 ```
 

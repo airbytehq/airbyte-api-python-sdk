@@ -5,15 +5,15 @@ Choose how to authenticate to Square.
 
 ## Supported Types
 
-### OauthAuthentication
+### `models.OauthAuthentication`
 
 ```python
-sourceSquareAuthentication: models.OauthAuthentication = /* values here */
+value: models.OauthAuthentication = /* values here */
 ```
 
-### SourceSquareAPIKey
+### `models.SourceSquareAPIKey`
 
 ```python
-sourceSquareAuthentication: models.SourceSquareAPIKey = /* values here */
+value: models.SourceSquareAPIKey = /* values here */
 ```
 

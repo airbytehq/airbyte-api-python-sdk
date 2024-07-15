@@ -9,6 +9,8 @@ from typing import Optional
 
 @dataclasses.dataclass
 class ListPermissionsRequest:
+    organization_id: Optional[str] = dataclasses.field(default=None, metadata={'query_param': { 'field_name': 'organizationId', 'style': 'form', 'explode': True }})
+    r"""This is required if you want to read someone else's permissions, and you should have organization admin or a higher role."""
     user_id: Optional[str] = dataclasses.field(default=None, metadata={'query_param': { 'field_name': 'userId', 'style': 'form', 'explode': True }})
     r"""User Id in permission."""
     

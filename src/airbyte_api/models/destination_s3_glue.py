@@ -35,8 +35,6 @@ class DestinationS3GlueNoCompression:
     
 
 
-DestinationS3GlueCompression = Union['DestinationS3GlueNoCompression', 'DestinationS3GlueGZIP']
-
 
 class Flattening(str, Enum):
     r"""Whether the input json data should be normalized (flattened) in the output JSON Lines. Please refer to docs for details."""
@@ -58,8 +56,6 @@ class DestinationS3GlueJSONLinesNewlineDelimitedJSON:
     format_type: Optional[DestinationS3GlueFormatType] = dataclasses.field(default=DestinationS3GlueFormatType.JSONL, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('format_type'), 'exclude': lambda f: f is None }})
     
 
-
-DestinationS3GlueOutputFormat = Union['DestinationS3GlueJSONLinesNewlineDelimitedJSON']
 
 
 class SerializationLibrary(str, Enum):
@@ -134,3 +130,7 @@ class DestinationS3Glue:
     r"""The corresponding secret to the access key ID. Read more <a href=\\"https://docs.aws.amazon.com/general/latest/gr/aws-sec-cred-types.html#access-keys-and-secret-access-keys\\">here</a>"""
     
 
+
+DestinationS3GlueCompression = Union[DestinationS3GlueNoCompression, DestinationS3GlueGZIP]
+
+DestinationS3GlueOutputFormat = Union[DestinationS3GlueJSONLinesNewlineDelimitedJSON]

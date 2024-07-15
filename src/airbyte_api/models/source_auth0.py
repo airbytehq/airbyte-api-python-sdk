@@ -39,8 +39,6 @@ class OAuth2ConfidentialApplication:
     
 
 
-SourceAuth0AuthenticationMethod = Union['OAuth2ConfidentialApplication', 'OAuth2AccessToken']
-
 
 class Auth0(str, Enum):
     AUTH0 = 'auth0'
@@ -57,3 +55,5 @@ class SourceAuth0:
     r"""UTC date and time in the format 2017-01-25T00:00:00Z. Any data before this date will not be replicated."""
     
 
+
+SourceAuth0AuthenticationMethod = Union[OAuth2ConfidentialApplication, OAuth2AccessToken]

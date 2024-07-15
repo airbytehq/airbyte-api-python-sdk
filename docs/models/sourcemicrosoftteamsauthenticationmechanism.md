@@ -5,15 +5,15 @@ Choose how to authenticate to Microsoft
 
 ## Supported Types
 
-### AuthenticateViaMicrosoftOAuth20
+### `models.AuthenticateViaMicrosoftOAuth20`
 
 ```python
-sourceMicrosoftTeamsAuthenticationMechanism: models.AuthenticateViaMicrosoftOAuth20 = /* values here */
+value: models.AuthenticateViaMicrosoftOAuth20 = /* values here */
 ```
 
-### AuthenticateViaMicrosoft
+### `models.AuthenticateViaMicrosoft`
 
 ```python
-sourceMicrosoftTeamsAuthenticationMechanism: models.AuthenticateViaMicrosoft = /* values here */
+value: models.AuthenticateViaMicrosoft = /* values here */
 ```
 

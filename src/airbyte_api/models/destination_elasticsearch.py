@@ -41,8 +41,6 @@ class APIKeySecret:
     
 
 
-AuthenticationMethod = Union['APIKeySecret', 'UsernamePassword']
-
 
 class Elasticsearch(str, Enum):
     ELASTICSEARCH = 'elasticsearch'
@@ -62,3 +60,5 @@ class DestinationElasticsearch:
     r"""If a primary key identifier is defined in the source, an upsert will be performed using the primary key value as the elasticsearch doc id. Does not support composite primary keys."""
     
 
+
+AuthenticationMethod = Union[APIKeySecret, UsernamePassword]

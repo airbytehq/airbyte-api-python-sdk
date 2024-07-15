@@ -3,15 +3,15 @@
 
 ## Supported Types
 
-### SourceZendeskChatOAuth20
+### `models.SourceZendeskChatOAuth20`
 
 ```python
-sourceZendeskChatAuthorizationMethod: models.SourceZendeskChatOAuth20 = /* values here */
+value: models.SourceZendeskChatOAuth20 = /* values here */
 ```
 
-### SourceZendeskChatAccessToken
+### `models.SourceZendeskChatAccessToken`
 
 ```python
-sourceZendeskChatAuthorizationMethod: models.SourceZendeskChatAccessToken = /* values here */
+value: models.SourceZendeskChatAccessToken = /* values here */
 ```
 

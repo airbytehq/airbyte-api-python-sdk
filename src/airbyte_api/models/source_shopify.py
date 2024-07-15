@@ -43,8 +43,6 @@ class SourceShopifyOAuth20:
     
 
 
-ShopifyAuthorizationMethod = Union['SourceShopifyOAuth20', 'APIPassword']
-
 
 class SourceShopifyShopify(str, Enum):
     SHOPIFY = 'shopify'
@@ -61,8 +59,12 @@ class SourceShopify:
     r"""The authorization method to use to retrieve data from Shopify"""
     fetch_transactions_user_id: Optional[bool] = dataclasses.field(default=False, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('fetch_transactions_user_id'), 'exclude': lambda f: f is None }})
     r"""Defines which API type (REST/BULK) to use to fetch `Transactions` data. If you are a `Shopify Plus` user, leave the default value to speed up the fetch."""
+    job_termination_threshold: Optional[int] = dataclasses.field(default=3600, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('job_termination_threshold'), 'exclude': lambda f: f is None }})
+    r"""The max time in seconds, after which the single BULK Job should be `CANCELED` and retried. The bigger the value the longer the BULK Job is allowed to run."""
     SOURCE_TYPE: Final[SourceShopifyShopify] = dataclasses.field(default=SourceShopifyShopify.SHOPIFY, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     start_date: Optional[date] = dataclasses.field(default=dateutil.parser.parse('2020-01-01').date(), metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('start_date'), 'encoder': utils.dateisoformat(True), 'decoder': utils.datefromisoformat, 'exclude': lambda f: f is None }})
     r"""The date you would like to replicate data from. Format: YYYY-MM-DD. Any data before this date will not be replicated."""
     
 
+
+ShopifyAuthorizationMethod = Union[SourceShopifyOAuth20, APIPassword]

@@ -5,15 +5,15 @@ Credentials for connecting to the SFTP Server
 
 ## Supported Types
 
-### AuthenticateViaPassword
+### `models.AuthenticateViaPassword`
 
 ```python
-sourceSftpBulkAuthentication: models.AuthenticateViaPassword = /* values here */
+value: models.AuthenticateViaPassword = /* values here */
 ```
 
-### AuthenticateViaPrivateKey
+### `models.AuthenticateViaPrivateKey`
 
 ```python
-sourceSftpBulkAuthentication: models.AuthenticateViaPrivateKey = /* values here */
+value: models.AuthenticateViaPrivateKey = /* values here */
 ```
 

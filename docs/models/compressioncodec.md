@@ -5,39 +5,39 @@ The compression algorithm used to compress data. Default to no compression.
 
 ## Supported Types
 
-### NoCompression
+### `models.NoCompression`
 
 ```python
-compressionCodec: models.NoCompression = /* values here */
+value: models.NoCompression = /* values here */
 ```
 
-### Deflate
+### `models.Deflate`
 
 ```python
-compressionCodec: models.Deflate = /* values here */
+value: models.Deflate = /* values here */
 ```
 
-### Bzip2
+### `models.Bzip2`
 
 ```python
-compressionCodec: models.Bzip2 = /* values here */
+value: models.Bzip2 = /* values here */
 ```
 
-### Xz
+### `models.Xz`
 
 ```python
-compressionCodec: models.Xz = /* values here */
+value: models.Xz = /* values here */
 ```
 
-### Zstandard
+### `models.Zstandard`
 
 ```python
-compressionCodec: models.Zstandard = /* values here */
+value: models.Zstandard = /* values here */
 ```
 
-### Snappy
+### `models.Snappy`
 
 ```python
-compressionCodec: models.Snappy = /* values here */
+value: models.Snappy = /* values here */
 ```
 

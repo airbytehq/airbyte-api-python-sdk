@@ -11,7 +11,7 @@ from typing import List
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
 class UsersResponse:
-    r"""List/Array of multiple users"""
+    r"""List/Array of multiple users in an organization"""
     data: List[UserResponse] = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('data') }})
     
 

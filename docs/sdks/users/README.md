@@ -3,11 +3,11 @@
 
 ### Available Operations
 
-* [list_users](#list_users) - List users
+* [list_users_within_an_organization](#list_users_within_an_organization) - List all users within an organization
 
-## list_users
+## list_users_within_an_organization
 
-Lists users based on provided filters. You can filter on either a list of IDs or a list of emails, but not both. If no filters provided we will list all users by default.
+Organization Admin user can list all users within the same organization. Also provide filtering on a list of user IDs or/and a list of user emails.
 
 ### Example Usage
 
@@ -25,7 +25,9 @@ s = airbyte_api.AirbyteAPI(
 )
 
 
-res = s.users.list_users(request=api.ListUsersRequest())
+res = s.users.list_users_within_an_organization(request=api.ListUsersWithinAnOrganizationRequest(
+    organization_id='<value>',
+))
 
 if res.users_response is not None:
     # handle response
@@ -35,14 +37,14 @@ if res.users_response is not None:
 
 ### Parameters
 
-| Parameter                                             | Type                                                  | Required                                              | Description                                           |
-| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
-| `request`                                             | [api.ListUsersRequest](../../api/listusersrequest.md) | :heavy_check_mark:                                    | The request object to use for the request.            |
+| Parameter                                                                                     | Type                                                                                          | Required                                                                                      | Description                                                                                   |
+| --------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- |
+| `request`                                                                                     | [api.ListUsersWithinAnOrganizationRequest](../../api/listuserswithinanorganizationrequest.md) | :heavy_check_mark:                                                                            | The request object to use for the request.                                                    |
 
 
 ### Response
 
-**[api.ListUsersResponse](../../api/listusersresponse.md)**
+**[api.ListUsersWithinAnOrganizationResponse](../../api/listuserswithinanorganizationresponse.md)**
 ### Errors
 
 | Error Object    | Status Code     | Content Type    |

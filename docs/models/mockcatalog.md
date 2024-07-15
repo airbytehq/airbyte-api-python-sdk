@@ -3,15 +3,15 @@
 
 ## Supported Types
 
-### SingleSchema
+### `models.SingleSchema`
 
 ```python
-mockCatalog: models.SingleSchema = /* values here */
+value: models.SingleSchema = /* values here */
 ```
 
-### MultiSchema
+### `models.MultiSchema`
 
 ```python
-mockCatalog: models.MultiSchema = /* values here */
+value: models.MultiSchema = /* values here */
 ```
 

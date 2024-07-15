@@ -5,15 +5,15 @@ Cohort reports creates a time series of user retention for the cohort.
 
 ## Supported Types
 
-### SourceGoogleAnalyticsDataAPIDisabled
+### `models.SourceGoogleAnalyticsDataAPIDisabled`
 
 ```python
-cohortReports: models.SourceGoogleAnalyticsDataAPIDisabled = /* values here */
+value: models.SourceGoogleAnalyticsDataAPIDisabled = /* values here */
 ```
 
-### SourceGoogleAnalyticsDataAPISchemasEnabled
+### `models.SourceGoogleAnalyticsDataAPISchemasEnabled`
 
 ```python
-cohortReports: models.SourceGoogleAnalyticsDataAPISchemasEnabled = /* values here */
+value: models.SourceGoogleAnalyticsDataAPISchemasEnabled = /* values here */
 ```
 

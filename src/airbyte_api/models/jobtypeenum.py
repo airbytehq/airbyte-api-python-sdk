@@ -8,3 +8,5 @@ class JobTypeEnum(str, Enum):
     r"""Enum that describes the different types of jobs that the platform runs."""
     SYNC = 'sync'
     RESET = 'reset'
+    REFRESH = 'refresh'
+    CLEAR = 'clear'

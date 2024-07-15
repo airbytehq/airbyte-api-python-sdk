@@ -5,15 +5,15 @@ Whether the output files should be compressed. If compression is selected, the o
 
 ## Supported Types
 
-### DestinationGcsSchemasNoCompression
+### `models.DestinationGcsSchemasNoCompression`
 
 ```python
-destinationGcsCompression: models.DestinationGcsSchemasNoCompression = /* values here */
+value: models.DestinationGcsSchemasNoCompression = /* values here */
 ```
 
-### DestinationGcsGZIP
+### `models.DestinationGcsGZIP`
 
 ```python
-destinationGcsCompression: models.DestinationGcsGZIP = /* values here */
+value: models.DestinationGcsGZIP = /* values here */
 ```
 

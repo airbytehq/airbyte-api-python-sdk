@@ -5,15 +5,15 @@ Loading method used to select the way data will be uploaded to Firebolt
 
 ## Supported Types
 
-### SQLInserts
+### `models.SQLInserts`
 
 ```python
-destinationFireboltLoadingMethod: models.SQLInserts = /* values here */
+value: models.SQLInserts = /* values here */
 ```
 
-### ExternalTableViaS3
+### `models.ExternalTableViaS3`
 
 ```python
-destinationFireboltLoadingMethod: models.ExternalTableViaS3 = /* values here */
+value: models.ExternalTableViaS3 = /* values here */
 ```
 
