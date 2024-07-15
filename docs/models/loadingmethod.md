@@ -5,15 +5,15 @@ The way data will be uploaded to BigQuery.
 
 ## Supported Types
 
-### GCSStaging
+### `models.GCSStaging`
 
 ```python
-loadingMethod: models.GCSStaging = /* values here */
+value: models.GCSStaging = /* values here */
 ```
 
-### StandardInserts
+### `models.StandardInserts`
 
 ```python
-loadingMethod: models.StandardInserts = /* values here */
+value: models.StandardInserts = /* values here */
 ```
 

@@ -45,8 +45,6 @@ class SourceSmartsheetsOAuth20:
     
 
 
-SourceSmartsheetsAuthorizationMethod = Union['SourceSmartsheetsOAuth20', 'APIAccessToken']
-
 
 class Validenums(str, Enum):
     SHEETCREATED_AT = 'sheetcreatedAt'
@@ -85,3 +83,5 @@ class SourceSmartsheets:
     r"""Only rows modified after this date/time will be replicated. This should be an ISO 8601 string, for instance: `2000-01-01T13:00:00`"""
     
 
+
+SourceSmartsheetsAuthorizationMethod = Union[SourceSmartsheetsOAuth20, APIAccessToken]

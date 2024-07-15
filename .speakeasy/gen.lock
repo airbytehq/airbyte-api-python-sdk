@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 07961597-3730-4940-9fd0-35eb4118eab3
 management:
-  docChecksum: d90db45a44e468bd5d9ffc93c6e415c9
+  docChecksum: 9d937f0b088a71ee7aaf5a76d6324576
   docVersion: 1.0.0
-  speakeasyVersion: 1.299.4
-  generationVersion: 2.338.7
-  releaseVersion: 0.50.1
-  configChecksum: fbcdc2ce57f888d9af79756839bf1a17
+  speakeasyVersion: 1.335.2
+  generationVersion: 2.372.3
+  releaseVersion: 0.51.0
+  configChecksum: c86e7977f90b4e8be3a63a01a28dfe90
   repoURL: https://github.com/airbytehq/airbyte-api-python-sdk.git
   repoSubDirectory: .
   installationURL: https://github.com/airbytehq/airbyte-api-python-sdk.git
@@ -16,7 +16,7 @@ features:
     additionalDependencies: 0.1.0
     additionalProperties: 0.1.0
     constsAndDefaults: 0.1.3
-    core: 4.6.8
+    core: 4.8.1
     globalSecurity: 2.83.5
     globalSecurityCallbacks: 0.1.0
     globalServerURLs: 2.82.2
@@ -25,13 +25,14 @@ features:
     oauth2ClientCredentials: 0.1.2
     responseFormat: 0.1.0
     sdkHooks: 0.1.0
-    unions: 2.82.7
+    unions: 2.82.8
 generatedFiles:
   - src/airbyte_api/sdkconfiguration.py
   - src/airbyte_api/connections.py
   - src/airbyte_api/destinations.py
   - src/airbyte_api/health.py
   - src/airbyte_api/jobs.py
+  - src/airbyte_api/organizations.py
   - src/airbyte_api/permissions.py
   - src/airbyte_api/sources.py
   - src/airbyte_api/streams.py
@@ -40,6 +41,7 @@ generatedFiles:
   - src/airbyte_api/sdk.py
   - py.typed
   - pylintrc
+  - scripts/publish.sh
   - setup.py
   - src/airbyte_api/__init__.py
   - src/airbyte_api/utils/__init__.py
@@ -62,6 +64,7 @@ generatedFiles:
   - src/airbyte_api/api/createjob.py
   - src/airbyte_api/api/getjob.py
   - src/airbyte_api/api/listjobs.py
+  - src/airbyte_api/api/listorganizationsforuser.py
   - src/airbyte_api/api/createpermission.py
   - src/airbyte_api/api/deletepermission.py
   - src/airbyte_api/api/getpermission.py
@@ -75,7 +78,7 @@ generatedFiles:
   - src/airbyte_api/api/patchsource.py
   - src/airbyte_api/api/putsource.py
   - src/airbyte_api/api/getstreamproperties.py
-  - src/airbyte_api/api/listusers.py
+  - src/airbyte_api/api/listuserswithinanorganization.py
   - src/airbyte_api/api/createorupdateworkspaceoauthcredentials.py
   - src/airbyte_api/api/createworkspace.py
   - src/airbyte_api/api/deleteworkspace.py
@@ -118,7 +121,6 @@ generatedFiles:
   - src/airbyte_api/models/destination_firebolt.py
   - src/airbyte_api/models/destination_firestore.py
   - src/airbyte_api/models/destination_gcs.py
-  - src/airbyte_api/models/destination_langchain.py
   - src/airbyte_api/models/destination_milvus.py
   - src/airbyte_api/models/destination_mongodb.py
   - src/airbyte_api/models/destination_mssql.py
@@ -149,6 +151,8 @@ generatedFiles:
   - src/airbyte_api/models/jobtypeenum.py
   - src/airbyte_api/models/jobcreaterequest.py
   - src/airbyte_api/models/jobsresponse.py
+  - src/airbyte_api/models/organizationsresponse.py
+  - src/airbyte_api/models/organizationresponse.py
   - src/airbyte_api/models/permissionresponse.py
   - src/airbyte_api/models/permissiontype.py
   - src/airbyte_api/models/permissioncreaterequest.py
@@ -181,6 +185,7 @@ generatedFiles:
   - src/airbyte_api/models/source_cart.py
   - src/airbyte_api/models/source_chargebee.py
   - src/airbyte_api/models/source_chartmogul.py
+  - src/airbyte_api/models/source_clazar.py
   - src/airbyte_api/models/source_clickhouse.py
   - src/airbyte_api/models/source_clickup_api.py
   - src/airbyte_api/models/source_clockify.py
@@ -191,6 +196,7 @@ generatedFiles:
   - src/airbyte_api/models/source_configcat.py
   - src/airbyte_api/models/source_confluence.py
   - src/airbyte_api/models/source_convex.py
+  - src/airbyte_api/models/source_datadog.py
   - src/airbyte_api/models/source_datascope.py
   - src/airbyte_api/models/source_delighted.py
   - src/airbyte_api/models/source_dixa.py
@@ -205,6 +211,7 @@ generatedFiles:
   - src/airbyte_api/models/source_fauna.py
   - src/airbyte_api/models/source_file.py
   - src/airbyte_api/models/source_firebolt.py
+  - src/airbyte_api/models/source_fleetio.py
   - src/airbyte_api/models/source_freshcaller.py
   - src/airbyte_api/models/source_freshdesk.py
   - src/airbyte_api/models/source_freshsales.py
@@ -215,9 +222,9 @@ generatedFiles:
   - src/airbyte_api/models/source_gitlab.py
   - src/airbyte_api/models/source_glassfrog.py
   - src/airbyte_api/models/source_gnews.py
+  - src/airbyte_api/models/source_goldcast.py
   - src/airbyte_api/models/source_google_ads.py
   - src/airbyte_api/models/source_google_analytics_data_api.py
-  - src/airbyte_api/models/source_google_analytics_v4_service_account_only.py
   - src/airbyte_api/models/source_google_directory.py
   - src/airbyte_api/models/source_google_drive.py
   - src/airbyte_api/models/source_google_pagespeed_insights.py
@@ -287,7 +294,6 @@ generatedFiles:
   - src/airbyte_api/models/source_posthog.py
   - src/airbyte_api/models/source_postmarkapp.py
   - src/airbyte_api/models/source_prestashop.py
-  - src/airbyte_api/models/source_punk_api.py
   - src/airbyte_api/models/source_pypi.py
   - src/airbyte_api/models/source_qualaroo.py
   - src/airbyte_api/models/source_railz.py
@@ -446,6 +452,7 @@ generatedFiles:
   - docs/api/getjobresponse.md
   - docs/api/listjobsrequest.md
   - docs/api/listjobsresponse.md
+  - docs/api/listorganizationsforuserresponse.md
   - docs/api/createpermissionresponse.md
   - docs/api/deletepermissionrequest.md
   - docs/api/deletepermissionresponse.md
@@ -469,8 +476,8 @@ generatedFiles:
   - docs/api/putsourceresponse.md
   - docs/api/getstreampropertiesrequest.md
   - docs/api/getstreampropertiesresponse.md
-  - docs/api/listusersrequest.md
-  - docs/api/listusersresponse.md
+  - docs/api/listuserswithinanorganizationrequest.md
+  - docs/api/listuserswithinanorganizationresponse.md
   - docs/api/createorupdateworkspaceoauthcredentialsrequest.md
   - docs/api/createorupdateworkspaceoauthcredentialsresponse.md
   - docs/api/createworkspaceresponse.md
@@ -654,21 +661,6 @@ generatedFiles:
   - docs/models/destinationgcsoutputformat.md
   - docs/models/gcsbucketregion.md
   - docs/models/destinationgcs.md
-  - docs/models/langchain.md
-  - docs/models/destinationlangchainschemasmode.md
-  - docs/models/destinationlangchainfake.md
-  - docs/models/destinationlangchainmode.md
-  - docs/models/destinationlangchainopenai.md
-  - docs/models/destinationlangchainembedding.md
-  - docs/models/destinationlangchainschemasindexingindexing3mode.md
-  - docs/models/chromalocalpersistance.md
-  - docs/models/destinationlangchainschemasindexingindexingmode.md
-  - docs/models/docarrayhnswsearch.md
-  - docs/models/destinationlangchainschemasindexingmode.md
-  - docs/models/destinationlangchainpinecone.md
-  - docs/models/destinationlangchainindexing.md
-  - docs/models/destinationlangchainprocessingconfigmodel.md
-  - docs/models/destinationlangchain.md
   - docs/models/milvus.md
   - docs/models/destinationmilvusschemasembeddingembedding5mode.md
   - docs/models/destinationmilvusopenaicompatible.md
@@ -854,13 +846,6 @@ generatedFiles:
   - docs/models/destinationredshifttunnelmethod.md
   - docs/models/destinationredshiftnotunnel.md
   - docs/models/destinationredshiftsshtunnelmethod.md
-  - docs/models/destinationredshiftschemasmethod.md
-  - docs/models/standard.md
-  - docs/models/destinationredshiftencryptiontype.md
-  - docs/models/aescbcenvelopeencryption.md
-  - docs/models/encryptiontype.md
-  - docs/models/noencryption.md
-  - docs/models/destinationredshiftencryption.md
   - docs/models/destinationredshiftmethod.md
   - docs/models/destinationredshifts3bucketregion.md
   - docs/models/awss3staging.md
@@ -941,7 +926,7 @@ generatedFiles:
   - docs/models/destinationsnowflakecortexopenai.md
   - docs/models/destinationsnowflakecortexembedding.md
   - docs/models/destinationsnowflakecortexcredentials.md
-  - docs/models/destinationsnowflakecortexindexing.md
+  - docs/models/snowflakeconnection.md
   - docs/models/destinationsnowflakecortexfieldnamemappingconfigmodel.md
   - docs/models/destinationsnowflakecortexlanguage.md
   - docs/models/destinationsnowflakecortexschemasprocessingtextsplittertextsplittermode.md
@@ -1041,6 +1026,8 @@ generatedFiles:
   - docs/models/jobtypeenum.md
   - docs/models/jobcreaterequest.md
   - docs/models/jobsresponse.md
+  - docs/models/organizationsresponse.md
+  - docs/models/organizationresponse.md
   - docs/models/permissionresponse.md
   - docs/models/permissiontype.md
   - docs/models/permissioncreaterequest.md
@@ -1101,6 +1088,7 @@ generatedFiles:
   - docs/models/sourceauth0authenticationmethod.md
   - docs/models/auth0.md
   - docs/models/sourceauth0.md
+  - docs/models/filterappliedwhilefetchingrecordsbasedonattributekeyandattributevaluewhichwillbeappendedontherequestbody.md
   - docs/models/awscloudtrail.md
   - docs/models/sourceawscloudtrail.md
   - docs/models/sourceazureblobstorageschemasauthtype.md
@@ -1165,6 +1153,8 @@ generatedFiles:
   - docs/models/sourcechargebee.md
   - docs/models/chartmogul.md
   - docs/models/sourcechartmogul.md
+  - docs/models/clazar.md
+  - docs/models/sourceclazar.md
   - docs/models/sourceclickhouseclickhouse.md
   - docs/models/sourceclickhouseschemastunnelmethodtunnelmethod.md
   - docs/models/sourceclickhousepasswordauthentication.md
@@ -1194,6 +1184,11 @@ generatedFiles:
   - docs/models/sourceconfluence.md
   - docs/models/sourceconvexconvex.md
   - docs/models/sourceconvex.md
+  - docs/models/sourcedatadogdatasource.md
+  - docs/models/queries.md
+  - docs/models/site.md
+  - docs/models/datadog.md
+  - docs/models/sourcedatadog.md
   - docs/models/datascope.md
   - docs/models/sourcedatascope.md
   - docs/models/delighted.md
@@ -1228,6 +1223,11 @@ generatedFiles:
   - docs/models/validadstatuses.md
   - docs/models/validadsetstatuses.md
   - docs/models/validcampaignstatuses.md
+  - docs/models/sourcefacebookmarketingschemasauthtype.md
+  - docs/models/serviceaccountkeyauthentication.md
+  - docs/models/sourcefacebookmarketingauthtype.md
+  - docs/models/authenticateviafacebookmarketingoauth.md
+  - docs/models/sourcefacebookmarketingauthentication.md
   - docs/models/validactionbreakdowns.md
   - docs/models/sourcefacebookmarketingactionreporttime.md
   - docs/models/validbreakdowns.md
@@ -1266,6 +1266,8 @@ generatedFiles:
   - docs/models/sourcefile.md
   - docs/models/sourcefireboltfirebolt.md
   - docs/models/sourcefirebolt.md
+  - docs/models/fleetio.md
+  - docs/models/sourcefleetio.md
   - docs/models/freshcaller.md
   - docs/models/sourcefreshcaller.md
   - docs/models/freshdesk.md
@@ -1315,13 +1317,15 @@ generatedFiles:
   - docs/models/gnews.md
   - docs/models/topheadlinestopic.md
   - docs/models/sourcegnews.md
+  - docs/models/goldcast.md
+  - docs/models/sourcegoldcast.md
   - docs/models/googlecredentials.md
   - docs/models/customqueriesarray.md
   - docs/models/customerstatus.md
   - docs/models/sourcegoogleadsgoogleads.md
   - docs/models/sourcegoogleads.md
   - docs/models/sourcegoogleanalyticsdataapischemasauthtype.md
-  - docs/models/serviceaccountkeyauthentication.md
+  - docs/models/sourcegoogleanalyticsdataapiserviceaccountkeyauthentication.md
   - docs/models/sourcegoogleanalyticsdataapiauthtype.md
   - docs/models/authenticateviagoogleoauth.md
   - docs/models/sourcegoogleanalyticsdataapicredentials.md
@@ -1571,11 +1575,6 @@ generatedFiles:
   - docs/models/sourcegoogleanalyticsdataapicustomreportconfig.md
   - docs/models/sourcegoogleanalyticsdataapigoogleanalyticsdataapi.md
   - docs/models/sourcegoogleanalyticsdataapi.md
-  - docs/models/sourcegoogleanalyticsv4serviceaccountonlyauthtype.md
-  - docs/models/sourcegoogleanalyticsv4serviceaccountonlyserviceaccountkeyauthentication.md
-  - docs/models/sourcegoogleanalyticsv4serviceaccountonlycredentials.md
-  - docs/models/googleanalyticsv4serviceaccountonly.md
-  - docs/models/sourcegoogleanalyticsv4serviceaccountonly.md
   - docs/models/sourcegoogledirectoryschemascredentialstitle.md
   - docs/models/serviceaccountkey.md
   - docs/models/sourcegoogledirectorycredentialstitle.md
@@ -1709,6 +1708,7 @@ generatedFiles:
   - docs/models/sourcelinkedinpagesoauth20.md
   - docs/models/sourcelinkedinpagesauthentication.md
   - docs/models/linkedinpages.md
+  - docs/models/timegranularitytype.md
   - docs/models/sourcelinkedinpages.md
   - docs/models/linnworks.md
   - docs/models/sourcelinnworks.md
@@ -1742,7 +1742,7 @@ generatedFiles:
   - docs/models/sourcemicrosoftonedrivelocal.md
   - docs/models/sourcemicrosoftonedriveprocessing.md
   - docs/models/sourcemicrosoftonedriveparsingstrategy.md
-  - docs/models/sourcemicrosoftonedrivedocumentfiletypeformatexperimental.md
+  - docs/models/unstructureddocumentformat.md
   - docs/models/sourcemicrosoftonedriveschemasstreamsformatfiletype.md
   - docs/models/sourcemicrosoftonedriveparquetformat.md
   - docs/models/sourcemicrosoftonedriveschemasstreamsfiletype.md
@@ -1774,7 +1774,7 @@ generatedFiles:
   - docs/models/sourcemicrosoftsharepointlocal.md
   - docs/models/sourcemicrosoftsharepointprocessing.md
   - docs/models/sourcemicrosoftsharepointparsingstrategy.md
-  - docs/models/sourcemicrosoftsharepointdocumentfiletypeformatexperimental.md
+  - docs/models/sourcemicrosoftsharepointunstructureddocumentformat.md
   - docs/models/sourcemicrosoftsharepointschemasstreamsformatfiletype.md
   - docs/models/sourcemicrosoftsharepointparquetformat.md
   - docs/models/sourcemicrosoftsharepointschemasstreamsfiletype.md
@@ -2010,8 +2010,6 @@ generatedFiles:
   - docs/models/sourcepostmarkapp.md
   - docs/models/prestashop.md
   - docs/models/sourceprestashop.md
-  - docs/models/punkapi.md
-  - docs/models/sourcepunkapi.md
   - docs/models/pypi.md
   - docs/models/sourcepypi.md
   - docs/models/qualaroo.md
@@ -2056,7 +2054,7 @@ generatedFiles:
   - docs/models/sources3local.md
   - docs/models/sources3processing.md
   - docs/models/sources3parsingstrategy.md
-  - docs/models/sources3documentfiletypeformatexperimental.md
+  - docs/models/sources3unstructureddocumentformat.md
   - docs/models/sources3schemasstreamsformatformat4filetype.md
   - docs/models/sources3parquetformat.md
   - docs/models/sources3schemasstreamsformatformatfiletype.md
@@ -2176,8 +2174,10 @@ generatedFiles:
   - docs/models/swipeupattributionwindow.md
   - docs/models/viewattributionwindow.md
   - docs/models/sourcesnapchatmarketing.md
-  - docs/models/sourcesnowflakeschemasauthtype.md
+  - docs/models/sourcesnowflakeschemascredentialsauthtype.md
   - docs/models/sourcesnowflakeusernameandpassword.md
+  - docs/models/sourcesnowflakeschemasauthtype.md
+  - docs/models/sourcesnowflakekeypairauthentication.md
   - docs/models/sourcesnowflakeauthtype.md
   - docs/models/sourcesnowflakeoauth20.md
   - docs/models/sourcesnowflakeauthorizationmethod.md
@@ -2326,6 +2326,7 @@ generatedFiles:
   - docs/models/azureblobstoragecredentials.md
   - docs/models/azureblobstorage.md
   - docs/models/bingads.md
+  - docs/models/facebookmarketingcredentials.md
   - docs/models/facebookmarketing.md
   - docs/models/githubcredentials.md
   - docs/models/github.md
@@ -2407,6 +2408,7 @@ generatedFiles:
   - docs/sdks/destinations/README.md
   - docs/sdks/health/README.md
   - docs/sdks/jobs/README.md
+  - docs/sdks/organizations/README.md
   - docs/sdks/permissions/README.md
   - docs/sdks/sources/README.md
   - docs/sdks/streams/README.md

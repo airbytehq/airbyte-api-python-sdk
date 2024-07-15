@@ -28,7 +28,7 @@ class SourceWikipediaPageviews:
     project: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('project') }})
     r"""If you want to filter by project, use the domain of any Wikimedia project."""
     start: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('start') }})
-    r"""The date of the first day to include, in YYYYMMDD or YYYYMMDDHH format."""
+    r"""The date of the first day to include, in YYYYMMDD or YYYYMMDDHH format. Also serves as the date to retrieve data for the top articles."""
     SOURCE_TYPE: Final[WikipediaPageviews] = dataclasses.field(default=WikipediaPageviews.WIKIPEDIA_PAGEVIEWS, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     
 

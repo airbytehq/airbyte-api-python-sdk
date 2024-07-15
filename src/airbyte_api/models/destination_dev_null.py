@@ -23,8 +23,6 @@ class Silent:
     
 
 
-TestDestination = Union['Silent']
-
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
@@ -34,3 +32,5 @@ class DestinationDevNull:
     DESTINATION_TYPE: Final[DevNull] = dataclasses.field(default=DevNull.DEV_NULL, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('destinationType') }})
     
 
+
+TestDestination = Union[Silent]

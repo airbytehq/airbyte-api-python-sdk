@@ -3,27 +3,27 @@
 
 ## Supported Types
 
-### SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayStringFilter
+### `models.SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayStringFilter`
 
 ```python
-sourceGoogleAnalyticsDataAPISchemasCustomReportsArrayDimensionFilterDimensionsFilter1Filter: models.SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayStringFilter = /* values here */
+value: models.SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayStringFilter = /* values here */
 ```
 
-### SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayInListFilter
+### `models.SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayInListFilter`
 
 ```python
-sourceGoogleAnalyticsDataAPISchemasCustomReportsArrayDimensionFilterDimensionsFilter1Filter: models.SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayInListFilter = /* values here */
+value: models.SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayInListFilter = /* values here */
 ```
 
-### SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayNumericFilter
+### `models.SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayNumericFilter`
 
 ```python
-sourceGoogleAnalyticsDataAPISchemasCustomReportsArrayDimensionFilterDimensionsFilter1Filter: models.SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayNumericFilter = /* values here */
+value: models.SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayNumericFilter = /* values here */
 ```
 
-### SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayBetweenFilter
+### `models.SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayBetweenFilter`
 
 ```python
-sourceGoogleAnalyticsDataAPISchemasCustomReportsArrayDimensionFilterDimensionsFilter1Filter: models.SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayBetweenFilter = /* values here */
+value: models.SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayBetweenFilter = /* values here */
 ```
 

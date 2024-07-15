@@ -11,7 +11,7 @@ generation:
   auth:
     oAuth2ClientCredentialsEnabled: true
 python:
-  version: 0.50.1
+  version: 0.51.0
   additionalDependencies:
     dependencies: {}
     extraDependencies:
@@ -35,3 +35,4 @@ python:
   packageName: airbyte-api
   projectUrls: {}
   responseFormat: envelope
+  templateVersion: v1

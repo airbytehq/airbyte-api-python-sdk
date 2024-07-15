@@ -5,1167 +5,1179 @@ The values required to configure the source.
 
 ## Supported Types
 
-### SourceAha
+### `models.SourceAha`
 
 ```python
-sourceConfiguration: models.SourceAha = /* values here */
+value: models.SourceAha = /* values here */
 ```
 
-### SourceAircall
+### `models.SourceAircall`
 
 ```python
-sourceConfiguration: models.SourceAircall = /* values here */
+value: models.SourceAircall = /* values here */
 ```
 
-### SourceAirtable
+### `models.SourceAirtable`
 
 ```python
-sourceConfiguration: models.SourceAirtable = /* values here */
+value: models.SourceAirtable = /* values here */
 ```
 
-### SourceAmazonAds
+### `models.SourceAmazonAds`
 
 ```python
-sourceConfiguration: models.SourceAmazonAds = /* values here */
+value: models.SourceAmazonAds = /* values here */
 ```
 
-### SourceAmazonSellerPartner
+### `models.SourceAmazonSellerPartner`
 
 ```python
-sourceConfiguration: models.SourceAmazonSellerPartner = /* values here */
+value: models.SourceAmazonSellerPartner = /* values here */
 ```
 
-### SourceAmazonSqs
+### `models.SourceAmazonSqs`
 
 ```python
-sourceConfiguration: models.SourceAmazonSqs = /* values here */
+value: models.SourceAmazonSqs = /* values here */
 ```
 
-### SourceAmplitude
+### `models.SourceAmplitude`
 
 ```python
-sourceConfiguration: models.SourceAmplitude = /* values here */
+value: models.SourceAmplitude = /* values here */
 ```
 
-### SourceApifyDataset
+### `models.SourceApifyDataset`
 
 ```python
-sourceConfiguration: models.SourceApifyDataset = /* values here */
+value: models.SourceApifyDataset = /* values here */
 ```
 
-### SourceAppfollow
+### `models.SourceAppfollow`
 
 ```python
-sourceConfiguration: models.SourceAppfollow = /* values here */
+value: models.SourceAppfollow = /* values here */
 ```
 
-### SourceAsana
+### `models.SourceAsana`
 
 ```python
-sourceConfiguration: models.SourceAsana = /* values here */
+value: models.SourceAsana = /* values here */
 ```
 
-### SourceAuth0
+### `models.SourceAuth0`
 
 ```python
-sourceConfiguration: models.SourceAuth0 = /* values here */
+value: models.SourceAuth0 = /* values here */
 ```
 
-### SourceAwsCloudtrail
+### `models.SourceAwsCloudtrail`
 
 ```python
-sourceConfiguration: models.SourceAwsCloudtrail = /* values here */
+value: models.SourceAwsCloudtrail = /* values here */
 ```
 
-### SourceAzureBlobStorage
+### `models.SourceAzureBlobStorage`
 
 ```python
-sourceConfiguration: models.SourceAzureBlobStorage = /* values here */
+value: models.SourceAzureBlobStorage = /* values here */
 ```
 
-### SourceAzureTable
+### `models.SourceAzureTable`
 
 ```python
-sourceConfiguration: models.SourceAzureTable = /* values here */
+value: models.SourceAzureTable = /* values here */
 ```
 
-### SourceBambooHr
+### `models.SourceBambooHr`
 
 ```python
-sourceConfiguration: models.SourceBambooHr = /* values here */
+value: models.SourceBambooHr = /* values here */
 ```
 
-### SourceBigquery
+### `models.SourceBigquery`
 
 ```python
-sourceConfiguration: models.SourceBigquery = /* values here */
+value: models.SourceBigquery = /* values here */
 ```
 
-### SourceBingAds
+### `models.SourceBingAds`
 
 ```python
-sourceConfiguration: models.SourceBingAds = /* values here */
+value: models.SourceBingAds = /* values here */
 ```
 
-### SourceBraintree
+### `models.SourceBraintree`
 
 ```python
-sourceConfiguration: models.SourceBraintree = /* values here */
+value: models.SourceBraintree = /* values here */
 ```
 
-### SourceBraze
+### `models.SourceBraze`
 
 ```python
-sourceConfiguration: models.SourceBraze = /* values here */
+value: models.SourceBraze = /* values here */
 ```
 
-### SourceCart
+### `models.SourceCart`
 
 ```python
-sourceConfiguration: models.SourceCart = /* values here */
+value: models.SourceCart = /* values here */
 ```
 
-### SourceChargebee
+### `models.SourceChargebee`
 
 ```python
-sourceConfiguration: models.SourceChargebee = /* values here */
+value: models.SourceChargebee = /* values here */
 ```
 
-### SourceChartmogul
+### `models.SourceChartmogul`
 
 ```python
-sourceConfiguration: models.SourceChartmogul = /* values here */
+value: models.SourceChartmogul = /* values here */
 ```
 
-### SourceClickhouse
+### `models.SourceClazar`
 
 ```python
-sourceConfiguration: models.SourceClickhouse = /* values here */
+value: models.SourceClazar = /* values here */
 ```
 
-### SourceClickupAPI
+### `models.SourceClickhouse`
 
 ```python
-sourceConfiguration: models.SourceClickupAPI = /* values here */
+value: models.SourceClickhouse = /* values here */
 ```
 
-### SourceClockify
+### `models.SourceClickupAPI`
 
 ```python
-sourceConfiguration: models.SourceClockify = /* values here */
+value: models.SourceClickupAPI = /* values here */
 ```
 
-### SourceCloseCom
+### `models.SourceClockify`
 
 ```python
-sourceConfiguration: models.SourceCloseCom = /* values here */
+value: models.SourceClockify = /* values here */
 ```
 
-### SourceCoda
+### `models.SourceCloseCom`
 
 ```python
-sourceConfiguration: models.SourceCoda = /* values here */
+value: models.SourceCloseCom = /* values here */
 ```
 
-### SourceCoinAPI
+### `models.SourceCoda`
 
 ```python
-sourceConfiguration: models.SourceCoinAPI = /* values here */
+value: models.SourceCoda = /* values here */
 ```
 
-### SourceCoinmarketcap
+### `models.SourceCoinAPI`
 
 ```python
-sourceConfiguration: models.SourceCoinmarketcap = /* values here */
+value: models.SourceCoinAPI = /* values here */
 ```
 
-### SourceConfigcat
+### `models.SourceCoinmarketcap`
 
 ```python
-sourceConfiguration: models.SourceConfigcat = /* values here */
+value: models.SourceCoinmarketcap = /* values here */
 ```
 
-### SourceConfluence
+### `models.SourceConfigcat`
 
 ```python
-sourceConfiguration: models.SourceConfluence = /* values here */
+value: models.SourceConfigcat = /* values here */
 ```
 
-### SourceConvex
+### `models.SourceConfluence`
 
 ```python
-sourceConfiguration: models.SourceConvex = /* values here */
+value: models.SourceConfluence = /* values here */
 ```
 
-### SourceDatascope
+### `models.SourceConvex`
 
 ```python
-sourceConfiguration: models.SourceDatascope = /* values here */
+value: models.SourceConvex = /* values here */
 ```
 
-### SourceDelighted
+### `models.SourceDatadog`
 
 ```python
-sourceConfiguration: models.SourceDelighted = /* values here */
+value: models.SourceDatadog = /* values here */
 ```
 
-### SourceDixa
+### `models.SourceDatascope`
 
 ```python
-sourceConfiguration: models.SourceDixa = /* values here */
+value: models.SourceDatascope = /* values here */
 ```
 
-### SourceDockerhub
+### `models.SourceDelighted`
 
 ```python
-sourceConfiguration: models.SourceDockerhub = /* values here */
+value: models.SourceDelighted = /* values here */
 ```
 
-### SourceDremio
+### `models.SourceDixa`
 
 ```python
-sourceConfiguration: models.SourceDremio = /* values here */
+value: models.SourceDixa = /* values here */
 ```
 
-### SourceDynamodb
+### `models.SourceDockerhub`
 
 ```python
-sourceConfiguration: models.SourceDynamodb = /* values here */
+value: models.SourceDockerhub = /* values here */
 ```
 
-### SourceE2eTestCloud
+### `models.SourceDremio`
 
 ```python
-sourceConfiguration: models.SourceE2eTestCloud = /* values here */
+value: models.SourceDremio = /* values here */
 ```
 
-### SourceEmailoctopus
+### `models.SourceDynamodb`
 
 ```python
-sourceConfiguration: models.SourceEmailoctopus = /* values here */
+value: models.SourceDynamodb = /* values here */
 ```
 
-### SourceExchangeRates
+### `models.SourceE2eTestCloud`
 
 ```python
-sourceConfiguration: models.SourceExchangeRates = /* values here */
+value: models.SourceE2eTestCloud = /* values here */
 ```
 
-### SourceFacebookMarketing
+### `models.SourceEmailoctopus`
 
 ```python
-sourceConfiguration: models.SourceFacebookMarketing = /* values here */
+value: models.SourceEmailoctopus = /* values here */
 ```
 
-### SourceFaker
+### `models.SourceExchangeRates`
 
 ```python
-sourceConfiguration: models.SourceFaker = /* values here */
+value: models.SourceExchangeRates = /* values here */
 ```
 
-### SourceFauna
+### `models.SourceFacebookMarketing`
 
 ```python
-sourceConfiguration: models.SourceFauna = /* values here */
+value: models.SourceFacebookMarketing = /* values here */
 ```
 
-### SourceFile
+### `models.SourceFaker`
 
 ```python
-sourceConfiguration: models.SourceFile = /* values here */
+value: models.SourceFaker = /* values here */
 ```
 
-### SourceFirebolt
+### `models.SourceFauna`
 
 ```python
-sourceConfiguration: models.SourceFirebolt = /* values here */
+value: models.SourceFauna = /* values here */
 ```
 
-### SourceFreshcaller
+### `models.SourceFile`
 
 ```python
-sourceConfiguration: models.SourceFreshcaller = /* values here */
+value: models.SourceFile = /* values here */
 ```
 
-### SourceFreshdesk
+### `models.SourceFirebolt`
 
 ```python
-sourceConfiguration: models.SourceFreshdesk = /* values here */
+value: models.SourceFirebolt = /* values here */
 ```
 
-### SourceFreshsales
+### `models.SourceFleetio`
 
 ```python
-sourceConfiguration: models.SourceFreshsales = /* values here */
+value: models.SourceFleetio = /* values here */
 ```
 
-### SourceGainsightPx
+### `models.SourceFreshcaller`
 
 ```python
-sourceConfiguration: models.SourceGainsightPx = /* values here */
+value: models.SourceFreshcaller = /* values here */
 ```
 
-### SourceGcs
+### `models.SourceFreshdesk`
 
 ```python
-sourceConfiguration: models.SourceGcs = /* values here */
+value: models.SourceFreshdesk = /* values here */
 ```
 
-### SourceGetlago
+### `models.SourceFreshsales`
 
 ```python
-sourceConfiguration: models.SourceGetlago = /* values here */
+value: models.SourceFreshsales = /* values here */
 ```
 
-### SourceGithub
+### `models.SourceGainsightPx`
 
 ```python
-sourceConfiguration: models.SourceGithub = /* values here */
+value: models.SourceGainsightPx = /* values here */
 ```
 
-### SourceGitlab
+### `models.SourceGcs`
 
 ```python
-sourceConfiguration: models.SourceGitlab = /* values here */
+value: models.SourceGcs = /* values here */
 ```
 
-### SourceGlassfrog
+### `models.SourceGetlago`
 
 ```python
-sourceConfiguration: models.SourceGlassfrog = /* values here */
+value: models.SourceGetlago = /* values here */
 ```
 
-### SourceGnews
+### `models.SourceGithub`
 
 ```python
-sourceConfiguration: models.SourceGnews = /* values here */
+value: models.SourceGithub = /* values here */
 ```
 
-### SourceGoogleAds
+### `models.SourceGitlab`
 
 ```python
-sourceConfiguration: models.SourceGoogleAds = /* values here */
+value: models.SourceGitlab = /* values here */
 ```
 
-### SourceGoogleAnalyticsDataAPI
+### `models.SourceGlassfrog`
 
 ```python
-sourceConfiguration: models.SourceGoogleAnalyticsDataAPI = /* values here */
+value: models.SourceGlassfrog = /* values here */
 ```
 
-### SourceGoogleAnalyticsV4ServiceAccountOnly
+### `models.SourceGnews`
 
 ```python
-sourceConfiguration: models.SourceGoogleAnalyticsV4ServiceAccountOnly = /* values here */
+value: models.SourceGnews = /* values here */
 ```
 
-### SourceGoogleDirectory
+### `models.SourceGoldcast`
 
 ```python
-sourceConfiguration: models.SourceGoogleDirectory = /* values here */
+value: models.SourceGoldcast = /* values here */
 ```
 
-### SourceGoogleDrive
+### `models.SourceGoogleAds`
 
 ```python
-sourceConfiguration: models.SourceGoogleDrive = /* values here */
+value: models.SourceGoogleAds = /* values here */
 ```
 
-### SourceGooglePagespeedInsights
+### `models.SourceGoogleAnalyticsDataAPI`
 
 ```python
-sourceConfiguration: models.SourceGooglePagespeedInsights = /* values here */
+value: models.SourceGoogleAnalyticsDataAPI = /* values here */
 ```
 
-### SourceGoogleSearchConsole
+### `models.SourceGoogleDirectory`
 
 ```python
-sourceConfiguration: models.SourceGoogleSearchConsole = /* values here */
+value: models.SourceGoogleDirectory = /* values here */
 ```
 
-### SourceGoogleSheets
+### `models.SourceGoogleDrive`
 
 ```python
-sourceConfiguration: models.SourceGoogleSheets = /* values here */
+value: models.SourceGoogleDrive = /* values here */
 ```
 
-### SourceGoogleWebfonts
+### `models.SourceGooglePagespeedInsights`
 
 ```python
-sourceConfiguration: models.SourceGoogleWebfonts = /* values here */
+value: models.SourceGooglePagespeedInsights = /* values here */
 ```
 
-### SourceGreenhouse
+### `models.SourceGoogleSearchConsole`
 
 ```python
-sourceConfiguration: models.SourceGreenhouse = /* values here */
+value: models.SourceGoogleSearchConsole = /* values here */
 ```
 
-### SourceGridly
+### `models.SourceGoogleSheets`
 
 ```python
-sourceConfiguration: models.SourceGridly = /* values here */
+value: models.SourceGoogleSheets = /* values here */
 ```
 
-### SourceHarvest
+### `models.SourceGoogleWebfonts`
 
 ```python
-sourceConfiguration: models.SourceHarvest = /* values here */
+value: models.SourceGoogleWebfonts = /* values here */
 ```
 
-### SourceHubplanner
+### `models.SourceGreenhouse`
 
 ```python
-sourceConfiguration: models.SourceHubplanner = /* values here */
+value: models.SourceGreenhouse = /* values here */
 ```
 
-### SourceHubspot
+### `models.SourceGridly`
 
 ```python
-sourceConfiguration: models.SourceHubspot = /* values here */
+value: models.SourceGridly = /* values here */
 ```
 
-### SourceInsightly
+### `models.SourceHarvest`
 
 ```python
-sourceConfiguration: models.SourceInsightly = /* values here */
+value: models.SourceHarvest = /* values here */
 ```
 
-### SourceInstagram
+### `models.SourceHubplanner`
 
 ```python
-sourceConfiguration: models.SourceInstagram = /* values here */
+value: models.SourceHubplanner = /* values here */
 ```
 
-### SourceInstatus
+### `models.SourceHubspot`
 
 ```python
-sourceConfiguration: models.SourceInstatus = /* values here */
+value: models.SourceHubspot = /* values here */
 ```
 
-### SourceIntercom
+### `models.SourceInsightly`
 
 ```python
-sourceConfiguration: models.SourceIntercom = /* values here */
+value: models.SourceInsightly = /* values here */
 ```
 
-### SourceIp2whois
+### `models.SourceInstagram`
 
 ```python
-sourceConfiguration: models.SourceIp2whois = /* values here */
+value: models.SourceInstagram = /* values here */
 ```
 
-### SourceIterable
+### `models.SourceInstatus`
 
 ```python
-sourceConfiguration: models.SourceIterable = /* values here */
+value: models.SourceInstatus = /* values here */
 ```
 
-### SourceJira
+### `models.SourceIntercom`
 
 ```python
-sourceConfiguration: models.SourceJira = /* values here */
+value: models.SourceIntercom = /* values here */
 ```
 
-### SourceK6Cloud
+### `models.SourceIp2whois`
 
 ```python
-sourceConfiguration: models.SourceK6Cloud = /* values here */
+value: models.SourceIp2whois = /* values here */
 ```
 
-### SourceKlarna
+### `models.SourceIterable`
 
 ```python
-sourceConfiguration: models.SourceKlarna = /* values here */
+value: models.SourceIterable = /* values here */
 ```
 
-### SourceKlaviyo
+### `models.SourceJira`
 
 ```python
-sourceConfiguration: models.SourceKlaviyo = /* values here */
+value: models.SourceJira = /* values here */
 ```
 
-### SourceKyve
+### `models.SourceK6Cloud`
 
 ```python
-sourceConfiguration: models.SourceKyve = /* values here */
+value: models.SourceK6Cloud = /* values here */
 ```
 
-### SourceLaunchdarkly
+### `models.SourceKlarna`
 
 ```python
-sourceConfiguration: models.SourceLaunchdarkly = /* values here */
+value: models.SourceKlarna = /* values here */
 ```
 
-### SourceLemlist
+### `models.SourceKlaviyo`
 
 ```python
-sourceConfiguration: models.SourceLemlist = /* values here */
+value: models.SourceKlaviyo = /* values here */
 ```
 
-### SourceLeverHiring
+### `models.SourceKyve`
 
 ```python
-sourceConfiguration: models.SourceLeverHiring = /* values here */
+value: models.SourceKyve = /* values here */
 ```
 
-### SourceLinkedinAds
+### `models.SourceLaunchdarkly`
 
 ```python
-sourceConfiguration: models.SourceLinkedinAds = /* values here */
+value: models.SourceLaunchdarkly = /* values here */
 ```
 
-### SourceLinkedinPages
+### `models.SourceLemlist`
 
 ```python
-sourceConfiguration: models.SourceLinkedinPages = /* values here */
+value: models.SourceLemlist = /* values here */
 ```
 
-### SourceLinnworks
+### `models.SourceLeverHiring`
 
 ```python
-sourceConfiguration: models.SourceLinnworks = /* values here */
+value: models.SourceLeverHiring = /* values here */
 ```
 
-### SourceLokalise
+### `models.SourceLinkedinAds`
 
 ```python
-sourceConfiguration: models.SourceLokalise = /* values here */
+value: models.SourceLinkedinAds = /* values here */
 ```
 
-### SourceMailchimp
+### `models.SourceLinkedinPages`
 
 ```python
-sourceConfiguration: models.SourceMailchimp = /* values here */
+value: models.SourceLinkedinPages = /* values here */
 ```
 
-### SourceMailgun
+### `models.SourceLinnworks`
 
 ```python
-sourceConfiguration: models.SourceMailgun = /* values here */
+value: models.SourceLinnworks = /* values here */
 ```
 
-### SourceMailjetSms
+### `models.SourceLokalise`
 
 ```python
-sourceConfiguration: models.SourceMailjetSms = /* values here */
+value: models.SourceLokalise = /* values here */
 ```
 
-### SourceMarketo
+### `models.SourceMailchimp`
 
 ```python
-sourceConfiguration: models.SourceMarketo = /* values here */
+value: models.SourceMailchimp = /* values here */
 ```
 
-### SourceMetabase
+### `models.SourceMailgun`
 
 ```python
-sourceConfiguration: models.SourceMetabase = /* values here */
+value: models.SourceMailgun = /* values here */
 ```
 
-### SourceMicrosoftOnedrive
+### `models.SourceMailjetSms`
 
 ```python
-sourceConfiguration: models.SourceMicrosoftOnedrive = /* values here */
+value: models.SourceMailjetSms = /* values here */
 ```
 
-### SourceMicrosoftSharepoint
+### `models.SourceMarketo`
 
 ```python
-sourceConfiguration: models.SourceMicrosoftSharepoint = /* values here */
+value: models.SourceMarketo = /* values here */
 ```
 
-### SourceMicrosoftTeams
+### `models.SourceMetabase`
 
 ```python
-sourceConfiguration: models.SourceMicrosoftTeams = /* values here */
+value: models.SourceMetabase = /* values here */
 ```
 
-### SourceMixpanel
+### `models.SourceMicrosoftOnedrive`
 
 ```python
-sourceConfiguration: models.SourceMixpanel = /* values here */
+value: models.SourceMicrosoftOnedrive = /* values here */
 ```
 
-### SourceMonday
+### `models.SourceMicrosoftSharepoint`
 
 ```python
-sourceConfiguration: models.SourceMonday = /* values here */
+value: models.SourceMicrosoftSharepoint = /* values here */
 ```
 
-### SourceMongodbInternalPoc
+### `models.SourceMicrosoftTeams`
 
 ```python
-sourceConfiguration: models.SourceMongodbInternalPoc = /* values here */
+value: models.SourceMicrosoftTeams = /* values here */
 ```
 
-### SourceMongodbV2
+### `models.SourceMixpanel`
 
 ```python
-sourceConfiguration: models.SourceMongodbV2 = /* values here */
+value: models.SourceMixpanel = /* values here */
 ```
 
-### SourceMssql
+### `models.SourceMonday`
 
 ```python
-sourceConfiguration: models.SourceMssql = /* values here */
+value: models.SourceMonday = /* values here */
 ```
 
-### SourceMyHours
+### `models.SourceMongodbInternalPoc`
 
 ```python
-sourceConfiguration: models.SourceMyHours = /* values here */
+value: models.SourceMongodbInternalPoc = /* values here */
 ```
 
-### SourceMysql
+### `models.SourceMongodbV2`
 
 ```python
-sourceConfiguration: models.SourceMysql = /* values here */
+value: models.SourceMongodbV2 = /* values here */
 ```
 
-### SourceNetsuite
+### `models.SourceMssql`
 
 ```python
-sourceConfiguration: models.SourceNetsuite = /* values here */
+value: models.SourceMssql = /* values here */
 ```
 
-### SourceNotion
+### `models.SourceMyHours`
 
 ```python
-sourceConfiguration: models.SourceNotion = /* values here */
+value: models.SourceMyHours = /* values here */
 ```
 
-### SourceNytimes
+### `models.SourceMysql`
 
 ```python
-sourceConfiguration: models.SourceNytimes = /* values here */
+value: models.SourceMysql = /* values here */
 ```
 
-### SourceOkta
+### `models.SourceNetsuite`
 
 ```python
-sourceConfiguration: models.SourceOkta = /* values here */
+value: models.SourceNetsuite = /* values here */
 ```
 
-### SourceOmnisend
+### `models.SourceNotion`
 
 ```python
-sourceConfiguration: models.SourceOmnisend = /* values here */
+value: models.SourceNotion = /* values here */
 ```
 
-### SourceOnesignal
+### `models.SourceNytimes`
 
 ```python
-sourceConfiguration: models.SourceOnesignal = /* values here */
+value: models.SourceNytimes = /* values here */
 ```
 
-### SourceOracle
+### `models.SourceOkta`
 
 ```python
-sourceConfiguration: models.SourceOracle = /* values here */
+value: models.SourceOkta = /* values here */
 ```
 
-### SourceOrb
+### `models.SourceOmnisend`
 
 ```python
-sourceConfiguration: models.SourceOrb = /* values here */
+value: models.SourceOmnisend = /* values here */
 ```
 
-### SourceOrbit
+### `models.SourceOnesignal`
 
 ```python
-sourceConfiguration: models.SourceOrbit = /* values here */
+value: models.SourceOnesignal = /* values here */
 ```
 
-### SourceOutbrainAmplify
+### `models.SourceOracle`
 
 ```python
-sourceConfiguration: models.SourceOutbrainAmplify = /* values here */
+value: models.SourceOracle = /* values here */
 ```
 
-### SourceOutreach
+### `models.SourceOrb`
 
 ```python
-sourceConfiguration: models.SourceOutreach = /* values here */
+value: models.SourceOrb = /* values here */
 ```
 
-### SourcePaypalTransaction
+### `models.SourceOrbit`
 
 ```python
-sourceConfiguration: models.SourcePaypalTransaction = /* values here */
+value: models.SourceOrbit = /* values here */
 ```
 
-### SourcePaystack
+### `models.SourceOutbrainAmplify`
 
 ```python
-sourceConfiguration: models.SourcePaystack = /* values here */
+value: models.SourceOutbrainAmplify = /* values here */
 ```
 
-### SourcePendo
+### `models.SourceOutreach`
 
 ```python
-sourceConfiguration: models.SourcePendo = /* values here */
+value: models.SourceOutreach = /* values here */
 ```
 
-### SourcePersistiq
+### `models.SourcePaypalTransaction`
 
 ```python
-sourceConfiguration: models.SourcePersistiq = /* values here */
+value: models.SourcePaypalTransaction = /* values here */
 ```
 
-### SourcePexelsAPI
+### `models.SourcePaystack`
 
 ```python
-sourceConfiguration: models.SourcePexelsAPI = /* values here */
+value: models.SourcePaystack = /* values here */
 ```
 
-### SourcePinterest
+### `models.SourcePendo`
 
 ```python
-sourceConfiguration: models.SourcePinterest = /* values here */
+value: models.SourcePendo = /* values here */
 ```
 
-### SourcePipedrive
+### `models.SourcePersistiq`
 
 ```python
-sourceConfiguration: models.SourcePipedrive = /* values here */
+value: models.SourcePersistiq = /* values here */
 ```
 
-### SourcePocket
+### `models.SourcePexelsAPI`
 
 ```python
-sourceConfiguration: models.SourcePocket = /* values here */
+value: models.SourcePexelsAPI = /* values here */
 ```
 
-### SourcePokeapi
+### `models.SourcePinterest`
 
 ```python
-sourceConfiguration: models.SourcePokeapi = /* values here */
+value: models.SourcePinterest = /* values here */
 ```
 
-### SourcePolygonStockAPI
+### `models.SourcePipedrive`
 
 ```python
-sourceConfiguration: models.SourcePolygonStockAPI = /* values here */
+value: models.SourcePipedrive = /* values here */
 ```
 
-### SourcePostgres
+### `models.SourcePocket`
 
 ```python
-sourceConfiguration: models.SourcePostgres = /* values here */
+value: models.SourcePocket = /* values here */
 ```
 
-### SourcePosthog
+### `models.SourcePokeapi`
 
 ```python
-sourceConfiguration: models.SourcePosthog = /* values here */
+value: models.SourcePokeapi = /* values here */
 ```
 
-### SourcePostmarkapp
+### `models.SourcePolygonStockAPI`
 
 ```python
-sourceConfiguration: models.SourcePostmarkapp = /* values here */
+value: models.SourcePolygonStockAPI = /* values here */
 ```
 
-### SourcePrestashop
+### `models.SourcePostgres`
 
 ```python
-sourceConfiguration: models.SourcePrestashop = /* values here */
+value: models.SourcePostgres = /* values here */
 ```
 
-### SourcePunkAPI
+### `models.SourcePosthog`
 
 ```python
-sourceConfiguration: models.SourcePunkAPI = /* values here */
+value: models.SourcePosthog = /* values here */
 ```
 
-### SourcePypi
+### `models.SourcePostmarkapp`
 
 ```python
-sourceConfiguration: models.SourcePypi = /* values here */
+value: models.SourcePostmarkapp = /* values here */
 ```
 
-### SourceQualaroo
+### `models.SourcePrestashop`
 
 ```python
-sourceConfiguration: models.SourceQualaroo = /* values here */
+value: models.SourcePrestashop = /* values here */
 ```
 
-### SourceRailz
+### `models.SourcePypi`
 
 ```python
-sourceConfiguration: models.SourceRailz = /* values here */
+value: models.SourcePypi = /* values here */
 ```
 
-### SourceRecharge
+### `models.SourceQualaroo`
 
 ```python
-sourceConfiguration: models.SourceRecharge = /* values here */
+value: models.SourceQualaroo = /* values here */
 ```
 
-### SourceRecreation
+### `models.SourceRailz`
 
 ```python
-sourceConfiguration: models.SourceRecreation = /* values here */
+value: models.SourceRailz = /* values here */
 ```
 
-### SourceRecruitee
+### `models.SourceRecharge`
 
 ```python
-sourceConfiguration: models.SourceRecruitee = /* values here */
+value: models.SourceRecharge = /* values here */
 ```
 
-### SourceRecurly
+### `models.SourceRecreation`
 
 ```python
-sourceConfiguration: models.SourceRecurly = /* values here */
+value: models.SourceRecreation = /* values here */
 ```
 
-### SourceRedshift
+### `models.SourceRecruitee`
 
 ```python
-sourceConfiguration: models.SourceRedshift = /* values here */
+value: models.SourceRecruitee = /* values here */
 ```
 
-### SourceRetently
+### `models.SourceRecurly`
 
 ```python
-sourceConfiguration: models.SourceRetently = /* values here */
+value: models.SourceRecurly = /* values here */
 ```
 
-### SourceRkiCovid
+### `models.SourceRedshift`
 
 ```python
-sourceConfiguration: models.SourceRkiCovid = /* values here */
+value: models.SourceRedshift = /* values here */
 ```
 
-### SourceRss
+### `models.SourceRetently`
 
 ```python
-sourceConfiguration: models.SourceRss = /* values here */
+value: models.SourceRetently = /* values here */
 ```
 
-### SourceS3
+### `models.SourceRkiCovid`
 
 ```python
-sourceConfiguration: models.SourceS3 = /* values here */
+value: models.SourceRkiCovid = /* values here */
 ```
 
-### SourceSalesforce
+### `models.SourceRss`
 
 ```python
-sourceConfiguration: models.SourceSalesforce = /* values here */
+value: models.SourceRss = /* values here */
 ```
 
-### SourceSalesloft
+### `models.SourceS3`
 
 ```python
-sourceConfiguration: models.SourceSalesloft = /* values here */
+value: models.SourceS3 = /* values here */
 ```
 
-### SourceSapFieldglass
+### `models.SourceSalesforce`
 
 ```python
-sourceConfiguration: models.SourceSapFieldglass = /* values here */
+value: models.SourceSalesforce = /* values here */
 ```
 
-### SourceSecoda
+### `models.SourceSalesloft`
 
 ```python
-sourceConfiguration: models.SourceSecoda = /* values here */
+value: models.SourceSalesloft = /* values here */
 ```
 
-### SourceSendgrid
+### `models.SourceSapFieldglass`
 
 ```python
-sourceConfiguration: models.SourceSendgrid = /* values here */
+value: models.SourceSapFieldglass = /* values here */
 ```
 
-### SourceSendinblue
+### `models.SourceSecoda`
 
 ```python
-sourceConfiguration: models.SourceSendinblue = /* values here */
+value: models.SourceSecoda = /* values here */
 ```
 
-### SourceSenseforce
+### `models.SourceSendgrid`
 
 ```python
-sourceConfiguration: models.SourceSenseforce = /* values here */
+value: models.SourceSendgrid = /* values here */
 ```
 
-### SourceSentry
+### `models.SourceSendinblue`
 
 ```python
-sourceConfiguration: models.SourceSentry = /* values here */
+value: models.SourceSendinblue = /* values here */
 ```
 
-### SourceSftp
+### `models.SourceSenseforce`
 
 ```python
-sourceConfiguration: models.SourceSftp = /* values here */
+value: models.SourceSenseforce = /* values here */
 ```
 
-### SourceSftpBulk
+### `models.SourceSentry`
 
 ```python
-sourceConfiguration: models.SourceSftpBulk = /* values here */
+value: models.SourceSentry = /* values here */
 ```
 
-### SourceShopify
+### `models.SourceSftp`
 
 ```python
-sourceConfiguration: models.SourceShopify = /* values here */
+value: models.SourceSftp = /* values here */
 ```
 
-### SourceShortio
+### `models.SourceSftpBulk`
 
 ```python
-sourceConfiguration: models.SourceShortio = /* values here */
+value: models.SourceSftpBulk = /* values here */
 ```
 
-### SourceSlack
+### `models.SourceShopify`
 
 ```python
-sourceConfiguration: models.SourceSlack = /* values here */
+value: models.SourceShopify = /* values here */
 ```
 
-### SourceSmaily
+### `models.SourceShortio`
 
 ```python
-sourceConfiguration: models.SourceSmaily = /* values here */
+value: models.SourceShortio = /* values here */
 ```
 
-### SourceSmartengage
+### `models.SourceSlack`
 
 ```python
-sourceConfiguration: models.SourceSmartengage = /* values here */
+value: models.SourceSlack = /* values here */
 ```
 
-### SourceSmartsheets
+### `models.SourceSmaily`
 
 ```python
-sourceConfiguration: models.SourceSmartsheets = /* values here */
+value: models.SourceSmaily = /* values here */
 ```
 
-### SourceSnapchatMarketing
+### `models.SourceSmartengage`
 
 ```python
-sourceConfiguration: models.SourceSnapchatMarketing = /* values here */
+value: models.SourceSmartengage = /* values here */
 ```
 
-### SourceSnowflake
+### `models.SourceSmartsheets`
 
 ```python
-sourceConfiguration: models.SourceSnowflake = /* values here */
+value: models.SourceSmartsheets = /* values here */
 ```
 
-### SourceSonarCloud
+### `models.SourceSnapchatMarketing`
 
 ```python
-sourceConfiguration: models.SourceSonarCloud = /* values here */
+value: models.SourceSnapchatMarketing = /* values here */
 ```
 
-### SourceSpacexAPI
+### `models.SourceSnowflake`
 
 ```python
-sourceConfiguration: models.SourceSpacexAPI = /* values here */
+value: models.SourceSnowflake = /* values here */
 ```
 
-### SourceSquare
+### `models.SourceSonarCloud`
 
 ```python
-sourceConfiguration: models.SourceSquare = /* values here */
+value: models.SourceSonarCloud = /* values here */
 ```
 
-### SourceStrava
+### `models.SourceSpacexAPI`
 
 ```python
-sourceConfiguration: models.SourceStrava = /* values here */
+value: models.SourceSpacexAPI = /* values here */
 ```
 
-### SourceStripe
+### `models.SourceSquare`
 
 ```python
-sourceConfiguration: models.SourceStripe = /* values here */
+value: models.SourceSquare = /* values here */
 ```
 
-### SourceSurveySparrow
+### `models.SourceStrava`
 
 ```python
-sourceConfiguration: models.SourceSurveySparrow = /* values here */
+value: models.SourceStrava = /* values here */
 ```
 
-### SourceSurveymonkey
+### `models.SourceStripe`
 
 ```python
-sourceConfiguration: models.SourceSurveymonkey = /* values here */
+value: models.SourceStripe = /* values here */
 ```
 
-### SourceTempo
+### `models.SourceSurveySparrow`
 
 ```python
-sourceConfiguration: models.SourceTempo = /* values here */
+value: models.SourceSurveySparrow = /* values here */
 ```
 
-### SourceTheGuardianAPI
+### `models.SourceSurveymonkey`
 
 ```python
-sourceConfiguration: models.SourceTheGuardianAPI = /* values here */
+value: models.SourceSurveymonkey = /* values here */
 ```
 
-### SourceTiktokMarketing
+### `models.SourceTempo`
 
 ```python
-sourceConfiguration: models.SourceTiktokMarketing = /* values here */
+value: models.SourceTempo = /* values here */
 ```
 
-### SourceTrello
+### `models.SourceTheGuardianAPI`
 
 ```python
-sourceConfiguration: models.SourceTrello = /* values here */
+value: models.SourceTheGuardianAPI = /* values here */
 ```
 
-### SourceTrustpilot
+### `models.SourceTiktokMarketing`
 
 ```python
-sourceConfiguration: models.SourceTrustpilot = /* values here */
+value: models.SourceTiktokMarketing = /* values here */
 ```
 
-### SourceTvmazeSchedule
+### `models.SourceTrello`
 
 ```python
-sourceConfiguration: models.SourceTvmazeSchedule = /* values here */
+value: models.SourceTrello = /* values here */
 ```
 
-### SourceTwilio
+### `models.SourceTrustpilot`
 
 ```python
-sourceConfiguration: models.SourceTwilio = /* values here */
+value: models.SourceTrustpilot = /* values here */
 ```
 
-### SourceTwilioTaskrouter
+### `models.SourceTvmazeSchedule`
 
 ```python
-sourceConfiguration: models.SourceTwilioTaskrouter = /* values here */
+value: models.SourceTvmazeSchedule = /* values here */
 ```
 
-### SourceTwitter
+### `models.SourceTwilio`
 
 ```python
-sourceConfiguration: models.SourceTwitter = /* values here */
+value: models.SourceTwilio = /* values here */
 ```
 
-### SourceTypeform
+### `models.SourceTwilioTaskrouter`
 
 ```python
-sourceConfiguration: models.SourceTypeform = /* values here */
+value: models.SourceTwilioTaskrouter = /* values here */
 ```
 
-### SourceUsCensus
+### `models.SourceTwitter`
 
 ```python
-sourceConfiguration: models.SourceUsCensus = /* values here */
+value: models.SourceTwitter = /* values here */
 ```
 
-### SourceVantage
+### `models.SourceTypeform`
 
 ```python
-sourceConfiguration: models.SourceVantage = /* values here */
+value: models.SourceTypeform = /* values here */
 ```
 
-### SourceWebflow
+### `models.SourceUsCensus`
 
 ```python
-sourceConfiguration: models.SourceWebflow = /* values here */
+value: models.SourceUsCensus = /* values here */
 ```
 
-### SourceWhiskyHunter
+### `models.SourceVantage`
 
 ```python
-sourceConfiguration: models.SourceWhiskyHunter = /* values here */
+value: models.SourceVantage = /* values here */
 ```
 
-### SourceWikipediaPageviews
+### `models.SourceWebflow`
 
 ```python
-sourceConfiguration: models.SourceWikipediaPageviews = /* values here */
+value: models.SourceWebflow = /* values here */
 ```
 
-### SourceWoocommerce
+### `models.SourceWhiskyHunter`
 
 ```python
-sourceConfiguration: models.SourceWoocommerce = /* values here */
+value: models.SourceWhiskyHunter = /* values here */
 ```
 
-### SourceXkcd
+### `models.SourceWikipediaPageviews`
 
 ```python
-sourceConfiguration: models.SourceXkcd = /* values here */
+value: models.SourceWikipediaPageviews = /* values here */
 ```
 
-### SourceYandexMetrica
+### `models.SourceWoocommerce`
 
 ```python
-sourceConfiguration: models.SourceYandexMetrica = /* values here */
+value: models.SourceWoocommerce = /* values here */
 ```
 
-### SourceYotpo
+### `models.SourceXkcd`
 
 ```python
-sourceConfiguration: models.SourceYotpo = /* values here */
+value: models.SourceXkcd = /* values here */
 ```
 
-### SourceYoutubeAnalytics
+### `models.SourceYandexMetrica`
 
 ```python
-sourceConfiguration: models.SourceYoutubeAnalytics = /* values here */
+value: models.SourceYandexMetrica = /* values here */
 ```
 
-### SourceZendeskChat
+### `models.SourceYotpo`
 
 ```python
-sourceConfiguration: models.SourceZendeskChat = /* values here */
+value: models.SourceYotpo = /* values here */
 ```
 
-### SourceZendeskSell
+### `models.SourceYoutubeAnalytics`
 
 ```python
-sourceConfiguration: models.SourceZendeskSell = /* values here */
+value: models.SourceYoutubeAnalytics = /* values here */
 ```
 
-### SourceZendeskSunshine
+### `models.SourceZendeskChat`
 
 ```python
-sourceConfiguration: models.SourceZendeskSunshine = /* values here */
+value: models.SourceZendeskChat = /* values here */
 ```
 
-### SourceZendeskSupport
+### `models.SourceZendeskSell`
 
 ```python
-sourceConfiguration: models.SourceZendeskSupport = /* values here */
+value: models.SourceZendeskSell = /* values here */
 ```
 
-### SourceZendeskTalk
+### `models.SourceZendeskSunshine`
 
 ```python
-sourceConfiguration: models.SourceZendeskTalk = /* values here */
+value: models.SourceZendeskSunshine = /* values here */
 ```
 
-### SourceZenloop
+### `models.SourceZendeskSupport`
 
 ```python
-sourceConfiguration: models.SourceZenloop = /* values here */
+value: models.SourceZendeskSupport = /* values here */
 ```
 
-### SourceZohoCrm
+### `models.SourceZendeskTalk`
 
 ```python
-sourceConfiguration: models.SourceZohoCrm = /* values here */
+value: models.SourceZendeskTalk = /* values here */
 ```
 
-### SourceZoom
+### `models.SourceZenloop`
 
 ```python
-sourceConfiguration: models.SourceZoom = /* values here */
+value: models.SourceZenloop = /* values here */
+```
+
+### `models.SourceZohoCrm`
+
+```python
+value: models.SourceZohoCrm = /* values here */
+```
+
+### `models.SourceZoom`
+
+```python
+value: models.SourceZoom = /* values here */
 ```
 

@@ -5,21 +5,21 @@ MongoDb instance to connect to. For MongoDB Atlas and Replica Set TLS connection
 
 ## Supported Types
 
-### StandaloneMongoDbInstance
+### `models.StandaloneMongoDbInstance`
 
 ```python
-mongoDbInstanceType: models.StandaloneMongoDbInstance = /* values here */
+value: models.StandaloneMongoDbInstance = /* values here */
 ```
 
-### ReplicaSet
+### `models.ReplicaSet`
 
 ```python
-mongoDbInstanceType: models.ReplicaSet = /* values here */
+value: models.ReplicaSet = /* values here */
 ```
 
-### MongoDBAtlas
+### `models.MongoDBAtlas`
 
 ```python
-mongoDbInstanceType: models.MongoDBAtlas = /* values here */
+value: models.MongoDBAtlas = /* values here */
 ```
 

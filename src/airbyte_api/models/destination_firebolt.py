@@ -43,8 +43,6 @@ class SQLInserts:
     
 
 
-DestinationFireboltLoadingMethod = Union['SQLInserts', 'ExternalTableViaS3']
-
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
@@ -66,3 +64,5 @@ class DestinationFirebolt:
     r"""Loading method used to select the way data will be uploaded to Firebolt"""
     
 
+
+DestinationFireboltLoadingMethod = Union[SQLInserts, ExternalTableViaS3]

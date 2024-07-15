@@ -3,27 +3,27 @@
 
 ## Supported Types
 
-### SourceGoogleAnalyticsDataAPIStringFilter
+### `models.SourceGoogleAnalyticsDataAPIStringFilter`
 
 ```python
-sourceGoogleAnalyticsDataAPISchemasCustomReportsArrayFilter: models.SourceGoogleAnalyticsDataAPIStringFilter = /* values here */
+value: models.SourceGoogleAnalyticsDataAPIStringFilter = /* values here */
 ```
 
-### SourceGoogleAnalyticsDataAPIInListFilter
+### `models.SourceGoogleAnalyticsDataAPIInListFilter`
 
 ```python
-sourceGoogleAnalyticsDataAPISchemasCustomReportsArrayFilter: models.SourceGoogleAnalyticsDataAPIInListFilter = /* values here */
+value: models.SourceGoogleAnalyticsDataAPIInListFilter = /* values here */
 ```
 
-### SourceGoogleAnalyticsDataAPINumericFilter
+### `models.SourceGoogleAnalyticsDataAPINumericFilter`
 
 ```python
-sourceGoogleAnalyticsDataAPISchemasCustomReportsArrayFilter: models.SourceGoogleAnalyticsDataAPINumericFilter = /* values here */
+value: models.SourceGoogleAnalyticsDataAPINumericFilter = /* values here */
 ```
 
-### SourceGoogleAnalyticsDataAPIBetweenFilter
+### `models.SourceGoogleAnalyticsDataAPIBetweenFilter`
 
 ```python
-sourceGoogleAnalyticsDataAPISchemasCustomReportsArrayFilter: models.SourceGoogleAnalyticsDataAPIBetweenFilter = /* values here */
+value: models.SourceGoogleAnalyticsDataAPIBetweenFilter = /* values here */
 ```
 

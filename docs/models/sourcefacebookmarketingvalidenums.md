@@ -19,7 +19,6 @@ An enumeration.
 | `ADSET_END`                                     | adset_end                                       |
 | `ADSET_ID`                                      | adset_id                                        |
 | `ADSET_NAME`                                    | adset_name                                      |
-| `ADSET_START`                                   | adset_start                                     |
 | `AGE_TARGETING`                                 | age_targeting                                   |
 | `ATTRIBUTION_SETTING`                           | attribution_setting                             |
 | `AUCTION_BID`                                   | auction_bid                                     |
@@ -36,7 +35,6 @@ An enumeration.
 | `CATALOG_SEGMENT_VALUE_OMNI_PURCHASE_ROAS`      | catalog_segment_value_omni_purchase_roas        |
 | `CATALOG_SEGMENT_VALUE_WEBSITE_PURCHASE_ROAS`   | catalog_segment_value_website_purchase_roas     |
 | `CLICKS`                                        | clicks                                          |
-| `CONVERSION_LEAD_RATE`                          | conversion_lead_rate                            |
 | `CONVERSION_RATE_RANKING`                       | conversion_rate_ranking                         |
 | `CONVERSION_VALUES`                             | conversion_values                               |
 | `CONVERSIONS`                                   | conversions                                     |
@@ -47,7 +45,6 @@ An enumeration.
 | `COST_PER_ACTION_TYPE`                          | cost_per_action_type                            |
 | `COST_PER_AD_CLICK`                             | cost_per_ad_click                               |
 | `COST_PER_CONVERSION`                           | cost_per_conversion                             |
-| `COST_PER_CONVERSION_LEAD`                      | cost_per_conversion_lead                        |
 | `COST_PER_DDA_COUNTBY_CONVS`                    | cost_per_dda_countby_convs                      |
 | `COST_PER_ESTIMATED_AD_RECALLERS`               | cost_per_estimated_ad_recallers                 |
 | `COST_PER_INLINE_LINK_CLICK`                    | cost_per_inline_link_click                      |

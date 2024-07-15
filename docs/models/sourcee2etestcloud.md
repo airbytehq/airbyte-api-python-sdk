@@ -3,9 +3,9 @@
 
 ## Supported Types
 
-### ContinuousFeed
+### `models.ContinuousFeed`
 
 ```python
-sourceE2eTestCloud: models.ContinuousFeed = /* values here */
+value: models.ContinuousFeed = /* values here */
 ```
 

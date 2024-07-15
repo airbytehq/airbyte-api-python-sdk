@@ -5,27 +5,27 @@ Metrics filter
 
 ## Supported Types
 
-### SourceGoogleAnalyticsDataAPIAndGroup
+### `models.SourceGoogleAnalyticsDataAPIAndGroup`
 
 ```python
-metricsFilter: models.SourceGoogleAnalyticsDataAPIAndGroup = /* values here */
+value: models.SourceGoogleAnalyticsDataAPIAndGroup = /* values here */
 ```
 
-### SourceGoogleAnalyticsDataAPIOrGroup
+### `models.SourceGoogleAnalyticsDataAPIOrGroup`
 
 ```python
-metricsFilter: models.SourceGoogleAnalyticsDataAPIOrGroup = /* values here */
+value: models.SourceGoogleAnalyticsDataAPIOrGroup = /* values here */
 ```
 
-### SourceGoogleAnalyticsDataAPINotExpression
+### `models.SourceGoogleAnalyticsDataAPINotExpression`
 
 ```python
-metricsFilter: models.SourceGoogleAnalyticsDataAPINotExpression = /* values here */
+value: models.SourceGoogleAnalyticsDataAPINotExpression = /* values here */
 ```
 
-### SourceGoogleAnalyticsDataAPIFilter
+### `models.SourceGoogleAnalyticsDataAPIFilter`
 
 ```python
-metricsFilter: models.SourceGoogleAnalyticsDataAPIFilter = /* values here */
+value: models.SourceGoogleAnalyticsDataAPIFilter = /* values here */
 ```
 

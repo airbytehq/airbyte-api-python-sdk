@@ -9,6 +9,6 @@ from typing import Final
 class SchemeClientCredentials:
     client_id: str = dataclasses.field(metadata={'security': { 'field_name': 'clientID' }})
     client_secret: str = dataclasses.field(metadata={'security': { 'field_name': 'clientSecret' }})
-    TOKEN_URL: Final[str] = dataclasses.field(default='/api/v1/applications/token')
+    TOKEN_URL: Final[str] = dataclasses.field(default='/applications/token')
     
 

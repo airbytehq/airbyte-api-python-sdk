@@ -13,7 +13,7 @@
 ## create_or_update_workspace_o_auth_credentials
 
 Create/update a set of OAuth credentials to override the Airbyte-provided OAuth credentials used for source/destination OAuth.
-In order to determine what the credential configuration needs to be, please see the connector specification of the relevant  source/destination.
+In order to determine what the credential configuration needs to be, please see the connector specification of the relevant source/destination.
 
 ### Example Usage
 

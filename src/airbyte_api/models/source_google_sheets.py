@@ -39,8 +39,6 @@ class SourceGoogleSheetsAuthenticateViaGoogleOAuth:
     
 
 
-SourceGoogleSheetsAuthentication = Union['SourceGoogleSheetsAuthenticateViaGoogleOAuth', 'SourceGoogleSheetsServiceAccountKeyAuthentication']
-
 
 class SourceGoogleSheetsGoogleSheets(str, Enum):
     GOOGLE_SHEETS = 'google-sheets'
@@ -60,3 +58,5 @@ class SourceGoogleSheets:
     SOURCE_TYPE: Final[SourceGoogleSheetsGoogleSheets] = dataclasses.field(default=SourceGoogleSheetsGoogleSheets.GOOGLE_SHEETS, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     
 
+
+SourceGoogleSheetsAuthentication = Union[SourceGoogleSheetsAuthenticateViaGoogleOAuth, SourceGoogleSheetsServiceAccountKeyAuthentication]

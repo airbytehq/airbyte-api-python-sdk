@@ -17,7 +17,6 @@ class SourceZendeskTalkSchemasAuthType(str, Enum):
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
 class SourceZendeskTalkAPIToken:
-    UNSET='__SPEAKEASY_UNSET__'
     api_token: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('api_token') }})
     r"""The value of the API token generated. See the <a href=\\"https://docs.airbyte.com/integrations/sources/zendesk-talk\\">docs</a> for more information."""
     email: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('email') }})
@@ -35,7 +34,6 @@ class SourceZendeskTalkAuthType(str, Enum):
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
 class SourceZendeskTalkOAuth20:
-    UNSET='__SPEAKEASY_UNSET__'
     access_token: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('access_token') }})
     r"""The value of the API token generated. See the <a href=\\"https://docs.airbyte.com/integrations/sources/zendesk-talk\\">docs</a> for more information."""
     additional_properties: Optional[Dict[str, Any]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'exclude': lambda f: f is None }})
@@ -46,8 +44,6 @@ class SourceZendeskTalkOAuth20:
     r"""Client Secret"""
     
 
-
-SourceZendeskTalkAuthentication = Union['SourceZendeskTalkOAuth20', 'SourceZendeskTalkAPIToken']
 
 
 class SourceZendeskTalkZendeskTalk(str, Enum):
@@ -66,3 +62,5 @@ class SourceZendeskTalk:
     SOURCE_TYPE: Final[SourceZendeskTalkZendeskTalk] = dataclasses.field(default=SourceZendeskTalkZendeskTalk.ZENDESK_TALK, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     
 
+
+SourceZendeskTalkAuthentication = Union[SourceZendeskTalkOAuth20, SourceZendeskTalkAPIToken]

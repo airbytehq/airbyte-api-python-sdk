@@ -69,8 +69,6 @@ class SourceClickhouseNoTunnel:
     
 
 
-SourceClickhouseSSHTunnelMethod = Union['SourceClickhouseNoTunnel', 'SourceClickhouseSSHKeyAuthentication', 'SourceClickhousePasswordAuthentication']
-
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
@@ -92,3 +90,5 @@ class SourceClickhouse:
     r"""Whether to initiate an SSH tunnel before connecting to the database, and if so, which kind of authentication to use."""
     
 
+
+SourceClickhouseSSHTunnelMethod = Union[SourceClickhouseNoTunnel, SourceClickhouseSSHKeyAuthentication, SourceClickhousePasswordAuthentication]

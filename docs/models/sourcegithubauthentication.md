@@ -5,15 +5,15 @@ Choose how to authenticate to GitHub
 
 ## Supported Types
 
-### OAuth
+### `models.OAuth`
 
 ```python
-sourceGithubAuthentication: models.OAuth = /* values here */
+value: models.OAuth = /* values here */
 ```
 
-### SourceGithubPersonalAccessToken
+### `models.SourceGithubPersonalAccessToken`
 
 ```python
-sourceGithubAuthentication: models.SourceGithubPersonalAccessToken = /* values here */
+value: models.SourceGithubPersonalAccessToken = /* values here */
 ```
 

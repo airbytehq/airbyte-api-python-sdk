@@ -3,27 +3,27 @@
 
 ## Supported Types
 
-### SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayMetricFilterStringFilter
+### `models.SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayMetricFilterStringFilter`
 
 ```python
-sourceGoogleAnalyticsDataAPISchemasCustomReportsArrayMetricFilterFilter: models.SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayMetricFilterStringFilter = /* values here */
+value: models.SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayMetricFilterStringFilter = /* values here */
 ```
 
-### SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayMetricFilterInListFilter
+### `models.SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayMetricFilterInListFilter`
 
 ```python
-sourceGoogleAnalyticsDataAPISchemasCustomReportsArrayMetricFilterFilter: models.SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayMetricFilterInListFilter = /* values here */
+value: models.SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayMetricFilterInListFilter = /* values here */
 ```
 
-### SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayMetricFilterNumericFilter
+### `models.SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayMetricFilterNumericFilter`
 
 ```python
-sourceGoogleAnalyticsDataAPISchemasCustomReportsArrayMetricFilterFilter: models.SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayMetricFilterNumericFilter = /* values here */
+value: models.SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayMetricFilterNumericFilter = /* values here */
 ```
 
-### SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayMetricFilterBetweenFilter
+### `models.SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayMetricFilterBetweenFilter`
 
 ```python
-sourceGoogleAnalyticsDataAPISchemasCustomReportsArrayMetricFilterFilter: models.SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayMetricFilterBetweenFilter = /* values here */
+value: models.SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayMetricFilterBetweenFilter = /* values here */
 ```
 

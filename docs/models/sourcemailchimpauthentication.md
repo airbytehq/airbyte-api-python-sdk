@@ -3,15 +3,15 @@
 
 ## Supported Types
 
-### SourceMailchimpOAuth20
+### `models.SourceMailchimpOAuth20`
 
 ```python
-sourceMailchimpAuthentication: models.SourceMailchimpOAuth20 = /* values here */
+value: models.SourceMailchimpOAuth20 = /* values here */
 ```
 
-### APIKey
+### `models.APIKey`
 
 ```python
-sourceMailchimpAuthentication: models.APIKey = /* values here */
+value: models.APIKey = /* values here */
 ```
 

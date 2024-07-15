@@ -39,8 +39,6 @@ class AuthenticateViaLeverOAuth:
     
 
 
-SourceLeverHiringAuthenticationMechanism = Union['AuthenticateViaLeverOAuth', 'AuthenticateViaLeverAPIKey']
-
 
 class SourceLeverHiringEnvironment(str, Enum):
     r"""The environment in which you'd like to replicate data for Lever. This is used to determine which Lever API endpoint to use."""
@@ -64,3 +62,5 @@ class SourceLeverHiring:
     SOURCE_TYPE: Final[SourceLeverHiringLeverHiring] = dataclasses.field(default=SourceLeverHiringLeverHiring.LEVER_HIRING, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     
 
+
+SourceLeverHiringAuthenticationMechanism = Union[AuthenticateViaLeverOAuth, AuthenticateViaLeverAPIKey]

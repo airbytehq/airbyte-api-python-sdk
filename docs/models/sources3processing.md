@@ -5,9 +5,9 @@ Processing configuration
 
 ## Supported Types
 
-### SourceS3Local
+### `models.SourceS3Local`
 
 ```python
-sourceS3Processing: models.SourceS3Local = /* values here */
+value: models.SourceS3Local = /* values here */
 ```
 

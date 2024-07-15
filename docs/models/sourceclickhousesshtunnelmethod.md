@@ -5,21 +5,21 @@ Whether to initiate an SSH tunnel before connecting to the database, and if so, 
 
 ## Supported Types
 
-### SourceClickhouseNoTunnel
+### `models.SourceClickhouseNoTunnel`
 
 ```python
-sourceClickhouseSSHTunnelMethod: models.SourceClickhouseNoTunnel = /* values here */
+value: models.SourceClickhouseNoTunnel = /* values here */
 ```
 
-### SourceClickhouseSSHKeyAuthentication
+### `models.SourceClickhouseSSHKeyAuthentication`
 
 ```python
-sourceClickhouseSSHTunnelMethod: models.SourceClickhouseSSHKeyAuthentication = /* values here */
+value: models.SourceClickhouseSSHKeyAuthentication = /* values here */
 ```
 
-### SourceClickhousePasswordAuthentication
+### `models.SourceClickhousePasswordAuthentication`
 
 ```python
-sourceClickhouseSSHTunnelMethod: models.SourceClickhousePasswordAuthentication = /* values here */
+value: models.SourceClickhousePasswordAuthentication = /* values here */
 ```
 

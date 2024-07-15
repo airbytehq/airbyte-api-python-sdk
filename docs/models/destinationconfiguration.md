@@ -5,225 +5,219 @@ The values required to configure the destination.
 
 ## Supported Types
 
-### DestinationGoogleSheets
+### `models.DestinationGoogleSheets`
 
 ```python
-destinationConfiguration: models.DestinationGoogleSheets = /* values here */
+value: models.DestinationGoogleSheets = /* values here */
 ```
 
-### DestinationAstra
+### `models.DestinationAstra`
 
 ```python
-destinationConfiguration: models.DestinationAstra = /* values here */
+value: models.DestinationAstra = /* values here */
 ```
 
-### DestinationAwsDatalake
+### `models.DestinationAwsDatalake`
 
 ```python
-destinationConfiguration: models.DestinationAwsDatalake = /* values here */
+value: models.DestinationAwsDatalake = /* values here */
 ```
 
-### DestinationAzureBlobStorage
+### `models.DestinationAzureBlobStorage`
 
 ```python
-destinationConfiguration: models.DestinationAzureBlobStorage = /* values here */
+value: models.DestinationAzureBlobStorage = /* values here */
 ```
 
-### DestinationBigquery
+### `models.DestinationBigquery`
 
 ```python
-destinationConfiguration: models.DestinationBigquery = /* values here */
+value: models.DestinationBigquery = /* values here */
 ```
 
-### DestinationClickhouse
+### `models.DestinationClickhouse`
 
 ```python
-destinationConfiguration: models.DestinationClickhouse = /* values here */
+value: models.DestinationClickhouse = /* values here */
 ```
 
-### DestinationConvex
+### `models.DestinationConvex`
 
 ```python
-destinationConfiguration: models.DestinationConvex = /* values here */
+value: models.DestinationConvex = /* values here */
 ```
 
-### DestinationDatabricks
+### `models.DestinationDatabricks`
 
 ```python
-destinationConfiguration: models.DestinationDatabricks = /* values here */
+value: models.DestinationDatabricks = /* values here */
 ```
 
-### DestinationDevNull
+### `models.DestinationDevNull`
 
 ```python
-destinationConfiguration: models.DestinationDevNull = /* values here */
+value: models.DestinationDevNull = /* values here */
 ```
 
-### DestinationDuckdb
+### `models.DestinationDuckdb`
 
 ```python
-destinationConfiguration: models.DestinationDuckdb = /* values here */
+value: models.DestinationDuckdb = /* values here */
 ```
 
-### DestinationDynamodb
+### `models.DestinationDynamodb`
 
 ```python
-destinationConfiguration: models.DestinationDynamodb = /* values here */
+value: models.DestinationDynamodb = /* values here */
 ```
 
-### DestinationElasticsearch
+### `models.DestinationElasticsearch`
 
 ```python
-destinationConfiguration: models.DestinationElasticsearch = /* values here */
+value: models.DestinationElasticsearch = /* values here */
 ```
 
-### DestinationFirebolt
+### `models.DestinationFirebolt`
 
 ```python
-destinationConfiguration: models.DestinationFirebolt = /* values here */
+value: models.DestinationFirebolt = /* values here */
 ```
 
-### DestinationFirestore
+### `models.DestinationFirestore`
 
 ```python
-destinationConfiguration: models.DestinationFirestore = /* values here */
+value: models.DestinationFirestore = /* values here */
 ```
 
-### DestinationGcs
+### `models.DestinationGcs`
 
 ```python
-destinationConfiguration: models.DestinationGcs = /* values here */
+value: models.DestinationGcs = /* values here */
 ```
 
-### DestinationLangchain
+### `models.DestinationMilvus`
 
 ```python
-destinationConfiguration: models.DestinationLangchain = /* values here */
+value: models.DestinationMilvus = /* values here */
 ```
 
-### DestinationMilvus
+### `models.DestinationMongodb`
 
 ```python
-destinationConfiguration: models.DestinationMilvus = /* values here */
+value: models.DestinationMongodb = /* values here */
 ```
 
-### DestinationMongodb
+### `models.DestinationMssql`
 
 ```python
-destinationConfiguration: models.DestinationMongodb = /* values here */
+value: models.DestinationMssql = /* values here */
 ```
 
-### DestinationMssql
+### `models.DestinationMysql`
 
 ```python
-destinationConfiguration: models.DestinationMssql = /* values here */
+value: models.DestinationMysql = /* values here */
 ```
 
-### DestinationMysql
+### `models.DestinationOracle`
 
 ```python
-destinationConfiguration: models.DestinationMysql = /* values here */
+value: models.DestinationOracle = /* values here */
 ```
 
-### DestinationOracle
+### `models.DestinationPinecone`
 
 ```python
-destinationConfiguration: models.DestinationOracle = /* values here */
+value: models.DestinationPinecone = /* values here */
 ```
 
-### DestinationPinecone
+### `models.DestinationPostgres`
 
 ```python
-destinationConfiguration: models.DestinationPinecone = /* values here */
+value: models.DestinationPostgres = /* values here */
 ```
 
-### DestinationPostgres
+### `models.DestinationPubsub`
 
 ```python
-destinationConfiguration: models.DestinationPostgres = /* values here */
+value: models.DestinationPubsub = /* values here */
 ```
 
-### DestinationPubsub
+### `models.DestinationQdrant`
 
 ```python
-destinationConfiguration: models.DestinationPubsub = /* values here */
+value: models.DestinationQdrant = /* values here */
 ```
 
-### DestinationQdrant
+### `models.DestinationRedis`
 
 ```python
-destinationConfiguration: models.DestinationQdrant = /* values here */
+value: models.DestinationRedis = /* values here */
 ```
 
-### DestinationRedis
+### `models.DestinationRedshift`
 
 ```python
-destinationConfiguration: models.DestinationRedis = /* values here */
+value: models.DestinationRedshift = /* values here */
 ```
 
-### DestinationRedshift
+### `models.DestinationS3`
 
 ```python
-destinationConfiguration: models.DestinationRedshift = /* values here */
+value: models.DestinationS3 = /* values here */
 ```
 
-### DestinationS3
+### `models.DestinationS3Glue`
 
 ```python
-destinationConfiguration: models.DestinationS3 = /* values here */
+value: models.DestinationS3Glue = /* values here */
 ```
 
-### DestinationS3Glue
+### `models.DestinationSftpJSON`
 
 ```python
-destinationConfiguration: models.DestinationS3Glue = /* values here */
+value: models.DestinationSftpJSON = /* values here */
 ```
 
-### DestinationSftpJSON
+### `models.DestinationSnowflake`
 
 ```python
-destinationConfiguration: models.DestinationSftpJSON = /* values here */
+value: models.DestinationSnowflake = /* values here */
 ```
 
-### DestinationSnowflake
+### `models.DestinationSnowflakeCortex`
 
 ```python
-destinationConfiguration: models.DestinationSnowflake = /* values here */
+value: models.DestinationSnowflakeCortex = /* values here */
 ```
 
-### DestinationSnowflakeCortex
+### `models.DestinationTeradata`
 
 ```python
-destinationConfiguration: models.DestinationSnowflakeCortex = /* values here */
+value: models.DestinationTeradata = /* values here */
 ```
 
-### DestinationTeradata
+### `models.DestinationTypesense`
 
 ```python
-destinationConfiguration: models.DestinationTeradata = /* values here */
+value: models.DestinationTypesense = /* values here */
 ```
 
-### DestinationTypesense
+### `models.DestinationVectara`
 
 ```python
-destinationConfiguration: models.DestinationTypesense = /* values here */
+value: models.DestinationVectara = /* values here */
 ```
 
-### DestinationVectara
+### `models.DestinationWeaviate`
 
 ```python
-destinationConfiguration: models.DestinationVectara = /* values here */
+value: models.DestinationWeaviate = /* values here */
 ```
 
-### DestinationWeaviate
+### `models.DestinationYellowbrick`
 
 ```python
-destinationConfiguration: models.DestinationWeaviate = /* values here */
-```
-
-### DestinationYellowbrick
-
-```python
-destinationConfiguration: models.DestinationYellowbrick = /* values here */
+value: models.DestinationYellowbrick = /* values here */
 ```
 

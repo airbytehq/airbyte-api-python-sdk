@@ -5,21 +5,21 @@ Split text fields into chunks based on the specified method.
 
 ## Supported Types
 
-### BySeparator
+### `models.BySeparator`
 
 ```python
-textSplitter: models.BySeparator = /* values here */
+value: models.BySeparator = /* values here */
 ```
 
-### ByMarkdownHeader
+### `models.ByMarkdownHeader`
 
 ```python
-textSplitter: models.ByMarkdownHeader = /* values here */
+value: models.ByMarkdownHeader = /* values here */
 ```
 
-### ByProgrammingLanguage
+### `models.ByProgrammingLanguage`
 
 ```python
-textSplitter: models.ByProgrammingLanguage = /* values here */
+value: models.ByProgrammingLanguage = /* values here */
 ```
 

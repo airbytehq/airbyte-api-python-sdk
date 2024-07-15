@@ -3,15 +3,15 @@
 
 ## Supported Types
 
-### SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayMetricFilterMetricsFilter3Int64Value
+### `models.SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayMetricFilterMetricsFilter3Int64Value`
 
 ```python
-sourceGoogleAnalyticsDataAPISchemasCustomReportsArrayMetricFilterMetricsFilter3Value: models.SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayMetricFilterMetricsFilter3Int64Value = /* values here */
+value: models.SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayMetricFilterMetricsFilter3Int64Value = /* values here */
 ```
 
-### SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayMetricFilterMetricsFilter3DoubleValue
+### `models.SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayMetricFilterMetricsFilter3DoubleValue`
 
 ```python
-sourceGoogleAnalyticsDataAPISchemasCustomReportsArrayMetricFilterMetricsFilter3Value: models.SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayMetricFilterMetricsFilter3DoubleValue = /* values here */
+value: models.SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayMetricFilterMetricsFilter3DoubleValue = /* values here */
 ```
 

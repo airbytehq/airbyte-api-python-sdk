@@ -28,7 +28,7 @@ class SourcePostgresSchemasMethod(str, Enum):
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
 class DetectChangesWithXminSystemColumn:
-    r"""<i>Recommended</i> - Incrementally reads new inserts and updates via Postgres <a href=\\"https://docs.airbyte.com/integrations/sources/postgres/#xmin\\">Xmin system column</a>. Only recommended for tables up to 500GB."""
+    r"""<i>Recommended</i> - Incrementally reads new inserts and updates via Postgres <a href=\\"https://docs.airbyte.com/integrations/sources/postgres/#xmin\\">Xmin system column</a>. Suitable for databases that have low transaction pressure."""
     METHOD: Final[SourcePostgresSchemasMethod] = dataclasses.field(default=SourcePostgresSchemasMethod.XMIN, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('method') }})
     
 
@@ -59,7 +59,6 @@ class Plugin(str, Enum):
 @dataclasses.dataclass
 class ReadChangesUsingWriteAheadLogCDC:
     r"""<i>Recommended</i> - Incrementally reads new inserts, updates, and deletes using the Postgres <a href=\\"https://docs.airbyte.com/integrations/sources/postgres/#cdc\\">write-ahead log (WAL)</a>. This needs to be configured on the source database itself. Recommended for tables of any size."""
-    UNSET='__SPEAKEASY_UNSET__'
     publication: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('publication') }})
     r"""A Postgres publication used for consuming changes. Read about <a href=\\"https://docs.airbyte.com/integrations/sources/postgres#step-4-create-publications-and-replication-identities-for-tables\\">publications and replication identities</a>."""
     replication_slot: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('replication_slot') }})
@@ -81,8 +80,6 @@ class ReadChangesUsingWriteAheadLogCDC:
     
 
 
-SourcePostgresUpdateMethod = Union['ReadChangesUsingWriteAheadLogCDC', 'DetectChangesWithXminSystemColumn', 'SourcePostgresScanChangesWithUserDefinedCursor']
-
 
 class SourcePostgresPostgres(str, Enum):
     POSTGRES = 'postgres'
@@ -96,7 +93,6 @@ class SourcePostgresSchemasSSLModeSSLModes6Mode(str, Enum):
 @dataclasses.dataclass
 class SourcePostgresVerifyFull:
     r"""This is the most secure mode. Always require encryption and verifies the identity of the source database server."""
-    UNSET='__SPEAKEASY_UNSET__'
     ca_certificate: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('ca_certificate') }})
     r"""CA certificate"""
     additional_properties: Optional[Dict[str, Any]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'exclude': lambda f: f is None }})
@@ -119,7 +115,6 @@ class SourcePostgresSchemasSSLModeSSLModes5Mode(str, Enum):
 @dataclasses.dataclass
 class SourcePostgresVerifyCa:
     r"""Always require encryption and verifies that the source database server has a valid SSL certificate."""
-    UNSET='__SPEAKEASY_UNSET__'
     ca_certificate: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('ca_certificate') }})
     r"""CA certificate"""
     additional_properties: Optional[Dict[str, Any]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'exclude': lambda f: f is None }})
@@ -142,7 +137,6 @@ class SourcePostgresSchemasSSLModeSSLModesMode(str, Enum):
 @dataclasses.dataclass
 class SourcePostgresRequire:
     r"""Always require encryption. If the source database server does not support encryption, connection will fail."""
-    UNSET='__SPEAKEASY_UNSET__'
     additional_properties: Optional[Dict[str, Any]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'exclude': lambda f: f is None }})
     MODE: Final[SourcePostgresSchemasSSLModeSSLModesMode] = dataclasses.field(default=SourcePostgresSchemasSSLModeSSLModesMode.REQUIRE, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('mode') }})
     
@@ -157,7 +151,6 @@ class SourcePostgresSchemasSslModeMode(str, Enum):
 @dataclasses.dataclass
 class SourcePostgresPrefer:
     r"""Allows unencrypted connection only if the source database does not support encryption."""
-    UNSET='__SPEAKEASY_UNSET__'
     additional_properties: Optional[Dict[str, Any]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'exclude': lambda f: f is None }})
     MODE: Final[SourcePostgresSchemasSslModeMode] = dataclasses.field(default=SourcePostgresSchemasSslModeMode.PREFER, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('mode') }})
     
@@ -172,7 +165,6 @@ class SourcePostgresSchemasMode(str, Enum):
 @dataclasses.dataclass
 class SourcePostgresAllow:
     r"""Enables encryption only when required by the source database."""
-    UNSET='__SPEAKEASY_UNSET__'
     additional_properties: Optional[Dict[str, Any]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'exclude': lambda f: f is None }})
     MODE: Final[SourcePostgresSchemasMode] = dataclasses.field(default=SourcePostgresSchemasMode.ALLOW, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('mode') }})
     
@@ -187,13 +179,10 @@ class SourcePostgresMode(str, Enum):
 @dataclasses.dataclass
 class SourcePostgresDisable:
     r"""Disables encryption of communication between Airbyte and source database."""
-    UNSET='__SPEAKEASY_UNSET__'
     additional_properties: Optional[Dict[str, Any]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'exclude': lambda f: f is None }})
     MODE: Final[SourcePostgresMode] = dataclasses.field(default=SourcePostgresMode.DISABLE, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('mode') }})
     
 
-
-SourcePostgresSSLModes = Union['SourcePostgresDisable', 'SourcePostgresAllow', 'SourcePostgresPrefer', 'SourcePostgresRequire', 'SourcePostgresVerifyCa', 'SourcePostgresVerifyFull']
 
 
 class SourcePostgresSchemasTunnelMethodTunnelMethod(str, Enum):
@@ -253,8 +242,6 @@ class SourcePostgresNoTunnel:
     
 
 
-SourcePostgresSSHTunnelMethod = Union['SourcePostgresNoTunnel', 'SourcePostgresSSHKeyAuthentication', 'SourcePostgresPasswordAuthentication']
-
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
@@ -284,3 +271,9 @@ class SourcePostgres:
     r"""Whether to initiate an SSH tunnel before connecting to the database, and if so, which kind of authentication to use."""
     
 
+
+SourcePostgresUpdateMethod = Union[ReadChangesUsingWriteAheadLogCDC, DetectChangesWithXminSystemColumn, SourcePostgresScanChangesWithUserDefinedCursor]
+
+SourcePostgresSSLModes = Union[SourcePostgresDisable, SourcePostgresAllow, SourcePostgresPrefer, SourcePostgresRequire, SourcePostgresVerifyCa, SourcePostgresVerifyFull]
+
+SourcePostgresSSHTunnelMethod = Union[SourcePostgresNoTunnel, SourcePostgresSSHKeyAuthentication, SourcePostgresPasswordAuthentication]

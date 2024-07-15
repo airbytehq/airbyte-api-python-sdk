@@ -5,15 +5,15 @@ Processing configuration
 
 ## Supported Types
 
-### SourceSftpBulkLocal
+### `models.SourceSftpBulkLocal`
 
 ```python
-sourceSftpBulkProcessing: models.SourceSftpBulkLocal = /* values here */
+value: models.SourceSftpBulkLocal = /* values here */
 ```
 
-### ViaAPI
+### `models.ViaAPI`
 
 ```python
-sourceSftpBulkProcessing: models.ViaAPI = /* values here */
+value: models.ViaAPI = /* values here */
 ```
 

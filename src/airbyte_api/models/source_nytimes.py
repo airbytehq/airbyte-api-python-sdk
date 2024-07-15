@@ -4,7 +4,6 @@ from __future__ import annotations
 import dataclasses
 from airbyte_api import utils
 from dataclasses_json import Undefined, dataclass_json
-from datetime import date
 from enum import Enum
 from typing import Final, Optional
 
@@ -32,9 +31,9 @@ class SourceNytimes:
     r"""API Key"""
     period: PeriodUsedForMostPopularStreams = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('period') }})
     r"""Period of time (in days)"""
-    start_date: date = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('start_date'), 'encoder': utils.dateisoformat(False), 'decoder': utils.datefromisoformat }})
+    start_date: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('start_date') }})
     r"""Start date to begin the article retrieval (format YYYY-MM)"""
-    end_date: Optional[date] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('end_date'), 'encoder': utils.dateisoformat(True), 'decoder': utils.datefromisoformat, 'exclude': lambda f: f is None }})
+    end_date: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('end_date'), 'exclude': lambda f: f is None }})
     r"""End date to stop the article retrieval (format YYYY-MM)"""
     share_type: Optional[ShareTypeUsedForMostPopularSharedStream] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('share_type'), 'exclude': lambda f: f is None }})
     r"""Share Type"""

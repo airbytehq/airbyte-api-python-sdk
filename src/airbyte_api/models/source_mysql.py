@@ -35,6 +35,8 @@ class SourceMysqlMethod(str, Enum):
 @dataclasses.dataclass
 class ReadChangesUsingBinaryLogCDC:
     r"""<i>Recommended</i> - Incrementally reads new inserts, updates, and deletes using the MySQL <a href=\\"https://docs.airbyte.com/integrations/sources/mysql/#change-data-capture-cdc\\">binary log</a>. This must be enabled on your database."""
+    initial_load_timeout_hours: Optional[int] = dataclasses.field(default=8, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('initial_load_timeout_hours'), 'exclude': lambda f: f is None }})
+    r"""The amount of time an initial load is allowed to continue for before catching up on CDC logs."""
     initial_waiting_seconds: Optional[int] = dataclasses.field(default=300, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('initial_waiting_seconds'), 'exclude': lambda f: f is None }})
     r"""The amount of time the connector will wait when it launches to determine if there is new data to sync or not. Defaults to 300 seconds. Valid range: 120 seconds to 1200 seconds. Read about <a href=\\"https://docs.airbyte.com/integrations/sources/mysql/#change-data-capture-cdc\\">initial waiting time</a>."""
     invalid_cdc_cursor_position_behavior: Optional[SourceMysqlInvalidCDCPositionBehaviorAdvanced] = dataclasses.field(default=SourceMysqlInvalidCDCPositionBehaviorAdvanced.FAIL_SYNC, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('invalid_cdc_cursor_position_behavior'), 'exclude': lambda f: f is None }})
@@ -44,8 +46,6 @@ class ReadChangesUsingBinaryLogCDC:
     r"""Enter the configured MySQL server timezone. This should only be done if the configured timezone in your MySQL instance does not conform to IANNA standard."""
     
 
-
-SourceMysqlUpdateMethod = Union['ReadChangesUsingBinaryLogCDC', 'SourceMysqlScanChangesWithUserDefinedCursor']
 
 
 class SourceMysqlMysql(str, Enum):
@@ -119,8 +119,6 @@ class Preferred:
     
 
 
-SourceMysqlSSLModes = Union['Preferred', 'Required', 'SourceMysqlVerifyCA', 'VerifyIdentity']
-
 
 class SourceMysqlSchemasTunnelMethodTunnelMethod(str, Enum):
     r"""Connect through a jump server tunnel host using username and password authentication"""
@@ -179,8 +177,6 @@ class SourceMysqlNoTunnel:
     
 
 
-SourceMysqlSSHTunnelMethod = Union['SourceMysqlNoTunnel', 'SourceMysqlSSHKeyAuthentication', 'SourceMysqlPasswordAuthentication']
-
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
@@ -206,3 +202,9 @@ class SourceMysql:
     r"""Whether to initiate an SSH tunnel before connecting to the database, and if so, which kind of authentication to use."""
     
 
+
+SourceMysqlUpdateMethod = Union[ReadChangesUsingBinaryLogCDC, SourceMysqlScanChangesWithUserDefinedCursor]
+
+SourceMysqlSSLModes = Union[Preferred, Required, SourceMysqlVerifyCA, VerifyIdentity]
+
+SourceMysqlSSHTunnelMethod = Union[SourceMysqlNoTunnel, SourceMysqlSSHKeyAuthentication, SourceMysqlPasswordAuthentication]

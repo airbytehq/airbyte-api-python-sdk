@@ -5,33 +5,33 @@ Embedding configuration
 
 ## Supported Types
 
-### DestinationQdrantOpenAI
+### `models.DestinationQdrantOpenAI`
 
 ```python
-destinationQdrantEmbedding: models.DestinationQdrantOpenAI = /* values here */
+value: models.DestinationQdrantOpenAI = /* values here */
 ```
 
-### DestinationQdrantCohere
+### `models.DestinationQdrantCohere`
 
 ```python
-destinationQdrantEmbedding: models.DestinationQdrantCohere = /* values here */
+value: models.DestinationQdrantCohere = /* values here */
 ```
 
-### DestinationQdrantFake
+### `models.DestinationQdrantFake`
 
 ```python
-destinationQdrantEmbedding: models.DestinationQdrantFake = /* values here */
+value: models.DestinationQdrantFake = /* values here */
 ```
 
-### DestinationQdrantAzureOpenAI
+### `models.DestinationQdrantAzureOpenAI`
 
 ```python
-destinationQdrantEmbedding: models.DestinationQdrantAzureOpenAI = /* values here */
+value: models.DestinationQdrantAzureOpenAI = /* values here */
 ```
 
-### DestinationQdrantOpenAICompatible
+### `models.DestinationQdrantOpenAICompatible`
 
 ```python
-destinationQdrantEmbedding: models.DestinationQdrantOpenAICompatible = /* values here */
+value: models.DestinationQdrantOpenAICompatible = /* values here */
 ```
 

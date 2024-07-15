@@ -5,15 +5,15 @@ Google APIs use the OAuth 2.0 protocol for authentication and authorization. The
 
 ## Supported Types
 
-### SignInViaGoogleOAuth
+### `models.SignInViaGoogleOAuth`
 
 ```python
-sourceGoogleDirectoryGoogleCredentials: models.SignInViaGoogleOAuth = /* values here */
+value: models.SignInViaGoogleOAuth = /* values here */
 ```
 
-### ServiceAccountKey
+### `models.ServiceAccountKey`
 
 ```python
-sourceGoogleDirectoryGoogleCredentials: models.ServiceAccountKey = /* values here */
+value: models.ServiceAccountKey = /* values here */
 ```
 

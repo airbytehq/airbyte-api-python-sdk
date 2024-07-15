@@ -97,8 +97,6 @@ class DestinationTeradataDisable:
     
 
 
-DestinationTeradataSSLModes = Union['DestinationTeradataDisable', 'DestinationTeradataAllow', 'DestinationTeradataPrefer', 'DestinationTeradataRequire', 'DestinationTeradataVerifyCa', 'DestinationTeradataVerifyFull']
-
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
@@ -128,3 +126,5 @@ class DestinationTeradata:
     """
     
 
+
+DestinationTeradataSSLModes = Union[DestinationTeradataDisable, DestinationTeradataAllow, DestinationTeradataPrefer, DestinationTeradataRequire, DestinationTeradataVerifyCa, DestinationTeradataVerifyFull]

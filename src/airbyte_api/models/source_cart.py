@@ -41,8 +41,6 @@ class CentralAPIRouter:
     
 
 
-SourceCartAuthorizationMethod = Union['CentralAPIRouter', 'SingleStoreAccessToken']
-
 
 class Cart(str, Enum):
     CART = 'cart'
@@ -57,3 +55,5 @@ class SourceCart:
     SOURCE_TYPE: Final[Cart] = dataclasses.field(default=Cart.CART, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     
 
+
+SourceCartAuthorizationMethod = Union[CentralAPIRouter, SingleStoreAccessToken]

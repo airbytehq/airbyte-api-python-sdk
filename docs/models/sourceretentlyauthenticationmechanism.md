@@ -5,15 +5,15 @@ Choose how to authenticate to Retently
 
 ## Supported Types
 
-### AuthenticateViaRetentlyOAuth
+### `models.AuthenticateViaRetentlyOAuth`
 
 ```python
-sourceRetentlyAuthenticationMechanism: models.AuthenticateViaRetentlyOAuth = /* values here */
+value: models.AuthenticateViaRetentlyOAuth = /* values here */
 ```
 
-### AuthenticateWithAPIToken
+### `models.AuthenticateWithAPIToken`
 
 ```python
-sourceRetentlyAuthenticationMechanism: models.AuthenticateWithAPIToken = /* values here */
+value: models.AuthenticateWithAPIToken = /* values here */
 ```
 

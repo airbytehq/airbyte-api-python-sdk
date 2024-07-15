@@ -37,8 +37,6 @@ class NoneT:
     
 
 
-AuthorizationType = Union['NoneT', 'LoginPassword']
-
 
 class Mongodb(str, Enum):
     MONGODB = 'mongodb'
@@ -88,8 +86,6 @@ class StandaloneMongoDbInstance:
     r"""The Port of a Mongo database to be replicated."""
     
 
-
-MongoDbInstanceType = Union['StandaloneMongoDbInstance', 'ReplicaSet', 'MongoDBAtlas']
 
 
 class DestinationMongodbSchemasTunnelMethodTunnelMethod(str, Enum):
@@ -149,8 +145,6 @@ class DestinationMongodbNoTunnel:
     
 
 
-DestinationMongodbSSHTunnelMethod = Union['DestinationMongodbNoTunnel', 'DestinationMongodbSSHKeyAuthentication', 'DestinationMongodbPasswordAuthentication']
-
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
@@ -166,3 +160,9 @@ class DestinationMongodb:
     r"""Whether to initiate an SSH tunnel before connecting to the database, and if so, which kind of authentication to use."""
     
 
+
+AuthorizationType = Union[NoneT, LoginPassword]
+
+MongoDbInstanceType = Union[StandaloneMongoDbInstance, ReplicaSet, MongoDBAtlas]
+
+DestinationMongodbSSHTunnelMethod = Union[DestinationMongodbNoTunnel, DestinationMongodbSSHKeyAuthentication, DestinationMongodbPasswordAuthentication]

@@ -93,8 +93,6 @@ class RecommendedManagedTables:
     
 
 
-DataSource = Union['RecommendedManagedTables', 'AmazonS3', 'DestinationDatabricksAzureBlobStorage']
-
 
 class Databricks(str, Enum):
     DATABRICKS = 'databricks'
@@ -126,3 +124,5 @@ class DestinationDatabricks:
     r"""The default schema tables are written. If not specified otherwise, the \\"default\\" will be used."""
     
 
+
+DataSource = Union[RecommendedManagedTables, AmazonS3, DestinationDatabricksAzureBlobStorage]

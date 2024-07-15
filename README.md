@@ -85,6 +85,10 @@ if res.connection_response is not None:
 * [get_job](docs/sdks/jobs/README.md#get_job) - Get Job status and details
 * [list_jobs](docs/sdks/jobs/README.md#list_jobs) - List Jobs by sync type
 
+### [organizations](docs/sdks/organizations/README.md)
+
+* [list_organizations_for_user](docs/sdks/organizations/README.md#list_organizations_for_user) - List all organizations for a user
+
 ### [permissions](docs/sdks/permissions/README.md)
 
 * [create_permission](docs/sdks/permissions/README.md#create_permission) - Create a permission
@@ -109,7 +113,7 @@ if res.connection_response is not None:
 
 ### [users](docs/sdks/users/README.md)
 
-* [list_users](docs/sdks/users/README.md#list_users) - List users
+* [list_users_within_an_organization](docs/sdks/users/README.md#list_users_within_an_organization) - List all users within an organization
 
 ### [workspaces](docs/sdks/workspaces/README.md)
 

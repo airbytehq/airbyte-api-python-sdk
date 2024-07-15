@@ -5,15 +5,15 @@ Zendesk service provides two authentication methods. Choose between: `OAuth2.0` 
 
 ## Supported Types
 
-### SourceZendeskTalkOAuth20
+### `models.SourceZendeskTalkOAuth20`
 
 ```python
-sourceZendeskTalkAuthentication: models.SourceZendeskTalkOAuth20 = /* values here */
+value: models.SourceZendeskTalkOAuth20 = /* values here */
 ```
 
-### SourceZendeskTalkAPIToken
+### `models.SourceZendeskTalkAPIToken`
 
 ```python
-sourceZendeskTalkAuthentication: models.SourceZendeskTalkAPIToken = /* values here */
+value: models.SourceZendeskTalkAPIToken = /* values here */
 ```
 
