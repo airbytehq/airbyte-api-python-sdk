@@ -91,8 +91,6 @@ class DestinationSnowflakeCortexOpenAI:
     
 
 
-DestinationSnowflakeCortexEmbedding = Union['DestinationSnowflakeCortexOpenAI', 'DestinationSnowflakeCortexCohere', 'DestinationSnowflakeCortexFake', 'DestinationSnowflakeCortexAzureOpenAI', 'DestinationSnowflakeCortexOpenAICompatible']
-
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
@@ -105,7 +103,7 @@ class DestinationSnowflakeCortexCredentials:
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
-class DestinationSnowflakeCortexIndexing:
+class SnowflakeConnection:
     r"""Snowflake can be used to store vector data and retrieve embeddings."""
     credentials: DestinationSnowflakeCortexCredentials = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credentials') }})
     database: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('database') }})
@@ -201,8 +199,6 @@ class DestinationSnowflakeCortexBySeparator:
     
 
 
-DestinationSnowflakeCortexTextSplitter = Union['DestinationSnowflakeCortexBySeparator', 'DestinationSnowflakeCortexByMarkdownHeader', 'DestinationSnowflakeCortexByProgrammingLanguage']
-
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
@@ -239,7 +235,7 @@ class DestinationSnowflakeCortex:
     """
     embedding: DestinationSnowflakeCortexEmbedding = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('embedding') }})
     r"""Embedding configuration"""
-    indexing: DestinationSnowflakeCortexIndexing = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('indexing') }})
+    indexing: SnowflakeConnection = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('indexing') }})
     r"""Snowflake can be used to store vector data and retrieve embeddings."""
     processing: DestinationSnowflakeCortexProcessingConfigModel = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('processing') }})
     DESTINATION_TYPE: Final[SnowflakeCortex] = dataclasses.field(default=SnowflakeCortex.SNOWFLAKE_CORTEX, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('destinationType') }})
@@ -247,3 +243,7 @@ class DestinationSnowflakeCortex:
     r"""Do not store the text that gets embedded along with the vector and the metadata in the destination. If set to true, only the vector and the metadata will be stored - in this case raw text for LLM use cases needs to be retrieved from another source."""
     
 
+
+DestinationSnowflakeCortexEmbedding = Union[DestinationSnowflakeCortexOpenAI, DestinationSnowflakeCortexCohere, DestinationSnowflakeCortexFake, DestinationSnowflakeCortexAzureOpenAI, DestinationSnowflakeCortexOpenAICompatible]
+
+DestinationSnowflakeCortexTextSplitter = Union[DestinationSnowflakeCortexBySeparator, DestinationSnowflakeCortexByMarkdownHeader, DestinationSnowflakeCortexByProgrammingLanguage]

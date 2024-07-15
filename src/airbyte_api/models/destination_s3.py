@@ -126,8 +126,6 @@ class DestinationS3SchemasFormatNoCompression:
     
 
 
-DestinationS3CompressionCodec = Union['DestinationS3SchemasFormatNoCompression', 'DestinationS3Deflate', 'DestinationS3Bzip2', 'DestinationS3Xz', 'DestinationS3Zstandard', 'DestinationS3Snappy']
-
 
 class DestinationS3SchemasFormatFormatType(str, Enum):
     AVRO = 'Avro'
@@ -165,8 +163,6 @@ class DestinationS3SchemasNoCompression:
     compression_type: Optional[DestinationS3SchemasFormatCompressionType] = dataclasses.field(default=DestinationS3SchemasFormatCompressionType.NO_COMPRESSION, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('compression_type'), 'exclude': lambda f: f is None }})
     
 
-
-DestinationS3SchemasCompression = Union['DestinationS3SchemasNoCompression', 'DestinationS3SchemasGZIP']
 
 
 class DestinationS3SchemasFlattening(str, Enum):
@@ -214,8 +210,6 @@ class DestinationS3NoCompression:
     
 
 
-DestinationS3Compression = Union['DestinationS3NoCompression', 'DestinationS3GZIP']
-
 
 class DestinationS3Flattening(str, Enum):
     r"""Whether the input json data should be normalized (flattened) in the output CSV. Please refer to docs for details."""
@@ -237,8 +231,6 @@ class DestinationS3CSVCommaSeparatedValues:
     format_type: Optional[DestinationS3FormatType] = dataclasses.field(default=DestinationS3FormatType.CSV, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('format_type'), 'exclude': lambda f: f is None }})
     
 
-
-DestinationS3OutputFormat = Union['DestinationS3CSVCommaSeparatedValues', 'DestinationS3JSONLinesNewlineDelimitedJSON', 'DestinationS3AvroApacheAvro', 'DestinationS3ParquetColumnarStorage']
 
 
 class DestinationS3S3BucketRegion(str, Enum):
@@ -305,3 +297,11 @@ class DestinationS3:
     r"""The corresponding secret to the access key ID. Read more <a href=\\"https://docs.aws.amazon.com/general/latest/gr/aws-sec-cred-types.html#access-keys-and-secret-access-keys\\">here</a>"""
     
 
+
+DestinationS3CompressionCodec = Union[DestinationS3SchemasFormatNoCompression, DestinationS3Deflate, DestinationS3Bzip2, DestinationS3Xz, DestinationS3Zstandard, DestinationS3Snappy]
+
+DestinationS3SchemasCompression = Union[DestinationS3SchemasNoCompression, DestinationS3SchemasGZIP]
+
+DestinationS3Compression = Union[DestinationS3NoCompression, DestinationS3GZIP]
+
+DestinationS3OutputFormat = Union[DestinationS3CSVCommaSeparatedValues, DestinationS3JSONLinesNewlineDelimitedJSON, DestinationS3AvroApacheAvro, DestinationS3ParquetColumnarStorage]

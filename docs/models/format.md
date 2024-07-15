@@ -5,33 +5,33 @@ The configuration options that are used to alter how to read incoming files that
 
 ## Supported Types
 
-### AvroFormat
+### `models.AvroFormat`
 
 ```python
-format: models.AvroFormat = /* values here */
+value: models.AvroFormat = /* values here */
 ```
 
-### CSVFormat
+### `models.CSVFormat`
 
 ```python
-format: models.CSVFormat = /* values here */
+value: models.CSVFormat = /* values here */
 ```
 
-### JsonlFormat
+### `models.JsonlFormat`
 
 ```python
-format: models.JsonlFormat = /* values here */
+value: models.JsonlFormat = /* values here */
 ```
 
-### ParquetFormat
+### `models.ParquetFormat`
 
 ```python
-format: models.ParquetFormat = /* values here */
+value: models.ParquetFormat = /* values here */
 ```
 
-### DocumentFileTypeFormatExperimental
+### `models.DocumentFileTypeFormatExperimental`
 
 ```python
-format: models.DocumentFileTypeFormatExperimental = /* values here */
+value: models.DocumentFileTypeFormatExperimental = /* values here */
 ```
 

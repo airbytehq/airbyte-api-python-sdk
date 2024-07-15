@@ -91,8 +91,6 @@ class DestinationMilvusOpenAI:
     
 
 
-DestinationMilvusEmbedding = Union['DestinationMilvusOpenAI', 'DestinationMilvusCohere', 'DestinationMilvusFake', 'DestinationMilvusAzureOpenAI', 'DestinationMilvusOpenAICompatible']
-
 
 class DestinationMilvusSchemasIndexingAuthAuthenticationMode(str, Enum):
     NO_AUTH = 'no_auth'
@@ -137,8 +135,6 @@ class DestinationMilvusAPIToken:
     MODE: Final[Optional[DestinationMilvusSchemasIndexingMode]] = dataclasses.field(default=DestinationMilvusSchemasIndexingMode.TOKEN, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('mode'), 'exclude': lambda f: f is None }})
     
 
-
-DestinationMilvusAuthentication = Union['DestinationMilvusAPIToken', 'DestinationMilvusUsernamePassword', 'NoAuth']
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
@@ -238,8 +234,6 @@ class DestinationMilvusBySeparator:
     
 
 
-DestinationMilvusTextSplitter = Union['DestinationMilvusBySeparator', 'DestinationMilvusByMarkdownHeader', 'DestinationMilvusByProgrammingLanguage']
-
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
@@ -284,3 +278,9 @@ class DestinationMilvus:
     r"""Do not store the text that gets embedded along with the vector and the metadata in the destination. If set to true, only the vector and the metadata will be stored - in this case raw text for LLM use cases needs to be retrieved from another source."""
     
 
+
+DestinationMilvusEmbedding = Union[DestinationMilvusOpenAI, DestinationMilvusCohere, DestinationMilvusFake, DestinationMilvusAzureOpenAI, DestinationMilvusOpenAICompatible]
+
+DestinationMilvusAuthentication = Union[DestinationMilvusAPIToken, DestinationMilvusUsernamePassword, NoAuth]
+
+DestinationMilvusTextSplitter = Union[DestinationMilvusBySeparator, DestinationMilvusByMarkdownHeader, DestinationMilvusByProgrammingLanguage]

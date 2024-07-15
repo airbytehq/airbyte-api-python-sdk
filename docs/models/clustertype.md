@@ -5,15 +5,15 @@ Configures the MongoDB cluster type.
 
 ## Supported Types
 
-### MongoDBAtlasReplicaSet
+### `models.MongoDBAtlasReplicaSet`
 
 ```python
-clusterType: models.MongoDBAtlasReplicaSet = /* values here */
+value: models.MongoDBAtlasReplicaSet = /* values here */
 ```
 
-### SelfManagedReplicaSet
+### `models.SelfManagedReplicaSet`
 
 ```python
-clusterType: models.SelfManagedReplicaSet = /* values here */
+value: models.SelfManagedReplicaSet = /* values here */
 ```
 

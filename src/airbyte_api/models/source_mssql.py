@@ -45,8 +45,6 @@ class ReadChangesUsingChangeDataCaptureCDC:
     
 
 
-UpdateMethod = Union['ReadChangesUsingChangeDataCaptureCDC', 'ScanChangesWithUserDefinedCursor']
-
 
 class SourceMssqlMssql(str, Enum):
     MSSQL = 'mssql'
@@ -93,8 +91,6 @@ class Unencrypted:
     SSL_METHOD: Final[SourceMssqlSchemasSslMethod] = dataclasses.field(default=SourceMssqlSchemasSslMethod.UNENCRYPTED, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('ssl_method') }})
     
 
-
-SourceMssqlSSLMethod = Union['Unencrypted', 'SourceMssqlEncryptedTrustServerCertificate', 'SourceMssqlEncryptedVerifyCertificate']
 
 
 class SourceMssqlSchemasTunnelMethodTunnelMethod(str, Enum):
@@ -154,8 +150,6 @@ class SourceMssqlNoTunnel:
     
 
 
-SourceMssqlSSHTunnelMethod = Union['SourceMssqlNoTunnel', 'SourceMssqlSSHKeyAuthentication', 'SourceMssqlPasswordAuthentication']
-
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
@@ -183,3 +177,9 @@ class SourceMssql:
     r"""Whether to initiate an SSH tunnel before connecting to the database, and if so, which kind of authentication to use."""
     
 
+
+UpdateMethod = Union[ReadChangesUsingChangeDataCaptureCDC, ScanChangesWithUserDefinedCursor]
+
+SourceMssqlSSLMethod = Union[Unencrypted, SourceMssqlEncryptedTrustServerCertificate, SourceMssqlEncryptedVerifyCertificate]
+
+SourceMssqlSSHTunnelMethod = Union[SourceMssqlNoTunnel, SourceMssqlSSHKeyAuthentication, SourceMssqlPasswordAuthentication]

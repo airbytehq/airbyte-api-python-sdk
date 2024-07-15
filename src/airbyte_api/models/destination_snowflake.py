@@ -57,8 +57,6 @@ class KeyPairAuthentication:
     
 
 
-AuthorizationMethod = Union['KeyPairAuthentication', 'UsernameAndPassword', 'DestinationSnowflakeOAuth20']
-
 
 class DestinationSnowflakeSnowflake(str, Enum):
     SNOWFLAKE = 'snowflake'
@@ -91,3 +89,5 @@ class DestinationSnowflake:
     r"""The number of days of Snowflake Time Travel to enable on the tables. See <a href=\\"https://docs.snowflake.com/en/user-guide/data-time-travel#data-retention-period\\">Snowflake's documentation</a> for more information. Setting a nonzero value will incur increased storage costs in your Snowflake instance."""
     
 
+
+AuthorizationMethod = Union[KeyPairAuthentication, UsernameAndPassword, DestinationSnowflakeOAuth20]

@@ -101,8 +101,6 @@ class Disable:
     
 
 
-SSLModes = Union['Disable', 'Allow', 'Prefer', 'Require', 'VerifyCa', 'VerifyFull']
-
 
 class DestinationPostgresSchemasTunnelMethodTunnelMethod(str, Enum):
     r"""Connect through a jump server tunnel host using username and password authentication"""
@@ -161,8 +159,6 @@ class DestinationPostgresNoTunnel:
     
 
 
-DestinationPostgresSSHTunnelMethod = Union['DestinationPostgresNoTunnel', 'DestinationPostgresSSHKeyAuthentication', 'DestinationPostgresPasswordAuthentication']
-
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
@@ -202,3 +198,7 @@ class DestinationPostgres:
     r"""Whether to initiate an SSH tunnel before connecting to the database, and if so, which kind of authentication to use."""
     
 
+
+SSLModes = Union[Disable, Allow, Prefer, Require, VerifyCa, VerifyFull]
+
+DestinationPostgresSSHTunnelMethod = Union[DestinationPostgresNoTunnel, DestinationPostgresSSHKeyAuthentication, DestinationPostgresPasswordAuthentication]

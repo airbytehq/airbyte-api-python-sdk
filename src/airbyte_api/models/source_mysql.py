@@ -45,8 +45,6 @@ class ReadChangesUsingBinaryLogCDC:
     
 
 
-SourceMysqlUpdateMethod = Union['ReadChangesUsingBinaryLogCDC', 'SourceMysqlScanChangesWithUserDefinedCursor']
-
 
 class SourceMysqlMysql(str, Enum):
     MYSQL = 'mysql'
@@ -119,8 +117,6 @@ class Preferred:
     
 
 
-SourceMysqlSSLModes = Union['Preferred', 'Required', 'SourceMysqlVerifyCA', 'VerifyIdentity']
-
 
 class SourceMysqlSchemasTunnelMethodTunnelMethod(str, Enum):
     r"""Connect through a jump server tunnel host using username and password authentication"""
@@ -179,8 +175,6 @@ class SourceMysqlNoTunnel:
     
 
 
-SourceMysqlSSHTunnelMethod = Union['SourceMysqlNoTunnel', 'SourceMysqlSSHKeyAuthentication', 'SourceMysqlPasswordAuthentication']
-
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
@@ -206,3 +200,9 @@ class SourceMysql:
     r"""Whether to initiate an SSH tunnel before connecting to the database, and if so, which kind of authentication to use."""
     
 
+
+SourceMysqlUpdateMethod = Union[ReadChangesUsingBinaryLogCDC, SourceMysqlScanChangesWithUserDefinedCursor]
+
+SourceMysqlSSLModes = Union[Preferred, Required, SourceMysqlVerifyCA, VerifyIdentity]
+
+SourceMysqlSSHTunnelMethod = Union[SourceMysqlNoTunnel, SourceMysqlSSHKeyAuthentication, SourceMysqlPasswordAuthentication]

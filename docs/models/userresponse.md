@@ -1,6 +1,6 @@
 # UserResponse
 
-Provides details of a single user.
+Provides details of a single user in an organization.
 
 
 ## Fields
@@ -8,5 +8,5 @@ Provides details of a single user.
 | Field                    | Type                     | Required                 | Description              |
 | ------------------------ | ------------------------ | ------------------------ | ------------------------ |
 | `email`                  | *str*                    | :heavy_check_mark:       | N/A                      |
-| `user_id`                | *str*                    | :heavy_check_mark:       | Internal Airbyte user ID |
-| `name`                   | *Optional[str]*          | :heavy_minus_sign:       | Name of the user         |
+| `id`                     | *str*                    | :heavy_check_mark:       | Internal Airbyte user ID |
+| `name`                   | *str*                    | :heavy_check_mark:       | Name of the user         |

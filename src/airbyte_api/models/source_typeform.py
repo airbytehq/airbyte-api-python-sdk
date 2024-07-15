@@ -45,8 +45,6 @@ class SourceTypeformOAuth20:
     
 
 
-SourceTypeformAuthorizationMethod = Union['SourceTypeformOAuth20', 'SourceTypeformPrivateToken']
-
 
 class SourceTypeformTypeform(str, Enum):
     TYPEFORM = 'typeform'
@@ -63,3 +61,5 @@ class SourceTypeform:
     r"""The date from which you'd like to replicate data for Typeform API, in the format YYYY-MM-DDT00:00:00Z. All data generated after this date will be replicated."""
     
 
+
+SourceTypeformAuthorizationMethod = Union[SourceTypeformOAuth20, SourceTypeformPrivateToken]

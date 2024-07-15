@@ -17,7 +17,6 @@ class SourceZendeskSupportSchemasCredentials(str, Enum):
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
 class SourceZendeskSupportAPIToken:
-    UNSET='__SPEAKEASY_UNSET__'
     api_token: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('api_token') }})
     r"""The value of the API token generated. See our <a href=\\"https://docs.airbyte.com/integrations/sources/zendesk-support#setup-guide\\">full documentation</a> for more information on generating this token."""
     email: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('email') }})
@@ -35,7 +34,6 @@ class SourceZendeskSupportCredentials(str, Enum):
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
 class SourceZendeskSupportOAuth20:
-    UNSET='__SPEAKEASY_UNSET__'
     access_token: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('access_token') }})
     r"""The OAuth access token. See the <a href=\\"https://developer.zendesk.com/documentation/ticketing/working-with-oauth/creating-and-using-oauth-tokens-with-the-api/\\">Zendesk docs</a> for more information on generating this token."""
     additional_properties: Optional[Dict[str, Any]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'exclude': lambda f: f is None }})
@@ -46,8 +44,6 @@ class SourceZendeskSupportOAuth20:
     CREDENTIALS: Final[Optional[SourceZendeskSupportCredentials]] = dataclasses.field(default=SourceZendeskSupportCredentials.OAUTH2_0, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credentials'), 'exclude': lambda f: f is None }})
     
 
-
-SourceZendeskSupportAuthentication = Union['SourceZendeskSupportOAuth20', 'SourceZendeskSupportAPIToken']
 
 
 class SourceZendeskSupportZendeskSupport(str, Enum):
@@ -68,3 +64,5 @@ class SourceZendeskSupport:
     r"""The UTC date and time from which you'd like to replicate data, in the format YYYY-MM-DDT00:00:00Z. All data generated after this date will be replicated."""
     
 
+
+SourceZendeskSupportAuthentication = Union[SourceZendeskSupportOAuth20, SourceZendeskSupportAPIToken]

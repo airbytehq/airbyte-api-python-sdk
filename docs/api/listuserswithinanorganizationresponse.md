@@ -1,4 +1,4 @@
-# ListUsersResponse
+# ListUsersWithinAnOrganizationResponse
 
 
 ## Fields

@@ -5,15 +5,15 @@ Choose either OAuth (recommended for Airbyte Cloud) or Access Token. See our <a 
 
 ## Supported Types
 
-### SourceNotionOAuth20
+### `models.SourceNotionOAuth20`
 
 ```python
-sourceNotionAuthenticationMethod: models.SourceNotionOAuth20 = /* values here */
+value: models.SourceNotionOAuth20 = /* values here */
 ```
 
-### SourceNotionAccessToken
+### `models.SourceNotionAccessToken`
 
 ```python
-sourceNotionAuthenticationMethod: models.SourceNotionAccessToken = /* values here */
+value: models.SourceNotionAccessToken = /* values here */
 ```
 

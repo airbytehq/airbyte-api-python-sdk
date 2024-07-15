@@ -5,15 +5,15 @@ Choose how to authenticate to Mixpanel
 
 ## Supported Types
 
-### ServiceAccount
+### `models.ServiceAccount`
 
 ```python
-authenticationWildcard: models.ServiceAccount = /* values here */
+value: models.ServiceAccount = /* values here */
 ```
 
-### ProjectSecret
+### `models.ProjectSecret`
 
 ```python
-authenticationWildcard: models.ProjectSecret = /* values here */
+value: models.ProjectSecret = /* values here */
 ```
 

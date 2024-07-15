@@ -41,8 +41,6 @@ class SourceNotionOAuth20:
     
 
 
-SourceNotionAuthenticationMethod = Union['SourceNotionOAuth20', 'SourceNotionAccessToken']
-
 
 class SourceNotionNotion(str, Enum):
     NOTION = 'notion'
@@ -58,3 +56,5 @@ class SourceNotion:
     r"""UTC date and time in the format YYYY-MM-DDTHH:MM:SS.000Z. During incremental sync, any data generated before this date will not be replicated. If left blank, the start date will be set to 2 years before the present date."""
     
 
+
+SourceNotionAuthenticationMethod = Union[SourceNotionOAuth20, SourceNotionAccessToken]

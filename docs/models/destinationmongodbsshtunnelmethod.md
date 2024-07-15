@@ -5,21 +5,21 @@ Whether to initiate an SSH tunnel before connecting to the database, and if so, 
 
 ## Supported Types
 
-### DestinationMongodbNoTunnel
+### `models.DestinationMongodbNoTunnel`
 
 ```python
-destinationMongodbSSHTunnelMethod: models.DestinationMongodbNoTunnel = /* values here */
+value: models.DestinationMongodbNoTunnel = /* values here */
 ```
 
-### DestinationMongodbSSHKeyAuthentication
+### `models.DestinationMongodbSSHKeyAuthentication`
 
 ```python
-destinationMongodbSSHTunnelMethod: models.DestinationMongodbSSHKeyAuthentication = /* values here */
+value: models.DestinationMongodbSSHKeyAuthentication = /* values here */
 ```
 
-### DestinationMongodbPasswordAuthentication
+### `models.DestinationMongodbPasswordAuthentication`
 
 ```python
-destinationMongodbSSHTunnelMethod: models.DestinationMongodbPasswordAuthentication = /* values here */
+value: models.DestinationMongodbPasswordAuthentication = /* values here */
 ```
 

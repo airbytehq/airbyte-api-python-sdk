@@ -41,8 +41,6 @@ class OAuth:
     
 
 
-SourceGithubAuthentication = Union['OAuth', 'SourceGithubPersonalAccessToken']
-
 
 class SourceGithubGithub(str, Enum):
     GITHUB = 'github'
@@ -70,3 +68,5 @@ class SourceGithub:
     r"""The date from which you'd like to replicate data from GitHub in the format YYYY-MM-DDT00:00:00Z. If the date is not set, all data will be replicated.  For the streams which support this configuration, only data generated on or after the start date will be replicated. This field doesn't apply to all streams, see the <a href=\\"https://docs.airbyte.com/integrations/sources/github\\">docs</a> for more info"""
     
 
+
+SourceGithubAuthentication = Union[OAuth, SourceGithubPersonalAccessToken]

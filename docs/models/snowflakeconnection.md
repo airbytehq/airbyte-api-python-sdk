@@ -1,4 +1,4 @@
-# DestinationSnowflakeCortexIndexing
+# SnowflakeConnection
 
 Snowflake can be used to store vector data and retrieve embeddings.
 

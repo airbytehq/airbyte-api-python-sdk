@@ -69,21 +69,6 @@ class DestinationRedshiftNoTunnel:
     
 
 
-DestinationRedshiftSSHTunnelMethod = Union['DestinationRedshiftNoTunnel', 'DestinationRedshiftSSHKeyAuthentication', 'DestinationRedshiftPasswordAuthentication']
-
-
-class DestinationRedshiftSchemasMethod(str, Enum):
-    STANDARD = 'Standard'
-
-
-@dataclass_json(undefined=Undefined.EXCLUDE)
-@dataclasses.dataclass
-class Standard:
-    r"""<i>(not recommended)</i> Direct loading using SQL INSERT statements. This method is extremely inefficient and provided only for quick testing. In all other cases, you should use S3 uploading."""
-    METHOD: Final[DestinationRedshiftSchemasMethod] = dataclasses.field(default=DestinationRedshiftSchemasMethod.STANDARD, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('method') }})
-    
-
-
 
 class DestinationRedshiftEncryptionType(str, Enum):
     AES_CBC_ENVELOPE = 'aes_cbc_envelope'
@@ -111,8 +96,6 @@ class NoEncryption:
     ENCRYPTION_TYPE: Final[Optional[EncryptionType]] = dataclasses.field(default=EncryptionType.NONE, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('encryption_type'), 'exclude': lambda f: f is None }})
     
 
-
-DestinationRedshiftEncryption = Union['NoEncryption', 'AESCBCEnvelopeEncryption']
 
 
 class DestinationRedshiftMethod(str, Enum):
@@ -181,8 +164,6 @@ class AWSS3Staging:
     
 
 
-UploadingMethod = Union['AWSS3Staging', 'Standard']
-
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
@@ -214,3 +195,9 @@ class DestinationRedshift:
     r"""The way data will be uploaded to Redshift."""
     
 
+
+DestinationRedshiftSSHTunnelMethod = Union[DestinationRedshiftNoTunnel, DestinationRedshiftSSHKeyAuthentication, DestinationRedshiftPasswordAuthentication]
+
+DestinationRedshiftEncryption = Union[NoEncryption, AESCBCEnvelopeEncryption]
+
+UploadingMethod = Union[AWSS3Staging]

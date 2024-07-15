@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 07961597-3730-4940-9fd0-35eb4118eab3
 management:
-  docChecksum: d90db45a44e468bd5d9ffc93c6e415c9
+  docChecksum: dffaa570de3c533fee42dabe63dbbce5
   docVersion: 1.0.0
-  speakeasyVersion: 1.299.4
-  generationVersion: 2.338.7
-  releaseVersion: 0.50.1
-  configChecksum: fbcdc2ce57f888d9af79756839bf1a17
+  speakeasyVersion: 1.335.0
+  generationVersion: 2.370.2
+  releaseVersion: 0.51.0
+  configChecksum: c86e7977f90b4e8be3a63a01a28dfe90
   repoURL: https://github.com/airbytehq/airbyte-api-python-sdk.git
   repoSubDirectory: .
   installationURL: https://github.com/airbytehq/airbyte-api-python-sdk.git
@@ -16,7 +16,7 @@ features:
     additionalDependencies: 0.1.0
     additionalProperties: 0.1.0
     constsAndDefaults: 0.1.3
-    core: 4.6.8
+    core: 4.8.1
     globalSecurity: 2.83.5
     globalSecurityCallbacks: 0.1.0
     globalServerURLs: 2.82.2
@@ -25,13 +25,14 @@ features:
     oauth2ClientCredentials: 0.1.2
     responseFormat: 0.1.0
     sdkHooks: 0.1.0
-    unions: 2.82.7
+    unions: 2.82.8
 generatedFiles:
   - src/airbyte_api/sdkconfiguration.py
   - src/airbyte_api/connections.py
   - src/airbyte_api/destinations.py
   - src/airbyte_api/health.py
   - src/airbyte_api/jobs.py
+  - src/airbyte_api/organizations.py
   - src/airbyte_api/permissions.py
   - src/airbyte_api/sources.py
   - src/airbyte_api/streams.py
@@ -40,6 +41,7 @@ generatedFiles:
   - src/airbyte_api/sdk.py
   - py.typed
   - pylintrc
+  - scripts/publish.sh
   - setup.py
   - src/airbyte_api/__init__.py
   - src/airbyte_api/utils/__init__.py
@@ -62,6 +64,7 @@ generatedFiles:
   - src/airbyte_api/api/createjob.py
   - src/airbyte_api/api/getjob.py
   - src/airbyte_api/api/listjobs.py
+  - src/airbyte_api/api/listorganizationsforuser.py
   - src/airbyte_api/api/createpermission.py
   - src/airbyte_api/api/deletepermission.py
   - src/airbyte_api/api/getpermission.py
@@ -75,7 +78,7 @@ generatedFiles:
   - src/airbyte_api/api/patchsource.py
   - src/airbyte_api/api/putsource.py
   - src/airbyte_api/api/getstreamproperties.py
-  - src/airbyte_api/api/listusers.py
+  - src/airbyte_api/api/listuserswithinanorganization.py
   - src/airbyte_api/api/createorupdateworkspaceoauthcredentials.py
   - src/airbyte_api/api/createworkspace.py
   - src/airbyte_api/api/deleteworkspace.py
@@ -149,6 +152,8 @@ generatedFiles:
   - src/airbyte_api/models/jobtypeenum.py
   - src/airbyte_api/models/jobcreaterequest.py
   - src/airbyte_api/models/jobsresponse.py
+  - src/airbyte_api/models/organizationsresponse.py
+  - src/airbyte_api/models/organizationresponse.py
   - src/airbyte_api/models/permissionresponse.py
   - src/airbyte_api/models/permissiontype.py
   - src/airbyte_api/models/permissioncreaterequest.py
@@ -205,6 +210,7 @@ generatedFiles:
   - src/airbyte_api/models/source_fauna.py
   - src/airbyte_api/models/source_file.py
   - src/airbyte_api/models/source_firebolt.py
+  - src/airbyte_api/models/source_fleetio.py
   - src/airbyte_api/models/source_freshcaller.py
   - src/airbyte_api/models/source_freshdesk.py
   - src/airbyte_api/models/source_freshsales.py
@@ -446,6 +452,7 @@ generatedFiles:
   - docs/api/getjobresponse.md
   - docs/api/listjobsrequest.md
   - docs/api/listjobsresponse.md
+  - docs/api/listorganizationsforuserresponse.md
   - docs/api/createpermissionresponse.md
   - docs/api/deletepermissionrequest.md
   - docs/api/deletepermissionresponse.md
@@ -469,8 +476,8 @@ generatedFiles:
   - docs/api/putsourceresponse.md
   - docs/api/getstreampropertiesrequest.md
   - docs/api/getstreampropertiesresponse.md
-  - docs/api/listusersrequest.md
-  - docs/api/listusersresponse.md
+  - docs/api/listuserswithinanorganizationrequest.md
+  - docs/api/listuserswithinanorganizationresponse.md
   - docs/api/createorupdateworkspaceoauthcredentialsrequest.md
   - docs/api/createorupdateworkspaceoauthcredentialsresponse.md
   - docs/api/createworkspaceresponse.md
@@ -854,8 +861,6 @@ generatedFiles:
   - docs/models/destinationredshifttunnelmethod.md
   - docs/models/destinationredshiftnotunnel.md
   - docs/models/destinationredshiftsshtunnelmethod.md
-  - docs/models/destinationredshiftschemasmethod.md
-  - docs/models/standard.md
   - docs/models/destinationredshiftencryptiontype.md
   - docs/models/aescbcenvelopeencryption.md
   - docs/models/encryptiontype.md
@@ -941,7 +946,7 @@ generatedFiles:
   - docs/models/destinationsnowflakecortexopenai.md
   - docs/models/destinationsnowflakecortexembedding.md
   - docs/models/destinationsnowflakecortexcredentials.md
-  - docs/models/destinationsnowflakecortexindexing.md
+  - docs/models/snowflakeconnection.md
   - docs/models/destinationsnowflakecortexfieldnamemappingconfigmodel.md
   - docs/models/destinationsnowflakecortexlanguage.md
   - docs/models/destinationsnowflakecortexschemasprocessingtextsplittertextsplittermode.md
@@ -1041,6 +1046,8 @@ generatedFiles:
   - docs/models/jobtypeenum.md
   - docs/models/jobcreaterequest.md
   - docs/models/jobsresponse.md
+  - docs/models/organizationsresponse.md
+  - docs/models/organizationresponse.md
   - docs/models/permissionresponse.md
   - docs/models/permissiontype.md
   - docs/models/permissioncreaterequest.md
@@ -1266,6 +1273,8 @@ generatedFiles:
   - docs/models/sourcefile.md
   - docs/models/sourcefireboltfirebolt.md
   - docs/models/sourcefirebolt.md
+  - docs/models/fleetio.md
+  - docs/models/sourcefleetio.md
   - docs/models/freshcaller.md
   - docs/models/sourcefreshcaller.md
   - docs/models/freshdesk.md
@@ -1709,6 +1718,7 @@ generatedFiles:
   - docs/models/sourcelinkedinpagesoauth20.md
   - docs/models/sourcelinkedinpagesauthentication.md
   - docs/models/linkedinpages.md
+  - docs/models/timegranularitytype.md
   - docs/models/sourcelinkedinpages.md
   - docs/models/linnworks.md
   - docs/models/sourcelinnworks.md
@@ -2326,6 +2336,7 @@ generatedFiles:
   - docs/models/azureblobstoragecredentials.md
   - docs/models/azureblobstorage.md
   - docs/models/bingads.md
+  - docs/models/facebookmarketingcredentials.md
   - docs/models/facebookmarketing.md
   - docs/models/githubcredentials.md
   - docs/models/github.md
@@ -2407,6 +2418,7 @@ generatedFiles:
   - docs/sdks/destinations/README.md
   - docs/sdks/health/README.md
   - docs/sdks/jobs/README.md
+  - docs/sdks/organizations/README.md
   - docs/sdks/permissions/README.md
   - docs/sdks/sources/README.md
   - docs/sdks/streams/README.md

@@ -8,15 +8,15 @@ Enabled - Enables this feature. When a document is deleted, the connector export
 
 ## Supported Types
 
-### Disabled
+### `models.Disabled`
 
 ```python
-deletionMode: models.Disabled = /* values here */
+value: models.Disabled = /* values here */
 ```
 
-### Enabled
+### `models.Enabled`
 
 ```python
-deletionMode: models.Enabled = /* values here */
+value: models.Enabled = /* values here */
 ```
 

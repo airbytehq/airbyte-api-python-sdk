@@ -45,8 +45,6 @@ class AuthenticateViaMicrosoftOAuth20:
     
 
 
-SourceMicrosoftTeamsAuthenticationMechanism = Union['AuthenticateViaMicrosoftOAuth20', 'AuthenticateViaMicrosoft']
-
 
 class SourceMicrosoftTeamsMicrosoftTeams(str, Enum):
     MICROSOFT_TEAMS = 'microsoft-teams'
@@ -62,3 +60,5 @@ class SourceMicrosoftTeams:
     SOURCE_TYPE: Final[SourceMicrosoftTeamsMicrosoftTeams] = dataclasses.field(default=SourceMicrosoftTeamsMicrosoftTeams.MICROSOFT_TEAMS, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     
 
+
+SourceMicrosoftTeamsAuthenticationMechanism = Union[AuthenticateViaMicrosoftOAuth20, AuthenticateViaMicrosoft]

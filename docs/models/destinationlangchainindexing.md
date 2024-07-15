@@ -5,21 +5,21 @@ Indexing configuration
 
 ## Supported Types
 
-### DestinationLangchainPinecone
+### `models.DestinationLangchainPinecone`
 
 ```python
-destinationLangchainIndexing: models.DestinationLangchainPinecone = /* values here */
+value: models.DestinationLangchainPinecone = /* values here */
 ```
 
-### DocArrayHnswSearch
+### `models.DocArrayHnswSearch`
 
 ```python
-destinationLangchainIndexing: models.DocArrayHnswSearch = /* values here */
+value: models.DocArrayHnswSearch = /* values here */
 ```
 
-### ChromaLocalPersistance
+### `models.ChromaLocalPersistance`
 
 ```python
-destinationLangchainIndexing: models.ChromaLocalPersistance = /* values here */
+value: models.ChromaLocalPersistance = /* values here */
 ```
 

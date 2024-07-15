@@ -5,15 +5,15 @@ Embedding configuration
 
 ## Supported Types
 
-### DestinationLangchainOpenAI
+### `models.DestinationLangchainOpenAI`
 
 ```python
-destinationLangchainEmbedding: models.DestinationLangchainOpenAI = /* values here */
+value: models.DestinationLangchainOpenAI = /* values here */
 ```
 
-### DestinationLangchainFake
+### `models.DestinationLangchainFake`
 
 ```python
-destinationLangchainEmbedding: models.DestinationLangchainFake = /* values here */
+value: models.DestinationLangchainFake = /* values here */
 ```
 

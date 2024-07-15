@@ -5,33 +5,33 @@ Embedding configuration
 
 ## Supported Types
 
-### OpenAI
+### `models.OpenAI`
 
 ```python
-embedding: models.OpenAI = /* values here */
+value: models.OpenAI = /* values here */
 ```
 
-### Cohere
+### `models.Cohere`
 
 ```python
-embedding: models.Cohere = /* values here */
+value: models.Cohere = /* values here */
 ```
 
-### Fake
+### `models.Fake`
 
 ```python
-embedding: models.Fake = /* values here */
+value: models.Fake = /* values here */
 ```
 
-### AzureOpenAI
+### `models.AzureOpenAI`
 
 ```python
-embedding: models.AzureOpenAI = /* values here */
+value: models.AzureOpenAI = /* values here */
 ```
 
-### OpenAICompatible
+### `models.OpenAICompatible`
 
 ```python
-embedding: models.OpenAICompatible = /* values here */
+value: models.OpenAICompatible = /* values here */
 ```
 

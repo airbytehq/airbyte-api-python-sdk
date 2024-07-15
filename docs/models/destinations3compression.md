@@ -5,15 +5,15 @@ Whether the output files should be compressed. If compression is selected, the o
 
 ## Supported Types
 
-### DestinationS3NoCompression
+### `models.DestinationS3NoCompression`
 
 ```python
-destinationS3Compression: models.DestinationS3NoCompression = /* values here */
+value: models.DestinationS3NoCompression = /* values here */
 ```
 
-### DestinationS3GZIP
+### `models.DestinationS3GZIP`
 
 ```python
-destinationS3Compression: models.DestinationS3GZIP = /* values here */
+value: models.DestinationS3GZIP = /* values here */
 ```
 

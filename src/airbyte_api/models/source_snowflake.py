@@ -43,8 +43,6 @@ class SourceSnowflakeOAuth20:
     
 
 
-SourceSnowflakeAuthorizationMethod = Union['SourceSnowflakeOAuth20', 'SourceSnowflakeUsernameAndPassword']
-
 
 class SourceSnowflakeSnowflake(str, Enum):
     SNOWFLAKE = 'snowflake'
@@ -69,3 +67,5 @@ class SourceSnowflake:
     SOURCE_TYPE: Final[SourceSnowflakeSnowflake] = dataclasses.field(default=SourceSnowflakeSnowflake.SNOWFLAKE, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     
 
+
+SourceSnowflakeAuthorizationMethod = Union[SourceSnowflakeOAuth20, SourceSnowflakeUsernameAndPassword]

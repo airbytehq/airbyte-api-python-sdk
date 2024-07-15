@@ -5,27 +5,27 @@ SSL connection modes. Read more <a href="https://dev.mysql.com/doc/connector-j/8
 
 ## Supported Types
 
-### Preferred
+### `models.Preferred`
 
 ```python
-sourceMysqlSSLModes: models.Preferred = /* values here */
+value: models.Preferred = /* values here */
 ```
 
-### Required
+### `models.Required`
 
 ```python
-sourceMysqlSSLModes: models.Required = /* values here */
+value: models.Required = /* values here */
 ```
 
-### SourceMysqlVerifyCA
+### `models.SourceMysqlVerifyCA`
 
 ```python
-sourceMysqlSSLModes: models.SourceMysqlVerifyCA = /* values here */
+value: models.SourceMysqlVerifyCA = /* values here */
 ```
 
-### VerifyIdentity
+### `models.VerifyIdentity`
 
 ```python
-sourceMysqlSSLModes: models.VerifyIdentity = /* values here */
+value: models.VerifyIdentity = /* values here */
 ```
 

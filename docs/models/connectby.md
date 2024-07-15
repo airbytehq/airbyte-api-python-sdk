@@ -5,15 +5,15 @@ Connect data that will be used for DB connection
 
 ## Supported Types
 
-### ServiceName
+### `models.ServiceName`
 
 ```python
-connectBy: models.ServiceName = /* values here */
+value: models.ServiceName = /* values here */
 ```
 
-### SystemIDSID
+### `models.SystemIDSID`
 
 ```python
-connectBy: models.SystemIDSID = /* values here */
+value: models.SystemIDSID = /* values here */
 ```
 

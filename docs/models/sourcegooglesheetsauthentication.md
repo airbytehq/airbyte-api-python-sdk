@@ -5,15 +5,15 @@ Credentials for connecting to the Google Sheets API
 
 ## Supported Types
 
-### SourceGoogleSheetsAuthenticateViaGoogleOAuth
+### `models.SourceGoogleSheetsAuthenticateViaGoogleOAuth`
 
 ```python
-sourceGoogleSheetsAuthentication: models.SourceGoogleSheetsAuthenticateViaGoogleOAuth = /* values here */
+value: models.SourceGoogleSheetsAuthenticateViaGoogleOAuth = /* values here */
 ```
 
-### SourceGoogleSheetsServiceAccountKeyAuthentication
+### `models.SourceGoogleSheetsServiceAccountKeyAuthentication`
 
 ```python
-sourceGoogleSheetsAuthentication: models.SourceGoogleSheetsServiceAccountKeyAuthentication = /* values here */
+value: models.SourceGoogleSheetsServiceAccountKeyAuthentication = /* values here */
 ```
 

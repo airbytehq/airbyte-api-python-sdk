@@ -147,7 +147,6 @@ class SourceFacebookMarketingValidEnums(str, Enum):
     CATALOG_SEGMENT_VALUE_OMNI_PURCHASE_ROAS = 'catalog_segment_value_omni_purchase_roas'
     CATALOG_SEGMENT_VALUE_WEBSITE_PURCHASE_ROAS = 'catalog_segment_value_website_purchase_roas'
     CLICKS = 'clicks'
-    CONVERSION_LEAD_RATE = 'conversion_lead_rate'
     CONVERSION_RATE_RANKING = 'conversion_rate_ranking'
     CONVERSION_VALUES = 'conversion_values'
     CONVERSIONS = 'conversions'
@@ -158,7 +157,6 @@ class SourceFacebookMarketingValidEnums(str, Enum):
     COST_PER_ACTION_TYPE = 'cost_per_action_type'
     COST_PER_AD_CLICK = 'cost_per_ad_click'
     COST_PER_CONVERSION = 'cost_per_conversion'
-    COST_PER_CONVERSION_LEAD = 'cost_per_conversion_lead'
     COST_PER_DDA_COUNTBY_CONVS = 'cost_per_dda_countby_convs'
     COST_PER_ESTIMATED_AD_RECALLERS = 'cost_per_estimated_ad_recallers'
     COST_PER_INLINE_LINK_CLICK = 'cost_per_inline_link_click'
@@ -287,7 +285,7 @@ class InsightConfig:
     start_date: Optional[datetime] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('start_date'), 'encoder': utils.datetimeisoformat(True), 'decoder': dateutil.parser.isoparse, 'exclude': lambda f: f is None }})
     r"""The date from which you'd like to replicate data for this stream, in the format YYYY-MM-DDT00:00:00Z."""
     time_increment: Optional[int] = dataclasses.field(default=1, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('time_increment'), 'exclude': lambda f: f is None }})
-    r"""Time window in days by which to aggregate statistics. The sync will be chunked into N day intervals, where N is the number of days you specified. For example, if you set this value to 7, then all statistics will be reported as 7-day aggregates by starting from the start_date. If the start and end dates are October 1st and October 30th, then the connector will output 5 records: 01 - 06, 07 - 13, 14 - 20, 21 - 27, and 28 - 30 (3 days only)."""
+    r"""Time window in days by which to aggregate statistics. The sync will be chunked into N day intervals, where N is the number of days you specified. For example, if you set this value to 7, then all statistics will be reported as 7-day aggregates by starting from the start_date. If the start and end dates are October 1st and October 30th, then the connector will output 5 records: 01 - 06, 07 - 13, 14 - 20, 21 - 27, and 28 - 30 (3 days only). The minimum allowed value for this field is 1, and the maximum is 89."""
     
 
 
@@ -299,10 +297,10 @@ class SourceFacebookMarketingFacebookMarketing(str, Enum):
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
 class SourceFacebookMarketing:
-    access_token: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('access_token') }})
-    r"""The value of the generated access token. From your App’s Dashboard, click on \\"Marketing API\\" then \\"Tools\\". Select permissions <b>ads_management, ads_read, read_insights, business_management</b>. Then click on \\"Get token\\". See the <a href=\\"https://docs.airbyte.com/integrations/sources/facebook-marketing\\">docs</a> for more information."""
     account_ids: List[str] = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('account_ids') }})
     r"""The Facebook Ad account ID(s) to pull data from. The Ad account ID number is in the account dropdown menu or in your browser's address bar of your <a href=\\"https://adsmanager.facebook.com/adsmanager/\\">Meta Ads Manager</a>. See the <a href=\\"https://www.facebook.com/business/help/1492627900875762\\">docs</a> for more information."""
+    access_token: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('access_token'), 'exclude': lambda f: f is None }})
+    r"""The value of the generated access token. From your App’s Dashboard, click on \\"Marketing API\\" then \\"Tools\\". Select permissions <b>ads_management, ads_read, read_insights, business_management</b>. Then click on \\"Get token\\". See the <a href=\\"https://docs.airbyte.com/integrations/sources/facebook-marketing\\">docs</a> for more information."""
     action_breakdowns_allow_empty: Optional[bool] = dataclasses.field(default=True, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('action_breakdowns_allow_empty'), 'exclude': lambda f: f is None }})
     r"""Allows action_breakdowns to be an empty list"""
     ad_statuses: Optional[List[ValidAdStatuses]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('ad_statuses'), 'exclude': lambda f: f is None }})
