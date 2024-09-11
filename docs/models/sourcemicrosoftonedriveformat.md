@@ -29,9 +29,9 @@ value: models.SourceMicrosoftOnedriveJsonlFormat = /* values here */
 value: models.SourceMicrosoftOnedriveParquetFormat = /* values here */
 ```
 
-### `models.UnstructuredDocumentFormat`
+### `models.SourceMicrosoftOnedriveUnstructuredDocumentFormat`
 
 ```python
-value: models.UnstructuredDocumentFormat = /* values here */
+value: models.SourceMicrosoftOnedriveUnstructuredDocumentFormat = /* values here */
 ```
 

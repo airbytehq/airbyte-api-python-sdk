@@ -1,6 +1,8 @@
 # Health
 (*health*)
 
+## Overview
+
 ### Available Operations
 
 * [get_health_check](#get_health_check) - Health Check
@@ -25,10 +27,10 @@ if res is not None:
 
 ```
 
-
 ### Response
 
 **[api.GetHealthCheckResponse](../../api/gethealthcheckresponse.md)**
+
 ### Errors
 
 | Error Object    | Status Code     | Content Type    |

@@ -1,6 +1,8 @@
 # Workspaces
 (*workspaces*)
 
+## Overview
+
 ### Available Operations
 
 * [create_or_update_workspace_o_auth_credentials](#create_or_update_workspace_o_auth_credentials) - Create OAuth override credentials for a workspace and source type.
@@ -24,8 +26,8 @@ from airbyte_api import api, models
 s = airbyte_api.AirbyteAPI(
     security=models.Security(
         basic_auth=models.SchemeBasicAuth(
-            password="<YOUR_PASSWORD_HERE>",
-            username="<YOUR_USERNAME_HERE>",
+            password="",
+            username="",
         ),
     ),
 )
@@ -34,7 +36,9 @@ s = airbyte_api.AirbyteAPI(
 res = s.workspaces.create_or_update_workspace_o_auth_credentials(request=api.CreateOrUpdateWorkspaceOAuthCredentialsRequest(
     workspace_o_auth_credentials_request=models.WorkspaceOAuthCredentialsRequest(
         actor_type=models.ActorTypeEnum.DESTINATION,
-        configuration=models.Airtable(),
+        configuration={
+        'user': 'charles',
+    },
         name=models.OAuthActorNames.AMAZON_ADS,
     ),
     workspace_id='<value>',
@@ -52,15 +56,16 @@ if res is not None:
 | ----------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------- |
 | `request`                                                                                                         | [api.CreateOrUpdateWorkspaceOAuthCredentialsRequest](../../api/createorupdateworkspaceoauthcredentialsrequest.md) | :heavy_check_mark:                                                                                                | The request object to use for the request.                                                                        |
 
-
 ### Response
 
 **[api.CreateOrUpdateWorkspaceOAuthCredentialsResponse](../../api/createorupdateworkspaceoauthcredentialsresponse.md)**
+
 ### Errors
 
 | Error Object    | Status Code     | Content Type    |
 | --------------- | --------------- | --------------- |
 | errors.SDKError | 4xx-5xx         | */*             |
+
 
 ## create_workspace
 
@@ -75,8 +80,8 @@ from airbyte_api import models
 s = airbyte_api.AirbyteAPI(
     security=models.Security(
         basic_auth=models.SchemeBasicAuth(
-            password="<YOUR_PASSWORD_HERE>",
-            username="<YOUR_USERNAME_HERE>",
+            password="",
+            username="",
         ),
     ),
 )
@@ -98,15 +103,16 @@ if res.workspace_response is not None:
 | ----------------------------------------------------------------------- | ----------------------------------------------------------------------- | ----------------------------------------------------------------------- | ----------------------------------------------------------------------- |
 | `request`                                                               | [models.WorkspaceCreateRequest](../../models/workspacecreaterequest.md) | :heavy_check_mark:                                                      | The request object to use for the request.                              |
 
-
 ### Response
 
 **[api.CreateWorkspaceResponse](../../api/createworkspaceresponse.md)**
+
 ### Errors
 
 | Error Object    | Status Code     | Content Type    |
 | --------------- | --------------- | --------------- |
 | errors.SDKError | 4xx-5xx         | */*             |
+
 
 ## delete_workspace
 
@@ -121,8 +127,8 @@ from airbyte_api import api, models
 s = airbyte_api.AirbyteAPI(
     security=models.Security(
         basic_auth=models.SchemeBasicAuth(
-            password="<YOUR_PASSWORD_HERE>",
-            username="<YOUR_USERNAME_HERE>",
+            password="",
+            username="",
         ),
     ),
 )
@@ -144,15 +150,16 @@ if res is not None:
 | ----------------------------------------------------------------- | ----------------------------------------------------------------- | ----------------------------------------------------------------- | ----------------------------------------------------------------- |
 | `request`                                                         | [api.DeleteWorkspaceRequest](../../api/deleteworkspacerequest.md) | :heavy_check_mark:                                                | The request object to use for the request.                        |
 
-
 ### Response
 
 **[api.DeleteWorkspaceResponse](../../api/deleteworkspaceresponse.md)**
+
 ### Errors
 
 | Error Object    | Status Code     | Content Type    |
 | --------------- | --------------- | --------------- |
 | errors.SDKError | 4xx-5xx         | */*             |
+
 
 ## get_workspace
 
@@ -167,8 +174,8 @@ from airbyte_api import api, models
 s = airbyte_api.AirbyteAPI(
     security=models.Security(
         basic_auth=models.SchemeBasicAuth(
-            password="<YOUR_PASSWORD_HERE>",
-            username="<YOUR_USERNAME_HERE>",
+            password="",
+            username="",
         ),
     ),
 )
@@ -190,15 +197,16 @@ if res.workspace_response is not None:
 | ----------------------------------------------------------- | ----------------------------------------------------------- | ----------------------------------------------------------- | ----------------------------------------------------------- |
 | `request`                                                   | [api.GetWorkspaceRequest](../../api/getworkspacerequest.md) | :heavy_check_mark:                                          | The request object to use for the request.                  |
 
-
 ### Response
 
 **[api.GetWorkspaceResponse](../../api/getworkspaceresponse.md)**
+
 ### Errors
 
 | Error Object    | Status Code     | Content Type    |
 | --------------- | --------------- | --------------- |
 | errors.SDKError | 4xx-5xx         | */*             |
+
 
 ## list_workspaces
 
@@ -208,19 +216,19 @@ List workspaces
 
 ```python
 import airbyte_api
-from airbyte_api import api, models
+from airbyte_api import models
 
 s = airbyte_api.AirbyteAPI(
     security=models.Security(
         basic_auth=models.SchemeBasicAuth(
-            password="<YOUR_PASSWORD_HERE>",
-            username="<YOUR_USERNAME_HERE>",
+            password="",
+            username="",
         ),
     ),
 )
 
 
-res = s.workspaces.list_workspaces(request=api.ListWorkspacesRequest())
+res = s.workspaces.list_workspaces()
 
 if res.workspaces_response is not None:
     # handle response
@@ -234,15 +242,16 @@ if res.workspaces_response is not None:
 | --------------------------------------------------------------- | --------------------------------------------------------------- | --------------------------------------------------------------- | --------------------------------------------------------------- |
 | `request`                                                       | [api.ListWorkspacesRequest](../../api/listworkspacesrequest.md) | :heavy_check_mark:                                              | The request object to use for the request.                      |
 
-
 ### Response
 
 **[api.ListWorkspacesResponse](../../api/listworkspacesresponse.md)**
+
 ### Errors
 
 | Error Object    | Status Code     | Content Type    |
 | --------------- | --------------- | --------------- |
 | errors.SDKError | 4xx-5xx         | */*             |
+
 
 ## update_workspace
 
@@ -257,8 +266,8 @@ from airbyte_api import api, models
 s = airbyte_api.AirbyteAPI(
     security=models.Security(
         basic_auth=models.SchemeBasicAuth(
-            password="<YOUR_PASSWORD_HERE>",
-            username="<YOUR_USERNAME_HERE>",
+            password="",
+            username="",
         ),
     ),
 )
@@ -266,7 +275,7 @@ s = airbyte_api.AirbyteAPI(
 
 res = s.workspaces.update_workspace(request=api.UpdateWorkspaceRequest(
     workspace_update_request=models.WorkspaceUpdateRequest(
-        name='<value>',
+        name='Company Workspace Name',
     ),
     workspace_id='<value>',
 ))
@@ -283,10 +292,10 @@ if res.workspace_response is not None:
 | ----------------------------------------------------------------- | ----------------------------------------------------------------- | ----------------------------------------------------------------- | ----------------------------------------------------------------- |
 | `request`                                                         | [api.UpdateWorkspaceRequest](../../api/updateworkspacerequest.md) | :heavy_check_mark:                                                | The request object to use for the request.                        |
 
-
 ### Response
 
 **[api.UpdateWorkspaceResponse](../../api/updateworkspaceresponse.md)**
+
 ### Errors
 
 | Error Object    | Status Code     | Content Type    |

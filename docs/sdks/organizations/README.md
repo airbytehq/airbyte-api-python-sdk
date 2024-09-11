@@ -1,6 +1,8 @@
 # Organizations
 (*organizations*)
 
+## Overview
+
 ### Available Operations
 
 * [list_organizations_for_user](#list_organizations_for_user) - List all organizations for a user
@@ -18,8 +20,8 @@ from airbyte_api import models
 s = airbyte_api.AirbyteAPI(
     security=models.Security(
         basic_auth=models.SchemeBasicAuth(
-            password="<YOUR_PASSWORD_HERE>",
-            username="<YOUR_USERNAME_HERE>",
+            password="",
+            username="",
         ),
     ),
 )
@@ -33,10 +35,10 @@ if res.organizations_response is not None:
 
 ```
 
-
 ### Response
 
 **[api.ListOrganizationsForUserResponse](../../api/listorganizationsforuserresponse.md)**
+
 ### Errors
 
 | Error Object    | Status Code     | Content Type    |

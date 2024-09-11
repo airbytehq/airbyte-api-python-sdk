@@ -3,6 +3,6 @@
 
 ## Values
 
-| Name          | Value         |
-| ------------- | ------------- |
-| `GCS_STAGING` | GCS Staging   |
+| Name       | Value      |
+| ---------- | ---------- |
+| `STANDARD` | Standard   |

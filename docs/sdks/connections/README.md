@@ -1,6 +1,8 @@
 # Connections
 (*connections*)
 
+## Overview
+
 ### Available Operations
 
 * [create_connection](#create_connection) - Create a connection
@@ -22,8 +24,8 @@ from airbyte_api import models
 s = airbyte_api.AirbyteAPI(
     security=models.Security(
         basic_auth=models.SchemeBasicAuth(
-            password="<YOUR_PASSWORD_HERE>",
-            username="<YOUR_USERNAME_HERE>",
+            password="",
+            username="",
         ),
     ),
 )
@@ -48,15 +50,16 @@ if res.connection_response is not None:
 | ------------------------------------------------------------------------- | ------------------------------------------------------------------------- | ------------------------------------------------------------------------- | ------------------------------------------------------------------------- |
 | `request`                                                                 | [models.ConnectionCreateRequest](../../models/connectioncreaterequest.md) | :heavy_check_mark:                                                        | The request object to use for the request.                                |
 
-
 ### Response
 
 **[api.CreateConnectionResponse](../../api/createconnectionresponse.md)**
+
 ### Errors
 
 | Error Object    | Status Code     | Content Type    |
 | --------------- | --------------- | --------------- |
 | errors.SDKError | 4xx-5xx         | */*             |
+
 
 ## delete_connection
 
@@ -71,8 +74,8 @@ from airbyte_api import api, models
 s = airbyte_api.AirbyteAPI(
     security=models.Security(
         basic_auth=models.SchemeBasicAuth(
-            password="<YOUR_PASSWORD_HERE>",
-            username="<YOUR_USERNAME_HERE>",
+            password="",
+            username="",
         ),
     ),
 )
@@ -94,15 +97,16 @@ if res is not None:
 | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
 | `request`                                                           | [api.DeleteConnectionRequest](../../api/deleteconnectionrequest.md) | :heavy_check_mark:                                                  | The request object to use for the request.                          |
 
-
 ### Response
 
 **[api.DeleteConnectionResponse](../../api/deleteconnectionresponse.md)**
+
 ### Errors
 
 | Error Object    | Status Code     | Content Type    |
 | --------------- | --------------- | --------------- |
 | errors.SDKError | 4xx-5xx         | */*             |
+
 
 ## get_connection
 
@@ -117,8 +121,8 @@ from airbyte_api import api, models
 s = airbyte_api.AirbyteAPI(
     security=models.Security(
         basic_auth=models.SchemeBasicAuth(
-            password="<YOUR_PASSWORD_HERE>",
-            username="<YOUR_USERNAME_HERE>",
+            password="",
+            username="",
         ),
     ),
 )
@@ -140,15 +144,16 @@ if res.connection_response is not None:
 | ------------------------------------------------------------- | ------------------------------------------------------------- | ------------------------------------------------------------- | ------------------------------------------------------------- |
 | `request`                                                     | [api.GetConnectionRequest](../../api/getconnectionrequest.md) | :heavy_check_mark:                                            | The request object to use for the request.                    |
 
-
 ### Response
 
 **[api.GetConnectionResponse](../../api/getconnectionresponse.md)**
+
 ### Errors
 
 | Error Object    | Status Code     | Content Type    |
 | --------------- | --------------- | --------------- |
 | errors.SDKError | 4xx-5xx         | */*             |
+
 
 ## list_connections
 
@@ -158,19 +163,19 @@ List connections
 
 ```python
 import airbyte_api
-from airbyte_api import api, models
+from airbyte_api import models
 
 s = airbyte_api.AirbyteAPI(
     security=models.Security(
         basic_auth=models.SchemeBasicAuth(
-            password="<YOUR_PASSWORD_HERE>",
-            username="<YOUR_USERNAME_HERE>",
+            password="",
+            username="",
         ),
     ),
 )
 
 
-res = s.connections.list_connections(request=api.ListConnectionsRequest())
+res = s.connections.list_connections()
 
 if res.connections_response is not None:
     # handle response
@@ -184,15 +189,16 @@ if res.connections_response is not None:
 | ----------------------------------------------------------------- | ----------------------------------------------------------------- | ----------------------------------------------------------------- | ----------------------------------------------------------------- |
 | `request`                                                         | [api.ListConnectionsRequest](../../api/listconnectionsrequest.md) | :heavy_check_mark:                                                | The request object to use for the request.                        |
 
-
 ### Response
 
 **[api.ListConnectionsResponse](../../api/listconnectionsresponse.md)**
+
 ### Errors
 
 | Error Object    | Status Code     | Content Type    |
 | --------------- | --------------- | --------------- |
 | errors.SDKError | 4xx-5xx         | */*             |
+
 
 ## patch_connection
 
@@ -207,8 +213,8 @@ from airbyte_api import api, models
 s = airbyte_api.AirbyteAPI(
     security=models.Security(
         basic_auth=models.SchemeBasicAuth(
-            password="<YOUR_PASSWORD_HERE>",
-            username="<YOUR_USERNAME_HERE>",
+            password="",
+            username="",
         ),
     ),
 )
@@ -216,6 +222,7 @@ s = airbyte_api.AirbyteAPI(
 
 res = s.connections.patch_connection(request=api.PatchConnectionRequest(
     connection_patch_request=models.ConnectionPatchRequest(
+        name='Postgres-to-Bigquery',
         namespace_format='${SOURCE_NAMESPACE}',
     ),
     connection_id='<value>',
@@ -233,10 +240,10 @@ if res.connection_response is not None:
 | ----------------------------------------------------------------- | ----------------------------------------------------------------- | ----------------------------------------------------------------- | ----------------------------------------------------------------- |
 | `request`                                                         | [api.PatchConnectionRequest](../../api/patchconnectionrequest.md) | :heavy_check_mark:                                                | The request object to use for the request.                        |
 
-
 ### Response
 
 **[api.PatchConnectionResponse](../../api/patchconnectionresponse.md)**
+
 ### Errors
 
 | Error Object    | Status Code     | Content Type    |

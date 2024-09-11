@@ -1,13 +1,19 @@
 # Authentication
 
-An HMAC key is a type of credential and can be associated with a service account or a user account in Cloud Storage. Read more <a href="https://cloud.google.com/storage/docs/authentication/hmackeys">here</a>.
+Authentication mechanism for Staging files and running queries
 
 
 ## Supported Types
 
-### `models.HMACKey`
+### `models.OAuth2Recommended`
 
 ```python
-value: models.HMACKey = /* values here */
+value: models.OAuth2Recommended = /* values here */
+```
+
+### `models.PersonalAccessToken`
+
+```python
+value: models.PersonalAccessToken = /* values here */
 ```
 

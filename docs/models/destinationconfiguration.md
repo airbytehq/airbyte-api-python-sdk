@@ -197,6 +197,12 @@ value: models.DestinationSnowflakeCortex = /* values here */
 value: models.DestinationTeradata = /* values here */
 ```
 
+### `models.DestinationTimeplus`
+
+```python
+value: models.DestinationTimeplus = /* values here */
+```
+
 ### `models.DestinationTypesense`
 
 ```python

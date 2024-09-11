@@ -1,6 +1,8 @@
 # Users
 (*users*)
 
+## Overview
+
 ### Available Operations
 
 * [list_users_within_an_organization](#list_users_within_an_organization) - List all users within an organization
@@ -18,8 +20,8 @@ from airbyte_api import api, models
 s = airbyte_api.AirbyteAPI(
     security=models.Security(
         basic_auth=models.SchemeBasicAuth(
-            password="<YOUR_PASSWORD_HERE>",
-            username="<YOUR_USERNAME_HERE>",
+            password="",
+            username="",
         ),
     ),
 )
@@ -41,10 +43,10 @@ if res.users_response is not None:
 | --------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- |
 | `request`                                                                                     | [api.ListUsersWithinAnOrganizationRequest](../../api/listuserswithinanorganizationrequest.md) | :heavy_check_mark:                                                                            | The request object to use for the request.                                                    |
 
-
 ### Response
 
 **[api.ListUsersWithinAnOrganizationResponse](../../api/listuserswithinanorganizationresponse.md)**
+
 ### Errors
 
 | Error Object    | Status Code     | Content Type    |

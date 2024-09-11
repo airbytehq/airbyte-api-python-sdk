@@ -9,6 +9,12 @@
 value: models.SourceOktaOAuth20 = /* values here */
 ```
 
+### `models.OAuth20WithPrivateKey`
+
+```python
+value: models.OAuth20WithPrivateKey = /* values here */
+```
+
 ### `models.SourceOktaAPIToken`
 
 ```python
