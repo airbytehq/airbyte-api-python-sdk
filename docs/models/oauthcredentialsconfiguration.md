@@ -209,12 +209,6 @@ value: models.Snowflake = /* values here */
 value: models.Square = /* values here */
 ```
 
-### `models.Strava`
-
-```python
-value: models.Strava = /* values here */
-```
-
 ### `models.Surveymonkey`
 
 ```python

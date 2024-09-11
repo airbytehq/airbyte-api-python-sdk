@@ -1,25 +1,13 @@
 # DataSource
 
-Storage on which the delta lake is built.
+A data source that is powered by the platform.
 
 
-## Supported Types
+## Values
 
-### `models.RecommendedManagedTables`
-
-```python
-value: models.RecommendedManagedTables = /* values here */
-```
-
-### `models.AmazonS3`
-
-```python
-value: models.AmazonS3 = /* values here */
-```
-
-### `models.DestinationDatabricksAzureBlobStorage`
-
-```python
-value: models.DestinationDatabricksAzureBlobStorage = /* values here */
-```
-
+| Name         | Value        |
+| ------------ | ------------ |
+| `METRICS`    | metrics      |
+| `CLOUD_COST` | cloud_cost   |
+| `LOGS`       | logs         |
+| `RUM`        | rum          |

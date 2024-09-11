@@ -1,0 +1,12 @@
+# OAuth20WithPrivateKey
+
+
+## Fields
+
+| Field                                                                      | Type                                                                       | Required                                                                   | Description                                                                |
+| -------------------------------------------------------------------------- | -------------------------------------------------------------------------- | -------------------------------------------------------------------------- | -------------------------------------------------------------------------- |
+| `client_id`                                                                | *str*                                                                      | :heavy_check_mark:                                                         | The Client ID of your OAuth application.                                   |
+| `key_id`                                                                   | *str*                                                                      | :heavy_check_mark:                                                         | The key ID (kid).                                                          |
+| `private_key`                                                              | *str*                                                                      | :heavy_check_mark:                                                         | The private key in PEM format                                              |
+| `scope`                                                                    | *str*                                                                      | :heavy_check_mark:                                                         | The OAuth scope.                                                           |
+| `auth_type`                                                                | [models.SourceOktaSchemasAuthType](../models/sourceoktaschemasauthtype.md) | :heavy_check_mark:                                                         | N/A                                                                        |

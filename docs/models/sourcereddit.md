@@ -1,0 +1,15 @@
+# SourceReddit
+
+
+## Fields
+
+| Field                                                                | Type                                                                 | Required                                                             | Description                                                          |
+| -------------------------------------------------------------------- | -------------------------------------------------------------------- | -------------------------------------------------------------------- | -------------------------------------------------------------------- |
+| `api_key`                                                            | *str*                                                                | :heavy_check_mark:                                                   | N/A                                                                  |
+| `start_date`                                                         | [date](https://docs.python.org/3/library/datetime.html#date-objects) | :heavy_check_mark:                                                   | N/A                                                                  |
+| `exact`                                                              | *Optional[bool]*                                                     | :heavy_minus_sign:                                                   | Specifies exact keyword and reduces distractions                     |
+| `include_over_18`                                                    | *Optional[bool]*                                                     | :heavy_minus_sign:                                                   | Includes mature content                                              |
+| `limit`                                                              | *Optional[float]*                                                    | :heavy_minus_sign:                                                   | Max records per page limit                                           |
+| `query`                                                              | *Optional[str]*                                                      | :heavy_minus_sign:                                                   | Specifies the query for searching in reddits and subreddits          |
+| `source_type`                                                        | [models.Reddit](../models/reddit.md)                                 | :heavy_check_mark:                                                   | N/A                                                                  |
+| `subreddits`                                                         | List[*Any*]                                                          | :heavy_minus_sign:                                                   | Subreddits for exploration                                           |

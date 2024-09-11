@@ -1,6 +1,8 @@
 # Streams
 (*streams*)
 
+## Overview
+
 ### Available Operations
 
 * [get_stream_properties](#get_stream_properties) - Get stream properties
@@ -18,8 +20,8 @@ from airbyte_api import api, models
 s = airbyte_api.AirbyteAPI(
     security=models.Security(
         basic_auth=models.SchemeBasicAuth(
-            password="<YOUR_PASSWORD_HERE>",
-            username="<YOUR_USERNAME_HERE>",
+            password="",
+            username="",
         ),
     ),
 )
@@ -41,10 +43,10 @@ if res.stream_properties_response is not None:
 | ------------------------------------------------------------------------- | ------------------------------------------------------------------------- | ------------------------------------------------------------------------- | ------------------------------------------------------------------------- |
 | `request`                                                                 | [api.GetStreamPropertiesRequest](../../api/getstreampropertiesrequest.md) | :heavy_check_mark:                                                        | The request object to use for the request.                                |
 
-
 ### Response
 
 **[api.GetStreamPropertiesResponse](../../api/getstreampropertiesresponse.md)**
+
 ### Errors
 
 | Error Object    | Status Code     | Content Type    |

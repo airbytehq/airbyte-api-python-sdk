@@ -11,6 +11,12 @@ The values required to configure the source.
 value: models.SourceAha = /* values here */
 ```
 
+### `models.SourceAirbyte`
+
+```python
+value: models.SourceAirbyte = /* values here */
+```
+
 ### `models.SourceAircall`
 
 ```python
@@ -95,6 +101,12 @@ value: models.SourceAzureTable = /* values here */
 value: models.SourceBambooHr = /* values here */
 ```
 
+### `models.SourceBasecamp`
+
+```python
+value: models.SourceBasecamp = /* values here */
+```
+
 ### `models.SourceBigquery`
 
 ```python
@@ -117,6 +129,18 @@ value: models.SourceBraintree = /* values here */
 
 ```python
 value: models.SourceBraze = /* values here */
+```
+
+### `models.SourceBreezyHr`
+
+```python
+value: models.SourceBreezyHr = /* values here */
+```
+
+### `models.SourceCalendly`
+
+```python
+value: models.SourceCalendly = /* values here */
 ```
 
 ### `models.SourceCart`
@@ -203,6 +227,12 @@ value: models.SourceConfluence = /* values here */
 value: models.SourceConvex = /* values here */
 ```
 
+### `models.SourceCustomerIo`
+
+```python
+value: models.SourceCustomerIo = /* values here */
+```
+
 ### `models.SourceDatadog`
 
 ```python
@@ -213,6 +243,12 @@ value: models.SourceDatadog = /* values here */
 
 ```python
 value: models.SourceDatascope = /* values here */
+```
+
+### `models.SourceDbt`
+
+```python
+value: models.SourceDbt = /* values here */
 ```
 
 ### `models.SourceDelighted`
@@ -425,10 +461,28 @@ value: models.SourceGreenhouse = /* values here */
 value: models.SourceGridly = /* values here */
 ```
 
+### `models.SourceHardcodedRecords`
+
+```python
+value: models.SourceHardcodedRecords = /* values here */
+```
+
 ### `models.SourceHarvest`
 
 ```python
 value: models.SourceHarvest = /* values here */
+```
+
+### `models.SourceHibob`
+
+```python
+value: models.SourceHibob = /* values here */
+```
+
+### `models.SourceHighLevel`
+
+```python
+value: models.SourceHighLevel = /* values here */
 ```
 
 ### `models.SourceHubplanner`
@@ -515,6 +569,12 @@ value: models.SourceKyve = /* values here */
 value: models.SourceLaunchdarkly = /* values here */
 ```
 
+### `models.SourceLeadfeeder`
+
+```python
+value: models.SourceLeadfeeder = /* values here */
+```
+
 ### `models.SourceLemlist`
 
 ```python
@@ -549,6 +609,18 @@ value: models.SourceLinnworks = /* values here */
 
 ```python
 value: models.SourceLokalise = /* values here */
+```
+
+### `models.SourceLooker`
+
+```python
+value: models.SourceLooker = /* values here */
+```
+
+### `models.SourceLuma`
+
+```python
+value: models.SourceLuma = /* values here */
 ```
 
 ### `models.SourceMailchimp`
@@ -611,12 +683,6 @@ value: models.SourceMixpanel = /* values here */
 value: models.SourceMonday = /* values here */
 ```
 
-### `models.SourceMongodbInternalPoc`
-
-```python
-value: models.SourceMongodbInternalPoc = /* values here */
-```
-
 ### `models.SourceMongodbV2`
 
 ```python
@@ -645,6 +711,12 @@ value: models.SourceMysql = /* values here */
 
 ```python
 value: models.SourceNetsuite = /* values here */
+```
+
+### `models.SourceNorthpassLms`
+
+```python
+value: models.SourceNorthpassLms = /* values here */
 ```
 
 ### `models.SourceNotion`
@@ -725,6 +797,12 @@ value: models.SourcePaystack = /* values here */
 value: models.SourcePendo = /* values here */
 ```
 
+### `models.SourcePennylane`
+
+```python
+value: models.SourcePennylane = /* values here */
+```
+
 ### `models.SourcePersistiq`
 
 ```python
@@ -747,6 +825,12 @@ value: models.SourcePinterest = /* values here */
 
 ```python
 value: models.SourcePipedrive = /* values here */
+```
+
+### `models.SourcePlanhat`
+
+```python
+value: models.SourcePlanhat = /* values here */
 ```
 
 ### `models.SourcePocket`
@@ -833,6 +917,12 @@ value: models.SourceRecruitee = /* values here */
 value: models.SourceRecurly = /* values here */
 ```
 
+### `models.SourceReddit`
+
+```python
+value: models.SourceReddit = /* values here */
+```
+
 ### `models.SourceRedshift`
 
 ```python
@@ -879,6 +969,18 @@ value: models.SourceSalesloft = /* values here */
 
 ```python
 value: models.SourceSapFieldglass = /* values here */
+```
+
+### `models.SourceSavvycal`
+
+```python
+value: models.SourceSavvycal = /* values here */
+```
+
+### `models.SourceScryfall`
+
+```python
+value: models.SourceScryfall = /* values here */
 ```
 
 ### `models.SourceSecoda`

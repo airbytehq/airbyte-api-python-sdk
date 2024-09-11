@@ -35,3 +35,9 @@ value: models.SourceMicrosoftSharepointParquetFormat = /* values here */
 value: models.SourceMicrosoftSharepointUnstructuredDocumentFormat = /* values here */
 ```
 
+### `models.SourceMicrosoftSharepointExcelFormat`
+
+```python
+value: models.SourceMicrosoftSharepointExcelFormat = /* values here */
+```
+

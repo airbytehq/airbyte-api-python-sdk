@@ -9,9 +9,9 @@
 value: models.SourceAirtableOAuth20 = /* values here */
 ```
 
-### `models.PersonalAccessToken`
+### `models.SourceAirtablePersonalAccessToken`
 
 ```python
-value: models.PersonalAccessToken = /* values here */
+value: models.SourceAirtablePersonalAccessToken = /* values here */
 ```
 

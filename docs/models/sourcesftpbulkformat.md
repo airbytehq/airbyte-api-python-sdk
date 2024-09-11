@@ -29,9 +29,15 @@ value: models.SourceSftpBulkJsonlFormat = /* values here */
 value: models.SourceSftpBulkParquetFormat = /* values here */
 ```
 
-### `models.SourceSftpBulkDocumentFileTypeFormatExperimental`
+### `models.SourceSftpBulkUnstructuredDocumentFormat`
 
 ```python
-value: models.SourceSftpBulkDocumentFileTypeFormatExperimental = /* values here */
+value: models.SourceSftpBulkUnstructuredDocumentFormat = /* values here */
+```
+
+### `models.SourceSftpBulkExcelFormat`
+
+```python
+value: models.SourceSftpBulkExcelFormat = /* values here */
 ```
 

@@ -11,9 +11,9 @@ Processing configuration
 value: models.SourceSftpBulkLocal = /* values here */
 ```
 
-### `models.ViaAPI`
+### `models.SourceSftpBulkViaAPI`
 
 ```python
-value: models.ViaAPI = /* values here */
+value: models.SourceSftpBulkViaAPI = /* values here */
 ```
 

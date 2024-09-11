@@ -1,6 +1,8 @@
 # Sources
 (*sources*)
 
+## Overview
+
 ### Available Operations
 
 * [create_source](#create_source) - Create a source
@@ -24,17 +26,18 @@ from airbyte_api import models
 s = airbyte_api.AirbyteAPI(
     security=models.Security(
         basic_auth=models.SchemeBasicAuth(
-            password="<YOUR_PASSWORD_HERE>",
-            username="<YOUR_USERNAME_HERE>",
+            password="",
+            username="",
         ),
     ),
 )
 
 
 res = s.sources.create_source(request=models.SourceCreateRequest(
-    configuration=models.SourceAha(
-        api_key='<value>',
-        url='https://complicated-seat.org',
+    configuration=models.SourcePocket(
+        access_token='<value>',
+        consumer_key='<value>',
+        since='2022-10-20 14:14:14',
     ),
     name='My Source',
     workspace_id='744cc0ed-7f05-4949-9e60-2a814f90c035',
@@ -52,15 +55,16 @@ if res.source_response is not None:
 | ----------------------------------------------------------------- | ----------------------------------------------------------------- | ----------------------------------------------------------------- | ----------------------------------------------------------------- |
 | `request`                                                         | [models.SourceCreateRequest](../../models/sourcecreaterequest.md) | :heavy_check_mark:                                                | The request object to use for the request.                        |
 
-
 ### Response
 
 **[api.CreateSourceResponse](../../api/createsourceresponse.md)**
+
 ### Errors
 
 | Error Object    | Status Code     | Content Type    |
 | --------------- | --------------- | --------------- |
 | errors.SDKError | 4xx-5xx         | */*             |
+
 
 ## delete_source
 
@@ -75,8 +79,8 @@ from airbyte_api import api, models
 s = airbyte_api.AirbyteAPI(
     security=models.Security(
         basic_auth=models.SchemeBasicAuth(
-            password="<YOUR_PASSWORD_HERE>",
-            username="<YOUR_USERNAME_HERE>",
+            password="",
+            username="",
         ),
     ),
 )
@@ -98,15 +102,16 @@ if res is not None:
 | ----------------------------------------------------------- | ----------------------------------------------------------- | ----------------------------------------------------------- | ----------------------------------------------------------- |
 | `request`                                                   | [api.DeleteSourceRequest](../../api/deletesourcerequest.md) | :heavy_check_mark:                                          | The request object to use for the request.                  |
 
-
 ### Response
 
 **[api.DeleteSourceResponse](../../api/deletesourceresponse.md)**
+
 ### Errors
 
 | Error Object    | Status Code     | Content Type    |
 | --------------- | --------------- | --------------- |
 | errors.SDKError | 4xx-5xx         | */*             |
+
 
 ## get_source
 
@@ -121,8 +126,8 @@ from airbyte_api import api, models
 s = airbyte_api.AirbyteAPI(
     security=models.Security(
         basic_auth=models.SchemeBasicAuth(
-            password="<YOUR_PASSWORD_HERE>",
-            username="<YOUR_USERNAME_HERE>",
+            password="",
+            username="",
         ),
     ),
 )
@@ -144,15 +149,16 @@ if res.source_response is not None:
 | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
 | `request`                                             | [api.GetSourceRequest](../../api/getsourcerequest.md) | :heavy_check_mark:                                    | The request object to use for the request.            |
 
-
 ### Response
 
 **[api.GetSourceResponse](../../api/getsourceresponse.md)**
+
 ### Errors
 
 | Error Object    | Status Code     | Content Type    |
 | --------------- | --------------- | --------------- |
 | errors.SDKError | 4xx-5xx         | */*             |
+
 
 ## initiate_o_auth
 
@@ -171,8 +177,8 @@ from airbyte_api import models
 s = airbyte_api.AirbyteAPI(
     security=models.Security(
         basic_auth=models.SchemeBasicAuth(
-            password="<YOUR_PASSWORD_HERE>",
-            username="<YOUR_USERNAME_HERE>",
+            password="",
+            username="",
         ),
     ),
 )
@@ -196,15 +202,16 @@ if res is not None:
 | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
 | `request`                                                           | [models.InitiateOauthRequest](../../models/initiateoauthrequest.md) | :heavy_check_mark:                                                  | The request object to use for the request.                          |
 
-
 ### Response
 
 **[api.InitiateOAuthResponse](../../api/initiateoauthresponse.md)**
+
 ### Errors
 
 | Error Object    | Status Code     | Content Type    |
 | --------------- | --------------- | --------------- |
 | errors.SDKError | 4xx-5xx         | */*             |
+
 
 ## list_sources
 
@@ -219,8 +226,8 @@ from airbyte_api import api, models
 s = airbyte_api.AirbyteAPI(
     security=models.Security(
         basic_auth=models.SchemeBasicAuth(
-            password="<YOUR_PASSWORD_HERE>",
-            username="<YOUR_USERNAME_HERE>",
+            password="",
+            username="",
         ),
     ),
 )
@@ -228,79 +235,7 @@ s = airbyte_api.AirbyteAPI(
 
 res = s.sources.list_sources(request=api.ListSourcesRequest(
     workspace_ids=[
-        'd',
-        'f',
-        '0',
-        '8',
-        'f',
-        '6',
-        'b',
-        '0',
-        '-',
-        'b',
-        '3',
-        '6',
-        '4',
-        '-',
-        '4',
-        'c',
-        'c',
-        '1',
-        '-',
-        '9',
-        'b',
-        '3',
-        'f',
-        '-',
-        '9',
-        '6',
-        'f',
-        '5',
-        'd',
-        '2',
-        'f',
-        'c',
-        'c',
-        'f',
-        'b',
-        '2',
-        ',',
-        'b',
-        '0',
-        '7',
-        '9',
-        '6',
-        '7',
-        '9',
-        '7',
-        '-',
-        'd',
-        'e',
-        '2',
-        '3',
-        '-',
-        '4',
-        'f',
-        'c',
-        '7',
-        '-',
-        'a',
-        '5',
-        'e',
-        '2',
-        '-',
-        '7',
-        'e',
-        '1',
-        '3',
-        '1',
-        '3',
-        '1',
-        '4',
-        '7',
-        '1',
-        '8',
-        'c',
+        'df08f6b0-b364-4cc1-9b3f-96f5d2fccfb2,b0796797-de23-4fc7-a5e2-7e131314718c',
     ],
 ))
 
@@ -316,15 +251,16 @@ if res.sources_response is not None:
 | --------------------------------------------------------- | --------------------------------------------------------- | --------------------------------------------------------- | --------------------------------------------------------- |
 | `request`                                                 | [api.ListSourcesRequest](../../api/listsourcesrequest.md) | :heavy_check_mark:                                        | The request object to use for the request.                |
 
-
 ### Response
 
 **[api.ListSourcesResponse](../../api/listsourcesresponse.md)**
+
 ### Errors
 
 | Error Object    | Status Code     | Content Type    |
 | --------------- | --------------- | --------------- |
 | errors.SDKError | 4xx-5xx         | */*             |
+
 
 ## patch_source
 
@@ -334,13 +270,14 @@ Update a Source
 
 ```python
 import airbyte_api
+import dateutil.parser
 from airbyte_api import api, models
 
 s = airbyte_api.AirbyteAPI(
     security=models.Security(
         basic_auth=models.SchemeBasicAuth(
-            password="<YOUR_PASSWORD_HERE>",
-            username="<YOUR_USERNAME_HERE>",
+            password="",
+            username="",
         ),
     ),
 )
@@ -349,11 +286,13 @@ s = airbyte_api.AirbyteAPI(
 res = s.sources.patch_source(request=api.PatchSourceRequest(
     source_id='<value>',
     source_patch_request=models.SourcePatchRequest(
-        configuration=models.SourceAha(
-            api_key='<value>',
-            url='http://apprehensive-visa.net',
+        configuration=models.SourceExchangeRates(
+            access_key='<value>',
+            start_date=dateutil.parser.parse('YYYY-MM-DD').date(),
+            base='EUR',
         ),
-        name='My source',
+        name='My Source',
+        workspace_id='744cc0ed-7f05-4949-9e60-2a814f90c035',
     ),
 ))
 
@@ -369,15 +308,16 @@ if res.source_response is not None:
 | --------------------------------------------------------- | --------------------------------------------------------- | --------------------------------------------------------- | --------------------------------------------------------- |
 | `request`                                                 | [api.PatchSourceRequest](../../api/patchsourcerequest.md) | :heavy_check_mark:                                        | The request object to use for the request.                |
 
-
 ### Response
 
 **[api.PatchSourceResponse](../../api/patchsourceresponse.md)**
+
 ### Errors
 
 | Error Object    | Status Code     | Content Type    |
 | --------------- | --------------- | --------------- |
 | errors.SDKError | 4xx-5xx         | */*             |
+
 
 ## put_source
 
@@ -392,8 +332,8 @@ from airbyte_api import api, models
 s = airbyte_api.AirbyteAPI(
     security=models.Security(
         basic_auth=models.SchemeBasicAuth(
-            password="<YOUR_PASSWORD_HERE>",
-            username="<YOUR_USERNAME_HERE>",
+            password="",
+            username="",
         ),
     ),
 )
@@ -402,11 +342,8 @@ s = airbyte_api.AirbyteAPI(
 res = s.sources.put_source(request=api.PutSourceRequest(
     source_id='<value>',
     source_put_request=models.SourcePutRequest(
-        configuration=models.SourceAha(
-            api_key='<value>',
-            url='http://alienated-traveler.name',
-        ),
-        name='<value>',
+        configuration=models.SourceHardcodedRecords(),
+        name='My Source',
     ),
 ))
 
@@ -422,10 +359,10 @@ if res.source_response is not None:
 | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
 | `request`                                             | [api.PutSourceRequest](../../api/putsourcerequest.md) | :heavy_check_mark:                                    | The request object to use for the request.            |
 
-
 ### Response
 
 **[api.PutSourceResponse](../../api/putsourceresponse.md)**
+
 ### Errors
 
 | Error Object    | Status Code     | Content Type    |
