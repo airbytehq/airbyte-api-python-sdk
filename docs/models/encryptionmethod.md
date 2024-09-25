@@ -3,6 +3,6 @@
 
 ## Values
 
-| Name         | Value        |
-| ------------ | ------------ |
-| `CLIENT_NNE` | client_nne   |
+| Name          | Value         |
+| ------------- | ------------- |
+| `UNENCRYPTED` | unencrypted   |

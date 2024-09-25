@@ -12,7 +12,7 @@ class Mssql(str, Enum):
     MSSQL = 'mssql'
 
 
-class DestinationMssqlSchemasSslMethod(str, Enum):
+class DestinationMssqlSchemasSslMethodSslMethod(str, Enum):
     ENCRYPTED_VERIFY_CERTIFICATE = 'encrypted_verify_certificate'
 
 
@@ -22,12 +22,12 @@ class EncryptedVerifyCertificate:
     r"""Verify and use the certificate provided by the server."""
     host_name_in_certificate: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('hostNameInCertificate'), 'exclude': lambda f: f is None }})
     r"""Specifies the host name of the server. The value of this property must match the subject property of the certificate."""
-    SSL_METHOD: Final[Optional[DestinationMssqlSchemasSslMethod]] = dataclasses.field(default=DestinationMssqlSchemasSslMethod.ENCRYPTED_VERIFY_CERTIFICATE, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('ssl_method'), 'exclude': lambda f: f is None }})
+    SSL_METHOD: Final[Optional[DestinationMssqlSchemasSslMethodSslMethod]] = dataclasses.field(default=DestinationMssqlSchemasSslMethodSslMethod.ENCRYPTED_VERIFY_CERTIFICATE, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('ssl_method'), 'exclude': lambda f: f is None }})
     
 
 
 
-class DestinationMssqlSslMethod(str, Enum):
+class DestinationMssqlSchemasSslMethod(str, Enum):
     ENCRYPTED_TRUST_SERVER_CERTIFICATE = 'encrypted_trust_server_certificate'
 
 
@@ -35,7 +35,20 @@ class DestinationMssqlSslMethod(str, Enum):
 @dataclasses.dataclass
 class EncryptedTrustServerCertificate:
     r"""Use the certificate provided by the server without verification. (For testing purposes only!)"""
-    SSL_METHOD: Final[Optional[DestinationMssqlSslMethod]] = dataclasses.field(default=DestinationMssqlSslMethod.ENCRYPTED_TRUST_SERVER_CERTIFICATE, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('ssl_method'), 'exclude': lambda f: f is None }})
+    SSL_METHOD: Final[Optional[DestinationMssqlSchemasSslMethod]] = dataclasses.field(default=DestinationMssqlSchemasSslMethod.ENCRYPTED_TRUST_SERVER_CERTIFICATE, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('ssl_method'), 'exclude': lambda f: f is None }})
+    
+
+
+
+class DestinationMssqlSslMethod(str, Enum):
+    UNENCRYPTED = 'unencrypted'
+
+
+@dataclass_json(undefined=Undefined.EXCLUDE)
+@dataclasses.dataclass
+class Unencrypted:
+    r"""The data transfer will not be encrypted."""
+    SSL_METHOD: Final[Optional[DestinationMssqlSslMethod]] = dataclasses.field(default=DestinationMssqlSslMethod.UNENCRYPTED, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('ssl_method'), 'exclude': lambda f: f is None }})
     
 
 
@@ -125,6 +138,6 @@ class DestinationMssql:
     
 
 
-SSLMethod = Union[EncryptedTrustServerCertificate, EncryptedVerifyCertificate]
+SSLMethod = Union[Unencrypted, EncryptedTrustServerCertificate, EncryptedVerifyCertificate]
 
 DestinationMssqlSSHTunnelMethod = Union[DestinationMssqlNoTunnel, DestinationMssqlSSHKeyAuthentication, DestinationMssqlPasswordAuthentication]

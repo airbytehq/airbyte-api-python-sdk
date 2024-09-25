@@ -11,6 +11,12 @@ The values required to configure the source.
 value: models.SourceAha = /* values here */
 ```
 
+### `models.Source7shifts`
+
+```python
+value: models.Source7shifts = /* values here */
+```
+
 ### `models.SourceAirbyte`
 
 ```python
@@ -57,6 +63,18 @@ value: models.SourceAmplitude = /* values here */
 
 ```python
 value: models.SourceApifyDataset = /* values here */
+```
+
+### `models.SourceAppcues`
+
+```python
+value: models.SourceAppcues = /* values here */
+```
+
+### `models.SourceAppfigures`
+
+```python
+value: models.SourceAppfigures = /* values here */
 ```
 
 ### `models.SourceAppfollow`
@@ -119,6 +137,12 @@ value: models.SourceBigquery = /* values here */
 value: models.SourceBingAds = /* values here */
 ```
 
+### `models.SourceBitly`
+
+```python
+value: models.SourceBitly = /* values here */
+```
+
 ### `models.SourceBraintree`
 
 ```python
@@ -137,16 +161,46 @@ value: models.SourceBraze = /* values here */
 value: models.SourceBreezyHr = /* values here */
 ```
 
+### `models.SourceBrevo`
+
+```python
+value: models.SourceBrevo = /* values here */
+```
+
+### `models.SourceBuildkite`
+
+```python
+value: models.SourceBuildkite = /* values here */
+```
+
+### `models.SourceBuzzsprout`
+
+```python
+value: models.SourceBuzzsprout = /* values here */
+```
+
 ### `models.SourceCalendly`
 
 ```python
 value: models.SourceCalendly = /* values here */
 ```
 
+### `models.SourceCanny`
+
+```python
+value: models.SourceCanny = /* values here */
+```
+
 ### `models.SourceCart`
 
 ```python
 value: models.SourceCart = /* values here */
+```
+
+### `models.SourceChameleon`
+
+```python
+value: models.SourceChameleon = /* values here */
 ```
 
 ### `models.SourceChargebee`
@@ -159,6 +213,12 @@ value: models.SourceChargebee = /* values here */
 
 ```python
 value: models.SourceChartmogul = /* values here */
+```
+
+### `models.SourceCimis`
+
+```python
+value: models.SourceCimis = /* values here */
 ```
 
 ### `models.SourceClazar`
@@ -281,12 +341,6 @@ value: models.SourceDremio = /* values here */
 value: models.SourceDynamodb = /* values here */
 ```
 
-### `models.SourceE2eTestCloud`
-
-```python
-value: models.SourceE2eTestCloud = /* values here */
-```
-
 ### `models.SourceEmailoctopus`
 
 ```python
@@ -297,6 +351,12 @@ value: models.SourceEmailoctopus = /* values here */
 
 ```python
 value: models.SourceExchangeRates = /* values here */
+```
+
+### `models.SourceEzofficeinventory`
+
+```python
+value: models.SourceEzofficeinventory = /* values here */
 ```
 
 ### `models.SourceFacebookMarketing`
@@ -351,6 +411,12 @@ value: models.SourceFreshdesk = /* values here */
 
 ```python
 value: models.SourceFreshsales = /* values here */
+```
+
+### `models.SourceFront`
+
+```python
+value: models.SourceFront = /* values here */
 ```
 
 ### `models.SourceGainsightPx`
@@ -443,6 +509,12 @@ value: models.SourceGoogleSearchConsole = /* values here */
 value: models.SourceGoogleSheets = /* values here */
 ```
 
+### `models.SourceGoogleTasks`
+
+```python
+value: models.SourceGoogleTasks = /* values here */
+```
+
 ### `models.SourceGoogleWebfonts`
 
 ```python
@@ -461,6 +533,12 @@ value: models.SourceGreenhouse = /* values here */
 value: models.SourceGridly = /* values here */
 ```
 
+### `models.SourceGuru`
+
+```python
+value: models.SourceGuru = /* values here */
+```
+
 ### `models.SourceHardcodedRecords`
 
 ```python
@@ -471,6 +549,12 @@ value: models.SourceHardcodedRecords = /* values here */
 
 ```python
 value: models.SourceHarvest = /* values here */
+```
+
+### `models.SourceHeight`
+
+```python
+value: models.SourceHeight = /* values here */
 ```
 
 ### `models.SourceHibob`
@@ -537,6 +621,12 @@ value: models.SourceIterable = /* values here */
 
 ```python
 value: models.SourceJira = /* values here */
+```
+
+### `models.SourceJotform`
+
+```python
+value: models.SourceJotform = /* values here */
 ```
 
 ### `models.SourceK6Cloud`
@@ -725,6 +815,12 @@ value: models.SourceNorthpassLms = /* values here */
 value: models.SourceNotion = /* values here */
 ```
 
+### `models.SourceNylas`
+
+```python
+value: models.SourceNylas = /* values here */
+```
+
 ### `models.SourceNytimes`
 
 ```python
@@ -815,6 +911,12 @@ value: models.SourcePersistiq = /* values here */
 value: models.SourcePexelsAPI = /* values here */
 ```
 
+### `models.SourcePicqer`
+
+```python
+value: models.SourcePicqer = /* values here */
+```
+
 ### `models.SourcePinterest`
 
 ```python
@@ -825,6 +927,12 @@ value: models.SourcePinterest = /* values here */
 
 ```python
 value: models.SourcePipedrive = /* values here */
+```
+
+### `models.SourcePiwik`
+
+```python
+value: models.SourcePiwik = /* values here */
 ```
 
 ### `models.SourcePlanhat`
@@ -873,6 +981,18 @@ value: models.SourcePostmarkapp = /* values here */
 
 ```python
 value: models.SourcePrestashop = /* values here */
+```
+
+### `models.SourceProductboard`
+
+```python
+value: models.SourceProductboard = /* values here */
+```
+
+### `models.SourceProductive`
+
+```python
+value: models.SourceProductive = /* values here */
 ```
 
 ### `models.SourcePypi`
@@ -1031,6 +1151,12 @@ value: models.SourceSftpBulk = /* values here */
 value: models.SourceShopify = /* values here */
 ```
 
+### `models.SourceShortcut`
+
+```python
+value: models.SourceShortcut = /* values here */
+```
+
 ### `models.SourceShortio`
 
 ```python
@@ -1115,6 +1241,18 @@ value: models.SourceSurveySparrow = /* values here */
 value: models.SourceSurveymonkey = /* values here */
 ```
 
+### `models.SourceSurvicate`
+
+```python
+value: models.SourceSurvicate = /* values here */
+```
+
+### `models.SourceTeamwork`
+
+```python
+value: models.SourceTeamwork = /* values here */
+```
+
 ### `models.SourceTempo`
 
 ```python
@@ -1193,6 +1331,12 @@ value: models.SourceVantage = /* values here */
 value: models.SourceWebflow = /* values here */
 ```
 
+### `models.SourceWhenIWork`
+
+```python
+value: models.SourceWhenIWork = /* values here */
+```
+
 ### `models.SourceWhiskyHunter`
 
 ```python
@@ -1239,12 +1383,6 @@ value: models.SourceYoutubeAnalytics = /* values here */
 
 ```python
 value: models.SourceZendeskChat = /* values here */
-```
-
-### `models.SourceZendeskSell`
-
-```python
-value: models.SourceZendeskSell = /* values here */
 ```
 
 ### `models.SourceZendeskSunshine`

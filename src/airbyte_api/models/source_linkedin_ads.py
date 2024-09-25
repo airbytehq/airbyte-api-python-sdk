@@ -101,6 +101,8 @@ class SourceLinkedinAds:
     r"""Specify the account IDs to pull data from, separated by a space. Leave this field empty if you want to pull the data from all accounts accessible by the authenticated user. See the <a href=\\"https://www.linkedin.com/help/linkedin/answer/a424270/find-linkedin-ads-account-details?lang=en\\">LinkedIn docs</a> to locate these IDs."""
     ad_analytics_reports: Optional[List[AdAnalyticsReportConfiguration]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('ad_analytics_reports'), 'exclude': lambda f: f is None }})
     credentials: Optional[SourceLinkedinAdsAuthentication] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credentials'), 'exclude': lambda f: f is None }})
+    lookback_window: Optional[int] = dataclasses.field(default=0, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('lookback_window'), 'exclude': lambda f: f is None }})
+    r"""How far into the past to look for records. (in days)"""
     SOURCE_TYPE: Final[SourceLinkedinAdsLinkedinAds] = dataclasses.field(default=SourceLinkedinAdsLinkedinAds.LINKEDIN_ADS, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     
 

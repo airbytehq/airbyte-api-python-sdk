@@ -1,0 +1,16 @@
+# SourceCimis
+
+
+## Fields
+
+| Field                                                                | Type                                                                 | Required                                                             | Description                                                          |
+| -------------------------------------------------------------------- | -------------------------------------------------------------------- | -------------------------------------------------------------------- | -------------------------------------------------------------------- |
+| `api_key`                                                            | *str*                                                                | :heavy_check_mark:                                                   | N/A                                                                  |
+| `end_date`                                                           | [date](https://docs.python.org/3/library/datetime.html#date-objects) | :heavy_check_mark:                                                   | N/A                                                                  |
+| `start_date`                                                         | [date](https://docs.python.org/3/library/datetime.html#date-objects) | :heavy_check_mark:                                                   | N/A                                                                  |
+| `targets`                                                            | List[*Any*]                                                          | :heavy_check_mark:                                                   | N/A                                                                  |
+| `targets_type`                                                       | [models.TargetsType](../models/targetstype.md)                       | :heavy_check_mark:                                                   | N/A                                                                  |
+| `daily_data_items`                                                   | List[*Any*]                                                          | :heavy_minus_sign:                                                   | N/A                                                                  |
+| `hourly_data_items`                                                  | List[*Any*]                                                          | :heavy_minus_sign:                                                   | N/A                                                                  |
+| `source_type`                                                        | [models.Cimis](../models/cimis.md)                                   | :heavy_check_mark:                                                   | N/A                                                                  |
+| `unit_of_measure`                                                    | [Optional[models.UnitOfMeasure]](../models/unitofmeasure.md)         | :heavy_minus_sign:                                                   | N/A                                                                  |

@@ -3,6 +3,6 @@
 
 ## Values
 
-| Name    | Value   |
-| ------- | ------- |
-| `JSONL` | jsonl   |
+| Name           | Value          |
+| -------------- | -------------- |
+| `UNSTRUCTURED` | unstructured   |

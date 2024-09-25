@@ -17,10 +17,10 @@ value: models.HTTPSPublicWeb = /* values here */
 value: models.GCSGoogleCloudStorage = /* values here */
 ```
 
-### `models.SourceFileS3AmazonWebServices`
+### `models.S3AmazonWebServices`
 
 ```python
-value: models.SourceFileS3AmazonWebServices = /* values here */
+value: models.S3AmazonWebServices = /* values here */
 ```
 
 ### `models.AzBlobAzureBlobStorage`
@@ -45,5 +45,11 @@ value: models.SCPSecureCopyProtocol = /* values here */
 
 ```python
 value: models.SFTPSecureFileTransferProtocol = /* values here */
+```
+
+### `models.LocalFilesystemLimited`
+
+```python
+value: models.LocalFilesystemLimited = /* values here */
 ```
 

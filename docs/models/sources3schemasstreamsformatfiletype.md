@@ -3,6 +3,6 @@
 
 ## Values
 
-| Name  | Value |
-| ----- | ----- |
-| `CSV` | csv   |
+| Name      | Value     |
+| --------- | --------- |
+| `PARQUET` | parquet   |

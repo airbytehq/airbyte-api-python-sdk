@@ -53,8 +53,6 @@ class SourceAsana:
     organization_export_ids: Optional[List[Any]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('organization_export_ids'), 'exclude': lambda f: f is None }})
     r"""Globally unique identifiers for the organization exports"""
     SOURCE_TYPE: Final[Optional[SourceAsanaAsana]] = dataclasses.field(default=SourceAsanaAsana.ASANA, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType'), 'exclude': lambda f: f is None }})
-    test_mode: Optional[bool] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('test_mode'), 'exclude': lambda f: f is None }})
-    r"""This flag is used for testing purposes for certain streams that return a lot of data. This flag is not meant to be enabled for prod."""
     
 
 

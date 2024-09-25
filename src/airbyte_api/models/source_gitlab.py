@@ -56,12 +56,8 @@ class SourceGitlab:
     credentials: SourceGitlabAuthorizationMethod = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credentials') }})
     api_url: Optional[str] = dataclasses.field(default='gitlab.com', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('api_url'), 'exclude': lambda f: f is None }})
     r"""Please enter your basic URL from GitLab instance."""
-    groups: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('groups'), 'exclude': lambda f: f is None }})
-    r"""[DEPRECATED] Space-delimited list of groups. e.g. airbyte.io."""
     groups_list: Optional[List[str]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('groups_list'), 'exclude': lambda f: f is None }})
     r"""List of groups. e.g. airbyte.io."""
-    projects: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('projects'), 'exclude': lambda f: f is None }})
-    r"""[DEPRECATED] Space-delimited list of projects. e.g. airbyte.io/documentation meltano/tap-gitlab."""
     projects_list: Optional[List[str]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('projects_list'), 'exclude': lambda f: f is None }})
     r"""Space-delimited list of projects. e.g. airbyte.io/documentation meltano/tap-gitlab."""
     SOURCE_TYPE: Final[SourceGitlabGitlab] = dataclasses.field(default=SourceGitlabGitlab.GITLAB, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})

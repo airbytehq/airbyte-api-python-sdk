@@ -163,7 +163,7 @@ List connections
 
 ```python
 import airbyte_api
-from airbyte_api import models
+from airbyte_api import api, models
 
 s = airbyte_api.AirbyteAPI(
     security=models.Security(
@@ -175,7 +175,7 @@ s = airbyte_api.AirbyteAPI(
 )
 
 
-res = s.connections.list_connections()
+res = s.connections.list_connections(request=api.ListConnectionsRequest())
 
 if res.connections_response is not None:
     # handle response

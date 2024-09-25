@@ -86,6 +86,8 @@ class SourceClickhouse:
     port: Optional[int] = dataclasses.field(default=8123, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('port'), 'exclude': lambda f: f is None }})
     r"""The port of the database."""
     SOURCE_TYPE: Final[SourceClickhouseClickhouse] = dataclasses.field(default=SourceClickhouseClickhouse.CLICKHOUSE, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
+    ssl: Optional[bool] = dataclasses.field(default=True, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('ssl'), 'exclude': lambda f: f is None }})
+    r"""Encrypt data using SSL."""
     tunnel_method: Optional[SourceClickhouseSSHTunnelMethod] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('tunnel_method'), 'exclude': lambda f: f is None }})
     r"""Whether to initiate an SSH tunnel before connecting to the database, and if so, which kind of authentication to use."""
     

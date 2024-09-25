@@ -1,10 +1,10 @@
 # Unencrypted
 
-Data transfer will not be encrypted.
+The data transfer will not be encrypted.
 
 
 ## Fields
 
-| Field                                                                          | Type                                                                           | Required                                                                       | Description                                                                    |
-| ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ |
-| `ssl_method`                                                                   | [models.SourceMssqlSchemasSslMethod](../models/sourcemssqlschemassslmethod.md) | :heavy_check_mark:                                                             | N/A                                                                            |
+| Field                                                                                | Type                                                                                 | Required                                                                             | Description                                                                          |
+| ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ |
+| `ssl_method`                                                                         | [Optional[models.DestinationMssqlSslMethod]](../models/destinationmssqlsslmethod.md) | :heavy_minus_sign:                                                                   | N/A                                                                                  |

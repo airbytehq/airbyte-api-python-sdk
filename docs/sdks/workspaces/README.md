@@ -37,8 +37,8 @@ res = s.workspaces.create_or_update_workspace_o_auth_credentials(request=api.Cre
     workspace_o_auth_credentials_request=models.WorkspaceOAuthCredentialsRequest(
         actor_type=models.ActorTypeEnum.DESTINATION,
         configuration={
-        'user': 'charles',
-    },
+            'user': 'charles',
+        },
         name=models.OAuthActorNames.AMAZON_ADS,
     ),
     workspace_id='<value>',
@@ -216,7 +216,7 @@ List workspaces
 
 ```python
 import airbyte_api
-from airbyte_api import models
+from airbyte_api import api, models
 
 s = airbyte_api.AirbyteAPI(
     security=models.Security(
@@ -228,7 +228,7 @@ s = airbyte_api.AirbyteAPI(
 )
 
 
-res = s.workspaces.list_workspaces()
+res = s.workspaces.list_workspaces(request=api.ListWorkspacesRequest())
 
 if res.workspaces_response is not None:
     # handle response

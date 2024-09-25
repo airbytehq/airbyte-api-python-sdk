@@ -21,6 +21,20 @@ class FileFormat(str, Enum):
     YAML = 'yaml'
 
 
+class SourceFileSchemasProviderStorageProvider8Storage(str, Enum):
+    r"""WARNING: Note that the local storage URL available for reading must start with the local mount \\"/local/\\" at the moment until we implement more advanced docker mounting options."""
+    LOCAL = 'local'
+
+
+@dataclass_json(undefined=Undefined.EXCLUDE)
+@dataclasses.dataclass
+class LocalFilesystemLimited:
+    STORAGE: Final[SourceFileSchemasProviderStorageProvider8Storage] = dataclasses.field(default=SourceFileSchemasProviderStorageProvider8Storage.LOCAL, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('storage') }})
+    r"""WARNING: Note that the local storage URL available for reading must start with the local mount \\"/local/\\" at the moment until we implement more advanced docker mounting options."""
+    
+
+
+
 class SourceFileSchemasProviderStorageProvider7Storage(str, Enum):
     SFTP = 'SFTP'
 
@@ -93,7 +107,7 @@ class SourceFileSchemasStorage(str, Enum):
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
-class SourceFileS3AmazonWebServices:
+class S3AmazonWebServices:
     aws_access_key_id: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('aws_access_key_id'), 'exclude': lambda f: f is None }})
     r"""In order to access private Buckets stored on AWS S3, this connector would need credentials with the proper permissions. If accessing publicly available data, this field is not necessary."""
     aws_secret_access_key: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('aws_secret_access_key'), 'exclude': lambda f: f is None }})
@@ -152,4 +166,4 @@ class SourceFile:
     
 
 
-StorageProvider = Union[HTTPSPublicWeb, GCSGoogleCloudStorage, SourceFileS3AmazonWebServices, AzBlobAzureBlobStorage, SSHSecureShell, SCPSecureCopyProtocol, SFTPSecureFileTransferProtocol]
+StorageProvider = Union[HTTPSPublicWeb, GCSGoogleCloudStorage, S3AmazonWebServices, AzBlobAzureBlobStorage, SSHSecureShell, SCPSecureCopyProtocol, SFTPSecureFileTransferProtocol, LocalFilesystemLimited]

@@ -57,8 +57,6 @@ class SourceHarvest:
     r"""UTC date and time in the format 2017-01-25T00:00:00Z. Any data before this date will not be replicated."""
     credentials: Optional[SourceHarvestAuthenticationMechanism] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credentials'), 'exclude': lambda f: f is None }})
     r"""Choose how to authenticate to Harvest."""
-    replication_end_date: Optional[datetime] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('replication_end_date'), 'encoder': utils.datetimeisoformat(True), 'decoder': dateutil.parser.isoparse, 'exclude': lambda f: f is None }})
-    r"""UTC date and time in the format 2017-01-25T00:00:00Z. Any data after this date will not be replicated."""
     SOURCE_TYPE: Final[Harvest] = dataclasses.field(default=Harvest.HARVEST, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     
 
