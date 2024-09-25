@@ -5,10 +5,10 @@ Authorization type.
 
 ## Supported Types
 
-### `models.NoneT`
+### `models.DestinationMongodbNone`
 
 ```python
-value: models.NoneT = /* values here */
+value: models.DestinationMongodbNone = /* values here */
 ```
 
 ### `models.LoginPassword`

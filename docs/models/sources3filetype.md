@@ -3,6 +3,6 @@
 
 ## Values
 
-| Name      | Value     |
-| --------- | --------- |
-| `PARQUET` | parquet   |
+| Name   | Value  |
+| ------ | ------ |
+| `AVRO` | avro   |

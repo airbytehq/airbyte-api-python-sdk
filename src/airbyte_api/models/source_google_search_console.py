@@ -82,8 +82,6 @@ class SourceGoogleSearchConsole:
     authorization: AuthenticationType = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('authorization') }})
     site_urls: List[str] = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('site_urls') }})
     r"""The URLs of the website property attached to your GSC account. Learn more about properties <a href=\\"https://support.google.com/webmasters/answer/34592?hl=en\\">here</a>."""
-    custom_reports: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('custom_reports'), 'exclude': lambda f: f is None }})
-    r"""(DEPRCATED) A JSON array describing the custom reports you want to sync from Google Search Console. See our <a href='https://docs.airbyte.com/integrations/sources/google-search-console'>documentation</a> for more information on formulating custom reports."""
     custom_reports_array: Optional[List[SourceGoogleSearchConsoleCustomReportConfig]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('custom_reports_array'), 'exclude': lambda f: f is None }})
     r"""You can add your Custom Analytics report by creating one."""
     data_state: Optional[DataFreshness] = dataclasses.field(default=DataFreshness.FINAL, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('data_state'), 'exclude': lambda f: f is None }})

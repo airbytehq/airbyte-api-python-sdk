@@ -36,39 +36,52 @@ class ServiceName:
 
 
 
-class SourceOracleEncryptionMethod(str, Enum):
+class SourceOracleSchemasEncryptionEncryptionMethod(str, Enum):
     ENCRYPTED_VERIFY_CERTIFICATE = 'encrypted_verify_certificate'
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
-class TLSEncryptedVerifyCertificate:
+class SourceOracleTLSEncryptedVerifyCertificate:
     r"""Verify and use the certificate provided by the server."""
     ssl_certificate: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('ssl_certificate') }})
     r"""Privacy Enhanced Mail (PEM) files are concatenated certificate containers frequently used in certificate installations."""
-    ENCRYPTION_METHOD: Final[SourceOracleEncryptionMethod] = dataclasses.field(default=SourceOracleEncryptionMethod.ENCRYPTED_VERIFY_CERTIFICATE, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('encryption_method') }})
+    ENCRYPTION_METHOD: Final[SourceOracleSchemasEncryptionEncryptionMethod] = dataclasses.field(default=SourceOracleSchemasEncryptionEncryptionMethod.ENCRYPTED_VERIFY_CERTIFICATE, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('encryption_method') }})
     
 
 
 
-class EncryptionAlgorithm(str, Enum):
+class SourceOracleEncryptionAlgorithm(str, Enum):
     r"""This parameter defines what encryption algorithm is used."""
     AES256 = 'AES256'
     RC4_56 = 'RC4_56'
     THREE_DES168 = '3DES168'
 
 
-class EncryptionMethod(str, Enum):
+class SourceOracleSchemasEncryptionMethod(str, Enum):
     CLIENT_NNE = 'client_nne'
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
-class NativeNetworkEncryptionNNE:
+class SourceOracleNativeNetworkEncryptionNNE:
     r"""The native network encryption gives you the ability to encrypt database connections, without the configuration overhead of TCP/IP and SSL/TLS and without the need to open and listen on different ports."""
-    encryption_algorithm: Optional[EncryptionAlgorithm] = dataclasses.field(default=EncryptionAlgorithm.AES256, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('encryption_algorithm'), 'exclude': lambda f: f is None }})
+    encryption_algorithm: Optional[SourceOracleEncryptionAlgorithm] = dataclasses.field(default=SourceOracleEncryptionAlgorithm.AES256, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('encryption_algorithm'), 'exclude': lambda f: f is None }})
     r"""This parameter defines what encryption algorithm is used."""
-    ENCRYPTION_METHOD: Final[EncryptionMethod] = dataclasses.field(default=EncryptionMethod.CLIENT_NNE, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('encryption_method') }})
+    ENCRYPTION_METHOD: Final[SourceOracleSchemasEncryptionMethod] = dataclasses.field(default=SourceOracleSchemasEncryptionMethod.CLIENT_NNE, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('encryption_method') }})
+    
+
+
+
+class SourceOracleEncryptionMethod(str, Enum):
+    UNENCRYPTED = 'unencrypted'
+
+
+@dataclass_json(undefined=Undefined.EXCLUDE)
+@dataclasses.dataclass
+class SourceOracleUnencrypted:
+    r"""Data transfer will not be encrypted."""
+    ENCRYPTION_METHOD: Final[SourceOracleEncryptionMethod] = dataclasses.field(default=SourceOracleEncryptionMethod.UNENCRYPTED, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('encryption_method') }})
     
 
 
@@ -138,14 +151,14 @@ class SourceOracleNoTunnel:
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
 class SourceOracle:
-    encryption: Encryption = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('encryption') }})
-    r"""The encryption method with is used when communicating with the database."""
     host: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('host') }})
     r"""Hostname of the database."""
     username: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('username') }})
     r"""The username which is used to access the database."""
     connection_data: Optional[ConnectBy] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('connection_data'), 'exclude': lambda f: f is None }})
     r"""Connect data that will be used for DB connection"""
+    encryption: Optional[SourceOracleEncryption] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('encryption'), 'exclude': lambda f: f is None }})
+    r"""The encryption method with is used when communicating with the database."""
     jdbc_url_params: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('jdbc_url_params'), 'exclude': lambda f: f is None }})
     r"""Additional properties to pass to the JDBC URL string when connecting to the database formatted as 'key=value' pairs separated by the symbol '&'. (example: key1=value1&key2=value2&key3=value3)."""
     password: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('password'), 'exclude': lambda f: f is None }})
@@ -166,6 +179,6 @@ class SourceOracle:
 
 ConnectBy = Union[ServiceName, SystemIDSID]
 
-Encryption = Union[NativeNetworkEncryptionNNE, TLSEncryptedVerifyCertificate]
+SourceOracleEncryption = Union[SourceOracleUnencrypted, SourceOracleNativeNetworkEncryptionNNE, SourceOracleTLSEncryptedVerifyCertificate]
 
 SourceOracleSSHTunnelMethod = Union[SourceOracleNoTunnel, SourceOracleSSHKeyAuthentication, SourceOraclePasswordAuthentication]

@@ -3,6 +3,6 @@
 
 ## Values
 
-| Name    | Value   |
-| ------- | ------- |
-| `BASIC` | basic   |
+| Name     | Value    |
+| -------- | -------- |
+| `SECRET` | secret   |

@@ -88,7 +88,7 @@ class SourceMssqlSchemasSslMethod(str, Enum):
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
-class Unencrypted:
+class SourceMssqlUnencrypted:
     r"""Data transfer will not be encrypted."""
     SSL_METHOD: Final[SourceMssqlSchemasSslMethod] = dataclasses.field(default=SourceMssqlSchemasSslMethod.UNENCRYPTED, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('ssl_method') }})
     
@@ -182,6 +182,6 @@ class SourceMssql:
 
 UpdateMethod = Union[ReadChangesUsingChangeDataCaptureCDC, ScanChangesWithUserDefinedCursor]
 
-SourceMssqlSSLMethod = Union[Unencrypted, SourceMssqlEncryptedTrustServerCertificate, SourceMssqlEncryptedVerifyCertificate]
+SourceMssqlSSLMethod = Union[SourceMssqlUnencrypted, SourceMssqlEncryptedTrustServerCertificate, SourceMssqlEncryptedVerifyCertificate]
 
 SourceMssqlSSHTunnelMethod = Union[SourceMssqlNoTunnel, SourceMssqlSSHKeyAuthentication, SourceMssqlPasswordAuthentication]

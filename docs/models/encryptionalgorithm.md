@@ -1,6 +1,6 @@
 # EncryptionAlgorithm
 
-This parameter defines what encryption algorithm is used.
+This parameter defines the database encryption algorithm.
 
 
 ## Values

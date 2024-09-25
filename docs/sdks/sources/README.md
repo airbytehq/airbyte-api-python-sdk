@@ -21,6 +21,7 @@ Creates a source given a name, workspace id, and a json blob containing the conf
 
 ```python
 import airbyte_api
+import dateutil.parser
 from airbyte_api import models
 
 s = airbyte_api.AirbyteAPI(
@@ -34,10 +35,33 @@ s = airbyte_api.AirbyteAPI(
 
 
 res = s.sources.create_source(request=models.SourceCreateRequest(
-    configuration=models.SourcePocket(
-        access_token='<value>',
-        consumer_key='<value>',
-        since='2022-10-20 14:14:14',
+    configuration=models.SourcePinterest(
+        custom_reports=[
+            models.ReportConfig(
+                columns=[
+                    models.SourcePinterestSchemasValidEnums.TOTAL_REPIN_RATE,
+                ],
+                name='<value>',
+                start_date=dateutil.parser.parse('2022-07-28').date(),
+            ),
+            models.ReportConfig(
+                columns=[
+                    models.SourcePinterestSchemasValidEnums.TOTAL_VIEW_LEAD,
+                ],
+                name='<value>',
+                start_date=dateutil.parser.parse('2022-07-28').date(),
+            ),
+            models.ReportConfig(
+                columns=[
+                    models.SourcePinterestSchemasValidEnums.TOTAL_WEB_ENGAGEMENT_CHECKOUT,
+                    models.SourcePinterestSchemasValidEnums.TOTAL_VIEW_LEAD,
+                    models.SourcePinterestSchemasValidEnums.TOTAL_ENGAGEMENT_CHECKOUT,
+                ],
+                name='<value>',
+                start_date=dateutil.parser.parse('2022-07-28').date(),
+            ),
+        ],
+        start_date=dateutil.parser.parse('2022-07-28').date(),
     ),
     name='My Source',
     workspace_id='744cc0ed-7f05-4949-9e60-2a814f90c035',
@@ -270,7 +294,6 @@ Update a Source
 
 ```python
 import airbyte_api
-import dateutil.parser
 from airbyte_api import api, models
 
 s = airbyte_api.AirbyteAPI(
@@ -286,10 +309,8 @@ s = airbyte_api.AirbyteAPI(
 res = s.sources.patch_source(request=api.PatchSourceRequest(
     source_id='<value>',
     source_patch_request=models.SourcePatchRequest(
-        configuration=models.SourceExchangeRates(
-            access_key='<value>',
-            start_date=dateutil.parser.parse('YYYY-MM-DD').date(),
-            base='EUR',
+        configuration=models.SourceDremio(
+            api_key='<value>',
         ),
         name='My Source',
         workspace_id='744cc0ed-7f05-4949-9e60-2a814f90c035',
@@ -327,6 +348,7 @@ Update a Source and fully overwrite it
 
 ```python
 import airbyte_api
+import dateutil.parser
 from airbyte_api import api, models
 
 s = airbyte_api.AirbyteAPI(
@@ -342,7 +364,10 @@ s = airbyte_api.AirbyteAPI(
 res = s.sources.put_source(request=api.PutSourceRequest(
     source_id='<value>',
     source_put_request=models.SourcePutRequest(
-        configuration=models.SourceHardcodedRecords(),
+        configuration=models.SourceGoogleTasks(
+            api_key='<value>',
+            start_date=dateutil.parser.isoparse('2024-10-11T13:59:33.977Z'),
+        ),
         name='My Source',
     ),
 ))

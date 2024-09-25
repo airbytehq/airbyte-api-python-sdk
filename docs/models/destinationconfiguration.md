@@ -53,12 +53,6 @@ value: models.DestinationConvex = /* values here */
 value: models.DestinationDatabricks = /* values here */
 ```
 
-### `models.DestinationDevNull`
-
-```python
-value: models.DestinationDevNull = /* values here */
-```
-
 ### `models.DestinationDuckdb`
 
 ```python
@@ -123,6 +117,12 @@ value: models.DestinationMysql = /* values here */
 
 ```python
 value: models.DestinationOracle = /* values here */
+```
+
+### `models.DestinationPgvector`
+
+```python
+value: models.DestinationPgvector = /* values here */
 ```
 
 ### `models.DestinationPinecone`

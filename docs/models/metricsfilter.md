@@ -23,9 +23,9 @@ value: models.SourceGoogleAnalyticsDataAPIOrGroup = /* values here */
 value: models.SourceGoogleAnalyticsDataAPINotExpression = /* values here */
 ```
 
-### `models.SourceGoogleAnalyticsDataAPIFilter`
+### `models.SourceGoogleAnalyticsDataAPISchemasFilter`
 
 ```python
-value: models.SourceGoogleAnalyticsDataAPIFilter = /* values here */
+value: models.SourceGoogleAnalyticsDataAPISchemasFilter = /* values here */
 ```
 

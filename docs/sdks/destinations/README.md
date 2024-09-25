@@ -34,21 +34,19 @@ s = airbyte_api.AirbyteAPI(
 
 res = s.destinations.create_destination(request=models.DestinationCreateRequest(
     configuration=models.DestinationPinecone(
-        embedding=models.DestinationPineconeOpenAI(
-            openai_key='<value>',
-        ),
+        embedding=models.DestinationPineconeFake(),
         indexing=models.DestinationPineconeIndexing(
             index='<value>',
             pinecone_environment='us-west1-gcp',
             pinecone_key='<value>',
         ),
         processing=models.DestinationPineconeProcessingConfigModel(
-            chunk_size=45493,
+            chunk_size=834173,
             metadata_fields=[
                 'user',
             ],
             text_fields=[
-                'user.name',
+                'users.*.name',
             ],
         ),
     ),
@@ -181,7 +179,7 @@ List destinations
 
 ```python
 import airbyte_api
-from airbyte_api import models
+from airbyte_api import api, models
 
 s = airbyte_api.AirbyteAPI(
     security=models.Security(
@@ -193,7 +191,7 @@ s = airbyte_api.AirbyteAPI(
 )
 
 
-res = s.destinations.list_destinations()
+res = s.destinations.list_destinations(request=api.ListDestinationsRequest())
 
 if res.destinations_response is not None:
     # handle response
@@ -241,8 +239,9 @@ s = airbyte_api.AirbyteAPI(
 res = s.destinations.patch_destination(request=api.PatchDestinationRequest(
     destination_id='<value>',
     destination_patch_request=models.DestinationPatchRequest(
-        configuration=models.DestinationDevNull(
-            test_destination=models.Silent(),
+        configuration=models.DestinationDuckdb(
+            destination_path='motherduck:',
+            schema='main',
         ),
         name='My Destination',
     ),
@@ -296,8 +295,8 @@ res = s.destinations.put_destination(request=api.PutDestinationRequest(
     destination_put_request=models.DestinationPutRequest(
         configuration=models.DestinationClickhouse(
             database='<value>',
-            host='aggravating-town.info',
-            username='Myah.Spencer55',
+            host='urban-receptor.org',
+            username='Kaylie_Terry',
             port=8123,
             tunnel_method=models.SSHKeyAuthentication(
                 ssh_key='<value>',

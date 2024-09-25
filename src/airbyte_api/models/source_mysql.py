@@ -196,6 +196,8 @@ class SourceMysql:
     port: Optional[int] = dataclasses.field(default=3306, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('port'), 'exclude': lambda f: f is None }})
     r"""The port to connect to."""
     SOURCE_TYPE: Final[SourceMysqlMysql] = dataclasses.field(default=SourceMysqlMysql.MYSQL, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
+    ssl: Optional[bool] = dataclasses.field(default=True, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('ssl'), 'exclude': lambda f: f is None }})
+    r"""Encrypt data using SSL."""
     ssl_mode: Optional[SourceMysqlSSLModes] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('ssl_mode'), 'exclude': lambda f: f is None }})
     r"""SSL connection modes. Read more <a href=\\"https://dev.mysql.com/doc/connector-j/8.0/en/connector-j-reference-using-ssl.html\\"> in the docs</a>."""
     tunnel_method: Optional[SourceMysqlSSHTunnelMethod] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('tunnel_method'), 'exclude': lambda f: f is None }})

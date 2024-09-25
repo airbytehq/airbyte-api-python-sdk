@@ -1,29 +1,12 @@
 # SourceGoogleAnalyticsDataAPISchemasFilter
 
+A primitive filter. In the same FilterExpression, all of the filter's field names need to be either all metrics.
 
-## Supported Types
 
-### `models.StringFilter`
+## Fields
 
-```python
-value: models.StringFilter = /* values here */
-```
-
-### `models.InListFilter`
-
-```python
-value: models.InListFilter = /* values here */
-```
-
-### `models.NumericFilter`
-
-```python
-value: models.NumericFilter = /* values here */
-```
-
-### `models.BetweenFilter`
-
-```python
-value: models.BetweenFilter = /* values here */
-```
-
+| Field                                                                                                                                                                                                                | Type                                                                                                                                                                                                                 | Required                                                                                                                                                                                                             | Description                                                                                                                                                                                                          |
+| -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `field_name`                                                                                                                                                                                                         | *str*                                                                                                                                                                                                                | :heavy_check_mark:                                                                                                                                                                                                   | N/A                                                                                                                                                                                                                  |
+| `filter_`                                                                                                                                                                                                            | [models.SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayMetricFilterFilter](../models/sourcegoogleanalyticsdataapischemascustomreportsarraymetricfilterfilter.md)                                               | :heavy_check_mark:                                                                                                                                                                                                   | N/A                                                                                                                                                                                                                  |
+| `filter_type`                                                                                                                                                                                                        | [Optional[models.SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayMetricFilterMetricsFilter4FilterType]](../models/sourcegoogleanalyticsdataapischemascustomreportsarraymetricfiltermetricsfilter4filtertype.md) | :heavy_minus_sign:                                                                                                                                                                                                   | N/A                                                                                                                                                                                                                  |

@@ -162,7 +162,7 @@ List Permissions by user id
 
 ```python
 import airbyte_api
-from airbyte_api import models
+from airbyte_api import api, models
 
 s = airbyte_api.AirbyteAPI(
     security=models.Security(
@@ -174,7 +174,7 @@ s = airbyte_api.AirbyteAPI(
 )
 
 
-res = s.permissions.list_permissions()
+res = s.permissions.list_permissions(request=api.ListPermissionsRequest())
 
 if res.permissions_response is not None:
     # handle response

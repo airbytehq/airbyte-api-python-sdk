@@ -31,7 +31,7 @@ class DestinationMongodbSchemasAuthorization(str, Enum):
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
-class NoneT:
+class DestinationMongodbNone:
     r"""None."""
     AUTHORIZATION: Final[DestinationMongodbSchemasAuthorization] = dataclasses.field(default=DestinationMongodbSchemasAuthorization.NONE, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('authorization') }})
     
@@ -84,6 +84,8 @@ class StandaloneMongoDbInstance:
     instance: Optional[Instance] = dataclasses.field(default=Instance.STANDALONE, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('instance'), 'exclude': lambda f: f is None }})
     port: Optional[int] = dataclasses.field(default=27017, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('port'), 'exclude': lambda f: f is None }})
     r"""The Port of a Mongo database to be replicated."""
+    tls: Optional[bool] = dataclasses.field(default=False, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('tls'), 'exclude': lambda f: f is None }})
+    r"""Indicates whether TLS encryption protocol will be used to connect to MongoDB. It is recommended to use TLS connection if possible. For more information see <a href=\\"https://docs.airbyte.com/integrations/sources/mongodb-v2\\">documentation</a>."""
     
 
 
@@ -161,7 +163,7 @@ class DestinationMongodb:
     
 
 
-AuthorizationType = Union[NoneT, LoginPassword]
+AuthorizationType = Union[DestinationMongodbNone, LoginPassword]
 
 MongoDbInstanceType = Union[StandaloneMongoDbInstance, ReplicaSet, MongoDBAtlas]
 

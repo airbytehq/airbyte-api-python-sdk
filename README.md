@@ -77,6 +77,10 @@ if res.connection_response is not None:
 <!-- Start Available Resources and Operations [operations] -->
 ## Available Resources and Operations
 
+<details open>
+<summary>Available methods</summary>
+
+
 ### [connections](docs/sdks/connections/README.md)
 
 * [create_connection](docs/sdks/connections/README.md#create_connection) - Create a connection
@@ -143,6 +147,8 @@ if res.connection_response is not None:
 * [get_workspace](docs/sdks/workspaces/README.md#get_workspace) - Get Workspace details
 * [list_workspaces](docs/sdks/workspaces/README.md#list_workspaces) - List workspaces
 * [update_workspace](docs/sdks/workspaces/README.md#update_workspace) - Update a workspace
+
+</details>
 <!-- End Available Resources and Operations [operations] -->
 
 

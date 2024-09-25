@@ -8,7 +8,7 @@ from enum import Enum
 from typing import Final, Optional, Union
 
 
-class DestinationElasticsearchSchemasMethod(str, Enum):
+class DestinationElasticsearchSchemasAuthenticationMethodMethod(str, Enum):
     BASIC = 'basic'
 
 
@@ -20,12 +20,12 @@ class UsernamePassword:
     r"""Basic auth password to access a secure Elasticsearch server"""
     username: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('username') }})
     r"""Basic auth username to access a secure Elasticsearch server"""
-    METHOD: Final[DestinationElasticsearchSchemasMethod] = dataclasses.field(default=DestinationElasticsearchSchemasMethod.BASIC, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('method') }})
+    METHOD: Final[DestinationElasticsearchSchemasAuthenticationMethodMethod] = dataclasses.field(default=DestinationElasticsearchSchemasAuthenticationMethodMethod.BASIC, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('method') }})
     
 
 
 
-class DestinationElasticsearchMethod(str, Enum):
+class DestinationElasticsearchSchemasMethod(str, Enum):
     SECRET = 'secret'
 
 
@@ -37,13 +37,84 @@ class APIKeySecret:
     r"""The Key ID to used when accessing an enterprise Elasticsearch instance."""
     api_key_secret: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('apiKeySecret') }})
     r"""The secret associated with the API Key ID."""
-    METHOD: Final[DestinationElasticsearchMethod] = dataclasses.field(default=DestinationElasticsearchMethod.SECRET, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('method') }})
+    METHOD: Final[DestinationElasticsearchSchemasMethod] = dataclasses.field(default=DestinationElasticsearchSchemasMethod.SECRET, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('method') }})
+    
+
+
+
+class DestinationElasticsearchMethod(str, Enum):
+    NONE = 'none'
+
+
+@dataclass_json(undefined=Undefined.EXCLUDE)
+@dataclasses.dataclass
+class NoneT:
+    r"""No authentication will be used"""
+    METHOD: Final[DestinationElasticsearchMethod] = dataclasses.field(default=DestinationElasticsearchMethod.NONE, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('method') }})
     
 
 
 
 class Elasticsearch(str, Enum):
     ELASTICSEARCH = 'elasticsearch'
+
+
+class DestinationElasticsearchSchemasTunnelMethodTunnelMethod(str, Enum):
+    r"""Connect through a jump server tunnel host using username and password authentication"""
+    SSH_PASSWORD_AUTH = 'SSH_PASSWORD_AUTH'
+
+
+@dataclass_json(undefined=Undefined.EXCLUDE)
+@dataclasses.dataclass
+class DestinationElasticsearchPasswordAuthentication:
+    tunnel_host: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('tunnel_host') }})
+    r"""Hostname of the jump server host that allows inbound ssh tunnel."""
+    tunnel_user: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('tunnel_user') }})
+    r"""OS-level username for logging into the jump server host"""
+    tunnel_user_password: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('tunnel_user_password') }})
+    r"""OS-level password for logging into the jump server host"""
+    TUNNEL_METHOD: Final[DestinationElasticsearchSchemasTunnelMethodTunnelMethod] = dataclasses.field(default=DestinationElasticsearchSchemasTunnelMethodTunnelMethod.SSH_PASSWORD_AUTH, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('tunnel_method') }})
+    r"""Connect through a jump server tunnel host using username and password authentication"""
+    tunnel_port: Optional[int] = dataclasses.field(default=22, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('tunnel_port'), 'exclude': lambda f: f is None }})
+    r"""Port on the proxy/jump server that accepts inbound ssh connections."""
+    
+
+
+
+class DestinationElasticsearchSchemasTunnelMethod(str, Enum):
+    r"""Connect through a jump server tunnel host using username and ssh key"""
+    SSH_KEY_AUTH = 'SSH_KEY_AUTH'
+
+
+@dataclass_json(undefined=Undefined.EXCLUDE)
+@dataclasses.dataclass
+class DestinationElasticsearchSSHKeyAuthentication:
+    ssh_key: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('ssh_key') }})
+    r"""OS-level user account ssh key credentials in RSA PEM format ( created with ssh-keygen -t rsa -m PEM -f myuser_rsa )"""
+    tunnel_host: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('tunnel_host') }})
+    r"""Hostname of the jump server host that allows inbound ssh tunnel."""
+    tunnel_user: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('tunnel_user') }})
+    r"""OS-level username for logging into the jump server host."""
+    TUNNEL_METHOD: Final[DestinationElasticsearchSchemasTunnelMethod] = dataclasses.field(default=DestinationElasticsearchSchemasTunnelMethod.SSH_KEY_AUTH, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('tunnel_method') }})
+    r"""Connect through a jump server tunnel host using username and ssh key"""
+    tunnel_port: Optional[int] = dataclasses.field(default=22, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('tunnel_port'), 'exclude': lambda f: f is None }})
+    r"""Port on the proxy/jump server that accepts inbound ssh connections."""
+    
+
+
+
+class DestinationElasticsearchTunnelMethod(str, Enum):
+    r"""No ssh tunnel needed to connect to database"""
+    NO_TUNNEL = 'NO_TUNNEL'
+
+
+@dataclass_json(undefined=Undefined.EXCLUDE)
+@dataclasses.dataclass
+class DestinationElasticsearchNoTunnel:
+    TUNNEL_METHOD: Final[DestinationElasticsearchTunnelMethod] = dataclasses.field(default=DestinationElasticsearchTunnelMethod.NO_TUNNEL, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('tunnel_method') }})
+    r"""No ssh tunnel needed to connect to database"""
+    
+
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
@@ -56,9 +127,13 @@ class DestinationElasticsearch:
     ca_certificate: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('ca_certificate'), 'exclude': lambda f: f is None }})
     r"""CA certificate"""
     DESTINATION_TYPE: Final[Elasticsearch] = dataclasses.field(default=Elasticsearch.ELASTICSEARCH, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('destinationType') }})
+    tunnel_method: Optional[DestinationElasticsearchSSHTunnelMethod] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('tunnel_method'), 'exclude': lambda f: f is None }})
+    r"""Whether to initiate an SSH tunnel before connecting to the database, and if so, which kind of authentication to use."""
     upsert: Optional[bool] = dataclasses.field(default=True, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('upsert'), 'exclude': lambda f: f is None }})
     r"""If a primary key identifier is defined in the source, an upsert will be performed using the primary key value as the elasticsearch doc id. Does not support composite primary keys."""
     
 
 
-AuthenticationMethod = Union[APIKeySecret, UsernamePassword]
+AuthenticationMethod = Union[NoneT, APIKeySecret, UsernamePassword]
+
+DestinationElasticsearchSSHTunnelMethod = Union[DestinationElasticsearchNoTunnel, DestinationElasticsearchSSHKeyAuthentication, DestinationElasticsearchPasswordAuthentication]

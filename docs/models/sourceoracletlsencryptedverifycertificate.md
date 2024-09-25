@@ -1,0 +1,11 @@
+# SourceOracleTLSEncryptedVerifyCertificate
+
+Verify and use the certificate provided by the server.
+
+
+## Fields
+
+| Field                                                                                                                   | Type                                                                                                                    | Required                                                                                                                | Description                                                                                                             |
+| ----------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------- |
+| `ssl_certificate`                                                                                                       | *str*                                                                                                                   | :heavy_check_mark:                                                                                                      | Privacy Enhanced Mail (PEM) files are concatenated certificate containers frequently used in certificate installations. |
+| `encryption_method`                                                                                                     | [models.SourceOracleSchemasEncryptionEncryptionMethod](../models/sourceoracleschemasencryptionencryptionmethod.md)      | :heavy_check_mark:                                                                                                      | N/A                                                                                                                     |

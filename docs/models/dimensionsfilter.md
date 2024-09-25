@@ -23,9 +23,9 @@ value: models.OrGroup = /* values here */
 value: models.NotExpression = /* values here */
 ```
 
-### `models.Filter`
+### `models.SourceGoogleAnalyticsDataAPIFilter`
 
 ```python
-value: models.Filter = /* values here */
+value: models.SourceGoogleAnalyticsDataAPIFilter = /* values here */
 ```
 
