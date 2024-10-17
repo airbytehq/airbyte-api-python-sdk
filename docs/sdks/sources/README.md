@@ -85,10 +85,9 @@ if res.source_response is not None:
 
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
+| Error Type      | Status Code     | Content Type    |
 | --------------- | --------------- | --------------- |
-| errors.SDKError | 4xx-5xx         | */*             |
-
+| errors.SDKError | 4XX, 5XX        | \*/\*           |
 
 ## delete_source
 
@@ -132,10 +131,9 @@ if res is not None:
 
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
+| Error Type      | Status Code     | Content Type    |
 | --------------- | --------------- | --------------- |
-| errors.SDKError | 4xx-5xx         | */*             |
-
+| errors.SDKError | 4XX, 5XX        | \*/\*           |
 
 ## get_source
 
@@ -179,10 +177,9 @@ if res.source_response is not None:
 
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
+| Error Type      | Status Code     | Content Type    |
 | --------------- | --------------- | --------------- |
-| errors.SDKError | 4xx-5xx         | */*             |
-
+| errors.SDKError | 4XX, 5XX        | \*/\*           |
 
 ## initiate_o_auth
 
@@ -232,10 +229,9 @@ if res is not None:
 
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
+| Error Type      | Status Code     | Content Type    |
 | --------------- | --------------- | --------------- |
-| errors.SDKError | 4xx-5xx         | */*             |
-
+| errors.SDKError | 4XX, 5XX        | \*/\*           |
 
 ## list_sources
 
@@ -281,10 +277,9 @@ if res.sources_response is not None:
 
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
+| Error Type      | Status Code     | Content Type    |
 | --------------- | --------------- | --------------- |
-| errors.SDKError | 4xx-5xx         | */*             |
-
+| errors.SDKError | 4XX, 5XX        | \*/\*           |
 
 ## patch_source
 
@@ -335,10 +330,9 @@ if res.source_response is not None:
 
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
+| Error Type      | Status Code     | Content Type    |
 | --------------- | --------------- | --------------- |
-| errors.SDKError | 4xx-5xx         | */*             |
-
+| errors.SDKError | 4XX, 5XX        | \*/\*           |
 
 ## put_source
 
@@ -364,9 +358,16 @@ s = airbyte_api.AirbyteAPI(
 res = s.sources.put_source(request=api.PutSourceRequest(
     source_id='<value>',
     source_put_request=models.SourcePutRequest(
-        configuration=models.SourceGoogleTasks(
-            api_key='<value>',
-            start_date=dateutil.parser.isoparse('2024-10-11T13:59:33.977Z'),
+        configuration=models.SourceGoogleSearchConsole(
+            authorization=models.SourceGoogleSearchConsoleServiceAccountKeyAuthentication(
+                email='Annabell_Williamson@gmail.com',
+                service_account_info='{ "type": "service_account", "project_id": YOUR_PROJECT_ID, "private_key_id": YOUR_PRIVATE_KEY, ... }',
+            ),
+            site_urls=[
+                'https://example1.com/',
+            ],
+            data_state=models.DataFreshness.FINAL,
+            end_date=dateutil.parser.parse('2021-12-12').date(),
         ),
         name='My Source',
     ),
@@ -390,6 +391,6 @@ if res.source_response is not None:
 
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
+| Error Type      | Status Code     | Content Type    |
 | --------------- | --------------- | --------------- |
-| errors.SDKError | 4xx-5xx         | */*             |
+| errors.SDKError | 4XX, 5XX        | \*/\*           |
