@@ -8,6 +8,7 @@ from .destination_bigquery import DestinationBigquery
 from .destination_clickhouse import DestinationClickhouse
 from .destination_convex import DestinationConvex
 from .destination_databricks import DestinationDatabricks
+from .destination_dev_null import DestinationDevNull
 from .destination_duckdb import DestinationDuckdb
 from .destination_dynamodb import DestinationDynamodb
 from .destination_elasticsearch import DestinationElasticsearch
@@ -15,6 +16,7 @@ from .destination_firebolt import DestinationFirebolt
 from .destination_firestore import DestinationFirestore
 from .destination_gcs import DestinationGcs
 from .destination_google_sheets import DestinationGoogleSheets
+from .destination_iceberg import DestinationIceberg
 from .destination_milvus import DestinationMilvus
 from .destination_mongodb import DestinationMongodb
 from .destination_mssql import DestinationMssql
@@ -40,4 +42,4 @@ from .destination_weaviate import DestinationWeaviate
 from .destination_yellowbrick import DestinationYellowbrick
 from typing import Union
 
-DestinationConfiguration = Union[DestinationGoogleSheets, DestinationAstra, DestinationAwsDatalake, DestinationAzureBlobStorage, DestinationBigquery, DestinationClickhouse, DestinationConvex, DestinationDatabricks, DestinationDuckdb, DestinationDynamodb, DestinationElasticsearch, DestinationFirebolt, DestinationFirestore, DestinationGcs, DestinationMilvus, DestinationMongodb, DestinationMssql, DestinationMysql, DestinationOracle, DestinationPgvector, DestinationPinecone, DestinationPostgres, DestinationPubsub, DestinationQdrant, DestinationRedis, DestinationRedshift, DestinationS3, DestinationS3Glue, DestinationSftpJSON, DestinationSnowflake, DestinationSnowflakeCortex, DestinationTeradata, DestinationTimeplus, DestinationTypesense, DestinationVectara, DestinationWeaviate, DestinationYellowbrick]
+DestinationConfiguration = Union[DestinationGoogleSheets, DestinationAstra, DestinationAwsDatalake, DestinationAzureBlobStorage, DestinationBigquery, DestinationClickhouse, DestinationConvex, DestinationDatabricks, DestinationDevNull, DestinationDuckdb, DestinationDynamodb, DestinationElasticsearch, DestinationFirebolt, DestinationFirestore, DestinationGcs, DestinationIceberg, DestinationMilvus, DestinationMongodb, DestinationMssql, DestinationMysql, DestinationOracle, DestinationPgvector, DestinationPinecone, DestinationPostgres, DestinationPubsub, DestinationQdrant, DestinationRedis, DestinationRedshift, DestinationS3, DestinationS3Glue, DestinationSftpJSON, DestinationSnowflake, DestinationSnowflakeCortex, DestinationTeradata, DestinationTimeplus, DestinationTypesense, DestinationVectara, DestinationWeaviate, DestinationYellowbrick]

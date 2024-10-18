@@ -35,6 +35,12 @@ value: models.SourceAircall = /* values here */
 value: models.SourceAirtable = /* values here */
 ```
 
+### `models.SourceAlgolia`
+
+```python
+value: models.SourceAlgolia = /* values here */
+```
+
 ### `models.SourceAmazonAds`
 
 ```python
@@ -123,6 +129,12 @@ value: models.SourceBambooHr = /* values here */
 
 ```python
 value: models.SourceBasecamp = /* values here */
+```
+
+### `models.SourceBeamer`
+
+```python
+value: models.SourceBeamer = /* values here */
 ```
 
 ### `models.SourceBigquery`
@@ -335,6 +347,12 @@ value: models.SourceDockerhub = /* values here */
 value: models.SourceDremio = /* values here */
 ```
 
+### `models.SourceDropboxSign`
+
+```python
+value: models.SourceDropboxSign = /* values here */
+```
+
 ### `models.SourceDynamodb`
 
 ```python
@@ -345,6 +363,12 @@ value: models.SourceDynamodb = /* values here */
 
 ```python
 value: models.SourceEmailoctopus = /* values here */
+```
+
+### `models.SourceEventbrite`
+
+```python
+value: models.SourceEventbrite = /* values here */
 ```
 
 ### `models.SourceExchangeRates`
@@ -399,6 +423,12 @@ value: models.SourceFleetio = /* values here */
 
 ```python
 value: models.SourceFreshcaller = /* values here */
+```
+
+### `models.SourceFreshchat`
+
+```python
+value: models.SourceFreshchat = /* values here */
 ```
 
 ### `models.SourceFreshdesk`
@@ -635,6 +665,12 @@ value: models.SourceJotform = /* values here */
 value: models.SourceK6Cloud = /* values here */
 ```
 
+### `models.SourceKissmetrics`
+
+```python
+value: models.SourceKissmetrics = /* values here */
+```
+
 ### `models.SourceKlarna`
 
 ```python
@@ -693,6 +729,12 @@ value: models.SourceLinkedinPages = /* values here */
 
 ```python
 value: models.SourceLinnworks = /* values here */
+```
+
+### `models.SourceLob`
+
+```python
+value: models.SourceLob = /* values here */
 ```
 
 ### `models.SourceLokalise`
@@ -1061,6 +1103,12 @@ value: models.SourceRetently = /* values here */
 value: models.SourceRkiCovid = /* values here */
 ```
 
+### `models.SourceRollbar`
+
+```python
+value: models.SourceRollbar = /* values here */
+```
+
 ### `models.SourceRss`
 
 ```python
@@ -1211,6 +1259,12 @@ value: models.SourceSonarCloud = /* values here */
 value: models.SourceSpacexAPI = /* values here */
 ```
 
+### `models.SourceSplitIo`
+
+```python
+value: models.SourceSplitIo = /* values here */
+```
+
 ### `models.SourceSquare`
 
 ```python
@@ -1323,6 +1377,12 @@ value: models.SourceUsCensus = /* values here */
 
 ```python
 value: models.SourceVantage = /* values here */
+```
+
+### `models.SourceVwo`
+
+```python
+value: models.SourceVwo = /* values here */
 ```
 
 ### `models.SourceWebflow`

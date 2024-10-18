@@ -2,8 +2,8 @@ speakeasyVersion: 1.291.0
 sources:
     my-source:
         sourceNamespace: my-source
-        sourceRevisionDigest: sha256:4cbacce549695d61a4b6fcd07742e8eb25c528061ad1db3e002239fcea2956fa
-        sourceBlobDigest: sha256:8745bd06d95a1f1a7073a8a702c4bd4db2c5967d58f562d11de4f89ac7f872f5
+        sourceRevisionDigest: sha256:eaa0d8b60c35f356c47864f3d0446cc00e75e79dabebc7403a3fa98fe6ae9510
+        sourceBlobDigest: sha256:68b8a3327646565f886fbbaab6c4a8a751227449ab9229ef3d572a4f65e9b084
         tags:
             - latest
             - main
@@ -11,8 +11,8 @@ targets:
     python-api:
         source: my-source
         sourceNamespace: my-source
-        sourceRevisionDigest: sha256:4cbacce549695d61a4b6fcd07742e8eb25c528061ad1db3e002239fcea2956fa
-        sourceBlobDigest: sha256:8745bd06d95a1f1a7073a8a702c4bd4db2c5967d58f562d11de4f89ac7f872f5
+        sourceRevisionDigest: sha256:eaa0d8b60c35f356c47864f3d0446cc00e75e79dabebc7403a3fa98fe6ae9510
+        sourceBlobDigest: sha256:68b8a3327646565f886fbbaab6c4a8a751227449ab9229ef3d572a4f65e9b084
         outLocation: /github/workspace/repo
 workflow:
     workflowVersion: 1.0.0
@@ -20,7 +20,7 @@ workflow:
     sources:
         my-source:
             inputs:
-                - location: ./airbyte-api.openapi.yaml
+                - location: https://raw.githubusercontent.com/airbytehq/airbyte-platform/refs/heads/main/airbyte-api/server-api/src/main/openapi/api_sdk.yaml
             registry:
                 location: registry.speakeasyapi.dev/airbyte/airbyte-prod/my-source
     targets:
