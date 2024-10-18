@@ -108,14 +108,14 @@ class PostgresConnection:
     credentials: DestinationPgvectorCredentials = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credentials') }})
     database: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('database') }})
     r"""Enter the name of the database that you want to sync data into"""
-    default_schema: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('default_schema') }})
-    r"""Enter the name of the default schema"""
     host: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('host') }})
     r"""Enter the account name you want to use to access the database."""
-    port: int = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('port') }})
-    r"""Enter the port you want to use to access the database"""
     username: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('username') }})
     r"""Enter the name of the user you want to use to access the database"""
+    default_schema: Optional[str] = dataclasses.field(default='public', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('default_schema'), 'exclude': lambda f: f is None }})
+    r"""Enter the name of the default schema"""
+    port: Optional[int] = dataclasses.field(default=5432, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('port'), 'exclude': lambda f: f is None }})
+    r"""Enter the port you want to use to access the database"""
     
 
 

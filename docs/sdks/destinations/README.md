@@ -33,17 +33,22 @@ s = airbyte_api.AirbyteAPI(
 
 
 res = s.destinations.create_destination(request=models.DestinationCreateRequest(
-    configuration=models.DestinationPinecone(
-        embedding=models.DestinationPineconeFake(),
-        indexing=models.DestinationPineconeIndexing(
-            index='<value>',
-            pinecone_environment='us-west1-gcp',
-            pinecone_key='<value>',
+    configuration=models.DestinationPgvector(
+        embedding=models.DestinationPgvectorFake(),
+        indexing=models.PostgresConnection(
+            credentials=models.DestinationPgvectorCredentials(
+                password='AIRBYTE_PASSWORD',
+            ),
+            database='AIRBYTE_DATABASE',
+            host='AIRBYTE_ACCOUNT',
+            username='AIRBYTE_USER',
+            default_schema='AIRBYTE_SCHEMA',
+            port=5432,
         ),
-        processing=models.DestinationPineconeProcessingConfigModel(
-            chunk_size=834173,
+        processing=models.DestinationPgvectorProcessingConfigModel(
+            chunk_size=540943,
             metadata_fields=[
-                'user',
+                'age',
             ],
             text_fields=[
                 'users.*.name',
@@ -72,10 +77,9 @@ if res.destination_response is not None:
 
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
+| Error Type      | Status Code     | Content Type    |
 | --------------- | --------------- | --------------- |
-| errors.SDKError | 4xx-5xx         | */*             |
-
+| errors.SDKError | 4XX, 5XX        | \*/\*           |
 
 ## delete_destination
 
@@ -119,10 +123,9 @@ if res is not None:
 
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
+| Error Type      | Status Code     | Content Type    |
 | --------------- | --------------- | --------------- |
-| errors.SDKError | 4xx-5xx         | */*             |
-
+| errors.SDKError | 4XX, 5XX        | \*/\*           |
 
 ## get_destination
 
@@ -166,10 +169,9 @@ if res.destination_response is not None:
 
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
+| Error Type      | Status Code     | Content Type    |
 | --------------- | --------------- | --------------- |
-| errors.SDKError | 4xx-5xx         | */*             |
-
+| errors.SDKError | 4XX, 5XX        | \*/\*           |
 
 ## list_destinations
 
@@ -211,10 +213,9 @@ if res.destinations_response is not None:
 
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
+| Error Type      | Status Code     | Content Type    |
 | --------------- | --------------- | --------------- |
-| errors.SDKError | 4xx-5xx         | */*             |
-
+| errors.SDKError | 4XX, 5XX        | \*/\*           |
 
 ## patch_destination
 
@@ -265,10 +266,9 @@ if res.destination_response is not None:
 
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
+| Error Type      | Status Code     | Content Type    |
 | --------------- | --------------- | --------------- |
-| errors.SDKError | 4xx-5xx         | */*             |
-
+| errors.SDKError | 4XX, 5XX        | \*/\*           |
 
 ## put_destination
 
@@ -327,6 +327,6 @@ if res.destination_response is not None:
 
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
+| Error Type      | Status Code     | Content Type    |
 | --------------- | --------------- | --------------- |
-| errors.SDKError | 4xx-5xx         | */*             |
+| errors.SDKError | 4XX, 5XX        | \*/\*           |
