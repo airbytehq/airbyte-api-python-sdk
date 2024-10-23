@@ -6,6 +6,7 @@ from .source_aha import SourceAha
 from .source_airbyte import SourceAirbyte
 from .source_aircall import SourceAircall
 from .source_airtable import SourceAirtable
+from .source_algolia import SourceAlgolia
 from .source_amazon_ads import SourceAmazonAds
 from .source_amazon_seller_partner import SourceAmazonSellerPartner
 from .source_amazon_sqs import SourceAmazonSqs
@@ -21,6 +22,7 @@ from .source_azure_blob_storage import SourceAzureBlobStorage
 from .source_azure_table import SourceAzureTable
 from .source_bamboo_hr import SourceBambooHr
 from .source_basecamp import SourceBasecamp
+from .source_beamer import SourceBeamer
 from .source_bigquery import SourceBigquery
 from .source_bing_ads import SourceBingAds
 from .source_bitly import SourceBitly
@@ -56,8 +58,10 @@ from .source_delighted import SourceDelighted
 from .source_dixa import SourceDixa
 from .source_dockerhub import SourceDockerhub
 from .source_dremio import SourceDremio
+from .source_dropbox_sign import SourceDropboxSign
 from .source_dynamodb import SourceDynamodb
 from .source_emailoctopus import SourceEmailoctopus
+from .source_eventbrite import SourceEventbrite
 from .source_exchange_rates import SourceExchangeRates
 from .source_ezofficeinventory import SourceEzofficeinventory
 from .source_facebook_marketing import SourceFacebookMarketing
@@ -67,6 +71,7 @@ from .source_file import SourceFile
 from .source_firebolt import SourceFirebolt
 from .source_fleetio import SourceFleetio
 from .source_freshcaller import SourceFreshcaller
+from .source_freshchat import SourceFreshchat
 from .source_freshdesk import SourceFreshdesk
 from .source_freshsales import SourceFreshsales
 from .source_front import SourceFront
@@ -106,6 +111,7 @@ from .source_iterable import SourceIterable
 from .source_jira import SourceJira
 from .source_jotform import SourceJotform
 from .source_k6_cloud import SourceK6Cloud
+from .source_kissmetrics import SourceKissmetrics
 from .source_klarna import SourceKlarna
 from .source_klaviyo import SourceKlaviyo
 from .source_kyve import SourceKyve
@@ -116,6 +122,7 @@ from .source_lever_hiring import SourceLeverHiring
 from .source_linkedin_ads import SourceLinkedinAds
 from .source_linkedin_pages import SourceLinkedinPages
 from .source_linnworks import SourceLinnworks
+from .source_lob import SourceLob
 from .source_lokalise import SourceLokalise
 from .source_looker import SourceLooker
 from .source_luma import SourceLuma
@@ -177,6 +184,7 @@ from .source_reddit import SourceReddit
 from .source_redshift import SourceRedshift
 from .source_retently import SourceRetently
 from .source_rki_covid import SourceRkiCovid
+from .source_rollbar import SourceRollbar
 from .source_rss import SourceRss
 from .source_s3 import SourceS3
 from .source_salesforce import SourceSalesforce
@@ -202,6 +210,7 @@ from .source_snapchat_marketing import SourceSnapchatMarketing
 from .source_snowflake import SourceSnowflake
 from .source_sonar_cloud import SourceSonarCloud
 from .source_spacex_api import SourceSpacexAPI
+from .source_split_io import SourceSplitIo
 from .source_square import SourceSquare
 from .source_strava import SourceStrava
 from .source_stripe import SourceStripe
@@ -221,6 +230,7 @@ from .source_twitter import SourceTwitter
 from .source_typeform import SourceTypeform
 from .source_us_census import SourceUsCensus
 from .source_vantage import SourceVantage
+from .source_vwo import SourceVwo
 from .source_webflow import SourceWebflow
 from .source_when_i_work import SourceWhenIWork
 from .source_whisky_hunter import SourceWhiskyHunter
@@ -239,4 +249,4 @@ from .source_zoho_crm import SourceZohoCrm
 from .source_zoom import SourceZoom
 from typing import Union
 
-SourceConfiguration = Union[SourceAha, Source7shifts, SourceAirbyte, SourceAircall, SourceAirtable, SourceAmazonAds, SourceAmazonSellerPartner, SourceAmazonSqs, SourceAmplitude, SourceApifyDataset, SourceAppcues, SourceAppfigures, SourceAppfollow, SourceAsana, SourceAuth0, SourceAwsCloudtrail, SourceAzureBlobStorage, SourceAzureTable, SourceBambooHr, SourceBasecamp, SourceBigquery, SourceBingAds, SourceBitly, SourceBraintree, SourceBraze, SourceBreezyHr, SourceBrevo, SourceBuildkite, SourceBuzzsprout, SourceCalendly, SourceCanny, SourceCart, SourceChameleon, SourceChargebee, SourceChartmogul, SourceCimis, SourceClazar, SourceClickhouse, SourceClickupAPI, SourceClockify, SourceCloseCom, SourceCoda, SourceCoinAPI, SourceCoinmarketcap, SourceConfigcat, SourceConfluence, SourceConvex, SourceCustomerIo, SourceDatadog, SourceDatascope, SourceDbt, SourceDelighted, SourceDixa, SourceDockerhub, SourceDremio, SourceDynamodb, SourceEmailoctopus, SourceExchangeRates, SourceEzofficeinventory, SourceFacebookMarketing, SourceFaker, SourceFauna, SourceFile, SourceFirebolt, SourceFleetio, SourceFreshcaller, SourceFreshdesk, SourceFreshsales, SourceFront, SourceGainsightPx, SourceGcs, SourceGetlago, SourceGithub, SourceGitlab, SourceGlassfrog, SourceGnews, SourceGoldcast, SourceGoogleAds, SourceGoogleAnalyticsDataAPI, SourceGoogleDirectory, SourceGoogleDrive, SourceGooglePagespeedInsights, SourceGoogleSearchConsole, SourceGoogleSheets, SourceGoogleTasks, SourceGoogleWebfonts, SourceGreenhouse, SourceGridly, SourceGuru, SourceHardcodedRecords, SourceHarvest, SourceHeight, SourceHibob, SourceHighLevel, SourceHubplanner, SourceHubspot, SourceInsightly, SourceInstagram, SourceInstatus, SourceIntercom, SourceIp2whois, SourceIterable, SourceJira, SourceJotform, SourceK6Cloud, SourceKlarna, SourceKlaviyo, SourceKyve, SourceLaunchdarkly, SourceLeadfeeder, SourceLemlist, SourceLeverHiring, SourceLinkedinAds, SourceLinkedinPages, SourceLinnworks, SourceLokalise, SourceLooker, SourceLuma, SourceMailchimp, SourceMailgun, SourceMailjetSms, SourceMarketo, SourceMetabase, SourceMicrosoftOnedrive, SourceMicrosoftSharepoint, SourceMicrosoftTeams, SourceMixpanel, SourceMonday, SourceMongodbV2, SourceMssql, SourceMyHours, SourceMysql, SourceNetsuite, SourceNorthpassLms, SourceNotion, SourceNylas, SourceNytimes, SourceOkta, SourceOmnisend, SourceOnesignal, SourceOracle, SourceOrb, SourceOrbit, SourceOutbrainAmplify, SourceOutreach, SourcePaypalTransaction, SourcePaystack, SourcePendo, SourcePennylane, SourcePersistiq, SourcePexelsAPI, SourcePicqer, SourcePinterest, SourcePipedrive, SourcePiwik, SourcePlanhat, SourcePocket, SourcePokeapi, SourcePolygonStockAPI, SourcePostgres, SourcePosthog, SourcePostmarkapp, SourcePrestashop, SourceProductboard, SourceProductive, SourcePypi, SourceQualaroo, SourceRailz, SourceRecharge, SourceRecreation, SourceRecruitee, SourceRecurly, SourceReddit, SourceRedshift, SourceRetently, SourceRkiCovid, SourceRss, SourceS3, SourceSalesforce, SourceSalesloft, SourceSapFieldglass, SourceSavvycal, SourceScryfall, SourceSecoda, SourceSendgrid, SourceSendinblue, SourceSenseforce, SourceSentry, SourceSftp, SourceSftpBulk, SourceShopify, SourceShortcut, SourceShortio, SourceSlack, SourceSmaily, SourceSmartengage, SourceSmartsheets, SourceSnapchatMarketing, SourceSnowflake, SourceSonarCloud, SourceSpacexAPI, SourceSquare, SourceStrava, SourceStripe, SourceSurveySparrow, SourceSurveymonkey, SourceSurvicate, SourceTeamwork, SourceTempo, SourceTheGuardianAPI, SourceTiktokMarketing, SourceTrello, SourceTrustpilot, SourceTvmazeSchedule, SourceTwilio, SourceTwilioTaskrouter, SourceTwitter, SourceTypeform, SourceUsCensus, SourceVantage, SourceWebflow, SourceWhenIWork, SourceWhiskyHunter, SourceWikipediaPageviews, SourceWoocommerce, SourceXkcd, SourceYandexMetrica, SourceYotpo, SourceYoutubeAnalytics, SourceZendeskChat, SourceZendeskSunshine, SourceZendeskSupport, SourceZendeskTalk, SourceZenloop, SourceZohoCrm, SourceZoom]
+SourceConfiguration = Union[SourceAha, Source7shifts, SourceAirbyte, SourceAircall, SourceAirtable, SourceAlgolia, SourceAmazonAds, SourceAmazonSellerPartner, SourceAmazonSqs, SourceAmplitude, SourceApifyDataset, SourceAppcues, SourceAppfigures, SourceAppfollow, SourceAsana, SourceAuth0, SourceAwsCloudtrail, SourceAzureBlobStorage, SourceAzureTable, SourceBambooHr, SourceBasecamp, SourceBeamer, SourceBigquery, SourceBingAds, SourceBitly, SourceBraintree, SourceBraze, SourceBreezyHr, SourceBrevo, SourceBuildkite, SourceBuzzsprout, SourceCalendly, SourceCanny, SourceCart, SourceChameleon, SourceChargebee, SourceChartmogul, SourceCimis, SourceClazar, SourceClickhouse, SourceClickupAPI, SourceClockify, SourceCloseCom, SourceCoda, SourceCoinAPI, SourceCoinmarketcap, SourceConfigcat, SourceConfluence, SourceConvex, SourceCustomerIo, SourceDatadog, SourceDatascope, SourceDbt, SourceDelighted, SourceDixa, SourceDockerhub, SourceDremio, SourceDropboxSign, SourceDynamodb, SourceEmailoctopus, SourceEventbrite, SourceExchangeRates, SourceEzofficeinventory, SourceFacebookMarketing, SourceFaker, SourceFauna, SourceFile, SourceFirebolt, SourceFleetio, SourceFreshcaller, SourceFreshchat, SourceFreshdesk, SourceFreshsales, SourceFront, SourceGainsightPx, SourceGcs, SourceGetlago, SourceGithub, SourceGitlab, SourceGlassfrog, SourceGnews, SourceGoldcast, SourceGoogleAds, SourceGoogleAnalyticsDataAPI, SourceGoogleDirectory, SourceGoogleDrive, SourceGooglePagespeedInsights, SourceGoogleSearchConsole, SourceGoogleSheets, SourceGoogleTasks, SourceGoogleWebfonts, SourceGreenhouse, SourceGridly, SourceGuru, SourceHardcodedRecords, SourceHarvest, SourceHeight, SourceHibob, SourceHighLevel, SourceHubplanner, SourceHubspot, SourceInsightly, SourceInstagram, SourceInstatus, SourceIntercom, SourceIp2whois, SourceIterable, SourceJira, SourceJotform, SourceK6Cloud, SourceKissmetrics, SourceKlarna, SourceKlaviyo, SourceKyve, SourceLaunchdarkly, SourceLeadfeeder, SourceLemlist, SourceLeverHiring, SourceLinkedinAds, SourceLinkedinPages, SourceLinnworks, SourceLob, SourceLokalise, SourceLooker, SourceLuma, SourceMailchimp, SourceMailgun, SourceMailjetSms, SourceMarketo, SourceMetabase, SourceMicrosoftOnedrive, SourceMicrosoftSharepoint, SourceMicrosoftTeams, SourceMixpanel, SourceMonday, SourceMongodbV2, SourceMssql, SourceMyHours, SourceMysql, SourceNetsuite, SourceNorthpassLms, SourceNotion, SourceNylas, SourceNytimes, SourceOkta, SourceOmnisend, SourceOnesignal, SourceOracle, SourceOrb, SourceOrbit, SourceOutbrainAmplify, SourceOutreach, SourcePaypalTransaction, SourcePaystack, SourcePendo, SourcePennylane, SourcePersistiq, SourcePexelsAPI, SourcePicqer, SourcePinterest, SourcePipedrive, SourcePiwik, SourcePlanhat, SourcePocket, SourcePokeapi, SourcePolygonStockAPI, SourcePostgres, SourcePosthog, SourcePostmarkapp, SourcePrestashop, SourceProductboard, SourceProductive, SourcePypi, SourceQualaroo, SourceRailz, SourceRecharge, SourceRecreation, SourceRecruitee, SourceRecurly, SourceReddit, SourceRedshift, SourceRetently, SourceRkiCovid, SourceRollbar, SourceRss, SourceS3, SourceSalesforce, SourceSalesloft, SourceSapFieldglass, SourceSavvycal, SourceScryfall, SourceSecoda, SourceSendgrid, SourceSendinblue, SourceSenseforce, SourceSentry, SourceSftp, SourceSftpBulk, SourceShopify, SourceShortcut, SourceShortio, SourceSlack, SourceSmaily, SourceSmartengage, SourceSmartsheets, SourceSnapchatMarketing, SourceSnowflake, SourceSonarCloud, SourceSpacexAPI, SourceSplitIo, SourceSquare, SourceStrava, SourceStripe, SourceSurveySparrow, SourceSurveymonkey, SourceSurvicate, SourceTeamwork, SourceTempo, SourceTheGuardianAPI, SourceTiktokMarketing, SourceTrello, SourceTrustpilot, SourceTvmazeSchedule, SourceTwilio, SourceTwilioTaskrouter, SourceTwitter, SourceTypeform, SourceUsCensus, SourceVantage, SourceVwo, SourceWebflow, SourceWhenIWork, SourceWhiskyHunter, SourceWikipediaPageviews, SourceWoocommerce, SourceXkcd, SourceYandexMetrica, SourceYotpo, SourceYoutubeAnalytics, SourceZendeskChat, SourceZendeskSunshine, SourceZendeskSupport, SourceZendeskTalk, SourceZenloop, SourceZohoCrm, SourceZoom]

@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 07961597-3730-4940-9fd0-35eb4118eab3
 management:
-  docChecksum: 1308fa7ec8504c6d50430974d4647f3f
+  docChecksum: 6596a842605e55092c4ef088c92feba8
   docVersion: 1.0.0
-  speakeasyVersion: 1.402.12
-  generationVersion: 2.422.15
-  releaseVersion: 0.52.1
-  configChecksum: c0d4d67cf69009a4ccee8bae850f104e
+  speakeasyVersion: 1.420.0
+  generationVersion: 2.438.15
+  releaseVersion: 0.52.2
+  configChecksum: 22ffe2d3cdeb0b4a4166df9cc38c8d8d
   repoURL: https://github.com/airbytehq/airbyte-api-python-sdk.git
   repoSubDirectory: .
   installationURL: https://github.com/airbytehq/airbyte-api-python-sdk.git
@@ -16,7 +16,7 @@ features:
     additionalDependencies: 0.1.0
     additionalProperties: 0.1.0
     constsAndDefaults: 0.1.4
-    core: 4.8.10
+    core: 4.8.14
     globalSecurity: 2.83.7
     globalSecurityCallbacks: 0.1.0
     globalServerURLs: 2.82.2
@@ -106,6 +106,7 @@ generatedFiles:
   - docs/models/airbyteapiconnectionschedule.md
   - docs/models/aircall.md
   - docs/models/airtable.md
+  - docs/models/algolia.md
   - docs/models/allow.md
   - docs/models/amazonads.md
   - docs/models/amazonsellerpartner.md
@@ -182,6 +183,7 @@ generatedFiles:
   - docs/models/baseurlprefix.md
   - docs/models/basic.md
   - docs/models/batchedstandardinserts.md
+  - docs/models/beamer.md
   - docs/models/betweenfilter.md
   - docs/models/bigquery.md
   - docs/models/bingads.md
@@ -202,6 +204,7 @@ generatedFiles:
   - docs/models/canny.md
   - docs/models/capturemodeadvanced.md
   - docs/models/cart.md
+  - docs/models/catalogtype.md
   - docs/models/categories.md
   - docs/models/centralapirouter.md
   - docs/models/chameleon.md
@@ -302,6 +305,12 @@ generatedFiles:
   - docs/models/destinationdatabricks.md
   - docs/models/destinationdatabricksauthtype.md
   - docs/models/destinationdatabricksschemasauthtype.md
+  - docs/models/destinationdevnull.md
+  - docs/models/destinationdevnullloggingtype.md
+  - docs/models/destinationdevnullschemasloggingtype.md
+  - docs/models/destinationdevnullschemastestdestinationtestdestinationtype.md
+  - docs/models/destinationdevnullschemastestdestinationtype.md
+  - docs/models/destinationdevnulltestdestinationtype.md
   - docs/models/destinationduckdb.md
   - docs/models/destinationdynamodb.md
   - docs/models/destinationelasticsearch.md
@@ -345,6 +354,14 @@ generatedFiles:
   - docs/models/destinationgcsschemasnocompression.md
   - docs/models/destinationgooglesheets.md
   - docs/models/destinationgooglesheetsgooglesheets.md
+  - docs/models/destinationiceberg.md
+  - docs/models/destinationicebergcatalogtype.md
+  - docs/models/destinationicebergs3.md
+  - docs/models/destinationicebergs3bucketregion.md
+  - docs/models/destinationicebergschemascatalogconfigcatalogtype.md
+  - docs/models/destinationicebergschemascatalogconfigicebergcatalogconfigcatalogtype.md
+  - docs/models/destinationicebergschemascatalogtype.md
+  - docs/models/destinationicebergstoragetype.md
   - docs/models/destinationmilvus.md
   - docs/models/destinationmilvusapitoken.md
   - docs/models/destinationmilvusauthentication.md
@@ -679,6 +696,7 @@ generatedFiles:
   - docs/models/destinationyellowbrickverifyfull.md
   - docs/models/detailtype.md
   - docs/models/detectchangeswithxminsystemcolumn.md
+  - docs/models/devnull.md
   - docs/models/dimension.md
   - docs/models/dimensionsfilter.md
   - docs/models/disable.md
@@ -690,6 +708,7 @@ generatedFiles:
   - docs/models/domainregioncode.md
   - docs/models/doublevalue.md
   - docs/models/dremio.md
+  - docs/models/dropboxsign.md
   - docs/models/duckdb.md
   - docs/models/dynamodb.md
   - docs/models/dynamodbregion.md
@@ -706,6 +725,8 @@ generatedFiles:
   - docs/models/enterprise.md
   - docs/models/environment.md
   - docs/models/eubasedaccount.md
+  - docs/models/eventbrite.md
+  - docs/models/everynthentry.md
   - docs/models/excelformat.md
   - docs/models/exchangerates.md
   - docs/models/expression.md
@@ -713,6 +734,7 @@ generatedFiles:
   - docs/models/ezofficeinventory.md
   - docs/models/facebookmarketing.md
   - docs/models/facebookmarketingcredentials.md
+  - docs/models/failing.md
   - docs/models/fake.md
   - docs/models/faker.md
   - docs/models/fauna.md
@@ -720,6 +742,7 @@ generatedFiles:
   - docs/models/file.md
   - docs/models/filebasedstreamconfig.md
   - docs/models/fileformat.md
+  - docs/models/filestorageformat.md
   - docs/models/filetype.md
   - docs/models/filter_.md
   - docs/models/filterappliedwhilefetchingrecordsbasedonattributekeyandattributevaluewhichwillbeappendedontherequestbody.md
@@ -727,12 +750,14 @@ generatedFiles:
   - docs/models/filtertype.md
   - docs/models/firebolt.md
   - docs/models/firestore.md
+  - docs/models/firstnentries.md
   - docs/models/flattening.md
   - docs/models/fleetio.md
   - docs/models/format.md
   - docs/models/formattype.md
   - docs/models/formattypewildcard.md
   - docs/models/freshcaller.md
+  - docs/models/freshchat.md
   - docs/models/freshdesk.md
   - docs/models/freshsales.md
   - docs/models/fromcsv.md
@@ -754,6 +779,7 @@ generatedFiles:
   - docs/models/gitlabcredentials.md
   - docs/models/glassfrog.md
   - docs/models/globalaccount.md
+  - docs/models/gluecatalog.md
   - docs/models/gnews.md
   - docs/models/goldcast.md
   - docs/models/googleads.md
@@ -778,6 +804,7 @@ generatedFiles:
   - docs/models/groupby.md
   - docs/models/guru.md
   - docs/models/gzip.md
+  - docs/models/hadoopcatalogusehierarchicalfilesystemsassameasstorageconfig.md
   - docs/models/hardcodedrecords.md
   - docs/models/harvest.md
   - docs/models/header.md
@@ -785,6 +812,7 @@ generatedFiles:
   - docs/models/height.md
   - docs/models/hibob.md
   - docs/models/highlevel.md
+  - docs/models/hivecataloguseapachehivemetastore.md
   - docs/models/hmackey.md
   - docs/models/httpspublicweb.md
   - docs/models/hubplanner.md
@@ -792,6 +820,8 @@ generatedFiles:
   - docs/models/hubspotcredentials.md
   - docs/models/iamrole.md
   - docs/models/iamuser.md
+  - docs/models/iceberg.md
+  - docs/models/icebergcatalogconfig.md
   - docs/models/in_.md
   - docs/models/indexing.md
   - docs/models/initiateoauthrequest.md
@@ -806,6 +836,7 @@ generatedFiles:
   - docs/models/invalidcdcpositionbehavioradvanced.md
   - docs/models/ip2whois.md
   - docs/models/iterable.md
+  - docs/models/jdbccataloguserelationaldatabase.md
   - docs/models/jira.md
   - docs/models/jobcreaterequest.md
   - docs/models/jobresponse.md
@@ -817,6 +848,7 @@ generatedFiles:
   - docs/models/jsonlinesnewlinedelimitedjson.md
   - docs/models/k6cloud.md
   - docs/models/keypairauthentication.md
+  - docs/models/kissmetrics.md
   - docs/models/klarna.md
   - docs/models/klaviyo.md
   - docs/models/kyve.md
@@ -832,8 +864,12 @@ generatedFiles:
   - docs/models/linkedinpages.md
   - docs/models/linnworks.md
   - docs/models/loadingmethod.md
+  - docs/models/lob.md
   - docs/models/local.md
   - docs/models/localfilesystemlimited.md
+  - docs/models/logging.md
+  - docs/models/loggingconfiguration.md
+  - docs/models/loggingtype.md
   - docs/models/loginpassword.md
   - docs/models/lokalise.md
   - docs/models/looker.md
@@ -972,6 +1008,7 @@ generatedFiles:
   - docs/models/qualaroo.md
   - docs/models/queries.md
   - docs/models/railz.md
+  - docs/models/randomsampling.md
   - docs/models/readchangesusingbinarylogcdc.md
   - docs/models/readchangesusingchangedatacapturecdc.md
   - docs/models/readchangesusingwriteaheadlogcdc.md
@@ -991,10 +1028,12 @@ generatedFiles:
   - docs/models/reportrecordtypes.md
   - docs/models/require.md
   - docs/models/required.md
+  - docs/models/restcatalog.md
   - docs/models/retently.md
   - docs/models/retentlycredentials.md
   - docs/models/rkicovid.md
   - docs/models/rolebasedauthentication.md
+  - docs/models/rollbar.md
   - docs/models/rss.md
   - docs/models/s3.md
   - docs/models/s3amazonwebservices.md
@@ -1023,6 +1062,7 @@ generatedFiles:
   - docs/models/senseforce.md
   - docs/models/sentry.md
   - docs/models/serializationlibrary.md
+  - docs/models/servermanaged.md
   - docs/models/serviceaccount.md
   - docs/models/serviceaccountkey.md
   - docs/models/serviceaccountkeyauthentication.md
@@ -1041,6 +1081,7 @@ generatedFiles:
   - docs/models/shortio.md
   - docs/models/signinviagoogleoauth.md
   - docs/models/signinviaslackoauth.md
+  - docs/models/silent.md
   - docs/models/singlestoreaccesstoken.md
   - docs/models/site.md
   - docs/models/slack.md
@@ -1068,6 +1109,7 @@ generatedFiles:
   - docs/models/sourceairtableoauth20.md
   - docs/models/sourceairtablepersonalaccesstoken.md
   - docs/models/sourceairtableschemasauthmethod.md
+  - docs/models/sourcealgolia.md
   - docs/models/sourceamazonads.md
   - docs/models/sourceamazonadsamazonads.md
   - docs/models/sourceamazonadsauthtype.md
@@ -1105,6 +1147,7 @@ generatedFiles:
   - docs/models/sourceazuretable.md
   - docs/models/sourcebamboohr.md
   - docs/models/sourcebasecamp.md
+  - docs/models/sourcebeamer.md
   - docs/models/sourcebigquery.md
   - docs/models/sourcebigquerybigquery.md
   - docs/models/sourcebingads.md
@@ -1157,6 +1200,7 @@ generatedFiles:
   - docs/models/sourcedixa.md
   - docs/models/sourcedockerhub.md
   - docs/models/sourcedremio.md
+  - docs/models/sourcedropboxsign.md
   - docs/models/sourcedynamodb.md
   - docs/models/sourcedynamodbauthtype.md
   - docs/models/sourcedynamodbcredentials.md
@@ -1164,6 +1208,7 @@ generatedFiles:
   - docs/models/sourcedynamodbdynamodbregion.md
   - docs/models/sourcedynamodbschemasauthtype.md
   - docs/models/sourceemailoctopus.md
+  - docs/models/sourceeventbrite.md
   - docs/models/sourceexchangerates.md
   - docs/models/sourceezofficeinventory.md
   - docs/models/sourcefacebookmarketing.md
@@ -1178,6 +1223,7 @@ generatedFiles:
   - docs/models/sourcefaunadeletionmode.md
   - docs/models/sourcefaunaschemasdeletionmode.md
   - docs/models/sourcefile.md
+  - docs/models/sourcefilefileformat.md
   - docs/models/sourcefileschemasproviderstorage.md
   - docs/models/sourcefileschemasproviderstorageprovider6storage.md
   - docs/models/sourcefileschemasproviderstorageprovider7storage.md
@@ -1189,6 +1235,7 @@ generatedFiles:
   - docs/models/sourcefireboltfirebolt.md
   - docs/models/sourcefleetio.md
   - docs/models/sourcefreshcaller.md
+  - docs/models/sourcefreshchat.md
   - docs/models/sourcefreshdesk.md
   - docs/models/sourcefreshsales.md
   - docs/models/sourcefront.md
@@ -1548,6 +1595,7 @@ generatedFiles:
   - docs/models/sourcejotformapiendpoint.md
   - docs/models/sourcejotformschemasapiendpoint.md
   - docs/models/sourcek6cloud.md
+  - docs/models/sourcekissmetrics.md
   - docs/models/sourceklarna.md
   - docs/models/sourceklarnaregion.md
   - docs/models/sourceklaviyo.md
@@ -1574,6 +1622,7 @@ generatedFiles:
   - docs/models/sourcelinkedinpagesoauth20.md
   - docs/models/sourcelinkedinpagesschemasauthmethod.md
   - docs/models/sourcelinnworks.md
+  - docs/models/sourcelob.md
   - docs/models/sourcelokalise.md
   - docs/models/sourcelooker.md
   - docs/models/sourceluma.md
@@ -1825,6 +1874,7 @@ generatedFiles:
   - docs/models/sourceretentlyretently.md
   - docs/models/sourceretentlyschemasauthtype.md
   - docs/models/sourcerkicovid.md
+  - docs/models/sourcerollbar.md
   - docs/models/sourcerss.md
   - docs/models/sources3.md
   - docs/models/sources3autogenerated.md
@@ -1939,6 +1989,7 @@ generatedFiles:
   - docs/models/sourcesnowflakeusernameandpassword.md
   - docs/models/sourcesonarcloud.md
   - docs/models/sourcespacexapi.md
+  - docs/models/sourcesplitio.md
   - docs/models/sourcesquare.md
   - docs/models/sourcesquareapikey.md
   - docs/models/sourcesquareauthentication.md
@@ -1984,6 +2035,7 @@ generatedFiles:
   - docs/models/sourcetypeformtypeform.md
   - docs/models/sourceuscensus.md
   - docs/models/sourcevantage.md
+  - docs/models/sourcevwo.md
   - docs/models/sourcewebflow.md
   - docs/models/sourcewheniwork.md
   - docs/models/sourcewhiskyhunter.md
@@ -2027,6 +2079,7 @@ generatedFiles:
   - docs/models/sourcezohocrmenvironment.md
   - docs/models/sourcezoom.md
   - docs/models/spacexapi.md
+  - docs/models/splitio.md
   - docs/models/sqlinserts.md
   - docs/models/square.md
   - docs/models/squarecredentials.md
@@ -2040,7 +2093,9 @@ generatedFiles:
   - docs/models/statefilter.md
   - docs/models/status.md
   - docs/models/storage.md
+  - docs/models/storageconfig.md
   - docs/models/storageprovider.md
+  - docs/models/storagetype.md
   - docs/models/strategies.md
   - docs/models/strava.md
   - docs/models/streamconfiguration.md
@@ -2060,8 +2115,11 @@ generatedFiles:
   - docs/models/teamwork.md
   - docs/models/tempo.md
   - docs/models/teradata.md
+  - docs/models/testdestination.md
+  - docs/models/testdestinationtype.md
   - docs/models/textsplitter.md
   - docs/models/theguardianapi.md
+  - docs/models/throttled.md
   - docs/models/tiktokmarketing.md
   - docs/models/tiktokmarketingcredentials.md
   - docs/models/timegranularity.md
@@ -2110,6 +2168,7 @@ generatedFiles:
   - docs/models/viaapi.md
   - docs/models/viewattributionwindow.md
   - docs/models/viewwindowdays.md
+  - docs/models/vwo.md
   - docs/models/weaviate.md
   - docs/models/webflow.md
   - docs/models/wheniwork.md
@@ -2228,6 +2287,7 @@ generatedFiles:
   - src/airbyte_api/models/destination_clickhouse.py
   - src/airbyte_api/models/destination_convex.py
   - src/airbyte_api/models/destination_databricks.py
+  - src/airbyte_api/models/destination_dev_null.py
   - src/airbyte_api/models/destination_duckdb.py
   - src/airbyte_api/models/destination_dynamodb.py
   - src/airbyte_api/models/destination_elasticsearch.py
@@ -2235,6 +2295,7 @@ generatedFiles:
   - src/airbyte_api/models/destination_firestore.py
   - src/airbyte_api/models/destination_gcs.py
   - src/airbyte_api/models/destination_google_sheets.py
+  - src/airbyte_api/models/destination_iceberg.py
   - src/airbyte_api/models/destination_milvus.py
   - src/airbyte_api/models/destination_mongodb.py
   - src/airbyte_api/models/destination_mssql.py
@@ -2326,6 +2387,7 @@ generatedFiles:
   - src/airbyte_api/models/source_airbyte.py
   - src/airbyte_api/models/source_aircall.py
   - src/airbyte_api/models/source_airtable.py
+  - src/airbyte_api/models/source_algolia.py
   - src/airbyte_api/models/source_amazon_ads.py
   - src/airbyte_api/models/source_amazon_seller_partner.py
   - src/airbyte_api/models/source_amazon_sqs.py
@@ -2341,6 +2403,7 @@ generatedFiles:
   - src/airbyte_api/models/source_azure_table.py
   - src/airbyte_api/models/source_bamboo_hr.py
   - src/airbyte_api/models/source_basecamp.py
+  - src/airbyte_api/models/source_beamer.py
   - src/airbyte_api/models/source_bigquery.py
   - src/airbyte_api/models/source_bing_ads.py
   - src/airbyte_api/models/source_bitly.py
@@ -2376,8 +2439,10 @@ generatedFiles:
   - src/airbyte_api/models/source_dixa.py
   - src/airbyte_api/models/source_dockerhub.py
   - src/airbyte_api/models/source_dremio.py
+  - src/airbyte_api/models/source_dropbox_sign.py
   - src/airbyte_api/models/source_dynamodb.py
   - src/airbyte_api/models/source_emailoctopus.py
+  - src/airbyte_api/models/source_eventbrite.py
   - src/airbyte_api/models/source_exchange_rates.py
   - src/airbyte_api/models/source_ezofficeinventory.py
   - src/airbyte_api/models/source_facebook_marketing.py
@@ -2387,6 +2452,7 @@ generatedFiles:
   - src/airbyte_api/models/source_firebolt.py
   - src/airbyte_api/models/source_fleetio.py
   - src/airbyte_api/models/source_freshcaller.py
+  - src/airbyte_api/models/source_freshchat.py
   - src/airbyte_api/models/source_freshdesk.py
   - src/airbyte_api/models/source_freshsales.py
   - src/airbyte_api/models/source_front.py
@@ -2426,6 +2492,7 @@ generatedFiles:
   - src/airbyte_api/models/source_jira.py
   - src/airbyte_api/models/source_jotform.py
   - src/airbyte_api/models/source_k6_cloud.py
+  - src/airbyte_api/models/source_kissmetrics.py
   - src/airbyte_api/models/source_klarna.py
   - src/airbyte_api/models/source_klaviyo.py
   - src/airbyte_api/models/source_kyve.py
@@ -2436,6 +2503,7 @@ generatedFiles:
   - src/airbyte_api/models/source_linkedin_ads.py
   - src/airbyte_api/models/source_linkedin_pages.py
   - src/airbyte_api/models/source_linnworks.py
+  - src/airbyte_api/models/source_lob.py
   - src/airbyte_api/models/source_lokalise.py
   - src/airbyte_api/models/source_looker.py
   - src/airbyte_api/models/source_luma.py
@@ -2497,6 +2565,7 @@ generatedFiles:
   - src/airbyte_api/models/source_redshift.py
   - src/airbyte_api/models/source_retently.py
   - src/airbyte_api/models/source_rki_covid.py
+  - src/airbyte_api/models/source_rollbar.py
   - src/airbyte_api/models/source_rss.py
   - src/airbyte_api/models/source_s3.py
   - src/airbyte_api/models/source_salesforce.py
@@ -2522,6 +2591,7 @@ generatedFiles:
   - src/airbyte_api/models/source_snowflake.py
   - src/airbyte_api/models/source_sonar_cloud.py
   - src/airbyte_api/models/source_spacex_api.py
+  - src/airbyte_api/models/source_split_io.py
   - src/airbyte_api/models/source_square.py
   - src/airbyte_api/models/source_strava.py
   - src/airbyte_api/models/source_stripe.py
@@ -2541,6 +2611,7 @@ generatedFiles:
   - src/airbyte_api/models/source_typeform.py
   - src/airbyte_api/models/source_us_census.py
   - src/airbyte_api/models/source_vantage.py
+  - src/airbyte_api/models/source_vwo.py
   - src/airbyte_api/models/source_webflow.py
   - src/airbyte_api/models/source_when_i_work.py
   - src/airbyte_api/models/source_whisky_hunter.py
@@ -2601,329 +2672,133 @@ examples:
           jobId: 801771
       responses:
         "200":
-          application/json:
-            connectionId: <value>
-            duration: PT8H6M12S
-            jobId: 439621
-            jobType: sync
-            startTime: "2023-03-25T01:30:50Z"
-            status: running
+          application/json: {"connectionId": "<value>", "duration": "PT8H6M12S", "jobId": 439621, "jobType": "sync", "startTime": "2023-03-25T01:30:50Z", "status": "running"}
   createConnection:
     Connection Creation Request Example:
       requestBody:
-        application/json:
-          destinationId: e478de0d-a3a0-475c-b019-25f7dd29e281
-          name: Postgres-to-Bigquery
-          namespaceFormat: ${SOURCE_NAMESPACE}
-          sourceId: 95e66a59-8045-4307-9678-63bc3c9b8c93
+        application/json: {"destinationId": "e478de0d-a3a0-475c-b019-25f7dd29e281", "name": "Postgres-to-Bigquery", "namespaceFormat": "${SOURCE_NAMESPACE}", "sourceId": "95e66a59-8045-4307-9678-63bc3c9b8c93"}
       responses:
         "200":
-          application/json:
-            connectionId: <value>
-            destinationId: <value>
-            name: <value>
-            schedule:
-              scheduleType: basic
-            sourceId: <value>
-            status: deprecated
-            workspaceId: <value>
+          application/json: {"connectionId": "<value>", "destinationId": "<value>", "name": "<value>", "schedule": {"scheduleType": "basic"}, "sourceId": "<value>", "status": "deprecated", "workspaceId": "<value>"}
     Connection Creation Response Example:
       requestBody:
-        application/json:
-          destinationId: c669dd1e-3620-483e-afc8-55914e0a570f
-          namespaceFormat: ${SOURCE_NAMESPACE}
-          sourceId: 6dd427d8-3a55-4584-b835-842325b6c7b3
+        application/json: {"destinationId": "c669dd1e-3620-483e-afc8-55914e0a570f", "namespaceFormat": "${SOURCE_NAMESPACE}", "sourceId": "6dd427d8-3a55-4584-b835-842325b6c7b3"}
       responses:
         "200":
-          application/json:
-            connectionId: 9924bcd0-99be-453d-ba47-c2c9766f7da5
-            destinationId: <value>
-            name: <value>
-            schedule:
-              scheduleType: manual
-            sourceId: <value>
-            status: deprecated
-            workspaceId: <value>
+          application/json: {"connectionId": "9924bcd0-99be-453d-ba47-c2c9766f7da5", "destinationId": "<value>", "name": "<value>", "schedule": {"scheduleType": "manual"}, "sourceId": "<value>", "status": "deprecated", "workspaceId": "<value>"}
   createDestination:
     Destination Creation Request Example:
       requestBody:
-        application/json:
-          configuration:
-            indexing:
-              index: <value>
-              pinecone_environment: gcp-starter
-              pinecone_key: <value>
-            processing:
-              chunk_size: 25368
-              metadata_fields:
-                - user.name
-              text_fields:
-                - user.name
-          name: Postgres
-          workspaceId: 2155ae5a-de39-4808-af6a-16fe7b8b4ed2
+        application/json: {"configuration": {"indexing": {"credentials": {"password": "AIRBYTE_PASSWORD"}, "database": "AIRBYTE_DATABASE", "default_schema": "AIRBYTE_SCHEMA", "host": "AIRBYTE_ACCOUNT", "port": "5432", "username": "AIRBYTE_USER"}, "processing": {"chunk_size": 540943, "metadata_fields": ["age"], "text_fields": ["users.*.name"]}}, "name": "Postgres", "workspaceId": "2155ae5a-de39-4808-af6a-16fe7b8b4ed2"}
       responses:
         "200":
-          application/json:
-            configuration:
-              indexing:
-                credentials:
-                  password: AIRBYTE_PASSWORD
-                database: AIRBYTE_DATABASE
-                default_schema: AIRBYTE_SCHEMA
-                host: AIRBYTE_ACCOUNT
-                port: "5432"
-                username: AIRBYTE_USER
-              processing:
-                chunk_size: 988471
-                metadata_fields:
-                  - age
-                text_fields:
-                  - user.name
-            destinationId: 18dccc91-0ab1-4f72-9ed7-0b8fc27c5826
-            destinationType: postgres
-            name: Analytics Team Postgres
-            workspaceId: 871d9b60-11d1-44cb-8c92-c246d53bf87e
+          application/json: {"configuration": {"catalog_config": {"catalog_schema": "public", "database": "public", "jdbc_url": "jdbc:postgresql://{host}:{port}/{database}"}, "storage_config": {"access_key_id": "A012345678910EXAMPLE", "s3_endpoint": "localhost:9000", "s3_path_style_access": true, "s3_warehouse_uri": "s3://my-bucket/path/to/warehouse", "secret_access_key": "a012345678910ABCDEFGH/AbCdEfGhEXAMPLEKEY"}}, "destinationId": "18dccc91-0ab1-4f72-9ed7-0b8fc27c5826", "destinationType": "postgres", "name": "Analytics Team Postgres", "workspaceId": "871d9b60-11d1-44cb-8c92-c246d53bf87e"}
     Destination Creation Response Example:
       requestBody:
-        application/json:
-          configuration:
-            project_id: <value>
-          name: <value>
-          workspaceId: ad46e8e6-2f62-408e-9ba5-019ef3492fc0
+        application/json: {"configuration": {"project_id": "<id>"}, "name": "<value>", "workspaceId": "ad46e8e6-2f62-408e-9ba5-019ef3492fc0"}
       responses:
         "200":
-          application/json:
-            configuration:
-              database: <value>
-              host: bare-nightlife.org
-              password: 1kxEg7h49Vv5Y0Q
-              port: "5439"
-              schema: public
-              tunnel_method:
-                tunnel_host: <value>
-                tunnel_port: "22"
-                tunnel_user: <value>
-                tunnel_user_password: <value>
-              uploading_method:
-                access_key_id: <value>
-                file_name_pattern: '{part_number}'
-                s3_bucket_name: airbyte.staging
-                s3_bucket_path: data_sync/test
-                secret_access_key: <value>
-              username: Alivia60
-            destinationId: af0c3c67-aa61-419f-8922-95b0bf840e86
-            destinationType: <value>
-            name: <value>
-            workspaceId: <value>
+          application/json: {"configuration": {"host": "localhost,127.0.0.1", "username": "Lempi78"}, "destinationId": "af0c3c67-aa61-419f-8922-95b0bf840e86", "destinationType": "<value>", "name": "<value>", "workspaceId": "<value>"}
   createJob:
     Job Creation Request Example:
       requestBody:
-        application/json:
-          connectionId: e735894a-e773-4938-969f-45f53957b75b
-          jobType: sync
+        application/json: {"connectionId": "e735894a-e773-4938-969f-45f53957b75b", "jobType": "sync"}
       responses:
         "200":
-          application/json:
-            connectionId: <value>
-            duration: PT8H6M12S
-            jobId: 300546
-            jobType: sync
-            startTime: "2023-03-25T01:30:50Z"
-            status: running
+          application/json: {"connectionId": "<value>", "duration": "PT8H6M12S", "jobId": 300546, "jobType": "sync", "startTime": "2023-03-25T01:30:50Z", "status": "running"}
     Job Creation Response Example:
       requestBody:
-        application/json:
-          connectionId: 18dccc91-0ab1-4f72-9ed7-0b8fc27c5826
-          jobType: sync
+        application/json: {"connectionId": "18dccc91-0ab1-4f72-9ed7-0b8fc27c5826", "jobType": "sync"}
       responses:
         "200":
-          application/json:
-            connectionId: <value>
-            jobId: 1234
-            jobType: sync
-            startTime: <value>
-            status: running
+          application/json: {"connectionId": "<value>", "jobId": 1234, "jobType": "sync", "startTime": "<value>", "status": "running"}
   createOrUpdateWorkspaceOAuthCredentials:
     speakeasy-default-create-or-update-workspace-O-auth-credentials:
       parameters:
         path:
-          workspaceId: <value>
+          workspaceId: "<value>"
       requestBody:
-        application/json:
-          actorType: destination
-          configuration:
-            user: charles
-          name: amazon-ads
+        application/json: {"actorType": "destination", "configuration": {"user": "charles"}, "name": "amazon-ads"}
   createPermission:
     Permission Creation Request Example:
       requestBody:
-        application/json:
-          permissionType: workspace_admin
-          userId: 7d08fd6c-531e-4a00-937e-3d355f253e63
-          workspaceId: 9924bcd0-99be-453d-ba47-c2c9766f7da5
+        application/json: {"permissionType": "workspace_admin", "userId": "7d08fd6c-531e-4a00-937e-3d355f253e63", "workspaceId": "9924bcd0-99be-453d-ba47-c2c9766f7da5"}
       responses:
         "200":
-          application/json:
-            permissionId: 756578e3-7923-4546-a65e-816c2e1a3118
-            permissionType: organization_admin
-            userId: 241c67da-1418-479b-a3b1-0769c70bc115
+          application/json: {"permissionId": "756578e3-7923-4546-a65e-816c2e1a3118", "permissionType": "organization_admin", "userId": "241c67da-1418-479b-a3b1-0769c70bc115"}
     Permission Creation Response Example:
       requestBody:
-        application/json:
-          permissionType: organization_editor
-          userId: 297cb6ba-4669-43f1-b750-c800e1a1986b
+        application/json: {"permissionType": "organization_editor", "userId": "297cb6ba-4669-43f1-b750-c800e1a1986b"}
       responses:
         "200":
-          application/json:
-            permissionId: 9924bcd0-99be-453d-ba47-c2c9766f7da5
-            permissionType: workspace_admin
-            userId: 7d08fd6c-531e-4a00-937e-3d355f253e63
+          application/json: {"permissionId": "9924bcd0-99be-453d-ba47-c2c9766f7da5", "permissionType": "workspace_admin", "userId": "7d08fd6c-531e-4a00-937e-3d355f253e63"}
   createSource:
     Source Creation Request Example:
       requestBody:
-        application/json:
-          configuration:
-            custom_reports:
-              - columns: []
-                name: <value>
-                start_date: "2022-07-28"
-              - columns: []
-                name: <value>
-                start_date: "2022-07-28"
-              - columns:
-                  - TOTAL_WEB_ENGAGEMENT_CHECKOUT
-                  - TOTAL_VIEW_LEAD
-                  - TOTAL_ENGAGEMENT_CHECKOUT
-                name: <value>
-                start_date: "2022-07-28"
-            start_date: "2022-07-28"
-          name: My Source
-          workspaceId: 744cc0ed-7f05-4949-9e60-2a814f90c035
+        application/json: {"configuration": {"custom_reports": [{"columns": [], "name": "<value>", "start_date": "2022-07-28"}, {"columns": [], "name": "<value>", "start_date": "2022-07-28"}, {"columns": ["TOTAL_WEB_ENGAGEMENT_CHECKOUT", "TOTAL_VIEW_LEAD", "TOTAL_ENGAGEMENT_CHECKOUT"], "name": "<value>", "start_date": "2022-07-28"}], "start_date": "2022-07-28"}, "name": "My Source", "workspaceId": "744cc0ed-7f05-4949-9e60-2a814f90c035"}
       responses:
         "200":
-          application/json:
-            configuration:
-              credentials:
-                client_id: <value>
-                client_secret: <value>
-                tenant_id: <value>
-              start_date: "2021-01-01T00:00:00.000000Z"
-              streams:
-                - name: <value>
-                - name: <value>
-            name: Analytics Team Postgres
-            sourceId: 18dccc91-0ab1-4f72-9ed7-0b8fc27c5826
-            sourceType: postgres
-            workspaceId: 871d9b60-11d1-44cb-8c92-c246d53bf87e
+          application/json: {"configuration": {"instance_api_url": "https://localhost:3000/api/", "username": "Cloyd.Wiza"}, "name": "Analytics Team Postgres", "sourceId": "18dccc91-0ab1-4f72-9ed7-0b8fc27c5826", "sourceType": "postgres", "workspaceId": "871d9b60-11d1-44cb-8c92-c246d53bf87e"}
     Source Creation Response Example:
       requestBody:
-        application/json:
-          configuration:
-            api_key: <value>
-            end_date: "2024-03-01T00:00:00Z"
-            start_date: "2022-03-01T00:00:00Z"
-          name: <value>
-          workspaceId: cf0f31f3-ddc9-4848-834b-dfb109056aa6
+        application/json: {"configuration": {"X-Postmark-Account-Token": "<value>", "X-Postmark-Server-Token": "<value>"}, "name": "<value>", "workspaceId": "cf0f31f3-ddc9-4848-834b-dfb109056aa6"}
       responses:
         "200":
-          application/json:
-            configuration:
-              credentials:
-                service_account_info: '{ "type": "service_account", "project_id": YOUR_PROJECT_ID, "private_key_id": YOUR_PRIVATE_KEY, ... }'
-              spreadsheet_id: https://docs.google.com/spreadsheets/d/1hLd9Qqti3UyLXZB2aFfUWDT7BG-arw2xy4HR3D-dwUb/edit
-            name: <value>
-            sourceId: 0c31738c-0b2d-4887-b506-e2cd1c39cc35
-            sourceType: <value>
-            workspaceId: <value>
+          application/json: {"configuration": {"api_key": "<value>", "location_id": "<id>", "start_date": "2023-02-24T06:59:27.871Z"}, "name": "<value>", "sourceId": "0c31738c-0b2d-4887-b506-e2cd1c39cc35", "sourceType": "<value>", "workspaceId": "<value>"}
   createWorkspace:
     Workspace Creation Request Example:
       requestBody:
-        application/json:
-          name: Company Workspace Name
+        application/json: {"name": "Company Workspace Name"}
       responses:
         "200":
-          application/json:
-            name: <value>
-            workspaceId: <value>
+          application/json: {"name": "<value>", "workspaceId": "<value>"}
     Workspace Creation Response Example:
       requestBody:
-        application/json:
-          name: <value>
+        application/json: {"name": "<value>"}
       responses:
         "200":
-          application/json:
-            name: <value>
-            workspaceId: 9924bcd0-99be-453d-ba47-c2c9766f7da5
+          application/json: {"name": "<value>", "workspaceId": "9924bcd0-99be-453d-ba47-c2c9766f7da5"}
   deleteConnection:
     speakeasy-default-delete-connection:
       parameters:
         path:
-          connectionId: <value>
+          connectionId: "<value>"
   deleteDestination:
     speakeasy-default-delete-destination:
       parameters:
         path:
-          destinationId: <value>
+          destinationId: "<value>"
   deletePermission:
     speakeasy-default-delete-permission:
       parameters:
         path:
-          permissionId: <value>
+          permissionId: "<value>"
   deleteSource:
     speakeasy-default-delete-source:
       parameters:
         path:
-          sourceId: <value>
+          sourceId: "<value>"
   deleteWorkspace:
     speakeasy-default-delete-workspace:
       parameters:
         path:
-          workspaceId: <value>
+          workspaceId: "<value>"
   getConnection:
     Connection Get Response Example:
       parameters:
         path:
-          connectionId: <value>
+          connectionId: "<value>"
       responses:
         "200":
-          application/json:
-            connectionId: <value>
-            destinationId: 744cc0ed-7f05-4949-9e60-2a814f90c035
-            name: Postgres To Snowflake
-            schedule:
-              scheduleType: basic
-            sourceId: 9924bcd0-99be-453d-ba47-c2c9766f7da5
-            status: deprecated
-            workspaceId: 18dccc91-0ab1-4f72-9ed7-0b8fc27c5826
+          application/json: {"connectionId": "<value>", "destinationId": "744cc0ed-7f05-4949-9e60-2a814f90c035", "name": "Postgres To Snowflake", "schedule": {"scheduleType": "basic"}, "sourceId": "9924bcd0-99be-453d-ba47-c2c9766f7da5", "status": "deprecated", "workspaceId": "18dccc91-0ab1-4f72-9ed7-0b8fc27c5826"}
   getDestination:
     Destination Get Response Example:
       parameters:
         path:
-          destinationId: <value>
+          destinationId: "<value>"
       responses:
         "200":
-          application/json:
-            configuration:
-              embedding:
-                openai_key: <value>
-              indexing:
-                credentials:
-                  password: AIRBYTE_PASSWORD
-                database: AIRBYTE_DATABASE
-                default_schema: AIRBYTE_SCHEMA
-                host: AIRBYTE_ACCOUNT
-                port: "5432"
-                username: AIRBYTE_USER
-              processing:
-                chunk_size: 102547
-                metadata_fields:
-                  - age
-                text_fields:
-                  - text
-            destinationId: 18dccc91-0ab1-4f72-9ed7-0b8fc27c5826
-            destinationType: <value>
-            name: My Destination
-            workspaceId: 744cc0ed-7f05-4949-9e60-2a814f90c035
+          application/json: {"configuration": {"host": "cooperative-brochure.biz", "port": "1521", "schema": "airbyte", "sid": "<id>", "username": "Eldon_Waelchi33"}, "destinationId": "18dccc91-0ab1-4f72-9ed7-0b8fc27c5826", "destinationType": "<value>", "name": "My Destination", "workspaceId": "744cc0ed-7f05-4949-9e60-2a814f90c035"}
   getHealthCheck:
     speakeasy-default-get-health-check: {}
   getJob:
@@ -2933,40 +2808,28 @@ examples:
           jobId: 131101
       responses:
         "200":
-          application/json:
-            connectionId: <value>
-            jobId: 369528
-            jobType: sync
-            startTime: <value>
-            status: running
+          application/json: {"connectionId": "<value>", "jobId": 369528, "jobType": "sync", "startTime": "<value>", "status": "running"}
   getPermission:
     speakeasy-default-get-permission:
       parameters:
         path:
-          permissionId: <value>
+          permissionId: "<value>"
       responses:
         "200":
-          application/json:
-            permissionId: cea2b5ef-cafa-4d22-a3a7-ccd6aedb824c
-            permissionType: workspace_owner
-            userId: b28fe60f-8634-4971-a922-b1ae92ad8eb7
+          application/json: {"permissionId": "cea2b5ef-cafa-4d22-a3a7-ccd6aedb824c", "permissionType": "workspace_owner", "userId": "b28fe60f-8634-4971-a922-b1ae92ad8eb7"}
   getSource:
     Source Get Response Example:
       parameters:
         path:
-          sourceId: <value>
+          sourceId: "<value>"
       responses:
         "200":
-          application/json:
-            name: running
-            sourceId: 18dccc91-0ab1-4f72-9ed7-0b8fc27c5826
-            sourceType: postgres
-            workspaceId: 744cc0ed-7f05-4949-9e60-2a814f90c035
+          application/json: {"configuration": {"start_date": "2023-12-25T04:38:38.802Z", "username": "Dannie_Swaniawski"}, "name": "running", "sourceId": "18dccc91-0ab1-4f72-9ed7-0b8fc27c5826", "sourceType": "postgres", "workspaceId": "744cc0ed-7f05-4949-9e60-2a814f90c035"}
   getStreamProperties:
     speakeasy-default-get-stream-properties:
       parameters:
         query:
-          sourceId: <value>
+          sourceId: "<value>"
       responses:
         "200":
           application/json: []
@@ -2974,485 +2837,199 @@ examples:
     Workspace Get Response Example:
       parameters:
         path:
-          workspaceId: <value>
+          workspaceId: "<value>"
       responses:
         "200":
-          application/json:
-            dataResidency: auto
-            name: Acme Company
-            workspaceId: 18dccc91-0ab1-4f72-9ed7-0b8fc27c5826
+          application/json: {"dataResidency": "auto", "name": "Acme Company", "workspaceId": "18dccc91-0ab1-4f72-9ed7-0b8fc27c5826"}
   initiateOAuth:
     speakeasy-default-initiate-O-auth:
       requestBody:
-        application/json:
-          redirectUrl: https://cloud.airbyte.io/v1/api/oauth/callback
-          sourceType: gitlab
-          workspaceId: 871d9b60-11d1-44cb-8c92-c246d53bf87e
+        application/json: {"redirectUrl": "https://cloud.airbyte.io/v1/api/oauth/callback", "sourceType": "gitlab", "workspaceId": "871d9b60-11d1-44cb-8c92-c246d53bf87e"}
   listConnections:
     speakeasy-default-list-connections:
       responses:
         "200":
-          application/json:
-            data:
-              - connectionId: <value>
-                destinationId: <value>
-                name: test-connection
-                schedule:
-                  scheduleType: basic
-                sourceId: <value>
-                status: deprecated
-                workspaceId: <value>
-              - connectionId: <value>
-                destinationId: <value>
-                name: <value>
-                schedule:
-                  scheduleType: basic
-                sourceId: <value>
-                status: deprecated
-                workspaceId: <value>
-              - connectionId: <value>
-                destinationId: <value>
-                name: <value>
-                schedule:
-                  scheduleType: manual
-                sourceId: 49237019-645d-47d4-b45b-5eddf97775ce
-                status: inactive
-                workspaceId: <value>
-              - connectionId: <value>
-                destinationId: al312fs-0ab1-4f72-9ed7-0b8fc27c5826
-                name: <value>
-                schedule:
-                  scheduleType: cron
-                sourceId: <value>
-                status: inactive
-                workspaceId: <value>
-              - connectionId: <value>
-                destinationId: <value>
-                name: <value>
-                schedule:
-                  scheduleType: manual
-                sourceId: <value>
-                status: deprecated
-                workspaceId: <value>
-              - connectionId: <value>
-                destinationId: <value>
-                name: <value>
-                schedule:
-                  scheduleType: basic
-                sourceId: <value>
-                status: active
-                workspaceId: <value>
-              - connectionId: <value>
-                dataResidency: auto
-                destinationId: <value>
-                name: <value>
-                schedule:
-                  scheduleType: manual
-                sourceId: <value>
-                status: inactive
-                workspaceId: <value>
-            next: https://api.airbyte.com/v1/connections?limit=5&offset=10
-            previous: https://api.airbyte.com/v1/connections?limit=5&offset=0
+          application/json: {"data": [{"connectionId": "<value>", "destinationId": "<value>", "name": "test-connection", "schedule": {"scheduleType": "basic"}, "sourceId": "<value>", "status": "deprecated", "workspaceId": "<value>"}, {"connectionId": "<value>", "destinationId": "<value>", "name": "<value>", "schedule": {"scheduleType": "basic"}, "sourceId": "<value>", "status": "deprecated", "workspaceId": "<value>"}, {"connectionId": "<value>", "destinationId": "<value>", "name": "<value>", "schedule": {"scheduleType": "manual"}, "sourceId": "49237019-645d-47d4-b45b-5eddf97775ce", "status": "inactive", "workspaceId": "<value>"}, {"connectionId": "<value>", "destinationId": "al312fs-0ab1-4f72-9ed7-0b8fc27c5826", "name": "<value>", "schedule": {"scheduleType": "cron"}, "sourceId": "<value>", "status": "inactive", "workspaceId": "<value>"}, {"connectionId": "<value>", "destinationId": "<value>", "name": "<value>", "schedule": {"scheduleType": "manual"}, "sourceId": "<value>", "status": "deprecated", "workspaceId": "<value>"}, {"connectionId": "<value>", "destinationId": "<value>", "name": "<value>", "schedule": {"scheduleType": "basic"}, "sourceId": "<value>", "status": "active", "workspaceId": "<value>"}, {"connectionId": "<value>", "dataResidency": "auto", "destinationId": "<value>", "name": "<value>", "schedule": {"scheduleType": "manual"}, "sourceId": "<value>", "status": "inactive", "workspaceId": "<value>"}], "next": "https://api.airbyte.com/v1/connections?limit=5&offset=10", "previous": "https://api.airbyte.com/v1/connections?limit=5&offset=0"}
   listDestinations:
     speakeasy-default-list-destinations:
       responses:
         "200":
-          application/json:
-            data:
-              - configuration:
-                  destination_path: /json_data
-                  host: phony-atrium.name
-                  password: R2h1z9Lo5EEb5Ho
-                  port: 22
-                  username: Favian.Langworth
-                destinationId: 18dccc91-0ab1-4f72-9ed7-0b8fc27c5826
-                destinationType: postgres
-                name: Analytics Team Postgres
-                workspaceId: 871d9b60-11d1-44cb-8c92-c246d53bf87e
-            next: https://api.airbyte.com/v1/destinations?limit=5&offset=10
-            previous: https://api.airbyte.com/v1/destinations?limit=5&offset=0
+          application/json: {"data": [{"configuration": {"destination_path": "/json_data", "host": "phony-atrium.name", "password": "R2h1z9Lo5EEb5Ho", "port": 22, "username": "Favian.Langworth"}, "destinationId": "18dccc91-0ab1-4f72-9ed7-0b8fc27c5826", "destinationType": "postgres", "name": "Analytics Team Postgres", "workspaceId": "871d9b60-11d1-44cb-8c92-c246d53bf87e"}], "next": "https://api.airbyte.com/v1/destinations?limit=5&offset=10", "previous": "https://api.airbyte.com/v1/destinations?limit=5&offset=0"}
   listJobs:
     "":
       parameters:
         query:
           createdAtEnd: 1687450500000
           createdAtStart: 1687450500000
-          orderBy: updatedAt|DESC
+          orderBy: "updatedAt|DESC"
           updatedAtEnd: 1687450500000
           updatedAtStart: 1687450500000
       responses:
         "200":
-          application/json:
-            data:
-              - connectionId: <value>
-                jobId: 808104
-                jobType: sync
-                startTime: "2023-03-25T01:30:50Z"
-                status: running
-            next: https://api.airbyte.com/v1/jobs?limit=5&offset=10
-            previous: https://api.airbyte.com/v1/jobs?limit=5&offset=0
+          application/json: {"data": [{"connectionId": "<value>", "jobId": 808104, "jobType": "sync", "startTime": "2023-03-25T01:30:50Z", "status": "running"}], "next": "https://api.airbyte.com/v1/jobs?limit=5&offset=10", "previous": "https://api.airbyte.com/v1/jobs?limit=5&offset=0"}
     Job List Response Example:
       parameters:
         query:
           createdAtEnd: 1687450500000
           createdAtStart: 1687450500000
-          orderBy: updatedAt|DESC
+          orderBy: "updatedAt|DESC"
           updatedAtEnd: 1687450500000
           updatedAtStart: 1687450500000
       responses:
         "200":
-          application/json:
-            data:
-              - connectionId: <value>
-                jobId: 4995
-                jobType: sync
-                startTime: <value>
-                status: running
-            next: https://api.airbyte.com/v1/jobs?limit=5&offset=10
-            previous: https://api.airbyte.com/v1/jobs?limit=5&offset=0
+          application/json: {"data": [{"connectionId": "<value>", "jobId": 4995, "jobType": "sync", "startTime": "<value>", "status": "running"}], "next": "https://api.airbyte.com/v1/jobs?limit=5&offset=10", "previous": "https://api.airbyte.com/v1/jobs?limit=5&offset=0"}
   listOrganizationsForUser:
     speakeasy-default-list-organizations-for-user:
       responses:
         "200":
-          application/json:
-            data: []
+          application/json: {"data": []}
   listPermissions:
     speakeasy-default-list-permissions:
       responses:
         "200":
-          application/json:
-            data: []
+          application/json: {"data": []}
   listSources:
     "":
       parameters:
         query:
-          workspaceIds:
-            - df08f6b0-b364-4cc1-9b3f-96f5d2fccfb2,b0796797-de23-4fc7-a5e2-7e131314718c
+          workspaceIds: ["df08f6b0-b364-4cc1-9b3f-96f5d2fccfb2,b0796797-de23-4fc7-a5e2-7e131314718c"]
       responses:
         "200":
-          application/json:
-            data:
-              - configuration:
-                  api_token: <value>
-                name: Analytics Team Postgres
-                sourceId: 18dccc91-0ab1-4f72-9ed7-0b8fc27c5826
-                sourceType: postgres
-                workspaceId: 871d9b60-11d1-44cb-8c92-c246d53bf87e
-            next: https://api.airbyte.com/v1/sources?limit=5&offset=10
-            previous: https://api.airbyte.com/v1/sources?limit=5&offset=0
+          application/json: {"data": [{"configuration": {"api_endpoint": {"enterprise_url": "https://leading-whack.com"}, "api_key": "<value>", "end_date": "2023-01-02T17:13:18.180Z", "start_date": "2024-05-08T21:24:52.191Z"}, "name": "Analytics Team Postgres", "sourceId": "18dccc91-0ab1-4f72-9ed7-0b8fc27c5826", "sourceType": "postgres", "workspaceId": "871d9b60-11d1-44cb-8c92-c246d53bf87e"}], "next": "https://api.airbyte.com/v1/sources?limit=5&offset=10", "previous": "https://api.airbyte.com/v1/sources?limit=5&offset=0"}
   listUsersWithinAnOrganization:
     speakeasy-default-list-users-within-an-organization:
       parameters:
         query:
-          organizationId: <value>
+          organizationId: "<value>"
       responses:
         "200":
-          application/json:
-            data: []
+          application/json: {"data": []}
   listWorkspaces:
     speakeasy-default-list-workspaces:
       responses:
         "200":
-          application/json:
-            data:
-              - dataResidency: auto
-                name: Acme Company
-                workspaceId: 18dccc91-0ab1-4f72-9ed7-0b8fc27c5826
-            next: https://api.airbyte.com/v1/workspaces?limit=5&offset=10
-            previous: https://api.airbyte.com/v1/workspaces?limit=5&offset=0
+          application/json: {"data": [{"dataResidency": "auto", "name": "Acme Company", "workspaceId": "18dccc91-0ab1-4f72-9ed7-0b8fc27c5826"}], "next": "https://api.airbyte.com/v1/workspaces?limit=5&offset=10", "previous": "https://api.airbyte.com/v1/workspaces?limit=5&offset=0"}
   patchConnection:
     Connection Get Response Example:
       parameters:
         path:
-          connectionId: <value>
+          connectionId: "<value>"
       requestBody:
-        application/json:
-          namespaceFormat: ${SOURCE_NAMESPACE}
+        application/json: {"namespaceFormat": "${SOURCE_NAMESPACE}"}
       responses:
         "200":
-          application/json:
-            connectionId: <value>
-            destinationId: 744cc0ed-7f05-4949-9e60-2a814f90c035
-            name: Postgres To Snowflake
-            schedule:
-              scheduleType: basic
-            sourceId: 9924bcd0-99be-453d-ba47-c2c9766f7da5
-            status: inactive
-            workspaceId: 18dccc91-0ab1-4f72-9ed7-0b8fc27c5826
+          application/json: {"connectionId": "<value>", "destinationId": "744cc0ed-7f05-4949-9e60-2a814f90c035", "name": "Postgres To Snowflake", "schedule": {"scheduleType": "basic"}, "sourceId": "9924bcd0-99be-453d-ba47-c2c9766f7da5", "status": "inactive", "workspaceId": "18dccc91-0ab1-4f72-9ed7-0b8fc27c5826"}
     Connection Update Request Example:
       parameters:
         path:
-          connectionId: <value>
+          connectionId: "<value>"
       requestBody:
-        application/json:
-          name: Postgres-to-Bigquery
-          namespaceFormat: ${SOURCE_NAMESPACE}
+        application/json: {"name": "Postgres-to-Bigquery", "namespaceFormat": "${SOURCE_NAMESPACE}"}
       responses:
         "200":
-          application/json:
-            connectionId: <value>
-            destinationId: <value>
-            name: <value>
-            schedule:
-              scheduleType: manual
-            sourceId: <value>
-            status: active
-            workspaceId: <value>
+          application/json: {"connectionId": "<value>", "destinationId": "<value>", "name": "<value>", "schedule": {"scheduleType": "manual"}, "sourceId": "<value>", "status": "active", "workspaceId": "<value>"}
   patchDestination:
     Destination Update Request Example:
       parameters:
         path:
-          destinationId: <value>
+          destinationId: "<value>"
       requestBody:
-        application/json:
-          configuration:
-            destination_path: 'motherduck:'
-            schema: main
-          name: My Destination
+        application/json: {"configuration": {"destination_path": "motherduck:", "schema": "main"}, "name": "My Destination"}
       responses:
         "200":
-          application/json:
-            configuration:
-              database: <value>
-              host: disloyal-lox.net
-              port: "5432"
-              schema: public
-              tunnel_method:
-                tunnel_host: <value>
-                tunnel_port: "22"
-                tunnel_user: <value>
-                tunnel_user_password: <value>
-              username: Velva.Yundt67
-            destinationId: 18dccc91-0ab1-4f72-9ed7-0b8fc27c5826
-            destinationType: postgres
-            name: Analytics Team Postgres
-            workspaceId: 871d9b60-11d1-44cb-8c92-c246d53bf87e
+          application/json: {"configuration": {"database": "<value>", "host": "disloyal-lox.net", "port": "5432", "schema": "public", "tunnel_method": {"tunnel_host": "<value>", "tunnel_port": "22", "tunnel_user": "<value>", "tunnel_user_password": "<value>"}, "username": "Velva.Yundt67"}, "destinationId": "18dccc91-0ab1-4f72-9ed7-0b8fc27c5826", "destinationType": "postgres", "name": "Analytics Team Postgres", "workspaceId": "871d9b60-11d1-44cb-8c92-c246d53bf87e"}
     Destination Update Response Example:
       parameters:
         path:
-          destinationId: <value>
+          destinationId: "<value>"
       requestBody:
-        application/json:
-          configuration:
-            authentication:
-              personal_access_token: <value>
-            database: <value>
-            hostname: abc-12345678-wxyz.cloud.databricks.com
-            http_path: sql/1.0/warehouses/0000-1111111-abcd90
-            port: "443"
-            schema: default
+        application/json: {"configuration": {"authentication": {"personal_access_token": "<value>"}, "database": "<value>", "hostname": "abc-12345678-wxyz.cloud.databricks.com", "http_path": "sql/1.0/warehouses/0000-1111111-abcd90", "port": "443", "schema": "default"}}
       responses:
         "200":
-          application/json:
-            configuration:
-              destination_path: 'motherduck:'
-              schema: main
-            destinationId: 18dccc91-0ab1-4f72-9ed7-0b8fc27c5826
-            destinationType: <value>
-            name: running
-            workspaceId: 744cc0ed-7f05-4949-9e60-2a814f90c035
+          application/json: {"configuration": {"destination_path": "motherduck:", "schema": "main"}, "destinationId": "18dccc91-0ab1-4f72-9ed7-0b8fc27c5826", "destinationType": "<value>", "name": "running", "workspaceId": "744cc0ed-7f05-4949-9e60-2a814f90c035"}
   patchSource:
     Source Update Request Example:
       parameters:
         path:
-          sourceId: <value>
+          sourceId: "<value>"
       requestBody:
-        application/json:
-          configuration:
-            api_key: <value>
-          name: My Source
-          workspaceId: 744cc0ed-7f05-4949-9e60-2a814f90c035
+        application/json: {"configuration": {"api_key": "<value>"}, "name": "My Source", "workspaceId": "744cc0ed-7f05-4949-9e60-2a814f90c035"}
       responses:
         "200":
-          application/json:
-            configuration:
-              auth_token: <value>
-              counter_id: <value>
-              end_date: "2022-01-01"
-              start_date: "2022-01-01"
-            name: Analytics Team Postgres
-            sourceId: 18dccc91-0ab1-4f72-9ed7-0b8fc27c5826
-            sourceType: postgres
-            workspaceId: 871d9b60-11d1-44cb-8c92-c246d53bf87e
+          application/json: {"configuration": {"auth_token": "<value>", "counter_id": "<id>", "end_date": "2022-01-01", "start_date": "2022-01-01"}, "name": "Analytics Team Postgres", "sourceId": "18dccc91-0ab1-4f72-9ed7-0b8fc27c5826", "sourceType": "postgres", "workspaceId": "871d9b60-11d1-44cb-8c92-c246d53bf87e"}
     Source Update Response Example:
       parameters:
         path:
-          sourceId: <value>
+          sourceId: "<value>"
       requestBody:
-        application/json:
-          configuration:
-            credentials:
-              client_id: <value>
-              client_secret: <value>
-              refresh_token: <value>
-          name: My source
+        application/json: {"configuration": {"credentials": {"client_id": "<value>", "client_secret": "<value>", "refresh_token": "<value>"}}, "name": "My source"}
       responses:
         "200":
-          application/json:
-            configuration:
-              api_key: <value>
-              data_type: latest
-              symbols:
-                - BTC
-            name: running
-            sourceId: 18dccc91-0ab1-4f72-9ed7-0b8fc27c5826
-            sourceType: postgres
-            workspaceId: 744cc0ed-7f05-4949-9e60-2a814f90c035
+          application/json: {"configuration": {"api_key": "<value>", "data_type": "latest", "symbols": ["BTC"]}, "name": "running", "sourceId": "18dccc91-0ab1-4f72-9ed7-0b8fc27c5826", "sourceType": "postgres", "workspaceId": "744cc0ed-7f05-4949-9e60-2a814f90c035"}
   putDestination:
     Destination Update Request Example:
       parameters:
         path:
-          destinationId: <value>
+          destinationId: "<value>"
       requestBody:
-        application/json:
-          configuration:
-            database: <value>
-            host: urban-receptor.org
-            port: "8123"
-            tunnel_method:
-              ssh_key: <value>
-              tunnel_host: <value>
-              tunnel_port: "22"
-              tunnel_user: <value>
-            username: Micheal.Wisoky
-          name: My Destination
+        application/json: {"configuration": {"database": "<value>", "host": "urban-receptor.org", "port": "8123", "tunnel_method": {"ssh_key": "<value>", "tunnel_host": "<value>", "tunnel_port": "22", "tunnel_user": "<value>"}, "username": "Micheal.Wisoky"}, "name": "My Destination"}
       responses:
         "200":
-          application/json:
-            configuration:
-              embedding:
-                openai_key: <value>
-              indexing:
-                additional_headers:
-                  - header_key: X-OpenAI-Api-Key
-                    value: my-openai-api-key
-                auth:
-                  token: <value>
-                host: https://my-cluster.weaviate.network
-              processing:
-                chunk_size: 484762
-                metadata_fields:
-                  - age
-                text_fields:
-                  - users.*.name
-            destinationId: 18dccc91-0ab1-4f72-9ed7-0b8fc27c5826
-            destinationType: postgres
-            name: Analytics Team Postgres
-            workspaceId: 871d9b60-11d1-44cb-8c92-c246d53bf87e
+          application/json: {"configuration": {"corpus_name": "<value>", "customer_id": "<id>", "metadata_fields": ["age"], "oauth2": {"client_id": "<id>", "client_secret": "<value>"}, "text_fields": ["text"], "title_field": "document_key"}, "destinationId": "18dccc91-0ab1-4f72-9ed7-0b8fc27c5826", "destinationType": "postgres", "name": "Analytics Team Postgres", "workspaceId": "871d9b60-11d1-44cb-8c92-c246d53bf87e"}
     Destination Update Response Example:
       parameters:
         path:
-          destinationId: <value>
+          destinationId: "<value>"
       requestBody:
-        application/json:
-          configuration:
-            endpoint: <value>
-            tunnel_method:
-              ssh_key: <value>
-              tunnel_host: <value>
-              tunnel_port: "22"
-              tunnel_user: <value>
-          name: <value>
+        application/json: {"configuration": {"database": "<value>", "host": "concerned-warming.biz", "port": "1433", "schema": "public", "tunnel_method": {"ssh_key": "<value>", "tunnel_host": "<value>", "tunnel_port": "22", "tunnel_user": "<value>"}, "username": "Meggie_Gibson"}, "name": "<value>"}
       responses:
         "200":
-          application/json:
-            configuration:
-              access_key_id: A012345678910EXAMPLE
-              file_name_pattern: '{timestamp}'
-              role_arn: arn:aws:iam::123456789:role/ExternalIdIsYourWorkspaceId
-              s3_bucket_name: airbyte_sync
-              s3_bucket_path: data_sync/test
-              s3_endpoint: http://localhost:9000
-              s3_path_format: ${NAMESPACE}/${STREAM_NAME}/${YEAR}_${MONTH}_${DAY}_${EPOCH}_
-              secret_access_key: a012345678910ABCDEFGH/AbCdEfGhEXAMPLEKEY
-            destinationId: 18dccc91-0ab1-4f72-9ed7-0b8fc27c5826
-            destinationType: <value>
-            name: running
-            workspaceId: 744cc0ed-7f05-4949-9e60-2a814f90c035
+          application/json: {"configuration": {"destination_path": "/json_data", "host": "unwelcome-unblinking.biz", "password": "StdJmHMRiEGgkZK", "port": 22, "username": "Arne_Bartoletti28"}, "destinationId": "18dccc91-0ab1-4f72-9ed7-0b8fc27c5826", "destinationType": "<value>", "name": "running", "workspaceId": "744cc0ed-7f05-4949-9e60-2a814f90c035"}
   putSource:
     Source Update Request Example:
       parameters:
         path:
-          sourceId: <value>
+          sourceId: "<value>"
       requestBody:
-        application/json:
-          configuration:
-            api_key: <value>
-            start_date: "2024-10-11T13:59:33.977Z"
-          name: My Source
+        application/json: {"configuration": {"authorization": {"email": "Annabell_Williamson@gmail.com", "service_account_info": "{ \"type\": \"service_account\", \"project_id\": YOUR_PROJECT_ID, \"private_key_id\": YOUR_PRIVATE_KEY, ... }"}, "data_state": "final", "end_date": "2021-12-12", "site_urls": ["https://example1.com/"]}, "name": "My Source"}
       responses:
         "200":
-          application/json:
-            configuration:
-              lwa_app_id: <value>
-              lwa_client_secret: <value>
-              refresh_token: <value>
-              replication_end_date: "2017-01-25T00:00:00Z"
-              replication_start_date: "2017-01-25T00:00:00Z"
-            name: Analytics Team Postgres
-            sourceId: 18dccc91-0ab1-4f72-9ed7-0b8fc27c5826
-            sourceType: postgres
-            workspaceId: 871d9b60-11d1-44cb-8c92-c246d53bf87e
+          application/json: {"configuration": {"api_key": "<value>", "end_date": "2024-09-05T04:33:29.018Z", "start_date": "2023-08-25T03:50:09.521Z"}, "name": "Analytics Team Postgres", "sourceId": "18dccc91-0ab1-4f72-9ed7-0b8fc27c5826", "sourceType": "postgres", "workspaceId": "871d9b60-11d1-44cb-8c92-c246d53bf87e"}
     Source Update Response Example:
       parameters:
         path:
-          sourceId: <value>
+          sourceId: "<value>"
       requestBody:
-        application/json:
-          configuration:
-            aws_key_id: <value>
-            aws_secret_key: <value>
-            lookup_attributes_filter:
-              attribute_key: EventName
-              attribute_value: ListInstanceAssociations
-            start_date: "2021-01-01"
-          name: <value>
+        application/json: {"configuration": {"api_key": "<value>"}, "name": "<value>"}
       responses:
         "200":
-          application/json:
-            configuration:
-              custom_reports: []
-              start_date: "2022-07-28"
-            name: running
-            sourceId: 18dccc91-0ab1-4f72-9ed7-0b8fc27c5826
-            sourceType: postgres
-            workspaceId: 744cc0ed-7f05-4949-9e60-2a814f90c035
+          application/json: {"configuration": {"custom_reports": [], "start_date": "2022-07-28"}, "name": "running", "sourceId": "18dccc91-0ab1-4f72-9ed7-0b8fc27c5826", "sourceType": "postgres", "workspaceId": "744cc0ed-7f05-4949-9e60-2a814f90c035"}
   updatePermission:
     speakeasy-default-update-permission:
       parameters:
         path:
-          permissionId: <value>
+          permissionId: "<value>"
       requestBody:
-        application/json:
-          permissionType: organization_member
+        application/json: {"permissionType": "organization_member"}
       responses:
         "200":
-          application/json:
-            permissionId: 157b7736-f791-41ce-961d-60b7dd699010
-            permissionType: organization_member
-            userId: 24bf7abc-c5a0-4e5a-9be2-69537c07fe9b
+          application/json: {"permissionId": "157b7736-f791-41ce-961d-60b7dd699010", "permissionType": "organization_member", "userId": "24bf7abc-c5a0-4e5a-9be2-69537c07fe9b"}
   updateWorkspace:
     Workspace Update Request Example:
       parameters:
         path:
-          workspaceId: <value>
+          workspaceId: "<value>"
       requestBody:
-        application/json:
-          name: Company Workspace Name
+        application/json: {"name": "Company Workspace Name"}
       responses:
         "200":
-          application/json:
-            name: <value>
-            workspaceId: <value>
+          application/json: {"name": "<value>", "workspaceId": "<value>"}
     Workspace Update Response Example:
       parameters:
         path:
-          workspaceId: <value>
+          workspaceId: "<value>"
       requestBody:
-        application/json:
-          name: <value>
+        application/json: {"name": "<value>"}
       responses:
         "200":
-          application/json:
-            name: <value>
-            workspaceId: 9924bcd0-99be-453d-ba47-c2c9766f7da5
+          application/json: {"name": "<value>", "workspaceId": "9924bcd0-99be-453d-ba47-c2c9766f7da5"}
