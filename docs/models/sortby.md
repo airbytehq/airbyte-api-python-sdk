@@ -1,13 +1,14 @@
 # SortBy
 
-This parameter allows you to choose with which type of sorting the articles should be returned. Two values  are possible:
-  - publishedAt = sort by publication date, the articles with the most recent publication date are returned first
-  - relevance = sort by best match to keywords, the articles with the best match are returned first
+The order to sort the articles in. Possible options: relevancy,
+popularity, publishedAt.
+
 
 
 ## Values
 
 | Name           | Value          |
 | -------------- | -------------- |
+| `RELEVANCY`    | relevancy      |
+| `POPULARITY`   | popularity     |
 | `PUBLISHED_AT` | publishedAt    |
-| `RELEVANCE`    | relevance      |

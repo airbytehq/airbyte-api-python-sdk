@@ -1,0 +1,13 @@
+# SourceStockdata
+
+
+## Fields
+
+| Field                                                                             | Type                                                                              | Required                                                                          | Description                                                                       |
+| --------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- |
+| `api_key`                                                                         | *str*                                                                             | :heavy_check_mark:                                                                | N/A                                                                               |
+| `start_date`                                                                      | [date](https://docs.python.org/3/library/datetime.html#date-objects)              | :heavy_check_mark:                                                                | N/A                                                                               |
+| `filter_entities`                                                                 | *Optional[bool]*                                                                  | :heavy_minus_sign:                                                                | N/A                                                                               |
+| `industries`                                                                      | List[*Any*]                                                                       | :heavy_minus_sign:                                                                | Specify the industries of entities which have been identified within the article. |
+| `source_type`                                                                     | [models.Stockdata](../models/stockdata.md)                                        | :heavy_check_mark:                                                                | N/A                                                                               |
+| `symbols`                                                                         | List[*Any*]                                                                       | :heavy_minus_sign:                                                                | N/A                                                                               |

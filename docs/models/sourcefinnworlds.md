@@ -1,0 +1,16 @@
+# SourceFinnworlds
+
+
+## Fields
+
+| Field                                                                | Type                                                                 | Required                                                             | Description                                                          |
+| -------------------------------------------------------------------- | -------------------------------------------------------------------- | -------------------------------------------------------------------- | -------------------------------------------------------------------- |
+| `key`                                                                | *str*                                                                | :heavy_check_mark:                                                   | N/A                                                                  |
+| `start_date`                                                         | [date](https://docs.python.org/3/library/datetime.html#date-objects) | :heavy_check_mark:                                                   | N/A                                                                  |
+| `bond_type`                                                          | List[*Any*]                                                          | :heavy_minus_sign:                                                   | For example 10y, 5y, 2y...                                           |
+| `commodities`                                                        | List[*Any*]                                                          | :heavy_minus_sign:                                                   | Options Available: beef, cheese, oil, ...                            |
+| `countries`                                                          | List[*Any*]                                                          | :heavy_minus_sign:                                                   | brazil, united states, italia, japan                                 |
+| `list`                                                               | *Optional[str]*                                                      | :heavy_minus_sign:                                                   | Choose isin, ticker, reg_lei or cik                                  |
+| `list_countries_for_bonds`                                           | *Optional[str]*                                                      | :heavy_minus_sign:                                                   | N/A                                                                  |
+| `source_type`                                                        | [models.Finnworlds](../models/finnworlds.md)                         | :heavy_check_mark:                                                   | N/A                                                                  |
+| `tickers`                                                            | List[*Any*]                                                          | :heavy_minus_sign:                                                   | AAPL, T, MU, GOOG                                                    |

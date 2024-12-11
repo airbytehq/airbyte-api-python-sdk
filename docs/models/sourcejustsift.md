@@ -1,0 +1,9 @@
+# SourceJustSift
+
+
+## Fields
+
+| Field                                                                                                | Type                                                                                                 | Required                                                                                             | Description                                                                                          |
+| ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- |
+| `api_token`                                                                                          | *str*                                                                                                | :heavy_check_mark:                                                                                   | API token to use for accessing the Sift API. Obtain this token from your Sift account administrator. |
+| `source_type`                                                                                        | [models.JustSift](../models/justsift.md)                                                             | :heavy_check_mark:                                                                                   | N/A                                                                                                  |

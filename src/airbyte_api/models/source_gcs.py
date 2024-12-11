@@ -10,6 +10,40 @@ from enum import Enum
 from typing import Final, List, Optional, Union
 
 
+class SourceGcsSchemasAuthType(str, Enum):
+    SERVICE = 'Service'
+
+
+@dataclass_json(undefined=Undefined.EXCLUDE)
+@dataclasses.dataclass
+class ServiceAccountAuthentication:
+    service_account: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('service_account') }})
+    r"""Enter your Google Cloud <a href=\\"https://cloud.google.com/iam/docs/creating-managing-service-account-keys#creating_service_account_keys\\">service account key</a> in JSON format"""
+    AUTH_TYPE: Final[Optional[SourceGcsSchemasAuthType]] = dataclasses.field(default=SourceGcsSchemasAuthType.SERVICE, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_type'), 'exclude': lambda f: f is None }})
+    
+
+
+
+class SourceGcsAuthType(str, Enum):
+    CLIENT = 'Client'
+
+
+@dataclass_json(undefined=Undefined.EXCLUDE)
+@dataclasses.dataclass
+class AuthenticateViaGoogleOAuth:
+    access_token: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('access_token') }})
+    r"""Access Token"""
+    client_id: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('client_id') }})
+    r"""Client ID"""
+    client_secret: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('client_secret') }})
+    r"""Client Secret"""
+    refresh_token: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('refresh_token') }})
+    r"""Access Token"""
+    AUTH_TYPE: Final[Optional[SourceGcsAuthType]] = dataclasses.field(default=SourceGcsAuthType.CLIENT, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_type'), 'exclude': lambda f: f is None }})
+    
+
+
+
 class SourceGcsGcs(str, Enum):
     GCS = 'gcs'
 
@@ -251,8 +285,8 @@ class SourceGcs:
     """
     bucket: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('bucket') }})
     r"""Name of the GCS bucket where the file(s) exist."""
-    service_account: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('service_account') }})
-    r"""Enter your Google Cloud <a href=\\"https://cloud.google.com/iam/docs/creating-managing-service-account-keys#creating_service_account_keys\\">service account key</a> in JSON format"""
+    credentials: SourceGcsAuthentication = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credentials') }})
+    r"""Credentials for connecting to the Google Cloud Storage API"""
     streams: List[SourceGcsFileBasedStreamConfig] = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('streams') }})
     r"""Each instance of this configuration defines a <a href=\\"https://docs.airbyte.com/cloud/core-concepts#stream\\">stream</a>. Use this to define which files belong in the stream, their format, and how they should be parsed and validated. When sending data to warehouse destination such as Snowflake or BigQuery, each stream is a separate table."""
     SOURCE_TYPE: Final[SourceGcsGcs] = dataclasses.field(default=SourceGcsGcs.GCS, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
@@ -260,6 +294,8 @@ class SourceGcs:
     r"""UTC date and time in the format 2017-01-25T00:00:00.000000Z. Any file modified before this date will not be replicated."""
     
 
+
+SourceGcsAuthentication = Union[AuthenticateViaGoogleOAuth, ServiceAccountAuthentication]
 
 SourceGcsProcessing = Union[SourceGcsLocal, ViaAPI]
 

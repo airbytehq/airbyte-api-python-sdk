@@ -9,9 +9,9 @@
 value: models.SourceLinkedinAdsOAuth20 = /* values here */
 ```
 
-### `models.AccessToken`
+### `models.SourceLinkedinAdsAccessToken`
 
 ```python
-value: models.AccessToken = /* values here */
+value: models.SourceLinkedinAdsAccessToken = /* values here */
 ```
 

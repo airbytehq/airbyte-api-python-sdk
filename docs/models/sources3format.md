@@ -35,3 +35,9 @@ value: models.SourceS3ParquetFormat = /* values here */
 value: models.SourceS3UnstructuredDocumentFormat = /* values here */
 ```
 
+### `models.SourceS3ExcelFormat`
+
+```python
+value: models.SourceS3ExcelFormat = /* values here */
+```
+

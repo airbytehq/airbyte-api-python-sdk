@@ -44,7 +44,7 @@ class SourceZendeskSunshineOAuth20:
 
 
 
-class SourceZendeskSunshineZendeskSunshine(str, Enum):
+class ZendeskSunshine(str, Enum):
     ZENDESK_SUNSHINE = 'zendesk-sunshine'
 
 
@@ -56,7 +56,7 @@ class SourceZendeskSunshine:
     subdomain: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('subdomain') }})
     r"""The subdomain for your Zendesk Account."""
     credentials: Optional[SourceZendeskSunshineAuthorizationMethod] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credentials'), 'exclude': lambda f: f is None }})
-    SOURCE_TYPE: Final[SourceZendeskSunshineZendeskSunshine] = dataclasses.field(default=SourceZendeskSunshineZendeskSunshine.ZENDESK_SUNSHINE, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
+    SOURCE_TYPE: Final[ZendeskSunshine] = dataclasses.field(default=ZendeskSunshine.ZENDESK_SUNSHINE, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     
 
 

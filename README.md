@@ -16,19 +16,21 @@ The Developer Portal UI can also be used to help build your integration by showi
 <!-- Start Summary [summary] -->
 ## Summary
 
-airbyte-api: Programatically control Airbyte Cloud, OSS & Enterprise.
+airbyte-api: Programmatically control Airbyte Cloud, OSS & Enterprise.
 <!-- End Summary [summary] -->
 
 <!-- Start Table of Contents [toc] -->
 ## Table of Contents
+<!-- $toc-max-depth=2 -->
+  * [Authentication](#authentication)
+  * [SDK Installation](#sdk-installation)
+  * [SDK Example Usage](#sdk-example-usage)
+  * [Available Resources and Operations](#available-resources-and-operations)
+  * [Error Handling](#error-handling)
+  * [Server Selection](#server-selection)
+  * [Custom HTTP Client](#custom-http-client)
+  * [Authentication](#authentication-1)
 
-* [SDK Installation](#sdk-installation)
-* [SDK Example Usage](#sdk-example-usage)
-* [Available Resources and Operations](#available-resources-and-operations)
-* [Error Handling](#error-handling)
-* [Server Selection](#server-selection)
-* [Custom HTTP Client](#custom-http-client)
-* [Authentication](#authentication)
 <!-- End Table of Contents [toc] -->
 
 <!-- Start SDK Installation [installation] -->
@@ -53,8 +55,8 @@ from airbyte_api import models
 s = airbyte_api.AirbyteAPI(
     security=models.Security(
         basic_auth=models.SchemeBasicAuth(
-            password="",
-            username="",
+            password='',
+            username='',
         ),
     ),
 )
@@ -160,11 +162,22 @@ if res.connection_response is not None:
 <!-- Start Error Handling [errors] -->
 ## Error Handling
 
-Handling errors in this SDK should largely match your expectations.  All operations return a response object or raise an error.  If Error objects are specified in your OpenAPI Spec, the SDK will raise the appropriate Error type.
+Handling errors in this SDK should largely match your expectations. All operations return a response object or raise an exception.
 
-| Error Object    | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4xx-5xx         | */*             |
+By default, an API error will raise a errors.SDKError exception, which has the following properties:
+
+| Property        | Type             | Description           |
+|-----------------|------------------|-----------------------|
+| `.status_code`  | *int*            | The HTTP status code  |
+| `.message`      | *str*            | The error message     |
+| `.raw_response` | *httpx.Response* | The raw HTTP response |
+| `.body`         | *str*            | The response content  |
+
+When custom error responses are specified for an operation, the SDK may also raise their associated exception. You can refer to respective *Errors* tables in SDK docs for more details on possible exception types for each operation. For example, the `create_connection` method may raise the following exceptions:
+
+| Error Type      | Status Code | Content Type |
+| --------------- | ----------- | ------------ |
+| errors.SDKError | 4XX, 5XX    | \*/\*        |
 
 ### Example
 
@@ -175,8 +188,8 @@ from airbyte_api import errors, models
 s = airbyte_api.AirbyteAPI(
     security=models.Security(
         basic_auth=models.SchemeBasicAuth(
-            password="",
-            username="",
+            password='',
+            username='',
         ),
     ),
 )
@@ -206,45 +219,6 @@ if res.connection_response is not None:
 <!-- Start Server Selection [server] -->
 ## Server Selection
 
-### Select Server by Index
-
-You can override the default server globally by passing a server index to the `server_idx: int` optional parameter when initializing the SDK client instance. The selected server will then be used as the default on the operations that use it. This table lists the indexes associated with the available servers:
-
-| # | Server | Variables |
-| - | ------ | --------- |
-| 0 | `https://api.airbyte.com/v1` | None |
-
-#### Example
-
-```python
-import airbyte_api
-from airbyte_api import models
-
-s = airbyte_api.AirbyteAPI(
-    server_idx=0,
-    security=models.Security(
-        basic_auth=models.SchemeBasicAuth(
-            password="",
-            username="",
-        ),
-    ),
-)
-
-
-res = s.connections.create_connection(request=models.ConnectionCreateRequest(
-    destination_id='e478de0d-a3a0-475c-b019-25f7dd29e281',
-    source_id='95e66a59-8045-4307-9678-63bc3c9b8c93',
-    name='Postgres-to-Bigquery',
-    namespace_format='${SOURCE_NAMESPACE}',
-))
-
-if res.connection_response is not None:
-    # handle response
-    pass
-
-```
-
-
 ### Override Server URL Per-Client
 
 The default server can also be overridden globally by passing a URL to the `server_url: str` optional parameter when initializing the SDK client instance. For example:
@@ -253,11 +227,11 @@ import airbyte_api
 from airbyte_api import models
 
 s = airbyte_api.AirbyteAPI(
-    server_url="https://api.airbyte.com/v1",
+    server_url='https://api.airbyte.com/v1',
     security=models.Security(
         basic_auth=models.SchemeBasicAuth(
-            password="",
-            username="",
+            password='',
+            username='',
         ),
     ),
 )
@@ -304,11 +278,11 @@ s = airbyte_api.AirbyteAPI(client=http_client)
 
 This SDK supports the following security schemes globally:
 
-| Name                 | Type                 | Scheme               |
-| -------------------- | -------------------- | -------------------- |
-| `basic_auth`         | http                 | HTTP Basic           |
-| `bearer_auth`        | http                 | HTTP Bearer          |
-| `client_credentials` | oauth2               | OAuth2 token         |
+| Name                 | Type   | Scheme       |
+| -------------------- | ------ | ------------ |
+| `basic_auth`         | http   | HTTP Basic   |
+| `bearer_auth`        | http   | HTTP Bearer  |
+| `client_credentials` | oauth2 | OAuth2 token |
 
 You can set the security parameters through the `security` optional parameter when initializing the SDK client instance. The selected scheme will be used by default to authenticate with the API for all operations that support it. For example:
 ```python
@@ -318,8 +292,8 @@ from airbyte_api import models
 s = airbyte_api.AirbyteAPI(
     security=models.Security(
         basic_auth=models.SchemeBasicAuth(
-            password="",
-            username="",
+            password='',
+            username='',
         ),
     ),
 )

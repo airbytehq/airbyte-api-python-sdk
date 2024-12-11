@@ -13,3 +13,7 @@ targets:
         publish:
             pypi:
                 token: $PYPI_TOKEN
+        codeSamples:
+            registry:
+                location: registry.speakeasyapi.dev/airbyte/airbyte-prod/my-source-python-code-samples
+            blocking: false

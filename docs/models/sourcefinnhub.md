@@ -1,0 +1,13 @@
+# SourceFinnhub
+
+
+## Fields
+
+| Field                                                                           | Type                                                                            | Required                                                                        | Description                                                                     |
+| ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- |
+| `api_key`                                                                       | *str*                                                                           | :heavy_check_mark:                                                              | The API key to use for authentication                                           |
+| `start_date_2`                                                                  | [date](https://docs.python.org/3/library/datetime.html#date-objects)            | :heavy_check_mark:                                                              | N/A                                                                             |
+| `symbols`                                                                       | List[*Any*]                                                                     | :heavy_check_mark:                                                              | N/A                                                                             |
+| `exchange`                                                                      | *Optional[str]*                                                                 | :heavy_minus_sign:                                                              | More info: https://finnhub.io/docs/api/stock-symbols                            |
+| `market_news_category`                                                          | [Optional[models.MarketNewsCategory]](../models/marketnewscategory.md)          | :heavy_minus_sign:                                                              | This parameter can be 1 of the following values general, forex, crypto, merger. |
+| `source_type`                                                                   | [models.Finnhub](../models/finnhub.md)                                          | :heavy_check_mark:                                                              | N/A                                                                             |

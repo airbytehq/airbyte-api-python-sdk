@@ -1,0 +1,13 @@
+# SourceZohoBooks
+
+
+## Fields
+
+| Field                                                                   | Type                                                                    | Required                                                                | Description                                                             |
+| ----------------------------------------------------------------------- | ----------------------------------------------------------------------- | ----------------------------------------------------------------------- | ----------------------------------------------------------------------- |
+| `client_id`                                                             | *str*                                                                   | :heavy_check_mark:                                                      | N/A                                                                     |
+| `client_secret`                                                         | *str*                                                                   | :heavy_check_mark:                                                      | N/A                                                                     |
+| `refresh_token`                                                         | *str*                                                                   | :heavy_check_mark:                                                      | N/A                                                                     |
+| `region`                                                                | [models.SourceZohoBooksRegion](../models/sourcezohobooksregion.md)      | :heavy_check_mark:                                                      | The region code for the Zoho Books API, such as 'com', 'eu', 'in', etc. |
+| `start_date`                                                            | [date](https://docs.python.org/3/library/datetime.html#date-objects)    | :heavy_check_mark:                                                      | N/A                                                                     |
+| `source_type`                                                           | [models.ZohoBooks](../models/zohobooks.md)                              | :heavy_check_mark:                                                      | N/A                                                                     |

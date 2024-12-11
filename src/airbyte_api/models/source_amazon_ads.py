@@ -20,7 +20,8 @@ class Region(str, Enum):
     FE = 'FE'
 
 
-class ReportRecordTypes(str, Enum):
+class ReportRecordTypeEnum(str, Enum):
+    r"""An enumeration."""
     AD_GROUPS = 'adGroups'
     ASINS = 'asins'
     ASINS_KEYWORDS = 'asins_keywords'
@@ -35,7 +36,8 @@ class SourceAmazonAdsAmazonAds(str, Enum):
     AMAZON_ADS = 'amazon-ads'
 
 
-class StateFilter(str, Enum):
+class StateFilterEnum(str, Enum):
+    r"""An enumeration."""
     ENABLED = 'enabled'
     PAUSED = 'paused'
     ARCHIVED = 'archived'
@@ -59,12 +61,12 @@ class SourceAmazonAds:
     r"""Profile IDs you want to fetch data for. The Amazon Ads source connector supports only profiles with seller and vendor type, profiles with agency type will be ignored. See <a href=\\"https://advertising.amazon.com/API/docs/en-us/concepts/authorization/profiles\\">docs</a> for more details. Note: If Marketplace IDs are also selected, profiles will be selected if they match the Profile ID OR the Marketplace ID."""
     region: Optional[Region] = dataclasses.field(default=Region.NA, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('region'), 'exclude': lambda f: f is None }})
     r"""Region to pull data from (EU/NA/FE). See <a href=\\"https://advertising.amazon.com/API/docs/en-us/info/api-overview#api-endpoints\\">docs</a> for more details."""
-    report_record_types: Optional[List[ReportRecordTypes]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('report_record_types'), 'exclude': lambda f: f is None }})
+    report_record_types: Optional[List[ReportRecordTypeEnum]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('report_record_types'), 'exclude': lambda f: f is None }})
     r"""Optional configuration which accepts an array of string of record types. Leave blank for default behaviour to pull all report types. Use this config option only if you want to pull specific report type(s). See <a href=\\"https://advertising.amazon.com/API/docs/en-us/reporting/v2/report-types\\">docs</a> for more details"""
     SOURCE_TYPE: Final[SourceAmazonAdsAmazonAds] = dataclasses.field(default=SourceAmazonAdsAmazonAds.AMAZON_ADS, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     start_date: Optional[date] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('start_date'), 'encoder': utils.dateisoformat(True), 'decoder': utils.datefromisoformat, 'exclude': lambda f: f is None }})
     r"""The Start date for collecting reports, should not be more than 60 days in the past. In YYYY-MM-DD format"""
-    state_filter: Optional[List[StateFilter]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('state_filter'), 'exclude': lambda f: f is None }})
+    state_filter: Optional[List[StateFilterEnum]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('state_filter'), 'exclude': lambda f: f is None }})
     r"""Reflects the state of the Display, Product, and Brand Campaign streams as enabled, paused, or archived. If you do not populate this field, it will be ignored completely."""
     
 

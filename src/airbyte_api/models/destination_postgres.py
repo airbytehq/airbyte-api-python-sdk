@@ -89,7 +89,7 @@ class Allow:
 
 
 
-class Mode(str, Enum):
+class DestinationPostgresSchemasSSLModeSSLModes1Mode(str, Enum):
     DISABLE = 'disable'
 
 
@@ -97,7 +97,7 @@ class Mode(str, Enum):
 @dataclasses.dataclass
 class Disable:
     r"""Disable SSL."""
-    MODE: Final[Optional[Mode]] = dataclasses.field(default=Mode.DISABLE, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('mode'), 'exclude': lambda f: f is None }})
+    MODE: Final[Optional[DestinationPostgresSchemasSSLModeSSLModes1Mode]] = dataclasses.field(default=DestinationPostgresSchemasSSLModeSSLModes1Mode.DISABLE, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('mode'), 'exclude': lambda f: f is None }})
     
 
 

@@ -1,0 +1,9 @@
+# SourceZenefits
+
+
+## Fields
+
+| Field                                                                                                   | Type                                                                                                    | Required                                                                                                | Description                                                                                             |
+| ------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------- |
+| `token`                                                                                                 | *str*                                                                                                   | :heavy_check_mark:                                                                                      | Use Sync with Zenefits button on the link given on the readme file, and get the token to access the api |
+| `source_type`                                                                                           | [models.Zenefits](../models/zenefits.md)                                                                | :heavy_check_mark:                                                                                      | N/A                                                                                                     |

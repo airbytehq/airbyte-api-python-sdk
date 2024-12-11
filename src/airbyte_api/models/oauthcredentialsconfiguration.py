@@ -7,7 +7,9 @@ from .amazon_seller_partner import AmazonSellerPartner
 from .asana import Asana
 from .azure_blob_storage import AzureBlobStorage
 from .bing_ads import BingAds
+from .drift import Drift
 from .facebook_marketing import FacebookMarketing
+from .gcs import Gcs
 from .github import Github
 from .gitlab import Gitlab
 from .google_ads import GoogleAds
@@ -27,22 +29,20 @@ from .microsoft_teams import MicrosoftTeams
 from .monday import Monday
 from .notion import Notion
 from .pinterest import Pinterest
-from .retently import Retently
+from .rd_station_marketing import RdStationMarketing
 from .salesforce import Salesforce
 from .shopify import Shopify
 from .slack import Slack
 from .smartsheets import Smartsheets
 from .snapchat_marketing import SnapchatMarketing
 from .snowflake import Snowflake
-from .square import Square
 from .surveymonkey import Surveymonkey
 from .tiktok_marketing import TiktokMarketing
 from .typeform import Typeform
 from .youtube_analytics import YoutubeAnalytics
 from .zendesk_chat import ZendeskChat
-from .zendesk_sunshine import ZendeskSunshine
 from .zendesk_support import ZendeskSupport
 from .zendesk_talk import ZendeskTalk
 from typing import Any, Union
 
-OAuthCredentialsConfiguration = Union[Airtable, AmazonAds, AmazonSellerPartner, Asana, AzureBlobStorage, BingAds, FacebookMarketing, Github, Gitlab, GoogleAds, GoogleAnalyticsDataAPI, GoogleDrive, GoogleSearchConsole, GoogleSheets, Hubspot, Instagram, Intercom, LeverHiring, LinkedinAds, Mailchimp, MicrosoftOnedrive, MicrosoftSharepoint, MicrosoftTeams, Monday, Notion, Pinterest, Retently, Salesforce, Shopify, Slack, Smartsheets, SnapchatMarketing, Snowflake, Square, Surveymonkey, TiktokMarketing, Any, Typeform, YoutubeAnalytics, ZendeskChat, ZendeskSunshine, ZendeskSupport, ZendeskTalk]
+OAuthCredentialsConfiguration = Union[Airtable, AmazonAds, AmazonSellerPartner, Asana, AzureBlobStorage, BingAds, Drift, FacebookMarketing, Gcs, Github, Gitlab, GoogleAds, GoogleAnalyticsDataAPI, GoogleDrive, GoogleSearchConsole, GoogleSheets, Hubspot, Instagram, Intercom, LeverHiring, LinkedinAds, Mailchimp, MicrosoftOnedrive, MicrosoftSharepoint, MicrosoftTeams, Monday, Notion, Pinterest, RdStationMarketing, Salesforce, Shopify, Slack, Smartsheets, SnapchatMarketing, Snowflake, Surveymonkey, TiktokMarketing, Any, Typeform, YoutubeAnalytics, ZendeskChat, ZendeskSupport, ZendeskTalk]

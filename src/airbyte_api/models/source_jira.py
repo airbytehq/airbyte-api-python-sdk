@@ -27,6 +27,8 @@ class SourceJira:
     r"""Allow the use of experimental streams which rely on undocumented Jira API endpoints. See https://docs.airbyte.com/integrations/sources/jira#experimental-tables for more info."""
     lookback_window_minutes: Optional[int] = dataclasses.field(default=0, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('lookback_window_minutes'), 'exclude': lambda f: f is None }})
     r"""When set to N, the connector will always refresh resources created within the past N minutes. By default, updated objects that are not newly created are not incrementally synced."""
+    num_workers: Optional[int] = dataclasses.field(default=3, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('num_workers'), 'exclude': lambda f: f is None }})
+    r"""The number of worker threads to use for the sync."""
     projects: Optional[List[str]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('projects'), 'exclude': lambda f: f is None }})
     r"""List of Jira project keys to replicate data for, or leave it empty if you want to replicate data for all projects."""
     SOURCE_TYPE: Final[Jira] = dataclasses.field(default=Jira.JIRA, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})

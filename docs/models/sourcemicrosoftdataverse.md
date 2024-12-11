@@ -1,0 +1,13 @@
+# SourceMicrosoftDataverse
+
+
+## Fields
+
+| Field                                                        | Type                                                         | Required                                                     | Description                                                  | Example                                                      |
+| ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| `client_id`                                                  | *str*                                                        | :heavy_check_mark:                                           | App Registration Client Id                                   |                                                              |
+| `client_secret_value`                                        | *str*                                                        | :heavy_check_mark:                                           | App Registration Client Secret                               |                                                              |
+| `tenant_id`                                                  | *str*                                                        | :heavy_check_mark:                                           | Tenant Id of your Microsoft Dataverse Instance               |                                                              |
+| `url`                                                        | *str*                                                        | :heavy_check_mark:                                           | URL to Microsoft Dataverse API                               | https://<org-id>.crm.dynamics.com                            |
+| `odata_maxpagesize`                                          | *Optional[int]*                                              | :heavy_minus_sign:                                           | Max number of results per page. Default=5000                 |                                                              |
+| `source_type`                                                | [models.MicrosoftDataverse](../models/microsoftdataverse.md) | :heavy_check_mark:                                           | N/A                                                          |                                                              |

@@ -1,0 +1,12 @@
+# SourceDriftOAuth20
+
+
+## Fields
+
+| Field                                                                          | Type                                                                           | Required                                                                       | Description                                                                    |
+| ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ |
+| `access_token`                                                                 | *str*                                                                          | :heavy_check_mark:                                                             | Access Token for making authenticated requests.                                |
+| `client_id`                                                                    | *str*                                                                          | :heavy_check_mark:                                                             | The Client ID of your Drift developer application.                             |
+| `client_secret`                                                                | *str*                                                                          | :heavy_check_mark:                                                             | The Client Secret of your Drift developer application.                         |
+| `refresh_token`                                                                | *str*                                                                          | :heavy_check_mark:                                                             | Refresh Token to renew the expired Access Token.                               |
+| `credentials`                                                                  | [Optional[models.SourceDriftCredentials]](../models/sourcedriftcredentials.md) | :heavy_minus_sign:                                                             | N/A                                                                            |

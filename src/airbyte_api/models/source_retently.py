@@ -42,7 +42,7 @@ class AuthenticateViaRetentlyOAuth:
 
 
 
-class SourceRetentlyRetently(str, Enum):
+class Retently(str, Enum):
     RETENTLY = 'retently'
 
 
@@ -51,7 +51,7 @@ class SourceRetentlyRetently(str, Enum):
 class SourceRetently:
     credentials: Optional[SourceRetentlyAuthenticationMechanism] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credentials'), 'exclude': lambda f: f is None }})
     r"""Choose how to authenticate to Retently"""
-    SOURCE_TYPE: Final[Optional[SourceRetentlyRetently]] = dataclasses.field(default=SourceRetentlyRetently.RETENTLY, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType'), 'exclude': lambda f: f is None }})
+    SOURCE_TYPE: Final[Retently] = dataclasses.field(default=Retently.RETENTLY, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     
 
 

@@ -1,0 +1,12 @@
+# SourceKlausAPI
+
+
+## Fields
+
+| Field                                                                | Type                                                                 | Required                                                             | Description                                                          | Example                                                              |
+| -------------------------------------------------------------------- | -------------------------------------------------------------------- | -------------------------------------------------------------------- | -------------------------------------------------------------------- | -------------------------------------------------------------------- |
+| `account`                                                            | *int*                                                                | :heavy_check_mark:                                                   | getting data by account                                              |                                                                      |
+| `api_key`                                                            | *str*                                                                | :heavy_check_mark:                                                   | API access key used to retrieve data from the KLAUS API.             |                                                                      |
+| `workspace`                                                          | *int*                                                                | :heavy_check_mark:                                                   | getting data by workspace                                            |                                                                      |
+| `source_type`                                                        | [models.KlausAPI](../models/klausapi.md)                             | :heavy_check_mark:                                                   | N/A                                                                  |                                                                      |
+| `start_date`                                                         | [date](https://docs.python.org/3/library/datetime.html#date-objects) | :heavy_minus_sign:                                                   | Start getting data from that date.                                   | 2020-10-15T00:00:00Z                                                 |

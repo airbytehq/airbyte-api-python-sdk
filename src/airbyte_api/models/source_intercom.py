@@ -27,6 +27,8 @@ class SourceIntercom:
     r"""Client Id for your Intercom application."""
     client_secret: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('client_secret'), 'exclude': lambda f: f is None }})
     r"""Client Secret for your Intercom application."""
+    lookback_window: Optional[int] = dataclasses.field(default=0, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('lookback_window'), 'exclude': lambda f: f is None }})
+    r"""The number of days to shift the state value backward for record sync"""
     SOURCE_TYPE: Final[SourceIntercomIntercom] = dataclasses.field(default=SourceIntercomIntercom.INTERCOM, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     
 

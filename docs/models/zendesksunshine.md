@@ -1,8 +1,8 @@
 # ZendeskSunshine
 
 
-## Fields
+## Values
 
-| Field                                                                                  | Type                                                                                   | Required                                                                               | Description                                                                            |
-| -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- |
-| `credentials`                                                                          | [Optional[models.ZendeskSunshineCredentials]](../models/zendesksunshinecredentials.md) | :heavy_minus_sign:                                                                     | N/A                                                                                    |
+| Name               | Value              |
+| ------------------ | ------------------ |
+| `ZENDESK_SUNSHINE` | zendesk-sunshine   |

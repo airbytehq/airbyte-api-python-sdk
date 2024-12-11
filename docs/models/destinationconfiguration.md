@@ -53,6 +53,12 @@ value: models.DestinationConvex = /* values here */
 value: models.DestinationDatabricks = /* values here */
 ```
 
+### `models.DestinationDevNull`
+
+```python
+value: models.DestinationDevNull = /* values here */
+```
+
 ### `models.DestinationDuckdb`
 
 ```python
@@ -89,6 +95,12 @@ value: models.DestinationFirestore = /* values here */
 value: models.DestinationGcs = /* values here */
 ```
 
+### `models.DestinationIceberg`
+
+```python
+value: models.DestinationIceberg = /* values here */
+```
+
 ### `models.DestinationMilvus`
 
 ```python
@@ -99,6 +111,12 @@ value: models.DestinationMilvus = /* values here */
 
 ```python
 value: models.DestinationMongodb = /* values here */
+```
+
+### `models.DestinationMotherduck`
+
+```python
+value: models.DestinationMotherduck = /* values here */
 ```
 
 ### `models.DestinationMssql`
