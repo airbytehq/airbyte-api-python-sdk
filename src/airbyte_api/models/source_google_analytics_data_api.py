@@ -29,7 +29,7 @@ class SourceGoogleAnalyticsDataAPIAuthType(str, Enum):
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
-class AuthenticateViaGoogleOauth:
+class SourceGoogleAnalyticsDataAPIAuthenticateViaGoogleOauth:
     client_id: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('client_id') }})
     r"""The Client ID of your Google Analytics developer application."""
     client_secret: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('client_secret') }})
@@ -1574,7 +1574,7 @@ class SourceGoogleAnalyticsDataAPI:
     
 
 
-SourceGoogleAnalyticsDataAPICredentials = Union[AuthenticateViaGoogleOauth, SourceGoogleAnalyticsDataAPIServiceAccountKeyAuthentication]
+SourceGoogleAnalyticsDataAPICredentials = Union[SourceGoogleAnalyticsDataAPIAuthenticateViaGoogleOauth, SourceGoogleAnalyticsDataAPIServiceAccountKeyAuthentication]
 
 CohortReports = Union[SourceGoogleAnalyticsDataAPIDisabled, SourceGoogleAnalyticsDataAPISchemasEnabled]
 

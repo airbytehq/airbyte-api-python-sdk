@@ -29,6 +29,8 @@ class SourceAmplitude:
     r"""Amplitude Secret Key. See the <a href=\\"https://docs.airbyte.com/integrations/sources/amplitude#setup-guide\\">setup guide</a> for more information on how to obtain this key."""
     start_date: datetime = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('start_date'), 'encoder': utils.datetimeisoformat(False), 'decoder': dateutil.parser.isoparse }})
     r"""UTC date and time in the format 2021-01-25T00:00:00Z. Any data before this date will not be replicated."""
+    active_users_group_by_country: Optional[bool] = dataclasses.field(default=True, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('active_users_group_by_country'), 'exclude': lambda f: f is None }})
+    r"""According to <a href=\\"https://amplitude.com/docs/apis/analytics/dashboard-rest#query-parameters\\">Considerations</a> the grouping by `Country` is optional, if you're facing issues fetching the stream, or checking the connection please set this to `False` instead."""
     data_region: Optional[DataRegion] = dataclasses.field(default=DataRegion.STANDARD_SERVER, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('data_region'), 'exclude': lambda f: f is None }})
     r"""Amplitude data region server"""
     request_time_range: Optional[int] = dataclasses.field(default=24, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('request_time_range'), 'exclude': lambda f: f is None }})

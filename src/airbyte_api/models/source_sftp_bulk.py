@@ -38,6 +38,32 @@ class AuthenticateViaPassword:
 
 
 
+class SourceSftpBulkSchemasDeliveryType(str, Enum):
+    USE_FILE_TRANSFER = 'use_file_transfer'
+
+
+@dataclass_json(undefined=Undefined.EXCLUDE)
+@dataclasses.dataclass
+class SourceSftpBulkCopyRawFiles:
+    r"""Copy raw files without parsing their contents. Bits are copied into the destination exactly as they appeared in the source. Recommended for use with unstructured text data, non-text and compressed files."""
+    DELIVERY_TYPE: Final[Optional[SourceSftpBulkSchemasDeliveryType]] = dataclasses.field(default=SourceSftpBulkSchemasDeliveryType.USE_FILE_TRANSFER, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('delivery_type'), 'exclude': lambda f: f is None }})
+    
+
+
+
+class SourceSftpBulkDeliveryType(str, Enum):
+    USE_RECORDS_TRANSFER = 'use_records_transfer'
+
+
+@dataclass_json(undefined=Undefined.EXCLUDE)
+@dataclasses.dataclass
+class SourceSftpBulkReplicateRecords:
+    r"""Recommended - Extract and load structured records into your destination of choice. This is the classic method of moving data in Airbyte. It allows for blocking and hashing individual fields or files from a structured schema. Data can be flattened, typed and deduped depending on the destination."""
+    DELIVERY_TYPE: Final[Optional[SourceSftpBulkDeliveryType]] = dataclasses.field(default=SourceSftpBulkDeliveryType.USE_RECORDS_TRANSFER, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('delivery_type'), 'exclude': lambda f: f is None }})
+    
+
+
+
 class SftpBulk(str, Enum):
     SFTP_BULK = 'sftp-bulk'
 
@@ -284,6 +310,7 @@ class SourceSftpBulk:
     r"""Each instance of this configuration defines a <a href=\\"https://docs.airbyte.com/cloud/core-concepts#stream\\">stream</a>. Use this to define which files belong in the stream, their format, and how they should be parsed and validated. When sending data to warehouse destination such as Snowflake or BigQuery, each stream is a separate table."""
     username: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('username') }})
     r"""The server user"""
+    delivery_method: Optional[SourceSftpBulkDeliveryMethod] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('delivery_method'), 'exclude': lambda f: f is None }})
     folder_path: Optional[str] = dataclasses.field(default='/', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('folder_path'), 'exclude': lambda f: f is None }})
     r"""The directory to search files for sync"""
     port: Optional[int] = dataclasses.field(default=22, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('port'), 'exclude': lambda f: f is None }})
@@ -295,6 +322,8 @@ class SourceSftpBulk:
 
 
 SourceSftpBulkAuthentication = Union[AuthenticateViaPassword, AuthenticateViaPrivateKey]
+
+SourceSftpBulkDeliveryMethod = Union[SourceSftpBulkReplicateRecords, SourceSftpBulkCopyRawFiles]
 
 SourceSftpBulkProcessing = Union[SourceSftpBulkLocal, SourceSftpBulkViaAPI]
 

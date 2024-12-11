@@ -1,0 +1,9 @@
+# SourceBigmailer
+
+
+## Fields
+
+| Field                                                                                                | Type                                                                                                 | Required                                                                                             | Description                                                                                          |
+| ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- |
+| `api_key`                                                                                            | *str*                                                                                                | :heavy_check_mark:                                                                                   | API key to use. You can create and find it on the API key management page in your BigMailer account. |
+| `source_type`                                                                                        | [models.Bigmailer](../models/bigmailer.md)                                                           | :heavy_check_mark:                                                                                   | N/A                                                                                                  |

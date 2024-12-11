@@ -26,8 +26,8 @@ from airbyte_api import api, models
 s = airbyte_api.AirbyteAPI(
     security=models.Security(
         basic_auth=models.SchemeBasicAuth(
-            password="",
-            username="",
+            password='',
+            username='',
         ),
     ),
 )
@@ -62,10 +62,9 @@ if res is not None:
 
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
+| Error Type      | Status Code     | Content Type    |
 | --------------- | --------------- | --------------- |
-| errors.SDKError | 4xx-5xx         | */*             |
-
+| errors.SDKError | 4XX, 5XX        | \*/\*           |
 
 ## create_workspace
 
@@ -80,8 +79,8 @@ from airbyte_api import models
 s = airbyte_api.AirbyteAPI(
     security=models.Security(
         basic_auth=models.SchemeBasicAuth(
-            password="",
-            username="",
+            password='',
+            username='',
         ),
     ),
 )
@@ -109,10 +108,9 @@ if res.workspace_response is not None:
 
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
+| Error Type      | Status Code     | Content Type    |
 | --------------- | --------------- | --------------- |
-| errors.SDKError | 4xx-5xx         | */*             |
-
+| errors.SDKError | 4XX, 5XX        | \*/\*           |
 
 ## delete_workspace
 
@@ -127,8 +125,8 @@ from airbyte_api import api, models
 s = airbyte_api.AirbyteAPI(
     security=models.Security(
         basic_auth=models.SchemeBasicAuth(
-            password="",
-            username="",
+            password='',
+            username='',
         ),
     ),
 )
@@ -156,10 +154,9 @@ if res is not None:
 
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
+| Error Type      | Status Code     | Content Type    |
 | --------------- | --------------- | --------------- |
-| errors.SDKError | 4xx-5xx         | */*             |
-
+| errors.SDKError | 4XX, 5XX        | \*/\*           |
 
 ## get_workspace
 
@@ -174,8 +171,8 @@ from airbyte_api import api, models
 s = airbyte_api.AirbyteAPI(
     security=models.Security(
         basic_auth=models.SchemeBasicAuth(
-            password="",
-            username="",
+            password='',
+            username='',
         ),
     ),
 )
@@ -203,10 +200,9 @@ if res.workspace_response is not None:
 
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
+| Error Type      | Status Code     | Content Type    |
 | --------------- | --------------- | --------------- |
-| errors.SDKError | 4xx-5xx         | */*             |
-
+| errors.SDKError | 4XX, 5XX        | \*/\*           |
 
 ## list_workspaces
 
@@ -221,8 +217,8 @@ from airbyte_api import api, models
 s = airbyte_api.AirbyteAPI(
     security=models.Security(
         basic_auth=models.SchemeBasicAuth(
-            password="",
-            username="",
+            password='',
+            username='',
         ),
     ),
 )
@@ -248,10 +244,9 @@ if res.workspaces_response is not None:
 
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
+| Error Type      | Status Code     | Content Type    |
 | --------------- | --------------- | --------------- |
-| errors.SDKError | 4xx-5xx         | */*             |
-
+| errors.SDKError | 4XX, 5XX        | \*/\*           |
 
 ## update_workspace
 
@@ -266,8 +261,8 @@ from airbyte_api import api, models
 s = airbyte_api.AirbyteAPI(
     security=models.Security(
         basic_auth=models.SchemeBasicAuth(
-            password="",
-            username="",
+            password='',
+            username='',
         ),
     ),
 )
@@ -298,6 +293,6 @@ if res.workspace_response is not None:
 
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
+| Error Type      | Status Code     | Content Type    |
 | --------------- | --------------- | --------------- |
-| errors.SDKError | 4xx-5xx         | */*             |
+| errors.SDKError | 4XX, 5XX        | \*/\*           |

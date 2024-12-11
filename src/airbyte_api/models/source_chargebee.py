@@ -29,6 +29,8 @@ class SourceChargebee:
     r"""Chargebee API Key. See the <a href=\\"https://docs.airbyte.com/integrations/sources/chargebee\\">docs</a> for more information on how to obtain this key."""
     start_date: datetime = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('start_date'), 'encoder': utils.datetimeisoformat(False), 'decoder': dateutil.parser.isoparse }})
     r"""UTC date and time in the format 2017-01-25T00:00:00.000Z. Any data before this date will not be replicated."""
+    num_workers: Optional[int] = dataclasses.field(default=3, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('num_workers'), 'exclude': lambda f: f is None }})
+    r"""The number of worker threads to use for the sync. The performance upper boundary is based on the limit of your Chargebee plan. More info about the rate limit plan tiers can be found on Chargebee's API <a href=\\"https://support.chargebee.com/support/solutions/articles/243576-what-are-the-chargebee-api-limits-\\">docs</a>."""
     product_catalog: Optional[ProductCatalog] = dataclasses.field(default=ProductCatalog.TWO_0, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('product_catalog'), 'exclude': lambda f: f is None }})
     r"""Product Catalog version of your Chargebee site. Instructions on how to find your version you may find <a href=\\"https://apidocs.chargebee.com/docs/api?prod_cat_ver=2\\">here</a> under `API Version` section. If left blank, the product catalog version will be set to 2.0."""
     SOURCE_TYPE: Final[Chargebee] = dataclasses.field(default=Chargebee.CHARGEBEE, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})

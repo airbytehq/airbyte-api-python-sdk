@@ -57,6 +57,8 @@ class SourceZendeskSupport:
     r"""This is your unique Zendesk subdomain that can be found in your account URL. For example, in https://MY_SUBDOMAIN.zendesk.com/, MY_SUBDOMAIN is the value of your subdomain."""
     credentials: Optional[SourceZendeskSupportAuthentication] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credentials'), 'exclude': lambda f: f is None }})
     r"""Zendesk allows two authentication methods. We recommend using `OAuth2.0` for Airbyte Cloud users and `API token` for Airbyte Open Source users."""
+    num_workers: Optional[int] = dataclasses.field(default=3, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('num_workers'), 'exclude': lambda f: f is None }})
+    r"""The number of worker threads to use for the sync. The performance upper boundary is based on the limit of your Zendesk Support plan. More info about the rate limit plan tiers can be found on Zendesk's API <a href=\\"https://developer.zendesk.com/api-reference/introduction/rate-limits/#zendesk-support-plan-limits\\">docs</a>."""
     SOURCE_TYPE: Final[SourceZendeskSupportZendeskSupport] = dataclasses.field(default=SourceZendeskSupportZendeskSupport.ZENDESK_SUPPORT, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     start_date: Optional[datetime] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('start_date'), 'encoder': utils.datetimeisoformat(True), 'decoder': dateutil.parser.isoparse, 'exclude': lambda f: f is None }})
     r"""The UTC date and time from which you'd like to replicate data, in the format YYYY-MM-DDT00:00:00Z. All data generated after this date will be replicated."""

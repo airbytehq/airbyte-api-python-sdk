@@ -17,6 +17,18 @@ value: models.SourceAha = /* values here */
 value: models.Source7shifts = /* values here */
 ```
 
+### `models.SourceActivecampaign`
+
+```python
+value: models.SourceActivecampaign = /* values here */
+```
+
+### `models.SourceAgilecrm`
+
+```python
+value: models.SourceAgilecrm = /* values here */
+```
+
 ### `models.SourceAirbyte`
 
 ```python
@@ -33,6 +45,18 @@ value: models.SourceAircall = /* values here */
 
 ```python
 value: models.SourceAirtable = /* values here */
+```
+
+### `models.SourceAkeneo`
+
+```python
+value: models.SourceAkeneo = /* values here */
+```
+
+### `models.SourceAlgolia`
+
+```python
+value: models.SourceAlgolia = /* values here */
 ```
 
 ### `models.SourceAmazonAds`
@@ -83,10 +107,28 @@ value: models.SourceAppfigures = /* values here */
 value: models.SourceAppfollow = /* values here */
 ```
 
+### `models.SourceAppleSearchAds`
+
+```python
+value: models.SourceAppleSearchAds = /* values here */
+```
+
+### `models.SourceApptivo`
+
+```python
+value: models.SourceApptivo = /* values here */
+```
+
 ### `models.SourceAsana`
 
 ```python
 value: models.SourceAsana = /* values here */
+```
+
+### `models.SourceAshby`
+
+```python
+value: models.SourceAshby = /* values here */
 ```
 
 ### `models.SourceAuth0`
@@ -125,6 +167,18 @@ value: models.SourceBambooHr = /* values here */
 value: models.SourceBasecamp = /* values here */
 ```
 
+### `models.SourceBeamer`
+
+```python
+value: models.SourceBeamer = /* values here */
+```
+
+### `models.SourceBigmailer`
+
+```python
+value: models.SourceBigmailer = /* values here */
+```
+
 ### `models.SourceBigquery`
 
 ```python
@@ -141,6 +195,18 @@ value: models.SourceBingAds = /* values here */
 
 ```python
 value: models.SourceBitly = /* values here */
+```
+
+### `models.SourceBlogger`
+
+```python
+value: models.SourceBlogger = /* values here */
+```
+
+### `models.SourceBox`
+
+```python
+value: models.SourceBox = /* values here */
 ```
 
 ### `models.SourceBraintree`
@@ -167,10 +233,28 @@ value: models.SourceBreezyHr = /* values here */
 value: models.SourceBrevo = /* values here */
 ```
 
+### `models.SourceBrex`
+
+```python
+value: models.SourceBrex = /* values here */
+```
+
+### `models.SourceBugsnag`
+
+```python
+value: models.SourceBugsnag = /* values here */
+```
+
 ### `models.SourceBuildkite`
 
 ```python
 value: models.SourceBuildkite = /* values here */
+```
+
+### `models.SourceBunnyInc`
+
+```python
+value: models.SourceBunnyInc = /* values here */
 ```
 
 ### `models.SourceBuzzsprout`
@@ -179,10 +263,34 @@ value: models.SourceBuildkite = /* values here */
 value: models.SourceBuzzsprout = /* values here */
 ```
 
+### `models.SourceCalCom`
+
+```python
+value: models.SourceCalCom = /* values here */
+```
+
 ### `models.SourceCalendly`
 
 ```python
 value: models.SourceCalendly = /* values here */
+```
+
+### `models.SourceCallrail`
+
+```python
+value: models.SourceCallrail = /* values here */
+```
+
+### `models.SourceCampaignMonitor`
+
+```python
+value: models.SourceCampaignMonitor = /* values here */
+```
+
+### `models.SourceCampayn`
+
+```python
+value: models.SourceCampayn = /* values here */
 ```
 
 ### `models.SourceCanny`
@@ -191,10 +299,28 @@ value: models.SourceCalendly = /* values here */
 value: models.SourceCanny = /* values here */
 ```
 
+### `models.SourceCapsuleCrm`
+
+```python
+value: models.SourceCapsuleCrm = /* values here */
+```
+
+### `models.SourceCareQualityCommission`
+
+```python
+value: models.SourceCareQualityCommission = /* values here */
+```
+
 ### `models.SourceCart`
 
 ```python
 value: models.SourceCart = /* values here */
+```
+
+### `models.SourceCastorEdc`
+
+```python
+value: models.SourceCastorEdc = /* values here */
 ```
 
 ### `models.SourceChameleon`
@@ -209,6 +335,18 @@ value: models.SourceChameleon = /* values here */
 value: models.SourceChargebee = /* values here */
 ```
 
+### `models.SourceChargedesk`
+
+```python
+value: models.SourceChargedesk = /* values here */
+```
+
+### `models.SourceChargify`
+
+```python
+value: models.SourceChargify = /* values here */
+```
+
 ### `models.SourceChartmogul`
 
 ```python
@@ -219,6 +357,30 @@ value: models.SourceChartmogul = /* values here */
 
 ```python
 value: models.SourceCimis = /* values here */
+```
+
+### `models.SourceCin7`
+
+```python
+value: models.SourceCin7 = /* values here */
+```
+
+### `models.SourceCirca`
+
+```python
+value: models.SourceCirca = /* values here */
+```
+
+### `models.SourceCircleci`
+
+```python
+value: models.SourceCircleci = /* values here */
+```
+
+### `models.SourceClarifAi`
+
+```python
+value: models.SourceClarifAi = /* values here */
 ```
 
 ### `models.SourceClazar`
@@ -245,16 +407,40 @@ value: models.SourceClickupAPI = /* values here */
 value: models.SourceClockify = /* values here */
 ```
 
+### `models.SourceClockodo`
+
+```python
+value: models.SourceClockodo = /* values here */
+```
+
 ### `models.SourceCloseCom`
 
 ```python
 value: models.SourceCloseCom = /* values here */
 ```
 
+### `models.SourceCloudbeds`
+
+```python
+value: models.SourceCloudbeds = /* values here */
+```
+
+### `models.SourceCoassemble`
+
+```python
+value: models.SourceCoassemble = /* values here */
+```
+
 ### `models.SourceCoda`
 
 ```python
 value: models.SourceCoda = /* values here */
+```
+
+### `models.SourceCodefresh`
+
+```python
+value: models.SourceCodefresh = /* values here */
 ```
 
 ### `models.SourceCoinAPI`
@@ -269,6 +455,12 @@ value: models.SourceCoinAPI = /* values here */
 value: models.SourceCoinmarketcap = /* values here */
 ```
 
+### `models.SourceConcord`
+
+```python
+value: models.SourceConcord = /* values here */
+```
+
 ### `models.SourceConfigcat`
 
 ```python
@@ -281,10 +473,28 @@ value: models.SourceConfigcat = /* values here */
 value: models.SourceConfluence = /* values here */
 ```
 
+### `models.SourceConvertkit`
+
+```python
+value: models.SourceConvertkit = /* values here */
+```
+
 ### `models.SourceConvex`
 
 ```python
 value: models.SourceConvex = /* values here */
+```
+
+### `models.SourceCopper`
+
+```python
+value: models.SourceCopper = /* values here */
+```
+
+### `models.SourceCountercyclical`
+
+```python
+value: models.SourceCountercyclical = /* values here */
 ```
 
 ### `models.SourceCustomerIo`
@@ -317,6 +527,12 @@ value: models.SourceDbt = /* values here */
 value: models.SourceDelighted = /* values here */
 ```
 
+### `models.SourceDeputy`
+
+```python
+value: models.SourceDeputy = /* values here */
+```
+
 ### `models.SourceDixa`
 
 ```python
@@ -335,16 +551,88 @@ value: models.SourceDockerhub = /* values here */
 value: models.SourceDremio = /* values here */
 ```
 
+### `models.SourceDrift`
+
+```python
+value: models.SourceDrift = /* values here */
+```
+
+### `models.SourceDrip`
+
+```python
+value: models.SourceDrip = /* values here */
+```
+
+### `models.SourceDropboxSign`
+
+```python
+value: models.SourceDropboxSign = /* values here */
+```
+
 ### `models.SourceDynamodb`
 
 ```python
 value: models.SourceDynamodb = /* values here */
 ```
 
+### `models.SourceEConomic`
+
+```python
+value: models.SourceEConomic = /* values here */
+```
+
+### `models.SourceEasypost`
+
+```python
+value: models.SourceEasypost = /* values here */
+```
+
+### `models.SourceEasypromos`
+
+```python
+value: models.SourceEasypromos = /* values here */
+```
+
+### `models.SourceElasticemail`
+
+```python
+value: models.SourceElasticemail = /* values here */
+```
+
 ### `models.SourceEmailoctopus`
 
 ```python
 value: models.SourceEmailoctopus = /* values here */
+```
+
+### `models.SourceEmploymentHero`
+
+```python
+value: models.SourceEmploymentHero = /* values here */
+```
+
+### `models.SourceEncharge`
+
+```python
+value: models.SourceEncharge = /* values here */
+```
+
+### `models.SourceEventbrite`
+
+```python
+value: models.SourceEventbrite = /* values here */
+```
+
+### `models.SourceEventee`
+
+```python
+value: models.SourceEventee = /* values here */
+```
+
+### `models.SourceEventzilla`
+
+```python
+value: models.SourceEventzilla = /* values here */
 ```
 
 ### `models.SourceExchangeRates`
@@ -365,6 +653,12 @@ value: models.SourceEzofficeinventory = /* values here */
 value: models.SourceFacebookMarketing = /* values here */
 ```
 
+### `models.SourceFactorial`
+
+```python
+value: models.SourceFactorial = /* values here */
+```
+
 ### `models.SourceFaker`
 
 ```python
@@ -383,10 +677,46 @@ value: models.SourceFauna = /* values here */
 value: models.SourceFile = /* values here */
 ```
 
+### `models.SourceFillout`
+
+```python
+value: models.SourceFillout = /* values here */
+```
+
+### `models.SourceFinage`
+
+```python
+value: models.SourceFinage = /* values here */
+```
+
+### `models.SourceFinancialModelling`
+
+```python
+value: models.SourceFinancialModelling = /* values here */
+```
+
+### `models.SourceFinnhub`
+
+```python
+value: models.SourceFinnhub = /* values here */
+```
+
+### `models.SourceFinnworlds`
+
+```python
+value: models.SourceFinnworlds = /* values here */
+```
+
 ### `models.SourceFirebolt`
 
 ```python
 value: models.SourceFirebolt = /* values here */
+```
+
+### `models.SourceFirehydrant`
+
+```python
+value: models.SourceFirehydrant = /* values here */
 ```
 
 ### `models.SourceFleetio`
@@ -395,10 +725,64 @@ value: models.SourceFirebolt = /* values here */
 value: models.SourceFleetio = /* values here */
 ```
 
+### `models.SourceFlexmail`
+
+```python
+value: models.SourceFlexmail = /* values here */
+```
+
+### `models.SourceFlexport`
+
+```python
+value: models.SourceFlexport = /* values here */
+```
+
+### `models.SourceFloat`
+
+```python
+value: models.SourceFloat = /* values here */
+```
+
+### `models.SourceFlowlu`
+
+```python
+value: models.SourceFlowlu = /* values here */
+```
+
+### `models.SourceFormbricks`
+
+```python
+value: models.SourceFormbricks = /* values here */
+```
+
+### `models.SourceFreeAgentConnector`
+
+```python
+value: models.SourceFreeAgentConnector = /* values here */
+```
+
+### `models.SourceFreightview`
+
+```python
+value: models.SourceFreightview = /* values here */
+```
+
+### `models.SourceFreshbooks`
+
+```python
+value: models.SourceFreshbooks = /* values here */
+```
+
 ### `models.SourceFreshcaller`
 
 ```python
 value: models.SourceFreshcaller = /* values here */
+```
+
+### `models.SourceFreshchat`
+
+```python
+value: models.SourceFreshchat = /* values here */
 ```
 
 ### `models.SourceFreshdesk`
@@ -413,10 +797,22 @@ value: models.SourceFreshdesk = /* values here */
 value: models.SourceFreshsales = /* values here */
 ```
 
+### `models.SourceFreshservice`
+
+```python
+value: models.SourceFreshservice = /* values here */
+```
+
 ### `models.SourceFront`
 
 ```python
 value: models.SourceFront = /* values here */
+```
+
+### `models.SourceFulcrum`
+
+```python
+value: models.SourceFulcrum = /* values here */
 ```
 
 ### `models.SourceGainsightPx`
@@ -431,10 +827,22 @@ value: models.SourceGainsightPx = /* values here */
 value: models.SourceGcs = /* values here */
 ```
 
+### `models.SourceGetgist`
+
+```python
+value: models.SourceGetgist = /* values here */
+```
+
 ### `models.SourceGetlago`
 
 ```python
 value: models.SourceGetlago = /* values here */
+```
+
+### `models.SourceGitbook`
+
+```python
+value: models.SourceGitbook = /* values here */
 ```
 
 ### `models.SourceGithub`
@@ -455,16 +863,34 @@ value: models.SourceGitlab = /* values here */
 value: models.SourceGlassfrog = /* values here */
 ```
 
+### `models.SourceGmail`
+
+```python
+value: models.SourceGmail = /* values here */
+```
+
 ### `models.SourceGnews`
 
 ```python
 value: models.SourceGnews = /* values here */
 ```
 
+### `models.SourceGocardless`
+
+```python
+value: models.SourceGocardless = /* values here */
+```
+
 ### `models.SourceGoldcast`
 
 ```python
 value: models.SourceGoldcast = /* values here */
+```
+
+### `models.SourceGong`
+
+```python
+value: models.SourceGong = /* values here */
 ```
 
 ### `models.SourceGoogleAds`
@@ -479,6 +905,18 @@ value: models.SourceGoogleAds = /* values here */
 value: models.SourceGoogleAnalyticsDataAPI = /* values here */
 ```
 
+### `models.SourceGoogleCalendar`
+
+```python
+value: models.SourceGoogleCalendar = /* values here */
+```
+
+### `models.SourceGoogleClassroom`
+
+```python
+value: models.SourceGoogleClassroom = /* values here */
+```
+
 ### `models.SourceGoogleDirectory`
 
 ```python
@@ -489,6 +927,12 @@ value: models.SourceGoogleDirectory = /* values here */
 
 ```python
 value: models.SourceGoogleDrive = /* values here */
+```
+
+### `models.SourceGoogleForms`
+
+```python
+value: models.SourceGoogleForms = /* values here */
 ```
 
 ### `models.SourceGooglePagespeedInsights`
@@ -521,6 +965,12 @@ value: models.SourceGoogleTasks = /* values here */
 value: models.SourceGoogleWebfonts = /* values here */
 ```
 
+### `models.SourceGorgias`
+
+```python
+value: models.SourceGorgias = /* values here */
+```
+
 ### `models.SourceGreenhouse`
 
 ```python
@@ -537,6 +987,12 @@ value: models.SourceGridly = /* values here */
 
 ```python
 value: models.SourceGuru = /* values here */
+```
+
+### `models.SourceGutendex`
+
+```python
+value: models.SourceGutendex = /* values here */
 ```
 
 ### `models.SourceHardcodedRecords`
@@ -581,6 +1037,30 @@ value: models.SourceHubplanner = /* values here */
 value: models.SourceHubspot = /* values here */
 ```
 
+### `models.SourceHumanitix`
+
+```python
+value: models.SourceHumanitix = /* values here */
+```
+
+### `models.SourceIlluminaBasespace`
+
+```python
+value: models.SourceIlluminaBasespace = /* values here */
+```
+
+### `models.SourceIncidentIo`
+
+```python
+value: models.SourceIncidentIo = /* values here */
+```
+
+### `models.SourceInflowinventory`
+
+```python
+value: models.SourceInflowinventory = /* values here */
+```
+
 ### `models.SourceInsightly`
 
 ```python
@@ -605,6 +1085,18 @@ value: models.SourceInstatus = /* values here */
 value: models.SourceIntercom = /* values here */
 ```
 
+### `models.SourceInvoiced`
+
+```python
+value: models.SourceInvoiced = /* values here */
+```
+
+### `models.SourceInvoiceninja`
+
+```python
+value: models.SourceInvoiceninja = /* values here */
+```
+
 ### `models.SourceIp2whois`
 
 ```python
@@ -623,10 +1115,28 @@ value: models.SourceIterable = /* values here */
 value: models.SourceJira = /* values here */
 ```
 
+### `models.SourceJobnimbus`
+
+```python
+value: models.SourceJobnimbus = /* values here */
+```
+
 ### `models.SourceJotform`
 
 ```python
 value: models.SourceJotform = /* values here */
+```
+
+### `models.SourceJustSift`
+
+```python
+value: models.SourceJustSift = /* values here */
+```
+
+### `models.SourceJustcall`
+
+```python
+value: models.SourceJustcall = /* values here */
 ```
 
 ### `models.SourceK6Cloud`
@@ -635,10 +1145,34 @@ value: models.SourceJotform = /* values here */
 value: models.SourceK6Cloud = /* values here */
 ```
 
+### `models.SourceKatana`
+
+```python
+value: models.SourceKatana = /* values here */
+```
+
+### `models.SourceKisi`
+
+```python
+value: models.SourceKisi = /* values here */
+```
+
+### `models.SourceKissmetrics`
+
+```python
+value: models.SourceKissmetrics = /* values here */
+```
+
 ### `models.SourceKlarna`
 
 ```python
 value: models.SourceKlarna = /* values here */
+```
+
+### `models.SourceKlausAPI`
+
+```python
+value: models.SourceKlausAPI = /* values here */
 ```
 
 ### `models.SourceKlaviyo`
@@ -671,10 +1205,22 @@ value: models.SourceLeadfeeder = /* values here */
 value: models.SourceLemlist = /* values here */
 ```
 
+### `models.SourceLessAnnoyingCrm`
+
+```python
+value: models.SourceLessAnnoyingCrm = /* values here */
+```
+
 ### `models.SourceLeverHiring`
 
 ```python
 value: models.SourceLeverHiring = /* values here */
+```
+
+### `models.SourceLightspeedRetail`
+
+```python
+value: models.SourceLightspeedRetail = /* values here */
 ```
 
 ### `models.SourceLinkedinAds`
@@ -693,6 +1239,12 @@ value: models.SourceLinkedinPages = /* values here */
 
 ```python
 value: models.SourceLinnworks = /* values here */
+```
+
+### `models.SourceLob`
+
+```python
+value: models.SourceLob = /* values here */
 ```
 
 ### `models.SourceLokalise`
@@ -719,10 +1271,22 @@ value: models.SourceLuma = /* values here */
 value: models.SourceMailchimp = /* values here */
 ```
 
+### `models.SourceMailerlite`
+
+```python
+value: models.SourceMailerlite = /* values here */
+```
+
 ### `models.SourceMailgun`
 
 ```python
 value: models.SourceMailgun = /* values here */
+```
+
+### `models.SourceMailjetMail`
+
+```python
+value: models.SourceMailjetMail = /* values here */
 ```
 
 ### `models.SourceMailjetSms`
@@ -731,16 +1295,58 @@ value: models.SourceMailgun = /* values here */
 value: models.SourceMailjetSms = /* values here */
 ```
 
+### `models.SourceMailosaur`
+
+```python
+value: models.SourceMailosaur = /* values here */
+```
+
+### `models.SourceMailtrap`
+
+```python
+value: models.SourceMailtrap = /* values here */
+```
+
 ### `models.SourceMarketo`
 
 ```python
 value: models.SourceMarketo = /* values here */
 ```
 
+### `models.SourceMarketstack`
+
+```python
+value: models.SourceMarketstack = /* values here */
+```
+
+### `models.SourceMention`
+
+```python
+value: models.SourceMention = /* values here */
+```
+
 ### `models.SourceMetabase`
 
 ```python
 value: models.SourceMetabase = /* values here */
+```
+
+### `models.SourceMicrosoftDataverse`
+
+```python
+value: models.SourceMicrosoftDataverse = /* values here */
+```
+
+### `models.SourceMicrosoftEntraID`
+
+```python
+value: models.SourceMicrosoftEntraID = /* values here */
+```
+
+### `models.SourceMicrosoftLists`
+
+```python
+value: models.SourceMicrosoftLists = /* values here */
 ```
 
 ### `models.SourceMicrosoftOnedrive`
@@ -761,10 +1367,34 @@ value: models.SourceMicrosoftSharepoint = /* values here */
 value: models.SourceMicrosoftTeams = /* values here */
 ```
 
+### `models.SourceMiro`
+
+```python
+value: models.SourceMiro = /* values here */
+```
+
+### `models.SourceMissive`
+
+```python
+value: models.SourceMissive = /* values here */
+```
+
+### `models.SourceMixmax`
+
+```python
+value: models.SourceMixmax = /* values here */
+```
+
 ### `models.SourceMixpanel`
 
 ```python
 value: models.SourceMixpanel = /* values here */
+```
+
+### `models.SourceMode`
+
+```python
+value: models.SourceMode = /* values here */
 ```
 
 ### `models.SourceMonday`
@@ -785,6 +1415,12 @@ value: models.SourceMongodbV2 = /* values here */
 value: models.SourceMssql = /* values here */
 ```
 
+### `models.SourceMux`
+
+```python
+value: models.SourceMux = /* values here */
+```
+
 ### `models.SourceMyHours`
 
 ```python
@@ -797,10 +1433,40 @@ value: models.SourceMyHours = /* values here */
 value: models.SourceMysql = /* values here */
 ```
 
+### `models.SourceN8n`
+
+```python
+value: models.SourceN8n = /* values here */
+```
+
+### `models.SourceNasa`
+
+```python
+value: models.SourceNasa = /* values here */
+```
+
 ### `models.SourceNetsuite`
 
 ```python
 value: models.SourceNetsuite = /* values here */
+```
+
+### `models.SourceNewsAPI`
+
+```python
+value: models.SourceNewsAPI = /* values here */
+```
+
+### `models.SourceNewsdataIo`
+
+```python
+value: models.SourceNewsdataIo = /* values here */
+```
+
+### `models.SourceNocrm`
+
+```python
+value: models.SourceNocrm = /* values here */
 ```
 
 ### `models.SourceNorthpassLms`
@@ -813,6 +1479,12 @@ value: models.SourceNorthpassLms = /* values here */
 
 ```python
 value: models.SourceNotion = /* values here */
+```
+
+### `models.SourceNutshell`
+
+```python
+value: models.SourceNutshell = /* values here */
 ```
 
 ### `models.SourceNylas`
@@ -839,10 +1511,64 @@ value: models.SourceOkta = /* values here */
 value: models.SourceOmnisend = /* values here */
 ```
 
+### `models.SourceOncehub`
+
+```python
+value: models.SourceOncehub = /* values here */
+```
+
+### `models.SourceOnepagecrm`
+
+```python
+value: models.SourceOnepagecrm = /* values here */
+```
+
 ### `models.SourceOnesignal`
 
 ```python
 value: models.SourceOnesignal = /* values here */
+```
+
+### `models.SourceOnfleet`
+
+```python
+value: models.SourceOnfleet = /* values here */
+```
+
+### `models.SourceOpenDataDc`
+
+```python
+value: models.SourceOpenDataDc = /* values here */
+```
+
+### `models.SourceOpenaq`
+
+```python
+value: models.SourceOpenaq = /* values here */
+```
+
+### `models.SourceOpenfda`
+
+```python
+value: models.SourceOpenfda = /* values here */
+```
+
+### `models.SourceOpenweather`
+
+```python
+value: models.SourceOpenweather = /* values here */
+```
+
+### `models.SourceOpinionStage`
+
+```python
+value: models.SourceOpinionStage = /* values here */
+```
+
+### `models.SourceOpsgenie`
+
+```python
+value: models.SourceOpsgenie = /* values here */
 ```
 
 ### `models.SourceOracle`
@@ -863,6 +1589,12 @@ value: models.SourceOrb = /* values here */
 value: models.SourceOrbit = /* values here */
 ```
 
+### `models.SourceOura`
+
+```python
+value: models.SourceOura = /* values here */
+```
+
 ### `models.SourceOutbrainAmplify`
 
 ```python
@@ -873,6 +1605,42 @@ value: models.SourceOutbrainAmplify = /* values here */
 
 ```python
 value: models.SourceOutreach = /* values here */
+```
+
+### `models.SourceOveit`
+
+```python
+value: models.SourceOveit = /* values here */
+```
+
+### `models.SourcePabblySubscriptionsBilling`
+
+```python
+value: models.SourcePabblySubscriptionsBilling = /* values here */
+```
+
+### `models.SourcePandadoc`
+
+```python
+value: models.SourcePandadoc = /* values here */
+```
+
+### `models.SourcePaperform`
+
+```python
+value: models.SourcePaperform = /* values here */
+```
+
+### `models.SourcePapersign`
+
+```python
+value: models.SourcePapersign = /* values here */
+```
+
+### `models.SourcePardot`
+
+```python
+value: models.SourcePardot = /* values here */
 ```
 
 ### `models.SourcePaypalTransaction`
@@ -905,6 +1673,12 @@ value: models.SourcePennylane = /* values here */
 value: models.SourcePersistiq = /* values here */
 ```
 
+### `models.SourcePersona`
+
+```python
+value: models.SourcePersona = /* values here */
+```
+
 ### `models.SourcePexelsAPI`
 
 ```python
@@ -929,16 +1703,40 @@ value: models.SourcePinterest = /* values here */
 value: models.SourcePipedrive = /* values here */
 ```
 
+### `models.SourcePipeliner`
+
+```python
+value: models.SourcePipeliner = /* values here */
+```
+
+### `models.SourcePivotalTracker`
+
+```python
+value: models.SourcePivotalTracker = /* values here */
+```
+
 ### `models.SourcePiwik`
 
 ```python
 value: models.SourcePiwik = /* values here */
 ```
 
+### `models.SourcePlaid`
+
+```python
+value: models.SourcePlaid = /* values here */
+```
+
 ### `models.SourcePlanhat`
 
 ```python
 value: models.SourcePlanhat = /* values here */
+```
+
+### `models.SourcePlausible`
+
+```python
+value: models.SourcePlausible = /* values here */
 ```
 
 ### `models.SourcePocket`
@@ -983,6 +1781,18 @@ value: models.SourcePostmarkapp = /* values here */
 value: models.SourcePrestashop = /* values here */
 ```
 
+### `models.SourcePretix`
+
+```python
+value: models.SourcePretix = /* values here */
+```
+
+### `models.SourcePrimetric`
+
+```python
+value: models.SourcePrimetric = /* values here */
+```
+
 ### `models.SourceProductboard`
 
 ```python
@@ -1007,10 +1817,22 @@ value: models.SourcePypi = /* values here */
 value: models.SourceQualaroo = /* values here */
 ```
 
+### `models.SourceQuickbooks`
+
+```python
+value: models.SourceQuickbooks = /* values here */
+```
+
 ### `models.SourceRailz`
 
 ```python
 value: models.SourceRailz = /* values here */
+```
+
+### `models.SourceRdStationMarketing`
+
+```python
+value: models.SourceRdStationMarketing = /* values here */
 ```
 
 ### `models.SourceRecharge`
@@ -1049,10 +1871,46 @@ value: models.SourceReddit = /* values here */
 value: models.SourceRedshift = /* values here */
 ```
 
+### `models.SourceReferralhero`
+
+```python
+value: models.SourceReferralhero = /* values here */
+```
+
+### `models.SourceRentcast`
+
+```python
+value: models.SourceRentcast = /* values here */
+```
+
+### `models.SourceRepairshopr`
+
+```python
+value: models.SourceRepairshopr = /* values here */
+```
+
+### `models.SourceReplyIo`
+
+```python
+value: models.SourceReplyIo = /* values here */
+```
+
 ### `models.SourceRetently`
 
 ```python
 value: models.SourceRetently = /* values here */
+```
+
+### `models.SourceRevenuecat`
+
+```python
+value: models.SourceRevenuecat = /* values here */
+```
+
+### `models.SourceRevolutMerchant`
+
+```python
+value: models.SourceRevolutMerchant = /* values here */
 ```
 
 ### `models.SourceRkiCovid`
@@ -1061,16 +1919,58 @@ value: models.SourceRetently = /* values here */
 value: models.SourceRkiCovid = /* values here */
 ```
 
+### `models.SourceRocketlane`
+
+```python
+value: models.SourceRocketlane = /* values here */
+```
+
+### `models.SourceRollbar`
+
+```python
+value: models.SourceRollbar = /* values here */
+```
+
+### `models.SourceRootly`
+
+```python
+value: models.SourceRootly = /* values here */
+```
+
 ### `models.SourceRss`
 
 ```python
 value: models.SourceRss = /* values here */
 ```
 
+### `models.SourceRuddr`
+
+```python
+value: models.SourceRuddr = /* values here */
+```
+
 ### `models.SourceS3`
 
 ```python
 value: models.SourceS3 = /* values here */
+```
+
+### `models.SourceSafetyculture`
+
+```python
+value: models.SourceSafetyculture = /* values here */
+```
+
+### `models.SourceSageHr`
+
+```python
+value: models.SourceSageHr = /* values here */
+```
+
+### `models.SourceSalesflare`
+
+```python
+value: models.SourceSalesflare = /* values here */
 ```
 
 ### `models.SourceSalesforce`
@@ -1109,6 +2009,12 @@ value: models.SourceScryfall = /* values here */
 value: models.SourceSecoda = /* values here */
 ```
 
+### `models.SourceSegment`
+
+```python
+value: models.SourceSegment = /* values here */
+```
+
 ### `models.SourceSendgrid`
 
 ```python
@@ -1119,6 +2025,18 @@ value: models.SourceSendgrid = /* values here */
 
 ```python
 value: models.SourceSendinblue = /* values here */
+```
+
+### `models.SourceSendowl`
+
+```python
+value: models.SourceSendowl = /* values here */
+```
+
+### `models.SourceSendpulse`
+
+```python
+value: models.SourceSendpulse = /* values here */
 ```
 
 ### `models.SourceSenseforce`
@@ -1145,6 +2063,18 @@ value: models.SourceSftp = /* values here */
 value: models.SourceSftpBulk = /* values here */
 ```
 
+### `models.SourceSharetribe`
+
+```python
+value: models.SourceSharetribe = /* values here */
+```
+
+### `models.SourceShippo`
+
+```python
+value: models.SourceShippo = /* values here */
+```
+
 ### `models.SourceShopify`
 
 ```python
@@ -1161,6 +2091,30 @@ value: models.SourceShortcut = /* values here */
 
 ```python
 value: models.SourceShortio = /* values here */
+```
+
+### `models.SourceSigmaComputing`
+
+```python
+value: models.SourceSigmaComputing = /* values here */
+```
+
+### `models.SourceSimfin`
+
+```python
+value: models.SourceSimfin = /* values here */
+```
+
+### `models.SourceSimplecast`
+
+```python
+value: models.SourceSimplecast = /* values here */
+```
+
+### `models.SourceSimplesat`
+
+```python
+value: models.SourceSimplesat = /* values here */
 ```
 
 ### `models.SourceSlack`
@@ -1181,10 +2135,22 @@ value: models.SourceSmaily = /* values here */
 value: models.SourceSmartengage = /* values here */
 ```
 
+### `models.SourceSmartreach`
+
+```python
+value: models.SourceSmartreach = /* values here */
+```
+
 ### `models.SourceSmartsheets`
 
 ```python
 value: models.SourceSmartsheets = /* values here */
+```
+
+### `models.SourceSmartwaiver`
+
+```python
+value: models.SourceSmartwaiver = /* values here */
 ```
 
 ### `models.SourceSnapchatMarketing`
@@ -1199,6 +2165,12 @@ value: models.SourceSnapchatMarketing = /* values here */
 value: models.SourceSnowflake = /* values here */
 ```
 
+### `models.SourceSolarwindsServiceDesk`
+
+```python
+value: models.SourceSolarwindsServiceDesk = /* values here */
+```
+
 ### `models.SourceSonarCloud`
 
 ```python
@@ -1211,10 +2183,52 @@ value: models.SourceSonarCloud = /* values here */
 value: models.SourceSpacexAPI = /* values here */
 ```
 
+### `models.SourceSparkpost`
+
+```python
+value: models.SourceSparkpost = /* values here */
+```
+
+### `models.SourceSplitIo`
+
+```python
+value: models.SourceSplitIo = /* values here */
+```
+
+### `models.SourceSpotlercrm`
+
+```python
+value: models.SourceSpotlercrm = /* values here */
+```
+
 ### `models.SourceSquare`
 
 ```python
 value: models.SourceSquare = /* values here */
+```
+
+### `models.SourceSquarespace`
+
+```python
+value: models.SourceSquarespace = /* values here */
+```
+
+### `models.SourceStatsig`
+
+```python
+value: models.SourceStatsig = /* values here */
+```
+
+### `models.SourceStatuspage`
+
+```python
+value: models.SourceStatuspage = /* values here */
+```
+
+### `models.SourceStockdata`
+
+```python
+value: models.SourceStockdata = /* values here */
 ```
 
 ### `models.SourceStrava`
@@ -1247,6 +2261,24 @@ value: models.SourceSurveymonkey = /* values here */
 value: models.SourceSurvicate = /* values here */
 ```
 
+### `models.SourceSysteme`
+
+```python
+value: models.SourceSysteme = /* values here */
+```
+
+### `models.SourceTaboola`
+
+```python
+value: models.SourceTaboola = /* values here */
+```
+
+### `models.SourceTeamtailor`
+
+```python
+value: models.SourceTeamtailor = /* values here */
+```
+
 ### `models.SourceTeamwork`
 
 ```python
@@ -1259,10 +2291,34 @@ value: models.SourceTeamwork = /* values here */
 value: models.SourceTempo = /* values here */
 ```
 
+### `models.SourceTestrail`
+
+```python
+value: models.SourceTestrail = /* values here */
+```
+
 ### `models.SourceTheGuardianAPI`
 
 ```python
 value: models.SourceTheGuardianAPI = /* values here */
+```
+
+### `models.SourceThinkific`
+
+```python
+value: models.SourceThinkific = /* values here */
+```
+
+### `models.SourceTicketmaster`
+
+```python
+value: models.SourceTicketmaster = /* values here */
+```
+
+### `models.SourceTickettailor`
+
+```python
+value: models.SourceTickettailor = /* values here */
 ```
 
 ### `models.SourceTiktokMarketing`
@@ -1271,10 +2327,40 @@ value: models.SourceTheGuardianAPI = /* values here */
 value: models.SourceTiktokMarketing = /* values here */
 ```
 
+### `models.SourceTimely`
+
+```python
+value: models.SourceTimely = /* values here */
+```
+
+### `models.SourceTinyemail`
+
+```python
+value: models.SourceTinyemail = /* values here */
+```
+
+### `models.SourceTodoist`
+
+```python
+value: models.SourceTodoist = /* values here */
+```
+
+### `models.SourceTrackPms`
+
+```python
+value: models.SourceTrackPms = /* values here */
+```
+
 ### `models.SourceTrello`
 
 ```python
 value: models.SourceTrello = /* values here */
+```
+
+### `models.SourceTremendous`
+
+```python
+value: models.SourceTremendous = /* values here */
 ```
 
 ### `models.SourceTrustpilot`
@@ -1287,6 +2373,12 @@ value: models.SourceTrustpilot = /* values here */
 
 ```python
 value: models.SourceTvmazeSchedule = /* values here */
+```
+
+### `models.SourceTwelveData`
+
+```python
+value: models.SourceTwelveData = /* values here */
 ```
 
 ### `models.SourceTwilio`
@@ -1313,16 +2405,94 @@ value: models.SourceTwitter = /* values here */
 value: models.SourceTypeform = /* values here */
 ```
 
+### `models.SourceUbidots`
+
+```python
+value: models.SourceUbidots = /* values here */
+```
+
+### `models.SourceUnleash`
+
+```python
+value: models.SourceUnleash = /* values here */
+```
+
+### `models.SourceUppromote`
+
+```python
+value: models.SourceUppromote = /* values here */
+```
+
 ### `models.SourceUsCensus`
 
 ```python
 value: models.SourceUsCensus = /* values here */
 ```
 
+### `models.SourceUservoice`
+
+```python
+value: models.SourceUservoice = /* values here */
+```
+
 ### `models.SourceVantage`
 
 ```python
 value: models.SourceVantage = /* values here */
+```
+
+### `models.SourceVeeqo`
+
+```python
+value: models.SourceVeeqo = /* values here */
+```
+
+### `models.SourceVercel`
+
+```python
+value: models.SourceVercel = /* values here */
+```
+
+### `models.SourceVismaEconomic`
+
+```python
+value: models.SourceVismaEconomic = /* values here */
+```
+
+### `models.SourceVitally`
+
+```python
+value: models.SourceVitally = /* values here */
+```
+
+### `models.SourceVwo`
+
+```python
+value: models.SourceVwo = /* values here */
+```
+
+### `models.SourceWaiteraid`
+
+```python
+value: models.SourceWaiteraid = /* values here */
+```
+
+### `models.SourceWasabiStatsAPI`
+
+```python
+value: models.SourceWasabiStatsAPI = /* values here */
+```
+
+### `models.SourceWeatherstack`
+
+```python
+value: models.SourceWeatherstack = /* values here */
+```
+
+### `models.SourceWebScrapper`
+
+```python
+value: models.SourceWebScrapper = /* values here */
 ```
 
 ### `models.SourceWebflow`
@@ -1355,10 +2525,58 @@ value: models.SourceWikipediaPageviews = /* values here */
 value: models.SourceWoocommerce = /* values here */
 ```
 
+### `models.SourceWordpress`
+
+```python
+value: models.SourceWordpress = /* values here */
+```
+
+### `models.SourceWorkable`
+
+```python
+value: models.SourceWorkable = /* values here */
+```
+
+### `models.SourceWorkflowmax`
+
+```python
+value: models.SourceWorkflowmax = /* values here */
+```
+
+### `models.SourceWorkramp`
+
+```python
+value: models.SourceWorkramp = /* values here */
+```
+
+### `models.SourceWrike`
+
+```python
+value: models.SourceWrike = /* values here */
+```
+
+### `models.SourceWufoo`
+
+```python
+value: models.SourceWufoo = /* values here */
+```
+
 ### `models.SourceXkcd`
 
 ```python
 value: models.SourceXkcd = /* values here */
+```
+
+### `models.SourceXsolla`
+
+```python
+value: models.SourceXsolla = /* values here */
+```
+
+### `models.SourceYahooFinancePrice`
+
+```python
+value: models.SourceYahooFinancePrice = /* values here */
 ```
 
 ### `models.SourceYandexMetrica`
@@ -1373,10 +2591,28 @@ value: models.SourceYandexMetrica = /* values here */
 value: models.SourceYotpo = /* values here */
 ```
 
+### `models.SourceYouNeedABudgetYnab`
+
+```python
+value: models.SourceYouNeedABudgetYnab = /* values here */
+```
+
 ### `models.SourceYoutubeAnalytics`
 
 ```python
 value: models.SourceYoutubeAnalytics = /* values here */
+```
+
+### `models.SourceYoutubeData`
+
+```python
+value: models.SourceYoutubeData = /* values here */
+```
+
+### `models.SourceZapierSupportedStorage`
+
+```python
+value: models.SourceZapierSupportedStorage = /* values here */
 ```
 
 ### `models.SourceZendeskChat`
@@ -1403,16 +2639,82 @@ value: models.SourceZendeskSupport = /* values here */
 value: models.SourceZendeskTalk = /* values here */
 ```
 
+### `models.SourceZenefits`
+
+```python
+value: models.SourceZenefits = /* values here */
+```
+
 ### `models.SourceZenloop`
 
 ```python
 value: models.SourceZenloop = /* values here */
 ```
 
+### `models.SourceZohoAnalyticsMetadataAPI`
+
+```python
+value: models.SourceZohoAnalyticsMetadataAPI = /* values here */
+```
+
+### `models.SourceZohoBigin`
+
+```python
+value: models.SourceZohoBigin = /* values here */
+```
+
+### `models.SourceZohoBilling`
+
+```python
+value: models.SourceZohoBilling = /* values here */
+```
+
+### `models.SourceZohoBooks`
+
+```python
+value: models.SourceZohoBooks = /* values here */
+```
+
+### `models.SourceZohoCampaign`
+
+```python
+value: models.SourceZohoCampaign = /* values here */
+```
+
 ### `models.SourceZohoCrm`
 
 ```python
 value: models.SourceZohoCrm = /* values here */
+```
+
+### `models.SourceZohoDesk`
+
+```python
+value: models.SourceZohoDesk = /* values here */
+```
+
+### `models.SourceZohoExpense`
+
+```python
+value: models.SourceZohoExpense = /* values here */
+```
+
+### `models.SourceZohoInventory`
+
+```python
+value: models.SourceZohoInventory = /* values here */
+```
+
+### `models.SourceZohoInvoice`
+
+```python
+value: models.SourceZohoInvoice = /* values here */
+```
+
+### `models.SourceZonkaFeedback`
+
+```python
+value: models.SourceZonkaFeedback = /* values here */
 ```
 
 ### `models.SourceZoom`

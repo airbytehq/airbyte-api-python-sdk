@@ -20,6 +20,7 @@ class ConnectionResponse:
     configurations: StreamConfigurations = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('configurations') }})
     r"""A list of configured stream options for a connection."""
     connection_id: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('connectionId') }})
+    created_at: int = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('createdAt') }})
     destination_id: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('destinationId') }})
     name: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('name') }})
     schedule: ConnectionScheduleResponse = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('schedule') }})

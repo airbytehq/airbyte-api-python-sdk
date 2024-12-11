@@ -20,8 +20,8 @@ from airbyte_api import api, models
 s = airbyte_api.AirbyteAPI(
     security=models.Security(
         basic_auth=models.SchemeBasicAuth(
-            password="",
-            username="",
+            password='',
+            username='',
         ),
     ),
 )
@@ -49,6 +49,6 @@ if res.users_response is not None:
 
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
+| Error Type      | Status Code     | Content Type    |
 | --------------- | --------------- | --------------- |
-| errors.SDKError | 4xx-5xx         | */*             |
+| errors.SDKError | 4XX, 5XX        | \*/\*           |

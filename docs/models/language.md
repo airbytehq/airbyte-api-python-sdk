@@ -1,29 +1,25 @@
 # Language
 
+The 2-letter ISO-639-1 code of the language you want to get headlines
+for. Possible options: ar de en es fr he it nl no pt ru se ud zh.
+
+
 
 ## Values
 
 | Name  | Value |
 | ----- | ----- |
 | `AR`  | ar    |
-| `ZH`  | zh    |
-| `NL`  | nl    |
-| `EN`  | en    |
-| `FR`  | fr    |
 | `DE`  | de    |
-| `EL`  | el    |
+| `EN`  | en    |
+| `ES`  | es    |
+| `FR`  | fr    |
 | `HE`  | he    |
-| `HI`  | hi    |
 | `IT`  | it    |
-| `JA`  | ja    |
-| `ML`  | ml    |
-| `MR`  | mr    |
+| `NL`  | nl    |
 | `NO`  | no    |
 | `PT`  | pt    |
-| `RO`  | ro    |
 | `RU`  | ru    |
-| `ES`  | es    |
-| `SV`  | sv    |
-| `TA`  | ta    |
-| `TE`  | te    |
-| `UK`  | uk    |
+| `SE`  | se    |
+| `UD`  | ud    |
+| `ZH`  | zh    |

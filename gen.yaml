@@ -10,14 +10,16 @@ generation:
     requestResponseComponentNamesFeb2024: false
   auth:
     oAuth2ClientCredentialsEnabled: true
+    oAuth2PasswordEnabled: false
 python:
-  version: 0.52.1
+  version: 0.52.2
   additionalDependencies:
     dependencies: {}
     extraDependencies:
       dev: {}
   author: Airbyte
   clientServerStatusCodesAsErrors: true
+  defaultErrorName: SDKError
   description: Python Client SDK for Airbyte API
   flattenGlobalSecurity: false
   imports:

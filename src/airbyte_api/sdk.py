@@ -18,7 +18,7 @@ from airbyte_api._hooks import SDKHooks
 from typing import Callable, Dict, Optional, Union
 
 class AirbyteAPI:
-    r"""airbyte-api: Programatically control Airbyte Cloud, OSS & Enterprise."""
+    r"""airbyte-api: Programmatically control Airbyte Cloud, OSS & Enterprise."""
     connections: Connections
     destinations: Destinations
     health: Health

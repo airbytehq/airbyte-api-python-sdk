@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 import dataclasses
+from .configuredstreammapper import ConfiguredStreamMapper
 from .connectionsyncmodeenum import ConnectionSyncModeEnum
 from .selectedfieldinfo import SelectedFieldInfo
 from airbyte_api import utils
@@ -16,6 +17,8 @@ class StreamConfiguration:
     name: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('name') }})
     cursor_field: Optional[List[str]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('cursorField'), 'exclude': lambda f: f is None }})
     r"""Path to the field that will be used to determine if a record is new or modified since the last sync. This field is REQUIRED if `sync_mode` is `incremental` unless there is a default."""
+    mappers: Optional[List[ConfiguredStreamMapper]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('mappers'), 'exclude': lambda f: f is None }})
+    r"""Mappers that should be applied to the stream before writing to the destination."""
     primary_key: Optional[List[List[str]]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('primaryKey'), 'exclude': lambda f: f is None }})
     r"""Paths to the fields that will be used as primary key. This field is REQUIRED if `destination_sync_mode` is `*_dedup` unless it is already supplied by the source schema."""
     selected_fields: Optional[List[SelectedFieldInfo]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('selectedFields'), 'exclude': lambda f: f is None }})

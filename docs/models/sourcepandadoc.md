@@ -1,0 +1,10 @@
+# SourcePandadoc
+
+
+## Fields
+
+| Field                                                                                        | Type                                                                                         | Required                                                                                     | Description                                                                                  |
+| -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
+| `api_key`                                                                                    | *str*                                                                                        | :heavy_check_mark:                                                                           | API key to use. Find it at https://app.pandadoc.com/a/#/settings/api-dashboard/configuration |
+| `start_date`                                                                                 | [date](https://docs.python.org/3/library/datetime.html#date-objects)                         | :heavy_check_mark:                                                                           | N/A                                                                                          |
+| `source_type`                                                                                | [models.Pandadoc](../models/pandadoc.md)                                                     | :heavy_check_mark:                                                                           | N/A                                                                                          |

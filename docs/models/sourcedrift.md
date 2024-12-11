@@ -1,0 +1,10 @@
+# SourceDrift
+
+
+## Fields
+
+| Field                                                                                          | Type                                                                                           | Required                                                                                       | Description                                                                                    |
+| ---------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- |
+| `credentials`                                                                                  | [Optional[models.SourceDriftAuthorizationMethod]](../models/sourcedriftauthorizationmethod.md) | :heavy_minus_sign:                                                                             | N/A                                                                                            |
+| `email`                                                                                        | *Optional[str]*                                                                                | :heavy_minus_sign:                                                                             | Email used as parameter for contacts stream                                                    |
+| `source_type`                                                                                  | [models.SourceDriftDrift](../models/sourcedriftdrift.md)                                       | :heavy_check_mark:                                                                             | N/A                                                                                            |

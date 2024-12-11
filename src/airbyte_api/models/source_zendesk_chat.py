@@ -56,7 +56,7 @@ class SourceZendeskChat:
     credentials: Optional[SourceZendeskChatAuthorizationMethod] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credentials'), 'exclude': lambda f: f is None }})
     SOURCE_TYPE: Final[SourceZendeskChatZendeskChat] = dataclasses.field(default=SourceZendeskChatZendeskChat.ZENDESK_CHAT, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     subdomain: Optional[str] = dataclasses.field(default='', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('subdomain'), 'exclude': lambda f: f is None }})
-    r"""Required if you access Zendesk Chat from a Zendesk Support subdomain."""
+    r"""The unique subdomain of your Zendesk account (without https://). <a href=\\"https://support.zendesk.com/hc/en-us/articles/4409381383578-Where-can-I-find-my-Zendesk-subdomain\\">See the Zendesk docs to find your subdomain</a>"""
     
 
 

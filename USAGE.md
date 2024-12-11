@@ -6,8 +6,8 @@ from airbyte_api import models
 s = airbyte_api.AirbyteAPI(
     security=models.Security(
         basic_auth=models.SchemeBasicAuth(
-            password="",
-            username="",
+            password='',
+            username='',
         ),
     ),
 )

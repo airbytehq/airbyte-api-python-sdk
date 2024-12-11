@@ -1,0 +1,12 @@
+# SourceMention
+
+
+## Fields
+
+| Field                                                                                  | Type                                                                                   | Required                                                                               | Description                                                                            |
+| -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- |
+| `api_key`                                                                              | *str*                                                                                  | :heavy_check_mark:                                                                     | N/A                                                                                    |
+| `stats_start_date`                                                                     | [date](https://docs.python.org/3/library/datetime.html#date-objects)                   | :heavy_check_mark:                                                                     | N/A                                                                                    |
+| `source_type`                                                                          | [models.Mention](../models/mention.md)                                                 | :heavy_check_mark:                                                                     | N/A                                                                                    |
+| `stats_end_date`                                                                       | [datetime](https://docs.python.org/3/library/datetime.html#datetime-objects)           | :heavy_minus_sign:                                                                     | N/A                                                                                    |
+| `stats_interval`                                                                       | [Optional[models.StatisticsInterval]](../models/statisticsinterval.md)                 | :heavy_minus_sign:                                                                     | Periodicity of statistics returned. it may be daily(P1D), weekly(P1W) or monthly(P1M). |

@@ -24,7 +24,7 @@ class HMACKey:
 
 
 
-class Gcs(str, Enum):
+class DestinationGcsGcs(str, Enum):
     GCS = 'gcs'
 
 
@@ -291,7 +291,7 @@ class DestinationGcs:
     r"""You can find the bucket name in the App Engine Admin console Application Settings page, under the label Google Cloud Storage Bucket. Read more <a href=\\"https://cloud.google.com/storage/docs/naming-buckets\\">here</a>."""
     gcs_bucket_path: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('gcs_bucket_path') }})
     r"""GCS Bucket Path string Subdirectory under the above bucket to sync the data into."""
-    DESTINATION_TYPE: Final[Gcs] = dataclasses.field(default=Gcs.GCS, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('destinationType') }})
+    DESTINATION_TYPE: Final[DestinationGcsGcs] = dataclasses.field(default=DestinationGcsGcs.GCS, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('destinationType') }})
     gcs_bucket_region: Optional[GCSBucketRegion] = dataclasses.field(default=GCSBucketRegion.US, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('gcs_bucket_region'), 'exclude': lambda f: f is None }})
     r"""Select a Region of the GCS Bucket. Read more <a href=\\"https://cloud.google.com/storage/docs/locations\\">here</a>."""
     

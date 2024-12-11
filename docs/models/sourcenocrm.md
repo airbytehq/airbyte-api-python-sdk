@@ -1,0 +1,10 @@
+# SourceNocrm
+
+
+## Fields
+
+| Field                                                                                           | Type                                                                                            | Required                                                                                        | Description                                                                                     |
+| ----------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- |
+| `api_key`                                                                                       | *str*                                                                                           | :heavy_check_mark:                                                                              | API key to use. Generate it from the admin section of your noCRM.io account.                    |
+| `subdomain`                                                                                     | *str*                                                                                           | :heavy_check_mark:                                                                              | The subdomain specific to your noCRM.io account, e.g., 'yourcompany' in 'yourcompany.nocrm.io'. |
+| `source_type`                                                                                   | [models.Nocrm](../models/nocrm.md)                                                              | :heavy_check_mark:                                                                              | N/A                                                                                             |

@@ -25,25 +25,30 @@ from airbyte_api import models
 s = airbyte_api.AirbyteAPI(
     security=models.Security(
         basic_auth=models.SchemeBasicAuth(
-            password="",
-            username="",
+            password='',
+            username='',
         ),
     ),
 )
 
 
 res = s.destinations.create_destination(request=models.DestinationCreateRequest(
-    configuration=models.DestinationPinecone(
-        embedding=models.DestinationPineconeFake(),
-        indexing=models.DestinationPineconeIndexing(
-            index='<value>',
-            pinecone_environment='us-west1-gcp',
-            pinecone_key='<value>',
+    configuration=models.DestinationPgvector(
+        embedding=models.DestinationPgvectorFake(),
+        indexing=models.PostgresConnection(
+            credentials=models.DestinationPgvectorCredentials(
+                password='AIRBYTE_PASSWORD',
+            ),
+            database='AIRBYTE_DATABASE',
+            host='AIRBYTE_ACCOUNT',
+            username='AIRBYTE_USER',
+            default_schema='AIRBYTE_SCHEMA',
+            port=5432,
         ),
-        processing=models.DestinationPineconeProcessingConfigModel(
-            chunk_size=834173,
+        processing=models.DestinationPgvectorProcessingConfigModel(
+            chunk_size=540943,
             metadata_fields=[
-                'user',
+                'age',
             ],
             text_fields=[
                 'users.*.name',
@@ -72,10 +77,9 @@ if res.destination_response is not None:
 
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
+| Error Type      | Status Code     | Content Type    |
 | --------------- | --------------- | --------------- |
-| errors.SDKError | 4xx-5xx         | */*             |
-
+| errors.SDKError | 4XX, 5XX        | \*/\*           |
 
 ## delete_destination
 
@@ -90,8 +94,8 @@ from airbyte_api import api, models
 s = airbyte_api.AirbyteAPI(
     security=models.Security(
         basic_auth=models.SchemeBasicAuth(
-            password="",
-            username="",
+            password='',
+            username='',
         ),
     ),
 )
@@ -119,10 +123,9 @@ if res is not None:
 
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
+| Error Type      | Status Code     | Content Type    |
 | --------------- | --------------- | --------------- |
-| errors.SDKError | 4xx-5xx         | */*             |
-
+| errors.SDKError | 4XX, 5XX        | \*/\*           |
 
 ## get_destination
 
@@ -137,8 +140,8 @@ from airbyte_api import api, models
 s = airbyte_api.AirbyteAPI(
     security=models.Security(
         basic_auth=models.SchemeBasicAuth(
-            password="",
-            username="",
+            password='',
+            username='',
         ),
     ),
 )
@@ -166,10 +169,9 @@ if res.destination_response is not None:
 
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
+| Error Type      | Status Code     | Content Type    |
 | --------------- | --------------- | --------------- |
-| errors.SDKError | 4xx-5xx         | */*             |
-
+| errors.SDKError | 4XX, 5XX        | \*/\*           |
 
 ## list_destinations
 
@@ -184,8 +186,8 @@ from airbyte_api import api, models
 s = airbyte_api.AirbyteAPI(
     security=models.Security(
         basic_auth=models.SchemeBasicAuth(
-            password="",
-            username="",
+            password='',
+            username='',
         ),
     ),
 )
@@ -211,10 +213,9 @@ if res.destinations_response is not None:
 
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
+| Error Type      | Status Code     | Content Type    |
 | --------------- | --------------- | --------------- |
-| errors.SDKError | 4xx-5xx         | */*             |
-
+| errors.SDKError | 4XX, 5XX        | \*/\*           |
 
 ## patch_destination
 
@@ -229,8 +230,8 @@ from airbyte_api import api, models
 s = airbyte_api.AirbyteAPI(
     security=models.Security(
         basic_auth=models.SchemeBasicAuth(
-            password="",
-            username="",
+            password='',
+            username='',
         ),
     ),
 )
@@ -241,7 +242,6 @@ res = s.destinations.patch_destination(request=api.PatchDestinationRequest(
     destination_patch_request=models.DestinationPatchRequest(
         configuration=models.DestinationDuckdb(
             destination_path='motherduck:',
-            schema='main',
         ),
         name='My Destination',
     ),
@@ -265,10 +265,9 @@ if res.destination_response is not None:
 
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
+| Error Type      | Status Code     | Content Type    |
 | --------------- | --------------- | --------------- |
-| errors.SDKError | 4xx-5xx         | */*             |
-
+| errors.SDKError | 4XX, 5XX        | \*/\*           |
 
 ## put_destination
 
@@ -283,8 +282,8 @@ from airbyte_api import api, models
 s = airbyte_api.AirbyteAPI(
     security=models.Security(
         basic_auth=models.SchemeBasicAuth(
-            password="",
-            username="",
+            password='',
+            username='',
         ),
     ),
 )
@@ -297,13 +296,6 @@ res = s.destinations.put_destination(request=api.PutDestinationRequest(
             database='<value>',
             host='urban-receptor.org',
             username='Kaylie_Terry',
-            port=8123,
-            tunnel_method=models.SSHKeyAuthentication(
-                ssh_key='<value>',
-                tunnel_host='<value>',
-                tunnel_user='<value>',
-                tunnel_port=22,
-            ),
         ),
         name='My Destination',
     ),
@@ -327,6 +319,6 @@ if res.destination_response is not None:
 
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
+| Error Type      | Status Code     | Content Type    |
 | --------------- | --------------- | --------------- |
-| errors.SDKError | 4xx-5xx         | */*             |
+| errors.SDKError | 4XX, 5XX        | \*/\*           |

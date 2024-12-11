@@ -1,0 +1,9 @@
+# SourceCareQualityCommission
+
+
+## Fields
+
+| Field                                                                                                                | Type                                                                                                                 | Required                                                                                                             | Description                                                                                                          |
+| -------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------- |
+| `api_key`                                                                                                            | *str*                                                                                                                | :heavy_check_mark:                                                                                                   | Your CQC Primary Key. See https://www.cqc.org.uk/about-us/transparency/using-cqc-data#api for steps to generate one. |
+| `source_type`                                                                                                        | [models.CareQualityCommission](../models/carequalitycommission.md)                                                   | :heavy_check_mark:                                                                                                   | N/A                                                                                                                  |

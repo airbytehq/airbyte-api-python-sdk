@@ -41,10 +41,22 @@ value: models.AzureBlobStorage = /* values here */
 value: models.BingAds = /* values here */
 ```
 
+### `models.Drift`
+
+```python
+value: models.Drift = /* values here */
+```
+
 ### `models.FacebookMarketing`
 
 ```python
 value: models.FacebookMarketing = /* values here */
+```
+
+### `models.Gcs`
+
+```python
+value: models.Gcs = /* values here */
 ```
 
 ### `models.Github`
@@ -161,10 +173,10 @@ value: models.Notion = /* values here */
 value: models.Pinterest = /* values here */
 ```
 
-### `models.Retently`
+### `models.RdStationMarketing`
 
 ```python
-value: models.Retently = /* values here */
+value: models.RdStationMarketing = /* values here */
 ```
 
 ### `models.Salesforce`
@@ -203,12 +215,6 @@ value: models.SnapchatMarketing = /* values here */
 value: models.Snowflake = /* values here */
 ```
 
-### `models.Square`
-
-```python
-value: models.Square = /* values here */
-```
-
 ### `models.Surveymonkey`
 
 ```python
@@ -243,12 +249,6 @@ value: models.YoutubeAnalytics = /* values here */
 
 ```python
 value: models.ZendeskChat = /* values here */
-```
-
-### `models.ZendeskSunshine`
-
-```python
-value: models.ZendeskSunshine = /* values here */
 ```
 
 ### `models.ZendeskSupport`

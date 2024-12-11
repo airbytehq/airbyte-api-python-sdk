@@ -42,7 +42,7 @@ class OauthAuthentication:
 
 
 
-class SourceSquareSquare(str, Enum):
+class Square(str, Enum):
     SQUARE = 'square'
 
 
@@ -55,7 +55,7 @@ class SourceSquare:
     r"""In some streams there is an option to include deleted objects (Items, Categories, Discounts, Taxes)"""
     is_sandbox: Optional[bool] = dataclasses.field(default=False, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('is_sandbox'), 'exclude': lambda f: f is None }})
     r"""Determines whether to use the sandbox or production environment."""
-    SOURCE_TYPE: Final[SourceSquareSquare] = dataclasses.field(default=SourceSquareSquare.SQUARE, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
+    SOURCE_TYPE: Final[Square] = dataclasses.field(default=Square.SQUARE, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     start_date: Optional[date] = dataclasses.field(default=dateutil.parser.parse('2021-01-01').date(), metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('start_date'), 'encoder': utils.dateisoformat(True), 'decoder': utils.datefromisoformat, 'exclude': lambda f: f is None }})
     r"""UTC date in the format YYYY-MM-DD. Any data before this date will not be replicated. If not set, all data will be replicated."""
     

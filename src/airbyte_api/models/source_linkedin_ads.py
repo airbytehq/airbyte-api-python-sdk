@@ -62,7 +62,7 @@ class SourceLinkedinAdsSchemasAuthMethod(str, Enum):
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
-class AccessToken:
+class SourceLinkedinAdsAccessToken:
     access_token: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('access_token') }})
     r"""The access token generated for your developer application. Refer to our <a href='https://docs.airbyte.com/integrations/sources/linkedin-ads#setup-guide'>documentation</a> for more information."""
     AUTH_METHOD: Final[Optional[SourceLinkedinAdsSchemasAuthMethod]] = dataclasses.field(default=SourceLinkedinAdsSchemasAuthMethod.ACCESS_TOKEN, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_method'), 'exclude': lambda f: f is None }})
@@ -107,4 +107,4 @@ class SourceLinkedinAds:
     
 
 
-SourceLinkedinAdsAuthentication = Union[SourceLinkedinAdsOAuth20, AccessToken]
+SourceLinkedinAdsAuthentication = Union[SourceLinkedinAdsOAuth20, SourceLinkedinAdsAccessToken]
