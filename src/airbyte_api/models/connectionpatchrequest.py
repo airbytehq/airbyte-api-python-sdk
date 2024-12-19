@@ -7,7 +7,7 @@ from .connectionstatusenum import ConnectionStatusEnum
 from .geographyenumnodefault import GeographyEnumNoDefault
 from .namespacedefinitionenumnodefault import NamespaceDefinitionEnumNoDefault
 from .nonbreakingschemaupdatesbehaviorenumnodefault import NonBreakingSchemaUpdatesBehaviorEnumNoDefault
-from .streamconfigurations import StreamConfigurations
+from .streamconfigurations_input import StreamConfigurationsInput
 from airbyte_api import utils
 from dataclasses_json import Undefined, dataclass_json
 from typing import Optional
@@ -16,7 +16,7 @@ from typing import Optional
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
 class ConnectionPatchRequest:
-    configurations: Optional[StreamConfigurations] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('configurations'), 'exclude': lambda f: f is None }})
+    configurations: Optional[StreamConfigurationsInput] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('configurations'), 'exclude': lambda f: f is None }})
     r"""A list of configured stream options for a connection."""
     data_residency: Optional[GeographyEnumNoDefault] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('dataResidency'), 'exclude': lambda f: f is None }})
     name: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('name'), 'exclude': lambda f: f is None }})
