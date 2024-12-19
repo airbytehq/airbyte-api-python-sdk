@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 07961597-3730-4940-9fd0-35eb4118eab3
 management:
-  docChecksum: c154fc44f8133a378fdc9e766757a427
+  docChecksum: 20c551a95555f120a6f86c0a4ded0f8e
   docVersion: 1.0.0
-  speakeasyVersion: 1.453.10
-  generationVersion: 2.474.15
-  releaseVersion: 0.52.2
-  configChecksum: e2ed5a7be8b4d446bfd680d560ec170e
+  speakeasyVersion: 1.456.1
+  generationVersion: 2.481.0
+  releaseVersion: 0.53.0
+  configChecksum: e0926a71194c6422df616d1254331123
   repoURL: https://github.com/airbytehq/airbyte-api-python-sdk.git
   repoSubDirectory: .
   installationURL: https://github.com/airbytehq/airbyte-api-python-sdk.git
@@ -16,11 +16,12 @@ features:
     additionalDependencies: 0.1.0
     additionalProperties: 0.1.0
     constsAndDefaults: 0.1.4
-    core: 4.8.18
+    core: 4.8.20
     globalSecurity: 2.83.7
     globalSecurityCallbacks: 0.1.0
     globalServerURLs: 2.82.2
     groups: 2.81.2
+    inputOutputModels: 2.83.1
     nullables: 0.1.0
     oauth2ClientCredentials: 0.2.0
     responseFormat: 0.1.0
@@ -319,7 +320,7 @@ generatedFiles:
   - docs/models/destinationastra.md
   - docs/models/destinationastralanguage.md
   - docs/models/destinationastramode.md
-  - docs/models/destinationastraschemasembeddingembedding1mode.md
+  - docs/models/destinationastraschemasembeddingembedding5mode.md
   - docs/models/destinationastraschemasembeddingembeddingmode.md
   - docs/models/destinationastraschemasembeddingmode.md
   - docs/models/destinationastraschemasmode.md
@@ -468,6 +469,7 @@ generatedFiles:
   - docs/models/destinationmysqlsshtunnelmethod.md
   - docs/models/destinationmysqltunnelmethod.md
   - docs/models/destinationoracle.md
+  - docs/models/destinationoracleencryption.md
   - docs/models/destinationoracleencryptionmethod.md
   - docs/models/destinationoraclenotunnel.md
   - docs/models/destinationoraclepasswordauthentication.md
@@ -531,7 +533,7 @@ generatedFiles:
   - docs/models/destinationpostgrespasswordauthentication.md
   - docs/models/destinationpostgresschemasmode.md
   - docs/models/destinationpostgresschemassslmodemode.md
-  - docs/models/destinationpostgresschemassslmodesslmodes1mode.md
+  - docs/models/destinationpostgresschemassslmodesslmodes5mode.md
   - docs/models/destinationpostgresschemassslmodesslmodes6mode.md
   - docs/models/destinationpostgresschemassslmodesslmodesmode.md
   - docs/models/destinationpostgresschemastunnelmethod.md
@@ -774,12 +776,16 @@ generatedFiles:
   - docs/models/encryptedtrustservercertificate.md
   - docs/models/encryptedverifycertificate.md
   - docs/models/encryption.md
+  - docs/models/encryptionaes.md
   - docs/models/encryptionalgorithm.md
+  - docs/models/encryptionmapperalgorithm.md
   - docs/models/encryptionmethod.md
+  - docs/models/encryptionrsa.md
   - docs/models/engagementwindowdays.md
   - docs/models/enterprise.md
   - docs/models/entity.md
   - docs/models/environment.md
+  - docs/models/equal.md
   - docs/models/eubasedaccount.md
   - docs/models/eventbrite.md
   - docs/models/eventee.md
@@ -798,6 +804,7 @@ generatedFiles:
   - docs/models/faker.md
   - docs/models/fauna.md
   - docs/models/fieldnamemappingconfigmodel.md
+  - docs/models/fieldrenaming.md
   - docs/models/file.md
   - docs/models/filebasedstreamconfig.md
   - docs/models/fileformat.md
@@ -886,6 +893,7 @@ generatedFiles:
   - docs/models/granularityforgeolocationregion.md
   - docs/models/granularityforperiodicreports.md
   - docs/models/greenhouse.md
+  - docs/models/greythr.md
   - docs/models/gridly.md
   - docs/models/groupby.md
   - docs/models/guru.md
@@ -894,6 +902,8 @@ generatedFiles:
   - docs/models/hadoopcatalogusehierarchicalfilesystemsassameasstorageconfig.md
   - docs/models/hardcodedrecords.md
   - docs/models/harvest.md
+  - docs/models/hashing.md
+  - docs/models/hashingmethod.md
   - docs/models/header.md
   - docs/models/headerdefinitiontype.md
   - docs/models/height.md
@@ -905,6 +915,7 @@ generatedFiles:
   - docs/models/hubplanner.md
   - docs/models/hubspot.md
   - docs/models/hubspotcredentials.md
+  - docs/models/huggingfacedatasets.md
   - docs/models/humanitix.md
   - docs/models/iamrole.md
   - docs/models/iamuser.md
@@ -1027,6 +1038,7 @@ generatedFiles:
   - docs/models/namespacedefinitionenumnodefault.md
   - docs/models/nasa.md
   - docs/models/nativenetworkencryptionnne.md
+  - docs/models/navan.md
   - docs/models/netsuite.md
   - docs/models/newsapi.md
   - docs/models/newsdataio.md
@@ -1041,6 +1053,7 @@ generatedFiles:
   - docs/models/normalization.md
   - docs/models/normalizationflattening.md
   - docs/models/northpasslms.md
+  - docs/models/not_.md
   - docs/models/notexpression.md
   - docs/models/notion.md
   - docs/models/notioncredentials.md
@@ -1091,6 +1104,7 @@ generatedFiles:
   - docs/models/outreach.md
   - docs/models/oveit.md
   - docs/models/pabblysubscriptionsbilling.md
+  - docs/models/padding.md
   - docs/models/pandadoc.md
   - docs/models/paperform.md
   - docs/models/papersign.md
@@ -1118,6 +1132,7 @@ generatedFiles:
   - docs/models/pgvector.md
   - docs/models/picqer.md
   - docs/models/pinecone.md
+  - docs/models/pingdom.md
   - docs/models/pinterest.md
   - docs/models/pinterestcredentials.md
   - docs/models/pipedrive.md
@@ -1187,6 +1202,7 @@ generatedFiles:
   - docs/models/reportrecordtypeenum.md
   - docs/models/require.md
   - docs/models/required.md
+  - docs/models/resolution.md
   - docs/models/restcatalog.md
   - docs/models/retently.md
   - docs/models/revenuecat.md
@@ -1196,6 +1212,9 @@ generatedFiles:
   - docs/models/rolebasedauthentication.md
   - docs/models/rollbar.md
   - docs/models/rootly.md
+  - docs/models/rowfiltering.md
+  - docs/models/rowfilteringoperation.md
+  - docs/models/rowfilteringoperationtype.md
   - docs/models/rss.md
   - docs/models/ruddr.md
   - docs/models/s3.md
@@ -1829,6 +1848,7 @@ generatedFiles:
   - docs/models/sourcegooglewebfonts.md
   - docs/models/sourcegorgias.md
   - docs/models/sourcegreenhouse.md
+  - docs/models/sourcegreythr.md
   - docs/models/sourcegridly.md
   - docs/models/sourceguru.md
   - docs/models/sourcegutendex.md
@@ -1848,6 +1868,7 @@ generatedFiles:
   - docs/models/sourcehubspothubspot.md
   - docs/models/sourcehubspotoauth.md
   - docs/models/sourcehubspotschemasauthtype.md
+  - docs/models/sourcehuggingfacedatasets.md
   - docs/models/sourcehumanitix.md
   - docs/models/sourceilluminabasespace.md
   - docs/models/sourceincidentio.md
@@ -2002,6 +2023,7 @@ generatedFiles:
   - docs/models/sourcemixpanelregion.md
   - docs/models/sourcemixpanelschemasoptiontitle.md
   - docs/models/sourcemode.md
+  - docs/models/sourcemodemode.md
   - docs/models/sourcemonday.md
   - docs/models/sourcemondayauthorizationmethod.md
   - docs/models/sourcemondayauthtype.md
@@ -2054,6 +2076,7 @@ generatedFiles:
   - docs/models/sourcemysqlverifyca.md
   - docs/models/sourcen8n.md
   - docs/models/sourcenasa.md
+  - docs/models/sourcenavan.md
   - docs/models/sourcenetsuite.md
   - docs/models/sourcenewsapi.md
   - docs/models/sourcenewsdataio.md
@@ -2128,6 +2151,7 @@ generatedFiles:
   - docs/models/sourcepersona.md
   - docs/models/sourcepexelsapi.md
   - docs/models/sourcepicqer.md
+  - docs/models/sourcepingdom.md
   - docs/models/sourcepinterest.md
   - docs/models/sourcepinterestauthmethod.md
   - docs/models/sourcepinterestlevel.md
@@ -2531,6 +2555,7 @@ generatedFiles:
   - docs/models/strava.md
   - docs/models/streamconfiguration.md
   - docs/models/streamconfigurations.md
+  - docs/models/streamconfigurationsinput.md
   - docs/models/streammappertype.md
   - docs/models/streamproperties.md
   - docs/models/streamscriteria.md
@@ -2813,6 +2838,7 @@ generatedFiles:
   - src/airbyte_api/models/destinationresponse.py
   - src/airbyte_api/models/destinationsresponse.py
   - src/airbyte_api/models/drift.py
+  - src/airbyte_api/models/encryptionmapperalgorithm.py
   - src/airbyte_api/models/facebook_marketing.py
   - src/airbyte_api/models/gcs.py
   - src/airbyte_api/models/geographyenum.py
@@ -2860,6 +2886,8 @@ generatedFiles:
   - src/airbyte_api/models/pinterest.py
   - src/airbyte_api/models/publicpermissiontype.py
   - src/airbyte_api/models/rd_station_marketing.py
+  - src/airbyte_api/models/rowfilteringoperation.py
+  - src/airbyte_api/models/rowfilteringoperationtype.py
   - src/airbyte_api/models/salesforce.py
   - src/airbyte_api/models/scheduletypeenum.py
   - src/airbyte_api/models/scheduletypewithbasicenum.py
@@ -3034,6 +3062,7 @@ generatedFiles:
   - src/airbyte_api/models/source_google_webfonts.py
   - src/airbyte_api/models/source_gorgias.py
   - src/airbyte_api/models/source_greenhouse.py
+  - src/airbyte_api/models/source_greythr.py
   - src/airbyte_api/models/source_gridly.py
   - src/airbyte_api/models/source_guru.py
   - src/airbyte_api/models/source_gutendex.py
@@ -3044,6 +3073,7 @@ generatedFiles:
   - src/airbyte_api/models/source_high_level.py
   - src/airbyte_api/models/source_hubplanner.py
   - src/airbyte_api/models/source_hubspot.py
+  - src/airbyte_api/models/source_hugging_face_datasets.py
   - src/airbyte_api/models/source_humanitix.py
   - src/airbyte_api/models/source_illumina_basespace.py
   - src/airbyte_api/models/source_incident_io.py
@@ -3112,6 +3142,7 @@ generatedFiles:
   - src/airbyte_api/models/source_mysql.py
   - src/airbyte_api/models/source_n8n.py
   - src/airbyte_api/models/source_nasa.py
+  - src/airbyte_api/models/source_navan.py
   - src/airbyte_api/models/source_netsuite.py
   - src/airbyte_api/models/source_news_api.py
   - src/airbyte_api/models/source_newsdata_io.py
@@ -3153,6 +3184,7 @@ generatedFiles:
   - src/airbyte_api/models/source_persona.py
   - src/airbyte_api/models/source_pexels_api.py
   - src/airbyte_api/models/source_picqer.py
+  - src/airbyte_api/models/source_pingdom.py
   - src/airbyte_api/models/source_pinterest.py
   - src/airbyte_api/models/source_pipedrive.py
   - src/airbyte_api/models/source_pipeliner.py
@@ -3333,6 +3365,7 @@ generatedFiles:
   - src/airbyte_api/models/sourcesresponse.py
   - src/airbyte_api/models/streamconfiguration.py
   - src/airbyte_api/models/streamconfigurations.py
+  - src/airbyte_api/models/streamconfigurations_input.py
   - src/airbyte_api/models/streammappertype.py
   - src/airbyte_api/models/streamproperties.py
   - src/airbyte_api/models/surveymonkey.py
@@ -3391,10 +3424,10 @@ examples:
           application/json: {"configuration": {"indexing": {"auth": {"password": "0SAaZ1kxEg7h49V", "username": "Sonny.Miller"}, "collection": "<value>", "host": "tcp://my-local-milvus:19530"}, "processing": {"chunk_size": 727665, "metadata_fields": ["age"], "text_fields": ["text"]}}, "createdAt": 656314, "definitionId": "321d9b60-11d1-44cb-8c92-c246d53bf98e", "destinationId": "18dccc91-0ab1-4f72-9ed7-0b8fc27c5826", "destinationType": "postgres", "name": "Analytics Team Postgres", "workspaceId": "871d9b60-11d1-44cb-8c92-c246d53bf87e"}
     Destination Creation Response Example:
       requestBody:
-        application/json: {"configuration": {"credential": {"hmac_key_access_id": "1234567890abcdefghij1234", "hmac_key_secret": "1234567890abcdefghij1234567890ABCDEFGHIJ"}, "gcs_bucket_name": "airbyte_sync", "gcs_bucket_path": "data_sync/test"}, "name": "<value>", "workspaceId": "ad46e8e6-2f62-408e-9ba5-019ef3492fc0"}
+        application/json: {"configuration": {"embedding": {"cohere_key": "<value>"}, "indexing": {"collection": "<value>", "url": "https://simplistic-electronics.info"}, "processing": {"chunk_size": 586224, "metadata_fields": ["user"], "text_fields": ["users.*.name"]}}, "name": "<value>", "workspaceId": "ad46e8e6-2f62-408e-9ba5-019ef3492fc0"}
       responses:
         "200":
-          application/json: {"configuration": {"s3_bucket_name": "airbyte_sync", "s3_bucket_path": "data_sync/test"}, "createdAt": 471392, "definitionId": "<value>", "destinationId": "af0c3c67-aa61-419f-8922-95b0bf840e86", "destinationType": "<value>", "name": "<value>", "workspaceId": "<value>"}
+          application/json: {"configuration": {"corpus_name": "<value>", "customer_id": "<id>", "oauth2": {"client_id": "<id>", "client_secret": "<value>"}}, "createdAt": 471392, "definitionId": "<value>", "destinationId": "af0c3c67-aa61-419f-8922-95b0bf840e86", "destinationType": "<value>", "name": "<value>", "workspaceId": "<value>"}
   createJob:
     Job Creation Request Example:
       requestBody:
@@ -3431,16 +3464,16 @@ examples:
   createSource:
     Source Creation Request Example:
       requestBody:
-        application/json: {"configuration": {"api_key": "<value>", "start_date": "2021-01-01T00:00:00Z"}, "name": "My Source", "workspaceId": "744cc0ed-7f05-4949-9e60-2a814f90c035"}
+        application/json: {"configuration": {"database": "<value>", "host": "specific-arcade.biz", "username": "Twila_Sawayn52"}, "name": "My Source", "workspaceId": "744cc0ed-7f05-4949-9e60-2a814f90c035"}
       responses:
         "200":
-          application/json: {"configuration": {"api_key": "<value>"}, "createdAt": 45355, "definitionId": "321d9b60-11d1-44cb-8c92-c246d53bf98e", "name": "Analytics Team Postgres", "sourceId": "18dccc91-0ab1-4f72-9ed7-0b8fc27c5826", "sourceType": "postgres", "workspaceId": "871d9b60-11d1-44cb-8c92-c246d53bf87e"}
+          application/json: {"configuration": {"api_key": "<value>", "subdomain": "<value>"}, "createdAt": 45355, "definitionId": "321d9b60-11d1-44cb-8c92-c246d53bf98e", "name": "Analytics Team Postgres", "sourceId": "18dccc91-0ab1-4f72-9ed7-0b8fc27c5826", "sourceType": "postgres", "workspaceId": "871d9b60-11d1-44cb-8c92-c246d53bf87e"}
     Source Creation Response Example:
       requestBody:
-        application/json: {"configuration": {"api_key": "<value>"}, "name": "<value>", "workspaceId": "cf0f31f3-ddc9-4848-834b-dfb109056aa6"}
+        application/json: {"configuration": {"api_token": "<value>"}, "name": "<value>", "workspaceId": "cf0f31f3-ddc9-4848-834b-dfb109056aa6"}
       responses:
         "200":
-          application/json: {"configuration": {"api_key": "<value>", "project_id": "8454.62"}, "createdAt": 782371, "definitionId": "<value>", "name": "<value>", "sourceId": "0c31738c-0b2d-4887-b506-e2cd1c39cc35", "sourceType": "<value>", "workspaceId": "<value>"}
+          application/json: {"configuration": {"site": "airbyte-test", "site_api_key": "<value>", "start_date": "2021-01-25T00:00:00Z"}, "createdAt": 782371, "definitionId": "<value>", "name": "<value>", "sourceId": "0c31738c-0b2d-4887-b506-e2cd1c39cc35", "sourceType": "<value>", "workspaceId": "<value>"}
   createWorkspace:
     Workspace Creation Request Example:
       requestBody:
@@ -3639,7 +3672,7 @@ examples:
         path:
           destinationId: "<value>"
       requestBody:
-        application/json: {"configuration": {"corpus_name": "<value>", "customer_id": "<id>", "oauth2": {"client_id": "<id>", "client_secret": "<value>"}}}
+        application/json: {"configuration": {"authentication": {"personal_access_token": "<value>"}, "database": "<value>", "hostname": "abc-12345678-wxyz.cloud.databricks.com", "http_path": "sql/1.0/warehouses/0000-1111111-abcd90"}}
       responses:
         "200":
           application/json: {"configuration": {"destination_path": "motherduck:"}, "createdAt": 663057, "definitionId": "<value>", "destinationId": "18dccc91-0ab1-4f72-9ed7-0b8fc27c5826", "destinationType": "<value>", "name": "running", "workspaceId": "744cc0ed-7f05-4949-9e60-2a814f90c035"}
@@ -3649,7 +3682,7 @@ examples:
         path:
           sourceId: "<value>"
       requestBody:
-        application/json: {"configuration": {"x-api-key": "<value>"}, "name": "My Source", "workspaceId": "744cc0ed-7f05-4949-9e60-2a814f90c035"}
+        application/json: {"configuration": {"access_key": "<value>", "start_date": "YYYY-MM-DD"}, "name": "My Source", "workspaceId": "744cc0ed-7f05-4949-9e60-2a814f90c035"}
       responses:
         "200":
           application/json: {"configuration": {"secret": "<value>"}, "createdAt": 183665, "definitionId": "321d9b60-11d1-44cb-8c92-c246d53bf98e", "name": "Analytics Team Postgres", "sourceId": "18dccc91-0ab1-4f72-9ed7-0b8fc27c5826", "sourceType": "postgres", "workspaceId": "871d9b60-11d1-44cb-8c92-c246d53bf87e"}
@@ -3661,7 +3694,7 @@ examples:
         application/json: {"configuration": {"credentials": {"client_id": "<value>", "client_secret": "<value>", "refresh_token": "<value>"}}, "name": "My source"}
       responses:
         "200":
-          application/json: {"configuration": {"api_key": "<value>"}, "createdAt": 776926, "definitionId": "<value>", "name": "running", "sourceId": "18dccc91-0ab1-4f72-9ed7-0b8fc27c5826", "sourceType": "postgres", "workspaceId": "744cc0ed-7f05-4949-9e60-2a814f90c035"}
+          application/json: {"configuration": {"api_key": "<value>", "application_key": "<value>"}, "createdAt": 776926, "definitionId": "<value>", "name": "running", "sourceId": "18dccc91-0ab1-4f72-9ed7-0b8fc27c5826", "sourceType": "postgres", "workspaceId": "744cc0ed-7f05-4949-9e60-2a814f90c035"}
   putDestination:
     Destination Update Request Example:
       parameters:
@@ -3677,10 +3710,10 @@ examples:
         path:
           destinationId: "<value>"
       requestBody:
-        application/json: {"configuration": {"credential": {"hmac_key_access_id": "1234567890abcdefghij1234", "hmac_key_secret": "1234567890abcdefghij1234567890ABCDEFGHIJ"}, "gcs_bucket_name": "airbyte_sync", "gcs_bucket_path": "data_sync/test"}, "name": "<value>"}
+        application/json: {"configuration": {"corpus_name": "<value>", "customer_id": "<id>", "oauth2": {"client_id": "<id>", "client_secret": "<value>"}}, "name": "<value>"}
       responses:
         "200":
-          application/json: {"configuration": {"database": "<value>", "host": "concerned-warming.biz", "username": "Helen.Lubowitz52"}, "createdAt": 490036, "definitionId": "<value>", "destinationId": "18dccc91-0ab1-4f72-9ed7-0b8fc27c5826", "destinationType": "<value>", "name": "running", "workspaceId": "744cc0ed-7f05-4949-9e60-2a814f90c035"}
+          application/json: {"configuration": {"credential": {"hmac_key_access_id": "1234567890abcdefghij1234", "hmac_key_secret": "1234567890abcdefghij1234567890ABCDEFGHIJ"}, "gcs_bucket_name": "airbyte_sync", "gcs_bucket_path": "data_sync/test"}, "createdAt": 490036, "definitionId": "<value>", "destinationId": "18dccc91-0ab1-4f72-9ed7-0b8fc27c5826", "destinationType": "<value>", "name": "running", "workspaceId": "744cc0ed-7f05-4949-9e60-2a814f90c035"}
   putSource:
     Source Update Request Example:
       parameters:
@@ -3696,7 +3729,7 @@ examples:
         path:
           sourceId: "<value>"
       requestBody:
-        application/json: {"configuration": {"client_id": "<id>", "developer_token": "<value>", "refresh_token": "<value>"}, "name": "<value>"}
+        application/json: {"configuration": {"api_key": "<value>", "secret_key": "<value>", "start_date": "2021-01-25T00:00:00Z"}, "name": "<value>"}
       responses:
         "200":
           application/json: {"configuration": {"custom_reports": [], "start_date": "2022-07-28"}, "createdAt": 476911, "definitionId": "<value>", "name": "running", "sourceId": "18dccc91-0ab1-4f72-9ed7-0b8fc27c5826", "sourceType": "postgres", "workspaceId": "744cc0ed-7f05-4949-9e60-2a814f90c035"}

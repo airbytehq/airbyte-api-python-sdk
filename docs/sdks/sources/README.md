@@ -21,7 +21,6 @@ Creates a source given a name, workspace id, and a json blob containing the conf
 
 ```python
 import airbyte_api
-import dateutil.parser
 from airbyte_api import models
 
 s = airbyte_api.AirbyteAPI(
@@ -35,9 +34,10 @@ s = airbyte_api.AirbyteAPI(
 
 
 res = s.sources.create_source(request=models.SourceCreateRequest(
-    configuration=models.SourcePosthog(
-        api_key='<value>',
-        start_date=dateutil.parser.isoparse('2021-01-01T00:00:00Z'),
+    configuration=models.SourcePostgres(
+        database='<value>',
+        host='specific-arcade.biz',
+        username='Twila_Sawayn52',
     ),
     name='My Source',
     workspace_id='744cc0ed-7f05-4949-9e60-2a814f90c035',
@@ -265,6 +265,7 @@ Update a Source
 
 ```python
 import airbyte_api
+import dateutil.parser
 from airbyte_api import api, models
 
 s = airbyte_api.AirbyteAPI(
@@ -280,8 +281,9 @@ s = airbyte_api.AirbyteAPI(
 res = s.sources.patch_source(request=api.PatchSourceRequest(
     source_id='<value>',
     source_patch_request=models.SourcePatchRequest(
-        configuration=models.SourceEventzilla(
-            x_api_key='<value>',
+        configuration=models.SourceExchangeRates(
+            access_key='<value>',
+            start_date=dateutil.parser.parse('YYYY-MM-DD').date(),
         ),
         name='My Source',
         workspace_id='744cc0ed-7f05-4949-9e60-2a814f90c035',
