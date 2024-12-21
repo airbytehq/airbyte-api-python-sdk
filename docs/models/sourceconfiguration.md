@@ -977,6 +977,12 @@ value: models.SourceGorgias = /* values here */
 value: models.SourceGreenhouse = /* values here */
 ```
 
+### `models.SourceGreythr`
+
+```python
+value: models.SourceGreythr = /* values here */
+```
+
 ### `models.SourceGridly`
 
 ```python
@@ -1035,6 +1041,12 @@ value: models.SourceHubplanner = /* values here */
 
 ```python
 value: models.SourceHubspot = /* values here */
+```
+
+### `models.SourceHuggingFaceDatasets`
+
+```python
+value: models.SourceHuggingFaceDatasets = /* values here */
 ```
 
 ### `models.SourceHumanitix`
@@ -1445,6 +1457,12 @@ value: models.SourceN8n = /* values here */
 value: models.SourceNasa = /* values here */
 ```
 
+### `models.SourceNavan`
+
+```python
+value: models.SourceNavan = /* values here */
+```
+
 ### `models.SourceNetsuite`
 
 ```python
@@ -1689,6 +1707,12 @@ value: models.SourcePexelsAPI = /* values here */
 
 ```python
 value: models.SourcePicqer = /* values here */
+```
+
+### `models.SourcePingdom`
+
+```python
+value: models.SourcePingdom = /* values here */
 ```
 
 ### `models.SourcePinterest`
