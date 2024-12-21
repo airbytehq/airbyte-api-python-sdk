@@ -2,10 +2,94 @@
 
 from __future__ import annotations
 import dataclasses
+from .encryptionmapperalgorithm import EncryptionMapperAlgorithm
+from .rowfilteringoperation import RowFilteringOperation
+from airbyte_api import utils
+from dataclasses_json import Undefined, dataclass_json
+from enum import Enum
+from typing import Union
 
 
+class Mode(str, Enum):
+    CBC = 'CBC'
+    CFB = 'CFB'
+    OFB = 'OFB'
+    CTR = 'CTR'
+    GCM = 'GCM'
+    ECB = 'ECB'
+
+
+class Padding(str, Enum):
+    NO_PADDING = 'NoPadding'
+    PKCS5_PADDING = 'PKCS5Padding'
+
+
+@dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
-class MapperConfiguration:
-    r"""The values required to configure the mapper."""
+class EncryptionAES:
+    algorithm: EncryptionMapperAlgorithm = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('algorithm') }})
+    field_name_suffix: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('fieldNameSuffix') }})
+    key: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('key') }})
+    mode: Mode = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('mode') }})
+    padding: Padding = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('padding') }})
+    target_field: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('targetField') }})
     
 
+
+
+@dataclass_json(undefined=Undefined.EXCLUDE)
+@dataclasses.dataclass
+class EncryptionRSA:
+    algorithm: EncryptionMapperAlgorithm = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('algorithm') }})
+    field_name_suffix: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('fieldNameSuffix') }})
+    public_key: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('publicKey') }})
+    target_field: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('targetField') }})
+    
+
+
+
+@dataclass_json(undefined=Undefined.EXCLUDE)
+@dataclasses.dataclass
+class RowFiltering:
+    conditions: RowFilteringOperation = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('conditions') }})
+    
+
+
+
+@dataclass_json(undefined=Undefined.EXCLUDE)
+@dataclasses.dataclass
+class FieldRenaming:
+    new_field_name: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('newFieldName') }})
+    r"""The new name for the field after renaming."""
+    original_field_name: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('originalFieldName') }})
+    r"""The current name of the field to rename."""
+    
+
+
+
+class HashingMethod(str, Enum):
+    r"""The hashing algorithm to use."""
+    MD2 = 'MD2'
+    MD5 = 'MD5'
+    SHA_1 = 'SHA-1'
+    SHA_224 = 'SHA-224'
+    SHA_256 = 'SHA-256'
+    SHA_384 = 'SHA-384'
+    SHA_512 = 'SHA-512'
+
+
+@dataclass_json(undefined=Undefined.EXCLUDE)
+@dataclasses.dataclass
+class Hashing:
+    field_name_suffix: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('fieldNameSuffix') }})
+    r"""The suffix to append to the field name after hashing."""
+    method: HashingMethod = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('method') }})
+    r"""The hashing algorithm to use."""
+    target_field: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('targetField') }})
+    r"""The name of the field to be hashed."""
+    
+
+
+Encryption = Union[EncryptionRSA, EncryptionAES]
+
+MapperConfiguration = Union[Hashing, FieldRenaming, RowFiltering, Encryption]
