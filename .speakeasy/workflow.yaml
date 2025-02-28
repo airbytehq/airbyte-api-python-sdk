@@ -1,5 +1,11 @@
+# !NOTE: Speakeasy CLI version 1.508.0 is the last version compatible with the Python v1 
+# generator. After upgrading to the Python v2 generator, update `speakeasyVersion` to 
+# `latest` to ensure you continue to receive the latest updates.
+# 
+# See: https://www.speakeasy.com/docs/manage/migrate/python-migration
+
 workflowVersion: 1.0.0
-speakeasyVersion: latest
+speakeasyVersion: 1.508.0
 sources:
     my-source:
         inputs:
