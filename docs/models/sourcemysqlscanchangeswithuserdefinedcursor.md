@@ -5,6 +5,7 @@ Incrementally detects new inserts and updates using the <a href="https://docs.ai
 
 ## Fields
 
-| Field                                                                    | Type                                                                     | Required                                                                 | Description                                                              |
-| ------------------------------------------------------------------------ | ------------------------------------------------------------------------ | ------------------------------------------------------------------------ | ------------------------------------------------------------------------ |
-| `method`                                                                 | [models.SourceMysqlSchemasMethod](../models/sourcemysqlschemasmethod.md) | :heavy_check_mark:                                                       | N/A                                                                      |
+| Field                                                                | Type                                                                 | Required                                                             | Description                                                          |
+| -------------------------------------------------------------------- | -------------------------------------------------------------------- | -------------------------------------------------------------------- | -------------------------------------------------------------------- |
+| `additional_properties`                                              | Dict[str, *Any*]                                                     | :heavy_minus_sign:                                                   | N/A                                                                  |
+| `method`                                                             | [Optional[models.SourceMysqlMethod]](../models/sourcemysqlmethod.md) | :heavy_minus_sign:                                                   | N/A                                                                  |

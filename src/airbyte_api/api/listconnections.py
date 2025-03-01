@@ -15,6 +15,8 @@ class ListConnectionsRequest:
     r"""Set the limit on the number of Connections returned. The default is 20."""
     offset: Optional[int] = dataclasses.field(default=0, metadata={'query_param': { 'field_name': 'offset', 'style': 'form', 'explode': True }})
     r"""Set the offset to start at when returning Connections. The default is 0"""
+    tag_ids: Optional[List[str]] = dataclasses.field(default=None, metadata={'query_param': { 'field_name': 'tagIds', 'style': 'form', 'explode': True }})
+    r"""The UUIDs of the tags you wish to list connections for. Empty list will retrieve all connections."""
     workspace_ids: Optional[List[str]] = dataclasses.field(default=None, metadata={'query_param': { 'field_name': 'workspaceIds', 'style': 'form', 'explode': True }})
     r"""The UUIDs of the workspaces you wish to list connections for. Empty list will retrieve all allowed workspaces."""
     

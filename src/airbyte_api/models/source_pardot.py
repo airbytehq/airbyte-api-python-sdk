@@ -2,8 +2,10 @@
 
 from __future__ import annotations
 import dataclasses
+import dateutil.parser
 from airbyte_api import utils
 from dataclasses_json import Undefined, dataclass_json
+from datetime import datetime
 from enum import Enum
 from typing import Final, Optional
 
@@ -25,8 +27,10 @@ class SourcePardot:
     r"""Salesforce Refresh Token used for Airbyte to access your Salesforce account. If you don't know what this is, follow this <a href=\\"https://medium.com/@bpmmendis94/obtain-access-refresh-tokens-from-salesforce-rest-api-a324fe4ccd9b\\">guide</a> to retrieve it."""
     is_sandbox: Optional[bool] = dataclasses.field(default=False, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('is_sandbox'), 'exclude': lambda f: f is None }})
     r"""Whether or not the the app is in a Salesforce sandbox. If you do not know what this, assume it is false."""
+    page_size: Optional[str] = dataclasses.field(default='1000', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('page_size'), 'exclude': lambda f: f is None }})
+    r"""The maximum number of records to return per request"""
     SOURCE_TYPE: Final[Pardot] = dataclasses.field(default=Pardot.PARDOT, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
-    start_date: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('start_date'), 'exclude': lambda f: f is None }})
-    r"""UTC date and time in the format 2017-01-25T00:00:00Z. Any data before this date will not be replicated. Leave blank to skip this filter"""
+    start_date: Optional[datetime] = dataclasses.field(default=dateutil.parser.isoparse('2007-01-01T00:00:00Z'), metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('start_date'), 'encoder': utils.datetimeisoformat(True), 'decoder': dateutil.parser.isoparse, 'exclude': lambda f: f is None }})
+    r"""UTC date and time in the format 2000-01-01T00:00:00Z. Any data before this date will not be replicated. Defaults to the year Pardot was released."""
     
 

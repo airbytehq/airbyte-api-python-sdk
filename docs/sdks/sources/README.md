@@ -38,6 +38,8 @@ res = s.sources.create_source(request=models.SourceCreateRequest(
     configuration=models.SourcePosthog(
         api_key='<value>',
         start_date=dateutil.parser.isoparse('2021-01-01T00:00:00Z'),
+        base_url='https://app.posthog.com',
+        events_time_step=30,
     ),
     name='My Source',
     workspace_id='744cc0ed-7f05-4949-9e60-2a814f90c035',
@@ -183,7 +185,7 @@ s = airbyte_api.AirbyteAPI(
 
 res = s.sources.initiate_o_auth(request=models.InitiateOauthRequest(
     redirect_url='https://cloud.airbyte.io/v1/api/oauth/callback',
-    source_type=models.OAuthActorNames.GITLAB,
+    source_type=models.OAuthActorNames.GCS,
     workspace_id='871d9b60-11d1-44cb-8c92-c246d53bf87e',
 ))
 
@@ -265,6 +267,7 @@ Update a Source
 
 ```python
 import airbyte_api
+import dateutil.parser
 from airbyte_api import api, models
 
 s = airbyte_api.AirbyteAPI(
@@ -280,8 +283,10 @@ s = airbyte_api.AirbyteAPI(
 res = s.sources.patch_source(request=api.PatchSourceRequest(
     source_id='<value>',
     source_patch_request=models.SourcePatchRequest(
-        configuration=models.SourceEventzilla(
-            x_api_key='<value>',
+        configuration=models.SourceExchangeRates(
+            access_key='<value>',
+            start_date=dateutil.parser.parse('YYYY-MM-DD').date(),
+            ignore_weekends=True,
         ),
         name='My Source',
         workspace_id='744cc0ed-7f05-4949-9e60-2a814f90c035',
@@ -333,10 +338,7 @@ s = airbyte_api.AirbyteAPI(
 res = s.sources.put_source(request=api.PutSourceRequest(
     source_id='<value>',
     source_put_request=models.SourcePutRequest(
-        configuration=models.SourceGridly(
-            api_key='<value>',
-            grid_id='<id>',
-        ),
+        configuration=models.SourceAirtable(),
         name='My Source',
     ),
 ))

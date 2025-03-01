@@ -3,6 +3,6 @@
 
 ## Values
 
-| Name  | Value |
-| ----- | ----- |
-| `CDC` | CDC   |
+| Name       | Value      |
+| ---------- | ---------- |
+| `STANDARD` | STANDARD   |

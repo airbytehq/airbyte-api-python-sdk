@@ -8,7 +8,7 @@ from enum import Enum
 from typing import Any, Dict, Final, Optional, Union
 
 
-class SourceMongodbV2SchemasClusterType(str, Enum):
+class SourceMongodbV2ClusterType(str, Enum):
     SELF_MANAGED_REPLICA_SET = 'SELF_MANAGED_REPLICA_SET'
 
 
@@ -23,7 +23,7 @@ class SelfManagedReplicaSet:
     additional_properties: Optional[Dict[str, Any]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'exclude': lambda f: f is None }})
     auth_source: Optional[str] = dataclasses.field(default='admin', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_source'), 'exclude': lambda f: f is None }})
     r"""The authentication source where the user information is stored."""
-    CLUSTER_TYPE: Final[SourceMongodbV2SchemasClusterType] = dataclasses.field(default=SourceMongodbV2SchemasClusterType.SELF_MANAGED_REPLICA_SET, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('cluster_type') }})
+    CLUSTER_TYPE: Final[SourceMongodbV2ClusterType] = dataclasses.field(default=SourceMongodbV2ClusterType.SELF_MANAGED_REPLICA_SET, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('cluster_type') }})
     password: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('password'), 'exclude': lambda f: f is None }})
     r"""The password associated with this username."""
     schema_enforced: Optional[bool] = dataclasses.field(default=True, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('schema_enforced'), 'exclude': lambda f: f is None }})
@@ -34,7 +34,7 @@ class SelfManagedReplicaSet:
 
 
 
-class SourceMongodbV2ClusterType(str, Enum):
+class SourceMongodbV2SchemasClusterType(str, Enum):
     ATLAS_REPLICA_SET = 'ATLAS_REPLICA_SET'
 
 
@@ -53,7 +53,7 @@ class MongoDBAtlasReplicaSet:
     additional_properties: Optional[Dict[str, Any]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'exclude': lambda f: f is None }})
     auth_source: Optional[str] = dataclasses.field(default='admin', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_source'), 'exclude': lambda f: f is None }})
     r"""The authentication source where the user information is stored.  See https://www.mongodb.com/docs/manual/reference/connection-string/#mongodb-urioption-urioption.authSource for more details."""
-    CLUSTER_TYPE: Final[SourceMongodbV2ClusterType] = dataclasses.field(default=SourceMongodbV2ClusterType.ATLAS_REPLICA_SET, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('cluster_type') }})
+    CLUSTER_TYPE: Final[SourceMongodbV2SchemasClusterType] = dataclasses.field(default=SourceMongodbV2SchemasClusterType.ATLAS_REPLICA_SET, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('cluster_type') }})
     schema_enforced: Optional[bool] = dataclasses.field(default=True, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('schema_enforced'), 'exclude': lambda f: f is None }})
     r"""When enabled, syncs will validate and structure records against the stream's schema."""
     

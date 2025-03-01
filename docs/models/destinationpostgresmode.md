@@ -3,6 +3,6 @@
 
 ## Values
 
-| Name    | Value   |
-| ------- | ------- |
-| `ALLOW` | allow   |
+| Name      | Value     |
+| --------- | --------- |
+| `DISABLE` | disable   |

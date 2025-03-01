@@ -47,6 +47,8 @@ class SourceSftpBulkSchemasDeliveryType(str, Enum):
 class SourceSftpBulkCopyRawFiles:
     r"""Copy raw files without parsing their contents. Bits are copied into the destination exactly as they appeared in the source. Recommended for use with unstructured text data, non-text and compressed files."""
     DELIVERY_TYPE: Final[Optional[SourceSftpBulkSchemasDeliveryType]] = dataclasses.field(default=SourceSftpBulkSchemasDeliveryType.USE_FILE_TRANSFER, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('delivery_type'), 'exclude': lambda f: f is None }})
+    preserve_directory_structure: Optional[bool] = dataclasses.field(default=True, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('preserve_directory_structure'), 'exclude': lambda f: f is None }})
+    r"""If enabled, sends subdirectory folder structure along with source file names to the destination. Otherwise, files will be synced by their names only. This option is ignored when file-based replication is not enabled."""
     
 
 

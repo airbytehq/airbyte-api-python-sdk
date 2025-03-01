@@ -17,4 +17,8 @@ An enumeration.
 | `ACTION_TYPE`                  | action_type                    |
 | `ACTION_VIDEO_SOUND`           | action_video_sound             |
 | `ACTION_VIDEO_TYPE`            | action_video_type              |
+| `CONVERSION_DESTINATION`       | conversion_destination         |
+| `MATCHED_PERSONA_ID`           | matched_persona_id             |
+| `MATCHED_PERSONA_NAME`         | matched_persona_name           |
+| `SIGNAL_SOURCE_BUCKET`         | signal_source_bucket           |
 | `STANDARD_EVENT_CONTENT_TYPE`  | standard_event_content_type    |

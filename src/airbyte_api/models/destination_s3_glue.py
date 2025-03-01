@@ -36,7 +36,7 @@ class DestinationS3GlueNoCompression:
 
 
 
-class Flattening(str, Enum):
+class DestinationS3GlueFlattening(str, Enum):
     r"""Whether the input json data should be normalized (flattened) in the output JSON Lines. Please refer to docs for details."""
     NO_FLATTENING = 'No flattening'
     ROOT_LEVEL_FLATTENING = 'Root level flattening'
@@ -51,7 +51,7 @@ class DestinationS3GlueFormatType(str, Enum):
 class DestinationS3GlueJSONLinesNewlineDelimitedJSON:
     compression: Optional[DestinationS3GlueCompression] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('compression'), 'exclude': lambda f: f is None }})
     r"""Whether the output files should be compressed. If compression is selected, the output filename will have an extra extension (GZIP: \\".jsonl.gz\\")."""
-    flattening: Optional[Flattening] = dataclasses.field(default=Flattening.ROOT_LEVEL_FLATTENING, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('flattening'), 'exclude': lambda f: f is None }})
+    flattening: Optional[DestinationS3GlueFlattening] = dataclasses.field(default=DestinationS3GlueFlattening.ROOT_LEVEL_FLATTENING, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('flattening'), 'exclude': lambda f: f is None }})
     r"""Whether the input json data should be normalized (flattened) in the output JSON Lines. Please refer to docs for details."""
     format_type: Optional[DestinationS3GlueFormatType] = dataclasses.field(default=DestinationS3GlueFormatType.JSONL, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('format_type'), 'exclude': lambda f: f is None }})
     

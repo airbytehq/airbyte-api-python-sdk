@@ -3,6 +3,6 @@
 
 ## Values
 
-| Name                                 | Value                                |
-| ------------------------------------ | ------------------------------------ |
-| `ENCRYPTED_TRUST_SERVER_CERTIFICATE` | encrypted_trust_server_certificate   |
+| Name                           | Value                          |
+| ------------------------------ | ------------------------------ |
+| `ENCRYPTED_VERIFY_CERTIFICATE` | encrypted_verify_certificate   |

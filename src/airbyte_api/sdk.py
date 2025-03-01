@@ -10,6 +10,7 @@ from .permissions import Permissions
 from .sdkconfiguration import SDKConfiguration
 from .sources import Sources
 from .streams import Streams
+from .tags import Tags
 from .users import Users
 from .utils.retries import RetryConfig
 from .workspaces import Workspaces
@@ -27,6 +28,7 @@ class AirbyteAPI:
     permissions: Permissions
     sources: Sources
     streams: Streams
+    tags: Tags
     users: Users
     workspaces: Workspaces
 
@@ -93,5 +95,6 @@ class AirbyteAPI:
         self.permissions = Permissions(self.sdk_configuration)
         self.sources = Sources(self.sdk_configuration)
         self.streams = Streams(self.sdk_configuration)
+        self.tags = Tags(self.sdk_configuration)
         self.users = Users(self.sdk_configuration)
         self.workspaces = Workspaces(self.sdk_configuration)

@@ -33,7 +33,7 @@ class VerifyFull:
 
 
 
-class DestinationPostgresSchemasSSLModeSSLModesMode(str, Enum):
+class DestinationPostgresSchemasSSLModeSSLModes5Mode(str, Enum):
     VERIFY_CA = 'verify-ca'
 
 
@@ -45,12 +45,12 @@ class VerifyCa:
     r"""CA certificate"""
     client_key_password: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('client_key_password'), 'exclude': lambda f: f is None }})
     r"""Password for keystorage. This field is optional. If you do not add it - the password will be generated automatically."""
-    MODE: Final[Optional[DestinationPostgresSchemasSSLModeSSLModesMode]] = dataclasses.field(default=DestinationPostgresSchemasSSLModeSSLModesMode.VERIFY_CA, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('mode'), 'exclude': lambda f: f is None }})
+    MODE: Final[Optional[DestinationPostgresSchemasSSLModeSSLModes5Mode]] = dataclasses.field(default=DestinationPostgresSchemasSSLModeSSLModes5Mode.VERIFY_CA, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('mode'), 'exclude': lambda f: f is None }})
     
 
 
 
-class DestinationPostgresSchemasSslModeMode(str, Enum):
+class DestinationPostgresSchemasSSLModeSSLModesMode(str, Enum):
     REQUIRE = 'require'
 
 
@@ -58,12 +58,12 @@ class DestinationPostgresSchemasSslModeMode(str, Enum):
 @dataclasses.dataclass
 class Require:
     r"""Require SSL mode."""
-    MODE: Final[Optional[DestinationPostgresSchemasSslModeMode]] = dataclasses.field(default=DestinationPostgresSchemasSslModeMode.REQUIRE, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('mode'), 'exclude': lambda f: f is None }})
+    MODE: Final[Optional[DestinationPostgresSchemasSSLModeSSLModesMode]] = dataclasses.field(default=DestinationPostgresSchemasSSLModeSSLModesMode.REQUIRE, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('mode'), 'exclude': lambda f: f is None }})
     
 
 
 
-class DestinationPostgresSchemasMode(str, Enum):
+class DestinationPostgresSchemasSslModeMode(str, Enum):
     PREFER = 'prefer'
 
 
@@ -71,12 +71,12 @@ class DestinationPostgresSchemasMode(str, Enum):
 @dataclasses.dataclass
 class Prefer:
     r"""Prefer SSL mode."""
-    MODE: Final[Optional[DestinationPostgresSchemasMode]] = dataclasses.field(default=DestinationPostgresSchemasMode.PREFER, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('mode'), 'exclude': lambda f: f is None }})
+    MODE: Final[Optional[DestinationPostgresSchemasSslModeMode]] = dataclasses.field(default=DestinationPostgresSchemasSslModeMode.PREFER, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('mode'), 'exclude': lambda f: f is None }})
     
 
 
 
-class DestinationPostgresMode(str, Enum):
+class DestinationPostgresSchemasMode(str, Enum):
     ALLOW = 'allow'
 
 
@@ -84,12 +84,12 @@ class DestinationPostgresMode(str, Enum):
 @dataclasses.dataclass
 class Allow:
     r"""Allow SSL mode."""
-    MODE: Final[Optional[DestinationPostgresMode]] = dataclasses.field(default=DestinationPostgresMode.ALLOW, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('mode'), 'exclude': lambda f: f is None }})
+    MODE: Final[Optional[DestinationPostgresSchemasMode]] = dataclasses.field(default=DestinationPostgresSchemasMode.ALLOW, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('mode'), 'exclude': lambda f: f is None }})
     
 
 
 
-class DestinationPostgresSchemasSSLModeSSLModes1Mode(str, Enum):
+class DestinationPostgresMode(str, Enum):
     DISABLE = 'disable'
 
 
@@ -97,7 +97,7 @@ class DestinationPostgresSchemasSSLModeSSLModes1Mode(str, Enum):
 @dataclasses.dataclass
 class Disable:
     r"""Disable SSL."""
-    MODE: Final[Optional[DestinationPostgresSchemasSSLModeSSLModes1Mode]] = dataclasses.field(default=DestinationPostgresSchemasSSLModeSSLModes1Mode.DISABLE, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('mode'), 'exclude': lambda f: f is None }})
+    MODE: Final[Optional[DestinationPostgresMode]] = dataclasses.field(default=DestinationPostgresMode.DISABLE, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('mode'), 'exclude': lambda f: f is None }})
     
 
 
@@ -198,6 +198,8 @@ class DestinationPostgres:
     """
     tunnel_method: Optional[DestinationPostgresSSHTunnelMethod] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('tunnel_method'), 'exclude': lambda f: f is None }})
     r"""Whether to initiate an SSH tunnel before connecting to the database, and if so, which kind of authentication to use."""
+    unconstrained_number: Optional[bool] = dataclasses.field(default=False, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('unconstrained_number'), 'exclude': lambda f: f is None }})
+    r"""Create numeric columns as unconstrained DECIMAL instead of NUMBER(38, 9). This will allow increased precision in numeric values. (this is disabled by default for backwards compatibility, but is recommended to enable)"""
     
 
 
