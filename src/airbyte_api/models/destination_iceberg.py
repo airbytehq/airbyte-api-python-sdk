@@ -78,7 +78,7 @@ class HadoopCatalogUseHierarchicalFileSystemsAsSameAsStorageConfig:
 
 
 
-class CatalogType(str, Enum):
+class DestinationIcebergSchemasCatalogConfigIcebergCatalogConfig1CatalogType(str, Enum):
     HIVE = 'Hive'
 
 
@@ -87,7 +87,7 @@ class CatalogType(str, Enum):
 class HiveCatalogUseApacheHiveMetaStore:
     hive_thrift_uri: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('hive_thrift_uri') }})
     r"""Hive MetaStore thrift server uri of iceberg catalog."""
-    catalog_type: Optional[CatalogType] = dataclasses.field(default=CatalogType.HIVE, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('catalog_type'), 'exclude': lambda f: f is None }})
+    catalog_type: Optional[DestinationIcebergSchemasCatalogConfigIcebergCatalogConfig1CatalogType] = dataclasses.field(default=DestinationIcebergSchemasCatalogConfigIcebergCatalogConfig1CatalogType.HIVE, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('catalog_type'), 'exclude': lambda f: f is None }})
     database: Optional[str] = dataclasses.field(default='default', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('database'), 'exclude': lambda f: f is None }})
     r"""The default database tables are written to if the source does not specify a namespace. The usual value for this field is \\"default\\"."""
     

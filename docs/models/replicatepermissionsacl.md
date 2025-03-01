@@ -1,0 +1,12 @@
+# ReplicatePermissionsACL
+
+Sends one identity stream and one for more permissions (ACL) streams to the destination. This data can be used in downstream systems to recreate permission restrictions mirroring the original source.
+
+
+## Fields
+
+| Field                                                                                                         | Type                                                                                                          | Required                                                                                                      | Description                                                                                                   |
+| ------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------- |
+| `delivery_type`                                                                                               | [Optional[models.SourceGoogleDriveSchemasDeliveryType]](../models/sourcegoogledriveschemasdeliverytype.md)    | :heavy_minus_sign:                                                                                            | N/A                                                                                                           |
+| `domain`                                                                                                      | *Optional[str]*                                                                                               | :heavy_minus_sign:                                                                                            | The Google domain of the identities.                                                                          |
+| `include_identities_stream`                                                                                   | *Optional[bool]*                                                                                              | :heavy_minus_sign:                                                                                            | This data can be used in downstream systems to recreate permission restrictions mirroring the original source |

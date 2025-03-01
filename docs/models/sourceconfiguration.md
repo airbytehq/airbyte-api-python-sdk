@@ -59,6 +59,12 @@ value: models.SourceAkeneo = /* values here */
 value: models.SourceAlgolia = /* values here */
 ```
 
+### `models.SourceAlphaVantage`
+
+```python
+value: models.SourceAlphaVantage = /* values here */
+```
+
 ### `models.SourceAmazonAds`
 
 ```python
@@ -155,6 +161,12 @@ value: models.SourceAzureBlobStorage = /* values here */
 value: models.SourceAzureTable = /* values here */
 ```
 
+### `models.SourceBabelforce`
+
+```python
+value: models.SourceBabelforce = /* values here */
+```
+
 ### `models.SourceBambooHr`
 
 ```python
@@ -219,6 +231,12 @@ value: models.SourceBraintree = /* values here */
 
 ```python
 value: models.SourceBraze = /* values here */
+```
+
+### `models.SourceBreezometer`
+
+```python
+value: models.SourceBreezometer = /* values here */
 ```
 
 ### `models.SourceBreezyHr`
@@ -303,6 +321,12 @@ value: models.SourceCanny = /* values here */
 
 ```python
 value: models.SourceCapsuleCrm = /* values here */
+```
+
+### `models.SourceCaptainData`
+
+```python
+value: models.SourceCaptainData = /* values here */
 ```
 
 ### `models.SourceCareQualityCommission`
@@ -447,6 +471,12 @@ value: models.SourceCodefresh = /* values here */
 
 ```python
 value: models.SourceCoinAPI = /* values here */
+```
+
+### `models.SourceCoingeckoCoins`
+
+```python
+value: models.SourceCoingeckoCoins = /* values here */
 ```
 
 ### `models.SourceCoinmarketcap`
@@ -635,6 +665,12 @@ value: models.SourceEventee = /* values here */
 value: models.SourceEventzilla = /* values here */
 ```
 
+### `models.SourceEverhour`
+
+```python
+value: models.SourceEverhour = /* values here */
+```
+
 ### `models.SourceExchangeRates`
 
 ```python
@@ -663,6 +699,12 @@ value: models.SourceFactorial = /* values here */
 
 ```python
 value: models.SourceFaker = /* values here */
+```
+
+### `models.SourceFastbill`
+
+```python
+value: models.SourceFastbill = /* values here */
 ```
 
 ### `models.SourceFauna`
@@ -813,6 +855,12 @@ value: models.SourceFront = /* values here */
 
 ```python
 value: models.SourceFulcrum = /* values here */
+```
+
+### `models.SourceFullstory`
+
+```python
+value: models.SourceFullstory = /* values here */
 ```
 
 ### `models.SourceGainsightPx`
@@ -977,6 +1025,12 @@ value: models.SourceGorgias = /* values here */
 value: models.SourceGreenhouse = /* values here */
 ```
 
+### `models.SourceGreythr`
+
+```python
+value: models.SourceGreythr = /* values here */
+```
+
 ### `models.SourceGridly`
 
 ```python
@@ -1013,6 +1067,18 @@ value: models.SourceHarvest = /* values here */
 value: models.SourceHeight = /* values here */
 ```
 
+### `models.SourceHellobaton`
+
+```python
+value: models.SourceHellobaton = /* values here */
+```
+
+### `models.SourceHelpScout`
+
+```python
+value: models.SourceHelpScout = /* values here */
+```
+
 ### `models.SourceHibob`
 
 ```python
@@ -1023,6 +1089,12 @@ value: models.SourceHibob = /* values here */
 
 ```python
 value: models.SourceHighLevel = /* values here */
+```
+
+### `models.SourceHoorayhr`
+
+```python
+value: models.SourceHoorayhr = /* values here */
 ```
 
 ### `models.SourceHubplanner`
@@ -1037,10 +1109,22 @@ value: models.SourceHubplanner = /* values here */
 value: models.SourceHubspot = /* values here */
 ```
 
+### `models.SourceHuggingFaceDatasets`
+
+```python
+value: models.SourceHuggingFaceDatasets = /* values here */
+```
+
 ### `models.SourceHumanitix`
 
 ```python
 value: models.SourceHumanitix = /* values here */
+```
+
+### `models.SourceHuntr`
+
+```python
+value: models.SourceHuntr = /* values here */
 ```
 
 ### `models.SourceIlluminaBasespace`
@@ -1083,6 +1167,12 @@ value: models.SourceInstatus = /* values here */
 
 ```python
 value: models.SourceIntercom = /* values here */
+```
+
+### `models.SourceIntruder`
+
+```python
+value: models.SourceIntruder = /* values here */
 ```
 
 ### `models.SourceInvoiced`
@@ -1149,6 +1239,12 @@ value: models.SourceK6Cloud = /* values here */
 
 ```python
 value: models.SourceKatana = /* values here */
+```
+
+### `models.SourceKeka`
+
+```python
+value: models.SourceKeka = /* values here */
 ```
 
 ### `models.SourceKisi`
@@ -1277,6 +1373,12 @@ value: models.SourceMailchimp = /* values here */
 value: models.SourceMailerlite = /* values here */
 ```
 
+### `models.SourceMailersend`
+
+```python
+value: models.SourceMailersend = /* values here */
+```
+
 ### `models.SourceMailgun`
 
 ```python
@@ -1323,6 +1425,12 @@ value: models.SourceMarketstack = /* values here */
 
 ```python
 value: models.SourceMention = /* values here */
+```
+
+### `models.SourceMerge`
+
+```python
+value: models.SourceMerge = /* values here */
 ```
 
 ### `models.SourceMetabase`
@@ -1445,6 +1553,12 @@ value: models.SourceN8n = /* values here */
 value: models.SourceNasa = /* values here */
 ```
 
+### `models.SourceNavan`
+
+```python
+value: models.SourceNavan = /* values here */
+```
+
 ### `models.SourceNetsuite`
 
 ```python
@@ -1455,6 +1569,12 @@ value: models.SourceNetsuite = /* values here */
 
 ```python
 value: models.SourceNewsAPI = /* values here */
+```
+
+### `models.SourceNewsdata`
+
+```python
+value: models.SourceNewsdata = /* values here */
 ```
 
 ### `models.SourceNewsdataIo`
@@ -1583,12 +1703,6 @@ value: models.SourceOracle = /* values here */
 value: models.SourceOrb = /* values here */
 ```
 
-### `models.SourceOrbit`
-
-```python
-value: models.SourceOrbit = /* values here */
-```
-
 ### `models.SourceOura`
 
 ```python
@@ -1643,6 +1757,12 @@ value: models.SourcePapersign = /* values here */
 value: models.SourcePardot = /* values here */
 ```
 
+### `models.SourcePayfit`
+
+```python
+value: models.SourcePayfit = /* values here */
+```
+
 ### `models.SourcePaypalTransaction`
 
 ```python
@@ -1689,6 +1809,12 @@ value: models.SourcePexelsAPI = /* values here */
 
 ```python
 value: models.SourcePicqer = /* values here */
+```
+
+### `models.SourcePingdom`
+
+```python
+value: models.SourcePingdom = /* values here */
 ```
 
 ### `models.SourcePinterest`
@@ -1895,6 +2021,12 @@ value: models.SourceRepairshopr = /* values here */
 value: models.SourceReplyIo = /* values here */
 ```
 
+### `models.SourceRetailexpressByMaropost`
+
+```python
+value: models.SourceRetailexpressByMaropost = /* values here */
+```
+
 ### `models.SourceRetently`
 
 ```python
@@ -1913,10 +2045,22 @@ value: models.SourceRevenuecat = /* values here */
 value: models.SourceRevolutMerchant = /* values here */
 ```
 
+### `models.SourceRingcentral`
+
+```python
+value: models.SourceRingcentral = /* values here */
+```
+
 ### `models.SourceRkiCovid`
 
 ```python
 value: models.SourceRkiCovid = /* values here */
+```
+
+### `models.SourceRocketChat`
+
+```python
+value: models.SourceRocketChat = /* values here */
 ```
 
 ### `models.SourceRocketlane`
@@ -2051,6 +2195,18 @@ value: models.SourceSenseforce = /* values here */
 value: models.SourceSentry = /* values here */
 ```
 
+### `models.SourceSerpstat`
+
+```python
+value: models.SourceSerpstat = /* values here */
+```
+
+### `models.SourceServiceNow`
+
+```python
+value: models.SourceServiceNow = /* values here */
+```
+
 ### `models.SourceSftp`
 
 ```python
@@ -2073,6 +2229,12 @@ value: models.SourceSharetribe = /* values here */
 
 ```python
 value: models.SourceShippo = /* values here */
+```
+
+### `models.SourceShipstation`
+
+```python
+value: models.SourceShipstation = /* values here */
 ```
 
 ### `models.SourceShopify`
@@ -2339,10 +2501,22 @@ value: models.SourceTimely = /* values here */
 value: models.SourceTinyemail = /* values here */
 ```
 
+### `models.SourceTmdb`
+
+```python
+value: models.SourceTmdb = /* values here */
+```
+
 ### `models.SourceTodoist`
 
 ```python
 value: models.SourceTodoist = /* values here */
+```
+
+### `models.SourceToggl`
+
+```python
+value: models.SourceToggl = /* values here */
 ```
 
 ### `models.SourceTrackPms`
@@ -2397,6 +2571,12 @@ value: models.SourceTwilioTaskrouter = /* values here */
 
 ```python
 value: models.SourceTwitter = /* values here */
+```
+
+### `models.SourceTyntecSms`
+
+```python
+value: models.SourceTyntecSms = /* values here */
 ```
 
 ### `models.SourceTypeform`
@@ -2537,6 +2717,12 @@ value: models.SourceWordpress = /* values here */
 value: models.SourceWorkable = /* values here */
 ```
 
+### `models.SourceWorkday`
+
+```python
+value: models.SourceWorkday = /* values here */
+```
+
 ### `models.SourceWorkflowmax`
 
 ```python
@@ -2595,6 +2781,12 @@ value: models.SourceYotpo = /* values here */
 
 ```python
 value: models.SourceYouNeedABudgetYnab = /* values here */
+```
+
+### `models.SourceYounium`
+
+```python
+value: models.SourceYounium = /* values here */
 ```
 
 ### `models.SourceYoutubeAnalytics`

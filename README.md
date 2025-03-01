@@ -66,7 +66,6 @@ res = s.connections.create_connection(request=models.ConnectionCreateRequest(
     destination_id='e478de0d-a3a0-475c-b019-25f7dd29e281',
     source_id='95e66a59-8045-4307-9678-63bc3c9b8c93',
     name='Postgres-to-Bigquery',
-    namespace_format='${SOURCE_NAMESPACE}',
 ))
 
 if res.connection_response is not None:
@@ -137,6 +136,14 @@ if res.connection_response is not None:
 
 * [get_stream_properties](docs/sdks/streams/README.md#get_stream_properties) - Get stream properties
 
+### [tags](docs/sdks/tags/README.md)
+
+* [create_tag](docs/sdks/tags/README.md#create_tag) - Create a tag
+* [delete_tag](docs/sdks/tags/README.md#delete_tag) - Delete a tag
+* [get_tag](docs/sdks/tags/README.md#get_tag) - Get a tag
+* [list_tags](docs/sdks/tags/README.md#list_tags) - List all tags
+* [update_tag](docs/sdks/tags/README.md#update_tag) - Update a tag
+
 ### [users](docs/sdks/users/README.md)
 
 * [list_users_within_an_organization](docs/sdks/users/README.md#list_users_within_an_organization) - List all users within an organization
@@ -200,7 +207,6 @@ try:
     destination_id='e478de0d-a3a0-475c-b019-25f7dd29e281',
     source_id='95e66a59-8045-4307-9678-63bc3c9b8c93',
     name='Postgres-to-Bigquery',
-    namespace_format='${SOURCE_NAMESPACE}',
 ))
 
 except errors.SDKError as e:
@@ -221,7 +227,7 @@ if res.connection_response is not None:
 
 ### Override Server URL Per-Client
 
-The default server can also be overridden globally by passing a URL to the `server_url: str` optional parameter when initializing the SDK client instance. For example:
+The default server can be overridden globally by passing a URL to the `server_url: str` optional parameter when initializing the SDK client instance. For example:
 ```python
 import airbyte_api
 from airbyte_api import models
@@ -241,7 +247,6 @@ res = s.connections.create_connection(request=models.ConnectionCreateRequest(
     destination_id='e478de0d-a3a0-475c-b019-25f7dd29e281',
     source_id='95e66a59-8045-4307-9678-63bc3c9b8c93',
     name='Postgres-to-Bigquery',
-    namespace_format='${SOURCE_NAMESPACE}',
 ))
 
 if res.connection_response is not None:
@@ -303,7 +308,6 @@ res = s.connections.create_connection(request=models.ConnectionCreateRequest(
     destination_id='e478de0d-a3a0-475c-b019-25f7dd29e281',
     source_id='95e66a59-8045-4307-9678-63bc3c9b8c93',
     name='Postgres-to-Bigquery',
-    namespace_format='${SOURCE_NAMESPACE}',
 ))
 
 if res.connection_response is not None:

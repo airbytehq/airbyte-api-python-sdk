@@ -10,7 +10,7 @@ from enum import Enum
 from typing import Final, List, Optional, Union
 
 
-class SourceAzureBlobStorageSchemasAuthType(str, Enum):
+class SourceAzureBlobStorageSchemasCredentialsAuthType(str, Enum):
     STORAGE_ACCOUNT_KEY = 'storage_account_key'
 
 
@@ -19,7 +19,25 @@ class SourceAzureBlobStorageSchemasAuthType(str, Enum):
 class AuthenticateViaStorageAccountKey:
     azure_blob_storage_account_key: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('azure_blob_storage_account_key') }})
     r"""The Azure blob storage account key."""
-    AUTH_TYPE: Final[Optional[SourceAzureBlobStorageSchemasAuthType]] = dataclasses.field(default=SourceAzureBlobStorageSchemasAuthType.STORAGE_ACCOUNT_KEY, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_type'), 'exclude': lambda f: f is None }})
+    AUTH_TYPE: Final[Optional[SourceAzureBlobStorageSchemasCredentialsAuthType]] = dataclasses.field(default=SourceAzureBlobStorageSchemasCredentialsAuthType.STORAGE_ACCOUNT_KEY, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_type'), 'exclude': lambda f: f is None }})
+    
+
+
+
+class SourceAzureBlobStorageSchemasAuthType(str, Enum):
+    CLIENT_CREDENTIALS = 'client_credentials'
+
+
+@dataclass_json(undefined=Undefined.EXCLUDE)
+@dataclasses.dataclass
+class AuthenticateViaClientCredentials:
+    app_client_id: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('app_client_id') }})
+    r"""Client ID of your Microsoft developer application"""
+    app_client_secret: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('app_client_secret') }})
+    r"""Client Secret of your Microsoft developer application"""
+    app_tenant_id: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('app_tenant_id') }})
+    r"""Tenant ID of the Microsoft Azure Application"""
+    AUTH_TYPE: Final[Optional[SourceAzureBlobStorageSchemasAuthType]] = dataclasses.field(default=SourceAzureBlobStorageSchemasAuthType.CLIENT_CREDENTIALS, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_type'), 'exclude': lambda f: f is None }})
     
 
 
@@ -254,7 +272,7 @@ class SourceAzureBlobStorage:
     
 
 
-SourceAzureBlobStorageAuthentication = Union[AuthenticateViaOauth2, AuthenticateViaStorageAccountKey]
+SourceAzureBlobStorageAuthentication = Union[AuthenticateViaOauth2, AuthenticateViaClientCredentials, AuthenticateViaStorageAccountKey]
 
 Processing = Union[Local]
 

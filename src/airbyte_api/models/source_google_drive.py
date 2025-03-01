@@ -42,8 +42,65 @@ class SourceGoogleDriveAuthenticateViaGoogleOAuth:
 
 
 
+class SourceGoogleDriveSchemasDeliveryType(str, Enum):
+    USE_PERMISSIONS_TRANSFER = 'use_permissions_transfer'
+
+
+@dataclass_json(undefined=Undefined.EXCLUDE)
+@dataclasses.dataclass
+class ReplicatePermissionsACL:
+    r"""Sends one identity stream and one for more permissions (ACL) streams to the destination. This data can be used in downstream systems to recreate permission restrictions mirroring the original source."""
+    DELIVERY_TYPE: Final[Optional[SourceGoogleDriveSchemasDeliveryType]] = dataclasses.field(default=SourceGoogleDriveSchemasDeliveryType.USE_PERMISSIONS_TRANSFER, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('delivery_type'), 'exclude': lambda f: f is None }})
+    domain: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('domain'), 'exclude': lambda f: f is None }})
+    r"""The Google domain of the identities."""
+    include_identities_stream: Optional[bool] = dataclasses.field(default=True, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('include_identities_stream'), 'exclude': lambda f: f is None }})
+    r"""This data can be used in downstream systems to recreate permission restrictions mirroring the original source"""
+    
+
+
+
+class SourceGoogleDriveDeliveryType(str, Enum):
+    USE_FILE_TRANSFER = 'use_file_transfer'
+
+
+@dataclass_json(undefined=Undefined.EXCLUDE)
+@dataclasses.dataclass
+class CopyRawFiles:
+    r"""Copy raw files without parsing their contents. Bits are copied into the destination exactly as they appeared in the source. Recommended for use with unstructured text data, non-text and compressed files."""
+    DELIVERY_TYPE: Final[Optional[SourceGoogleDriveDeliveryType]] = dataclasses.field(default=SourceGoogleDriveDeliveryType.USE_FILE_TRANSFER, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('delivery_type'), 'exclude': lambda f: f is None }})
+    preserve_directory_structure: Optional[bool] = dataclasses.field(default=True, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('preserve_directory_structure'), 'exclude': lambda f: f is None }})
+    r"""If enabled, sends subdirectory folder structure along with source file names to the destination. Otherwise, files will be synced by their names only. This option is ignored when file-based replication is not enabled."""
+    
+
+
+
+class DeliveryType(str, Enum):
+    USE_RECORDS_TRANSFER = 'use_records_transfer'
+
+
+@dataclass_json(undefined=Undefined.EXCLUDE)
+@dataclasses.dataclass
+class ReplicateRecords:
+    r"""Recommended - Extract and load structured records into your destination of choice. This is the classic method of moving data in Airbyte. It allows for blocking and hashing individual fields or files from a structured schema. Data can be flattened, typed and deduped depending on the destination."""
+    DELIVERY_TYPE: Final[Optional[DeliveryType]] = dataclasses.field(default=DeliveryType.USE_RECORDS_TRANSFER, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('delivery_type'), 'exclude': lambda f: f is None }})
+    
+
+
+
 class SourceGoogleDriveGoogleDrive(str, Enum):
     GOOGLE_DRIVE = 'google-drive'
+
+
+class SourceGoogleDriveSchemasStreamsFormatFormat6Filetype(str, Enum):
+    EXCEL = 'excel'
+
+
+@dataclass_json(undefined=Undefined.EXCLUDE)
+@dataclasses.dataclass
+class SourceGoogleDriveExcelFormat:
+    FILETYPE: Final[Optional[SourceGoogleDriveSchemasStreamsFormatFormat6Filetype]] = dataclasses.field(default=SourceGoogleDriveSchemasStreamsFormatFormat6Filetype.EXCEL, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('filetype'), 'exclude': lambda f: f is None }})
+    
+
 
 
 class SourceGoogleDriveSchemasStreamsFormatFormatFiletype(str, Enum):
@@ -73,7 +130,7 @@ class SourceGoogleDriveParsingStrategy(str, Enum):
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
-class SourceGoogleDriveDocumentFileTypeFormatExperimental:
+class SourceGoogleDriveUnstructuredDocumentFormat:
     r"""Extract text from document formats (.pdf, .docx, .md, .pptx) and emit as one record per file."""
     FILETYPE: Final[Optional[SourceGoogleDriveSchemasStreamsFormatFormatFiletype]] = dataclasses.field(default=SourceGoogleDriveSchemasStreamsFormatFormatFiletype.UNSTRUCTURED, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('filetype'), 'exclude': lambda f: f is None }})
     processing: Optional[SourceGoogleDriveProcessing] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('processing'), 'exclude': lambda f: f is None }})
@@ -222,6 +279,8 @@ class SourceGoogleDriveFileBasedStreamConfig:
     r"""The pattern used to specify which files should be selected from the file system. For more information on glob pattern matching look <a href=\\"https://en.wikipedia.org/wiki/Glob_(programming)\\">here</a>."""
     input_schema: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('input_schema'), 'exclude': lambda f: f is None }})
     r"""The schema that will be used to validate records extracted from the file. This will override the stream schema that is auto-detected from incoming files."""
+    recent_n_files_to_read_for_schema_discovery: Optional[int] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('recent_n_files_to_read_for_schema_discovery'), 'exclude': lambda f: f is None }})
+    r"""The number of resent files which will be used to discover the schema for this stream."""
     schemaless: Optional[bool] = dataclasses.field(default=False, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('schemaless'), 'exclude': lambda f: f is None }})
     r"""When enabled, syncs will not validate or structure records against the stream's schema."""
     validation_policy: Optional[SourceGoogleDriveValidationPolicy] = dataclasses.field(default=SourceGoogleDriveValidationPolicy.EMIT_RECORD, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('validation_policy'), 'exclude': lambda f: f is None }})
@@ -242,6 +301,7 @@ class SourceGoogleDrive:
     r"""URL for the folder you want to sync. Using individual streams and glob patterns, it's possible to only sync a subset of all files located in the folder."""
     streams: List[SourceGoogleDriveFileBasedStreamConfig] = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('streams') }})
     r"""Each instance of this configuration defines a <a href=\\"https://docs.airbyte.com/cloud/core-concepts#stream\\">stream</a>. Use this to define which files belong in the stream, their format, and how they should be parsed and validated. When sending data to warehouse destination such as Snowflake or BigQuery, each stream is a separate table."""
+    delivery_method: Optional[DeliveryMethod] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('delivery_method'), 'exclude': lambda f: f is None }})
     SOURCE_TYPE: Final[SourceGoogleDriveGoogleDrive] = dataclasses.field(default=SourceGoogleDriveGoogleDrive.GOOGLE_DRIVE, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     start_date: Optional[datetime] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('start_date'), 'encoder': utils.datetimeisoformat(True), 'decoder': dateutil.parser.isoparse, 'exclude': lambda f: f is None }})
     r"""UTC date and time in the format 2017-01-25T00:00:00.000000Z. Any file modified before this date will not be replicated."""
@@ -250,8 +310,10 @@ class SourceGoogleDrive:
 
 SourceGoogleDriveAuthentication = Union[SourceGoogleDriveAuthenticateViaGoogleOAuth, SourceGoogleDriveServiceAccountKeyAuthentication]
 
+DeliveryMethod = Union[ReplicateRecords, CopyRawFiles, ReplicatePermissionsACL]
+
 SourceGoogleDriveProcessing = Union[SourceGoogleDriveLocal]
 
 SourceGoogleDriveCSVHeaderDefinition = Union[SourceGoogleDriveFromCSV, SourceGoogleDriveAutogenerated, SourceGoogleDriveUserProvided]
 
-SourceGoogleDriveFormat = Union[SourceGoogleDriveAvroFormat, SourceGoogleDriveCSVFormat, SourceGoogleDriveJsonlFormat, SourceGoogleDriveParquetFormat, SourceGoogleDriveDocumentFileTypeFormatExperimental]
+SourceGoogleDriveFormat = Union[SourceGoogleDriveAvroFormat, SourceGoogleDriveCSVFormat, SourceGoogleDriveJsonlFormat, SourceGoogleDriveParquetFormat, SourceGoogleDriveUnstructuredDocumentFormat, SourceGoogleDriveExcelFormat]

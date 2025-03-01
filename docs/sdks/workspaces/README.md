@@ -39,7 +39,7 @@ res = s.workspaces.create_or_update_workspace_o_auth_credentials(request=api.Cre
         configuration={
             'user': 'charles',
         },
-        name=models.OAuthActorNames.AMAZON_ADS,
+        name=models.OAuthActorNames.AIRTABLE,
     ),
     workspace_id='<value>',
 ))

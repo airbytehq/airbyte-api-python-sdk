@@ -8,9 +8,10 @@ from .geographyenum import GeographyEnum
 from .namespacedefinitionenum import NamespaceDefinitionEnum
 from .nonbreakingschemaupdatesbehaviorenum import NonBreakingSchemaUpdatesBehaviorEnum
 from .streamconfigurations import StreamConfigurations
+from .tag import Tag
 from airbyte_api import utils
 from dataclasses_json import Undefined, dataclass_json
-from typing import Optional
+from typing import List, Optional
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
@@ -27,6 +28,7 @@ class ConnectionResponse:
     r"""schedule for when the the connection should run, per the schedule type"""
     source_id: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceId') }})
     status: ConnectionStatusEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('status') }})
+    tags: List[Tag] = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('tags') }})
     workspace_id: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('workspaceId') }})
     data_residency: Optional[GeographyEnum] = dataclasses.field(default=GeographyEnum.AUTO, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('dataResidency'), 'exclude': lambda f: f is None }})
     namespace_definition: Optional[NamespaceDefinitionEnum] = dataclasses.field(default=NamespaceDefinitionEnum.DESTINATION, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('namespaceDefinition'), 'exclude': lambda f: f is None }})

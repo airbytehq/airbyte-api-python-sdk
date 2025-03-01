@@ -3,6 +3,6 @@
 
 ## Values
 
-| Name                  | Value                 |
-| --------------------- | --------------------- |
-| `STORAGE_ACCOUNT_KEY` | storage_account_key   |
+| Name                 | Value                |
+| -------------------- | -------------------- |
+| `CLIENT_CREDENTIALS` | client_credentials   |

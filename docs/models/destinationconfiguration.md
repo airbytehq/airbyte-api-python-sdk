@@ -125,6 +125,12 @@ value: models.DestinationMotherduck = /* values here */
 value: models.DestinationMssql = /* values here */
 ```
 
+### `models.DestinationMssqlV2`
+
+```python
+value: models.DestinationMssqlV2 = /* values here */
+```
+
 ### `models.DestinationMysql`
 
 ```python
@@ -183,6 +189,12 @@ value: models.DestinationRedshift = /* values here */
 
 ```python
 value: models.DestinationS3 = /* values here */
+```
+
+### `models.DestinationS3DataLake`
+
+```python
+value: models.DestinationS3DataLake = /* values here */
 ```
 
 ### `models.DestinationS3Glue`

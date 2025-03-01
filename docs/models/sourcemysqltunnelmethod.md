@@ -1,7 +1,5 @@
 # SourceMysqlTunnelMethod
 
-No ssh tunnel needed to connect to database
-
 
 ## Values
 
