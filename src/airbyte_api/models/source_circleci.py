@@ -7,7 +7,7 @@ from airbyte_api import utils
 from dataclasses_json import Undefined, dataclass_json
 from datetime import datetime
 from enum import Enum
-from typing import Final, Optional
+from typing import Any, Final, List, Optional
 
 
 class Circleci(str, Enum):
@@ -21,16 +21,12 @@ class SourceCircleci:
     org_id: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('org_id') }})
     r"""The org ID found in `https://app.circleci.com/settings/organization/circleci/xxxxx/overview`"""
     project_id: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('project_id') }})
-    r"""Project ID found in the project settings"""
+    r"""Project ID found in the project settings, Visit `https://app.circleci.com/settings/project/circleci/ORG_SLUG/YYYYY`"""
     start_date: datetime = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('start_date'), 'encoder': utils.datetimeisoformat(False), 'decoder': dateutil.parser.isoparse }})
-    job_id: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('job_id'), 'exclude': lambda f: f is None }})
-    r"""Job ID for fetching information"""
     job_number: Optional[str] = dataclasses.field(default='2', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('job_number'), 'exclude': lambda f: f is None }})
-    r"""Job Number of the workflow"""
+    r"""Job Number of the workflow for `jobs` stream, Auto fetches from `workflow_jobs` stream, if not configured"""
     SOURCE_TYPE: Final[Circleci] = dataclasses.field(default=Circleci.CIRCLECI, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
-    workflow_id: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('workflow_id'), 'exclude': lambda f: f is None }})
-    r"""workflow ID of a project pipeline"""
-    workflow_name: Optional[str] = dataclasses.field(default='build-and-test', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('workflow_name'), 'exclude': lambda f: f is None }})
-    r"""Workflow name for fetching information"""
+    workflow_id: Optional[List[Any]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('workflow_id'), 'exclude': lambda f: f is None }})
+    r"""Workflow ID of a project pipeline, Could be seen in the URL of pipeline build, Example `https://app.circleci.com/pipelines/circleci/55555xxxxxx/7yyyyyyyyxxxxx/2/workflows/WORKFLOW_ID`"""
     
 

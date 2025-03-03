@@ -10,28 +10,30 @@ from enum import Enum
 from typing import Final, List, Optional, Union
 
 
-class SourceS3DeliveryType(str, Enum):
+class SourceS3SchemasDeliveryType(str, Enum):
     USE_FILE_TRANSFER = 'use_file_transfer'
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
-class CopyRawFiles:
+class SourceS3CopyRawFiles:
     r"""Copy raw files without parsing their contents. Bits are copied into the destination exactly as they appeared in the source. Recommended for use with unstructured text data, non-text and compressed files."""
-    DELIVERY_TYPE: Final[Optional[SourceS3DeliveryType]] = dataclasses.field(default=SourceS3DeliveryType.USE_FILE_TRANSFER, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('delivery_type'), 'exclude': lambda f: f is None }})
+    DELIVERY_TYPE: Final[Optional[SourceS3SchemasDeliveryType]] = dataclasses.field(default=SourceS3SchemasDeliveryType.USE_FILE_TRANSFER, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('delivery_type'), 'exclude': lambda f: f is None }})
+    preserve_directory_structure: Optional[bool] = dataclasses.field(default=True, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('preserve_directory_structure'), 'exclude': lambda f: f is None }})
+    r"""If enabled, sends subdirectory folder structure along with source file names to the destination. Otherwise, files will be synced by their names only. This option is ignored when file-based replication is not enabled."""
     
 
 
 
-class DeliveryType(str, Enum):
+class SourceS3DeliveryType(str, Enum):
     USE_RECORDS_TRANSFER = 'use_records_transfer'
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
-class ReplicateRecords:
+class SourceS3ReplicateRecords:
     r"""Recommended - Extract and load structured records into your destination of choice. This is the classic method of moving data in Airbyte. It allows for blocking and hashing individual fields or files from a structured schema. Data can be flattened, typed and deduped depending on the destination."""
-    DELIVERY_TYPE: Final[Optional[DeliveryType]] = dataclasses.field(default=DeliveryType.USE_RECORDS_TRANSFER, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('delivery_type'), 'exclude': lambda f: f is None }})
+    DELIVERY_TYPE: Final[Optional[SourceS3DeliveryType]] = dataclasses.field(default=SourceS3DeliveryType.USE_RECORDS_TRANSFER, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('delivery_type'), 'exclude': lambda f: f is None }})
     
 
 
@@ -252,7 +254,7 @@ class SourceS3:
     r"""In order to access private Buckets stored on AWS S3, this connector requires credentials with the proper permissions. If accessing publicly available data, this field is not necessary."""
     aws_secret_access_key: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('aws_secret_access_key'), 'exclude': lambda f: f is None }})
     r"""In order to access private Buckets stored on AWS S3, this connector requires credentials with the proper permissions. If accessing publicly available data, this field is not necessary."""
-    delivery_method: Optional[DeliveryMethod] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('delivery_method'), 'exclude': lambda f: f is None }})
+    delivery_method: Optional[SourceS3DeliveryMethod] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('delivery_method'), 'exclude': lambda f: f is None }})
     endpoint: Optional[str] = dataclasses.field(default='', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('endpoint'), 'exclude': lambda f: f is None }})
     r"""Endpoint to an S3 compatible service. Leave empty to use AWS."""
     region_name: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('region_name'), 'exclude': lambda f: f is None }})
@@ -265,7 +267,7 @@ class SourceS3:
     
 
 
-DeliveryMethod = Union[ReplicateRecords, CopyRawFiles]
+SourceS3DeliveryMethod = Union[SourceS3ReplicateRecords, SourceS3CopyRawFiles]
 
 SourceS3Processing = Union[SourceS3Local]
 

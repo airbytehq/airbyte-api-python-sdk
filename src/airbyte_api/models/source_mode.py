@@ -8,7 +8,7 @@ from enum import Enum
 from typing import Final
 
 
-class Mode(str, Enum):
+class SourceModeMode(str, Enum):
     MODE = 'mode'
 
 
@@ -20,6 +20,6 @@ class SourceMode:
     api_token: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('api_token') }})
     r"""API token to use as the username for Basic Authentication."""
     workspace: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('workspace') }})
-    SOURCE_TYPE: Final[Mode] = dataclasses.field(default=Mode.MODE, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
+    SOURCE_TYPE: Final[SourceModeMode] = dataclasses.field(default=SourceModeMode.MODE, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     
 

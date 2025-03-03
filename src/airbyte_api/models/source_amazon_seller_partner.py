@@ -99,14 +99,6 @@ class ReportName(str, Enum):
     GET_XML_ALL_ORDERS_DATA_BY_ORDER_DATE_GENERAL = 'GET_XML_ALL_ORDERS_DATA_BY_ORDER_DATE_GENERAL'
     GET_XML_BROWSE_TREE_DATA = 'GET_XML_BROWSE_TREE_DATA'
     GET_VENDOR_REAL_TIME_INVENTORY_REPORT = 'GET_VENDOR_REAL_TIME_INVENTORY_REPORT'
-    GET_BRAND_ANALYTICS_MARKET_BASKET_REPORT = 'GET_BRAND_ANALYTICS_MARKET_BASKET_REPORT'
-    GET_BRAND_ANALYTICS_SEARCH_TERMS_REPORT = 'GET_BRAND_ANALYTICS_SEARCH_TERMS_REPORT'
-    GET_BRAND_ANALYTICS_REPEAT_PURCHASE_REPORT = 'GET_BRAND_ANALYTICS_REPEAT_PURCHASE_REPORT'
-    GET_SALES_AND_TRAFFIC_REPORT = 'GET_SALES_AND_TRAFFIC_REPORT'
-    GET_VENDOR_SALES_REPORT = 'GET_VENDOR_SALES_REPORT'
-    GET_VENDOR_INVENTORY_REPORT = 'GET_VENDOR_INVENTORY_REPORT'
-    GET_VENDOR_NET_PURE_PRODUCT_MARGIN_REPORT = 'GET_VENDOR_NET_PURE_PRODUCT_MARGIN_REPORT'
-    GET_VENDOR_TRAFFIC_REPORT = 'GET_VENDOR_TRAFFIC_REPORT'
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
@@ -135,6 +127,8 @@ class SourceAmazonSellerPartner:
     r"""The Refresh Token obtained via OAuth flow authorization."""
     account_type: Optional[AWSSellerPartnerAccountType] = dataclasses.field(default=AWSSellerPartnerAccountType.SELLER, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('account_type'), 'exclude': lambda f: f is None }})
     r"""Type of the Account you're going to authorize the Airbyte application by"""
+    app_id: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('app_id'), 'exclude': lambda f: f is None }})
+    r"""Your Amazon Application ID."""
     AUTH_TYPE: Final[Optional[SourceAmazonSellerPartnerAuthType]] = dataclasses.field(default=SourceAmazonSellerPartnerAuthType.OAUTH2_0, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_type'), 'exclude': lambda f: f is None }})
     aws_environment: Optional[AWSEnvironment] = dataclasses.field(default=AWSEnvironment.PRODUCTION, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('aws_environment'), 'exclude': lambda f: f is None }})
     r"""Select the AWS Environment."""
