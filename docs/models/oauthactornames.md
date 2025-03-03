@@ -23,7 +23,6 @@
 | `GOOGLE_SHEETS`             | google-sheets               |
 | `HUBSPOT`                   | hubspot                     |
 | `INSTAGRAM`                 | instagram                   |
-| `INTERCOM`                  | intercom                    |
 | `LEVER_HIRING`              | lever-hiring                |
 | `LINKEDIN_ADS`              | linkedin-ads                |
 | `MAILCHIMP`                 | mailchimp                   |

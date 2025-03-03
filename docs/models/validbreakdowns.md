@@ -11,8 +11,10 @@ An enumeration.
 | `AGE`                                             | age                                               |
 | `APP_ID`                                          | app_id                                            |
 | `BODY_ASSET`                                      | body_asset                                        |
+| `BREAKDOWN_REPORTING_AD_ID`                       | breakdown_reporting_ad_id                         |
 | `CALL_TO_ACTION_ASSET`                            | call_to_action_asset                              |
 | `COARSE_CONVERSION_VALUE`                         | coarse_conversion_value                           |
+| `CONVERSION_DESTINATION`                          | conversion_destination                            |
 | `COUNTRY`                                         | country                                           |
 | `DESCRIPTION_ASSET`                               | description_asset                                 |
 | `DEVICE_PLATFORM`                                 | device_platform                                   |
@@ -26,6 +28,7 @@ An enumeration.
 | `IMAGE_ASSET`                                     | image_asset                                       |
 | `IMPRESSION_DEVICE`                               | impression_device                                 |
 | `IS_CONVERSION_ID_MODELED`                        | is_conversion_id_modeled                          |
+| `IS_RENDERED_AS_DELAYED_SKIP_AD`                  | is_rendered_as_delayed_skip_ad                    |
 | `LANDING_DESTINATION`                             | landing_destination                               |
 | `LINK_URL_ASSET`                                  | link_url_asset                                    |
 | `MARKETING_MESSAGES_BTN_NAME`                     | marketing_messages_btn_name                       |
@@ -36,6 +39,7 @@ An enumeration.
 | `MEDIA_FORMAT`                                    | media_format                                      |
 | `MEDIA_ORIGIN_URL`                                | media_origin_url                                  |
 | `MEDIA_TEXT_CONTENT`                              | media_text_content                                |
+| `MEDIA_TYPE`                                      | media_type                                        |
 | `MMM`                                             | mmm                                               |
 | `PLACE_PAGE_ID`                                   | place_page_id                                     |
 | `PLATFORM_POSITION`                               | platform_position                                 |
@@ -44,9 +48,17 @@ An enumeration.
 | `PUBLISHER_PLATFORM`                              | publisher_platform                                |
 | `REDOWNLOAD`                                      | redownload                                        |
 | `REGION`                                          | region                                            |
+| `SIGNAL_SOURCE_BUCKET`                            | signal_source_bucket                              |
 | `SKAN_CAMPAIGN_ID`                                | skan_campaign_id                                  |
 | `SKAN_CONVERSION_ID`                              | skan_conversion_id                                |
 | `SKAN_VERSION`                                    | skan_version                                      |
+| `SOT_ATTRIBUTION_MODEL_TYPE`                      | sot_attribution_model_type                        |
+| `SOT_ATTRIBUTION_WINDOW`                          | sot_attribution_window                            |
+| `SOT_CHANNEL`                                     | sot_channel                                       |
+| `SOT_EVENT_TYPE`                                  | sot_event_type                                    |
+| `SOT_SOURCE`                                      | sot_source                                        |
 | `STANDARD_EVENT_CONTENT_TYPE`                     | standard_event_content_type                       |
 | `TITLE_ASSET`                                     | title_asset                                       |
+| `USER_PERSONA_ID`                                 | user_persona_id                                   |
+| `USER_PERSONA_NAME`                               | user_persona_name                                 |
 | `VIDEO_ASSET`                                     | video_asset                                       |

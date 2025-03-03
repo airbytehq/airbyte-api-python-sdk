@@ -3,6 +3,6 @@
 
 ## Values
 
-| Name                       | Value                      |
-| -------------------------- | -------------------------- |
-| `SELF_MANAGED_REPLICA_SET` | SELF_MANAGED_REPLICA_SET   |
+| Name                | Value               |
+| ------------------- | ------------------- |
+| `ATLAS_REPLICA_SET` | ATLAS_REPLICA_SET   |

@@ -60,7 +60,7 @@ class SourceShopify:
     fetch_transactions_user_id: Optional[bool] = dataclasses.field(default=False, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('fetch_transactions_user_id'), 'exclude': lambda f: f is None }})
     r"""Defines which API type (REST/BULK) to use to fetch `Transactions` data. If you are a `Shopify Plus` user, leave the default value to speed up the fetch."""
     job_checkpoint_interval: Optional[int] = dataclasses.field(default=100000, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('job_checkpoint_interval'), 'exclude': lambda f: f is None }})
-    r"""The threshold, after which the single BULK Job should be checkpointed."""
+    r"""The threshold, after which the single BULK Job should be checkpointed (min: 15k, max: 1M)"""
     job_product_variants_include_pres_prices: Optional[bool] = dataclasses.field(default=True, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('job_product_variants_include_pres_prices'), 'exclude': lambda f: f is None }})
     r"""If enabled, the `Product Variants` stream attempts to include `Presentment prices` field (may affect the performance)."""
     job_termination_threshold: Optional[int] = dataclasses.field(default=7200, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('job_termination_threshold'), 'exclude': lambda f: f is None }})

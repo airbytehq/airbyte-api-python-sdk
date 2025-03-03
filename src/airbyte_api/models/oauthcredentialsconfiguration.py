@@ -19,7 +19,6 @@ from .google_search_console import GoogleSearchConsole
 from .google_sheets import GoogleSheets
 from .hubspot import Hubspot
 from .instagram import Instagram
-from .intercom import Intercom
 from .lever_hiring import LeverHiring
 from .linkedin_ads import LinkedinAds
 from .mailchimp import Mailchimp
@@ -45,4 +44,4 @@ from .zendesk_support import ZendeskSupport
 from .zendesk_talk import ZendeskTalk
 from typing import Any, Union
 
-OAuthCredentialsConfiguration = Union[Airtable, AmazonAds, AmazonSellerPartner, Asana, AzureBlobStorage, BingAds, Drift, FacebookMarketing, Gcs, Github, Gitlab, GoogleAds, GoogleAnalyticsDataAPI, GoogleDrive, GoogleSearchConsole, GoogleSheets, Hubspot, Instagram, Intercom, LeverHiring, LinkedinAds, Mailchimp, MicrosoftOnedrive, MicrosoftSharepoint, MicrosoftTeams, Monday, Notion, Pinterest, RdStationMarketing, Salesforce, Shopify, Slack, Smartsheets, SnapchatMarketing, Snowflake, Surveymonkey, TiktokMarketing, Any, Typeform, YoutubeAnalytics, ZendeskChat, ZendeskSupport, ZendeskTalk]
+OAuthCredentialsConfiguration = Union[Airtable, AmazonAds, AmazonSellerPartner, Asana, AzureBlobStorage, BingAds, Drift, FacebookMarketing, Gcs, Github, Gitlab, GoogleAds, GoogleAnalyticsDataAPI, GoogleDrive, GoogleSearchConsole, GoogleSheets, Hubspot, Instagram, LeverHiring, LinkedinAds, Mailchimp, MicrosoftOnedrive, MicrosoftSharepoint, MicrosoftTeams, Monday, Notion, Pinterest, RdStationMarketing, Salesforce, Shopify, Slack, Smartsheets, SnapchatMarketing, Snowflake, Surveymonkey, TiktokMarketing, Any, Typeform, YoutubeAnalytics, ZendeskChat, ZendeskSupport, ZendeskTalk]

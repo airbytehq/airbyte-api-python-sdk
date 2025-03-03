@@ -3,6 +3,6 @@
 
 ## Values
 
-| Name         | Value        |
-| ------------ | ------------ |
-| `ENTERPRISE` | enterprise   |
+| Name    | Value   |
+| ------- | ------- |
+| `BASIC` | basic   |

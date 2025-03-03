@@ -3,6 +3,6 @@
 
 ## Values
 
-| Name   | Value  |
-| ------ | ------ |
-| `FAKE` | fake   |
+| Name     | Value    |
+| -------- | -------- |
+| `COHERE` | cohere   |
