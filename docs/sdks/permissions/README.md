@@ -217,7 +217,7 @@ s = airbyte_api.AirbyteAPI(
 
 res = s.permissions.update_permission(request=api.UpdatePermissionRequest(
     permission_update_request=models.PermissionUpdateRequest(
-        permission_type=models.PermissionType.ORGANIZATION_MEMBER,
+        permission_type=models.PermissionType.WORKSPACE_OWNER,
     ),
     permission_id='<value>',
 ))

@@ -11,9 +11,9 @@ Credentials for connecting to the Facebook Marketing API
 value: models.AuthenticateViaFacebookMarketingOauth = /* values here */
 ```
 
-### `models.ServiceAccountKeyAuthentication`
+### `models.SourceFacebookMarketingServiceAccountKeyAuthentication`
 
 ```python
-value: models.ServiceAccountKeyAuthentication = /* values here */
+value: models.SourceFacebookMarketingServiceAccountKeyAuthentication = /* values here */
 ```
 

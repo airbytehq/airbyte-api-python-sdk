@@ -33,27 +33,12 @@ s = airbyte_api.AirbyteAPI(
 
 
 res = s.destinations.create_destination(request=models.DestinationCreateRequest(
-    configuration=models.DestinationPgvector(
-        embedding=models.DestinationPgvectorFake(),
-        indexing=models.PostgresConnection(
-            credentials=models.DestinationPgvectorCredentials(
-                password='AIRBYTE_PASSWORD',
-            ),
-            database='AIRBYTE_DATABASE',
-            host='AIRBYTE_ACCOUNT',
-            username='AIRBYTE_USER',
-            default_schema='AIRBYTE_SCHEMA',
-            port=5432,
-        ),
-        processing=models.DestinationPgvectorProcessingConfigModel(
-            chunk_size=540943,
-            metadata_fields=[
-                'age',
-            ],
-            text_fields=[
-                'users.*.name',
-            ],
-        ),
+    configuration=models.DestinationOracle(
+        host='instructive-mainstream.com',
+        sid='<id>',
+        username='Robert.Legros98',
+        port=1521,
+        schema='airbyte',
     ),
     name='Postgres',
     workspace_id='2155ae5a-de39-4808-af6a-16fe7b8b4ed2',
@@ -240,8 +225,11 @@ s = airbyte_api.AirbyteAPI(
 res = s.destinations.patch_destination(request=api.PatchDestinationRequest(
     destination_id='<value>',
     destination_patch_request=models.DestinationPatchRequest(
-        configuration=models.DestinationDuckdb(
-            destination_path='motherduck:',
+        configuration=models.DestinationDeepset(
+            api_key='<value>',
+            workspace='<value>',
+            base_url='https://api.cloud.deepset.ai',
+            retries=5,
         ),
         name='My Destination',
     ),
@@ -296,6 +284,8 @@ res = s.destinations.put_destination(request=api.PutDestinationRequest(
             database='<value>',
             host='urban-receptor.org',
             username='Kaylie_Terry',
+            port=8123,
+            ssl=False,
         ),
         name='My Destination',
     ),

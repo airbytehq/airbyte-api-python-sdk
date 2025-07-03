@@ -21,7 +21,6 @@ Creates a source given a name, workspace id, and a json blob containing the conf
 
 ```python
 import airbyte_api
-import dateutil.parser
 from airbyte_api import models
 
 s = airbyte_api.AirbyteAPI(
@@ -35,9 +34,8 @@ s = airbyte_api.AirbyteAPI(
 
 
 res = s.sources.create_source(request=models.SourceCreateRequest(
-    configuration=models.SourcePosthog(
-        api_key='<value>',
-        start_date=dateutil.parser.isoparse('2021-01-01T00:00:00Z'),
+    configuration=models.SourcePlanhat(
+        api_token='<value>',
     ),
     name='My Source',
     workspace_id='744cc0ed-7f05-4949-9e60-2a814f90c035',
@@ -183,7 +181,7 @@ s = airbyte_api.AirbyteAPI(
 
 res = s.sources.initiate_o_auth(request=models.InitiateOauthRequest(
     redirect_url='https://cloud.airbyte.io/v1/api/oauth/callback',
-    source_type=models.OAuthActorNames.GITLAB,
+    source_type=models.OAuthActorNames.FACEBOOK_PAGES,
     workspace_id='871d9b60-11d1-44cb-8c92-c246d53bf87e',
 ))
 
@@ -280,8 +278,8 @@ s = airbyte_api.AirbyteAPI(
 res = s.sources.patch_source(request=api.PatchSourceRequest(
     source_id='<value>',
     source_patch_request=models.SourcePatchRequest(
-        configuration=models.SourceEventzilla(
-            x_api_key='<value>',
+        configuration=models.SourceEncharge(
+            api_key='<value>',
         ),
         name='My Source',
         workspace_id='744cc0ed-7f05-4949-9e60-2a814f90c035',

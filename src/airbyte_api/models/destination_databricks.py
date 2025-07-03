@@ -8,7 +8,7 @@ from enum import Enum
 from typing import Final, Optional, Union
 
 
-class DestinationDatabricksAuthType(str, Enum):
+class DestinationDatabricksSchemasAuthType(str, Enum):
     BASIC = 'BASIC'
 
 
@@ -16,12 +16,12 @@ class DestinationDatabricksAuthType(str, Enum):
 @dataclasses.dataclass
 class PersonalAccessToken:
     personal_access_token: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('personal_access_token') }})
-    AUTH_TYPE: Final[DestinationDatabricksAuthType] = dataclasses.field(default=DestinationDatabricksAuthType.BASIC, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_type') }})
+    AUTH_TYPE: Final[DestinationDatabricksSchemasAuthType] = dataclasses.field(default=DestinationDatabricksSchemasAuthType.BASIC, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_type') }})
     
 
 
 
-class DestinationDatabricksSchemasAuthType(str, Enum):
+class DestinationDatabricksAuthType(str, Enum):
     OAUTH = 'OAUTH'
 
 
@@ -30,7 +30,7 @@ class DestinationDatabricksSchemasAuthType(str, Enum):
 class OAuth2Recommended:
     client_id: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('client_id') }})
     secret: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('secret') }})
-    AUTH_TYPE: Final[DestinationDatabricksSchemasAuthType] = dataclasses.field(default=DestinationDatabricksSchemasAuthType.OAUTH, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_type') }})
+    AUTH_TYPE: Final[DestinationDatabricksAuthType] = dataclasses.field(default=DestinationDatabricksAuthType.OAUTH, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_type') }})
     
 
 

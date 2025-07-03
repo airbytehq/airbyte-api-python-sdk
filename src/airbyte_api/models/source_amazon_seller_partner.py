@@ -26,6 +26,23 @@ class AWSEnvironment(str, Enum):
     SANDBOX = 'SANDBOX'
 
 
+class FinancialEventsStepSizeInDays(str, Enum):
+    r"""The time window size (in days) for fetching financial events data in chunks. Options are 1 day, 7 days, 14 days, 30 days, 60 days, and 190 days, based on API limitations.
+
+    - **Smaller step sizes (e.g., 1 day)** are better for large data volumes. They fetch smaller chunks per request, reducing the risk of timeouts or overwhelming the API, though more requests may slow syncing and increase the chance of hitting rate limits.
+    - **Larger step sizes (e.g., 14 days)** are better for smaller data volumes. They fetch more data per request, speeding up syncing and reducing the number of API calls, which minimizes strain on rate limits.
+
+    Select a step size that matches your data volume to optimize syncing speed and API performance.
+    """
+    ONE = '1'
+    SEVEN = '7'
+    FOURTEEN = '14'
+    THIRTY = '30'
+    SIXTY = '60'
+    NINETY = '90'
+    ONE_HUNDRED_AND_EIGHTY = '180'
+
+
 class AWSRegion(str, Enum):
     r"""Select the AWS Region."""
     AE = 'AE'
@@ -99,14 +116,6 @@ class ReportName(str, Enum):
     GET_XML_ALL_ORDERS_DATA_BY_ORDER_DATE_GENERAL = 'GET_XML_ALL_ORDERS_DATA_BY_ORDER_DATE_GENERAL'
     GET_XML_BROWSE_TREE_DATA = 'GET_XML_BROWSE_TREE_DATA'
     GET_VENDOR_REAL_TIME_INVENTORY_REPORT = 'GET_VENDOR_REAL_TIME_INVENTORY_REPORT'
-    GET_BRAND_ANALYTICS_MARKET_BASKET_REPORT = 'GET_BRAND_ANALYTICS_MARKET_BASKET_REPORT'
-    GET_BRAND_ANALYTICS_SEARCH_TERMS_REPORT = 'GET_BRAND_ANALYTICS_SEARCH_TERMS_REPORT'
-    GET_BRAND_ANALYTICS_REPEAT_PURCHASE_REPORT = 'GET_BRAND_ANALYTICS_REPEAT_PURCHASE_REPORT'
-    GET_SALES_AND_TRAFFIC_REPORT = 'GET_SALES_AND_TRAFFIC_REPORT'
-    GET_VENDOR_SALES_REPORT = 'GET_VENDOR_SALES_REPORT'
-    GET_VENDOR_INVENTORY_REPORT = 'GET_VENDOR_INVENTORY_REPORT'
-    GET_VENDOR_NET_PURE_PRODUCT_MARGIN_REPORT = 'GET_VENDOR_NET_PURE_PRODUCT_MARGIN_REPORT'
-    GET_VENDOR_TRAFFIC_REPORT = 'GET_VENDOR_TRAFFIC_REPORT'
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
@@ -135,9 +144,19 @@ class SourceAmazonSellerPartner:
     r"""The Refresh Token obtained via OAuth flow authorization."""
     account_type: Optional[AWSSellerPartnerAccountType] = dataclasses.field(default=AWSSellerPartnerAccountType.SELLER, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('account_type'), 'exclude': lambda f: f is None }})
     r"""Type of the Account you're going to authorize the Airbyte application by"""
+    app_id: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('app_id'), 'exclude': lambda f: f is None }})
+    r"""Your Amazon Application ID."""
     AUTH_TYPE: Final[Optional[SourceAmazonSellerPartnerAuthType]] = dataclasses.field(default=SourceAmazonSellerPartnerAuthType.OAUTH2_0, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_type'), 'exclude': lambda f: f is None }})
     aws_environment: Optional[AWSEnvironment] = dataclasses.field(default=AWSEnvironment.PRODUCTION, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('aws_environment'), 'exclude': lambda f: f is None }})
     r"""Select the AWS Environment."""
+    financial_events_step: Optional[FinancialEventsStepSizeInDays] = dataclasses.field(default=FinancialEventsStepSizeInDays.ONE_HUNDRED_AND_EIGHTY, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('financial_events_step'), 'exclude': lambda f: f is None }})
+    r"""The time window size (in days) for fetching financial events data in chunks. Options are 1 day, 7 days, 14 days, 30 days, 60 days, and 190 days, based on API limitations.
+
+    - **Smaller step sizes (e.g., 1 day)** are better for large data volumes. They fetch smaller chunks per request, reducing the risk of timeouts or overwhelming the API, though more requests may slow syncing and increase the chance of hitting rate limits.
+    - **Larger step sizes (e.g., 14 days)** are better for smaller data volumes. They fetch more data per request, speeding up syncing and reducing the number of API calls, which minimizes strain on rate limits.
+
+    Select a step size that matches your data volume to optimize syncing speed and API performance.
+    """
     period_in_days: Optional[int] = dataclasses.field(default=90, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('period_in_days'), 'exclude': lambda f: f is None }})
     r"""For syncs spanning a large date range, this option is used to request data in a smaller fixed window to improve sync reliability. This time window can be configured granularly by day."""
     region: Optional[AWSRegion] = dataclasses.field(default=AWSRegion.US, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('region'), 'exclude': lambda f: f is None }})

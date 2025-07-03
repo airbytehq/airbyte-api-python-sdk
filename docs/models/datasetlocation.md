@@ -23,6 +23,7 @@ The location of the dataset. Warning: Changes made after creation will not be ap
 | `EUROPE_CENTRAL1`         | europe-central1           |
 | `EUROPE_CENTRAL2`         | europe-central2           |
 | `EUROPE_NORTH1`           | europe-north1             |
+| `EUROPE_NORTH2`           | europe-north2             |
 | `EUROPE_SOUTHWEST1`       | europe-southwest1         |
 | `EUROPE_WEST1`            | europe-west1              |
 | `EUROPE_WEST2`            | europe-west2              |

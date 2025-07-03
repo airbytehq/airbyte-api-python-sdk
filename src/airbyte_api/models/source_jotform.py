@@ -10,7 +10,7 @@ from enum import Enum
 from typing import Final, Optional, Union
 
 
-class SourceJotformSchemasAPIEndpoint(str, Enum):
+class SourceJotformAPIEndpoint(str, Enum):
     ENTERPRISE = 'enterprise'
 
 
@@ -19,12 +19,12 @@ class SourceJotformSchemasAPIEndpoint(str, Enum):
 class Enterprise:
     enterprise_url: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('enterprise_url') }})
     r"""Upgrade to Enterprise to make your API url your-domain.com/API or subdomain.jotform.com/API instead of api.jotform.com"""
-    API_ENDPOINT: Final[Optional[SourceJotformSchemasAPIEndpoint]] = dataclasses.field(default=SourceJotformSchemasAPIEndpoint.ENTERPRISE, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('api_endpoint'), 'exclude': lambda f: f is None }})
+    API_ENDPOINT: Final[Optional[SourceJotformAPIEndpoint]] = dataclasses.field(default=SourceJotformAPIEndpoint.ENTERPRISE, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('api_endpoint'), 'exclude': lambda f: f is None }})
     
 
 
 
-class SourceJotformAPIEndpoint(str, Enum):
+class SourceJotformSchemasAPIEndpoint(str, Enum):
     BASIC = 'basic'
 
 
@@ -38,7 +38,7 @@ class BaseURLPrefix(str, Enum):
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
 class Basic:
-    API_ENDPOINT: Final[Optional[SourceJotformAPIEndpoint]] = dataclasses.field(default=SourceJotformAPIEndpoint.BASIC, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('api_endpoint'), 'exclude': lambda f: f is None }})
+    API_ENDPOINT: Final[Optional[SourceJotformSchemasAPIEndpoint]] = dataclasses.field(default=SourceJotformSchemasAPIEndpoint.BASIC, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('api_endpoint'), 'exclude': lambda f: f is None }})
     url_prefix: Optional[BaseURLPrefix] = dataclasses.field(default=BaseURLPrefix.STANDARD, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('url_prefix'), 'exclude': lambda f: f is None }})
     r"""You can access our API through the following URLs - Standard API Usage (Use the default API URL - https://api.jotform.com), For EU (Use the EU API URL - https://eu-api.jotform.com), For HIPAA (Use the HIPAA API URL - https://hipaa-api.jotform.com)"""
     

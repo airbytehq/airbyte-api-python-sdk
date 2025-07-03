@@ -8,7 +8,7 @@ from enum import Enum
 from typing import Final, Optional, Union
 
 
-class SourceFaunaSchemasDeletionMode(str, Enum):
+class SourceFaunaDeletionMode(str, Enum):
     DELETED_FIELD = 'deleted_field'
 
 
@@ -17,19 +17,19 @@ class SourceFaunaSchemasDeletionMode(str, Enum):
 class Enabled:
     column: Optional[str] = dataclasses.field(default='deleted_at', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('column'), 'exclude': lambda f: f is None }})
     r"""Name of the \\"deleted at\\" column."""
-    DELETION_MODE: Final[SourceFaunaSchemasDeletionMode] = dataclasses.field(default=SourceFaunaSchemasDeletionMode.DELETED_FIELD, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('deletion_mode') }})
+    DELETION_MODE: Final[SourceFaunaDeletionMode] = dataclasses.field(default=SourceFaunaDeletionMode.DELETED_FIELD, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('deletion_mode') }})
     
 
 
 
-class SourceFaunaDeletionMode(str, Enum):
+class SourceFaunaSchemasDeletionMode(str, Enum):
     IGNORE = 'ignore'
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
 class Disabled:
-    DELETION_MODE: Final[SourceFaunaDeletionMode] = dataclasses.field(default=SourceFaunaDeletionMode.IGNORE, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('deletion_mode') }})
+    DELETION_MODE: Final[SourceFaunaSchemasDeletionMode] = dataclasses.field(default=SourceFaunaSchemasDeletionMode.IGNORE, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('deletion_mode') }})
     
 
 

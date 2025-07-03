@@ -21,6 +21,8 @@ class SourceRecharge:
     r"""The value of the Access Token generated. See the <a href=\\"https://docs.airbyte.com/integrations/sources/recharge\\">docs</a> for more information."""
     start_date: datetime = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('start_date'), 'encoder': utils.datetimeisoformat(False), 'decoder': dateutil.parser.isoparse }})
     r"""The date from which you'd like to replicate data for Recharge API, in the format YYYY-MM-DDT00:00:00Z. Any data before this date will not be replicated."""
+    lookback_window_days: Optional[int] = dataclasses.field(default=0, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('lookback_window_days'), 'exclude': lambda f: f is None }})
+    r"""Specifies how many days of historical data should be reloaded each time the recharge connector runs."""
     SOURCE_TYPE: Final[Recharge] = dataclasses.field(default=Recharge.RECHARGE, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     use_orders_deprecated_api: Optional[bool] = dataclasses.field(default=True, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('use_orders_deprecated_api'), 'exclude': lambda f: f is None }})
     r"""Define whether or not the `Orders` stream should use the deprecated `2021-01` API version, or use `2021-11`, otherwise."""

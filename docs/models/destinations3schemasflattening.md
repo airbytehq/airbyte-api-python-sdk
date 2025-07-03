@@ -1,7 +1,5 @@
 # DestinationS3SchemasFlattening
 
-Whether the input json data should be normalized (flattened) in the output JSON Lines. Please refer to docs for details.
-
 
 ## Values
 

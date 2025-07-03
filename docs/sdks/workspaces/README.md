@@ -36,10 +36,8 @@ s = airbyte_api.AirbyteAPI(
 res = s.workspaces.create_or_update_workspace_o_auth_credentials(request=api.CreateOrUpdateWorkspaceOAuthCredentialsRequest(
     workspace_o_auth_credentials_request=models.WorkspaceOAuthCredentialsRequest(
         actor_type=models.ActorTypeEnum.DESTINATION,
-        configuration={
-            'user': 'charles',
-        },
-        name=models.OAuthActorNames.AMAZON_ADS,
+        configuration=models.Airtable(),
+        name=models.OAuthActorNames.MONDAY,
     ),
     workspace_id='<value>',
 ))

@@ -3,6 +3,6 @@
 
 ## Values
 
-| Name     | Value    |
-| -------- | -------- |
-| `PREFER` | prefer   |
+| Name    | Value   |
+| ------- | ------- |
+| `ALLOW` | allow   |

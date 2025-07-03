@@ -15,3 +15,9 @@ value: models.ReplicateRecords = /* values here */
 value: models.CopyRawFiles = /* values here */
 ```
 
+### `models.ReplicatePermissionsACL`
+
+```python
+value: models.ReplicatePermissionsACL = /* values here */
+```
+

@@ -41,6 +41,12 @@ value: models.DestinationBigquery = /* values here */
 value: models.DestinationClickhouse = /* values here */
 ```
 
+### `models.DestinationCobra`
+
+```python
+value: models.DestinationCobra = /* values here */
+```
+
 ### `models.DestinationConvex`
 
 ```python
@@ -51,6 +57,12 @@ value: models.DestinationConvex = /* values here */
 
 ```python
 value: models.DestinationDatabricks = /* values here */
+```
+
+### `models.DestinationDeepset`
+
+```python
+value: models.DestinationDeepset = /* values here */
 ```
 
 ### `models.DestinationDevNull`
@@ -95,12 +107,6 @@ value: models.DestinationFirestore = /* values here */
 value: models.DestinationGcs = /* values here */
 ```
 
-### `models.DestinationIceberg`
-
-```python
-value: models.DestinationIceberg = /* values here */
-```
-
 ### `models.DestinationMilvus`
 
 ```python
@@ -123,6 +129,12 @@ value: models.DestinationMotherduck = /* values here */
 
 ```python
 value: models.DestinationMssql = /* values here */
+```
+
+### `models.DestinationMssqlV2`
+
+```python
+value: models.DestinationMssqlV2 = /* values here */
 ```
 
 ### `models.DestinationMysql`
@@ -185,10 +197,10 @@ value: models.DestinationRedshift = /* values here */
 value: models.DestinationS3 = /* values here */
 ```
 
-### `models.DestinationS3Glue`
+### `models.DestinationS3DataLake`
 
 ```python
-value: models.DestinationS3Glue = /* values here */
+value: models.DestinationS3DataLake = /* values here */
 ```
 
 ### `models.DestinationSftpJSON`

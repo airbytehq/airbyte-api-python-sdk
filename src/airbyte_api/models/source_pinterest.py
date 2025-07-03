@@ -252,6 +252,8 @@ class Status(str, Enum):
 @dataclasses.dataclass
 class SourcePinterest:
     UNSET='__SPEAKEASY_UNSET__'
+    account_id: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('account_id'), 'exclude': lambda f: f is None }})
+    r"""The Pinterest account ID you want to fetch data for. This ID must be provided to filter the data for a specific account."""
     credentials: Optional[OAuth20] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credentials'), 'exclude': lambda f: f is None }})
     custom_reports: Optional[List[ReportConfig]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('custom_reports'), 'exclude': lambda f: f is None }})
     r"""A list which contains ad statistics entries, each entry must have a name and can contains fields, breakdowns or action_breakdowns. Click on \\"add\\" to fill this field."""

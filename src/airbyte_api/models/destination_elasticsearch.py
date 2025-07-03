@@ -127,6 +127,8 @@ class DestinationElasticsearch:
     ca_certificate: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('ca_certificate'), 'exclude': lambda f: f is None }})
     r"""CA certificate"""
     DESTINATION_TYPE: Final[Elasticsearch] = dataclasses.field(default=Elasticsearch.ELASTICSEARCH, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('destinationType') }})
+    path_prefix: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('pathPrefix'), 'exclude': lambda f: f is None }})
+    r"""The Path Prefix of the Elasticsearch server"""
     tunnel_method: Optional[DestinationElasticsearchSSHTunnelMethod] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('tunnel_method'), 'exclude': lambda f: f is None }})
     r"""Whether to initiate an SSH tunnel before connecting to the database, and if so, which kind of authentication to use."""
     upsert: Optional[bool] = dataclasses.field(default=True, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('upsert'), 'exclude': lambda f: f is None }})

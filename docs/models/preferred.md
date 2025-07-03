@@ -1,10 +1,11 @@
 # Preferred
 
-Automatically attempt SSL connection. If the MySQL server does not support SSL, continue with a regular connection.
+To allow unencrypted communication only when the source doesn't support encryption.
 
 
 ## Fields
 
-| Field                                                  | Type                                                   | Required                                               | Description                                            |
-| ------------------------------------------------------ | ------------------------------------------------------ | ------------------------------------------------------ | ------------------------------------------------------ |
-| `mode`                                                 | [models.SourceMysqlMode](../models/sourcemysqlmode.md) | :heavy_check_mark:                                     | N/A                                                    |
+| Field                                                            | Type                                                             | Required                                                         | Description                                                      |
+| ---------------------------------------------------------------- | ---------------------------------------------------------------- | ---------------------------------------------------------------- | ---------------------------------------------------------------- |
+| `additional_properties`                                          | Dict[str, *Any*]                                                 | :heavy_minus_sign:                                               | N/A                                                              |
+| `mode`                                                           | [Optional[models.SourceMysqlMode]](../models/sourcemysqlmode.md) | :heavy_minus_sign:                                               | N/A                                                              |

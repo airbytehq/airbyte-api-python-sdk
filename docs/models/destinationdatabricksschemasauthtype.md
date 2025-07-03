@@ -5,4 +5,4 @@
 
 | Name    | Value   |
 | ------- | ------- |
-| `OAUTH` | OAUTH   |
+| `BASIC` | BASIC   |

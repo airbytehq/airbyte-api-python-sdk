@@ -49,7 +49,7 @@ class SourceDatadog:
     r"""Datadog API key"""
     application_key: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('application_key') }})
     r"""Datadog application key"""
-    end_date: Optional[str] = dataclasses.field(default='2024-01-01T00:00:00Z', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('end_date'), 'exclude': lambda f: f is None }})
+    end_date: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('end_date'), 'exclude': lambda f: f is None }})
     r"""UTC date and time in the format 2017-01-25T00:00:00Z. Data after this date will  not be replicated. An empty value will represent the current datetime for each  execution. This just applies to Incremental syncs."""
     max_records_per_request: Optional[int] = dataclasses.field(default=5000, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('max_records_per_request'), 'exclude': lambda f: f is None }})
     r"""Maximum number of records to collect per request."""

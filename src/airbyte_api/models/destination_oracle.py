@@ -130,7 +130,7 @@ class DestinationOracle:
     username: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('username') }})
     r"""The username to access the database. This user must have CREATE USER privileges in the database."""
     DESTINATION_TYPE: Final[Oracle] = dataclasses.field(default=Oracle.ORACLE, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('destinationType') }})
-    encryption: Optional[Encryption] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('encryption'), 'exclude': lambda f: f is None }})
+    encryption: Optional[DestinationOracleEncryption] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('encryption'), 'exclude': lambda f: f is None }})
     r"""The encryption method which is used when communicating with the database."""
     jdbc_url_params: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('jdbc_url_params'), 'exclude': lambda f: f is None }})
     r"""Additional properties to pass to the JDBC URL string when connecting to the database formatted as 'key=value' pairs separated by the symbol '&'. (example: key1=value1&key2=value2&key3=value3)."""
@@ -147,6 +147,6 @@ class DestinationOracle:
     
 
 
-Encryption = Union[DestinationOracleUnencrypted, NativeNetworkEncryptionNNE, TLSEncryptedVerifyCertificate]
+DestinationOracleEncryption = Union[DestinationOracleUnencrypted, NativeNetworkEncryptionNNE, TLSEncryptedVerifyCertificate]
 
 DestinationOracleSSHTunnelMethod = Union[DestinationOracleNoTunnel, DestinationOracleSSHKeyAuthentication, DestinationOraclePasswordAuthentication]
