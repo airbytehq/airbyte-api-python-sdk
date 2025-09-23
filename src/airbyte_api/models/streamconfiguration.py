@@ -17,8 +17,14 @@ class StreamConfiguration:
     name: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('name') }})
     cursor_field: Optional[List[str]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('cursorField'), 'exclude': lambda f: f is None }})
     r"""Path to the field that will be used to determine if a record is new or modified since the last sync. This field is REQUIRED if `sync_mode` is `incremental` unless there is a default."""
+    destination_object_name: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('destinationObjectName'), 'exclude': lambda f: f is None }})
+    r"""The name of the destination object that this stream will be written to, used for data activation destinations."""
+    include_files: Optional[bool] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('includeFiles'), 'exclude': lambda f: f is None }})
+    r"""Whether to move raw files from the source to the destination during the sync."""
     mappers: Optional[List[ConfiguredStreamMapper]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('mappers'), 'exclude': lambda f: f is None }})
     r"""Mappers that should be applied to the stream before writing to the destination."""
+    namespace: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('namespace'), 'exclude': lambda f: f is None }})
+    r"""Namespace of the stream."""
     primary_key: Optional[List[List[str]]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('primaryKey'), 'exclude': lambda f: f is None }})
     r"""Paths to the fields that will be used as primary key. This field is REQUIRED if `destination_sync_mode` is `*_dedup` unless it is already supplied by the source schema."""
     selected_fields: Optional[List[SelectedFieldInfo]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('selectedFields'), 'exclude': lambda f: f is None }})

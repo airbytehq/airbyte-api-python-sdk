@@ -8,6 +8,12 @@ from enum import Enum
 from typing import Final, Optional, Union
 
 
+class DefinitionOfConversionCountInReports(str, Enum):
+    r"""The definition of conversion count in reports. See <a href=\\"https://amplifyv01.docs.apiary.io/#reference/performance-reporting/periodic/retrieve-performance-statistics-for-all-marketer-campaigns-by-periodic-breakdown\\">the docs</a>."""
+    CLICK_VIEW_TIME = 'click/view_time'
+    CONVERSION_TIME = 'conversion_time'
+
+
 class BothUsernameAndPasswordIsRequiredForAuthenticationRequest(str, Enum):
     USERNAME_PASSWORD = 'username_password'
 
@@ -63,6 +69,8 @@ class SourceOutbrainAmplify:
     r"""Credentials for making authenticated requests requires either username/password or access_token."""
     start_date: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('start_date') }})
     r"""Date in the format YYYY-MM-DD eg. 2017-01-25. Any data before this date will not be replicated."""
+    conversion_count: Optional[DefinitionOfConversionCountInReports] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('conversion_count'), 'exclude': lambda f: f is None }})
+    r"""The definition of conversion count in reports. See <a href=\\"https://amplifyv01.docs.apiary.io/#reference/performance-reporting/periodic/retrieve-performance-statistics-for-all-marketer-campaigns-by-periodic-breakdown\\">the docs</a>."""
     end_date: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('end_date'), 'exclude': lambda f: f is None }})
     r"""Date in the format YYYY-MM-DD."""
     geo_location_breakdown: Optional[GranularityForGeoLocationRegion] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('geo_location_breakdown'), 'exclude': lambda f: f is None }})

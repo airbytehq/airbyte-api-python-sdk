@@ -8,7 +8,7 @@ from enum import Enum
 from typing import Final
 
 
-class CustomerIo(str, Enum):
+class SourceCustomerIoCustomerIo(str, Enum):
     CUSTOMER_IO = 'customer-io'
 
 
@@ -16,6 +16,6 @@ class CustomerIo(str, Enum):
 @dataclasses.dataclass
 class SourceCustomerIo:
     app_api_key: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('app_api_key') }})
-    SOURCE_TYPE: Final[CustomerIo] = dataclasses.field(default=CustomerIo.CUSTOMER_IO, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
+    SOURCE_TYPE: Final[SourceCustomerIoCustomerIo] = dataclasses.field(default=SourceCustomerIoCustomerIo.CUSTOMER_IO, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     
 

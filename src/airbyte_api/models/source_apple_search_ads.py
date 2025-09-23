@@ -12,6 +12,12 @@ class AppleSearchAds(str, Enum):
     APPLE_SEARCH_ADS = 'apple-search-ads'
 
 
+class TimeZone(str, Enum):
+    r"""The timezone for the reporting data. Use 'ORTZ' for Organization Time Zone or 'UTC' for Coordinated Universal Time. Default is UTC."""
+    ORTZ = 'ORTZ'
+    UTC = 'UTC'
+
+
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
 class SourceAppleSearchAds:
@@ -23,8 +29,16 @@ class SourceAppleSearchAds:
     r"""The identifier of the organization that owns the campaign. Your Org Id is the same as your account in the Apple Search Ads UI."""
     start_date: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('start_date') }})
     r"""Start getting data from that date."""
+    backoff_factor: Optional[int] = dataclasses.field(default=5, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('backoff_factor'), 'exclude': lambda f: f is None }})
+    r"""This factor factor determines the delay increase factor between retryable failures. Valid values are integers between 1 and 20."""
     end_date: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('end_date'), 'exclude': lambda f: f is None }})
     r"""Data is retrieved until that date (included)"""
+    lookback_window: Optional[int] = dataclasses.field(default=30, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('lookback_window'), 'exclude': lambda f: f is None }})
+    r"""Apple Search Ads uses a 30-day attribution window. However, you may consider smaller values in order to shorten sync durations, at the cost of missing late data attributions."""
     SOURCE_TYPE: Final[AppleSearchAds] = dataclasses.field(default=AppleSearchAds.APPLE_SEARCH_ADS, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
+    timezone: Optional[TimeZone] = dataclasses.field(default=TimeZone.UTC, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('timezone'), 'exclude': lambda f: f is None }})
+    r"""The timezone for the reporting data. Use 'ORTZ' for Organization Time Zone or 'UTC' for Coordinated Universal Time. Default is UTC."""
+    token_refresh_endpoint: Optional[str] = dataclasses.field(default='https://appleid.apple.com/auth/oauth2/token?grant_type=client_credentials&scope=searchadsorg', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('token_refresh_endpoint'), 'exclude': lambda f: f is None }})
+    r"""Token Refresh Endpoint. You should override the default value in scenarios  where it's required to proxy requests to Apple's token endpoint"""
     
 

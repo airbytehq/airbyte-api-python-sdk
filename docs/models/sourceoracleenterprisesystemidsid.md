@@ -1,0 +1,12 @@
+# SourceOracleEnterpriseSystemIDSID
+
+Use Oracle System Identifier.
+
+
+## Fields
+
+| Field                                                                                                                    | Type                                                                                                                     | Required                                                                                                                 | Description                                                                                                              |
+| ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------ |
+| `sid`                                                                                                                    | *str*                                                                                                                    | :heavy_check_mark:                                                                                                       | N/A                                                                                                                      |
+| `additional_properties`                                                                                                  | Dict[str, *Any*]                                                                                                         | :heavy_minus_sign:                                                                                                       | N/A                                                                                                                      |
+| `connection_type`                                                                                                        | [Optional[models.SourceOracleEnterpriseSchemasConnectionType]](../models/sourceoracleenterpriseschemasconnectiontype.md) | :heavy_minus_sign:                                                                                                       | N/A                                                                                                                      |

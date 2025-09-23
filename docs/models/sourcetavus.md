@@ -1,0 +1,10 @@
+# SourceTavus
+
+
+## Fields
+
+| Field                                                                                  | Type                                                                                   | Required                                                                               | Description                                                                            |
+| -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- |
+| `api_key`                                                                              | *str*                                                                                  | :heavy_check_mark:                                                                     | Your Tavus API key. You can find this in your Tavus account settings or API dashboard. |
+| `start_date`                                                                           | [date](https://docs.python.org/3/library/datetime.html#date-objects)                   | :heavy_check_mark:                                                                     | N/A                                                                                    |
+| `source_type`                                                                          | [models.Tavus](../models/tavus.md)                                                     | :heavy_check_mark:                                                                     | N/A                                                                                    |

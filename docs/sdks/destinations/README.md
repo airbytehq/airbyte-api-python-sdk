@@ -33,27 +33,12 @@ s = airbyte_api.AirbyteAPI(
 
 
 res = s.destinations.create_destination(request=models.DestinationCreateRequest(
-    configuration=models.DestinationPgvector(
-        embedding=models.DestinationPgvectorFake(),
-        indexing=models.PostgresConnection(
-            credentials=models.DestinationPgvectorCredentials(
-                password='AIRBYTE_PASSWORD',
-            ),
-            database='AIRBYTE_DATABASE',
-            host='AIRBYTE_ACCOUNT',
-            username='AIRBYTE_USER',
-            default_schema='AIRBYTE_SCHEMA',
-            port=5432,
-        ),
-        processing=models.DestinationPgvectorProcessingConfigModel(
-            chunk_size=540943,
-            metadata_fields=[
-                'age',
-            ],
-            text_fields=[
-                'users.*.name',
-            ],
-        ),
+    configuration=models.DestinationOracle(
+        host='instructive-mainstream.com',
+        sid='<id>',
+        username='Robert.Legros98',
+        port=1521,
+        schema='airbyte',
     ),
     name='Postgres',
     workspace_id='2155ae5a-de39-4808-af6a-16fe7b8b4ed2',
@@ -240,8 +225,11 @@ s = airbyte_api.AirbyteAPI(
 res = s.destinations.patch_destination(request=api.PatchDestinationRequest(
     destination_id='<value>',
     destination_patch_request=models.DestinationPatchRequest(
-        configuration=models.DestinationDuckdb(
-            destination_path='motherduck:',
+        configuration=models.DestinationDevNull(
+            test_destination=models.Failing(
+                num_messages=992227,
+                test_destination_type=models.DestinationDevNullSchemasTestDestinationTestDestinationType.FAILING,
+            ),
         ),
         name='My Destination',
     ),
@@ -292,10 +280,9 @@ s = airbyte_api.AirbyteAPI(
 res = s.destinations.put_destination(request=api.PutDestinationRequest(
     destination_id='<value>',
     destination_put_request=models.DestinationPutRequest(
-        configuration=models.DestinationClickhouse(
-            database='<value>',
-            host='urban-receptor.org',
-            username='Kaylie_Terry',
+        configuration=models.DestinationConvex(
+            access_key='<value>',
+            deployment_url='https://cluttered-owl-337.convex.cloud',
         ),
         name='My Destination',
     ),

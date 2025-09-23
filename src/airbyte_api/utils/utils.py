@@ -614,7 +614,7 @@ def serialize_multipart_form(
             file_fields = fields(val)
 
             file_name = ""
-            field_name = ""
+            field_name = field_metadata.get("field_name")
             content = bytes()
 
             for file_field in file_fields:
@@ -625,9 +625,8 @@ def serialize_multipart_form(
                 if file_metadata.get("content") is True:
                     content = getattr(val, file_field.name)
                 else:
-                    field_name = file_metadata.get("field_name", file_field.name)
                     file_name = getattr(val, file_field.name)
-            if field_name == "" or file_name == "" or content == bytes():
+            if file_name == "" or content == bytes():
                 raise Exception("invalid multipart/form-data file")
 
             form.append([field_name, [file_name, content]])

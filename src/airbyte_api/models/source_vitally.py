@@ -5,7 +5,7 @@ import dataclasses
 from airbyte_api import utils
 from dataclasses_json import Undefined, dataclass_json
 from enum import Enum
-from typing import Final
+from typing import Final, Optional
 
 
 class Vitally(str, Enum):
@@ -22,10 +22,14 @@ class SourceVitallyStatus(str, Enum):
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
 class SourceVitally:
-    api_key: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('api_key') }})
-    r"""The API Token for a Vitally account."""
+    domain: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('domain') }})
+    r"""Provide only the subdomain part, like https://{your-custom-subdomain}.rest.vitally.io/.  Keep empty if you don't have a subdomain."""
+    secret_token: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('secret_token') }})
+    r"""sk_live_secret_token"""
     status: SourceVitallyStatus = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('status') }})
     r"""Status of the Vitally accounts. One of the following values; active, churned, activeOrChurned."""
+    basic_auth_header: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('basic_auth_header'), 'exclude': lambda f: f is None }})
+    r"""Basic Auth Header"""
     SOURCE_TYPE: Final[Vitally] = dataclasses.field(default=Vitally.VITALLY, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     
 

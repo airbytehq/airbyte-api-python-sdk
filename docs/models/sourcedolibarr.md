@@ -1,0 +1,11 @@
+# SourceDolibarr
+
+
+## Fields
+
+| Field                                                                            | Type                                                                             | Required                                                                         | Description                                                                      |
+| -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
+| `api_key`                                                                        | *str*                                                                            | :heavy_check_mark:                                                               | N/A                                                                              |
+| `my_dolibarr_domain_url`                                                         | *str*                                                                            | :heavy_check_mark:                                                               | enter your "domain/dolibarr_url" without https:// Example: mydomain.com/dolibarr |
+| `start_date`                                                                     | [date](https://docs.python.org/3/library/datetime.html#date-objects)             | :heavy_check_mark:                                                               | N/A                                                                              |
+| `source_type`                                                                    | [models.Dolibarr](../models/dolibarr.md)                                         | :heavy_check_mark:                                                               | N/A                                                                              |

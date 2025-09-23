@@ -3,8 +3,10 @@
 from __future__ import annotations
 import dataclasses
 from .destinationconfiguration import DestinationConfiguration
+from .scopedresourcerequirements import ScopedResourceRequirements
 from airbyte_api import utils
 from dataclasses_json import Undefined, dataclass_json
+from typing import Optional
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
@@ -19,5 +21,7 @@ class DestinationResponse:
     destination_type: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('destinationType') }})
     name: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('name') }})
     workspace_id: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('workspaceId') }})
+    resource_allocation: Optional[ScopedResourceRequirements] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('resourceAllocation'), 'exclude': lambda f: f is None }})
+    r"""actor or actor definition specific resource requirements. if default is set, these are the requirements that should be set for ALL jobs run for this actor definition. it is overriden by the job type specific configurations. if not set, the platform will use defaults. these values will be overriden by configuration at the connection level."""
     
 

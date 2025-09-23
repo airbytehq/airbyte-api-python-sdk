@@ -7,7 +7,7 @@ from airbyte_api import utils
 from dataclasses_json import Undefined, dataclass_json
 from datetime import datetime
 from enum import Enum
-from typing import Final
+from typing import Final, Optional
 
 
 class Calendly(str, Enum):
@@ -20,6 +20,8 @@ class SourceCalendly:
     api_key: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('api_key') }})
     r"""Go to Integrations → API & Webhooks to obtain your bearer token. https://calendly.com/integrations/api_webhooks"""
     start_date: datetime = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('start_date'), 'encoder': utils.datetimeisoformat(False), 'decoder': dateutil.parser.isoparse }})
+    lookback_days: Optional[float] = dataclasses.field(default=0, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('lookback_days'), 'exclude': lambda f: f is None }})
+    r"""Number of days to be subtracted from the last cutoff date before starting to sync the `scheduled_events` stream."""
     SOURCE_TYPE: Final[Calendly] = dataclasses.field(default=Calendly.CALENDLY, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     
 

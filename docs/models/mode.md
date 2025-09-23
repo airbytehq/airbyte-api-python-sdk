@@ -3,6 +3,11 @@
 
 ## Values
 
-| Name   | Value  |
-| ------ | ------ |
-| `MODE` | mode   |
+| Name  | Value |
+| ----- | ----- |
+| `CBC` | CBC   |
+| `CFB` | CFB   |
+| `OFB` | OFB   |
+| `CTR` | CTR   |
+| `GCM` | GCM   |
+| `ECB` | ECB   |

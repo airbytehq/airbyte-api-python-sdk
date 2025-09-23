@@ -16,6 +16,8 @@ class SourceMssqlSchemasMethod(str, Enum):
 @dataclasses.dataclass
 class ScanChangesWithUserDefinedCursor:
     r"""Incrementally detects new inserts and updates using the <a href=\\"https://docs.airbyte.com/understanding-airbyte/connections/incremental-append/#user-defined-cursor\\">cursor column</a> chosen when configuring a connection (e.g. created_at, updated_at)."""
+    exclude_todays_data: Optional[bool] = dataclasses.field(default=False, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('exclude_todays_data'), 'exclude': lambda f: f is None }})
+    r"""When enabled incremental syncs using a cursor of a temporal types (date or datetime) will include cursor values only up until last midnight (Advanced)"""
     METHOD: Final[SourceMssqlSchemasMethod] = dataclasses.field(default=SourceMssqlSchemasMethod.STANDARD, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('method') }})
     
 
@@ -52,7 +54,7 @@ class SourceMssqlMssql(str, Enum):
     MSSQL = 'mssql'
 
 
-class SourceMssqlSchemasSSLMethodSSLMethodSSLMethod(str, Enum):
+class SourceMssqlSchemasSslMethodSslMethod(str, Enum):
     ENCRYPTED_VERIFY_CERTIFICATE = 'encrypted_verify_certificate'
 
 
@@ -64,12 +66,12 @@ class SourceMssqlEncryptedVerifyCertificate:
     r"""certificate of the server, or of the CA that signed the server certificate"""
     host_name_in_certificate: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('hostNameInCertificate'), 'exclude': lambda f: f is None }})
     r"""Specifies the host name of the server. The value of this property must match the subject property of the certificate."""
-    SSL_METHOD: Final[SourceMssqlSchemasSSLMethodSSLMethodSSLMethod] = dataclasses.field(default=SourceMssqlSchemasSSLMethodSSLMethodSSLMethod.ENCRYPTED_VERIFY_CERTIFICATE, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('ssl_method') }})
+    SSL_METHOD: Final[SourceMssqlSchemasSslMethodSslMethod] = dataclasses.field(default=SourceMssqlSchemasSslMethodSslMethod.ENCRYPTED_VERIFY_CERTIFICATE, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('ssl_method') }})
     
 
 
 
-class SourceMssqlSchemasSslMethodSslMethod(str, Enum):
+class SourceMssqlSchemasSslMethod(str, Enum):
     ENCRYPTED_TRUST_SERVER_CERTIFICATE = 'encrypted_trust_server_certificate'
 
 
@@ -77,12 +79,12 @@ class SourceMssqlSchemasSslMethodSslMethod(str, Enum):
 @dataclasses.dataclass
 class SourceMssqlEncryptedTrustServerCertificate:
     r"""Use the certificate provided by the server without verification. (For testing purposes only!)"""
-    SSL_METHOD: Final[SourceMssqlSchemasSslMethodSslMethod] = dataclasses.field(default=SourceMssqlSchemasSslMethodSslMethod.ENCRYPTED_TRUST_SERVER_CERTIFICATE, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('ssl_method') }})
+    SSL_METHOD: Final[SourceMssqlSchemasSslMethod] = dataclasses.field(default=SourceMssqlSchemasSslMethod.ENCRYPTED_TRUST_SERVER_CERTIFICATE, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('ssl_method') }})
     
 
 
 
-class SourceMssqlSchemasSslMethod(str, Enum):
+class SourceMssqlSchemasSSLMethodSSLMethodSSLMethod(str, Enum):
     UNENCRYPTED = 'unencrypted'
 
 
@@ -90,7 +92,7 @@ class SourceMssqlSchemasSslMethod(str, Enum):
 @dataclasses.dataclass
 class SourceMssqlUnencrypted:
     r"""Data transfer will not be encrypted."""
-    SSL_METHOD: Final[SourceMssqlSchemasSslMethod] = dataclasses.field(default=SourceMssqlSchemasSslMethod.UNENCRYPTED, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('ssl_method') }})
+    SSL_METHOD: Final[SourceMssqlSchemasSSLMethodSSLMethodSSLMethod] = dataclasses.field(default=SourceMssqlSchemasSSLMethodSSLMethodSSLMethod.UNENCRYPTED, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('ssl_method') }})
     
 
 

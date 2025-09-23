@@ -1,0 +1,9 @@
+# CreateOrUpdateOrganizationOAuthCredentialsRequest
+
+
+## Fields
+
+| Field                                                                                          | Type                                                                                           | Required                                                                                       | Description                                                                                    |
+| ---------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- |
+| `organization_o_auth_credentials_request`                                                      | [models.OrganizationOAuthCredentialsRequest](../models/organizationoauthcredentialsrequest.md) | :heavy_check_mark:                                                                             | N/A                                                                                            |
+| `organization_id`                                                                              | *str*                                                                                          | :heavy_check_mark:                                                                             | N/A                                                                                            |

@@ -49,27 +49,33 @@ class AmazonSqs(str, Enum):
     AMAZON_SQS = 'amazon-sqs'
 
 
+class TheTargetedActionResourceForTheFetch(str, Enum):
+    r"""Note - Different targets have different attribute enum requirements, please refer actions sections in https://docs.aws.amazon.com/AWSSimpleQueueService/latest/APIReference/Welcome.html"""
+    GET_QUEUE_ATTRIBUTES = 'GetQueueAttributes'
+    RECEIVE_MESSAGE = 'ReceiveMessage'
+
+
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
 class SourceAmazonSqs:
+    access_key: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('access_key') }})
+    r"""The Access Key ID of the AWS IAM Role to use for pulling messages"""
     queue_url: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('queue_url') }})
     r"""URL of the SQS Queue"""
-    region: SourceAmazonSqsAWSRegion = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('region') }})
-    r"""AWS Region of the SQS Queue"""
-    access_key: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('access_key'), 'exclude': lambda f: f is None }})
-    r"""The Access Key ID of the AWS IAM Role to use for pulling messages"""
-    attributes_to_return: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('attributes_to_return'), 'exclude': lambda f: f is None }})
-    r"""Comma separated list of Mesage Attribute names to return"""
-    delete_messages: Optional[bool] = dataclasses.field(default=False, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('delete_messages'), 'exclude': lambda f: f is None }})
-    r"""If Enabled, messages will be deleted from the SQS Queue after being read. If Disabled, messages are left in the queue and can be read more than once. WARNING: Enabling this option can result in data loss in cases of failure, use with caution, see documentation for more detail."""
-    max_batch_size: Optional[int] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('max_batch_size'), 'exclude': lambda f: f is None }})
-    r"""Max amount of messages to get in one batch (10 max)"""
-    max_wait_time: Optional[int] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('max_wait_time'), 'exclude': lambda f: f is None }})
-    r"""Max amount of time in seconds to wait for messages in a single poll (20 max)"""
-    secret_key: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('secret_key'), 'exclude': lambda f: f is None }})
+    secret_key: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('secret_key') }})
     r"""The Secret Key of the AWS IAM Role to use for pulling messages"""
+    attributes_to_return: Optional[str] = dataclasses.field(default='All', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('attributes_to_return'), 'exclude': lambda f: f is None }})
+    r"""Comma separated list of Mesage Attribute names to return"""
+    max_batch_size: Optional[int] = dataclasses.field(default=10, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('max_batch_size'), 'exclude': lambda f: f is None }})
+    r"""Max amount of messages to get in one batch (10 max)"""
+    max_wait_time: Optional[int] = dataclasses.field(default=20, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('max_wait_time'), 'exclude': lambda f: f is None }})
+    r"""Max amount of time in seconds to wait for messages in a single poll (20 max)"""
+    region: Optional[SourceAmazonSqsAWSRegion] = dataclasses.field(default=SourceAmazonSqsAWSRegion.US_EAST_1, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('region'), 'exclude': lambda f: f is None }})
+    r"""AWS Region of the SQS Queue"""
     SOURCE_TYPE: Final[AmazonSqs] = dataclasses.field(default=AmazonSqs.AMAZON_SQS, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
-    visibility_timeout: Optional[int] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('visibility_timeout'), 'exclude': lambda f: f is None }})
+    target: Optional[TheTargetedActionResourceForTheFetch] = dataclasses.field(default=TheTargetedActionResourceForTheFetch.RECEIVE_MESSAGE, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('target'), 'exclude': lambda f: f is None }})
+    r"""Note - Different targets have different attribute enum requirements, please refer actions sections in https://docs.aws.amazon.com/AWSSimpleQueueService/latest/APIReference/Welcome.html"""
+    visibility_timeout: Optional[int] = dataclasses.field(default=20, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('visibility_timeout'), 'exclude': lambda f: f is None }})
     r"""Modify the Visibility Timeout of the individual message from the Queue's default (seconds)."""
     
 

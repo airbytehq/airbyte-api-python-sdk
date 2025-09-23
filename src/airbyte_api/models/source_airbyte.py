@@ -7,7 +7,7 @@ from airbyte_api import utils
 from dataclasses_json import Undefined, dataclass_json
 from datetime import datetime
 from enum import Enum
-from typing import Final
+from typing import Final, Optional
 
 
 class Airbyte(str, Enum):
@@ -20,6 +20,8 @@ class SourceAirbyte:
     client_id: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('client_id') }})
     client_secret: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('client_secret') }})
     start_date: datetime = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('start_date'), 'encoder': utils.datetimeisoformat(False), 'decoder': dateutil.parser.isoparse }})
+    host: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('host'), 'exclude': lambda f: f is None }})
+    r"""The Host URL of your Self-Managed Deployment (e.x. airbtye.mydomain.com)"""
     SOURCE_TYPE: Final[Airbyte] = dataclasses.field(default=Airbyte.AIRBYTE, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     
 

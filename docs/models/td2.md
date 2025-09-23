@@ -1,0 +1,10 @@
+# Td2
+
+
+## Fields
+
+| Field                                                                                    | Type                                                                                     | Required                                                                                 | Description                                                                              |
+| ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
+| `password`                                                                               | *str*                                                                                    | :heavy_check_mark:                                                                       | Enter the password associated with the username.                                         |
+| `username`                                                                               | *str*                                                                                    | :heavy_check_mark:                                                                       | Username to use to access the database.                                                  |
+| `auth_type`                                                                              | [Optional[models.DestinationTeradataAuthType]](../models/destinationteradataauthtype.md) | :heavy_minus_sign:                                                                       | N/A                                                                                      |

@@ -2,10 +2,48 @@
 
 from __future__ import annotations
 import dataclasses
+import dateutil.parser
 from airbyte_api import utils
 from dataclasses_json import Undefined, dataclass_json
+from datetime import datetime
 from enum import Enum
-from typing import Final
+from typing import Final, Optional, Union
+
+
+class SourceConvertkitSchemasAuthType(str, Enum):
+    API_KEY = 'api_key'
+
+
+@dataclass_json(undefined=Undefined.EXCLUDE)
+@dataclasses.dataclass
+class APIKey:
+    api_key: Optional[str] = dataclasses.field(default='{{ config.get(\'credentials\',{}).get(\'api_key\') or config.get(\'api_secret\') }}', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('api_key'), 'exclude': lambda f: f is None }})
+    r"""Kit/ConvertKit API Key"""
+    AUTH_TYPE: Final[SourceConvertkitSchemasAuthType] = dataclasses.field(default=SourceConvertkitSchemasAuthType.API_KEY, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_type') }})
+    
+
+
+
+class SourceConvertkitAuthType(str, Enum):
+    OAUTH2_0 = 'oauth2.0'
+
+
+@dataclass_json(undefined=Undefined.EXCLUDE)
+@dataclasses.dataclass
+class SourceConvertkitOAuth20:
+    client_id: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('client_id') }})
+    r"""The client ID of your OAuth application."""
+    client_secret: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('client_secret') }})
+    r"""The client secret of your OAuth application."""
+    refresh_token: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('refresh_token') }})
+    r"""A current, non-expired refresh token genereted using the provided client ID and secret."""
+    access_token: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('access_token'), 'exclude': lambda f: f is None }})
+    r"""An access token generated using the provided client information and refresh token."""
+    AUTH_TYPE: Final[SourceConvertkitAuthType] = dataclasses.field(default=SourceConvertkitAuthType.OAUTH2_0, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_type') }})
+    expires_at: Optional[datetime] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('expires_at'), 'encoder': utils.datetimeisoformat(True), 'decoder': dateutil.parser.isoparse, 'exclude': lambda f: f is None }})
+    r"""The time at which the current access token is set to expire"""
+    
+
 
 
 class Convertkit(str, Enum):
@@ -15,8 +53,10 @@ class Convertkit(str, Enum):
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
 class SourceConvertkit:
-    api_secret: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('api_secret') }})
-    r"""API Secret"""
+    credentials: AuthenticationType = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credentials') }})
     SOURCE_TYPE: Final[Convertkit] = dataclasses.field(default=Convertkit.CONVERTKIT, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
+    start_date: Optional[datetime] = dataclasses.field(default=dateutil.parser.isoparse('2013-01-01T00:00:00Z'), metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('start_date'), 'encoder': utils.datetimeisoformat(True), 'decoder': dateutil.parser.isoparse, 'exclude': lambda f: f is None }})
     
 
+
+AuthenticationType = Union[SourceConvertkitOAuth20, APIKey]

@@ -2,14 +2,18 @@
 
 import requests as requests_http
 from .connections import Connections
+from .declarativesourcedefinitions import DeclarativeSourceDefinitions
+from .destinationdefinitions import DestinationDefinitions
 from .destinations import Destinations
 from .health import Health
 from .jobs import Jobs
 from .organizations import Organizations
 from .permissions import Permissions
 from .sdkconfiguration import SDKConfiguration
+from .sourcedefinitions import SourceDefinitions
 from .sources import Sources
 from .streams import Streams
+from .tags import Tags
 from .users import Users
 from .utils.retries import RetryConfig
 from .workspaces import Workspaces
@@ -27,8 +31,12 @@ class AirbyteAPI:
     permissions: Permissions
     sources: Sources
     streams: Streams
+    tags: Tags
     users: Users
     workspaces: Workspaces
+    declarative_source_definitions: DeclarativeSourceDefinitions
+    destination_definitions: DestinationDefinitions
+    source_definitions: SourceDefinitions
 
     sdk_configuration: SDKConfiguration
 
@@ -93,5 +101,9 @@ class AirbyteAPI:
         self.permissions = Permissions(self.sdk_configuration)
         self.sources = Sources(self.sdk_configuration)
         self.streams = Streams(self.sdk_configuration)
+        self.tags = Tags(self.sdk_configuration)
         self.users = Users(self.sdk_configuration)
         self.workspaces = Workspaces(self.sdk_configuration)
+        self.declarative_source_definitions = DeclarativeSourceDefinitions(self.sdk_configuration)
+        self.destination_definitions = DestinationDefinitions(self.sdk_configuration)
+        self.source_definitions = SourceDefinitions(self.sdk_configuration)

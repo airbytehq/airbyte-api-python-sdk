@@ -5,7 +5,7 @@ import dataclasses
 from airbyte_api import utils
 from dataclasses_json import Undefined, dataclass_json
 from enum import Enum
-from typing import Final, Optional, Union
+from typing import Final, List, Optional, Union
 
 
 class SourceGoogleSheetsSchemasAuthType(str, Enum):
@@ -46,16 +46,51 @@ class SourceGoogleSheetsGoogleSheets(str, Enum):
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
+class StreamNameOverrides:
+    custom_stream_name: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('custom_stream_name') }})
+    r"""The name you want this stream to appear as in Airbyte and your destination."""
+    source_stream_name: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('source_stream_name') }})
+    r"""The exact name of the sheet/tab in your Google Spreadsheet."""
+    
+
+
+
+@dataclass_json(undefined=Undefined.EXCLUDE)
+@dataclasses.dataclass
 class SourceGoogleSheets:
     credentials: SourceGoogleSheetsAuthentication = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credentials') }})
     r"""Credentials for connecting to the Google Sheets API"""
     spreadsheet_id: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('spreadsheet_id') }})
     r"""Enter the link to the Google spreadsheet you want to sync. To copy the link, click the 'Share' button in the top-right corner of the spreadsheet, then click 'Copy link'."""
-    batch_size: Optional[int] = dataclasses.field(default=200, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('batch_size'), 'exclude': lambda f: f is None }})
-    r"""Default value is 200. An integer representing row batch size for each sent request to Google Sheets API. Row batch size means how many rows are processed from the google sheet, for example default value 200 would process rows 1-201, then 201-401 and so on. Based on <a href='https://developers.google.com/sheets/api/limits'>Google Sheets API limits documentation</a>, it is possible to send up to 300 requests per minute, but each individual request has to be processed under 180 seconds, otherwise the request returns a timeout error. In regards to this information, consider network speed and number of columns of the google sheet when deciding a batch_size value. Default value should cover most of the cases, but if a google sheet has over 100,000 records or more, consider increasing batch_size value."""
+    allow_leading_numbers: Optional[bool] = dataclasses.field(default=False, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('allow_leading_numbers'), 'exclude': lambda f: f is None }})
+    r"""Allows column names to start with numbers. Example: \\"50th Percentile\\" → \\"50_th_percentile\\" This option will only work if \\"Convert Column Names to SQL-Compliant Format (names_conversion)\\" is enabled."""
+    batch_size: Optional[int] = dataclasses.field(default=1000000, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('batch_size'), 'exclude': lambda f: f is None }})
+    r"""Default value is 1000000. An integer representing row batch size for each sent request to Google Sheets API. Row batch size means how many rows are processed from the google sheet, for example default value 1000000 would process rows 2-1000002, then 1000003-2000003 and so on. Based on <a href='https://developers.google.com/sheets/api/limits'>Google Sheets API limits documentation</a>, it is possible to send up to 300 requests per minute, but each individual request has to be processed under 180 seconds, otherwise the request returns a timeout error. In regards to this information, consider network speed and number of columns of the google sheet when deciding a batch_size value."""
+    combine_letter_number_pairs: Optional[bool] = dataclasses.field(default=False, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('combine_letter_number_pairs'), 'exclude': lambda f: f is None }})
+    r"""Combines adjacent letters and numbers. Example: \\"Q3 2023\\" → \\"q3_2023\\" This option will only work if \\"Convert Column Names to SQL-Compliant Format (names_conversion)\\" is enabled."""
+    combine_number_word_pairs: Optional[bool] = dataclasses.field(default=False, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('combine_number_word_pairs'), 'exclude': lambda f: f is None }})
+    r"""Combines adjacent numbers and words. Example: \\"50th Percentile?\\" → \\"_50th_percentile_\\" This option will only work if \\"Convert Column Names to SQL-Compliant Format (names_conversion)\\" is enabled."""
     names_conversion: Optional[bool] = dataclasses.field(default=False, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('names_conversion'), 'exclude': lambda f: f is None }})
-    r"""Enables the conversion of column names to a standardized, SQL-compliant format. For example, 'My Name' -> 'my_name'. Enable this option if your destination is SQL-based."""
+    r"""Converts column names to a SQL-compliant format (snake_case, lowercase, etc). If enabled, you can further customize the sanitization using the options below."""
+    remove_leading_trailing_underscores: Optional[bool] = dataclasses.field(default=False, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('remove_leading_trailing_underscores'), 'exclude': lambda f: f is None }})
+    r"""Removes leading and trailing underscores from column names. Does not remove leading underscores from column names that start with a number. Example: \\"50th Percentile? \\"→ \\"_50_th_percentile\\" This option will only work if \\"Convert Column Names to SQL-Compliant Format (names_conversion)\\" is enabled."""
+    remove_special_characters: Optional[bool] = dataclasses.field(default=False, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('remove_special_characters'), 'exclude': lambda f: f is None }})
+    r"""Removes all special characters from column names. Example: \\"Example ID*\\" → \\"example_id\\" This option will only work if \\"Convert Column Names to SQL-Compliant Format (names_conversion)\\" is enabled."""
     SOURCE_TYPE: Final[SourceGoogleSheetsGoogleSheets] = dataclasses.field(default=SourceGoogleSheetsGoogleSheets.GOOGLE_SHEETS, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
+    stream_name_overrides: Optional[List[StreamNameOverrides]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('stream_name_overrides'), 'exclude': lambda f: f is None }})
+    r"""**Overridden streams will default to Sync Mode: Full Refresh (Append), which does not support primary keys. If you want to use primary keys and deduplication, update the sync mode to \\"Full Refresh | Overwrite + Deduped\\" in your connection settings.**
+    Allows you to rename streams (Google Sheet tab names) as they appear in Airbyte. 
+    Each item should be an object with a `source_stream_name` (the exact name of the sheet/tab in your spreadsheet)  and a `custom_stream_name` (the name you want it to appear as in Airbyte and the destination).
+    If a `source_stream_name` is not found in your spreadsheet, it will be ignored and the default name will be used. This feature only affects stream (sheet/tab) names, not field/column names.
+    If you want to rename fields or column names, you can do so using the Airbyte Mappings feature after your connection is created. See the Airbyte documentation for more details on how to use Mappings.
+    Examples:
+      - To rename a sheet called \"Sheet1\" to \"sales_data\", and \"2024 Q1\" to \"q1_2024\":
+        [
+          { \"source_stream_name\": \"Sheet1\", \"custom_stream_name\": \"sales_data\" },
+          { \"source_stream_name\": \"2024 Q1\", \"custom_stream_name\": \"q1_2024\" }
+        ]
+      - If you do not wish to rename any streams, leave this blank.
+    """
     
 
 

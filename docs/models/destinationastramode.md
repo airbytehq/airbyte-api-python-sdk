@@ -5,4 +5,4 @@
 
 | Name     | Value    |
 | -------- | -------- |
-| `COHERE` | cohere   |
+| `OPENAI` | openai   |

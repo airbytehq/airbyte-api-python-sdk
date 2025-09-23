@@ -3,6 +3,6 @@
 
 ## Values
 
-| Name                      | Value                     |
-| ------------------------- | ------------------------- |
-| `KEY_PAIR_AUTHENTICATION` | Key Pair Authentication   |
+| Name                | Value               |
+| ------------------- | ------------------- |
+| `USERNAME_PASSWORD` | username/password   |

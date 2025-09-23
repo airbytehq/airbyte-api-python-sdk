@@ -3,6 +3,6 @@
 
 ## Values
 
-| Name                              | Value                             |
-| --------------------------------- | --------------------------------- |
-| `OAUTH2_CONFIDENTIAL_APPLICATION` | oauth2_confidential_application   |
+| Name                  | Value                 |
+| --------------------- | --------------------- |
+| `OAUTH2_ACCESS_TOKEN` | oauth2_access_token   |

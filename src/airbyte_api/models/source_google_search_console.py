@@ -79,19 +79,23 @@ class SourceGoogleSearchConsoleGoogleSearchConsole(str, Enum):
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
 class SourceGoogleSearchConsole:
-    authorization: AuthenticationType = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('authorization') }})
+    authorization: SourceGoogleSearchConsoleAuthenticationType = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('authorization') }})
     site_urls: List[str] = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('site_urls') }})
     r"""The URLs of the website property attached to your GSC account. Learn more about properties <a href=\\"https://support.google.com/webmasters/answer/34592?hl=en\\">here</a>."""
+    always_use_aggregation_type_auto: Optional[bool] = dataclasses.field(default=False, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('always_use_aggregation_type_auto'), 'exclude': lambda f: f is None }})
+    r"""Some search analytics streams fail with a 400 error if the specified `aggregationType` is not supported. This is customer implementation dependent and if this error is encountered, enable this setting which will override the existing `aggregationType` to use `auto` which should resolve the stream errors."""
     custom_reports_array: Optional[List[SourceGoogleSearchConsoleCustomReportConfig]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('custom_reports_array'), 'exclude': lambda f: f is None }})
     r"""You can add your Custom Analytics report by creating one."""
     data_state: Optional[DataFreshness] = dataclasses.field(default=DataFreshness.FINAL, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('data_state'), 'exclude': lambda f: f is None }})
     r"""If set to 'final', the returned data will include only finalized, stable data. If set to 'all', fresh data will be included. When using Incremental sync mode, we do not recommend setting this parameter to 'all' as it may cause data loss. More information can be found in our <a href='https://docs.airbyte.com/integrations/source/google-search-console'>full documentation</a>."""
     end_date: Optional[date] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('end_date'), 'encoder': utils.dateisoformat(True), 'decoder': utils.datefromisoformat, 'exclude': lambda f: f is None }})
     r"""UTC date in the format YYYY-MM-DD. Any data created after this date will not be replicated. Must be greater or equal to the start date field. Leaving this field blank will replicate all data from the start date onward."""
+    num_workers: Optional[int] = dataclasses.field(default=40, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('num_workers'), 'exclude': lambda f: f is None }})
+    r"""The number of worker threads to use for the sync. For more details on Google Search Console rate limits, refer to the <a href=\\"https://developers.google.com/webmaster-tools/limits\\">docs</a>."""
     SOURCE_TYPE: Final[SourceGoogleSearchConsoleGoogleSearchConsole] = dataclasses.field(default=SourceGoogleSearchConsoleGoogleSearchConsole.GOOGLE_SEARCH_CONSOLE, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     start_date: Optional[date] = dataclasses.field(default=dateutil.parser.parse('2021-01-01').date(), metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('start_date'), 'encoder': utils.dateisoformat(True), 'decoder': utils.datefromisoformat, 'exclude': lambda f: f is None }})
     r"""UTC date in the format YYYY-MM-DD. Any data before this date will not be replicated."""
     
 
 
-AuthenticationType = Union[SourceGoogleSearchConsoleOAuth, SourceGoogleSearchConsoleServiceAccountKeyAuthentication]
+SourceGoogleSearchConsoleAuthenticationType = Union[SourceGoogleSearchConsoleOAuth, SourceGoogleSearchConsoleServiceAccountKeyAuthentication]

@@ -3,6 +3,6 @@
 
 ## Values
 
-| Name                | Value               |
-| ------------------- | ------------------- |
-| `USE_FILE_TRANSFER` | use_file_transfer   |
+| Name                   | Value                  |
+| ---------------------- | ---------------------- |
+| `USE_RECORDS_TRANSFER` | use_records_transfer   |

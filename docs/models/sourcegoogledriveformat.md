@@ -29,9 +29,15 @@ value: models.SourceGoogleDriveJsonlFormat = /* values here */
 value: models.SourceGoogleDriveParquetFormat = /* values here */
 ```
 
-### `models.SourceGoogleDriveDocumentFileTypeFormatExperimental`
+### `models.SourceGoogleDriveUnstructuredDocumentFormat`
 
 ```python
-value: models.SourceGoogleDriveDocumentFileTypeFormatExperimental = /* values here */
+value: models.SourceGoogleDriveUnstructuredDocumentFormat = /* values here */
+```
+
+### `models.SourceGoogleDriveExcelFormat`
+
+```python
+value: models.SourceGoogleDriveExcelFormat = /* values here */
 ```
 
