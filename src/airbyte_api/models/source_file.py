@@ -8,7 +8,7 @@ from enum import Enum
 from typing import Final, Optional, Union
 
 
-class SourceFileFileFormat(str, Enum):
+class FileFormat(str, Enum):
     r"""The Format of the file which should be replicated (Warning: some formats may be experimental, please refer to the docs)."""
     CSV = 'csv'
     JSON = 'json'
@@ -158,7 +158,7 @@ class SourceFile:
     r"""The storage Provider or Location of the file(s) which should be replicated."""
     url: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('url') }})
     r"""The URL path to access the file which should be replicated."""
-    format: Optional[SourceFileFileFormat] = dataclasses.field(default=SourceFileFileFormat.CSV, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('format'), 'exclude': lambda f: f is None }})
+    format: Optional[FileFormat] = dataclasses.field(default=FileFormat.CSV, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('format'), 'exclude': lambda f: f is None }})
     r"""The Format of the file which should be replicated (Warning: some formats may be experimental, please refer to the docs)."""
     reader_options: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('reader_options'), 'exclude': lambda f: f is None }})
     r"""This should be a string in JSON format. It depends on the chosen file format to provide additional options and tune its behavior."""

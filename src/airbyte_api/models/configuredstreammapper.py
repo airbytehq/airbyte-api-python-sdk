@@ -6,6 +6,7 @@ from .mapperconfiguration import MapperConfiguration
 from .streammappertype import StreamMapperType
 from airbyte_api import utils
 from dataclasses_json import Undefined, dataclass_json
+from typing import Optional
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
@@ -14,5 +15,6 @@ class ConfiguredStreamMapper:
     mapper_configuration: MapperConfiguration = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('mapperConfiguration') }})
     r"""The values required to configure the mapper."""
     type: StreamMapperType = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('type') }})
+    id: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('id'), 'exclude': lambda f: f is None }})
     
 

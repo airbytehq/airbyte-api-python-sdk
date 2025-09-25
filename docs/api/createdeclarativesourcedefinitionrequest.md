@@ -1,0 +1,9 @@
+# CreateDeclarativeSourceDefinitionRequest
+
+
+## Fields
+
+| Field                                                                                                    | Type                                                                                                     | Required                                                                                                 | Description                                                                                              |
+| -------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- |
+| `create_declarative_source_definition_request`                                                           | [models.CreateDeclarativeSourceDefinitionRequest](../models/createdeclarativesourcedefinitionrequest.md) | :heavy_check_mark:                                                                                       | N/A                                                                                                      |
+| `workspace_id`                                                                                           | *str*                                                                                                    | :heavy_check_mark:                                                                                       | N/A                                                                                                      |

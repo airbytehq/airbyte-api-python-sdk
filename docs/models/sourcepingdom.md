@@ -1,0 +1,12 @@
+# SourcePingdom
+
+
+## Fields
+
+| Field                                                                | Type                                                                 | Required                                                             | Description                                                          | Example                                                              |
+| -------------------------------------------------------------------- | -------------------------------------------------------------------- | -------------------------------------------------------------------- | -------------------------------------------------------------------- | -------------------------------------------------------------------- |
+| `api_key`                                                            | *str*                                                                | :heavy_check_mark:                                                   | N/A                                                                  |                                                                      |
+| `start_date`                                                         | [date](https://docs.python.org/3/library/datetime.html#date-objects) | :heavy_check_mark:                                                   | N/A                                                                  |                                                                      |
+| `probes`                                                             | *Optional[str]*                                                      | :heavy_minus_sign:                                                   | N/A                                                                  | probe1                                                               |
+| `resolution`                                                         | [Optional[models.Resolution]](../models/resolution.md)               | :heavy_minus_sign:                                                   | N/A                                                                  |                                                                      |
+| `source_type`                                                        | [models.Pingdom](../models/pingdom.md)                               | :heavy_check_mark:                                                   | N/A                                                                  |                                                                      |

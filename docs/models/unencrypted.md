@@ -5,6 +5,7 @@ The data transfer will not be encrypted.
 
 ## Fields
 
-| Field                                                                                | Type                                                                                 | Required                                                                             | Description                                                                          |
-| ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ |
-| `ssl_method`                                                                         | [Optional[models.DestinationMssqlSslMethod]](../models/destinationmssqlsslmethod.md) | :heavy_minus_sign:                                                                   | N/A                                                                                  |
+| Field                                      | Type                                       | Required                                   | Description                                |
+| ------------------------------------------ | ------------------------------------------ | ------------------------------------------ | ------------------------------------------ |
+| `additional_properties`                    | Dict[str, *Any*]                           | :heavy_minus_sign:                         | N/A                                        |
+| `name`                                     | [Optional[models.Name]](../models/name.md) | :heavy_minus_sign:                         | N/A                                        |

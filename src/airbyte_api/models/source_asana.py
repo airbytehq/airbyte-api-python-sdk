@@ -50,6 +50,8 @@ class SourceAsanaAsana(str, Enum):
 class SourceAsana:
     credentials: Optional[AuthenticationMechanism] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credentials'), 'exclude': lambda f: f is None }})
     r"""Choose how to authenticate to Github"""
+    num_workers: Optional[int] = dataclasses.field(default=10, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('num_workers'), 'exclude': lambda f: f is None }})
+    r"""The number of worker threads to use for the sync. The performance upper boundary is based on the limit of your Asana pricing plan. More info about the rate limit tiers can be found on Asana's API <a href=\\"https://developers.asana.com/docs/rate-limits\\">docs</a>."""
     organization_export_ids: Optional[List[Any]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('organization_export_ids'), 'exclude': lambda f: f is None }})
     r"""Globally unique identifiers for the organization exports"""
     SOURCE_TYPE: Final[Optional[SourceAsanaAsana]] = dataclasses.field(default=SourceAsanaAsana.ASANA, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType'), 'exclude': lambda f: f is None }})

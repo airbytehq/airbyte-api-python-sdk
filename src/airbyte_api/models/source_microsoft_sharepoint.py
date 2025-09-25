@@ -56,6 +56,34 @@ class SourceMicrosoftSharepointAuthenticateViaMicrosoftOAuth:
 
 
 
+class SourceMicrosoftSharepointSchemasDeliveryType(str, Enum):
+    USE_FILE_TRANSFER = 'use_file_transfer'
+
+
+@dataclass_json(undefined=Undefined.EXCLUDE)
+@dataclasses.dataclass
+class SourceMicrosoftSharepointCopyRawFiles:
+    r"""Copy raw files without parsing their contents. Bits are copied into the destination exactly as they appeared in the source. Recommended for use with unstructured text data, non-text and compressed files."""
+    DELIVERY_TYPE: Final[Optional[SourceMicrosoftSharepointSchemasDeliveryType]] = dataclasses.field(default=SourceMicrosoftSharepointSchemasDeliveryType.USE_FILE_TRANSFER, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('delivery_type'), 'exclude': lambda f: f is None }})
+    preserve_directory_structure: Optional[bool] = dataclasses.field(default=True, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('preserve_directory_structure'), 'exclude': lambda f: f is None }})
+    r"""If enabled, sends subdirectory folder structure along with source file names to the destination. Otherwise, files will be synced by their names only. This option is ignored when file-based replication is not enabled."""
+    
+
+
+
+class SourceMicrosoftSharepointDeliveryType(str, Enum):
+    USE_RECORDS_TRANSFER = 'use_records_transfer'
+
+
+@dataclass_json(undefined=Undefined.EXCLUDE)
+@dataclasses.dataclass
+class SourceMicrosoftSharepointReplicateRecords:
+    r"""Recommended - Extract and load structured records into your destination of choice. This is the classic method of moving data in Airbyte. It allows for blocking and hashing individual fields or files from a structured schema. Data can be flattened, typed and deduped depending on the destination."""
+    DELIVERY_TYPE: Final[Optional[SourceMicrosoftSharepointDeliveryType]] = dataclasses.field(default=SourceMicrosoftSharepointDeliveryType.USE_RECORDS_TRANSFER, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('delivery_type'), 'exclude': lambda f: f is None }})
+    
+
+
+
 class SourceMicrosoftSharepointSearchScope(str, Enum):
     r"""Specifies the location(s) to search for files. Valid options are 'ACCESSIBLE_DRIVES' for all SharePoint drives the user can access, 'SHARED_ITEMS' for shared items the user has access to, and 'ALL' to search both."""
     ACCESSIBLE_DRIVES = 'ACCESSIBLE_DRIVES'
@@ -275,10 +303,13 @@ class SourceMicrosoftSharepoint:
     r"""Credentials for connecting to the One Drive API"""
     streams: List[SourceMicrosoftSharepointFileBasedStreamConfig] = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('streams') }})
     r"""Each instance of this configuration defines a <a href=\\"https://docs.airbyte.com/cloud/core-concepts#stream\\">stream</a>. Use this to define which files belong in the stream, their format, and how they should be parsed and validated. When sending data to warehouse destination such as Snowflake or BigQuery, each stream is a separate table."""
+    delivery_method: Optional[SourceMicrosoftSharepointDeliveryMethod] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('delivery_method'), 'exclude': lambda f: f is None }})
     folder_path: Optional[str] = dataclasses.field(default='.', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('folder_path'), 'exclude': lambda f: f is None }})
     r"""Path to a specific folder within the drives to search for files. Leave empty to search all folders of the drives. This does not apply to shared items."""
     search_scope: Optional[SourceMicrosoftSharepointSearchScope] = dataclasses.field(default=SourceMicrosoftSharepointSearchScope.ALL, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('search_scope'), 'exclude': lambda f: f is None }})
     r"""Specifies the location(s) to search for files. Valid options are 'ACCESSIBLE_DRIVES' for all SharePoint drives the user can access, 'SHARED_ITEMS' for shared items the user has access to, and 'ALL' to search both."""
+    site_url: Optional[str] = dataclasses.field(default='', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('site_url'), 'exclude': lambda f: f is None }})
+    r"""Url of SharePoint site to search for files. Leave empty to search in the main site. Use 'https://<tenant_name>.sharepoint.com/sites/' to iterate over all sites."""
     SOURCE_TYPE: Final[SourceMicrosoftSharepointMicrosoftSharepoint] = dataclasses.field(default=SourceMicrosoftSharepointMicrosoftSharepoint.MICROSOFT_SHAREPOINT, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     start_date: Optional[datetime] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('start_date'), 'encoder': utils.datetimeisoformat(True), 'decoder': dateutil.parser.isoparse, 'exclude': lambda f: f is None }})
     r"""UTC date and time in the format 2017-01-25T00:00:00.000000Z. Any file modified before this date will not be replicated."""
@@ -286,6 +317,8 @@ class SourceMicrosoftSharepoint:
 
 
 SourceMicrosoftSharepointAuthentication = Union[SourceMicrosoftSharepointAuthenticateViaMicrosoftOAuth, SourceMicrosoftSharepointServiceKeyAuthentication]
+
+SourceMicrosoftSharepointDeliveryMethod = Union[SourceMicrosoftSharepointReplicateRecords, SourceMicrosoftSharepointCopyRawFiles]
 
 SourceMicrosoftSharepointProcessing = Union[SourceMicrosoftSharepointLocal]
 

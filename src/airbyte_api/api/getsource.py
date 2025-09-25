@@ -10,6 +10,8 @@ from typing import Optional
 @dataclasses.dataclass
 class GetSourceRequest:
     source_id: str = dataclasses.field(metadata={'path_param': { 'field_name': 'sourceId', 'style': 'simple', 'explode': False }})
+    include_secret_coordinates: Optional[bool] = dataclasses.field(default=None, metadata={'query_param': { 'field_name': 'includeSecretCoordinates', 'style': 'form', 'explode': True }})
+    r"""Rather than return *** for secret properties include the secret coordinate information"""
     
 
 

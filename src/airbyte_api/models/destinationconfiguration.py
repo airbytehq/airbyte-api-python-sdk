@@ -7,7 +7,9 @@ from .destination_azure_blob_storage import DestinationAzureBlobStorage
 from .destination_bigquery import DestinationBigquery
 from .destination_clickhouse import DestinationClickhouse
 from .destination_convex import DestinationConvex
+from .destination_customer_io import DestinationCustomerIo
 from .destination_databricks import DestinationDatabricks
+from .destination_deepset import DestinationDeepset
 from .destination_dev_null import DestinationDevNull
 from .destination_duckdb import DestinationDuckdb
 from .destination_dynamodb import DestinationDynamodb
@@ -16,11 +18,12 @@ from .destination_firebolt import DestinationFirebolt
 from .destination_firestore import DestinationFirestore
 from .destination_gcs import DestinationGcs
 from .destination_google_sheets import DestinationGoogleSheets
-from .destination_iceberg import DestinationIceberg
+from .destination_hubspot import DestinationHubspot
 from .destination_milvus import DestinationMilvus
 from .destination_mongodb import DestinationMongodb
 from .destination_motherduck import DestinationMotherduck
 from .destination_mssql import DestinationMssql
+from .destination_mssql_v2 import DestinationMssqlV2
 from .destination_mysql import DestinationMysql
 from .destination_oracle import DestinationOracle
 from .destination_pgvector import DestinationPgvector
@@ -31,10 +34,12 @@ from .destination_qdrant import DestinationQdrant
 from .destination_redis import DestinationRedis
 from .destination_redshift import DestinationRedshift
 from .destination_s3 import DestinationS3
-from .destination_s3_glue import DestinationS3Glue
+from .destination_s3_data_lake import DestinationS3DataLake
+from .destination_salesforce import DestinationSalesforce
 from .destination_sftp_json import DestinationSftpJSON
 from .destination_snowflake import DestinationSnowflake
 from .destination_snowflake_cortex import DestinationSnowflakeCortex
+from .destination_surrealdb import DestinationSurrealdb
 from .destination_teradata import DestinationTeradata
 from .destination_timeplus import DestinationTimeplus
 from .destination_typesense import DestinationTypesense
@@ -43,4 +48,4 @@ from .destination_weaviate import DestinationWeaviate
 from .destination_yellowbrick import DestinationYellowbrick
 from typing import Union
 
-DestinationConfiguration = Union[DestinationGoogleSheets, DestinationAstra, DestinationAwsDatalake, DestinationAzureBlobStorage, DestinationBigquery, DestinationClickhouse, DestinationConvex, DestinationDatabricks, DestinationDevNull, DestinationDuckdb, DestinationDynamodb, DestinationElasticsearch, DestinationFirebolt, DestinationFirestore, DestinationGcs, DestinationIceberg, DestinationMilvus, DestinationMongodb, DestinationMotherduck, DestinationMssql, DestinationMysql, DestinationOracle, DestinationPgvector, DestinationPinecone, DestinationPostgres, DestinationPubsub, DestinationQdrant, DestinationRedis, DestinationRedshift, DestinationS3, DestinationS3Glue, DestinationSftpJSON, DestinationSnowflake, DestinationSnowflakeCortex, DestinationTeradata, DestinationTimeplus, DestinationTypesense, DestinationVectara, DestinationWeaviate, DestinationYellowbrick]
+DestinationConfiguration = Union[DestinationGoogleSheets, DestinationAstra, DestinationAwsDatalake, DestinationAzureBlobStorage, DestinationBigquery, DestinationClickhouse, DestinationConvex, DestinationCustomerIo, DestinationDatabricks, DestinationDeepset, DestinationDevNull, DestinationDuckdb, DestinationDynamodb, DestinationElasticsearch, DestinationFirebolt, DestinationFirestore, DestinationGcs, DestinationHubspot, DestinationMilvus, DestinationMongodb, DestinationMotherduck, DestinationMssql, DestinationMssqlV2, DestinationMysql, DestinationOracle, DestinationPgvector, DestinationPinecone, DestinationPostgres, DestinationPubsub, DestinationQdrant, DestinationRedis, DestinationRedshift, DestinationS3, DestinationS3DataLake, DestinationSalesforce, DestinationSftpJSON, DestinationSnowflake, DestinationSnowflakeCortex, DestinationSurrealdb, DestinationTeradata, DestinationTimeplus, DestinationTypesense, DestinationVectara, DestinationWeaviate, DestinationYellowbrick]

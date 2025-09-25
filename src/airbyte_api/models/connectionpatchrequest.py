@@ -4,21 +4,22 @@ from __future__ import annotations
 import dataclasses
 from .airbyteapiconnectionschedule import AirbyteAPIConnectionSchedule
 from .connectionstatusenum import ConnectionStatusEnum
-from .geographyenumnodefault import GeographyEnumNoDefault
 from .namespacedefinitionenumnodefault import NamespaceDefinitionEnumNoDefault
 from .nonbreakingschemaupdatesbehaviorenumnodefault import NonBreakingSchemaUpdatesBehaviorEnumNoDefault
-from .streamconfigurations import StreamConfigurations
+from .streamconfigurations_input import StreamConfigurationsInput
+from .tag import Tag
 from airbyte_api import utils
 from dataclasses_json import Undefined, dataclass_json
-from typing import Optional
+from typing import List, Optional
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
 class ConnectionPatchRequest:
-    configurations: Optional[StreamConfigurations] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('configurations'), 'exclude': lambda f: f is None }})
+    configurations: Optional[StreamConfigurationsInput] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('configurations'), 'exclude': lambda f: f is None }})
     r"""A list of configured stream options for a connection."""
-    data_residency: Optional[GeographyEnumNoDefault] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('dataResidency'), 'exclude': lambda f: f is None }})
+    data_residency: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('dataResidency'), 'exclude': lambda f: f is None }})
+    r"""Deprecated field: We no longer support modifying dataResidency on Community and Enterprise connections. All connections will use the dataResidency of their associated workspace.."""
     name: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('name'), 'exclude': lambda f: f is None }})
     r"""Optional name of the connection"""
     namespace_definition: Optional[NamespaceDefinitionEnumNoDefault] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('namespaceDefinition'), 'exclude': lambda f: f is None }})
@@ -32,5 +33,6 @@ class ConnectionPatchRequest:
     schedule: Optional[AirbyteAPIConnectionSchedule] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('schedule'), 'exclude': lambda f: f is None }})
     r"""schedule for when the the connection should run, per the schedule type"""
     status: Optional[ConnectionStatusEnum] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('status'), 'exclude': lambda f: f is None }})
+    tags: Optional[List[Tag]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('tags'), 'exclude': lambda f: f is None }})
     
 

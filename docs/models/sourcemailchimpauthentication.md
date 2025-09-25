@@ -9,9 +9,9 @@
 value: models.SourceMailchimpOAuth20 = /* values here */
 ```
 
-### `models.APIKey`
+### `models.SourceMailchimpAPIKey`
 
 ```python
-value: models.APIKey = /* values here */
+value: models.SourceMailchimpAPIKey = /* values here */
 ```
 

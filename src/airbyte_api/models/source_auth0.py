@@ -8,7 +8,7 @@ from enum import Enum
 from typing import Final, Optional, Union
 
 
-class SourceAuth0SchemasCredentialsAuthenticationMethod(str, Enum):
+class SourceAuth0SchemasAuthenticationMethod(str, Enum):
     OAUTH2_ACCESS_TOKEN = 'oauth2_access_token'
 
 
@@ -17,12 +17,12 @@ class SourceAuth0SchemasCredentialsAuthenticationMethod(str, Enum):
 class OAuth2AccessToken:
     access_token: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('access_token') }})
     r"""Also called <a href=\\"https://auth0.com/docs/secure/tokens/access-tokens/get-management-api-access-tokens-for-testing\\">API Access Token </a> The access token used to call the Auth0 Management API Token. It's a JWT that contains specific grant permissions knowns as scopes."""
-    AUTH_TYPE: Final[SourceAuth0SchemasCredentialsAuthenticationMethod] = dataclasses.field(default=SourceAuth0SchemasCredentialsAuthenticationMethod.OAUTH2_ACCESS_TOKEN, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_type') }})
+    AUTH_TYPE: Final[SourceAuth0SchemasAuthenticationMethod] = dataclasses.field(default=SourceAuth0SchemasAuthenticationMethod.OAUTH2_ACCESS_TOKEN, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_type') }})
     
 
 
 
-class SourceAuth0SchemasAuthenticationMethod(str, Enum):
+class SourceAuth0SchemasCredentialsAuthenticationMethod(str, Enum):
     OAUTH2_CONFIDENTIAL_APPLICATION = 'oauth2_confidential_application'
 
 
@@ -35,7 +35,7 @@ class OAuth2ConfidentialApplication:
     r"""Your application's Client ID. You can find this value on the <a href=\\"https://manage.auth0.com/#/applications\\">application's settings tab</a> after you login the admin portal."""
     client_secret: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('client_secret') }})
     r"""Your application's Client Secret. You can find this value on the <a href=\\"https://manage.auth0.com/#/applications\\">application's settings tab</a> after you login the admin portal."""
-    AUTH_TYPE: Final[SourceAuth0SchemasAuthenticationMethod] = dataclasses.field(default=SourceAuth0SchemasAuthenticationMethod.OAUTH2_CONFIDENTIAL_APPLICATION, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_type') }})
+    AUTH_TYPE: Final[SourceAuth0SchemasCredentialsAuthenticationMethod] = dataclasses.field(default=SourceAuth0SchemasCredentialsAuthenticationMethod.OAUTH2_CONFIDENTIAL_APPLICATION, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_type') }})
     
 
 

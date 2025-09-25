@@ -1,7 +1,5 @@
 # DestinationClickhouseSchemasTunnelMethod
 
-Connect through a jump server tunnel host using username and password authentication
-
 
 ## Values
 

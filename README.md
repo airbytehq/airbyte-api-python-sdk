@@ -66,7 +66,6 @@ res = s.connections.create_connection(request=models.ConnectionCreateRequest(
     destination_id='e478de0d-a3a0-475c-b019-25f7dd29e281',
     source_id='95e66a59-8045-4307-9678-63bc3c9b8c93',
     name='Postgres-to-Bigquery',
-    namespace_format='${SOURCE_NAMESPACE}',
 ))
 
 if res.connection_response is not None:
@@ -91,6 +90,22 @@ if res.connection_response is not None:
 * [list_connections](docs/sdks/connections/README.md#list_connections) - List connections
 * [patch_connection](docs/sdks/connections/README.md#patch_connection) - Update Connection details
 
+### [declarative_source_definitions](docs/sdks/declarativesourcedefinitions/README.md)
+
+* [create_declarative_source_definition](docs/sdks/declarativesourcedefinitions/README.md#create_declarative_source_definition) - Create a declarative source definition.
+* [delete_declarative_source_definition](docs/sdks/declarativesourcedefinitions/README.md#delete_declarative_source_definition) - Delete a declarative source definition.
+* [get_declarative_source_definition](docs/sdks/declarativesourcedefinitions/README.md#get_declarative_source_definition) - Get declarative source definition details.
+* [list_declarative_source_definitions](docs/sdks/declarativesourcedefinitions/README.md#list_declarative_source_definitions) - List declarative source definitions.
+* [update_declarative_source_definition](docs/sdks/declarativesourcedefinitions/README.md#update_declarative_source_definition) - Update declarative source definition details.
+
+### [destination_definitions](docs/sdks/destinationdefinitions/README.md)
+
+* [create_destination_definition](docs/sdks/destinationdefinitions/README.md#create_destination_definition) - Create a destination definition.
+* [delete_destination_definition](docs/sdks/destinationdefinitions/README.md#delete_destination_definition) - Delete a destination definition.
+* [get_destination_definition](docs/sdks/destinationdefinitions/README.md#get_destination_definition) - Get destination definition details.
+* [list_destination_definitions](docs/sdks/destinationdefinitions/README.md#list_destination_definitions) - List destination definitions.
+* [update_destination_definition](docs/sdks/destinationdefinitions/README.md#update_destination_definition) - Update destination definition details.
+
 ### [destinations](docs/sdks/destinations/README.md)
 
 * [create_destination](docs/sdks/destinations/README.md#create_destination) - Create a destination
@@ -113,6 +128,7 @@ if res.connection_response is not None:
 
 ### [organizations](docs/sdks/organizations/README.md)
 
+* [create_or_update_organization_o_auth_credentials](docs/sdks/organizations/README.md#create_or_update_organization_o_auth_credentials) - Create OAuth override credentials for an organization and source type.
 * [list_organizations_for_user](docs/sdks/organizations/README.md#list_organizations_for_user) - List all organizations for a user
 
 ### [permissions](docs/sdks/permissions/README.md)
@@ -122,6 +138,14 @@ if res.connection_response is not None:
 * [get_permission](docs/sdks/permissions/README.md#get_permission) - Get Permission details
 * [list_permissions](docs/sdks/permissions/README.md#list_permissions) - List Permissions by user id
 * [update_permission](docs/sdks/permissions/README.md#update_permission) - Update a permission
+
+### [source_definitions](docs/sdks/sourcedefinitions/README.md)
+
+* [create_source_definition](docs/sdks/sourcedefinitions/README.md#create_source_definition) - Create a source definition.
+* [delete_source_definition](docs/sdks/sourcedefinitions/README.md#delete_source_definition) - Delete a source definition.
+* [get_source_definition](docs/sdks/sourcedefinitions/README.md#get_source_definition) - Get source definition details.
+* [list_source_definitions](docs/sdks/sourcedefinitions/README.md#list_source_definitions) - List source definitions.
+* [update_source_definition](docs/sdks/sourcedefinitions/README.md#update_source_definition) - Update source definition details.
 
 ### [sources](docs/sdks/sources/README.md)
 
@@ -136,6 +160,14 @@ if res.connection_response is not None:
 ### [streams](docs/sdks/streams/README.md)
 
 * [get_stream_properties](docs/sdks/streams/README.md#get_stream_properties) - Get stream properties
+
+### [tags](docs/sdks/tags/README.md)
+
+* [create_tag](docs/sdks/tags/README.md#create_tag) - Create a tag
+* [delete_tag](docs/sdks/tags/README.md#delete_tag) - Delete a tag
+* [get_tag](docs/sdks/tags/README.md#get_tag) - Get a tag
+* [list_tags](docs/sdks/tags/README.md#list_tags) - List all tags
+* [update_tag](docs/sdks/tags/README.md#update_tag) - Update a tag
 
 ### [users](docs/sdks/users/README.md)
 
@@ -200,7 +232,6 @@ try:
     destination_id='e478de0d-a3a0-475c-b019-25f7dd29e281',
     source_id='95e66a59-8045-4307-9678-63bc3c9b8c93',
     name='Postgres-to-Bigquery',
-    namespace_format='${SOURCE_NAMESPACE}',
 ))
 
 except errors.SDKError as e:
@@ -221,7 +252,7 @@ if res.connection_response is not None:
 
 ### Override Server URL Per-Client
 
-The default server can also be overridden globally by passing a URL to the `server_url: str` optional parameter when initializing the SDK client instance. For example:
+The default server can be overridden globally by passing a URL to the `server_url: str` optional parameter when initializing the SDK client instance. For example:
 ```python
 import airbyte_api
 from airbyte_api import models
@@ -241,7 +272,6 @@ res = s.connections.create_connection(request=models.ConnectionCreateRequest(
     destination_id='e478de0d-a3a0-475c-b019-25f7dd29e281',
     source_id='95e66a59-8045-4307-9678-63bc3c9b8c93',
     name='Postgres-to-Bigquery',
-    namespace_format='${SOURCE_NAMESPACE}',
 ))
 
 if res.connection_response is not None:
@@ -303,7 +333,6 @@ res = s.connections.create_connection(request=models.ConnectionCreateRequest(
     destination_id='e478de0d-a3a0-475c-b019-25f7dd29e281',
     source_id='95e66a59-8045-4307-9678-63bc3c9b8c93',
     name='Postgres-to-Bigquery',
-    namespace_format='${SOURCE_NAMESPACE}',
 ))
 
 if res.connection_response is not None:

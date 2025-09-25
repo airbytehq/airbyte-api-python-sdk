@@ -5,13 +5,20 @@ import dataclasses
 from airbyte_api import utils
 from dataclasses_json import Undefined, dataclass_json
 from enum import Enum
-from typing import Final, Optional, Union
+from typing import Any, Dict, Final, Optional, Union
+
+
+class CDCDeletionMode(str, Enum):
+    r"""Whether to execute CDC deletions as hard deletes (i.e. propagate source deletions to the destination), or soft deletes (i.e. leave a tombstone record in the destination). Defaults to hard deletes."""
+    HARD_DELETE = 'Hard delete'
+    SOFT_DELETE = 'Soft delete'
 
 
 class DatasetLocation(str, Enum):
     r"""The location of the dataset. Warning: Changes made after creation will not be applied. Read more <a href=\\"https://cloud.google.com/bigquery/docs/locations\\">here</a>."""
-    US = 'US'
     EU = 'EU'
+    US = 'US'
+    AFRICA_SOUTH1 = 'africa-south1'
     ASIA_EAST1 = 'asia-east1'
     ASIA_EAST2 = 'asia-east2'
     ASIA_NORTHEAST1 = 'asia-northeast1'
@@ -23,30 +30,29 @@ class DatasetLocation(str, Enum):
     ASIA_SOUTHEAST2 = 'asia-southeast2'
     AUSTRALIA_SOUTHEAST1 = 'australia-southeast1'
     AUSTRALIA_SOUTHEAST2 = 'australia-southeast2'
-    EUROPE_CENTRAL1 = 'europe-central1'
     EUROPE_CENTRAL2 = 'europe-central2'
     EUROPE_NORTH1 = 'europe-north1'
+    EUROPE_NORTH2 = 'europe-north2'
     EUROPE_SOUTHWEST1 = 'europe-southwest1'
     EUROPE_WEST1 = 'europe-west1'
     EUROPE_WEST2 = 'europe-west2'
     EUROPE_WEST3 = 'europe-west3'
     EUROPE_WEST4 = 'europe-west4'
     EUROPE_WEST6 = 'europe-west6'
-    EUROPE_WEST7 = 'europe-west7'
     EUROPE_WEST8 = 'europe-west8'
     EUROPE_WEST9 = 'europe-west9'
+    EUROPE_WEST10 = 'europe-west10'
     EUROPE_WEST12 = 'europe-west12'
     ME_CENTRAL1 = 'me-central1'
     ME_CENTRAL2 = 'me-central2'
     ME_WEST1 = 'me-west1'
     NORTHAMERICA_NORTHEAST1 = 'northamerica-northeast1'
     NORTHAMERICA_NORTHEAST2 = 'northamerica-northeast2'
+    NORTHAMERICA_SOUTH1 = 'northamerica-south1'
     SOUTHAMERICA_EAST1 = 'southamerica-east1'
     SOUTHAMERICA_WEST1 = 'southamerica-west1'
     US_CENTRAL1 = 'us-central1'
     US_EAST1 = 'us-east1'
-    US_EAST2 = 'us-east2'
-    US_EAST3 = 'us-east3'
     US_EAST4 = 'us-east4'
     US_EAST5 = 'us-east5'
     US_SOUTH1 = 'us-south1'
@@ -71,12 +77,13 @@ class DestinationBigqueryHMACKey:
     r"""HMAC key access ID. When linked to a service account, this ID is 61 characters long; when linked to a user account, it is 24 characters long."""
     hmac_key_secret: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('hmac_key_secret') }})
     r"""The corresponding secret for the access ID. It is a 40-character base-64 encoded string."""
-    CREDENTIAL_TYPE: Final[DestinationBigqueryCredentialType] = dataclasses.field(default=DestinationBigqueryCredentialType.HMAC_KEY, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credential_type') }})
+    additional_properties: Optional[Dict[str, Any]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'exclude': lambda f: f is None }})
+    credential_type: Optional[DestinationBigqueryCredentialType] = dataclasses.field(default=DestinationBigqueryCredentialType.HMAC_KEY, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credential_type'), 'exclude': lambda f: f is None }})
     
 
 
 
-class GCSTmpFilesAfterwardProcessing(str, Enum):
+class GCSTmpFilesPostProcessing(str, Enum):
     r"""This upload method is supposed to temporary store records in GCS bucket. By this select you can chose if these records should be removed from GCS when migration has finished. The default \\"Delete all tmp files from GCS\\" value is used if not set explicitly."""
     DELETE_ALL_TMP_FILES_FROM_GCS = 'Delete all tmp files from GCS'
     KEEP_ALL_TMP_FILES_IN_GCS = 'Keep all tmp files in GCS'
@@ -96,9 +103,10 @@ class GCSStaging:
     r"""The name of the GCS bucket. Read more <a href=\\"https://cloud.google.com/storage/docs/naming-buckets\\">here</a>."""
     gcs_bucket_path: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('gcs_bucket_path') }})
     r"""Directory under the GCS bucket where data will be written."""
-    keep_files_in_gcs_bucket: Optional[GCSTmpFilesAfterwardProcessing] = dataclasses.field(default=GCSTmpFilesAfterwardProcessing.DELETE_ALL_TMP_FILES_FROM_GCS, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('keep_files_in_gcs-bucket'), 'exclude': lambda f: f is None }})
+    additional_properties: Optional[Dict[str, Any]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'exclude': lambda f: f is None }})
+    keep_files_in_gcs_bucket: Optional[GCSTmpFilesPostProcessing] = dataclasses.field(default=GCSTmpFilesPostProcessing.DELETE_ALL_TMP_FILES_FROM_GCS, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('keep_files_in_gcs-bucket'), 'exclude': lambda f: f is None }})
     r"""This upload method is supposed to temporary store records in GCS bucket. By this select you can chose if these records should be removed from GCS when migration has finished. The default \\"Delete all tmp files from GCS\\" value is used if not set explicitly."""
-    METHOD: Final[DestinationBigqueryMethod] = dataclasses.field(default=DestinationBigqueryMethod.GCS_STAGING, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('method') }})
+    method: Optional[DestinationBigqueryMethod] = dataclasses.field(default=DestinationBigqueryMethod.GCS_STAGING, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('method'), 'exclude': lambda f: f is None }})
     
 
 
@@ -111,15 +119,10 @@ class Method(str, Enum):
 @dataclasses.dataclass
 class BatchedStandardInserts:
     r"""Direct loading using batched SQL INSERT statements. This method uses the BigQuery driver to convert large INSERT statements into file uploads automatically."""
-    METHOD: Final[Method] = dataclasses.field(default=Method.STANDARD, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('method') }})
+    additional_properties: Optional[Dict[str, Any]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'exclude': lambda f: f is None }})
+    method: Optional[Method] = dataclasses.field(default=Method.STANDARD, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('method'), 'exclude': lambda f: f is None }})
     
 
-
-
-class TransformationQueryRunType(str, Enum):
-    r"""Interactive run type means that the query is executed as soon as possible, and these queries count towards concurrent rate limit and daily limit. Read more about interactive run type <a href=\\"https://cloud.google.com/bigquery/docs/running-queries#queries\\">here</a>. Batch queries are queued and started as soon as idle resources are available in the BigQuery shared resource pool, which usually occurs within a few minutes. Batch queries don’t count towards your concurrent rate limit. Read more about batch queries <a href=\\"https://cloud.google.com/bigquery/docs/running-queries#batch\\">here</a>. The default \\"interactive\\" value is used if not set explicitly."""
-    INTERACTIVE = 'interactive'
-    BATCH = 'batch'
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
@@ -131,19 +134,17 @@ class DestinationBigquery:
     r"""The location of the dataset. Warning: Changes made after creation will not be applied. Read more <a href=\\"https://cloud.google.com/bigquery/docs/locations\\">here</a>."""
     project_id: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('project_id') }})
     r"""The GCP project ID for the project containing the target BigQuery dataset. Read more <a href=\\"https://cloud.google.com/resource-manager/docs/creating-managing-projects#identifying_projects\\">here</a>."""
-    big_query_client_buffer_size_mb: Optional[int] = dataclasses.field(default=15, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('big_query_client_buffer_size_mb'), 'exclude': lambda f: f is None }})
-    r"""Google BigQuery client's chunk (buffer) size (MIN=1, MAX = 15) for each table. The size that will be written by a single RPC. Written data will be buffered and only flushed upon reaching this size or closing the channel. The default 15MB value is used if not set explicitly. Read more <a href=\\"https://googleapis.dev/python/bigquery/latest/generated/google.cloud.bigquery.client.Client.html\\">here</a>."""
+    cdc_deletion_mode: Optional[CDCDeletionMode] = dataclasses.field(default=CDCDeletionMode.HARD_DELETE, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('cdc_deletion_mode'), 'exclude': lambda f: f is None }})
+    r"""Whether to execute CDC deletions as hard deletes (i.e. propagate source deletions to the destination), or soft deletes (i.e. leave a tombstone record in the destination). Defaults to hard deletes."""
     credentials_json: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credentials_json'), 'exclude': lambda f: f is None }})
     r"""The contents of the JSON service account key. Check out the <a href=\\"https://docs.airbyte.com/integrations/destinations/bigquery#service-account-key\\">docs</a> if you need help generating this key. Default credentials will be used if this field is left empty."""
     DESTINATION_TYPE: Final[Bigquery] = dataclasses.field(default=Bigquery.BIGQUERY, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('destinationType') }})
     disable_type_dedupe: Optional[bool] = dataclasses.field(default=False, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('disable_type_dedupe'), 'exclude': lambda f: f is None }})
-    r"""Disable Writing Final Tables. WARNING! The data format in _airbyte_data is likely stable but there are no guarantees that other metadata columns will remain the same in future versions"""
+    r"""Write the legacy \\"raw tables\\" format, to enable backwards compatibility with older versions of this connector."""
     loading_method: Optional[LoadingMethod] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('loading_method'), 'exclude': lambda f: f is None }})
     r"""The way data will be uploaded to BigQuery."""
     raw_data_dataset: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('raw_data_dataset'), 'exclude': lambda f: f is None }})
-    r"""The dataset to write raw tables into (default: airbyte_internal)"""
-    transformation_priority: Optional[TransformationQueryRunType] = dataclasses.field(default=TransformationQueryRunType.INTERACTIVE, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('transformation_priority'), 'exclude': lambda f: f is None }})
-    r"""Interactive run type means that the query is executed as soon as possible, and these queries count towards concurrent rate limit and daily limit. Read more about interactive run type <a href=\\"https://cloud.google.com/bigquery/docs/running-queries#queries\\">here</a>. Batch queries are queued and started as soon as idle resources are available in the BigQuery shared resource pool, which usually occurs within a few minutes. Batch queries don’t count towards your concurrent rate limit. Read more about batch queries <a href=\\"https://cloud.google.com/bigquery/docs/running-queries#batch\\">here</a>. The default \\"interactive\\" value is used if not set explicitly."""
+    r"""Airbyte will use this dataset for various internal tables. In legacy raw tables mode, the raw tables will be stored in this dataset. Defaults to \\"airbyte_internal\\"."""
     
 
 

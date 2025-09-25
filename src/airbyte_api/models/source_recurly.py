@@ -17,10 +17,16 @@ class Recurly(str, Enum):
 class SourceRecurly:
     api_key: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('api_key') }})
     r"""Recurly API Key. See the  <a href=\\"https://docs.airbyte.com/integrations/sources/recurly\\">docs</a> for more information on how to generate this key."""
+    accounts_step_days: Optional[int] = dataclasses.field(default=30, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('accounts_step_days'), 'exclude': lambda f: f is None }})
+    r"""Days in length for each API call to get data from the accounts stream. Smaller values will result in more API calls but better concurrency."""
     begin_time: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('begin_time'), 'exclude': lambda f: f is None }})
     r"""ISO8601 timestamp from which the replication from Recurly API will start from."""
     end_time: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('end_time'), 'exclude': lambda f: f is None }})
     r"""ISO8601 timestamp to which the replication from Recurly API will stop. Records after that date won't be imported."""
+    is_sandbox: Optional[bool] = dataclasses.field(default=False, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('is_sandbox'), 'exclude': lambda f: f is None }})
+    r"""Set to true for sandbox accounts (400 requests/min, all types). Defaults to false for production accounts (1,000 GET requests/min)."""
+    num_workers: Optional[int] = dataclasses.field(default=10, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('num_workers'), 'exclude': lambda f: f is None }})
+    r"""The number of worker threads to use for the sync."""
     SOURCE_TYPE: Final[Recurly] = dataclasses.field(default=Recurly.RECURLY, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     
 

@@ -7,7 +7,7 @@ from airbyte_api import utils
 from dataclasses_json import Undefined, dataclass_json
 from datetime import date
 from enum import Enum
-from typing import Final, Optional
+from typing import Any, Final, List, Optional
 
 
 class ActionReportTime(str, Enum):
@@ -47,8 +47,12 @@ class SourceSnapchatMarketing:
     r"""Refresh Token to renew the expired Access Token."""
     action_report_time: Optional[ActionReportTime] = dataclasses.field(default=ActionReportTime.CONVERSION, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('action_report_time'), 'exclude': lambda f: f is None }})
     r"""Specifies the principle for conversion reporting."""
+    ad_account_ids: Optional[List[Any]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('ad_account_ids'), 'exclude': lambda f: f is None }})
+    r"""Ad Account IDs of the ad accounts to retrieve"""
     end_date: Optional[date] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('end_date'), 'encoder': utils.dateisoformat(True), 'decoder': utils.datefromisoformat, 'exclude': lambda f: f is None }})
     r"""Date in the format 2017-01-25. Any data after this date will not be replicated."""
+    organization_ids: Optional[List[Any]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('organization_ids'), 'exclude': lambda f: f is None }})
+    r"""The IDs of the organizations to retrieve"""
     SOURCE_TYPE: Final[SourceSnapchatMarketingSnapchatMarketing] = dataclasses.field(default=SourceSnapchatMarketingSnapchatMarketing.SNAPCHAT_MARKETING, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     start_date: Optional[date] = dataclasses.field(default=dateutil.parser.parse('2022-01-01').date(), metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('start_date'), 'encoder': utils.dateisoformat(True), 'decoder': utils.datefromisoformat, 'exclude': lambda f: f is None }})
     r"""Date in the format 2022-01-01. Any data before this date will not be replicated."""

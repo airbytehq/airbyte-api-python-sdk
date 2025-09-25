@@ -3,12 +3,6 @@
 
 ## Supported Types
 
-### `models.SourceSnowflakeOAuth20`
-
-```python
-value: models.SourceSnowflakeOAuth20 = /* values here */
-```
-
 ### `models.SourceSnowflakeKeyPairAuthentication`
 
 ```python

@@ -12,6 +12,38 @@ class Teradata(str, Enum):
     TERADATA = 'teradata'
 
 
+class DestinationTeradataSchemasAuthType(str, Enum):
+    LDAP = 'LDAP'
+
+
+@dataclass_json(undefined=Undefined.EXCLUDE)
+@dataclasses.dataclass
+class Ldap:
+    password: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('password') }})
+    r"""Enter the password associated with the username."""
+    username: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('username') }})
+    r"""Username to use to access the database."""
+    AUTH_TYPE: Final[Optional[DestinationTeradataSchemasAuthType]] = dataclasses.field(default=DestinationTeradataSchemasAuthType.LDAP, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_type'), 'exclude': lambda f: f is None }})
+    
+
+
+
+class DestinationTeradataAuthType(str, Enum):
+    TD2 = 'TD2'
+
+
+@dataclass_json(undefined=Undefined.EXCLUDE)
+@dataclasses.dataclass
+class Td2:
+    password: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('password') }})
+    r"""Enter the password associated with the username."""
+    username: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('username') }})
+    r"""Username to use to access the database."""
+    AUTH_TYPE: Final[Optional[DestinationTeradataAuthType]] = dataclasses.field(default=DestinationTeradataAuthType.TD2, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_type'), 'exclude': lambda f: f is None }})
+    
+
+
+
 class DestinationTeradataSchemasSSLModeSSLModes6Mode(str, Enum):
     VERIFY_FULL = 'verify-full'
 
@@ -103,17 +135,22 @@ class DestinationTeradataDisable:
 class DestinationTeradata:
     host: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('host') }})
     r"""Hostname of the database."""
-    username: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('username') }})
-    r"""Username to use to access the database."""
     DESTINATION_TYPE: Final[Teradata] = dataclasses.field(default=Teradata.TERADATA, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('destinationType') }})
+    disable_type_dedupe: Optional[bool] = dataclasses.field(default=False, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('disable_type_dedupe'), 'exclude': lambda f: f is None }})
+    r"""Disable Writing Final Tables. WARNING! The data format in _airbyte_data is likely stable but there are no guarantees that other metadata columns will remain the same in future versions"""
+    drop_cascade: Optional[bool] = dataclasses.field(default=False, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('drop_cascade'), 'exclude': lambda f: f is None }})
+    r"""Drop tables with CASCADE. WARNING! This will delete all data in all dependent objects (views, etc.). Use with caution. This option is intended for usecases which can easily rebuild the dependent objects."""
     jdbc_url_params: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('jdbc_url_params'), 'exclude': lambda f: f is None }})
     r"""Additional properties to pass to the JDBC URL string when connecting to the database formatted as 'key=value' pairs separated by the symbol '&'. (example: key1=value1&key2=value2&key3=value3)."""
-    password: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('password'), 'exclude': lambda f: f is None }})
-    r"""Password associated with the username."""
+    logmech: Optional[AuthorizationMechanism] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('logmech'), 'exclude': lambda f: f is None }})
+    query_band: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('query_band'), 'exclude': lambda f: f is None }})
+    r"""Defines the custom session query band using name-value pairs. For example, 'org=Finance;report=Fin123;'"""
+    raw_data_schema: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('raw_data_schema'), 'exclude': lambda f: f is None }})
+    r"""The database to write raw tables into"""
     schema: Optional[str] = dataclasses.field(default='airbyte_td', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('schema'), 'exclude': lambda f: f is None }})
     r"""The default schema tables are written to if the source does not specify a namespace. The usual value for this field is \\"public\\"."""
     ssl: Optional[bool] = dataclasses.field(default=False, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('ssl'), 'exclude': lambda f: f is None }})
-    r"""Encrypt data using SSL. When activating SSL, please select one of the connection modes."""
+    r"""Encrypt data using SSL. When activating SSL, please select one of the SSL modes."""
     ssl_mode: Optional[DestinationTeradataSSLModes] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('ssl_mode'), 'exclude': lambda f: f is None }})
     r"""SSL connection modes.
      <b>disable</b> - Chose this mode to disable encryption of communication between Airbyte and destination database
@@ -126,5 +163,7 @@ class DestinationTeradata:
     """
     
 
+
+AuthorizationMechanism = Union[Td2, Ldap]
 
 DestinationTeradataSSLModes = Union[DestinationTeradataDisable, DestinationTeradataAllow, DestinationTeradataPrefer, DestinationTeradataRequire, DestinationTeradataVerifyCa, DestinationTeradataVerifyFull]
