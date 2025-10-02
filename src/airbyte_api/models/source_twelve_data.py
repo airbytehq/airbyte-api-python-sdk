@@ -8,7 +8,7 @@ from enum import Enum
 from typing import Final, Optional
 
 
-class Interval(str, Enum):
+class SourceTwelveDataInterval(str, Enum):
     r"""Between two consecutive points in time series Supports: 1min, 5min, 15min, 30min, 45min, 1h, 2h, 4h, 1day, 1week, 1month"""
     ONEMIN = '1min'
     FIVEMIN = '5min'
@@ -35,7 +35,7 @@ class SourceTwelveData:
     r"""Where instrument is traded"""
     exchange: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('exchange'), 'exclude': lambda f: f is None }})
     r"""Where instrument is traded"""
-    interval: Optional[Interval] = dataclasses.field(default=Interval.ONEDAY, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('interval'), 'exclude': lambda f: f is None }})
+    interval: Optional[SourceTwelveDataInterval] = dataclasses.field(default=SourceTwelveDataInterval.ONEDAY, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('interval'), 'exclude': lambda f: f is None }})
     r"""Between two consecutive points in time series Supports: 1min, 5min, 15min, 30min, 45min, 1h, 2h, 4h, 1day, 1week, 1month"""
     SOURCE_TYPE: Final[TwelveData] = dataclasses.field(default=TwelveData.TWELVE_DATA, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     symbol: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('symbol'), 'exclude': lambda f: f is None }})

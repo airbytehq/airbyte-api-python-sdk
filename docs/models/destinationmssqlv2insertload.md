@@ -1,0 +1,11 @@
+# DestinationMssqlV2InsertLoad
+
+Configuration details for using the INSERT loading mechanism.
+
+
+## Fields
+
+| Field                                                                                                                | Type                                                                                                                 | Required                                                                                                             | Description                                                                                                          |
+| -------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------- |
+| `additional_properties`                                                                                              | Dict[str, *Any*]                                                                                                     | :heavy_minus_sign:                                                                                                   | N/A                                                                                                                  |
+| `load_type`                                                                                                          | [Optional[models.DestinationMssqlV2SchemasLoadTypeLoadType]](../models/destinationmssqlv2schemasloadtypeloadtype.md) | :heavy_minus_sign:                                                                                                   | N/A                                                                                                                  |

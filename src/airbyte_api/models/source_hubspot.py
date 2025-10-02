@@ -57,6 +57,8 @@ class SourceHubspot:
     r"""Choose how to authenticate to HubSpot."""
     enable_experimental_streams: Optional[bool] = dataclasses.field(default=False, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('enable_experimental_streams'), 'exclude': lambda f: f is None }})
     r"""If enabled then experimental streams become available for sync."""
+    num_worker: Optional[int] = dataclasses.field(default=3, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('num_worker'), 'exclude': lambda f: f is None }})
+    r"""The number of worker threads to use for the sync."""
     SOURCE_TYPE: Final[SourceHubspotHubspot] = dataclasses.field(default=SourceHubspotHubspot.HUBSPOT, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     start_date: Optional[datetime] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('start_date'), 'encoder': utils.datetimeisoformat(True), 'decoder': dateutil.parser.isoparse, 'exclude': lambda f: f is None }})
     r"""UTC date and time in the format 2017-01-25T00:00:00Z. Any data before this date will not be replicated. If not set, \\"2006-06-01T00:00:00Z\\" (Hubspot creation date) will be used as start date. It's recommended to provide relevant to your data start date value to optimize synchronization."""

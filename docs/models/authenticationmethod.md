@@ -5,10 +5,10 @@ The type of authentication to be used
 
 ## Supported Types
 
-### `models.NoneT`
+### `models.DestinationElasticsearchNone`
 
 ```python
-value: models.NoneT = /* values here */
+value: models.DestinationElasticsearchNone = /* values here */
 ```
 
 ### `models.APIKeySecret`

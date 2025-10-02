@@ -29,10 +29,10 @@ value: models.SourceGcsJsonlFormat = /* values here */
 value: models.SourceGcsParquetFormat = /* values here */
 ```
 
-### `models.UnstructuredDocumentFormat`
+### `models.SourceGcsUnstructuredDocumentFormat`
 
 ```python
-value: models.UnstructuredDocumentFormat = /* values here */
+value: models.SourceGcsUnstructuredDocumentFormat = /* values here */
 ```
 
 ### `models.ExcelFormat`

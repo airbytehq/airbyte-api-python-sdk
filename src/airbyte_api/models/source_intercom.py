@@ -10,7 +10,7 @@ from enum import Enum
 from typing import Final, Optional
 
 
-class SourceIntercomIntercom(str, Enum):
+class Intercom(str, Enum):
     INTERCOM = 'intercom'
 
 
@@ -29,6 +29,6 @@ class SourceIntercom:
     r"""Client Secret for your Intercom application."""
     lookback_window: Optional[int] = dataclasses.field(default=0, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('lookback_window'), 'exclude': lambda f: f is None }})
     r"""The number of days to shift the state value backward for record sync"""
-    SOURCE_TYPE: Final[SourceIntercomIntercom] = dataclasses.field(default=SourceIntercomIntercom.INTERCOM, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
+    SOURCE_TYPE: Final[Intercom] = dataclasses.field(default=Intercom.INTERCOM, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     
 

@@ -53,6 +53,8 @@ class SourceSlack:
     r"""UTC date and time in the format 2017-01-25T00:00:00Z. Any data before this date will not be replicated."""
     channel_filter: Optional[List[str]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('channel_filter'), 'exclude': lambda f: f is None }})
     r"""A channel name list (without leading '#' char) which limit the channels from which you'd like to sync. Empty list means no filter."""
+    channel_messages_window_size: Optional[int] = dataclasses.field(default=100, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('channel_messages_window_size'), 'exclude': lambda f: f is None }})
+    r"""The size (in days) of the date window that will be used while syncing data from the channel messages stream. A smaller window will allow for greater parallelization when syncing records, but can lead to rate limiting errors."""
     credentials: Optional[SourceSlackAuthenticationMechanism] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credentials'), 'exclude': lambda f: f is None }})
     r"""Choose how to authenticate into Slack"""
     include_private_channels: Optional[bool] = dataclasses.field(default=False, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('include_private_channels'), 'exclude': lambda f: f is None }})
@@ -61,6 +63,8 @@ class SourceSlack:
     r"""Whether to join all channels or to sync data only from channels the bot is already in.  If false, you'll need to manually add the bot to all the channels from which you'd like to sync messages."""
     lookback_window: Optional[int] = dataclasses.field(default=0, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('lookback_window'), 'exclude': lambda f: f is None }})
     r"""How far into the past to look for messages in threads, default is 0 days"""
+    num_workers: Optional[int] = dataclasses.field(default=2, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('num_workers'), 'exclude': lambda f: f is None }})
+    r"""The number of worker threads to use for the sync."""
     SOURCE_TYPE: Final[SourceSlackSlack] = dataclasses.field(default=SourceSlackSlack.SLACK, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     
 

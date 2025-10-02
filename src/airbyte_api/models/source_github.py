@@ -30,7 +30,7 @@ class OptionTitle(str, Enum):
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
-class OAuth:
+class SourceGithubOAuth:
     access_token: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('access_token') }})
     r"""OAuth access token"""
     client_id: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('client_id'), 'exclude': lambda f: f is None }})
@@ -65,4 +65,4 @@ class SourceGithub:
     
 
 
-SourceGithubAuthentication = Union[OAuth, SourceGithubPersonalAccessToken]
+SourceGithubAuthentication = Union[SourceGithubOAuth, SourceGithubPersonalAccessToken]

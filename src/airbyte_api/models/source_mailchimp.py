@@ -16,7 +16,7 @@ class SourceMailchimpSchemasAuthType(str, Enum):
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
-class APIKey:
+class SourceMailchimpAPIKey:
     apikey: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('apikey') }})
     r"""Mailchimp API Key. See the <a href=\\"https://docs.airbyte.com/integrations/sources/mailchimp\\">docs</a> for information on how to generate this key."""
     AUTH_TYPE: Final[SourceMailchimpSchemasAuthType] = dataclasses.field(default=SourceMailchimpSchemasAuthType.APIKEY, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_type') }})
@@ -56,4 +56,4 @@ class SourceMailchimp:
     
 
 
-SourceMailchimpAuthentication = Union[SourceMailchimpOAuth20, APIKey]
+SourceMailchimpAuthentication = Union[SourceMailchimpOAuth20, SourceMailchimpAPIKey]

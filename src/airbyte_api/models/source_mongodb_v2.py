@@ -5,10 +5,10 @@ import dataclasses
 from airbyte_api import utils
 from dataclasses_json import Undefined, dataclass_json
 from enum import Enum
-from typing import Any, Dict, Final, Optional, Union
+from typing import Any, Dict, Final, List, Optional, Union
 
 
-class SourceMongodbV2SchemasClusterType(str, Enum):
+class SourceMongodbV2ClusterType(str, Enum):
     SELF_MANAGED_REPLICA_SET = 'SELF_MANAGED_REPLICA_SET'
 
 
@@ -18,12 +18,12 @@ class SelfManagedReplicaSet:
     r"""MongoDB self-hosted cluster configured as a replica set"""
     connection_string: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('connection_string') }})
     r"""The connection string of the cluster that you want to replicate.  https://www.mongodb.com/docs/manual/reference/connection-string/#find-your-self-hosted-deployment-s-connection-string for more information."""
-    database: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('database') }})
-    r"""The name of the MongoDB database that contains the collection(s) to replicate."""
+    databases: List[str] = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('databases') }})
+    r"""The names of the MongoDB databases that contain the collection(s) to replicate."""
     additional_properties: Optional[Dict[str, Any]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'exclude': lambda f: f is None }})
     auth_source: Optional[str] = dataclasses.field(default='admin', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_source'), 'exclude': lambda f: f is None }})
     r"""The authentication source where the user information is stored."""
-    CLUSTER_TYPE: Final[SourceMongodbV2SchemasClusterType] = dataclasses.field(default=SourceMongodbV2SchemasClusterType.SELF_MANAGED_REPLICA_SET, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('cluster_type') }})
+    CLUSTER_TYPE: Final[SourceMongodbV2ClusterType] = dataclasses.field(default=SourceMongodbV2ClusterType.SELF_MANAGED_REPLICA_SET, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('cluster_type') }})
     password: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('password'), 'exclude': lambda f: f is None }})
     r"""The password associated with this username."""
     schema_enforced: Optional[bool] = dataclasses.field(default=True, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('schema_enforced'), 'exclude': lambda f: f is None }})
@@ -34,7 +34,7 @@ class SelfManagedReplicaSet:
 
 
 
-class SourceMongodbV2ClusterType(str, Enum):
+class SourceMongodbV2SchemasClusterType(str, Enum):
     ATLAS_REPLICA_SET = 'ATLAS_REPLICA_SET'
 
 
@@ -44,8 +44,8 @@ class MongoDBAtlasReplicaSet:
     r"""MongoDB Atlas-hosted cluster configured as a replica set"""
     connection_string: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('connection_string') }})
     r"""The connection string of the cluster that you want to replicate."""
-    database: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('database') }})
-    r"""The name of the MongoDB database that contains the collection(s) to replicate."""
+    databases: List[str] = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('databases') }})
+    r"""The names of the MongoDB databases that contain the collection(s) to replicate."""
     password: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('password') }})
     r"""The password associated with this username."""
     username: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('username') }})
@@ -53,7 +53,7 @@ class MongoDBAtlasReplicaSet:
     additional_properties: Optional[Dict[str, Any]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'exclude': lambda f: f is None }})
     auth_source: Optional[str] = dataclasses.field(default='admin', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_source'), 'exclude': lambda f: f is None }})
     r"""The authentication source where the user information is stored.  See https://www.mongodb.com/docs/manual/reference/connection-string/#mongodb-urioption-urioption.authSource for more details."""
-    CLUSTER_TYPE: Final[SourceMongodbV2ClusterType] = dataclasses.field(default=SourceMongodbV2ClusterType.ATLAS_REPLICA_SET, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('cluster_type') }})
+    CLUSTER_TYPE: Final[SourceMongodbV2SchemasClusterType] = dataclasses.field(default=SourceMongodbV2SchemasClusterType.ATLAS_REPLICA_SET, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('cluster_type') }})
     schema_enforced: Optional[bool] = dataclasses.field(default=True, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('schema_enforced'), 'exclude': lambda f: f is None }})
     r"""When enabled, syncs will validate and structure records against the stream's schema."""
     
@@ -83,6 +83,8 @@ class SourceMongodbV2:
     r"""Configures the MongoDB cluster type."""
     discover_sample_size: Optional[int] = dataclasses.field(default=10000, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('discover_sample_size'), 'exclude': lambda f: f is None }})
     r"""The maximum number of documents to sample when attempting to discover the unique fields for a collection."""
+    discover_timeout_seconds: Optional[int] = dataclasses.field(default=600, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('discover_timeout_seconds'), 'exclude': lambda f: f is None }})
+    r"""The amount of time the connector will wait when it discovers a document. Defaults to 600 seconds. Valid range: 5 seconds to 1200 seconds."""
     initial_load_timeout_hours: Optional[int] = dataclasses.field(default=8, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('initial_load_timeout_hours'), 'exclude': lambda f: f is None }})
     r"""The amount of time an initial load is allowed to continue for before catching up on CDC logs."""
     initial_waiting_seconds: Optional[int] = dataclasses.field(default=300, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('initial_waiting_seconds'), 'exclude': lambda f: f is None }})

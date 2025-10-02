@@ -3,15 +3,15 @@
 
 ## Supported Types
 
-### `models.SourceGoogleSearchConsoleOAuth`
+### `models.SourceConvertkitOAuth20`
 
 ```python
-value: models.SourceGoogleSearchConsoleOAuth = /* values here */
+value: models.SourceConvertkitOAuth20 = /* values here */
 ```
 
-### `models.SourceGoogleSearchConsoleServiceAccountKeyAuthentication`
+### `models.APIKey`
 
 ```python
-value: models.SourceGoogleSearchConsoleServiceAccountKeyAuthentication = /* values here */
+value: models.APIKey = /* values here */
 ```
 

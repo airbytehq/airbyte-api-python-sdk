@@ -2,8 +2,10 @@
 
 from __future__ import annotations
 import dataclasses
+import dateutil.parser
 from airbyte_api import utils
 from dataclasses_json import Undefined, dataclass_json
+from datetime import datetime
 from enum import Enum
 from typing import Final
 
@@ -16,11 +18,11 @@ class Timely(str, Enum):
 @dataclasses.dataclass
 class SourceTimely:
     account_id: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('account_id') }})
-    r"""Timely account id"""
+    r"""The Account ID for your Timely account"""
     bearer_token: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('bearer_token') }})
-    r"""Timely bearer token"""
-    start_date: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('start_date') }})
-    r"""start date"""
+    r"""The Bearer Token for your Timely account"""
+    start_date: datetime = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('start_date'), 'encoder': utils.datetimeisoformat(False), 'decoder': dateutil.parser.isoparse }})
+    r"""Earliest date from which you want to pull data from."""
     SOURCE_TYPE: Final[Timely] = dataclasses.field(default=Timely.TIMELY, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     
 

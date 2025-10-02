@@ -6,6 +6,11 @@ from enum import Enum
 
 class ConnectionSyncModeEnum(str, Enum):
     FULL_REFRESH_OVERWRITE = 'full_refresh_overwrite'
+    FULL_REFRESH_OVERWRITE_DEDUPED = 'full_refresh_overwrite_deduped'
     FULL_REFRESH_APPEND = 'full_refresh_append'
+    FULL_REFRESH_UPDATE = 'full_refresh_update'
+    FULL_REFRESH_SOFT_DELETE = 'full_refresh_soft_delete'
     INCREMENTAL_APPEND = 'incremental_append'
     INCREMENTAL_DEDUPED_HISTORY = 'incremental_deduped_history'
+    INCREMENTAL_UPDATE = 'incremental_update'
+    INCREMENTAL_SOFT_DELETE = 'incremental_soft_delete'

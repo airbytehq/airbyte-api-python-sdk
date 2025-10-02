@@ -1,0 +1,10 @@
+# DestinationCustomerIo
+
+
+## Fields
+
+| Field                                                                                    | Type                                                                                     | Required                                                                                 | Description                                                                              |
+| ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
+| `credentials`                                                                            | [models.DestinationCustomerIoCredentials](../models/destinationcustomeriocredentials.md) | :heavy_check_mark:                                                                       | Enter the site ID and API key to authenticate.                                           |
+| `destination_type`                                                                       | [models.CustomerIo](../models/customerio.md)                                             | :heavy_check_mark:                                                                       | N/A                                                                                      |
+| `object_storage_config`                                                                  | [Optional[models.ObjectStorageConfiguration]](../models/objectstorageconfiguration.md)   | :heavy_minus_sign:                                                                       | N/A                                                                                      |

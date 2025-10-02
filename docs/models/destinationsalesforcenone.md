@@ -1,0 +1,9 @@
+# DestinationSalesforceNone
+
+
+## Fields
+
+| Field                                                                                              | Type                                                                                               | Required                                                                                           | Description                                                                                        |
+| -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- |
+| `additional_properties`                                                                            | Dict[str, *Any*]                                                                                   | :heavy_minus_sign:                                                                                 | N/A                                                                                                |
+| `storage_type`                                                                                     | [Optional[models.DestinationSalesforceStorageType]](../models/destinationsalesforcestoragetype.md) | :heavy_minus_sign:                                                                                 | N/A                                                                                                |

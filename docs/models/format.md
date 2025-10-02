@@ -29,9 +29,9 @@ value: models.JsonlFormat = /* values here */
 value: models.ParquetFormat = /* values here */
 ```
 
-### `models.DocumentFileTypeFormatExperimental`
+### `models.UnstructuredDocumentFormat`
 
 ```python
-value: models.DocumentFileTypeFormatExperimental = /* values here */
+value: models.UnstructuredDocumentFormat = /* values here */
 ```
 

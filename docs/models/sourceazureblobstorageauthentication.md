@@ -11,6 +11,12 @@ Credentials for connecting to the Azure Blob Storage
 value: models.AuthenticateViaOauth2 = /* values here */
 ```
 
+### `models.AuthenticateViaClientCredentials`
+
+```python
+value: models.AuthenticateViaClientCredentials = /* values here */
+```
+
 ### `models.AuthenticateViaStorageAccountKey`
 
 ```python
