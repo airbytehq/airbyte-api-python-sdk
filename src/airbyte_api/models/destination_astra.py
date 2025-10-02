@@ -12,7 +12,7 @@ class Astra(str, Enum):
     ASTRA = 'astra'
 
 
-class DestinationAstraSchemasEmbeddingEmbeddingMode(str, Enum):
+class DestinationAstraSchemasEmbeddingEmbedding5Mode(str, Enum):
     OPENAI_COMPATIBLE = 'openai_compatible'
 
 
@@ -25,14 +25,14 @@ class OpenAICompatible:
     dimensions: int = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('dimensions') }})
     r"""The number of dimensions the embedding model is generating"""
     api_key: Optional[str] = dataclasses.field(default='', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('api_key'), 'exclude': lambda f: f is None }})
-    MODE: Final[Optional[DestinationAstraSchemasEmbeddingEmbeddingMode]] = dataclasses.field(default=DestinationAstraSchemasEmbeddingEmbeddingMode.OPENAI_COMPATIBLE, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('mode'), 'exclude': lambda f: f is None }})
+    MODE: Final[Optional[DestinationAstraSchemasEmbeddingEmbedding5Mode]] = dataclasses.field(default=DestinationAstraSchemasEmbeddingEmbedding5Mode.OPENAI_COMPATIBLE, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('mode'), 'exclude': lambda f: f is None }})
     model_name: Optional[str] = dataclasses.field(default='text-embedding-ada-002', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('model_name'), 'exclude': lambda f: f is None }})
     r"""The name of the model to use for embedding"""
     
 
 
 
-class DestinationAstraSchemasEmbeddingMode(str, Enum):
+class DestinationAstraSchemasEmbeddingEmbeddingMode(str, Enum):
     AZURE_OPENAI = 'azure_openai'
 
 
@@ -46,12 +46,12 @@ class AzureOpenAI:
     r"""The deployment for your Azure OpenAI resource.  You can find this in the Azure portal under your Azure OpenAI resource"""
     openai_key: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('openai_key') }})
     r"""The API key for your Azure OpenAI resource.  You can find this in the Azure portal under your Azure OpenAI resource"""
-    MODE: Final[Optional[DestinationAstraSchemasEmbeddingMode]] = dataclasses.field(default=DestinationAstraSchemasEmbeddingMode.AZURE_OPENAI, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('mode'), 'exclude': lambda f: f is None }})
+    MODE: Final[Optional[DestinationAstraSchemasEmbeddingEmbeddingMode]] = dataclasses.field(default=DestinationAstraSchemasEmbeddingEmbeddingMode.AZURE_OPENAI, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('mode'), 'exclude': lambda f: f is None }})
     
 
 
 
-class DestinationAstraSchemasMode(str, Enum):
+class DestinationAstraSchemasEmbeddingMode(str, Enum):
     FAKE = 'fake'
 
 
@@ -59,12 +59,12 @@ class DestinationAstraSchemasMode(str, Enum):
 @dataclasses.dataclass
 class Fake:
     r"""Use a fake embedding made out of random vectors with 1536 embedding dimensions. This is useful for testing the data pipeline without incurring any costs."""
-    MODE: Final[Optional[DestinationAstraSchemasMode]] = dataclasses.field(default=DestinationAstraSchemasMode.FAKE, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('mode'), 'exclude': lambda f: f is None }})
+    MODE: Final[Optional[DestinationAstraSchemasEmbeddingMode]] = dataclasses.field(default=DestinationAstraSchemasEmbeddingMode.FAKE, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('mode'), 'exclude': lambda f: f is None }})
     
 
 
 
-class DestinationAstraMode(str, Enum):
+class DestinationAstraSchemasMode(str, Enum):
     COHERE = 'cohere'
 
 
@@ -73,12 +73,12 @@ class DestinationAstraMode(str, Enum):
 class Cohere:
     r"""Use the Cohere API to embed text."""
     cohere_key: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('cohere_key') }})
-    MODE: Final[Optional[DestinationAstraMode]] = dataclasses.field(default=DestinationAstraMode.COHERE, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('mode'), 'exclude': lambda f: f is None }})
+    MODE: Final[Optional[DestinationAstraSchemasMode]] = dataclasses.field(default=DestinationAstraSchemasMode.COHERE, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('mode'), 'exclude': lambda f: f is None }})
     
 
 
 
-class DestinationAstraSchemasEmbeddingEmbedding1Mode(str, Enum):
+class DestinationAstraMode(str, Enum):
     OPENAI = 'openai'
 
 
@@ -87,7 +87,7 @@ class DestinationAstraSchemasEmbeddingEmbedding1Mode(str, Enum):
 class OpenAI:
     r"""Use the OpenAI API to embed text. This option is using the text-embedding-ada-002 model with 1536 embedding dimensions."""
     openai_key: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('openai_key') }})
-    MODE: Final[Optional[DestinationAstraSchemasEmbeddingEmbedding1Mode]] = dataclasses.field(default=DestinationAstraSchemasEmbeddingEmbedding1Mode.OPENAI, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('mode'), 'exclude': lambda f: f is None }})
+    MODE: Final[Optional[DestinationAstraMode]] = dataclasses.field(default=DestinationAstraMode.OPENAI, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('mode'), 'exclude': lambda f: f is None }})
     
 
 

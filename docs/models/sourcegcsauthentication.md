@@ -5,10 +5,10 @@ Credentials for connecting to the Google Cloud Storage API
 
 ## Supported Types
 
-### `models.AuthenticateViaGoogleOAuth`
+### `models.SourceGcsAuthenticateViaGoogleOAuth`
 
 ```python
-value: models.AuthenticateViaGoogleOAuth = /* values here */
+value: models.SourceGcsAuthenticateViaGoogleOAuth = /* values here */
 ```
 
 ### `models.ServiceAccountAuthentication`

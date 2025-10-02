@@ -2,14 +2,19 @@
 
 from __future__ import annotations
 import dataclasses
+from .notificationsconfig import NotificationsConfig
 from airbyte_api import utils
 from dataclasses_json import Undefined, dataclass_json
+from typing import Optional
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
 class WorkspaceUpdateRequest:
-    name: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('name') }})
+    name: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('name'), 'exclude': lambda f: f is None }})
     r"""Name of the workspace"""
+    notifications: Optional[NotificationsConfig] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('notifications'), 'exclude': lambda f: f is None }})
+    r"""Configures workspace notifications."""
+    region_id: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('regionId'), 'exclude': lambda f: f is None }})
     
 

@@ -47,10 +47,22 @@ value: models.DestinationClickhouse = /* values here */
 value: models.DestinationConvex = /* values here */
 ```
 
+### `models.DestinationCustomerIo`
+
+```python
+value: models.DestinationCustomerIo = /* values here */
+```
+
 ### `models.DestinationDatabricks`
 
 ```python
 value: models.DestinationDatabricks = /* values here */
+```
+
+### `models.DestinationDeepset`
+
+```python
+value: models.DestinationDeepset = /* values here */
 ```
 
 ### `models.DestinationDevNull`
@@ -95,10 +107,10 @@ value: models.DestinationFirestore = /* values here */
 value: models.DestinationGcs = /* values here */
 ```
 
-### `models.DestinationIceberg`
+### `models.DestinationHubspot`
 
 ```python
-value: models.DestinationIceberg = /* values here */
+value: models.DestinationHubspot = /* values here */
 ```
 
 ### `models.DestinationMilvus`
@@ -123,6 +135,12 @@ value: models.DestinationMotherduck = /* values here */
 
 ```python
 value: models.DestinationMssql = /* values here */
+```
+
+### `models.DestinationMssqlV2`
+
+```python
+value: models.DestinationMssqlV2 = /* values here */
 ```
 
 ### `models.DestinationMysql`
@@ -185,10 +203,16 @@ value: models.DestinationRedshift = /* values here */
 value: models.DestinationS3 = /* values here */
 ```
 
-### `models.DestinationS3Glue`
+### `models.DestinationS3DataLake`
 
 ```python
-value: models.DestinationS3Glue = /* values here */
+value: models.DestinationS3DataLake = /* values here */
+```
+
+### `models.DestinationSalesforce`
+
+```python
+value: models.DestinationSalesforce = /* values here */
 ```
 
 ### `models.DestinationSftpJSON`
@@ -207,6 +231,12 @@ value: models.DestinationSnowflake = /* values here */
 
 ```python
 value: models.DestinationSnowflakeCortex = /* values here */
+```
+
+### `models.DestinationSurrealdb`
+
+```python
+value: models.DestinationSurrealdb = /* values here */
 ```
 
 ### `models.DestinationTeradata`

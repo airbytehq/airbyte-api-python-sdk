@@ -3,6 +3,6 @@
 
 ## Values
 
-| Name            | Value           |
-| --------------- | --------------- |
-| `DELETED_FIELD` | deleted_field   |
+| Name     | Value    |
+| -------- | -------- |
+| `IGNORE` | ignore   |

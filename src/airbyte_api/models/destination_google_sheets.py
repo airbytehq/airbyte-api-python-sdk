@@ -5,19 +5,37 @@ import dataclasses
 from airbyte_api import utils
 from dataclasses_json import Undefined, dataclass_json
 from enum import Enum
-from typing import Final
+from typing import Final, Optional, Union
+
+
+class DestinationGoogleSheetsSchemasAuthType(str, Enum):
+    SERVICE = 'service'
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
-class AuthenticationViaGoogleOAuth:
-    r"""Google API Credentials for connecting to Google Sheets and Google Drive APIs"""
+class ServiceAccountKeyAuthentication:
+    service_account_info: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('service_account_info') }})
+    r"""Enter your service account key in JSON format. See the <a href='https://docs.airbyte.com/integrations/destinations/google-sheets#service-account'>docs</a> for more information on how to generate this key."""
+    AUTH_TYPE: Final[Optional[DestinationGoogleSheetsSchemasAuthType]] = dataclasses.field(default=DestinationGoogleSheetsSchemasAuthType.SERVICE, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_type'), 'exclude': lambda f: f is None }})
+    
+
+
+
+class DestinationGoogleSheetsAuthType(str, Enum):
+    OAUTH2_0 = 'oauth2.0'
+
+
+@dataclass_json(undefined=Undefined.EXCLUDE)
+@dataclasses.dataclass
+class AuthenticateViaGoogleOAuth:
     client_id: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('client_id') }})
     r"""The Client ID of your Google Sheets developer application."""
     client_secret: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('client_secret') }})
     r"""The Client Secret of your Google Sheets developer application."""
     refresh_token: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('refresh_token') }})
     r"""The token for obtaining new access token."""
+    AUTH_TYPE: Final[Optional[DestinationGoogleSheetsAuthType]] = dataclasses.field(default=DestinationGoogleSheetsAuthType.OAUTH2_0, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_type'), 'exclude': lambda f: f is None }})
     
 
 
@@ -29,10 +47,12 @@ class DestinationGoogleSheetsGoogleSheets(str, Enum):
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
 class DestinationGoogleSheets:
-    credentials: AuthenticationViaGoogleOAuth = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credentials') }})
-    r"""Google API Credentials for connecting to Google Sheets and Google Drive APIs"""
+    credentials: DestinationGoogleSheetsAuthentication = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credentials') }})
+    r"""Authentication method to access Google Sheets"""
     spreadsheet_id: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('spreadsheet_id') }})
     r"""The link to your spreadsheet. See <a href='https://docs.airbyte.com/integrations/destinations/google-sheets#sheetlink'>this guide</a> for more details."""
     DESTINATION_TYPE: Final[DestinationGoogleSheetsGoogleSheets] = dataclasses.field(default=DestinationGoogleSheetsGoogleSheets.GOOGLE_SHEETS, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('destinationType') }})
     
 
+
+DestinationGoogleSheetsAuthentication = Union[AuthenticateViaGoogleOAuth, ServiceAccountKeyAuthentication]

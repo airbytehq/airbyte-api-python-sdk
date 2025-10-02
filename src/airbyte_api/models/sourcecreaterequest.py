@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 import dataclasses
+from .scopedresourcerequirements import ScopedResourceRequirements
 from .sourceconfiguration import SourceConfiguration
 from airbyte_api import utils
 from dataclasses_json import Undefined, dataclass_json
@@ -18,6 +19,8 @@ class SourceCreateRequest:
     workspace_id: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('workspaceId') }})
     definition_id: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('definitionId'), 'exclude': lambda f: f is None }})
     r"""The UUID of the connector definition. One of configuration.sourceType or definitionId must be provided."""
+    resource_allocation: Optional[ScopedResourceRequirements] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('resourceAllocation'), 'exclude': lambda f: f is None }})
+    r"""actor or actor definition specific resource requirements. if default is set, these are the requirements that should be set for ALL jobs run for this actor definition. it is overriden by the job type specific configurations. if not set, the platform will use defaults. these values will be overriden by configuration at the connection level."""
     secret_id: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('secretId'), 'exclude': lambda f: f is None }})
     r"""Optional secretID obtained through the  OAuth redirect flow."""
     

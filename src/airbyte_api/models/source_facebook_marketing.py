@@ -53,7 +53,7 @@ class SourceFacebookMarketingSchemasAuthType(str, Enum):
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
-class ServiceAccountKeyAuthentication:
+class SourceFacebookMarketingServiceAccountKeyAuthentication:
     access_token: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('access_token') }})
     r"""The value of the generated access token. From your App’s Dashboard, click on \\"Marketing API\\" then \\"Tools\\". Select permissions <b>ads_management, ads_read, read_insights, business_management</b>. Then click on \\"Get token\\". See the <a href=\\"https://docs.airbyte.com/integrations/sources/facebook-marketing\\">docs</a> for more information."""
     AUTH_TYPE: Final[Optional[SourceFacebookMarketingSchemasAuthType]] = dataclasses.field(default=SourceFacebookMarketingSchemasAuthType.SERVICE, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_type'), 'exclude': lambda f: f is None }})
@@ -91,14 +91,11 @@ class ValidActionBreakdowns(str, Enum):
     ACTION_TYPE = 'action_type'
     ACTION_VIDEO_SOUND = 'action_video_sound'
     ACTION_VIDEO_TYPE = 'action_video_type'
+    CONVERSION_DESTINATION = 'conversion_destination'
+    MATCHED_PERSONA_ID = 'matched_persona_id'
+    MATCHED_PERSONA_NAME = 'matched_persona_name'
+    SIGNAL_SOURCE_BUCKET = 'signal_source_bucket'
     STANDARD_EVENT_CONTENT_TYPE = 'standard_event_content_type'
-
-
-class SourceFacebookMarketingActionReportTime(str, Enum):
-    r"""Determines the report time of action stats. For example, if a person saw the ad on Jan 1st but converted on Jan 2nd, when you query the API with action_report_time=impression, you see a conversion on Jan 1st. When you query the API with action_report_time=conversion, you see a conversion on Jan 2nd."""
-    CONVERSION = 'conversion'
-    IMPRESSION = 'impression'
-    MIXED = 'mixed'
 
 
 class ValidBreakdowns(str, Enum):
@@ -107,8 +104,10 @@ class ValidBreakdowns(str, Enum):
     AGE = 'age'
     APP_ID = 'app_id'
     BODY_ASSET = 'body_asset'
+    BREAKDOWN_REPORTING_AD_ID = 'breakdown_reporting_ad_id'
     CALL_TO_ACTION_ASSET = 'call_to_action_asset'
     COARSE_CONVERSION_VALUE = 'coarse_conversion_value'
+    CONVERSION_DESTINATION = 'conversion_destination'
     COUNTRY = 'country'
     DESCRIPTION_ASSET = 'description_asset'
     DEVICE_PLATFORM = 'device_platform'
@@ -122,6 +121,7 @@ class ValidBreakdowns(str, Enum):
     IMAGE_ASSET = 'image_asset'
     IMPRESSION_DEVICE = 'impression_device'
     IS_CONVERSION_ID_MODELED = 'is_conversion_id_modeled'
+    IS_RENDERED_AS_DELAYED_SKIP_AD = 'is_rendered_as_delayed_skip_ad'
     LANDING_DESTINATION = 'landing_destination'
     LINK_URL_ASSET = 'link_url_asset'
     MARKETING_MESSAGES_BTN_NAME = 'marketing_messages_btn_name'
@@ -132,6 +132,7 @@ class ValidBreakdowns(str, Enum):
     MEDIA_FORMAT = 'media_format'
     MEDIA_ORIGIN_URL = 'media_origin_url'
     MEDIA_TEXT_CONTENT = 'media_text_content'
+    MEDIA_TYPE = 'media_type'
     MMM = 'mmm'
     PLACE_PAGE_ID = 'place_page_id'
     PLATFORM_POSITION = 'platform_position'
@@ -140,11 +141,19 @@ class ValidBreakdowns(str, Enum):
     PUBLISHER_PLATFORM = 'publisher_platform'
     REDOWNLOAD = 'redownload'
     REGION = 'region'
+    SIGNAL_SOURCE_BUCKET = 'signal_source_bucket'
     SKAN_CAMPAIGN_ID = 'skan_campaign_id'
     SKAN_CONVERSION_ID = 'skan_conversion_id'
     SKAN_VERSION = 'skan_version'
+    SOT_ATTRIBUTION_MODEL_TYPE = 'sot_attribution_model_type'
+    SOT_ATTRIBUTION_WINDOW = 'sot_attribution_window'
+    SOT_CHANNEL = 'sot_channel'
+    SOT_EVENT_TYPE = 'sot_event_type'
+    SOT_SOURCE = 'sot_source'
     STANDARD_EVENT_CONTENT_TYPE = 'standard_event_content_type'
     TITLE_ASSET = 'title_asset'
+    USER_PERSONA_ID = 'user_persona_id'
+    USER_PERSONA_NAME = 'user_persona_name'
     VIDEO_ASSET = 'video_asset'
 
 
@@ -167,6 +176,7 @@ class SourceFacebookMarketingValidEnums(str, Enum):
     AUCTION_BID = 'auction_bid'
     AUCTION_COMPETITIVENESS = 'auction_competitiveness'
     AUCTION_MAX_COMPETITOR_BID = 'auction_max_competitor_bid'
+    AVERAGE_PURCHASES_CONVERSION_VALUE = 'average_purchases_conversion_value'
     BUYING_TYPE = 'buying_type'
     CAMPAIGN_ID = 'campaign_id'
     CAMPAIGN_NAME = 'campaign_name'
@@ -234,9 +244,17 @@ class SourceFacebookMarketingValidEnums(str, Enum):
     LOCATION = 'location'
     MARKETING_MESSAGES_COST_PER_DELIVERED = 'marketing_messages_cost_per_delivered'
     MARKETING_MESSAGES_COST_PER_LINK_BTN_CLICK = 'marketing_messages_cost_per_link_btn_click'
+    MARKETING_MESSAGES_DELIVERY_RATE = 'marketing_messages_delivery_rate'
+    MARKETING_MESSAGES_LINK_BTN_CLICK_RATE = 'marketing_messages_link_btn_click_rate'
+    MARKETING_MESSAGES_MEDIA_VIEW_RATE = 'marketing_messages_media_view_rate'
+    MARKETING_MESSAGES_PHONE_CALL_BTN_CLICK_RATE = 'marketing_messages_phone_call_btn_click_rate'
+    MARKETING_MESSAGES_QUICK_REPLY_BTN_CLICK_RATE = 'marketing_messages_quick_reply_btn_click_rate'
+    MARKETING_MESSAGES_READ_RATE = 'marketing_messages_read_rate'
     MARKETING_MESSAGES_SPEND = 'marketing_messages_spend'
+    MARKETING_MESSAGES_WEBSITE_PURCHASE_VALUES = 'marketing_messages_website_purchase_values'
     MOBILE_APP_PURCHASE_ROAS = 'mobile_app_purchase_roas'
     OBJECTIVE = 'objective'
+    ONSITE_CONVERSION_MESSAGING_DETECTED_PURCHASE_DEDUPED = 'onsite_conversion_messaging_detected_purchase_deduped'
     OPTIMIZATION_GOAL = 'optimization_goal'
     OUTBOUND_CLICKS = 'outbound_clicks'
     OUTBOUND_CLICKS_CTR = 'outbound_clicks_ctr'
@@ -245,6 +263,7 @@ class SourceFacebookMarketingValidEnums(str, Enum):
     QUALIFYING_QUESTION_QUALIFY_ANSWER_RATE = 'qualifying_question_qualify_answer_rate'
     QUALITY_RANKING = 'quality_ranking'
     REACH = 'reach'
+    SHOPS_ASSISTED_PURCHASES = 'shops_assisted_purchases'
     SOCIAL_SPEND = 'social_spend'
     SPEND = 'spend'
     TOTAL_POSTBACKS = 'total_postbacks'
@@ -299,8 +318,6 @@ class InsightConfig:
     r"""The name value of insight"""
     action_breakdowns: Optional[List[ValidActionBreakdowns]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('action_breakdowns'), 'exclude': lambda f: f is None }})
     r"""A list of chosen action_breakdowns for action_breakdowns"""
-    action_report_time: Optional[SourceFacebookMarketingActionReportTime] = dataclasses.field(default=SourceFacebookMarketingActionReportTime.MIXED, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('action_report_time'), 'exclude': lambda f: f is None }})
-    r"""Determines the report time of action stats. For example, if a person saw the ad on Jan 1st but converted on Jan 2nd, when you query the API with action_report_time=impression, you see a conversion on Jan 1st. When you query the API with action_report_time=conversion, you see a conversion on Jan 2nd."""
     breakdowns: Optional[List[ValidBreakdowns]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('breakdowns'), 'exclude': lambda f: f is None }})
     r"""A list of chosen breakdowns for breakdowns"""
     end_date: Optional[datetime] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('end_date'), 'encoder': utils.datetimeisoformat(True), 'decoder': dateutil.parser.isoparse, 'exclude': lambda f: f is None }})
@@ -358,4 +375,4 @@ class SourceFacebookMarketing:
     
 
 
-SourceFacebookMarketingAuthentication = Union[AuthenticateViaFacebookMarketingOauth, ServiceAccountKeyAuthentication]
+SourceFacebookMarketingAuthentication = Union[AuthenticateViaFacebookMarketingOauth, SourceFacebookMarketingServiceAccountKeyAuthentication]

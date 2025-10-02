@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 import dataclasses
+from .notificationsconfig import NotificationsConfig
 from airbyte_api import utils
 from dataclasses_json import Undefined, dataclass_json
 from typing import Optional
@@ -12,7 +13,10 @@ from typing import Optional
 class WorkspaceCreateRequest:
     name: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('name') }})
     r"""Name of the workspace"""
+    notifications: Optional[NotificationsConfig] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('notifications'), 'exclude': lambda f: f is None }})
+    r"""Configures workspace notifications."""
     organization_id: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('organizationId'), 'exclude': lambda f: f is None }})
     r"""ID of organization to add workspace to."""
+    region_id: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('regionId'), 'exclude': lambda f: f is None }})
     
 

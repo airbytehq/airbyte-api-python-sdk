@@ -25,6 +25,8 @@ class SourceBambooHr:
     r"""Comma-separated list of fields to include in custom reports."""
     custom_reports_include_default_fields: Optional[bool] = dataclasses.field(default=True, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('custom_reports_include_default_fields'), 'exclude': lambda f: f is None }})
     r"""If true, the custom reports endpoint will include the default fields defined here: https://documentation.bamboohr.com/docs/list-of-field-names."""
+    employee_fields: Optional[str] = dataclasses.field(default='firstName,lastName', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('employee_fields'), 'exclude': lambda f: f is None }})
+    r"""Comma-separated list of fields to include for employees."""
     SOURCE_TYPE: Final[BambooHr] = dataclasses.field(default=BambooHr.BAMBOO_HR, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     start_date: Optional[datetime] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('start_date'), 'encoder': utils.datetimeisoformat(True), 'decoder': dateutil.parser.isoparse, 'exclude': lambda f: f is None }})
     

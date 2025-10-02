@@ -76,6 +76,8 @@ class SourceSmartsheets:
     credentials: SourceSmartsheetsAuthorizationMethod = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credentials') }})
     spreadsheet_id: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('spreadsheet_id') }})
     r"""The spreadsheet ID. Find it by opening the spreadsheet then navigating to File > Properties"""
+    is_report: Optional[bool] = dataclasses.field(default=False, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('is_report'), 'exclude': lambda f: f is None }})
+    r"""If true, the source will treat the provided sheet_id as a report. If false, the source will treat the provided sheet_id as a sheet."""
     metadata_fields: Optional[List[Validenums]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('metadata_fields'), 'exclude': lambda f: f is None }})
     r"""A List of available columns which metadata can be pulled from."""
     SOURCE_TYPE: Final[SourceSmartsheetsSmartsheets] = dataclasses.field(default=SourceSmartsheetsSmartsheets.SMARTSHEETS, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})

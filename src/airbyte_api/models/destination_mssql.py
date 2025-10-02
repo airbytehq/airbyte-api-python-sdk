@@ -5,14 +5,54 @@ import dataclasses
 from airbyte_api import utils
 from dataclasses_json import Undefined, dataclass_json
 from enum import Enum
-from typing import Final, Optional, Union
+from typing import Any, Dict, Final, Optional, Union
 
 
 class Mssql(str, Enum):
     MSSQL = 'mssql'
 
 
-class DestinationMssqlSchemasSslMethodSslMethod(str, Enum):
+class DestinationMssqlLoadType(str, Enum):
+    BULK = 'BULK'
+
+
+@dataclass_json(undefined=Undefined.EXCLUDE)
+@dataclasses.dataclass
+class BulkLoad:
+    r"""Configuration details for using the BULK loading mechanism."""
+    azure_blob_storage_account_name: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('azure_blob_storage_account_name') }})
+    r"""The name of the Azure Blob Storage account. See: https://learn.microsoft.com/azure/storage/blobs/storage-blobs-introduction#storage-accounts"""
+    azure_blob_storage_container_name: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('azure_blob_storage_container_name') }})
+    r"""The name of the Azure Blob Storage container. See: https://learn.microsoft.com/azure/storage/blobs/storage-blobs-introduction#containers"""
+    bulk_load_data_source: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('bulk_load_data_source') }})
+    r"""Specifies the external data source name configured in MSSQL, which references the Azure Blob container. See: https://learn.microsoft.com/sql/t-sql/statements/bulk-insert-transact-sql"""
+    additional_properties: Optional[Dict[str, Any]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'exclude': lambda f: f is None }})
+    azure_blob_storage_account_key: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('azure_blob_storage_account_key'), 'exclude': lambda f: f is None }})
+    r"""The Azure blob storage account key. Mutually exclusive with a Shared Access Signature"""
+    bulk_load_validate_values_pre_load: Optional[bool] = dataclasses.field(default=False, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('bulk_load_validate_values_pre_load'), 'exclude': lambda f: f is None }})
+    r"""When enabled, Airbyte will validate all values before loading them into the destination table. This provides stronger data integrity guarantees but may significantly impact performance."""
+    load_type: Optional[DestinationMssqlLoadType] = dataclasses.field(default=DestinationMssqlLoadType.BULK, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('load_type'), 'exclude': lambda f: f is None }})
+    shared_access_signature: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('shared_access_signature'), 'exclude': lambda f: f is None }})
+    r"""A shared access signature (SAS) provides secure delegated access to resources in your storage account. See: https://learn.microsoft.com/azure/storage/common/storage-sas-overview.Mutually exclusive with an account key"""
+    
+
+
+
+class DestinationMssqlSchemasLoadType(str, Enum):
+    INSERT = 'INSERT'
+
+
+@dataclass_json(undefined=Undefined.EXCLUDE)
+@dataclasses.dataclass
+class InsertLoad:
+    r"""Configuration details for using the INSERT loading mechanism."""
+    additional_properties: Optional[Dict[str, Any]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'exclude': lambda f: f is None }})
+    load_type: Optional[DestinationMssqlSchemasLoadType] = dataclasses.field(default=DestinationMssqlSchemasLoadType.INSERT, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('load_type'), 'exclude': lambda f: f is None }})
+    
+
+
+
+class DestinationMssqlSchemasName(str, Enum):
     ENCRYPTED_VERIFY_CERTIFICATE = 'encrypted_verify_certificate'
 
 
@@ -20,14 +60,19 @@ class DestinationMssqlSchemasSslMethodSslMethod(str, Enum):
 @dataclasses.dataclass
 class EncryptedVerifyCertificate:
     r"""Verify and use the certificate provided by the server."""
+    additional_properties: Optional[Dict[str, Any]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'exclude': lambda f: f is None }})
     host_name_in_certificate: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('hostNameInCertificate'), 'exclude': lambda f: f is None }})
     r"""Specifies the host name of the server. The value of this property must match the subject property of the certificate."""
-    SSL_METHOD: Final[Optional[DestinationMssqlSchemasSslMethodSslMethod]] = dataclasses.field(default=DestinationMssqlSchemasSslMethodSslMethod.ENCRYPTED_VERIFY_CERTIFICATE, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('ssl_method'), 'exclude': lambda f: f is None }})
+    name: Optional[DestinationMssqlSchemasName] = dataclasses.field(default=DestinationMssqlSchemasName.ENCRYPTED_VERIFY_CERTIFICATE, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('name'), 'exclude': lambda f: f is None }})
+    trust_store_name: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('trustStoreName'), 'exclude': lambda f: f is None }})
+    r"""Specifies the name of the trust store."""
+    trust_store_password: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('trustStorePassword'), 'exclude': lambda f: f is None }})
+    r"""Specifies the password of the trust store."""
     
 
 
 
-class DestinationMssqlSchemasSslMethod(str, Enum):
+class DestinationMssqlName(str, Enum):
     ENCRYPTED_TRUST_SERVER_CERTIFICATE = 'encrypted_trust_server_certificate'
 
 
@@ -35,12 +80,13 @@ class DestinationMssqlSchemasSslMethod(str, Enum):
 @dataclasses.dataclass
 class EncryptedTrustServerCertificate:
     r"""Use the certificate provided by the server without verification. (For testing purposes only!)"""
-    SSL_METHOD: Final[Optional[DestinationMssqlSchemasSslMethod]] = dataclasses.field(default=DestinationMssqlSchemasSslMethod.ENCRYPTED_TRUST_SERVER_CERTIFICATE, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('ssl_method'), 'exclude': lambda f: f is None }})
+    additional_properties: Optional[Dict[str, Any]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'exclude': lambda f: f is None }})
+    name: Optional[DestinationMssqlName] = dataclasses.field(default=DestinationMssqlName.ENCRYPTED_TRUST_SERVER_CERTIFICATE, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('name'), 'exclude': lambda f: f is None }})
     
 
 
 
-class DestinationMssqlSslMethod(str, Enum):
+class Name(str, Enum):
     UNENCRYPTED = 'unencrypted'
 
 
@@ -48,27 +94,28 @@ class DestinationMssqlSslMethod(str, Enum):
 @dataclasses.dataclass
 class Unencrypted:
     r"""The data transfer will not be encrypted."""
-    SSL_METHOD: Final[Optional[DestinationMssqlSslMethod]] = dataclasses.field(default=DestinationMssqlSslMethod.UNENCRYPTED, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('ssl_method'), 'exclude': lambda f: f is None }})
+    additional_properties: Optional[Dict[str, Any]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'exclude': lambda f: f is None }})
+    name: Optional[Name] = dataclasses.field(default=Name.UNENCRYPTED, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('name'), 'exclude': lambda f: f is None }})
     
 
 
 
 class DestinationMssqlSchemasTunnelMethodTunnelMethod(str, Enum):
-    r"""Connect through a jump server tunnel host using username and password authentication"""
     SSH_PASSWORD_AUTH = 'SSH_PASSWORD_AUTH'
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
 class DestinationMssqlPasswordAuthentication:
+    r"""Connect through a jump server tunnel host using username and password authentication"""
     tunnel_host: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('tunnel_host') }})
     r"""Hostname of the jump server host that allows inbound ssh tunnel."""
     tunnel_user: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('tunnel_user') }})
     r"""OS-level username for logging into the jump server host"""
     tunnel_user_password: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('tunnel_user_password') }})
     r"""OS-level password for logging into the jump server host"""
-    TUNNEL_METHOD: Final[DestinationMssqlSchemasTunnelMethodTunnelMethod] = dataclasses.field(default=DestinationMssqlSchemasTunnelMethodTunnelMethod.SSH_PASSWORD_AUTH, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('tunnel_method') }})
-    r"""Connect through a jump server tunnel host using username and password authentication"""
+    additional_properties: Optional[Dict[str, Any]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'exclude': lambda f: f is None }})
+    tunnel_method: Optional[DestinationMssqlSchemasTunnelMethodTunnelMethod] = dataclasses.field(default=DestinationMssqlSchemasTunnelMethodTunnelMethod.SSH_PASSWORD_AUTH, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('tunnel_method'), 'exclude': lambda f: f is None }})
     tunnel_port: Optional[int] = dataclasses.field(default=22, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('tunnel_port'), 'exclude': lambda f: f is None }})
     r"""Port on the proxy/jump server that accepts inbound ssh connections."""
     
@@ -76,21 +123,21 @@ class DestinationMssqlPasswordAuthentication:
 
 
 class DestinationMssqlSchemasTunnelMethod(str, Enum):
-    r"""Connect through a jump server tunnel host using username and ssh key"""
     SSH_KEY_AUTH = 'SSH_KEY_AUTH'
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
 class DestinationMssqlSSHKeyAuthentication:
+    r"""Connect through a jump server tunnel host using username and ssh key"""
     ssh_key: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('ssh_key') }})
     r"""OS-level user account ssh key credentials in RSA PEM format ( created with ssh-keygen -t rsa -m PEM -f myuser_rsa )"""
     tunnel_host: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('tunnel_host') }})
     r"""Hostname of the jump server host that allows inbound ssh tunnel."""
     tunnel_user: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('tunnel_user') }})
-    r"""OS-level username for logging into the jump server host."""
-    TUNNEL_METHOD: Final[DestinationMssqlSchemasTunnelMethod] = dataclasses.field(default=DestinationMssqlSchemasTunnelMethod.SSH_KEY_AUTH, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('tunnel_method') }})
-    r"""Connect through a jump server tunnel host using username and ssh key"""
+    r"""OS-level username for logging into the jump server host"""
+    additional_properties: Optional[Dict[str, Any]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'exclude': lambda f: f is None }})
+    tunnel_method: Optional[DestinationMssqlSchemasTunnelMethod] = dataclasses.field(default=DestinationMssqlSchemasTunnelMethod.SSH_KEY_AUTH, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('tunnel_method'), 'exclude': lambda f: f is None }})
     tunnel_port: Optional[int] = dataclasses.field(default=22, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('tunnel_port'), 'exclude': lambda f: f is None }})
     r"""Port on the proxy/jump server that accepts inbound ssh connections."""
     
@@ -98,15 +145,15 @@ class DestinationMssqlSSHKeyAuthentication:
 
 
 class DestinationMssqlTunnelMethod(str, Enum):
-    r"""No ssh tunnel needed to connect to database"""
     NO_TUNNEL = 'NO_TUNNEL'
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
 class DestinationMssqlNoTunnel:
-    TUNNEL_METHOD: Final[DestinationMssqlTunnelMethod] = dataclasses.field(default=DestinationMssqlTunnelMethod.NO_TUNNEL, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('tunnel_method') }})
     r"""No ssh tunnel needed to connect to database"""
+    additional_properties: Optional[Dict[str, Any]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'exclude': lambda f: f is None }})
+    tunnel_method: Optional[DestinationMssqlTunnelMethod] = dataclasses.field(default=DestinationMssqlTunnelMethod.NO_TUNNEL, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('tunnel_method'), 'exclude': lambda f: f is None }})
     
 
 
@@ -118,25 +165,27 @@ class DestinationMssql:
     r"""The name of the MSSQL database."""
     host: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('host') }})
     r"""The host name of the MSSQL database."""
-    username: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('username') }})
+    load_type: LoadType = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('load_type') }})
+    r"""Specifies the type of load mechanism (e.g., BULK, INSERT) and its associated configuration."""
+    port: int = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('port') }})
+    r"""The port of the MSSQL database."""
+    ssl_method: SSLMethod = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('ssl_method') }})
+    r"""The encryption method which is used to communicate with the database."""
+    user: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('user') }})
     r"""The username which is used to access the database."""
     DESTINATION_TYPE: Final[Mssql] = dataclasses.field(default=Mssql.MSSQL, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('destinationType') }})
     jdbc_url_params: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('jdbc_url_params'), 'exclude': lambda f: f is None }})
     r"""Additional properties to pass to the JDBC URL string when connecting to the database formatted as 'key=value' pairs separated by the symbol '&'. (example: key1=value1&key2=value2&key3=value3)."""
     password: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('password'), 'exclude': lambda f: f is None }})
     r"""The password associated with this username."""
-    port: Optional[int] = dataclasses.field(default=1433, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('port'), 'exclude': lambda f: f is None }})
-    r"""The port of the MSSQL database."""
-    raw_data_schema: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('raw_data_schema'), 'exclude': lambda f: f is None }})
-    r"""The schema to write raw tables into (default: airbyte_internal)"""
     schema: Optional[str] = dataclasses.field(default='public', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('schema'), 'exclude': lambda f: f is None }})
     r"""The default schema tables are written to if the source does not specify a namespace. The usual value for this field is \\"public\\"."""
-    ssl_method: Optional[SSLMethod] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('ssl_method'), 'exclude': lambda f: f is None }})
-    r"""The encryption method which is used to communicate with the database."""
     tunnel_method: Optional[DestinationMssqlSSHTunnelMethod] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('tunnel_method'), 'exclude': lambda f: f is None }})
     r"""Whether to initiate an SSH tunnel before connecting to the database, and if so, which kind of authentication to use."""
     
 
+
+LoadType = Union[InsertLoad, BulkLoad]
 
 SSLMethod = Union[Unencrypted, EncryptedTrustServerCertificate, EncryptedVerifyCertificate]
 

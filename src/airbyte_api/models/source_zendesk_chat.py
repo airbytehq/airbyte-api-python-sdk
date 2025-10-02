@@ -44,7 +44,7 @@ class SourceZendeskChatOAuth20:
 
 
 
-class SourceZendeskChatZendeskChat(str, Enum):
+class ZendeskChat(str, Enum):
     ZENDESK_CHAT = 'zendesk-chat'
 
 
@@ -53,10 +53,10 @@ class SourceZendeskChatZendeskChat(str, Enum):
 class SourceZendeskChat:
     start_date: datetime = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('start_date'), 'encoder': utils.datetimeisoformat(False), 'decoder': dateutil.parser.isoparse }})
     r"""The date from which you'd like to replicate data for Zendesk Chat API, in the format YYYY-MM-DDT00:00:00Z."""
+    subdomain: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('subdomain') }})
+    r"""The unique subdomain of your Zendesk account (without https://). <a href=\\\"https://support.zendesk.com/hc/en-us/articles/4409381383578-Where-can-I-find-my-Zendesk-subdomain\\\">See the Zendesk docs to find your subdomain</a>."""
     credentials: Optional[SourceZendeskChatAuthorizationMethod] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credentials'), 'exclude': lambda f: f is None }})
-    SOURCE_TYPE: Final[SourceZendeskChatZendeskChat] = dataclasses.field(default=SourceZendeskChatZendeskChat.ZENDESK_CHAT, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
-    subdomain: Optional[str] = dataclasses.field(default='', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('subdomain'), 'exclude': lambda f: f is None }})
-    r"""The unique subdomain of your Zendesk account (without https://). <a href=\\"https://support.zendesk.com/hc/en-us/articles/4409381383578-Where-can-I-find-my-Zendesk-subdomain\\">See the Zendesk docs to find your subdomain</a>"""
+    SOURCE_TYPE: Final[ZendeskChat] = dataclasses.field(default=ZendeskChat.ZENDESK_CHAT, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     
 
 

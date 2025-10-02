@@ -1,0 +1,12 @@
+# SourceOracleEnterpriseServiceName
+
+Use service name.
+
+
+## Fields
+
+| Field                                                                                                      | Type                                                                                                       | Required                                                                                                   | Description                                                                                                |
+| ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| `service_name`                                                                                             | *str*                                                                                                      | :heavy_check_mark:                                                                                         | N/A                                                                                                        |
+| `additional_properties`                                                                                    | Dict[str, *Any*]                                                                                           | :heavy_minus_sign:                                                                                         | N/A                                                                                                        |
+| `connection_type`                                                                                          | [Optional[models.SourceOracleEnterpriseConnectionType]](../models/sourceoracleenterpriseconnectiontype.md) | :heavy_minus_sign:                                                                                         | N/A                                                                                                        |

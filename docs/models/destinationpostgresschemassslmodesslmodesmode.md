@@ -3,6 +3,6 @@
 
 ## Values
 
-| Name        | Value       |
-| ----------- | ----------- |
-| `VERIFY_CA` | verify-ca   |
+| Name      | Value     |
+| --------- | --------- |
+| `REQUIRE` | require   |

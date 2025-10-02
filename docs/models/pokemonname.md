@@ -35,10 +35,10 @@ Pokemon requested from the API.
 | `RAICHU`       | raichu         |
 | `SANDSHREW`    | sandshrew      |
 | `SANDSLASH`    | sandslash      |
-| `NIDORANF`     | nidoranf       |
+| `NIDORAN_F`    | nidoran-f      |
 | `NIDORINA`     | nidorina       |
 | `NIDOQUEEN`    | nidoqueen      |
-| `NIDORANM`     | nidoranm       |
+| `NIDORAN_M`    | nidoran-m      |
 | `NIDORINO`     | nidorino       |
 | `NIDOKING`     | nidoking       |
 | `CLEFAIRY`     | clefairy       |

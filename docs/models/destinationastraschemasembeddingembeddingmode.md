@@ -3,6 +3,6 @@
 
 ## Values
 
-| Name                | Value               |
-| ------------------- | ------------------- |
-| `OPENAI_COMPATIBLE` | openai_compatible   |
+| Name           | Value          |
+| -------------- | -------------- |
+| `AZURE_OPENAI` | azure_openai   |

@@ -2,8 +2,10 @@
 
 from __future__ import annotations
 import dataclasses
+import dateutil.parser
 from airbyte_api import utils
 from dataclasses_json import Undefined, dataclass_json
+from datetime import datetime
 from enum import Enum
 from typing import Final
 
@@ -23,8 +25,8 @@ class SourceOutreach:
     r"""A Redirect URI is the location where the authorization server sends the user once the app has been successfully authorized and granted an authorization code or access token."""
     refresh_token: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('refresh_token') }})
     r"""The token for obtaining the new access token."""
-    start_date: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('start_date') }})
-    r"""The date from which you'd like to replicate data for Outreach API, in the format YYYY-MM-DDT00:00:00Z. All data generated after this date will be replicated."""
+    start_date: datetime = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('start_date'), 'encoder': utils.datetimeisoformat(False), 'decoder': dateutil.parser.isoparse }})
+    r"""The date from which you'd like to replicate data for Outreach API, in the format YYYY-MM-DDT00:00:00.000Z. All data generated after this date will be replicated."""
     SOURCE_TYPE: Final[Outreach] = dataclasses.field(default=Outreach.OUTREACH, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     
 
