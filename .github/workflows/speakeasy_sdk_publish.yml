@@ -7,7 +7,7 @@ name: Publish
             - RELEASES.md
 jobs:
     publish:
-        uses: speakeasy-api/sdk-generation-action/.github/workflows/sdk-publish.yaml@v15
+        uses: speakeasy-api/sdk-generation-action/.github/workflows/sdk-publish.yaml@f09110c4676497cba7ef85034a6fb94191f1c417 # v15
         secrets:
             github_access_token: ${{ secrets.GITHUB_TOKEN }}
             pypi_token: ${{ secrets.PYPI_TOKEN }}
