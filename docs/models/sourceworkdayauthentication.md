@@ -1,19 +1,11 @@
 # SourceWorkdayAuthentication
 
-Report Based Streams and REST API Streams use different methods of Authentication. Choose streams type you want to sync and provide needed credentials for them.
+Credentials for connecting to the Workday (RAAS) API.
 
 
-## Supported Types
+## Fields
 
-### `models.ReportBasedStreams`
-
-```python
-value: models.ReportBasedStreams = /* values here */
-```
-
-### `models.RESTAPIStreams`
-
-```python
-value: models.RESTAPIStreams = /* values here */
-```
-
+| Field              | Type               | Required           | Description        |
+| ------------------ | ------------------ | ------------------ | ------------------ |
+| `password`         | *str*              | :heavy_check_mark: | N/A                |
+| `username`         | *str*              | :heavy_check_mark: | N/A                |

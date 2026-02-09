@@ -35,5 +35,6 @@ class ConnectionResponse:
     non_breaking_schema_updates_behavior: Optional[NonBreakingSchemaUpdatesBehaviorEnum] = dataclasses.field(default=NonBreakingSchemaUpdatesBehaviorEnum.IGNORE, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('nonBreakingSchemaUpdatesBehavior'), 'exclude': lambda f: f is None }})
     r"""Set how Airbyte handles syncs when it detects a non-breaking schema change in the source"""
     prefix: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('prefix'), 'exclude': lambda f: f is None }})
+    status_reason: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('statusReason'), 'exclude': lambda f: f is None }})
     
 

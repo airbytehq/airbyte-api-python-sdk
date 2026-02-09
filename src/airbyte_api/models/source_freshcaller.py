@@ -18,7 +18,7 @@ class Freshcaller(str, Enum):
 @dataclasses.dataclass
 class SourceFreshcaller:
     api_key: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('api_key') }})
-    r"""Freshcaller API Key. See the <a href=\\"https://docs.airbyte.com/integrations/sources/freshcaller\\">docs</a> for more information on how to obtain this key."""
+    r"""Freshcaller API Key. See the docs for more information on how to obtain this key."""
     domain: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('domain') }})
     r"""Used to construct Base URL for the Freshcaller APIs"""
     requests_per_minute: Optional[int] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('requests_per_minute'), 'exclude': lambda f: f is None }})

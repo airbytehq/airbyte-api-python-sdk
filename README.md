@@ -129,6 +129,7 @@ if res.connection_response is not None:
 ### [organizations](docs/sdks/organizations/README.md)
 
 * [create_or_update_organization_o_auth_credentials](docs/sdks/organizations/README.md#create_or_update_organization_o_auth_credentials) - Create OAuth override credentials for an organization and source type.
+* [delete_organization_o_auth_credentials](docs/sdks/organizations/README.md#delete_organization_o_auth_credentials) - Delete OAuth override credentials for an organization and source/destination type.
 * [list_organizations_for_user](docs/sdks/organizations/README.md#list_organizations_for_user) - List all organizations for a user
 
 ### [permissions](docs/sdks/permissions/README.md)

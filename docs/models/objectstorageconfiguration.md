@@ -3,15 +3,15 @@
 
 ## Supported Types
 
-### `models.NoneT`
+### `models.DestinationHubspotNone`
 
 ```python
-value: models.NoneT = /* values here */
+value: models.DestinationHubspotNone = /* values here */
 ```
 
-### `models.DestinationCustomerIoS3`
+### `models.DestinationHubspotS3`
 
 ```python
-value: models.DestinationCustomerIoS3 = /* values here */
+value: models.DestinationHubspotS3 = /* values here */
 ```
 
