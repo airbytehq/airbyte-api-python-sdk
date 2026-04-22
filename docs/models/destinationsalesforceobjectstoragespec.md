@@ -1,4 +1,4 @@
-# DestinationSalesforceObjectStorageConfiguration
+# DestinationSalesforceObjectStorageSpec
 
 
 ## Supported Types

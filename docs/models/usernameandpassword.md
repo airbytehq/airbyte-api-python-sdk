@@ -1,9 +1,12 @@
 # UsernameAndPassword
 
+Configuration details for the Username and Password Authentication.
+
 
 ## Fields
 
 | Field                                                                                                    | Type                                                                                                     | Required                                                                                                 | Description                                                                                              |
 | -------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- |
 | `password`                                                                                               | *str*                                                                                                    | :heavy_check_mark:                                                                                       | Enter the password associated with the username.                                                         |
+| `additional_properties`                                                                                  | Dict[str, *Any*]                                                                                         | :heavy_minus_sign:                                                                                       | N/A                                                                                                      |
 | `auth_type`                                                                                              | [Optional[models.DestinationSnowflakeSchemasAuthType]](../models/destinationsnowflakeschemasauthtype.md) | :heavy_minus_sign:                                                                                       | N/A                                                                                                      |

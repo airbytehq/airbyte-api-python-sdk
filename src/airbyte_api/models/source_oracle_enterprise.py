@@ -138,6 +138,19 @@ class OracleEnterprise(str, Enum):
     ORACLE_ENTERPRISE = 'oracle-enterprise'
 
 
+@dataclass_json(undefined=Undefined.EXCLUDE)
+@dataclasses.dataclass
+class TableFilter:
+    r"""Inclusion filter configuration for table selection per schema."""
+    schema_name: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('schema_name') }})
+    r"""The name of the schema to apply this filter to. Should match a schema defined in \\"Schemas\\" field above."""
+    table_name_patterns: List[str] = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('table_name_patterns') }})
+    r"""List of table name patterns to include from this schema. Should be a SQL LIKE pattern."""
+    additional_properties: Optional[Dict[str, Any]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'exclude': lambda f: f is None }})
+    
+
+
+
 class SourceOracleEnterpriseSchemasTunnelMethodTunnelMethod(str, Enum):
     SSH_PASSWORD_AUTH = 'SSH_PASSWORD_AUTH'
 
@@ -230,6 +243,8 @@ class SourceOracleEnterprise:
     schemas: Optional[List[str]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('schemas'), 'exclude': lambda f: f is None }})
     r"""The list of schemas to sync from. Defaults to user. Case sensitive."""
     SOURCE_TYPE: Final[OracleEnterprise] = dataclasses.field(default=OracleEnterprise.ORACLE_ENTERPRISE, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
+    table_filters: Optional[List[TableFilter]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('table_filters'), 'exclude': lambda f: f is None }})
+    r"""Inclusion filters for table selection per schema. If no filters are specified for a schema, all tables in that schema will be synced."""
     
 
 

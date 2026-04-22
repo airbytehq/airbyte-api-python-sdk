@@ -143,6 +143,8 @@ from .snapchat_marketing import *
 from .source_100ms import *
 from .source_7shifts import *
 from .source_activecampaign import *
+from .source_acuity_scheduling import *
+from .source_adobe_commerce_magento import *
 from .source_agilecrm import *
 from .source_aha import *
 from .source_airbyte import *
@@ -241,8 +243,11 @@ from .source_countercyclical import *
 from .source_customer_io import *
 from .source_customerly import *
 from .source_datadog import *
+from .source_datagen import *
 from .source_datascope import *
+from .source_db2_enterprise import *
 from .source_dbt import *
+from .source_defillama import *
 from .source_delighted import *
 from .source_deputy import *
 from .source_ding_connect import *
@@ -403,6 +408,7 @@ from .source_mailjet_mail import *
 from .source_mailjet_sms import *
 from .source_mailosaur import *
 from .source_mailtrap import *
+from .source_mantle import *
 from .source_marketo import *
 from .source_marketstack import *
 from .source_mendeley import *
@@ -410,6 +416,7 @@ from .source_mention import *
 from .source_mercado_ads import *
 from .source_merge import *
 from .source_metabase import *
+from .source_metricool import *
 from .source_microsoft_dataverse import *
 from .source_microsoft_entra_id import *
 from .source_microsoft_lists import *
@@ -463,6 +470,7 @@ from .source_oracle_enterprise import *
 from .source_orb import *
 from .source_oura import *
 from .source_outbrain_amplify import *
+from .source_outlook import *
 from .source_outreach import *
 from .source_oveit import *
 from .source_pabbly_subscriptions_billing import *
@@ -609,6 +617,7 @@ from .source_thinkific_courses import *
 from .source_thrive_learning import *
 from .source_ticketmaster import *
 from .source_tickettailor import *
+from .source_ticktick import *
 from .source_tiktok_marketing import *
 from .source_timely import *
 from .source_tinyemail import *
@@ -651,6 +660,7 @@ from .source_woocommerce import *
 from .source_wordpress import *
 from .source_workable import *
 from .source_workday import *
+from .source_workday_rest import *
 from .source_workflowmax import *
 from .source_workramp import *
 from .source_wrike import *
@@ -702,6 +712,7 @@ from .tagcreaterequest import *
 from .tagpatchrequest import *
 from .tagresponse import *
 from .tagsresponse import *
+from .ticktick import *
 from .tiktok_marketing import *
 from .typeform import *
 from .updatedeclarativesourcedefinitionrequest import *

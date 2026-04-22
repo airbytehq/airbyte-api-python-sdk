@@ -79,7 +79,7 @@ class AuthenticateViaFacebookMarketingOauth:
 
 
 
-class ValidActionBreakdowns(str, Enum):
+class SourceFacebookMarketingValidActionBreakdowns(str, Enum):
     r"""An enumeration."""
     ACTION_CANVAS_COMPONENT_NAME = 'action_canvas_component_name'
     ACTION_CAROUSEL_CARD_ID = 'action_carousel_card_id'
@@ -100,26 +100,36 @@ class ValidActionBreakdowns(str, Enum):
 
 class ValidBreakdowns(str, Enum):
     r"""An enumeration."""
+    AD_EXTENSION_DOMAIN = 'ad_extension_domain'
+    AD_EXTENSION_URL = 'ad_extension_url'
     AD_FORMAT_ASSET = 'ad_format_asset'
     AGE = 'age'
     APP_ID = 'app_id'
     BODY_ASSET = 'body_asset'
+    BREAKDOWN_AD_OBJECTIVE = 'breakdown_ad_objective'
     BREAKDOWN_REPORTING_AD_ID = 'breakdown_reporting_ad_id'
     CALL_TO_ACTION_ASSET = 'call_to_action_asset'
     COARSE_CONVERSION_VALUE = 'coarse_conversion_value'
+    COMSCORE_MARKET = 'comscore_market'
+    COMSCORE_MARKET_CODE = 'comscore_market_code'
     CONVERSION_DESTINATION = 'conversion_destination'
     COUNTRY = 'country'
+    CREATIVE_RELAXATION_ASSET_TYPE = 'creative_relaxation_asset_type'
     DESCRIPTION_ASSET = 'description_asset'
     DEVICE_PLATFORM = 'device_platform'
     DMA = 'dma'
     FIDELITY_TYPE = 'fidelity_type'
+    FLEXIBLE_FORMAT_ASSET_TYPE = 'flexible_format_asset_type'
     FREQUENCY_VALUE = 'frequency_value'
+    GEN_AI_ASSET_TYPE = 'gen_ai_asset_type'
     GENDER = 'gender'
     HOURLY_STATS_AGGREGATED_BY_ADVERTISER_TIME_ZONE = 'hourly_stats_aggregated_by_advertiser_time_zone'
     HOURLY_STATS_AGGREGATED_BY_AUDIENCE_TIME_ZONE = 'hourly_stats_aggregated_by_audience_time_zone'
     HSID = 'hsid'
     IMAGE_ASSET = 'image_asset'
     IMPRESSION_DEVICE = 'impression_device'
+    IMPRESSION_VIEW_TIME_ADVERTISER_HOUR_V2 = 'impression_view_time_advertiser_hour_v2'
+    IS_AUTO_ADVANCE = 'is_auto_advance'
     IS_CONVERSION_ID_MODELED = 'is_conversion_id_modeled'
     IS_RENDERED_AS_DELAYED_SKIP_AD = 'is_rendered_as_delayed_skip_ad'
     LANDING_DESTINATION = 'landing_destination'
@@ -155,6 +165,7 @@ class ValidBreakdowns(str, Enum):
     USER_PERSONA_ID = 'user_persona_id'
     USER_PERSONA_NAME = 'user_persona_name'
     VIDEO_ASSET = 'video_asset'
+    USER_SEGMENT_KEY = 'user_segment_key'
 
 
 class SourceFacebookMarketingValidEnums(str, Enum):
@@ -188,11 +199,30 @@ class SourceFacebookMarketingValidEnums(str, Enum):
     CATALOG_SEGMENT_VALUE_OMNI_PURCHASE_ROAS = 'catalog_segment_value_omni_purchase_roas'
     CATALOG_SEGMENT_VALUE_WEBSITE_PURCHASE_ROAS = 'catalog_segment_value_website_purchase_roas'
     CLICKS = 'clicks'
+    CONVERSION_LEADS = 'conversion_leads'
     CONVERSION_RATE_RANKING = 'conversion_rate_ranking'
     CONVERSION_VALUES = 'conversion_values'
     CONVERSIONS = 'conversions'
+    CONVERTED_PRODUCT_APP_CUSTOM_EVENT_FB_MOBILE_PURCHASE = 'converted_product_app_custom_event_fb_mobile_purchase'
+    CONVERTED_PRODUCT_APP_CUSTOM_EVENT_FB_MOBILE_PURCHASE_VALUE = 'converted_product_app_custom_event_fb_mobile_purchase_value'
+    CONVERTED_PRODUCT_OFFLINE_PURCHASE = 'converted_product_offline_purchase'
+    CONVERTED_PRODUCT_OFFLINE_PURCHASE_VALUE = 'converted_product_offline_purchase_value'
+    CONVERTED_PRODUCT_OMNI_PURCHASE = 'converted_product_omni_purchase'
+    CONVERTED_PRODUCT_OMNI_PURCHASE_VALUES = 'converted_product_omni_purchase_values'
     CONVERTED_PRODUCT_QUANTITY = 'converted_product_quantity'
     CONVERTED_PRODUCT_VALUE = 'converted_product_value'
+    CONVERTED_PRODUCT_WEBSITE_PIXEL_PURCHASE = 'converted_product_website_pixel_purchase'
+    CONVERTED_PRODUCT_WEBSITE_PIXEL_PURCHASE_VALUE = 'converted_product_website_pixel_purchase_value'
+    CONVERTED_PROMOTED_PRODUCT_APP_CUSTOM_EVENT_FB_MOBILE_PURCHASE = 'converted_promoted_product_app_custom_event_fb_mobile_purchase'
+    CONVERTED_PROMOTED_PRODUCT_APP_CUSTOM_EVENT_FB_MOBILE_PURCHASE_VALUE = 'converted_promoted_product_app_custom_event_fb_mobile_purchase_value'
+    CONVERTED_PROMOTED_PRODUCT_OFFLINE_PURCHASE = 'converted_promoted_product_offline_purchase'
+    CONVERTED_PROMOTED_PRODUCT_OFFLINE_PURCHASE_VALUE = 'converted_promoted_product_offline_purchase_value'
+    CONVERTED_PROMOTED_PRODUCT_OMNI_PURCHASE = 'converted_promoted_product_omni_purchase'
+    CONVERTED_PROMOTED_PRODUCT_OMNI_PURCHASE_VALUES = 'converted_promoted_product_omni_purchase_values'
+    CONVERTED_PROMOTED_PRODUCT_QUANTITY = 'converted_promoted_product_quantity'
+    CONVERTED_PROMOTED_PRODUCT_VALUE = 'converted_promoted_product_value'
+    CONVERTED_PROMOTED_PRODUCT_WEBSITE_PIXEL_PURCHASE = 'converted_promoted_product_website_pixel_purchase'
+    CONVERTED_PROMOTED_PRODUCT_WEBSITE_PIXEL_PURCHASE_VALUE = 'converted_promoted_product_website_pixel_purchase_value'
     COST_PER_15_SEC_VIDEO_VIEW = 'cost_per_15_sec_video_view'
     COST_PER_2_SEC_CONTINUOUS_VIDEO_VIEW = 'cost_per_2_sec_continuous_video_view'
     COST_PER_ACTION_TYPE = 'cost_per_action_type'
@@ -202,8 +232,10 @@ class SourceFacebookMarketingValidEnums(str, Enum):
     COST_PER_ESTIMATED_AD_RECALLERS = 'cost_per_estimated_ad_recallers'
     COST_PER_INLINE_LINK_CLICK = 'cost_per_inline_link_click'
     COST_PER_INLINE_POST_ENGAGEMENT = 'cost_per_inline_post_engagement'
+    COST_PER_OBJECTIVE_RESULT = 'cost_per_objective_result'
     COST_PER_ONE_THOUSAND_AD_IMPRESSION = 'cost_per_one_thousand_ad_impression'
     COST_PER_OUTBOUND_CLICK = 'cost_per_outbound_click'
+    COST_PER_RESULT = 'cost_per_result'
     COST_PER_THRUPLAY = 'cost_per_thruplay'
     COST_PER_UNIQUE_ACTION_TYPE = 'cost_per_unique_action_type'
     COST_PER_UNIQUE_CLICK = 'cost_per_unique_click'
@@ -241,31 +273,67 @@ class SourceFacebookMarketingValidEnums(str, Enum):
     INSTANT_EXPERIENCE_OUTBOUND_CLICKS = 'instant_experience_outbound_clicks'
     INTERACTIVE_COMPONENT_TAP = 'interactive_component_tap'
     LABELS = 'labels'
+    LANDING_PAGE_VIEW_ACTIONS_PER_LINK_CLICK = 'landing_page_view_actions_per_link_click'
+    LANDING_PAGE_VIEW_PER_LINK_CLICK = 'landing_page_view_per_link_click'
+    LANDING_PAGE_VIEW_PER_PURCHASE_RATE = 'landing_page_view_per_purchase_rate'
+    LINK_CLICKS_PER_RESULTS = 'link_clicks_per_results'
     LOCATION = 'location'
+    MARKETING_MESSAGES_CLICK_RATE_BENCHMARK = 'marketing_messages_click_rate_benchmark'
     MARKETING_MESSAGES_COST_PER_DELIVERED = 'marketing_messages_cost_per_delivered'
     MARKETING_MESSAGES_COST_PER_LINK_BTN_CLICK = 'marketing_messages_cost_per_link_btn_click'
+    MARKETING_MESSAGES_DELIVERED = 'marketing_messages_delivered'
     MARKETING_MESSAGES_DELIVERY_RATE = 'marketing_messages_delivery_rate'
+    MARKETING_MESSAGES_LINK_BTN_CLICK = 'marketing_messages_link_btn_click'
     MARKETING_MESSAGES_LINK_BTN_CLICK_RATE = 'marketing_messages_link_btn_click_rate'
     MARKETING_MESSAGES_MEDIA_VIEW_RATE = 'marketing_messages_media_view_rate'
     MARKETING_MESSAGES_PHONE_CALL_BTN_CLICK_RATE = 'marketing_messages_phone_call_btn_click_rate'
+    MARKETING_MESSAGES_QUICK_REPLY_BTN_CLICK = 'marketing_messages_quick_reply_btn_click'
     MARKETING_MESSAGES_QUICK_REPLY_BTN_CLICK_RATE = 'marketing_messages_quick_reply_btn_click_rate'
+    MARKETING_MESSAGES_READ = 'marketing_messages_read'
     MARKETING_MESSAGES_READ_RATE = 'marketing_messages_read_rate'
+    MARKETING_MESSAGES_READ_RATE_BENCHMARK = 'marketing_messages_read_rate_benchmark'
+    MARKETING_MESSAGES_SENT = 'marketing_messages_sent'
     MARKETING_MESSAGES_SPEND = 'marketing_messages_spend'
+    MARKETING_MESSAGES_SPEND_CURRENCY = 'marketing_messages_spend_currency'
+    MARKETING_MESSAGES_WEBSITE_ADD_TO_CART = 'marketing_messages_website_add_to_cart'
+    MARKETING_MESSAGES_WEBSITE_INITIATE_CHECKOUT = 'marketing_messages_website_initiate_checkout'
+    MARKETING_MESSAGES_WEBSITE_PURCHASE = 'marketing_messages_website_purchase'
     MARKETING_MESSAGES_WEBSITE_PURCHASE_VALUES = 'marketing_messages_website_purchase_values'
     MOBILE_APP_PURCHASE_ROAS = 'mobile_app_purchase_roas'
     OBJECTIVE = 'objective'
+    OBJECTIVE_RESULT_RATE = 'objective_result_rate'
+    OBJECTIVE_RESULTS = 'objective_results'
     ONSITE_CONVERSION_MESSAGING_DETECTED_PURCHASE_DEDUPED = 'onsite_conversion_messaging_detected_purchase_deduped'
     OPTIMIZATION_GOAL = 'optimization_goal'
     OUTBOUND_CLICKS = 'outbound_clicks'
     OUTBOUND_CLICKS_CTR = 'outbound_clicks_ctr'
     PLACE_PAGE_NAME = 'place_page_name'
+    PRODUCT_BRAND = 'product_brand'
+    PRODUCT_CATEGORY = 'product_category'
+    PRODUCT_CONTENT_ID = 'product_content_id'
+    PRODUCT_CUSTOM_LABEL_0 = 'product_custom_label_0'
+    PRODUCT_CUSTOM_LABEL_1 = 'product_custom_label_1'
+    PRODUCT_CUSTOM_LABEL_2 = 'product_custom_label_2'
+    PRODUCT_CUSTOM_LABEL_3 = 'product_custom_label_3'
+    PRODUCT_CUSTOM_LABEL_4 = 'product_custom_label_4'
+    PRODUCT_GROUP_CONTENT_ID = 'product_group_content_id'
+    PRODUCT_GROUP_RETAILER_ID = 'product_group_retailer_id'
+    PRODUCT_NAME = 'product_name'
+    PRODUCT_RETAILER_ID = 'product_retailer_id'
+    PRODUCT_VIEWS = 'product_views'
+    PURCHASE_PER_LANDING_PAGE_VIEW = 'purchase_per_landing_page_view'
     PURCHASE_ROAS = 'purchase_roas'
+    PURCHASES_PER_LINK_CLICK = 'purchases_per_link_click'
     QUALIFYING_QUESTION_QUALIFY_ANSWER_RATE = 'qualifying_question_qualify_answer_rate'
     QUALITY_RANKING = 'quality_ranking'
     REACH = 'reach'
+    RESULT_RATE = 'result_rate'
+    RESULT_VALUES_PERFORMANCE_INDICATOR = 'result_values_performance_indicator'
+    RESULTS = 'results'
     SHOPS_ASSISTED_PURCHASES = 'shops_assisted_purchases'
     SOCIAL_SPEND = 'social_spend'
     SPEND = 'spend'
+    TOTAL_CARD_VIEW = 'total_card_view'
     TOTAL_POSTBACKS = 'total_postbacks'
     TOTAL_POSTBACKS_DETAILED = 'total_postbacks_detailed'
     TOTAL_POSTBACKS_DETAILED_V4 = 'total_postbacks_detailed_v4'
@@ -297,6 +365,7 @@ class SourceFacebookMarketingValidEnums(str, Enum):
     VIDEO_PLAY_RETENTION_GRAPH_ACTIONS = 'video_play_retention_graph_actions'
     VIDEO_THRUPLAY_WATCHED_ACTIONS = 'video_thruplay_watched_actions'
     VIDEO_TIME_WATCHED_ACTIONS = 'video_time_watched_actions'
+    VIDEO_VIEW_PER_IMPRESSION = 'video_view_per_impression'
     WEBSITE_CTR = 'website_ctr'
     WEBSITE_PURCHASE_ROAS = 'website_purchase_roas'
     WISH_BID = 'wish_bid'
@@ -316,7 +385,7 @@ class InsightConfig:
     r"""Config for custom insights"""
     name: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('name') }})
     r"""The name value of insight"""
-    action_breakdowns: Optional[List[ValidActionBreakdowns]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('action_breakdowns'), 'exclude': lambda f: f is None }})
+    action_breakdowns: Optional[List[SourceFacebookMarketingValidActionBreakdowns]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('action_breakdowns'), 'exclude': lambda f: f is None }})
     r"""A list of chosen action_breakdowns for action_breakdowns"""
     breakdowns: Optional[List[ValidBreakdowns]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('breakdowns'), 'exclude': lambda f: f is None }})
     r"""A list of chosen breakdowns for breakdowns"""
@@ -336,6 +405,25 @@ class InsightConfig:
     r"""Time window in days by which to aggregate statistics. The sync will be chunked into N day intervals, where N is the number of days you specified. For example, if you set this value to 7, then all statistics will be reported as 7-day aggregates by starting from the start_date. If the start and end dates are October 1st and October 30th, then the connector will output 5 records: 01 - 06, 07 - 13, 14 - 20, 21 - 27, and 28 - 30 (3 days only). The minimum allowed value for this field is 1, and the maximum is 89."""
     
 
+
+
+class ValidActionBreakdowns(str, Enum):
+    r"""An enumeration."""
+    ACTION_CANVAS_COMPONENT_NAME = 'action_canvas_component_name'
+    ACTION_CAROUSEL_CARD_ID = 'action_carousel_card_id'
+    ACTION_CAROUSEL_CARD_NAME = 'action_carousel_card_name'
+    ACTION_DESTINATION = 'action_destination'
+    ACTION_DEVICE = 'action_device'
+    ACTION_REACTION = 'action_reaction'
+    ACTION_TARGET_ID = 'action_target_id'
+    ACTION_TYPE = 'action_type'
+    ACTION_VIDEO_SOUND = 'action_video_sound'
+    ACTION_VIDEO_TYPE = 'action_video_type'
+    CONVERSION_DESTINATION = 'conversion_destination'
+    MATCHED_PERSONA_ID = 'matched_persona_id'
+    MATCHED_PERSONA_NAME = 'matched_persona_name'
+    SIGNAL_SOURCE_BUCKET = 'signal_source_bucket'
+    STANDARD_EVENT_CONTENT_TYPE = 'standard_event_content_type'
 
 
 class SourceFacebookMarketingFacebookMarketing(str, Enum):
@@ -359,6 +447,8 @@ class SourceFacebookMarketing:
     r"""Select the statuses you want to be loaded in the stream. If no specific statuses are selected, the API's default behavior applies, and some statuses may be filtered out."""
     custom_insights: Optional[List[InsightConfig]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('custom_insights'), 'exclude': lambda f: f is None }})
     r"""A list which contains ad statistics entries, each entry must have a name and can contains fields, breakdowns or action_breakdowns. Click on \\"add\\" to fill this field."""
+    default_ads_insights_action_breakdowns: Optional[List[ValidActionBreakdowns]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('default_ads_insights_action_breakdowns'), 'exclude': lambda f: f is None }})
+    r"""Action breakdowns for the Built-in Ads Insights stream that will be used in the request. You can override default values or remove them to make it empty if needed."""
     end_date: Optional[datetime] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('end_date'), 'encoder': utils.datetimeisoformat(True), 'decoder': dateutil.parser.isoparse, 'exclude': lambda f: f is None }})
     r"""The date until which you'd like to replicate data for all incremental streams, in the format YYYY-MM-DDT00:00:00Z. All data generated between the start date and this end date will be replicated. Not setting this option will result in always syncing the latest data."""
     fetch_thumbnail_images: Optional[bool] = dataclasses.field(default=False, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('fetch_thumbnail_images'), 'exclude': lambda f: f is None }})

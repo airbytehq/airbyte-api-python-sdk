@@ -2,12 +2,10 @@
 
 from __future__ import annotations
 import dataclasses
-import dateutil.parser
 from airbyte_api import utils
 from dataclasses_json import Undefined, dataclass_json
-from datetime import datetime
 from enum import Enum
-from typing import Final, Optional
+from typing import Final
 
 
 class Uptick(str, Enum):
@@ -18,18 +16,11 @@ class Uptick(str, Enum):
 @dataclasses.dataclass
 class SourceUptick:
     base_url: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('base_url') }})
-    r"""Ex: https://demo-fire.onuptick.com/"""
+    r"""eg. https://demo-fire.onuptick.com (no trailing slash)"""
     client_id: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('client_id') }})
-    client_refresh_token: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('client_refresh_token') }})
     client_secret: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('client_secret') }})
-    end_date: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('end_date'), 'exclude': lambda f: f is None }})
-    r"""Fetch data up until this date"""
-    oauth_access_token: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('oauth_access_token'), 'exclude': lambda f: f is None }})
-    r"""The current access token. This field might be overridden by the connector based on the token refresh endpoint response."""
-    oauth_token_expiry_date: Optional[datetime] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('oauth_token_expiry_date'), 'encoder': utils.datetimeisoformat(True), 'decoder': dateutil.parser.isoparse, 'exclude': lambda f: f is None }})
-    r"""The date the current access token expires in. This field might be overridden by the connector based on the token refresh endpoint response."""
+    password: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('password') }})
+    username: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('username') }})
     SOURCE_TYPE: Final[Uptick] = dataclasses.field(default=Uptick.UPTICK, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
-    start_date: Optional[str] = dataclasses.field(default='2025-01-01', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('start_date'), 'exclude': lambda f: f is None }})
-    r"""Fetch data starting from this date (by default 2025-01-01)"""
     
 

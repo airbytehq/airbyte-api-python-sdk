@@ -2,42 +2,26 @@
 
 from __future__ import annotations
 import dataclasses
-import dateutil.parser
 from airbyte_api import utils
 from dataclasses_json import Undefined, dataclass_json
-from datetime import datetime
 from enum import Enum
-from typing import Any, Final, List, Optional, Union
-
-
-class Rest(str, Enum):
-    REST = 'REST'
+from typing import Final, List, Optional
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
-class RESTAPIStreams:
-    access_token: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('access_token') }})
-    r"""Follow the instructions in the \\"OAuth 2.0 in Postman - API Client for Integrations\\" article in the Workday community docs to obtain access token."""
-    AUTH_TYPE: Final[Rest] = dataclasses.field(default=Rest.REST, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_type') }})
-    start_date: Optional[datetime] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('start_date'), 'encoder': utils.datetimeisoformat(True), 'decoder': dateutil.parser.isoparse, 'exclude': lambda f: f is None }})
-    r"""Rows after this date will be synced, default 2 years ago."""
+class SourceWorkdayAuthentication:
+    r"""Credentials for connecting to the Workday (RAAS) API."""
+    password: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('password') }})
+    username: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('username') }})
     
 
 
 
-class Raas(str, Enum):
-    RAAS = 'RAAS'
-
-
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
-class ReportBasedStreams:
-    password: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('password') }})
-    report_ids: List[Any] = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('report_ids') }})
-    r"""Report IDs can be found by clicking the three dots on the right side of the report > Web Service > View URLs > in JSON url copy everything between Workday tenant/ and ?format=json."""
-    username: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('username') }})
-    AUTH_TYPE: Final[Raas] = dataclasses.field(default=Raas.RAAS, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_type') }})
+class ReportIds:
+    report_id: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('report_id'), 'exclude': lambda f: f is None }})
     
 
 
@@ -50,11 +34,13 @@ class Workday(str, Enum):
 @dataclasses.dataclass
 class SourceWorkday:
     credentials: SourceWorkdayAuthentication = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credentials') }})
-    r"""Report Based Streams and REST API Streams use different methods of Authentication. Choose streams type you want to sync and provide needed credentials for them."""
+    r"""Credentials for connecting to the Workday (RAAS) API."""
     host: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('host') }})
+    report_ids: List[ReportIds] = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('report_ids') }})
+    r"""Report IDs can be found by clicking the three dots on the right side of the report > Web Service > View URLs > in JSON url copy everything between Workday tenant/ and ?format=json."""
     tenant_id: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('tenant_id') }})
+    num_workers: Optional[int] = dataclasses.field(default=10, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('num_workers'), 'exclude': lambda f: f is None }})
+    r"""The number of worker threads to use for the sync."""
     SOURCE_TYPE: Final[Workday] = dataclasses.field(default=Workday.WORKDAY, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     
 
-
-SourceWorkdayAuthentication = Union[ReportBasedStreams, RESTAPIStreams]

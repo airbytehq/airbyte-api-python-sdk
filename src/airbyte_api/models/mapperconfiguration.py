@@ -67,6 +67,15 @@ class FieldRenaming:
 
 
 
+@dataclass_json(undefined=Undefined.EXCLUDE)
+@dataclasses.dataclass
+class FieldFiltering:
+    target_field: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('targetField') }})
+    r"""The name of the field to filter."""
+    
+
+
+
 class HashingMethod(str, Enum):
     r"""The hashing algorithm to use."""
     MD2 = 'MD2'
@@ -92,4 +101,4 @@ class Hashing:
 
 Encryption = Union[EncryptionRSA, EncryptionAES]
 
-MapperConfiguration = Union[Hashing, FieldRenaming, RowFiltering, Encryption]
+MapperConfiguration = Union[Hashing, FieldFiltering, FieldRenaming, RowFiltering, Encryption]
