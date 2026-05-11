@@ -41,6 +41,7 @@
 | `SMARTSHEETS`               | smartsheets                 |
 | `SNAPCHAT_MARKETING`        | snapchat-marketing          |
 | `SURVEYMONKEY`              | surveymonkey                |
+| `TICKTICK`                  | ticktick                    |
 | `TIKTOK_MARKETING`          | tiktok-marketing            |
 | `TRELLO`                    | trello                      |
 | `TYPEFORM`                  | typeform                    |

@@ -1,8 +1,8 @@
-# Raas
+# Plan
 
 
 ## Values
 
 | Name   | Value  |
 | ------ | ------ |
-| `RAAS` | RAAS   |
+| `FREE` | free   |

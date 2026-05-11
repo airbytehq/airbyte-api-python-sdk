@@ -99,6 +99,19 @@ class SourceSapHanaEnterpriseUnencrypted:
 
 
 
+@dataclass_json(undefined=Undefined.EXCLUDE)
+@dataclasses.dataclass
+class SourceSapHanaEnterpriseTableFilter:
+    r"""Inclusion filter configuration for table selection per schema."""
+    schema_name: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('schema_name') }})
+    r"""The name of the schema to apply this filter to. Should match a schema defined in \\"Schemas\\" field above."""
+    table_name_patterns: List[str] = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('table_name_patterns') }})
+    r"""List of table name patterns to include from this schema. Each filter should be a SQL LIKE pattern."""
+    additional_properties: Optional[Dict[str, Any]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'exclude': lambda f: f is None }})
+    
+
+
+
 class SapHanaEnterprise(str, Enum):
     SAP_HANA_ENTERPRISE = 'sap-hana-enterprise'
 
@@ -180,14 +193,18 @@ class SourceSapHanaEnterprise:
     r"""How often (in seconds) a stream should checkpoint, when possible."""
     concurrency: Optional[int] = dataclasses.field(default=1, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('concurrency'), 'exclude': lambda f: f is None }})
     r"""Maximum number of concurrent queries to the database."""
+    database: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('database'), 'exclude': lambda f: f is None }})
+    r"""The name of the tenant database to connect to. This is required for multi-tenant SAP HANA systems. For single-tenant systems, this can be left empty."""
+    filters: Optional[List[SourceSapHanaEnterpriseTableFilter]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('filters'), 'exclude': lambda f: f is None }})
+    r"""Inclusion filters for table selection per schema. If no filters are specified for a schema, all tables in that schema will be synced."""
     jdbc_url_params: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('jdbc_url_params'), 'exclude': lambda f: f is None }})
     r"""Additional properties to pass to the JDBC URL string when connecting to the database formatted as 'key=value' pairs separated by the symbol '&'. (example: key1=value1&key2=value2&key3=value3)."""
     password: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('password'), 'exclude': lambda f: f is None }})
     r"""The password associated with the username."""
     port: Optional[int] = dataclasses.field(default=443, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('port'), 'exclude': lambda f: f is None }})
     r"""Port of the database.
-    SapHana Corporations recommends the following port numbers:
-    443 - Default listening port for SAP HANA cloud client connections to the listener.
+    SAP recommends the following port numbers:
+    443 - Default listening port for SAP HANA Cloud client connections to the listener.
     """
     schemas: Optional[List[str]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('schemas'), 'exclude': lambda f: f is None }})
     r"""The list of schemas to sync from. Defaults to user. Case sensitive."""
