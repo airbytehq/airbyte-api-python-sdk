@@ -109,8 +109,8 @@ class DestinationCustomerIo:
     credentials: DestinationCustomerIoCredentials = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credentials') }})
     r"""Enter the site ID and API key to authenticate."""
     DESTINATION_TYPE: Final[CustomerIo] = dataclasses.field(default=CustomerIo.CUSTOMER_IO, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('destinationType') }})
-    object_storage_config: Optional[ObjectStorageConfiguration] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('object_storage_config'), 'exclude': lambda f: f is None }})
+    object_storage_config: Optional[ObjectStorageSpec] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('object_storage_config'), 'exclude': lambda f: f is None }})
     
 
 
-ObjectStorageConfiguration = Union[NoneT, DestinationCustomerIoS3]
+ObjectStorageSpec = Union[NoneT, DestinationCustomerIoS3]

@@ -115,10 +115,10 @@ class DestinationHubspot:
     credentials: DestinationHubspotCredentials = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('credentials') }})
     r"""Choose how to authenticate to HubSpot."""
     DESTINATION_TYPE: Final[DestinationHubspotHubspot] = dataclasses.field(default=DestinationHubspotHubspot.HUBSPOT, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('destinationType') }})
-    object_storage_config: Optional[DestinationHubspotObjectStorageConfiguration] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('object_storage_config'), 'exclude': lambda f: f is None }})
+    object_storage_config: Optional[ObjectStorageConfiguration] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('object_storage_config'), 'exclude': lambda f: f is None }})
     
 
 
 DestinationHubspotCredentials = Union[OAuth]
 
-DestinationHubspotObjectStorageConfiguration = Union[DestinationHubspotNone, DestinationHubspotS3]
+ObjectStorageConfiguration = Union[DestinationHubspotNone, DestinationHubspotS3]

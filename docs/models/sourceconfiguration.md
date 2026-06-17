@@ -29,6 +29,18 @@ value: models.Source7shifts = /* values here */
 value: models.SourceActivecampaign = /* values here */
 ```
 
+### `models.SourceAcuityScheduling`
+
+```python
+value: models.SourceAcuityScheduling = /* values here */
+```
+
+### `models.SourceAdobeCommerceMagento`
+
+```python
+value: models.SourceAdobeCommerceMagento = /* values here */
+```
+
 ### `models.SourceAgilecrm`
 
 ```python
@@ -611,16 +623,34 @@ value: models.SourceCustomerly = /* values here */
 value: models.SourceDatadog = /* values here */
 ```
 
+### `models.SourceDatagen`
+
+```python
+value: models.SourceDatagen = /* values here */
+```
+
 ### `models.SourceDatascope`
 
 ```python
 value: models.SourceDatascope = /* values here */
 ```
 
+### `models.SourceDb2Enterprise`
+
+```python
+value: models.SourceDb2Enterprise = /* values here */
+```
+
 ### `models.SourceDbt`
 
 ```python
 value: models.SourceDbt = /* values here */
+```
+
+### `models.SourceDefillama`
+
+```python
+value: models.SourceDefillama = /* values here */
 ```
 
 ### `models.SourceDelighted`
@@ -1583,6 +1613,12 @@ value: models.SourceMailosaur = /* values here */
 value: models.SourceMailtrap = /* values here */
 ```
 
+### `models.SourceMantle`
+
+```python
+value: models.SourceMantle = /* values here */
+```
+
 ### `models.SourceMarketo`
 
 ```python
@@ -1623,6 +1659,12 @@ value: models.SourceMerge = /* values here */
 
 ```python
 value: models.SourceMetabase = /* values here */
+```
+
+### `models.SourceMetricool`
+
+```python
+value: models.SourceMetricool = /* values here */
 ```
 
 ### `models.SourceMicrosoftDataverse`
@@ -1941,6 +1983,12 @@ value: models.SourceOura = /* values here */
 
 ```python
 value: models.SourceOutbrainAmplify = /* values here */
+```
+
+### `models.SourceOutlook`
+
+```python
+value: models.SourceOutlook = /* values here */
 ```
 
 ### `models.SourceOutreach`
@@ -2819,6 +2867,12 @@ value: models.SourceTicketmaster = /* values here */
 value: models.SourceTickettailor = /* values here */
 ```
 
+### `models.SourceTicktick`
+
+```python
+value: models.SourceTicktick = /* values here */
+```
+
 ### `models.SourceTiktokMarketing`
 
 ```python
@@ -3069,6 +3123,12 @@ value: models.SourceWorkable = /* values here */
 
 ```python
 value: models.SourceWorkday = /* values here */
+```
+
+### `models.SourceWorkdayRest`
+
+```python
+value: models.SourceWorkdayRest = /* values here */
 ```
 
 ### `models.SourceWorkflowmax`

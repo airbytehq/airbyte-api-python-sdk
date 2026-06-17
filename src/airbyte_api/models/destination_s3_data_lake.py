@@ -8,6 +8,33 @@ from enum import Enum
 from typing import Any, Dict, Final, Optional, Union
 
 
+class DestinationS3DataLakeSchemasCatalogTypeCatalogType(str, Enum):
+    POLARIS = 'POLARIS'
+
+
+@dataclass_json(undefined=Undefined.EXCLUDE)
+@dataclasses.dataclass
+class PolarisCatalog:
+    r"""Configuration details for connecting to an Apache Polaris-based Iceberg catalog."""
+    catalog_name: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('catalog_name') }})
+    r"""The name of the catalog in Polaris. This corresponds to the catalog name created via the Polaris Management API."""
+    client_id: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('client_id') }})
+    r"""The OAuth Client ID for authenticating with the Polaris server."""
+    client_secret: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('client_secret') }})
+    r"""The OAuth Client Secret for authenticating with the Polaris server."""
+    namespace: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('namespace') }})
+    r"""The Polaris namespace to be used in the Table identifier.
+               This will ONLY be used if the `Destination Namespace` setting for the connection is set to
+               `Destination-defined` or `Source-defined`
+    """
+    server_uri: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('server_uri') }})
+    r"""The base URL of the Polaris server used to connect to the Polaris catalog."""
+    additional_properties: Optional[Dict[str, Any]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'exclude': lambda f: f is None }})
+    catalog_type: Optional[DestinationS3DataLakeSchemasCatalogTypeCatalogType] = dataclasses.field(default=DestinationS3DataLakeSchemasCatalogTypeCatalogType.POLARIS, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('catalog_type'), 'exclude': lambda f: f is None }})
+    
+
+
+
 class DestinationS3DataLakeSchemasCatalogType(str, Enum):
     REST = 'REST'
 
@@ -49,7 +76,7 @@ class GlueCatalog:
 
 
 
-class DestinationS3DataLakeSchemasCatalogTypeCatalogType(str, Enum):
+class DestinationS3DataLakeSchemasCatalogTypeCatalogTypeCatalogType(str, Enum):
     NESSIE = 'NESSIE'
 
 
@@ -67,7 +94,7 @@ class NessieCatalog:
     additional_properties: Optional[Dict[str, Any]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'exclude': lambda f: f is None }})
     access_token: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('access_token'), 'exclude': lambda f: f is None }})
     r"""Optional token for authentication with the Nessie server."""
-    catalog_type: Optional[DestinationS3DataLakeSchemasCatalogTypeCatalogType] = dataclasses.field(default=DestinationS3DataLakeSchemasCatalogTypeCatalogType.NESSIE, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('catalog_type'), 'exclude': lambda f: f is None }})
+    catalog_type: Optional[DestinationS3DataLakeSchemasCatalogTypeCatalogTypeCatalogType] = dataclasses.field(default=DestinationS3DataLakeSchemasCatalogTypeCatalogTypeCatalogType.NESSIE, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('catalog_type'), 'exclude': lambda f: f is None }})
     
 
 
@@ -119,7 +146,7 @@ class DestinationS3DataLakeS3BucketRegion(str, Enum):
 class DestinationS3DataLake:
     r"""Defines the configurations required to connect to an Iceberg catalog, including warehouse location, main branch name, and catalog type specifics."""
     catalog_type: CatalogType = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('catalog_type') }})
-    r"""Specifies the type of Iceberg catalog (e.g., NESSIE, GLUE, REST) and its associated configuration."""
+    r"""Specifies the type of Iceberg catalog (e.g., NESSIE, GLUE, REST, POLARIS) and its associated configuration."""
     s3_bucket_name: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('s3_bucket_name') }})
     r"""The name of the S3 bucket that will host the Iceberg data."""
     s3_bucket_region: DestinationS3DataLakeS3BucketRegion = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('s3_bucket_region') }})
@@ -138,4 +165,4 @@ class DestinationS3DataLake:
     
 
 
-CatalogType = Union[NessieCatalog, GlueCatalog, RestCatalog]
+CatalogType = Union[NessieCatalog, GlueCatalog, RestCatalog, PolarisCatalog]

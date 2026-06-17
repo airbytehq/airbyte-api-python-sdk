@@ -66,7 +66,7 @@ class SourceNetsuiteEnterprisePasswordAuthentication:
 
 
 
-class CursorMethod(str, Enum):
+class SourceNetsuiteEnterpriseCursorMethod(str, Enum):
     USER_DEFINED = 'user_defined'
 
 
@@ -75,7 +75,7 @@ class CursorMethod(str, Enum):
 class SourceNetsuiteEnterpriseScanChangesWithUserDefinedCursor:
     r"""Incrementally detects new inserts and updates using the <a href=\\"https://docs.airbyte.com/understanding-airbyte/connections/incremental-append/#user-defined-cursor\\">cursor column</a> chosen when configuring a connection (e.g. created_at, updated_at)."""
     additional_properties: Optional[Dict[str, Any]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'exclude': lambda f: f is None }})
-    cursor_method: Optional[CursorMethod] = dataclasses.field(default=CursorMethod.USER_DEFINED, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('cursor_method'), 'exclude': lambda f: f is None }})
+    cursor_method: Optional[SourceNetsuiteEnterpriseCursorMethod] = dataclasses.field(default=SourceNetsuiteEnterpriseCursorMethod.USER_DEFINED, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('cursor_method'), 'exclude': lambda f: f is None }})
     
 
 

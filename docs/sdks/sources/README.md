@@ -34,9 +34,11 @@ s = airbyte_api.AirbyteAPI(
 
 
 res = s.sources.create_source(request=models.SourceCreateRequest(
-    configuration=models.SourcePlausible(
+    configuration=models.SourcePlaid(
+        access_token='<value>',
         api_key='<value>',
-        site_id='docs.airbyte.com',
+        client_id='<id>',
+        plaid_env=models.PlaidEnvironment.PRODUCTION,
     ),
     name='My Source',
     workspace_id='744cc0ed-7f05-4949-9e60-2a814f90c035',
@@ -279,8 +281,10 @@ s = airbyte_api.AirbyteAPI(
 res = s.sources.patch_source(request=api.PatchSourceRequest(
     source_id='<value>',
     source_patch_request=models.SourcePatchRequest(
-        configuration=models.SourceEncharge(
-            api_key='<value>',
+        configuration=models.SourceDynamodb(
+            endpoint='<value>',
+            ignore_missing_read_permissions_tables=False,
+            region=models.SourceDynamodbDynamodbRegion.AP_SOUTH_2,
         ),
         name='My Source',
         workspace_id='744cc0ed-7f05-4949-9e60-2a814f90c035',
@@ -332,9 +336,10 @@ s = airbyte_api.AirbyteAPI(
 res = s.sources.put_source(request=api.PutSourceRequest(
     source_id='<value>',
     source_put_request=models.SourcePutRequest(
-        configuration=models.SourceGridly(
-            api_key='<value>',
-            grid_id='<id>',
+        configuration=models.SourceGreythr(
+            base_url='https://amazing-basket.info',
+            domain='whimsical-overheard.com',
+            username='Euna.Hickle',
         ),
         name='My Source',
     ),

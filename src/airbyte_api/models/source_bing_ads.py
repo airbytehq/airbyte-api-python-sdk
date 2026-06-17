@@ -78,6 +78,8 @@ class CustomReportConfig:
     r"""A list of available report object columns. You can find it in description of reporting object that you want to add to custom report."""
     reporting_object: ReportingDataObject = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('reporting_object') }})
     r"""The name of the the object derives from the ReportRequest object. You can find it in Bing Ads Api docs - Reporting API - Reporting Data Objects."""
+    disable_custom_report_names_camel_to_snake_conversion: Optional[bool] = dataclasses.field(default=False, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('disable_custom_report_names_camel_to_snake_conversion'), 'exclude': lambda f: f is None }})
+    r"""When enabled, disables the automatic conversion of custom report names from camelCase to snake_case. By default, custom report names are automatically converted (e.g., 'MyCustomReport' becomes 'my_custom_report'). Enable this option if you want to use the exact report names you specify."""
     report_aggregation: Optional[str] = dataclasses.field(default='[Hourly]', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('report_aggregation'), 'exclude': lambda f: f is None }})
     r"""A list of available aggregations."""
     

@@ -3,6 +3,6 @@
 
 ## Values
 
-| Name     | Value    |
-| -------- | -------- |
-| `NESSIE` | NESSIE   |
+| Name      | Value     |
+| --------- | --------- |
+| `POLARIS` | POLARIS   |

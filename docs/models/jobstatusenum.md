@@ -6,6 +6,7 @@
 | Name         | Value        |
 | ------------ | ------------ |
 | `PENDING`    | pending      |
+| `QUEUED`     | queued       |
 | `RUNNING`    | running      |
 | `INCOMPLETE` | incomplete   |
 | `FAILED`     | failed       |

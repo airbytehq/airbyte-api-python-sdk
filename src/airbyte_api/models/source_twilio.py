@@ -25,6 +25,8 @@ class SourceTwilio:
     r"""UTC date and time in the format 2020-10-01T00:00:00Z. Any data before this date will not be replicated."""
     lookback_window: Optional[int] = dataclasses.field(default=0, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('lookback_window'), 'exclude': lambda f: f is None }})
     r"""How far into the past to look for records. (in minutes)"""
+    num_worker: Optional[int] = dataclasses.field(default=3, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('num_worker'), 'exclude': lambda f: f is None }})
+    r"""The number of worker threads to use for the sync."""
     SOURCE_TYPE: Final[Twilio] = dataclasses.field(default=Twilio.TWILIO, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
     
 

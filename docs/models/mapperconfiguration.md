@@ -11,6 +11,12 @@ The values required to configure the mapper.
 value: models.Hashing = /* values here */
 ```
 
+### `models.FieldFiltering`
+
+```python
+value: models.FieldFiltering = /* values here */
+```
+
 ### `models.FieldRenaming`
 
 ```python

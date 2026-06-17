@@ -8,3 +8,4 @@
 | `ACTIVE`     | active       |
 | `INACTIVE`   | inactive     |
 | `DEPRECATED` | deprecated   |
+| `LOCKED`     | locked       |

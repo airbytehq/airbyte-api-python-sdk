@@ -14,7 +14,7 @@ class SourceMssqlSchemasMethod(str, Enum):
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
-class ScanChangesWithUserDefinedCursor:
+class SourceMssqlScanChangesWithUserDefinedCursor:
     r"""Incrementally detects new inserts and updates using the <a href=\\"https://docs.airbyte.com/understanding-airbyte/connections/incremental-append/#user-defined-cursor\\">cursor column</a> chosen when configuring a connection (e.g. created_at, updated_at)."""
     exclude_todays_data: Optional[bool] = dataclasses.field(default=False, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('exclude_todays_data'), 'exclude': lambda f: f is None }})
     r"""When enabled incremental syncs using a cursor of a temporal types (date or datetime) will include cursor values only up until last midnight (Advanced)"""
@@ -35,7 +35,7 @@ class SourceMssqlMethod(str, Enum):
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
-class ReadChangesUsingChangeDataCaptureCDC:
+class SourceMssqlReadChangesUsingChangeDataCaptureCDC:
     r"""<i>Recommended</i> - Incrementally reads new inserts, updates, and deletes using the SQL Server's <a href=\\"https://docs.airbyte.com/integrations/sources/mssql/#change-data-capture-cdc\\">change data capture feature</a>. This must be enabled on your database."""
     initial_load_timeout_hours: Optional[int] = dataclasses.field(default=8, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('initial_load_timeout_hours'), 'exclude': lambda f: f is None }})
     r"""The amount of time an initial load is allowed to continue for before catching up on CDC logs."""
@@ -170,7 +170,7 @@ class SourceMssql:
     r"""The username which is used to access the database."""
     jdbc_url_params: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('jdbc_url_params'), 'exclude': lambda f: f is None }})
     r"""Additional properties to pass to the JDBC URL string when connecting to the database formatted as 'key=value' pairs separated by the symbol '&'. (example: key1=value1&key2=value2&key3=value3)."""
-    replication_method: Optional[UpdateMethod] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('replication_method'), 'exclude': lambda f: f is None }})
+    replication_method: Optional[SourceMssqlUpdateMethod] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('replication_method'), 'exclude': lambda f: f is None }})
     r"""Configures how data is extracted from the database."""
     schemas: Optional[List[str]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('schemas'), 'exclude': lambda f: f is None }})
     r"""The list of schemas to sync from. Defaults to user. Case sensitive."""
@@ -182,7 +182,7 @@ class SourceMssql:
     
 
 
-UpdateMethod = Union[ReadChangesUsingChangeDataCaptureCDC, ScanChangesWithUserDefinedCursor]
+SourceMssqlUpdateMethod = Union[SourceMssqlReadChangesUsingChangeDataCaptureCDC, SourceMssqlScanChangesWithUserDefinedCursor]
 
 SourceMssqlSSLMethod = Union[SourceMssqlUnencrypted, SourceMssqlEncryptedTrustServerCertificate, SourceMssqlEncryptedVerifyCertificate]
 
