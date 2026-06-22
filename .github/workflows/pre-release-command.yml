@@ -100,7 +100,7 @@ jobs:
           VERSION="${{ inputs.version }}"
 
           # PEP 440 pre-release pattern: X.Y.Z(a|b|rc|dev)N
-          if ! echo "$VERSION" | grep -qE '^[0-9]+\.[0-9]+\.[0-9]+(a|b|rc|dev|\.dev|\.post)[0-9]+$'; then
+          if ! echo "$VERSION" | grep -qE '^[0-9]+\.[0-9]+\.[0-9]+(a|b|rc|dev|\.dev)[0-9]+$'; then
             echo "::error::Invalid version or missing pre-release suffix. Expected PEP 440 format: X.Y.Z(a|b|rc|dev)N (e.g. 1.0.0rc1). Got: $VERSION"
             exit 1
           fi
