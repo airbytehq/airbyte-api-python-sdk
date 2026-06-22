@@ -9,7 +9,7 @@ requires-python = ">=3.10"
 dependencies = [
     "httpcore >=1.0.9",
     "httpx >=0.28.1",
-    "pydantic >=2.11.2",
+    "pydantic >=2.13.4",
 ]
 
 [tool.poetry]
