@@ -5,16 +5,16 @@ management:
   docVersion: 1.0.0
   speakeasyVersion: 1.784.0
   generationVersion: 2.911.0
-  releaseVersion: 0.54.0
-  configChecksum: f92f9e00b2cd42c9c6e9bf07ceb79155
+  releaseVersion: 1.0.0
+  configChecksum: 381d36c2ce44de5947486cd51626a03b
   repoURL: https://github.com/airbytehq/airbyte-api-python-sdk.git
   repoSubDirectory: .
   installationURL: https://github.com/airbytehq/airbyte-api-python-sdk.git
   published: true
 persistentEdits:
-  generation_id: a6c4eca2-7174-4359-b5ed-b5596ab9b5fa
-  pristine_commit_hash: 26267d46d7f6095f71bc78a12893c7dfb51bc3a8
-  pristine_tree_hash: 9e2b32e8afaa2c6cb0b53e6562b70592eb56382c
+  generation_id: f728b55a-4268-47de-84b6-a0d910f48b48
+  pristine_commit_hash: 56d6c658ee5a57c6abf16e9e80fd97a733a00dd3
+  pristine_tree_hash: 65fec3f6cbc6217b11ba7bb82ffd37099b248378
 features:
   python:
     additionalDependencies: 1.1.0
@@ -12832,8 +12832,8 @@ trackedFiles:
     pristine_git_object: 4e08dbfe00a0ce03ecc0704f10ddb0aff2e50dcb
   pyproject.toml:
     id: 5d07e7d72637
-    last_write_checksum: sha1:4edcbb22d53254a02620cbc3602d757e9b28d5d5
-    pristine_git_object: 2e99c2e1737c49aa64c295332a5362ceb64c3605
+    last_write_checksum: sha1:2e729d6474e5abb7c80358cef0e02b2ff46adef5
+    pristine_git_object: 79de50dc2c94b1555177e8c5eb4064a4b9742e8d
   scripts/prepare_readme.py:
     id: e0c5957a6035
     last_write_checksum: sha1:41424bfd723c44432b6ac6e6745ef1ac5e941f92
@@ -12864,8 +12864,8 @@ trackedFiles:
     pristine_git_object: fe24d0e782de644bee1943541b9d2f8a3af5df3d
   src/airbyte_api/_version.py:
     id: ff7ac85eb3c9
-    last_write_checksum: sha1:40c1548fdd6f88d1b9ac6ed8c3631d69eee49561
-    pristine_git_object: a1f615bee24b8bd8ffca57c8a366c1e2d8ea8768
+    last_write_checksum: sha1:07c1f7a1468b8f3f3c41c47ecbbe9a6d82581875
+    pristine_git_object: f8a8ca6ea3a6ea8e09ed6a09314c70597caff69a
   src/airbyte_api/api/__init__.py:
     id: 53f5cc15f8fc
     last_write_checksum: sha1:3bb4257e80e78bbc88559a9fca185c287e12097e
