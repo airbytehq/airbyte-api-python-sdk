@@ -2,6 +2,14 @@
 
 This upload method is supposed to temporary store records in GCS bucket. By this select you can chose if these records should be removed from GCS when migration has finished. The default "Delete all tmp files from GCS" value is used if not set explicitly.
 
+## Example Usage
+
+```python
+from airbyte_api.models import GCSTmpFilesPostProcessing
+
+value = GCSTmpFilesPostProcessing.DELETE_ALL_TMP_FILES_FROM_GCS
+```
+
 
 ## Values
 

@@ -1,5 +1,13 @@
 # DestinationAstraSchemasEmbeddingEmbeddingMode
 
+## Example Usage
+
+```python
+from airbyte_api.models import DestinationAstraSchemasEmbeddingEmbeddingMode
+
+value = DestinationAstraSchemasEmbeddingEmbeddingMode.AZURE_OPENAI
+```
+
 
 ## Values
 

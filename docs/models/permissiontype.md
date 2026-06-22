@@ -2,6 +2,14 @@
 
 Describes what actions/endpoints the permission entitles to
 
+## Example Usage
+
+```python
+from airbyte_api.models import PermissionType
+
+value = PermissionType.INSTANCE_ADMIN
+```
+
 
 ## Values
 

@@ -1,5 +1,13 @@
 # ZohoBilling
 
+## Example Usage
+
+```python
+from airbyte_api.models import ZohoBilling
+
+value = ZohoBilling.ZOHO_BILLING
+```
+
 
 ## Values
 

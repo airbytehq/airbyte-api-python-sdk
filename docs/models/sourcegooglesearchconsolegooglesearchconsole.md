@@ -1,5 +1,13 @@
 # SourceGoogleSearchConsoleGoogleSearchConsole
 
+## Example Usage
+
+```python
+from airbyte_api.models import SourceGoogleSearchConsoleGoogleSearchConsole
+
+value = SourceGoogleSearchConsoleGoogleSearchConsole.GOOGLE_SEARCH_CONSOLE
+```
+
 
 ## Values
 

@@ -1,5 +1,13 @@
 # ZohoBooks
 
+## Example Usage
+
+```python
+from airbyte_api.models import ZohoBooks
+
+value = ZohoBooks.ZOHO_BOOKS
+```
+
 
 ## Values
 

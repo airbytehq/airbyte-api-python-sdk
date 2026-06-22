@@ -1,5 +1,13 @@
 # Categories
 
+## Example Usage
+
+```python
+from airbyte_api.models import Categories
+
+value = Categories.ACCESSIBILITY
+```
+
 
 ## Values
 

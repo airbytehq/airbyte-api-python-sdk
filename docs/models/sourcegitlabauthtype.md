@@ -1,5 +1,13 @@
 # SourceGitlabAuthType
 
+## Example Usage
+
+```python
+from airbyte_api.models import SourceGitlabAuthType
+
+value = SourceGitlabAuthType.OAUTH2_0
+```
+
 
 ## Values
 

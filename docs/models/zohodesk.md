@@ -1,5 +1,13 @@
 # ZohoDesk
 
+## Example Usage
+
+```python
+from airbyte_api.models import ZohoDesk
+
+value = ZohoDesk.ZOHO_DESK
+```
+
 
 ## Values
 

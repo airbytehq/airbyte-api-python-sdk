@@ -1,5 +1,13 @@
 # DestinationS3SchemasFlattening
 
+## Example Usage
+
+```python
+from airbyte_api.models import DestinationS3SchemasFlattening
+
+value = DestinationS3SchemasFlattening.NO_FLATTENING
+```
+
 
 ## Values
 

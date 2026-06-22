@@ -2,6 +2,14 @@
 
 Chosen level for API
 
+## Example Usage
+
+```python
+from airbyte_api.models import Level
+
+value = Level.AD
+```
+
 
 ## Values
 

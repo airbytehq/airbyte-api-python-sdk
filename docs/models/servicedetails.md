@@ -1,5 +1,13 @@
 # ServiceDetails
 
+## Example Usage
+
+```python
+from airbyte_api.models import ServiceDetails
+
+value = ServiceDetails.ESCALATION_POLICIES
+```
+
 
 ## Values
 

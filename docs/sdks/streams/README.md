@@ -1,5 +1,4 @@
 # Streams
-(*streams*)
 
 ## Overview
 
@@ -13,27 +12,28 @@ Get stream properties
 
 ### Example Usage
 
+<!-- UsageSnippet language="python" operationID="getStreamProperties" method="get" path="/streams" -->
 ```python
-import airbyte_api
-from airbyte_api import api, models
+from airbyte_api import AirbyteAPI, models
 
-s = airbyte_api.AirbyteAPI(
+
+with AirbyteAPI(
     security=models.Security(
         basic_auth=models.SchemeBasicAuth(
-            password='',
-            username='',
+            password="",
+            username="",
         ),
     ),
-)
+) as aa_client:
 
+    res = aa_client.streams.get_stream_properties(request={
+        "source_id": "<value>",
+    })
 
-res = s.streams.get_stream_properties(request=api.GetStreamPropertiesRequest(
-    source_id='<value>',
-))
+    assert res.stream_properties_response is not None
 
-if res.stream_properties_response is not None:
-    # handle response
-    pass
+    # Handle response
+    print(res.stream_properties_response)
 
 ```
 
@@ -42,6 +42,7 @@ if res.stream_properties_response is not None:
 | Parameter                                                                 | Type                                                                      | Required                                                                  | Description                                                               |
 | ------------------------------------------------------------------------- | ------------------------------------------------------------------------- | ------------------------------------------------------------------------- | ------------------------------------------------------------------------- |
 | `request`                                                                 | [api.GetStreamPropertiesRequest](../../api/getstreampropertiesrequest.md) | :heavy_check_mark:                                                        | The request object to use for the request.                                |
+| `retries`                                                                 | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)          | :heavy_minus_sign:                                                        | Configuration to override the default retry behavior of the client.       |
 
 ### Response
 

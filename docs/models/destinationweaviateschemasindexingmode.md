@@ -1,5 +1,13 @@
 # DestinationWeaviateSchemasIndexingMode
 
+## Example Usage
+
+```python
+from airbyte_api.models import DestinationWeaviateSchemasIndexingMode
+
+value = DestinationWeaviateSchemasIndexingMode.TOKEN
+```
+
 
 ## Values
 

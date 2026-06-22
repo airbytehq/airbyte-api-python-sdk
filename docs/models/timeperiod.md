@@ -2,6 +2,14 @@
 
 Time Period for cash flow stmts
 
+## Example Usage
+
+```python
+from airbyte_api.models import TimePeriod
+
+value = TimePeriod.ANNUAL
+```
+
 
 ## Values
 

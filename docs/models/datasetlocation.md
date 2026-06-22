@@ -2,6 +2,14 @@
 
 The location of the dataset. Warning: Changes made after creation will not be applied. Read more <a href="https://cloud.google.com/bigquery/docs/locations">here</a>.
 
+## Example Usage
+
+```python
+from airbyte_api.models import DatasetLocation
+
+value = DatasetLocation.EU
+```
+
 
 ## Values
 

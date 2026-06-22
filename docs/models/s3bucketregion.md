@@ -2,6 +2,14 @@
 
 The region of the S3 bucket. See <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-regions-availability-zones.html#concepts-available-regions">here</a> for all region codes.
 
+## Example Usage
+
+```python
+from airbyte_api.models import S3BucketRegion
+
+value = S3BucketRegion.UNKNOWN
+```
+
 
 ## Values
 

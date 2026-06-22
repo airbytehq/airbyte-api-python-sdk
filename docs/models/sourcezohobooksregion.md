@@ -2,6 +2,14 @@
 
 The region code for the Zoho Books API, such as 'com', 'eu', 'in', etc.
 
+## Example Usage
+
+```python
+from airbyte_api.models import SourceZohoBooksRegion
+
+value = SourceZohoBooksRegion.COM
+```
+
 
 ## Values
 

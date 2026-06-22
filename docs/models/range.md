@@ -2,6 +2,14 @@
 
 The range of prices to be queried.
 
+## Example Usage
+
+```python
+from airbyte_api.models import Range
+
+value = Range.ONED
+```
+
 
 ## Values
 

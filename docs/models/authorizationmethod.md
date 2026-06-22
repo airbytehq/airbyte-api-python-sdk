@@ -1,5 +1,7 @@
 # AuthorizationMethod
 
+Determines the type of authentication that should be used.
+
 
 ## Supported Types
 
@@ -13,11 +15,5 @@ value: models.KeyPairAuthentication = /* values here */
 
 ```python
 value: models.UsernameAndPassword = /* values here */
-```
-
-### `models.DestinationSnowflakeOAuth20`
-
-```python
-value: models.DestinationSnowflakeOAuth20 = /* values here */
 ```
 

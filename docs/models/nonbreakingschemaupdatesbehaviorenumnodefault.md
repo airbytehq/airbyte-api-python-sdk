@@ -2,6 +2,14 @@
 
 Set how Airbyte handles syncs when it detects a non-breaking schema change in the source
 
+## Example Usage
+
+```python
+from airbyte_api.models import NonBreakingSchemaUpdatesBehaviorEnumNoDefault
+
+value = NonBreakingSchemaUpdatesBehaviorEnumNoDefault.IGNORE
+```
+
 
 ## Values
 

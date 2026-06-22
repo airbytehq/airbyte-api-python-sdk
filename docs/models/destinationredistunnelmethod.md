@@ -2,6 +2,14 @@
 
 No ssh tunnel needed to connect to database
 
+## Example Usage
+
+```python
+from airbyte_api.models import DestinationRedisTunnelMethod
+
+value = DestinationRedisTunnelMethod.NO_TUNNEL
+```
+
 
 ## Values
 

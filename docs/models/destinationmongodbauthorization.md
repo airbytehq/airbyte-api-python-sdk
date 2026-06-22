@@ -1,5 +1,13 @@
 # DestinationMongodbAuthorization
 
+## Example Usage
+
+```python
+from airbyte_api.models import DestinationMongodbAuthorization
+
+value = DestinationMongodbAuthorization.LOGIN_PASSWORD
+```
+
 
 ## Values
 

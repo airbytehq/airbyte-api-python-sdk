@@ -1,5 +1,13 @@
 # SourceMysqlSchemasTunnelMethod
 
+## Example Usage
+
+```python
+from airbyte_api.models import SourceMysqlSchemasTunnelMethod
+
+value = SourceMysqlSchemasTunnelMethod.SSH_KEY_AUTH
+```
+
 
 ## Values
 

@@ -1,5 +1,13 @@
 # HelpScout
 
+## Example Usage
+
+```python
+from airbyte_api.models import HelpScout
+
+value = HelpScout.HELP_SCOUT
+```
+
 
 ## Values
 

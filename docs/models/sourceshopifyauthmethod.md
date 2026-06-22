@@ -1,5 +1,13 @@
 # SourceShopifyAuthMethod
 
+## Example Usage
+
+```python
+from airbyte_api.models import SourceShopifyAuthMethod
+
+value = SourceShopifyAuthMethod.OAUTH2_0
+```
+
 
 ## Values
 

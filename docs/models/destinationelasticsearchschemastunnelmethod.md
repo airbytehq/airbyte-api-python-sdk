@@ -2,6 +2,14 @@
 
 Connect through a jump server tunnel host using username and ssh key
 
+## Example Usage
+
+```python
+from airbyte_api.models import DestinationElasticsearchSchemasTunnelMethod
+
+value = DestinationElasticsearchSchemasTunnelMethod.SSH_KEY_AUTH
+```
+
 
 ## Values
 

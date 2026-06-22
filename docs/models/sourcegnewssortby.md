@@ -6,6 +6,14 @@ publication date are returned first
   - relevance = sort by best match to keywords, the articles with the best
 match are returned first
 
+## Example Usage
+
+```python
+from airbyte_api.models import SourceGnewsSortBy
+
+value = SourceGnewsSortBy.PUBLISHED_AT
+```
+
 
 ## Values
 

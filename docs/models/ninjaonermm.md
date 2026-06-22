@@ -1,5 +1,13 @@
 # NinjaoneRmm
 
+## Example Usage
+
+```python
+from airbyte_api.models import NinjaoneRmm
+
+value = NinjaoneRmm.NINJAONE_RMM
+```
+
 
 ## Values
 

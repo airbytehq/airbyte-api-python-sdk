@@ -1,5 +1,13 @@
 # RefreshTokenEndpoint
 
+## Example Usage
+
+```python
+from airbyte_api.models import RefreshTokenEndpoint
+
+value = RefreshTokenEndpoint.HTTPS_API_SANDBOX_EBAY_COM_IDENTITY_V1_OAUTH2_TOKEN
+```
+
 
 ## Values
 

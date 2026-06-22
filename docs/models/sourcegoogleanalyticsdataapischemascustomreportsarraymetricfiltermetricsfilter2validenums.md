@@ -1,5 +1,13 @@
 # SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayMetricFilterMetricsFilter2ValidEnums
 
+## Example Usage
+
+```python
+from airbyte_api.models import SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayMetricFilterMetricsFilter2ValidEnums
+
+value = SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayMetricFilterMetricsFilter2ValidEnums.MATCH_TYPE_UNSPECIFIED
+```
+
 
 ## Values
 

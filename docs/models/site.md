@@ -2,6 +2,14 @@
 
 The site where Datadog data resides in.
 
+## Example Usage
+
+```python
+from airbyte_api.models import Site
+
+value = Site.DATADOGHQ_COM
+```
+
 
 ## Values
 

@@ -1,5 +1,13 @@
 # DestinationMilvusSchemasIndexingAuthMode
 
+## Example Usage
+
+```python
+from airbyte_api.models import DestinationMilvusSchemasIndexingAuthMode
+
+value = DestinationMilvusSchemasIndexingAuthMode.USERNAME_PASSWORD
+```
+
 
 ## Values
 

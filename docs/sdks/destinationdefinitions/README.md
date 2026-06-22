@@ -1,5 +1,4 @@
 # DestinationDefinitions
-(*destination_definitions*)
 
 ## Overview
 
@@ -17,32 +16,33 @@ Create a destination definition.
 
 ### Example Usage
 
+<!-- UsageSnippet language="python" operationID="createDestinationDefinition" method="post" path="/workspaces/{workspaceId}/definitions/destinations" -->
 ```python
-import airbyte_api
-from airbyte_api import api, models
+from airbyte_api import AirbyteAPI, models
 
-s = airbyte_api.AirbyteAPI(
+
+with AirbyteAPI(
     security=models.Security(
         basic_auth=models.SchemeBasicAuth(
-            password='',
-            username='',
+            password="",
+            username="",
         ),
     ),
-)
+) as aa_client:
 
+    res = aa_client.destination_definitions.create_destination_definition(request={
+        "create_definition_request": {
+            "docker_image_tag": "<value>",
+            "docker_repository": "<value>",
+            "name": "<value>",
+        },
+        "workspace_id": "20a22858-a8c3-4a9c-af3e-691931b55938",
+    })
 
-res = s.destination_definitions.create_destination_definition(request=api.CreateDestinationDefinitionRequest(
-    create_definition_request=models.CreateDefinitionRequest(
-        docker_image_tag='<value>',
-        docker_repository='<value>',
-        name='<value>',
-    ),
-    workspace_id='f49928fc-e1f7-4278-9366-b5b974ad2068',
-))
+    assert res.definition_response is not None
 
-if res.definition_response is not None:
-    # handle response
-    pass
+    # Handle response
+    print(res.definition_response)
 
 ```
 
@@ -51,6 +51,7 @@ if res.definition_response is not None:
 | Parameter                                                                                 | Type                                                                                      | Required                                                                                  | Description                                                                               |
 | ----------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- |
 | `request`                                                                                 | [api.CreateDestinationDefinitionRequest](../../api/createdestinationdefinitionrequest.md) | :heavy_check_mark:                                                                        | The request object to use for the request.                                                |
+| `retries`                                                                                 | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                          | :heavy_minus_sign:                                                                        | Configuration to override the default retry behavior of the client.                       |
 
 ### Response
 
@@ -68,28 +69,29 @@ Delete a destination definition.
 
 ### Example Usage
 
+<!-- UsageSnippet language="python" operationID="deleteDestinationDefinition" method="delete" path="/workspaces/{workspaceId}/definitions/destinations/{definitionId}" -->
 ```python
-import airbyte_api
-from airbyte_api import api, models
+from airbyte_api import AirbyteAPI, models
 
-s = airbyte_api.AirbyteAPI(
+
+with AirbyteAPI(
     security=models.Security(
         basic_auth=models.SchemeBasicAuth(
-            password='',
-            username='',
+            password="",
+            username="",
         ),
     ),
-)
+) as aa_client:
 
+    res = aa_client.destination_definitions.delete_destination_definition(request={
+        "definition_id": "1f3ace88-4e9e-4438-8667-c98520825c79",
+        "workspace_id": "b1b184d8-4def-4e2d-8e9d-7caadc80e180",
+    })
 
-res = s.destination_definitions.delete_destination_definition(request=api.DeleteDestinationDefinitionRequest(
-    definition_id='7a6d93e0-5a99-4e33-87ce-c0e739faf1e9',
-    workspace_id='619cc567-a21d-4f39-90ab-7854d54c9c42',
-))
+    assert res.definition_response is not None
 
-if res.definition_response is not None:
-    # handle response
-    pass
+    # Handle response
+    print(res.definition_response)
 
 ```
 
@@ -98,6 +100,7 @@ if res.definition_response is not None:
 | Parameter                                                                                 | Type                                                                                      | Required                                                                                  | Description                                                                               |
 | ----------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- |
 | `request`                                                                                 | [api.DeleteDestinationDefinitionRequest](../../api/deletedestinationdefinitionrequest.md) | :heavy_check_mark:                                                                        | The request object to use for the request.                                                |
+| `retries`                                                                                 | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                          | :heavy_minus_sign:                                                                        | Configuration to override the default retry behavior of the client.                       |
 
 ### Response
 
@@ -115,28 +118,29 @@ Get destination definition details.
 
 ### Example Usage
 
+<!-- UsageSnippet language="python" operationID="getDestinationDefinition" method="get" path="/workspaces/{workspaceId}/definitions/destinations/{definitionId}" -->
 ```python
-import airbyte_api
-from airbyte_api import api, models
+from airbyte_api import AirbyteAPI, models
 
-s = airbyte_api.AirbyteAPI(
+
+with AirbyteAPI(
     security=models.Security(
         basic_auth=models.SchemeBasicAuth(
-            password='',
-            username='',
+            password="",
+            username="",
         ),
     ),
-)
+) as aa_client:
 
+    res = aa_client.destination_definitions.get_destination_definition(request={
+        "definition_id": "83a7ce8a-1507-42c5-84a3-1b95932f919f",
+        "workspace_id": "443f2bd2-d502-4aec-b86f-c4e3d5675ae9",
+    })
 
-res = s.destination_definitions.get_destination_definition(request=api.GetDestinationDefinitionRequest(
-    definition_id='5ddd49a6-7aa1-469d-bd19-fa66e3586402',
-    workspace_id='5a9c29a5-f169-496b-b3b1-ab05028ede0b',
-))
+    assert res.definition_response is not None
 
-if res.definition_response is not None:
-    # handle response
-    pass
+    # Handle response
+    print(res.definition_response)
 
 ```
 
@@ -145,6 +149,7 @@ if res.definition_response is not None:
 | Parameter                                                                           | Type                                                                                | Required                                                                            | Description                                                                         |
 | ----------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- |
 | `request`                                                                           | [api.GetDestinationDefinitionRequest](../../api/getdestinationdefinitionrequest.md) | :heavy_check_mark:                                                                  | The request object to use for the request.                                          |
+| `retries`                                                                           | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                    | :heavy_minus_sign:                                                                  | Configuration to override the default retry behavior of the client.                 |
 
 ### Response
 
@@ -162,27 +167,28 @@ List destination definitions.
 
 ### Example Usage
 
+<!-- UsageSnippet language="python" operationID="listDestinationDefinitions" method="get" path="/workspaces/{workspaceId}/definitions/destinations" -->
 ```python
-import airbyte_api
-from airbyte_api import api, models
+from airbyte_api import AirbyteAPI, models
 
-s = airbyte_api.AirbyteAPI(
+
+with AirbyteAPI(
     security=models.Security(
         basic_auth=models.SchemeBasicAuth(
-            password='',
-            username='',
+            password="",
+            username="",
         ),
     ),
-)
+) as aa_client:
 
+    res = aa_client.destination_definitions.list_destination_definitions(request={
+        "workspace_id": "aed43ac9-470c-4cba-8489-c73f9e881f94",
+    })
 
-res = s.destination_definitions.list_destination_definitions(request=api.ListDestinationDefinitionsRequest(
-    workspace_id='f1f18267-b72b-4ea5-a29c-8742c80ceaf4',
-))
+    assert res.definitions_response is not None
 
-if res.definitions_response is not None:
-    # handle response
-    pass
+    # Handle response
+    print(res.definitions_response)
 
 ```
 
@@ -191,6 +197,7 @@ if res.definitions_response is not None:
 | Parameter                                                                               | Type                                                                                    | Required                                                                                | Description                                                                             |
 | --------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- |
 | `request`                                                                               | [api.ListDestinationDefinitionsRequest](../../api/listdestinationdefinitionsrequest.md) | :heavy_check_mark:                                                                      | The request object to use for the request.                                              |
+| `retries`                                                                               | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                        | :heavy_minus_sign:                                                                      | Configuration to override the default retry behavior of the client.                     |
 
 ### Response
 
@@ -208,32 +215,33 @@ Update destination definition details.
 
 ### Example Usage
 
+<!-- UsageSnippet language="python" operationID="updateDestinationDefinition" method="put" path="/workspaces/{workspaceId}/definitions/destinations/{definitionId}" -->
 ```python
-import airbyte_api
-from airbyte_api import api, models
+from airbyte_api import AirbyteAPI, models
 
-s = airbyte_api.AirbyteAPI(
+
+with AirbyteAPI(
     security=models.Security(
         basic_auth=models.SchemeBasicAuth(
-            password='',
-            username='',
+            password="",
+            username="",
         ),
     ),
-)
+) as aa_client:
 
+    res = aa_client.destination_definitions.update_destination_definition(request={
+        "update_definition_request": {
+            "docker_image_tag": "<value>",
+            "name": "<value>",
+        },
+        "definition_id": "43c71f97-6486-49c7-9f26-4de603fa3bb2",
+        "workspace_id": "29dd981b-57da-413b-b1f4-012b1a97afc4",
+    })
 
-res = s.destination_definitions.update_destination_definition(request=api.UpdateDestinationDefinitionRequest(
-    update_definition_request=models.UpdateDefinitionRequest(
-        docker_image_tag='<value>',
-        name='<value>',
-    ),
-    definition_id='97416649-dabf-43f9-8715-c5c8279f7f23',
-    workspace_id='98e0ed50-276f-49ae-ad18-43bc892bb109',
-))
+    assert res.definition_response is not None
 
-if res.definition_response is not None:
-    # handle response
-    pass
+    # Handle response
+    print(res.definition_response)
 
 ```
 
@@ -242,6 +250,7 @@ if res.definition_response is not None:
 | Parameter                                                                                 | Type                                                                                      | Required                                                                                  | Description                                                                               |
 | ----------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- |
 | `request`                                                                                 | [api.UpdateDestinationDefinitionRequest](../../api/updatedestinationdefinitionrequest.md) | :heavy_check_mark:                                                                        | The request object to use for the request.                                                |
+| `retries`                                                                                 | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                          | :heavy_minus_sign:                                                                        | Configuration to override the default retry behavior of the client.                       |
 
 ### Response
 

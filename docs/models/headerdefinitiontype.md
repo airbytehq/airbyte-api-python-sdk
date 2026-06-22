@@ -1,5 +1,13 @@
 # HeaderDefinitionType
 
+## Example Usage
+
+```python
+from airbyte_api.models import HeaderDefinitionType
+
+value = HeaderDefinitionType.FROM_CSV
+```
+
 
 ## Values
 

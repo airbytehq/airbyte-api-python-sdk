@@ -1,5 +1,13 @@
-speakeasyVersion: 1.508.0
+speakeasyVersion: 1.784.0
 sources:
+    airbyte-api:
+        sourceNamespace: my-source
+        sourceRevisionDigest: sha256:be6d07f5b53f91183748eb76429f3fba0fa238d66df09ad4e6a2da5e0391864b
+        sourceBlobDigest: sha256:0c22381370201e64ee5a767bba2709298aa144246ab48d84db11a124fbc55b0f
+        tags:
+            - latest
+            - main
+            - 1.0.0
     my-source:
         sourceNamespace: my-source
         sourceRevisionDigest: sha256:1d2f15b9c790a784932030450e0ebac32bef1bd690cd86c1d7f7968c1accb931
@@ -10,17 +18,17 @@ sources:
             - 1.0.0
 targets:
     python-api:
-        source: my-source
+        source: airbyte-api
         sourceNamespace: my-source
-        sourceRevisionDigest: sha256:1d2f15b9c790a784932030450e0ebac32bef1bd690cd86c1d7f7968c1accb931
-        sourceBlobDigest: sha256:d0a881322fa4de4a316a25d0c5504263e8a3fc55d31d825e47a6c8de61d9641a
+        sourceRevisionDigest: sha256:be6d07f5b53f91183748eb76429f3fba0fa238d66df09ad4e6a2da5e0391864b
+        sourceBlobDigest: sha256:0c22381370201e64ee5a767bba2709298aa144246ab48d84db11a124fbc55b0f
         codeSamplesNamespace: my-source-python-code-samples
-        codeSamplesRevisionDigest: sha256:a9c4fd43ac0bf5205301bb214e4d267ae9955228d7a46614ff0cd5393dc37d8a
+        codeSamplesRevisionDigest: sha256:bfa95365ce815694aaeec8d1d65f5b3f71b39760d54577cde3989d37a73ee320
 workflow:
     workflowVersion: 1.0.0
-    speakeasyVersion: 1.508.0
+    speakeasyVersion: pinned
     sources:
-        my-source:
+        airbyte-api:
             inputs:
                 - location: https://raw.githubusercontent.com/airbytehq/airbyte-platform/refs/heads/main/airbyte-api/server-api/src/main/openapi/api_sdk.yaml
             registry:
@@ -28,10 +36,7 @@ workflow:
     targets:
         python-api:
             target: python
-            source: my-source
-            publish:
-                pypi:
-                    token: $PYPI_TOKEN
+            source: airbyte-api
             codeSamples:
                 registry:
                     location: registry.speakeasyapi.dev/airbyte/airbyte-prod/my-source-python-code-samples

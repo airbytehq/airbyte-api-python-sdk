@@ -1,5 +1,13 @@
 # Inflowinventory
 
+## Example Usage
+
+```python
+from airbyte_api.models import Inflowinventory
+
+value = Inflowinventory.INFLOWINVENTORY
+```
+
 
 ## Values
 

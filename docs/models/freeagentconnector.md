@@ -1,5 +1,13 @@
 # FreeAgentConnector
 
+## Example Usage
+
+```python
+from airbyte_api.models import FreeAgentConnector
+
+value = FreeAgentConnector.FREE_AGENT_CONNECTOR
+```
+
 
 ## Values
 

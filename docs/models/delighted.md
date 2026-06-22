@@ -1,5 +1,13 @@
 # Delighted
 
+## Example Usage
+
+```python
+from airbyte_api.models import Delighted
+
+value = Delighted.DELIGHTED
+```
+
 
 ## Values
 

@@ -2,6 +2,14 @@
 
 AWS Region of the SQS Queue
 
+## Example Usage
+
+```python
+from airbyte_api.models import SourceAmazonSqsAWSRegion
+
+value = SourceAmazonSqsAWSRegion.AF_SOUTH_1
+```
+
 
 ## Values
 

@@ -1,5 +1,13 @@
 # SourceGoogleDriveSchemasDeliveryType
 
+## Example Usage
+
+```python
+from airbyte_api.models import SourceGoogleDriveSchemasDeliveryType
+
+value = SourceGoogleDriveSchemasDeliveryType.USE_PERMISSIONS_TRANSFER
+```
+
 
 ## Values
 

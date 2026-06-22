@@ -1,5 +1,13 @@
 # SourcePostgresSchemasSSLModeSSLModes5Mode
 
+## Example Usage
+
+```python
+from airbyte_api.models import SourcePostgresSchemasSSLModeSSLModes5Mode
+
+value = SourcePostgresSchemasSSLModeSSLModes5Mode.VERIFY_CA
+```
+
 
 ## Values
 

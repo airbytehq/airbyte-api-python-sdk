@@ -1,5 +1,13 @@
 # URLBase
 
+## Example Usage
+
+```python
+from airbyte_api.models import URLBase
+
+value = URLBase.HTTPS_EU_API_SURVEYSPARROW_COM_V3
+```
+
 
 ## Values
 

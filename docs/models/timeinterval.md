@@ -1,5 +1,13 @@
 # TimeInterval
 
+## Example Usage
+
+```python
+from airbyte_api.models import TimeInterval
+
+value = TimeInterval.DAILY
+```
+
 
 ## Values
 

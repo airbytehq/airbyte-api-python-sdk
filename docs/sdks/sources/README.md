@@ -1,5 +1,4 @@
 # Sources
-(*sources*)
 
 ## Overview
 
@@ -17,42 +16,73 @@
 
 Creates a source given a name, workspace id, and a json blob containing the configuration for the source.
 
-### Example Usage
+### Example Usage: Source Creation Request Example
 
+<!-- UsageSnippet language="python" operationID="createSource" method="post" path="/sources" example="Source Creation Request Example" -->
 ```python
-import airbyte_api
-from airbyte_api import models
+from airbyte_api import AirbyteAPI, models
 
-s = airbyte_api.AirbyteAPI(
+
+with AirbyteAPI(
     security=models.Security(
         basic_auth=models.SchemeBasicAuth(
-            password='',
-            username='',
+            password="",
+            username="",
         ),
     ),
-)
+) as aa_client:
+
+    res = aa_client.sources.create_source(request=models.SourceCreateRequest(
+        configuration=models.SourceOnepagecrm(
+            username="Bartholome.Rolfson90",
+        ),
+        name="My Source",
+        workspace_id="744cc0ed-7f05-4949-9e60-2a814f90c035",
+    ))
+
+    assert res.source_response is not None
+
+    # Handle response
+    print(res.source_response)
+
+```
+### Example Usage: Source Creation Response Example
+
+<!-- UsageSnippet language="python" operationID="createSource" method="post" path="/sources" example="Source Creation Response Example" -->
+```python
+from airbyte_api import AirbyteAPI, models
 
 
-res = s.sources.create_source(request=models.SourceCreateRequest(
-    configuration=models.SourcePlausible(
-        api_key='<value>',
-        site_id='docs.airbyte.com',
+with AirbyteAPI(
+    security=models.Security(
+        basic_auth=models.SchemeBasicAuth(
+            password="",
+            username="",
+        ),
     ),
-    name='My Source',
-    workspace_id='744cc0ed-7f05-4949-9e60-2a814f90c035',
-))
+) as aa_client:
 
-if res.source_response is not None:
-    # handle response
-    pass
+    res = aa_client.sources.create_source(request=models.SourceCreateRequest(
+        configuration=models.SourceMailerlite(
+            api_token="<value>",
+        ),
+        name="<value>",
+        workspace_id="5923d04d-a31f-43ea-8396-170b96449103",
+    ))
+
+    assert res.source_response is not None
+
+    # Handle response
+    print(res.source_response)
 
 ```
 
 ### Parameters
 
-| Parameter                                                         | Type                                                              | Required                                                          | Description                                                       |
-| ----------------------------------------------------------------- | ----------------------------------------------------------------- | ----------------------------------------------------------------- | ----------------------------------------------------------------- |
-| `request`                                                         | [models.SourceCreateRequest](../../models/sourcecreaterequest.md) | :heavy_check_mark:                                                | The request object to use for the request.                        |
+| Parameter                                                           | Type                                                                | Required                                                            | Description                                                         |
+| ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
+| `request`                                                           | [models.SourceCreateRequest](../../models/sourcecreaterequest.md)   | :heavy_check_mark:                                                  | The request object to use for the request.                          |
+| `retries`                                                           | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)    | :heavy_minus_sign:                                                  | Configuration to override the default retry behavior of the client. |
 
 ### Response
 
@@ -70,35 +100,37 @@ Delete a Source
 
 ### Example Usage
 
+<!-- UsageSnippet language="python" operationID="deleteSource" method="delete" path="/sources/{sourceId}" -->
 ```python
-import airbyte_api
-from airbyte_api import api, models
+from airbyte_api import AirbyteAPI, models
 
-s = airbyte_api.AirbyteAPI(
+
+with AirbyteAPI(
     security=models.Security(
         basic_auth=models.SchemeBasicAuth(
-            password='',
-            username='',
+            password="",
+            username="",
         ),
     ),
-)
+) as aa_client:
 
+    res = aa_client.sources.delete_source(request={
+        "source_id": "<value>",
+    })
 
-res = s.sources.delete_source(request=api.DeleteSourceRequest(
-    source_id='<value>',
-))
+    assert res is not None
 
-if res is not None:
-    # handle response
-    pass
+    # Handle response
+    print(res)
 
 ```
 
 ### Parameters
 
-| Parameter                                                   | Type                                                        | Required                                                    | Description                                                 |
-| ----------------------------------------------------------- | ----------------------------------------------------------- | ----------------------------------------------------------- | ----------------------------------------------------------- |
-| `request`                                                   | [api.DeleteSourceRequest](../../api/deletesourcerequest.md) | :heavy_check_mark:                                          | The request object to use for the request.                  |
+| Parameter                                                           | Type                                                                | Required                                                            | Description                                                         |
+| ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
+| `request`                                                           | [api.DeleteSourceRequest](../../api/deletesourcerequest.md)         | :heavy_check_mark:                                                  | The request object to use for the request.                          |
+| `retries`                                                           | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)    | :heavy_minus_sign:                                                  | Configuration to override the default retry behavior of the client. |
 
 ### Response
 
@@ -116,35 +148,37 @@ Get Source details
 
 ### Example Usage
 
+<!-- UsageSnippet language="python" operationID="getSource" method="get" path="/sources/{sourceId}" example="Source Get Response Example" -->
 ```python
-import airbyte_api
-from airbyte_api import api, models
+from airbyte_api import AirbyteAPI, models
 
-s = airbyte_api.AirbyteAPI(
+
+with AirbyteAPI(
     security=models.Security(
         basic_auth=models.SchemeBasicAuth(
-            password='',
-            username='',
+            password="",
+            username="",
         ),
     ),
-)
+) as aa_client:
 
+    res = aa_client.sources.get_source(request={
+        "source_id": "<value>",
+    })
 
-res = s.sources.get_source(request=api.GetSourceRequest(
-    source_id='<value>',
-))
+    assert res.source_response is not None
 
-if res.source_response is not None:
-    # handle response
-    pass
+    # Handle response
+    print(res.source_response)
 
 ```
 
 ### Parameters
 
-| Parameter                                             | Type                                                  | Required                                              | Description                                           |
-| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
-| `request`                                             | [api.GetSourceRequest](../../api/getsourcerequest.md) | :heavy_check_mark:                                    | The request object to use for the request.            |
+| Parameter                                                           | Type                                                                | Required                                                            | Description                                                         |
+| ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
+| `request`                                                           | [api.GetSourceRequest](../../api/getsourcerequest.md)               | :heavy_check_mark:                                                  | The request object to use for the request.                          |
+| `retries`                                                           | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)    | :heavy_minus_sign:                                                  | Configuration to override the default retry behavior of the client. |
 
 ### Response
 
@@ -166,29 +200,30 @@ That secret ID can be used to create a source with credentials in place of actua
 
 ### Example Usage
 
+<!-- UsageSnippet language="python" operationID="initiateOAuth" method="post" path="/sources/initiateOAuth" -->
 ```python
-import airbyte_api
-from airbyte_api import models
+from airbyte_api import AirbyteAPI, models
 
-s = airbyte_api.AirbyteAPI(
+
+with AirbyteAPI(
     security=models.Security(
         basic_auth=models.SchemeBasicAuth(
-            password='',
-            username='',
+            password="",
+            username="",
         ),
     ),
-)
+) as aa_client:
 
+    res = aa_client.sources.initiate_o_auth(request={
+        "redirect_url": "https://cloud.airbyte.io/v1/api/oauth/callback",
+        "source_type": models.OAuthActorNames.INTERCOM,
+        "workspace_id": "871d9b60-11d1-44cb-8c92-c246d53bf87e",
+    })
 
-res = s.sources.initiate_o_auth(request=models.InitiateOauthRequest(
-    redirect_url='https://cloud.airbyte.io/v1/api/oauth/callback',
-    source_type=models.OAuthActorNames.FACEBOOK_PAGES,
-    workspace_id='871d9b60-11d1-44cb-8c92-c246d53bf87e',
-))
+    assert res is not None
 
-if res is not None:
-    # handle response
-    pass
+    # Handle response
+    print(res)
 
 ```
 
@@ -197,6 +232,7 @@ if res is not None:
 | Parameter                                                           | Type                                                                | Required                                                            | Description                                                         |
 | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
 | `request`                                                           | [models.InitiateOauthRequest](../../models/initiateoauthrequest.md) | :heavy_check_mark:                                                  | The request object to use for the request.                          |
+| `retries`                                                           | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)    | :heavy_minus_sign:                                                  | Configuration to override the default retry behavior of the client. |
 
 ### Response
 
@@ -214,37 +250,111 @@ List sources
 
 ### Example Usage
 
+<!-- UsageSnippet language="python" operationID="listSources" method="get" path="/sources" -->
 ```python
-import airbyte_api
-from airbyte_api import api, models
+from airbyte_api import AirbyteAPI, models
 
-s = airbyte_api.AirbyteAPI(
+
+with AirbyteAPI(
     security=models.Security(
         basic_auth=models.SchemeBasicAuth(
-            password='',
-            username='',
+            password="",
+            username="",
         ),
     ),
-)
+) as aa_client:
 
+    res = aa_client.sources.list_sources(request={
+        "workspace_ids": [
+            "d",
+            "f",
+            "0",
+            "8",
+            "f",
+            "6",
+            "b",
+            "0",
+            "-",
+            "b",
+            "3",
+            "6",
+            "4",
+            "-",
+            "4",
+            "c",
+            "c",
+            "1",
+            "-",
+            "9",
+            "b",
+            "3",
+            "f",
+            "-",
+            "9",
+            "6",
+            "f",
+            "5",
+            "d",
+            "2",
+            "f",
+            "c",
+            "c",
+            "f",
+            "b",
+            "2",
+            ",",
+            "b",
+            "0",
+            "7",
+            "9",
+            "6",
+            "7",
+            "9",
+            "7",
+            "-",
+            "d",
+            "e",
+            "2",
+            "3",
+            "-",
+            "4",
+            "f",
+            "c",
+            "7",
+            "-",
+            "a",
+            "5",
+            "e",
+            "2",
+            "-",
+            "7",
+            "e",
+            "1",
+            "3",
+            "1",
+            "3",
+            "1",
+            "4",
+            "7",
+            "1",
+            "8",
+            "c",
+        ],
+    })
 
-res = s.sources.list_sources(request=api.ListSourcesRequest(
-    workspace_ids=[
-        'df08f6b0-b364-4cc1-9b3f-96f5d2fccfb2,b0796797-de23-4fc7-a5e2-7e131314718c',
-    ],
-))
+    assert res.sources_response is not None
 
-if res.sources_response is not None:
-    # handle response
-    pass
+    # Handle response
+    print(res.sources_response)
 
 ```
 
 ### Parameters
 
-| Parameter                                                 | Type                                                      | Required                                                  | Description                                               |
-| --------------------------------------------------------- | --------------------------------------------------------- | --------------------------------------------------------- | --------------------------------------------------------- |
-| `request`                                                 | [api.ListSourcesRequest](../../api/listsourcesrequest.md) | :heavy_check_mark:                                        | The request object to use for the request.                |
+| Parameter                                                           | Type                                                                | Required                                                            | Description                                                         |
+| ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
+| `request`                                                           | [api.ListSourcesRequest](../../api/listsourcesrequest.md)           | :heavy_check_mark:                                                  | The request object to use for the request.                          |
+| `retries`                                                           | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)    | :heavy_minus_sign:                                                  | Configuration to override the default retry behavior of the client. |
 
 ### Response
 
@@ -260,44 +370,82 @@ if res.sources_response is not None:
 
 Update a Source
 
-### Example Usage
+### Example Usage: Source Update Request Example
 
+<!-- UsageSnippet language="python" operationID="patchSource" method="patch" path="/sources/{sourceId}" example="Source Update Request Example" -->
 ```python
-import airbyte_api
-from airbyte_api import api, models
+from airbyte_api import AirbyteAPI, api, models
 
-s = airbyte_api.AirbyteAPI(
+
+with AirbyteAPI(
     security=models.Security(
         basic_auth=models.SchemeBasicAuth(
-            password='',
-            username='',
+            password="",
+            username="",
         ),
     ),
-)
+) as aa_client:
 
-
-res = s.sources.patch_source(request=api.PatchSourceRequest(
-    source_id='<value>',
-    source_patch_request=models.SourcePatchRequest(
-        configuration=models.SourceEncharge(
-            api_key='<value>',
+    res = aa_client.sources.patch_source(request=api.PatchSourceRequest(
+        source_patch_request=models.SourcePatchRequest(
+            configuration=models.SourceNutshell(
+                username="Elyssa_Hackett7",
+            ),
+            name="My Source",
+            workspace_id="744cc0ed-7f05-4949-9e60-2a814f90c035",
         ),
-        name='My Source',
-        workspace_id='744cc0ed-7f05-4949-9e60-2a814f90c035',
-    ),
-))
+        source_id="<value>",
+    ))
 
-if res.source_response is not None:
-    # handle response
-    pass
+    assert res.source_response is not None
+
+    # Handle response
+    print(res.source_response)
+
+```
+### Example Usage: Source Update Response Example
+
+<!-- UsageSnippet language="python" operationID="patchSource" method="patch" path="/sources/{sourceId}" example="Source Update Response Example" -->
+```python
+from airbyte_api import AirbyteAPI, api, models
+
+
+with AirbyteAPI(
+    security=models.Security(
+        basic_auth=models.SchemeBasicAuth(
+            password="",
+            username="",
+        ),
+    ),
+) as aa_client:
+
+    res = aa_client.sources.patch_source(request=api.PatchSourceRequest(
+        source_patch_request=models.SourcePatchRequest(
+            configuration=models.SourceFirebolt(
+                account="95324582",
+                client_id="bbl9qth066hmxkwyb0hy2iwk8ktez9dz",
+                client_secret="<value>",
+                database="<value>",
+                engine="<value>",
+            ),
+            name="My source",
+        ),
+        source_id="<value>",
+    ))
+
+    assert res.source_response is not None
+
+    # Handle response
+    print(res.source_response)
 
 ```
 
 ### Parameters
 
-| Parameter                                                 | Type                                                      | Required                                                  | Description                                               |
-| --------------------------------------------------------- | --------------------------------------------------------- | --------------------------------------------------------- | --------------------------------------------------------- |
-| `request`                                                 | [api.PatchSourceRequest](../../api/patchsourcerequest.md) | :heavy_check_mark:                                        | The request object to use for the request.                |
+| Parameter                                                           | Type                                                                | Required                                                            | Description                                                         |
+| ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
+| `request`                                                           | [api.PatchSourceRequest](../../api/patchsourcerequest.md)           | :heavy_check_mark:                                                  | The request object to use for the request.                          |
+| `retries`                                                           | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)    | :heavy_minus_sign:                                                  | Configuration to override the default retry behavior of the client. |
 
 ### Response
 
@@ -313,44 +461,81 @@ if res.source_response is not None:
 
 Update a Source and fully overwrite it
 
-### Example Usage
+### Example Usage: Source Update Request Example
 
+<!-- UsageSnippet language="python" operationID="putSource" method="put" path="/sources/{sourceId}" example="Source Update Request Example" -->
 ```python
-import airbyte_api
-from airbyte_api import api, models
+from airbyte_api import AirbyteAPI, api, models
 
-s = airbyte_api.AirbyteAPI(
+
+with AirbyteAPI(
     security=models.Security(
         basic_auth=models.SchemeBasicAuth(
-            password='',
-            username='',
+            password="",
+            username="",
         ),
     ),
-)
+) as aa_client:
 
-
-res = s.sources.put_source(request=api.PutSourceRequest(
-    source_id='<value>',
-    source_put_request=models.SourcePutRequest(
-        configuration=models.SourceGridly(
-            api_key='<value>',
-            grid_id='<id>',
+    res = aa_client.sources.put_source(request=api.PutSourceRequest(
+        source_put_request=models.SourcePutRequest(
+            configuration=models.SourceRailz(
+                client_id="<id>",
+                secret_key="<value>",
+                start_date="<value>",
+            ),
+            name="My Source",
         ),
-        name='My Source',
-    ),
-))
+        source_id="<value>",
+    ))
 
-if res.source_response is not None:
-    # handle response
-    pass
+    assert res.source_response is not None
+
+    # Handle response
+    print(res.source_response)
+
+```
+### Example Usage: Source Update Response Example
+
+<!-- UsageSnippet language="python" operationID="putSource" method="put" path="/sources/{sourceId}" example="Source Update Response Example" -->
+```python
+from airbyte_api import AirbyteAPI, api, models
+
+
+with AirbyteAPI(
+    security=models.Security(
+        basic_auth=models.SchemeBasicAuth(
+            password="",
+            username="",
+        ),
+    ),
+) as aa_client:
+
+    res = aa_client.sources.put_source(request=api.PutSourceRequest(
+        source_put_request=models.SourcePutRequest(
+            configuration=models.SourceRailz(
+                client_id="<id>",
+                secret_key="<value>",
+                start_date="<value>",
+            ),
+            name="<value>",
+        ),
+        source_id="<value>",
+    ))
+
+    assert res.source_response is not None
+
+    # Handle response
+    print(res.source_response)
 
 ```
 
 ### Parameters
 
-| Parameter                                             | Type                                                  | Required                                              | Description                                           |
-| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
-| `request`                                             | [api.PutSourceRequest](../../api/putsourcerequest.md) | :heavy_check_mark:                                    | The request object to use for the request.            |
+| Parameter                                                           | Type                                                                | Required                                                            | Description                                                         |
+| ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
+| `request`                                                           | [api.PutSourceRequest](../../api/putsourcerequest.md)               | :heavy_check_mark:                                                  | The request object to use for the request.                          |
+| `retries`                                                           | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)    | :heavy_minus_sign:                                                  | Configuration to override the default retry behavior of the client. |
 
 ### Response
 

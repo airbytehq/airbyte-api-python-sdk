@@ -1,5 +1,13 @@
 # DestinationBigqueryCredentialType
 
+## Example Usage
+
+```python
+from airbyte_api.models import DestinationBigqueryCredentialType
+
+value = DestinationBigqueryCredentialType.HMAC_KEY
+```
+
 
 ## Values
 

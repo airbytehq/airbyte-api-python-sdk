@@ -1,5 +1,13 @@
 # SourceNetsuiteEnterpriseSchemasTunnelMethod
 
+## Example Usage
+
+```python
+from airbyte_api.models import SourceNetsuiteEnterpriseSchemasTunnelMethod
+
+value = SourceNetsuiteEnterpriseSchemasTunnelMethod.SSH_KEY_AUTH
+```
+
 
 ## Values
 

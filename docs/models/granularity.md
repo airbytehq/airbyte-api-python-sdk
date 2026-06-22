@@ -2,6 +2,14 @@
 
 Chosen granularity for API
 
+## Example Usage
+
+```python
+from airbyte_api.models import Granularity
+
+value = Granularity.TOTAL
+```
+
 
 ## Values
 

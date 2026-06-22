@@ -1,5 +1,13 @@
 # Unleash
 
+## Example Usage
+
+```python
+from airbyte_api.models import Unleash
+
+value = Unleash.UNLEASH
+```
+
 
 ## Values
 

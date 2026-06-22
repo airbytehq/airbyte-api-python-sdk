@@ -1,5 +1,13 @@
 # SourceSalesloftAuthType
 
+## Example Usage
+
+```python
+from airbyte_api.models import SourceSalesloftAuthType
+
+value = SourceSalesloftAuthType.OAUTH2_0
+```
+
 
 ## Values
 

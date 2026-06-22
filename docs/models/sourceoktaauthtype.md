@@ -1,5 +1,13 @@
 # SourceOktaAuthType
 
+## Example Usage
+
+```python
+from airbyte_api.models import SourceOktaAuthType
+
+value = SourceOktaAuthType.OAUTH2_0
+```
+
 
 ## Values
 

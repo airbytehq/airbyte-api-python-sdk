@@ -1,5 +1,13 @@
 # SourceGoogleAnalyticsDataAPIValidEnums
 
+## Example Usage
+
+```python
+from airbyte_api.models import SourceGoogleAnalyticsDataAPIValidEnums
+
+value = SourceGoogleAnalyticsDataAPIValidEnums.MATCH_TYPE_UNSPECIFIED
+```
+
 
 ## Values
 

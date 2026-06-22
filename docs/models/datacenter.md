@@ -1,5 +1,13 @@
 # DataCenter
 
+## Example Usage
+
+```python
+from airbyte_api.models import DataCenter
+
+value = DataCenter.EU_CENTRAL
+```
+
 
 ## Values
 

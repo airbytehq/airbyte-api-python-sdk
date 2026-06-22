@@ -2,6 +2,14 @@
 
 This parameter defines what encryption algorithm is used.
 
+## Example Usage
+
+```python
+from airbyte_api.models import SourceOracleEnterpriseEncryptionAlgorithm
+
+value = SourceOracleEnterpriseEncryptionAlgorithm.AES256
+```
+
 
 ## Values
 

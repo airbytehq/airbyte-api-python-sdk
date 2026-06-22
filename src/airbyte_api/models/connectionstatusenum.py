@@ -5,6 +5,7 @@ from enum import Enum
 
 
 class ConnectionStatusEnum(str, Enum):
-    ACTIVE = 'active'
-    INACTIVE = 'inactive'
-    DEPRECATED = 'deprecated'
+    ACTIVE = "active"
+    INACTIVE = "inactive"
+    DEPRECATED = "deprecated"
+    LOCKED = "locked"

@@ -1,5 +1,13 @@
 # SourceZendeskSupportSchemasCredentials
 
+## Example Usage
+
+```python
+from airbyte_api.models import SourceZendeskSupportSchemasCredentials
+
+value = SourceZendeskSupportSchemasCredentials.API_TOKEN
+```
+
 
 ## Values
 
