@@ -1,15 +1,10 @@
 # PyPI Publish Workflow
 #
 # Triggered when a GitHub Release is published (draft → published).
-# Builds the Python package and uploads it to PyPI using OIDC trusted publishing.
+# Builds the Python package and uploads it to PyPI using PYPI_TOKEN.
 #
 # Prerequisites:
-# - PyPI trusted publisher configured for this repository:
-#   https://docs.pypi.org/trusted-publishers/creating-a-project-through-oidc/
-#   Owner: airbytehq
-#   Repository: airbyte-api-python-sdk
-#   Workflow: publish.yml
-#   Environment: pypi
+# - PYPI_TOKEN secret configured in the repository
 
 name: Publish to PyPI
 
@@ -24,11 +19,6 @@ jobs:
   publish:
     name: Build & Publish to PyPI
     runs-on: ubuntu-latest
-    environment:
-      name: pypi
-      url: https://pypi.org/project/airbyte-api/
-    permissions:
-      id-token: write
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -42,4 +32,6 @@ jobs:
         run: uv build
 
       - name: Publish to PyPI
-        uses: pypa/gh-action-pypi-publish@release/v1
+        run: uv publish
+        env:
+          UV_PUBLISH_TOKEN: ${{ secrets.PYPI_TOKEN }}
