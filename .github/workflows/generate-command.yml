@@ -66,29 +66,18 @@ jobs:
             pull-requests: write
         steps:
             - name: Authenticate as GitHub App
-              if: ${{ !inputs.dry_run && github.event.inputs.pr != '' }}
               uses: actions/create-github-app-token@v3
-              id: get-app-token
-              continue-on-error: true
+              id: app-token
               with:
                   app-id: ${{ secrets.OCTAVIA_BOT_APP_ID }}
                   private-key: ${{ secrets.OCTAVIA_BOT_PRIVATE_KEY }}
-
-            - name: Set working token
-              id: token
-              run: |
-                  if [ -n "${{ steps.get-app-token.outputs.token }}" ]; then
-                      echo "token=${{ steps.get-app-token.outputs.token }}" | tee -a $GITHUB_OUTPUT
-                  else
-                      echo "token=${{ github.token }}" | tee -a $GITHUB_OUTPUT
-                  fi
 
             - name: Post or append starting comment
               if: ${{ !inputs.dry_run && github.event.inputs.pr != '' }}
               id: start-comment
               uses: peter-evans/create-or-update-comment@v5
               with:
-                  token: ${{ steps.token.outputs.token }}
+                  token: ${{ steps.app-token.outputs.token }}
                   issue-number: ${{ github.event.inputs.pr }}
                   comment-id: ${{ github.event.inputs.comment-id || '' }}
                   body: |
@@ -102,7 +91,7 @@ jobs:
               if: ${{ !inputs.dry_run && github.event.inputs.pr != '' }}
               id: pr-branch
               env:
-                  GH_TOKEN: ${{ steps.token.outputs.token }}
+                  GH_TOKEN: ${{ steps.app-token.outputs.token }}
                   PR_NUMBER: ${{ github.event.inputs.pr }}
               run: |
                   PR_JSON=$(gh api repos/${{ github.repository }}/pulls/${PR_NUMBER})
@@ -119,7 +108,7 @@ jobs:
               with:
                   fetch-depth: 0
                   ref: ${{ steps.pr-branch.outputs.head_ref || '' }}
-                  token: ${{ steps.token.outputs.token || github.token }}
+                  token: ${{ steps.app-token.outputs.token }}
 
             - name: Install uv
               uses: astral-sh/setup-uv@v5
@@ -236,7 +225,7 @@ jobs:
               id: create-pr
               uses: peter-evans/create-pull-request@v6
               with:
-                  token: ${{ steps.token.outputs.token }}
+                  token: ${{ steps.app-token.outputs.token }}
                   commit-message: "chore: regenerate SDK with Speakeasy"
                   title: "chore: regenerate SDK with Speakeasy"
                   body: |
@@ -253,14 +242,14 @@ jobs:
                    || github.event_name == 'schedule'
                   ) && steps.create-pr.outputs.pull-request-operation == 'created'
               env:
-                  GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+                  GH_TOKEN: ${{ steps.app-token.outputs.token }}
               run: gh pr merge ${{ steps.create-pr.outputs.pull-request-number }} --auto --squash
 
             - name: Append success comment
               if: ${{ success() && !inputs.dry_run && github.event.inputs.pr != '' }}
               uses: peter-evans/create-or-update-comment@v5
               with:
-                  token: ${{ steps.token.outputs.token }}
+                  token: ${{ steps.app-token.outputs.token }}
                   comment-id: ${{ steps.start-comment.outputs.comment-id }}
                   reactions: hooray
                   body: |
@@ -270,7 +259,7 @@ jobs:
               if: ${{ failure() && !inputs.dry_run && github.event.inputs.pr != '' }}
               uses: peter-evans/create-or-update-comment@v5
               with:
-                  token: ${{ steps.token.outputs.token }}
+                  token: ${{ steps.app-token.outputs.token }}
                   comment-id: ${{ steps.start-comment.outputs.comment-id }}
                   reactions: confused
                   body: |

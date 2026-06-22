@@ -63,9 +63,8 @@ jobs:
     steps:
       # ── Slash command: post starting comment ────────────────────────
       - name: Authenticate as GitHub App
-        if: ${{ inputs.pr != '' }}
         uses: actions/create-github-app-token@v3
-        id: get-app-token
+        id: app-token
         with:
           app-id: ${{ secrets.OCTAVIA_BOT_APP_ID }}
           private-key: ${{ secrets.OCTAVIA_BOT_PRIVATE_KEY }}
@@ -75,7 +74,7 @@ jobs:
         id: start-comment
         uses: peter-evans/create-or-update-comment@v5
         with:
-          token: ${{ steps.get-app-token.outputs.token }}
+          token: ${{ steps.app-token.outputs.token }}
           issue-number: ${{ inputs.pr }}
           comment-id: ${{ inputs.comment-id || '' }}
           body: |
@@ -90,7 +89,7 @@ jobs:
         if: ${{ inputs.pr != '' && inputs.ref == 'main' }}
         id: resolve-ref
         env:
-          GH_TOKEN: ${{ steps.get-app-token.outputs.token || secrets.GITHUB_TOKEN }}
+          GH_TOKEN: ${{ steps.app-token.outputs.token }}
         run: |
           PR_HEAD=$(gh pr view "${{ inputs.pr }}" --repo "${{ github.repository }}" --json headRefName -q '.headRefName')
           echo "ref=$PR_HEAD" >> "$GITHUB_OUTPUT"
@@ -146,7 +145,7 @@ jobs:
         if: ${{ always() && inputs.pr != '' }}
         uses: peter-evans/create-or-update-comment@v5
         with:
-          token: ${{ steps.get-app-token.outputs.token || secrets.GITHUB_TOKEN }}
+          token: ${{ steps.app-token.outputs.token }}
           issue-number: ${{ inputs.pr }}
           body: |
             > **Pre-Release Result:** ${{ job.status == 'success' && 'Published' || 'Failed' }}
