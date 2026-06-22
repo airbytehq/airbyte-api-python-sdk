@@ -3,26 +3,63 @@ generation:
   sdkClassName: airbyte-api
   usageSnippets:
     optionalPropertyRendering: withExample
+    sdkInitStyle: constructor
   useClassNamesForArrayFields: true
   fixes:
     nameResolutionFeb2025: false
     parameterOrderingFeb2024: false
     requestResponseComponentNamesFeb2024: false
     securityFeb2025: false
+    sharedErrorComponentsApr2025: false
+    sharedNestedComponentsJan2026: false
+    nameOverrideFeb2026: false
   auth:
     oAuth2ClientCredentialsEnabled: true
     oAuth2PasswordEnabled: false
+    hoistGlobalSecurity: true
+  schemas:
+    allOfMergeStrategy: shallowMerge
+  requestBodyFieldName: ""
+  versioningStrategy: automatic
+  persistentEdits: {}
+  tests:
+    generateTests: true
+    generateNewTests: false
+    skipResponseBodyAssertions: false
 python:
-  version: 0.53.0
+  version: 1.0.0
   additionalDependencies:
-    dependencies: {}
-    extraDependencies:
-      dev: {}
+    dev: {}
+    main: {}
+  allowedRedefinedBuiltins:
+    - id
+    - object
+    - dir
+  asyncMode: both
   author: Airbyte
+  authors:
+    - Speakeasy
+  baseErrorName: AirbyteAPIError
+  bodyVariantOverloads: false
   clientServerStatusCodesAsErrors: true
+  constFieldCasing: upper
   defaultErrorName: SDKError
   description: Python Client SDK for Airbyte API
+  enableCustomCodeRegions: false
+  enumFormat: enum
+  errorSchemaValidation: true
+  eventStreamClassNames:
+    async: EventStreamAsync
+    sync: EventStream
+  fixFlags:
+    asyncPaginationSep2025: false
+    conflictResistantModelImportsFeb2026: false
+    responseRequiredSep2024: false
   flattenGlobalSecurity: false
+  flattenRequests: false
+  flatteningOrder: parameters-first
+  forwardCompatibleEnumsByDefault: false
+  forwardCompatibleUnionsByDefault: "false"
   imports:
     option: openapi
     paths:
@@ -31,11 +68,27 @@ python:
       operations: api
       shared: models
       webhooks: api
+  inferUnionDiscriminators: true
   inputModelSuffix: input
+  inputTypedDictSuffix: TypedDict
+  license: ""
   maxMethodParams: 0
   methodArguments: require-security-and-request
+  methodTimeoutArgument: timeout-ms
+  methodTimeoutUnits: milliseconds
+  moduleName: ""
+  multipartArrayFormat: legacy
+  optionalDependencies: {}
   outputModelSuffix: output
+  packageManager: poetry
   packageName: airbyte-api
+  preApplyUnionDiscriminators: false
   projectUrls: {}
+  pytestFilterWarnings: []
+  pytestTimeout: 0
+  rawResponseHelpers: false
   responseFormat: envelope
-  templateVersion: v1
+  responseSchemaValidation: true
+  sseFlatResponse: false
+  templateVersion: v2
+  useAsyncHooks: false

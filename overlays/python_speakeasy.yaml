@@ -1,0 +1,13 @@
+# Speakeasy overlay for Python SDK-specific customizations.
+# Applied on top of the upstream API spec before code generation.
+#
+# This file is currently a no-op placeholder. Add overlay actions here
+# when Python SDK-specific schema tweaks are needed.
+#
+# See: https://www.speakeasy.com/docs/customize-sdks/overlays
+
+overlay: 1.0.0
+info:
+  title: Python SDK Overlay
+  version: 0.0.0
+actions: []
