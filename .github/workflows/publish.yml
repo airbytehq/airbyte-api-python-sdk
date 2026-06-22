@@ -1,0 +1,18 @@
+# Stub: Publish to PyPI Workflow
+#
+# Minimal placeholder to register the release trigger on main.
+# Full implementation arrives in a follow-up PR.
+
+name: Publish to PyPI
+
+on:
+  release:
+    types: [published]
+
+jobs:
+  stub:
+    name: Stub (placeholder)
+    if: false
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "stub"

@@ -1,0 +1,18 @@
+# Stub: Test (Full) Workflow
+#
+# Minimal placeholder to register the workflow_dispatch trigger on main.
+# Full implementation arrives in a follow-up PR.
+
+name: Test (Full)
+
+on:
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  stub:
+    name: Stub (placeholder)
+    if: false
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "stub"

@@ -1,0 +1,35 @@
+# Stub: Pre-Release Workflow
+#
+# Minimal placeholder to register the workflow_dispatch trigger on main.
+# Full implementation arrives in a follow-up PR.
+
+name: Pre-Release
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Pre-release version (e.g. 1.0.0rc1)'
+        required: true
+        type: string
+      ref:
+        description: 'Branch, tag, or commit SHA to build from'
+        required: false
+        default: 'main'
+        type: string
+      pr:
+        description: 'PR number (for slash command triggers)'
+        required: false
+        type: string
+      comment-id:
+        description: 'Comment ID (for slash command triggers)'
+        required: false
+        type: string
+
+jobs:
+  stub:
+    name: Stub (placeholder)
+    if: false
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "stub"
