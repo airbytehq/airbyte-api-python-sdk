@@ -1,0 +1,47 @@
+[tasks]
+
+[tasks.generate-code]
+help = "Generate Python SDK from OpenAPI spec. Set VERSION env var to pin version."
+shell = """
+ARGS="--skip-compile"
+if [ -n "$VERSION" ]; then
+    ARGS="$ARGS --set-version=$VERSION"
+fi
+speakeasy run $ARGS
+"""
+
+[tasks.post-generate]
+help = "Run post-generation patches (currently a no-op placeholder)."
+shell = """
+python3 scripts/post_generate.py
+"""
+
+[tasks.lint]
+help = "Run linting checks on generated code."
+shell = """
+uv run ruff check src/
+uv run ruff format --check src/
+"""
+
+[tasks.fix]
+help = "Auto-fix linting and formatting issues."
+shell = """
+uv run ruff check --fix src/
+uv run ruff format src/
+"""
+
+[tasks.test]
+help = "Run tests."
+shell = """
+uv run pytest tests/ -v
+"""
+
+[tasks.typecheck]
+help = "Run type checking."
+shell = """
+uv run pyright src/
+"""
+
+[tasks.generate-full]
+help = "Full generation pipeline: generate code, post-generate patches."
+sequence = ["generate-code", "post-generate"]

@@ -1,24 +1,23 @@
-# !NOTE: Speakeasy CLI version 1.508.0 is the last version compatible with the Python v1 
-# generator. After upgrading to the Python v2 generator, update `speakeasyVersion` to 
-# `latest` to ensure you continue to receive the latest updates.
-# 
-# See: https://www.speakeasy.com/docs/manage/migrate/python-migration
-
 workflowVersion: 1.0.0
-speakeasyVersion: 1.508.0
+# `pinned` tells the Speakeasy CLI to use whatever version is currently installed
+# without attempting a blue/green auto-upgrade. The actual version is pinned in
+# .github/speakeasy/dummy-compose.yml and bumped by Dependabot's `docker-compose` ecosystem.
+# https://www.speakeasy.com/docs/speakeasy-reference/workflow-file#speakeasy-version
+speakeasyVersion: pinned
 sources:
-    my-source:
+    airbyte-api:
         inputs:
             - location: https://raw.githubusercontent.com/airbytehq/airbyte-platform/refs/heads/main/airbyte-api/server-api/src/main/openapi/api_sdk.yaml
+        # Uncomment when the overlay has real actions (empty overlays produce
+        # an empty document in Speakeasy CLI, which fails linting):
+        # overlays:
+        #     - location: ./overlays/python_speakeasy.yaml
         registry:
             location: registry.speakeasyapi.dev/airbyte/airbyte-prod/my-source
 targets:
     python-api:
         target: python
-        source: my-source
-        publish:
-            pypi:
-                token: $PYPI_TOKEN
+        source: airbyte-api
         codeSamples:
             registry:
                 location: registry.speakeasyapi.dev/airbyte/airbyte-prod/my-source-python-code-samples
