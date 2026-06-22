@@ -1,0 +1,38 @@
+# Stub: Speakeasy SDK Generation Workflow
+#
+# This is a minimal placeholder to register the workflow_dispatch trigger on main.
+# The full implementation will arrive in a follow-up PR.
+# Without this stub on main, workflow_dispatch and /generate slash commands
+# cannot target feature branches.
+
+name: Generate SDK
+
+"on":
+    workflow_dispatch:
+        inputs:
+            dry_run:
+                description: Validate generation without creating a PR
+                type: boolean
+                default: false
+            pr:
+                description: 'PR number (if set, pushes results to the PR branch instead of creating a new PR)'
+                type: string
+                required: false
+            comment-id:
+                description: 'Comment ID (for slash command triggers)'
+                type: string
+                required: false
+    workflow_call:
+        inputs:
+            dry_run:
+                description: Validate generation without creating a PR
+                type: boolean
+                default: false
+
+jobs:
+    stub:
+        name: Stub (placeholder)
+        runs-on: ubuntu-latest
+        steps:
+            - name: Placeholder
+              run: echo "This is a stub workflow. The full implementation will arrive in a follow-up PR."

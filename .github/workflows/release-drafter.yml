@@ -1,0 +1,20 @@
+# Stub: Release Drafter Workflow
+#
+# Minimal placeholder to register the workflow_dispatch trigger on main.
+# Full implementation arrives in a follow-up PR.
+
+name: Release Drafter
+
+on:
+  workflow_dispatch: {}
+  push:
+    branches:
+      - main
+
+jobs:
+  stub:
+    name: Stub (placeholder)
+    if: false
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "stub"

@@ -1,0 +1,18 @@
+# Stub: Validate PR Title Workflow
+#
+# Minimal placeholder to register the pull_request trigger on main.
+# Full implementation arrives in a follow-up PR.
+
+name: Validate PR Title
+
+on:
+  pull_request:
+    types: [opened, edited, synchronize]
+
+jobs:
+  stub:
+    name: Stub (placeholder)
+    if: false
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "stub"
