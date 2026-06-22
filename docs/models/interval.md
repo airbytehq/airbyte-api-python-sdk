@@ -3,6 +3,14 @@
 Time-series data point interval. Required for intraday endpoints.
 
 
+## Example Usage
+
+```python
+from airbyte_api.models import Interval
+
+value = Interval.ONEMIN
+```
+
 
 ## Values
 

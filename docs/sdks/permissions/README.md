@@ -1,5 +1,4 @@
 # Permissions
-(*permissions*)
 
 ## Overview
 
@@ -15,31 +14,59 @@
 
 Create a permission
 
-### Example Usage
+### Example Usage: Permission Creation Request Example
 
+<!-- UsageSnippet language="python" operationID="createPermission" method="post" path="/permissions" example="Permission Creation Request Example" -->
 ```python
-import airbyte_api
-from airbyte_api import models
+from airbyte_api import AirbyteAPI, models
 
-s = airbyte_api.AirbyteAPI(
+
+with AirbyteAPI(
     security=models.Security(
         basic_auth=models.SchemeBasicAuth(
-            password='',
-            username='',
+            password="",
+            username="",
         ),
     ),
-)
+) as aa_client:
+
+    res = aa_client.permissions.create_permission(request={
+        "permission_type": models.PublicPermissionType.WORKSPACE_ADMIN,
+        "user_id": "7d08fd6c-531e-4a00-937e-3d355f253e63",
+        "workspace_id": "9924bcd0-99be-453d-ba47-c2c9766f7da5",
+    })
+
+    assert res.permission_response is not None
+
+    # Handle response
+    print(res.permission_response)
+
+```
+### Example Usage: Permission Creation Response Example
+
+<!-- UsageSnippet language="python" operationID="createPermission" method="post" path="/permissions" example="Permission Creation Response Example" -->
+```python
+from airbyte_api import AirbyteAPI, models
 
 
-res = s.permissions.create_permission(request=models.PermissionCreateRequest(
-    permission_type=models.PublicPermissionType.WORKSPACE_ADMIN,
-    user_id='7d08fd6c-531e-4a00-937e-3d355f253e63',
-    workspace_id='9924bcd0-99be-453d-ba47-c2c9766f7da5',
-))
+with AirbyteAPI(
+    security=models.Security(
+        basic_auth=models.SchemeBasicAuth(
+            password="",
+            username="",
+        ),
+    ),
+) as aa_client:
 
-if res.permission_response is not None:
-    # handle response
-    pass
+    res = aa_client.permissions.create_permission(request={
+        "permission_type": models.PublicPermissionType.WORKSPACE_READER,
+        "user_id": "dc1309ac-0e0a-43cf-80a3-b39dea83440d",
+    })
+
+    assert res.permission_response is not None
+
+    # Handle response
+    print(res.permission_response)
 
 ```
 
@@ -48,6 +75,7 @@ if res.permission_response is not None:
 | Parameter                                                                 | Type                                                                      | Required                                                                  | Description                                                               |
 | ------------------------------------------------------------------------- | ------------------------------------------------------------------------- | ------------------------------------------------------------------------- | ------------------------------------------------------------------------- |
 | `request`                                                                 | [models.PermissionCreateRequest](../../models/permissioncreaterequest.md) | :heavy_check_mark:                                                        | The request object to use for the request.                                |
+| `retries`                                                                 | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)          | :heavy_minus_sign:                                                        | Configuration to override the default retry behavior of the client.       |
 
 ### Response
 
@@ -65,27 +93,28 @@ Delete a Permission
 
 ### Example Usage
 
+<!-- UsageSnippet language="python" operationID="deletePermission" method="delete" path="/permissions/{permissionId}" -->
 ```python
-import airbyte_api
-from airbyte_api import api, models
+from airbyte_api import AirbyteAPI, models
 
-s = airbyte_api.AirbyteAPI(
+
+with AirbyteAPI(
     security=models.Security(
         basic_auth=models.SchemeBasicAuth(
-            password='',
-            username='',
+            password="",
+            username="",
         ),
     ),
-)
+) as aa_client:
 
+    res = aa_client.permissions.delete_permission(request={
+        "permission_id": "<value>",
+    })
 
-res = s.permissions.delete_permission(request=api.DeletePermissionRequest(
-    permission_id='<value>',
-))
+    assert res is not None
 
-if res is not None:
-    # handle response
-    pass
+    # Handle response
+    print(res)
 
 ```
 
@@ -94,6 +123,7 @@ if res is not None:
 | Parameter                                                           | Type                                                                | Required                                                            | Description                                                         |
 | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
 | `request`                                                           | [api.DeletePermissionRequest](../../api/deletepermissionrequest.md) | :heavy_check_mark:                                                  | The request object to use for the request.                          |
+| `retries`                                                           | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)    | :heavy_minus_sign:                                                  | Configuration to override the default retry behavior of the client. |
 
 ### Response
 
@@ -111,35 +141,37 @@ Get Permission details
 
 ### Example Usage
 
+<!-- UsageSnippet language="python" operationID="getPermission" method="get" path="/permissions/{permissionId}" -->
 ```python
-import airbyte_api
-from airbyte_api import api, models
+from airbyte_api import AirbyteAPI, models
 
-s = airbyte_api.AirbyteAPI(
+
+with AirbyteAPI(
     security=models.Security(
         basic_auth=models.SchemeBasicAuth(
-            password='',
-            username='',
+            password="",
+            username="",
         ),
     ),
-)
+) as aa_client:
 
+    res = aa_client.permissions.get_permission(request={
+        "permission_id": "<value>",
+    })
 
-res = s.permissions.get_permission(request=api.GetPermissionRequest(
-    permission_id='<value>',
-))
+    assert res.permission_response is not None
 
-if res.permission_response is not None:
-    # handle response
-    pass
+    # Handle response
+    print(res.permission_response)
 
 ```
 
 ### Parameters
 
-| Parameter                                                     | Type                                                          | Required                                                      | Description                                                   |
-| ------------------------------------------------------------- | ------------------------------------------------------------- | ------------------------------------------------------------- | ------------------------------------------------------------- |
-| `request`                                                     | [api.GetPermissionRequest](../../api/getpermissionrequest.md) | :heavy_check_mark:                                            | The request object to use for the request.                    |
+| Parameter                                                           | Type                                                                | Required                                                            | Description                                                         |
+| ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
+| `request`                                                           | [api.GetPermissionRequest](../../api/getpermissionrequest.md)       | :heavy_check_mark:                                                  | The request object to use for the request.                          |
+| `retries`                                                           | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)    | :heavy_minus_sign:                                                  | Configuration to override the default retry behavior of the client. |
 
 ### Response
 
@@ -157,33 +189,35 @@ List Permissions by user id
 
 ### Example Usage
 
+<!-- UsageSnippet language="python" operationID="listPermissions" method="get" path="/permissions" -->
 ```python
-import airbyte_api
-from airbyte_api import api, models
+from airbyte_api import AirbyteAPI, models
 
-s = airbyte_api.AirbyteAPI(
+
+with AirbyteAPI(
     security=models.Security(
         basic_auth=models.SchemeBasicAuth(
-            password='',
-            username='',
+            password="",
+            username="",
         ),
     ),
-)
+) as aa_client:
 
+    res = aa_client.permissions.list_permissions(request={})
 
-res = s.permissions.list_permissions(request=api.ListPermissionsRequest())
+    assert res.permissions_response is not None
 
-if res.permissions_response is not None:
-    # handle response
-    pass
+    # Handle response
+    print(res.permissions_response)
 
 ```
 
 ### Parameters
 
-| Parameter                                                         | Type                                                              | Required                                                          | Description                                                       |
-| ----------------------------------------------------------------- | ----------------------------------------------------------------- | ----------------------------------------------------------------- | ----------------------------------------------------------------- |
-| `request`                                                         | [api.ListPermissionsRequest](../../api/listpermissionsrequest.md) | :heavy_check_mark:                                                | The request object to use for the request.                        |
+| Parameter                                                           | Type                                                                | Required                                                            | Description                                                         |
+| ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
+| `request`                                                           | [api.ListPermissionsRequest](../../api/listpermissionsrequest.md)   | :heavy_check_mark:                                                  | The request object to use for the request.                          |
+| `retries`                                                           | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)    | :heavy_minus_sign:                                                  | Configuration to override the default retry behavior of the client. |
 
 ### Response
 
@@ -201,30 +235,31 @@ Update a permission
 
 ### Example Usage
 
+<!-- UsageSnippet language="python" operationID="updatePermission" method="patch" path="/permissions/{permissionId}" -->
 ```python
-import airbyte_api
-from airbyte_api import api, models
+from airbyte_api import AirbyteAPI, models
 
-s = airbyte_api.AirbyteAPI(
+
+with AirbyteAPI(
     security=models.Security(
         basic_auth=models.SchemeBasicAuth(
-            password='',
-            username='',
+            password="",
+            username="",
         ),
     ),
-)
+) as aa_client:
 
+    res = aa_client.permissions.update_permission(request={
+        "permission_update_request": {
+            "permission_type": models.PermissionType.ORGANIZATION_READER,
+        },
+        "permission_id": "<value>",
+    })
 
-res = s.permissions.update_permission(request=api.UpdatePermissionRequest(
-    permission_update_request=models.PermissionUpdateRequest(
-        permission_type=models.PermissionType.WORKSPACE_OWNER,
-    ),
-    permission_id='<value>',
-))
+    assert res.permission_response is not None
 
-if res.permission_response is not None:
-    # handle response
-    pass
+    # Handle response
+    print(res.permission_response)
 
 ```
 
@@ -233,6 +268,7 @@ if res.permission_response is not None:
 | Parameter                                                           | Type                                                                | Required                                                            | Description                                                         |
 | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
 | `request`                                                           | [api.UpdatePermissionRequest](../../api/updatepermissionrequest.md) | :heavy_check_mark:                                                  | The request object to use for the request.                          |
+| `retries`                                                           | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)    | :heavy_minus_sign:                                                  | Configuration to override the default retry behavior of the client. |
 
 ### Response
 

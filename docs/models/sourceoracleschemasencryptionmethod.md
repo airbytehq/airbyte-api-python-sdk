@@ -1,5 +1,13 @@
 # SourceOracleSchemasEncryptionMethod
 
+## Example Usage
+
+```python
+from airbyte_api.models import SourceOracleSchemasEncryptionMethod
+
+value = SourceOracleSchemasEncryptionMethod.CLIENT_NNE
+```
+
 
 ## Values
 

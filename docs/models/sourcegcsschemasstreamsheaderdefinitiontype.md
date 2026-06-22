@@ -1,5 +1,13 @@
 # SourceGcsSchemasStreamsHeaderDefinitionType
 
+## Example Usage
+
+```python
+from airbyte_api.models import SourceGcsSchemasStreamsHeaderDefinitionType
+
+value = SourceGcsSchemasStreamsHeaderDefinitionType.USER_PROVIDED
+```
+
 
 ## Values
 

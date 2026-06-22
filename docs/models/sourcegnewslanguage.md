@@ -1,5 +1,13 @@
 # SourceGnewsLanguage
 
+## Example Usage
+
+```python
+from airbyte_api.models import SourceGnewsLanguage
+
+value = SourceGnewsLanguage.AR
+```
+
 
 ## Values
 

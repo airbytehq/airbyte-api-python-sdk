@@ -1,5 +1,13 @@
 # ZohoAnalyticsMetadataAPI
 
+## Example Usage
+
+```python
+from airbyte_api.models import ZohoAnalyticsMetadataAPI
+
+value = ZohoAnalyticsMetadataAPI.ZOHO_ANALYTICS_METADATA_API
+```
+
 
 ## Values
 

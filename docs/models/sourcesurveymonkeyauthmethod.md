@@ -1,5 +1,13 @@
 # SourceSurveymonkeyAuthMethod
 
+## Example Usage
+
+```python
+from airbyte_api.models import SourceSurveymonkeyAuthMethod
+
+value = SourceSurveymonkeyAuthMethod.OAUTH2_0
+```
+
 
 ## Values
 

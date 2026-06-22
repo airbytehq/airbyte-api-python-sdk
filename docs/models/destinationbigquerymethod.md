@@ -1,5 +1,13 @@
 # DestinationBigqueryMethod
 
+## Example Usage
+
+```python
+from airbyte_api.models import DestinationBigqueryMethod
+
+value = DestinationBigqueryMethod.GCS_STAGING
+```
+
 
 ## Values
 

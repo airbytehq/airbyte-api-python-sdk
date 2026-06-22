@@ -1,5 +1,13 @@
 # SourceEbayFulfillmentAPIHost
 
+## Example Usage
+
+```python
+from airbyte_api.models import SourceEbayFulfillmentAPIHost
+
+value = SourceEbayFulfillmentAPIHost.HTTPS_API_EBAY_COM
+```
+
 
 ## Values
 

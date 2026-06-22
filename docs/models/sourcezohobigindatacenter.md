@@ -2,6 +2,14 @@
 
 The data center where the Bigin account's resources are hosted
 
+## Example Usage
+
+```python
+from airbyte_api.models import SourceZohoBiginDataCenter
+
+value = SourceZohoBiginDataCenter.COM
+```
+
 
 ## Values
 

@@ -1,5 +1,13 @@
 # SourceSftpBulkSchemasDeliveryType
 
+## Example Usage
+
+```python
+from airbyte_api.models import SourceSftpBulkSchemasDeliveryType
+
+value = SourceSftpBulkSchemasDeliveryType.USE_FILE_TRANSFER
+```
+
 
 ## Values
 

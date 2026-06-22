@@ -24,24 +24,94 @@ airbyte-api: Programmatically control Airbyte Cloud, OSS & Enterprise.
 <!-- $toc-max-depth=2 -->
   * [Authentication](#authentication)
   * [SDK Installation](#sdk-installation)
+  * [IDE Support](#ide-support)
   * [SDK Example Usage](#sdk-example-usage)
   * [Available Resources and Operations](#available-resources-and-operations)
+  * [Retries](#retries)
   * [Error Handling](#error-handling)
   * [Server Selection](#server-selection)
   * [Custom HTTP Client](#custom-http-client)
   * [Authentication](#authentication-1)
+  * [Resource Management](#resource-management)
+  * [Debugging](#debugging)
 
 <!-- End Table of Contents [toc] -->
 
 <!-- Start SDK Installation [installation] -->
 ## SDK Installation
 
-The SDK can be installed using the *pip* package manager, with dependencies and metadata stored in the `setup.py` file.
+> [!NOTE]
+> **Python version upgrade policy**
+>
+> Once a Python version reaches its [official end of life date](https://devguide.python.org/versions/), a 3-month grace period is provided for users to upgrade. Following this grace period, the minimum python version supported in the SDK will be updated.
+
+The SDK can be installed with *uv*, *pip*, or *poetry* package managers.
+
+### uv
+
+*uv* is a fast Python package installer and resolver, designed as a drop-in replacement for pip and pip-tools. It's recommended for its speed and modern Python tooling capabilities.
+
+```bash
+uv add airbyte-api
+```
+
+### PIP
+
+*PIP* is the default package installer for Python, enabling easy installation and management of packages from PyPI via the command line.
 
 ```bash
 pip install airbyte-api
 ```
+
+### Poetry
+
+*Poetry* is a modern tool that simplifies dependency management and package publishing by using a single `pyproject.toml` file to handle project metadata and dependencies.
+
+```bash
+poetry add airbyte-api
+```
+
+### Shell and script usage with `uv`
+
+You can use this SDK in a Python shell with [uv](https://docs.astral.sh/uv/) and the `uvx` command that comes with it like so:
+
+```shell
+uvx --from airbyte-api python
+```
+
+It's also possible to write a standalone Python script without needing to set up a whole project like so:
+
+```python
+#!/usr/bin/env -S uv run --script
+# /// script
+# requires-python = ">=3.10"
+# dependencies = [
+#     "airbyte-api",
+# ]
+# ///
+
+from airbyte_api import AirbyteAPI
+
+sdk = AirbyteAPI(
+  # SDK arguments
+)
+
+# Rest of script here...
+```
+
+Once that is saved to a file, you can run it with `uv run script.py` where
+`script.py` can be replaced with the actual file name.
 <!-- End SDK Installation [installation] -->
+
+<!-- Start IDE Support [idesupport] -->
+## IDE Support
+
+### PyCharm
+
+Generally, the SDK will work well with most IDEs out of the box. However, when using PyCharm, you can enjoy much better integration with Pydantic by installing an additional plugin.
+
+- [PyCharm Pydantic Plugin](https://docs.pydantic.dev/latest/integrations/pycharm/)
+<!-- End IDE Support [idesupport] -->
 
 <!-- Start SDK Example Usage [usage] -->
 ## SDK Example Usage
@@ -49,29 +119,65 @@ pip install airbyte-api
 ### Example
 
 ```python
-import airbyte_api
-from airbyte_api import models
+# Synchronous Example
+from airbyte_api import AirbyteAPI, models
 
-s = airbyte_api.AirbyteAPI(
+
+with AirbyteAPI(
     security=models.Security(
         basic_auth=models.SchemeBasicAuth(
-            password='',
-            username='',
+            password="",
+            username="",
         ),
     ),
-)
+) as aa_client:
 
+    res = aa_client.connections.create_connection(request={
+        "destination_id": "e478de0d-a3a0-475c-b019-25f7dd29e281",
+        "name": "Postgres-to-Bigquery",
+        "namespace_format": "${SOURCE_NAMESPACE}",
+        "source_id": "95e66a59-8045-4307-9678-63bc3c9b8c93",
+    })
 
-res = s.connections.create_connection(request=models.ConnectionCreateRequest(
-    destination_id='e478de0d-a3a0-475c-b019-25f7dd29e281',
-    source_id='95e66a59-8045-4307-9678-63bc3c9b8c93',
-    name='Postgres-to-Bigquery',
-))
+    assert res.connection_response is not None
 
-if res.connection_response is not None:
-    # handle response
-    pass
+    # Handle response
+    print(res.connection_response)
+```
 
+</br>
+
+The same SDK client can also be used to make asynchronous requests by importing asyncio.
+
+```python
+# Asynchronous Example
+from airbyte_api import AirbyteAPI, models
+import asyncio
+
+async def main():
+
+    async with AirbyteAPI(
+        security=models.Security(
+            basic_auth=models.SchemeBasicAuth(
+                password="",
+                username="",
+            ),
+        ),
+    ) as aa_client:
+
+        res = await aa_client.connections.create_connection_async(request={
+            "destination_id": "e478de0d-a3a0-475c-b019-25f7dd29e281",
+            "name": "Postgres-to-Bigquery",
+            "namespace_format": "${SOURCE_NAMESPACE}",
+            "source_id": "95e66a59-8045-4307-9678-63bc3c9b8c93",
+        })
+
+        assert res.connection_response is not None
+
+        # Handle response
+        print(res.connection_response)
+
+asyncio.run(main())
 ```
 <!-- End SDK Example Usage [usage] -->
 
@@ -81,8 +187,7 @@ if res.connection_response is not None:
 <details open>
 <summary>Available methods</summary>
 
-
-### [connections](docs/sdks/connections/README.md)
+### [Connections](docs/sdks/connections/README.md)
 
 * [create_connection](docs/sdks/connections/README.md#create_connection) - Create a connection
 * [delete_connection](docs/sdks/connections/README.md#delete_connection) - Delete a Connection
@@ -90,7 +195,7 @@ if res.connection_response is not None:
 * [list_connections](docs/sdks/connections/README.md#list_connections) - List connections
 * [patch_connection](docs/sdks/connections/README.md#patch_connection) - Update Connection details
 
-### [declarative_source_definitions](docs/sdks/declarativesourcedefinitions/README.md)
+### [DeclarativeSourceDefinitions](docs/sdks/declarativesourcedefinitions/README.md)
 
 * [create_declarative_source_definition](docs/sdks/declarativesourcedefinitions/README.md#create_declarative_source_definition) - Create a declarative source definition.
 * [delete_declarative_source_definition](docs/sdks/declarativesourcedefinitions/README.md#delete_declarative_source_definition) - Delete a declarative source definition.
@@ -98,7 +203,7 @@ if res.connection_response is not None:
 * [list_declarative_source_definitions](docs/sdks/declarativesourcedefinitions/README.md#list_declarative_source_definitions) - List declarative source definitions.
 * [update_declarative_source_definition](docs/sdks/declarativesourcedefinitions/README.md#update_declarative_source_definition) - Update declarative source definition details.
 
-### [destination_definitions](docs/sdks/destinationdefinitions/README.md)
+### [DestinationDefinitions](docs/sdks/destinationdefinitions/README.md)
 
 * [create_destination_definition](docs/sdks/destinationdefinitions/README.md#create_destination_definition) - Create a destination definition.
 * [delete_destination_definition](docs/sdks/destinationdefinitions/README.md#delete_destination_definition) - Delete a destination definition.
@@ -106,7 +211,7 @@ if res.connection_response is not None:
 * [list_destination_definitions](docs/sdks/destinationdefinitions/README.md#list_destination_definitions) - List destination definitions.
 * [update_destination_definition](docs/sdks/destinationdefinitions/README.md#update_destination_definition) - Update destination definition details.
 
-### [destinations](docs/sdks/destinations/README.md)
+### [Destinations](docs/sdks/destinations/README.md)
 
 * [create_destination](docs/sdks/destinations/README.md#create_destination) - Create a destination
 * [delete_destination](docs/sdks/destinations/README.md#delete_destination) - Delete a Destination
@@ -115,23 +220,24 @@ if res.connection_response is not None:
 * [patch_destination](docs/sdks/destinations/README.md#patch_destination) - Update a Destination
 * [put_destination](docs/sdks/destinations/README.md#put_destination) - Update a Destination and fully overwrite it
 
-### [health](docs/sdks/health/README.md)
+### [Health](docs/sdks/health/README.md)
 
 * [get_health_check](docs/sdks/health/README.md#get_health_check) - Health Check
 
-### [jobs](docs/sdks/jobs/README.md)
+### [Jobs](docs/sdks/jobs/README.md)
 
 * [cancel_job](docs/sdks/jobs/README.md#cancel_job) - Cancel a running Job
 * [create_job](docs/sdks/jobs/README.md#create_job) - Trigger a sync or reset job of a connection
 * [get_job](docs/sdks/jobs/README.md#get_job) - Get Job status and details
 * [list_jobs](docs/sdks/jobs/README.md#list_jobs) - List Jobs by sync type
 
-### [organizations](docs/sdks/organizations/README.md)
+### [Organizations](docs/sdks/organizations/README.md)
 
 * [create_or_update_organization_o_auth_credentials](docs/sdks/organizations/README.md#create_or_update_organization_o_auth_credentials) - Create OAuth override credentials for an organization and source type.
+* [delete_organization_o_auth_credentials](docs/sdks/organizations/README.md#delete_organization_o_auth_credentials) - Delete OAuth override credentials for an organization and source/destination type.
 * [list_organizations_for_user](docs/sdks/organizations/README.md#list_organizations_for_user) - List all organizations for a user
 
-### [permissions](docs/sdks/permissions/README.md)
+### [Permissions](docs/sdks/permissions/README.md)
 
 * [create_permission](docs/sdks/permissions/README.md#create_permission) - Create a permission
 * [delete_permission](docs/sdks/permissions/README.md#delete_permission) - Delete a Permission
@@ -139,7 +245,7 @@ if res.connection_response is not None:
 * [list_permissions](docs/sdks/permissions/README.md#list_permissions) - List Permissions by user id
 * [update_permission](docs/sdks/permissions/README.md#update_permission) - Update a permission
 
-### [source_definitions](docs/sdks/sourcedefinitions/README.md)
+### [SourceDefinitions](docs/sdks/sourcedefinitions/README.md)
 
 * [create_source_definition](docs/sdks/sourcedefinitions/README.md#create_source_definition) - Create a source definition.
 * [delete_source_definition](docs/sdks/sourcedefinitions/README.md#delete_source_definition) - Delete a source definition.
@@ -147,7 +253,7 @@ if res.connection_response is not None:
 * [list_source_definitions](docs/sdks/sourcedefinitions/README.md#list_source_definitions) - List source definitions.
 * [update_source_definition](docs/sdks/sourcedefinitions/README.md#update_source_definition) - Update source definition details.
 
-### [sources](docs/sdks/sources/README.md)
+### [Sources](docs/sdks/sources/README.md)
 
 * [create_source](docs/sdks/sources/README.md#create_source) - Create a source
 * [delete_source](docs/sdks/sources/README.md#delete_source) - Delete a Source
@@ -157,11 +263,11 @@ if res.connection_response is not None:
 * [patch_source](docs/sdks/sources/README.md#patch_source) - Update a Source
 * [put_source](docs/sdks/sources/README.md#put_source) - Update a Source and fully overwrite it
 
-### [streams](docs/sdks/streams/README.md)
+### [Streams](docs/sdks/streams/README.md)
 
 * [get_stream_properties](docs/sdks/streams/README.md#get_stream_properties) - Get stream properties
 
-### [tags](docs/sdks/tags/README.md)
+### [Tags](docs/sdks/tags/README.md)
 
 * [create_tag](docs/sdks/tags/README.md#create_tag) - Create a tag
 * [delete_tag](docs/sdks/tags/README.md#delete_tag) - Delete a tag
@@ -169,15 +275,16 @@ if res.connection_response is not None:
 * [list_tags](docs/sdks/tags/README.md#list_tags) - List all tags
 * [update_tag](docs/sdks/tags/README.md#update_tag) - Update a tag
 
-### [users](docs/sdks/users/README.md)
+### [Users](docs/sdks/users/README.md)
 
 * [list_users_within_an_organization](docs/sdks/users/README.md#list_users_within_an_organization) - List all users within an organization
 
-### [workspaces](docs/sdks/workspaces/README.md)
+### [Workspaces](docs/sdks/workspaces/README.md)
 
 * [create_or_update_workspace_o_auth_credentials](docs/sdks/workspaces/README.md#create_or_update_workspace_o_auth_credentials) - Create OAuth override credentials for a workspace and source type.
 * [create_workspace](docs/sdks/workspaces/README.md#create_workspace) - Create a workspace
 * [delete_workspace](docs/sdks/workspaces/README.md#delete_workspace) - Delete a Workspace
+* [delete_workspace_o_auth_credentials](docs/sdks/workspaces/README.md#delete_workspace_o_auth_credentials) - Delete OAuth override credentials for a workspace and source/destination type.
 * [get_workspace](docs/sdks/workspaces/README.md#get_workspace) - Get Workspace details
 * [list_workspaces](docs/sdks/workspaces/README.md#list_workspaces) - List workspaces
 * [update_workspace](docs/sdks/workspaces/README.md#update_workspace) - Update a workspace
@@ -191,58 +298,142 @@ if res.connection_response is not None:
 
 
 
+<!-- Start Retries [retries] -->
+## Retries
+
+Some of the endpoints in this SDK support retries. If you use the SDK without any configuration, it will fall back to the default retry strategy provided by the API. However, the default retry strategy can be overridden on a per-operation basis, or across the entire SDK.
+
+To change the default retry strategy for a single API call, simply provide a `RetryConfig` object to the call:
+```python
+from airbyte_api import AirbyteAPI, models
+from airbyte_api.utils import BackoffStrategy, RetryConfig
+
+
+with AirbyteAPI(
+    security=models.Security(
+        basic_auth=models.SchemeBasicAuth(
+            password="",
+            username="",
+        ),
+    ),
+) as aa_client:
+
+    res = aa_client.connections.create_connection(request={
+        "destination_id": "e478de0d-a3a0-475c-b019-25f7dd29e281",
+        "name": "Postgres-to-Bigquery",
+        "namespace_format": "${SOURCE_NAMESPACE}",
+        "source_id": "95e66a59-8045-4307-9678-63bc3c9b8c93",
+    },
+        RetryConfig("backoff", BackoffStrategy(1, 50, 1.1, 100), False))
+
+    assert res.connection_response is not None
+
+    # Handle response
+    print(res.connection_response)
+
+```
+
+If you'd like to override the default retry strategy for all operations that support retries, you can use the `retry_config` optional parameter when initializing the SDK:
+```python
+from airbyte_api import AirbyteAPI, models
+from airbyte_api.utils import BackoffStrategy, RetryConfig
+
+
+with AirbyteAPI(
+    retry_config=RetryConfig("backoff", BackoffStrategy(1, 50, 1.1, 100), False),
+    security=models.Security(
+        basic_auth=models.SchemeBasicAuth(
+            password="",
+            username="",
+        ),
+    ),
+) as aa_client:
+
+    res = aa_client.connections.create_connection(request={
+        "destination_id": "e478de0d-a3a0-475c-b019-25f7dd29e281",
+        "name": "Postgres-to-Bigquery",
+        "namespace_format": "${SOURCE_NAMESPACE}",
+        "source_id": "95e66a59-8045-4307-9678-63bc3c9b8c93",
+    })
+
+    assert res.connection_response is not None
+
+    # Handle response
+    print(res.connection_response)
+
+```
+<!-- End Retries [retries] -->
+
 <!-- Start Error Handling [errors] -->
 ## Error Handling
 
-Handling errors in this SDK should largely match your expectations. All operations return a response object or raise an exception.
+[`AirbyteAPIError`](./src/airbyte_api/errors/airbyteapierror.py) is the base class for all HTTP error responses. It has the following properties:
 
-By default, an API error will raise a errors.SDKError exception, which has the following properties:
-
-| Property        | Type             | Description           |
-|-----------------|------------------|-----------------------|
-| `.status_code`  | *int*            | The HTTP status code  |
-| `.message`      | *str*            | The error message     |
-| `.raw_response` | *httpx.Response* | The raw HTTP response |
-| `.body`         | *str*            | The response content  |
-
-When custom error responses are specified for an operation, the SDK may also raise their associated exception. You can refer to respective *Errors* tables in SDK docs for more details on possible exception types for each operation. For example, the `create_connection` method may raise the following exceptions:
-
-| Error Type      | Status Code | Content Type |
-| --------------- | ----------- | ------------ |
-| errors.SDKError | 4XX, 5XX    | \*/\*        |
+| Property           | Type             | Description                                            |
+| ------------------ | ---------------- | ------------------------------------------------------ |
+| `err.message`      | `str`            | Error message                                          |
+| `err.status_code`  | `int`            | HTTP response status code eg `404`                     |
+| `err.headers`      | `httpx.Headers`  | HTTP response headers                                  |
+| `err.body`         | `str`            | HTTP body. Can be empty string if no body is returned. |
+| `err.raw_response` | `httpx.Response` | Raw HTTP response                                      |
 
 ### Example
-
 ```python
-import airbyte_api
-from airbyte_api import errors, models
+from airbyte_api import AirbyteAPI, errors, models
 
-s = airbyte_api.AirbyteAPI(
+
+with AirbyteAPI(
     security=models.Security(
         basic_auth=models.SchemeBasicAuth(
-            password='',
-            username='',
+            password="",
+            username="",
         ),
     ),
-)
+) as aa_client:
+    res = None
+    try:
 
-res = None
-try:
-    res = s.connections.create_connection(request=models.ConnectionCreateRequest(
-    destination_id='e478de0d-a3a0-475c-b019-25f7dd29e281',
-    source_id='95e66a59-8045-4307-9678-63bc3c9b8c93',
-    name='Postgres-to-Bigquery',
-))
+        res = aa_client.connections.create_connection(request={
+            "destination_id": "e478de0d-a3a0-475c-b019-25f7dd29e281",
+            "name": "Postgres-to-Bigquery",
+            "namespace_format": "${SOURCE_NAMESPACE}",
+            "source_id": "95e66a59-8045-4307-9678-63bc3c9b8c93",
+        })
 
-except errors.SDKError as e:
-    # handle exception
-    raise(e)
+        assert res.connection_response is not None
 
-if res.connection_response is not None:
-    # handle response
-    pass
+        # Handle response
+        print(res.connection_response)
+
+
+    except errors.AirbyteAPIError as e:
+        # The base class for HTTP error responses
+        print(e.message)
+        print(e.status_code)
+        print(e.body)
+        print(e.headers)
+        print(e.raw_response)
 
 ```
+
+### Error Classes
+**Primary error:**
+* [`AirbyteAPIError`](./src/airbyte_api/errors/airbyteapierror.py): The base class for HTTP error responses.
+
+<details><summary>Less common errors (5)</summary>
+
+<br />
+
+**Network errors:**
+* [`httpx.RequestError`](https://www.python-httpx.org/exceptions/#httpx.RequestError): Base class for request errors.
+    * [`httpx.ConnectError`](https://www.python-httpx.org/exceptions/#httpx.ConnectError): HTTP client was unable to make a request to a server.
+    * [`httpx.TimeoutException`](https://www.python-httpx.org/exceptions/#httpx.TimeoutException): HTTP request timed out.
+
+
+**Inherit from [`AirbyteAPIError`](./src/airbyte_api/errors/airbyteapierror.py)**:
+* [`ResponseValidationError`](./src/airbyte_api/errors/responsevalidationerror.py): Type mismatch between the response data and the expected Pydantic model. Provides access to the Pydantic validation error via the `cause` attribute.
+
+</details>
 <!-- End Error Handling [errors] -->
 
 
@@ -254,29 +445,30 @@ if res.connection_response is not None:
 
 The default server can be overridden globally by passing a URL to the `server_url: str` optional parameter when initializing the SDK client instance. For example:
 ```python
-import airbyte_api
-from airbyte_api import models
+from airbyte_api import AirbyteAPI, models
 
-s = airbyte_api.AirbyteAPI(
-    server_url='https://api.airbyte.com/v1',
+
+with AirbyteAPI(
+    server_url="https://api.airbyte.com/v1",
     security=models.Security(
         basic_auth=models.SchemeBasicAuth(
-            password='',
-            username='',
+            password="",
+            username="",
         ),
     ),
-)
+) as aa_client:
 
+    res = aa_client.connections.create_connection(request={
+        "destination_id": "e478de0d-a3a0-475c-b019-25f7dd29e281",
+        "name": "Postgres-to-Bigquery",
+        "namespace_format": "${SOURCE_NAMESPACE}",
+        "source_id": "95e66a59-8045-4307-9678-63bc3c9b8c93",
+    })
 
-res = s.connections.create_connection(request=models.ConnectionCreateRequest(
-    destination_id='e478de0d-a3a0-475c-b019-25f7dd29e281',
-    source_id='95e66a59-8045-4307-9678-63bc3c9b8c93',
-    name='Postgres-to-Bigquery',
-))
+    assert res.connection_response is not None
 
-if res.connection_response is not None:
-    # handle response
-    pass
+    # Handle response
+    print(res.connection_response)
 
 ```
 <!-- End Server Selection [server] -->
@@ -286,16 +478,81 @@ if res.connection_response is not None:
 <!-- Start Custom HTTP Client [http-client] -->
 ## Custom HTTP Client
 
-The Python SDK makes API calls using the [requests](https://pypi.org/project/requests/) HTTP library.  In order to provide a convenient way to configure timeouts, cookies, proxies, custom headers, and other low-level configuration, you can initialize the SDK client with a custom `requests.Session` object.
+The Python SDK makes API calls using the [httpx](https://www.python-httpx.org/) HTTP library.  In order to provide a convenient way to configure timeouts, cookies, proxies, custom headers, and other low-level configuration, you can initialize the SDK client with your own HTTP client instance.
+Depending on whether you are using the sync or async version of the SDK, you can pass an instance of `HttpClient` or `AsyncHttpClient` respectively, which are Protocol's ensuring that the client has the necessary methods to make API calls.
+This allows you to wrap the client with your own custom logic, such as adding custom headers, logging, or error handling, or you can just pass an instance of `httpx.Client` or `httpx.AsyncClient` directly.
 
 For example, you could specify a header for every request that this sdk makes as follows:
 ```python
-import airbyte_api
-import requests
+from airbyte_api import AirbyteAPI
+import httpx
 
-http_client = requests.Session()
-http_client.headers.update({'x-custom-header': 'someValue'})
-s = airbyte_api.AirbyteAPI(client=http_client)
+http_client = httpx.Client(headers={"x-custom-header": "someValue"})
+s = AirbyteAPI(client=http_client)
+```
+
+or you could wrap the client with your own custom logic:
+```python
+from airbyte_api import AirbyteAPI
+from airbyte_api.httpclient import AsyncHttpClient
+import httpx
+
+class CustomClient(AsyncHttpClient):
+    client: AsyncHttpClient
+
+    def __init__(self, client: AsyncHttpClient):
+        self.client = client
+
+    async def send(
+        self,
+        request: httpx.Request,
+        *,
+        stream: bool = False,
+        auth: Union[
+            httpx._types.AuthTypes, httpx._client.UseClientDefault, None
+        ] = httpx.USE_CLIENT_DEFAULT,
+        follow_redirects: Union[
+            bool, httpx._client.UseClientDefault
+        ] = httpx.USE_CLIENT_DEFAULT,
+    ) -> httpx.Response:
+        request.headers["Client-Level-Header"] = "added by client"
+
+        return await self.client.send(
+            request, stream=stream, auth=auth, follow_redirects=follow_redirects
+        )
+
+    def build_request(
+        self,
+        method: str,
+        url: httpx._types.URLTypes,
+        *,
+        content: Optional[httpx._types.RequestContent] = None,
+        data: Optional[httpx._types.RequestData] = None,
+        files: Optional[httpx._types.RequestFiles] = None,
+        json: Optional[Any] = None,
+        params: Optional[httpx._types.QueryParamTypes] = None,
+        headers: Optional[httpx._types.HeaderTypes] = None,
+        cookies: Optional[httpx._types.CookieTypes] = None,
+        timeout: Union[
+            httpx._types.TimeoutTypes, httpx._client.UseClientDefault
+        ] = httpx.USE_CLIENT_DEFAULT,
+        extensions: Optional[httpx._types.RequestExtensions] = None,
+    ) -> httpx.Request:
+        return self.client.build_request(
+            method,
+            url,
+            content=content,
+            data=data,
+            files=files,
+            json=json,
+            params=params,
+            headers=headers,
+            cookies=cookies,
+            timeout=timeout,
+            extensions=extensions,
+        )
+
+s = AirbyteAPI(async_client=CustomClient(httpx.AsyncClient()))
 ```
 <!-- End Custom HTTP Client [http-client] -->
 
@@ -316,31 +573,84 @@ This SDK supports the following security schemes globally:
 
 You can set the security parameters through the `security` optional parameter when initializing the SDK client instance. The selected scheme will be used by default to authenticate with the API for all operations that support it. For example:
 ```python
-import airbyte_api
-from airbyte_api import models
+from airbyte_api import AirbyteAPI, models
 
-s = airbyte_api.AirbyteAPI(
+
+with AirbyteAPI(
     security=models.Security(
         basic_auth=models.SchemeBasicAuth(
-            password='',
-            username='',
+            password="",
+            username="",
         ),
     ),
-)
+) as aa_client:
 
+    res = aa_client.connections.create_connection(request={
+        "destination_id": "e478de0d-a3a0-475c-b019-25f7dd29e281",
+        "name": "Postgres-to-Bigquery",
+        "namespace_format": "${SOURCE_NAMESPACE}",
+        "source_id": "95e66a59-8045-4307-9678-63bc3c9b8c93",
+    })
 
-res = s.connections.create_connection(request=models.ConnectionCreateRequest(
-    destination_id='e478de0d-a3a0-475c-b019-25f7dd29e281',
-    source_id='95e66a59-8045-4307-9678-63bc3c9b8c93',
-    name='Postgres-to-Bigquery',
-))
+    assert res.connection_response is not None
 
-if res.connection_response is not None:
-    # handle response
-    pass
+    # Handle response
+    print(res.connection_response)
 
 ```
 <!-- End Authentication [security] -->
+
+<!-- Start Resource Management [resource-management] -->
+## Resource Management
+
+The `AirbyteAPI` class implements the context manager protocol and registers a finalizer function to close the underlying sync and async HTTPX clients it uses under the hood. This will close HTTP connections, release memory and free up other resources held by the SDK. In short-lived Python programs and notebooks that make a few SDK method calls, resource management may not be a concern. However, in longer-lived programs, it is beneficial to create a single SDK instance via a [context manager][context-manager] and reuse it across the application.
+
+[context-manager]: https://docs.python.org/3/reference/datamodel.html#context-managers
+
+```python
+from airbyte_api import AirbyteAPI, models
+def main():
+
+    with AirbyteAPI(
+        security=models.Security(
+            basic_auth=models.SchemeBasicAuth(
+                password="",
+                username="",
+            ),
+        ),
+    ) as aa_client:
+        # Rest of application here...
+
+
+# Or when using async:
+async def amain():
+
+    async with AirbyteAPI(
+        security=models.Security(
+            basic_auth=models.SchemeBasicAuth(
+                password="",
+                username="",
+            ),
+        ),
+    ) as aa_client:
+        # Rest of application here...
+```
+<!-- End Resource Management [resource-management] -->
+
+<!-- Start Debugging [debug] -->
+## Debugging
+
+You can setup your SDK to emit debug logs for SDK requests and responses.
+
+You can pass your own logger class directly into your SDK.
+```python
+from airbyte_api import AirbyteAPI
+import logging
+
+logging.basicConfig(level=logging.DEBUG)
+s = AirbyteAPI(debug_logger=logging.getLogger("airbyte_api"))
+```
+<!-- End Debugging [debug] -->
 
 <!-- Placeholder for Future Speakeasy SDK Sections -->
 

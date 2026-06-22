@@ -2,6 +2,14 @@
 
 enum that describes the different types of jobs that the platform runs.
 
+## Example Usage
+
+```python
+from airbyte_api.models import JobType
+
+value = JobType.GET_SPEC
+```
+
 
 ## Values
 

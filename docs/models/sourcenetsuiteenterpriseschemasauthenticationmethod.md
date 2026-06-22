@@ -1,5 +1,13 @@
 # SourceNetsuiteEnterpriseSchemasAuthenticationMethod
 
+## Example Usage
+
+```python
+from airbyte_api.models import SourceNetsuiteEnterpriseSchemasAuthenticationMethod
+
+value = SourceNetsuiteEnterpriseSchemasAuthenticationMethod.TOKEN_BASED_AUTHENTICATION
+```
+
 
 ## Values
 

@@ -2,6 +2,14 @@
 
 The compression algorithm used to compress data pages.
 
+## Example Usage
+
+```python
+from airbyte_api.models import DestinationS3SchemasCompressionCodec
+
+value = DestinationS3SchemasCompressionCodec.UNCOMPRESSED
+```
+
 
 ## Values
 

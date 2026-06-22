@@ -1,5 +1,13 @@
 # DestinationAzureBlobStorageFlattening
 
+## Example Usage
+
+```python
+from airbyte_api.models import DestinationAzureBlobStorageFlattening
+
+value = DestinationAzureBlobStorageFlattening.NO_FLATTENING
+```
+
 
 ## Values
 

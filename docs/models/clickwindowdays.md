@@ -2,6 +2,14 @@
 
 Number of days to use as the conversion attribution window for a pin click action.
 
+## Example Usage
+
+```python
+from airbyte_api.models import ClickWindowDays
+
+value = ClickWindowDays.ZERO
+```
+
 
 ## Values
 

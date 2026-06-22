@@ -1,5 +1,13 @@
 # DestinationRedshiftMethod
 
+## Example Usage
+
+```python
+from airbyte_api.models import DestinationRedshiftMethod
+
+value = DestinationRedshiftMethod.S3_STAGING
+```
+
 
 ## Values
 

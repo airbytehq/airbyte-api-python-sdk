@@ -1,5 +1,13 @@
 # SourceZohoAnalyticsMetadataAPIDataCenter
 
+## Example Usage
+
+```python
+from airbyte_api.models import SourceZohoAnalyticsMetadataAPIDataCenter
+
+value = SourceZohoAnalyticsMetadataAPIDataCenter.COM
+```
+
 
 ## Values
 

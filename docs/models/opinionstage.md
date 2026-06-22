@@ -1,5 +1,13 @@
 # OpinionStage
 
+## Example Usage
+
+```python
+from airbyte_api.models import OpinionStage
+
+value = OpinionStage.OPINION_STAGE
+```
+
 
 ## Values
 

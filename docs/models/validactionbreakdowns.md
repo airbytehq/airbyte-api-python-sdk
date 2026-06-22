@@ -2,6 +2,14 @@
 
 An enumeration.
 
+## Example Usage
+
+```python
+from airbyte_api.models import ValidActionBreakdowns
+
+value = ValidActionBreakdowns.ACTION_CANVAS_COMPONENT_NAME
+```
+
 
 ## Values
 

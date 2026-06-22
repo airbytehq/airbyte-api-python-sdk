@@ -1,5 +1,13 @@
 # DestinationWeaviateSchemasIndexingAuthAuthenticationMode
 
+## Example Usage
+
+```python
+from airbyte_api.models import DestinationWeaviateSchemasIndexingAuthAuthenticationMode
+
+value = DestinationWeaviateSchemasIndexingAuthAuthenticationMode.NO_AUTH
+```
+
 
 ## Values
 

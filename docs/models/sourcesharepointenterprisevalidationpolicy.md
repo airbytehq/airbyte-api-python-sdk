@@ -2,6 +2,14 @@
 
 The name of the validation policy that dictates sync behavior when a record does not adhere to the stream schema.
 
+## Example Usage
+
+```python
+from airbyte_api.models import SourceSharepointEnterpriseValidationPolicy
+
+value = SourceSharepointEnterpriseValidationPolicy.EMIT_RECORD
+```
+
 
 ## Values
 

@@ -1,5 +1,4 @@
 # Health
-(*health*)
 
 ## Overview
 
@@ -13,19 +12,27 @@ Health Check
 
 ### Example Usage
 
+<!-- UsageSnippet language="python" operationID="getHealthCheck" method="get" path="/health" -->
 ```python
-import airbyte_api
-
-s = airbyte_api.AirbyteAPI()
+from airbyte_api import AirbyteAPI
 
 
-res = s.health.get_health_check()
+with AirbyteAPI() as aa_client:
 
-if res is not None:
-    # handle response
-    pass
+    res = aa_client.health.get_health_check()
+
+    assert res is not None
+
+    # Handle response
+    print(res)
 
 ```
+
+### Parameters
+
+| Parameter                                                           | Type                                                                | Required                                                            | Description                                                         |
+| ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
+| `retries`                                                           | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)    | :heavy_minus_sign:                                                  | Configuration to override the default retry behavior of the client. |
 
 ### Response
 

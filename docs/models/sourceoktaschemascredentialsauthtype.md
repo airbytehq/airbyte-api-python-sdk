@@ -1,5 +1,13 @@
 # SourceOktaSchemasCredentialsAuthType
 
+## Example Usage
+
+```python
+from airbyte_api.models import SourceOktaSchemasCredentialsAuthType
+
+value = SourceOktaSchemasCredentialsAuthType.API_TOKEN
+```
+
 
 ## Values
 

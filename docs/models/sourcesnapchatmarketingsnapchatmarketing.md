@@ -1,5 +1,13 @@
 # SourceSnapchatMarketingSnapchatMarketing
 
+## Example Usage
+
+```python
+from airbyte_api.models import SourceSnapchatMarketingSnapchatMarketing
+
+value = SourceSnapchatMarketingSnapchatMarketing.SNAPCHAT_MARKETING
+```
+
 
 ## Values
 

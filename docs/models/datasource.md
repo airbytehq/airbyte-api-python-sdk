@@ -2,6 +2,14 @@
 
 A data source that is powered by the platform.
 
+## Example Usage
+
+```python
+from airbyte_api.models import DataSource
+
+value = DataSource.METRICS
+```
+
 
 ## Values
 

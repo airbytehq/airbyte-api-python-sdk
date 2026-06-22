@@ -1,5 +1,13 @@
 # DestinationSnowflakeCortexSchemasEmbeddingEmbeddingMode
 
+## Example Usage
+
+```python
+from airbyte_api.models import DestinationSnowflakeCortexSchemasEmbeddingEmbeddingMode
+
+value = DestinationSnowflakeCortexSchemasEmbeddingEmbeddingMode.AZURE_OPENAI
+```
+
 
 ## Values
 

@@ -1,5 +1,13 @@
 # SourceMondayAuthType
 
+## Example Usage
+
+```python
+from airbyte_api.models import SourceMondayAuthType
+
+value = SourceMondayAuthType.OAUTH2_0
+```
+
 
 ## Values
 

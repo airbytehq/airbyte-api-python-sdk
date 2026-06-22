@@ -1,5 +1,13 @@
 # Fields
 
+## Example Usage
+
+```python
+from airbyte_api.models import Fields
+
+value = Fields.CLICKS
+```
+
 
 ## Values
 

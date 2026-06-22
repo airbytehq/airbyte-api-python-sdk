@@ -1,5 +1,13 @@
 # SourceAzureBlobStorageSchemasCredentialsAuthType
 
+## Example Usage
+
+```python
+from airbyte_api.models import SourceAzureBlobStorageSchemasCredentialsAuthType
+
+value = SourceAzureBlobStorageSchemasCredentialsAuthType.STORAGE_ACCOUNT_KEY
+```
+
 
 ## Values
 

@@ -7,5 +7,5 @@ Direct loading using batched SQL INSERT statements. This method uses the BigQuer
 
 | Field                                          | Type                                           | Required                                       | Description                                    |
 | ---------------------------------------------- | ---------------------------------------------- | ---------------------------------------------- | ---------------------------------------------- |
-| `additional_properties`                        | Dict[str, *Any*]                               | :heavy_minus_sign:                             | N/A                                            |
+| `__pydantic_extra__`                           | Dict[str, *Any*]                               | :heavy_minus_sign:                             | N/A                                            |
 | `method`                                       | [Optional[models.Method]](../models/method.md) | :heavy_minus_sign:                             | N/A                                            |

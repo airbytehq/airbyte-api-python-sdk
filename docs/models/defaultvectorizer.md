@@ -2,6 +2,14 @@
 
 The vectorizer to use if new classes need to be created
 
+## Example Usage
+
+```python
+from airbyte_api.models import DefaultVectorizer
+
+value = DefaultVectorizer.NONE
+```
+
 
 ## Values
 

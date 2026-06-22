@@ -2,6 +2,14 @@
 
 An enumeration.
 
+## Example Usage
+
+```python
+from airbyte_api.models import CustomerStatus
+
+value = CustomerStatus.UNKNOWN
+```
+
 
 ## Values
 

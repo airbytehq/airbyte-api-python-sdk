@@ -1,5 +1,13 @@
 # SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayMetricFilterValueType
 
+## Example Usage
+
+```python
+from airbyte_api.models import SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayMetricFilterValueType
+
+value = SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayMetricFilterValueType.INT64_VALUE
+```
+
 
 ## Values
 

@@ -1,0 +1,12 @@
+# SourceDb2EnterpriseTLSEncryptedVerifyCertificate
+
+Verify and use the certificate provided by the server.
+
+
+## Fields
+
+| Field                                                                                                                   | Type                                                                                                                    | Required                                                                                                                | Description                                                                                                             |
+| ----------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------- |
+| `__pydantic_extra__`                                                                                                    | Dict[str, *Any*]                                                                                                        | :heavy_minus_sign:                                                                                                      | N/A                                                                                                                     |
+| `encryption_method`                                                                                                     | [Optional[models.SourceDb2EnterpriseSchemasEncryptionMethod]](../models/sourcedb2enterpriseschemasencryptionmethod.md)  | :heavy_minus_sign:                                                                                                      | N/A                                                                                                                     |
+| `ssl_certificate`                                                                                                       | *str*                                                                                                                   | :heavy_check_mark:                                                                                                      | Privacy Enhanced Mail (PEM) files are concatenated certificate containers frequently used in certificate installations. |

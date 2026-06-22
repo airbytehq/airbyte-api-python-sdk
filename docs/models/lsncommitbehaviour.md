@@ -2,6 +2,14 @@
 
 Determines when Airbyte should flush the LSN of processed WAL logs in the source database. `After loading Data in the destination` is default. If `While reading Data` is selected, in case of a downstream failure (while loading data into the destination), next sync would result in a full sync.
 
+## Example Usage
+
+```python
+from airbyte_api.models import LSNCommitBehaviour
+
+value = LSNCommitBehaviour.WHILE_READING_DATA
+```
+
 
 ## Values
 

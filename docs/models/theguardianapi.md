@@ -1,5 +1,13 @@
 # TheGuardianAPI
 
+## Example Usage
+
+```python
+from airbyte_api.models import TheGuardianAPI
+
+value = TheGuardianAPI.THE_GUARDIAN_API
+```
+
 
 ## Values
 

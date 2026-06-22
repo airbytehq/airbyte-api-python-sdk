@@ -1,5 +1,13 @@
 # SourceTiktokMarketingAuthType
 
+## Example Usage
+
+```python
+from airbyte_api.models import SourceTiktokMarketingAuthType
+
+value = SourceTiktokMarketingAuthType.OAUTH2_0
+```
+
 
 ## Values
 

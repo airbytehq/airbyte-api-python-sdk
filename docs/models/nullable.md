@@ -1,5 +1,13 @@
 # Nullable
 
+## Example Usage
+
+```python
+from airbyte_api.models import Nullable
+
+value = Nullable.TITLE
+```
+
 
 ## Values
 

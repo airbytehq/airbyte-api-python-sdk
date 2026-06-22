@@ -1,5 +1,13 @@
 # SearchCriteria
 
+## Example Usage
+
+```python
+from airbyte_api.models import SearchCriteria
+
+value = SearchCriteria.STARTS_WITH
+```
+
 
 ## Values
 

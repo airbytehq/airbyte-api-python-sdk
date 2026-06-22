@@ -2,6 +2,14 @@
 
 The region of the Dynamodb database
 
+## Example Usage
+
+```python
+from airbyte_api.models import SourceDynamodbDynamodbRegion
+
+value = SourceDynamodbDynamodbRegion.UNKNOWN
+```
+
 
 ## Values
 

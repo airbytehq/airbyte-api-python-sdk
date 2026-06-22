@@ -1,5 +1,13 @@
 # APIEndpointPrefix
 
+## Example Usage
+
+```python
+from airbyte_api.models import APIEndpointPrefix
+
+value = APIEndpointPrefix.API
+```
+
 
 ## Values
 

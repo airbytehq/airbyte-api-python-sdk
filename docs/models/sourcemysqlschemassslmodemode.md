@@ -1,5 +1,13 @@
 # SourceMysqlSchemasSslModeMode
 
+## Example Usage
+
+```python
+from airbyte_api.models import SourceMysqlSchemasSslModeMode
+
+value = SourceMysqlSchemasSslModeMode.VERIFY_CA
+```
+
 
 ## Values
 

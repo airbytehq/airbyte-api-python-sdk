@@ -1,5 +1,4 @@
 # Jobs
-(*jobs*)
 
 ## Overview
 
@@ -16,35 +15,37 @@ Cancel a running Job
 
 ### Example Usage
 
+<!-- UsageSnippet language="python" operationID="cancelJob" method="delete" path="/jobs/{jobId}" -->
 ```python
-import airbyte_api
-from airbyte_api import api, models
+from airbyte_api import AirbyteAPI, models
 
-s = airbyte_api.AirbyteAPI(
+
+with AirbyteAPI(
     security=models.Security(
         basic_auth=models.SchemeBasicAuth(
-            password='',
-            username='',
+            password="",
+            username="",
         ),
     ),
-)
+) as aa_client:
 
+    res = aa_client.jobs.cancel_job(request={
+        "job_id": 621441,
+    })
 
-res = s.jobs.cancel_job(request=api.CancelJobRequest(
-    job_id=801771,
-))
+    assert res.job_response is not None
 
-if res.job_response is not None:
-    # handle response
-    pass
+    # Handle response
+    print(res.job_response)
 
 ```
 
 ### Parameters
 
-| Parameter                                             | Type                                                  | Required                                              | Description                                           |
-| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
-| `request`                                             | [api.CancelJobRequest](../../api/canceljobrequest.md) | :heavy_check_mark:                                    | The request object to use for the request.            |
+| Parameter                                                           | Type                                                                | Required                                                            | Description                                                         |
+| ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
+| `request`                                                           | [api.CancelJobRequest](../../api/canceljobrequest.md)               | :heavy_check_mark:                                                  | The request object to use for the request.                          |
+| `retries`                                                           | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)    | :heavy_minus_sign:                                                  | Configuration to override the default retry behavior of the client. |
 
 ### Response
 
@@ -60,38 +61,67 @@ if res.job_response is not None:
 
 Trigger a sync or reset job of a connection
 
-### Example Usage
+### Example Usage: Job Creation Request Example
 
+<!-- UsageSnippet language="python" operationID="createJob" method="post" path="/jobs" example="Job Creation Request Example" -->
 ```python
-import airbyte_api
-from airbyte_api import models
+from airbyte_api import AirbyteAPI, models
 
-s = airbyte_api.AirbyteAPI(
+
+with AirbyteAPI(
     security=models.Security(
         basic_auth=models.SchemeBasicAuth(
-            password='',
-            username='',
+            password="",
+            username="",
         ),
     ),
-)
+) as aa_client:
+
+    res = aa_client.jobs.create_job(request={
+        "connection_id": "e735894a-e773-4938-969f-45f53957b75b",
+        "job_type": models.JobTypeEnum.SYNC,
+    })
+
+    assert res.job_response is not None
+
+    # Handle response
+    print(res.job_response)
+
+```
+### Example Usage: Job Creation Response Example
+
+<!-- UsageSnippet language="python" operationID="createJob" method="post" path="/jobs" example="Job Creation Response Example" -->
+```python
+from airbyte_api import AirbyteAPI, models
 
 
-res = s.jobs.create_job(request=models.JobCreateRequest(
-    connection_id='e735894a-e773-4938-969f-45f53957b75b',
-    job_type=models.JobTypeEnum.SYNC,
-))
+with AirbyteAPI(
+    security=models.Security(
+        basic_auth=models.SchemeBasicAuth(
+            password="",
+            username="",
+        ),
+    ),
+) as aa_client:
 
-if res.job_response is not None:
-    # handle response
-    pass
+    res = aa_client.jobs.create_job(request={
+        "connection_id": "18dccc91-0ab1-4f72-9ed7-0b8fc27c5826",
+        "job_type": models.JobTypeEnum.SYNC,
+    })
+
+    assert res.job_response is not None
+
+    # Handle response
+    print(res.job_response)
 
 ```
 
 ### Parameters
 
-| Parameter                                                   | Type                                                        | Required                                                    | Description                                                 |
-| ----------------------------------------------------------- | ----------------------------------------------------------- | ----------------------------------------------------------- | ----------------------------------------------------------- |
-| `request`                                                   | [models.JobCreateRequest](../../models/jobcreaterequest.md) | :heavy_check_mark:                                          | The request object to use for the request.                  |
+| Parameter                                                           | Type                                                                | Required                                                            | Description                                                         |
+| ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
+| `request`                                                           | [models.JobCreateRequest](../../models/jobcreaterequest.md)         | :heavy_check_mark:                                                  | The request object to use for the request.                          |
+| `retries`                                                           | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)    | :heavy_minus_sign:                                                  | Configuration to override the default retry behavior of the client. |
 
 ### Response
 
@@ -109,35 +139,37 @@ Get Job status and details
 
 ### Example Usage
 
+<!-- UsageSnippet language="python" operationID="getJob" method="get" path="/jobs/{jobId}" example="Job Get Response Example" -->
 ```python
-import airbyte_api
-from airbyte_api import api, models
+from airbyte_api import AirbyteAPI, models
 
-s = airbyte_api.AirbyteAPI(
+
+with AirbyteAPI(
     security=models.Security(
         basic_auth=models.SchemeBasicAuth(
-            password='',
-            username='',
+            password="",
+            username="",
         ),
     ),
-)
+) as aa_client:
 
+    res = aa_client.jobs.get_job(request={
+        "job_id": 245534,
+    })
 
-res = s.jobs.get_job(request=api.GetJobRequest(
-    job_id=131101,
-))
+    assert res.job_response is not None
 
-if res.job_response is not None:
-    # handle response
-    pass
+    # Handle response
+    print(res.job_response)
 
 ```
 
 ### Parameters
 
-| Parameter                                       | Type                                            | Required                                        | Description                                     |
-| ----------------------------------------------- | ----------------------------------------------- | ----------------------------------------------- | ----------------------------------------------- |
-| `request`                                       | [api.GetJobRequest](../../api/getjobrequest.md) | :heavy_check_mark:                              | The request object to use for the request.      |
+| Parameter                                                           | Type                                                                | Required                                                            | Description                                                         |
+| ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
+| `request`                                                           | [api.GetJobRequest](../../api/getjobrequest.md)                     | :heavy_check_mark:                                                  | The request object to use for the request.                          |
+| `retries`                                                           | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)    | :heavy_minus_sign:                                                  | Configuration to override the default retry behavior of the client. |
 
 ### Response
 
@@ -155,40 +187,42 @@ List Jobs by sync type
 
 ### Example Usage
 
+<!-- UsageSnippet language="python" operationID="listJobs" method="get" path="/jobs" example="Job List Response Example" -->
 ```python
-import airbyte_api
-import dateutil.parser
-from airbyte_api import api, models
+from airbyte_api import AirbyteAPI, models
+from airbyte_api.utils import parse_datetime
 
-s = airbyte_api.AirbyteAPI(
+
+with AirbyteAPI(
     security=models.Security(
         basic_auth=models.SchemeBasicAuth(
-            password='',
-            username='',
+            password="",
+            username="",
         ),
     ),
-)
+) as aa_client:
 
+    res = aa_client.jobs.list_jobs(request={
+        "created_at_end": parse_datetime("2024-11-05T02:58:38.581Z"),
+        "created_at_start": parse_datetime("2024-04-14T21:55:04.172Z"),
+        "order_by": "updatedAt|DESC",
+        "updated_at_end": parse_datetime("2025-11-15T07:41:11.221Z"),
+        "updated_at_start": parse_datetime("2026-10-05T17:24:30.764Z"),
+    })
 
-res = s.jobs.list_jobs(request=api.ListJobsRequest(
-    created_at_end=dateutil.parser.isoparse('1687450500000'),
-    created_at_start=dateutil.parser.isoparse('1687450500000'),
-    order_by='updatedAt|DESC',
-    updated_at_end=dateutil.parser.isoparse('1687450500000'),
-    updated_at_start=dateutil.parser.isoparse('1687450500000'),
-))
+    assert res.jobs_response is not None
 
-if res.jobs_response is not None:
-    # handle response
-    pass
+    # Handle response
+    print(res.jobs_response)
 
 ```
 
 ### Parameters
 
-| Parameter                                           | Type                                                | Required                                            | Description                                         |
-| --------------------------------------------------- | --------------------------------------------------- | --------------------------------------------------- | --------------------------------------------------- |
-| `request`                                           | [api.ListJobsRequest](../../api/listjobsrequest.md) | :heavy_check_mark:                                  | The request object to use for the request.          |
+| Parameter                                                           | Type                                                                | Required                                                            | Description                                                         |
+| ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
+| `request`                                                           | [api.ListJobsRequest](../../api/listjobsrequest.md)                 | :heavy_check_mark:                                                  | The request object to use for the request.                          |
+| `retries`                                                           | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)    | :heavy_minus_sign:                                                  | Configuration to override the default retry behavior of the client. |
 
 ### Response
 

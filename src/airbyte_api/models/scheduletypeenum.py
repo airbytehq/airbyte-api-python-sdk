@@ -5,5 +5,5 @@ from enum import Enum
 
 
 class ScheduleTypeEnum(str, Enum):
-    MANUAL = 'manual'
-    CRON = 'cron'
+    MANUAL = "manual"
+    CRON = "cron"

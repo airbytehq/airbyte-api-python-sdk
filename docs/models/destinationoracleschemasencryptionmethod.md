@@ -1,5 +1,13 @@
 # DestinationOracleSchemasEncryptionMethod
 
+## Example Usage
+
+```python
+from airbyte_api.models import DestinationOracleSchemasEncryptionMethod
+
+value = DestinationOracleSchemasEncryptionMethod.ENCRYPTED_VERIFY_CERTIFICATE
+```
+
 
 ## Values
 

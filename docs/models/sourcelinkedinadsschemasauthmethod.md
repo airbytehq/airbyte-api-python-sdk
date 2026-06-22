@@ -1,5 +1,13 @@
 # SourceLinkedinAdsSchemasAuthMethod
 
+## Example Usage
+
+```python
+from airbyte_api.models import SourceLinkedinAdsSchemasAuthMethod
+
+value = SourceLinkedinAdsSchemasAuthMethod.ACCESS_TOKEN
+```
+
 
 ## Values
 

@@ -2,6 +2,14 @@
 
 The interval of between prices queried.
 
+## Example Usage
+
+```python
+from airbyte_api.models import SourceYahooFinancePriceInterval
+
+value = SourceYahooFinancePriceInterval.ONEM
+```
+
 
 ## Values
 

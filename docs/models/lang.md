@@ -2,6 +2,14 @@
 
 You can use lang parameter to get the output in your language. The contents of the description field will be translated. See <a href="https://openweathermap.org/api/one-call-api#multi">here</a> for the list of supported languages.
 
+## Example Usage
+
+```python
+from airbyte_api.models import Lang
+
+value = Lang.AF
+```
+
 
 ## Values
 

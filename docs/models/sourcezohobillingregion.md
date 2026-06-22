@@ -1,5 +1,13 @@
 # SourceZohoBillingRegion
 
+## Example Usage
+
+```python
+from airbyte_api.models import SourceZohoBillingRegion
+
+value = SourceZohoBillingRegion.COM
+```
+
 
 ## Values
 

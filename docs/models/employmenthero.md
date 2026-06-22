@@ -1,5 +1,13 @@
 # EmploymentHero
 
+## Example Usage
+
+```python
+from airbyte_api.models import EmploymentHero
+
+value = EmploymentHero.EMPLOYMENT_HERO
+```
+
 
 ## Values
 

@@ -1,5 +1,13 @@
 # DestinationYellowbrickSchemasSSLModeSSLModes6Mode
 
+## Example Usage
+
+```python
+from airbyte_api.models import DestinationYellowbrickSchemasSSLModeSSLModes6Mode
+
+value = DestinationYellowbrickSchemasSSLModeSSLModes6Mode.VERIFY_FULL
+```
+
 
 ## Values
 

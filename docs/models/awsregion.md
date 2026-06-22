@@ -2,6 +2,14 @@
 
 Select the AWS Region.
 
+## Example Usage
+
+```python
+from airbyte_api.models import AWSRegion
+
+value = AWSRegion.AE
+```
+
 
 ## Values
 

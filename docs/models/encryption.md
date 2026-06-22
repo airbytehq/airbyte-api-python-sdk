@@ -1,17 +1,25 @@
 # Encryption
 
+The encryption method which is used when communicating with the database.
+
 
 ## Supported Types
 
-### `models.EncryptionAES`
+### `models.DestinationOracleUnencrypted`
 
 ```python
-value: models.EncryptionAES = /* values here */
+value: models.DestinationOracleUnencrypted = /* values here */
 ```
 
-### `models.EncryptionRSA`
+### `models.NativeNetworkEncryptionNNE`
 
 ```python
-value: models.EncryptionRSA = /* values here */
+value: models.NativeNetworkEncryptionNNE = /* values here */
+```
+
+### `models.TLSEncryptedVerifyCertificate`
+
+```python
+value: models.TLSEncryptedVerifyCertificate = /* values here */
 ```
 

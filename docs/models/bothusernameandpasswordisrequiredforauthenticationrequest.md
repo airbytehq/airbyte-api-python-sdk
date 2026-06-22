@@ -1,5 +1,13 @@
 # BothUsernameAndPasswordIsRequiredForAuthenticationRequest
 
+## Example Usage
+
+```python
+from airbyte_api.models import BothUsernameAndPasswordIsRequiredForAuthenticationRequest
+
+value = BothUsernameAndPasswordIsRequiredForAuthenticationRequest.USERNAME_PASSWORD
+```
+
 
 ## Values
 

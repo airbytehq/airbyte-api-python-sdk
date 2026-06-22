@@ -1,5 +1,13 @@
 # CloseCom
 
+## Example Usage
+
+```python
+from airbyte_api.models import CloseCom
+
+value = CloseCom.CLOSE_COM
+```
+
 
 ## Values
 

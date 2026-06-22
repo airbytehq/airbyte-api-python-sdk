@@ -1,5 +1,13 @@
 # SourceTypeformSchemasAuthType
 
+## Example Usage
+
+```python
+from airbyte_api.models import SourceTypeformSchemasAuthType
+
+value = SourceTypeformSchemasAuthType.ACCESS_TOKEN
+```
+
 
 ## Values
 

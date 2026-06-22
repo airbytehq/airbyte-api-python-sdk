@@ -1,5 +1,13 @@
 # DestinationGoogleSheetsAuthType
 
+## Example Usage
+
+```python
+from airbyte_api.models import DestinationGoogleSheetsAuthType
+
+value = DestinationGoogleSheetsAuthType.OAUTH2_0
+```
+
 
 ## Values
 

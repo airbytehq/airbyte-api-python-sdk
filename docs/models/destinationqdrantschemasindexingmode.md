@@ -1,5 +1,13 @@
 # DestinationQdrantSchemasIndexingMode
 
+## Example Usage
+
+```python
+from airbyte_api.models import DestinationQdrantSchemasIndexingMode
+
+value = DestinationQdrantSchemasIndexingMode.API_KEY_AUTH
+```
+
 
 ## Values
 

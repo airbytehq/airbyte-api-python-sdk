@@ -1,5 +1,13 @@
 # Glassfrog
 
+## Example Usage
+
+```python
+from airbyte_api.models import Glassfrog
+
+value = Glassfrog.GLASSFROG
+```
+
 
 ## Values
 

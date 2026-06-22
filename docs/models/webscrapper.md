@@ -1,5 +1,13 @@
 # WebScrapper
 
+## Example Usage
+
+```python
+from airbyte_api.models import WebScrapper
+
+value = WebScrapper.WEB_SCRAPPER
+```
+
 
 ## Values
 

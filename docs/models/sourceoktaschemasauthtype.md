@@ -1,5 +1,13 @@
 # SourceOktaSchemasAuthType
 
+## Example Usage
+
+```python
+from airbyte_api.models import SourceOktaSchemasAuthType
+
+value = SourceOktaSchemasAuthType.OAUTH2_0_PRIVATE_KEY
+```
+
 
 ## Values
 

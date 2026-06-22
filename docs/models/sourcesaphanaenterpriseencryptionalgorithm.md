@@ -2,6 +2,14 @@
 
 This parameter defines what encryption algorithm is used.
 
+## Example Usage
+
+```python
+from airbyte_api.models import SourceSapHanaEnterpriseEncryptionAlgorithm
+
+value = SourceSapHanaEnterpriseEncryptionAlgorithm.AES256
+```
+
 
 ## Values
 

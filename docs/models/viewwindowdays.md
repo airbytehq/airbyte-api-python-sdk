@@ -2,6 +2,14 @@
 
 Number of days to use as the conversion attribution window for a view action.
 
+## Example Usage
+
+```python
+from airbyte_api.models import ViewWindowDays
+
+value = ViewWindowDays.ZERO
+```
+
 
 ## Values
 
