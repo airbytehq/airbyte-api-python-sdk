@@ -1,0 +1,18 @@
+# Stub: Slash Command Dispatch
+#
+# This is a minimal placeholder to register the issue_comment trigger on main.
+# The full implementation will arrive in a follow-up PR.
+
+name: Slash Command Dispatch
+
+on:
+  issue_comment:
+    types: [created]
+
+jobs:
+  stub:
+    name: Stub (placeholder)
+    if: false
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "stub"
