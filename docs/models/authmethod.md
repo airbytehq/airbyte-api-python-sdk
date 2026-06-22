@@ -1,5 +1,13 @@
 # AuthMethod
 
+## Example Usage
+
+```python
+from airbyte_api.models import AuthMethod
+
+value = AuthMethod.OAUTH2_0
+```
+
 
 ## Values
 

@@ -1,5 +1,13 @@
 # SourceZohoCampaignDataCenter
 
+## Example Usage
+
+```python
+from airbyte_api.models import SourceZohoCampaignDataCenter
+
+value = SourceZohoCampaignDataCenter.COM
+```
+
 
 ## Values
 

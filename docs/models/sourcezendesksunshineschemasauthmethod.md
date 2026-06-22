@@ -1,5 +1,13 @@
 # SourceZendeskSunshineSchemasAuthMethod
 
+## Example Usage
+
+```python
+from airbyte_api.models import SourceZendeskSunshineSchemasAuthMethod
+
+value = SourceZendeskSunshineSchemasAuthMethod.API_TOKEN
+```
+
 
 ## Values
 

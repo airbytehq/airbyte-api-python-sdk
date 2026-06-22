@@ -1,5 +1,13 @@
 # SearchIn
 
+## Example Usage
+
+```python
+from airbyte_api.models import SearchIn
+
+value = SearchIn.TITLE
+```
+
 
 ## Values
 

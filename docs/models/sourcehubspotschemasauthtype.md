@@ -2,6 +2,14 @@
 
 Name of the credentials set
 
+## Example Usage
+
+```python
+from airbyte_api.models import SourceHubspotSchemasAuthType
+
+value = SourceHubspotSchemasAuthType.PRIVATE_APP_CREDENTIALS
+```
+
 
 ## Values
 

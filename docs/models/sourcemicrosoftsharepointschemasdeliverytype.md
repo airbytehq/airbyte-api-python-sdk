@@ -1,5 +1,13 @@
 # SourceMicrosoftSharepointSchemasDeliveryType
 
+## Example Usage
+
+```python
+from airbyte_api.models import SourceMicrosoftSharepointSchemasDeliveryType
+
+value = SourceMicrosoftSharepointSchemasDeliveryType.USE_FILE_TRANSFER
+```
+
 
 ## Values
 

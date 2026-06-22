@@ -4,6 +4,14 @@ The 2-letter ISO-639-1 code of the language you want to get headlines
 for. Possible options: ar de en es fr he it nl no pt ru se ud zh.
 
 
+## Example Usage
+
+```python
+from airbyte_api.models import Language
+
+value = Language.AR
+```
+
 
 ## Values
 

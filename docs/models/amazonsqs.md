@@ -1,5 +1,13 @@
 # AmazonSqs
 
+## Example Usage
+
+```python
+from airbyte_api.models import AmazonSqs
+
+value = AmazonSqs.AMAZON_SQS
+```
+
 
 ## Values
 

@@ -1,5 +1,13 @@
 # SourceSapHanaEnterpriseCursorMethod
 
+## Example Usage
+
+```python
+from airbyte_api.models import SourceSapHanaEnterpriseCursorMethod
+
+value = SourceSapHanaEnterpriseCursorMethod.USER_DEFINED
+```
+
 
 ## Values
 

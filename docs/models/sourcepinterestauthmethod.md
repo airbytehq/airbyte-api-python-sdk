@@ -1,5 +1,13 @@
 # SourcePinterestAuthMethod
 
+## Example Usage
+
+```python
+from airbyte_api.models import SourcePinterestAuthMethod
+
+value = SourcePinterestAuthMethod.OAUTH2_0
+```
+
 
 ## Values
 

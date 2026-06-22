@@ -1,5 +1,13 @@
 # HuggingFaceDatasets
 
+## Example Usage
+
+```python
+from airbyte_api.models import HuggingFaceDatasets
+
+value = HuggingFaceDatasets.HUGGING_FACE_DATASETS
+```
+
 
 ## Values
 

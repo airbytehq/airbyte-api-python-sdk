@@ -1,5 +1,13 @@
 # SourceTrustpilotAuthType
 
+## Example Usage
+
+```python
+from airbyte_api.models import SourceTrustpilotAuthType
+
+value = SourceTrustpilotAuthType.OAUTH2_0
+```
+
 
 ## Values
 

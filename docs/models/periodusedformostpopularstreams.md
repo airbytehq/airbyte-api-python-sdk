@@ -2,6 +2,14 @@
 
 Period of time (in days)
 
+## Example Usage
+
+```python
+from airbyte_api.models import PeriodUsedForMostPopularStreams
+
+value = PeriodUsedForMostPopularStreams.ONE
+```
+
 
 ## Values
 

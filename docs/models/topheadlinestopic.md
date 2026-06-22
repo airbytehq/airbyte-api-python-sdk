@@ -2,6 +2,14 @@
 
 This parameter allows you to change the category for the request.
 
+## Example Usage
+
+```python
+from airbyte_api.models import TopHeadlinesTopic
+
+value = TopHeadlinesTopic.BREAKING_NEWS
+```
+
 
 ## Values
 

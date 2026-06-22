@@ -1,5 +1,13 @@
 # Flattening
 
+## Example Usage
+
+```python
+from airbyte_api.models import Flattening
+
+value = Flattening.NO_FLATTENING
+```
+
 
 ## Values
 

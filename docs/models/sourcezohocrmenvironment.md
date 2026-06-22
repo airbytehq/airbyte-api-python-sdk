@@ -2,6 +2,14 @@
 
 Please choose the environment
 
+## Example Usage
+
+```python
+from airbyte_api.models import SourceZohoCrmEnvironment
+
+value = SourceZohoCrmEnvironment.PRODUCTION
+```
+
 
 ## Values
 

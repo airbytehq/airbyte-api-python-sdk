@@ -1,5 +1,13 @@
 # SourceMailchimpAuthType
 
+## Example Usage
+
+```python
+from airbyte_api.models import SourceMailchimpAuthType
+
+value = SourceMailchimpAuthType.OAUTH2_0
+```
+
 
 ## Values
 

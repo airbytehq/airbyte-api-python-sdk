@@ -1,5 +1,13 @@
 # DestinationMilvusSchemasIndexingMode
 
+## Example Usage
+
+```python
+from airbyte_api.models import DestinationMilvusSchemasIndexingMode
+
+value = DestinationMilvusSchemasIndexingMode.TOKEN
+```
+
 
 ## Values
 

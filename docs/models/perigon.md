@@ -1,5 +1,13 @@
 # Perigon
 
+## Example Usage
+
+```python
+from airbyte_api.models import Perigon
+
+value = Perigon.PERIGON
+```
+
 
 ## Values
 

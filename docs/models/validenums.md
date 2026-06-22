@@ -1,5 +1,13 @@
 # Validenums
 
+## Example Usage
+
+```python
+from airbyte_api.models import Validenums
+
+value = Validenums.SHEETCREATED_AT
+```
+
 
 ## Values
 

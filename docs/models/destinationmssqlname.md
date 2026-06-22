@@ -1,5 +1,13 @@
 # DestinationMssqlName
 
+## Example Usage
+
+```python
+from airbyte_api.models import DestinationMssqlName
+
+value = DestinationMssqlName.ENCRYPTED_TRUST_SERVER_CERTIFICATE
+```
+
 
 ## Values
 

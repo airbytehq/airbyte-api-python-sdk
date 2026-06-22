@@ -2,6 +2,14 @@
 
 The hashing algorithm to use.
 
+## Example Usage
+
+```python
+from airbyte_api.models import HashingMethod
+
+value = HashingMethod.MD2
+```
+
 
 ## Values
 

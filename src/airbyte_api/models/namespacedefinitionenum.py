@@ -6,6 +6,7 @@ from enum import Enum
 
 class NamespaceDefinitionEnum(str, Enum):
     r"""Define the location where the data will be stored in the destination"""
-    SOURCE = 'source'
-    DESTINATION = 'destination'
-    CUSTOM_FORMAT = 'custom_format'
+
+    SOURCE = "source"
+    DESTINATION = "destination"
+    CUSTOM_FORMAT = "custom_format"

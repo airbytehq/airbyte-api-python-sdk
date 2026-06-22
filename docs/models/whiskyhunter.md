@@ -1,5 +1,13 @@
 # WhiskyHunter
 
+## Example Usage
+
+```python
+from airbyte_api.models import WhiskyHunter
+
+value = WhiskyHunter.WHISKY_HUNTER
+```
+
 
 ## Values
 

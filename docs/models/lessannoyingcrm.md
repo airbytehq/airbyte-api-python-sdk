@@ -1,5 +1,13 @@
 # LessAnnoyingCrm
 
+## Example Usage
+
+```python
+from airbyte_api.models import LessAnnoyingCrm
+
+value = LessAnnoyingCrm.LESS_ANNOYING_CRM
+```
+
 
 ## Values
 

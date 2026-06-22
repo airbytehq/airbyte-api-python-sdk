@@ -1,5 +1,13 @@
 # Entity
 
+## Example Usage
+
+```python
+from airbyte_api.models import Entity
+
+value = Entity.PARTIES
+```
+
 
 ## Values
 

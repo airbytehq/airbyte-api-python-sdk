@@ -1,5 +1,13 @@
 # ConnectionStatusEnum
 
+## Example Usage
+
+```python
+from airbyte_api.models import ConnectionStatusEnum
+
+value = ConnectionStatusEnum.ACTIVE
+```
+
 
 ## Values
 
@@ -8,3 +16,4 @@
 | `ACTIVE`     | active       |
 | `INACTIVE`   | inactive     |
 | `DEPRECATED` | deprecated   |
+| `LOCKED`     | locked       |

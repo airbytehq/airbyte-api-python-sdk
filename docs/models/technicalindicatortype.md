@@ -2,6 +2,14 @@
 
 One of DEMA, EMA, SMA, WMA, RSI, TEMA, Williams, ADX 
 
+## Example Usage
+
+```python
+from airbyte_api.models import TechnicalIndicatorType
+
+value = TechnicalIndicatorType.DEMA
+```
+
 
 ## Values
 

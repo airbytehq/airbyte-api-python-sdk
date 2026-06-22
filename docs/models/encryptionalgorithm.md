@@ -2,6 +2,14 @@
 
 This parameter defines the database encryption algorithm.
 
+## Example Usage
+
+```python
+from airbyte_api.models import EncryptionAlgorithm
+
+value = EncryptionAlgorithm.AES256
+```
+
 
 ## Values
 

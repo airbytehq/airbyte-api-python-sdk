@@ -1,5 +1,13 @@
 # TargetsType
 
+## Example Usage
+
+```python
+from airbyte_api.models import TargetsType
+
+value = TargetsType.WSN_STATION_NUMBERS
+```
+
 
 ## Values
 

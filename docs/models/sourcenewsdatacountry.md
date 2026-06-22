@@ -1,5 +1,13 @@
 # SourceNewsdataCountry
 
+## Example Usage
+
+```python
+from airbyte_api.models import SourceNewsdataCountry
+
+value = SourceNewsdataCountry.AR
+```
+
 
 ## Values
 

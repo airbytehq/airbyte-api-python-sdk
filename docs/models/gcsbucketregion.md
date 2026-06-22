@@ -2,6 +2,14 @@
 
 Select a Region of the GCS Bucket. Read more <a href="https://cloud.google.com/storage/docs/locations">here</a>.
 
+## Example Usage
+
+```python
+from airbyte_api.models import GCSBucketRegion
+
+value = GCSBucketRegion.NORTHAMERICA_NORTHEAST1
+```
+
 
 ## Values
 

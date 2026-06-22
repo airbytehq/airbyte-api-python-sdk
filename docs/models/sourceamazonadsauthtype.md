@@ -1,5 +1,13 @@
 # SourceAmazonAdsAuthType
 
+## Example Usage
+
+```python
+from airbyte_api.models import SourceAmazonAdsAuthType
+
+value = SourceAmazonAdsAuthType.OAUTH2_0
+```
+
 
 ## Values
 

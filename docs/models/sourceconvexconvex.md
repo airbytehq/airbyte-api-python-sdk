@@ -1,5 +1,13 @@
 # SourceConvexConvex
 
+## Example Usage
+
+```python
+from airbyte_api.models import SourceConvexConvex
+
+value = SourceConvexConvex.CONVEX
+```
+
 
 ## Values
 

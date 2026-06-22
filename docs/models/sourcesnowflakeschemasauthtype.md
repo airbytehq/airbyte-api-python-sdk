@@ -1,5 +1,13 @@
 # SourceSnowflakeSchemasAuthType
 
+## Example Usage
+
+```python
+from airbyte_api.models import SourceSnowflakeSchemasAuthType
+
+value = SourceSnowflakeSchemasAuthType.USERNAME_PASSWORD
+```
+
 
 ## Values
 

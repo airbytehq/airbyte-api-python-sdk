@@ -5,7 +5,8 @@ from enum import Enum
 
 
 class StreamMapperType(str, Enum):
-    HASHING = 'hashing'
-    FIELD_RENAMING = 'field-renaming'
-    ROW_FILTERING = 'row-filtering'
-    ENCRYPTION = 'encryption'
+    HASHING = "hashing"
+    FIELD_RENAMING = "field-renaming"
+    ROW_FILTERING = "row-filtering"
+    ENCRYPTION = "encryption"
+    FIELD_FILTERING = "field-filtering"

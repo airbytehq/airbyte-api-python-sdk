@@ -1,5 +1,13 @@
 # DestinationTeradataSchemasSSLModeSSLModes5Mode
 
+## Example Usage
+
+```python
+from airbyte_api.models import DestinationTeradataSchemasSSLModeSSLModes5Mode
+
+value = DestinationTeradataSchemasSSLModeSSLModes5Mode.VERIFY_CA
+```
+
 
 ## Values
 

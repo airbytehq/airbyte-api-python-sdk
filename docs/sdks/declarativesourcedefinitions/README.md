@@ -1,5 +1,4 @@
 # DeclarativeSourceDefinitions
-(*declarative_source_definitions*)
 
 ## Overview
 
@@ -17,31 +16,32 @@ Create a declarative source definition.
 
 ### Example Usage
 
+<!-- UsageSnippet language="python" operationID="createDeclarativeSourceDefinition" method="post" path="/workspaces/{workspaceId}/definitions/declarative_sources" -->
 ```python
-import airbyte_api
-from airbyte_api import api, models
+from airbyte_api import AirbyteAPI, models
 
-s = airbyte_api.AirbyteAPI(
+
+with AirbyteAPI(
     security=models.Security(
         basic_auth=models.SchemeBasicAuth(
-            password='',
-            username='',
+            password="",
+            username="",
         ),
     ),
-)
+) as aa_client:
 
+    res = aa_client.declarative_source_definitions.create_declarative_source_definition(request={
+        "create_declarative_source_definition_request": {
+            "manifest": "<value>",
+            "name": "<value>",
+        },
+        "workspace_id": "9f09326e-38fd-40ea-8871-6aaf7655a237",
+    })
 
-res = s.declarative_source_definitions.create_declarative_source_definition(request=api.CreateDeclarativeSourceDefinitionRequest(
-    create_declarative_source_definition_request=models.CreateDeclarativeSourceDefinitionRequest(
-        manifest='<value>',
-        name='<value>',
-    ),
-    workspace_id='2d054f48-a68c-4d16-b04d-bb444d47c285',
-))
+    assert res.declarative_source_definition_response is not None
 
-if res.declarative_source_definition_response is not None:
-    # handle response
-    pass
+    # Handle response
+    print(res.declarative_source_definition_response)
 
 ```
 
@@ -50,6 +50,7 @@ if res.declarative_source_definition_response is not None:
 | Parameter                                                                                             | Type                                                                                                  | Required                                                                                              | Description                                                                                           |
 | ----------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- |
 | `request`                                                                                             | [api.CreateDeclarativeSourceDefinitionRequest](../../api/createdeclarativesourcedefinitionrequest.md) | :heavy_check_mark:                                                                                    | The request object to use for the request.                                                            |
+| `retries`                                                                                             | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                                      | :heavy_minus_sign:                                                                                    | Configuration to override the default retry behavior of the client.                                   |
 
 ### Response
 
@@ -67,28 +68,29 @@ Delete a declarative source definition.
 
 ### Example Usage
 
+<!-- UsageSnippet language="python" operationID="deleteDeclarativeSourceDefinition" method="delete" path="/workspaces/{workspaceId}/definitions/declarative_sources/{definitionId}" -->
 ```python
-import airbyte_api
-from airbyte_api import api, models
+from airbyte_api import AirbyteAPI, models
 
-s = airbyte_api.AirbyteAPI(
+
+with AirbyteAPI(
     security=models.Security(
         basic_auth=models.SchemeBasicAuth(
-            password='',
-            username='',
+            password="",
+            username="",
         ),
     ),
-)
+) as aa_client:
 
+    res = aa_client.declarative_source_definitions.delete_declarative_source_definition(request={
+        "definition_id": "0cf3a1f6-1af6-4ae7-ae77-4bd1b32041f4",
+        "workspace_id": "5bed2604-75d1-40cf-a858-64e430840198",
+    })
 
-res = s.declarative_source_definitions.delete_declarative_source_definition(request=api.DeleteDeclarativeSourceDefinitionRequest(
-    definition_id='26cd06ea-5caa-47b9-98a2-1d217049557d',
-    workspace_id='f7cdc65f-5255-43d5-a6be-8fee673091f3',
-))
+    assert res.declarative_source_definition_response is not None
 
-if res.declarative_source_definition_response is not None:
-    # handle response
-    pass
+    # Handle response
+    print(res.declarative_source_definition_response)
 
 ```
 
@@ -97,6 +99,7 @@ if res.declarative_source_definition_response is not None:
 | Parameter                                                                                             | Type                                                                                                  | Required                                                                                              | Description                                                                                           |
 | ----------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- |
 | `request`                                                                                             | [api.DeleteDeclarativeSourceDefinitionRequest](../../api/deletedeclarativesourcedefinitionrequest.md) | :heavy_check_mark:                                                                                    | The request object to use for the request.                                                            |
+| `retries`                                                                                             | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                                      | :heavy_minus_sign:                                                                                    | Configuration to override the default retry behavior of the client.                                   |
 
 ### Response
 
@@ -114,28 +117,29 @@ Get declarative source definition details.
 
 ### Example Usage
 
+<!-- UsageSnippet language="python" operationID="getDeclarativeSourceDefinition" method="get" path="/workspaces/{workspaceId}/definitions/declarative_sources/{definitionId}" -->
 ```python
-import airbyte_api
-from airbyte_api import api, models
+from airbyte_api import AirbyteAPI, models
 
-s = airbyte_api.AirbyteAPI(
+
+with AirbyteAPI(
     security=models.Security(
         basic_auth=models.SchemeBasicAuth(
-            password='',
-            username='',
+            password="",
+            username="",
         ),
     ),
-)
+) as aa_client:
 
+    res = aa_client.declarative_source_definitions.get_declarative_source_definition(request={
+        "definition_id": "ce3288f2-b43c-40d0-ae8e-864c7a844485",
+        "workspace_id": "2a50feae-cf51-42e9-b777-b8d52ea2704e",
+    })
 
-res = s.declarative_source_definitions.get_declarative_source_definition(request=api.GetDeclarativeSourceDefinitionRequest(
-    definition_id='a003b7d3-efd4-4d7e-8ea6-469e9fe7871f',
-    workspace_id='3855d0f6-8cfb-44c2-ac49-0c3965c034bd',
-))
+    assert res.declarative_source_definition_response is not None
 
-if res.declarative_source_definition_response is not None:
-    # handle response
-    pass
+    # Handle response
+    print(res.declarative_source_definition_response)
 
 ```
 
@@ -144,6 +148,7 @@ if res.declarative_source_definition_response is not None:
 | Parameter                                                                                       | Type                                                                                            | Required                                                                                        | Description                                                                                     |
 | ----------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- |
 | `request`                                                                                       | [api.GetDeclarativeSourceDefinitionRequest](../../api/getdeclarativesourcedefinitionrequest.md) | :heavy_check_mark:                                                                              | The request object to use for the request.                                                      |
+| `retries`                                                                                       | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                                | :heavy_minus_sign:                                                                              | Configuration to override the default retry behavior of the client.                             |
 
 ### Response
 
@@ -161,27 +166,28 @@ List declarative source definitions.
 
 ### Example Usage
 
+<!-- UsageSnippet language="python" operationID="listDeclarativeSourceDefinitions" method="get" path="/workspaces/{workspaceId}/definitions/declarative_sources" -->
 ```python
-import airbyte_api
-from airbyte_api import api, models
+from airbyte_api import AirbyteAPI, models
 
-s = airbyte_api.AirbyteAPI(
+
+with AirbyteAPI(
     security=models.Security(
         basic_auth=models.SchemeBasicAuth(
-            password='',
-            username='',
+            password="",
+            username="",
         ),
     ),
-)
+) as aa_client:
 
+    res = aa_client.declarative_source_definitions.list_declarative_source_definitions(request={
+        "workspace_id": "76222ecd-532e-4ab1-94e3-b96d1abd686e",
+    })
 
-res = s.declarative_source_definitions.list_declarative_source_definitions(request=api.ListDeclarativeSourceDefinitionsRequest(
-    workspace_id='23bc0a4f-72b3-4d91-abe3-3f32d8a49dfc',
-))
+    assert res.declarative_source_definitions_response is not None
 
-if res.declarative_source_definitions_response is not None:
-    # handle response
-    pass
+    # Handle response
+    print(res.declarative_source_definitions_response)
 
 ```
 
@@ -190,6 +196,7 @@ if res.declarative_source_definitions_response is not None:
 | Parameter                                                                                           | Type                                                                                                | Required                                                                                            | Description                                                                                         |
 | --------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------- |
 | `request`                                                                                           | [api.ListDeclarativeSourceDefinitionsRequest](../../api/listdeclarativesourcedefinitionsrequest.md) | :heavy_check_mark:                                                                                  | The request object to use for the request.                                                          |
+| `retries`                                                                                           | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                                    | :heavy_minus_sign:                                                                                  | Configuration to override the default retry behavior of the client.                                 |
 
 ### Response
 
@@ -207,31 +214,32 @@ Update declarative source definition details.
 
 ### Example Usage
 
+<!-- UsageSnippet language="python" operationID="updateDeclarativeSourceDefinition" method="put" path="/workspaces/{workspaceId}/definitions/declarative_sources/{definitionId}" -->
 ```python
-import airbyte_api
-from airbyte_api import api, models
+from airbyte_api import AirbyteAPI, models
 
-s = airbyte_api.AirbyteAPI(
+
+with AirbyteAPI(
     security=models.Security(
         basic_auth=models.SchemeBasicAuth(
-            password='',
-            username='',
+            password="",
+            username="",
         ),
     ),
-)
+) as aa_client:
 
+    res = aa_client.declarative_source_definitions.update_declarative_source_definition(request={
+        "update_declarative_source_definition_request": {
+            "manifest": "<value>",
+        },
+        "definition_id": "c97eb9ab-47b5-4609-8d65-0a62f74ca843",
+        "workspace_id": "38cb8d27-592a-4438-be38-823abf06a84e",
+    })
 
-res = s.declarative_source_definitions.update_declarative_source_definition(request=api.UpdateDeclarativeSourceDefinitionRequest(
-    update_declarative_source_definition_request=models.UpdateDeclarativeSourceDefinitionRequest(
-        manifest='<value>',
-    ),
-    definition_id='66066427-c293-4cbf-b72e-b31a72a46545',
-    workspace_id='87f1ccdb-71b2-401c-8f60-cac1f2a2da80',
-))
+    assert res.declarative_source_definition_response is not None
 
-if res.declarative_source_definition_response is not None:
-    # handle response
-    pass
+    # Handle response
+    print(res.declarative_source_definition_response)
 
 ```
 
@@ -240,6 +248,7 @@ if res.declarative_source_definition_response is not None:
 | Parameter                                                                                             | Type                                                                                                  | Required                                                                                              | Description                                                                                           |
 | ----------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- |
 | `request`                                                                                             | [api.UpdateDeclarativeSourceDefinitionRequest](../../api/updatedeclarativesourcedefinitionrequest.md) | :heavy_check_mark:                                                                                    | The request object to use for the request.                                                            |
+| `retries`                                                                                             | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                                      | :heavy_minus_sign:                                                                                    | Configuration to override the default retry behavior of the client.                                   |
 
 ### Response
 

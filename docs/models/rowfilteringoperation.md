@@ -3,15 +3,15 @@
 
 ## Supported Types
 
-### `models.Equal`
+### `models.RowFilteringOperationEqual`
 
 ```python
-value: models.Equal = /* values here */
+value: models.RowFilteringOperationEqual = /* values here */
 ```
 
-### `models.Not`
+### `models.RowFilteringOperationNot`
 
 ```python
-value: models.Not = /* values here */
+value: models.RowFilteringOperationNot = /* values here */
 ```
 

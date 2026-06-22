@@ -1,5 +1,13 @@
 # Fastly
 
+## Example Usage
+
+```python
+from airbyte_api.models import Fastly
+
+value = Fastly.FASTLY
+```
+
 
 ## Values
 

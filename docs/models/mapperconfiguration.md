@@ -5,27 +5,33 @@ The values required to configure the mapper.
 
 ## Supported Types
 
-### `models.Hashing`
+### `models.HashingMapperConfiguration`
 
 ```python
-value: models.Hashing = /* values here */
+value: models.HashingMapperConfiguration = /* values here */
 ```
 
-### `models.FieldRenaming`
+### `models.FieldFilteringMapperConfiguration`
 
 ```python
-value: models.FieldRenaming = /* values here */
+value: models.FieldFilteringMapperConfiguration = /* values here */
 ```
 
-### `models.RowFiltering`
+### `models.FieldRenamingMapperConfiguration`
 
 ```python
-value: models.RowFiltering = /* values here */
+value: models.FieldRenamingMapperConfiguration = /* values here */
 ```
 
-### `models.Encryption`
+### `models.RowFilteringMapperConfiguration`
 
 ```python
-value: models.Encryption = /* values here */
+value: models.RowFilteringMapperConfiguration = /* values here */
+```
+
+### `models.EncryptionMapperConfiguration`
+
+```python
+value: models.EncryptionMapperConfiguration = /* values here */
 ```
 

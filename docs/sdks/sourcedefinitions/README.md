@@ -1,5 +1,4 @@
 # SourceDefinitions
-(*source_definitions*)
 
 ## Overview
 
@@ -17,32 +16,33 @@ Create a source definition.
 
 ### Example Usage
 
+<!-- UsageSnippet language="python" operationID="createSourceDefinition" method="post" path="/workspaces/{workspaceId}/definitions/sources" -->
 ```python
-import airbyte_api
-from airbyte_api import api, models
+from airbyte_api import AirbyteAPI, models
 
-s = airbyte_api.AirbyteAPI(
+
+with AirbyteAPI(
     security=models.Security(
         basic_auth=models.SchemeBasicAuth(
-            password='',
-            username='',
+            password="",
+            username="",
         ),
     ),
-)
+) as aa_client:
 
+    res = aa_client.source_definitions.create_source_definition(request={
+        "create_definition_request": {
+            "docker_image_tag": "<value>",
+            "docker_repository": "<value>",
+            "name": "<value>",
+        },
+        "workspace_id": "8198a6e0-f056-42f7-8427-5ff6e06d6b3c",
+    })
 
-res = s.source_definitions.create_source_definition(request=api.CreateSourceDefinitionRequest(
-    create_definition_request=models.CreateDefinitionRequest(
-        docker_image_tag='<value>',
-        docker_repository='<value>',
-        name='<value>',
-    ),
-    workspace_id='06dbde72-63a8-4326-8f4b-67eb708f9ad6',
-))
+    assert res.definition_response is not None
 
-if res.definition_response is not None:
-    # handle response
-    pass
+    # Handle response
+    print(res.definition_response)
 
 ```
 
@@ -51,6 +51,7 @@ if res.definition_response is not None:
 | Parameter                                                                       | Type                                                                            | Required                                                                        | Description                                                                     |
 | ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- |
 | `request`                                                                       | [api.CreateSourceDefinitionRequest](../../api/createsourcedefinitionrequest.md) | :heavy_check_mark:                                                              | The request object to use for the request.                                      |
+| `retries`                                                                       | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                | :heavy_minus_sign:                                                              | Configuration to override the default retry behavior of the client.             |
 
 ### Response
 
@@ -68,28 +69,29 @@ Delete a source definition.
 
 ### Example Usage
 
+<!-- UsageSnippet language="python" operationID="deleteSourceDefinition" method="delete" path="/workspaces/{workspaceId}/definitions/sources/{definitionId}" -->
 ```python
-import airbyte_api
-from airbyte_api import api, models
+from airbyte_api import AirbyteAPI, models
 
-s = airbyte_api.AirbyteAPI(
+
+with AirbyteAPI(
     security=models.Security(
         basic_auth=models.SchemeBasicAuth(
-            password='',
-            username='',
+            password="",
+            username="",
         ),
     ),
-)
+) as aa_client:
 
+    res = aa_client.source_definitions.delete_source_definition(request={
+        "definition_id": "21000375-129d-49b4-8099-23a142e25559",
+        "workspace_id": "674a8870-5757-45f8-89f2-a765895d7bcc",
+    })
 
-res = s.source_definitions.delete_source_definition(request=api.DeleteSourceDefinitionRequest(
-    definition_id='fddaf9d9-7e09-433e-8e25-895734ad8809',
-    workspace_id='9789f575-f200-4155-b7ec-0750094af77f',
-))
+    assert res.definition_response is not None
 
-if res.definition_response is not None:
-    # handle response
-    pass
+    # Handle response
+    print(res.definition_response)
 
 ```
 
@@ -98,6 +100,7 @@ if res.definition_response is not None:
 | Parameter                                                                       | Type                                                                            | Required                                                                        | Description                                                                     |
 | ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- |
 | `request`                                                                       | [api.DeleteSourceDefinitionRequest](../../api/deletesourcedefinitionrequest.md) | :heavy_check_mark:                                                              | The request object to use for the request.                                      |
+| `retries`                                                                       | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                | :heavy_minus_sign:                                                              | Configuration to override the default retry behavior of the client.             |
 
 ### Response
 
@@ -115,28 +118,29 @@ Get source definition details.
 
 ### Example Usage
 
+<!-- UsageSnippet language="python" operationID="getSourceDefinition" method="get" path="/workspaces/{workspaceId}/definitions/sources/{definitionId}" -->
 ```python
-import airbyte_api
-from airbyte_api import api, models
+from airbyte_api import AirbyteAPI, models
 
-s = airbyte_api.AirbyteAPI(
+
+with AirbyteAPI(
     security=models.Security(
         basic_auth=models.SchemeBasicAuth(
-            password='',
-            username='',
+            password="",
+            username="",
         ),
     ),
-)
+) as aa_client:
 
+    res = aa_client.source_definitions.get_source_definition(request={
+        "definition_id": "ccda715b-b5a9-4c56-9c95-7285878c622f",
+        "workspace_id": "ea535916-6a24-4a05-b039-7da73c74b7c5",
+    })
 
-res = s.source_definitions.get_source_definition(request=api.GetSourceDefinitionRequest(
-    definition_id='b6405f71-0930-4f13-a99b-6b1b0a882853',
-    workspace_id='e76093e5-5cd8-4b87-ab32-c620a178a1c3',
-))
+    assert res.definition_response is not None
 
-if res.definition_response is not None:
-    # handle response
-    pass
+    # Handle response
+    print(res.definition_response)
 
 ```
 
@@ -145,6 +149,7 @@ if res.definition_response is not None:
 | Parameter                                                                 | Type                                                                      | Required                                                                  | Description                                                               |
 | ------------------------------------------------------------------------- | ------------------------------------------------------------------------- | ------------------------------------------------------------------------- | ------------------------------------------------------------------------- |
 | `request`                                                                 | [api.GetSourceDefinitionRequest](../../api/getsourcedefinitionrequest.md) | :heavy_check_mark:                                                        | The request object to use for the request.                                |
+| `retries`                                                                 | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)          | :heavy_minus_sign:                                                        | Configuration to override the default retry behavior of the client.       |
 
 ### Response
 
@@ -162,27 +167,28 @@ List source definitions.
 
 ### Example Usage
 
+<!-- UsageSnippet language="python" operationID="listSourceDefinitions" method="get" path="/workspaces/{workspaceId}/definitions/sources" -->
 ```python
-import airbyte_api
-from airbyte_api import api, models
+from airbyte_api import AirbyteAPI, models
 
-s = airbyte_api.AirbyteAPI(
+
+with AirbyteAPI(
     security=models.Security(
         basic_auth=models.SchemeBasicAuth(
-            password='',
-            username='',
+            password="",
+            username="",
         ),
     ),
-)
+) as aa_client:
 
+    res = aa_client.source_definitions.list_source_definitions(request={
+        "workspace_id": "d85ea6af-c9b0-461e-8a87-d7d38bfb62a3",
+    })
 
-res = s.source_definitions.list_source_definitions(request=api.ListSourceDefinitionsRequest(
-    workspace_id='fb60a310-f38b-47cb-9633-01f0cf740c18',
-))
+    assert res.definitions_response is not None
 
-if res.definitions_response is not None:
-    # handle response
-    pass
+    # Handle response
+    print(res.definitions_response)
 
 ```
 
@@ -191,6 +197,7 @@ if res.definitions_response is not None:
 | Parameter                                                                     | Type                                                                          | Required                                                                      | Description                                                                   |
 | ----------------------------------------------------------------------------- | ----------------------------------------------------------------------------- | ----------------------------------------------------------------------------- | ----------------------------------------------------------------------------- |
 | `request`                                                                     | [api.ListSourceDefinitionsRequest](../../api/listsourcedefinitionsrequest.md) | :heavy_check_mark:                                                            | The request object to use for the request.                                    |
+| `retries`                                                                     | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)              | :heavy_minus_sign:                                                            | Configuration to override the default retry behavior of the client.           |
 
 ### Response
 
@@ -208,32 +215,33 @@ Update source definition details.
 
 ### Example Usage
 
+<!-- UsageSnippet language="python" operationID="updateSourceDefinition" method="put" path="/workspaces/{workspaceId}/definitions/sources/{definitionId}" -->
 ```python
-import airbyte_api
-from airbyte_api import api, models
+from airbyte_api import AirbyteAPI, models
 
-s = airbyte_api.AirbyteAPI(
+
+with AirbyteAPI(
     security=models.Security(
         basic_auth=models.SchemeBasicAuth(
-            password='',
-            username='',
+            password="",
+            username="",
         ),
     ),
-)
+) as aa_client:
 
+    res = aa_client.source_definitions.update_source_definition(request={
+        "update_definition_request": {
+            "docker_image_tag": "<value>",
+            "name": "<value>",
+        },
+        "definition_id": "d83c1bd9-0e8c-47a0-ba61-d9fff4bea47c",
+        "workspace_id": "d00d0938-69b2-48ac-878f-e92689d1c3b8",
+    })
 
-res = s.source_definitions.update_source_definition(request=api.UpdateSourceDefinitionRequest(
-    update_definition_request=models.UpdateDefinitionRequest(
-        docker_image_tag='<value>',
-        name='<value>',
-    ),
-    definition_id='6eaf6fbb-3e08-4f73-9ff1-de62553abd76',
-    workspace_id='b6bd5c36-3814-4489-97fb-3e48c1e0fdea',
-))
+    assert res.definition_response is not None
 
-if res.definition_response is not None:
-    # handle response
-    pass
+    # Handle response
+    print(res.definition_response)
 
 ```
 
@@ -242,6 +250,7 @@ if res.definition_response is not None:
 | Parameter                                                                       | Type                                                                            | Required                                                                        | Description                                                                     |
 | ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- |
 | `request`                                                                       | [api.UpdateSourceDefinitionRequest](../../api/updatesourcedefinitionrequest.md) | :heavy_check_mark:                                                              | The request object to use for the request.                                      |
+| `retries`                                                                       | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                | :heavy_minus_sign:                                                              | Configuration to override the default retry behavior of the client.             |
 
 ### Response
 

@@ -2,6 +2,14 @@
 
 Babelforce region
 
+## Example Usage
+
+```python
+from airbyte_api.models import SourceBabelforceRegion
+
+value = SourceBabelforceRegion.SERVICES
+```
+
 
 ## Values
 

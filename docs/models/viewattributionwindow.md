@@ -2,6 +2,14 @@
 
 Attribution window for views.
 
+## Example Usage
+
+```python
+from airbyte_api.models import ViewAttributionWindow
+
+value = ViewAttributionWindow.ONE_HOUR
+```
+
 
 ## Values
 

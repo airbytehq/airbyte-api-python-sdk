@@ -2,6 +2,14 @@
 
 Environment specifies where the data will come from.
 
+## Example Usage
+
+```python
+from airbyte_api.models import SourceBraintreeEnvironment
+
+value = SourceBraintreeEnvironment.DEVELOPMENT
+```
+
 
 ## Values
 

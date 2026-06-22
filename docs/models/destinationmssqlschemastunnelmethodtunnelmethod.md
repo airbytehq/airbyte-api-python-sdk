@@ -1,5 +1,13 @@
 # DestinationMssqlSchemasTunnelMethodTunnelMethod
 
+## Example Usage
+
+```python
+from airbyte_api.models import DestinationMssqlSchemasTunnelMethodTunnelMethod
+
+value = DestinationMssqlSchemasTunnelMethodTunnelMethod.SSH_PASSWORD_AUTH
+```
+
 
 ## Values
 

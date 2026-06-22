@@ -1,5 +1,13 @@
 # ValueType
 
+## Example Usage
+
+```python
+from airbyte_api.models import ValueType
+
+value = ValueType.INT64_VALUE
+```
+
 
 ## Values
 

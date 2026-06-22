@@ -1,5 +1,13 @@
 # SourceMssqlMethod
 
+## Example Usage
+
+```python
+from airbyte_api.models import SourceMssqlMethod
+
+value = SourceMssqlMethod.CDC
+```
+
 
 ## Values
 
