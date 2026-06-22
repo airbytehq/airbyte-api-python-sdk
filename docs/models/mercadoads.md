@@ -1,5 +1,13 @@
 # MercadoAds
 
+## Example Usage
+
+```python
+from airbyte_api.models import MercadoAds
+
+value = MercadoAds.MERCADO_ADS
+```
+
 
 ## Values
 

@@ -7,6 +7,14 @@ The time window size (in days) for fetching financial events data in chunks. Opt
 
 Select a step size that matches your data volume to optimize syncing speed and API performance.
 
+## Example Usage
+
+```python
+from airbyte_api.models import FinancialEventsStepSizeInDays
+
+value = FinancialEventsStepSizeInDays.ONE
+```
+
 
 ## Values
 

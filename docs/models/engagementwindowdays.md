@@ -2,6 +2,14 @@
 
 Number of days to use as the conversion attribution window for an engagement action.
 
+## Example Usage
+
+```python
+from airbyte_api.models import EngagementWindowDays
+
+value = EngagementWindowDays.ZERO
+```
+
 
 ## Values
 

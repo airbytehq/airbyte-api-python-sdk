@@ -5,5 +5,5 @@ from enum import Enum
 
 
 class EncryptionMapperAlgorithm(str, Enum):
-    RSA = 'RSA'
-    AES = 'AES'
+    RSA = "RSA"
+    AES = "AES"

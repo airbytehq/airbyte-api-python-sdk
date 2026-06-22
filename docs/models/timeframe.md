@@ -2,6 +2,14 @@
 
 For example 1min, 5min, 15min, 30min, 1hour, 4hour
 
+## Example Usage
+
+```python
+from airbyte_api.models import TimeFrame
+
+value = TimeFrame.ONEMIN
+```
+
 
 ## Values
 

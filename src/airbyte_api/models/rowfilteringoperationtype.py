@@ -5,5 +5,5 @@ from enum import Enum
 
 
 class RowFilteringOperationType(str, Enum):
-    EQUAL = 'EQUAL'
-    NOT = 'NOT'
+    EQUAL = "EQUAL"
+    NOT = "NOT"

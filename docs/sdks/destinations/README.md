@@ -1,5 +1,4 @@
 # Destinations
-(*destinations*)
 
 ## Overview
 
@@ -16,37 +15,66 @@
 
 Creates a destination given a name, workspace id, and a json blob containing the configuration for the source.
 
-### Example Usage
+### Example Usage: Destination Creation Request Example
 
+<!-- UsageSnippet language="python" operationID="createDestination" method="post" path="/destinations" example="Destination Creation Request Example" -->
 ```python
-import airbyte_api
-from airbyte_api import models
+from airbyte_api import AirbyteAPI, models
 
-s = airbyte_api.AirbyteAPI(
+
+with AirbyteAPI(
     security=models.Security(
         basic_auth=models.SchemeBasicAuth(
-            password='',
-            username='',
+            password="",
+            username="",
         ),
     ),
-)
+) as aa_client:
+
+    res = aa_client.destinations.create_destination(request=models.DestinationCreateRequest(
+        configuration=models.DestinationElasticsearch(
+            endpoint="<value>",
+            upsert=True,
+        ),
+        name="Postgres",
+        workspace_id="2155ae5a-de39-4808-af6a-16fe7b8b4ed2",
+    ))
+
+    assert res.destination_response is not None
+
+    # Handle response
+    print(res.destination_response)
+
+```
+### Example Usage: Destination Creation Response Example
+
+<!-- UsageSnippet language="python" operationID="createDestination" method="post" path="/destinations" example="Destination Creation Response Example" -->
+```python
+from airbyte_api import AirbyteAPI, models
 
 
-res = s.destinations.create_destination(request=models.DestinationCreateRequest(
-    configuration=models.DestinationOracle(
-        host='instructive-mainstream.com',
-        sid='<id>',
-        username='Robert.Legros98',
-        port=1521,
-        schema='airbyte',
+with AirbyteAPI(
+    security=models.Security(
+        basic_auth=models.SchemeBasicAuth(
+            password="",
+            username="",
+        ),
     ),
-    name='Postgres',
-    workspace_id='2155ae5a-de39-4808-af6a-16fe7b8b4ed2',
-))
+) as aa_client:
 
-if res.destination_response is not None:
-    # handle response
-    pass
+    res = aa_client.destinations.create_destination(request=models.DestinationCreateRequest(
+        configuration=models.DestinationTimeplus(
+            apikey="<value>",
+            endpoint="https://us-west-2.timeplus.cloud/workspace_id",
+        ),
+        name="<value>",
+        workspace_id="dc693cc0-960d-4c6c-9d1b-05e8bf0c96ba",
+    ))
+
+    assert res.destination_response is not None
+
+    # Handle response
+    print(res.destination_response)
 
 ```
 
@@ -55,6 +83,7 @@ if res.destination_response is not None:
 | Parameter                                                                   | Type                                                                        | Required                                                                    | Description                                                                 |
 | --------------------------------------------------------------------------- | --------------------------------------------------------------------------- | --------------------------------------------------------------------------- | --------------------------------------------------------------------------- |
 | `request`                                                                   | [models.DestinationCreateRequest](../../models/destinationcreaterequest.md) | :heavy_check_mark:                                                          | The request object to use for the request.                                  |
+| `retries`                                                                   | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)            | :heavy_minus_sign:                                                          | Configuration to override the default retry behavior of the client.         |
 
 ### Response
 
@@ -72,27 +101,28 @@ Delete a Destination
 
 ### Example Usage
 
+<!-- UsageSnippet language="python" operationID="deleteDestination" method="delete" path="/destinations/{destinationId}" -->
 ```python
-import airbyte_api
-from airbyte_api import api, models
+from airbyte_api import AirbyteAPI, models
 
-s = airbyte_api.AirbyteAPI(
+
+with AirbyteAPI(
     security=models.Security(
         basic_auth=models.SchemeBasicAuth(
-            password='',
-            username='',
+            password="",
+            username="",
         ),
     ),
-)
+) as aa_client:
 
+    res = aa_client.destinations.delete_destination(request={
+        "destination_id": "<value>",
+    })
 
-res = s.destinations.delete_destination(request=api.DeleteDestinationRequest(
-    destination_id='<value>',
-))
+    assert res is not None
 
-if res is not None:
-    # handle response
-    pass
+    # Handle response
+    print(res)
 
 ```
 
@@ -101,6 +131,7 @@ if res is not None:
 | Parameter                                                             | Type                                                                  | Required                                                              | Description                                                           |
 | --------------------------------------------------------------------- | --------------------------------------------------------------------- | --------------------------------------------------------------------- | --------------------------------------------------------------------- |
 | `request`                                                             | [api.DeleteDestinationRequest](../../api/deletedestinationrequest.md) | :heavy_check_mark:                                                    | The request object to use for the request.                            |
+| `retries`                                                             | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)      | :heavy_minus_sign:                                                    | Configuration to override the default retry behavior of the client.   |
 
 ### Response
 
@@ -118,35 +149,37 @@ Get Destination details
 
 ### Example Usage
 
+<!-- UsageSnippet language="python" operationID="getDestination" method="get" path="/destinations/{destinationId}" example="Destination Get Response Example" -->
 ```python
-import airbyte_api
-from airbyte_api import api, models
+from airbyte_api import AirbyteAPI, models
 
-s = airbyte_api.AirbyteAPI(
+
+with AirbyteAPI(
     security=models.Security(
         basic_auth=models.SchemeBasicAuth(
-            password='',
-            username='',
+            password="",
+            username="",
         ),
     ),
-)
+) as aa_client:
 
+    res = aa_client.destinations.get_destination(request={
+        "destination_id": "<value>",
+    })
 
-res = s.destinations.get_destination(request=api.GetDestinationRequest(
-    destination_id='<value>',
-))
+    assert res.destination_response is not None
 
-if res.destination_response is not None:
-    # handle response
-    pass
+    # Handle response
+    print(res.destination_response)
 
 ```
 
 ### Parameters
 
-| Parameter                                                       | Type                                                            | Required                                                        | Description                                                     |
-| --------------------------------------------------------------- | --------------------------------------------------------------- | --------------------------------------------------------------- | --------------------------------------------------------------- |
-| `request`                                                       | [api.GetDestinationRequest](../../api/getdestinationrequest.md) | :heavy_check_mark:                                              | The request object to use for the request.                      |
+| Parameter                                                           | Type                                                                | Required                                                            | Description                                                         |
+| ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
+| `request`                                                           | [api.GetDestinationRequest](../../api/getdestinationrequest.md)     | :heavy_check_mark:                                                  | The request object to use for the request.                          |
+| `retries`                                                           | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)    | :heavy_minus_sign:                                                  | Configuration to override the default retry behavior of the client. |
 
 ### Response
 
@@ -164,25 +197,26 @@ List destinations
 
 ### Example Usage
 
+<!-- UsageSnippet language="python" operationID="listDestinations" method="get" path="/destinations" -->
 ```python
-import airbyte_api
-from airbyte_api import api, models
+from airbyte_api import AirbyteAPI, models
 
-s = airbyte_api.AirbyteAPI(
+
+with AirbyteAPI(
     security=models.Security(
         basic_auth=models.SchemeBasicAuth(
-            password='',
-            username='',
+            password="",
+            username="",
         ),
     ),
-)
+) as aa_client:
 
+    res = aa_client.destinations.list_destinations(request={})
 
-res = s.destinations.list_destinations(request=api.ListDestinationsRequest())
+    assert res.destinations_response is not None
 
-if res.destinations_response is not None:
-    # handle response
-    pass
+    # Handle response
+    print(res.destinations_response)
 
 ```
 
@@ -191,6 +225,7 @@ if res.destinations_response is not None:
 | Parameter                                                           | Type                                                                | Required                                                            | Description                                                         |
 | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
 | `request`                                                           | [api.ListDestinationsRequest](../../api/listdestinationsrequest.md) | :heavy_check_mark:                                                  | The request object to use for the request.                          |
+| `retries`                                                           | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)    | :heavy_minus_sign:                                                  | Configuration to override the default retry behavior of the client. |
 
 ### Response
 
@@ -206,38 +241,72 @@ if res.destinations_response is not None:
 
 Update a Destination
 
-### Example Usage
+### Example Usage: Destination Update Request Example
 
+<!-- UsageSnippet language="python" operationID="patchDestination" method="patch" path="/destinations/{destinationId}" example="Destination Update Request Example" -->
 ```python
-import airbyte_api
-from airbyte_api import api, models
+from airbyte_api import AirbyteAPI, api, models
 
-s = airbyte_api.AirbyteAPI(
+
+with AirbyteAPI(
     security=models.Security(
         basic_auth=models.SchemeBasicAuth(
-            password='',
-            username='',
+            password="",
+            username="",
         ),
     ),
-)
+) as aa_client:
+
+    res = aa_client.destinations.patch_destination(request=api.PatchDestinationRequest(
+        destination_patch_request=models.DestinationPatchRequest(
+            configuration=models.DestinationDuckdb(
+                destination_path="/local/destination.duckdb",
+            ),
+            name="My Destination",
+        ),
+        destination_id="<value>",
+    ))
+
+    assert res.destination_response is not None
+
+    # Handle response
+    print(res.destination_response)
+
+```
+### Example Usage: Destination Update Response Example
+
+<!-- UsageSnippet language="python" operationID="patchDestination" method="patch" path="/destinations/{destinationId}" example="Destination Update Response Example" -->
+```python
+from airbyte_api import AirbyteAPI, api, models
 
 
-res = s.destinations.patch_destination(request=api.PatchDestinationRequest(
-    destination_id='<value>',
-    destination_patch_request=models.DestinationPatchRequest(
-        configuration=models.DestinationDevNull(
-            test_destination=models.Failing(
-                num_messages=992227,
-                test_destination_type=models.DestinationDevNullSchemasTestDestinationTestDestinationType.FAILING,
+with AirbyteAPI(
+    security=models.Security(
+        basic_auth=models.SchemeBasicAuth(
+            password="",
+            username="",
+        ),
+    ),
+) as aa_client:
+
+    res = aa_client.destinations.patch_destination(request=api.PatchDestinationRequest(
+        destination_patch_request=models.DestinationPatchRequest(
+            configuration=models.DestinationHubspot(
+                credentials=models.OAuth(
+                    client_id="<id>",
+                    client_secret="<value>",
+                    refresh_token="<value>",
+                    type=models.Type.O_AUTH,
+                ),
             ),
         ),
-        name='My Destination',
-    ),
-))
+        destination_id="<value>",
+    ))
 
-if res.destination_response is not None:
-    # handle response
-    pass
+    assert res.destination_response is not None
+
+    # Handle response
+    print(res.destination_response)
 
 ```
 
@@ -246,6 +315,7 @@ if res.destination_response is not None:
 | Parameter                                                           | Type                                                                | Required                                                            | Description                                                         |
 | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
 | `request`                                                           | [api.PatchDestinationRequest](../../api/patchdestinationrequest.md) | :heavy_check_mark:                                                  | The request object to use for the request.                          |
+| `retries`                                                           | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)    | :heavy_minus_sign:                                                  | Configuration to override the default retry behavior of the client. |
 
 ### Response
 
@@ -261,44 +331,84 @@ if res.destination_response is not None:
 
 Update a Destination and fully overwrite it
 
-### Example Usage
+### Example Usage: Destination Update Request Example
 
+<!-- UsageSnippet language="python" operationID="putDestination" method="put" path="/destinations/{destinationId}" example="Destination Update Request Example" -->
 ```python
-import airbyte_api
-from airbyte_api import api, models
+from airbyte_api import AirbyteAPI, api, models
 
-s = airbyte_api.AirbyteAPI(
+
+with AirbyteAPI(
     security=models.Security(
         basic_auth=models.SchemeBasicAuth(
-            password='',
-            username='',
+            password="",
+            username="",
         ),
     ),
-)
+) as aa_client:
 
-
-res = s.destinations.put_destination(request=api.PutDestinationRequest(
-    destination_id='<value>',
-    destination_put_request=models.DestinationPutRequest(
-        configuration=models.DestinationConvex(
-            access_key='<value>',
-            deployment_url='https://cluttered-owl-337.convex.cloud',
+    res = aa_client.destinations.put_destination(request=api.PutDestinationRequest(
+        destination_put_request=models.DestinationPutRequest(
+            configuration=models.DestinationSftpJSON(
+                destination_path="/json_data",
+                host="slight-consistency.info",
+                password="TRmq8ozhIC5jwDd",
+                port=22,
+                username="Easton_Wilderman",
+            ),
+            name="My Destination",
         ),
-        name='My Destination',
-    ),
-))
+        destination_id="<value>",
+    ))
 
-if res.destination_response is not None:
-    # handle response
-    pass
+    assert res.destination_response is not None
+
+    # Handle response
+    print(res.destination_response)
+
+```
+### Example Usage: Destination Update Response Example
+
+<!-- UsageSnippet language="python" operationID="putDestination" method="put" path="/destinations/{destinationId}" example="Destination Update Response Example" -->
+```python
+from airbyte_api import AirbyteAPI, api, models
+
+
+with AirbyteAPI(
+    security=models.Security(
+        basic_auth=models.SchemeBasicAuth(
+            password="",
+            username="",
+        ),
+    ),
+) as aa_client:
+
+    res = aa_client.destinations.put_destination(request=api.PutDestinationRequest(
+        destination_put_request=models.DestinationPutRequest(
+            configuration=models.DestinationSalesforce(
+                client_id="<id>",
+                client_secret="<value>",
+                is_sandbox=False,
+                refresh_token="<value>",
+            ),
+            name="<value>",
+        ),
+        destination_id="<value>",
+    ))
+
+    assert res.destination_response is not None
+
+    # Handle response
+    print(res.destination_response)
 
 ```
 
 ### Parameters
 
-| Parameter                                                       | Type                                                            | Required                                                        | Description                                                     |
-| --------------------------------------------------------------- | --------------------------------------------------------------- | --------------------------------------------------------------- | --------------------------------------------------------------- |
-| `request`                                                       | [api.PutDestinationRequest](../../api/putdestinationrequest.md) | :heavy_check_mark:                                              | The request object to use for the request.                      |
+| Parameter                                                           | Type                                                                | Required                                                            | Description                                                         |
+| ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
+| `request`                                                           | [api.PutDestinationRequest](../../api/putdestinationrequest.md)     | :heavy_check_mark:                                                  | The request object to use for the request.                          |
+| `retries`                                                           | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)    | :heavy_minus_sign:                                                  | Configuration to override the default retry behavior of the client. |
 
 ### Response
 

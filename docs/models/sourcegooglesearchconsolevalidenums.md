@@ -2,6 +2,14 @@
 
 An enumeration of dimensions.
 
+## Example Usage
+
+```python
+from airbyte_api.models import SourceGoogleSearchConsoleValidEnums
+
+value = SourceGoogleSearchConsoleValidEnums.COUNTRY
+```
+
 
 ## Values
 

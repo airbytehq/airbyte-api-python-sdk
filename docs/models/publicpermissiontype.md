@@ -2,6 +2,14 @@
 
 Subset of `PermissionType` (removing `instance_admin`), could be used in public-api.
 
+## Example Usage
+
+```python
+from airbyte_api.models import PublicPermissionType
+
+value = PublicPermissionType.ORGANIZATION_ADMIN
+```
+
 
 ## Values
 

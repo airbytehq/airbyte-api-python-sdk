@@ -1,5 +1,13 @@
 # DestinationClickhouseTunnelMethod
 
+## Example Usage
+
+```python
+from airbyte_api.models import DestinationClickhouseTunnelMethod
+
+value = DestinationClickhouseTunnelMethod.SSH_KEY_AUTH
+```
+
 
 ## Values
 

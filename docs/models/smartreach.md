@@ -1,5 +1,13 @@
 # Smartreach
 
+## Example Usage
+
+```python
+from airbyte_api.models import Smartreach
+
+value = Smartreach.SMARTREACH
+```
+
 
 ## Values
 

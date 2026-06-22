@@ -1,5 +1,13 @@
 # SourceGoogleDriveMode
 
+## Example Usage
+
+```python
+from airbyte_api.models import SourceGoogleDriveMode
+
+value = SourceGoogleDriveMode.LOCAL
+```
+
 
 ## Values
 

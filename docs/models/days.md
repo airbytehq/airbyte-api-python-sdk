@@ -3,6 +3,14 @@
 The number of days of data for market chart.
 
 
+## Example Usage
+
+```python
+from airbyte_api.models import Days
+
+value = Days.ONE
+```
+
 
 ## Values
 

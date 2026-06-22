@@ -2,6 +2,14 @@
 
 Partition data by cursor fields when a cursor field is a date
 
+## Example Usage
+
+```python
+from airbyte_api.models import ChooseHowToPartitionData
+
+value = ChooseHowToPartitionData.NO_PARTITIONING
+```
+
 
 ## Values
 

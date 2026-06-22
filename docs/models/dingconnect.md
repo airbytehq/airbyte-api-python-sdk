@@ -1,5 +1,13 @@
 # DingConnect
 
+## Example Usage
+
+```python
+from airbyte_api.models import DingConnect
+
+value = DingConnect.DING_CONNECT
+```
+
 
 ## Values
 

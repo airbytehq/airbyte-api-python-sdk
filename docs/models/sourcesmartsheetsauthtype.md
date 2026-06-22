@@ -1,5 +1,13 @@
 # SourceSmartsheetsAuthType
 
+## Example Usage
+
+```python
+from airbyte_api.models import SourceSmartsheetsAuthType
+
+value = SourceSmartsheetsAuthType.OAUTH2_0
+```
+
 
 ## Values
 

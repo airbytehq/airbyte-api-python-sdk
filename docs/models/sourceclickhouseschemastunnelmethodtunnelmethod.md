@@ -2,6 +2,14 @@
 
 Connect through a jump server tunnel host using username and password authentication
 
+## Example Usage
+
+```python
+from airbyte_api.models import SourceClickhouseSchemasTunnelMethodTunnelMethod
+
+value = SourceClickhouseSchemasTunnelMethodTunnelMethod.SSH_PASSWORD_AUTH
+```
+
 
 ## Values
 

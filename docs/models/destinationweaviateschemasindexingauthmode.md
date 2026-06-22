@@ -1,5 +1,13 @@
 # DestinationWeaviateSchemasIndexingAuthMode
 
+## Example Usage
+
+```python
+from airbyte_api.models import DestinationWeaviateSchemasIndexingAuthMode
+
+value = DestinationWeaviateSchemasIndexingAuthMode.USERNAME_PASSWORD
+```
+
 
 ## Values
 

@@ -1,5 +1,13 @@
 # SourceNewsdataLanguage
 
+## Example Usage
+
+```python
+from airbyte_api.models import SourceNewsdataLanguage
+
+value = SourceNewsdataLanguage.BE
+```
+
 
 ## Values
 

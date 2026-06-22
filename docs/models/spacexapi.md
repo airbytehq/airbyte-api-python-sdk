@@ -1,5 +1,13 @@
 # SpacexAPI
 
+## Example Usage
+
+```python
+from airbyte_api.models import SpacexAPI
+
+value = SpacexAPI.SPACEX_API
+```
+
 
 ## Values
 

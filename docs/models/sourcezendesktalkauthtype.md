@@ -1,5 +1,13 @@
 # SourceZendeskTalkAuthType
 
+## Example Usage
+
+```python
+from airbyte_api.models import SourceZendeskTalkAuthType
+
+value = SourceZendeskTalkAuthType.OAUTH2_0
+```
+
 
 ## Values
 

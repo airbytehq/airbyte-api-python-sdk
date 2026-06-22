@@ -1,5 +1,13 @@
 # AwsCloudtrail
 
+## Example Usage
+
+```python
+from airbyte_api.models import AwsCloudtrail
+
+value = AwsCloudtrail.AWS_CLOUDTRAIL
+```
+
 
 ## Values
 

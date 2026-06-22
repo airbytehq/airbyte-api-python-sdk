@@ -1,5 +1,13 @@
 # GoogleClassroom
 
+## Example Usage
+
+```python
+from airbyte_api.models import GoogleClassroom
+
+value = GoogleClassroom.GOOGLE_CLASSROOM
+```
+
 
 ## Values
 

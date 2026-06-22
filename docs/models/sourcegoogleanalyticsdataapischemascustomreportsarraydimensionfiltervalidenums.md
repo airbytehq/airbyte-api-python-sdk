@@ -1,5 +1,13 @@
 # SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayDimensionFilterValidEnums
 
+## Example Usage
+
+```python
+from airbyte_api.models import SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayDimensionFilterValidEnums
+
+value = SourceGoogleAnalyticsDataAPISchemasCustomReportsArrayDimensionFilterValidEnums.OPERATION_UNSPECIFIED
+```
+
 
 ## Values
 

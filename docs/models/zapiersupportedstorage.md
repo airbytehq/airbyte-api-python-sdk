@@ -1,5 +1,13 @@
 # ZapierSupportedStorage
 
+## Example Usage
+
+```python
+from airbyte_api.models import ZapierSupportedStorage
+
+value = ZapierSupportedStorage.ZAPIER_SUPPORTED_STORAGE
+```
+
 
 ## Values
 

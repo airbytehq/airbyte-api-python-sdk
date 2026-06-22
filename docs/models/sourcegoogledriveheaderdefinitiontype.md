@@ -1,5 +1,13 @@
 # SourceGoogleDriveHeaderDefinitionType
 
+## Example Usage
+
+```python
+from airbyte_api.models import SourceGoogleDriveHeaderDefinitionType
+
+value = SourceGoogleDriveHeaderDefinitionType.FROM_CSV
+```
+
 
 ## Values
 

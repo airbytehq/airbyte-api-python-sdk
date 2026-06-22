@@ -1,5 +1,13 @@
 # ScheduleTypeWithBasicEnum
 
+## Example Usage
+
+```python
+from airbyte_api.models import ScheduleTypeWithBasicEnum
+
+value = ScheduleTypeWithBasicEnum.MANUAL
+```
+
 
 ## Values
 

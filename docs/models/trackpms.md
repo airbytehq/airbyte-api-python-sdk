@@ -1,5 +1,13 @@
 # TrackPms
 
+## Example Usage
+
+```python
+from airbyte_api.models import TrackPms
+
+value = TrackPms.TRACK_PMS
+```
+
 
 ## Values
 

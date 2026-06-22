@@ -2,6 +2,14 @@
 
 Size of the time
 
+## Example Usage
+
+```python
+from airbyte_api.models import TimeAggregates
+
+value = TimeAggregates.MINUTE
+```
+
 
 ## Values
 

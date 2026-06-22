@@ -1,5 +1,13 @@
 # DevNull
 
+## Example Usage
+
+```python
+from airbyte_api.models import DevNull
+
+value = DevNull.DEV_NULL
+```
+
 
 ## Values
 

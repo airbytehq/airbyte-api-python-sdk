@@ -1,5 +1,13 @@
 # SourceMicrosoftSharepointDeliveryType
 
+## Example Usage
+
+```python
+from airbyte_api.models import SourceMicrosoftSharepointDeliveryType
+
+value = SourceMicrosoftSharepointDeliveryType.USE_RECORDS_TRANSFER
+```
+
 
 ## Values
 

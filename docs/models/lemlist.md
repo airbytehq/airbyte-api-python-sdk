@@ -1,5 +1,13 @@
 # Lemlist
 
+## Example Usage
+
+```python
+from airbyte_api.models import Lemlist
+
+value = Lemlist.LEMLIST
+```
+
 
 ## Values
 

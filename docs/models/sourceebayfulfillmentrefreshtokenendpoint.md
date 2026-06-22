@@ -1,5 +1,13 @@
 # SourceEbayFulfillmentRefreshTokenEndpoint
 
+## Example Usage
+
+```python
+from airbyte_api.models import SourceEbayFulfillmentRefreshTokenEndpoint
+
+value = SourceEbayFulfillmentRefreshTokenEndpoint.HTTPS_API_EBAY_COM_IDENTITY_V1_OAUTH2_TOKEN
+```
+
 
 ## Values
 

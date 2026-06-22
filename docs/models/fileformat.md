@@ -2,6 +2,14 @@
 
 The Format of the file which should be replicated (Warning: some formats may be experimental, please refer to the docs).
 
+## Example Usage
+
+```python
+from airbyte_api.models import FileFormat
+
+value = FileFormat.CSV
+```
+
 
 ## Values
 

@@ -1,5 +1,4 @@
 # Users
-(*users*)
 
 ## Overview
 
@@ -13,27 +12,28 @@ Organization Admin user can list all users within the same organization. Also pr
 
 ### Example Usage
 
+<!-- UsageSnippet language="python" operationID="listUsersWithinAnOrganization" method="get" path="/users" -->
 ```python
-import airbyte_api
-from airbyte_api import api, models
+from airbyte_api import AirbyteAPI, models
 
-s = airbyte_api.AirbyteAPI(
+
+with AirbyteAPI(
     security=models.Security(
         basic_auth=models.SchemeBasicAuth(
-            password='',
-            username='',
+            password="",
+            username="",
         ),
     ),
-)
+) as aa_client:
 
+    res = aa_client.users.list_users_within_an_organization(request={
+        "organization_id": "<value>",
+    })
 
-res = s.users.list_users_within_an_organization(request=api.ListUsersWithinAnOrganizationRequest(
-    organization_id='<value>',
-))
+    assert res.users_response is not None
 
-if res.users_response is not None:
-    # handle response
-    pass
+    # Handle response
+    print(res.users_response)
 
 ```
 
@@ -42,6 +42,7 @@ if res.users_response is not None:
 | Parameter                                                                                     | Type                                                                                          | Required                                                                                      | Description                                                                                   |
 | --------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- |
 | `request`                                                                                     | [api.ListUsersWithinAnOrganizationRequest](../../api/listuserswithinanorganizationrequest.md) | :heavy_check_mark:                                                                            | The request object to use for the request.                                                    |
+| `retries`                                                                                     | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                              | :heavy_minus_sign:                                                                            | Configuration to override the default retry behavior of the client.                           |
 
 ### Response
 

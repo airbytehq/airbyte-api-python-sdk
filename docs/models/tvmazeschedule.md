@@ -1,5 +1,13 @@
 # TvmazeSchedule
 
+## Example Usage
+
+```python
+from airbyte_api.models import TvmazeSchedule
+
+value = TvmazeSchedule.TVMAZE_SCHEDULE
+```
+
 
 ## Values
 

@@ -1,5 +1,13 @@
 # DestinationMssqlSchemasName
 
+## Example Usage
+
+```python
+from airbyte_api.models import DestinationMssqlSchemasName
+
+value = DestinationMssqlSchemasName.ENCRYPTED_VERIFY_CERTIFICATE
+```
+
 
 ## Values
 

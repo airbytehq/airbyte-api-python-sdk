@@ -1,5 +1,13 @@
 # ConnectionSyncModeEnum
 
+## Example Usage
+
+```python
+from airbyte_api.models import ConnectionSyncModeEnum
+
+value = ConnectionSyncModeEnum.FULL_REFRESH_OVERWRITE
+```
+
 
 ## Values
 

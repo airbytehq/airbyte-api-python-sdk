@@ -1,5 +1,13 @@
 # SnowflakeCortex
 
+## Example Usage
+
+```python
+from airbyte_api.models import SnowflakeCortex
+
+value = SnowflakeCortex.SNOWFLAKE_CORTEX
+```
+
 
 ## Values
 

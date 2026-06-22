@@ -1,5 +1,13 @@
 # SourceSquareSchemasAuthType
 
+## Example Usage
+
+```python
+from airbyte_api.models import SourceSquareSchemasAuthType
+
+value = SourceSquareSchemasAuthType.API_KEY
+```
+
 
 ## Values
 

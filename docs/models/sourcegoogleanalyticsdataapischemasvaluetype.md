@@ -1,5 +1,13 @@
 # SourceGoogleAnalyticsDataAPISchemasValueType
 
+## Example Usage
+
+```python
+from airbyte_api.models import SourceGoogleAnalyticsDataAPISchemasValueType
+
+value = SourceGoogleAnalyticsDataAPISchemasValueType.INT64_VALUE
+```
+
 
 ## Values
 

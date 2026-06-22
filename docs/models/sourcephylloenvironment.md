@@ -2,6 +2,14 @@
 
 The environment for the API (e.g., 'api.sandbox', 'api.staging', 'api')
 
+## Example Usage
+
+```python
+from airbyte_api.models import SourcePhylloEnvironment
+
+value = SourcePhylloEnvironment.API_SANDBOX
+```
+
 
 ## Values
 

@@ -1,5 +1,13 @@
 # LoggingType
 
+## Example Usage
+
+```python
+from airbyte_api.models import LoggingType
+
+value = LoggingType.FIRST_N
+```
+
 
 ## Values
 

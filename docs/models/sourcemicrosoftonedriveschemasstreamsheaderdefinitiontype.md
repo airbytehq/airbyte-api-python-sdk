@@ -1,5 +1,13 @@
 # SourceMicrosoftOnedriveSchemasStreamsHeaderDefinitionType
 
+## Example Usage
+
+```python
+from airbyte_api.models import SourceMicrosoftOnedriveSchemasStreamsHeaderDefinitionType
+
+value = SourceMicrosoftOnedriveSchemasStreamsHeaderDefinitionType.USER_PROVIDED
+```
+
 
 ## Values
 

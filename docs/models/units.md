@@ -2,6 +2,14 @@
 
 Units of measurement. standard, metric and imperial units are available. If you do not use the units parameter, standard units will be applied by default.
 
+## Example Usage
+
+```python
+from airbyte_api.models import Units
+
+value = Units.STANDARD
+```
+
 
 ## Values
 

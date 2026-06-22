@@ -2,6 +2,14 @@
 
 Split code in suitable places based on the programming language
 
+## Example Usage
+
+```python
+from airbyte_api.models import DestinationPineconeLanguage
+
+value = DestinationPineconeLanguage.CPP
+```
+
 
 ## Values
 

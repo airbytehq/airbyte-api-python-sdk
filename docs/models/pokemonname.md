@@ -2,6 +2,14 @@
 
 Pokemon requested from the API.
 
+## Example Usage
+
+```python
+from airbyte_api.models import PokemonName
+
+value = PokemonName.BULBASAUR
+```
+
 
 ## Values
 

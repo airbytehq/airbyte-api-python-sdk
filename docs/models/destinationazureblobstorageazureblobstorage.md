@@ -1,5 +1,13 @@
 # DestinationAzureBlobStorageAzureBlobStorage
 
+## Example Usage
+
+```python
+from airbyte_api.models import DestinationAzureBlobStorageAzureBlobStorage
+
+value = DestinationAzureBlobStorageAzureBlobStorage.AZURE_BLOB_STORAGE
+```
+
 
 ## Values
 

@@ -1,5 +1,13 @@
 # SourceZendeskChatCredentials
 
+## Example Usage
+
+```python
+from airbyte_api.models import SourceZendeskChatCredentials
+
+value = SourceZendeskChatCredentials.OAUTH2_0
+```
+
 
 ## Values
 

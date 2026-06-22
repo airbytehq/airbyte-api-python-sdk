@@ -1,5 +1,13 @@
 # ZohoInventory
 
+## Example Usage
+
+```python
+from airbyte_api.models import ZohoInventory
+
+value = ZohoInventory.ZOHO_INVENTORY
+```
+
 
 ## Values
 

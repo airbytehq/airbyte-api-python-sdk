@@ -1,5 +1,13 @@
 # SourceMixpanelSchemasOptionTitle
 
+## Example Usage
+
+```python
+from airbyte_api.models import SourceMixpanelSchemasOptionTitle
+
+value = SourceMixpanelSchemasOptionTitle.PROJECT_SECRET
+```
+
 
 ## Values
 

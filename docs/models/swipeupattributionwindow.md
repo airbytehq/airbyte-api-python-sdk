@@ -2,6 +2,14 @@
 
 Attribution window for swipe ups.
 
+## Example Usage
+
+```python
+from airbyte_api.models import SwipeUpAttributionWindow
+
+value = SwipeUpAttributionWindow.ONE_DAY
+```
+
 
 ## Values
 

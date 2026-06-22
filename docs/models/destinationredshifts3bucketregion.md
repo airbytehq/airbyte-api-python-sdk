@@ -2,6 +2,14 @@
 
 The region of the S3 staging bucket.
 
+## Example Usage
+
+```python
+from airbyte_api.models import DestinationRedshiftS3BucketRegion
+
+value = DestinationRedshiftS3BucketRegion.UNKNOWN
+```
+
 
 ## Values
 

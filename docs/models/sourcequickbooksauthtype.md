@@ -1,5 +1,13 @@
 # SourceQuickbooksAuthType
 
+## Example Usage
+
+```python
+from airbyte_api.models import SourceQuickbooksAuthType
+
+value = SourceQuickbooksAuthType.OAUTH2_0
+```
+
 
 ## Values
 

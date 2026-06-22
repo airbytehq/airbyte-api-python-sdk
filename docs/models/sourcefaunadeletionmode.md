@@ -1,5 +1,13 @@
 # SourceFaunaDeletionMode
 
+## Example Usage
+
+```python
+from airbyte_api.models import SourceFaunaDeletionMode
+
+value = SourceFaunaDeletionMode.DELETED_FIELD
+```
+
 
 ## Values
 

@@ -1,5 +1,13 @@
 # SourceTypeformAuthType
 
+## Example Usage
+
+```python
+from airbyte_api.models import SourceTypeformAuthType
+
+value = SourceTypeformAuthType.OAUTH2_0
+```
+
 
 ## Values
 

@@ -1,5 +1,4 @@
 # Tags
-(*tags*)
 
 ## Overview
 
@@ -17,37 +16,39 @@ Create a tag
 
 ### Example Usage
 
+<!-- UsageSnippet language="python" operationID="createTag" method="post" path="/tags" -->
 ```python
-import airbyte_api
-from airbyte_api import models
+from airbyte_api import AirbyteAPI, models
 
-s = airbyte_api.AirbyteAPI(
+
+with AirbyteAPI(
     security=models.Security(
         basic_auth=models.SchemeBasicAuth(
-            password='',
-            username='',
+            password="",
+            username="",
         ),
     ),
-)
+) as aa_client:
 
+    res = aa_client.tags.create_tag(request={
+        "color": "mint green",
+        "name": "<value>",
+        "workspace_id": "fb9b459f-ba25-4500-ab48-74bb184a25d8",
+    })
 
-res = s.tags.create_tag(request=models.TagCreateRequest(
-    color='blue',
-    name='<value>',
-    workspace_id='5f85d5ab-c889-4273-91d7-c22bac981db2',
-))
+    assert res.tag_response is not None
 
-if res.tag_response is not None:
-    # handle response
-    pass
+    # Handle response
+    print(res.tag_response)
 
 ```
 
 ### Parameters
 
-| Parameter                                                   | Type                                                        | Required                                                    | Description                                                 |
-| ----------------------------------------------------------- | ----------------------------------------------------------- | ----------------------------------------------------------- | ----------------------------------------------------------- |
-| `request`                                                   | [models.TagCreateRequest](../../models/tagcreaterequest.md) | :heavy_check_mark:                                          | The request object to use for the request.                  |
+| Parameter                                                           | Type                                                                | Required                                                            | Description                                                         |
+| ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
+| `request`                                                           | [models.TagCreateRequest](../../models/tagcreaterequest.md)         | :heavy_check_mark:                                                  | The request object to use for the request.                          |
+| `retries`                                                           | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)    | :heavy_minus_sign:                                                  | Configuration to override the default retry behavior of the client. |
 
 ### Response
 
@@ -65,35 +66,37 @@ Delete a tag
 
 ### Example Usage
 
+<!-- UsageSnippet language="python" operationID="deleteTag" method="delete" path="/tags/{tagId}" -->
 ```python
-import airbyte_api
-from airbyte_api import api, models
+from airbyte_api import AirbyteAPI, models
 
-s = airbyte_api.AirbyteAPI(
+
+with AirbyteAPI(
     security=models.Security(
         basic_auth=models.SchemeBasicAuth(
-            password='',
-            username='',
+            password="",
+            username="",
         ),
     ),
-)
+) as aa_client:
 
+    res = aa_client.tags.delete_tag(request={
+        "tag_id": "a7b6d3f2-0b68-410f-9d8b-570413d4925b",
+    })
 
-res = s.tags.delete_tag(request=api.DeleteTagRequest(
-    tag_id='da1c4fd4-2786-4b27-8b72-2335c85a5af8',
-))
+    assert res is not None
 
-if res is not None:
-    # handle response
-    pass
+    # Handle response
+    print(res)
 
 ```
 
 ### Parameters
 
-| Parameter                                             | Type                                                  | Required                                              | Description                                           |
-| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
-| `request`                                             | [api.DeleteTagRequest](../../api/deletetagrequest.md) | :heavy_check_mark:                                    | The request object to use for the request.            |
+| Parameter                                                           | Type                                                                | Required                                                            | Description                                                         |
+| ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
+| `request`                                                           | [api.DeleteTagRequest](../../api/deletetagrequest.md)               | :heavy_check_mark:                                                  | The request object to use for the request.                          |
+| `retries`                                                           | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)    | :heavy_minus_sign:                                                  | Configuration to override the default retry behavior of the client. |
 
 ### Response
 
@@ -111,35 +114,37 @@ Get a tag
 
 ### Example Usage
 
+<!-- UsageSnippet language="python" operationID="getTag" method="get" path="/tags/{tagId}" -->
 ```python
-import airbyte_api
-from airbyte_api import api, models
+from airbyte_api import AirbyteAPI, models
 
-s = airbyte_api.AirbyteAPI(
+
+with AirbyteAPI(
     security=models.Security(
         basic_auth=models.SchemeBasicAuth(
-            password='',
-            username='',
+            password="",
+            username="",
         ),
     ),
-)
+) as aa_client:
 
+    res = aa_client.tags.get_tag(request={
+        "tag_id": "0e4206b6-0672-45f2-82cb-05850f1907ba",
+    })
 
-res = s.tags.get_tag(request=api.GetTagRequest(
-    tag_id='808ab48f-5790-47fe-aa1e-3073281a0300',
-))
+    assert res.tag_response is not None
 
-if res.tag_response is not None:
-    # handle response
-    pass
+    # Handle response
+    print(res.tag_response)
 
 ```
 
 ### Parameters
 
-| Parameter                                       | Type                                            | Required                                        | Description                                     |
-| ----------------------------------------------- | ----------------------------------------------- | ----------------------------------------------- | ----------------------------------------------- |
-| `request`                                       | [api.GetTagRequest](../../api/gettagrequest.md) | :heavy_check_mark:                              | The request object to use for the request.      |
+| Parameter                                                           | Type                                                                | Required                                                            | Description                                                         |
+| ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
+| `request`                                                           | [api.GetTagRequest](../../api/gettagrequest.md)                     | :heavy_check_mark:                                                  | The request object to use for the request.                          |
+| `retries`                                                           | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)    | :heavy_minus_sign:                                                  | Configuration to override the default retry behavior of the client. |
 
 ### Response
 
@@ -157,33 +162,35 @@ Lists all tags
 
 ### Example Usage
 
+<!-- UsageSnippet language="python" operationID="listTags" method="get" path="/tags" -->
 ```python
-import airbyte_api
-from airbyte_api import api, models
+from airbyte_api import AirbyteAPI, models
 
-s = airbyte_api.AirbyteAPI(
+
+with AirbyteAPI(
     security=models.Security(
         basic_auth=models.SchemeBasicAuth(
-            password='',
-            username='',
+            password="",
+            username="",
         ),
     ),
-)
+) as aa_client:
 
+    res = aa_client.tags.list_tags(request={})
 
-res = s.tags.list_tags(request=api.ListTagsRequest())
+    assert res.tags_response is not None
 
-if res.tags_response is not None:
-    # handle response
-    pass
+    # Handle response
+    print(res.tags_response)
 
 ```
 
 ### Parameters
 
-| Parameter                                           | Type                                                | Required                                            | Description                                         |
-| --------------------------------------------------- | --------------------------------------------------- | --------------------------------------------------- | --------------------------------------------------- |
-| `request`                                           | [api.ListTagsRequest](../../api/listtagsrequest.md) | :heavy_check_mark:                                  | The request object to use for the request.          |
+| Parameter                                                           | Type                                                                | Required                                                            | Description                                                         |
+| ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
+| `request`                                                           | [api.ListTagsRequest](../../api/listtagsrequest.md)                 | :heavy_check_mark:                                                  | The request object to use for the request.                          |
+| `retries`                                                           | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)    | :heavy_minus_sign:                                                  | Configuration to override the default retry behavior of the client. |
 
 ### Response
 
@@ -201,39 +208,41 @@ Update a tag
 
 ### Example Usage
 
+<!-- UsageSnippet language="python" operationID="updateTag" method="patch" path="/tags/{tagId}" -->
 ```python
-import airbyte_api
-from airbyte_api import api, models
+from airbyte_api import AirbyteAPI, models
 
-s = airbyte_api.AirbyteAPI(
+
+with AirbyteAPI(
     security=models.Security(
         basic_auth=models.SchemeBasicAuth(
-            password='',
-            username='',
+            password="",
+            username="",
         ),
     ),
-)
+) as aa_client:
 
+    res = aa_client.tags.update_tag(request={
+        "tag_patch_request": {
+            "color": "red",
+            "name": "<value>",
+        },
+        "tag_id": "80469d11-8074-4b50-ac85-fa8ba37ca92a",
+    })
 
-res = s.tags.update_tag(request=api.UpdateTagRequest(
-    tag_patch_request=models.TagPatchRequest(
-        color='turquoise',
-        name='<value>',
-    ),
-    tag_id='3043493e-7596-4d2b-8ee9-859838c615f6',
-))
+    assert res.tag_response is not None
 
-if res.tag_response is not None:
-    # handle response
-    pass
+    # Handle response
+    print(res.tag_response)
 
 ```
 
 ### Parameters
 
-| Parameter                                             | Type                                                  | Required                                              | Description                                           |
-| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
-| `request`                                             | [api.UpdateTagRequest](../../api/updatetagrequest.md) | :heavy_check_mark:                                    | The request object to use for the request.            |
+| Parameter                                                           | Type                                                                | Required                                                            | Description                                                         |
+| ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
+| `request`                                                           | [api.UpdateTagRequest](../../api/updatetagrequest.md)               | :heavy_check_mark:                                                  | The request object to use for the request.                          |
+| `retries`                                                           | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)    | :heavy_minus_sign:                                                  | Configuration to override the default retry behavior of the client. |
 
 ### Response
 

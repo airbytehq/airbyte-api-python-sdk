@@ -1,5 +1,13 @@
 # CareQualityCommission
 
+## Example Usage
+
+```python
+from airbyte_api.models import CareQualityCommission
+
+value = CareQualityCommission.CARE_QUALITY_COMMISSION
+```
+
 
 ## Values
 

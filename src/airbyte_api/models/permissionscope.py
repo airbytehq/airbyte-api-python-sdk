@@ -6,6 +6,7 @@ from enum import Enum
 
 class PermissionScope(str, Enum):
     r"""Scope of a single permission, e.g. workspace, organization"""
-    WORKSPACE = 'workspace'
-    ORGANIZATION = 'organization'
-    NONE = 'none'
+
+    WORKSPACE = "workspace"
+    ORGANIZATION = "organization"
+    NONE = "none"

@@ -1,5 +1,13 @@
 # HardcodedRecords
 
+## Example Usage
+
+```python
+from airbyte_api.models import HardcodedRecords
+
+value = HardcodedRecords.HARDCODED_RECORDS
+```
+
 
 ## Values
 

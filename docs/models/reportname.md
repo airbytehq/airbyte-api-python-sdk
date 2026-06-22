@@ -1,5 +1,13 @@
 # ReportName
 
+## Example Usage
+
+```python
+from airbyte_api.models import ReportName
+
+value = ReportName.GET_AFN_INVENTORY_DATA
+```
+
 
 ## Values
 

@@ -1,5 +1,13 @@
 # Clockify
 
+## Example Usage
+
+```python
+from airbyte_api.models import Clockify
+
+value = Clockify.CLOCKIFY
+```
+
 
 ## Values
 

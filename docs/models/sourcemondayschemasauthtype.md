@@ -1,5 +1,13 @@
 # SourceMondaySchemasAuthType
 
+## Example Usage
+
+```python
+from airbyte_api.models import SourceMondaySchemasAuthType
+
+value = SourceMondaySchemasAuthType.API_TOKEN
+```
+
 
 ## Values
 
