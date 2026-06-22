@@ -6,7 +6,7 @@ management:
   speakeasyVersion: 1.784.0
   generationVersion: 2.911.0
   releaseVersion: 1.0.0
-  configChecksum: 381d36c2ce44de5947486cd51626a03b
+  configChecksum: b9ba5046b9dbd92a86faa0955dcf68ff
   repoURL: https://github.com/airbytehq/airbyte-api-python-sdk.git
   repoSubDirectory: .
   installationURL: https://github.com/airbytehq/airbyte-api-python-sdk.git
