@@ -34,6 +34,7 @@ jobs:
           issue-type: pull-request
           commands: |
             generate
+            pre-release
           static-args: |
             pr=${{ github.event.issue.number }}
             comment-id=${{ github.event.comment.id }}
