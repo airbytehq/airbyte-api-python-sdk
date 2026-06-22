@@ -129,6 +129,7 @@ if res.connection_response is not None:
 ### [organizations](docs/sdks/organizations/README.md)
 
 * [create_or_update_organization_o_auth_credentials](docs/sdks/organizations/README.md#create_or_update_organization_o_auth_credentials) - Create OAuth override credentials for an organization and source type.
+* [delete_organization_o_auth_credentials](docs/sdks/organizations/README.md#delete_organization_o_auth_credentials) - Delete OAuth override credentials for an organization and source/destination type.
 * [list_organizations_for_user](docs/sdks/organizations/README.md#list_organizations_for_user) - List all organizations for a user
 
 ### [permissions](docs/sdks/permissions/README.md)
@@ -178,6 +179,7 @@ if res.connection_response is not None:
 * [create_or_update_workspace_o_auth_credentials](docs/sdks/workspaces/README.md#create_or_update_workspace_o_auth_credentials) - Create OAuth override credentials for a workspace and source type.
 * [create_workspace](docs/sdks/workspaces/README.md#create_workspace) - Create a workspace
 * [delete_workspace](docs/sdks/workspaces/README.md#delete_workspace) - Delete a Workspace
+* [delete_workspace_o_auth_credentials](docs/sdks/workspaces/README.md#delete_workspace_o_auth_credentials) - Delete OAuth override credentials for a workspace and source/destination type.
 * [get_workspace](docs/sdks/workspaces/README.md#get_workspace) - Get Workspace details
 * [list_workspaces](docs/sdks/workspaces/README.md#list_workspaces) - List workspaces
 * [update_workspace](docs/sdks/workspaces/README.md#update_workspace) - Update a workspace

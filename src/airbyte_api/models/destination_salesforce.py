@@ -107,8 +107,8 @@ class DestinationSalesforce:
     DESTINATION_TYPE: Final[DestinationSalesforceSalesforce] = dataclasses.field(default=DestinationSalesforceSalesforce.SALESFORCE, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('destinationType') }})
     is_sandbox: Optional[bool] = dataclasses.field(default=False, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('is_sandbox'), 'exclude': lambda f: f is None }})
     r"""Toggle if you're using a <a href=\\"https://help.salesforce.com/s/articleView?id=sf.deploy_sandboxes_parent.htm&type=5\\">Salesforce Sandbox</a>."""
-    object_storage_config: Optional[DestinationSalesforceObjectStorageConfiguration] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('object_storage_config'), 'exclude': lambda f: f is None }})
+    object_storage_config: Optional[DestinationSalesforceObjectStorageSpec] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('object_storage_config'), 'exclude': lambda f: f is None }})
     
 
 
-DestinationSalesforceObjectStorageConfiguration = Union[DestinationSalesforceNone, DestinationSalesforceS3]
+DestinationSalesforceObjectStorageSpec = Union[DestinationSalesforceNone, DestinationSalesforceS3]

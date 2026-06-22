@@ -60,14 +60,20 @@ class DestinationAzureBlobStorage:
     format: OutputFormat = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('format') }})
     r"""Format of the data output."""
     azure_blob_storage_account_key: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('azure_blob_storage_account_key'), 'exclude': lambda f: f is None }})
-    r"""The Azure blob storage account key. If you set this value, you must not set the Shared Access Signature."""
+    r"""The Azure Blob Storage account key. If you set this value, you must not set the \\"Shared Access Signature\\", \\"Azure Tenant ID\\", \\"Azure Client ID\\", or \\"Azure Client Secret\\" fields."""
     azure_blob_storage_endpoint_domain_name: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('azure_blob_storage_endpoint_domain_name'), 'exclude': lambda f: f is None }})
     r"""This is Azure Blob Storage endpoint domain name. Leave default value (or leave it empty if run container from command line) to use Microsoft native from example."""
     azure_blob_storage_spill_size: Optional[int] = dataclasses.field(default=500, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('azure_blob_storage_spill_size'), 'exclude': lambda f: f is None }})
     r"""The amount of megabytes after which the connector should spill the records in a new blob object. Make sure to configure size greater than individual records. Enter 0 if not applicable."""
+    azure_client_id: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('azure_client_id'), 'exclude': lambda f: f is None }})
+    r"""The Azure Active Directory (Entra ID) client ID. Required for Entra ID authentication."""
+    azure_client_secret: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('azure_client_secret'), 'exclude': lambda f: f is None }})
+    r"""The Azure Active Directory (Entra ID) client secret. Required for Entra ID authentication."""
+    azure_tenant_id: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('azure_tenant_id'), 'exclude': lambda f: f is None }})
+    r"""The Azure Active Directory (Entra ID) tenant ID. Required for Entra ID authentication."""
     DESTINATION_TYPE: Final[DestinationAzureBlobStorageAzureBlobStorage] = dataclasses.field(default=DestinationAzureBlobStorageAzureBlobStorage.AZURE_BLOB_STORAGE, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('destinationType') }})
     shared_access_signature: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('shared_access_signature'), 'exclude': lambda f: f is None }})
-    r"""A shared access signature (SAS) provides secure delegated access to resources in your storage account. Read more <a href=\\"https://learn.microsoft.com/en-gb/azure/storage/common/storage-sas-overview?toc=%2Fazure%2Fstorage%2Fblobs%2Ftoc.json&bc=%2Fazure%2Fstorage%2Fblobs%2Fbreadcrumb%2Ftoc.json\\">here</a>. If you set this value, you must not set the account key."""
+    r"""A shared access signature (SAS) provides secure delegated access to resources in your storage account. Read more <a href=\\"https://learn.microsoft.com/en-gb/azure/storage/common/storage-sas-overview?toc=%2Fazure%2Fstorage%2Fblobs%2Ftoc.json&bc=%2Fazure%2Fstorage%2Fblobs%2Fbreadcrumb%2Ftoc.json\\">here</a>. If you set this value, you must not set the \\"Azure Blob Storage Account Key\\", \\"Azure Tenant ID\\", \\"Azure Client ID\\", or \\"Azure Client Secret\\" fields."""
     
 
 

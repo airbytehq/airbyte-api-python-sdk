@@ -7,7 +7,101 @@ from airbyte_api import utils
 from dataclasses_json import Undefined, dataclass_json
 from datetime import datetime
 from enum import Enum
-from typing import Final, Optional
+from typing import Final, Optional, Union
+
+
+class SourceFreshdeskSchemasRateLimitPlanRateLimitPlanPlan(str, Enum):
+    CUSTOM = 'custom'
+
+
+@dataclass_json(undefined=Undefined.EXCLUDE)
+@dataclasses.dataclass
+class CustomPlan:
+    contacts_rate_limit: Optional[int] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('contacts_rate_limit'), 'exclude': lambda f: f is None }})
+    r"""Maximum Rate in Limit/minute for contacts list endpoint in Custom Plan"""
+    general_rate_limit: Optional[int] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('general_rate_limit'), 'exclude': lambda f: f is None }})
+    r"""General Maximum Rate in Limit/minute for other endpoints in Custom Plan"""
+    PLAN_TYPE: Final[Optional[SourceFreshdeskSchemasRateLimitPlanRateLimitPlanPlan]] = dataclasses.field(default=SourceFreshdeskSchemasRateLimitPlanRateLimitPlanPlan.CUSTOM, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('plan_type'), 'exclude': lambda f: f is None }})
+    tickets_rate_limit: Optional[int] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('tickets_rate_limit'), 'exclude': lambda f: f is None }})
+    r"""Maximum Rate in Limit/minute for tickets list endpoint in Custom Plan"""
+    
+
+
+
+class SourceFreshdeskSchemasRateLimitPlanPlan(str, Enum):
+    ENTERPRISE = 'enterprise'
+
+
+@dataclass_json(undefined=Undefined.EXCLUDE)
+@dataclasses.dataclass
+class EnterprisePlan:
+    UNSET='__SPEAKEASY_UNSET__'
+    CONTACTS_RATE_LIMIT: Final[Optional[int]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('contacts_rate_limit'), 'exclude': lambda f: f is EnterprisePlan.UNSET }})
+    r"""Maximum Rate in Limit/minute for contacts list endpoint in Enterprise Plan"""
+    GENERAL_RATE_LIMIT: Final[Optional[int]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('general_rate_limit'), 'exclude': lambda f: f is EnterprisePlan.UNSET }})
+    r"""General Maximum Rate in Limit/minute for other endpoints in Enterprise Plan"""
+    PLAN_TYPE: Final[Optional[SourceFreshdeskSchemasRateLimitPlanPlan]] = dataclasses.field(default=SourceFreshdeskSchemasRateLimitPlanPlan.ENTERPRISE, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('plan_type'), 'exclude': lambda f: f is None }})
+    TICKETS_RATE_LIMIT: Final[Optional[int]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('tickets_rate_limit'), 'exclude': lambda f: f is EnterprisePlan.UNSET }})
+    r"""Maximum Rate in Limit/minute for tickets list endpoint in Enterprise Plan"""
+    
+
+
+
+class SourceFreshdeskSchemasPlan(str, Enum):
+    PRO = 'pro'
+
+
+@dataclass_json(undefined=Undefined.EXCLUDE)
+@dataclasses.dataclass
+class ProPlan:
+    UNSET='__SPEAKEASY_UNSET__'
+    CONTACTS_RATE_LIMIT: Final[Optional[int]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('contacts_rate_limit'), 'exclude': lambda f: f is ProPlan.UNSET }})
+    r"""Maximum Rate in Limit/minute for contacts list endpoint in Pro Plan"""
+    GENERAL_RATE_LIMIT: Final[Optional[int]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('general_rate_limit'), 'exclude': lambda f: f is ProPlan.UNSET }})
+    r"""General Maximum Rate in Limit/minute for other endpoints in Pro Plan"""
+    PLAN_TYPE: Final[Optional[SourceFreshdeskSchemasPlan]] = dataclasses.field(default=SourceFreshdeskSchemasPlan.PRO, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('plan_type'), 'exclude': lambda f: f is None }})
+    TICKETS_RATE_LIMIT: Final[Optional[int]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('tickets_rate_limit'), 'exclude': lambda f: f is ProPlan.UNSET }})
+    r"""Maximum Rate in Limit/minute for tickets list endpoint in Pro Plan"""
+    
+
+
+
+class SourceFreshdeskPlan(str, Enum):
+    GROWTH = 'growth'
+
+
+@dataclass_json(undefined=Undefined.EXCLUDE)
+@dataclasses.dataclass
+class GrowthPlan:
+    UNSET='__SPEAKEASY_UNSET__'
+    CONTACTS_RATE_LIMIT: Final[Optional[int]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('contacts_rate_limit'), 'exclude': lambda f: f is GrowthPlan.UNSET }})
+    r"""Maximum Rate in Limit/minute for contacts list endpoint in Growth Plan"""
+    GENERAL_RATE_LIMIT: Final[Optional[int]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('general_rate_limit'), 'exclude': lambda f: f is GrowthPlan.UNSET }})
+    r"""General Maximum Rate in Limit/minute for other endpoints in Growth Plan"""
+    PLAN_TYPE: Final[Optional[SourceFreshdeskPlan]] = dataclasses.field(default=SourceFreshdeskPlan.GROWTH, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('plan_type'), 'exclude': lambda f: f is None }})
+    TICKETS_RATE_LIMIT: Final[Optional[int]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('tickets_rate_limit'), 'exclude': lambda f: f is GrowthPlan.UNSET }})
+    r"""Maximum Rate in Limit/minute for tickets list endpoint in Growth Plan"""
+    
+
+
+
+class Plan(str, Enum):
+    FREE = 'free'
+
+
+@dataclass_json(undefined=Undefined.EXCLUDE)
+@dataclasses.dataclass
+class FreePlan:
+    UNSET='__SPEAKEASY_UNSET__'
+    CONTACTS_RATE_LIMIT: Final[Optional[int]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('contacts_rate_limit'), 'exclude': lambda f: f is FreePlan.UNSET }})
+    r"""Maximum Rate in Limit/minute for contacts list endpoint in Free Plan"""
+    GENERAL_RATE_LIMIT: Final[Optional[int]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('general_rate_limit'), 'exclude': lambda f: f is FreePlan.UNSET }})
+    r"""General Maximum Rate in Limit/minute for other endpoints in Free Plan"""
+    PLAN_TYPE: Final[Optional[Plan]] = dataclasses.field(default=Plan.FREE, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('plan_type'), 'exclude': lambda f: f is None }})
+    TICKETS_RATE_LIMIT: Final[Optional[int]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('tickets_rate_limit'), 'exclude': lambda f: f is FreePlan.UNSET }})
+    r"""Maximum Rate in Limit/minute for tickets list endpoint in Free Plan"""
+    
+
 
 
 class Freshdesk(str, Enum):
@@ -23,6 +117,8 @@ class SourceFreshdesk:
     r"""Freshdesk domain"""
     lookback_window_in_days: Optional[int] = dataclasses.field(default=14, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('lookback_window_in_days'), 'exclude': lambda f: f is None }})
     r"""Number of days for lookback window for the stream Satisfaction Ratings"""
+    rate_limit_plan: Optional[RateLimitPlan] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('rate_limit_plan'), 'exclude': lambda f: f is None }})
+    r"""Rate Limit Plan for API Budget"""
     requests_per_minute: Optional[int] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('requests_per_minute'), 'exclude': lambda f: f is None }})
     r"""The number of requests per minute that this source allowed to use. There is a rate limit of 50 requests per minute per app per account."""
     SOURCE_TYPE: Final[Freshdesk] = dataclasses.field(default=Freshdesk.FRESHDESK, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('sourceType') }})
@@ -30,3 +126,5 @@ class SourceFreshdesk:
     r"""UTC date and time. Any data created after this date will be replicated. If this parameter is not set, all data will be replicated."""
     
 
+
+RateLimitPlan = Union[FreePlan, GrowthPlan, ProPlan, EnterprisePlan, CustomPlan]

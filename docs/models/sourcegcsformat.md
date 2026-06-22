@@ -35,9 +35,9 @@ value: models.SourceGcsParquetFormat = /* values here */
 value: models.SourceGcsUnstructuredDocumentFormat = /* values here */
 ```
 
-### `models.ExcelFormat`
+### `models.SourceGcsExcelFormat`
 
 ```python
-value: models.ExcelFormat = /* values here */
+value: models.SourceGcsExcelFormat = /* values here */
 ```
 

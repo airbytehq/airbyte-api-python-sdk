@@ -5,7 +5,7 @@ import dataclasses
 from .oauthactornames import OAuthActorNames
 from airbyte_api import utils
 from dataclasses_json import Undefined, dataclass_json
-from typing import Any, Optional
+from typing import Any, List, Optional
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
@@ -19,5 +19,9 @@ class InitiateOauthRequest:
     r"""The workspace to create the secret and eventually the full source."""
     o_auth_input_configuration: Optional[Any] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('oAuthInputConfiguration'), 'exclude': lambda f: f is None }})
     r"""The values required to configure OAuth flows. The schema for this must match the `OAuthConfigSpecification.oauthUserInputFromConnectorConfigSpecification` schema."""
+    requested_optional_scopes: Optional[List[str]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('requestedOptionalScopes'), 'exclude': lambda f: f is None }})
+    r"""Optional OAuth optional_scopes to request, overriding the connector's default optional_scopes. Only applied when requestedScopes is also provided."""
+    requested_scopes: Optional[List[str]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('requestedScopes'), 'exclude': lambda f: f is None }})
+    r"""Optional OAuth scopes to request, overriding the connector's default scopes. Only supported for connectors that define scopes as an array."""
     
 

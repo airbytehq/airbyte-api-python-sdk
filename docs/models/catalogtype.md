@@ -1,6 +1,6 @@
 # CatalogType
 
-Specifies the type of Iceberg catalog (e.g., NESSIE, GLUE, REST) and its associated configuration.
+Specifies the type of Iceberg catalog (e.g., NESSIE, GLUE, REST, POLARIS) and its associated configuration.
 
 
 ## Supported Types
@@ -21,5 +21,11 @@ value: models.GlueCatalog = /* values here */
 
 ```python
 value: models.RestCatalog = /* values here */
+```
+
+### `models.PolarisCatalog`
+
+```python
+value: models.PolarisCatalog = /* values here */
 ```
 

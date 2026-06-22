@@ -52,6 +52,8 @@ class SourceSharepointEnterpriseAuthenticateViaMicrosoftOAuth:
     AUTH_TYPE: Final[Optional[SourceSharepointEnterpriseAuthType]] = dataclasses.field(default=SourceSharepointEnterpriseAuthType.CLIENT, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('auth_type'), 'exclude': lambda f: f is None }})
     refresh_token: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('refresh_token'), 'exclude': lambda f: f is None }})
     r"""Refresh Token of your Microsoft developer application"""
+    scopes: Optional[str] = dataclasses.field(default='offline_access Files.Read.All Sites.Read.All Sites.Selected User.Read.All Group.Read.All Application.Read.All Device.Read.All', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('scopes'), 'exclude': lambda f: f is None }})
+    r"""Scopes to request when authorizing. If you want to change scopes after source was created, you need to Re-authenticate to actually apply this change to your access token."""
     
 
 
@@ -319,6 +321,8 @@ class SourceSharepointEnterprise:
     streams: List[SourceSharepointEnterpriseFileBasedStreamConfig] = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('streams') }})
     r"""Each instance of this configuration defines a <a href=\\"https://docs.airbyte.com/cloud/core-concepts#stream\\">stream</a>. Use this to define which files belong in the stream, their format, and how they should be parsed and validated. When sending data to warehouse destination such as Snowflake or BigQuery, each stream is a separate table."""
     delivery_method: Optional[SourceSharepointEnterpriseDeliveryMethod] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('delivery_method'), 'exclude': lambda f: f is None }})
+    file_contains_query: Optional[List[str]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('file_contains_query'), 'exclude': lambda f: f is None }})
+    r"""Input additional query to search files. It will make search files step faster if your Sharepoint account has a lot of files and folders. This query text will be used in the request that will look for files which properties contains inserted text. You can use multiple query texts, they will be applied in search request one by one."""
     folder_path: Optional[str] = dataclasses.field(default='.', metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('folder_path'), 'exclude': lambda f: f is None }})
     r"""Path to a specific folder within the drives to search for files. Leave empty to search all folders of the drives. This does not apply to shared items."""
     search_scope: Optional[SourceSharepointEnterpriseSearchScope] = dataclasses.field(default=SourceSharepointEnterpriseSearchScope.ALL, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('search_scope'), 'exclude': lambda f: f is None }})

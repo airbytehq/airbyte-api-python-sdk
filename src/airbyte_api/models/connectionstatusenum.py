@@ -8,3 +8,4 @@ class ConnectionStatusEnum(str, Enum):
     ACTIVE = 'active'
     INACTIVE = 'inactive'
     DEPRECATED = 'deprecated'
+    LOCKED = 'locked'

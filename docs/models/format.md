@@ -35,3 +35,9 @@ value: models.ParquetFormat = /* values here */
 value: models.UnstructuredDocumentFormat = /* values here */
 ```
 
+### `models.ExcelFormat`
+
+```python
+value: models.ExcelFormat = /* values here */
+```
+

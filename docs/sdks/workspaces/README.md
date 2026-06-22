@@ -8,6 +8,7 @@
 * [create_or_update_workspace_o_auth_credentials](#create_or_update_workspace_o_auth_credentials) - Create OAuth override credentials for a workspace and source type.
 * [create_workspace](#create_workspace) - Create a workspace
 * [delete_workspace](#delete_workspace) - Delete a Workspace
+* [delete_workspace_o_auth_credentials](#delete_workspace_o_auth_credentials) - Delete OAuth override credentials for a workspace and source/destination type.
 * [get_workspace](#get_workspace) - Get Workspace details
 * [list_workspaces](#list_workspaces) - List workspaces
 * [update_workspace](#update_workspace) - Update a workspace
@@ -149,6 +150,58 @@ if res is not None:
 ### Response
 
 **[api.DeleteWorkspaceResponse](../../api/deleteworkspaceresponse.md)**
+
+### Errors
+
+| Error Type      | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 4XX, 5XX        | \*/\*           |
+
+## delete_workspace_o_auth_credentials
+
+Delete a set of OAuth credentials that overrides the Airbyte-provided OAuth credentials used for source/destination OAuth.
+
+> 🚧 Warning
+>
+> Deleting an override that is actively used by existing sources or destinations will cause those connectors to fail on their next sync and require re-authentication.
+
+### Example Usage
+
+```python
+import airbyte_api
+from airbyte_api import api, models
+
+s = airbyte_api.AirbyteAPI(
+    security=models.Security(
+        basic_auth=models.SchemeBasicAuth(
+            password='',
+            username='',
+        ),
+    ),
+)
+
+
+res = s.workspaces.delete_workspace_o_auth_credentials(request=api.DeleteWorkspaceOAuthCredentialsRequest(
+    actor_type=models.ActorTypeEnum.SOURCE,
+    name='<value>',
+    workspace_id='<value>',
+))
+
+if res is not None:
+    # handle response
+    pass
+
+```
+
+### Parameters
+
+| Parameter                                                                                         | Type                                                                                              | Required                                                                                          | Description                                                                                       |
+| ------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- |
+| `request`                                                                                         | [api.DeleteWorkspaceOAuthCredentialsRequest](../../api/deleteworkspaceoauthcredentialsrequest.md) | :heavy_check_mark:                                                                                | The request object to use for the request.                                                        |
+
+### Response
+
+**[api.DeleteWorkspaceOAuthCredentialsResponse](../../api/deleteworkspaceoauthcredentialsresponse.md)**
 
 ### Errors
 
