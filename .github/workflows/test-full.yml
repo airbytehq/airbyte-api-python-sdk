@@ -34,7 +34,6 @@ jobs:
   zero-diff:
     name: Zero-Diff Check (Generated Code)
     needs: [validate]
-    if: github.event_name == 'pull_request'
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -52,7 +51,7 @@ jobs:
           fi
 
       - name: Find existing drift comment
-        if: steps.drift-check.outputs.has_diff == 'true'
+        if: steps.drift-check.outputs.has_diff == 'true' && github.event_name == 'pull_request'
         uses: peter-evans/find-comment@v4
         id: find-drift-comment
         with:
@@ -60,7 +59,7 @@ jobs:
           body-includes: '<!-- zero-diff-check -->'
 
       - name: Post drift comment on PR
-        if: steps.drift-check.outputs.has_diff == 'true'
+        if: steps.drift-check.outputs.has_diff == 'true' && github.event_name == 'pull_request'
         uses: peter-evans/create-or-update-comment@v5
         with:
           issue-number: ${{ github.event.pull_request.number }}
