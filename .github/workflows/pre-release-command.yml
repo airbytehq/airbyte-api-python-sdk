@@ -53,13 +53,9 @@ jobs:
   pre_release:
     name: Build & Publish Pre-Release
     runs-on: ubuntu-latest
-    environment:
-      name: pypi
-      url: https://pypi.org/project/airbyte-api/
     permissions:
       contents: write
       pull-requests: write
-      id-token: write
     steps:
       # ── Slash command: post starting comment ────────────────────────
       - name: Authenticate as GitHub App
@@ -129,7 +125,9 @@ jobs:
         run: uv build
 
       - name: Publish to PyPI
-        uses: pypa/gh-action-pypi-publish@release/v1
+        run: uv publish
+        env:
+          UV_PUBLISH_TOKEN: ${{ secrets.PYPI_TOKEN }}
 
       # ── Tag the commit ──────────────────────────────────────────────
       - name: Create and push tag
