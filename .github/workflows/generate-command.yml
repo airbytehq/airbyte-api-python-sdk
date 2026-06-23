@@ -30,8 +30,8 @@ name: Generate SDK
         branches:
             - main
     schedule:
-        - cron: '0 12 * * *'
-        - cron: '0 0 * * *'
+        - cron: '0 12 * * *'  # 5am Pacific (PDT; 6am PST)
+        - cron: '0 0 * * *'   # 5pm Pacific (PDT; 6pm PST)
     workflow_dispatch:
         inputs:
             dry_run:
