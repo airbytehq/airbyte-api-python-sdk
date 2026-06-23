@@ -5,7 +5,7 @@
 #
 # Triggers:
 # - On push to main: Auto-generates after every merge to ensure SDK stays up-to-date (auto-merge enabled)
-# - Daily schedule (5 AM & 5 PM Pacific): Catches upstream API spec changes (auto-merge enabled)
+# - Daily schedule (5 AM & 5 PM America/Los_Angeles): Catches upstream API spec changes (auto-merge enabled)
 # - Manual workflow_dispatch: For on-demand generation
 # - Slash command (/generate): Regenerates and pushes results back to the PR branch
 # - workflow_call: For validation from other workflows (e.g., PR checks)
@@ -30,8 +30,10 @@ name: Generate SDK
         branches:
             - main
     schedule:
-        - cron: '0 12 * * *'  # 5am Pacific (PDT; 6am PST)
-        - cron: '0 0 * * *'   # 5pm Pacific (PDT; 6pm PST)
+        - cron: '0 5 * * *'
+          timezone: America/Los_Angeles
+        - cron: '0 17 * * *'
+          timezone: America/Los_Angeles
     workflow_dispatch:
         inputs:
             dry_run:
