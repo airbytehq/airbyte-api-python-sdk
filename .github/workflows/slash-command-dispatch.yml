@@ -20,16 +20,22 @@ jobs:
       - name: Authenticate as GitHub App
         uses: actions/create-github-app-token@v3
         id: app-token
+        continue-on-error: ${{ github.actor == 'dependabot[bot]' }}
         with:
           app-id: ${{ secrets.OCTAVIA_BOT_APP_ID }}
           private-key: ${{ secrets.OCTAVIA_BOT_PRIVATE_KEY }}
+
+      - name: Warn on GitHub App auth fallback
+        if: steps.app-token.outcome == 'failure'
+        run: |
+          echo "::warning::GitHub App authentication failed (secrets may not be available in this context). Falling back to GITHUB_TOKEN."
 
       - name: Slash Command Dispatch
         id: dispatch
         uses: peter-evans/slash-command-dispatch@9bdcd7914ec1b75590b790b844aa3b8eee7c683a # v5.0.2
         with:
           repository: ${{ github.repository }}
-          token: ${{ steps.app-token.outputs.token }}
+          token: ${{ steps.app-token.outputs.token || secrets.GITHUB_TOKEN }}
           dispatch-type: workflow
           issue-type: pull-request
           commands: |
