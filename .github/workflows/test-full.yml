@@ -49,6 +49,7 @@ jobs:
               - '.github/workflows/generate-command.yml'
               - 'gen.yaml'
               - 'overlays/**'
+              - 'README.md'
               - 'scripts/**'
               - 'poe_tasks.toml'
               - 'src/**'
