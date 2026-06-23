@@ -81,7 +81,7 @@ jobs:
             - name: Authenticate as GitHub App
               uses: actions/create-github-app-token@v3
               id: app-token
-              continue-on-error: true
+              continue-on-error: ${{ github.actor == 'dependabot[bot]' }}
               with:
                   app-id: ${{ secrets.OCTAVIA_BOT_APP_ID }}
                   private-key: ${{ secrets.OCTAVIA_BOT_PRIVATE_KEY }}
