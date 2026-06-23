@@ -1,13 +1,75 @@
 # Speakeasy overlay for Python SDK-specific customizations.
 # Applied on top of the upstream API spec before code generation.
 #
-# This file is currently a no-op placeholder. Add overlay actions here
-# when Python SDK-specific schema tweaks are needed.
-#
 # See: https://www.speakeasy.com/docs/customize-sdks/overlays
 
 overlay: 1.0.0
 info:
   title: Python SDK Overlay
-  version: 0.0.0
-actions: []
+  version: 0.1.0
+actions:
+  # ---------------------------------------------------------------------------
+  # Remove individual connector configuration schemas.
+  #
+  # The upstream spec defines ~600 source-* and ~90 destination-* schemas that
+  # enumerate every connector's configuration fields. These schemas are only
+  # reachable via the SourceConfiguration / DestinationConfiguration oneOf
+  # unions. Replacing those unions with a generic typed-dict object eliminates
+  # the need for all the individual connector models and shrinks the generated
+  # SDK by ~600 Python files and ~1,800 doc files (~14 MB).
+  #
+  # Users pass configuration as a plain dict with a required sourceType /
+  # destinationType discriminator; the API validates the full schema server-side.
+  # ---------------------------------------------------------------------------
+
+  # Replace SourceConfiguration oneOf (555 connector schemas) with generic object
+  - target: "$.components.schemas.SourceConfiguration"
+    update:
+      description: >-
+        The values required to configure the source.
+        Must include a `sourceType` string identifying the connector (e.g. 'postgres', 'github').
+        Additional properties depend on the connector type; the API validates the full schema server-side.
+      example: { sourceType: "postgres", host: "localhost", port: 5432 }
+      oneOf: null
+      type: object
+      additionalProperties: true
+      required:
+        - sourceType
+      properties:
+        sourceType:
+          type: string
+          description: "The type of source connector."
+
+  # Replace DestinationConfiguration oneOf (45 connector schemas) with generic object
+  - target: "$.components.schemas.DestinationConfiguration"
+    update:
+      description: >-
+        The values required to configure the destination.
+        Must include a `destinationType` string identifying the connector (e.g. 'postgres', 'bigquery').
+        Additional properties depend on the connector type; the API validates the full schema server-side.
+      example: { destinationType: "postgres", host: "localhost", port: 5432 }
+      oneOf: null
+      type: object
+      additionalProperties: true
+      required:
+        - destinationType
+      properties:
+        destinationType:
+          type: string
+          description: "The type of destination connector."
+
+  # Replace OAuthCredentialsConfiguration oneOf (~47 OAuth credential schemas) with generic object
+  - target: "$.components.schemas.OAuthCredentialsConfiguration"
+    update:
+      description: "OAuth credentials configuration for the connector."
+      example: { client_id: "your-client-id", client_secret: "your-client-secret" }
+      oneOf: null
+      type: object
+      additionalProperties: true
+
+  # Replace OAuthActorNames enum with a plain string (forward-compatible with new connectors)
+  - target: "$.components.schemas.OAuthActorNames"
+    update:
+      enum: null
+      type: string
+      description: "The name of the OAuth-enabled connector (e.g. 'github', 'google-ads')."
