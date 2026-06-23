@@ -12,27 +12,29 @@ from typing import List, Optional, Union
 from typing_extensions import Annotated, NotRequired, TypeAliasType, TypedDict
 
 
-class SourceGitlabSchemasAuthType(str, Enum):
+class SourceGitlabAuthTypeAccessToken(str, Enum):
     ACCESS_TOKEN = "access_token"
 
 
-class PrivateTokenTypedDict(TypedDict):
+class SourceGitlabPrivateTokenTypedDict(TypedDict):
     access_token: str
     r"""Log into your Gitlab account and then generate a personal Access Token."""
-    auth_type: SourceGitlabSchemasAuthType
+    auth_type: SourceGitlabAuthTypeAccessToken
 
 
-class PrivateToken(BaseModel):
+class SourceGitlabPrivateToken(BaseModel):
     access_token: str
     r"""Log into your Gitlab account and then generate a personal Access Token."""
 
     AUTH_TYPE: Annotated[
         Annotated[
-            Optional[SourceGitlabSchemasAuthType],
-            AfterValidator(validate_const(SourceGitlabSchemasAuthType.ACCESS_TOKEN)),
+            Optional[SourceGitlabAuthTypeAccessToken],
+            AfterValidator(
+                validate_const(SourceGitlabAuthTypeAccessToken.ACCESS_TOKEN)
+            ),
         ],
         pydantic.Field(alias="auth_type"),
-    ] = SourceGitlabSchemasAuthType.ACCESS_TOKEN
+    ] = SourceGitlabAuthTypeAccessToken.ACCESS_TOKEN
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
@@ -51,7 +53,7 @@ class PrivateToken(BaseModel):
         return m
 
 
-class SourceGitlabAuthType(str, Enum):
+class SourceGitlabAuthTypeOauth20(str, Enum):
     OAUTH2_0 = "oauth2.0"
 
 
@@ -66,7 +68,7 @@ class SourceGitlabOAuth20TypedDict(TypedDict):
     r"""The key to refresh the expired access_token."""
     token_expiry_date: datetime
     r"""The date-time when the access token should be refreshed."""
-    auth_type: SourceGitlabAuthType
+    auth_type: SourceGitlabAuthTypeOauth20
 
 
 class SourceGitlabOAuth20(BaseModel):
@@ -87,11 +89,11 @@ class SourceGitlabOAuth20(BaseModel):
 
     AUTH_TYPE: Annotated[
         Annotated[
-            Optional[SourceGitlabAuthType],
-            AfterValidator(validate_const(SourceGitlabAuthType.OAUTH2_0)),
+            Optional[SourceGitlabAuthTypeOauth20],
+            AfterValidator(validate_const(SourceGitlabAuthTypeOauth20.OAUTH2_0)),
         ],
         pydantic.Field(alias="auth_type"),
-    ] = SourceGitlabAuthType.OAUTH2_0
+    ] = SourceGitlabAuthTypeOauth20.OAUTH2_0
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
@@ -112,16 +114,17 @@ class SourceGitlabOAuth20(BaseModel):
 
 SourceGitlabAuthorizationMethodTypedDict = TypeAliasType(
     "SourceGitlabAuthorizationMethodTypedDict",
-    Union[PrivateTokenTypedDict, SourceGitlabOAuth20TypedDict],
+    Union[SourceGitlabPrivateTokenTypedDict, SourceGitlabOAuth20TypedDict],
 )
 
 
 SourceGitlabAuthorizationMethod = TypeAliasType(
-    "SourceGitlabAuthorizationMethod", Union[PrivateToken, SourceGitlabOAuth20]
+    "SourceGitlabAuthorizationMethod",
+    Union[SourceGitlabPrivateToken, SourceGitlabOAuth20],
 )
 
 
-class SourceGitlabGitlab(str, Enum):
+class GitlabEnum(str, Enum):
     GITLAB = "gitlab"
 
 
@@ -133,7 +136,7 @@ class SourceGitlabTypedDict(TypedDict):
     r"""List of groups. e.g. airbyte.io."""
     projects_list: NotRequired[List[str]]
     r"""Space-delimited list of projects. e.g. airbyte.io/documentation meltano/tap-gitlab."""
-    source_type: SourceGitlabGitlab
+    source_type: GitlabEnum
     start_date: NotRequired[datetime]
     r"""The date from which you'd like to replicate data for GitLab API, in the format YYYY-MM-DDT00:00:00Z. Optional. If not set, all data will be replicated. All data generated after this date will be replicated."""
 
@@ -151,12 +154,9 @@ class SourceGitlab(BaseModel):
     r"""Space-delimited list of projects. e.g. airbyte.io/documentation meltano/tap-gitlab."""
 
     SOURCE_TYPE: Annotated[
-        Annotated[
-            SourceGitlabGitlab,
-            AfterValidator(validate_const(SourceGitlabGitlab.GITLAB)),
-        ],
+        Annotated[GitlabEnum, AfterValidator(validate_const(GitlabEnum.GITLAB))],
         pydantic.Field(alias="sourceType"),
-    ] = SourceGitlabGitlab.GITLAB
+    ] = GitlabEnum.GITLAB
 
     start_date: Optional[datetime] = None
     r"""The date from which you'd like to replicate data for GitLab API, in the format YYYY-MM-DDT00:00:00Z. Optional. If not set, all data will be replicated. All data generated after this date will be replicated."""
@@ -179,7 +179,7 @@ class SourceGitlab(BaseModel):
 
 
 try:
-    PrivateToken.model_rebuild()
+    SourceGitlabPrivateToken.model_rebuild()
 except NameError:
     pass
 try:

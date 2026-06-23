@@ -43,7 +43,7 @@ class DestinationCustomerIoCredentials(BaseModel):
         self.__pydantic_extra__ = value  # pyright: ignore[reportIncompatibleVariableOverride]
 
 
-class CustomerIo(str, Enum):
+class DestinationCustomerIoCustomerIo(str, Enum):
     CUSTOMER_IO = "customer-io"
 
 
@@ -86,7 +86,7 @@ class DestinationCustomerIoS3BucketRegion(str, Enum):
     US_WEST_2 = "us-west-2"
 
 
-class DestinationCustomerIoStorageType(str, Enum):
+class DestinationCustomerIoStorageTypeS3(str, Enum):
     S3 = "S3"
 
 
@@ -105,7 +105,7 @@ class DestinationCustomerIoS3TypedDict(TypedDict):
     r"""Your S3 endpoint url. Read more <a href=\"https://docs.aws.amazon.com/general/latest/gr/s3.html#:~:text=Service%20endpoints-,Amazon%20S3%20endpoints,-When%20you%20use\">here</a>"""
     secret_access_key: NotRequired[str]
     r"""The corresponding secret to the access key ID. Read more <a href=\"https://docs.aws.amazon.com/general/latest/gr/aws-sec-cred-types.html#access-keys-and-secret-access-keys\">here</a>"""
-    storage_type: NotRequired[DestinationCustomerIoStorageType]
+    storage_type: NotRequired[DestinationCustomerIoStorageTypeS3]
 
 
 class DestinationCustomerIoS3(BaseModel):
@@ -137,8 +137,8 @@ class DestinationCustomerIoS3(BaseModel):
     secret_access_key: Optional[str] = None
     r"""The corresponding secret to the access key ID. Read more <a href=\"https://docs.aws.amazon.com/general/latest/gr/aws-sec-cred-types.html#access-keys-and-secret-access-keys\">here</a>"""
 
-    storage_type: Optional[DestinationCustomerIoStorageType] = (
-        DestinationCustomerIoStorageType.S3
+    storage_type: Optional[DestinationCustomerIoStorageTypeS3] = (
+        DestinationCustomerIoStorageTypeS3.S3
     )
 
     @property
@@ -178,21 +178,23 @@ class DestinationCustomerIoS3(BaseModel):
         return m
 
 
-class StorageType(str, Enum):
+class DestinationCustomerIoStorageTypeNone(str, Enum):
     NONE = "None"
 
 
-class NoneTTypedDict(TypedDict):
-    storage_type: NotRequired[StorageType]
+class DestinationCustomerIoNoneTypedDict(TypedDict):
+    storage_type: NotRequired[DestinationCustomerIoStorageTypeNone]
 
 
-class NoneT(BaseModel):
+class DestinationCustomerIoNone(BaseModel):
     model_config = ConfigDict(
         populate_by_name=True, arbitrary_types_allowed=True, extra="allow"
     )
     __pydantic_extra__: Dict[str, Any] = pydantic.Field(init=False)
 
-    storage_type: Optional[StorageType] = StorageType.NONE
+    storage_type: Optional[DestinationCustomerIoStorageTypeNone] = (
+        DestinationCustomerIoStorageTypeNone.NONE
+    )
 
     @property
     def additional_properties(self):
@@ -222,22 +224,23 @@ class NoneT(BaseModel):
         return m
 
 
-ObjectStorageSpecTypedDict = TypeAliasType(
-    "ObjectStorageSpecTypedDict",
-    Union[NoneTTypedDict, DestinationCustomerIoS3TypedDict],
+DestinationCustomerIoObjectStorageSpecTypedDict = TypeAliasType(
+    "DestinationCustomerIoObjectStorageSpecTypedDict",
+    Union[DestinationCustomerIoNoneTypedDict, DestinationCustomerIoS3TypedDict],
 )
 
 
-ObjectStorageSpec = TypeAliasType(
-    "ObjectStorageSpec", Union[NoneT, DestinationCustomerIoS3]
+DestinationCustomerIoObjectStorageSpec = TypeAliasType(
+    "DestinationCustomerIoObjectStorageSpec",
+    Union[DestinationCustomerIoNone, DestinationCustomerIoS3],
 )
 
 
 class DestinationCustomerIoTypedDict(TypedDict):
     credentials: DestinationCustomerIoCredentialsTypedDict
     r"""Enter the site ID and API key to authenticate."""
-    destination_type: CustomerIo
-    object_storage_config: NotRequired[ObjectStorageSpecTypedDict]
+    destination_type: DestinationCustomerIoCustomerIo
+    object_storage_config: NotRequired[DestinationCustomerIoObjectStorageSpecTypedDict]
 
 
 class DestinationCustomerIo(BaseModel):
@@ -245,11 +248,14 @@ class DestinationCustomerIo(BaseModel):
     r"""Enter the site ID and API key to authenticate."""
 
     DESTINATION_TYPE: Annotated[
-        Annotated[CustomerIo, AfterValidator(validate_const(CustomerIo.CUSTOMER_IO))],
+        Annotated[
+            DestinationCustomerIoCustomerIo,
+            AfterValidator(validate_const(DestinationCustomerIoCustomerIo.CUSTOMER_IO)),
+        ],
         pydantic.Field(alias="destinationType"),
-    ] = CustomerIo.CUSTOMER_IO
+    ] = DestinationCustomerIoCustomerIo.CUSTOMER_IO
 
-    object_storage_config: Optional[ObjectStorageSpec] = None
+    object_storage_config: Optional[DestinationCustomerIoObjectStorageSpec] = None
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):

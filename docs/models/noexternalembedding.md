@@ -5,6 +5,6 @@ Do not calculate and pass embeddings to Weaviate. Suitable for clusters with con
 
 ## Fields
 
-| Field                                                                            | Type                                                                             | Required                                                                         | Description                                                                      |
-| -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
-| `mode`                                                                           | [Optional[models.DestinationWeaviateMode]](../models/destinationweaviatemode.md) | :heavy_minus_sign:                                                               | N/A                                                                              |
+| Field                                                            | Type                                                             | Required                                                         | Description                                                      |
+| ---------------------------------------------------------------- | ---------------------------------------------------------------- | ---------------------------------------------------------------- | ---------------------------------------------------------------- |
+| `mode`                                                           | [Optional[models.ModeNoEmbedding]](../models/modenoembedding.md) | :heavy_minus_sign:                                               | N/A                                                              |

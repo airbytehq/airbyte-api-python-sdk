@@ -11,35 +11,32 @@ from typing import Optional, Union
 from typing_extensions import Annotated, NotRequired, TypeAliasType, TypedDict
 
 
-class DestinationDatabricksAuthType(str, Enum):
+class AuthTypeBasic(str, Enum):
     BASIC = "BASIC"
 
 
-class PersonalAccessTokenTypedDict(TypedDict):
+class DestinationDatabricksPersonalAccessTokenTypedDict(TypedDict):
     personal_access_token: str
-    auth_type: DestinationDatabricksAuthType
+    auth_type: AuthTypeBasic
 
 
-class PersonalAccessToken(BaseModel):
+class DestinationDatabricksPersonalAccessToken(BaseModel):
     personal_access_token: str
 
     AUTH_TYPE: Annotated[
-        Annotated[
-            DestinationDatabricksAuthType,
-            AfterValidator(validate_const(DestinationDatabricksAuthType.BASIC)),
-        ],
+        Annotated[AuthTypeBasic, AfterValidator(validate_const(AuthTypeBasic.BASIC))],
         pydantic.Field(alias="auth_type"),
-    ] = DestinationDatabricksAuthType.BASIC
+    ] = AuthTypeBasic.BASIC
 
 
-class DestinationDatabricksSchemasAuthType(str, Enum):
+class DestinationDatabricksAuthTypeOauth(str, Enum):
     OAUTH = "OAUTH"
 
 
 class OAuth2RecommendedTypedDict(TypedDict):
     client_id: str
     secret: str
-    auth_type: DestinationDatabricksSchemasAuthType
+    auth_type: DestinationDatabricksAuthTypeOauth
 
 
 class OAuth2Recommended(BaseModel):
@@ -49,24 +46,26 @@ class OAuth2Recommended(BaseModel):
 
     AUTH_TYPE: Annotated[
         Annotated[
-            DestinationDatabricksSchemasAuthType,
-            AfterValidator(validate_const(DestinationDatabricksSchemasAuthType.OAUTH)),
+            DestinationDatabricksAuthTypeOauth,
+            AfterValidator(validate_const(DestinationDatabricksAuthTypeOauth.OAUTH)),
         ],
         pydantic.Field(alias="auth_type"),
-    ] = DestinationDatabricksSchemasAuthType.OAUTH
+    ] = DestinationDatabricksAuthTypeOauth.OAUTH
 
 
-AuthenticationTypedDict = TypeAliasType(
-    "AuthenticationTypedDict",
-    Union[PersonalAccessTokenTypedDict, OAuth2RecommendedTypedDict],
+DestinationDatabricksAuthenticationTypedDict = TypeAliasType(
+    "DestinationDatabricksAuthenticationTypedDict",
+    Union[
+        DestinationDatabricksPersonalAccessTokenTypedDict, OAuth2RecommendedTypedDict
+    ],
 )
 r"""Authentication mechanism for Staging files and running queries"""
 
 
-Authentication = Annotated[
+DestinationDatabricksAuthentication = Annotated[
     Union[
         Annotated[OAuth2Recommended, Tag("OAUTH")],
-        Annotated[PersonalAccessToken, Tag("BASIC")],
+        Annotated[DestinationDatabricksPersonalAccessToken, Tag("BASIC")],
     ],
     Discriminator(lambda m: get_discriminator(m, "auth_type", "auth_type")),
 ]
@@ -78,7 +77,7 @@ class Databricks(str, Enum):
 
 
 class DestinationDatabricksTypedDict(TypedDict):
-    authentication: AuthenticationTypedDict
+    authentication: DestinationDatabricksAuthenticationTypedDict
     r"""Authentication mechanism for Staging files and running queries"""
     database: str
     r"""The name of the unity catalog for the database"""
@@ -100,7 +99,7 @@ class DestinationDatabricksTypedDict(TypedDict):
 
 
 class DestinationDatabricks(BaseModel):
-    authentication: Authentication
+    authentication: DestinationDatabricksAuthentication
     r"""Authentication mechanism for Staging files and running queries"""
 
     database: str
@@ -158,7 +157,7 @@ class DestinationDatabricks(BaseModel):
 
 
 try:
-    PersonalAccessToken.model_rebuild()
+    DestinationDatabricksPersonalAccessToken.model_rebuild()
 except NameError:
     pass
 try:

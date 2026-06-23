@@ -11,7 +11,7 @@ from typing import Any, Dict, Optional, Union
 from typing_extensions import Annotated, NotRequired, TypeAliasType, TypedDict
 
 
-class SourceSnowflakeSchemasAuthType(str, Enum):
+class AuthTypeUsernamePassword(str, Enum):
     USERNAME_PASSWORD = "username/password"
 
 
@@ -20,7 +20,7 @@ class SourceSnowflakeUsernameAndPasswordTypedDict(TypedDict):
     r"""The password associated with the username."""
     username: str
     r"""The username you created to allow Airbyte to access the database."""
-    auth_type: NotRequired[SourceSnowflakeSchemasAuthType]
+    auth_type: NotRequired[AuthTypeUsernamePassword]
 
 
 class SourceSnowflakeUsernameAndPassword(BaseModel):
@@ -35,8 +35,8 @@ class SourceSnowflakeUsernameAndPassword(BaseModel):
     username: str
     r"""The username you created to allow Airbyte to access the database."""
 
-    auth_type: Optional[SourceSnowflakeSchemasAuthType] = (
-        SourceSnowflakeSchemasAuthType.USERNAME_PASSWORD
+    auth_type: Optional[AuthTypeUsernamePassword] = (
+        AuthTypeUsernamePassword.USERNAME_PASSWORD
     )
 
     @property
@@ -67,7 +67,7 @@ class SourceSnowflakeUsernameAndPassword(BaseModel):
         return m
 
 
-class SourceSnowflakeAuthType(str, Enum):
+class SourceSnowflakeAuthTypeKeyPairAuthentication(str, Enum):
     KEY_PAIR_AUTHENTICATION = "Key Pair Authentication"
 
 
@@ -76,7 +76,7 @@ class SourceSnowflakeKeyPairAuthenticationTypedDict(TypedDict):
     r"""RSA Private key to use for Snowflake connection. See the <a href=\"https://docs.airbyte.com/integrations/sources/snowflake#key-pair-authentication\">docs</a> for more information on how to obtain this key."""
     username: str
     r"""The username you created to allow Airbyte to access the database."""
-    auth_type: NotRequired[SourceSnowflakeAuthType]
+    auth_type: NotRequired[SourceSnowflakeAuthTypeKeyPairAuthentication]
     private_key_password: NotRequired[str]
     r"""Passphrase for private key"""
 
@@ -93,8 +93,8 @@ class SourceSnowflakeKeyPairAuthentication(BaseModel):
     username: str
     r"""The username you created to allow Airbyte to access the database."""
 
-    auth_type: Optional[SourceSnowflakeAuthType] = (
-        SourceSnowflakeAuthType.KEY_PAIR_AUTHENTICATION
+    auth_type: Optional[SourceSnowflakeAuthTypeKeyPairAuthentication] = (
+        SourceSnowflakeAuthTypeKeyPairAuthentication.KEY_PAIR_AUTHENTICATION
     )
 
     private_key_password: Optional[str] = None

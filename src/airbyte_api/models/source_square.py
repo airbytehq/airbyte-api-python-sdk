@@ -12,14 +12,14 @@ from typing import Optional, Union
 from typing_extensions import Annotated, NotRequired, TypeAliasType, TypedDict
 
 
-class SourceSquareSchemasAuthType(str, Enum):
+class SourceSquareAuthTypeAPIKey(str, Enum):
     API_KEY = "API Key"
 
 
 class SourceSquareAPIKeyTypedDict(TypedDict):
     api_key: str
     r"""The API key for a Square application"""
-    auth_type: SourceSquareSchemasAuthType
+    auth_type: SourceSquareAuthTypeAPIKey
 
 
 class SourceSquareAPIKey(BaseModel):
@@ -28,14 +28,14 @@ class SourceSquareAPIKey(BaseModel):
 
     AUTH_TYPE: Annotated[
         Annotated[
-            SourceSquareSchemasAuthType,
-            AfterValidator(validate_const(SourceSquareSchemasAuthType.API_KEY)),
+            SourceSquareAuthTypeAPIKey,
+            AfterValidator(validate_const(SourceSquareAuthTypeAPIKey.API_KEY)),
         ],
         pydantic.Field(alias="auth_type"),
-    ] = SourceSquareSchemasAuthType.API_KEY
+    ] = SourceSquareAuthTypeAPIKey.API_KEY
 
 
-class SourceSquareAuthType(str, Enum):
+class AuthTypeOAuth(str, Enum):
     O_AUTH = "OAuth"
 
 
@@ -46,7 +46,7 @@ class OauthAuthenticationTypedDict(TypedDict):
     r"""The Square-issued application secret for your application"""
     refresh_token: str
     r"""A refresh token generated using the above client ID and secret"""
-    auth_type: SourceSquareAuthType
+    auth_type: AuthTypeOAuth
 
 
 class OauthAuthentication(BaseModel):
@@ -60,12 +60,9 @@ class OauthAuthentication(BaseModel):
     r"""A refresh token generated using the above client ID and secret"""
 
     AUTH_TYPE: Annotated[
-        Annotated[
-            SourceSquareAuthType,
-            AfterValidator(validate_const(SourceSquareAuthType.O_AUTH)),
-        ],
+        Annotated[AuthTypeOAuth, AfterValidator(validate_const(AuthTypeOAuth.O_AUTH))],
         pydantic.Field(alias="auth_type"),
-    ] = SourceSquareAuthType.O_AUTH
+    ] = AuthTypeOAuth.O_AUTH
 
 
 SourceSquareAuthenticationTypedDict = TypeAliasType(

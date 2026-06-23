@@ -17,9 +17,9 @@ value: models.DestinationMilvusAPIToken = /* values here */
 value: models.DestinationMilvusUsernamePassword = /* values here */
 ```
 
-### `models.NoAuth`
+### `models.DestinationMilvusNoAuth`
 
 ```python
-value: models.NoAuth = /* values here */
+value: models.DestinationMilvusNoAuth = /* values here */
 ```
 

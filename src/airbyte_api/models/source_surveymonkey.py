@@ -73,7 +73,7 @@ class OriginDatacenterOfTheSurveyMonkeyAccount(str, Enum):
     CANADA = "Canada"
 
 
-class SourceSurveymonkeySurveymonkey(str, Enum):
+class SurveymonkeyEnum(str, Enum):
     SURVEYMONKEY = "surveymonkey"
 
 
@@ -84,7 +84,7 @@ class SourceSurveymonkeyTypedDict(TypedDict):
     r"""UTC date and time in the format 2017-01-25T00:00:00Z. Any data before this date will not be replicated."""
     origin: NotRequired[OriginDatacenterOfTheSurveyMonkeyAccount]
     r"""Depending on the originating datacenter of the SurveyMonkey account, the API access URL may be different."""
-    source_type: SourceSurveymonkeySurveymonkey
+    source_type: SurveymonkeyEnum
     survey_ids: NotRequired[List[str]]
     r"""IDs of the surveys from which you'd like to replicate data. If left empty, data from all boards to which you have access will be replicated."""
 
@@ -103,11 +103,11 @@ class SourceSurveymonkey(BaseModel):
 
     SOURCE_TYPE: Annotated[
         Annotated[
-            SourceSurveymonkeySurveymonkey,
-            AfterValidator(validate_const(SourceSurveymonkeySurveymonkey.SURVEYMONKEY)),
+            SurveymonkeyEnum,
+            AfterValidator(validate_const(SurveymonkeyEnum.SURVEYMONKEY)),
         ],
         pydantic.Field(alias="sourceType"),
-    ] = SourceSurveymonkeySurveymonkey.SURVEYMONKEY
+    ] = SurveymonkeyEnum.SURVEYMONKEY
 
     survey_ids: Optional[List[str]] = None
     r"""IDs of the surveys from which you'd like to replicate data. If left empty, data from all boards to which you have access will be replicated."""

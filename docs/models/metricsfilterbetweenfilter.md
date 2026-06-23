@@ -1,0 +1,10 @@
+# MetricsFilterBetweenFilter
+
+
+## Fields
+
+| Field                                                                                            | Type                                                                                             | Required                                                                                         | Description                                                                                      |
+| ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ |
+| `filter_name`                                                                                    | [models.MetricsFilterFilterNameBetweenFilter](../models/metricsfilterfilternamebetweenfilter.md) | :heavy_check_mark:                                                                               | N/A                                                                                              |
+| `from_value`                                                                                     | [models.MetricsFilterFromValue](../models/metricsfilterfromvalue.md)                             | :heavy_check_mark:                                                                               | N/A                                                                                              |
+| `to_value`                                                                                       | [models.MetricsFilterToValue](../models/metricsfiltertovalue.md)                                 | :heavy_check_mark:                                                                               | N/A                                                                                              |

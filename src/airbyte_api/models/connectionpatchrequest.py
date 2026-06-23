@@ -10,10 +10,7 @@ from .namespacedefinitionenumnodefault import NamespaceDefinitionEnumNoDefault
 from .nonbreakingschemaupdatesbehaviorenumnodefault import (
     NonBreakingSchemaUpdatesBehaviorEnumNoDefault,
 )
-from .streamconfigurations_input import (
-    StreamConfigurationsInput,
-    StreamConfigurationsInputTypedDict,
-)
+from .streamconfigurations import StreamConfigurations, StreamConfigurationsTypedDict
 from .tag import Tag, TagTypedDict
 from airbyte_api.types import BaseModel, UNSET_SENTINEL
 import pydantic
@@ -23,7 +20,7 @@ from typing_extensions import Annotated, NotRequired, TypedDict
 
 
 class ConnectionPatchRequestTypedDict(TypedDict):
-    configurations: NotRequired[StreamConfigurationsInputTypedDict]
+    configurations: NotRequired[StreamConfigurationsTypedDict]
     r"""A list of configured stream options for a connection."""
     data_residency: NotRequired[str]
     name: NotRequired[str]
@@ -45,7 +42,7 @@ class ConnectionPatchRequestTypedDict(TypedDict):
 
 
 class ConnectionPatchRequest(BaseModel):
-    configurations: Optional[StreamConfigurationsInput] = None
+    configurations: Optional[StreamConfigurations] = None
     r"""A list of configured stream options for a connection."""
 
     data_residency: Annotated[

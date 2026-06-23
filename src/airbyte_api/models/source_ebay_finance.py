@@ -12,7 +12,7 @@ from typing import Optional
 from typing_extensions import Annotated, NotRequired, TypedDict
 
 
-class APIHost(str, Enum):
+class SourceEbayFinanceAPIHost(str, Enum):
     r"""https://apiz.sandbox.ebay.com for sandbox & https://apiz.ebay.com for production"""
 
     HTTPS_APIZ_SANDBOX_EBAY_COM = "https://apiz.sandbox.ebay.com"
@@ -23,7 +23,7 @@ class EbayFinance(str, Enum):
     EBAY_FINANCE = "ebay-finance"
 
 
-class RefreshTokenEndpoint(str, Enum):
+class SourceEbayFinanceRefreshTokenEndpoint(str, Enum):
     HTTPS_API_SANDBOX_EBAY_COM_IDENTITY_V1_OAUTH2_TOKEN = (
         "https://api.sandbox.ebay.com/identity/v1/oauth2/token"
     )
@@ -38,12 +38,12 @@ class SourceEbayFinanceTypedDict(TypedDict):
     start_date: datetime
     username: str
     r"""Ebay Developer Client ID"""
-    api_host: NotRequired[APIHost]
+    api_host: NotRequired[SourceEbayFinanceAPIHost]
     r"""https://apiz.sandbox.ebay.com for sandbox & https://apiz.ebay.com for production"""
     password: NotRequired[str]
     r"""Ebay Client Secret"""
     source_type: EbayFinance
-    token_refresh_endpoint: NotRequired[RefreshTokenEndpoint]
+    token_refresh_endpoint: NotRequired[SourceEbayFinanceRefreshTokenEndpoint]
 
 
 class SourceEbayFinance(BaseModel):
@@ -56,7 +56,9 @@ class SourceEbayFinance(BaseModel):
     username: str
     r"""Ebay Developer Client ID"""
 
-    api_host: Optional[APIHost] = APIHost.HTTPS_APIZ_EBAY_COM
+    api_host: Optional[SourceEbayFinanceAPIHost] = (
+        SourceEbayFinanceAPIHost.HTTPS_APIZ_EBAY_COM
+    )
     r"""https://apiz.sandbox.ebay.com for sandbox & https://apiz.ebay.com for production"""
 
     password: Optional[str] = None
@@ -69,8 +71,8 @@ class SourceEbayFinance(BaseModel):
         pydantic.Field(alias="sourceType"),
     ] = EbayFinance.EBAY_FINANCE
 
-    token_refresh_endpoint: Optional[RefreshTokenEndpoint] = (
-        RefreshTokenEndpoint.HTTPS_API_EBAY_COM_IDENTITY_V1_OAUTH2_TOKEN
+    token_refresh_endpoint: Optional[SourceEbayFinanceRefreshTokenEndpoint] = (
+        SourceEbayFinanceRefreshTokenEndpoint.HTTPS_API_EBAY_COM_IDENTITY_V1_OAUTH2_TOKEN
     )
 
     @model_serializer(mode="wrap")

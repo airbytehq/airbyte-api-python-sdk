@@ -11,7 +11,7 @@ from typing import Any, Dict, List, Optional, Union
 from typing_extensions import Annotated, NotRequired, TypeAliasType, TypedDict
 
 
-class SourceSapHanaEnterpriseSchemasCursorMethod(str, Enum):
+class SourceSapHanaEnterpriseCursorMethodCdc(str, Enum):
     CDC = "cdc"
 
 
@@ -25,7 +25,7 @@ class SourceSapHanaEnterpriseInvalidCDCPositionBehaviorAdvanced(str, Enum):
 class SourceSapHanaEnterpriseReadChangesUsingChangeDataCaptureCDCTypedDict(TypedDict):
     r"""<i>Recommended</i> - Incrementally reads new inserts, updates, and deletes using change data capture feature. This must be enabled on your database."""
 
-    cursor_method: NotRequired[SourceSapHanaEnterpriseSchemasCursorMethod]
+    cursor_method: NotRequired[SourceSapHanaEnterpriseCursorMethodCdc]
     initial_load_timeout_hours: NotRequired[int]
     r"""The amount of time an initial load is allowed to continue for before catching up on CDC events."""
     invalid_cdc_cursor_position_behavior: NotRequired[
@@ -42,8 +42,8 @@ class SourceSapHanaEnterpriseReadChangesUsingChangeDataCaptureCDC(BaseModel):
     )
     __pydantic_extra__: Dict[str, Any] = pydantic.Field(init=False)
 
-    cursor_method: Optional[SourceSapHanaEnterpriseSchemasCursorMethod] = (
-        SourceSapHanaEnterpriseSchemasCursorMethod.CDC
+    cursor_method: Optional[SourceSapHanaEnterpriseCursorMethodCdc] = (
+        SourceSapHanaEnterpriseCursorMethodCdc.CDC
     )
 
     initial_load_timeout_hours: Optional[int] = 8
@@ -88,14 +88,14 @@ class SourceSapHanaEnterpriseReadChangesUsingChangeDataCaptureCDC(BaseModel):
         return m
 
 
-class SourceSapHanaEnterpriseCursorMethod(str, Enum):
+class SourceSapHanaEnterpriseCursorMethodUserDefined(str, Enum):
     USER_DEFINED = "user_defined"
 
 
 class SourceSapHanaEnterpriseScanChangesWithUserDefinedCursorTypedDict(TypedDict):
     r"""Incrementally detects new inserts and updates using the <a href=\"https://docs.airbyte.com/understanding-airbyte/connections/incremental-append/#user-defined-cursor\">cursor column</a> chosen when configuring a connection (e.g. created_at, updated_at)."""
 
-    cursor_method: NotRequired[SourceSapHanaEnterpriseCursorMethod]
+    cursor_method: NotRequired[SourceSapHanaEnterpriseCursorMethodUserDefined]
 
 
 class SourceSapHanaEnterpriseScanChangesWithUserDefinedCursor(BaseModel):
@@ -106,8 +106,8 @@ class SourceSapHanaEnterpriseScanChangesWithUserDefinedCursor(BaseModel):
     )
     __pydantic_extra__: Dict[str, Any] = pydantic.Field(init=False)
 
-    cursor_method: Optional[SourceSapHanaEnterpriseCursorMethod] = (
-        SourceSapHanaEnterpriseCursorMethod.USER_DEFINED
+    cursor_method: Optional[SourceSapHanaEnterpriseCursorMethodUserDefined] = (
+        SourceSapHanaEnterpriseCursorMethodUserDefined.USER_DEFINED
     )
 
     @property
@@ -158,7 +158,7 @@ SourceSapHanaEnterpriseUpdateMethod = TypeAliasType(
 r"""Configures how data is extracted from the database."""
 
 
-class SourceSapHanaEnterpriseSchemasEncryptionEncryptionMethod(str, Enum):
+class SourceSapHanaEnterpriseEncryptionMethodEncryptedVerifyCertificate(str, Enum):
     ENCRYPTED_VERIFY_CERTIFICATE = "encrypted_verify_certificate"
 
 
@@ -168,7 +168,7 @@ class SourceSapHanaEnterpriseTLSEncryptedVerifyCertificateTypedDict(TypedDict):
     ssl_certificate: str
     r"""Privacy Enhanced Mail (PEM) files are concatenated certificate containers frequently used in certificate installations."""
     encryption_method: NotRequired[
-        SourceSapHanaEnterpriseSchemasEncryptionEncryptionMethod
+        SourceSapHanaEnterpriseEncryptionMethodEncryptedVerifyCertificate
     ]
 
 
@@ -184,8 +184,8 @@ class SourceSapHanaEnterpriseTLSEncryptedVerifyCertificate(BaseModel):
     r"""Privacy Enhanced Mail (PEM) files are concatenated certificate containers frequently used in certificate installations."""
 
     encryption_method: Optional[
-        SourceSapHanaEnterpriseSchemasEncryptionEncryptionMethod
-    ] = SourceSapHanaEnterpriseSchemasEncryptionEncryptionMethod.ENCRYPTED_VERIFY_CERTIFICATE
+        SourceSapHanaEnterpriseEncryptionMethodEncryptedVerifyCertificate
+    ] = SourceSapHanaEnterpriseEncryptionMethodEncryptedVerifyCertificate.ENCRYPTED_VERIFY_CERTIFICATE
 
     @property
     def additional_properties(self):
@@ -223,7 +223,7 @@ class SourceSapHanaEnterpriseEncryptionAlgorithm(str, Enum):
     THREE_DES168 = "3DES168"
 
 
-class SourceSapHanaEnterpriseSchemasEncryptionMethod(str, Enum):
+class SourceSapHanaEnterpriseEncryptionMethodClientNne(str, Enum):
     CLIENT_NNE = "client_nne"
 
 
@@ -232,7 +232,7 @@ class SourceSapHanaEnterpriseNativeNetworkEncryptionNNETypedDict(TypedDict):
 
     encryption_algorithm: NotRequired[SourceSapHanaEnterpriseEncryptionAlgorithm]
     r"""This parameter defines what encryption algorithm is used."""
-    encryption_method: NotRequired[SourceSapHanaEnterpriseSchemasEncryptionMethod]
+    encryption_method: NotRequired[SourceSapHanaEnterpriseEncryptionMethodClientNne]
 
 
 class SourceSapHanaEnterpriseNativeNetworkEncryptionNNE(BaseModel):
@@ -248,8 +248,8 @@ class SourceSapHanaEnterpriseNativeNetworkEncryptionNNE(BaseModel):
     )
     r"""This parameter defines what encryption algorithm is used."""
 
-    encryption_method: Optional[SourceSapHanaEnterpriseSchemasEncryptionMethod] = (
-        SourceSapHanaEnterpriseSchemasEncryptionMethod.CLIENT_NNE
+    encryption_method: Optional[SourceSapHanaEnterpriseEncryptionMethodClientNne] = (
+        SourceSapHanaEnterpriseEncryptionMethodClientNne.CLIENT_NNE
     )
 
     @property
@@ -280,14 +280,14 @@ class SourceSapHanaEnterpriseNativeNetworkEncryptionNNE(BaseModel):
         return m
 
 
-class SourceSapHanaEnterpriseEncryptionMethod(str, Enum):
+class SourceSapHanaEnterpriseEncryptionMethodUnencrypted(str, Enum):
     UNENCRYPTED = "unencrypted"
 
 
 class SourceSapHanaEnterpriseUnencryptedTypedDict(TypedDict):
     r"""Data transfer will not be encrypted."""
 
-    encryption_method: NotRequired[SourceSapHanaEnterpriseEncryptionMethod]
+    encryption_method: NotRequired[SourceSapHanaEnterpriseEncryptionMethodUnencrypted]
 
 
 class SourceSapHanaEnterpriseUnencrypted(BaseModel):
@@ -298,8 +298,8 @@ class SourceSapHanaEnterpriseUnencrypted(BaseModel):
     )
     __pydantic_extra__: Dict[str, Any] = pydantic.Field(init=False)
 
-    encryption_method: Optional[SourceSapHanaEnterpriseEncryptionMethod] = (
-        SourceSapHanaEnterpriseEncryptionMethod.UNENCRYPTED
+    encryption_method: Optional[SourceSapHanaEnterpriseEncryptionMethodUnencrypted] = (
+        SourceSapHanaEnterpriseEncryptionMethodUnencrypted.UNENCRYPTED
     )
 
     @property
@@ -388,7 +388,7 @@ class SapHanaEnterprise(str, Enum):
     SAP_HANA_ENTERPRISE = "sap-hana-enterprise"
 
 
-class SourceSapHanaEnterpriseSchemasTunnelMethodTunnelMethod(str, Enum):
+class SourceSapHanaEnterpriseTunnelMethodSSHPasswordAuth(str, Enum):
     SSH_PASSWORD_AUTH = "SSH_PASSWORD_AUTH"
 
 
@@ -401,7 +401,7 @@ class SourceSapHanaEnterprisePasswordAuthenticationTypedDict(TypedDict):
     r"""OS-level username for logging into the jump server host"""
     tunnel_user_password: str
     r"""OS-level password for logging into the jump server host"""
-    tunnel_method: NotRequired[SourceSapHanaEnterpriseSchemasTunnelMethodTunnelMethod]
+    tunnel_method: NotRequired[SourceSapHanaEnterpriseTunnelMethodSSHPasswordAuth]
     tunnel_port: NotRequired[int]
     r"""Port on the proxy/jump server that accepts inbound ssh connections."""
 
@@ -423,8 +423,8 @@ class SourceSapHanaEnterprisePasswordAuthentication(BaseModel):
     tunnel_user_password: str
     r"""OS-level password for logging into the jump server host"""
 
-    tunnel_method: Optional[SourceSapHanaEnterpriseSchemasTunnelMethodTunnelMethod] = (
-        SourceSapHanaEnterpriseSchemasTunnelMethodTunnelMethod.SSH_PASSWORD_AUTH
+    tunnel_method: Optional[SourceSapHanaEnterpriseTunnelMethodSSHPasswordAuth] = (
+        SourceSapHanaEnterpriseTunnelMethodSSHPasswordAuth.SSH_PASSWORD_AUTH
     )
 
     tunnel_port: Optional[int] = 22
@@ -458,7 +458,7 @@ class SourceSapHanaEnterprisePasswordAuthentication(BaseModel):
         return m
 
 
-class SourceSapHanaEnterpriseSchemasTunnelMethod(str, Enum):
+class SourceSapHanaEnterpriseTunnelMethodSSHKeyAuth(str, Enum):
     SSH_KEY_AUTH = "SSH_KEY_AUTH"
 
 
@@ -471,7 +471,7 @@ class SourceSapHanaEnterpriseSSHKeyAuthenticationTypedDict(TypedDict):
     r"""Hostname of the jump server host that allows inbound ssh tunnel."""
     tunnel_user: str
     r"""OS-level username for logging into the jump server host"""
-    tunnel_method: NotRequired[SourceSapHanaEnterpriseSchemasTunnelMethod]
+    tunnel_method: NotRequired[SourceSapHanaEnterpriseTunnelMethodSSHKeyAuth]
     tunnel_port: NotRequired[int]
     r"""Port on the proxy/jump server that accepts inbound ssh connections."""
 
@@ -493,8 +493,8 @@ class SourceSapHanaEnterpriseSSHKeyAuthentication(BaseModel):
     tunnel_user: str
     r"""OS-level username for logging into the jump server host"""
 
-    tunnel_method: Optional[SourceSapHanaEnterpriseSchemasTunnelMethod] = (
-        SourceSapHanaEnterpriseSchemasTunnelMethod.SSH_KEY_AUTH
+    tunnel_method: Optional[SourceSapHanaEnterpriseTunnelMethodSSHKeyAuth] = (
+        SourceSapHanaEnterpriseTunnelMethodSSHKeyAuth.SSH_KEY_AUTH
     )
 
     tunnel_port: Optional[int] = 22
@@ -528,14 +528,14 @@ class SourceSapHanaEnterpriseSSHKeyAuthentication(BaseModel):
         return m
 
 
-class SourceSapHanaEnterpriseTunnelMethod(str, Enum):
+class SourceSapHanaEnterpriseTunnelMethodNoTunnel(str, Enum):
     NO_TUNNEL = "NO_TUNNEL"
 
 
 class SourceSapHanaEnterpriseNoTunnelTypedDict(TypedDict):
     r"""No ssh tunnel needed to connect to database"""
 
-    tunnel_method: NotRequired[SourceSapHanaEnterpriseTunnelMethod]
+    tunnel_method: NotRequired[SourceSapHanaEnterpriseTunnelMethodNoTunnel]
 
 
 class SourceSapHanaEnterpriseNoTunnel(BaseModel):
@@ -546,8 +546,8 @@ class SourceSapHanaEnterpriseNoTunnel(BaseModel):
     )
     __pydantic_extra__: Dict[str, Any] = pydantic.Field(init=False)
 
-    tunnel_method: Optional[SourceSapHanaEnterpriseTunnelMethod] = (
-        SourceSapHanaEnterpriseTunnelMethod.NO_TUNNEL
+    tunnel_method: Optional[SourceSapHanaEnterpriseTunnelMethodNoTunnel] = (
+        SourceSapHanaEnterpriseTunnelMethodNoTunnel.NO_TUNNEL
     )
 
     @property

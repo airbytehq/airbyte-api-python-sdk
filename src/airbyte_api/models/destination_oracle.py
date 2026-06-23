@@ -11,23 +11,23 @@ from typing import Optional, Union
 from typing_extensions import Annotated, NotRequired, TypeAliasType, TypedDict
 
 
-class Oracle(str, Enum):
+class DestinationOracleOracle(str, Enum):
     ORACLE = "oracle"
 
 
-class DestinationOracleSchemasEncryptionMethod(str, Enum):
+class DestinationOracleEncryptionMethodEncryptedVerifyCertificate(str, Enum):
     ENCRYPTED_VERIFY_CERTIFICATE = "encrypted_verify_certificate"
 
 
-class TLSEncryptedVerifyCertificateTypedDict(TypedDict):
+class DestinationOracleTLSEncryptedVerifyCertificateTypedDict(TypedDict):
     r"""Verify and use the certificate provided by the server."""
 
     ssl_certificate: str
     r"""Privacy Enhanced Mail (PEM) files are concatenated certificate containers frequently used in certificate installations."""
-    encryption_method: DestinationOracleSchemasEncryptionMethod
+    encryption_method: DestinationOracleEncryptionMethodEncryptedVerifyCertificate
 
 
-class TLSEncryptedVerifyCertificate(BaseModel):
+class DestinationOracleTLSEncryptedVerifyCertificate(BaseModel):
     r"""Verify and use the certificate provided by the server."""
 
     ssl_certificate: str
@@ -35,15 +35,15 @@ class TLSEncryptedVerifyCertificate(BaseModel):
 
     ENCRYPTION_METHOD: Annotated[
         Annotated[
-            Optional[DestinationOracleSchemasEncryptionMethod],
+            Optional[DestinationOracleEncryptionMethodEncryptedVerifyCertificate],
             AfterValidator(
                 validate_const(
-                    DestinationOracleSchemasEncryptionMethod.ENCRYPTED_VERIFY_CERTIFICATE
+                    DestinationOracleEncryptionMethodEncryptedVerifyCertificate.ENCRYPTED_VERIFY_CERTIFICATE
                 )
             ),
         ],
         pydantic.Field(alias="encryption_method"),
-    ] = DestinationOracleSchemasEncryptionMethod.ENCRYPTED_VERIFY_CERTIFICATE
+    ] = DestinationOracleEncryptionMethodEncryptedVerifyCertificate.ENCRYPTED_VERIFY_CERTIFICATE
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
@@ -62,7 +62,7 @@ class TLSEncryptedVerifyCertificate(BaseModel):
         return m
 
 
-class EncryptionAlgorithm(str, Enum):
+class DestinationOracleEncryptionAlgorithm(str, Enum):
     r"""This parameter defines the database encryption algorithm."""
 
     AES256 = "AES256"
@@ -70,33 +70,35 @@ class EncryptionAlgorithm(str, Enum):
     THREE_DES168 = "3DES168"
 
 
-class DestinationOracleEncryptionMethod(str, Enum):
+class DestinationOracleEncryptionMethodClientNne(str, Enum):
     CLIENT_NNE = "client_nne"
 
 
-class NativeNetworkEncryptionNNETypedDict(TypedDict):
+class DestinationOracleNativeNetworkEncryptionNNETypedDict(TypedDict):
     r"""The native network encryption gives you the ability to encrypt database connections, without the configuration overhead of TCP/IP and SSL/TLS and without the need to open and listen on different ports."""
 
-    encryption_algorithm: NotRequired[EncryptionAlgorithm]
+    encryption_algorithm: NotRequired[DestinationOracleEncryptionAlgorithm]
     r"""This parameter defines the database encryption algorithm."""
-    encryption_method: DestinationOracleEncryptionMethod
+    encryption_method: DestinationOracleEncryptionMethodClientNne
 
 
-class NativeNetworkEncryptionNNE(BaseModel):
+class DestinationOracleNativeNetworkEncryptionNNE(BaseModel):
     r"""The native network encryption gives you the ability to encrypt database connections, without the configuration overhead of TCP/IP and SSL/TLS and without the need to open and listen on different ports."""
 
-    encryption_algorithm: Optional[EncryptionAlgorithm] = EncryptionAlgorithm.AES256
+    encryption_algorithm: Optional[DestinationOracleEncryptionAlgorithm] = (
+        DestinationOracleEncryptionAlgorithm.AES256
+    )
     r"""This parameter defines the database encryption algorithm."""
 
     ENCRYPTION_METHOD: Annotated[
         Annotated[
-            Optional[DestinationOracleEncryptionMethod],
+            Optional[DestinationOracleEncryptionMethodClientNne],
             AfterValidator(
-                validate_const(DestinationOracleEncryptionMethod.CLIENT_NNE)
+                validate_const(DestinationOracleEncryptionMethodClientNne.CLIENT_NNE)
             ),
         ],
         pydantic.Field(alias="encryption_method"),
-    ] = DestinationOracleEncryptionMethod.CLIENT_NNE
+    ] = DestinationOracleEncryptionMethodClientNne.CLIENT_NNE
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
@@ -115,14 +117,14 @@ class NativeNetworkEncryptionNNE(BaseModel):
         return m
 
 
-class EncryptionMethod(str, Enum):
+class DestinationOracleEncryptionMethodUnencrypted(str, Enum):
     UNENCRYPTED = "unencrypted"
 
 
 class DestinationOracleUnencryptedTypedDict(TypedDict):
     r"""Data transfer will not be encrypted."""
 
-    encryption_method: EncryptionMethod
+    encryption_method: DestinationOracleEncryptionMethodUnencrypted
 
 
 class DestinationOracleUnencrypted(BaseModel):
@@ -130,11 +132,13 @@ class DestinationOracleUnencrypted(BaseModel):
 
     ENCRYPTION_METHOD: Annotated[
         Annotated[
-            Optional[EncryptionMethod],
-            AfterValidator(validate_const(EncryptionMethod.UNENCRYPTED)),
+            Optional[DestinationOracleEncryptionMethodUnencrypted],
+            AfterValidator(
+                validate_const(DestinationOracleEncryptionMethodUnencrypted.UNENCRYPTED)
+            ),
         ],
         pydantic.Field(alias="encryption_method"),
-    ] = EncryptionMethod.UNENCRYPTED
+    ] = DestinationOracleEncryptionMethodUnencrypted.UNENCRYPTED
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
@@ -153,29 +157,29 @@ class DestinationOracleUnencrypted(BaseModel):
         return m
 
 
-EncryptionTypedDict = TypeAliasType(
-    "EncryptionTypedDict",
+DestinationOracleEncryptionTypedDict = TypeAliasType(
+    "DestinationOracleEncryptionTypedDict",
     Union[
         DestinationOracleUnencryptedTypedDict,
-        NativeNetworkEncryptionNNETypedDict,
-        TLSEncryptedVerifyCertificateTypedDict,
+        DestinationOracleNativeNetworkEncryptionNNETypedDict,
+        DestinationOracleTLSEncryptedVerifyCertificateTypedDict,
     ],
 )
 r"""The encryption method which is used when communicating with the database."""
 
 
-Encryption = TypeAliasType(
-    "Encryption",
+DestinationOracleEncryption = TypeAliasType(
+    "DestinationOracleEncryption",
     Union[
         DestinationOracleUnencrypted,
-        NativeNetworkEncryptionNNE,
-        TLSEncryptedVerifyCertificate,
+        DestinationOracleNativeNetworkEncryptionNNE,
+        DestinationOracleTLSEncryptedVerifyCertificate,
     ],
 )
 r"""The encryption method which is used when communicating with the database."""
 
 
-class DestinationOracleSchemasTunnelMethodTunnelMethod(str, Enum):
+class DestinationOracleTunnelMethodSSHPasswordAuth(str, Enum):
     r"""Connect through a jump server tunnel host using username and password authentication"""
 
     SSH_PASSWORD_AUTH = "SSH_PASSWORD_AUTH"
@@ -188,7 +192,7 @@ class DestinationOraclePasswordAuthenticationTypedDict(TypedDict):
     r"""OS-level username for logging into the jump server host"""
     tunnel_user_password: str
     r"""OS-level password for logging into the jump server host"""
-    tunnel_method: DestinationOracleSchemasTunnelMethodTunnelMethod
+    tunnel_method: DestinationOracleTunnelMethodSSHPasswordAuth
     r"""Connect through a jump server tunnel host using username and password authentication"""
     tunnel_port: NotRequired[int]
     r"""Port on the proxy/jump server that accepts inbound ssh connections."""
@@ -206,15 +210,15 @@ class DestinationOraclePasswordAuthentication(BaseModel):
 
     TUNNEL_METHOD: Annotated[
         Annotated[
-            DestinationOracleSchemasTunnelMethodTunnelMethod,
+            DestinationOracleTunnelMethodSSHPasswordAuth,
             AfterValidator(
                 validate_const(
-                    DestinationOracleSchemasTunnelMethodTunnelMethod.SSH_PASSWORD_AUTH
+                    DestinationOracleTunnelMethodSSHPasswordAuth.SSH_PASSWORD_AUTH
                 )
             ),
         ],
         pydantic.Field(alias="tunnel_method"),
-    ] = DestinationOracleSchemasTunnelMethodTunnelMethod.SSH_PASSWORD_AUTH
+    ] = DestinationOracleTunnelMethodSSHPasswordAuth.SSH_PASSWORD_AUTH
     r"""Connect through a jump server tunnel host using username and password authentication"""
 
     tunnel_port: Optional[int] = 22
@@ -237,7 +241,7 @@ class DestinationOraclePasswordAuthentication(BaseModel):
         return m
 
 
-class DestinationOracleSchemasTunnelMethod(str, Enum):
+class DestinationOracleTunnelMethodSSHKeyAuth(str, Enum):
     r"""Connect through a jump server tunnel host using username and ssh key"""
 
     SSH_KEY_AUTH = "SSH_KEY_AUTH"
@@ -250,7 +254,7 @@ class DestinationOracleSSHKeyAuthenticationTypedDict(TypedDict):
     r"""Hostname of the jump server host that allows inbound ssh tunnel."""
     tunnel_user: str
     r"""OS-level username for logging into the jump server host."""
-    tunnel_method: DestinationOracleSchemasTunnelMethod
+    tunnel_method: DestinationOracleTunnelMethodSSHKeyAuth
     r"""Connect through a jump server tunnel host using username and ssh key"""
     tunnel_port: NotRequired[int]
     r"""Port on the proxy/jump server that accepts inbound ssh connections."""
@@ -268,13 +272,13 @@ class DestinationOracleSSHKeyAuthentication(BaseModel):
 
     TUNNEL_METHOD: Annotated[
         Annotated[
-            DestinationOracleSchemasTunnelMethod,
+            DestinationOracleTunnelMethodSSHKeyAuth,
             AfterValidator(
-                validate_const(DestinationOracleSchemasTunnelMethod.SSH_KEY_AUTH)
+                validate_const(DestinationOracleTunnelMethodSSHKeyAuth.SSH_KEY_AUTH)
             ),
         ],
         pydantic.Field(alias="tunnel_method"),
-    ] = DestinationOracleSchemasTunnelMethod.SSH_KEY_AUTH
+    ] = DestinationOracleTunnelMethodSSHKeyAuth.SSH_KEY_AUTH
     r"""Connect through a jump server tunnel host using username and ssh key"""
 
     tunnel_port: Optional[int] = 22
@@ -297,25 +301,27 @@ class DestinationOracleSSHKeyAuthentication(BaseModel):
         return m
 
 
-class DestinationOracleTunnelMethod(str, Enum):
+class DestinationOracleTunnelMethodNoTunnel(str, Enum):
     r"""No ssh tunnel needed to connect to database"""
 
     NO_TUNNEL = "NO_TUNNEL"
 
 
 class DestinationOracleNoTunnelTypedDict(TypedDict):
-    tunnel_method: DestinationOracleTunnelMethod
+    tunnel_method: DestinationOracleTunnelMethodNoTunnel
     r"""No ssh tunnel needed to connect to database"""
 
 
 class DestinationOracleNoTunnel(BaseModel):
     TUNNEL_METHOD: Annotated[
         Annotated[
-            DestinationOracleTunnelMethod,
-            AfterValidator(validate_const(DestinationOracleTunnelMethod.NO_TUNNEL)),
+            DestinationOracleTunnelMethodNoTunnel,
+            AfterValidator(
+                validate_const(DestinationOracleTunnelMethodNoTunnel.NO_TUNNEL)
+            ),
         ],
         pydantic.Field(alias="tunnel_method"),
-    ] = DestinationOracleTunnelMethod.NO_TUNNEL
+    ] = DestinationOracleTunnelMethodNoTunnel.NO_TUNNEL
     r"""No ssh tunnel needed to connect to database"""
 
 
@@ -348,8 +354,8 @@ class DestinationOracleTypedDict(TypedDict):
     r"""The System Identifier uniquely distinguishes the instance from any other instance on the same computer."""
     username: str
     r"""The username to access the database. This user must have CREATE USER privileges in the database."""
-    destination_type: Oracle
-    encryption: NotRequired[EncryptionTypedDict]
+    destination_type: DestinationOracleOracle
+    encryption: NotRequired[DestinationOracleEncryptionTypedDict]
     r"""The encryption method which is used when communicating with the database."""
     jdbc_url_params: NotRequired[str]
     r"""Additional properties to pass to the JDBC URL string when connecting to the database formatted as 'key=value' pairs separated by the symbol '&'. (example: key1=value1&key2=value2&key3=value3)."""
@@ -376,11 +382,14 @@ class DestinationOracle(BaseModel):
     r"""The username to access the database. This user must have CREATE USER privileges in the database."""
 
     DESTINATION_TYPE: Annotated[
-        Annotated[Oracle, AfterValidator(validate_const(Oracle.ORACLE))],
+        Annotated[
+            DestinationOracleOracle,
+            AfterValidator(validate_const(DestinationOracleOracle.ORACLE)),
+        ],
         pydantic.Field(alias="destinationType"),
-    ] = Oracle.ORACLE
+    ] = DestinationOracleOracle.ORACLE
 
-    encryption: Optional[Encryption] = None
+    encryption: Optional[DestinationOracleEncryption] = None
     r"""The encryption method which is used when communicating with the database."""
 
     jdbc_url_params: Optional[str] = None
@@ -429,11 +438,11 @@ class DestinationOracle(BaseModel):
 
 
 try:
-    TLSEncryptedVerifyCertificate.model_rebuild()
+    DestinationOracleTLSEncryptedVerifyCertificate.model_rebuild()
 except NameError:
     pass
 try:
-    NativeNetworkEncryptionNNE.model_rebuild()
+    DestinationOracleNativeNetworkEncryptionNNE.model_rebuild()
 except NameError:
     pass
 try:

@@ -11,7 +11,7 @@ from typing import Optional
 from typing_extensions import Annotated, NotRequired, TypedDict
 
 
-class Interval(str, Enum):
+class SourceAlphaVantageInterval(str, Enum):
     r"""Time-series data point interval. Required for intraday endpoints."""
 
     ONEMIN = "1min"
@@ -41,7 +41,7 @@ class SourceAlphaVantageTypedDict(TypedDict):
     r"""Whether to return adjusted data. Only applicable to intraday endpoints.
 
     """
-    interval: NotRequired[Interval]
+    interval: NotRequired[SourceAlphaVantageInterval]
     r"""Time-series data point interval. Required for intraday endpoints.
 
     """
@@ -64,7 +64,7 @@ class SourceAlphaVantage(BaseModel):
 
     """
 
-    interval: Optional[Interval] = Interval.ONEMIN
+    interval: Optional[SourceAlphaVantageInterval] = SourceAlphaVantageInterval.ONEMIN
     r"""Time-series data point interval. Required for intraday endpoints.
 
     """

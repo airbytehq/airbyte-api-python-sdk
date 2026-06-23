@@ -11,27 +11,29 @@ from typing import Optional, Union
 from typing_extensions import Annotated, NotRequired, TypeAliasType, TypedDict
 
 
-class SourceDriftSchemasCredentials(str, Enum):
+class SourceDriftCredentialsAccessToken(str, Enum):
     ACCESS_TOKEN = "access_token"
 
 
-class AccessTokenTypedDict(TypedDict):
+class SourceDriftAccessTokenTypedDict(TypedDict):
     access_token: str
     r"""Drift Access Token. See the <a href=\"https://docs.airbyte.com/integrations/sources/drift\">docs</a> for more information on how to generate this key."""
-    credentials: SourceDriftSchemasCredentials
+    credentials: SourceDriftCredentialsAccessToken
 
 
-class AccessToken(BaseModel):
+class SourceDriftAccessToken(BaseModel):
     access_token: str
     r"""Drift Access Token. See the <a href=\"https://docs.airbyte.com/integrations/sources/drift\">docs</a> for more information on how to generate this key."""
 
     CREDENTIALS: Annotated[
         Annotated[
-            Optional[SourceDriftSchemasCredentials],
-            AfterValidator(validate_const(SourceDriftSchemasCredentials.ACCESS_TOKEN)),
+            Optional[SourceDriftCredentialsAccessToken],
+            AfterValidator(
+                validate_const(SourceDriftCredentialsAccessToken.ACCESS_TOKEN)
+            ),
         ],
         pydantic.Field(alias="credentials"),
-    ] = SourceDriftSchemasCredentials.ACCESS_TOKEN
+    ] = SourceDriftCredentialsAccessToken.ACCESS_TOKEN
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
@@ -50,7 +52,7 @@ class AccessToken(BaseModel):
         return m
 
 
-class SourceDriftCredentials(str, Enum):
+class SourceDriftCredentialsOauth20(str, Enum):
     OAUTH2_0 = "oauth2.0"
 
 
@@ -63,7 +65,7 @@ class SourceDriftOAuth20TypedDict(TypedDict):
     r"""The Client Secret of your Drift developer application."""
     refresh_token: str
     r"""Refresh Token to renew the expired Access Token."""
-    credentials: SourceDriftCredentials
+    credentials: SourceDriftCredentialsOauth20
 
 
 class SourceDriftOAuth20(BaseModel):
@@ -81,11 +83,11 @@ class SourceDriftOAuth20(BaseModel):
 
     CREDENTIALS: Annotated[
         Annotated[
-            Optional[SourceDriftCredentials],
-            AfterValidator(validate_const(SourceDriftCredentials.OAUTH2_0)),
+            Optional[SourceDriftCredentialsOauth20],
+            AfterValidator(validate_const(SourceDriftCredentialsOauth20.OAUTH2_0)),
         ],
         pydantic.Field(alias="credentials"),
-    ] = SourceDriftCredentials.OAUTH2_0
+    ] = SourceDriftCredentialsOauth20.OAUTH2_0
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
@@ -106,16 +108,16 @@ class SourceDriftOAuth20(BaseModel):
 
 SourceDriftAuthorizationMethodTypedDict = TypeAliasType(
     "SourceDriftAuthorizationMethodTypedDict",
-    Union[AccessTokenTypedDict, SourceDriftOAuth20TypedDict],
+    Union[SourceDriftAccessTokenTypedDict, SourceDriftOAuth20TypedDict],
 )
 
 
 SourceDriftAuthorizationMethod = TypeAliasType(
-    "SourceDriftAuthorizationMethod", Union[AccessToken, SourceDriftOAuth20]
+    "SourceDriftAuthorizationMethod", Union[SourceDriftAccessToken, SourceDriftOAuth20]
 )
 
 
-class SourceDriftDrift(str, Enum):
+class DriftEnum(str, Enum):
     DRIFT = "drift"
 
 
@@ -123,7 +125,7 @@ class SourceDriftTypedDict(TypedDict):
     credentials: NotRequired[SourceDriftAuthorizationMethodTypedDict]
     email: NotRequired[str]
     r"""Email used as parameter for contacts stream"""
-    source_type: SourceDriftDrift
+    source_type: DriftEnum
 
 
 class SourceDrift(BaseModel):
@@ -133,11 +135,9 @@ class SourceDrift(BaseModel):
     r"""Email used as parameter for contacts stream"""
 
     SOURCE_TYPE: Annotated[
-        Annotated[
-            SourceDriftDrift, AfterValidator(validate_const(SourceDriftDrift.DRIFT))
-        ],
+        Annotated[DriftEnum, AfterValidator(validate_const(DriftEnum.DRIFT))],
         pydantic.Field(alias="sourceType"),
-    ] = SourceDriftDrift.DRIFT
+    ] = DriftEnum.DRIFT
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
@@ -157,7 +157,7 @@ class SourceDrift(BaseModel):
 
 
 try:
-    AccessToken.model_rebuild()
+    SourceDriftAccessToken.model_rebuild()
 except NameError:
     pass
 try:

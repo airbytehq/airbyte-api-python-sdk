@@ -12,7 +12,7 @@ from typing import Optional, Union
 from typing_extensions import Annotated, NotRequired, TypeAliasType, TypedDict
 
 
-class SourceShopifySchemasAuthMethod(str, Enum):
+class AuthMethodAPIPassword(str, Enum):
     API_PASSWORD = "api_password"
 
 
@@ -21,7 +21,7 @@ class APIPasswordTypedDict(TypedDict):
 
     api_password: str
     r"""The API Password for your private application in the `Shopify` store."""
-    auth_method: SourceShopifySchemasAuthMethod
+    auth_method: AuthMethodAPIPassword
 
 
 class APIPassword(BaseModel):
@@ -32,14 +32,14 @@ class APIPassword(BaseModel):
 
     AUTH_METHOD: Annotated[
         Annotated[
-            SourceShopifySchemasAuthMethod,
-            AfterValidator(validate_const(SourceShopifySchemasAuthMethod.API_PASSWORD)),
+            AuthMethodAPIPassword,
+            AfterValidator(validate_const(AuthMethodAPIPassword.API_PASSWORD)),
         ],
         pydantic.Field(alias="auth_method"),
-    ] = SourceShopifySchemasAuthMethod.API_PASSWORD
+    ] = AuthMethodAPIPassword.API_PASSWORD
 
 
-class SourceShopifyAuthMethod(str, Enum):
+class SourceShopifyAuthMethodOauth20(str, Enum):
     OAUTH2_0 = "oauth2.0"
 
 
@@ -48,7 +48,7 @@ class SourceShopifyOAuth20TypedDict(TypedDict):
 
     access_token: NotRequired[str]
     r"""The Access Token for making authenticated requests."""
-    auth_method: SourceShopifyAuthMethod
+    auth_method: SourceShopifyAuthMethodOauth20
     client_id: NotRequired[str]
     r"""The Client ID of the Shopify developer application."""
     client_secret: NotRequired[str]
@@ -63,11 +63,11 @@ class SourceShopifyOAuth20(BaseModel):
 
     AUTH_METHOD: Annotated[
         Annotated[
-            SourceShopifyAuthMethod,
-            AfterValidator(validate_const(SourceShopifyAuthMethod.OAUTH2_0)),
+            SourceShopifyAuthMethodOauth20,
+            AfterValidator(validate_const(SourceShopifyAuthMethodOauth20.OAUTH2_0)),
         ],
         pydantic.Field(alias="auth_method"),
-    ] = SourceShopifyAuthMethod.OAUTH2_0
+    ] = SourceShopifyAuthMethodOauth20.OAUTH2_0
 
     client_id: Optional[str] = None
     r"""The Client ID of the Shopify developer application."""
@@ -109,7 +109,7 @@ ShopifyAuthorizationMethod = Annotated[
 r"""The authorization method to use to retrieve data from Shopify"""
 
 
-class SourceShopifyShopify(str, Enum):
+class ShopifyEnum(str, Enum):
     SHOPIFY = "shopify"
 
 
@@ -128,7 +128,7 @@ class SourceShopifyTypedDict(TypedDict):
     r"""If enabled, the `Product Variants` stream attempts to include `Presentment prices` field (may affect the performance)."""
     job_termination_threshold: NotRequired[int]
     r"""The max time in seconds, after which the single BULK Job should be `CANCELED` and retried. The bigger the value the longer the BULK Job is allowed to run."""
-    source_type: SourceShopifyShopify
+    source_type: ShopifyEnum
     start_date: NotRequired[date]
     r"""The date you would like to replicate data from. Format: YYYY-MM-DD. Any data before this date will not be replicated."""
 
@@ -156,12 +156,9 @@ class SourceShopify(BaseModel):
     r"""The max time in seconds, after which the single BULK Job should be `CANCELED` and retried. The bigger the value the longer the BULK Job is allowed to run."""
 
     SOURCE_TYPE: Annotated[
-        Annotated[
-            SourceShopifyShopify,
-            AfterValidator(validate_const(SourceShopifyShopify.SHOPIFY)),
-        ],
+        Annotated[ShopifyEnum, AfterValidator(validate_const(ShopifyEnum.SHOPIFY))],
         pydantic.Field(alias="sourceType"),
-    ] = SourceShopifyShopify.SHOPIFY
+    ] = ShopifyEnum.SHOPIFY
 
     start_date: Optional[date] = date.fromisoformat("2020-01-01")
     r"""The date you would like to replicate data from. Format: YYYY-MM-DD. Any data before this date will not be replicated."""

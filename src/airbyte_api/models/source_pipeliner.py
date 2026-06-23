@@ -11,7 +11,7 @@ from typing import Optional
 from typing_extensions import Annotated, NotRequired, TypedDict
 
 
-class DataCenter(str, Enum):
+class SourcePipelinerDataCenter(str, Enum):
     EU_CENTRAL = "eu-central"
     US_EAST = "us-east"
     CA_CENTRAL = "ca-central"
@@ -23,7 +23,7 @@ class Pipeliner(str, Enum):
 
 
 class SourcePipelinerTypedDict(TypedDict):
-    service: DataCenter
+    service: SourcePipelinerDataCenter
     spaceid: str
     username: str
     password: NotRequired[str]
@@ -31,7 +31,7 @@ class SourcePipelinerTypedDict(TypedDict):
 
 
 class SourcePipeliner(BaseModel):
-    service: DataCenter
+    service: SourcePipelinerDataCenter
 
     spaceid: str
 

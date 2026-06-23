@@ -68,7 +68,7 @@ SourceRdStationMarketingAuthenticationType = SignInViaRDStationOAuth
 r"""Choose one of the possible authorization method"""
 
 
-class SourceRdStationMarketingRdStationMarketing(str, Enum):
+class RdStationMarketingEnum(str, Enum):
     RD_STATION_MARKETING = "rd-station-marketing"
 
 
@@ -77,7 +77,7 @@ class SourceRdStationMarketingTypedDict(TypedDict):
     r"""UTC date and time in the format 2017-01-25T00:00:00Z. Any data before this date will not be replicated. When specified and not None, then stream will behave as incremental"""
     authorization: NotRequired[SourceRdStationMarketingAuthenticationTypeTypedDict]
     r"""Choose one of the possible authorization method"""
-    source_type: SourceRdStationMarketingRdStationMarketing
+    source_type: RdStationMarketingEnum
 
 
 class SourceRdStationMarketing(BaseModel):
@@ -89,15 +89,11 @@ class SourceRdStationMarketing(BaseModel):
 
     SOURCE_TYPE: Annotated[
         Annotated[
-            SourceRdStationMarketingRdStationMarketing,
-            AfterValidator(
-                validate_const(
-                    SourceRdStationMarketingRdStationMarketing.RD_STATION_MARKETING
-                )
-            ),
+            RdStationMarketingEnum,
+            AfterValidator(validate_const(RdStationMarketingEnum.RD_STATION_MARKETING)),
         ],
         pydantic.Field(alias="sourceType"),
-    ] = SourceRdStationMarketingRdStationMarketing.RD_STATION_MARKETING
+    ] = RdStationMarketingEnum.RD_STATION_MARKETING
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):

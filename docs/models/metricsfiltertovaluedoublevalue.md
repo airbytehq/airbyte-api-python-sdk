@@ -1,0 +1,9 @@
+# MetricsFilterToValueDoubleValue
+
+
+## Fields
+
+| Field                                                                                                    | Type                                                                                                     | Required                                                                                                 | Description                                                                                              |
+| -------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- |
+| `value`                                                                                                  | *float*                                                                                                  | :heavy_check_mark:                                                                                       | N/A                                                                                                      |
+| `value_type`                                                                                             | [models.MetricsFilterToValueValueTypeDoubleValue](../models/metricsfiltertovaluevaluetypedoublevalue.md) | :heavy_check_mark:                                                                                       | N/A                                                                                                      |

@@ -11,19 +11,19 @@ from typing import Any, Dict, List, Optional, Union
 from typing_extensions import Annotated, NotRequired, TypeAliasType, TypedDict
 
 
-class SourceDb2EnterpriseCursorMethod(str, Enum):
+class SourceDb2EnterpriseCursorMethodCdc(str, Enum):
     CDC = "cdc"
 
 
-class ReadChangesUsingChangeDataCaptureCDCTypedDict(TypedDict):
+class SourceDb2EnterpriseReadChangesUsingChangeDataCaptureCDCTypedDict(TypedDict):
     r"""<i>Recommended</i> - Incrementally reads new inserts, updates, and deletes using change data capture feature. This must be enabled on your database."""
 
-    cursor_method: NotRequired[SourceDb2EnterpriseCursorMethod]
+    cursor_method: NotRequired[SourceDb2EnterpriseCursorMethodCdc]
     initial_load_timeout_hours: NotRequired[int]
     r"""The amount of time an initial load is allowed to continue for before catching up on CDC events."""
 
 
-class ReadChangesUsingChangeDataCaptureCDC(BaseModel):
+class SourceDb2EnterpriseReadChangesUsingChangeDataCaptureCDC(BaseModel):
     r"""<i>Recommended</i> - Incrementally reads new inserts, updates, and deletes using change data capture feature. This must be enabled on your database."""
 
     model_config = ConfigDict(
@@ -31,8 +31,8 @@ class ReadChangesUsingChangeDataCaptureCDC(BaseModel):
     )
     __pydantic_extra__: Dict[str, Any] = pydantic.Field(init=False)
 
-    cursor_method: Optional[SourceDb2EnterpriseCursorMethod] = (
-        SourceDb2EnterpriseCursorMethod.CDC
+    cursor_method: Optional[SourceDb2EnterpriseCursorMethodCdc] = (
+        SourceDb2EnterpriseCursorMethodCdc.CDC
     )
 
     initial_load_timeout_hours: Optional[int] = 8
@@ -66,17 +66,17 @@ class ReadChangesUsingChangeDataCaptureCDC(BaseModel):
         return m
 
 
-class CursorMethod(str, Enum):
+class SourceDb2EnterpriseCursorMethodUserDefined(str, Enum):
     USER_DEFINED = "user_defined"
 
 
-class ScanChangesWithUserDefinedCursorTypedDict(TypedDict):
+class SourceDb2EnterpriseScanChangesWithUserDefinedCursorTypedDict(TypedDict):
     r"""Incrementally detects new inserts and updates using the <a href=\"https://docs.airbyte.com/understanding-airbyte/connections/incremental-append/#user-defined-cursor\">cursor column</a> chosen when configuring a connection (e.g. created_at, updated_at)."""
 
-    cursor_method: NotRequired[CursorMethod]
+    cursor_method: NotRequired[SourceDb2EnterpriseCursorMethodUserDefined]
 
 
-class ScanChangesWithUserDefinedCursor(BaseModel):
+class SourceDb2EnterpriseScanChangesWithUserDefinedCursor(BaseModel):
     r"""Incrementally detects new inserts and updates using the <a href=\"https://docs.airbyte.com/understanding-airbyte/connections/incremental-append/#user-defined-cursor\">cursor column</a> chosen when configuring a connection (e.g. created_at, updated_at)."""
 
     model_config = ConfigDict(
@@ -84,7 +84,9 @@ class ScanChangesWithUserDefinedCursor(BaseModel):
     )
     __pydantic_extra__: Dict[str, Any] = pydantic.Field(init=False)
 
-    cursor_method: Optional[CursorMethod] = CursorMethod.USER_DEFINED
+    cursor_method: Optional[SourceDb2EnterpriseCursorMethodUserDefined] = (
+        SourceDb2EnterpriseCursorMethodUserDefined.USER_DEFINED
+    )
 
     @property
     def additional_properties(self):
@@ -114,24 +116,27 @@ class ScanChangesWithUserDefinedCursor(BaseModel):
         return m
 
 
-UpdateMethodTypedDict = TypeAliasType(
-    "UpdateMethodTypedDict",
+SourceDb2EnterpriseUpdateMethodTypedDict = TypeAliasType(
+    "SourceDb2EnterpriseUpdateMethodTypedDict",
     Union[
-        ScanChangesWithUserDefinedCursorTypedDict,
-        ReadChangesUsingChangeDataCaptureCDCTypedDict,
+        SourceDb2EnterpriseScanChangesWithUserDefinedCursorTypedDict,
+        SourceDb2EnterpriseReadChangesUsingChangeDataCaptureCDCTypedDict,
     ],
 )
 r"""Configures how data is extracted from the database."""
 
 
-UpdateMethod = TypeAliasType(
-    "UpdateMethod",
-    Union[ScanChangesWithUserDefinedCursor, ReadChangesUsingChangeDataCaptureCDC],
+SourceDb2EnterpriseUpdateMethod = TypeAliasType(
+    "SourceDb2EnterpriseUpdateMethod",
+    Union[
+        SourceDb2EnterpriseScanChangesWithUserDefinedCursor,
+        SourceDb2EnterpriseReadChangesUsingChangeDataCaptureCDC,
+    ],
 )
 r"""Configures how data is extracted from the database."""
 
 
-class SourceDb2EnterpriseSchemasEncryptionMethod(str, Enum):
+class SourceDb2EnterpriseEncryptionMethodEncryptedVerifyCertificate(str, Enum):
     ENCRYPTED_VERIFY_CERTIFICATE = "encrypted_verify_certificate"
 
 
@@ -140,7 +145,9 @@ class SourceDb2EnterpriseTLSEncryptedVerifyCertificateTypedDict(TypedDict):
 
     ssl_certificate: str
     r"""Privacy Enhanced Mail (PEM) files are concatenated certificate containers frequently used in certificate installations."""
-    encryption_method: NotRequired[SourceDb2EnterpriseSchemasEncryptionMethod]
+    encryption_method: NotRequired[
+        SourceDb2EnterpriseEncryptionMethodEncryptedVerifyCertificate
+    ]
 
 
 class SourceDb2EnterpriseTLSEncryptedVerifyCertificate(BaseModel):
@@ -154,9 +161,9 @@ class SourceDb2EnterpriseTLSEncryptedVerifyCertificate(BaseModel):
     ssl_certificate: str
     r"""Privacy Enhanced Mail (PEM) files are concatenated certificate containers frequently used in certificate installations."""
 
-    encryption_method: Optional[SourceDb2EnterpriseSchemasEncryptionMethod] = (
-        SourceDb2EnterpriseSchemasEncryptionMethod.ENCRYPTED_VERIFY_CERTIFICATE
-    )
+    encryption_method: Optional[
+        SourceDb2EnterpriseEncryptionMethodEncryptedVerifyCertificate
+    ] = SourceDb2EnterpriseEncryptionMethodEncryptedVerifyCertificate.ENCRYPTED_VERIFY_CERTIFICATE
 
     @property
     def additional_properties(self):
@@ -186,14 +193,14 @@ class SourceDb2EnterpriseTLSEncryptedVerifyCertificate(BaseModel):
         return m
 
 
-class SourceDb2EnterpriseEncryptionMethod(str, Enum):
+class SourceDb2EnterpriseEncryptionMethodUnencrypted(str, Enum):
     UNENCRYPTED = "unencrypted"
 
 
 class SourceDb2EnterpriseUnencryptedTypedDict(TypedDict):
     r"""Data transfer will not be encrypted."""
 
-    encryption_method: NotRequired[SourceDb2EnterpriseEncryptionMethod]
+    encryption_method: NotRequired[SourceDb2EnterpriseEncryptionMethodUnencrypted]
 
 
 class SourceDb2EnterpriseUnencrypted(BaseModel):
@@ -204,8 +211,8 @@ class SourceDb2EnterpriseUnencrypted(BaseModel):
     )
     __pydantic_extra__: Dict[str, Any] = pydantic.Field(init=False)
 
-    encryption_method: Optional[SourceDb2EnterpriseEncryptionMethod] = (
-        SourceDb2EnterpriseEncryptionMethod.UNENCRYPTED
+    encryption_method: Optional[SourceDb2EnterpriseEncryptionMethodUnencrypted] = (
+        SourceDb2EnterpriseEncryptionMethodUnencrypted.UNENCRYPTED
     )
 
     @property
@@ -259,7 +266,7 @@ class Db2Enterprise(str, Enum):
     DB2_ENTERPRISE = "db2-enterprise"
 
 
-class SourceDb2EnterpriseSchemasTunnelMethodTunnelMethod(str, Enum):
+class SourceDb2EnterpriseTunnelMethodSSHPasswordAuth(str, Enum):
     SSH_PASSWORD_AUTH = "SSH_PASSWORD_AUTH"
 
 
@@ -272,7 +279,7 @@ class SourceDb2EnterprisePasswordAuthenticationTypedDict(TypedDict):
     r"""OS-level username for logging into the jump server host"""
     tunnel_user_password: str
     r"""OS-level password for logging into the jump server host"""
-    tunnel_method: NotRequired[SourceDb2EnterpriseSchemasTunnelMethodTunnelMethod]
+    tunnel_method: NotRequired[SourceDb2EnterpriseTunnelMethodSSHPasswordAuth]
     tunnel_port: NotRequired[int]
     r"""Port on the proxy/jump server that accepts inbound ssh connections."""
 
@@ -294,8 +301,8 @@ class SourceDb2EnterprisePasswordAuthentication(BaseModel):
     tunnel_user_password: str
     r"""OS-level password for logging into the jump server host"""
 
-    tunnel_method: Optional[SourceDb2EnterpriseSchemasTunnelMethodTunnelMethod] = (
-        SourceDb2EnterpriseSchemasTunnelMethodTunnelMethod.SSH_PASSWORD_AUTH
+    tunnel_method: Optional[SourceDb2EnterpriseTunnelMethodSSHPasswordAuth] = (
+        SourceDb2EnterpriseTunnelMethodSSHPasswordAuth.SSH_PASSWORD_AUTH
     )
 
     tunnel_port: Optional[int] = 22
@@ -329,7 +336,7 @@ class SourceDb2EnterprisePasswordAuthentication(BaseModel):
         return m
 
 
-class SourceDb2EnterpriseSchemasTunnelMethod(str, Enum):
+class SourceDb2EnterpriseTunnelMethodSSHKeyAuth(str, Enum):
     SSH_KEY_AUTH = "SSH_KEY_AUTH"
 
 
@@ -342,7 +349,7 @@ class SourceDb2EnterpriseSSHKeyAuthenticationTypedDict(TypedDict):
     r"""Hostname of the jump server host that allows inbound ssh tunnel."""
     tunnel_user: str
     r"""OS-level username for logging into the jump server host"""
-    tunnel_method: NotRequired[SourceDb2EnterpriseSchemasTunnelMethod]
+    tunnel_method: NotRequired[SourceDb2EnterpriseTunnelMethodSSHKeyAuth]
     tunnel_port: NotRequired[int]
     r"""Port on the proxy/jump server that accepts inbound ssh connections."""
 
@@ -364,8 +371,8 @@ class SourceDb2EnterpriseSSHKeyAuthentication(BaseModel):
     tunnel_user: str
     r"""OS-level username for logging into the jump server host"""
 
-    tunnel_method: Optional[SourceDb2EnterpriseSchemasTunnelMethod] = (
-        SourceDb2EnterpriseSchemasTunnelMethod.SSH_KEY_AUTH
+    tunnel_method: Optional[SourceDb2EnterpriseTunnelMethodSSHKeyAuth] = (
+        SourceDb2EnterpriseTunnelMethodSSHKeyAuth.SSH_KEY_AUTH
     )
 
     tunnel_port: Optional[int] = 22
@@ -399,14 +406,14 @@ class SourceDb2EnterpriseSSHKeyAuthentication(BaseModel):
         return m
 
 
-class SourceDb2EnterpriseTunnelMethod(str, Enum):
+class SourceDb2EnterpriseTunnelMethodNoTunnel(str, Enum):
     NO_TUNNEL = "NO_TUNNEL"
 
 
 class SourceDb2EnterpriseNoTunnelTypedDict(TypedDict):
     r"""No ssh tunnel needed to connect to database"""
 
-    tunnel_method: NotRequired[SourceDb2EnterpriseTunnelMethod]
+    tunnel_method: NotRequired[SourceDb2EnterpriseTunnelMethodNoTunnel]
 
 
 class SourceDb2EnterpriseNoTunnel(BaseModel):
@@ -417,8 +424,8 @@ class SourceDb2EnterpriseNoTunnel(BaseModel):
     )
     __pydantic_extra__: Dict[str, Any] = pydantic.Field(init=False)
 
-    tunnel_method: Optional[SourceDb2EnterpriseTunnelMethod] = (
-        SourceDb2EnterpriseTunnelMethod.NO_TUNNEL
+    tunnel_method: Optional[SourceDb2EnterpriseTunnelMethodNoTunnel] = (
+        SourceDb2EnterpriseTunnelMethodNoTunnel.NO_TUNNEL
     )
 
     @property
@@ -472,7 +479,7 @@ r"""Whether to initiate an SSH tunnel before connecting to the database, and if 
 
 
 class SourceDb2EnterpriseTypedDict(TypedDict):
-    cursor: UpdateMethodTypedDict
+    cursor: SourceDb2EnterpriseUpdateMethodTypedDict
     r"""Configures how data is extracted from the database."""
     database: str
     r"""The database name."""
@@ -502,7 +509,7 @@ class SourceDb2EnterpriseTypedDict(TypedDict):
 
 
 class SourceDb2Enterprise(BaseModel):
-    cursor: UpdateMethod
+    cursor: SourceDb2EnterpriseUpdateMethod
     r"""Configures how data is extracted from the database."""
 
     database: str

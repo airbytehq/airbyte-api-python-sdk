@@ -1,0 +1,16 @@
+# SourceNetsuiteEnterpriseTunnelMethodNoTunnel
+
+## Example Usage
+
+```python
+from airbyte_api.models import SourceNetsuiteEnterpriseTunnelMethodNoTunnel
+
+value = SourceNetsuiteEnterpriseTunnelMethodNoTunnel.NO_TUNNEL
+```
+
+
+## Values
+
+| Name        | Value       |
+| ----------- | ----------- |
+| `NO_TUNNEL` | NO_TUNNEL   |

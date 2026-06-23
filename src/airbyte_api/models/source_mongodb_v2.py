@@ -11,7 +11,7 @@ from typing import Any, Dict, List, Optional, Union
 from typing_extensions import Annotated, NotRequired, TypeAliasType, TypedDict
 
 
-class SourceMongodbV2ClusterType(str, Enum):
+class ClusterTypeSelfManagedReplicaSet(str, Enum):
     SELF_MANAGED_REPLICA_SET = "SELF_MANAGED_REPLICA_SET"
 
 
@@ -24,7 +24,7 @@ class SelfManagedReplicaSetTypedDict(TypedDict):
     r"""The names of the MongoDB databases that contain the collection(s) to replicate."""
     auth_source: NotRequired[str]
     r"""The authentication source where the user information is stored."""
-    cluster_type: SourceMongodbV2ClusterType
+    cluster_type: ClusterTypeSelfManagedReplicaSet
     password: NotRequired[str]
     r"""The password associated with this username."""
     schema_enforced: NotRequired[bool]
@@ -52,13 +52,15 @@ class SelfManagedReplicaSet(BaseModel):
 
     CLUSTER_TYPE: Annotated[
         Annotated[
-            SourceMongodbV2ClusterType,
+            ClusterTypeSelfManagedReplicaSet,
             AfterValidator(
-                validate_const(SourceMongodbV2ClusterType.SELF_MANAGED_REPLICA_SET)
+                validate_const(
+                    ClusterTypeSelfManagedReplicaSet.SELF_MANAGED_REPLICA_SET
+                )
             ),
         ],
         pydantic.Field(alias="cluster_type"),
-    ] = SourceMongodbV2ClusterType.SELF_MANAGED_REPLICA_SET
+    ] = ClusterTypeSelfManagedReplicaSet.SELF_MANAGED_REPLICA_SET
 
     password: Optional[str] = None
     r"""The password associated with this username."""
@@ -99,7 +101,7 @@ class SelfManagedReplicaSet(BaseModel):
         return m
 
 
-class SourceMongodbV2SchemasClusterType(str, Enum):
+class ClusterTypeAtlasReplicaSet(str, Enum):
     ATLAS_REPLICA_SET = "ATLAS_REPLICA_SET"
 
 
@@ -116,7 +118,7 @@ class MongoDBAtlasReplicaSetTypedDict(TypedDict):
     r"""The username which is used to access the database."""
     auth_source: NotRequired[str]
     r"""The authentication source where the user information is stored.  See https://www.mongodb.com/docs/manual/reference/connection-string/#mongodb-urioption-urioption.authSource for more details."""
-    cluster_type: SourceMongodbV2SchemasClusterType
+    cluster_type: ClusterTypeAtlasReplicaSet
     schema_enforced: NotRequired[bool]
     r"""When enabled, syncs will validate and structure records against the stream's schema."""
 
@@ -146,13 +148,13 @@ class MongoDBAtlasReplicaSet(BaseModel):
 
     CLUSTER_TYPE: Annotated[
         Annotated[
-            SourceMongodbV2SchemasClusterType,
+            ClusterTypeAtlasReplicaSet,
             AfterValidator(
-                validate_const(SourceMongodbV2SchemasClusterType.ATLAS_REPLICA_SET)
+                validate_const(ClusterTypeAtlasReplicaSet.ATLAS_REPLICA_SET)
             ),
         ],
         pydantic.Field(alias="cluster_type"),
-    ] = SourceMongodbV2SchemasClusterType.ATLAS_REPLICA_SET
+    ] = ClusterTypeAtlasReplicaSet.ATLAS_REPLICA_SET
 
     schema_enforced: Optional[bool] = True
     r"""When enabled, syncs will validate and structure records against the stream's schema."""
@@ -202,7 +204,7 @@ ClusterType = Annotated[
 r"""Configures the MongoDB cluster type."""
 
 
-class InvalidCDCPositionBehaviorAdvanced(str, Enum):
+class SourceMongodbV2InvalidCDCPositionBehaviorAdvanced(str, Enum):
     r"""Determines whether Airbyte should fail or re-sync data in case of an stale/invalid cursor value into the WAL. If 'Fail sync' is chosen, a user will have to manually reset the connection before being able to continue syncing data. If 'Re-sync data' is chosen, Airbyte will automatically trigger a refresh but could lead to higher cloud costs and data loss."""
 
     FAIL_SYNC = "Fail sync"
@@ -232,7 +234,7 @@ class SourceMongodbV2TypedDict(TypedDict):
     initial_waiting_seconds: NotRequired[int]
     r"""The amount of time the connector will wait when it launches to determine if there is new data to sync or not. Defaults to 300 seconds. Valid range: 120 seconds to 1200 seconds."""
     invalid_cdc_cursor_position_behavior: NotRequired[
-        InvalidCDCPositionBehaviorAdvanced
+        SourceMongodbV2InvalidCDCPositionBehaviorAdvanced
     ]
     r"""Determines whether Airbyte should fail or re-sync data in case of an stale/invalid cursor value into the WAL. If 'Fail sync' is chosen, a user will have to manually reset the connection before being able to continue syncing data. If 'Re-sync data' is chosen, Airbyte will automatically trigger a refresh but could lead to higher cloud costs and data loss."""
     queue_size: NotRequired[int]
@@ -259,8 +261,8 @@ class SourceMongodbV2(BaseModel):
     r"""The amount of time the connector will wait when it launches to determine if there is new data to sync or not. Defaults to 300 seconds. Valid range: 120 seconds to 1200 seconds."""
 
     invalid_cdc_cursor_position_behavior: Optional[
-        InvalidCDCPositionBehaviorAdvanced
-    ] = InvalidCDCPositionBehaviorAdvanced.FAIL_SYNC
+        SourceMongodbV2InvalidCDCPositionBehaviorAdvanced
+    ] = SourceMongodbV2InvalidCDCPositionBehaviorAdvanced.FAIL_SYNC
     r"""Determines whether Airbyte should fail or re-sync data in case of an stale/invalid cursor value into the WAL. If 'Fail sync' is chosen, a user will have to manually reset the connection before being able to continue syncing data. If 'Re-sync data' is chosen, Airbyte will automatically trigger a refresh but could lead to higher cloud costs and data loss."""
 
     queue_size: Optional[int] = 10000

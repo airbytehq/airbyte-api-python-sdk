@@ -12,14 +12,14 @@ from typing import List, Optional, Union
 from typing_extensions import Annotated, NotRequired, TypeAliasType, TypedDict
 
 
-class SourceGoogleDriveSchemasAuthType(str, Enum):
+class SourceGoogleDriveAuthTypeService(str, Enum):
     SERVICE = "Service"
 
 
 class SourceGoogleDriveServiceAccountKeyAuthenticationTypedDict(TypedDict):
     service_account_info: str
     r"""The JSON key of the service account to use for authorization. Read more <a href=\"https://cloud.google.com/iam/docs/creating-managing-service-account-keys#creating_service_account_keys\">here</a>."""
-    auth_type: SourceGoogleDriveSchemasAuthType
+    auth_type: SourceGoogleDriveAuthTypeService
 
 
 class SourceGoogleDriveServiceAccountKeyAuthentication(BaseModel):
@@ -28,11 +28,11 @@ class SourceGoogleDriveServiceAccountKeyAuthentication(BaseModel):
 
     AUTH_TYPE: Annotated[
         Annotated[
-            Optional[SourceGoogleDriveSchemasAuthType],
-            AfterValidator(validate_const(SourceGoogleDriveSchemasAuthType.SERVICE)),
+            Optional[SourceGoogleDriveAuthTypeService],
+            AfterValidator(validate_const(SourceGoogleDriveAuthTypeService.SERVICE)),
         ],
         pydantic.Field(alias="auth_type"),
-    ] = SourceGoogleDriveSchemasAuthType.SERVICE
+    ] = SourceGoogleDriveAuthTypeService.SERVICE
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
@@ -51,7 +51,7 @@ class SourceGoogleDriveServiceAccountKeyAuthentication(BaseModel):
         return m
 
 
-class SourceGoogleDriveAuthType(str, Enum):
+class SourceGoogleDriveAuthTypeClient(str, Enum):
     CLIENT = "Client"
 
 
@@ -62,7 +62,7 @@ class SourceGoogleDriveAuthenticateViaGoogleOAuthTypedDict(TypedDict):
     r"""Client Secret for the Google Drive API"""
     refresh_token: str
     r"""Refresh Token for the Google Drive API"""
-    auth_type: SourceGoogleDriveAuthType
+    auth_type: SourceGoogleDriveAuthTypeClient
 
 
 class SourceGoogleDriveAuthenticateViaGoogleOAuth(BaseModel):
@@ -77,11 +77,11 @@ class SourceGoogleDriveAuthenticateViaGoogleOAuth(BaseModel):
 
     AUTH_TYPE: Annotated[
         Annotated[
-            Optional[SourceGoogleDriveAuthType],
-            AfterValidator(validate_const(SourceGoogleDriveAuthType.CLIENT)),
+            Optional[SourceGoogleDriveAuthTypeClient],
+            AfterValidator(validate_const(SourceGoogleDriveAuthTypeClient.CLIENT)),
         ],
         pydantic.Field(alias="auth_type"),
-    ] = SourceGoogleDriveAuthType.CLIENT
+    ] = SourceGoogleDriveAuthTypeClient.CLIENT
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
@@ -120,34 +120,34 @@ SourceGoogleDriveAuthentication = TypeAliasType(
 r"""Credentials for connecting to the Google Drive API"""
 
 
-class SourceGoogleDriveSchemasDeliveryType(str, Enum):
+class SourceGoogleDriveDeliveryTypeUsePermissionsTransfer(str, Enum):
     USE_PERMISSIONS_TRANSFER = "use_permissions_transfer"
 
 
-class ReplicatePermissionsACLTypedDict(TypedDict):
+class SourceGoogleDriveReplicatePermissionsACLTypedDict(TypedDict):
     r"""Sends one identity stream and one for more permissions (ACL) streams to the destination. This data can be used in downstream systems to recreate permission restrictions mirroring the original source."""
 
-    delivery_type: SourceGoogleDriveSchemasDeliveryType
+    delivery_type: SourceGoogleDriveDeliveryTypeUsePermissionsTransfer
     domain: NotRequired[str]
     r"""The Google domain of the identities."""
     include_identities_stream: NotRequired[bool]
     r"""This data can be used in downstream systems to recreate permission restrictions mirroring the original source"""
 
 
-class ReplicatePermissionsACL(BaseModel):
+class SourceGoogleDriveReplicatePermissionsACL(BaseModel):
     r"""Sends one identity stream and one for more permissions (ACL) streams to the destination. This data can be used in downstream systems to recreate permission restrictions mirroring the original source."""
 
     DELIVERY_TYPE: Annotated[
         Annotated[
-            Optional[SourceGoogleDriveSchemasDeliveryType],
+            Optional[SourceGoogleDriveDeliveryTypeUsePermissionsTransfer],
             AfterValidator(
                 validate_const(
-                    SourceGoogleDriveSchemasDeliveryType.USE_PERMISSIONS_TRANSFER
+                    SourceGoogleDriveDeliveryTypeUsePermissionsTransfer.USE_PERMISSIONS_TRANSFER
                 )
             ),
         ],
         pydantic.Field(alias="delivery_type"),
-    ] = SourceGoogleDriveSchemasDeliveryType.USE_PERMISSIONS_TRANSFER
+    ] = SourceGoogleDriveDeliveryTypeUsePermissionsTransfer.USE_PERMISSIONS_TRANSFER
 
     domain: Optional[str] = None
     r"""The Google domain of the identities."""
@@ -172,30 +172,32 @@ class ReplicatePermissionsACL(BaseModel):
         return m
 
 
-class SourceGoogleDriveDeliveryType(str, Enum):
+class SourceGoogleDriveDeliveryTypeUseFileTransfer(str, Enum):
     USE_FILE_TRANSFER = "use_file_transfer"
 
 
-class CopyRawFilesTypedDict(TypedDict):
+class SourceGoogleDriveCopyRawFilesTypedDict(TypedDict):
     r"""Copy raw files without parsing their contents. Bits are copied into the destination exactly as they appeared in the source. Recommended for use with unstructured text data, non-text and compressed files."""
 
-    delivery_type: SourceGoogleDriveDeliveryType
+    delivery_type: SourceGoogleDriveDeliveryTypeUseFileTransfer
     preserve_directory_structure: NotRequired[bool]
     r"""If enabled, sends subdirectory folder structure along with source file names to the destination. Otherwise, files will be synced by their names only. This option is ignored when file-based replication is not enabled."""
 
 
-class CopyRawFiles(BaseModel):
+class SourceGoogleDriveCopyRawFiles(BaseModel):
     r"""Copy raw files without parsing their contents. Bits are copied into the destination exactly as they appeared in the source. Recommended for use with unstructured text data, non-text and compressed files."""
 
     DELIVERY_TYPE: Annotated[
         Annotated[
-            Optional[SourceGoogleDriveDeliveryType],
+            Optional[SourceGoogleDriveDeliveryTypeUseFileTransfer],
             AfterValidator(
-                validate_const(SourceGoogleDriveDeliveryType.USE_FILE_TRANSFER)
+                validate_const(
+                    SourceGoogleDriveDeliveryTypeUseFileTransfer.USE_FILE_TRANSFER
+                )
             ),
         ],
         pydantic.Field(alias="delivery_type"),
-    ] = SourceGoogleDriveDeliveryType.USE_FILE_TRANSFER
+    ] = SourceGoogleDriveDeliveryTypeUseFileTransfer.USE_FILE_TRANSFER
 
     preserve_directory_structure: Optional[bool] = True
     r"""If enabled, sends subdirectory folder structure along with source file names to the destination. Otherwise, files will be synced by their names only. This option is ignored when file-based replication is not enabled."""
@@ -217,26 +219,30 @@ class CopyRawFiles(BaseModel):
         return m
 
 
-class DeliveryType(str, Enum):
+class SourceGoogleDriveDeliveryTypeUseRecordsTransfer(str, Enum):
     USE_RECORDS_TRANSFER = "use_records_transfer"
 
 
-class ReplicateRecordsTypedDict(TypedDict):
+class SourceGoogleDriveReplicateRecordsTypedDict(TypedDict):
     r"""Recommended - Extract and load structured records into your destination of choice. This is the classic method of moving data in Airbyte. It allows for blocking and hashing individual fields or files from a structured schema. Data can be flattened, typed and deduped depending on the destination."""
 
-    delivery_type: DeliveryType
+    delivery_type: SourceGoogleDriveDeliveryTypeUseRecordsTransfer
 
 
-class ReplicateRecords(BaseModel):
+class SourceGoogleDriveReplicateRecords(BaseModel):
     r"""Recommended - Extract and load structured records into your destination of choice. This is the classic method of moving data in Airbyte. It allows for blocking and hashing individual fields or files from a structured schema. Data can be flattened, typed and deduped depending on the destination."""
 
     DELIVERY_TYPE: Annotated[
         Annotated[
-            Optional[DeliveryType],
-            AfterValidator(validate_const(DeliveryType.USE_RECORDS_TRANSFER)),
+            Optional[SourceGoogleDriveDeliveryTypeUseRecordsTransfer],
+            AfterValidator(
+                validate_const(
+                    SourceGoogleDriveDeliveryTypeUseRecordsTransfer.USE_RECORDS_TRANSFER
+                )
+            ),
         ],
         pydantic.Field(alias="delivery_type"),
-    ] = DeliveryType.USE_RECORDS_TRANSFER
+    ] = SourceGoogleDriveDeliveryTypeUseRecordsTransfer.USE_RECORDS_TRANSFER
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
@@ -255,45 +261,46 @@ class ReplicateRecords(BaseModel):
         return m
 
 
-DeliveryMethodTypedDict = TypeAliasType(
-    "DeliveryMethodTypedDict",
+SourceGoogleDriveDeliveryMethodTypedDict = TypeAliasType(
+    "SourceGoogleDriveDeliveryMethodTypedDict",
     Union[
-        ReplicateRecordsTypedDict,
-        CopyRawFilesTypedDict,
-        ReplicatePermissionsACLTypedDict,
+        SourceGoogleDriveReplicateRecordsTypedDict,
+        SourceGoogleDriveCopyRawFilesTypedDict,
+        SourceGoogleDriveReplicatePermissionsACLTypedDict,
     ],
 )
 
 
-DeliveryMethod = TypeAliasType(
-    "DeliveryMethod", Union[ReplicateRecords, CopyRawFiles, ReplicatePermissionsACL]
+SourceGoogleDriveDeliveryMethod = TypeAliasType(
+    "SourceGoogleDriveDeliveryMethod",
+    Union[
+        SourceGoogleDriveReplicateRecords,
+        SourceGoogleDriveCopyRawFiles,
+        SourceGoogleDriveReplicatePermissionsACL,
+    ],
 )
 
 
-class SourceGoogleDriveGoogleDrive(str, Enum):
+class GoogleDriveEnum(str, Enum):
     GOOGLE_DRIVE = "google-drive"
 
 
-class SourceGoogleDriveSchemasStreamsFormatFormat6Filetype(str, Enum):
+class SourceGoogleDriveFiletypeExcel(str, Enum):
     EXCEL = "excel"
 
 
 class SourceGoogleDriveExcelFormatTypedDict(TypedDict):
-    filetype: SourceGoogleDriveSchemasStreamsFormatFormat6Filetype
+    filetype: SourceGoogleDriveFiletypeExcel
 
 
 class SourceGoogleDriveExcelFormat(BaseModel):
     FILETYPE: Annotated[
         Annotated[
-            Optional[SourceGoogleDriveSchemasStreamsFormatFormat6Filetype],
-            AfterValidator(
-                validate_const(
-                    SourceGoogleDriveSchemasStreamsFormatFormat6Filetype.EXCEL
-                )
-            ),
+            Optional[SourceGoogleDriveFiletypeExcel],
+            AfterValidator(validate_const(SourceGoogleDriveFiletypeExcel.EXCEL)),
         ],
         pydantic.Field(alias="filetype"),
-    ] = SourceGoogleDriveSchemasStreamsFormatFormat6Filetype.EXCEL
+    ] = SourceGoogleDriveFiletypeExcel.EXCEL
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
@@ -312,7 +319,7 @@ class SourceGoogleDriveExcelFormat(BaseModel):
         return m
 
 
-class SourceGoogleDriveSchemasStreamsFormatFormatFiletype(str, Enum):
+class SourceGoogleDriveFiletypeUnstructured(str, Enum):
     UNSTRUCTURED = "unstructured"
 
 
@@ -374,7 +381,7 @@ class SourceGoogleDriveParsingStrategy(str, Enum):
 class SourceGoogleDriveUnstructuredDocumentFormatTypedDict(TypedDict):
     r"""Extract text from document formats (.pdf, .docx, .md, .pptx) and emit as one record per file."""
 
-    filetype: SourceGoogleDriveSchemasStreamsFormatFormatFiletype
+    filetype: SourceGoogleDriveFiletypeUnstructured
     processing: NotRequired[SourceGoogleDriveProcessingTypedDict]
     r"""Processing configuration"""
     skip_unprocessable_files: NotRequired[bool]
@@ -388,15 +395,13 @@ class SourceGoogleDriveUnstructuredDocumentFormat(BaseModel):
 
     FILETYPE: Annotated[
         Annotated[
-            Optional[SourceGoogleDriveSchemasStreamsFormatFormatFiletype],
+            Optional[SourceGoogleDriveFiletypeUnstructured],
             AfterValidator(
-                validate_const(
-                    SourceGoogleDriveSchemasStreamsFormatFormatFiletype.UNSTRUCTURED
-                )
+                validate_const(SourceGoogleDriveFiletypeUnstructured.UNSTRUCTURED)
             ),
         ],
         pydantic.Field(alias="filetype"),
-    ] = SourceGoogleDriveSchemasStreamsFormatFormatFiletype.UNSTRUCTURED
+    ] = SourceGoogleDriveFiletypeUnstructured.UNSTRUCTURED
 
     processing: Optional[SourceGoogleDriveProcessing] = None
     r"""Processing configuration"""
@@ -428,14 +433,14 @@ class SourceGoogleDriveUnstructuredDocumentFormat(BaseModel):
         return m
 
 
-class SourceGoogleDriveSchemasStreamsFormatFiletype(str, Enum):
+class SourceGoogleDriveFiletypeParquet(str, Enum):
     PARQUET = "parquet"
 
 
 class SourceGoogleDriveParquetFormatTypedDict(TypedDict):
     decimal_as_float: NotRequired[bool]
     r"""Whether to convert decimal fields to floats. There is a loss of precision when converting decimals to floats, so this is not recommended."""
-    filetype: SourceGoogleDriveSchemasStreamsFormatFiletype
+    filetype: SourceGoogleDriveFiletypeParquet
 
 
 class SourceGoogleDriveParquetFormat(BaseModel):
@@ -444,13 +449,11 @@ class SourceGoogleDriveParquetFormat(BaseModel):
 
     FILETYPE: Annotated[
         Annotated[
-            Optional[SourceGoogleDriveSchemasStreamsFormatFiletype],
-            AfterValidator(
-                validate_const(SourceGoogleDriveSchemasStreamsFormatFiletype.PARQUET)
-            ),
+            Optional[SourceGoogleDriveFiletypeParquet],
+            AfterValidator(validate_const(SourceGoogleDriveFiletypeParquet.PARQUET)),
         ],
         pydantic.Field(alias="filetype"),
-    ] = SourceGoogleDriveSchemasStreamsFormatFiletype.PARQUET
+    ] = SourceGoogleDriveFiletypeParquet.PARQUET
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
@@ -469,24 +472,22 @@ class SourceGoogleDriveParquetFormat(BaseModel):
         return m
 
 
-class SourceGoogleDriveSchemasStreamsFiletype(str, Enum):
+class SourceGoogleDriveFiletypeJsonl(str, Enum):
     JSONL = "jsonl"
 
 
 class SourceGoogleDriveJsonlFormatTypedDict(TypedDict):
-    filetype: SourceGoogleDriveSchemasStreamsFiletype
+    filetype: SourceGoogleDriveFiletypeJsonl
 
 
 class SourceGoogleDriveJsonlFormat(BaseModel):
     FILETYPE: Annotated[
         Annotated[
-            Optional[SourceGoogleDriveSchemasStreamsFiletype],
-            AfterValidator(
-                validate_const(SourceGoogleDriveSchemasStreamsFiletype.JSONL)
-            ),
+            Optional[SourceGoogleDriveFiletypeJsonl],
+            AfterValidator(validate_const(SourceGoogleDriveFiletypeJsonl.JSONL)),
         ],
         pydantic.Field(alias="filetype"),
-    ] = SourceGoogleDriveSchemasStreamsFiletype.JSONL
+    ] = SourceGoogleDriveFiletypeJsonl.JSONL
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
@@ -505,18 +506,18 @@ class SourceGoogleDriveJsonlFormat(BaseModel):
         return m
 
 
-class SourceGoogleDriveSchemasFiletype(str, Enum):
+class SourceGoogleDriveFiletypeCsv(str, Enum):
     CSV = "csv"
 
 
-class SourceGoogleDriveSchemasStreamsHeaderDefinitionType(str, Enum):
+class SourceGoogleDriveHeaderDefinitionTypeUserProvided(str, Enum):
     USER_PROVIDED = "User Provided"
 
 
 class SourceGoogleDriveUserProvidedTypedDict(TypedDict):
     column_names: List[str]
     r"""The column names that will be used while emitting the CSV records"""
-    header_definition_type: SourceGoogleDriveSchemasStreamsHeaderDefinitionType
+    header_definition_type: SourceGoogleDriveHeaderDefinitionTypeUserProvided
 
 
 class SourceGoogleDriveUserProvided(BaseModel):
@@ -525,15 +526,15 @@ class SourceGoogleDriveUserProvided(BaseModel):
 
     HEADER_DEFINITION_TYPE: Annotated[
         Annotated[
-            Optional[SourceGoogleDriveSchemasStreamsHeaderDefinitionType],
+            Optional[SourceGoogleDriveHeaderDefinitionTypeUserProvided],
             AfterValidator(
                 validate_const(
-                    SourceGoogleDriveSchemasStreamsHeaderDefinitionType.USER_PROVIDED
+                    SourceGoogleDriveHeaderDefinitionTypeUserProvided.USER_PROVIDED
                 )
             ),
         ],
         pydantic.Field(alias="header_definition_type"),
-    ] = SourceGoogleDriveSchemasStreamsHeaderDefinitionType.USER_PROVIDED
+    ] = SourceGoogleDriveHeaderDefinitionTypeUserProvided.USER_PROVIDED
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
@@ -552,26 +553,26 @@ class SourceGoogleDriveUserProvided(BaseModel):
         return m
 
 
-class SourceGoogleDriveSchemasHeaderDefinitionType(str, Enum):
+class SourceGoogleDriveHeaderDefinitionTypeAutogenerated(str, Enum):
     AUTOGENERATED = "Autogenerated"
 
 
 class SourceGoogleDriveAutogeneratedTypedDict(TypedDict):
-    header_definition_type: SourceGoogleDriveSchemasHeaderDefinitionType
+    header_definition_type: SourceGoogleDriveHeaderDefinitionTypeAutogenerated
 
 
 class SourceGoogleDriveAutogenerated(BaseModel):
     HEADER_DEFINITION_TYPE: Annotated[
         Annotated[
-            Optional[SourceGoogleDriveSchemasHeaderDefinitionType],
+            Optional[SourceGoogleDriveHeaderDefinitionTypeAutogenerated],
             AfterValidator(
                 validate_const(
-                    SourceGoogleDriveSchemasHeaderDefinitionType.AUTOGENERATED
+                    SourceGoogleDriveHeaderDefinitionTypeAutogenerated.AUTOGENERATED
                 )
             ),
         ],
         pydantic.Field(alias="header_definition_type"),
-    ] = SourceGoogleDriveSchemasHeaderDefinitionType.AUTOGENERATED
+    ] = SourceGoogleDriveHeaderDefinitionTypeAutogenerated.AUTOGENERATED
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
@@ -590,24 +591,24 @@ class SourceGoogleDriveAutogenerated(BaseModel):
         return m
 
 
-class SourceGoogleDriveHeaderDefinitionType(str, Enum):
+class SourceGoogleDriveHeaderDefinitionTypeFromCsv(str, Enum):
     FROM_CSV = "From CSV"
 
 
 class SourceGoogleDriveFromCSVTypedDict(TypedDict):
-    header_definition_type: SourceGoogleDriveHeaderDefinitionType
+    header_definition_type: SourceGoogleDriveHeaderDefinitionTypeFromCsv
 
 
 class SourceGoogleDriveFromCSV(BaseModel):
     HEADER_DEFINITION_TYPE: Annotated[
         Annotated[
-            Optional[SourceGoogleDriveHeaderDefinitionType],
+            Optional[SourceGoogleDriveHeaderDefinitionTypeFromCsv],
             AfterValidator(
-                validate_const(SourceGoogleDriveHeaderDefinitionType.FROM_CSV)
+                validate_const(SourceGoogleDriveHeaderDefinitionTypeFromCsv.FROM_CSV)
             ),
         ],
         pydantic.Field(alias="header_definition_type"),
-    ] = SourceGoogleDriveHeaderDefinitionType.FROM_CSV
+    ] = SourceGoogleDriveHeaderDefinitionTypeFromCsv.FROM_CSV
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
@@ -659,7 +660,7 @@ class SourceGoogleDriveCSVFormatTypedDict(TypedDict):
     r"""The character used for escaping special characters. To disallow escaping, leave this field blank."""
     false_values: NotRequired[List[str]]
     r"""A set of case-sensitive strings that should be interpreted as false values."""
-    filetype: SourceGoogleDriveSchemasFiletype
+    filetype: SourceGoogleDriveFiletypeCsv
     header_definition: NotRequired[SourceGoogleDriveCSVHeaderDefinitionTypedDict]
     r"""How headers will be defined. `User Provided` assumes the CSV does not have a header row and uses the headers provided and `Autogenerated` assumes the CSV does not have a header row and the CDK will generate headers using for `f{i}` where `i` is the index starting from 0. Else, the default behavior is to use the header from the CSV file. If a user wants to autogenerate or provide column names for a CSV having headers, they can skip rows."""
     ignore_errors_on_fields_mismatch: NotRequired[bool]
@@ -696,11 +697,11 @@ class SourceGoogleDriveCSVFormat(BaseModel):
 
     FILETYPE: Annotated[
         Annotated[
-            Optional[SourceGoogleDriveSchemasFiletype],
-            AfterValidator(validate_const(SourceGoogleDriveSchemasFiletype.CSV)),
+            Optional[SourceGoogleDriveFiletypeCsv],
+            AfterValidator(validate_const(SourceGoogleDriveFiletypeCsv.CSV)),
         ],
         pydantic.Field(alias="filetype"),
-    ] = SourceGoogleDriveSchemasFiletype.CSV
+    ] = SourceGoogleDriveFiletypeCsv.CSV
 
     header_definition: Optional[SourceGoogleDriveCSVHeaderDefinition] = None
     r"""How headers will be defined. `User Provided` assumes the CSV does not have a header row and uses the headers provided and `Autogenerated` assumes the CSV does not have a header row and the CDK will generate headers using for `f{i}` where `i` is the index starting from 0. Else, the default behavior is to use the header from the CSV file. If a user wants to autogenerate or provide column names for a CSV having headers, they can skip rows."""
@@ -760,14 +761,14 @@ class SourceGoogleDriveCSVFormat(BaseModel):
         return m
 
 
-class SourceGoogleDriveFiletype(str, Enum):
+class SourceGoogleDriveFiletypeAvro(str, Enum):
     AVRO = "avro"
 
 
 class SourceGoogleDriveAvroFormatTypedDict(TypedDict):
     double_as_string: NotRequired[bool]
     r"""Whether to convert double fields to strings. This is recommended if you have decimal numbers with a high degree of precision because there can be a loss precision when handling floating point numbers."""
-    filetype: SourceGoogleDriveFiletype
+    filetype: SourceGoogleDriveFiletypeAvro
 
 
 class SourceGoogleDriveAvroFormat(BaseModel):
@@ -776,11 +777,11 @@ class SourceGoogleDriveAvroFormat(BaseModel):
 
     FILETYPE: Annotated[
         Annotated[
-            Optional[SourceGoogleDriveFiletype],
-            AfterValidator(validate_const(SourceGoogleDriveFiletype.AVRO)),
+            Optional[SourceGoogleDriveFiletypeAvro],
+            AfterValidator(validate_const(SourceGoogleDriveFiletypeAvro.AVRO)),
         ],
         pydantic.Field(alias="filetype"),
-    ] = SourceGoogleDriveFiletype.AVRO
+    ] = SourceGoogleDriveFiletypeAvro.AVRO
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
@@ -918,8 +919,8 @@ class SourceGoogleDriveTypedDict(TypedDict):
     r"""URL for the folder you want to sync. Using individual streams and glob patterns, it's possible to only sync a subset of all files located in the folder."""
     streams: List[SourceGoogleDriveFileBasedStreamConfigTypedDict]
     r"""Each instance of this configuration defines a <a href=\"https://docs.airbyte.com/cloud/core-concepts#stream\">stream</a>. Use this to define which files belong in the stream, their format, and how they should be parsed and validated. When sending data to warehouse destination such as Snowflake or BigQuery, each stream is a separate table."""
-    delivery_method: NotRequired[DeliveryMethodTypedDict]
-    source_type: SourceGoogleDriveGoogleDrive
+    delivery_method: NotRequired[SourceGoogleDriveDeliveryMethodTypedDict]
+    source_type: GoogleDriveEnum
     start_date: NotRequired[datetime]
     r"""UTC date and time in the format 2017-01-25T00:00:00.000000Z. Any file modified before this date will not be replicated."""
 
@@ -938,15 +939,15 @@ class SourceGoogleDrive(BaseModel):
     streams: List[SourceGoogleDriveFileBasedStreamConfig]
     r"""Each instance of this configuration defines a <a href=\"https://docs.airbyte.com/cloud/core-concepts#stream\">stream</a>. Use this to define which files belong in the stream, their format, and how they should be parsed and validated. When sending data to warehouse destination such as Snowflake or BigQuery, each stream is a separate table."""
 
-    delivery_method: Optional[DeliveryMethod] = None
+    delivery_method: Optional[SourceGoogleDriveDeliveryMethod] = None
 
     SOURCE_TYPE: Annotated[
         Annotated[
-            SourceGoogleDriveGoogleDrive,
-            AfterValidator(validate_const(SourceGoogleDriveGoogleDrive.GOOGLE_DRIVE)),
+            GoogleDriveEnum,
+            AfterValidator(validate_const(GoogleDriveEnum.GOOGLE_DRIVE)),
         ],
         pydantic.Field(alias="sourceType"),
-    ] = SourceGoogleDriveGoogleDrive.GOOGLE_DRIVE
+    ] = GoogleDriveEnum.GOOGLE_DRIVE
 
     start_date: Optional[datetime] = None
     r"""UTC date and time in the format 2017-01-25T00:00:00.000000Z. Any file modified before this date will not be replicated."""
@@ -977,15 +978,15 @@ try:
 except NameError:
     pass
 try:
-    ReplicatePermissionsACL.model_rebuild()
+    SourceGoogleDriveReplicatePermissionsACL.model_rebuild()
 except NameError:
     pass
 try:
-    CopyRawFiles.model_rebuild()
+    SourceGoogleDriveCopyRawFiles.model_rebuild()
 except NameError:
     pass
 try:
-    ReplicateRecords.model_rebuild()
+    SourceGoogleDriveReplicateRecords.model_rebuild()
 except NameError:
     pass
 try:

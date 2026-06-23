@@ -1,0 +1,12 @@
+# MetricsFilterFilter
+
+A primitive filter. In the same FilterExpression, all of the filter's field names need to be either all metrics.
+
+
+## Fields
+
+| Field                                                                                        | Type                                                                                         | Required                                                                                     | Description                                                                                  |
+| -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
+| `field_name`                                                                                 | *str*                                                                                        | :heavy_check_mark:                                                                           | N/A                                                                                          |
+| `filter_`                                                                                    | [models.MetricsFilterFilterUnion](../models/metricsfilterfilterunion.md)                     | :heavy_check_mark:                                                                           | N/A                                                                                          |
+| `filter_type`                                                                                | [Optional[models.MetricsFilterFilterTypeFilter]](../models/metricsfilterfiltertypefilter.md) | :heavy_minus_sign:                                                                           | N/A                                                                                          |

@@ -17,9 +17,9 @@ value: models.SourceNetsuiteEnterpriseNoTunnel = /* values here */
 value: models.SourceNetsuiteEnterpriseSSHKeyAuthentication = /* values here */
 ```
 
-### `models.SourceNetsuiteEnterpriseSchemasPasswordAuthentication`
+### `models.SourceNetsuiteEnterpriseSSHTunnelMethodPasswordAuthentication`
 
 ```python
-value: models.SourceNetsuiteEnterpriseSchemasPasswordAuthentication = /* values here */
+value: models.SourceNetsuiteEnterpriseSSHTunnelMethodPasswordAuthentication = /* values here */
 ```
 

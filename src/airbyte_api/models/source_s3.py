@@ -12,14 +12,14 @@ from typing import List, Optional, Union
 from typing_extensions import Annotated, NotRequired, TypeAliasType, TypedDict
 
 
-class SourceS3SchemasDeliveryType(str, Enum):
+class SourceS3DeliveryTypeUseFileTransfer(str, Enum):
     USE_FILE_TRANSFER = "use_file_transfer"
 
 
 class SourceS3CopyRawFilesTypedDict(TypedDict):
     r"""Copy raw files without parsing their contents. Bits are copied into the destination exactly as they appeared in the source. Recommended for use with unstructured text data, non-text and compressed files."""
 
-    delivery_type: SourceS3SchemasDeliveryType
+    delivery_type: SourceS3DeliveryTypeUseFileTransfer
     preserve_directory_structure: NotRequired[bool]
     r"""If enabled, sends subdirectory folder structure along with source file names to the destination. Otherwise, files will be synced by their names only. This option is ignored when file-based replication is not enabled."""
 
@@ -29,13 +29,13 @@ class SourceS3CopyRawFiles(BaseModel):
 
     DELIVERY_TYPE: Annotated[
         Annotated[
-            Optional[SourceS3SchemasDeliveryType],
+            Optional[SourceS3DeliveryTypeUseFileTransfer],
             AfterValidator(
-                validate_const(SourceS3SchemasDeliveryType.USE_FILE_TRANSFER)
+                validate_const(SourceS3DeliveryTypeUseFileTransfer.USE_FILE_TRANSFER)
             ),
         ],
         pydantic.Field(alias="delivery_type"),
-    ] = SourceS3SchemasDeliveryType.USE_FILE_TRANSFER
+    ] = SourceS3DeliveryTypeUseFileTransfer.USE_FILE_TRANSFER
 
     preserve_directory_structure: Optional[bool] = True
     r"""If enabled, sends subdirectory folder structure along with source file names to the destination. Otherwise, files will be synced by their names only. This option is ignored when file-based replication is not enabled."""
@@ -57,14 +57,14 @@ class SourceS3CopyRawFiles(BaseModel):
         return m
 
 
-class SourceS3DeliveryType(str, Enum):
+class SourceS3DeliveryTypeUseRecordsTransfer(str, Enum):
     USE_RECORDS_TRANSFER = "use_records_transfer"
 
 
 class SourceS3ReplicateRecordsTypedDict(TypedDict):
     r"""Recommended - Extract and load structured records into your destination of choice. This is the classic method of moving data in Airbyte. It allows for blocking and hashing individual fields or files from a structured schema. Data can be flattened, typed and deduped depending on the destination."""
 
-    delivery_type: SourceS3DeliveryType
+    delivery_type: SourceS3DeliveryTypeUseRecordsTransfer
 
 
 class SourceS3ReplicateRecords(BaseModel):
@@ -72,11 +72,15 @@ class SourceS3ReplicateRecords(BaseModel):
 
     DELIVERY_TYPE: Annotated[
         Annotated[
-            Optional[SourceS3DeliveryType],
-            AfterValidator(validate_const(SourceS3DeliveryType.USE_RECORDS_TRANSFER)),
+            Optional[SourceS3DeliveryTypeUseRecordsTransfer],
+            AfterValidator(
+                validate_const(
+                    SourceS3DeliveryTypeUseRecordsTransfer.USE_RECORDS_TRANSFER
+                )
+            ),
         ],
         pydantic.Field(alias="delivery_type"),
-    ] = SourceS3DeliveryType.USE_RECORDS_TRANSFER
+    ] = SourceS3DeliveryTypeUseRecordsTransfer.USE_RECORDS_TRANSFER
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
@@ -110,24 +114,22 @@ class SourceS3S3(str, Enum):
     S3 = "s3"
 
 
-class SourceS3SchemasStreamsFormatFormat6Filetype(str, Enum):
+class SourceS3FiletypeExcel(str, Enum):
     EXCEL = "excel"
 
 
 class SourceS3ExcelFormatTypedDict(TypedDict):
-    filetype: SourceS3SchemasStreamsFormatFormat6Filetype
+    filetype: SourceS3FiletypeExcel
 
 
 class SourceS3ExcelFormat(BaseModel):
     FILETYPE: Annotated[
         Annotated[
-            Optional[SourceS3SchemasStreamsFormatFormat6Filetype],
-            AfterValidator(
-                validate_const(SourceS3SchemasStreamsFormatFormat6Filetype.EXCEL)
-            ),
+            Optional[SourceS3FiletypeExcel],
+            AfterValidator(validate_const(SourceS3FiletypeExcel.EXCEL)),
         ],
         pydantic.Field(alias="filetype"),
-    ] = SourceS3SchemasStreamsFormatFormat6Filetype.EXCEL
+    ] = SourceS3FiletypeExcel.EXCEL
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
@@ -146,7 +148,7 @@ class SourceS3ExcelFormat(BaseModel):
         return m
 
 
-class SourceS3SchemasStreamsFormatFormatFiletype(str, Enum):
+class SourceS3FiletypeUnstructured(str, Enum):
     UNSTRUCTURED = "unstructured"
 
 
@@ -207,7 +209,7 @@ class SourceS3ParsingStrategy(str, Enum):
 class SourceS3UnstructuredDocumentFormatTypedDict(TypedDict):
     r"""Extract text from document formats (.pdf, .docx, .md, .pptx) and emit as one record per file."""
 
-    filetype: SourceS3SchemasStreamsFormatFormatFiletype
+    filetype: SourceS3FiletypeUnstructured
     processing: NotRequired[SourceS3ProcessingTypedDict]
     r"""Processing configuration"""
     skip_unprocessable_files: NotRequired[bool]
@@ -221,13 +223,11 @@ class SourceS3UnstructuredDocumentFormat(BaseModel):
 
     FILETYPE: Annotated[
         Annotated[
-            Optional[SourceS3SchemasStreamsFormatFormatFiletype],
-            AfterValidator(
-                validate_const(SourceS3SchemasStreamsFormatFormatFiletype.UNSTRUCTURED)
-            ),
+            Optional[SourceS3FiletypeUnstructured],
+            AfterValidator(validate_const(SourceS3FiletypeUnstructured.UNSTRUCTURED)),
         ],
         pydantic.Field(alias="filetype"),
-    ] = SourceS3SchemasStreamsFormatFormatFiletype.UNSTRUCTURED
+    ] = SourceS3FiletypeUnstructured.UNSTRUCTURED
 
     processing: Optional[SourceS3Processing] = None
     r"""Processing configuration"""
@@ -257,14 +257,14 @@ class SourceS3UnstructuredDocumentFormat(BaseModel):
         return m
 
 
-class SourceS3SchemasStreamsFormatFiletype(str, Enum):
+class SourceS3FiletypeParquet(str, Enum):
     PARQUET = "parquet"
 
 
 class SourceS3ParquetFormatTypedDict(TypedDict):
     decimal_as_float: NotRequired[bool]
     r"""Whether to convert decimal fields to floats. There is a loss of precision when converting decimals to floats, so this is not recommended."""
-    filetype: SourceS3SchemasStreamsFormatFiletype
+    filetype: SourceS3FiletypeParquet
 
 
 class SourceS3ParquetFormat(BaseModel):
@@ -273,13 +273,11 @@ class SourceS3ParquetFormat(BaseModel):
 
     FILETYPE: Annotated[
         Annotated[
-            Optional[SourceS3SchemasStreamsFormatFiletype],
-            AfterValidator(
-                validate_const(SourceS3SchemasStreamsFormatFiletype.PARQUET)
-            ),
+            Optional[SourceS3FiletypeParquet],
+            AfterValidator(validate_const(SourceS3FiletypeParquet.PARQUET)),
         ],
         pydantic.Field(alias="filetype"),
-    ] = SourceS3SchemasStreamsFormatFiletype.PARQUET
+    ] = SourceS3FiletypeParquet.PARQUET
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
@@ -298,22 +296,22 @@ class SourceS3ParquetFormat(BaseModel):
         return m
 
 
-class SourceS3SchemasStreamsFiletype(str, Enum):
+class SourceS3FiletypeJsonl(str, Enum):
     JSONL = "jsonl"
 
 
 class SourceS3JsonlFormatTypedDict(TypedDict):
-    filetype: SourceS3SchemasStreamsFiletype
+    filetype: SourceS3FiletypeJsonl
 
 
 class SourceS3JsonlFormat(BaseModel):
     FILETYPE: Annotated[
         Annotated[
-            Optional[SourceS3SchemasStreamsFiletype],
-            AfterValidator(validate_const(SourceS3SchemasStreamsFiletype.JSONL)),
+            Optional[SourceS3FiletypeJsonl],
+            AfterValidator(validate_const(SourceS3FiletypeJsonl.JSONL)),
         ],
         pydantic.Field(alias="filetype"),
-    ] = SourceS3SchemasStreamsFiletype.JSONL
+    ] = SourceS3FiletypeJsonl.JSONL
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
@@ -332,18 +330,18 @@ class SourceS3JsonlFormat(BaseModel):
         return m
 
 
-class SourceS3SchemasFiletype(str, Enum):
+class SourceS3FiletypeCsv(str, Enum):
     CSV = "csv"
 
 
-class SourceS3SchemasStreamsHeaderDefinitionType(str, Enum):
+class SourceS3HeaderDefinitionTypeUserProvided(str, Enum):
     USER_PROVIDED = "User Provided"
 
 
 class SourceS3UserProvidedTypedDict(TypedDict):
     column_names: List[str]
     r"""The column names that will be used while emitting the CSV records"""
-    header_definition_type: SourceS3SchemasStreamsHeaderDefinitionType
+    header_definition_type: SourceS3HeaderDefinitionTypeUserProvided
 
 
 class SourceS3UserProvided(BaseModel):
@@ -352,13 +350,13 @@ class SourceS3UserProvided(BaseModel):
 
     HEADER_DEFINITION_TYPE: Annotated[
         Annotated[
-            Optional[SourceS3SchemasStreamsHeaderDefinitionType],
+            Optional[SourceS3HeaderDefinitionTypeUserProvided],
             AfterValidator(
-                validate_const(SourceS3SchemasStreamsHeaderDefinitionType.USER_PROVIDED)
+                validate_const(SourceS3HeaderDefinitionTypeUserProvided.USER_PROVIDED)
             ),
         ],
         pydantic.Field(alias="header_definition_type"),
-    ] = SourceS3SchemasStreamsHeaderDefinitionType.USER_PROVIDED
+    ] = SourceS3HeaderDefinitionTypeUserProvided.USER_PROVIDED
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
@@ -377,24 +375,24 @@ class SourceS3UserProvided(BaseModel):
         return m
 
 
-class SourceS3SchemasHeaderDefinitionType(str, Enum):
+class SourceS3HeaderDefinitionTypeAutogenerated(str, Enum):
     AUTOGENERATED = "Autogenerated"
 
 
 class SourceS3AutogeneratedTypedDict(TypedDict):
-    header_definition_type: SourceS3SchemasHeaderDefinitionType
+    header_definition_type: SourceS3HeaderDefinitionTypeAutogenerated
 
 
 class SourceS3Autogenerated(BaseModel):
     HEADER_DEFINITION_TYPE: Annotated[
         Annotated[
-            Optional[SourceS3SchemasHeaderDefinitionType],
+            Optional[SourceS3HeaderDefinitionTypeAutogenerated],
             AfterValidator(
-                validate_const(SourceS3SchemasHeaderDefinitionType.AUTOGENERATED)
+                validate_const(SourceS3HeaderDefinitionTypeAutogenerated.AUTOGENERATED)
             ),
         ],
         pydantic.Field(alias="header_definition_type"),
-    ] = SourceS3SchemasHeaderDefinitionType.AUTOGENERATED
+    ] = SourceS3HeaderDefinitionTypeAutogenerated.AUTOGENERATED
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
@@ -413,22 +411,24 @@ class SourceS3Autogenerated(BaseModel):
         return m
 
 
-class SourceS3HeaderDefinitionType(str, Enum):
+class SourceS3HeaderDefinitionTypeFromCsv(str, Enum):
     FROM_CSV = "From CSV"
 
 
 class SourceS3FromCSVTypedDict(TypedDict):
-    header_definition_type: SourceS3HeaderDefinitionType
+    header_definition_type: SourceS3HeaderDefinitionTypeFromCsv
 
 
 class SourceS3FromCSV(BaseModel):
     HEADER_DEFINITION_TYPE: Annotated[
         Annotated[
-            Optional[SourceS3HeaderDefinitionType],
-            AfterValidator(validate_const(SourceS3HeaderDefinitionType.FROM_CSV)),
+            Optional[SourceS3HeaderDefinitionTypeFromCsv],
+            AfterValidator(
+                validate_const(SourceS3HeaderDefinitionTypeFromCsv.FROM_CSV)
+            ),
         ],
         pydantic.Field(alias="header_definition_type"),
-    ] = SourceS3HeaderDefinitionType.FROM_CSV
+    ] = SourceS3HeaderDefinitionTypeFromCsv.FROM_CSV
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
@@ -476,7 +476,7 @@ class SourceS3CSVFormatTypedDict(TypedDict):
     r"""The character used for escaping special characters. To disallow escaping, leave this field blank."""
     false_values: NotRequired[List[str]]
     r"""A set of case-sensitive strings that should be interpreted as false values."""
-    filetype: SourceS3SchemasFiletype
+    filetype: SourceS3FiletypeCsv
     header_definition: NotRequired[SourceS3CSVHeaderDefinitionTypedDict]
     r"""How headers will be defined. `User Provided` assumes the CSV does not have a header row and uses the headers provided and `Autogenerated` assumes the CSV does not have a header row and the CDK will generate headers using for `f{i}` where `i` is the index starting from 0. Else, the default behavior is to use the header from the CSV file. If a user wants to autogenerate or provide column names for a CSV having headers, they can skip rows."""
     ignore_errors_on_fields_mismatch: NotRequired[bool]
@@ -513,11 +513,11 @@ class SourceS3CSVFormat(BaseModel):
 
     FILETYPE: Annotated[
         Annotated[
-            Optional[SourceS3SchemasFiletype],
-            AfterValidator(validate_const(SourceS3SchemasFiletype.CSV)),
+            Optional[SourceS3FiletypeCsv],
+            AfterValidator(validate_const(SourceS3FiletypeCsv.CSV)),
         ],
         pydantic.Field(alias="filetype"),
-    ] = SourceS3SchemasFiletype.CSV
+    ] = SourceS3FiletypeCsv.CSV
 
     header_definition: Optional[SourceS3CSVHeaderDefinition] = None
     r"""How headers will be defined. `User Provided` assumes the CSV does not have a header row and uses the headers provided and `Autogenerated` assumes the CSV does not have a header row and the CDK will generate headers using for `f{i}` where `i` is the index starting from 0. Else, the default behavior is to use the header from the CSV file. If a user wants to autogenerate or provide column names for a CSV having headers, they can skip rows."""
@@ -577,14 +577,14 @@ class SourceS3CSVFormat(BaseModel):
         return m
 
 
-class SourceS3Filetype(str, Enum):
+class SourceS3FiletypeAvro(str, Enum):
     AVRO = "avro"
 
 
 class SourceS3AvroFormatTypedDict(TypedDict):
     double_as_string: NotRequired[bool]
     r"""Whether to convert double fields to strings. This is recommended if you have decimal numbers with a high degree of precision because there can be a loss precision when handling floating point numbers."""
-    filetype: SourceS3Filetype
+    filetype: SourceS3FiletypeAvro
 
 
 class SourceS3AvroFormat(BaseModel):
@@ -593,11 +593,11 @@ class SourceS3AvroFormat(BaseModel):
 
     FILETYPE: Annotated[
         Annotated[
-            Optional[SourceS3Filetype],
-            AfterValidator(validate_const(SourceS3Filetype.AVRO)),
+            Optional[SourceS3FiletypeAvro],
+            AfterValidator(validate_const(SourceS3FiletypeAvro.AVRO)),
         ],
         pydantic.Field(alias="filetype"),
-    ] = SourceS3Filetype.AVRO
+    ] = SourceS3FiletypeAvro.AVRO
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):

@@ -1,0 +1,9 @@
+# DestinationS3CompressionCodecNoCompression
+
+
+## Fields
+
+| Field                                                                                            | Type                                                                                             | Required                                                                                         | Description                                                                                      |
+| ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ |
+| `__pydantic_extra__`                                                                             | Dict[str, *Any*]                                                                                 | :heavy_minus_sign:                                                                               | N/A                                                                                              |
+| `codec`                                                                                          | [Optional[models.DestinationS3CodecNoCompression]](../models/destinations3codecnocompression.md) | :heavy_minus_sign:                                                                               | N/A                                                                                              |

@@ -12,14 +12,14 @@ from typing import List, Optional, Union
 from typing_extensions import Annotated, NotRequired, TypeAliasType, TypedDict
 
 
-class SourceSlackSchemasOptionTitle(str, Enum):
+class OptionTitleAPITokenCredentials(str, Enum):
     API_TOKEN_CREDENTIALS = "API Token Credentials"
 
 
 class SourceSlackAPITokenTypedDict(TypedDict):
     api_token: str
     r"""A Slack bot token. See the <a href=\"https://docs.airbyte.com/integrations/sources/slack\">docs</a> for instructions on how to generate it."""
-    option_title: SourceSlackSchemasOptionTitle
+    option_title: OptionTitleAPITokenCredentials
 
 
 class SourceSlackAPIToken(BaseModel):
@@ -28,16 +28,16 @@ class SourceSlackAPIToken(BaseModel):
 
     OPTION_TITLE: Annotated[
         Annotated[
-            SourceSlackSchemasOptionTitle,
+            OptionTitleAPITokenCredentials,
             AfterValidator(
-                validate_const(SourceSlackSchemasOptionTitle.API_TOKEN_CREDENTIALS)
+                validate_const(OptionTitleAPITokenCredentials.API_TOKEN_CREDENTIALS)
             ),
         ],
         pydantic.Field(alias="option_title"),
-    ] = SourceSlackSchemasOptionTitle.API_TOKEN_CREDENTIALS
+    ] = OptionTitleAPITokenCredentials.API_TOKEN_CREDENTIALS
 
 
-class SourceSlackOptionTitle(str, Enum):
+class OptionTitleDefaultOAuth20Authorization(str, Enum):
     DEFAULT_O_AUTH2_0_AUTHORIZATION = "Default OAuth2.0 authorization"
 
 
@@ -48,7 +48,7 @@ class SignInViaSlackOAuthTypedDict(TypedDict):
     r"""Slack client_id. See our <a href=\"https://docs.airbyte.com/integrations/sources/slack\">docs</a> if you need help finding this id."""
     client_secret: str
     r"""Slack client_secret. See our <a href=\"https://docs.airbyte.com/integrations/sources/slack\">docs</a> if you need help finding this secret."""
-    option_title: SourceSlackOptionTitle
+    option_title: OptionTitleDefaultOAuth20Authorization
 
 
 class SignInViaSlackOAuth(BaseModel):
@@ -63,13 +63,15 @@ class SignInViaSlackOAuth(BaseModel):
 
     OPTION_TITLE: Annotated[
         Annotated[
-            SourceSlackOptionTitle,
+            OptionTitleDefaultOAuth20Authorization,
             AfterValidator(
-                validate_const(SourceSlackOptionTitle.DEFAULT_O_AUTH2_0_AUTHORIZATION)
+                validate_const(
+                    OptionTitleDefaultOAuth20Authorization.DEFAULT_O_AUTH2_0_AUTHORIZATION
+                )
             ),
         ],
         pydantic.Field(alias="option_title"),
-    ] = SourceSlackOptionTitle.DEFAULT_O_AUTH2_0_AUTHORIZATION
+    ] = OptionTitleDefaultOAuth20Authorization.DEFAULT_O_AUTH2_0_AUTHORIZATION
 
 
 SourceSlackAuthenticationMechanismTypedDict = TypeAliasType(
@@ -89,7 +91,7 @@ SourceSlackAuthenticationMechanism = Annotated[
 r"""Choose how to authenticate into Slack"""
 
 
-class SourceSlackSlack(str, Enum):
+class SlackEnum(str, Enum):
     SLACK = "slack"
 
 
@@ -110,7 +112,7 @@ class SourceSlackTypedDict(TypedDict):
     r"""How far into the past to look for messages in threads, default is 0 days"""
     num_workers: NotRequired[int]
     r"""The number of worker threads to use for the sync."""
-    source_type: SourceSlackSlack
+    source_type: SlackEnum
 
 
 class SourceSlack(BaseModel):
@@ -139,11 +141,9 @@ class SourceSlack(BaseModel):
     r"""The number of worker threads to use for the sync."""
 
     SOURCE_TYPE: Annotated[
-        Annotated[
-            SourceSlackSlack, AfterValidator(validate_const(SourceSlackSlack.SLACK))
-        ],
+        Annotated[SlackEnum, AfterValidator(validate_const(SlackEnum.SLACK))],
         pydantic.Field(alias="sourceType"),
-    ] = SourceSlackSlack.SLACK
+    ] = SlackEnum.SLACK
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):

@@ -11,14 +11,14 @@ from typing import List, Optional, Union
 from typing_extensions import Annotated, NotRequired, TypeAliasType, TypedDict
 
 
-class SourceGoogleSheetsSchemasAuthType(str, Enum):
+class SourceGoogleSheetsAuthTypeService(str, Enum):
     SERVICE = "Service"
 
 
 class SourceGoogleSheetsServiceAccountKeyAuthenticationTypedDict(TypedDict):
     service_account_info: str
     r"""The JSON key of the service account to use for authorization. Read more <a href=\"https://cloud.google.com/iam/docs/creating-managing-service-account-keys#creating_service_account_keys\">here</a>."""
-    auth_type: SourceGoogleSheetsSchemasAuthType
+    auth_type: SourceGoogleSheetsAuthTypeService
 
 
 class SourceGoogleSheetsServiceAccountKeyAuthentication(BaseModel):
@@ -27,14 +27,14 @@ class SourceGoogleSheetsServiceAccountKeyAuthentication(BaseModel):
 
     AUTH_TYPE: Annotated[
         Annotated[
-            SourceGoogleSheetsSchemasAuthType,
-            AfterValidator(validate_const(SourceGoogleSheetsSchemasAuthType.SERVICE)),
+            SourceGoogleSheetsAuthTypeService,
+            AfterValidator(validate_const(SourceGoogleSheetsAuthTypeService.SERVICE)),
         ],
         pydantic.Field(alias="auth_type"),
-    ] = SourceGoogleSheetsSchemasAuthType.SERVICE
+    ] = SourceGoogleSheetsAuthTypeService.SERVICE
 
 
-class SourceGoogleSheetsAuthType(str, Enum):
+class SourceGoogleSheetsAuthTypeClient(str, Enum):
     CLIENT = "Client"
 
 
@@ -45,7 +45,7 @@ class SourceGoogleSheetsAuthenticateViaGoogleOAuthTypedDict(TypedDict):
     r"""Enter your Google application's Client Secret. See <a href='https://developers.google.com/identity/protocols/oauth2'>Google's documentation</a> for more information."""
     refresh_token: str
     r"""Enter your Google application's refresh token. See <a href='https://developers.google.com/identity/protocols/oauth2'>Google's documentation</a> for more information."""
-    auth_type: SourceGoogleSheetsAuthType
+    auth_type: SourceGoogleSheetsAuthTypeClient
 
 
 class SourceGoogleSheetsAuthenticateViaGoogleOAuth(BaseModel):
@@ -60,11 +60,11 @@ class SourceGoogleSheetsAuthenticateViaGoogleOAuth(BaseModel):
 
     AUTH_TYPE: Annotated[
         Annotated[
-            SourceGoogleSheetsAuthType,
-            AfterValidator(validate_const(SourceGoogleSheetsAuthType.CLIENT)),
+            SourceGoogleSheetsAuthTypeClient,
+            AfterValidator(validate_const(SourceGoogleSheetsAuthTypeClient.CLIENT)),
         ],
         pydantic.Field(alias="auth_type"),
-    ] = SourceGoogleSheetsAuthType.CLIENT
+    ] = SourceGoogleSheetsAuthTypeClient.CLIENT
 
 
 SourceGoogleSheetsAuthenticationTypedDict = TypeAliasType(
@@ -91,14 +91,14 @@ class SourceGoogleSheetsGoogleSheets(str, Enum):
     GOOGLE_SHEETS = "google-sheets"
 
 
-class StreamNameOverridesTypedDict(TypedDict):
+class StreamNameOverrideTypedDict(TypedDict):
     custom_stream_name: str
     r"""The name you want this stream to appear as in Airbyte and your destination."""
     source_stream_name: str
     r"""The exact name of the sheet/tab in your Google Spreadsheet."""
 
 
-class StreamNameOverrides(BaseModel):
+class StreamNameOverride(BaseModel):
     custom_stream_name: str
     r"""The name you want this stream to appear as in Airbyte and your destination."""
 
@@ -126,7 +126,7 @@ class SourceGoogleSheetsTypedDict(TypedDict):
     remove_special_characters: NotRequired[bool]
     r"""Removes all special characters from column names. Example: \"Example ID*\" → \"example_id\" This option will only work if \"Convert Column Names to SQL-Compliant Format (names_conversion)\" is enabled."""
     source_type: SourceGoogleSheetsGoogleSheets
-    stream_name_overrides: NotRequired[List[StreamNameOverridesTypedDict]]
+    stream_name_overrides: NotRequired[List[StreamNameOverrideTypedDict]]
     r"""**Overridden streams will default to Sync Mode: Full Refresh (Append), which does not support primary keys. If you want to use primary keys and deduplication, update the sync mode to \"Full Refresh | Overwrite + Deduped\" in your connection settings.**
     Allows you to rename streams (Google Sheet tab names) as they appear in Airbyte.
     Each item should be an object with a `source_stream_name` (the exact name of the sheet/tab in your spreadsheet)  and a `custom_stream_name` (the name you want it to appear as in Airbyte and the destination).
@@ -180,7 +180,7 @@ class SourceGoogleSheets(BaseModel):
         pydantic.Field(alias="sourceType"),
     ] = SourceGoogleSheetsGoogleSheets.GOOGLE_SHEETS
 
-    stream_name_overrides: Optional[List[StreamNameOverrides]] = None
+    stream_name_overrides: Optional[List[StreamNameOverride]] = None
     r"""**Overridden streams will default to Sync Mode: Full Refresh (Append), which does not support primary keys. If you want to use primary keys and deduplication, update the sync mode to \"Full Refresh | Overwrite + Deduped\" in your connection settings.**
     Allows you to rename streams (Google Sheet tab names) as they appear in Airbyte.
     Each item should be an object with a `source_stream_name` (the exact name of the sheet/tab in your spreadsheet)  and a `custom_stream_name` (the name you want it to appear as in Airbyte and the destination).

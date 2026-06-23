@@ -5,27 +5,27 @@ Dimensions filter
 
 ## Supported Types
 
-### `models.AndGroup`
+### `models.DimensionsFilterAndGroup`
 
 ```python
-value: models.AndGroup = /* values here */
+value: models.DimensionsFilterAndGroup = /* values here */
 ```
 
-### `models.OrGroup`
+### `models.DimensionsFilterOrGroup`
 
 ```python
-value: models.OrGroup = /* values here */
+value: models.DimensionsFilterOrGroup = /* values here */
 ```
 
-### `models.NotExpression`
+### `models.DimensionsFilterNotExpression`
 
 ```python
-value: models.NotExpression = /* values here */
+value: models.DimensionsFilterNotExpression = /* values here */
 ```
 
-### `models.SourceGoogleAnalyticsDataAPIFilter`
+### `models.DimensionsFilterFilter`
 
 ```python
-value: models.SourceGoogleAnalyticsDataAPIFilter = /* values here */
+value: models.DimensionsFilterFilter = /* values here */
 ```
 

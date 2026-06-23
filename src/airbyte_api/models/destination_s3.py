@@ -11,11 +11,11 @@ from typing import Any, Dict, Optional, Union
 from typing_extensions import Annotated, NotRequired, TypeAliasType, TypedDict
 
 
-class S3(str, Enum):
+class DestinationS3S3(str, Enum):
     S3 = "s3"
 
 
-class DestinationS3SchemasCompressionCodec(str, Enum):
+class DestinationS3CompressionCodecEnum(str, Enum):
     r"""The compression algorithm used to compress data pages."""
 
     UNCOMPRESSED = "UNCOMPRESSED"
@@ -27,20 +27,20 @@ class DestinationS3SchemasCompressionCodec(str, Enum):
     ZSTD = "ZSTD"
 
 
-class DestinationS3SchemasFormatOutputFormatFormatType(str, Enum):
+class DestinationS3FormatTypeParquet(str, Enum):
     PARQUET = "Parquet"
 
 
 class DestinationS3ParquetColumnarStorageTypedDict(TypedDict):
     block_size_mb: NotRequired[int]
     r"""This is the size of a row group being buffered in memory. It limits the memory usage when writing. Larger values will improve the IO when reading, but consume more memory when writing. Default: 128 MB."""
-    compression_codec: NotRequired[DestinationS3SchemasCompressionCodec]
+    compression_codec: NotRequired[DestinationS3CompressionCodecEnum]
     r"""The compression algorithm used to compress data pages."""
     dictionary_encoding: NotRequired[bool]
     r"""Default: true."""
     dictionary_page_size_kb: NotRequired[int]
     r"""There is one dictionary page per column per row group when dictionary encoding is used. The dictionary page size works like the page size but for dictionary. Default: 1024 KB."""
-    format_type: NotRequired[DestinationS3SchemasFormatOutputFormatFormatType]
+    format_type: NotRequired[DestinationS3FormatTypeParquet]
     max_padding_size_mb: NotRequired[int]
     r"""Maximum size allowed as padding to align row groups. This is also the minimum size of a row group. Default: 8 MB."""
     page_size_kb: NotRequired[int]
@@ -56,8 +56,8 @@ class DestinationS3ParquetColumnarStorage(BaseModel):
     block_size_mb: Optional[int] = 128
     r"""This is the size of a row group being buffered in memory. It limits the memory usage when writing. Larger values will improve the IO when reading, but consume more memory when writing. Default: 128 MB."""
 
-    compression_codec: Optional[DestinationS3SchemasCompressionCodec] = (
-        DestinationS3SchemasCompressionCodec.UNCOMPRESSED
+    compression_codec: Optional[DestinationS3CompressionCodecEnum] = (
+        DestinationS3CompressionCodecEnum.UNCOMPRESSED
     )
     r"""The compression algorithm used to compress data pages."""
 
@@ -67,8 +67,8 @@ class DestinationS3ParquetColumnarStorage(BaseModel):
     dictionary_page_size_kb: Optional[int] = 1024
     r"""There is one dictionary page per column per row group when dictionary encoding is used. The dictionary page size works like the page size but for dictionary. Default: 1024 KB."""
 
-    format_type: Optional[DestinationS3SchemasFormatOutputFormatFormatType] = (
-        DestinationS3SchemasFormatOutputFormatFormatType.PARQUET
+    format_type: Optional[DestinationS3FormatTypeParquet] = (
+        DestinationS3FormatTypeParquet.PARQUET
     )
 
     max_padding_size_mb: Optional[int] = 8
@@ -115,12 +115,12 @@ class DestinationS3ParquetColumnarStorage(BaseModel):
         return m
 
 
-class DestinationS3SchemasFormatOutputFormat3CompressionCodecCodec(str, Enum):
+class DestinationS3CodecSnappy(str, Enum):
     SNAPPY = "snappy"
 
 
 class DestinationS3SnappyTypedDict(TypedDict):
-    codec: NotRequired[DestinationS3SchemasFormatOutputFormat3CompressionCodecCodec]
+    codec: NotRequired[DestinationS3CodecSnappy]
 
 
 class DestinationS3Snappy(BaseModel):
@@ -129,9 +129,7 @@ class DestinationS3Snappy(BaseModel):
     )
     __pydantic_extra__: Dict[str, Any] = pydantic.Field(init=False)
 
-    codec: Optional[DestinationS3SchemasFormatOutputFormat3CompressionCodecCodec] = (
-        DestinationS3SchemasFormatOutputFormat3CompressionCodecCodec.SNAPPY
-    )
+    codec: Optional[DestinationS3CodecSnappy] = DestinationS3CodecSnappy.SNAPPY
 
     @property
     def additional_properties(self):
@@ -161,14 +159,14 @@ class DestinationS3Snappy(BaseModel):
         return m
 
 
-class DestinationS3SchemasFormatOutputFormat3Codec(str, Enum):
+class DestinationS3CodecZstandard(str, Enum):
     ZSTANDARD = "zstandard"
 
 
 class DestinationS3ZstandardTypedDict(TypedDict):
     compression_level: int
     include_checksum: bool
-    codec: NotRequired[DestinationS3SchemasFormatOutputFormat3Codec]
+    codec: NotRequired[DestinationS3CodecZstandard]
 
 
 class DestinationS3Zstandard(BaseModel):
@@ -181,9 +179,7 @@ class DestinationS3Zstandard(BaseModel):
 
     include_checksum: bool
 
-    codec: Optional[DestinationS3SchemasFormatOutputFormat3Codec] = (
-        DestinationS3SchemasFormatOutputFormat3Codec.ZSTANDARD
-    )
+    codec: Optional[DestinationS3CodecZstandard] = DestinationS3CodecZstandard.ZSTANDARD
 
     @property
     def additional_properties(self):
@@ -213,13 +209,13 @@ class DestinationS3Zstandard(BaseModel):
         return m
 
 
-class DestinationS3SchemasFormatOutputFormatCodec(str, Enum):
+class DestinationS3CodecXz(str, Enum):
     XZ = "xz"
 
 
 class DestinationS3XzTypedDict(TypedDict):
     compression_level: int
-    codec: NotRequired[DestinationS3SchemasFormatOutputFormatCodec]
+    codec: NotRequired[DestinationS3CodecXz]
 
 
 class DestinationS3Xz(BaseModel):
@@ -230,9 +226,7 @@ class DestinationS3Xz(BaseModel):
 
     compression_level: int
 
-    codec: Optional[DestinationS3SchemasFormatOutputFormatCodec] = (
-        DestinationS3SchemasFormatOutputFormatCodec.XZ
-    )
+    codec: Optional[DestinationS3CodecXz] = DestinationS3CodecXz.XZ
 
     @property
     def additional_properties(self):
@@ -262,12 +256,12 @@ class DestinationS3Xz(BaseModel):
         return m
 
 
-class DestinationS3SchemasFormatCodec(str, Enum):
+class DestinationS3CodecBzip2(str, Enum):
     BZIP2 = "bzip2"
 
 
 class DestinationS3Bzip2TypedDict(TypedDict):
-    codec: NotRequired[DestinationS3SchemasFormatCodec]
+    codec: NotRequired[DestinationS3CodecBzip2]
 
 
 class DestinationS3Bzip2(BaseModel):
@@ -276,9 +270,7 @@ class DestinationS3Bzip2(BaseModel):
     )
     __pydantic_extra__: Dict[str, Any] = pydantic.Field(init=False)
 
-    codec: Optional[DestinationS3SchemasFormatCodec] = (
-        DestinationS3SchemasFormatCodec.BZIP2
-    )
+    codec: Optional[DestinationS3CodecBzip2] = DestinationS3CodecBzip2.BZIP2
 
     @property
     def additional_properties(self):
@@ -308,13 +300,13 @@ class DestinationS3Bzip2(BaseModel):
         return m
 
 
-class DestinationS3SchemasCodec(str, Enum):
+class DestinationS3CodecDeflate(str, Enum):
     DEFLATE = "Deflate"
 
 
 class DestinationS3DeflateTypedDict(TypedDict):
     compression_level: int
-    codec: NotRequired[DestinationS3SchemasCodec]
+    codec: NotRequired[DestinationS3CodecDeflate]
 
 
 class DestinationS3Deflate(BaseModel):
@@ -325,7 +317,7 @@ class DestinationS3Deflate(BaseModel):
 
     compression_level: int
 
-    codec: Optional[DestinationS3SchemasCodec] = DestinationS3SchemasCodec.DEFLATE
+    codec: Optional[DestinationS3CodecDeflate] = DestinationS3CodecDeflate.DEFLATE
 
     @property
     def additional_properties(self):
@@ -355,21 +347,23 @@ class DestinationS3Deflate(BaseModel):
         return m
 
 
-class DestinationS3Codec(str, Enum):
+class DestinationS3CodecNoCompression(str, Enum):
     NO_COMPRESSION = "no compression"
 
 
-class DestinationS3SchemasFormatNoCompressionTypedDict(TypedDict):
-    codec: NotRequired[DestinationS3Codec]
+class DestinationS3CompressionCodecNoCompressionTypedDict(TypedDict):
+    codec: NotRequired[DestinationS3CodecNoCompression]
 
 
-class DestinationS3SchemasFormatNoCompression(BaseModel):
+class DestinationS3CompressionCodecNoCompression(BaseModel):
     model_config = ConfigDict(
         populate_by_name=True, arbitrary_types_allowed=True, extra="allow"
     )
     __pydantic_extra__: Dict[str, Any] = pydantic.Field(init=False)
 
-    codec: Optional[DestinationS3Codec] = DestinationS3Codec.NO_COMPRESSION
+    codec: Optional[DestinationS3CodecNoCompression] = (
+        DestinationS3CodecNoCompression.NO_COMPRESSION
+    )
 
     @property
     def additional_properties(self):
@@ -399,10 +393,10 @@ class DestinationS3SchemasFormatNoCompression(BaseModel):
         return m
 
 
-DestinationS3CompressionCodecTypedDict = TypeAliasType(
-    "DestinationS3CompressionCodecTypedDict",
+DestinationS3CompressionCodecUnionTypedDict = TypeAliasType(
+    "DestinationS3CompressionCodecUnionTypedDict",
     Union[
-        DestinationS3SchemasFormatNoCompressionTypedDict,
+        DestinationS3CompressionCodecNoCompressionTypedDict,
         DestinationS3Bzip2TypedDict,
         DestinationS3SnappyTypedDict,
         DestinationS3DeflateTypedDict,
@@ -413,10 +407,10 @@ DestinationS3CompressionCodecTypedDict = TypeAliasType(
 r"""The compression algorithm used to compress data. Default to no compression."""
 
 
-DestinationS3CompressionCodec = TypeAliasType(
-    "DestinationS3CompressionCodec",
+DestinationS3CompressionCodecUnion = TypeAliasType(
+    "DestinationS3CompressionCodecUnion",
     Union[
-        DestinationS3SchemasFormatNoCompression,
+        DestinationS3CompressionCodecNoCompression,
         DestinationS3Bzip2,
         DestinationS3Snappy,
         DestinationS3Deflate,
@@ -427,14 +421,14 @@ DestinationS3CompressionCodec = TypeAliasType(
 r"""The compression algorithm used to compress data. Default to no compression."""
 
 
-class DestinationS3SchemasFormatFormatType(str, Enum):
+class DestinationS3FormatTypeAvro(str, Enum):
     AVRO = "Avro"
 
 
 class DestinationS3AvroApacheAvroTypedDict(TypedDict):
-    compression_codec: DestinationS3CompressionCodecTypedDict
+    compression_codec: DestinationS3CompressionCodecUnionTypedDict
     r"""The compression algorithm used to compress data. Default to no compression."""
-    format_type: NotRequired[DestinationS3SchemasFormatFormatType]
+    format_type: NotRequired[DestinationS3FormatTypeAvro]
 
 
 class DestinationS3AvroApacheAvro(BaseModel):
@@ -443,11 +437,11 @@ class DestinationS3AvroApacheAvro(BaseModel):
     )
     __pydantic_extra__: Dict[str, Any] = pydantic.Field(init=False)
 
-    compression_codec: DestinationS3CompressionCodec
+    compression_codec: DestinationS3CompressionCodecUnion
     r"""The compression algorithm used to compress data. Default to no compression."""
 
-    format_type: Optional[DestinationS3SchemasFormatFormatType] = (
-        DestinationS3SchemasFormatFormatType.AVRO
+    format_type: Optional[DestinationS3FormatTypeAvro] = (
+        DestinationS3FormatTypeAvro.AVRO
     )
 
     @property
@@ -478,23 +472,23 @@ class DestinationS3AvroApacheAvro(BaseModel):
         return m
 
 
-class DestinationS3SchemasFormatOutputFormatCompressionType(str, Enum):
+class DestinationS3CompressionTypeGzip2(str, Enum):
     GZIP = "GZIP"
 
 
-class DestinationS3SchemasGZIPTypedDict(TypedDict):
-    compression_type: NotRequired[DestinationS3SchemasFormatOutputFormatCompressionType]
+class DestinationS3GZIP2TypedDict(TypedDict):
+    compression_type: NotRequired[DestinationS3CompressionTypeGzip2]
 
 
-class DestinationS3SchemasGZIP(BaseModel):
+class DestinationS3GZIP2(BaseModel):
     model_config = ConfigDict(
         populate_by_name=True, arbitrary_types_allowed=True, extra="allow"
     )
     __pydantic_extra__: Dict[str, Any] = pydantic.Field(init=False)
 
-    compression_type: Optional[
-        DestinationS3SchemasFormatOutputFormatCompressionType
-    ] = DestinationS3SchemasFormatOutputFormatCompressionType.GZIP
+    compression_type: Optional[DestinationS3CompressionTypeGzip2] = (
+        DestinationS3CompressionTypeGzip2.GZIP
+    )
 
     @property
     def additional_properties(self):
@@ -524,22 +518,22 @@ class DestinationS3SchemasGZIP(BaseModel):
         return m
 
 
-class DestinationS3SchemasFormatCompressionType(str, Enum):
+class DestinationS3CompressionTypeNoCompression2(str, Enum):
     NO_COMPRESSION = "No Compression"
 
 
-class DestinationS3SchemasNoCompressionTypedDict(TypedDict):
-    compression_type: NotRequired[DestinationS3SchemasFormatCompressionType]
+class DestinationS3CompressionNoCompression2TypedDict(TypedDict):
+    compression_type: NotRequired[DestinationS3CompressionTypeNoCompression2]
 
 
-class DestinationS3SchemasNoCompression(BaseModel):
+class DestinationS3CompressionNoCompression2(BaseModel):
     model_config = ConfigDict(
         populate_by_name=True, arbitrary_types_allowed=True, extra="allow"
     )
     __pydantic_extra__: Dict[str, Any] = pydantic.Field(init=False)
 
-    compression_type: Optional[DestinationS3SchemasFormatCompressionType] = (
-        DestinationS3SchemasFormatCompressionType.NO_COMPRESSION
+    compression_type: Optional[DestinationS3CompressionTypeNoCompression2] = (
+        DestinationS3CompressionTypeNoCompression2.NO_COMPRESSION
     )
 
     @property
@@ -570,36 +564,34 @@ class DestinationS3SchemasNoCompression(BaseModel):
         return m
 
 
-DestinationS3SchemasCompressionTypedDict = TypeAliasType(
-    "DestinationS3SchemasCompressionTypedDict",
-    Union[
-        DestinationS3SchemasNoCompressionTypedDict, DestinationS3SchemasGZIPTypedDict
-    ],
+DestinationS3Compression2TypedDict = TypeAliasType(
+    "DestinationS3Compression2TypedDict",
+    Union[DestinationS3CompressionNoCompression2TypedDict, DestinationS3GZIP2TypedDict],
 )
 r"""Whether the output files should be compressed. If compression is selected, the output filename will have an extra extension (GZIP: \".jsonl.gz\")."""
 
 
-DestinationS3SchemasCompression = TypeAliasType(
-    "DestinationS3SchemasCompression",
-    Union[DestinationS3SchemasNoCompression, DestinationS3SchemasGZIP],
+DestinationS3Compression2 = TypeAliasType(
+    "DestinationS3Compression2",
+    Union[DestinationS3CompressionNoCompression2, DestinationS3GZIP2],
 )
 r"""Whether the output files should be compressed. If compression is selected, the output filename will have an extra extension (GZIP: \".jsonl.gz\")."""
 
 
-class DestinationS3SchemasFlattening(str, Enum):
+class DestinationS3Flattening2(str, Enum):
     NO_FLATTENING = "No flattening"
     ROOT_LEVEL_FLATTENING = "Root level flattening"
 
 
-class DestinationS3SchemasFormatType(str, Enum):
+class DestinationS3FormatTypeJsonl(str, Enum):
     JSONL = "JSONL"
 
 
 class DestinationS3JSONLinesNewlineDelimitedJSONTypedDict(TypedDict):
-    compression: NotRequired[DestinationS3SchemasCompressionTypedDict]
+    compression: NotRequired[DestinationS3Compression2TypedDict]
     r"""Whether the output files should be compressed. If compression is selected, the output filename will have an extra extension (GZIP: \".jsonl.gz\")."""
-    flattening: NotRequired[DestinationS3SchemasFlattening]
-    format_type: NotRequired[DestinationS3SchemasFormatType]
+    flattening: NotRequired[DestinationS3Flattening2]
+    format_type: NotRequired[DestinationS3FormatTypeJsonl]
 
 
 class DestinationS3JSONLinesNewlineDelimitedJSON(BaseModel):
@@ -608,15 +600,15 @@ class DestinationS3JSONLinesNewlineDelimitedJSON(BaseModel):
     )
     __pydantic_extra__: Dict[str, Any] = pydantic.Field(init=False)
 
-    compression: Optional[DestinationS3SchemasCompression] = None
+    compression: Optional[DestinationS3Compression2] = None
     r"""Whether the output files should be compressed. If compression is selected, the output filename will have an extra extension (GZIP: \".jsonl.gz\")."""
 
-    flattening: Optional[DestinationS3SchemasFlattening] = (
-        DestinationS3SchemasFlattening.NO_FLATTENING
+    flattening: Optional[DestinationS3Flattening2] = (
+        DestinationS3Flattening2.NO_FLATTENING
     )
 
-    format_type: Optional[DestinationS3SchemasFormatType] = (
-        DestinationS3SchemasFormatType.JSONL
+    format_type: Optional[DestinationS3FormatTypeJsonl] = (
+        DestinationS3FormatTypeJsonl.JSONL
     )
 
     @property
@@ -647,22 +639,22 @@ class DestinationS3JSONLinesNewlineDelimitedJSON(BaseModel):
         return m
 
 
-class DestinationS3SchemasCompressionType(str, Enum):
+class DestinationS3CompressionTypeGzip1(str, Enum):
     GZIP = "GZIP"
 
 
-class DestinationS3GZIPTypedDict(TypedDict):
-    compression_type: NotRequired[DestinationS3SchemasCompressionType]
+class DestinationS3GZIP1TypedDict(TypedDict):
+    compression_type: NotRequired[DestinationS3CompressionTypeGzip1]
 
 
-class DestinationS3GZIP(BaseModel):
+class DestinationS3GZIP1(BaseModel):
     model_config = ConfigDict(
         populate_by_name=True, arbitrary_types_allowed=True, extra="allow"
     )
     __pydantic_extra__: Dict[str, Any] = pydantic.Field(init=False)
 
-    compression_type: Optional[DestinationS3SchemasCompressionType] = (
-        DestinationS3SchemasCompressionType.GZIP
+    compression_type: Optional[DestinationS3CompressionTypeGzip1] = (
+        DestinationS3CompressionTypeGzip1.GZIP
     )
 
     @property
@@ -693,22 +685,22 @@ class DestinationS3GZIP(BaseModel):
         return m
 
 
-class DestinationS3CompressionType(str, Enum):
+class DestinationS3CompressionTypeNoCompression1(str, Enum):
     NO_COMPRESSION = "No Compression"
 
 
-class DestinationS3NoCompressionTypedDict(TypedDict):
-    compression_type: NotRequired[DestinationS3CompressionType]
+class DestinationS3CompressionNoCompression1TypedDict(TypedDict):
+    compression_type: NotRequired[DestinationS3CompressionTypeNoCompression1]
 
 
-class DestinationS3NoCompression(BaseModel):
+class DestinationS3CompressionNoCompression1(BaseModel):
     model_config = ConfigDict(
         populate_by_name=True, arbitrary_types_allowed=True, extra="allow"
     )
     __pydantic_extra__: Dict[str, Any] = pydantic.Field(init=False)
 
-    compression_type: Optional[DestinationS3CompressionType] = (
-        DestinationS3CompressionType.NO_COMPRESSION
+    compression_type: Optional[DestinationS3CompressionTypeNoCompression1] = (
+        DestinationS3CompressionTypeNoCompression1.NO_COMPRESSION
     )
 
     @property
@@ -739,33 +731,34 @@ class DestinationS3NoCompression(BaseModel):
         return m
 
 
-DestinationS3CompressionTypedDict = TypeAliasType(
-    "DestinationS3CompressionTypedDict",
-    Union[DestinationS3NoCompressionTypedDict, DestinationS3GZIPTypedDict],
+DestinationS3Compression1TypedDict = TypeAliasType(
+    "DestinationS3Compression1TypedDict",
+    Union[DestinationS3CompressionNoCompression1TypedDict, DestinationS3GZIP1TypedDict],
 )
 r"""Whether the output files should be compressed. If compression is selected, the output filename will have an extra extension (GZIP: \".jsonl.gz\")."""
 
 
-DestinationS3Compression = TypeAliasType(
-    "DestinationS3Compression", Union[DestinationS3NoCompression, DestinationS3GZIP]
+DestinationS3Compression1 = TypeAliasType(
+    "DestinationS3Compression1",
+    Union[DestinationS3CompressionNoCompression1, DestinationS3GZIP1],
 )
 r"""Whether the output files should be compressed. If compression is selected, the output filename will have an extra extension (GZIP: \".jsonl.gz\")."""
 
 
-class DestinationS3Flattening(str, Enum):
+class DestinationS3Flattening1(str, Enum):
     NO_FLATTENING = "No flattening"
     ROOT_LEVEL_FLATTENING = "Root level flattening"
 
 
-class DestinationS3FormatType(str, Enum):
+class DestinationS3FormatTypeCsv(str, Enum):
     CSV = "CSV"
 
 
 class DestinationS3CSVCommaSeparatedValuesTypedDict(TypedDict):
-    compression: NotRequired[DestinationS3CompressionTypedDict]
+    compression: NotRequired[DestinationS3Compression1TypedDict]
     r"""Whether the output files should be compressed. If compression is selected, the output filename will have an extra extension (GZIP: \".jsonl.gz\")."""
-    flattening: NotRequired[DestinationS3Flattening]
-    format_type: NotRequired[DestinationS3FormatType]
+    flattening: NotRequired[DestinationS3Flattening1]
+    format_type: NotRequired[DestinationS3FormatTypeCsv]
 
 
 class DestinationS3CSVCommaSeparatedValues(BaseModel):
@@ -774,14 +767,14 @@ class DestinationS3CSVCommaSeparatedValues(BaseModel):
     )
     __pydantic_extra__: Dict[str, Any] = pydantic.Field(init=False)
 
-    compression: Optional[DestinationS3Compression] = None
+    compression: Optional[DestinationS3Compression1] = None
     r"""Whether the output files should be compressed. If compression is selected, the output filename will have an extra extension (GZIP: \".jsonl.gz\")."""
 
-    flattening: Optional[DestinationS3Flattening] = (
-        DestinationS3Flattening.NO_FLATTENING
+    flattening: Optional[DestinationS3Flattening1] = (
+        DestinationS3Flattening1.NO_FLATTENING
     )
 
-    format_type: Optional[DestinationS3FormatType] = DestinationS3FormatType.CSV
+    format_type: Optional[DestinationS3FormatTypeCsv] = DestinationS3FormatTypeCsv.CSV
 
     @property
     def additional_properties(self):
@@ -883,7 +876,7 @@ class DestinationS3TypedDict(TypedDict):
     r"""Directory under the S3 bucket where data will be written. Read more <a href=\"https://docs.airbyte.com/integrations/destinations/s3#:~:text=to%20format%20the-,bucket%20path,-%3A\">here</a>"""
     access_key_id: NotRequired[str]
     r"""The access key ID to access the S3 bucket. Airbyte requires Read and Write permissions to the given bucket. Read more <a href=\"https://docs.aws.amazon.com/general/latest/gr/aws-sec-cred-types.html#access-keys-and-secret-access-keys\">here</a>."""
-    destination_type: S3
+    destination_type: DestinationS3S3
     file_name_pattern: NotRequired[str]
     r"""Pattern to match file names in the bucket directory. Read more <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/ListingKeysUsingAPIs.html\">here</a>"""
     role_arn: NotRequired[str]
@@ -912,9 +905,9 @@ class DestinationS3(BaseModel):
     r"""The access key ID to access the S3 bucket. Airbyte requires Read and Write permissions to the given bucket. Read more <a href=\"https://docs.aws.amazon.com/general/latest/gr/aws-sec-cred-types.html#access-keys-and-secret-access-keys\">here</a>."""
 
     DESTINATION_TYPE: Annotated[
-        Annotated[S3, AfterValidator(validate_const(S3.S3))],
+        Annotated[DestinationS3S3, AfterValidator(validate_const(DestinationS3S3.S3))],
         pydantic.Field(alias="destinationType"),
-    ] = S3.S3
+    ] = DestinationS3S3.S3
 
     file_name_pattern: Optional[str] = None
     r"""Pattern to match file names in the bucket directory. Read more <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/ListingKeysUsingAPIs.html\">here</a>"""

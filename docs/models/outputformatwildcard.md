@@ -5,15 +5,15 @@ Format of the data output.
 
 ## Supported Types
 
-### `models.JSONLinesNewlineDelimitedJSON`
+### `models.DestinationAwsDatalakeJSONLinesNewlineDelimitedJSON`
 
 ```python
-value: models.JSONLinesNewlineDelimitedJSON = /* values here */
+value: models.DestinationAwsDatalakeJSONLinesNewlineDelimitedJSON = /* values here */
 ```
 
-### `models.ParquetColumnarStorage`
+### `models.DestinationAwsDatalakeParquetColumnarStorage`
 
 ```python
-value: models.ParquetColumnarStorage = /* values here */
+value: models.DestinationAwsDatalakeParquetColumnarStorage = /* values here */
 ```
 

@@ -12,14 +12,14 @@ from typing import List, Optional, Union
 from typing_extensions import Annotated, NotRequired, TypeAliasType, TypedDict
 
 
-class SourceGcsSchemasAuthType(str, Enum):
+class SourceGcsAuthTypeService(str, Enum):
     SERVICE = "Service"
 
 
 class ServiceAccountAuthenticationTypedDict(TypedDict):
     service_account: str
     r"""Enter your Google Cloud <a href=\"https://cloud.google.com/iam/docs/creating-managing-service-account-keys#creating_service_account_keys\">service account key</a> in JSON format"""
-    auth_type: SourceGcsSchemasAuthType
+    auth_type: SourceGcsAuthTypeService
 
 
 class ServiceAccountAuthentication(BaseModel):
@@ -28,11 +28,11 @@ class ServiceAccountAuthentication(BaseModel):
 
     AUTH_TYPE: Annotated[
         Annotated[
-            Optional[SourceGcsSchemasAuthType],
-            AfterValidator(validate_const(SourceGcsSchemasAuthType.SERVICE)),
+            Optional[SourceGcsAuthTypeService],
+            AfterValidator(validate_const(SourceGcsAuthTypeService.SERVICE)),
         ],
         pydantic.Field(alias="auth_type"),
-    ] = SourceGcsSchemasAuthType.SERVICE
+    ] = SourceGcsAuthTypeService.SERVICE
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
@@ -51,7 +51,7 @@ class ServiceAccountAuthentication(BaseModel):
         return m
 
 
-class SourceGcsAuthType(str, Enum):
+class SourceGcsAuthTypeClient(str, Enum):
     CLIENT = "Client"
 
 
@@ -64,7 +64,7 @@ class SourceGcsAuthenticateViaGoogleOAuthTypedDict(TypedDict):
     r"""Client Secret"""
     refresh_token: str
     r"""Access Token"""
-    auth_type: SourceGcsAuthType
+    auth_type: SourceGcsAuthTypeClient
 
 
 class SourceGcsAuthenticateViaGoogleOAuth(BaseModel):
@@ -82,11 +82,11 @@ class SourceGcsAuthenticateViaGoogleOAuth(BaseModel):
 
     AUTH_TYPE: Annotated[
         Annotated[
-            Optional[SourceGcsAuthType],
-            AfterValidator(validate_const(SourceGcsAuthType.CLIENT)),
+            Optional[SourceGcsAuthTypeClient],
+            AfterValidator(validate_const(SourceGcsAuthTypeClient.CLIENT)),
         ],
         pydantic.Field(alias="auth_type"),
-    ] = SourceGcsAuthType.CLIENT
+    ] = SourceGcsAuthTypeClient.CLIENT
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
@@ -126,24 +126,22 @@ class SourceGcsGcs(str, Enum):
     GCS = "gcs"
 
 
-class SourceGcsSchemasStreamsFormatFormat6Filetype(str, Enum):
+class SourceGcsFiletypeExcel(str, Enum):
     EXCEL = "excel"
 
 
 class SourceGcsExcelFormatTypedDict(TypedDict):
-    filetype: SourceGcsSchemasStreamsFormatFormat6Filetype
+    filetype: SourceGcsFiletypeExcel
 
 
 class SourceGcsExcelFormat(BaseModel):
     FILETYPE: Annotated[
         Annotated[
-            Optional[SourceGcsSchemasStreamsFormatFormat6Filetype],
-            AfterValidator(
-                validate_const(SourceGcsSchemasStreamsFormatFormat6Filetype.EXCEL)
-            ),
+            Optional[SourceGcsFiletypeExcel],
+            AfterValidator(validate_const(SourceGcsFiletypeExcel.EXCEL)),
         ],
         pydantic.Field(alias="filetype"),
-    ] = SourceGcsSchemasStreamsFormatFormat6Filetype.EXCEL
+    ] = SourceGcsFiletypeExcel.EXCEL
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
@@ -162,22 +160,22 @@ class SourceGcsExcelFormat(BaseModel):
         return m
 
 
-class SourceGcsSchemasStreamsFormatFormatFiletype(str, Enum):
+class SourceGcsFiletypeUnstructured(str, Enum):
     UNSTRUCTURED = "unstructured"
 
 
-class SourceGcsSchemasMode(str, Enum):
+class SourceGcsModeAPI(str, Enum):
     API = "api"
 
 
-class APIParameterConfigModelTypedDict(TypedDict):
+class SourceGcsAPIParameterConfigModelTypedDict(TypedDict):
     name: str
     r"""The name of the unstructured API parameter to use"""
     value: str
     r"""The value of the parameter"""
 
 
-class APIParameterConfigModel(BaseModel):
+class SourceGcsAPIParameterConfigModel(BaseModel):
     name: str
     r"""The name of the unstructured API parameter to use"""
 
@@ -185,19 +183,19 @@ class APIParameterConfigModel(BaseModel):
     r"""The value of the parameter"""
 
 
-class ViaAPITypedDict(TypedDict):
+class SourceGcsViaAPITypedDict(TypedDict):
     r"""Process files via an API, using the `hi_res` mode. This option is useful for increased performance and accuracy, but requires an API key and a hosted instance of unstructured."""
 
     api_key: NotRequired[str]
     r"""The API key to use matching the environment"""
     api_url: NotRequired[str]
     r"""The URL of the unstructured API to use"""
-    mode: SourceGcsSchemasMode
-    parameters: NotRequired[List[APIParameterConfigModelTypedDict]]
+    mode: SourceGcsModeAPI
+    parameters: NotRequired[List[SourceGcsAPIParameterConfigModelTypedDict]]
     r"""List of parameters send to the API"""
 
 
-class ViaAPI(BaseModel):
+class SourceGcsViaAPI(BaseModel):
     r"""Process files via an API, using the `hi_res` mode. This option is useful for increased performance and accuracy, but requires an API key and a hosted instance of unstructured."""
 
     api_key: Optional[str] = ""
@@ -208,13 +206,13 @@ class ViaAPI(BaseModel):
 
     MODE: Annotated[
         Annotated[
-            Optional[SourceGcsSchemasMode],
-            AfterValidator(validate_const(SourceGcsSchemasMode.API)),
+            Optional[SourceGcsModeAPI],
+            AfterValidator(validate_const(SourceGcsModeAPI.API)),
         ],
         pydantic.Field(alias="mode"),
-    ] = SourceGcsSchemasMode.API
+    ] = SourceGcsModeAPI.API
 
-    parameters: Optional[List[APIParameterConfigModel]] = None
+    parameters: Optional[List[SourceGcsAPIParameterConfigModel]] = None
     r"""List of parameters send to the API"""
 
     @model_serializer(mode="wrap")
@@ -234,14 +232,14 @@ class ViaAPI(BaseModel):
         return m
 
 
-class SourceGcsMode(str, Enum):
+class SourceGcsModeLocal(str, Enum):
     LOCAL = "local"
 
 
 class SourceGcsLocalTypedDict(TypedDict):
     r"""Process files locally, supporting `fast` and `ocr` modes. This is the default option."""
 
-    mode: SourceGcsMode
+    mode: SourceGcsModeLocal
 
 
 class SourceGcsLocal(BaseModel):
@@ -249,10 +247,11 @@ class SourceGcsLocal(BaseModel):
 
     MODE: Annotated[
         Annotated[
-            Optional[SourceGcsMode], AfterValidator(validate_const(SourceGcsMode.LOCAL))
+            Optional[SourceGcsModeLocal],
+            AfterValidator(validate_const(SourceGcsModeLocal.LOCAL)),
         ],
         pydantic.Field(alias="mode"),
-    ] = SourceGcsMode.LOCAL
+    ] = SourceGcsModeLocal.LOCAL
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
@@ -272,13 +271,14 @@ class SourceGcsLocal(BaseModel):
 
 
 SourceGcsProcessingTypedDict = TypeAliasType(
-    "SourceGcsProcessingTypedDict", Union[SourceGcsLocalTypedDict, ViaAPITypedDict]
+    "SourceGcsProcessingTypedDict",
+    Union[SourceGcsLocalTypedDict, SourceGcsViaAPITypedDict],
 )
 r"""Processing configuration"""
 
 
 SourceGcsProcessing = TypeAliasType(
-    "SourceGcsProcessing", Union[SourceGcsLocal, ViaAPI]
+    "SourceGcsProcessing", Union[SourceGcsLocal, SourceGcsViaAPI]
 )
 r"""Processing configuration"""
 
@@ -295,7 +295,7 @@ class SourceGcsParsingStrategy(str, Enum):
 class SourceGcsUnstructuredDocumentFormatTypedDict(TypedDict):
     r"""Extract text from document formats (.pdf, .docx, .md, .pptx) and emit as one record per file."""
 
-    filetype: SourceGcsSchemasStreamsFormatFormatFiletype
+    filetype: SourceGcsFiletypeUnstructured
     processing: NotRequired[SourceGcsProcessingTypedDict]
     r"""Processing configuration"""
     skip_unprocessable_files: NotRequired[bool]
@@ -309,13 +309,11 @@ class SourceGcsUnstructuredDocumentFormat(BaseModel):
 
     FILETYPE: Annotated[
         Annotated[
-            Optional[SourceGcsSchemasStreamsFormatFormatFiletype],
-            AfterValidator(
-                validate_const(SourceGcsSchemasStreamsFormatFormatFiletype.UNSTRUCTURED)
-            ),
+            Optional[SourceGcsFiletypeUnstructured],
+            AfterValidator(validate_const(SourceGcsFiletypeUnstructured.UNSTRUCTURED)),
         ],
         pydantic.Field(alias="filetype"),
-    ] = SourceGcsSchemasStreamsFormatFormatFiletype.UNSTRUCTURED
+    ] = SourceGcsFiletypeUnstructured.UNSTRUCTURED
 
     processing: Optional[SourceGcsProcessing] = None
     r"""Processing configuration"""
@@ -345,14 +343,14 @@ class SourceGcsUnstructuredDocumentFormat(BaseModel):
         return m
 
 
-class SourceGcsSchemasStreamsFormatFiletype(str, Enum):
+class SourceGcsFiletypeParquet(str, Enum):
     PARQUET = "parquet"
 
 
 class SourceGcsParquetFormatTypedDict(TypedDict):
     decimal_as_float: NotRequired[bool]
     r"""Whether to convert decimal fields to floats. There is a loss of precision when converting decimals to floats, so this is not recommended."""
-    filetype: SourceGcsSchemasStreamsFormatFiletype
+    filetype: SourceGcsFiletypeParquet
 
 
 class SourceGcsParquetFormat(BaseModel):
@@ -361,13 +359,11 @@ class SourceGcsParquetFormat(BaseModel):
 
     FILETYPE: Annotated[
         Annotated[
-            Optional[SourceGcsSchemasStreamsFormatFiletype],
-            AfterValidator(
-                validate_const(SourceGcsSchemasStreamsFormatFiletype.PARQUET)
-            ),
+            Optional[SourceGcsFiletypeParquet],
+            AfterValidator(validate_const(SourceGcsFiletypeParquet.PARQUET)),
         ],
         pydantic.Field(alias="filetype"),
-    ] = SourceGcsSchemasStreamsFormatFiletype.PARQUET
+    ] = SourceGcsFiletypeParquet.PARQUET
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
@@ -386,22 +382,22 @@ class SourceGcsParquetFormat(BaseModel):
         return m
 
 
-class SourceGcsSchemasStreamsFiletype(str, Enum):
+class SourceGcsFiletypeJsonl(str, Enum):
     JSONL = "jsonl"
 
 
 class SourceGcsJsonlFormatTypedDict(TypedDict):
-    filetype: SourceGcsSchemasStreamsFiletype
+    filetype: SourceGcsFiletypeJsonl
 
 
 class SourceGcsJsonlFormat(BaseModel):
     FILETYPE: Annotated[
         Annotated[
-            Optional[SourceGcsSchemasStreamsFiletype],
-            AfterValidator(validate_const(SourceGcsSchemasStreamsFiletype.JSONL)),
+            Optional[SourceGcsFiletypeJsonl],
+            AfterValidator(validate_const(SourceGcsFiletypeJsonl.JSONL)),
         ],
         pydantic.Field(alias="filetype"),
-    ] = SourceGcsSchemasStreamsFiletype.JSONL
+    ] = SourceGcsFiletypeJsonl.JSONL
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
@@ -420,18 +416,18 @@ class SourceGcsJsonlFormat(BaseModel):
         return m
 
 
-class SourceGcsSchemasFiletype(str, Enum):
+class SourceGcsFiletypeCsv(str, Enum):
     CSV = "csv"
 
 
-class SourceGcsSchemasStreamsHeaderDefinitionType(str, Enum):
+class SourceGcsHeaderDefinitionTypeUserProvided(str, Enum):
     USER_PROVIDED = "User Provided"
 
 
 class SourceGcsUserProvidedTypedDict(TypedDict):
     column_names: List[str]
     r"""The column names that will be used while emitting the CSV records"""
-    header_definition_type: SourceGcsSchemasStreamsHeaderDefinitionType
+    header_definition_type: SourceGcsHeaderDefinitionTypeUserProvided
 
 
 class SourceGcsUserProvided(BaseModel):
@@ -440,15 +436,13 @@ class SourceGcsUserProvided(BaseModel):
 
     HEADER_DEFINITION_TYPE: Annotated[
         Annotated[
-            Optional[SourceGcsSchemasStreamsHeaderDefinitionType],
+            Optional[SourceGcsHeaderDefinitionTypeUserProvided],
             AfterValidator(
-                validate_const(
-                    SourceGcsSchemasStreamsHeaderDefinitionType.USER_PROVIDED
-                )
+                validate_const(SourceGcsHeaderDefinitionTypeUserProvided.USER_PROVIDED)
             ),
         ],
         pydantic.Field(alias="header_definition_type"),
-    ] = SourceGcsSchemasStreamsHeaderDefinitionType.USER_PROVIDED
+    ] = SourceGcsHeaderDefinitionTypeUserProvided.USER_PROVIDED
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
@@ -467,24 +461,24 @@ class SourceGcsUserProvided(BaseModel):
         return m
 
 
-class SourceGcsSchemasHeaderDefinitionType(str, Enum):
+class SourceGcsHeaderDefinitionTypeAutogenerated(str, Enum):
     AUTOGENERATED = "Autogenerated"
 
 
 class SourceGcsAutogeneratedTypedDict(TypedDict):
-    header_definition_type: SourceGcsSchemasHeaderDefinitionType
+    header_definition_type: SourceGcsHeaderDefinitionTypeAutogenerated
 
 
 class SourceGcsAutogenerated(BaseModel):
     HEADER_DEFINITION_TYPE: Annotated[
         Annotated[
-            Optional[SourceGcsSchemasHeaderDefinitionType],
+            Optional[SourceGcsHeaderDefinitionTypeAutogenerated],
             AfterValidator(
-                validate_const(SourceGcsSchemasHeaderDefinitionType.AUTOGENERATED)
+                validate_const(SourceGcsHeaderDefinitionTypeAutogenerated.AUTOGENERATED)
             ),
         ],
         pydantic.Field(alias="header_definition_type"),
-    ] = SourceGcsSchemasHeaderDefinitionType.AUTOGENERATED
+    ] = SourceGcsHeaderDefinitionTypeAutogenerated.AUTOGENERATED
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
@@ -503,22 +497,24 @@ class SourceGcsAutogenerated(BaseModel):
         return m
 
 
-class SourceGcsHeaderDefinitionType(str, Enum):
+class SourceGcsHeaderDefinitionTypeFromCsv(str, Enum):
     FROM_CSV = "From CSV"
 
 
 class SourceGcsFromCSVTypedDict(TypedDict):
-    header_definition_type: SourceGcsHeaderDefinitionType
+    header_definition_type: SourceGcsHeaderDefinitionTypeFromCsv
 
 
 class SourceGcsFromCSV(BaseModel):
     HEADER_DEFINITION_TYPE: Annotated[
         Annotated[
-            Optional[SourceGcsHeaderDefinitionType],
-            AfterValidator(validate_const(SourceGcsHeaderDefinitionType.FROM_CSV)),
+            Optional[SourceGcsHeaderDefinitionTypeFromCsv],
+            AfterValidator(
+                validate_const(SourceGcsHeaderDefinitionTypeFromCsv.FROM_CSV)
+            ),
         ],
         pydantic.Field(alias="header_definition_type"),
-    ] = SourceGcsHeaderDefinitionType.FROM_CSV
+    ] = SourceGcsHeaderDefinitionTypeFromCsv.FROM_CSV
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
@@ -566,7 +562,7 @@ class SourceGcsCSVFormatTypedDict(TypedDict):
     r"""The character used for escaping special characters. To disallow escaping, leave this field blank."""
     false_values: NotRequired[List[str]]
     r"""A set of case-sensitive strings that should be interpreted as false values."""
-    filetype: SourceGcsSchemasFiletype
+    filetype: SourceGcsFiletypeCsv
     header_definition: NotRequired[SourceGcsCSVHeaderDefinitionTypedDict]
     r"""How headers will be defined. `User Provided` assumes the CSV does not have a header row and uses the headers provided and `Autogenerated` assumes the CSV does not have a header row and the CDK will generate headers using for `f{i}` where `i` is the index starting from 0. Else, the default behavior is to use the header from the CSV file. If a user wants to autogenerate or provide column names for a CSV having headers, they can skip rows."""
     ignore_errors_on_fields_mismatch: NotRequired[bool]
@@ -603,11 +599,11 @@ class SourceGcsCSVFormat(BaseModel):
 
     FILETYPE: Annotated[
         Annotated[
-            Optional[SourceGcsSchemasFiletype],
-            AfterValidator(validate_const(SourceGcsSchemasFiletype.CSV)),
+            Optional[SourceGcsFiletypeCsv],
+            AfterValidator(validate_const(SourceGcsFiletypeCsv.CSV)),
         ],
         pydantic.Field(alias="filetype"),
-    ] = SourceGcsSchemasFiletype.CSV
+    ] = SourceGcsFiletypeCsv.CSV
 
     header_definition: Optional[SourceGcsCSVHeaderDefinition] = None
     r"""How headers will be defined. `User Provided` assumes the CSV does not have a header row and uses the headers provided and `Autogenerated` assumes the CSV does not have a header row and the CDK will generate headers using for `f{i}` where `i` is the index starting from 0. Else, the default behavior is to use the header from the CSV file. If a user wants to autogenerate or provide column names for a CSV having headers, they can skip rows."""
@@ -667,14 +663,14 @@ class SourceGcsCSVFormat(BaseModel):
         return m
 
 
-class SourceGcsFiletype(str, Enum):
+class SourceGcsFiletypeAvro(str, Enum):
     AVRO = "avro"
 
 
 class SourceGcsAvroFormatTypedDict(TypedDict):
     double_as_string: NotRequired[bool]
     r"""Whether to convert double fields to strings. This is recommended if you have decimal numbers with a high degree of precision because there can be a loss precision when handling floating point numbers."""
-    filetype: SourceGcsFiletype
+    filetype: SourceGcsFiletypeAvro
 
 
 class SourceGcsAvroFormat(BaseModel):
@@ -683,11 +679,11 @@ class SourceGcsAvroFormat(BaseModel):
 
     FILETYPE: Annotated[
         Annotated[
-            Optional[SourceGcsFiletype],
-            AfterValidator(validate_const(SourceGcsFiletype.AVRO)),
+            Optional[SourceGcsFiletypeAvro],
+            AfterValidator(validate_const(SourceGcsFiletypeAvro.AVRO)),
         ],
         pydantic.Field(alias="filetype"),
-    ] = SourceGcsFiletype.AVRO
+    ] = SourceGcsFiletypeAvro.AVRO
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
@@ -884,7 +880,7 @@ try:
 except NameError:
     pass
 try:
-    ViaAPI.model_rebuild()
+    SourceGcsViaAPI.model_rebuild()
 except NameError:
     pass
 try:

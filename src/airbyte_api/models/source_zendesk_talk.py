@@ -12,7 +12,7 @@ from typing import Any, Dict, Optional, Union
 from typing_extensions import Annotated, NotRequired, TypeAliasType, TypedDict
 
 
-class SourceZendeskTalkSchemasAuthType(str, Enum):
+class SourceZendeskTalkAuthTypeAPIToken(str, Enum):
     API_TOKEN = "api_token"
 
 
@@ -21,7 +21,7 @@ class SourceZendeskTalkAPITokenTypedDict(TypedDict):
     r"""The value of the API token generated. See the <a href=\"https://docs.airbyte.com/integrations/sources/zendesk-talk\">docs</a> for more information."""
     email: str
     r"""The user email for your Zendesk account."""
-    auth_type: SourceZendeskTalkSchemasAuthType
+    auth_type: SourceZendeskTalkAuthTypeAPIToken
 
 
 class SourceZendeskTalkAPIToken(BaseModel):
@@ -38,11 +38,11 @@ class SourceZendeskTalkAPIToken(BaseModel):
 
     AUTH_TYPE: Annotated[
         Annotated[
-            Optional[SourceZendeskTalkSchemasAuthType],
-            AfterValidator(validate_const(SourceZendeskTalkSchemasAuthType.API_TOKEN)),
+            Optional[SourceZendeskTalkAuthTypeAPIToken],
+            AfterValidator(validate_const(SourceZendeskTalkAuthTypeAPIToken.API_TOKEN)),
         ],
         pydantic.Field(alias="auth_type"),
-    ] = SourceZendeskTalkSchemasAuthType.API_TOKEN
+    ] = SourceZendeskTalkAuthTypeAPIToken.API_TOKEN
 
     @property
     def additional_properties(self):
@@ -72,14 +72,14 @@ class SourceZendeskTalkAPIToken(BaseModel):
         return m
 
 
-class SourceZendeskTalkAuthType(str, Enum):
+class SourceZendeskTalkAuthTypeOauth20(str, Enum):
     OAUTH2_0 = "oauth2.0"
 
 
 class SourceZendeskTalkOAuth20TypedDict(TypedDict):
     access_token: str
     r"""The value of the API token generated. See the <a href=\"https://docs.airbyte.com/integrations/sources/zendesk-talk\">docs</a> for more information."""
-    auth_type: SourceZendeskTalkAuthType
+    auth_type: SourceZendeskTalkAuthTypeOauth20
     client_id: NotRequired[str]
     r"""Client ID"""
     client_secret: NotRequired[str]
@@ -97,11 +97,11 @@ class SourceZendeskTalkOAuth20(BaseModel):
 
     AUTH_TYPE: Annotated[
         Annotated[
-            Optional[SourceZendeskTalkAuthType],
-            AfterValidator(validate_const(SourceZendeskTalkAuthType.OAUTH2_0)),
+            Optional[SourceZendeskTalkAuthTypeOauth20],
+            AfterValidator(validate_const(SourceZendeskTalkAuthTypeOauth20.OAUTH2_0)),
         ],
         pydantic.Field(alias="auth_type"),
-    ] = SourceZendeskTalkAuthType.OAUTH2_0
+    ] = SourceZendeskTalkAuthTypeOauth20.OAUTH2_0
 
     client_id: Optional[str] = None
     r"""Client ID"""
@@ -151,7 +151,7 @@ SourceZendeskTalkAuthentication = TypeAliasType(
 r"""Zendesk service provides two authentication methods. Choose between: `OAuth2.0` or `API token`."""
 
 
-class SourceZendeskTalkZendeskTalk(str, Enum):
+class ZendeskTalkEnum(str, Enum):
     ZENDESK_TALK = "zendesk-talk"
 
 
@@ -162,7 +162,7 @@ class SourceZendeskTalkTypedDict(TypedDict):
     r"""This is your Zendesk subdomain that can be found in your account URL. For example, in https://{MY_SUBDOMAIN}.zendesk.com/, where MY_SUBDOMAIN is the value of your subdomain."""
     credentials: NotRequired[SourceZendeskTalkAuthenticationTypedDict]
     r"""Zendesk service provides two authentication methods. Choose between: `OAuth2.0` or `API token`."""
-    source_type: SourceZendeskTalkZendeskTalk
+    source_type: ZendeskTalkEnum
 
 
 class SourceZendeskTalk(BaseModel):
@@ -177,11 +177,11 @@ class SourceZendeskTalk(BaseModel):
 
     SOURCE_TYPE: Annotated[
         Annotated[
-            SourceZendeskTalkZendeskTalk,
-            AfterValidator(validate_const(SourceZendeskTalkZendeskTalk.ZENDESK_TALK)),
+            ZendeskTalkEnum,
+            AfterValidator(validate_const(ZendeskTalkEnum.ZENDESK_TALK)),
         ],
         pydantic.Field(alias="sourceType"),
-    ] = SourceZendeskTalkZendeskTalk.ZENDESK_TALK
+    ] = ZendeskTalkEnum.ZENDESK_TALK
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):

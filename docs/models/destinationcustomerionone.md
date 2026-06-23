@@ -1,0 +1,9 @@
+# DestinationCustomerIoNone
+
+
+## Fields
+
+| Field                                                                                                      | Type                                                                                                       | Required                                                                                                   | Description                                                                                                |
+| ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| `__pydantic_extra__`                                                                                       | Dict[str, *Any*]                                                                                           | :heavy_minus_sign:                                                                                         | N/A                                                                                                        |
+| `storage_type`                                                                                             | [Optional[models.DestinationCustomerIoStorageTypeNone]](../models/destinationcustomeriostoragetypenone.md) | :heavy_minus_sign:                                                                                         | N/A                                                                                                        |

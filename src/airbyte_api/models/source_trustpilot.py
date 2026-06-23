@@ -12,7 +12,7 @@ from typing import List, Optional, Union
 from typing_extensions import Annotated, TypeAliasType, TypedDict
 
 
-class SourceTrustpilotSchemasAuthType(str, Enum):
+class SourceTrustpilotAuthTypeApikey(str, Enum):
     APIKEY = "apikey"
 
 
@@ -21,7 +21,7 @@ class SourceTrustpilotAPIKeyTypedDict(TypedDict):
 
     client_id: str
     r"""The API key of the Trustpilot API application."""
-    auth_type: SourceTrustpilotSchemasAuthType
+    auth_type: SourceTrustpilotAuthTypeApikey
 
 
 class SourceTrustpilotAPIKey(BaseModel):
@@ -32,11 +32,11 @@ class SourceTrustpilotAPIKey(BaseModel):
 
     AUTH_TYPE: Annotated[
         Annotated[
-            Optional[SourceTrustpilotSchemasAuthType],
-            AfterValidator(validate_const(SourceTrustpilotSchemasAuthType.APIKEY)),
+            Optional[SourceTrustpilotAuthTypeApikey],
+            AfterValidator(validate_const(SourceTrustpilotAuthTypeApikey.APIKEY)),
         ],
         pydantic.Field(alias="auth_type"),
-    ] = SourceTrustpilotSchemasAuthType.APIKEY
+    ] = SourceTrustpilotAuthTypeApikey.APIKEY
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
@@ -55,7 +55,7 @@ class SourceTrustpilotAPIKey(BaseModel):
         return m
 
 
-class SourceTrustpilotAuthType(str, Enum):
+class SourceTrustpilotAuthTypeOauth20(str, Enum):
     OAUTH2_0 = "oauth2.0"
 
 
@@ -70,7 +70,7 @@ class SourceTrustpilotOAuth20TypedDict(TypedDict):
     r"""The key to refresh the expired access_token."""
     token_expiry_date: datetime
     r"""The date-time when the access token should be refreshed."""
-    auth_type: SourceTrustpilotAuthType
+    auth_type: SourceTrustpilotAuthTypeOauth20
 
 
 class SourceTrustpilotOAuth20(BaseModel):
@@ -91,11 +91,11 @@ class SourceTrustpilotOAuth20(BaseModel):
 
     AUTH_TYPE: Annotated[
         Annotated[
-            Optional[SourceTrustpilotAuthType],
-            AfterValidator(validate_const(SourceTrustpilotAuthType.OAUTH2_0)),
+            Optional[SourceTrustpilotAuthTypeOauth20],
+            AfterValidator(validate_const(SourceTrustpilotAuthTypeOauth20.OAUTH2_0)),
         ],
         pydantic.Field(alias="auth_type"),
-    ] = SourceTrustpilotAuthType.OAUTH2_0
+    ] = SourceTrustpilotAuthTypeOauth20.OAUTH2_0
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):

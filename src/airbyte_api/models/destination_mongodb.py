@@ -11,7 +11,7 @@ from typing import Optional, Union
 from typing_extensions import Annotated, NotRequired, TypeAliasType, TypedDict
 
 
-class DestinationMongodbAuthorization(str, Enum):
+class AuthorizationLoginPassword(str, Enum):
     LOGIN_PASSWORD = "login/password"
 
 
@@ -22,7 +22,7 @@ class LoginPasswordTypedDict(TypedDict):
     r"""Password associated with the username."""
     username: str
     r"""Username to use to access the database."""
-    authorization: DestinationMongodbAuthorization
+    authorization: AuthorizationLoginPassword
 
 
 class LoginPassword(BaseModel):
@@ -36,23 +36,21 @@ class LoginPassword(BaseModel):
 
     AUTHORIZATION: Annotated[
         Annotated[
-            DestinationMongodbAuthorization,
-            AfterValidator(
-                validate_const(DestinationMongodbAuthorization.LOGIN_PASSWORD)
-            ),
+            AuthorizationLoginPassword,
+            AfterValidator(validate_const(AuthorizationLoginPassword.LOGIN_PASSWORD)),
         ],
         pydantic.Field(alias="authorization"),
-    ] = DestinationMongodbAuthorization.LOGIN_PASSWORD
+    ] = AuthorizationLoginPassword.LOGIN_PASSWORD
 
 
-class DestinationMongodbSchemasAuthorization(str, Enum):
+class AuthorizationNone(str, Enum):
     NONE = "none"
 
 
 class DestinationMongodbNoneTypedDict(TypedDict):
     r"""None."""
 
-    authorization: DestinationMongodbSchemasAuthorization
+    authorization: AuthorizationNone
 
 
 class DestinationMongodbNone(BaseModel):
@@ -60,11 +58,10 @@ class DestinationMongodbNone(BaseModel):
 
     AUTHORIZATION: Annotated[
         Annotated[
-            DestinationMongodbSchemasAuthorization,
-            AfterValidator(validate_const(DestinationMongodbSchemasAuthorization.NONE)),
+            AuthorizationNone, AfterValidator(validate_const(AuthorizationNone.NONE))
         ],
         pydantic.Field(alias="authorization"),
-    ] = DestinationMongodbSchemasAuthorization.NONE
+    ] = AuthorizationNone.NONE
 
 
 AuthorizationTypeTypedDict = TypeAliasType(
@@ -88,23 +85,21 @@ class Mongodb(str, Enum):
     MONGODB = "mongodb"
 
 
-class DestinationMongodbSchemasInstance(str, Enum):
+class InstanceAtlas(str, Enum):
     ATLAS = "atlas"
 
 
 class MongoDBAtlasTypedDict(TypedDict):
     cluster_url: str
     r"""URL of a cluster to connect to."""
-    instance: NotRequired[DestinationMongodbSchemasInstance]
+    instance: NotRequired[InstanceAtlas]
 
 
 class MongoDBAtlas(BaseModel):
     cluster_url: str
     r"""URL of a cluster to connect to."""
 
-    instance: Optional[DestinationMongodbSchemasInstance] = (
-        DestinationMongodbSchemasInstance.ATLAS
-    )
+    instance: Optional[InstanceAtlas] = InstanceAtlas.ATLAS
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
@@ -123,14 +118,14 @@ class MongoDBAtlas(BaseModel):
         return m
 
 
-class DestinationMongodbInstance(str, Enum):
+class InstanceReplica(str, Enum):
     REPLICA = "replica"
 
 
 class ReplicaSetTypedDict(TypedDict):
     server_addresses: str
     r"""The members of a replica set. Please specify `host`:`port` of each member seperated by comma."""
-    instance: NotRequired[DestinationMongodbInstance]
+    instance: NotRequired[InstanceReplica]
     replica_set: NotRequired[str]
     r"""A replica set name."""
 
@@ -139,7 +134,7 @@ class ReplicaSet(BaseModel):
     server_addresses: str
     r"""The members of a replica set. Please specify `host`:`port` of each member seperated by comma."""
 
-    instance: Optional[DestinationMongodbInstance] = DestinationMongodbInstance.REPLICA
+    instance: Optional[InstanceReplica] = InstanceReplica.REPLICA
 
     replica_set: Optional[str] = None
     r"""A replica set name."""
@@ -161,14 +156,14 @@ class ReplicaSet(BaseModel):
         return m
 
 
-class Instance(str, Enum):
+class InstanceStandalone(str, Enum):
     STANDALONE = "standalone"
 
 
 class StandaloneMongoDbInstanceTypedDict(TypedDict):
     host: str
     r"""The Host of a Mongo database to be replicated."""
-    instance: NotRequired[Instance]
+    instance: NotRequired[InstanceStandalone]
     port: NotRequired[int]
     r"""The Port of a Mongo database to be replicated."""
     tls: NotRequired[bool]
@@ -179,7 +174,7 @@ class StandaloneMongoDbInstance(BaseModel):
     host: str
     r"""The Host of a Mongo database to be replicated."""
 
-    instance: Optional[Instance] = Instance.STANDALONE
+    instance: Optional[InstanceStandalone] = InstanceStandalone.STANDALONE
 
     port: Optional[int] = 27017
     r"""The Port of a Mongo database to be replicated."""
@@ -219,7 +214,7 @@ MongoDbInstanceType = TypeAliasType(
 r"""MongoDb instance to connect to. For MongoDB Atlas and Replica Set TLS connection is used by default."""
 
 
-class DestinationMongodbSchemasTunnelMethodTunnelMethod(str, Enum):
+class DestinationMongodbTunnelMethodSSHPasswordAuth(str, Enum):
     r"""Connect through a jump server tunnel host using username and password authentication"""
 
     SSH_PASSWORD_AUTH = "SSH_PASSWORD_AUTH"
@@ -232,7 +227,7 @@ class DestinationMongodbPasswordAuthenticationTypedDict(TypedDict):
     r"""OS-level username for logging into the jump server host"""
     tunnel_user_password: str
     r"""OS-level password for logging into the jump server host"""
-    tunnel_method: DestinationMongodbSchemasTunnelMethodTunnelMethod
+    tunnel_method: DestinationMongodbTunnelMethodSSHPasswordAuth
     r"""Connect through a jump server tunnel host using username and password authentication"""
     tunnel_port: NotRequired[int]
     r"""Port on the proxy/jump server that accepts inbound ssh connections."""
@@ -250,15 +245,15 @@ class DestinationMongodbPasswordAuthentication(BaseModel):
 
     TUNNEL_METHOD: Annotated[
         Annotated[
-            DestinationMongodbSchemasTunnelMethodTunnelMethod,
+            DestinationMongodbTunnelMethodSSHPasswordAuth,
             AfterValidator(
                 validate_const(
-                    DestinationMongodbSchemasTunnelMethodTunnelMethod.SSH_PASSWORD_AUTH
+                    DestinationMongodbTunnelMethodSSHPasswordAuth.SSH_PASSWORD_AUTH
                 )
             ),
         ],
         pydantic.Field(alias="tunnel_method"),
-    ] = DestinationMongodbSchemasTunnelMethodTunnelMethod.SSH_PASSWORD_AUTH
+    ] = DestinationMongodbTunnelMethodSSHPasswordAuth.SSH_PASSWORD_AUTH
     r"""Connect through a jump server tunnel host using username and password authentication"""
 
     tunnel_port: Optional[int] = 22
@@ -281,7 +276,7 @@ class DestinationMongodbPasswordAuthentication(BaseModel):
         return m
 
 
-class DestinationMongodbSchemasTunnelMethod(str, Enum):
+class DestinationMongodbTunnelMethodSSHKeyAuth(str, Enum):
     r"""Connect through a jump server tunnel host using username and ssh key"""
 
     SSH_KEY_AUTH = "SSH_KEY_AUTH"
@@ -294,7 +289,7 @@ class DestinationMongodbSSHKeyAuthenticationTypedDict(TypedDict):
     r"""Hostname of the jump server host that allows inbound ssh tunnel."""
     tunnel_user: str
     r"""OS-level username for logging into the jump server host."""
-    tunnel_method: DestinationMongodbSchemasTunnelMethod
+    tunnel_method: DestinationMongodbTunnelMethodSSHKeyAuth
     r"""Connect through a jump server tunnel host using username and ssh key"""
     tunnel_port: NotRequired[int]
     r"""Port on the proxy/jump server that accepts inbound ssh connections."""
@@ -312,13 +307,13 @@ class DestinationMongodbSSHKeyAuthentication(BaseModel):
 
     TUNNEL_METHOD: Annotated[
         Annotated[
-            DestinationMongodbSchemasTunnelMethod,
+            DestinationMongodbTunnelMethodSSHKeyAuth,
             AfterValidator(
-                validate_const(DestinationMongodbSchemasTunnelMethod.SSH_KEY_AUTH)
+                validate_const(DestinationMongodbTunnelMethodSSHKeyAuth.SSH_KEY_AUTH)
             ),
         ],
         pydantic.Field(alias="tunnel_method"),
-    ] = DestinationMongodbSchemasTunnelMethod.SSH_KEY_AUTH
+    ] = DestinationMongodbTunnelMethodSSHKeyAuth.SSH_KEY_AUTH
     r"""Connect through a jump server tunnel host using username and ssh key"""
 
     tunnel_port: Optional[int] = 22
@@ -341,25 +336,27 @@ class DestinationMongodbSSHKeyAuthentication(BaseModel):
         return m
 
 
-class DestinationMongodbTunnelMethod(str, Enum):
+class DestinationMongodbTunnelMethodNoTunnel(str, Enum):
     r"""No ssh tunnel needed to connect to database"""
 
     NO_TUNNEL = "NO_TUNNEL"
 
 
 class DestinationMongodbNoTunnelTypedDict(TypedDict):
-    tunnel_method: DestinationMongodbTunnelMethod
+    tunnel_method: DestinationMongodbTunnelMethodNoTunnel
     r"""No ssh tunnel needed to connect to database"""
 
 
 class DestinationMongodbNoTunnel(BaseModel):
     TUNNEL_METHOD: Annotated[
         Annotated[
-            DestinationMongodbTunnelMethod,
-            AfterValidator(validate_const(DestinationMongodbTunnelMethod.NO_TUNNEL)),
+            DestinationMongodbTunnelMethodNoTunnel,
+            AfterValidator(
+                validate_const(DestinationMongodbTunnelMethodNoTunnel.NO_TUNNEL)
+            ),
         ],
         pydantic.Field(alias="tunnel_method"),
-    ] = DestinationMongodbTunnelMethod.NO_TUNNEL
+    ] = DestinationMongodbTunnelMethodNoTunnel.NO_TUNNEL
     r"""No ssh tunnel needed to connect to database"""
 
 

@@ -18,7 +18,7 @@ class SourceMysqlInvalidCDCPositionBehaviorAdvanced(str, Enum):
     RE_SYNC_DATA = "Re-sync data"
 
 
-class SourceMysqlSchemasMethod(str, Enum):
+class SourceMysqlMethodCdc(str, Enum):
     CDC = "CDC"
 
 
@@ -31,7 +31,7 @@ class SourceMysqlReadChangesUsingChangeDataCaptureCDCTypedDict(TypedDict):
         SourceMysqlInvalidCDCPositionBehaviorAdvanced
     ]
     r"""Determines whether Airbyte should fail or re-sync data in case of an stale/invalid cursor value in the mined logs. If 'Fail sync' is chosen, a user will have to manually reset the connection before being able to continue syncing data. If 'Re-sync data' is chosen, Airbyte will automatically trigger a refresh but could lead to higher cloud costs and data loss."""
-    method: NotRequired[SourceMysqlSchemasMethod]
+    method: NotRequired[SourceMysqlMethodCdc]
     server_timezone: NotRequired[str]
     r"""Enter the configured MySQL server timezone. This should only be done if the configured timezone in your MySQL instance does not conform to IANNA standard."""
 
@@ -52,7 +52,7 @@ class SourceMysqlReadChangesUsingChangeDataCaptureCDC(BaseModel):
     ] = SourceMysqlInvalidCDCPositionBehaviorAdvanced.FAIL_SYNC
     r"""Determines whether Airbyte should fail or re-sync data in case of an stale/invalid cursor value in the mined logs. If 'Fail sync' is chosen, a user will have to manually reset the connection before being able to continue syncing data. If 'Re-sync data' is chosen, Airbyte will automatically trigger a refresh but could lead to higher cloud costs and data loss."""
 
-    method: Optional[SourceMysqlSchemasMethod] = SourceMysqlSchemasMethod.CDC
+    method: Optional[SourceMysqlMethodCdc] = SourceMysqlMethodCdc.CDC
 
     server_timezone: Optional[str] = None
     r"""Enter the configured MySQL server timezone. This should only be done if the configured timezone in your MySQL instance does not conform to IANNA standard."""
@@ -92,14 +92,14 @@ class SourceMysqlReadChangesUsingChangeDataCaptureCDC(BaseModel):
         return m
 
 
-class SourceMysqlMethod(str, Enum):
+class SourceMysqlMethodStandard(str, Enum):
     STANDARD = "STANDARD"
 
 
 class SourceMysqlScanChangesWithUserDefinedCursorTypedDict(TypedDict):
     r"""Incrementally detects new inserts and updates using the <a href=\"https://docs.airbyte.com/understanding-airbyte/connections/incremental-append/#user-defined-cursor\">cursor column</a> chosen when configuring a connection (e.g. created_at, updated_at)."""
 
-    method: NotRequired[SourceMysqlMethod]
+    method: NotRequired[SourceMysqlMethodStandard]
 
 
 class SourceMysqlScanChangesWithUserDefinedCursor(BaseModel):
@@ -110,7 +110,7 @@ class SourceMysqlScanChangesWithUserDefinedCursor(BaseModel):
     )
     __pydantic_extra__: Dict[str, Any] = pydantic.Field(init=False)
 
-    method: Optional[SourceMysqlMethod] = SourceMysqlMethod.STANDARD
+    method: Optional[SourceMysqlMethodStandard] = SourceMysqlMethodStandard.STANDARD
 
     @property
     def additional_properties(self):
@@ -164,7 +164,7 @@ class SourceMysqlMysql(str, Enum):
     MYSQL = "mysql"
 
 
-class SourceMysqlSchemasSslModeEncryptionMode(str, Enum):
+class ModeVerifyIdentity(str, Enum):
     VERIFY_IDENTITY = "verify_identity"
 
 
@@ -179,7 +179,7 @@ class VerifyIdentityTypedDict(TypedDict):
     r"""Client key (this is not a required field, but if you want to use it, you will need to add the Client certificate as well)"""
     client_key_password: NotRequired[str]
     r"""Password for keystorage. This field is optional. If you do not add it - the password will be generated automatically."""
-    mode: NotRequired[SourceMysqlSchemasSslModeEncryptionMode]
+    mode: NotRequired[ModeVerifyIdentity]
 
 
 class VerifyIdentity(BaseModel):
@@ -202,9 +202,7 @@ class VerifyIdentity(BaseModel):
     client_key_password: Optional[str] = None
     r"""Password for keystorage. This field is optional. If you do not add it - the password will be generated automatically."""
 
-    mode: Optional[SourceMysqlSchemasSslModeEncryptionMode] = (
-        SourceMysqlSchemasSslModeEncryptionMode.VERIFY_IDENTITY
-    )
+    mode: Optional[ModeVerifyIdentity] = ModeVerifyIdentity.VERIFY_IDENTITY
 
     @property
     def additional_properties(self):
@@ -236,7 +234,7 @@ class VerifyIdentity(BaseModel):
         return m
 
 
-class SourceMysqlSchemasSslModeMode(str, Enum):
+class SourceMysqlModeVerifyCa(str, Enum):
     VERIFY_CA = "verify_ca"
 
 
@@ -251,7 +249,7 @@ class SourceMysqlVerifyCaTypedDict(TypedDict):
     r"""Client key (this is not a required field, but if you want to use it, you will need to add the Client certificate as well)"""
     client_key_password: NotRequired[str]
     r"""Password for keystorage. This field is optional. If you do not add it - the password will be generated automatically."""
-    mode: NotRequired[SourceMysqlSchemasSslModeMode]
+    mode: NotRequired[SourceMysqlModeVerifyCa]
 
 
 class SourceMysqlVerifyCa(BaseModel):
@@ -274,9 +272,7 @@ class SourceMysqlVerifyCa(BaseModel):
     client_key_password: Optional[str] = None
     r"""Password for keystorage. This field is optional. If you do not add it - the password will be generated automatically."""
 
-    mode: Optional[SourceMysqlSchemasSslModeMode] = (
-        SourceMysqlSchemasSslModeMode.VERIFY_CA
-    )
+    mode: Optional[SourceMysqlModeVerifyCa] = SourceMysqlModeVerifyCa.VERIFY_CA
 
     @property
     def additional_properties(self):
@@ -308,14 +304,14 @@ class SourceMysqlVerifyCa(BaseModel):
         return m
 
 
-class SourceMysqlSchemasMode(str, Enum):
+class ModeRequired(str, Enum):
     REQUIRED = "required"
 
 
 class RequiredTypedDict(TypedDict):
     r"""To always require encryption. Note: The connection will fail if the source doesn't support encryption."""
 
-    mode: NotRequired[SourceMysqlSchemasMode]
+    mode: NotRequired[ModeRequired]
 
 
 class Required(BaseModel):
@@ -326,7 +322,7 @@ class Required(BaseModel):
     )
     __pydantic_extra__: Dict[str, Any] = pydantic.Field(init=False)
 
-    mode: Optional[SourceMysqlSchemasMode] = SourceMysqlSchemasMode.REQUIRED
+    mode: Optional[ModeRequired] = ModeRequired.REQUIRED
 
     @property
     def additional_properties(self):
@@ -356,14 +352,14 @@ class Required(BaseModel):
         return m
 
 
-class SourceMysqlMode(str, Enum):
+class ModePreferred(str, Enum):
     PREFERRED = "preferred"
 
 
 class PreferredTypedDict(TypedDict):
     r"""To allow unencrypted communication only when the source doesn't support encryption."""
 
-    mode: NotRequired[SourceMysqlMode]
+    mode: NotRequired[ModePreferred]
 
 
 class Preferred(BaseModel):
@@ -374,7 +370,7 @@ class Preferred(BaseModel):
     )
     __pydantic_extra__: Dict[str, Any] = pydantic.Field(init=False)
 
-    mode: Optional[SourceMysqlMode] = SourceMysqlMode.PREFERRED
+    mode: Optional[ModePreferred] = ModePreferred.PREFERRED
 
     @property
     def additional_properties(self):
@@ -423,7 +419,7 @@ SourceMysqlEncryption = TypeAliasType(
 r"""The encryption method which is used when communicating with the database."""
 
 
-class SourceMysqlSchemasTunnelMethodTunnelMethod(str, Enum):
+class SourceMysqlTunnelMethodSSHPasswordAuth(str, Enum):
     SSH_PASSWORD_AUTH = "SSH_PASSWORD_AUTH"
 
 
@@ -436,7 +432,7 @@ class SourceMysqlPasswordAuthenticationTypedDict(TypedDict):
     r"""OS-level username for logging into the jump server host"""
     tunnel_user_password: str
     r"""OS-level password for logging into the jump server host"""
-    tunnel_method: NotRequired[SourceMysqlSchemasTunnelMethodTunnelMethod]
+    tunnel_method: NotRequired[SourceMysqlTunnelMethodSSHPasswordAuth]
     tunnel_port: NotRequired[int]
     r"""Port on the proxy/jump server that accepts inbound ssh connections."""
 
@@ -458,8 +454,8 @@ class SourceMysqlPasswordAuthentication(BaseModel):
     tunnel_user_password: str
     r"""OS-level password for logging into the jump server host"""
 
-    tunnel_method: Optional[SourceMysqlSchemasTunnelMethodTunnelMethod] = (
-        SourceMysqlSchemasTunnelMethodTunnelMethod.SSH_PASSWORD_AUTH
+    tunnel_method: Optional[SourceMysqlTunnelMethodSSHPasswordAuth] = (
+        SourceMysqlTunnelMethodSSHPasswordAuth.SSH_PASSWORD_AUTH
     )
 
     tunnel_port: Optional[int] = 22
@@ -493,7 +489,7 @@ class SourceMysqlPasswordAuthentication(BaseModel):
         return m
 
 
-class SourceMysqlSchemasTunnelMethod(str, Enum):
+class SourceMysqlTunnelMethodSSHKeyAuth(str, Enum):
     SSH_KEY_AUTH = "SSH_KEY_AUTH"
 
 
@@ -506,7 +502,7 @@ class SourceMysqlSSHKeyAuthenticationTypedDict(TypedDict):
     r"""Hostname of the jump server host that allows inbound ssh tunnel."""
     tunnel_user: str
     r"""OS-level username for logging into the jump server host"""
-    tunnel_method: NotRequired[SourceMysqlSchemasTunnelMethod]
+    tunnel_method: NotRequired[SourceMysqlTunnelMethodSSHKeyAuth]
     tunnel_port: NotRequired[int]
     r"""Port on the proxy/jump server that accepts inbound ssh connections."""
 
@@ -528,8 +524,8 @@ class SourceMysqlSSHKeyAuthentication(BaseModel):
     tunnel_user: str
     r"""OS-level username for logging into the jump server host"""
 
-    tunnel_method: Optional[SourceMysqlSchemasTunnelMethod] = (
-        SourceMysqlSchemasTunnelMethod.SSH_KEY_AUTH
+    tunnel_method: Optional[SourceMysqlTunnelMethodSSHKeyAuth] = (
+        SourceMysqlTunnelMethodSSHKeyAuth.SSH_KEY_AUTH
     )
 
     tunnel_port: Optional[int] = 22
@@ -563,14 +559,14 @@ class SourceMysqlSSHKeyAuthentication(BaseModel):
         return m
 
 
-class SourceMysqlTunnelMethod(str, Enum):
+class SourceMysqlTunnelMethodNoTunnel(str, Enum):
     NO_TUNNEL = "NO_TUNNEL"
 
 
 class SourceMysqlNoTunnelTypedDict(TypedDict):
     r"""No ssh tunnel needed to connect to database"""
 
-    tunnel_method: NotRequired[SourceMysqlTunnelMethod]
+    tunnel_method: NotRequired[SourceMysqlTunnelMethodNoTunnel]
 
 
 class SourceMysqlNoTunnel(BaseModel):
@@ -581,7 +577,9 @@ class SourceMysqlNoTunnel(BaseModel):
     )
     __pydantic_extra__: Dict[str, Any] = pydantic.Field(init=False)
 
-    tunnel_method: Optional[SourceMysqlTunnelMethod] = SourceMysqlTunnelMethod.NO_TUNNEL
+    tunnel_method: Optional[SourceMysqlTunnelMethodNoTunnel] = (
+        SourceMysqlTunnelMethodNoTunnel.NO_TUNNEL
+    )
 
     @property
     def additional_properties(self):

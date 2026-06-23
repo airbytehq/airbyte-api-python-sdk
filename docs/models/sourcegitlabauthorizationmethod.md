@@ -9,9 +9,9 @@
 value: models.SourceGitlabOAuth20 = /* values here */
 ```
 
-### `models.PrivateToken`
+### `models.SourceGitlabPrivateToken`
 
 ```python
-value: models.PrivateToken = /* values here */
+value: models.SourceGitlabPrivateToken = /* values here */
 ```
 

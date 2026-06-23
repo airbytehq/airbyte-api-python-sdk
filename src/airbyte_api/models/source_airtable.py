@@ -12,14 +12,14 @@ from typing import Optional, Union
 from typing_extensions import Annotated, NotRequired, TypeAliasType, TypedDict
 
 
-class SourceAirtableAuthMethod(str, Enum):
+class AuthMethodAPIKey(str, Enum):
     API_KEY = "api_key"
 
 
 class SourceAirtablePersonalAccessTokenTypedDict(TypedDict):
     api_key: str
     r"""The Personal Access Token for the Airtable account. See the <a href=\"https://airtable.com/developers/web/guides/personal-access-tokens\">Support Guide</a> for more information on how to obtain this token."""
-    auth_method: SourceAirtableAuthMethod
+    auth_method: AuthMethodAPIKey
 
 
 class SourceAirtablePersonalAccessToken(BaseModel):
@@ -28,11 +28,11 @@ class SourceAirtablePersonalAccessToken(BaseModel):
 
     AUTH_METHOD: Annotated[
         Annotated[
-            Optional[SourceAirtableAuthMethod],
-            AfterValidator(validate_const(SourceAirtableAuthMethod.API_KEY)),
+            Optional[AuthMethodAPIKey],
+            AfterValidator(validate_const(AuthMethodAPIKey.API_KEY)),
         ],
         pydantic.Field(alias="auth_method"),
-    ] = SourceAirtableAuthMethod.API_KEY
+    ] = AuthMethodAPIKey.API_KEY
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
@@ -51,7 +51,7 @@ class SourceAirtablePersonalAccessToken(BaseModel):
         return m
 
 
-class SourceAirtableSchemasAuthMethod(str, Enum):
+class SourceAirtableAuthMethodOauth20(str, Enum):
     OAUTH2_0 = "oauth2.0"
 
 
@@ -64,7 +64,7 @@ class SourceAirtableOAuth20TypedDict(TypedDict):
     r"""The key to refresh the expired access token."""
     access_token: NotRequired[str]
     r"""Access Token for making authenticated requests."""
-    auth_method: SourceAirtableSchemasAuthMethod
+    auth_method: SourceAirtableAuthMethodOauth20
     token_expiry_date: NotRequired[datetime]
     r"""The date-time when the access token should be refreshed."""
 
@@ -84,11 +84,11 @@ class SourceAirtableOAuth20(BaseModel):
 
     AUTH_METHOD: Annotated[
         Annotated[
-            Optional[SourceAirtableSchemasAuthMethod],
-            AfterValidator(validate_const(SourceAirtableSchemasAuthMethod.OAUTH2_0)),
+            Optional[SourceAirtableAuthMethodOauth20],
+            AfterValidator(validate_const(SourceAirtableAuthMethodOauth20.OAUTH2_0)),
         ],
         pydantic.Field(alias="auth_method"),
-    ] = SourceAirtableSchemasAuthMethod.OAUTH2_0
+    ] = SourceAirtableAuthMethodOauth20.OAUTH2_0
 
     token_expiry_date: Optional[datetime] = None
     r"""The date-time when the access token should be refreshed."""
@@ -122,13 +122,13 @@ SourceAirtableAuthentication = TypeAliasType(
 )
 
 
-class SourceAirtableAirtable(str, Enum):
+class AirtableEnum(str, Enum):
     AIRTABLE = "airtable"
 
 
 class SourceAirtableTypedDict(TypedDict):
     credentials: NotRequired[SourceAirtableAuthenticationTypedDict]
-    source_type: SourceAirtableAirtable
+    source_type: AirtableEnum
 
 
 class SourceAirtable(BaseModel):
@@ -136,11 +136,11 @@ class SourceAirtable(BaseModel):
 
     SOURCE_TYPE: Annotated[
         Annotated[
-            Optional[SourceAirtableAirtable],
-            AfterValidator(validate_const(SourceAirtableAirtable.AIRTABLE)),
+            Optional[AirtableEnum],
+            AfterValidator(validate_const(AirtableEnum.AIRTABLE)),
         ],
         pydantic.Field(alias="sourceType"),
-    ] = SourceAirtableAirtable.AIRTABLE
+    ] = AirtableEnum.AIRTABLE
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):

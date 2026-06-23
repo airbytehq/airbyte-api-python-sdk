@@ -11,22 +11,22 @@ from typing import TYPE_CHECKING, Union
 from typing_extensions import Annotated, TypeAliasType
 
 if TYPE_CHECKING:
-    from .rowfilteringoperationnot import (
-        RowFilteringOperationNot,
-        RowFilteringOperationNotTypedDict,
+    from .rowfilteringoperationnot_1 import (
+        RowFilteringOperationNot1,
+        RowFilteringOperationNot1TypedDict,
     )
 
 
 RowFilteringOperationTypedDict = TypeAliasType(
     "RowFilteringOperationTypedDict",
-    Union["RowFilteringOperationNotTypedDict", RowFilteringOperationEqualTypedDict],
+    Union["RowFilteringOperationNot1TypedDict", RowFilteringOperationEqualTypedDict],
 )
 
 
 RowFilteringOperation = Annotated[
     Union[
         Annotated[RowFilteringOperationEqual, Tag("EQUAL")],
-        Annotated["RowFilteringOperationNot", Tag("NOT")],
+        Annotated["RowFilteringOperationNot1", Tag("NOT")],
     ],
     Discriminator(lambda m: get_discriminator(m, "type", "type")),
 ]

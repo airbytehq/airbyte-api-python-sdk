@@ -12,14 +12,14 @@ from typing import List, Optional, Union
 from typing_extensions import Annotated, NotRequired, TypeAliasType, TypedDict
 
 
-class SourceSftpBulkSchemasAuthType(str, Enum):
+class AuthTypePrivateKey(str, Enum):
     PRIVATE_KEY = "private_key"
 
 
 class AuthenticateViaPrivateKeyTypedDict(TypedDict):
     private_key: str
     r"""The Private key"""
-    auth_type: SourceSftpBulkSchemasAuthType
+    auth_type: AuthTypePrivateKey
 
 
 class AuthenticateViaPrivateKey(BaseModel):
@@ -28,11 +28,11 @@ class AuthenticateViaPrivateKey(BaseModel):
 
     AUTH_TYPE: Annotated[
         Annotated[
-            Optional[SourceSftpBulkSchemasAuthType],
-            AfterValidator(validate_const(SourceSftpBulkSchemasAuthType.PRIVATE_KEY)),
+            Optional[AuthTypePrivateKey],
+            AfterValidator(validate_const(AuthTypePrivateKey.PRIVATE_KEY)),
         ],
         pydantic.Field(alias="auth_type"),
-    ] = SourceSftpBulkSchemasAuthType.PRIVATE_KEY
+    ] = AuthTypePrivateKey.PRIVATE_KEY
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
@@ -51,14 +51,14 @@ class AuthenticateViaPrivateKey(BaseModel):
         return m
 
 
-class SourceSftpBulkAuthType(str, Enum):
+class AuthTypePassword(str, Enum):
     PASSWORD = "password"
 
 
 class AuthenticateViaPasswordTypedDict(TypedDict):
     password: str
     r"""Password"""
-    auth_type: SourceSftpBulkAuthType
+    auth_type: AuthTypePassword
 
 
 class AuthenticateViaPassword(BaseModel):
@@ -67,11 +67,11 @@ class AuthenticateViaPassword(BaseModel):
 
     AUTH_TYPE: Annotated[
         Annotated[
-            Optional[SourceSftpBulkAuthType],
-            AfterValidator(validate_const(SourceSftpBulkAuthType.PASSWORD)),
+            Optional[AuthTypePassword],
+            AfterValidator(validate_const(AuthTypePassword.PASSWORD)),
         ],
         pydantic.Field(alias="auth_type"),
-    ] = SourceSftpBulkAuthType.PASSWORD
+    ] = AuthTypePassword.PASSWORD
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
@@ -104,14 +104,14 @@ SourceSftpBulkAuthentication = TypeAliasType(
 r"""Credentials for connecting to the SFTP Server"""
 
 
-class SourceSftpBulkSchemasDeliveryType(str, Enum):
+class SourceSftpBulkDeliveryTypeUseFileTransfer(str, Enum):
     USE_FILE_TRANSFER = "use_file_transfer"
 
 
 class SourceSftpBulkCopyRawFilesTypedDict(TypedDict):
     r"""Copy raw files without parsing their contents. Bits are copied into the destination exactly as they appeared in the source. Recommended for use with unstructured text data, non-text and compressed files."""
 
-    delivery_type: SourceSftpBulkSchemasDeliveryType
+    delivery_type: SourceSftpBulkDeliveryTypeUseFileTransfer
     preserve_directory_structure: NotRequired[bool]
     r"""If enabled, sends subdirectory folder structure along with source file names to the destination. Otherwise, files will be synced by their names only. This option is ignored when file-based replication is not enabled."""
 
@@ -121,13 +121,15 @@ class SourceSftpBulkCopyRawFiles(BaseModel):
 
     DELIVERY_TYPE: Annotated[
         Annotated[
-            Optional[SourceSftpBulkSchemasDeliveryType],
+            Optional[SourceSftpBulkDeliveryTypeUseFileTransfer],
             AfterValidator(
-                validate_const(SourceSftpBulkSchemasDeliveryType.USE_FILE_TRANSFER)
+                validate_const(
+                    SourceSftpBulkDeliveryTypeUseFileTransfer.USE_FILE_TRANSFER
+                )
             ),
         ],
         pydantic.Field(alias="delivery_type"),
-    ] = SourceSftpBulkSchemasDeliveryType.USE_FILE_TRANSFER
+    ] = SourceSftpBulkDeliveryTypeUseFileTransfer.USE_FILE_TRANSFER
 
     preserve_directory_structure: Optional[bool] = True
     r"""If enabled, sends subdirectory folder structure along with source file names to the destination. Otherwise, files will be synced by their names only. This option is ignored when file-based replication is not enabled."""
@@ -149,14 +151,14 @@ class SourceSftpBulkCopyRawFiles(BaseModel):
         return m
 
 
-class SourceSftpBulkDeliveryType(str, Enum):
+class SourceSftpBulkDeliveryTypeUseRecordsTransfer(str, Enum):
     USE_RECORDS_TRANSFER = "use_records_transfer"
 
 
 class SourceSftpBulkReplicateRecordsTypedDict(TypedDict):
     r"""Recommended - Extract and load structured records into your destination of choice. This is the classic method of moving data in Airbyte. It allows for blocking and hashing individual fields or files from a structured schema. Data can be flattened, typed and deduped depending on the destination."""
 
-    delivery_type: SourceSftpBulkDeliveryType
+    delivery_type: SourceSftpBulkDeliveryTypeUseRecordsTransfer
 
 
 class SourceSftpBulkReplicateRecords(BaseModel):
@@ -164,13 +166,15 @@ class SourceSftpBulkReplicateRecords(BaseModel):
 
     DELIVERY_TYPE: Annotated[
         Annotated[
-            Optional[SourceSftpBulkDeliveryType],
+            Optional[SourceSftpBulkDeliveryTypeUseRecordsTransfer],
             AfterValidator(
-                validate_const(SourceSftpBulkDeliveryType.USE_RECORDS_TRANSFER)
+                validate_const(
+                    SourceSftpBulkDeliveryTypeUseRecordsTransfer.USE_RECORDS_TRANSFER
+                )
             ),
         ],
         pydantic.Field(alias="delivery_type"),
-    ] = SourceSftpBulkDeliveryType.USE_RECORDS_TRANSFER
+    ] = SourceSftpBulkDeliveryTypeUseRecordsTransfer.USE_RECORDS_TRANSFER
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
@@ -205,24 +209,22 @@ class SftpBulk(str, Enum):
     SFTP_BULK = "sftp-bulk"
 
 
-class SourceSftpBulkSchemasStreamsFormatFormat6Filetype(str, Enum):
+class SourceSftpBulkFiletypeExcel(str, Enum):
     EXCEL = "excel"
 
 
 class SourceSftpBulkExcelFormatTypedDict(TypedDict):
-    filetype: SourceSftpBulkSchemasStreamsFormatFormat6Filetype
+    filetype: SourceSftpBulkFiletypeExcel
 
 
 class SourceSftpBulkExcelFormat(BaseModel):
     FILETYPE: Annotated[
         Annotated[
-            Optional[SourceSftpBulkSchemasStreamsFormatFormat6Filetype],
-            AfterValidator(
-                validate_const(SourceSftpBulkSchemasStreamsFormatFormat6Filetype.EXCEL)
-            ),
+            Optional[SourceSftpBulkFiletypeExcel],
+            AfterValidator(validate_const(SourceSftpBulkFiletypeExcel.EXCEL)),
         ],
         pydantic.Field(alias="filetype"),
-    ] = SourceSftpBulkSchemasStreamsFormatFormat6Filetype.EXCEL
+    ] = SourceSftpBulkFiletypeExcel.EXCEL
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
@@ -241,11 +243,11 @@ class SourceSftpBulkExcelFormat(BaseModel):
         return m
 
 
-class SourceSftpBulkSchemasStreamsFormatFormatFiletype(str, Enum):
+class SourceSftpBulkFiletypeUnstructured(str, Enum):
     UNSTRUCTURED = "unstructured"
 
 
-class SourceSftpBulkSchemasMode(str, Enum):
+class SourceSftpBulkModeAPI(str, Enum):
     API = "api"
 
 
@@ -271,7 +273,7 @@ class SourceSftpBulkViaAPITypedDict(TypedDict):
     r"""The API key to use matching the environment"""
     api_url: NotRequired[str]
     r"""The URL of the unstructured API to use"""
-    mode: SourceSftpBulkSchemasMode
+    mode: SourceSftpBulkModeAPI
     parameters: NotRequired[List[SourceSftpBulkAPIParameterConfigModelTypedDict]]
     r"""List of parameters send to the API"""
 
@@ -287,11 +289,11 @@ class SourceSftpBulkViaAPI(BaseModel):
 
     MODE: Annotated[
         Annotated[
-            Optional[SourceSftpBulkSchemasMode],
-            AfterValidator(validate_const(SourceSftpBulkSchemasMode.API)),
+            Optional[SourceSftpBulkModeAPI],
+            AfterValidator(validate_const(SourceSftpBulkModeAPI.API)),
         ],
         pydantic.Field(alias="mode"),
-    ] = SourceSftpBulkSchemasMode.API
+    ] = SourceSftpBulkModeAPI.API
 
     parameters: Optional[List[SourceSftpBulkAPIParameterConfigModel]] = None
     r"""List of parameters send to the API"""
@@ -313,14 +315,14 @@ class SourceSftpBulkViaAPI(BaseModel):
         return m
 
 
-class SourceSftpBulkMode(str, Enum):
+class SourceSftpBulkModeLocal(str, Enum):
     LOCAL = "local"
 
 
 class SourceSftpBulkLocalTypedDict(TypedDict):
     r"""Process files locally, supporting `fast` and `ocr` modes. This is the default option."""
 
-    mode: SourceSftpBulkMode
+    mode: SourceSftpBulkModeLocal
 
 
 class SourceSftpBulkLocal(BaseModel):
@@ -328,11 +330,11 @@ class SourceSftpBulkLocal(BaseModel):
 
     MODE: Annotated[
         Annotated[
-            Optional[SourceSftpBulkMode],
-            AfterValidator(validate_const(SourceSftpBulkMode.LOCAL)),
+            Optional[SourceSftpBulkModeLocal],
+            AfterValidator(validate_const(SourceSftpBulkModeLocal.LOCAL)),
         ],
         pydantic.Field(alias="mode"),
-    ] = SourceSftpBulkMode.LOCAL
+    ] = SourceSftpBulkModeLocal.LOCAL
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
@@ -376,7 +378,7 @@ class SourceSftpBulkParsingStrategy(str, Enum):
 class SourceSftpBulkUnstructuredDocumentFormatTypedDict(TypedDict):
     r"""Extract text from document formats (.pdf, .docx, .md, .pptx) and emit as one record per file."""
 
-    filetype: SourceSftpBulkSchemasStreamsFormatFormatFiletype
+    filetype: SourceSftpBulkFiletypeUnstructured
     processing: NotRequired[SourceSftpBulkProcessingTypedDict]
     r"""Processing configuration"""
     skip_unprocessable_files: NotRequired[bool]
@@ -390,15 +392,13 @@ class SourceSftpBulkUnstructuredDocumentFormat(BaseModel):
 
     FILETYPE: Annotated[
         Annotated[
-            Optional[SourceSftpBulkSchemasStreamsFormatFormatFiletype],
+            Optional[SourceSftpBulkFiletypeUnstructured],
             AfterValidator(
-                validate_const(
-                    SourceSftpBulkSchemasStreamsFormatFormatFiletype.UNSTRUCTURED
-                )
+                validate_const(SourceSftpBulkFiletypeUnstructured.UNSTRUCTURED)
             ),
         ],
         pydantic.Field(alias="filetype"),
-    ] = SourceSftpBulkSchemasStreamsFormatFormatFiletype.UNSTRUCTURED
+    ] = SourceSftpBulkFiletypeUnstructured.UNSTRUCTURED
 
     processing: Optional[SourceSftpBulkProcessing] = None
     r"""Processing configuration"""
@@ -430,14 +430,14 @@ class SourceSftpBulkUnstructuredDocumentFormat(BaseModel):
         return m
 
 
-class SourceSftpBulkSchemasStreamsFormatFiletype(str, Enum):
+class SourceSftpBulkFiletypeParquet(str, Enum):
     PARQUET = "parquet"
 
 
 class SourceSftpBulkParquetFormatTypedDict(TypedDict):
     decimal_as_float: NotRequired[bool]
     r"""Whether to convert decimal fields to floats. There is a loss of precision when converting decimals to floats, so this is not recommended."""
-    filetype: SourceSftpBulkSchemasStreamsFormatFiletype
+    filetype: SourceSftpBulkFiletypeParquet
 
 
 class SourceSftpBulkParquetFormat(BaseModel):
@@ -446,13 +446,11 @@ class SourceSftpBulkParquetFormat(BaseModel):
 
     FILETYPE: Annotated[
         Annotated[
-            Optional[SourceSftpBulkSchemasStreamsFormatFiletype],
-            AfterValidator(
-                validate_const(SourceSftpBulkSchemasStreamsFormatFiletype.PARQUET)
-            ),
+            Optional[SourceSftpBulkFiletypeParquet],
+            AfterValidator(validate_const(SourceSftpBulkFiletypeParquet.PARQUET)),
         ],
         pydantic.Field(alias="filetype"),
-    ] = SourceSftpBulkSchemasStreamsFormatFiletype.PARQUET
+    ] = SourceSftpBulkFiletypeParquet.PARQUET
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
@@ -471,22 +469,22 @@ class SourceSftpBulkParquetFormat(BaseModel):
         return m
 
 
-class SourceSftpBulkSchemasStreamsFiletype(str, Enum):
+class SourceSftpBulkFiletypeJsonl(str, Enum):
     JSONL = "jsonl"
 
 
 class SourceSftpBulkJsonlFormatTypedDict(TypedDict):
-    filetype: SourceSftpBulkSchemasStreamsFiletype
+    filetype: SourceSftpBulkFiletypeJsonl
 
 
 class SourceSftpBulkJsonlFormat(BaseModel):
     FILETYPE: Annotated[
         Annotated[
-            Optional[SourceSftpBulkSchemasStreamsFiletype],
-            AfterValidator(validate_const(SourceSftpBulkSchemasStreamsFiletype.JSONL)),
+            Optional[SourceSftpBulkFiletypeJsonl],
+            AfterValidator(validate_const(SourceSftpBulkFiletypeJsonl.JSONL)),
         ],
         pydantic.Field(alias="filetype"),
-    ] = SourceSftpBulkSchemasStreamsFiletype.JSONL
+    ] = SourceSftpBulkFiletypeJsonl.JSONL
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
@@ -505,18 +503,18 @@ class SourceSftpBulkJsonlFormat(BaseModel):
         return m
 
 
-class SourceSftpBulkSchemasFiletype(str, Enum):
+class SourceSftpBulkFiletypeCsv(str, Enum):
     CSV = "csv"
 
 
-class SourceSftpBulkSchemasStreamsHeaderDefinitionType(str, Enum):
+class SourceSftpBulkHeaderDefinitionTypeUserProvided(str, Enum):
     USER_PROVIDED = "User Provided"
 
 
 class SourceSftpBulkUserProvidedTypedDict(TypedDict):
     column_names: List[str]
     r"""The column names that will be used while emitting the CSV records"""
-    header_definition_type: SourceSftpBulkSchemasStreamsHeaderDefinitionType
+    header_definition_type: SourceSftpBulkHeaderDefinitionTypeUserProvided
 
 
 class SourceSftpBulkUserProvided(BaseModel):
@@ -525,15 +523,15 @@ class SourceSftpBulkUserProvided(BaseModel):
 
     HEADER_DEFINITION_TYPE: Annotated[
         Annotated[
-            Optional[SourceSftpBulkSchemasStreamsHeaderDefinitionType],
+            Optional[SourceSftpBulkHeaderDefinitionTypeUserProvided],
             AfterValidator(
                 validate_const(
-                    SourceSftpBulkSchemasStreamsHeaderDefinitionType.USER_PROVIDED
+                    SourceSftpBulkHeaderDefinitionTypeUserProvided.USER_PROVIDED
                 )
             ),
         ],
         pydantic.Field(alias="header_definition_type"),
-    ] = SourceSftpBulkSchemasStreamsHeaderDefinitionType.USER_PROVIDED
+    ] = SourceSftpBulkHeaderDefinitionTypeUserProvided.USER_PROVIDED
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
@@ -552,24 +550,26 @@ class SourceSftpBulkUserProvided(BaseModel):
         return m
 
 
-class SourceSftpBulkSchemasHeaderDefinitionType(str, Enum):
+class SourceSftpBulkHeaderDefinitionTypeAutogenerated(str, Enum):
     AUTOGENERATED = "Autogenerated"
 
 
 class SourceSftpBulkAutogeneratedTypedDict(TypedDict):
-    header_definition_type: SourceSftpBulkSchemasHeaderDefinitionType
+    header_definition_type: SourceSftpBulkHeaderDefinitionTypeAutogenerated
 
 
 class SourceSftpBulkAutogenerated(BaseModel):
     HEADER_DEFINITION_TYPE: Annotated[
         Annotated[
-            Optional[SourceSftpBulkSchemasHeaderDefinitionType],
+            Optional[SourceSftpBulkHeaderDefinitionTypeAutogenerated],
             AfterValidator(
-                validate_const(SourceSftpBulkSchemasHeaderDefinitionType.AUTOGENERATED)
+                validate_const(
+                    SourceSftpBulkHeaderDefinitionTypeAutogenerated.AUTOGENERATED
+                )
             ),
         ],
         pydantic.Field(alias="header_definition_type"),
-    ] = SourceSftpBulkSchemasHeaderDefinitionType.AUTOGENERATED
+    ] = SourceSftpBulkHeaderDefinitionTypeAutogenerated.AUTOGENERATED
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
@@ -588,22 +588,24 @@ class SourceSftpBulkAutogenerated(BaseModel):
         return m
 
 
-class SourceSftpBulkHeaderDefinitionType(str, Enum):
+class SourceSftpBulkHeaderDefinitionTypeFromCsv(str, Enum):
     FROM_CSV = "From CSV"
 
 
 class SourceSftpBulkFromCSVTypedDict(TypedDict):
-    header_definition_type: SourceSftpBulkHeaderDefinitionType
+    header_definition_type: SourceSftpBulkHeaderDefinitionTypeFromCsv
 
 
 class SourceSftpBulkFromCSV(BaseModel):
     HEADER_DEFINITION_TYPE: Annotated[
         Annotated[
-            Optional[SourceSftpBulkHeaderDefinitionType],
-            AfterValidator(validate_const(SourceSftpBulkHeaderDefinitionType.FROM_CSV)),
+            Optional[SourceSftpBulkHeaderDefinitionTypeFromCsv],
+            AfterValidator(
+                validate_const(SourceSftpBulkHeaderDefinitionTypeFromCsv.FROM_CSV)
+            ),
         ],
         pydantic.Field(alias="header_definition_type"),
-    ] = SourceSftpBulkHeaderDefinitionType.FROM_CSV
+    ] = SourceSftpBulkHeaderDefinitionTypeFromCsv.FROM_CSV
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
@@ -653,7 +655,7 @@ class SourceSftpBulkCSVFormatTypedDict(TypedDict):
     r"""The character used for escaping special characters. To disallow escaping, leave this field blank."""
     false_values: NotRequired[List[str]]
     r"""A set of case-sensitive strings that should be interpreted as false values."""
-    filetype: SourceSftpBulkSchemasFiletype
+    filetype: SourceSftpBulkFiletypeCsv
     header_definition: NotRequired[SourceSftpBulkCSVHeaderDefinitionTypedDict]
     r"""How headers will be defined. `User Provided` assumes the CSV does not have a header row and uses the headers provided and `Autogenerated` assumes the CSV does not have a header row and the CDK will generate headers using for `f{i}` where `i` is the index starting from 0. Else, the default behavior is to use the header from the CSV file. If a user wants to autogenerate or provide column names for a CSV having headers, they can skip rows."""
     ignore_errors_on_fields_mismatch: NotRequired[bool]
@@ -690,11 +692,11 @@ class SourceSftpBulkCSVFormat(BaseModel):
 
     FILETYPE: Annotated[
         Annotated[
-            Optional[SourceSftpBulkSchemasFiletype],
-            AfterValidator(validate_const(SourceSftpBulkSchemasFiletype.CSV)),
+            Optional[SourceSftpBulkFiletypeCsv],
+            AfterValidator(validate_const(SourceSftpBulkFiletypeCsv.CSV)),
         ],
         pydantic.Field(alias="filetype"),
-    ] = SourceSftpBulkSchemasFiletype.CSV
+    ] = SourceSftpBulkFiletypeCsv.CSV
 
     header_definition: Optional[SourceSftpBulkCSVHeaderDefinition] = None
     r"""How headers will be defined. `User Provided` assumes the CSV does not have a header row and uses the headers provided and `Autogenerated` assumes the CSV does not have a header row and the CDK will generate headers using for `f{i}` where `i` is the index starting from 0. Else, the default behavior is to use the header from the CSV file. If a user wants to autogenerate or provide column names for a CSV having headers, they can skip rows."""
@@ -754,14 +756,14 @@ class SourceSftpBulkCSVFormat(BaseModel):
         return m
 
 
-class SourceSftpBulkFiletype(str, Enum):
+class SourceSftpBulkFiletypeAvro(str, Enum):
     AVRO = "avro"
 
 
 class SourceSftpBulkAvroFormatTypedDict(TypedDict):
     double_as_string: NotRequired[bool]
     r"""Whether to convert double fields to strings. This is recommended if you have decimal numbers with a high degree of precision because there can be a loss precision when handling floating point numbers."""
-    filetype: SourceSftpBulkFiletype
+    filetype: SourceSftpBulkFiletypeAvro
 
 
 class SourceSftpBulkAvroFormat(BaseModel):
@@ -770,11 +772,11 @@ class SourceSftpBulkAvroFormat(BaseModel):
 
     FILETYPE: Annotated[
         Annotated[
-            Optional[SourceSftpBulkFiletype],
-            AfterValidator(validate_const(SourceSftpBulkFiletype.AVRO)),
+            Optional[SourceSftpBulkFiletypeAvro],
+            AfterValidator(validate_const(SourceSftpBulkFiletypeAvro.AVRO)),
         ],
         pydantic.Field(alias="filetype"),
-    ] = SourceSftpBulkFiletype.AVRO
+    ] = SourceSftpBulkFiletypeAvro.AVRO
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):

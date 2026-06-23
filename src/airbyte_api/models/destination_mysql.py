@@ -11,11 +11,11 @@ from typing import Optional, Union
 from typing_extensions import Annotated, NotRequired, TypeAliasType, TypedDict
 
 
-class Mysql(str, Enum):
+class DestinationMysqlMysql(str, Enum):
     MYSQL = "mysql"
 
 
-class DestinationMysqlSchemasTunnelMethodTunnelMethod(str, Enum):
+class DestinationMysqlTunnelMethodSSHPasswordAuth(str, Enum):
     r"""Connect through a jump server tunnel host using username and password authentication"""
 
     SSH_PASSWORD_AUTH = "SSH_PASSWORD_AUTH"
@@ -28,7 +28,7 @@ class DestinationMysqlPasswordAuthenticationTypedDict(TypedDict):
     r"""OS-level username for logging into the jump server host"""
     tunnel_user_password: str
     r"""OS-level password for logging into the jump server host"""
-    tunnel_method: DestinationMysqlSchemasTunnelMethodTunnelMethod
+    tunnel_method: DestinationMysqlTunnelMethodSSHPasswordAuth
     r"""Connect through a jump server tunnel host using username and password authentication"""
     tunnel_port: NotRequired[int]
     r"""Port on the proxy/jump server that accepts inbound ssh connections."""
@@ -46,15 +46,15 @@ class DestinationMysqlPasswordAuthentication(BaseModel):
 
     TUNNEL_METHOD: Annotated[
         Annotated[
-            DestinationMysqlSchemasTunnelMethodTunnelMethod,
+            DestinationMysqlTunnelMethodSSHPasswordAuth,
             AfterValidator(
                 validate_const(
-                    DestinationMysqlSchemasTunnelMethodTunnelMethod.SSH_PASSWORD_AUTH
+                    DestinationMysqlTunnelMethodSSHPasswordAuth.SSH_PASSWORD_AUTH
                 )
             ),
         ],
         pydantic.Field(alias="tunnel_method"),
-    ] = DestinationMysqlSchemasTunnelMethodTunnelMethod.SSH_PASSWORD_AUTH
+    ] = DestinationMysqlTunnelMethodSSHPasswordAuth.SSH_PASSWORD_AUTH
     r"""Connect through a jump server tunnel host using username and password authentication"""
 
     tunnel_port: Optional[int] = 22
@@ -77,7 +77,7 @@ class DestinationMysqlPasswordAuthentication(BaseModel):
         return m
 
 
-class DestinationMysqlSchemasTunnelMethod(str, Enum):
+class DestinationMysqlTunnelMethodSSHKeyAuth(str, Enum):
     r"""Connect through a jump server tunnel host using username and ssh key"""
 
     SSH_KEY_AUTH = "SSH_KEY_AUTH"
@@ -90,7 +90,7 @@ class DestinationMysqlSSHKeyAuthenticationTypedDict(TypedDict):
     r"""Hostname of the jump server host that allows inbound ssh tunnel."""
     tunnel_user: str
     r"""OS-level username for logging into the jump server host."""
-    tunnel_method: DestinationMysqlSchemasTunnelMethod
+    tunnel_method: DestinationMysqlTunnelMethodSSHKeyAuth
     r"""Connect through a jump server tunnel host using username and ssh key"""
     tunnel_port: NotRequired[int]
     r"""Port on the proxy/jump server that accepts inbound ssh connections."""
@@ -108,13 +108,13 @@ class DestinationMysqlSSHKeyAuthentication(BaseModel):
 
     TUNNEL_METHOD: Annotated[
         Annotated[
-            DestinationMysqlSchemasTunnelMethod,
+            DestinationMysqlTunnelMethodSSHKeyAuth,
             AfterValidator(
-                validate_const(DestinationMysqlSchemasTunnelMethod.SSH_KEY_AUTH)
+                validate_const(DestinationMysqlTunnelMethodSSHKeyAuth.SSH_KEY_AUTH)
             ),
         ],
         pydantic.Field(alias="tunnel_method"),
-    ] = DestinationMysqlSchemasTunnelMethod.SSH_KEY_AUTH
+    ] = DestinationMysqlTunnelMethodSSHKeyAuth.SSH_KEY_AUTH
     r"""Connect through a jump server tunnel host using username and ssh key"""
 
     tunnel_port: Optional[int] = 22
@@ -137,25 +137,27 @@ class DestinationMysqlSSHKeyAuthentication(BaseModel):
         return m
 
 
-class DestinationMysqlTunnelMethod(str, Enum):
+class DestinationMysqlTunnelMethodNoTunnel(str, Enum):
     r"""No ssh tunnel needed to connect to database"""
 
     NO_TUNNEL = "NO_TUNNEL"
 
 
 class DestinationMysqlNoTunnelTypedDict(TypedDict):
-    tunnel_method: DestinationMysqlTunnelMethod
+    tunnel_method: DestinationMysqlTunnelMethodNoTunnel
     r"""No ssh tunnel needed to connect to database"""
 
 
 class DestinationMysqlNoTunnel(BaseModel):
     TUNNEL_METHOD: Annotated[
         Annotated[
-            DestinationMysqlTunnelMethod,
-            AfterValidator(validate_const(DestinationMysqlTunnelMethod.NO_TUNNEL)),
+            DestinationMysqlTunnelMethodNoTunnel,
+            AfterValidator(
+                validate_const(DestinationMysqlTunnelMethodNoTunnel.NO_TUNNEL)
+            ),
         ],
         pydantic.Field(alias="tunnel_method"),
-    ] = DestinationMysqlTunnelMethod.NO_TUNNEL
+    ] = DestinationMysqlTunnelMethodNoTunnel.NO_TUNNEL
     r"""No ssh tunnel needed to connect to database"""
 
 
@@ -188,7 +190,7 @@ class DestinationMysqlTypedDict(TypedDict):
     r"""Hostname of the database."""
     username: str
     r"""Username to use to access the database."""
-    destination_type: Mysql
+    destination_type: DestinationMysqlMysql
     disable_type_dedupe: NotRequired[bool]
     r"""Disable Writing Final Tables. WARNING! The data format in _airbyte_data is likely stable but there are no guarantees that other metadata columns will remain the same in future versions"""
     jdbc_url_params: NotRequired[str]
@@ -216,9 +218,12 @@ class DestinationMysql(BaseModel):
     r"""Username to use to access the database."""
 
     DESTINATION_TYPE: Annotated[
-        Annotated[Mysql, AfterValidator(validate_const(Mysql.MYSQL))],
+        Annotated[
+            DestinationMysqlMysql,
+            AfterValidator(validate_const(DestinationMysqlMysql.MYSQL)),
+        ],
         pydantic.Field(alias="destinationType"),
-    ] = Mysql.MYSQL
+    ] = DestinationMysqlMysql.MYSQL
 
     disable_type_dedupe: Optional[bool] = False
     r"""Disable Writing Final Tables. WARNING! The data format in _airbyte_data is likely stable but there are no guarantees that other metadata columns will remain the same in future versions"""

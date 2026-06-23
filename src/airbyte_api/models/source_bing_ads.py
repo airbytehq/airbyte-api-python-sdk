@@ -19,7 +19,7 @@ class Operator(str, Enum):
     EQUALS = "Equals"
 
 
-class AccountNamesTypedDict(TypedDict):
+class AccountNameTypedDict(TypedDict):
     r"""Account Names Predicates Config."""
 
     name: str
@@ -28,7 +28,7 @@ class AccountNamesTypedDict(TypedDict):
     r"""An Operator that will be used to filter accounts. The Contains predicate has features for matching words, matching inflectional forms of words, searching using wildcard characters, and searching using proximity. The Equals is used to return all rows where account name is equal(=) to the string that you provided"""
 
 
-class AccountNames(BaseModel):
+class AccountName(BaseModel):
     r"""Account Names Predicates Config."""
 
     name: str
@@ -38,7 +38,7 @@ class AccountNames(BaseModel):
     r"""An Operator that will be used to filter accounts. The Contains predicate has features for matching words, matching inflectional forms of words, searching using wildcard characters, and searching using proximity. The Equals is used to return all rows where account name is equal(=) to the string that you provided"""
 
 
-class AuthMethod(str, Enum):
+class SourceBingAdsAuthMethod(str, Enum):
     OAUTH2_0 = "oauth2.0"
 
 
@@ -103,7 +103,7 @@ class ReportingDataObject(str, Enum):
     USER_LOCATION_PERFORMANCE_REPORT_REQUEST = "UserLocationPerformanceReportRequest"
 
 
-class CustomReportConfigTypedDict(TypedDict):
+class SourceBingAdsCustomReportConfigTypedDict(TypedDict):
     name: str
     r"""The name of the custom report, this name would be used as stream name"""
     report_aggregation: str
@@ -116,7 +116,7 @@ class CustomReportConfigTypedDict(TypedDict):
     r"""When enabled, disables the automatic conversion of custom report names from camelCase to snake_case. By default, custom report names are automatically converted (e.g., 'MyCustomReport' becomes 'my_custom_report'). Enable this option if you want to use the exact report names you specify."""
 
 
-class CustomReportConfig(BaseModel):
+class SourceBingAdsCustomReportConfig(BaseModel):
     name: str
     r"""The name of the custom report, this name would be used as stream name"""
 
@@ -149,7 +149,7 @@ class CustomReportConfig(BaseModel):
         return m
 
 
-class SourceBingAdsBingAds(str, Enum):
+class BingAdsEnum(str, Enum):
     BING_ADS = "bing-ads"
 
 
@@ -160,18 +160,18 @@ class SourceBingAdsTypedDict(TypedDict):
     r"""Developer token associated with user. See more info <a href=\"https://docs.microsoft.com/en-us/advertising/guides/get-started?view=bingads-13#get-developer-token\"> in the docs</a>."""
     refresh_token: str
     r"""Refresh Token to renew the expired Access Token."""
-    account_names: NotRequired[List[AccountNamesTypedDict]]
+    account_names: NotRequired[List[AccountNameTypedDict]]
     r"""Predicates that will be used to sync data by specific accounts."""
-    auth_method: AuthMethod
+    auth_method: SourceBingAdsAuthMethod
     client_secret: NotRequired[str]
     r"""The Client Secret of your Microsoft Advertising developer application."""
-    custom_reports: NotRequired[List[CustomReportConfigTypedDict]]
+    custom_reports: NotRequired[List[SourceBingAdsCustomReportConfigTypedDict]]
     r"""You can add your Custom Bing Ads report by creating one."""
     lookback_window: NotRequired[int]
     r"""Also known as attribution or conversion window. How far into the past to look for records (in days). If your conversion window has an hours/minutes granularity, round it up to the number of days exceeding. Used only for performance report streams in incremental mode without specified Reports Start Date."""
     reports_start_date: NotRequired[date]
     r"""The start date from which to begin replicating report data. Any data generated before this date will not be replicated in reports. This is a UTC date in YYYY-MM-DD format. If not set, data from previous and current calendar year will be replicated."""
-    source_type: SourceBingAdsBingAds
+    source_type: BingAdsEnum
     tenant_id: NotRequired[str]
     r"""The Tenant ID of your Microsoft Advertising developer application. Set this to \"common\" unless you know you need a different value."""
 
@@ -186,20 +186,21 @@ class SourceBingAds(BaseModel):
     refresh_token: str
     r"""Refresh Token to renew the expired Access Token."""
 
-    account_names: Optional[List[AccountNames]] = None
+    account_names: Optional[List[AccountName]] = None
     r"""Predicates that will be used to sync data by specific accounts."""
 
     AUTH_METHOD: Annotated[
         Annotated[
-            Optional[AuthMethod], AfterValidator(validate_const(AuthMethod.OAUTH2_0))
+            Optional[SourceBingAdsAuthMethod],
+            AfterValidator(validate_const(SourceBingAdsAuthMethod.OAUTH2_0)),
         ],
         pydantic.Field(alias="auth_method"),
-    ] = AuthMethod.OAUTH2_0
+    ] = SourceBingAdsAuthMethod.OAUTH2_0
 
     client_secret: Optional[str] = ""
     r"""The Client Secret of your Microsoft Advertising developer application."""
 
-    custom_reports: Optional[List[CustomReportConfig]] = None
+    custom_reports: Optional[List[SourceBingAdsCustomReportConfig]] = None
     r"""You can add your Custom Bing Ads report by creating one."""
 
     lookback_window: Optional[int] = 0
@@ -209,12 +210,9 @@ class SourceBingAds(BaseModel):
     r"""The start date from which to begin replicating report data. Any data generated before this date will not be replicated in reports. This is a UTC date in YYYY-MM-DD format. If not set, data from previous and current calendar year will be replicated."""
 
     SOURCE_TYPE: Annotated[
-        Annotated[
-            SourceBingAdsBingAds,
-            AfterValidator(validate_const(SourceBingAdsBingAds.BING_ADS)),
-        ],
+        Annotated[BingAdsEnum, AfterValidator(validate_const(BingAdsEnum.BING_ADS))],
         pydantic.Field(alias="sourceType"),
-    ] = SourceBingAdsBingAds.BING_ADS
+    ] = BingAdsEnum.BING_ADS
 
     tenant_id: Optional[str] = "common"
     r"""The Tenant ID of your Microsoft Advertising developer application. Set this to \"common\" unless you know you need a different value."""

@@ -11,7 +11,7 @@ from typing import Any, Dict, Optional, Union
 from typing_extensions import Annotated, NotRequired, TypeAliasType, TypedDict
 
 
-class DestinationS3DataLakeSchemasCatalogTypeCatalogType(str, Enum):
+class CatalogTypePolaris(str, Enum):
     POLARIS = "POLARIS"
 
 
@@ -31,7 +31,7 @@ class PolarisCatalogTypedDict(TypedDict):
     """
     server_uri: str
     r"""The base URL of the Polaris server used to connect to the Polaris catalog."""
-    catalog_type: NotRequired[DestinationS3DataLakeSchemasCatalogTypeCatalogType]
+    catalog_type: NotRequired[CatalogTypePolaris]
 
 
 class PolarisCatalog(BaseModel):
@@ -60,9 +60,7 @@ class PolarisCatalog(BaseModel):
     server_uri: str
     r"""The base URL of the Polaris server used to connect to the Polaris catalog."""
 
-    catalog_type: Optional[DestinationS3DataLakeSchemasCatalogTypeCatalogType] = (
-        DestinationS3DataLakeSchemasCatalogTypeCatalogType.POLARIS
-    )
+    catalog_type: Optional[CatalogTypePolaris] = CatalogTypePolaris.POLARIS
 
     @property
     def additional_properties(self):
@@ -92,7 +90,7 @@ class PolarisCatalog(BaseModel):
         return m
 
 
-class DestinationS3DataLakeSchemasCatalogType(str, Enum):
+class CatalogTypeRest(str, Enum):
     REST = "REST"
 
 
@@ -106,7 +104,7 @@ class RestCatalogTypedDict(TypedDict):
     """
     server_uri: str
     r"""The base URL of the Rest server used to connect to the Rest catalog."""
-    catalog_type: NotRequired[DestinationS3DataLakeSchemasCatalogType]
+    catalog_type: NotRequired[CatalogTypeRest]
 
 
 class RestCatalog(BaseModel):
@@ -126,9 +124,7 @@ class RestCatalog(BaseModel):
     server_uri: str
     r"""The base URL of the Rest server used to connect to the Rest catalog."""
 
-    catalog_type: Optional[DestinationS3DataLakeSchemasCatalogType] = (
-        DestinationS3DataLakeSchemasCatalogType.REST
-    )
+    catalog_type: Optional[CatalogTypeRest] = CatalogTypeRest.REST
 
     @property
     def additional_properties(self):
@@ -158,7 +154,7 @@ class RestCatalog(BaseModel):
         return m
 
 
-class DestinationS3DataLakeCatalogType(str, Enum):
+class CatalogTypeGlue(str, Enum):
     GLUE = "GLUE"
 
 
@@ -169,7 +165,7 @@ class GlueCatalogTypedDict(TypedDict):
     r"""The Glue database name. This will ONLY be used if the `Destination Namespace` setting for the connection is set to `Destination-defined` or `Source-defined`"""
     glue_id: str
     r"""The AWS Account ID associated with the Glue service used by the Iceberg catalog."""
-    catalog_type: NotRequired[DestinationS3DataLakeCatalogType]
+    catalog_type: NotRequired[CatalogTypeGlue]
     role_arn: NotRequired[str]
     r"""The ARN of the AWS role to assume. Only usable in Airbyte Cloud."""
 
@@ -188,9 +184,7 @@ class GlueCatalog(BaseModel):
     glue_id: str
     r"""The AWS Account ID associated with the Glue service used by the Iceberg catalog."""
 
-    catalog_type: Optional[DestinationS3DataLakeCatalogType] = (
-        DestinationS3DataLakeCatalogType.GLUE
-    )
+    catalog_type: Optional[CatalogTypeGlue] = CatalogTypeGlue.GLUE
 
     role_arn: Optional[str] = None
     r"""The ARN of the AWS role to assume. Only usable in Airbyte Cloud."""
@@ -223,7 +217,7 @@ class GlueCatalog(BaseModel):
         return m
 
 
-class DestinationS3DataLakeSchemasCatalogTypeCatalogTypeCatalogType(str, Enum):
+class CatalogTypeNessie(str, Enum):
     NESSIE = "NESSIE"
 
 
@@ -239,9 +233,7 @@ class NessieCatalogTypedDict(TypedDict):
     r"""The base URL of the Nessie server used to connect to the Nessie catalog."""
     access_token: NotRequired[str]
     r"""Optional token for authentication with the Nessie server."""
-    catalog_type: NotRequired[
-        DestinationS3DataLakeSchemasCatalogTypeCatalogTypeCatalogType
-    ]
+    catalog_type: NotRequired[CatalogTypeNessie]
 
 
 class NessieCatalog(BaseModel):
@@ -264,9 +256,7 @@ class NessieCatalog(BaseModel):
     access_token: Optional[str] = None
     r"""Optional token for authentication with the Nessie server."""
 
-    catalog_type: Optional[
-        DestinationS3DataLakeSchemasCatalogTypeCatalogTypeCatalogType
-    ] = DestinationS3DataLakeSchemasCatalogTypeCatalogTypeCatalogType.NESSIE
+    catalog_type: Optional[CatalogTypeNessie] = CatalogTypeNessie.NESSIE
 
     @property
     def additional_properties(self):

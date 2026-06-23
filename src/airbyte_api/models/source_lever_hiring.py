@@ -11,14 +11,14 @@ from typing import Optional, Union
 from typing_extensions import Annotated, NotRequired, TypeAliasType, TypedDict
 
 
-class SourceLeverHiringSchemasAuthType(str, Enum):
+class SourceLeverHiringAuthTypeAPIKey(str, Enum):
     API_KEY = "Api Key"
 
 
 class AuthenticateViaLeverAPIKeyTypedDict(TypedDict):
     api_key: str
     r"""The Api Key of your Lever Hiring account."""
-    auth_type: SourceLeverHiringSchemasAuthType
+    auth_type: SourceLeverHiringAuthTypeAPIKey
 
 
 class AuthenticateViaLeverAPIKey(BaseModel):
@@ -27,11 +27,11 @@ class AuthenticateViaLeverAPIKey(BaseModel):
 
     AUTH_TYPE: Annotated[
         Annotated[
-            Optional[SourceLeverHiringSchemasAuthType],
-            AfterValidator(validate_const(SourceLeverHiringSchemasAuthType.API_KEY)),
+            Optional[SourceLeverHiringAuthTypeAPIKey],
+            AfterValidator(validate_const(SourceLeverHiringAuthTypeAPIKey.API_KEY)),
         ],
         pydantic.Field(alias="auth_type"),
-    ] = SourceLeverHiringSchemasAuthType.API_KEY
+    ] = SourceLeverHiringAuthTypeAPIKey.API_KEY
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
@@ -50,14 +50,14 @@ class AuthenticateViaLeverAPIKey(BaseModel):
         return m
 
 
-class SourceLeverHiringAuthType(str, Enum):
+class SourceLeverHiringAuthTypeClient(str, Enum):
     CLIENT = "Client"
 
 
 class AuthenticateViaLeverOAuthTypedDict(TypedDict):
     refresh_token: str
     r"""The token for obtaining new access token."""
-    auth_type: SourceLeverHiringAuthType
+    auth_type: SourceLeverHiringAuthTypeClient
     client_id: NotRequired[str]
     r"""The Client ID of your Lever Hiring developer application."""
     client_secret: NotRequired[str]
@@ -70,11 +70,11 @@ class AuthenticateViaLeverOAuth(BaseModel):
 
     AUTH_TYPE: Annotated[
         Annotated[
-            Optional[SourceLeverHiringAuthType],
-            AfterValidator(validate_const(SourceLeverHiringAuthType.CLIENT)),
+            Optional[SourceLeverHiringAuthTypeClient],
+            AfterValidator(validate_const(SourceLeverHiringAuthTypeClient.CLIENT)),
         ],
         pydantic.Field(alias="auth_type"),
-    ] = SourceLeverHiringAuthType.CLIENT
+    ] = SourceLeverHiringAuthTypeClient.CLIENT
 
     client_id: Optional[str] = None
     r"""The Client ID of your Lever Hiring developer application."""
@@ -120,7 +120,7 @@ class SourceLeverHiringEnvironment(str, Enum):
     SANDBOX = "Sandbox"
 
 
-class SourceLeverHiringLeverHiring(str, Enum):
+class LeverHiringEnum(str, Enum):
     LEVER_HIRING = "lever-hiring"
 
 
@@ -131,7 +131,7 @@ class SourceLeverHiringTypedDict(TypedDict):
     r"""Choose how to authenticate to Lever Hiring."""
     environment: NotRequired[SourceLeverHiringEnvironment]
     r"""The environment in which you'd like to replicate data for Lever. This is used to determine which Lever API endpoint to use."""
-    source_type: SourceLeverHiringLeverHiring
+    source_type: LeverHiringEnum
 
 
 class SourceLeverHiring(BaseModel):
@@ -148,11 +148,11 @@ class SourceLeverHiring(BaseModel):
 
     SOURCE_TYPE: Annotated[
         Annotated[
-            SourceLeverHiringLeverHiring,
-            AfterValidator(validate_const(SourceLeverHiringLeverHiring.LEVER_HIRING)),
+            LeverHiringEnum,
+            AfterValidator(validate_const(LeverHiringEnum.LEVER_HIRING)),
         ],
         pydantic.Field(alias="sourceType"),
-    ] = SourceLeverHiringLeverHiring.LEVER_HIRING
+    ] = LeverHiringEnum.LEVER_HIRING
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):

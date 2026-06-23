@@ -22,7 +22,7 @@ class SourcePinterestAuthMethod(str, Enum):
     OAUTH2_0 = "oauth2.0"
 
 
-class OAuth20TypedDict(TypedDict):
+class SourcePinterestOAuth20TypedDict(TypedDict):
     client_id: str
     r"""The Client ID of your OAuth application"""
     client_secret: str
@@ -32,7 +32,7 @@ class OAuth20TypedDict(TypedDict):
     auth_method: SourcePinterestAuthMethod
 
 
-class OAuth20(BaseModel):
+class SourcePinterestOAuth20(BaseModel):
     client_id: str
     r"""The Client ID of your OAuth application"""
 
@@ -51,7 +51,7 @@ class OAuth20(BaseModel):
     ] = SourcePinterestAuthMethod.OAUTH2_0
 
 
-class SourcePinterestValidEnums(str, Enum):
+class AttributionTypeValidEnums(str, Enum):
     r"""An enumeration."""
 
     INDIVIDUAL = "INDIVIDUAL"
@@ -69,7 +69,7 @@ class ClickWindowDays(int, Enum):
     SIXTY = 60
 
 
-class SourcePinterestSchemasValidEnums(str, Enum):
+class ColumnValidEnums(str, Enum):
     r"""An enumeration."""
 
     ADVERTISER_ID = "ADVERTISER_ID"
@@ -222,7 +222,7 @@ class EngagementWindowDays(int, Enum):
     SIXTY = 60
 
 
-class Granularity(str, Enum):
+class SourcePinterestGranularity(str, Enum):
     r"""Chosen granularity for API"""
 
     TOTAL = "TOTAL"
@@ -263,11 +263,11 @@ class ViewWindowDays(int, Enum):
 class ReportConfigTypedDict(TypedDict):
     r"""Config for custom report"""
 
-    columns: List[SourcePinterestSchemasValidEnums]
+    columns: List[ColumnValidEnums]
     r"""A list of chosen columns"""
     name: str
     r"""The name value of report"""
-    attribution_types: NotRequired[List[SourcePinterestValidEnums]]
+    attribution_types: NotRequired[List[AttributionTypeValidEnums]]
     r"""List of types of attribution for the conversion report"""
     click_window_days: NotRequired[ClickWindowDays]
     r"""Number of days to use as the conversion attribution window for a pin click action."""
@@ -275,7 +275,7 @@ class ReportConfigTypedDict(TypedDict):
     r"""The date by which the conversion metrics returned from this endpoint will be reported. There are two dates associated with a conversion event: the date that the user interacted with the ad, and the date that the user completed a conversion event.."""
     engagement_window_days: NotRequired[EngagementWindowDays]
     r"""Number of days to use as the conversion attribution window for an engagement action."""
-    granularity: NotRequired[Granularity]
+    granularity: NotRequired[SourcePinterestGranularity]
     r"""Chosen granularity for API"""
     level: NotRequired[SourcePinterestLevel]
     r"""Chosen level for API"""
@@ -288,13 +288,13 @@ class ReportConfigTypedDict(TypedDict):
 class ReportConfig(BaseModel):
     r"""Config for custom report"""
 
-    columns: List[SourcePinterestSchemasValidEnums]
+    columns: List[ColumnValidEnums]
     r"""A list of chosen columns"""
 
     name: str
     r"""The name value of report"""
 
-    attribution_types: Optional[List[SourcePinterestValidEnums]] = None
+    attribution_types: Optional[List[AttributionTypeValidEnums]] = None
     r"""List of types of attribution for the conversion report"""
 
     click_window_days: Optional[ClickWindowDays] = ClickWindowDays.THIRTY
@@ -308,7 +308,7 @@ class ReportConfig(BaseModel):
     engagement_window_days: Optional[EngagementWindowDays] = EngagementWindowDays.THIRTY
     r"""Number of days to use as the conversion attribution window for an engagement action."""
 
-    granularity: Optional[Granularity] = Granularity.TOTAL
+    granularity: Optional[SourcePinterestGranularity] = SourcePinterestGranularity.TOTAL
     r"""Chosen granularity for API"""
 
     level: Optional[SourcePinterestLevel] = SourcePinterestLevel.ADVERTISER
@@ -348,11 +348,11 @@ class ReportConfig(BaseModel):
         return m
 
 
-class SourcePinterestPinterest(str, Enum):
+class PinterestEnum(str, Enum):
     PINTEREST = "pinterest"
 
 
-class Status(str, Enum):
+class SourcePinterestStatus(str, Enum):
     ACTIVE = "ACTIVE"
     PAUSED = "PAUSED"
     ARCHIVED = "ARCHIVED"
@@ -361,15 +361,15 @@ class Status(str, Enum):
 class SourcePinterestTypedDict(TypedDict):
     account_id: NotRequired[str]
     r"""The Pinterest account ID you want to fetch data for. This ID must be provided to filter the data for a specific account."""
-    credentials: NotRequired[OAuth20TypedDict]
+    credentials: NotRequired[SourcePinterestOAuth20TypedDict]
     custom_reports: NotRequired[List[ReportConfigTypedDict]]
     r"""A list which contains ad statistics entries, each entry must have a name and can contains fields, breakdowns or action_breakdowns. Click on \"add\" to fill this field."""
     num_threads: NotRequired[int]
     r"""The number of parallel threads to use for the sync."""
-    source_type: SourcePinterestPinterest
+    source_type: PinterestEnum
     start_date: NotRequired[date]
     r"""A date in the format YYYY-MM-DD. If you have not set a date, it would be defaulted to latest allowed date by api (89 days from today)."""
-    status: NotRequired[Nullable[List[Status]]]
+    status: NotRequired[Nullable[List[SourcePinterestStatus]]]
     r"""For the ads, ad_groups, and campaigns streams, specifying a status will filter out records that do not match the specified ones. If a status is not specified, the source will default to records with a status of either ACTIVE or PAUSED."""
 
 
@@ -377,7 +377,7 @@ class SourcePinterest(BaseModel):
     account_id: Optional[str] = None
     r"""The Pinterest account ID you want to fetch data for. This ID must be provided to filter the data for a specific account."""
 
-    credentials: Optional[OAuth20] = None
+    credentials: Optional[SourcePinterestOAuth20] = None
 
     custom_reports: Optional[List[ReportConfig]] = None
     r"""A list which contains ad statistics entries, each entry must have a name and can contains fields, breakdowns or action_breakdowns. Click on \"add\" to fill this field."""
@@ -387,16 +387,16 @@ class SourcePinterest(BaseModel):
 
     SOURCE_TYPE: Annotated[
         Annotated[
-            Optional[SourcePinterestPinterest],
-            AfterValidator(validate_const(SourcePinterestPinterest.PINTEREST)),
+            Optional[PinterestEnum],
+            AfterValidator(validate_const(PinterestEnum.PINTEREST)),
         ],
         pydantic.Field(alias="sourceType"),
-    ] = SourcePinterestPinterest.PINTEREST
+    ] = PinterestEnum.PINTEREST
 
     start_date: Optional[date] = None
     r"""A date in the format YYYY-MM-DD. If you have not set a date, it would be defaulted to latest allowed date by api (89 days from today)."""
 
-    status: OptionalNullable[List[Status]] = UNSET
+    status: OptionalNullable[List[SourcePinterestStatus]] = UNSET
     r"""For the ads, ad_groups, and campaigns streams, specifying a status will filter out records that do not match the specified ones. If a status is not specified, the source will default to records with a status of either ACTIVE or PAUSED."""
 
     @model_serializer(mode="wrap")
@@ -436,7 +436,7 @@ class SourcePinterest(BaseModel):
 
 
 try:
-    OAuth20.model_rebuild()
+    SourcePinterestOAuth20.model_rebuild()
 except NameError:
     pass
 try:

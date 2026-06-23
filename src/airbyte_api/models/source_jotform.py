@@ -12,14 +12,14 @@ from typing import Optional, Union
 from typing_extensions import Annotated, NotRequired, TypeAliasType, TypedDict
 
 
-class SourceJotformAPIEndpoint(str, Enum):
+class APIEndpointEnterprise(str, Enum):
     ENTERPRISE = "enterprise"
 
 
 class EnterpriseTypedDict(TypedDict):
     enterprise_url: str
     r"""Upgrade to Enterprise to make your API url your-domain.com/API or subdomain.jotform.com/API instead of api.jotform.com"""
-    api_endpoint: SourceJotformAPIEndpoint
+    api_endpoint: APIEndpointEnterprise
 
 
 class Enterprise(BaseModel):
@@ -28,11 +28,11 @@ class Enterprise(BaseModel):
 
     API_ENDPOINT: Annotated[
         Annotated[
-            Optional[SourceJotformAPIEndpoint],
-            AfterValidator(validate_const(SourceJotformAPIEndpoint.ENTERPRISE)),
+            Optional[APIEndpointEnterprise],
+            AfterValidator(validate_const(APIEndpointEnterprise.ENTERPRISE)),
         ],
         pydantic.Field(alias="api_endpoint"),
-    ] = SourceJotformAPIEndpoint.ENTERPRISE
+    ] = APIEndpointEnterprise.ENTERPRISE
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
@@ -51,7 +51,7 @@ class Enterprise(BaseModel):
         return m
 
 
-class SourceJotformSchemasAPIEndpoint(str, Enum):
+class APIEndpointBasic(str, Enum):
     BASIC = "basic"
 
 
@@ -64,7 +64,7 @@ class BaseURLPrefix(str, Enum):
 
 
 class BasicTypedDict(TypedDict):
-    api_endpoint: SourceJotformSchemasAPIEndpoint
+    api_endpoint: APIEndpointBasic
     url_prefix: NotRequired[BaseURLPrefix]
     r"""You can access our API through the following URLs - Standard API Usage (Use the default API URL - https://api.jotform.com), For EU (Use the EU API URL - https://eu-api.jotform.com), For HIPAA (Use the HIPAA API URL - https://hipaa-api.jotform.com)"""
 
@@ -72,11 +72,11 @@ class BasicTypedDict(TypedDict):
 class Basic(BaseModel):
     API_ENDPOINT: Annotated[
         Annotated[
-            Optional[SourceJotformSchemasAPIEndpoint],
-            AfterValidator(validate_const(SourceJotformSchemasAPIEndpoint.BASIC)),
+            Optional[APIEndpointBasic],
+            AfterValidator(validate_const(APIEndpointBasic.BASIC)),
         ],
         pydantic.Field(alias="api_endpoint"),
-    ] = SourceJotformSchemasAPIEndpoint.BASIC
+    ] = APIEndpointBasic.BASIC
 
     url_prefix: Optional[BaseURLPrefix] = BaseURLPrefix.STANDARD
     r"""You can access our API through the following URLs - Standard API Usage (Use the default API URL - https://api.jotform.com), For EU (Use the EU API URL - https://eu-api.jotform.com), For HIPAA (Use the HIPAA API URL - https://hipaa-api.jotform.com)"""

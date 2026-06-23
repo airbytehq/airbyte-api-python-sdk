@@ -12,7 +12,7 @@ from typing import Optional
 from typing_extensions import Annotated, NotRequired, TypedDict
 
 
-class Filter(str, Enum):
+class FilterEnum(str, Enum):
     r"""Filter for using in the `segments_experiences` stream"""
 
     TOUR = "tour"
@@ -29,7 +29,7 @@ class SourceChameleonTypedDict(TypedDict):
     start_date: datetime
     end_date: NotRequired[datetime]
     r"""End date for incremental sync"""
-    filter_: NotRequired[Filter]
+    filter_: NotRequired[FilterEnum]
     r"""Filter for using in the `segments_experiences` stream"""
     limit: NotRequired[str]
     r"""Max records per page limit"""
@@ -44,7 +44,9 @@ class SourceChameleon(BaseModel):
     end_date: Optional[datetime] = None
     r"""End date for incremental sync"""
 
-    filter_: Annotated[Optional[Filter], pydantic.Field(alias="filter")] = Filter.TOUR
+    filter_: Annotated[Optional[FilterEnum], pydantic.Field(alias="filter")] = (
+        FilterEnum.TOUR
+    )
     r"""Filter for using in the `segments_experiences` stream"""
 
     limit: Optional[str] = "50"

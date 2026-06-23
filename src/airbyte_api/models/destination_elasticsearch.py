@@ -11,21 +11,21 @@ from typing import Optional, Union
 from typing_extensions import Annotated, NotRequired, TypeAliasType, TypedDict
 
 
-class DestinationElasticsearchSchemasAuthenticationMethodMethod(str, Enum):
+class DestinationElasticsearchMethodBasic(str, Enum):
     BASIC = "basic"
 
 
-class UsernamePasswordTypedDict(TypedDict):
+class DestinationElasticsearchUsernamePasswordTypedDict(TypedDict):
     r"""Basic auth header with a username and password"""
 
     password: str
     r"""Basic auth password to access a secure Elasticsearch server"""
     username: str
     r"""Basic auth username to access a secure Elasticsearch server"""
-    method: DestinationElasticsearchSchemasAuthenticationMethodMethod
+    method: DestinationElasticsearchMethodBasic
 
 
-class UsernamePassword(BaseModel):
+class DestinationElasticsearchUsernamePassword(BaseModel):
     r"""Basic auth header with a username and password"""
 
     password: str
@@ -36,32 +36,28 @@ class UsernamePassword(BaseModel):
 
     METHOD: Annotated[
         Annotated[
-            DestinationElasticsearchSchemasAuthenticationMethodMethod,
-            AfterValidator(
-                validate_const(
-                    DestinationElasticsearchSchemasAuthenticationMethodMethod.BASIC
-                )
-            ),
+            DestinationElasticsearchMethodBasic,
+            AfterValidator(validate_const(DestinationElasticsearchMethodBasic.BASIC)),
         ],
         pydantic.Field(alias="method"),
-    ] = DestinationElasticsearchSchemasAuthenticationMethodMethod.BASIC
+    ] = DestinationElasticsearchMethodBasic.BASIC
 
 
-class DestinationElasticsearchSchemasMethod(str, Enum):
+class DestinationElasticsearchMethodSecret(str, Enum):
     SECRET = "secret"
 
 
-class APIKeySecretTypedDict(TypedDict):
+class DestinationElasticsearchAPIKeySecretTypedDict(TypedDict):
     r"""Use a api key and secret combination to authenticate"""
 
     api_key_id: str
     r"""The Key ID to used when accessing an enterprise Elasticsearch instance."""
     api_key_secret: str
     r"""The secret associated with the API Key ID."""
-    method: DestinationElasticsearchSchemasMethod
+    method: DestinationElasticsearchMethodSecret
 
 
-class APIKeySecret(BaseModel):
+class DestinationElasticsearchAPIKeySecret(BaseModel):
     r"""Use a api key and secret combination to authenticate"""
 
     api_key_id: Annotated[str, pydantic.Field(alias="apiKeyId")]
@@ -72,23 +68,21 @@ class APIKeySecret(BaseModel):
 
     METHOD: Annotated[
         Annotated[
-            DestinationElasticsearchSchemasMethod,
-            AfterValidator(
-                validate_const(DestinationElasticsearchSchemasMethod.SECRET)
-            ),
+            DestinationElasticsearchMethodSecret,
+            AfterValidator(validate_const(DestinationElasticsearchMethodSecret.SECRET)),
         ],
         pydantic.Field(alias="method"),
-    ] = DestinationElasticsearchSchemasMethod.SECRET
+    ] = DestinationElasticsearchMethodSecret.SECRET
 
 
-class DestinationElasticsearchMethod(str, Enum):
+class DestinationElasticsearchMethodNone(str, Enum):
     NONE = "none"
 
 
 class DestinationElasticsearchNoneTypedDict(TypedDict):
     r"""No authentication will be used"""
 
-    method: DestinationElasticsearchMethod
+    method: DestinationElasticsearchMethodNone
 
 
 class DestinationElasticsearchNone(BaseModel):
@@ -96,40 +90,40 @@ class DestinationElasticsearchNone(BaseModel):
 
     METHOD: Annotated[
         Annotated[
-            DestinationElasticsearchMethod,
-            AfterValidator(validate_const(DestinationElasticsearchMethod.NONE)),
+            DestinationElasticsearchMethodNone,
+            AfterValidator(validate_const(DestinationElasticsearchMethodNone.NONE)),
         ],
         pydantic.Field(alias="method"),
-    ] = DestinationElasticsearchMethod.NONE
+    ] = DestinationElasticsearchMethodNone.NONE
 
 
-AuthenticationMethodTypedDict = TypeAliasType(
-    "AuthenticationMethodTypedDict",
+DestinationElasticsearchAuthenticationMethodTypedDict = TypeAliasType(
+    "DestinationElasticsearchAuthenticationMethodTypedDict",
     Union[
         DestinationElasticsearchNoneTypedDict,
-        APIKeySecretTypedDict,
-        UsernamePasswordTypedDict,
+        DestinationElasticsearchAPIKeySecretTypedDict,
+        DestinationElasticsearchUsernamePasswordTypedDict,
     ],
 )
 r"""The type of authentication to be used"""
 
 
-AuthenticationMethod = Annotated[
+DestinationElasticsearchAuthenticationMethod = Annotated[
     Union[
         Annotated[DestinationElasticsearchNone, Tag("none")],
-        Annotated[APIKeySecret, Tag("secret")],
-        Annotated[UsernamePassword, Tag("basic")],
+        Annotated[DestinationElasticsearchAPIKeySecret, Tag("secret")],
+        Annotated[DestinationElasticsearchUsernamePassword, Tag("basic")],
     ],
     Discriminator(lambda m: get_discriminator(m, "method", "method")),
 ]
 r"""The type of authentication to be used"""
 
 
-class Elasticsearch(str, Enum):
+class DestinationElasticsearchElasticsearch(str, Enum):
     ELASTICSEARCH = "elasticsearch"
 
 
-class DestinationElasticsearchSchemasTunnelMethodTunnelMethod(str, Enum):
+class DestinationElasticsearchTunnelMethodSSHPasswordAuth(str, Enum):
     r"""Connect through a jump server tunnel host using username and password authentication"""
 
     SSH_PASSWORD_AUTH = "SSH_PASSWORD_AUTH"
@@ -142,7 +136,7 @@ class DestinationElasticsearchPasswordAuthenticationTypedDict(TypedDict):
     r"""OS-level username for logging into the jump server host"""
     tunnel_user_password: str
     r"""OS-level password for logging into the jump server host"""
-    tunnel_method: DestinationElasticsearchSchemasTunnelMethodTunnelMethod
+    tunnel_method: DestinationElasticsearchTunnelMethodSSHPasswordAuth
     r"""Connect through a jump server tunnel host using username and password authentication"""
     tunnel_port: NotRequired[int]
     r"""Port on the proxy/jump server that accepts inbound ssh connections."""
@@ -160,15 +154,15 @@ class DestinationElasticsearchPasswordAuthentication(BaseModel):
 
     TUNNEL_METHOD: Annotated[
         Annotated[
-            DestinationElasticsearchSchemasTunnelMethodTunnelMethod,
+            DestinationElasticsearchTunnelMethodSSHPasswordAuth,
             AfterValidator(
                 validate_const(
-                    DestinationElasticsearchSchemasTunnelMethodTunnelMethod.SSH_PASSWORD_AUTH
+                    DestinationElasticsearchTunnelMethodSSHPasswordAuth.SSH_PASSWORD_AUTH
                 )
             ),
         ],
         pydantic.Field(alias="tunnel_method"),
-    ] = DestinationElasticsearchSchemasTunnelMethodTunnelMethod.SSH_PASSWORD_AUTH
+    ] = DestinationElasticsearchTunnelMethodSSHPasswordAuth.SSH_PASSWORD_AUTH
     r"""Connect through a jump server tunnel host using username and password authentication"""
 
     tunnel_port: Optional[int] = 22
@@ -191,7 +185,7 @@ class DestinationElasticsearchPasswordAuthentication(BaseModel):
         return m
 
 
-class DestinationElasticsearchSchemasTunnelMethod(str, Enum):
+class DestinationElasticsearchTunnelMethodSSHKeyAuth(str, Enum):
     r"""Connect through a jump server tunnel host using username and ssh key"""
 
     SSH_KEY_AUTH = "SSH_KEY_AUTH"
@@ -204,7 +198,7 @@ class DestinationElasticsearchSSHKeyAuthenticationTypedDict(TypedDict):
     r"""Hostname of the jump server host that allows inbound ssh tunnel."""
     tunnel_user: str
     r"""OS-level username for logging into the jump server host."""
-    tunnel_method: DestinationElasticsearchSchemasTunnelMethod
+    tunnel_method: DestinationElasticsearchTunnelMethodSSHKeyAuth
     r"""Connect through a jump server tunnel host using username and ssh key"""
     tunnel_port: NotRequired[int]
     r"""Port on the proxy/jump server that accepts inbound ssh connections."""
@@ -222,13 +216,15 @@ class DestinationElasticsearchSSHKeyAuthentication(BaseModel):
 
     TUNNEL_METHOD: Annotated[
         Annotated[
-            DestinationElasticsearchSchemasTunnelMethod,
+            DestinationElasticsearchTunnelMethodSSHKeyAuth,
             AfterValidator(
-                validate_const(DestinationElasticsearchSchemasTunnelMethod.SSH_KEY_AUTH)
+                validate_const(
+                    DestinationElasticsearchTunnelMethodSSHKeyAuth.SSH_KEY_AUTH
+                )
             ),
         ],
         pydantic.Field(alias="tunnel_method"),
-    ] = DestinationElasticsearchSchemasTunnelMethod.SSH_KEY_AUTH
+    ] = DestinationElasticsearchTunnelMethodSSHKeyAuth.SSH_KEY_AUTH
     r"""Connect through a jump server tunnel host using username and ssh key"""
 
     tunnel_port: Optional[int] = 22
@@ -251,27 +247,27 @@ class DestinationElasticsearchSSHKeyAuthentication(BaseModel):
         return m
 
 
-class DestinationElasticsearchTunnelMethod(str, Enum):
+class DestinationElasticsearchTunnelMethodNoTunnel(str, Enum):
     r"""No ssh tunnel needed to connect to database"""
 
     NO_TUNNEL = "NO_TUNNEL"
 
 
 class DestinationElasticsearchNoTunnelTypedDict(TypedDict):
-    tunnel_method: DestinationElasticsearchTunnelMethod
+    tunnel_method: DestinationElasticsearchTunnelMethodNoTunnel
     r"""No ssh tunnel needed to connect to database"""
 
 
 class DestinationElasticsearchNoTunnel(BaseModel):
     TUNNEL_METHOD: Annotated[
         Annotated[
-            DestinationElasticsearchTunnelMethod,
+            DestinationElasticsearchTunnelMethodNoTunnel,
             AfterValidator(
-                validate_const(DestinationElasticsearchTunnelMethod.NO_TUNNEL)
+                validate_const(DestinationElasticsearchTunnelMethodNoTunnel.NO_TUNNEL)
             ),
         ],
         pydantic.Field(alias="tunnel_method"),
-    ] = DestinationElasticsearchTunnelMethod.NO_TUNNEL
+    ] = DestinationElasticsearchTunnelMethodNoTunnel.NO_TUNNEL
     r"""No ssh tunnel needed to connect to database"""
 
 
@@ -302,11 +298,13 @@ r"""Whether to initiate an SSH tunnel before connecting to the database, and if 
 class DestinationElasticsearchTypedDict(TypedDict):
     endpoint: str
     r"""The full url of the Elasticsearch server"""
-    authentication_method: NotRequired[AuthenticationMethodTypedDict]
+    authentication_method: NotRequired[
+        DestinationElasticsearchAuthenticationMethodTypedDict
+    ]
     r"""The type of authentication to be used"""
     ca_certificate: NotRequired[str]
     r"""CA certificate"""
-    destination_type: Elasticsearch
+    destination_type: DestinationElasticsearchElasticsearch
     path_prefix: NotRequired[str]
     r"""The Path Prefix of the Elasticsearch server"""
     tunnel_method: NotRequired[DestinationElasticsearchSSHTunnelMethodTypedDict]
@@ -320,7 +318,8 @@ class DestinationElasticsearch(BaseModel):
     r"""The full url of the Elasticsearch server"""
 
     authentication_method: Annotated[
-        Optional[AuthenticationMethod], pydantic.Field(alias="authenticationMethod")
+        Optional[DestinationElasticsearchAuthenticationMethod],
+        pydantic.Field(alias="authenticationMethod"),
     ] = None
     r"""The type of authentication to be used"""
 
@@ -329,10 +328,13 @@ class DestinationElasticsearch(BaseModel):
 
     DESTINATION_TYPE: Annotated[
         Annotated[
-            Elasticsearch, AfterValidator(validate_const(Elasticsearch.ELASTICSEARCH))
+            DestinationElasticsearchElasticsearch,
+            AfterValidator(
+                validate_const(DestinationElasticsearchElasticsearch.ELASTICSEARCH)
+            ),
         ],
         pydantic.Field(alias="destinationType"),
-    ] = Elasticsearch.ELASTICSEARCH
+    ] = DestinationElasticsearchElasticsearch.ELASTICSEARCH
 
     path_prefix: Annotated[Optional[str], pydantic.Field(alias="pathPrefix")] = None
     r"""The Path Prefix of the Elasticsearch server"""
@@ -369,11 +371,11 @@ class DestinationElasticsearch(BaseModel):
 
 
 try:
-    UsernamePassword.model_rebuild()
+    DestinationElasticsearchUsernamePassword.model_rebuild()
 except NameError:
     pass
 try:
-    APIKeySecret.model_rebuild()
+    DestinationElasticsearchAPIKeySecret.model_rebuild()
 except NameError:
     pass
 try:

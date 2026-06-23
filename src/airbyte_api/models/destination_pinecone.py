@@ -15,7 +15,7 @@ class Pinecone(str, Enum):
     PINECONE = "pinecone"
 
 
-class DestinationPineconeSchemasEmbeddingEmbedding5Mode(str, Enum):
+class DestinationPineconeModeOpenaiCompatible(str, Enum):
     OPENAI_COMPATIBLE = "openai_compatible"
 
 
@@ -27,7 +27,7 @@ class DestinationPineconeOpenAICompatibleTypedDict(TypedDict):
     dimensions: int
     r"""The number of dimensions the embedding model is generating"""
     api_key: NotRequired[str]
-    mode: DestinationPineconeSchemasEmbeddingEmbedding5Mode
+    mode: DestinationPineconeModeOpenaiCompatible
     model_name: NotRequired[str]
     r"""The name of the model to use for embedding"""
 
@@ -45,15 +45,15 @@ class DestinationPineconeOpenAICompatible(BaseModel):
 
     MODE: Annotated[
         Annotated[
-            Optional[DestinationPineconeSchemasEmbeddingEmbedding5Mode],
+            Optional[DestinationPineconeModeOpenaiCompatible],
             AfterValidator(
                 validate_const(
-                    DestinationPineconeSchemasEmbeddingEmbedding5Mode.OPENAI_COMPATIBLE
+                    DestinationPineconeModeOpenaiCompatible.OPENAI_COMPATIBLE
                 )
             ),
         ],
         pydantic.Field(alias="mode"),
-    ] = DestinationPineconeSchemasEmbeddingEmbedding5Mode.OPENAI_COMPATIBLE
+    ] = DestinationPineconeModeOpenaiCompatible.OPENAI_COMPATIBLE
 
     model_name: Optional[str] = "text-embedding-ada-002"
     r"""The name of the model to use for embedding"""
@@ -75,7 +75,7 @@ class DestinationPineconeOpenAICompatible(BaseModel):
         return m
 
 
-class DestinationPineconeSchemasEmbeddingEmbeddingMode(str, Enum):
+class DestinationPineconeModeAzureOpenai(str, Enum):
     AZURE_OPENAI = "azure_openai"
 
 
@@ -88,7 +88,7 @@ class DestinationPineconeAzureOpenAITypedDict(TypedDict):
     r"""The deployment for your Azure OpenAI resource.  You can find this in the Azure portal under your Azure OpenAI resource"""
     openai_key: str
     r"""The API key for your Azure OpenAI resource.  You can find this in the Azure portal under your Azure OpenAI resource"""
-    mode: DestinationPineconeSchemasEmbeddingEmbeddingMode
+    mode: DestinationPineconeModeAzureOpenai
 
 
 class DestinationPineconeAzureOpenAI(BaseModel):
@@ -105,15 +105,13 @@ class DestinationPineconeAzureOpenAI(BaseModel):
 
     MODE: Annotated[
         Annotated[
-            Optional[DestinationPineconeSchemasEmbeddingEmbeddingMode],
+            Optional[DestinationPineconeModeAzureOpenai],
             AfterValidator(
-                validate_const(
-                    DestinationPineconeSchemasEmbeddingEmbeddingMode.AZURE_OPENAI
-                )
+                validate_const(DestinationPineconeModeAzureOpenai.AZURE_OPENAI)
             ),
         ],
         pydantic.Field(alias="mode"),
-    ] = DestinationPineconeSchemasEmbeddingEmbeddingMode.AZURE_OPENAI
+    ] = DestinationPineconeModeAzureOpenai.AZURE_OPENAI
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
@@ -132,14 +130,14 @@ class DestinationPineconeAzureOpenAI(BaseModel):
         return m
 
 
-class DestinationPineconeSchemasEmbeddingMode(str, Enum):
+class DestinationPineconeModeFake(str, Enum):
     FAKE = "fake"
 
 
 class DestinationPineconeFakeTypedDict(TypedDict):
     r"""Use a fake embedding made out of random vectors with 1536 embedding dimensions. This is useful for testing the data pipeline without incurring any costs."""
 
-    mode: DestinationPineconeSchemasEmbeddingMode
+    mode: DestinationPineconeModeFake
 
 
 class DestinationPineconeFake(BaseModel):
@@ -147,13 +145,11 @@ class DestinationPineconeFake(BaseModel):
 
     MODE: Annotated[
         Annotated[
-            Optional[DestinationPineconeSchemasEmbeddingMode],
-            AfterValidator(
-                validate_const(DestinationPineconeSchemasEmbeddingMode.FAKE)
-            ),
+            Optional[DestinationPineconeModeFake],
+            AfterValidator(validate_const(DestinationPineconeModeFake.FAKE)),
         ],
         pydantic.Field(alias="mode"),
-    ] = DestinationPineconeSchemasEmbeddingMode.FAKE
+    ] = DestinationPineconeModeFake.FAKE
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
@@ -172,7 +168,7 @@ class DestinationPineconeFake(BaseModel):
         return m
 
 
-class DestinationPineconeSchemasMode(str, Enum):
+class DestinationPineconeModeCohere(str, Enum):
     COHERE = "cohere"
 
 
@@ -180,7 +176,7 @@ class DestinationPineconeCohereTypedDict(TypedDict):
     r"""Use the Cohere API to embed text."""
 
     cohere_key: str
-    mode: DestinationPineconeSchemasMode
+    mode: DestinationPineconeModeCohere
 
 
 class DestinationPineconeCohere(BaseModel):
@@ -190,11 +186,11 @@ class DestinationPineconeCohere(BaseModel):
 
     MODE: Annotated[
         Annotated[
-            Optional[DestinationPineconeSchemasMode],
-            AfterValidator(validate_const(DestinationPineconeSchemasMode.COHERE)),
+            Optional[DestinationPineconeModeCohere],
+            AfterValidator(validate_const(DestinationPineconeModeCohere.COHERE)),
         ],
         pydantic.Field(alias="mode"),
-    ] = DestinationPineconeSchemasMode.COHERE
+    ] = DestinationPineconeModeCohere.COHERE
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
@@ -213,7 +209,7 @@ class DestinationPineconeCohere(BaseModel):
         return m
 
 
-class DestinationPineconeMode(str, Enum):
+class DestinationPineconeModeOpenai(str, Enum):
     OPENAI = "openai"
 
 
@@ -221,7 +217,7 @@ class DestinationPineconeOpenAITypedDict(TypedDict):
     r"""Use the OpenAI API to embed text. This option is using the text-embedding-ada-002 model with 1536 embedding dimensions."""
 
     openai_key: str
-    mode: DestinationPineconeMode
+    mode: DestinationPineconeModeOpenai
 
 
 class DestinationPineconeOpenAI(BaseModel):
@@ -231,11 +227,11 @@ class DestinationPineconeOpenAI(BaseModel):
 
     MODE: Annotated[
         Annotated[
-            Optional[DestinationPineconeMode],
-            AfterValidator(validate_const(DestinationPineconeMode.OPENAI)),
+            Optional[DestinationPineconeModeOpenai],
+            AfterValidator(validate_const(DestinationPineconeModeOpenai.OPENAI)),
         ],
         pydantic.Field(alias="mode"),
-    ] = DestinationPineconeMode.OPENAI
+    ] = DestinationPineconeModeOpenai.OPENAI
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
@@ -340,7 +336,7 @@ class DestinationPineconeLanguage(str, Enum):
     SOL = "sol"
 
 
-class DestinationPineconeSchemasProcessingTextSplitterTextSplitterMode(str, Enum):
+class DestinationPineconeModeCode(str, Enum):
     CODE = "code"
 
 
@@ -349,7 +345,7 @@ class DestinationPineconeByProgrammingLanguageTypedDict(TypedDict):
 
     language: DestinationPineconeLanguage
     r"""Split code in suitable places based on the programming language"""
-    mode: DestinationPineconeSchemasProcessingTextSplitterTextSplitterMode
+    mode: DestinationPineconeModeCode
 
 
 class DestinationPineconeByProgrammingLanguage(BaseModel):
@@ -360,15 +356,11 @@ class DestinationPineconeByProgrammingLanguage(BaseModel):
 
     MODE: Annotated[
         Annotated[
-            Optional[DestinationPineconeSchemasProcessingTextSplitterTextSplitterMode],
-            AfterValidator(
-                validate_const(
-                    DestinationPineconeSchemasProcessingTextSplitterTextSplitterMode.CODE
-                )
-            ),
+            Optional[DestinationPineconeModeCode],
+            AfterValidator(validate_const(DestinationPineconeModeCode.CODE)),
         ],
         pydantic.Field(alias="mode"),
-    ] = DestinationPineconeSchemasProcessingTextSplitterTextSplitterMode.CODE
+    ] = DestinationPineconeModeCode.CODE
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
@@ -387,14 +379,14 @@ class DestinationPineconeByProgrammingLanguage(BaseModel):
         return m
 
 
-class DestinationPineconeSchemasProcessingTextSplitterMode(str, Enum):
+class DestinationPineconeModeMarkdown(str, Enum):
     MARKDOWN = "markdown"
 
 
 class DestinationPineconeByMarkdownHeaderTypedDict(TypedDict):
     r"""Split the text by Markdown headers down to the specified header level. If the chunk size fits multiple sections, they will be combined into a single chunk."""
 
-    mode: DestinationPineconeSchemasProcessingTextSplitterMode
+    mode: DestinationPineconeModeMarkdown
     split_level: NotRequired[int]
     r"""Level of markdown headers to split text fields by. Headings down to the specified level will be used as split points"""
 
@@ -404,15 +396,11 @@ class DestinationPineconeByMarkdownHeader(BaseModel):
 
     MODE: Annotated[
         Annotated[
-            Optional[DestinationPineconeSchemasProcessingTextSplitterMode],
-            AfterValidator(
-                validate_const(
-                    DestinationPineconeSchemasProcessingTextSplitterMode.MARKDOWN
-                )
-            ),
+            Optional[DestinationPineconeModeMarkdown],
+            AfterValidator(validate_const(DestinationPineconeModeMarkdown.MARKDOWN)),
         ],
         pydantic.Field(alias="mode"),
-    ] = DestinationPineconeSchemasProcessingTextSplitterMode.MARKDOWN
+    ] = DestinationPineconeModeMarkdown.MARKDOWN
 
     split_level: Optional[int] = 1
     r"""Level of markdown headers to split text fields by. Headings down to the specified level will be used as split points"""
@@ -434,7 +422,7 @@ class DestinationPineconeByMarkdownHeader(BaseModel):
         return m
 
 
-class DestinationPineconeSchemasProcessingMode(str, Enum):
+class DestinationPineconeModeSeparator(str, Enum):
     SEPARATOR = "separator"
 
 
@@ -443,7 +431,7 @@ class DestinationPineconeBySeparatorTypedDict(TypedDict):
 
     keep_separator: NotRequired[bool]
     r"""Whether to keep the separator in the resulting chunks"""
-    mode: DestinationPineconeSchemasProcessingMode
+    mode: DestinationPineconeModeSeparator
     separators: NotRequired[List[str]]
     r"""List of separator strings to split text fields by. The separator itself needs to be wrapped in double quotes, e.g. to split by the dot character, use \".\". To split by a newline, use \"\n\"."""
 
@@ -456,13 +444,11 @@ class DestinationPineconeBySeparator(BaseModel):
 
     MODE: Annotated[
         Annotated[
-            Optional[DestinationPineconeSchemasProcessingMode],
-            AfterValidator(
-                validate_const(DestinationPineconeSchemasProcessingMode.SEPARATOR)
-            ),
+            Optional[DestinationPineconeModeSeparator],
+            AfterValidator(validate_const(DestinationPineconeModeSeparator.SEPARATOR)),
         ],
         pydantic.Field(alias="mode"),
-    ] = DestinationPineconeSchemasProcessingMode.SEPARATOR
+    ] = DestinationPineconeModeSeparator.SEPARATOR
 
     separators: Optional[List[str]] = None
     r"""List of separator strings to split text fields by. The separator itself needs to be wrapped in double quotes, e.g. to split by the dot character, use \".\". To split by a newline, use \"\n\"."""

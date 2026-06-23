@@ -71,14 +71,14 @@ class AdAnalyticsReportConfiguration(BaseModel):
     r"""Choose how to group the data in your report by time. The options are:<br>- 'ALL': A single result summarizing the entire time range.<br>- 'DAILY': Group results by each day.<br>- 'MONTHLY': Group results by each month.<br>- 'YEARLY': Group results by each year.<br>Selecting a time grouping helps you analyze trends and patterns over different time periods."""
 
 
-class SourceLinkedinAdsSchemasAuthMethod(str, Enum):
+class SourceLinkedinAdsAuthMethodAccessToken(str, Enum):
     ACCESS_TOKEN = "access_token"
 
 
 class SourceLinkedinAdsAccessTokenTypedDict(TypedDict):
     access_token: str
     r"""The access token generated for your developer application. Refer to our <a href='https://docs.airbyte.com/integrations/sources/linkedin-ads#setup-guide'>documentation</a> for more information."""
-    auth_method: SourceLinkedinAdsSchemasAuthMethod
+    auth_method: SourceLinkedinAdsAuthMethodAccessToken
 
 
 class SourceLinkedinAdsAccessToken(BaseModel):
@@ -87,13 +87,13 @@ class SourceLinkedinAdsAccessToken(BaseModel):
 
     AUTH_METHOD: Annotated[
         Annotated[
-            Optional[SourceLinkedinAdsSchemasAuthMethod],
+            Optional[SourceLinkedinAdsAuthMethodAccessToken],
             AfterValidator(
-                validate_const(SourceLinkedinAdsSchemasAuthMethod.ACCESS_TOKEN)
+                validate_const(SourceLinkedinAdsAuthMethodAccessToken.ACCESS_TOKEN)
             ),
         ],
         pydantic.Field(alias="auth_method"),
-    ] = SourceLinkedinAdsSchemasAuthMethod.ACCESS_TOKEN
+    ] = SourceLinkedinAdsAuthMethodAccessToken.ACCESS_TOKEN
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
@@ -112,7 +112,7 @@ class SourceLinkedinAdsAccessToken(BaseModel):
         return m
 
 
-class SourceLinkedinAdsAuthMethod(str, Enum):
+class SourceLinkedinAdsAuthMethodOAuth20(str, Enum):
     O_AUTH2_0 = "oAuth2.0"
 
 
@@ -123,7 +123,7 @@ class SourceLinkedinAdsOAuth20TypedDict(TypedDict):
     r"""The client secret of your developer application. Refer to our <a href='https://docs.airbyte.com/integrations/sources/linkedin-ads#setup-guide'>documentation</a> for more information."""
     refresh_token: str
     r"""The key to refresh the expired access token. Refer to our <a href='https://docs.airbyte.com/integrations/sources/linkedin-ads#setup-guide'>documentation</a> for more information."""
-    auth_method: SourceLinkedinAdsAuthMethod
+    auth_method: SourceLinkedinAdsAuthMethodOAuth20
 
 
 class SourceLinkedinAdsOAuth20(BaseModel):
@@ -138,11 +138,13 @@ class SourceLinkedinAdsOAuth20(BaseModel):
 
     AUTH_METHOD: Annotated[
         Annotated[
-            Optional[SourceLinkedinAdsAuthMethod],
-            AfterValidator(validate_const(SourceLinkedinAdsAuthMethod.O_AUTH2_0)),
+            Optional[SourceLinkedinAdsAuthMethodOAuth20],
+            AfterValidator(
+                validate_const(SourceLinkedinAdsAuthMethodOAuth20.O_AUTH2_0)
+            ),
         ],
         pydantic.Field(alias="auth_method"),
-    ] = SourceLinkedinAdsAuthMethod.O_AUTH2_0
+    ] = SourceLinkedinAdsAuthMethodOAuth20.O_AUTH2_0
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
@@ -173,7 +175,7 @@ SourceLinkedinAdsAuthentication = TypeAliasType(
 )
 
 
-class SourceLinkedinAdsLinkedinAds(str, Enum):
+class LinkedinAdsEnum(str, Enum):
     LINKEDIN_ADS = "linkedin-ads"
 
 
@@ -188,7 +190,7 @@ class SourceLinkedinAdsTypedDict(TypedDict):
     r"""How far into the past to look for records. (in days)"""
     num_workers: NotRequired[int]
     r"""The number of workers to use for the connector. This is used to limit the number of concurrent requests to the LinkedIn Ads API. If not set, the default is 3 workers."""
-    source_type: SourceLinkedinAdsLinkedinAds
+    source_type: LinkedinAdsEnum
 
 
 class SourceLinkedinAds(BaseModel):
@@ -210,11 +212,11 @@ class SourceLinkedinAds(BaseModel):
 
     SOURCE_TYPE: Annotated[
         Annotated[
-            SourceLinkedinAdsLinkedinAds,
-            AfterValidator(validate_const(SourceLinkedinAdsLinkedinAds.LINKEDIN_ADS)),
+            LinkedinAdsEnum,
+            AfterValidator(validate_const(LinkedinAdsEnum.LINKEDIN_ADS)),
         ],
         pydantic.Field(alias="sourceType"),
-    ] = SourceLinkedinAdsLinkedinAds.LINKEDIN_ADS
+    ] = LinkedinAdsEnum.LINKEDIN_ADS
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):

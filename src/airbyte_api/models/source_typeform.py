@@ -12,14 +12,14 @@ from typing import List, Optional, Union
 from typing_extensions import Annotated, NotRequired, TypeAliasType, TypedDict
 
 
-class SourceTypeformSchemasAuthType(str, Enum):
+class SourceTypeformAuthTypeAccessToken(str, Enum):
     ACCESS_TOKEN = "access_token"
 
 
 class SourceTypeformPrivateTokenTypedDict(TypedDict):
     access_token: str
     r"""Log into your Typeform account and then generate a personal Access Token."""
-    auth_type: SourceTypeformSchemasAuthType
+    auth_type: SourceTypeformAuthTypeAccessToken
 
 
 class SourceTypeformPrivateToken(BaseModel):
@@ -28,11 +28,13 @@ class SourceTypeformPrivateToken(BaseModel):
 
     AUTH_TYPE: Annotated[
         Annotated[
-            Optional[SourceTypeformSchemasAuthType],
-            AfterValidator(validate_const(SourceTypeformSchemasAuthType.ACCESS_TOKEN)),
+            Optional[SourceTypeformAuthTypeAccessToken],
+            AfterValidator(
+                validate_const(SourceTypeformAuthTypeAccessToken.ACCESS_TOKEN)
+            ),
         ],
         pydantic.Field(alias="auth_type"),
-    ] = SourceTypeformSchemasAuthType.ACCESS_TOKEN
+    ] = SourceTypeformAuthTypeAccessToken.ACCESS_TOKEN
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
@@ -51,7 +53,7 @@ class SourceTypeformPrivateToken(BaseModel):
         return m
 
 
-class SourceTypeformAuthType(str, Enum):
+class SourceTypeformAuthTypeOauth20(str, Enum):
     OAUTH2_0 = "oauth2.0"
 
 
@@ -66,7 +68,7 @@ class SourceTypeformOAuth20TypedDict(TypedDict):
     r"""The key to refresh the expired access_token."""
     token_expiry_date: datetime
     r"""The date-time when the access token should be refreshed."""
-    auth_type: SourceTypeformAuthType
+    auth_type: SourceTypeformAuthTypeOauth20
 
 
 class SourceTypeformOAuth20(BaseModel):
@@ -87,11 +89,11 @@ class SourceTypeformOAuth20(BaseModel):
 
     AUTH_TYPE: Annotated[
         Annotated[
-            Optional[SourceTypeformAuthType],
-            AfterValidator(validate_const(SourceTypeformAuthType.OAUTH2_0)),
+            Optional[SourceTypeformAuthTypeOauth20],
+            AfterValidator(validate_const(SourceTypeformAuthTypeOauth20.OAUTH2_0)),
         ],
         pydantic.Field(alias="auth_type"),
-    ] = SourceTypeformAuthType.OAUTH2_0
+    ] = SourceTypeformAuthTypeOauth20.OAUTH2_0
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
@@ -122,7 +124,7 @@ SourceTypeformAuthorizationMethod = TypeAliasType(
 )
 
 
-class SourceTypeformTypeform(str, Enum):
+class TypeformEnum(str, Enum):
     TYPEFORM = "typeform"
 
 
@@ -130,7 +132,7 @@ class SourceTypeformTypedDict(TypedDict):
     credentials: SourceTypeformAuthorizationMethodTypedDict
     form_ids: NotRequired[List[str]]
     r"""When this parameter is set, the connector will replicate data only from the input forms. Otherwise, all forms in your Typeform account will be replicated. You can find form IDs in your form URLs. For example, in the URL \"https://mysite.typeform.com/to/u6nXL7\" the form_id is u6nXL7. You can find form URLs on Share panel"""
-    source_type: SourceTypeformTypeform
+    source_type: TypeformEnum
     start_date: NotRequired[datetime]
     r"""The date from which you'd like to replicate data for Typeform API, in the format YYYY-MM-DDT00:00:00Z. All data generated after this date will be replicated."""
 
@@ -142,12 +144,9 @@ class SourceTypeform(BaseModel):
     r"""When this parameter is set, the connector will replicate data only from the input forms. Otherwise, all forms in your Typeform account will be replicated. You can find form IDs in your form URLs. For example, in the URL \"https://mysite.typeform.com/to/u6nXL7\" the form_id is u6nXL7. You can find form URLs on Share panel"""
 
     SOURCE_TYPE: Annotated[
-        Annotated[
-            SourceTypeformTypeform,
-            AfterValidator(validate_const(SourceTypeformTypeform.TYPEFORM)),
-        ],
+        Annotated[TypeformEnum, AfterValidator(validate_const(TypeformEnum.TYPEFORM))],
         pydantic.Field(alias="sourceType"),
-    ] = SourceTypeformTypeform.TYPEFORM
+    ] = TypeformEnum.TYPEFORM
 
     start_date: Optional[datetime] = None
     r"""The date from which you'd like to replicate data for Typeform API, in the format YYYY-MM-DDT00:00:00Z. All data generated after this date will be replicated."""

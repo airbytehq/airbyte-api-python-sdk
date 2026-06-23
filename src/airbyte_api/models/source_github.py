@@ -12,14 +12,14 @@ from typing import List, Optional, Union
 from typing_extensions import Annotated, NotRequired, TypeAliasType, TypedDict
 
 
-class SourceGithubOptionTitle(str, Enum):
+class OptionTitlePatCredentials(str, Enum):
     PAT_CREDENTIALS = "PAT Credentials"
 
 
 class SourceGithubPersonalAccessTokenTypedDict(TypedDict):
     personal_access_token: str
     r"""Log into GitHub and then generate a <a href=\"https://github.com/settings/tokens\">personal access token</a>. To load balance your API quota consumption across multiple API tokens, input multiple tokens separated with \",\" """
-    option_title: SourceGithubOptionTitle
+    option_title: OptionTitlePatCredentials
 
 
 class SourceGithubPersonalAccessToken(BaseModel):
@@ -28,11 +28,11 @@ class SourceGithubPersonalAccessToken(BaseModel):
 
     OPTION_TITLE: Annotated[
         Annotated[
-            Optional[SourceGithubOptionTitle],
-            AfterValidator(validate_const(SourceGithubOptionTitle.PAT_CREDENTIALS)),
+            Optional[OptionTitlePatCredentials],
+            AfterValidator(validate_const(OptionTitlePatCredentials.PAT_CREDENTIALS)),
         ],
         pydantic.Field(alias="option_title"),
-    ] = SourceGithubOptionTitle.PAT_CREDENTIALS
+    ] = OptionTitlePatCredentials.PAT_CREDENTIALS
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
@@ -51,7 +51,7 @@ class SourceGithubPersonalAccessToken(BaseModel):
         return m
 
 
-class OptionTitle(str, Enum):
+class OptionTitleOAuthCredentials(str, Enum):
     O_AUTH_CREDENTIALS = "OAuth Credentials"
 
 
@@ -62,7 +62,7 @@ class SourceGithubOAuthTypedDict(TypedDict):
     r"""OAuth Client Id"""
     client_secret: NotRequired[str]
     r"""OAuth Client secret"""
-    option_title: OptionTitle
+    option_title: OptionTitleOAuthCredentials
 
 
 class SourceGithubOAuth(BaseModel):
@@ -77,11 +77,13 @@ class SourceGithubOAuth(BaseModel):
 
     OPTION_TITLE: Annotated[
         Annotated[
-            Optional[OptionTitle],
-            AfterValidator(validate_const(OptionTitle.O_AUTH_CREDENTIALS)),
+            Optional[OptionTitleOAuthCredentials],
+            AfterValidator(
+                validate_const(OptionTitleOAuthCredentials.O_AUTH_CREDENTIALS)
+            ),
         ],
         pydantic.Field(alias="option_title"),
-    ] = OptionTitle.O_AUTH_CREDENTIALS
+    ] = OptionTitleOAuthCredentials.O_AUTH_CREDENTIALS
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
@@ -114,7 +116,7 @@ SourceGithubAuthentication = TypeAliasType(
 r"""Choose how to authenticate to GitHub"""
 
 
-class SourceGithubGithub(str, Enum):
+class GithubEnum(str, Enum):
     GITHUB = "github"
 
 
@@ -129,7 +131,7 @@ class SourceGithubTypedDict(TypedDict):
     r"""List of GitHub repository branches to pull commits for, e.g. `airbytehq/airbyte/master`. If no branches are specified for a repository, the default branch will be pulled."""
     max_waiting_time: NotRequired[int]
     r"""Max Waiting Time for rate limit. Set higher value to wait till rate limits will be resetted to continue sync"""
-    source_type: SourceGithubGithub
+    source_type: GithubEnum
     start_date: NotRequired[datetime]
     r"""The date from which you'd like to replicate data from GitHub in the format YYYY-MM-DDT00:00:00Z. If the date is not set, all data will be replicated.  For the streams which support this configuration, only data generated on or after the start date will be replicated. This field doesn't apply to all streams, see the <a href=\"https://docs.airbyte.com/integrations/sources/github\">docs</a> for more info"""
 
@@ -151,12 +153,9 @@ class SourceGithub(BaseModel):
     r"""Max Waiting Time for rate limit. Set higher value to wait till rate limits will be resetted to continue sync"""
 
     SOURCE_TYPE: Annotated[
-        Annotated[
-            SourceGithubGithub,
-            AfterValidator(validate_const(SourceGithubGithub.GITHUB)),
-        ],
+        Annotated[GithubEnum, AfterValidator(validate_const(GithubEnum.GITHUB))],
         pydantic.Field(alias="sourceType"),
-    ] = SourceGithubGithub.GITHUB
+    ] = GithubEnum.GITHUB
 
     start_date: Optional[datetime] = None
     r"""The date from which you'd like to replicate data from GitHub in the format YYYY-MM-DDT00:00:00Z. If the date is not set, all data will be replicated.  For the streams which support this configuration, only data generated on or after the start date will be replicated. This field doesn't apply to all streams, see the <a href=\"https://docs.airbyte.com/integrations/sources/github\">docs</a> for more info"""

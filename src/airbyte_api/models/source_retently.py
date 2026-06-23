@@ -11,14 +11,14 @@ from typing import Any, Dict, Optional, Union
 from typing_extensions import Annotated, NotRequired, TypeAliasType, TypedDict
 
 
-class SourceRetentlySchemasAuthType(str, Enum):
+class SourceRetentlyAuthTypeToken(str, Enum):
     TOKEN = "Token"
 
 
 class AuthenticateWithAPITokenTypedDict(TypedDict):
     api_key: str
     r"""Retently API Token. See the <a href=\"https://app.retently.com/settings/api/tokens\">docs</a> for more information on how to obtain this key."""
-    auth_type: SourceRetentlySchemasAuthType
+    auth_type: SourceRetentlyAuthTypeToken
 
 
 class AuthenticateWithAPIToken(BaseModel):
@@ -32,11 +32,11 @@ class AuthenticateWithAPIToken(BaseModel):
 
     AUTH_TYPE: Annotated[
         Annotated[
-            Optional[SourceRetentlySchemasAuthType],
-            AfterValidator(validate_const(SourceRetentlySchemasAuthType.TOKEN)),
+            Optional[SourceRetentlyAuthTypeToken],
+            AfterValidator(validate_const(SourceRetentlyAuthTypeToken.TOKEN)),
         ],
         pydantic.Field(alias="auth_type"),
-    ] = SourceRetentlySchemasAuthType.TOKEN
+    ] = SourceRetentlyAuthTypeToken.TOKEN
 
     @property
     def additional_properties(self):
@@ -66,7 +66,7 @@ class AuthenticateWithAPIToken(BaseModel):
         return m
 
 
-class SourceRetentlyAuthType(str, Enum):
+class SourceRetentlyAuthTypeClient(str, Enum):
     CLIENT = "Client"
 
 
@@ -77,7 +77,7 @@ class AuthenticateViaRetentlyOAuthTypedDict(TypedDict):
     r"""The Client Secret of your Retently developer application."""
     refresh_token: str
     r"""Retently Refresh Token which can be used to fetch new Bearer Tokens when the current one expires."""
-    auth_type: SourceRetentlyAuthType
+    auth_type: SourceRetentlyAuthTypeClient
 
 
 class AuthenticateViaRetentlyOAuth(BaseModel):
@@ -97,11 +97,11 @@ class AuthenticateViaRetentlyOAuth(BaseModel):
 
     AUTH_TYPE: Annotated[
         Annotated[
-            Optional[SourceRetentlyAuthType],
-            AfterValidator(validate_const(SourceRetentlyAuthType.CLIENT)),
+            Optional[SourceRetentlyAuthTypeClient],
+            AfterValidator(validate_const(SourceRetentlyAuthTypeClient.CLIENT)),
         ],
         pydantic.Field(alias="auth_type"),
-    ] = SourceRetentlyAuthType.CLIENT
+    ] = SourceRetentlyAuthTypeClient.CLIENT
 
     @property
     def additional_properties(self):

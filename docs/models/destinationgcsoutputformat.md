@@ -5,10 +5,10 @@ Output data format. One of the following formats must be selected - <a href="htt
 
 ## Supported Types
 
-### `models.AvroApacheAvro`
+### `models.DestinationGcsAvroApacheAvro`
 
 ```python
-value: models.AvroApacheAvro = /* values here */
+value: models.DestinationGcsAvroApacheAvro = /* values here */
 ```
 
 ### `models.DestinationGcsCSVCommaSeparatedValues`

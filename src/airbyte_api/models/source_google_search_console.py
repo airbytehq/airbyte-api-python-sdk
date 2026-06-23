@@ -12,7 +12,7 @@ from typing import List, Optional, Union
 from typing_extensions import Annotated, NotRequired, TypeAliasType, TypedDict
 
 
-class SourceGoogleSearchConsoleSchemasAuthType(str, Enum):
+class SourceGoogleSearchConsoleAuthTypeService(str, Enum):
     SERVICE = "Service"
 
 
@@ -21,7 +21,7 @@ class SourceGoogleSearchConsoleServiceAccountKeyAuthenticationTypedDict(TypedDic
     r"""The email of the user which has permissions to access the Google Workspace Admin APIs."""
     service_account_info: str
     r"""The JSON key of the service account to use for authorization. Read more <a href=\"https://cloud.google.com/iam/docs/creating-managing-service-account-keys\">here</a>."""
-    auth_type: SourceGoogleSearchConsoleSchemasAuthType
+    auth_type: SourceGoogleSearchConsoleAuthTypeService
 
 
 class SourceGoogleSearchConsoleServiceAccountKeyAuthentication(BaseModel):
@@ -33,16 +33,16 @@ class SourceGoogleSearchConsoleServiceAccountKeyAuthentication(BaseModel):
 
     AUTH_TYPE: Annotated[
         Annotated[
-            SourceGoogleSearchConsoleSchemasAuthType,
+            SourceGoogleSearchConsoleAuthTypeService,
             AfterValidator(
-                validate_const(SourceGoogleSearchConsoleSchemasAuthType.SERVICE)
+                validate_const(SourceGoogleSearchConsoleAuthTypeService.SERVICE)
             ),
         ],
         pydantic.Field(alias="auth_type"),
-    ] = SourceGoogleSearchConsoleSchemasAuthType.SERVICE
+    ] = SourceGoogleSearchConsoleAuthTypeService.SERVICE
 
 
-class SourceGoogleSearchConsoleAuthType(str, Enum):
+class SourceGoogleSearchConsoleAuthTypeClient(str, Enum):
     CLIENT = "Client"
 
 
@@ -55,7 +55,7 @@ class SourceGoogleSearchConsoleOAuthTypedDict(TypedDict):
     r"""The token for obtaining a new access token. Read more <a href=\"https://developers.google.com/webmaster-tools/v1/how-tos/authorizing\">here</a>."""
     access_token: NotRequired[str]
     r"""Access token for making authenticated requests. Read more <a href=\"https://developers.google.com/webmaster-tools/v1/how-tos/authorizing\">here</a>."""
-    auth_type: SourceGoogleSearchConsoleAuthType
+    auth_type: SourceGoogleSearchConsoleAuthTypeClient
 
 
 class SourceGoogleSearchConsoleOAuth(BaseModel):
@@ -73,11 +73,13 @@ class SourceGoogleSearchConsoleOAuth(BaseModel):
 
     AUTH_TYPE: Annotated[
         Annotated[
-            SourceGoogleSearchConsoleAuthType,
-            AfterValidator(validate_const(SourceGoogleSearchConsoleAuthType.CLIENT)),
+            SourceGoogleSearchConsoleAuthTypeClient,
+            AfterValidator(
+                validate_const(SourceGoogleSearchConsoleAuthTypeClient.CLIENT)
+            ),
         ],
         pydantic.Field(alias="auth_type"),
-    ] = SourceGoogleSearchConsoleAuthType.CLIENT
+    ] = SourceGoogleSearchConsoleAuthTypeClient.CLIENT
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
@@ -148,7 +150,7 @@ class DataFreshness(str, Enum):
     ALL = "all"
 
 
-class SourceGoogleSearchConsoleGoogleSearchConsole(str, Enum):
+class GoogleSearchConsoleEnum(str, Enum):
     GOOGLE_SEARCH_CONSOLE = "google-search-console"
 
 
@@ -168,7 +170,7 @@ class SourceGoogleSearchConsoleTypedDict(TypedDict):
     r"""UTC date in the format YYYY-MM-DD. Any data created after this date will not be replicated. Must be greater or equal to the start date field. Leaving this field blank will replicate all data from the start date onward."""
     num_workers: NotRequired[int]
     r"""The number of worker threads to use for the sync. For more details on Google Search Console rate limits, refer to the <a href=\"https://developers.google.com/webmaster-tools/limits\">docs</a>."""
-    source_type: SourceGoogleSearchConsoleGoogleSearchConsole
+    source_type: GoogleSearchConsoleEnum
     start_date: NotRequired[date]
     r"""UTC date in the format YYYY-MM-DD. Any data before this date will not be replicated."""
 
@@ -198,15 +200,13 @@ class SourceGoogleSearchConsole(BaseModel):
 
     SOURCE_TYPE: Annotated[
         Annotated[
-            SourceGoogleSearchConsoleGoogleSearchConsole,
+            GoogleSearchConsoleEnum,
             AfterValidator(
-                validate_const(
-                    SourceGoogleSearchConsoleGoogleSearchConsole.GOOGLE_SEARCH_CONSOLE
-                )
+                validate_const(GoogleSearchConsoleEnum.GOOGLE_SEARCH_CONSOLE)
             ),
         ],
         pydantic.Field(alias="sourceType"),
-    ] = SourceGoogleSearchConsoleGoogleSearchConsole.GOOGLE_SEARCH_CONSOLE
+    ] = GoogleSearchConsoleEnum.GOOGLE_SEARCH_CONSOLE
 
     start_date: Optional[date] = date.fromisoformat("2021-01-01")
     r"""UTC date in the format YYYY-MM-DD. Any data before this date will not be replicated."""

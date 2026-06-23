@@ -12,7 +12,7 @@ from typing import Literal, Optional, Union
 from typing_extensions import Annotated, NotRequired, TypeAliasType, TypedDict
 
 
-class SourceFreshdeskSchemasRateLimitPlanRateLimitPlanPlan(str, Enum):
+class PlanCustom(str, Enum):
     CUSTOM = "custom"
 
 
@@ -21,7 +21,7 @@ class CustomPlanTypedDict(TypedDict):
     r"""Maximum Rate in Limit/minute for contacts list endpoint in Custom Plan"""
     general_rate_limit: NotRequired[int]
     r"""General Maximum Rate in Limit/minute for other endpoints in Custom Plan"""
-    plan_type: SourceFreshdeskSchemasRateLimitPlanRateLimitPlanPlan
+    plan_type: PlanCustom
     tickets_rate_limit: NotRequired[int]
     r"""Maximum Rate in Limit/minute for tickets list endpoint in Custom Plan"""
 
@@ -35,15 +35,10 @@ class CustomPlan(BaseModel):
 
     PLAN_TYPE: Annotated[
         Annotated[
-            Optional[SourceFreshdeskSchemasRateLimitPlanRateLimitPlanPlan],
-            AfterValidator(
-                validate_const(
-                    SourceFreshdeskSchemasRateLimitPlanRateLimitPlanPlan.CUSTOM
-                )
-            ),
+            Optional[PlanCustom], AfterValidator(validate_const(PlanCustom.CUSTOM))
         ],
         pydantic.Field(alias="plan_type"),
-    ] = SourceFreshdeskSchemasRateLimitPlanRateLimitPlanPlan.CUSTOM
+    ] = PlanCustom.CUSTOM
 
     tickets_rate_limit: Optional[int] = None
     r"""Maximum Rate in Limit/minute for tickets list endpoint in Custom Plan"""
@@ -72,7 +67,7 @@ class CustomPlan(BaseModel):
         return m
 
 
-class SourceFreshdeskSchemasRateLimitPlanPlan(str, Enum):
+class PlanEnterprise(str, Enum):
     ENTERPRISE = "enterprise"
 
 
@@ -81,7 +76,7 @@ class EnterprisePlanTypedDict(TypedDict):
     r"""Maximum Rate in Limit/minute for contacts list endpoint in Enterprise Plan"""
     general_rate_limit: Nullable[Literal[None]]
     r"""General Maximum Rate in Limit/minute for other endpoints in Enterprise Plan"""
-    plan_type: SourceFreshdeskSchemasRateLimitPlanPlan
+    plan_type: PlanEnterprise
     tickets_rate_limit: Nullable[Literal[None]]
     r"""Maximum Rate in Limit/minute for tickets list endpoint in Enterprise Plan"""
 
@@ -105,13 +100,11 @@ class EnterprisePlan(BaseModel):
 
     PLAN_TYPE: Annotated[
         Annotated[
-            Optional[SourceFreshdeskSchemasRateLimitPlanPlan],
-            AfterValidator(
-                validate_const(SourceFreshdeskSchemasRateLimitPlanPlan.ENTERPRISE)
-            ),
+            Optional[PlanEnterprise],
+            AfterValidator(validate_const(PlanEnterprise.ENTERPRISE)),
         ],
         pydantic.Field(alias="plan_type"),
-    ] = SourceFreshdeskSchemasRateLimitPlanPlan.ENTERPRISE
+    ] = PlanEnterprise.ENTERPRISE
 
     TICKETS_RATE_LIMIT: Annotated[
         Annotated[
@@ -156,7 +149,7 @@ class EnterprisePlan(BaseModel):
         return m
 
 
-class SourceFreshdeskSchemasPlan(str, Enum):
+class PlanPro(str, Enum):
     PRO = "pro"
 
 
@@ -165,7 +158,7 @@ class ProPlanTypedDict(TypedDict):
     r"""Maximum Rate in Limit/minute for contacts list endpoint in Pro Plan"""
     general_rate_limit: Nullable[Literal[None]]
     r"""General Maximum Rate in Limit/minute for other endpoints in Pro Plan"""
-    plan_type: SourceFreshdeskSchemasPlan
+    plan_type: PlanPro
     tickets_rate_limit: Nullable[Literal[None]]
     r"""Maximum Rate in Limit/minute for tickets list endpoint in Pro Plan"""
 
@@ -188,12 +181,9 @@ class ProPlan(BaseModel):
     r"""General Maximum Rate in Limit/minute for other endpoints in Pro Plan"""
 
     PLAN_TYPE: Annotated[
-        Annotated[
-            Optional[SourceFreshdeskSchemasPlan],
-            AfterValidator(validate_const(SourceFreshdeskSchemasPlan.PRO)),
-        ],
+        Annotated[Optional[PlanPro], AfterValidator(validate_const(PlanPro.PRO))],
         pydantic.Field(alias="plan_type"),
-    ] = SourceFreshdeskSchemasPlan.PRO
+    ] = PlanPro.PRO
 
     TICKETS_RATE_LIMIT: Annotated[
         Annotated[
@@ -238,7 +228,7 @@ class ProPlan(BaseModel):
         return m
 
 
-class SourceFreshdeskPlan(str, Enum):
+class PlanGrowth(str, Enum):
     GROWTH = "growth"
 
 
@@ -247,7 +237,7 @@ class GrowthPlanTypedDict(TypedDict):
     r"""Maximum Rate in Limit/minute for contacts list endpoint in Growth Plan"""
     general_rate_limit: Nullable[Literal[None]]
     r"""General Maximum Rate in Limit/minute for other endpoints in Growth Plan"""
-    plan_type: SourceFreshdeskPlan
+    plan_type: PlanGrowth
     tickets_rate_limit: Nullable[Literal[None]]
     r"""Maximum Rate in Limit/minute for tickets list endpoint in Growth Plan"""
 
@@ -271,11 +261,10 @@ class GrowthPlan(BaseModel):
 
     PLAN_TYPE: Annotated[
         Annotated[
-            Optional[SourceFreshdeskPlan],
-            AfterValidator(validate_const(SourceFreshdeskPlan.GROWTH)),
+            Optional[PlanGrowth], AfterValidator(validate_const(PlanGrowth.GROWTH))
         ],
         pydantic.Field(alias="plan_type"),
-    ] = SourceFreshdeskPlan.GROWTH
+    ] = PlanGrowth.GROWTH
 
     TICKETS_RATE_LIMIT: Annotated[
         Annotated[
@@ -320,7 +309,7 @@ class GrowthPlan(BaseModel):
         return m
 
 
-class Plan(str, Enum):
+class PlanFree(str, Enum):
     FREE = "free"
 
 
@@ -329,7 +318,7 @@ class FreePlanTypedDict(TypedDict):
     r"""Maximum Rate in Limit/minute for contacts list endpoint in Free Plan"""
     general_rate_limit: Nullable[Literal[None]]
     r"""General Maximum Rate in Limit/minute for other endpoints in Free Plan"""
-    plan_type: Plan
+    plan_type: PlanFree
     tickets_rate_limit: Nullable[Literal[None]]
     r"""Maximum Rate in Limit/minute for tickets list endpoint in Free Plan"""
 
@@ -352,9 +341,9 @@ class FreePlan(BaseModel):
     r"""General Maximum Rate in Limit/minute for other endpoints in Free Plan"""
 
     PLAN_TYPE: Annotated[
-        Annotated[Optional[Plan], AfterValidator(validate_const(Plan.FREE))],
+        Annotated[Optional[PlanFree], AfterValidator(validate_const(PlanFree.FREE))],
         pydantic.Field(alias="plan_type"),
-    ] = Plan.FREE
+    ] = PlanFree.FREE
 
     TICKETS_RATE_LIMIT: Annotated[
         Annotated[

@@ -1,0 +1,10 @@
+# DimensionsFilterBetweenFilter
+
+
+## Fields
+
+| Field                                                                                                  | Type                                                                                                   | Required                                                                                               | Description                                                                                            |
+| ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ |
+| `filter_name`                                                                                          | [models.DimensionsFilterFilterNameBetweenFilter](../models/dimensionsfilterfilternamebetweenfilter.md) | :heavy_check_mark:                                                                                     | N/A                                                                                                    |
+| `from_value`                                                                                           | [models.DimensionsFilterFromValue](../models/dimensionsfilterfromvalue.md)                             | :heavy_check_mark:                                                                                     | N/A                                                                                                    |
+| `to_value`                                                                                             | [models.DimensionsFilterToValue](../models/dimensionsfiltertovalue.md)                                 | :heavy_check_mark:                                                                                     | N/A                                                                                                    |

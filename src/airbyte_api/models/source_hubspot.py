@@ -12,7 +12,7 @@ from typing import Optional, Union
 from typing_extensions import Annotated, NotRequired, TypeAliasType, TypedDict
 
 
-class SourceHubspotSchemasAuthType(str, Enum):
+class AuthTypePrivateAppCredentials(str, Enum):
     r"""Name of the credentials set"""
 
     PRIVATE_APP_CREDENTIALS = "Private App Credentials"
@@ -21,7 +21,7 @@ class SourceHubspotSchemasAuthType(str, Enum):
 class PrivateAppTypedDict(TypedDict):
     access_token: str
     r"""HubSpot Access token. See the <a href=\"https://developers.hubspot.com/docs/api/private-apps\">Hubspot docs</a> if you need help finding this token."""
-    credentials_title: SourceHubspotSchemasAuthType
+    credentials_title: AuthTypePrivateAppCredentials
     r"""Name of the credentials set"""
 
 
@@ -31,17 +31,17 @@ class PrivateApp(BaseModel):
 
     CREDENTIALS_TITLE: Annotated[
         Annotated[
-            SourceHubspotSchemasAuthType,
+            AuthTypePrivateAppCredentials,
             AfterValidator(
-                validate_const(SourceHubspotSchemasAuthType.PRIVATE_APP_CREDENTIALS)
+                validate_const(AuthTypePrivateAppCredentials.PRIVATE_APP_CREDENTIALS)
             ),
         ],
         pydantic.Field(alias="credentials_title"),
-    ] = SourceHubspotSchemasAuthType.PRIVATE_APP_CREDENTIALS
+    ] = AuthTypePrivateAppCredentials.PRIVATE_APP_CREDENTIALS
     r"""Name of the credentials set"""
 
 
-class SourceHubspotAuthType(str, Enum):
+class AuthTypeOAuthCredentials(str, Enum):
     r"""Name of the credentials"""
 
     O_AUTH_CREDENTIALS = "OAuth Credentials"
@@ -54,7 +54,7 @@ class SourceHubspotOAuthTypedDict(TypedDict):
     r"""The client secret for your HubSpot developer application. See the <a href=\"https://legacydocs.hubspot.com/docs/methods/oauth2/oauth2-quickstart\">Hubspot docs</a> if you need help finding this secret."""
     refresh_token: str
     r"""Refresh token to renew an expired access token. See the <a href=\"https://legacydocs.hubspot.com/docs/methods/oauth2/oauth2-quickstart\">Hubspot docs</a> if you need help finding this token."""
-    credentials_title: SourceHubspotAuthType
+    credentials_title: AuthTypeOAuthCredentials
     r"""Name of the credentials"""
 
 
@@ -70,11 +70,11 @@ class SourceHubspotOAuth(BaseModel):
 
     CREDENTIALS_TITLE: Annotated[
         Annotated[
-            SourceHubspotAuthType,
-            AfterValidator(validate_const(SourceHubspotAuthType.O_AUTH_CREDENTIALS)),
+            AuthTypeOAuthCredentials,
+            AfterValidator(validate_const(AuthTypeOAuthCredentials.O_AUTH_CREDENTIALS)),
         ],
         pydantic.Field(alias="credentials_title"),
-    ] = SourceHubspotAuthType.O_AUTH_CREDENTIALS
+    ] = AuthTypeOAuthCredentials.O_AUTH_CREDENTIALS
     r"""Name of the credentials"""
 
 

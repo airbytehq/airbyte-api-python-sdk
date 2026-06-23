@@ -11,7 +11,7 @@ from typing import Optional
 from typing_extensions import Annotated, NotRequired, TypedDict
 
 
-class Environment(str, Enum):
+class SourceCoinAPIEnvironment(str, Enum):
     r"""The environment to use. Either sandbox or production."""
 
     SANDBOX = "sandbox"
@@ -40,7 +40,7 @@ class SourceCoinAPITypedDict(TypedDict):
     elements reaches its limit.
 
     """
-    environment: NotRequired[Environment]
+    environment: NotRequired[SourceCoinAPIEnvironment]
     r"""The environment to use. Either sandbox or production.
 
     """
@@ -76,7 +76,7 @@ class SourceCoinAPI(BaseModel):
 
     """
 
-    environment: Optional[Environment] = Environment.SANDBOX
+    environment: Optional[SourceCoinAPIEnvironment] = SourceCoinAPIEnvironment.SANDBOX
     r"""The environment to use. Either sandbox or production.
 
     """

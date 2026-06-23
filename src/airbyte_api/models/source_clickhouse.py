@@ -15,7 +15,7 @@ class SourceClickhouseClickhouse(str, Enum):
     CLICKHOUSE = "clickhouse"
 
 
-class SourceClickhouseSchemasTunnelMethodTunnelMethod(str, Enum):
+class SourceClickhouseTunnelMethodSSHPasswordAuth(str, Enum):
     r"""Connect through a jump server tunnel host using username and password authentication"""
 
     SSH_PASSWORD_AUTH = "SSH_PASSWORD_AUTH"
@@ -28,7 +28,7 @@ class SourceClickhousePasswordAuthenticationTypedDict(TypedDict):
     r"""OS-level username for logging into the jump server host"""
     tunnel_user_password: str
     r"""OS-level password for logging into the jump server host"""
-    tunnel_method: SourceClickhouseSchemasTunnelMethodTunnelMethod
+    tunnel_method: SourceClickhouseTunnelMethodSSHPasswordAuth
     r"""Connect through a jump server tunnel host using username and password authentication"""
     tunnel_port: NotRequired[int]
     r"""Port on the proxy/jump server that accepts inbound ssh connections."""
@@ -46,15 +46,15 @@ class SourceClickhousePasswordAuthentication(BaseModel):
 
     TUNNEL_METHOD: Annotated[
         Annotated[
-            SourceClickhouseSchemasTunnelMethodTunnelMethod,
+            SourceClickhouseTunnelMethodSSHPasswordAuth,
             AfterValidator(
                 validate_const(
-                    SourceClickhouseSchemasTunnelMethodTunnelMethod.SSH_PASSWORD_AUTH
+                    SourceClickhouseTunnelMethodSSHPasswordAuth.SSH_PASSWORD_AUTH
                 )
             ),
         ],
         pydantic.Field(alias="tunnel_method"),
-    ] = SourceClickhouseSchemasTunnelMethodTunnelMethod.SSH_PASSWORD_AUTH
+    ] = SourceClickhouseTunnelMethodSSHPasswordAuth.SSH_PASSWORD_AUTH
     r"""Connect through a jump server tunnel host using username and password authentication"""
 
     tunnel_port: Optional[int] = 22
@@ -77,7 +77,7 @@ class SourceClickhousePasswordAuthentication(BaseModel):
         return m
 
 
-class SourceClickhouseSchemasTunnelMethod(str, Enum):
+class SourceClickhouseTunnelMethodSSHKeyAuth(str, Enum):
     r"""Connect through a jump server tunnel host using username and ssh key"""
 
     SSH_KEY_AUTH = "SSH_KEY_AUTH"
@@ -90,7 +90,7 @@ class SourceClickhouseSSHKeyAuthenticationTypedDict(TypedDict):
     r"""Hostname of the jump server host that allows inbound ssh tunnel."""
     tunnel_user: str
     r"""OS-level username for logging into the jump server host."""
-    tunnel_method: SourceClickhouseSchemasTunnelMethod
+    tunnel_method: SourceClickhouseTunnelMethodSSHKeyAuth
     r"""Connect through a jump server tunnel host using username and ssh key"""
     tunnel_port: NotRequired[int]
     r"""Port on the proxy/jump server that accepts inbound ssh connections."""
@@ -108,13 +108,13 @@ class SourceClickhouseSSHKeyAuthentication(BaseModel):
 
     TUNNEL_METHOD: Annotated[
         Annotated[
-            SourceClickhouseSchemasTunnelMethod,
+            SourceClickhouseTunnelMethodSSHKeyAuth,
             AfterValidator(
-                validate_const(SourceClickhouseSchemasTunnelMethod.SSH_KEY_AUTH)
+                validate_const(SourceClickhouseTunnelMethodSSHKeyAuth.SSH_KEY_AUTH)
             ),
         ],
         pydantic.Field(alias="tunnel_method"),
-    ] = SourceClickhouseSchemasTunnelMethod.SSH_KEY_AUTH
+    ] = SourceClickhouseTunnelMethodSSHKeyAuth.SSH_KEY_AUTH
     r"""Connect through a jump server tunnel host using username and ssh key"""
 
     tunnel_port: Optional[int] = 22
@@ -137,25 +137,27 @@ class SourceClickhouseSSHKeyAuthentication(BaseModel):
         return m
 
 
-class SourceClickhouseTunnelMethod(str, Enum):
+class SourceClickhouseTunnelMethodNoTunnel(str, Enum):
     r"""No ssh tunnel needed to connect to database"""
 
     NO_TUNNEL = "NO_TUNNEL"
 
 
 class SourceClickhouseNoTunnelTypedDict(TypedDict):
-    tunnel_method: SourceClickhouseTunnelMethod
+    tunnel_method: SourceClickhouseTunnelMethodNoTunnel
     r"""No ssh tunnel needed to connect to database"""
 
 
 class SourceClickhouseNoTunnel(BaseModel):
     TUNNEL_METHOD: Annotated[
         Annotated[
-            SourceClickhouseTunnelMethod,
-            AfterValidator(validate_const(SourceClickhouseTunnelMethod.NO_TUNNEL)),
+            SourceClickhouseTunnelMethodNoTunnel,
+            AfterValidator(
+                validate_const(SourceClickhouseTunnelMethodNoTunnel.NO_TUNNEL)
+            ),
         ],
         pydantic.Field(alias="tunnel_method"),
-    ] = SourceClickhouseTunnelMethod.NO_TUNNEL
+    ] = SourceClickhouseTunnelMethodNoTunnel.NO_TUNNEL
     r"""No ssh tunnel needed to connect to database"""
 
 

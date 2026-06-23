@@ -9,9 +9,9 @@
 value: models.SourceDriftOAuth20 = /* values here */
 ```
 
-### `models.AccessToken`
+### `models.SourceDriftAccessToken`
 
 ```python
-value: models.AccessToken = /* values here */
+value: models.SourceDriftAccessToken = /* values here */
 ```
 
