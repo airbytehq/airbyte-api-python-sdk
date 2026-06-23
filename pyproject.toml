@@ -31,9 +31,9 @@ build-backend = "hatchling.build"
 source = "uv-dynamic-versioning"
 
 [tool.uv-dynamic-versioning]
-[tool.uv-dynamic-versioning.from-file]
-source = "src/airbyte_api/_version.py"
-pattern = "__version__: str = \"(?P<version>[^\"]+)\""
+vcs = "git"
+style = "pep440"
+fallback-version = "0.0.0"
 
 [tool.hatch.build.targets.sdist]
 include = ["src/airbyte_api", "py.typed", "README-PYPI.md"]
