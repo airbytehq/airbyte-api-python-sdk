@@ -15,20 +15,20 @@ from typing_extensions import Annotated, NotRequired, TypedDict
 
 
 class UpdateTagRequestTypedDict(TypedDict):
-    tag_patch_request: models_tagpatchrequest.TagPatchRequestTypedDict
     tag_id: str
+    tag_patch_request: models_tagpatchrequest.TagPatchRequestTypedDict
 
 
 class UpdateTagRequest(BaseModel):
-    tag_patch_request: Annotated[
-        models_tagpatchrequest.TagPatchRequest,
-        FieldMetadata(request=RequestMetadata(media_type="application/json")),
-    ]
-
     tag_id: Annotated[
         str,
         pydantic.Field(alias="tagId"),
         FieldMetadata(path=PathParamMetadata(style="simple", explode=False)),
+    ]
+
+    tag_patch_request: Annotated[
+        models_tagpatchrequest.TagPatchRequest,
+        FieldMetadata(request=RequestMetadata(media_type="application/json")),
     ]
 
 

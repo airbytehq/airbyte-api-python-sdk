@@ -12,17 +12,24 @@ from typing_extensions import Annotated, NotRequired, TypedDict
 
 
 class ListWorkspacesRequestTypedDict(TypedDict):
+    workspace_ids: NotRequired[List[str]]
+    r"""The UUIDs of the workspaces you wish to fetch. Empty list will retrieve all allowed workspaces."""
     include_deleted: NotRequired[bool]
     r"""Include deleted workspaces in the returned results."""
     limit: NotRequired[int]
     r"""Set the limit on the number of workspaces returned. The default is 20."""
     offset: NotRequired[int]
     r"""Set the offset to start at when returning workspaces. The default is 0"""
-    workspace_ids: NotRequired[List[str]]
-    r"""The UUIDs of the workspaces you wish to fetch. Empty list will retrieve all allowed workspaces."""
 
 
 class ListWorkspacesRequest(BaseModel):
+    workspace_ids: Annotated[
+        Optional[List[str]],
+        pydantic.Field(alias="workspaceIds"),
+        FieldMetadata(query=QueryParamMetadata(style="form", explode=True)),
+    ] = None
+    r"""The UUIDs of the workspaces you wish to fetch. Empty list will retrieve all allowed workspaces."""
+
     include_deleted: Annotated[
         Optional[bool],
         pydantic.Field(alias="includeDeleted"),
@@ -42,16 +49,9 @@ class ListWorkspacesRequest(BaseModel):
     ] = 0
     r"""Set the offset to start at when returning workspaces. The default is 0"""
 
-    workspace_ids: Annotated[
-        Optional[List[str]],
-        pydantic.Field(alias="workspaceIds"),
-        FieldMetadata(query=QueryParamMetadata(style="form", explode=True)),
-    ] = None
-    r"""The UUIDs of the workspaces you wish to fetch. Empty list will retrieve all allowed workspaces."""
-
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
-        optional_fields = set(["includeDeleted", "limit", "offset", "workspaceIds"])
+        optional_fields = set(["workspaceIds", "includeDeleted", "limit", "offset"])
         serialized = handler(self)
         m = {}
 

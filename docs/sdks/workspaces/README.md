@@ -34,6 +34,7 @@ with AirbyteAPI(
 ) as aa_client:
 
     res = aa_client.workspaces.create_or_update_workspace_o_auth_credentials(request={
+        "workspace_id": "<value>",
         "workspace_o_auth_credentials_request": {
             "actor_type": models.ActorTypeEnum.DESTINATION,
             "configuration": {
@@ -41,7 +42,6 @@ with AirbyteAPI(
             },
             "name": models.OAuthActorNames.TRELLO,
         },
-        "workspace_id": "<value>",
     })
 
     assert res is not None
@@ -215,9 +215,9 @@ with AirbyteAPI(
 ) as aa_client:
 
     res = aa_client.workspaces.delete_workspace_o_auth_credentials(request={
+        "workspace_id": "<value>",
         "actor_type": models.ActorTypeEnum.SOURCE,
         "name": "<value>",
-        "workspace_id": "<value>",
     })
 
     assert res is not None
@@ -359,10 +359,10 @@ with AirbyteAPI(
 ) as aa_client:
 
     res = aa_client.workspaces.update_workspace(request=api.UpdateWorkspaceRequest(
+        workspace_id="<value>",
         workspace_update_request=models.WorkspaceUpdateRequest(
             name="Company Workspace Name",
         ),
-        workspace_id="<value>",
     ))
 
     assert res.workspace_response is not None
@@ -388,8 +388,8 @@ with AirbyteAPI(
 ) as aa_client:
 
     res = aa_client.workspaces.update_workspace(request=api.UpdateWorkspaceRequest(
-        workspace_update_request=models.WorkspaceUpdateRequest(),
         workspace_id="<value>",
+        workspace_update_request=models.WorkspaceUpdateRequest(),
     ))
 
     assert res.workspace_response is not None

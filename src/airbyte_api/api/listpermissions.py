@@ -12,20 +12,13 @@ from typing_extensions import Annotated, NotRequired, TypedDict
 
 
 class ListPermissionsRequestTypedDict(TypedDict):
-    organization_id: NotRequired[str]
-    r"""This is required if you want to read someone else's permissions, and you should have organization admin or a higher role."""
     user_id: NotRequired[str]
     r"""User Id in permission."""
+    organization_id: NotRequired[str]
+    r"""This is required if you want to read someone else's permissions, and you should have organization admin or a higher role."""
 
 
 class ListPermissionsRequest(BaseModel):
-    organization_id: Annotated[
-        Optional[str],
-        pydantic.Field(alias="organizationId"),
-        FieldMetadata(query=QueryParamMetadata(style="form", explode=True)),
-    ] = None
-    r"""This is required if you want to read someone else's permissions, and you should have organization admin or a higher role."""
-
     user_id: Annotated[
         Optional[str],
         pydantic.Field(alias="userId"),
@@ -33,9 +26,16 @@ class ListPermissionsRequest(BaseModel):
     ] = None
     r"""User Id in permission."""
 
+    organization_id: Annotated[
+        Optional[str],
+        pydantic.Field(alias="organizationId"),
+        FieldMetadata(query=QueryParamMetadata(style="form", explode=True)),
+    ] = None
+    r"""This is required if you want to read someone else's permissions, and you should have organization admin or a higher role."""
+
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
-        optional_fields = set(["organizationId", "userId"])
+        optional_fields = set(["userId", "organizationId"])
         serialized = handler(self)
         m = {}
 
