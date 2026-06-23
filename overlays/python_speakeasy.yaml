@@ -3,6 +3,7 @@
 # See: https://www.speakeasy.com/docs/customize-sdks/overlays
 
 overlay: 1.0.0
+x-speakeasy-jsonpath: rfc9535
 info:
   title: Python SDK Overlay
   version: 0.0.2
@@ -14,21 +15,20 @@ actions:
       $ref: "#/components/schemas/RowFilteringOperationEqual"
 
   # -----------------------------------------------------------------------
-  # Test: wildcard JSONPath to mark connector schemas as deprecated.
-  # Strategy: filter by content — source connectors have a sourceType
-  # property, destination connectors have a destinationType property.
+  # Test: RFC 9535 JSONPath with PropertyNameExtension (@~) to match
+  # connector schemas by name prefix and mark them deprecated.
   # -----------------------------------------------------------------------
 
-  # Attempt: filter schemas that have a sourceType property
-  - target: "$.components.schemas[?(@.properties.sourceType)]"
+  # Mark all source-* connector schemas as deprecated
+  - target: "$.components.schemas[?match(@~, '^source-')]"
     update:
       deprecated: true
       x-speakeasy-deprecation-message: >-
         Typed connector configuration models are deprecated and will be removed in v1.1.0.
         Pass configuration as a plain dict with a required 'sourceType' key instead.
 
-  # Attempt: filter schemas that have a destinationType property
-  - target: "$.components.schemas[?(@.properties.destinationType)]"
+  # Mark all destination-* connector schemas as deprecated
+  - target: "$.components.schemas[?match(@~, '^destination-')]"
     update:
       deprecated: true
       x-speakeasy-deprecation-message: >-
