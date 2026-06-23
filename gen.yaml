@@ -7,7 +7,7 @@ generation:
   useClassNamesForArrayFields: true
   fixes:
     nameResolutionDec2023: true
-    nameResolutionFeb2025: true
+    nameResolutionFeb2025: false
     parameterOrderingFeb2024: false
     requestResponseComponentNamesFeb2024: false
     securityFeb2025: false
