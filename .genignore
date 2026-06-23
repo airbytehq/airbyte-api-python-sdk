@@ -1,1 +1,2 @@
 pyproject.toml
+src/airbyte_api/_version.py
