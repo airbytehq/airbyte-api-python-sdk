@@ -9,7 +9,7 @@ generation:
     nameResolutionDec2023: true
     nameResolutionFeb2025: true
     parameterOrderingFeb2024: false
-    requestResponseComponentNamesFeb2024: false
+    requestResponseComponentNamesFeb2024: true
     securityFeb2025: false
     sharedErrorComponentsApr2025: false
     sharedNestedComponentsJan2026: false
