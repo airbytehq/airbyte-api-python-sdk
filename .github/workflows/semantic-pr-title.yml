@@ -14,7 +14,7 @@ permissions:
 
 jobs:
   validate-pr-title:
-    name: Validate PR Title
+    name: Validate Semantic PR Title
     # Skip if 'edited' event but the title wasn't changed (e.g., only description was edited)
     if: >
       github.event.action != 'edited'
