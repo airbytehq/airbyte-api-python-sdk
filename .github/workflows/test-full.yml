@@ -4,23 +4,14 @@
 # and that the committed generated code matches what the generation pipeline produces.
 #
 # Jobs:
-# 1. validate: Runs the full generation pipeline in dry-run mode
+# 1. validate: Calls generate-command.yml with dry_run=true. The generation
+#    workflow handles its own path filtering — it skips the Generate SDK job
+#    when only non-generation files changed (e.g., dev dependency bumps).
 # 2. zero-diff: Checks for drift using the validate job's outputs (in-place git status).
 #    If drift is detected, the check fails and posts a comment telling the author to run /generate.
 #
 # This workflow calls the main generation workflow with dry_run=true to ensure
 # both workflows use the same generation logic.
-#
-# Note: paths-ignore is NOT used at the workflow level because GitHub treats a
-# workflow that never runs as "expected" (pending), which blocks required checks.
-# Instead, we filter paths at the job level so skipped jobs report as "skipped"
-# (equivalent to "passed" for required checks).
-#
-# The path filter is scoped to generation-affecting files only (Speakeasy config,
-# gen.yaml, overlays, scripts, src/, etc.). Dev dependency updates (mypy, pylint,
-# etc.) skip the generation validation because they don't change generated
-# artifacts, and Dependabot PRs lack the SPEAKEASY_API_KEY secret needed to run
-# the generation pipeline.
 
 name: Test (Full)
 
@@ -33,44 +24,17 @@ permissions:
   pull-requests: write
 
 jobs:
-  check-paths:
-    name: Check Changed Paths
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-      - name: Filter changed paths
-        uses: dorny/paths-filter@v4
-        id: filter
-        with:
-          filters: |
-            generation:
-              - '.speakeasy/**'
-              - '.genignore'
-              - '.github/speakeasy/**'
-              - '.github/workflows/generate-command.yml'
-              - 'gen.yaml'
-              - 'overlays/**'
-              - 'README.md'
-              - 'scripts/**'
-              - 'poe_tasks.toml'
-              - 'src/**'
-    outputs:
-      should_run: ${{ github.event_name == 'workflow_dispatch' || steps.filter.outputs.generation == 'true' }}
-
   validate:
     name: Validate Generation (Dry Run)
-    needs: check-paths
     uses: ./.github/workflows/generate-command.yml
     with:
       dry_run: true
-      should_run: ${{ needs.check-paths.outputs.should_run == 'true' }}
     secrets: inherit
 
   zero-diff:
     name: Zero-Diff Check (Generated Code)
-    needs: [check-paths, validate]
-    if: needs.check-paths.outputs.should_run == 'true' && github.event_name == 'pull_request'
+    needs: [validate]
+    if: github.event_name == 'pull_request'
     runs-on: ubuntu-latest
     permissions:
       contents: read
