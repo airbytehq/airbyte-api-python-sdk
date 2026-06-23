@@ -9,7 +9,13 @@ import pydantic
 from pydantic import model_serializer
 from pydantic.functional_validators import AfterValidator
 from typing import List, Optional, Union
-from typing_extensions import Annotated, NotRequired, TypeAliasType, TypedDict
+from typing_extensions import (
+    Annotated,
+    NotRequired,
+    TypeAliasType,
+    TypedDict,
+    deprecated,
+)
 
 
 class SourceMicrosoftOnedriveAuthTypeService(str, Enum):
@@ -757,6 +763,9 @@ class SourceMicrosoftOnedriveFileBasedStreamConfig(BaseModel):
         return m
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceMicrosoftOnedriveTypedDict(TypedDict):
     r"""SourceMicrosoftOneDriveSpec class for Microsoft OneDrive Source Specification.
     This class combines the authentication details with additional configuration for the OneDrive API.
@@ -777,6 +786,9 @@ class SourceMicrosoftOnedriveTypedDict(TypedDict):
     r"""UTC date and time in the format 2017-01-25T00:00:00.000000Z. Any file modified before this date will not be replicated."""
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceMicrosoftOnedrive(BaseModel):
     r"""SourceMicrosoftOneDriveSpec class for Microsoft OneDrive Source Specification.
     This class combines the authentication details with additional configuration for the OneDrive API.

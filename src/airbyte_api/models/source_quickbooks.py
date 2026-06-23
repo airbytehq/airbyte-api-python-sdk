@@ -9,7 +9,7 @@ import pydantic
 from pydantic import model_serializer
 from pydantic.functional_validators import AfterValidator
 from typing import Optional
-from typing_extensions import Annotated, NotRequired, TypedDict
+from typing_extensions import Annotated, NotRequired, TypedDict, deprecated
 
 
 class SourceQuickbooksAuthType(str, Enum):
@@ -20,6 +20,9 @@ class Quickbooks(str, Enum):
     QUICKBOOKS = "quickbooks"
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceQuickbooksTypedDict(TypedDict):
     access_token: str
     r"""Access token for making authenticated requests."""
@@ -41,6 +44,9 @@ class SourceQuickbooksTypedDict(TypedDict):
     source_type: Quickbooks
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceQuickbooks(BaseModel):
     access_token: str
     r"""Access token for making authenticated requests."""

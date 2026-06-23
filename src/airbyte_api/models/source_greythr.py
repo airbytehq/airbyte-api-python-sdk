@@ -8,13 +8,16 @@ import pydantic
 from pydantic import model_serializer
 from pydantic.functional_validators import AfterValidator
 from typing import Optional
-from typing_extensions import Annotated, NotRequired, TypedDict
+from typing_extensions import Annotated, NotRequired, TypedDict, deprecated
 
 
 class Greythr(str, Enum):
     GREYTHR = "greythr"
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceGreythrTypedDict(TypedDict):
     base_url: str
     r"""https://api.greythr.com"""
@@ -25,6 +28,9 @@ class SourceGreythrTypedDict(TypedDict):
     source_type: Greythr
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceGreythr(BaseModel):
     base_url: str
     r"""https://api.greythr.com"""

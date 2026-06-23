@@ -9,7 +9,7 @@ import pydantic
 from pydantic import model_serializer
 from pydantic.functional_validators import AfterValidator
 from typing import Optional
-from typing_extensions import Annotated, NotRequired, TypedDict
+from typing_extensions import Annotated, NotRequired, TypedDict, deprecated
 
 
 class SourceBraintreeEnvironment(str, Enum):
@@ -25,6 +25,9 @@ class Braintree(str, Enum):
     BRAINTREE = "braintree"
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceBraintreeTypedDict(TypedDict):
     environment: SourceBraintreeEnvironment
     r"""Environment specifies where the data will come from."""
@@ -39,6 +42,9 @@ class SourceBraintreeTypedDict(TypedDict):
     r"""UTC date and time in the format 2017-01-25T00:00:00Z. Any data before this date will not be replicated."""
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceBraintree(BaseModel):
     environment: SourceBraintreeEnvironment
     r"""Environment specifies where the data will come from."""

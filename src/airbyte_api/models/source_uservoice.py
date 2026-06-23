@@ -7,13 +7,16 @@ from datetime import datetime
 from enum import Enum
 import pydantic
 from pydantic.functional_validators import AfterValidator
-from typing_extensions import Annotated, TypedDict
+from typing_extensions import Annotated, TypedDict, deprecated
 
 
 class Uservoice(str, Enum):
     USERVOICE = "uservoice"
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceUservoiceTypedDict(TypedDict):
     api_key: str
     start_date: datetime
@@ -21,6 +24,9 @@ class SourceUservoiceTypedDict(TypedDict):
     source_type: Uservoice
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceUservoice(BaseModel):
     api_key: str
 

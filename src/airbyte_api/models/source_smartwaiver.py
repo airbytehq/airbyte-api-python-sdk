@@ -9,13 +9,16 @@ import pydantic
 from pydantic import model_serializer
 from pydantic.functional_validators import AfterValidator
 from typing import Optional
-from typing_extensions import Annotated, NotRequired, TypedDict
+from typing_extensions import Annotated, NotRequired, TypedDict, deprecated
 
 
 class Smartwaiver(str, Enum):
     SMARTWAIVER = "smartwaiver"
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceSmartwaiverTypedDict(TypedDict):
     api_key: str
     r"""You can retrieve your token by visiting your dashboard then click on My Account then click on API keys."""
@@ -24,6 +27,9 @@ class SourceSmartwaiverTypedDict(TypedDict):
     start_date: NotRequired[str]
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceSmartwaiver(BaseModel):
     api_key: str
     r"""You can retrieve your token by visiting your dashboard then click on My Account then click on API keys."""

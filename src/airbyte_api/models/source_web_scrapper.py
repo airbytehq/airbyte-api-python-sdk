@@ -6,19 +6,25 @@ from airbyte_api.utils import validate_const
 from enum import Enum
 import pydantic
 from pydantic.functional_validators import AfterValidator
-from typing_extensions import Annotated, TypedDict
+from typing_extensions import Annotated, TypedDict, deprecated
 
 
 class WebScrapper(str, Enum):
     WEB_SCRAPPER = "web-scrapper"
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceWebScrapperTypedDict(TypedDict):
     api_token: str
     r"""API token to use. Find it at https://cloud.webscraper.io/api"""
     source_type: WebScrapper
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceWebScrapper(BaseModel):
     api_token: str
     r"""API token to use. Find it at https://cloud.webscraper.io/api"""

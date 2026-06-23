@@ -7,13 +7,16 @@ from datetime import datetime
 from enum import Enum
 import pydantic
 from pydantic.functional_validators import AfterValidator
-from typing_extensions import Annotated, TypedDict
+from typing_extensions import Annotated, TypedDict, deprecated
 
 
 class WasabiStatsAPI(str, Enum):
     WASABI_STATS_API = "wasabi-stats-api"
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceWasabiStatsAPITypedDict(TypedDict):
     api_key: str
     r"""The API key format is `AccessKey:SecretKey`"""
@@ -21,6 +24,9 @@ class SourceWasabiStatsAPITypedDict(TypedDict):
     source_type: WasabiStatsAPI
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceWasabiStatsAPI(BaseModel):
     api_key: str
     r"""The API key format is `AccessKey:SecretKey`"""

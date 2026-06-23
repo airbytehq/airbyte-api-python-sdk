@@ -7,13 +7,16 @@ from enum import Enum
 import pydantic
 from pydantic.functional_validators import AfterValidator
 from typing import Any, List
-from typing_extensions import Annotated, TypedDict
+from typing_extensions import Annotated, TypedDict, deprecated
 
 
 class GoogleForms(str, Enum):
     GOOGLE_FORMS = "google-forms"
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceGoogleFormsTypedDict(TypedDict):
     client_id: str
     client_refresh_token: str
@@ -22,6 +25,9 @@ class SourceGoogleFormsTypedDict(TypedDict):
     source_type: GoogleForms
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceGoogleForms(BaseModel):
     client_id: str
 

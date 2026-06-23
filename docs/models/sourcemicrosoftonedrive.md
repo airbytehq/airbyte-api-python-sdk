@@ -1,7 +1,9 @@
-# SourceMicrosoftOnedrive
+# ~~SourceMicrosoftOnedrive~~
 
 SourceMicrosoftOneDriveSpec class for Microsoft OneDrive Source Specification.
 This class combines the authentication details with additional configuration for the OneDrive API.
+
+> :warning: **DEPRECATED**: Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead..
 
 
 ## Fields

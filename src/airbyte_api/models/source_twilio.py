@@ -9,13 +9,16 @@ import pydantic
 from pydantic import model_serializer
 from pydantic.functional_validators import AfterValidator
 from typing import Optional
-from typing_extensions import Annotated, NotRequired, TypedDict
+from typing_extensions import Annotated, NotRequired, TypedDict, deprecated
 
 
 class Twilio(str, Enum):
     TWILIO = "twilio"
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceTwilioTypedDict(TypedDict):
     account_sid: str
     r"""Twilio account SID"""
@@ -30,6 +33,9 @@ class SourceTwilioTypedDict(TypedDict):
     source_type: Twilio
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceTwilio(BaseModel):
     account_sid: str
     r"""Twilio account SID"""

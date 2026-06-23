@@ -8,7 +8,13 @@ import pydantic
 from pydantic import ConfigDict, model_serializer
 from pydantic.functional_validators import AfterValidator
 from typing import Any, Dict, Optional, Union
-from typing_extensions import Annotated, NotRequired, TypeAliasType, TypedDict
+from typing_extensions import (
+    Annotated,
+    NotRequired,
+    TypeAliasType,
+    TypedDict,
+    deprecated,
+)
 
 
 class DestinationClickhouseClickhouse(str, Enum):
@@ -234,6 +240,9 @@ DestinationClickhouseSSHTunnelMethod = TypeAliasType(
 r"""Whether to initiate an SSH tunnel before connecting to the database, and if so, which kind of authentication to use."""
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'destinationType' key instead.."
+)
 class DestinationClickhouseTypedDict(TypedDict):
     host: str
     r"""Hostname of the database."""
@@ -256,6 +265,9 @@ class DestinationClickhouseTypedDict(TypedDict):
     r"""Username to use to access the database."""
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'destinationType' key instead.."
+)
 class DestinationClickhouse(BaseModel):
     host: str
     r"""Hostname of the database."""

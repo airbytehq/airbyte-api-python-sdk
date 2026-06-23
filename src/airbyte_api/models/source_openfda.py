@@ -6,17 +6,23 @@ from airbyte_api.utils import validate_const
 from enum import Enum
 import pydantic
 from pydantic.functional_validators import AfterValidator
-from typing_extensions import Annotated, TypedDict
+from typing_extensions import Annotated, TypedDict, deprecated
 
 
 class Openfda(str, Enum):
     OPENFDA = "openfda"
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceOpenfdaTypedDict(TypedDict):
     source_type: Openfda
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceOpenfda(BaseModel):
     SOURCE_TYPE: Annotated[
         Annotated[Openfda, AfterValidator(validate_const(Openfda.OPENFDA))],

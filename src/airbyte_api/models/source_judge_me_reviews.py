@@ -7,13 +7,16 @@ from datetime import datetime
 from enum import Enum
 import pydantic
 from pydantic.functional_validators import AfterValidator
-from typing_extensions import Annotated, TypedDict
+from typing_extensions import Annotated, TypedDict, deprecated
 
 
 class JudgeMeReviews(str, Enum):
     JUDGE_ME_REVIEWS = "judge-me-reviews"
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceJudgeMeReviewsTypedDict(TypedDict):
     api_key: str
     shop_domain: str
@@ -22,6 +25,9 @@ class SourceJudgeMeReviewsTypedDict(TypedDict):
     source_type: JudgeMeReviews
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceJudgeMeReviews(BaseModel):
     api_key: str
 

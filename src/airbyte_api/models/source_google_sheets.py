@@ -8,7 +8,13 @@ import pydantic
 from pydantic import Discriminator, Tag, model_serializer
 from pydantic.functional_validators import AfterValidator
 from typing import List, Optional, Union
-from typing_extensions import Annotated, NotRequired, TypeAliasType, TypedDict
+from typing_extensions import (
+    Annotated,
+    NotRequired,
+    TypeAliasType,
+    TypedDict,
+    deprecated,
+)
 
 
 class SourceGoogleSheetsAuthTypeService(str, Enum):
@@ -106,6 +112,9 @@ class StreamNameOverride(BaseModel):
     r"""The exact name of the sheet/tab in your Google Spreadsheet."""
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceGoogleSheetsTypedDict(TypedDict):
     credentials: SourceGoogleSheetsAuthenticationTypedDict
     r"""Credentials for connecting to the Google Sheets API"""
@@ -142,6 +151,9 @@ class SourceGoogleSheetsTypedDict(TypedDict):
     """
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceGoogleSheets(BaseModel):
     credentials: SourceGoogleSheetsAuthentication
     r"""Credentials for connecting to the Google Sheets API"""

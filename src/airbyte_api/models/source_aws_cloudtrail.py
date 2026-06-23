@@ -9,7 +9,7 @@ import pydantic
 from pydantic import model_serializer
 from pydantic.functional_validators import AfterValidator
 from typing import Optional
-from typing_extensions import Annotated, NotRequired, TypedDict
+from typing_extensions import Annotated, NotRequired, TypedDict, deprecated
 
 
 class FilterAppliedWhileFetchingRecordsBasedOnAttributeKeyAndAttributeValueWhichWillBeAppendedOnTheRequestBodyTypedDict(
@@ -47,6 +47,9 @@ class AwsCloudtrail(str, Enum):
     AWS_CLOUDTRAIL = "aws-cloudtrail"
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceAwsCloudtrailTypedDict(TypedDict):
     aws_key_id: str
     r"""AWS CloudTrail Access Key ID. See the <a href=\"https://docs.airbyte.com/integrations/sources/aws-cloudtrail\">docs</a> for more information on how to obtain this key."""
@@ -62,6 +65,9 @@ class SourceAwsCloudtrailTypedDict(TypedDict):
     r"""The date you would like to replicate data. Data in AWS CloudTrail is available for last 90 days only. Format: YYYY-MM-DD."""
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceAwsCloudtrail(BaseModel):
     aws_key_id: str
     r"""AWS CloudTrail Access Key ID. See the <a href=\"https://docs.airbyte.com/integrations/sources/aws-cloudtrail\">docs</a> for more information on how to obtain this key."""

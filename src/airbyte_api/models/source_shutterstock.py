@@ -9,13 +9,16 @@ import pydantic
 from pydantic import model_serializer
 from pydantic.functional_validators import AfterValidator
 from typing import Optional
-from typing_extensions import Annotated, NotRequired, TypedDict
+from typing_extensions import Annotated, NotRequired, TypedDict, deprecated
 
 
 class Shutterstock(str, Enum):
     SHUTTERSTOCK = "shutterstock"
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceShutterstockTypedDict(TypedDict):
     api_token: str
     r"""Your OAuth 2.0 token for accessing the Shutterstock API. Obtain this token from your Shutterstock developer account."""
@@ -31,6 +34,9 @@ class SourceShutterstockTypedDict(TypedDict):
     source_type: Shutterstock
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceShutterstock(BaseModel):
     api_token: str
     r"""Your OAuth 2.0 token for accessing the Shutterstock API. Obtain this token from your Shutterstock developer account."""

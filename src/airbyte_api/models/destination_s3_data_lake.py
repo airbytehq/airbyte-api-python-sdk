@@ -8,7 +8,13 @@ import pydantic
 from pydantic import ConfigDict, model_serializer
 from pydantic.functional_validators import AfterValidator
 from typing import Any, Dict, Optional, Union
-from typing_extensions import Annotated, NotRequired, TypeAliasType, TypedDict
+from typing_extensions import (
+    Annotated,
+    NotRequired,
+    TypeAliasType,
+    TypedDict,
+    deprecated,
+)
 
 
 class CatalogTypePolaris(str, Enum):
@@ -347,6 +353,9 @@ class DestinationS3DataLakeS3BucketRegion(str, Enum):
     US_WEST_2 = "us-west-2"
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'destinationType' key instead.."
+)
 class DestinationS3DataLakeTypedDict(TypedDict):
     r"""Defines the configurations required to connect to an Iceberg catalog, including warehouse location, main branch name, and catalog type specifics."""
 
@@ -369,6 +378,9 @@ class DestinationS3DataLakeTypedDict(TypedDict):
     r"""The AWS Secret Access Key paired with the Access Key ID for AWS authentication."""
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'destinationType' key instead.."
+)
 class DestinationS3DataLake(BaseModel):
     r"""Defines the configurations required to connect to an Iceberg catalog, including warehouse location, main branch name, and catalog type specifics."""
 

@@ -8,13 +8,16 @@ import pydantic
 from pydantic import model_serializer
 from pydantic.functional_validators import AfterValidator
 from typing import Optional
-from typing_extensions import Annotated, NotRequired, TypedDict
+from typing_extensions import Annotated, NotRequired, TypedDict, deprecated
 
 
 class IlluminaBasespace(str, Enum):
     ILLUMINA_BASESPACE = "illumina-basespace"
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceIlluminaBasespaceTypedDict(TypedDict):
     access_token: str
     r"""BaseSpace access token. Instructions for obtaining your access token can be found in the BaseSpace Developer Documentation."""
@@ -25,6 +28,9 @@ class SourceIlluminaBasespaceTypedDict(TypedDict):
     r"""Providing a user ID restricts the returned data to what that user can access. If you use the default ('current'), all data accessible to the user associated with the API key will be shown."""
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceIlluminaBasespace(BaseModel):
     access_token: str
     r"""BaseSpace access token. Instructions for obtaining your access token can be found in the BaseSpace Developer Documentation."""

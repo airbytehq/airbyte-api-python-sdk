@@ -8,7 +8,13 @@ import pydantic
 from pydantic import ConfigDict, Discriminator, Tag, model_serializer
 from pydantic.functional_validators import AfterValidator
 from typing import Any, Dict, Optional, Union
-from typing_extensions import Annotated, NotRequired, TypeAliasType, TypedDict
+from typing_extensions import (
+    Annotated,
+    NotRequired,
+    TypeAliasType,
+    TypedDict,
+    deprecated,
+)
 
 
 class SourceElasticsearchMethodBasic(str, Enum):
@@ -162,6 +168,9 @@ class SourceElasticsearchElasticsearch(str, Enum):
     ELASTICSEARCH = "elasticsearch"
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceElasticsearchTypedDict(TypedDict):
     endpoint: str
     r"""The full url of the Elasticsearch server"""
@@ -170,6 +179,9 @@ class SourceElasticsearchTypedDict(TypedDict):
     source_type: SourceElasticsearchElasticsearch
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceElasticsearch(BaseModel):
     endpoint: str
     r"""The full url of the Elasticsearch server"""

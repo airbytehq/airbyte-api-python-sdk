@@ -7,13 +7,16 @@ from datetime import date
 from enum import Enum
 import pydantic
 from pydantic.functional_validators import AfterValidator
-from typing_extensions import Annotated, TypedDict
+from typing_extensions import Annotated, TypedDict, deprecated
 
 
 class Senseforce(str, Enum):
     SENSEFORCE = "senseforce"
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceSenseforceTypedDict(TypedDict):
     access_token: str
     r"""Your API access token. See <a href=\"https://manual.senseforce.io/manual/sf-platform/public-api/get-your-access-token/\">here</a>. The toke is case sensitive."""
@@ -26,6 +29,9 @@ class SourceSenseforceTypedDict(TypedDict):
     source_type: Senseforce
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceSenseforce(BaseModel):
     access_token: str
     r"""Your API access token. See <a href=\"https://manual.senseforce.io/manual/sf-platform/public-api/get-your-access-token/\">here</a>. The toke is case sensitive."""

@@ -8,7 +8,13 @@ import pydantic
 from pydantic import model_serializer
 from pydantic.functional_validators import AfterValidator
 from typing import Any, List, Optional, Union
-from typing_extensions import Annotated, NotRequired, TypeAliasType, TypedDict
+from typing_extensions import (
+    Annotated,
+    NotRequired,
+    TypeAliasType,
+    TypedDict,
+    deprecated,
+)
 
 
 class CredentialsTitlePatCredentials(str, Enum):
@@ -126,6 +132,9 @@ class AsanaEnum(str, Enum):
     ASANA = "asana"
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceAsanaTypedDict(TypedDict):
     credentials: NotRequired[SourceAsanaAuthenticationMechanismTypedDict]
     r"""Choose how to authenticate to Github"""
@@ -136,6 +145,9 @@ class SourceAsanaTypedDict(TypedDict):
     source_type: AsanaEnum
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceAsana(BaseModel):
     credentials: Optional[SourceAsanaAuthenticationMechanism] = None
     r"""Choose how to authenticate to Github"""

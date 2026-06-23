@@ -6,13 +6,16 @@ from airbyte_api.utils import validate_const
 from enum import Enum
 import pydantic
 from pydantic.functional_validators import AfterValidator
-from typing_extensions import Annotated, TypedDict
+from typing_extensions import Annotated, TypedDict, deprecated
 
 
 class VismaEconomic(str, Enum):
     VISMA_ECONOMIC = "visma-economic"
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceVismaEconomicTypedDict(TypedDict):
     agreement_grant_token: str
     r"""Identifier for the grant issued by an agreement"""
@@ -21,6 +24,9 @@ class SourceVismaEconomicTypedDict(TypedDict):
     source_type: VismaEconomic
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceVismaEconomic(BaseModel):
     agreement_grant_token: str
     r"""Identifier for the grant issued by an agreement"""

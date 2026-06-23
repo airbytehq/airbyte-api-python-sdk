@@ -6,19 +6,25 @@ from airbyte_api.utils import validate_const
 from enum import Enum
 import pydantic
 from pydantic.functional_validators import AfterValidator
-from typing_extensions import Annotated, TypedDict
+from typing_extensions import Annotated, TypedDict, deprecated
 
 
 class Planhat(str, Enum):
     PLANHAT = "planhat"
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourcePlanhatTypedDict(TypedDict):
     api_token: str
     r"""Your Planhat <a href=\"https://docs.planhat.com/#authentication\">API Access Token</a>"""
     source_type: Planhat
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourcePlanhat(BaseModel):
     api_token: str
     r"""Your Planhat <a href=\"https://docs.planhat.com/#authentication\">API Access Token</a>"""

@@ -8,13 +8,16 @@ import pydantic
 from pydantic import model_serializer
 from pydantic.functional_validators import AfterValidator
 from typing import List, Optional
-from typing_extensions import Annotated, NotRequired, TypedDict
+from typing_extensions import Annotated, NotRequired, TypedDict, deprecated
 
 
 class Qualaroo(str, Enum):
     QUALAROO = "qualaroo"
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceQualarooTypedDict(TypedDict):
     key: str
     r"""A Qualaroo token. See the <a href=\"https://help.qualaroo.com/hc/en-us/articles/201969438-The-REST-Reporting-API\">docs</a> for instructions on how to generate it."""
@@ -27,6 +30,9 @@ class SourceQualarooTypedDict(TypedDict):
     r"""IDs of the surveys from which you'd like to replicate data. If left empty, data from all surveys to which you have access will be replicated."""
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceQualaroo(BaseModel):
     key: str
     r"""A Qualaroo token. See the <a href=\"https://help.qualaroo.com/hc/en-us/articles/201969438-The-REST-Reporting-API\">docs</a> for instructions on how to generate it."""

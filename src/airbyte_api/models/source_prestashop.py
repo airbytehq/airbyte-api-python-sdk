@@ -7,13 +7,16 @@ from datetime import date
 from enum import Enum
 import pydantic
 from pydantic.functional_validators import AfterValidator
-from typing_extensions import Annotated, TypedDict
+from typing_extensions import Annotated, TypedDict, deprecated
 
 
 class Prestashop(str, Enum):
     PRESTASHOP = "prestashop"
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourcePrestashopTypedDict(TypedDict):
     access_key: str
     r"""Your PrestaShop access key. See <a href=\"https://devdocs.prestashop.com/1.7/webservice/tutorials/creating-access/#create-an-access-key\"> the docs </a> for info on how to obtain this."""
@@ -24,6 +27,9 @@ class SourcePrestashopTypedDict(TypedDict):
     source_type: Prestashop
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourcePrestashop(BaseModel):
     access_key: str
     r"""Your PrestaShop access key. See <a href=\"https://devdocs.prestashop.com/1.7/webservice/tutorials/creating-access/#create-an-access-key\"> the docs </a> for info on how to obtain this."""

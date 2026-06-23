@@ -9,7 +9,7 @@ import pydantic
 from pydantic import model_serializer
 from pydantic.functional_validators import AfterValidator
 from typing import List, Optional
-from typing_extensions import Annotated, NotRequired, TypedDict
+from typing_extensions import Annotated, NotRequired, TypedDict, deprecated
 
 
 class ApplicationTypedDict(TypedDict):
@@ -46,6 +46,9 @@ class Onesignal(str, Enum):
     ONESIGNAL = "onesignal"
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceOnesignalTypedDict(TypedDict):
     applications: List[ApplicationTypedDict]
     r"""Applications keys, see the <a href=\"https://documentation.onesignal.com/docs/accounts-and-keys\">docs</a> for more information on how to obtain this data"""
@@ -58,6 +61,9 @@ class SourceOnesignalTypedDict(TypedDict):
     source_type: Onesignal
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceOnesignal(BaseModel):
     applications: List[Application]
     r"""Applications keys, see the <a href=\"https://documentation.onesignal.com/docs/accounts-and-keys\">docs</a> for more information on how to obtain this data"""

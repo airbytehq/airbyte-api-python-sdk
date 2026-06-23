@@ -8,13 +8,16 @@ import pydantic
 from pydantic import model_serializer
 from pydantic.functional_validators import AfterValidator
 from typing import Optional
-from typing_extensions import Annotated, NotRequired, TypedDict
+from typing_extensions import Annotated, NotRequired, TypedDict, deprecated
 
 
 class UsCensus(str, Enum):
     US_CENSUS = "us-census"
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceUsCensusTypedDict(TypedDict):
     api_key: str
     r"""Your API Key. Get your key <a href=\"https://api.census.gov/data/key_signup.html\">here</a>."""
@@ -25,6 +28,9 @@ class SourceUsCensusTypedDict(TypedDict):
     source_type: UsCensus
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceUsCensus(BaseModel):
     api_key: str
     r"""Your API Key. Get your key <a href=\"https://api.census.gov/data/key_signup.html\">here</a>."""

@@ -8,7 +8,7 @@ import pydantic
 from pydantic import model_serializer
 from pydantic.functional_validators import AfterValidator
 from typing import Optional
-from typing_extensions import Annotated, NotRequired, TypedDict
+from typing_extensions import Annotated, NotRequired, TypedDict, deprecated
 
 
 class SourceTwelveDataInterval(str, Enum):
@@ -31,6 +31,9 @@ class TwelveData(str, Enum):
     TWELVE_DATA = "twelve-data"
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceTwelveDataTypedDict(TypedDict):
     api_key: str
     country: NotRequired[str]
@@ -44,6 +47,9 @@ class SourceTwelveDataTypedDict(TypedDict):
     r"""Ticker of the instrument"""
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceTwelveData(BaseModel):
     api_key: str
 

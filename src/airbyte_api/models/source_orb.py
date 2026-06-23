@@ -9,13 +9,16 @@ import pydantic
 from pydantic import model_serializer
 from pydantic.functional_validators import AfterValidator
 from typing import List, Optional
-from typing_extensions import Annotated, NotRequired, TypedDict
+from typing_extensions import Annotated, NotRequired, TypedDict, deprecated
 
 
 class Orb(str, Enum):
     ORB = "orb"
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceOrbTypedDict(TypedDict):
     api_key: str
     r"""Orb API Key, issued from the Orb admin console."""
@@ -36,6 +39,9 @@ class SourceOrbTypedDict(TypedDict):
     r"""Property key name to group subscription usage by."""
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceOrb(BaseModel):
     api_key: str
     r"""Orb API Key, issued from the Orb admin console."""

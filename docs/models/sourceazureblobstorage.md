@@ -1,7 +1,9 @@
-# SourceAzureBlobStorage
+# ~~SourceAzureBlobStorage~~
 
 NOTE: When this Spec is changed, legacy_config_transformer.py must also be modified to uptake the changes
 because it is responsible for converting legacy Azure Blob Storage v0 configs into v1 configs using the File-Based CDK.
+
+> :warning: **DEPRECATED**: Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead..
 
 
 ## Fields

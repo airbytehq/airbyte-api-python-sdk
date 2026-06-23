@@ -6,7 +6,7 @@ from airbyte_api.utils import validate_const
 from enum import Enum
 import pydantic
 from pydantic.functional_validators import AfterValidator
-from typing_extensions import Annotated, TypedDict
+from typing_extensions import Annotated, TypedDict, deprecated
 
 
 class SourceZohoBillingRegion(str, Enum):
@@ -24,6 +24,9 @@ class ZohoBilling(str, Enum):
     ZOHO_BILLING = "zoho-billing"
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceZohoBillingTypedDict(TypedDict):
     client_id: str
     client_secret: str
@@ -32,6 +35,9 @@ class SourceZohoBillingTypedDict(TypedDict):
     source_type: ZohoBilling
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceZohoBilling(BaseModel):
     client_id: str
 

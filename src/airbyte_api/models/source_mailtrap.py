@@ -6,19 +6,25 @@ from airbyte_api.utils import validate_const
 from enum import Enum
 import pydantic
 from pydantic.functional_validators import AfterValidator
-from typing_extensions import Annotated, TypedDict
+from typing_extensions import Annotated, TypedDict, deprecated
 
 
 class Mailtrap(str, Enum):
     MAILTRAP = "mailtrap"
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceMailtrapTypedDict(TypedDict):
     api_token: str
     r"""API token to use. Find it at https://mailtrap.io/account"""
     source_type: Mailtrap
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceMailtrap(BaseModel):
     api_token: str
     r"""API token to use. Find it at https://mailtrap.io/account"""

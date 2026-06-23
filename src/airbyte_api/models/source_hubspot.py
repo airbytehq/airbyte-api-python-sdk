@@ -9,7 +9,13 @@ import pydantic
 from pydantic import Discriminator, Tag, model_serializer
 from pydantic.functional_validators import AfterValidator
 from typing import Optional, Union
-from typing_extensions import Annotated, NotRequired, TypeAliasType, TypedDict
+from typing_extensions import (
+    Annotated,
+    NotRequired,
+    TypeAliasType,
+    TypedDict,
+    deprecated,
+)
 
 
 class AuthTypePrivateAppCredentials(str, Enum):
@@ -101,6 +107,9 @@ class SourceHubspotHubspot(str, Enum):
     HUBSPOT = "hubspot"
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceHubspotTypedDict(TypedDict):
     credentials: SourceHubspotAuthenticationTypedDict
     r"""Choose how to authenticate to HubSpot."""
@@ -113,6 +122,9 @@ class SourceHubspotTypedDict(TypedDict):
     r"""UTC date and time in the format 2017-01-25T00:00:00Z. Any data before this date will not be replicated. If not set, \"2006-06-01T00:00:00Z\" (Hubspot creation date) will be used as start date. It's recommended to provide relevant to your data start date value to optimize synchronization."""
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceHubspot(BaseModel):
     credentials: SourceHubspotAuthentication
     r"""Choose how to authenticate to HubSpot."""

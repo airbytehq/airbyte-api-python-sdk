@@ -8,7 +8,13 @@ import pydantic
 from pydantic import ConfigDict, model_serializer
 from pydantic.functional_validators import AfterValidator
 from typing import Any, Dict, Optional, Union
-from typing_extensions import Annotated, NotRequired, TypeAliasType, TypedDict
+from typing_extensions import (
+    Annotated,
+    NotRequired,
+    TypeAliasType,
+    TypedDict,
+    deprecated,
+)
 
 
 class DestinationSalesforceAuthType(str, Enum):
@@ -208,6 +214,9 @@ DestinationSalesforceObjectStorageSpec = TypeAliasType(
 )
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'destinationType' key instead.."
+)
 class DestinationSalesforceTypedDict(TypedDict):
     client_id: str
     r"""Enter your Salesforce developer application's <a href=\"https://developer.salesforce.com/forums/?id=9062I000000DLgbQAG\">Client ID</a>."""
@@ -222,6 +231,9 @@ class DestinationSalesforceTypedDict(TypedDict):
     object_storage_config: NotRequired[DestinationSalesforceObjectStorageSpecTypedDict]
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'destinationType' key instead.."
+)
 class DestinationSalesforce(BaseModel):
     client_id: str
     r"""Enter your Salesforce developer application's <a href=\"https://developer.salesforce.com/forums/?id=9062I000000DLgbQAG\">Client ID</a>."""

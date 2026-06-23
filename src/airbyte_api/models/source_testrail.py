@@ -9,13 +9,16 @@ import pydantic
 from pydantic import model_serializer
 from pydantic.functional_validators import AfterValidator
 from typing import Optional
-from typing_extensions import Annotated, NotRequired, TypedDict
+from typing_extensions import Annotated, NotRequired, TypedDict, deprecated
 
 
 class Testrail(str, Enum):
     TESTRAIL = "testrail"
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceTestrailTypedDict(TypedDict):
     domain_name: str
     r"""The unique domain name for accessing testrail"""
@@ -25,6 +28,9 @@ class SourceTestrailTypedDict(TypedDict):
     source_type: Testrail
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceTestrail(BaseModel):
     domain_name: str
     r"""The unique domain name for accessing testrail"""

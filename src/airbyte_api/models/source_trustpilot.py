@@ -9,7 +9,7 @@ import pydantic
 from pydantic import model_serializer
 from pydantic.functional_validators import AfterValidator
 from typing import List, Optional, Union
-from typing_extensions import Annotated, TypeAliasType, TypedDict
+from typing_extensions import Annotated, TypeAliasType, TypedDict, deprecated
 
 
 class SourceTrustpilotAuthTypeApikey(str, Enum):
@@ -130,6 +130,9 @@ class Trustpilot(str, Enum):
     TRUSTPILOT = "trustpilot"
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceTrustpilotTypedDict(TypedDict):
     business_units: List[str]
     r"""The names of business units which shall be synchronized. Some streams e.g. configured_business_units or private_reviews use this configuration."""
@@ -139,6 +142,9 @@ class SourceTrustpilotTypedDict(TypedDict):
     source_type: Trustpilot
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceTrustpilot(BaseModel):
     business_units: List[str]
     r"""The names of business units which shall be synchronized. Some streams e.g. configured_business_units or private_reviews use this configuration."""

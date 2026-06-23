@@ -7,13 +7,16 @@ from datetime import datetime
 from enum import Enum
 import pydantic
 from pydantic.functional_validators import AfterValidator
-from typing_extensions import Annotated, TypedDict
+from typing_extensions import Annotated, TypedDict, deprecated
 
 
 class Delighted(str, Enum):
     DELIGHTED = "delighted"
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceDelightedTypedDict(TypedDict):
     api_key: str
     r"""A Delighted API key."""
@@ -22,6 +25,9 @@ class SourceDelightedTypedDict(TypedDict):
     source_type: Delighted
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceDelighted(BaseModel):
     api_key: str
     r"""A Delighted API key."""

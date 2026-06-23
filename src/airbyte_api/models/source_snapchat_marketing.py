@@ -9,7 +9,7 @@ import pydantic
 from pydantic import model_serializer
 from pydantic.functional_validators import AfterValidator
 from typing import Any, List, Optional
-from typing_extensions import Annotated, NotRequired, TypedDict
+from typing_extensions import Annotated, NotRequired, TypedDict, deprecated
 
 
 class ActionReportTime(str, Enum):
@@ -41,6 +41,9 @@ class ViewAttributionWindow(str, Enum):
     SEVEN_DAY = "7_DAY"
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceSnapchatMarketingTypedDict(TypedDict):
     client_id: str
     r"""The Client ID of your Snapchat developer application."""
@@ -65,6 +68,9 @@ class SourceSnapchatMarketingTypedDict(TypedDict):
     r"""Attribution window for views."""
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceSnapchatMarketing(BaseModel):
     client_id: str
     r"""The Client ID of your Snapchat developer application."""

@@ -9,7 +9,7 @@ import pydantic
 from pydantic import model_serializer
 from pydantic.functional_validators import AfterValidator
 from typing import Optional
-from typing_extensions import Annotated, NotRequired, TypedDict
+from typing_extensions import Annotated, NotRequired, TypedDict, deprecated
 
 
 class FilterEnum(str, Enum):
@@ -24,6 +24,9 @@ class Chameleon(str, Enum):
     CHAMELEON = "chameleon"
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceChameleonTypedDict(TypedDict):
     api_key: str
     start_date: datetime
@@ -36,6 +39,9 @@ class SourceChameleonTypedDict(TypedDict):
     source_type: Chameleon
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceChameleon(BaseModel):
     api_key: str
 

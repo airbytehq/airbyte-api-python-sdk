@@ -8,7 +8,7 @@ import pydantic
 from pydantic import model_serializer
 from pydantic.functional_validators import AfterValidator
 from typing import Optional
-from typing_extensions import Annotated, NotRequired, TypedDict
+from typing_extensions import Annotated, NotRequired, TypedDict, deprecated
 
 
 class PeriodUsedForMostPopularStreams(int, Enum):
@@ -29,6 +29,9 @@ class Nytimes(str, Enum):
     NYTIMES = "nytimes"
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceNytimesTypedDict(TypedDict):
     api_key: str
     r"""API Key"""
@@ -43,6 +46,9 @@ class SourceNytimesTypedDict(TypedDict):
     source_type: Nytimes
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceNytimes(BaseModel):
     api_key: str
     r"""API Key"""

@@ -8,13 +8,16 @@ import pydantic
 from pydantic import model_serializer
 from pydantic.functional_validators import AfterValidator
 from typing import Optional
-from typing_extensions import Annotated, NotRequired, TypedDict
+from typing_extensions import Annotated, NotRequired, TypedDict, deprecated
 
 
 class OpenExchangeRates(str, Enum):
     OPEN_EXCHANGE_RATES = "open-exchange-rates"
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceOpenExchangeRatesTypedDict(TypedDict):
     app_id: str
     r"""App ID provided by Open Exchange Rates"""
@@ -25,6 +28,9 @@ class SourceOpenExchangeRatesTypedDict(TypedDict):
     source_type: OpenExchangeRates
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceOpenExchangeRates(BaseModel):
     app_id: str
     r"""App ID provided by Open Exchange Rates"""

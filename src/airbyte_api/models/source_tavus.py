@@ -7,13 +7,16 @@ from datetime import datetime
 from enum import Enum
 import pydantic
 from pydantic.functional_validators import AfterValidator
-from typing_extensions import Annotated, TypedDict
+from typing_extensions import Annotated, TypedDict, deprecated
 
 
 class Tavus(str, Enum):
     TAVUS = "tavus"
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceTavusTypedDict(TypedDict):
     api_key: str
     r"""Your Tavus API key. You can find this in your Tavus account settings or API dashboard."""
@@ -21,6 +24,9 @@ class SourceTavusTypedDict(TypedDict):
     source_type: Tavus
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceTavus(BaseModel):
     api_key: str
     r"""Your Tavus API key. You can find this in your Tavus account settings or API dashboard."""

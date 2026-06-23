@@ -8,7 +8,7 @@ import pydantic
 from pydantic import model_serializer
 from pydantic.functional_validators import AfterValidator
 from typing import Optional
-from typing_extensions import Annotated, NotRequired, TypedDict
+from typing_extensions import Annotated, NotRequired, TypedDict, deprecated
 
 
 class SourceAmazonSqsAWSRegion(str, Enum):
@@ -60,6 +60,9 @@ class TheTargetedActionResourceForTheFetch(str, Enum):
     RECEIVE_MESSAGE = "ReceiveMessage"
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceAmazonSqsTypedDict(TypedDict):
     access_key: str
     r"""The Access Key ID of the AWS IAM Role to use for pulling messages"""
@@ -82,6 +85,9 @@ class SourceAmazonSqsTypedDict(TypedDict):
     r"""Modify the Visibility Timeout of the individual message from the Queue's default (seconds)."""
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceAmazonSqs(BaseModel):
     access_key: str
     r"""The Access Key ID of the AWS IAM Role to use for pulling messages"""

@@ -8,7 +8,7 @@ import pydantic
 from pydantic import model_serializer
 from pydantic.functional_validators import AfterValidator
 from typing import List, Optional
-from typing_extensions import Annotated, NotRequired, TypedDict
+from typing_extensions import Annotated, NotRequired, TypedDict, deprecated
 
 
 class SourceCoinmarketcapDataType(str, Enum):
@@ -22,6 +22,9 @@ class Coinmarketcap(str, Enum):
     COINMARKETCAP = "coinmarketcap"
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceCoinmarketcapTypedDict(TypedDict):
     api_key: str
     r"""Your API Key. See <a href=\"https://coinmarketcap.com/api/documentation/v1/#section/Authentication\">here</a>. The token is case sensitive."""
@@ -32,6 +35,9 @@ class SourceCoinmarketcapTypedDict(TypedDict):
     r"""Cryptocurrency symbols. (only used for quotes stream)"""
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceCoinmarketcap(BaseModel):
     api_key: str
     r"""Your API Key. See <a href=\"https://coinmarketcap.com/api/documentation/v1/#section/Authentication\">here</a>. The token is case sensitive."""

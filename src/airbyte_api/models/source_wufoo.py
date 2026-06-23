@@ -6,13 +6,16 @@ from airbyte_api.utils import validate_const
 from enum import Enum
 import pydantic
 from pydantic.functional_validators import AfterValidator
-from typing_extensions import Annotated, TypedDict
+from typing_extensions import Annotated, TypedDict, deprecated
 
 
 class Wufoo(str, Enum):
     WUFOO = "wufoo"
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceWufooTypedDict(TypedDict):
     api_key: str
     r"""Your Wufoo API Key. You can find it by logging into your Wufoo account, selecting 'API Information' from the 'More' dropdown on any form, and locating the 16-digit code."""
@@ -21,6 +24,9 @@ class SourceWufooTypedDict(TypedDict):
     source_type: Wufoo
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceWufoo(BaseModel):
     api_key: str
     r"""Your Wufoo API Key. You can find it by logging into your Wufoo account, selecting 'API Information' from the 'More' dropdown on any form, and locating the 16-digit code."""
