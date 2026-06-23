@@ -1,9 +1,0 @@
-# DestinationHubspotNone
-
-
-## Fields
-
-| Field                                                                                                | Type                                                                                                 | Required                                                                                             | Description                                                                                          |
-| ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- |
-| `__pydantic_extra__`                                                                                 | Dict[str, *Any*]                                                                                     | :heavy_minus_sign:                                                                                   | N/A                                                                                                  |
-| `storage_type`                                                                                       | [Optional[models.DestinationHubspotStorageTypeNone]](../models/destinationhubspotstoragetypenone.md) | :heavy_minus_sign:                                                                                   | N/A                                                                                                  |
