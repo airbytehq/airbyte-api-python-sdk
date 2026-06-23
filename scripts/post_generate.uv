@@ -54,16 +54,6 @@ def patch_version_file() -> None:
         flags=re.MULTILINE,
     )
 
-    # 3. Remove the stale try/except block that attempted to override __version__
-    #    at runtime (no longer needed since the assignment itself is now dynamic).
-    text = re.sub(
-        r"\ntry:\n    if __package__.*?\nexcept.*?\n    pass\n",
-        "\n",
-        text,
-        count=1,
-        flags=re.DOTALL,
-    )
-
     if text == original:
         print("post_generate: _version.py already patched (no changes)")
         return
