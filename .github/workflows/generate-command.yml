@@ -196,7 +196,7 @@ jobs:
                   git checkout HEAD -- .speakeasy/workflow.lock 2>/dev/null || true
                   git checkout HEAD -- .speakeasy/gen.lock 2>/dev/null || true
                   if [ -n "$(git status --porcelain)" ]; then
-                      echo "has_changes=true" >> $GITHUB_OUTPUT
+                      echo "has_changes=true" | tee -a $GITHUB_OUTPUT
                       echo "=== Changed files ==="
                       git status --porcelain
                       echo
@@ -204,11 +204,13 @@ jobs:
                       SUMMARY=$(git diff --stat)
                       echo "$SUMMARY"
                       EOF=$(dd if=/dev/urandom bs=15 count=1 status=none | base64)
-                      echo "drift_summary<<$EOF" >> $GITHUB_OUTPUT
-                      echo "$SUMMARY" >> $GITHUB_OUTPUT
-                      echo "$EOF" >> $GITHUB_OUTPUT
+                      {
+                          echo "drift_summary<<$EOF"
+                          echo "$SUMMARY"
+                          echo "$EOF"
+                      } | tee -a "$GITHUB_OUTPUT"
                   else
-                      echo "has_changes=false" >> $GITHUB_OUTPUT
+                      echo "has_changes=false" | tee -a $GITHUB_OUTPUT
                   fi
 
             # --- PR branch mode: commit and push to the existing PR branch ---
