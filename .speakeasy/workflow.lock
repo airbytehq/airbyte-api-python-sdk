@@ -23,7 +23,7 @@ targets:
         sourceRevisionDigest: sha256:be6d07f5b53f91183748eb76429f3fba0fa238d66df09ad4e6a2da5e0391864b
         sourceBlobDigest: sha256:0c22381370201e64ee5a767bba2709298aa144246ab48d84db11a124fbc55b0f
         codeSamplesNamespace: my-source-python-code-samples
-        codeSamplesRevisionDigest: sha256:6ff20e2dbc8a534b0fae780f3ef67e1cac7edee51ffdc1f55e747532883e34db
+        codeSamplesRevisionDigest: sha256:07908a34db5ab8abd3b2e567f8e6d24f29527db01e24fa4fd46d15ae79e7e4f6
 workflow:
     workflowVersion: 1.0.0
     speakeasyVersion: pinned
