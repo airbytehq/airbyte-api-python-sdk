@@ -161,22 +161,18 @@ jobs:
                       exit 1
                   fi
 
-            - name: Generate SDK with Speakeasy
+            - name: Generate SDK
               env:
                   SPEAKEASY_API_KEY: ${{ secrets.SPEAKEASY_API_KEY }}
                   VERSION: ${{ steps.resolve-version.outputs.version }}
               run: |
                   echo "Generating with version: $VERSION"
-                  uvx --from=poethepoet poe generate-code
-
-            - name: Post-generation patching
-              run: python3 scripts/post_generate.py
+                  uv run poe generate-full
 
             - name: Verify generated code
               run: |
                   if [ -f "pyproject.toml" ]; then
                       echo "pyproject.toml found (v2 generator confirmed)"
-                      uv sync --no-install-project 2>/dev/null || true
                       uv run python -c "import airbyte_api; print(f'SDK import OK: {airbyte_api.__name__}')" || echo "::warning::SDK import check failed"
                   else
                       echo "::warning::No pyproject.toml found. Generation may not have produced v2 output."

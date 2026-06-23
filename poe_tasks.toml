@@ -1,6 +1,6 @@
 [tasks]
 
-[tasks.generate-code]
+[tasks._generate-code]
 help = "Generate Python SDK from OpenAPI spec. Set VERSION env var to pin version."
 shell = """
 ARGS="--skip-compile"
@@ -10,10 +10,16 @@ fi
 speakeasy run $ARGS
 """
 
-[tasks.post-generate]
-help = "Run post-generation patches (currently a no-op placeholder)."
+[tasks._post-generate]
+help = "Run post-generation patches."
 shell = """
 python3 scripts/post_generate.py
+"""
+
+[tasks._generate-readme]
+help = "Generate README-PYPI.md from README.md (rewrites relative links to absolute GitHub URLs)."
+shell = """
+python3 scripts/prepare_readme.py
 """
 
 [tasks.lint]
@@ -42,6 +48,12 @@ shell = """
 uv run pyright src/
 """
 
+[tasks.build]
+help = "Build the Python package."
+shell = """
+uv build
+"""
+
 [tasks.generate-full]
-help = "Full generation pipeline: generate code, post-generate patches."
-sequence = ["generate-code", "post-generate"]
+help = "Full generation pipeline: generate code, post-generate patches, prepare readme."
+sequence = ["_generate-code", "_generate-readme", "_post-generate"]
