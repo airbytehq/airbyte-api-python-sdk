@@ -85,7 +85,6 @@ jobs:
                           - '.speakeasy/**'
                           - '.genignore'
                           - '.github/speakeasy/**'
-                          - '.github/workflows/generate-command.yml'
                           - 'gen.yaml'
                           - 'overlays/**'
                           - 'README.md'
