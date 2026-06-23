@@ -181,9 +181,10 @@ jobs:
             - name: Check for changes
               id: changes
               run: |
-                  # Restore workflow.lock to HEAD to ignore non-deterministic
-                  # digest changes that cause infinite generate→merge loops.
+                  # Restore non-deterministic Speakeasy lock files to HEAD
+                  # to ignore digest changes that cause infinite generate→merge loops.
                   git checkout HEAD -- .speakeasy/workflow.lock 2>/dev/null || true
+                  git checkout HEAD -- .speakeasy/gen.lock 2>/dev/null || true
                   if [ -n "$(git status --porcelain)" ]; then
                       echo "has_changes=true" >> $GITHUB_OUTPUT
                       echo "=== Changed files ==="
