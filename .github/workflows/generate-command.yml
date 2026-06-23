@@ -75,7 +75,7 @@ jobs:
             should_run: ${{ github.event_name == 'workflow_dispatch' || steps.filter.outputs.generation == 'true' }}
         steps:
             - name: Checkout repository
-              uses: actions/checkout@v4
+              uses: actions/checkout@v7
             - name: Filter changed paths
               uses: dorny/paths-filter@v4
               id: filter
@@ -150,7 +150,7 @@ jobs:
                   echo "head_ref=${HEAD_REF}" >> $GITHUB_OUTPUT
 
             - name: Checkout repository
-              uses: actions/checkout@v4
+              uses: actions/checkout@v7
               with:
                   fetch-depth: 0
                   ref: ${{ steps.pr-branch.outputs.head_ref || '' }}
