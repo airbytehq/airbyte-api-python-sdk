@@ -1290,27 +1290,6 @@ class DimensionsFilterFromValueExpressionInt64Value2(BaseModel):
     ] = DimensionsFilterFromValueExpressionValueTypeInt64Value2.INT64_VALUE
 
 
-class DimensionsFilterToValueExpressionDoubleValue2TypedDict(TypedDict):
-    value: float
-    value_type: DimensionsFilterToValueExpressionValueTypeDoubleValue2
-
-
-class DimensionsFilterToValueExpressionDoubleValue2(BaseModel):
-    value: float
-
-    VALUE_TYPE: Annotated[
-        Annotated[
-            DimensionsFilterToValueExpressionValueTypeDoubleValue2,
-            AfterValidator(
-                validate_const(
-                    DimensionsFilterToValueExpressionValueTypeDoubleValue2.DOUBLE_VALUE
-                )
-            ),
-        ],
-        pydantic.Field(alias="value_type"),
-    ] = DimensionsFilterToValueExpressionValueTypeDoubleValue2.DOUBLE_VALUE
-
-
 DimensionsFilterExpressionFromValue2TypedDict = TypeAliasType(
     "DimensionsFilterExpressionFromValue2TypedDict",
     Union[
@@ -1331,6 +1310,27 @@ DimensionsFilterExpressionFromValue2 = Annotated[
 
 class DimensionsFilterToValueExpressionValueTypeDoubleValue2(str, Enum):
     DOUBLE_VALUE = "doubleValue"
+
+
+class DimensionsFilterToValueExpressionDoubleValue2TypedDict(TypedDict):
+    value: float
+    value_type: DimensionsFilterToValueExpressionValueTypeDoubleValue2
+
+
+class DimensionsFilterToValueExpressionDoubleValue2(BaseModel):
+    value: float
+
+    VALUE_TYPE: Annotated[
+        Annotated[
+            DimensionsFilterToValueExpressionValueTypeDoubleValue2,
+            AfterValidator(
+                validate_const(
+                    DimensionsFilterToValueExpressionValueTypeDoubleValue2.DOUBLE_VALUE
+                )
+            ),
+        ],
+        pydantic.Field(alias="value_type"),
+    ] = DimensionsFilterToValueExpressionValueTypeDoubleValue2.DOUBLE_VALUE
 
 
 class DimensionsFilterToValueExpressionValueTypeInt64Value2(str, Enum):
