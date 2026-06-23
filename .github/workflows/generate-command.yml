@@ -54,6 +54,13 @@ name: Generate SDK
                 description: Validate generation without creating a PR
                 type: boolean
                 default: false
+        outputs:
+            has_changes:
+                description: Whether the generation produced changes vs committed code
+                value: ${{ jobs.generate.outputs.has_changes }}
+            drift_summary:
+                description: Git diff stat summary when drift is detected
+                value: ${{ jobs.generate.outputs.drift_summary }}
 
 concurrency:
     group: ${{ (github.event_name == 'push' || github.event_name == 'schedule') && 'generate-new-pr' || format('generate-{0}', github.run_id) }}
@@ -64,6 +71,9 @@ jobs:
         name: Generate SDK
         runs-on: ubuntu-latest
         timeout-minutes: 30
+        outputs:
+            has_changes: ${{ steps.changes.outputs.has_changes }}
+            drift_summary: ${{ steps.changes.outputs.drift_summary }}
         permissions:
             contents: write
             pull-requests: write
@@ -191,42 +201,15 @@ jobs:
                       git status --porcelain
                       echo
                       echo "=== Diff stat ==="
-                      git diff --stat
+                      SUMMARY=$(git diff --stat)
+                      echo "$SUMMARY"
+                      EOF=$(dd if=/dev/urandom bs=15 count=1 status=none | base64)
+                      echo "drift_summary<<$EOF" >> $GITHUB_OUTPUT
+                      echo "$SUMMARY" >> $GITHUB_OUTPUT
+                      echo "$EOF" >> $GITHUB_OUTPUT
                   else
                       echo "has_changes=false" >> $GITHUB_OUTPUT
                   fi
-
-            - name: Detect generation drift (dry run)
-              if: ${{ inputs.dry_run && steps.changes.outputs.has_changes == 'true' }}
-              id: drift
-              run: |
-                  echo "::error::Generated code drift detected. The committed code does not match what the generation pipeline produces."
-                  SUMMARY=$(git diff --stat)
-                  EOF=$(dd if=/dev/urandom bs=15 count=1 status=none | base64)
-                  echo "summary<<$EOF" >> $GITHUB_OUTPUT
-                  echo "$SUMMARY" >> $GITHUB_OUTPUT
-                  echo "$EOF" >> $GITHUB_OUTPUT
-
-            - name: Post drift comment on PR
-              if: ${{ inputs.dry_run && steps.changes.outputs.has_changes == 'true' && github.event_name == 'pull_request' }}
-              uses: peter-evans/create-or-update-comment@v5
-              with:
-                  issue-number: ${{ github.event.pull_request.number }}
-                  body: |
-                      <!-- zero-diff-check -->
-                      **Generated Code Drift Detected**
-
-                      The committed code does not match what the generation pipeline produces.
-
-                      **To fix:** Comment `/generate` on this PR to regenerate.
-
-                      ```
-                      ${{ steps.drift.outputs.summary }}
-                      ```
-
-            - name: Fail on drift (dry run)
-              if: ${{ inputs.dry_run && steps.changes.outputs.has_changes == 'true' }}
-              run: exit 1
 
             # --- PR branch mode: commit and push to the existing PR branch ---
             - name: Push regenerated code to PR branch
