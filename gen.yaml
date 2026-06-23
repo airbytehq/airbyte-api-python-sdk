@@ -28,6 +28,8 @@ generation:
     generateNewTests: false
     skipResponseBodyAssertions: false
 python:
+  # version is not committed — it is set dynamically via --set-version
+  # by the generate workflow (release drafter resolves the next version).
   additionalDependencies:
     dev: {}
     main: {}
