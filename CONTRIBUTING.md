@@ -29,7 +29,7 @@ The Python SDK is generated through a multi-step pipeline:
                    ▼
 ┌──────────────────────────────────────────┐
 │  4. Post-Generation Patches              │
-│  (scripts/post_generate.py)              │
+│  (scripts/post_generate.uv)              │
 └──────────────────┬───────────────────────┘
                    │
                    ▼
@@ -49,15 +49,15 @@ The Python SDK is generated through a multi-step pipeline:
 
 3. **Speakeasy Code Generation** — Speakeasy consumes the spec (+ overlay if enabled) and generates the Python SDK in `src/airbyte_api/`. These files should never be edited by hand.
 
-4. **Post-Generation Patches** — A Python script applies any SDK-specific patches after generation (currently a no-op placeholder):
-   [`scripts/post_generate.py`](https://github.com/airbytehq/airbyte-api-python-sdk/blob/main/scripts/post_generate.py)
+4. **Post-Generation Patches** — A standalone uv script applies SDK-specific patches after generation (e.g. replacing the hardcoded `__version__` with `importlib.metadata`):
+   [`scripts/post_generate.uv`](https://github.com/airbytehq/airbyte-api-python-sdk/blob/main/scripts/post_generate.uv)
 
 5. **Package Build & Publish** — The generated SDK is built with `uv build` and published to PyPI via OIDC trusted publishing.
 
 > **Tip:** If you need to change SDK behavior, determine which layer is appropriate:
 > - **API changes** → submit to the [upstream OpenAPI spec](https://github.com/airbytehq/airbyte-platform/blob/main/airbyte-api/server-api/src/main/openapi/api_sdk.yaml)
 > - **Python SDK-specific schema tweaks** → modify the [overlay](https://github.com/airbytehq/airbyte-api-python-sdk/blob/main/overlays/python_speakeasy.yaml)
-> - **Post-generation fixes** → modify the [post-generate script](https://github.com/airbytehq/airbyte-api-python-sdk/blob/main/scripts/post_generate.py)
+> - **Post-generation fixes** → modify the [post-generate script](https://github.com/airbytehq/airbyte-api-python-sdk/blob/main/scripts/post_generate.uv)
 > - Then trigger regeneration (see below)
 
 ## For Maintainers

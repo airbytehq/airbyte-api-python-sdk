@@ -15,7 +15,7 @@ Do not guess or iterate blindly. Download the artifact first.
 ## Files You Can Safely Edit
 
 - `overlays/python_speakeasy.yaml` — Speakeasy overlay
-- `scripts/post_generate.py` — Post-generation patch script
+- `scripts/post_generate.uv` — Post-generation patch script (standalone uv script)
 - `poe_tasks.toml` — Build task definitions
 - `.github/workflows/` — CI workflows
 - `.github/dependabot.yml` — Dependabot configuration
