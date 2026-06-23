@@ -22,7 +22,24 @@ actions:
   # destinationType discriminator; the API validates the full schema server-side.
   # ---------------------------------------------------------------------------
 
-  # Replace SourceConfiguration oneOf (555 connector schemas) with generic object
+  # Step 1: Remove the oneOf arrays from the configuration union schemas.
+  # (Must be separate remove actions because `update` with null is not valid for arrays.)
+
+  - target: "$.components.schemas.SourceConfiguration.oneOf"
+    remove: true
+
+  - target: "$.components.schemas.DestinationConfiguration.oneOf"
+    remove: true
+
+  - target: "$.components.schemas.OAuthCredentialsConfiguration.oneOf"
+    remove: true
+
+  - target: "$.components.schemas.OAuthActorNames.enum"
+    remove: true
+
+  # Step 2: Update the schemas with generic object / string types.
+
+  # SourceConfiguration: generic object with required sourceType discriminator
   - target: "$.components.schemas.SourceConfiguration"
     update:
       description: >-
@@ -30,7 +47,6 @@ actions:
         Must include a `sourceType` string identifying the connector (e.g. 'postgres', 'github').
         Additional properties depend on the connector type; the API validates the full schema server-side.
       example: { sourceType: "postgres", host: "localhost", port: 5432 }
-      oneOf: null
       type: object
       additionalProperties: true
       required:
@@ -40,7 +56,7 @@ actions:
           type: string
           description: "The type of source connector."
 
-  # Replace DestinationConfiguration oneOf (45 connector schemas) with generic object
+  # DestinationConfiguration: generic object with required destinationType discriminator
   - target: "$.components.schemas.DestinationConfiguration"
     update:
       description: >-
@@ -48,7 +64,6 @@ actions:
         Must include a `destinationType` string identifying the connector (e.g. 'postgres', 'bigquery').
         Additional properties depend on the connector type; the API validates the full schema server-side.
       example: { destinationType: "postgres", host: "localhost", port: 5432 }
-      oneOf: null
       type: object
       additionalProperties: true
       required:
@@ -58,18 +73,16 @@ actions:
           type: string
           description: "The type of destination connector."
 
-  # Replace OAuthCredentialsConfiguration oneOf (~47 OAuth credential schemas) with generic object
+  # OAuthCredentialsConfiguration: generic object
   - target: "$.components.schemas.OAuthCredentialsConfiguration"
     update:
       description: "OAuth credentials configuration for the connector."
       example: { client_id: "your-client-id", client_secret: "your-client-secret" }
-      oneOf: null
       type: object
       additionalProperties: true
 
-  # Replace OAuthActorNames enum with a plain string (forward-compatible with new connectors)
+  # OAuthActorNames: plain string (forward-compatible with new connectors)
   - target: "$.components.schemas.OAuthActorNames"
     update:
-      enum: null
       type: string
       description: "The name of the OAuth-enabled connector (e.g. 'github', 'google-ads')."
