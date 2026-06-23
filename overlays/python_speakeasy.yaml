@@ -14,21 +14,21 @@ actions:
       $ref: "#/components/schemas/RowFilteringOperationEqual"
 
   # -----------------------------------------------------------------------
-  # Test: wildcard JSONPath to mark all source-* schemas as deprecated.
-  # Trying several JSONPath filter syntaxes to see which (if any) Speakeasy
-  # supports for matching schema names by prefix.
+  # Test: wildcard JSONPath to mark connector schemas as deprecated.
+  # Strategy: filter by content — source connectors have a sourceType
+  # property, destination connectors have a destinationType property.
   # -----------------------------------------------------------------------
 
-  # Attempt 1: RFC 9535 match() on property name via filter
-  - target: "$.components.schemas[?match(@, '^source-')]"
+  # Attempt: filter schemas that have a sourceType property
+  - target: "$.components.schemas[?(@.properties.sourceType)]"
     update:
       deprecated: true
       x-speakeasy-deprecation-message: >-
         Typed connector configuration models are deprecated and will be removed in v1.1.0.
         Pass configuration as a plain dict with a required 'sourceType' key instead.
 
-  # Attempt 2: Same for destination-*
-  - target: "$.components.schemas[?match(@, '^destination-')]"
+  # Attempt: filter schemas that have a destinationType property
+  - target: "$.components.schemas[?(@.properties.destinationType)]"
     update:
       deprecated: true
       x-speakeasy-deprecation-message: >-
