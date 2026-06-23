@@ -9,13 +9,16 @@ import pydantic
 from pydantic import model_serializer
 from pydantic.functional_validators import AfterValidator
 from typing import Optional
-from typing_extensions import Annotated, NotRequired, TypedDict
+from typing_extensions import Annotated, NotRequired, TypedDict, deprecated
 
 
 class Sendowl(str, Enum):
     SENDOWL = "sendowl"
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceSendowlTypedDict(TypedDict):
     start_date: datetime
     username: str
@@ -25,6 +28,9 @@ class SourceSendowlTypedDict(TypedDict):
     source_type: Sendowl
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceSendowl(BaseModel):
     start_date: datetime
 

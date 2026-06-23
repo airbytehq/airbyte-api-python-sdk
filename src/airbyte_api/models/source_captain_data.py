@@ -6,13 +6,16 @@ from airbyte_api.utils import validate_const
 from enum import Enum
 import pydantic
 from pydantic.functional_validators import AfterValidator
-from typing_extensions import Annotated, TypedDict
+from typing_extensions import Annotated, TypedDict, deprecated
 
 
 class CaptainData(str, Enum):
     CAPTAIN_DATA = "captain-data"
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceCaptainDataTypedDict(TypedDict):
     api_key: str
     r"""Your Captain Data project API key."""
@@ -21,6 +24,9 @@ class SourceCaptainDataTypedDict(TypedDict):
     source_type: CaptainData
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceCaptainData(BaseModel):
     api_key: str
     r"""Your Captain Data project API key."""

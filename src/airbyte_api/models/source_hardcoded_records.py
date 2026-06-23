@@ -8,19 +8,25 @@ import pydantic
 from pydantic import model_serializer
 from pydantic.functional_validators import AfterValidator
 from typing import Optional
-from typing_extensions import Annotated, NotRequired, TypedDict
+from typing_extensions import Annotated, NotRequired, TypedDict, deprecated
 
 
 class HardcodedRecords(str, Enum):
     HARDCODED_RECORDS = "hardcoded-records"
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceHardcodedRecordsTypedDict(TypedDict):
     count: NotRequired[int]
     r"""How many records per stream should be generated"""
     source_type: HardcodedRecords
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceHardcodedRecords(BaseModel):
     count: Optional[int] = 1000
     r"""How many records per stream should be generated"""

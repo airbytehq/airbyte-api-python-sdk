@@ -7,13 +7,16 @@ from datetime import datetime
 from enum import Enum
 import pydantic
 from pydantic.functional_validators import AfterValidator
-from typing_extensions import Annotated, TypedDict
+from typing_extensions import Annotated, TypedDict, deprecated
 
 
 class Freshservice(str, Enum):
     FRESHSERVICE = "freshservice"
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceFreshserviceTypedDict(TypedDict):
     api_key: str
     r"""Freshservice API Key. See <a href=\"https://api.freshservice.com/#authentication\">here</a>. The key is case sensitive."""
@@ -24,6 +27,9 @@ class SourceFreshserviceTypedDict(TypedDict):
     source_type: Freshservice
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceFreshservice(BaseModel):
     api_key: str
     r"""Freshservice API Key. See <a href=\"https://api.freshservice.com/#authentication\">here</a>. The key is case sensitive."""

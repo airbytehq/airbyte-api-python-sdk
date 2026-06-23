@@ -9,13 +9,16 @@ import pydantic
 from pydantic import model_serializer
 from pydantic.functional_validators import AfterValidator
 from typing import Optional
-from typing_extensions import Annotated, NotRequired, TypedDict
+from typing_extensions import Annotated, NotRequired, TypedDict, deprecated
 
 
 class Watchmode(str, Enum):
     WATCHMODE = "watchmode"
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceWatchmodeTypedDict(TypedDict):
     api_key: str
     r"""Your API key for authenticating with the Watchmode API. You can request a free API key at https://api.watchmode.com/requestApiKey/."""
@@ -25,6 +28,9 @@ class SourceWatchmodeTypedDict(TypedDict):
     source_type: Watchmode
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceWatchmode(BaseModel):
     api_key: str
     r"""Your API key for authenticating with the Watchmode API. You can request a free API key at https://api.watchmode.com/requestApiKey/."""

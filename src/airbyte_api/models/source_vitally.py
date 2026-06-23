@@ -8,7 +8,7 @@ import pydantic
 from pydantic import model_serializer
 from pydantic.functional_validators import AfterValidator
 from typing import Optional
-from typing_extensions import Annotated, NotRequired, TypedDict
+from typing_extensions import Annotated, NotRequired, TypedDict, deprecated
 
 
 class Vitally(str, Enum):
@@ -23,6 +23,9 @@ class SourceVitallyStatus(str, Enum):
     ACTIVE_OR_CHURNED = "activeOrChurned"
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceVitallyTypedDict(TypedDict):
     domain: str
     r"""Provide only the subdomain part, like https://{your-custom-subdomain}.rest.vitally.io/.  Keep empty if you don't have a subdomain."""
@@ -35,6 +38,9 @@ class SourceVitallyTypedDict(TypedDict):
     source_type: Vitally
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceVitally(BaseModel):
     domain: str
     r"""Provide only the subdomain part, like https://{your-custom-subdomain}.rest.vitally.io/.  Keep empty if you don't have a subdomain."""

@@ -8,7 +8,13 @@ import pydantic
 from pydantic import ConfigDict, model_serializer
 from pydantic.functional_validators import AfterValidator
 from typing import Any, Dict, List, Optional, Union
-from typing_extensions import Annotated, NotRequired, TypeAliasType, TypedDict
+from typing_extensions import (
+    Annotated,
+    NotRequired,
+    TypeAliasType,
+    TypedDict,
+    deprecated,
+)
 
 
 class SourceDb2EnterpriseCursorMethodCdc(str, Enum):
@@ -478,6 +484,9 @@ SourceDb2EnterpriseSSHTunnelMethod = TypeAliasType(
 r"""Whether to initiate an SSH tunnel before connecting to the database, and if so, which kind of authentication to use."""
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceDb2EnterpriseTypedDict(TypedDict):
     cursor: SourceDb2EnterpriseUpdateMethodTypedDict
     r"""Configures how data is extracted from the database."""
@@ -508,6 +517,9 @@ class SourceDb2EnterpriseTypedDict(TypedDict):
     source_type: Db2Enterprise
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceDb2Enterprise(BaseModel):
     cursor: SourceDb2EnterpriseUpdateMethod
     r"""Configures how data is extracted from the database."""

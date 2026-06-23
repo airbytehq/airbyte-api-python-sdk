@@ -8,13 +8,16 @@ import pydantic
 from pydantic import model_serializer
 from pydantic.functional_validators import AfterValidator
 from typing import Optional
-from typing_extensions import Annotated, NotRequired, TypedDict
+from typing_extensions import Annotated, NotRequired, TypedDict, deprecated
 
 
 class Timeplus(str, Enum):
     TIMEPLUS = "timeplus"
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'destinationType' key instead.."
+)
 class DestinationTimeplusTypedDict(TypedDict):
     apikey: str
     r"""Personal API key"""
@@ -23,6 +26,9 @@ class DestinationTimeplusTypedDict(TypedDict):
     r"""Timeplus workspace endpoint"""
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'destinationType' key instead.."
+)
 class DestinationTimeplus(BaseModel):
     apikey: str
     r"""Personal API key"""

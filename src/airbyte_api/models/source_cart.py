@@ -8,7 +8,13 @@ import pydantic
 from pydantic import Discriminator, Tag, model_serializer
 from pydantic.functional_validators import AfterValidator
 from typing import Optional, Union
-from typing_extensions import Annotated, NotRequired, TypeAliasType, TypedDict
+from typing_extensions import (
+    Annotated,
+    NotRequired,
+    TypeAliasType,
+    TypedDict,
+    deprecated,
+)
 
 
 class AuthTypeSingleStoreAccessToken(str, Enum):
@@ -93,6 +99,9 @@ class Cart(str, Enum):
     CART = "cart"
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceCartTypedDict(TypedDict):
     start_date: str
     r"""The date from which you'd like to replicate the data"""
@@ -100,6 +109,9 @@ class SourceCartTypedDict(TypedDict):
     source_type: Cart
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceCart(BaseModel):
     start_date: str
     r"""The date from which you'd like to replicate the data"""

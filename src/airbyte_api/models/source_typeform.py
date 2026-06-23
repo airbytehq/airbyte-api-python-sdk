@@ -9,7 +9,13 @@ import pydantic
 from pydantic import model_serializer
 from pydantic.functional_validators import AfterValidator
 from typing import List, Optional, Union
-from typing_extensions import Annotated, NotRequired, TypeAliasType, TypedDict
+from typing_extensions import (
+    Annotated,
+    NotRequired,
+    TypeAliasType,
+    TypedDict,
+    deprecated,
+)
 
 
 class SourceTypeformAuthTypeAccessToken(str, Enum):
@@ -128,6 +134,9 @@ class TypeformEnum(str, Enum):
     TYPEFORM = "typeform"
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceTypeformTypedDict(TypedDict):
     credentials: SourceTypeformAuthorizationMethodTypedDict
     form_ids: NotRequired[List[str]]
@@ -137,6 +146,9 @@ class SourceTypeformTypedDict(TypedDict):
     r"""The date from which you'd like to replicate data for Typeform API, in the format YYYY-MM-DDT00:00:00Z. All data generated after this date will be replicated."""
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceTypeform(BaseModel):
     credentials: SourceTypeformAuthorizationMethod
 

@@ -9,7 +9,13 @@ import pydantic
 from pydantic import model_serializer
 from pydantic.functional_validators import AfterValidator
 from typing import List, Optional, Union
-from typing_extensions import Annotated, NotRequired, TypeAliasType, TypedDict
+from typing_extensions import (
+    Annotated,
+    NotRequired,
+    TypeAliasType,
+    TypedDict,
+    deprecated,
+)
 
 
 class AuthTypePrivateKey(str, Enum):
@@ -903,6 +909,9 @@ class SourceSftpBulkFileBasedStreamConfig(BaseModel):
         return m
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceSftpBulkTypedDict(TypedDict):
     r"""Used during spec; allows the developer to configure the cloud provider specific options
     that are needed when users configure a file-based source.
@@ -926,6 +935,9 @@ class SourceSftpBulkTypedDict(TypedDict):
     r"""UTC date and time in the format 2017-01-25T00:00:00.000000Z. Any file modified before this date will not be replicated."""
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceSftpBulk(BaseModel):
     r"""Used during spec; allows the developer to configure the cloud provider specific options
     that are needed when users configure a file-based source.

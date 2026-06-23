@@ -8,13 +8,16 @@ import pydantic
 from pydantic import model_serializer
 from pydantic.functional_validators import AfterValidator
 from typing import Optional
-from typing_extensions import Annotated, NotRequired, TypedDict
+from typing_extensions import Annotated, NotRequired, TypedDict, deprecated
 
 
 class ServiceNow(str, Enum):
     SERVICE_NOW = "service-now"
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceServiceNowTypedDict(TypedDict):
     base_url: str
     username: str
@@ -22,6 +25,9 @@ class SourceServiceNowTypedDict(TypedDict):
     source_type: ServiceNow
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceServiceNow(BaseModel):
     base_url: str
 

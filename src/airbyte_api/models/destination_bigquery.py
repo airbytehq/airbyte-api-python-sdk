@@ -8,7 +8,13 @@ import pydantic
 from pydantic import ConfigDict, model_serializer
 from pydantic.functional_validators import AfterValidator
 from typing import Any, Dict, Optional, Union
-from typing_extensions import Annotated, NotRequired, TypeAliasType, TypedDict
+from typing_extensions import (
+    Annotated,
+    NotRequired,
+    TypeAliasType,
+    TypedDict,
+    deprecated,
+)
 
 
 class DestinationBigqueryCDCDeletionMode(str, Enum):
@@ -276,6 +282,9 @@ DestinationBigqueryLoadingMethod = TypeAliasType(
 r"""The way data will be uploaded to BigQuery."""
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'destinationType' key instead.."
+)
 class DestinationBigqueryTypedDict(TypedDict):
     dataset_id: str
     r"""The default BigQuery Dataset ID that tables are replicated to if the source does not specify a namespace. Read more <a href=\"https://cloud.google.com/bigquery/docs/datasets#create-dataset\">here</a>."""
@@ -296,6 +305,9 @@ class DestinationBigqueryTypedDict(TypedDict):
     r"""Airbyte will use this dataset for various internal tables. In legacy raw tables mode, the raw tables will be stored in this dataset. Defaults to \"airbyte_internal\"."""
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'destinationType' key instead.."
+)
 class DestinationBigquery(BaseModel):
     dataset_id: str
     r"""The default BigQuery Dataset ID that tables are replicated to if the source does not specify a namespace. Read more <a href=\"https://cloud.google.com/bigquery/docs/datasets#create-dataset\">here</a>."""

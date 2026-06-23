@@ -7,13 +7,16 @@ from datetime import date
 from enum import Enum
 import pydantic
 from pydantic.functional_validators import AfterValidator
-from typing_extensions import Annotated, TypedDict
+from typing_extensions import Annotated, TypedDict, deprecated
 
 
 class Woocommerce(str, Enum):
     WOOCOMMERCE = "woocommerce"
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceWoocommerceTypedDict(TypedDict):
     api_key: str
     r"""Customer Key for API in WooCommerce shop"""
@@ -26,6 +29,9 @@ class SourceWoocommerceTypedDict(TypedDict):
     source_type: Woocommerce
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceWoocommerce(BaseModel):
     api_key: str
     r"""Customer Key for API in WooCommerce shop"""

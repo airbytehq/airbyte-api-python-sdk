@@ -6,19 +6,25 @@ from airbyte_api.utils import validate_const
 from enum import Enum
 import pydantic
 from pydantic.functional_validators import AfterValidator
-from typing_extensions import Annotated, TypedDict
+from typing_extensions import Annotated, TypedDict, deprecated
 
 
 class Mailerlite(str, Enum):
     MAILERLITE = "mailerlite"
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceMailerliteTypedDict(TypedDict):
     api_token: str
     r"""Your API Token. See <a href=\"https://developers.mailerlite.com/docs/#authentication\">here</a>."""
     source_type: Mailerlite
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceMailerlite(BaseModel):
     api_token: str
     r"""Your API Token. See <a href=\"https://developers.mailerlite.com/docs/#authentication\">here</a>."""

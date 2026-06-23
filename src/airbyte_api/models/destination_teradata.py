@@ -8,7 +8,13 @@ import pydantic
 from pydantic import model_serializer
 from pydantic.functional_validators import AfterValidator
 from typing import Optional, Union
-from typing_extensions import Annotated, NotRequired, TypeAliasType, TypedDict
+from typing_extensions import (
+    Annotated,
+    NotRequired,
+    TypeAliasType,
+    TypedDict,
+    deprecated,
+)
 
 
 class Teradata(str, Enum):
@@ -401,6 +407,9 @@ See more information - <a href=\"https://teradata-docs.s3.amazonaws.com/doc/conn
 """
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'destinationType' key instead.."
+)
 class DestinationTeradataTypedDict(TypedDict):
     host: str
     r"""Hostname of the database."""
@@ -432,6 +441,9 @@ class DestinationTeradataTypedDict(TypedDict):
     """
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'destinationType' key instead.."
+)
 class DestinationTeradata(BaseModel):
     host: str
     r"""Hostname of the database."""

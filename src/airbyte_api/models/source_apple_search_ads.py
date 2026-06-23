@@ -8,7 +8,7 @@ import pydantic
 from pydantic import model_serializer
 from pydantic.functional_validators import AfterValidator
 from typing import Optional
-from typing_extensions import Annotated, NotRequired, TypedDict
+from typing_extensions import Annotated, NotRequired, TypedDict, deprecated
 
 
 class AppleSearchAds(str, Enum):
@@ -22,6 +22,9 @@ class TimeZone(str, Enum):
     UTC = "UTC"
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceAppleSearchAdsTypedDict(TypedDict):
     client_id: str
     r"""A user identifier for the token request. See <a href=\"https://developer.apple.com/documentation/apple_search_ads/implementing_oauth_for_the_apple_search_ads_api\">here</a>"""
@@ -44,6 +47,9 @@ class SourceAppleSearchAdsTypedDict(TypedDict):
     r"""Token Refresh Endpoint. You should override the default value in scenarios  where it's required to proxy requests to Apple's token endpoint"""
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceAppleSearchAds(BaseModel):
     client_id: str
     r"""A user identifier for the token request. See <a href=\"https://developer.apple.com/documentation/apple_search_ads/implementing_oauth_for_the_apple_search_ads_api\">here</a>"""

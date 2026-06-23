@@ -9,7 +9,7 @@ import pydantic
 from pydantic import model_serializer
 from pydantic.functional_validators import AfterValidator
 from typing import Optional
-from typing_extensions import Annotated, NotRequired, TypedDict
+from typing_extensions import Annotated, NotRequired, TypedDict, deprecated
 
 
 class FinancialModelling(str, Enum):
@@ -27,6 +27,9 @@ class TimeFrame(str, Enum):
     FOURHOUR = "4hour"
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceFinancialModellingTypedDict(TypedDict):
     api_key: str
     start_date: datetime
@@ -41,6 +44,9 @@ class SourceFinancialModellingTypedDict(TypedDict):
     r"""For example 1min, 5min, 15min, 30min, 1hour, 4hour"""
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceFinancialModelling(BaseModel):
     api_key: str
 

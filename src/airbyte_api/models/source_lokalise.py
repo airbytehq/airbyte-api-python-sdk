@@ -6,13 +6,16 @@ from airbyte_api.utils import validate_const
 from enum import Enum
 import pydantic
 from pydantic.functional_validators import AfterValidator
-from typing_extensions import Annotated, TypedDict
+from typing_extensions import Annotated, TypedDict, deprecated
 
 
 class Lokalise(str, Enum):
     LOKALISE = "lokalise"
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceLokaliseTypedDict(TypedDict):
     api_key: str
     r"""Lokalise API Key with read-access. Available at Profile settings > API tokens. See <a href=\"https://docs.lokalise.com/en/articles/1929556-api-tokens\">here</a>."""
@@ -21,6 +24,9 @@ class SourceLokaliseTypedDict(TypedDict):
     source_type: Lokalise
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceLokalise(BaseModel):
     api_key: str
     r"""Lokalise API Key with read-access. Available at Profile settings > API tokens. See <a href=\"https://docs.lokalise.com/en/articles/1929556-api-tokens\">here</a>."""

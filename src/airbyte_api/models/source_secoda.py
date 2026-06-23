@@ -6,19 +6,25 @@ from airbyte_api.utils import validate_const
 from enum import Enum
 import pydantic
 from pydantic.functional_validators import AfterValidator
-from typing_extensions import Annotated, TypedDict
+from typing_extensions import Annotated, TypedDict, deprecated
 
 
 class Secoda(str, Enum):
     SECODA = "secoda"
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceSecodaTypedDict(TypedDict):
     api_key: str
     r"""Your API Access Key. See <a href=\"https://docs.secoda.co/secoda-api/authentication\">here</a>. The key is case sensitive."""
     source_type: Secoda
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceSecoda(BaseModel):
     api_key: str
     r"""Your API Access Key. See <a href=\"https://docs.secoda.co/secoda-api/authentication\">here</a>. The key is case sensitive."""

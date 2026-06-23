@@ -8,13 +8,16 @@ import pydantic
 from pydantic import model_serializer
 from pydantic.functional_validators import AfterValidator
 from typing import Optional
-from typing_extensions import Annotated, NotRequired, TypedDict
+from typing_extensions import Annotated, NotRequired, TypedDict, deprecated
 
 
 class Onfleet(str, Enum):
     ONFLEET = "onfleet"
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceOnfleetTypedDict(TypedDict):
     api_key: str
     r"""API key to use for authenticating requests. You can create and manage your API keys in the API section of the Onfleet dashboard."""
@@ -23,6 +26,9 @@ class SourceOnfleetTypedDict(TypedDict):
     source_type: Onfleet
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceOnfleet(BaseModel):
     api_key: str
     r"""API key to use for authenticating requests. You can create and manage your API keys in the API section of the Onfleet dashboard."""

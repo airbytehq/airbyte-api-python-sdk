@@ -9,7 +9,7 @@ import pydantic
 from pydantic import model_serializer
 from pydantic.functional_validators import AfterValidator
 from typing import List, Optional
-from typing_extensions import Annotated, NotRequired, TypedDict
+from typing_extensions import Annotated, NotRequired, TypedDict, deprecated
 
 
 class SourceSurveymonkeyAuthMethod(str, Enum):
@@ -77,6 +77,9 @@ class SurveymonkeyEnum(str, Enum):
     SURVEYMONKEY = "surveymonkey"
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceSurveymonkeyTypedDict(TypedDict):
     credentials: SurveyMonkeyAuthorizationMethodTypedDict
     r"""The authorization method to use to retrieve data from SurveyMonkey"""
@@ -89,6 +92,9 @@ class SourceSurveymonkeyTypedDict(TypedDict):
     r"""IDs of the surveys from which you'd like to replicate data. If left empty, data from all boards to which you have access will be replicated."""
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceSurveymonkey(BaseModel):
     credentials: SurveyMonkeyAuthorizationMethod
     r"""The authorization method to use to retrieve data from SurveyMonkey"""

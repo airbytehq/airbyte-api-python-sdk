@@ -8,13 +8,16 @@ import pydantic
 from pydantic import model_serializer
 from pydantic.functional_validators import AfterValidator
 from typing import Optional
-from typing_extensions import Annotated, NotRequired, TypedDict
+from typing_extensions import Annotated, NotRequired, TypedDict, deprecated
 
 
 class MicrosoftDataverse(str, Enum):
     MICROSOFT_DATAVERSE = "microsoft-dataverse"
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceMicrosoftDataverseTypedDict(TypedDict):
     client_id: str
     r"""App Registration Client Id"""
@@ -29,6 +32,9 @@ class SourceMicrosoftDataverseTypedDict(TypedDict):
     source_type: MicrosoftDataverse
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceMicrosoftDataverse(BaseModel):
     client_id: str
     r"""App Registration Client Id"""

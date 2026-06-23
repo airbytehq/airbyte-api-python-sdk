@@ -7,7 +7,7 @@ from datetime import datetime
 from enum import Enum
 import pydantic
 from pydantic.functional_validators import AfterValidator
-from typing_extensions import Annotated, TypedDict
+from typing_extensions import Annotated, TypedDict, deprecated
 
 
 class SourceZohoBooksRegion(str, Enum):
@@ -27,6 +27,9 @@ class ZohoBooks(str, Enum):
     ZOHO_BOOKS = "zoho-books"
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceZohoBooksTypedDict(TypedDict):
     client_id: str
     client_secret: str
@@ -37,6 +40,9 @@ class SourceZohoBooksTypedDict(TypedDict):
     source_type: ZohoBooks
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceZohoBooks(BaseModel):
     client_id: str
 

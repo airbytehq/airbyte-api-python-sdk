@@ -9,13 +9,16 @@ import pydantic
 from pydantic import model_serializer
 from pydantic.functional_validators import AfterValidator
 from typing import List, Optional
-from typing_extensions import Annotated, NotRequired, TypedDict
+from typing_extensions import Annotated, NotRequired, TypedDict, deprecated
 
 
 class Trello(str, Enum):
     TRELLO = "trello"
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceTrelloTypedDict(TypedDict):
     key: str
     r"""Trello API key. See the <a href=\"https://developer.atlassian.com/cloud/trello/guides/rest-api/authorization/#using-basic-oauth\">docs</a> for instructions on how to generate it."""
@@ -28,6 +31,9 @@ class SourceTrelloTypedDict(TypedDict):
     source_type: Trello
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceTrello(BaseModel):
     key: str
     r"""Trello API key. See the <a href=\"https://developer.atlassian.com/cloud/trello/guides/rest-api/authorization/#using-basic-oauth\">docs</a> for instructions on how to generate it."""

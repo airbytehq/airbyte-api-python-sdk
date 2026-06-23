@@ -8,7 +8,13 @@ import pydantic
 from pydantic import ConfigDict, model_serializer
 from pydantic.functional_validators import AfterValidator
 from typing import Any, Dict, Optional, Union
-from typing_extensions import Annotated, NotRequired, TypeAliasType, TypedDict
+from typing_extensions import (
+    Annotated,
+    NotRequired,
+    TypeAliasType,
+    TypedDict,
+    deprecated,
+)
 
 
 class MssqlV2(str, Enum):
@@ -349,6 +355,9 @@ DestinationMssqlV2SSLMethod = TypeAliasType(
 r"""The encryption method which is used to communicate with the database."""
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'destinationType' key instead.."
+)
 class DestinationMssqlV2TypedDict(TypedDict):
     database: str
     r"""The name of the MSSQL database."""
@@ -371,6 +380,9 @@ class DestinationMssqlV2TypedDict(TypedDict):
     r"""The default schema tables are written to if the source does not specify a namespace. The usual value for this field is \"public\"."""
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'destinationType' key instead.."
+)
 class DestinationMssqlV2(BaseModel):
     database: str
     r"""The name of the MSSQL database."""

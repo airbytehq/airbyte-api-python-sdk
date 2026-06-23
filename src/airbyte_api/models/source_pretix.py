@@ -6,19 +6,25 @@ from airbyte_api.utils import validate_const
 from enum import Enum
 import pydantic
 from pydantic.functional_validators import AfterValidator
-from typing_extensions import Annotated, TypedDict
+from typing_extensions import Annotated, TypedDict, deprecated
 
 
 class Pretix(str, Enum):
     PRETIX = "pretix"
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourcePretixTypedDict(TypedDict):
     api_token: str
     r"""API token to use. Obtain it from the pretix web interface by creating a new token under your team settings."""
     source_type: Pretix
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourcePretix(BaseModel):
     api_token: str
     r"""API token to use. Obtain it from the pretix web interface by creating a new token under your team settings."""

@@ -6,13 +6,16 @@ from airbyte_api.utils import validate_const
 from enum import Enum
 import pydantic
 from pydantic.functional_validators import AfterValidator
-from typing_extensions import Annotated, TypedDict
+from typing_extensions import Annotated, TypedDict, deprecated
 
 
 class Weatherstack(str, Enum):
     WEATHERSTACK = "weatherstack"
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceWeatherstackTypedDict(TypedDict):
     access_key: str
     r"""API access key used to retrieve data from the Weatherstack API.(https://weatherstack.com/product)"""
@@ -23,6 +26,9 @@ class SourceWeatherstackTypedDict(TypedDict):
     source_type: Weatherstack
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceWeatherstack(BaseModel):
     access_key: str
     r"""API access key used to retrieve data from the Weatherstack API.(https://weatherstack.com/product)"""

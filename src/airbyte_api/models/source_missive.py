@@ -9,7 +9,7 @@ import pydantic
 from pydantic import model_serializer
 from pydantic.functional_validators import AfterValidator
 from typing import Optional
-from typing_extensions import Annotated, NotRequired, TypedDict
+from typing_extensions import Annotated, NotRequired, TypedDict, deprecated
 
 
 class Kind(str, Enum):
@@ -23,6 +23,9 @@ class Missive(str, Enum):
     MISSIVE = "missive"
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceMissiveTypedDict(TypedDict):
     api_key: str
     start_date: datetime
@@ -33,6 +36,9 @@ class SourceMissiveTypedDict(TypedDict):
     source_type: Missive
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceMissive(BaseModel):
     api_key: str
 

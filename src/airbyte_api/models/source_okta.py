@@ -9,7 +9,13 @@ import pydantic
 from pydantic import Discriminator, Tag, model_serializer
 from pydantic.functional_validators import AfterValidator
 from typing import Optional, Union
-from typing_extensions import Annotated, NotRequired, TypeAliasType, TypedDict
+from typing_extensions import (
+    Annotated,
+    NotRequired,
+    TypeAliasType,
+    TypedDict,
+    deprecated,
+)
 
 
 class SourceOktaAuthTypeAPIToken(str, Enum):
@@ -132,6 +138,9 @@ class Okta(str, Enum):
     OKTA = "okta"
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceOktaTypedDict(TypedDict):
     credentials: NotRequired[SourceOktaAuthorizationMethodTypedDict]
     domain: NotRequired[str]
@@ -141,6 +150,9 @@ class SourceOktaTypedDict(TypedDict):
     r"""UTC date and time in the format YYYY-MM-DDTHH:MM:SSZ. Any data before this date will not be replicated."""
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceOkta(BaseModel):
     credentials: Optional[SourceOktaAuthorizationMethod] = None
 

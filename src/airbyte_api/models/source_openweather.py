@@ -8,7 +8,7 @@ import pydantic
 from pydantic import model_serializer
 from pydantic.functional_validators import AfterValidator
 from typing import Optional
-from typing_extensions import Annotated, NotRequired, TypedDict
+from typing_extensions import Annotated, NotRequired, TypedDict, deprecated
 
 
 class Lang(str, Enum):
@@ -77,6 +77,9 @@ class Units(str, Enum):
     IMPERIAL = "imperial"
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceOpenweatherTypedDict(TypedDict):
     appid: str
     r"""API KEY"""
@@ -93,6 +96,9 @@ class SourceOpenweatherTypedDict(TypedDict):
     r"""Units of measurement. standard, metric and imperial units are available. If you do not use the units parameter, standard units will be applied by default."""
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceOpenweather(BaseModel):
     appid: str
     r"""API KEY"""

@@ -8,7 +8,7 @@ import pydantic
 from pydantic import model_serializer
 from pydantic.functional_validators import AfterValidator
 from typing import List, Optional
-from typing_extensions import Annotated, NotRequired, TypedDict
+from typing_extensions import Annotated, NotRequired, TypedDict, deprecated
 
 
 class DataSource(str, Enum):
@@ -54,6 +54,9 @@ class Datadog(str, Enum):
     DATADOG = "datadog"
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceDatadogTypedDict(TypedDict):
     api_key: str
     r"""Datadog API key"""
@@ -74,6 +77,9 @@ class SourceDatadogTypedDict(TypedDict):
     r"""UTC date and time in the format 2017-01-25T00:00:00Z. Any data before this date will not be replicated. This just applies to Incremental syncs."""
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceDatadog(BaseModel):
     api_key: str
     r"""Datadog API key"""

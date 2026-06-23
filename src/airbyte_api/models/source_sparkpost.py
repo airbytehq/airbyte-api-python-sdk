@@ -9,7 +9,7 @@ import pydantic
 from pydantic import model_serializer
 from pydantic.functional_validators import AfterValidator
 from typing import Optional
-from typing_extensions import Annotated, NotRequired, TypedDict
+from typing_extensions import Annotated, NotRequired, TypedDict, deprecated
 
 
 class APIEndpointPrefix(str, Enum):
@@ -21,6 +21,9 @@ class Sparkpost(str, Enum):
     SPARKPOST = "sparkpost"
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceSparkpostTypedDict(TypedDict):
     api_key: str
     start_date: datetime
@@ -28,6 +31,9 @@ class SourceSparkpostTypedDict(TypedDict):
     source_type: Sparkpost
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceSparkpost(BaseModel):
     api_key: str
 

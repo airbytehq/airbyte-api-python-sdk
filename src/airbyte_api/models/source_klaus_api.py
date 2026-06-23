@@ -9,13 +9,16 @@ import pydantic
 from pydantic import model_serializer
 from pydantic.functional_validators import AfterValidator
 from typing import Optional
-from typing_extensions import Annotated, NotRequired, TypedDict
+from typing_extensions import Annotated, NotRequired, TypedDict, deprecated
 
 
 class KlausAPI(str, Enum):
     KLAUS_API = "klaus-api"
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceKlausAPITypedDict(TypedDict):
     account: int
     r"""getting data by account"""
@@ -28,6 +31,9 @@ class SourceKlausAPITypedDict(TypedDict):
     r"""Start getting data from that date."""
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceKlausAPI(BaseModel):
     account: int
     r"""getting data by account"""

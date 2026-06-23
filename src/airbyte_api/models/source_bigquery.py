@@ -8,13 +8,16 @@ import pydantic
 from pydantic import model_serializer
 from pydantic.functional_validators import AfterValidator
 from typing import Optional
-from typing_extensions import Annotated, NotRequired, TypedDict
+from typing_extensions import Annotated, NotRequired, TypedDict, deprecated
 
 
 class SourceBigqueryBigquery(str, Enum):
     BIGQUERY = "bigquery"
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceBigqueryTypedDict(TypedDict):
     credentials_json: str
     r"""The contents of your Service Account Key JSON file. See the <a href=\"https://docs.airbyte.com/integrations/sources/bigquery#setup-the-bigquery-source-in-airbyte\">docs</a> for more information on how to obtain this key."""
@@ -25,6 +28,9 @@ class SourceBigqueryTypedDict(TypedDict):
     source_type: SourceBigqueryBigquery
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceBigquery(BaseModel):
     credentials_json: str
     r"""The contents of your Service Account Key JSON file. See the <a href=\"https://docs.airbyte.com/integrations/sources/bigquery#setup-the-bigquery-source-in-airbyte\">docs</a> for more information on how to obtain this key."""

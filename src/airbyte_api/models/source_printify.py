@@ -6,19 +6,25 @@ from airbyte_api.utils import validate_const
 from enum import Enum
 import pydantic
 from pydantic.functional_validators import AfterValidator
-from typing_extensions import Annotated, TypedDict
+from typing_extensions import Annotated, TypedDict, deprecated
 
 
 class Printify(str, Enum):
     PRINTIFY = "printify"
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourcePrintifyTypedDict(TypedDict):
     api_token: str
     r"""Your Printify API token. Obtain it from your Printify account settings."""
     source_type: Printify
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourcePrintify(BaseModel):
     api_token: str
     r"""Your Printify API token. Obtain it from your Printify account settings."""

@@ -7,13 +7,16 @@ from datetime import datetime
 from enum import Enum
 import pydantic
 from pydantic.functional_validators import AfterValidator
-from typing_extensions import Annotated, TypedDict
+from typing_extensions import Annotated, TypedDict, deprecated
 
 
 class Sevenshifts(str, Enum):
     SEVENSHIFTS = "7shifts"
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class Source7shiftsTypedDict(TypedDict):
     access_token: str
     r"""Access token to use for authentication. Generate it in the 7shifts Developer Tools."""
@@ -21,6 +24,9 @@ class Source7shiftsTypedDict(TypedDict):
     source_type: Sevenshifts
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class Source7shifts(BaseModel):
     access_token: str
     r"""Access token to use for authentication. Generate it in the 7shifts Developer Tools."""

@@ -8,13 +8,16 @@ import pydantic
 from pydantic import model_serializer
 from pydantic.functional_validators import AfterValidator
 from typing import Optional
-from typing_extensions import Annotated, NotRequired, TypedDict
+from typing_extensions import Annotated, NotRequired, TypedDict, deprecated
 
 
 class TheGuardianAPI(str, Enum):
     THE_GUARDIAN_API = "the-guardian-api"
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceTheGuardianAPITypedDict(TypedDict):
     api_key: str
     r"""Your API Key. See <a href=\"https://open-platform.theguardian.com/access/\">here</a>. The key is case sensitive."""
@@ -31,6 +34,9 @@ class SourceTheGuardianAPITypedDict(TypedDict):
     r"""(Optional) A tag is a piece of data that is used by The Guardian to categorise content. Use this parameter to filter results by showing only the ones matching the entered tag. See <a href=\"https://content.guardianapis.com/tags?api-key=test\">here</a> for a list of all tags, and <a href=\"https://open-platform.theguardian.com/documentation/tag\">here</a> for the tags endpoint documentation."""
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceTheGuardianAPI(BaseModel):
     api_key: str
     r"""Your API Key. See <a href=\"https://open-platform.theguardian.com/access/\">here</a>. The key is case sensitive."""

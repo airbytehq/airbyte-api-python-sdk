@@ -9,7 +9,13 @@ import pydantic
 from pydantic import ConfigDict, model_serializer
 from pydantic.functional_validators import AfterValidator
 from typing import Any, Dict, Optional, Union
-from typing_extensions import Annotated, NotRequired, TypeAliasType, TypedDict
+from typing_extensions import (
+    Annotated,
+    NotRequired,
+    TypeAliasType,
+    TypedDict,
+    deprecated,
+)
 
 
 class SourceZendeskTalkAuthTypeAPIToken(str, Enum):
@@ -155,6 +161,9 @@ class ZendeskTalkEnum(str, Enum):
     ZENDESK_TALK = "zendesk-talk"
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceZendeskTalkTypedDict(TypedDict):
     start_date: datetime
     r"""The date from which you'd like to replicate data for Zendesk Talk API, in the format YYYY-MM-DDT00:00:00Z. All data generated after this date will be replicated."""
@@ -165,6 +174,9 @@ class SourceZendeskTalkTypedDict(TypedDict):
     source_type: ZendeskTalkEnum
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceZendeskTalk(BaseModel):
     start_date: datetime
     r"""The date from which you'd like to replicate data for Zendesk Talk API, in the format YYYY-MM-DDT00:00:00Z. All data generated after this date will be replicated."""

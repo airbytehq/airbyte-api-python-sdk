@@ -6,19 +6,25 @@ from airbyte_api.utils import validate_const
 from enum import Enum
 import pydantic
 from pydantic.functional_validators import AfterValidator
-from typing_extensions import Annotated, TypedDict
+from typing_extensions import Annotated, TypedDict, deprecated
 
 
 class IncidentIo(str, Enum):
     INCIDENT_IO = "incident-io"
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceIncidentIoTypedDict(TypedDict):
     api_key: str
     r"""API key to use. Find it at https://app.incident.io/settings/api-keys"""
     source_type: IncidentIo
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceIncidentIo(BaseModel):
     api_key: str
     r"""API key to use. Find it at https://app.incident.io/settings/api-keys"""

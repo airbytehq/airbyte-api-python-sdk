@@ -8,7 +8,7 @@ import pydantic
 from pydantic import model_serializer
 from pydantic.functional_validators import AfterValidator
 from typing import Optional, Union
-from typing_extensions import Annotated, TypeAliasType, TypedDict
+from typing_extensions import Annotated, TypeAliasType, TypedDict, deprecated
 
 
 class DestinationGoogleSheetsAuthTypeService(str, Enum):
@@ -127,6 +127,9 @@ class DestinationGoogleSheetsGoogleSheets(str, Enum):
     GOOGLE_SHEETS = "google-sheets"
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'destinationType' key instead.."
+)
 class DestinationGoogleSheetsTypedDict(TypedDict):
     credentials: DestinationGoogleSheetsAuthenticationTypedDict
     r"""Authentication method to access Google Sheets"""
@@ -135,6 +138,9 @@ class DestinationGoogleSheetsTypedDict(TypedDict):
     destination_type: DestinationGoogleSheetsGoogleSheets
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'destinationType' key instead.."
+)
 class DestinationGoogleSheets(BaseModel):
     credentials: DestinationGoogleSheetsAuthentication
     r"""Authentication method to access Google Sheets"""

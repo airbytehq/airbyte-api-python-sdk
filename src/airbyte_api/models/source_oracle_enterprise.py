@@ -8,7 +8,13 @@ import pydantic
 from pydantic import ConfigDict, model_serializer
 from pydantic.functional_validators import AfterValidator
 from typing import Any, Dict, List, Optional, Union
-from typing_extensions import Annotated, NotRequired, TypeAliasType, TypedDict
+from typing_extensions import (
+    Annotated,
+    NotRequired,
+    TypeAliasType,
+    TypedDict,
+    deprecated,
+)
 
 
 class SourceOracleEnterpriseConnectionTypeSid(str, Enum):
@@ -732,6 +738,9 @@ SourceOracleEnterpriseSSHTunnelMethod = TypeAliasType(
 r"""Whether to initiate an SSH tunnel before connecting to the database, and if so, which kind of authentication to use."""
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceOracleEnterpriseTypedDict(TypedDict):
     connection_data: SourceOracleEnterpriseConnectByTypedDict
     r"""The scheme by which to establish a database connection."""
@@ -768,6 +777,9 @@ class SourceOracleEnterpriseTypedDict(TypedDict):
     r"""Inclusion filters for table selection per schema. If no filters are specified for a schema, all tables in that schema will be synced."""
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceOracleEnterprise(BaseModel):
     connection_data: SourceOracleEnterpriseConnectBy
     r"""The scheme by which to establish a database connection."""

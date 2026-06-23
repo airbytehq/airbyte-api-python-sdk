@@ -7,19 +7,25 @@ from enum import Enum
 import pydantic
 from pydantic.functional_validators import AfterValidator
 from typing import Any, List
-from typing_extensions import Annotated, TypedDict
+from typing_extensions import Annotated, TypedDict, deprecated
 
 
 class YoutubeData(str, Enum):
     YOUTUBE_DATA = "youtube-data"
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceYoutubeDataTypedDict(TypedDict):
     api_key: str
     channel_ids: List[Any]
     source_type: YoutubeData
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceYoutubeData(BaseModel):
     api_key: str
 

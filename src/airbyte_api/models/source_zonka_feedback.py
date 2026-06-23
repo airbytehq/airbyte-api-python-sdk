@@ -6,7 +6,7 @@ from airbyte_api.utils import validate_const
 from enum import Enum
 import pydantic
 from pydantic.functional_validators import AfterValidator
-from typing_extensions import Annotated, TypedDict
+from typing_extensions import Annotated, TypedDict, deprecated
 
 
 class DataCenterID(str, Enum):
@@ -20,6 +20,9 @@ class ZonkaFeedback(str, Enum):
     ZONKA_FEEDBACK = "zonka-feedback"
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceZonkaFeedbackTypedDict(TypedDict):
     auth_token: str
     r"""Auth token to use. Generate it by navigating to Company Settings > Developers > API in your Zonka Feedback account."""
@@ -28,6 +31,9 @@ class SourceZonkaFeedbackTypedDict(TypedDict):
     source_type: ZonkaFeedback
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceZonkaFeedback(BaseModel):
     auth_token: str
     r"""Auth token to use. Generate it by navigating to Company Settings > Developers > API in your Zonka Feedback account."""

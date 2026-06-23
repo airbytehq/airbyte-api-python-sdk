@@ -6,13 +6,16 @@ from airbyte_api.utils import validate_const
 from enum import Enum
 import pydantic
 from pydantic.functional_validators import AfterValidator
-from typing_extensions import Annotated, TypedDict
+from typing_extensions import Annotated, TypedDict, deprecated
 
 
 class ApifyDataset(str, Enum):
     APIFY_DATASET = "apify-dataset"
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceApifyDatasetTypedDict(TypedDict):
     dataset_id: str
     r"""ID of the dataset you would like to load to Airbyte. In Apify Console, you can view your datasets in the <a href=\"https://console.apify.com/storage/datasets\">Storage section under the Datasets tab</a> after you login. See the <a href=\"https://docs.apify.com/platform/storage/dataset\">Apify Docs</a> for more information."""
@@ -21,6 +24,9 @@ class SourceApifyDatasetTypedDict(TypedDict):
     source_type: ApifyDataset
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceApifyDataset(BaseModel):
     dataset_id: str
     r"""ID of the dataset you would like to load to Airbyte. In Apify Console, you can view your datasets in the <a href=\"https://console.apify.com/storage/datasets\">Storage section under the Datasets tab</a> after you login. See the <a href=\"https://docs.apify.com/platform/storage/dataset\">Apify Docs</a> for more information."""

@@ -8,13 +8,16 @@ import pydantic
 from pydantic import model_serializer
 from pydantic.functional_validators import AfterValidator
 from typing import List, Optional
-from typing_extensions import Annotated, NotRequired, TypedDict
+from typing_extensions import Annotated, NotRequired, TypedDict, deprecated
 
 
 class Netsuite(str, Enum):
     NETSUITE = "netsuite"
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceNetsuiteTypedDict(TypedDict):
     consumer_key: str
     r"""Consumer key associated with your integration"""
@@ -35,6 +38,9 @@ class SourceNetsuiteTypedDict(TypedDict):
     r"""The amount of days used to query the data with date chunks. Set smaller value, if you have lots of data."""
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceNetsuite(BaseModel):
     consumer_key: str
     r"""Consumer key associated with your integration"""

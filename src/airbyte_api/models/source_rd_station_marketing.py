@@ -8,7 +8,7 @@ import pydantic
 from pydantic import model_serializer
 from pydantic.functional_validators import AfterValidator
 from typing import Optional
-from typing_extensions import Annotated, NotRequired, TypedDict
+from typing_extensions import Annotated, NotRequired, TypedDict, deprecated
 
 
 class SourceRdStationMarketingAuthType(str, Enum):
@@ -72,6 +72,9 @@ class RdStationMarketingEnum(str, Enum):
     RD_STATION_MARKETING = "rd-station-marketing"
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceRdStationMarketingTypedDict(TypedDict):
     start_date: str
     r"""UTC date and time in the format 2017-01-25T00:00:00Z. Any data before this date will not be replicated. When specified and not None, then stream will behave as incremental"""
@@ -80,6 +83,9 @@ class SourceRdStationMarketingTypedDict(TypedDict):
     source_type: RdStationMarketingEnum
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceRdStationMarketing(BaseModel):
     start_date: str
     r"""UTC date and time in the format 2017-01-25T00:00:00Z. Any data before this date will not be replicated. When specified and not None, then stream will behave as incremental"""

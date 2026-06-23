@@ -8,13 +8,16 @@ import pydantic
 from pydantic import model_serializer
 from pydantic.functional_validators import AfterValidator
 from typing import Any, List, Optional
-from typing_extensions import Annotated, NotRequired, TypedDict
+from typing_extensions import Annotated, NotRequired, TypedDict, deprecated
 
 
 class Sentry(str, Enum):
     SENTRY = "sentry"
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceSentryTypedDict(TypedDict):
     auth_token: str
     r"""Log into Sentry and then <a href=\"https://sentry.io/settings/account/api/auth-tokens/\">create authentication tokens</a>.For self-hosted, you can find or create authentication tokens by visiting \"{instance_url_prefix}/settings/account/api/auth-tokens/\" """
@@ -29,6 +32,9 @@ class SourceSentryTypedDict(TypedDict):
     source_type: Sentry
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceSentry(BaseModel):
     auth_token: str
     r"""Log into Sentry and then <a href=\"https://sentry.io/settings/account/api/auth-tokens/\">create authentication tokens</a>.For self-hosted, you can find or create authentication tokens by visiting \"{instance_url_prefix}/settings/account/api/auth-tokens/\" """

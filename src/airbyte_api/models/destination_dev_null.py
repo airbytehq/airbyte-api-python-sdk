@@ -8,7 +8,13 @@ import pydantic
 from pydantic import ConfigDict, model_serializer
 from pydantic.functional_validators import AfterValidator
 from typing import Any, Dict, Optional, Union
-from typing_extensions import Annotated, NotRequired, TypeAliasType, TypedDict
+from typing_extensions import (
+    Annotated,
+    NotRequired,
+    TypeAliasType,
+    TypedDict,
+    deprecated,
+)
 
 
 class DevNull(str, Enum):
@@ -418,12 +424,18 @@ TestDestination = TypeAliasType(
 r"""The type of destination to be used"""
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'destinationType' key instead.."
+)
 class DestinationDevNullTypedDict(TypedDict):
     test_destination: TestDestinationTypedDict
     r"""The type of destination to be used"""
     destination_type: DevNull
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'destinationType' key instead.."
+)
 class DestinationDevNull(BaseModel):
     test_destination: TestDestination
     r"""The type of destination to be used"""

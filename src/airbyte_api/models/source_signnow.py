@@ -9,13 +9,16 @@ import pydantic
 from pydantic import model_serializer
 from pydantic.functional_validators import AfterValidator
 from typing import Any, List, Optional
-from typing_extensions import Annotated, NotRequired, TypedDict
+from typing_extensions import Annotated, NotRequired, TypedDict, deprecated
 
 
 class Signnow(str, Enum):
     SIGNNOW = "signnow"
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceSignnowTypedDict(TypedDict):
     api_key_id: str
     r"""Api key which could be found in API section after enlarging keys section"""
@@ -27,6 +30,9 @@ class SourceSignnowTypedDict(TypedDict):
     source_type: Signnow
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceSignnow(BaseModel):
     api_key_id: str
     r"""Api key which could be found in API section after enlarging keys section"""

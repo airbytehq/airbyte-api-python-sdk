@@ -9,7 +9,13 @@ import pydantic
 from pydantic import model_serializer
 from pydantic.functional_validators import AfterValidator
 from typing import Optional, Union
-from typing_extensions import Annotated, NotRequired, TypeAliasType, TypedDict
+from typing_extensions import (
+    Annotated,
+    NotRequired,
+    TypeAliasType,
+    TypedDict,
+    deprecated,
+)
 
 
 class AuthMethodAPIToken(str, Enum):
@@ -125,6 +131,9 @@ class ZendeskSunshine(str, Enum):
     ZENDESK_SUNSHINE = "zendesk-sunshine"
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceZendeskSunshineTypedDict(TypedDict):
     start_date: datetime
     r"""The date from which you'd like to replicate data for Zendesk Sunshine API, in the format YYYY-MM-DDT00:00:00Z."""
@@ -134,6 +143,9 @@ class SourceZendeskSunshineTypedDict(TypedDict):
     source_type: ZendeskSunshine
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceZendeskSunshine(BaseModel):
     start_date: datetime
     r"""The date from which you'd like to replicate data for Zendesk Sunshine API, in the format YYYY-MM-DDT00:00:00Z."""

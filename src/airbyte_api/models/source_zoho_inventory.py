@@ -9,7 +9,7 @@ import pydantic
 from pydantic import model_serializer
 from pydantic.functional_validators import AfterValidator
 from typing import Optional
-from typing_extensions import Annotated, NotRequired, TypedDict
+from typing_extensions import Annotated, NotRequired, TypedDict, deprecated
 
 
 class Domain(str, Enum):
@@ -29,6 +29,9 @@ class ZohoInventory(str, Enum):
     ZOHO_INVENTORY = "zoho-inventory"
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceZohoInventoryTypedDict(TypedDict):
     client_id: str
     client_secret: str
@@ -39,6 +42,9 @@ class SourceZohoInventoryTypedDict(TypedDict):
     source_type: ZohoInventory
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceZohoInventory(BaseModel):
     client_id: str
 

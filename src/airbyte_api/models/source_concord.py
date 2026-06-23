@@ -6,7 +6,7 @@ from airbyte_api.utils import validate_const
 from enum import Enum
 import pydantic
 from pydantic.functional_validators import AfterValidator
-from typing_extensions import Annotated, TypedDict
+from typing_extensions import Annotated, TypedDict, deprecated
 
 
 class SourceConcordEnvironment(str, Enum):
@@ -20,6 +20,9 @@ class Concord(str, Enum):
     CONCORD = "concord"
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceConcordTypedDict(TypedDict):
     api_key: str
     env: SourceConcordEnvironment
@@ -27,6 +30,9 @@ class SourceConcordTypedDict(TypedDict):
     source_type: Concord
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceConcord(BaseModel):
     api_key: str
 

@@ -8,7 +8,7 @@ import pydantic
 from pydantic import model_serializer
 from pydantic.functional_validators import AfterValidator
 from typing import Optional
-from typing_extensions import Annotated, NotRequired, TypedDict
+from typing_extensions import Annotated, NotRequired, TypedDict, deprecated
 
 
 class SourceZohoAnalyticsMetadataAPIDataCenter(str, Enum):
@@ -24,6 +24,9 @@ class ZohoAnalyticsMetadataAPI(str, Enum):
     ZOHO_ANALYTICS_METADATA_API = "zoho-analytics-metadata-api"
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceZohoAnalyticsMetadataAPITypedDict(TypedDict):
     client_id: str
     client_secret: str
@@ -33,6 +36,9 @@ class SourceZohoAnalyticsMetadataAPITypedDict(TypedDict):
     source_type: ZohoAnalyticsMetadataAPI
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceZohoAnalyticsMetadataAPI(BaseModel):
     client_id: str
 

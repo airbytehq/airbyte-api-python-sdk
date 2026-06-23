@@ -6,19 +6,25 @@ from airbyte_api.utils import validate_const
 from enum import Enum
 import pydantic
 from pydantic.functional_validators import AfterValidator
-from typing_extensions import Annotated, TypedDict
+from typing_extensions import Annotated, TypedDict, deprecated
 
 
 class Hubplanner(str, Enum):
     HUBPLANNER = "hubplanner"
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceHubplannerTypedDict(TypedDict):
     api_key: str
     r"""Hubplanner API key. See https://github.com/hubplanner/API#authentication for more details."""
     source_type: Hubplanner
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceHubplanner(BaseModel):
     api_key: str
     r"""Hubplanner API key. See https://github.com/hubplanner/API#authentication for more details."""

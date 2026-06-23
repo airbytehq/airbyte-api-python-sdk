@@ -9,7 +9,13 @@ import pydantic
 from pydantic import model_serializer
 from pydantic.functional_validators import AfterValidator
 from typing import List, Optional, Union
-from typing_extensions import Annotated, NotRequired, TypeAliasType, TypedDict
+from typing_extensions import (
+    Annotated,
+    NotRequired,
+    TypeAliasType,
+    TypedDict,
+    deprecated,
+)
 
 
 class ValidAdStatuses(str, Enum):
@@ -633,6 +639,9 @@ class FacebookMarketingEnum(str, Enum):
     FACEBOOK_MARKETING = "facebook-marketing"
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceFacebookMarketingTypedDict(TypedDict):
     account_ids: List[str]
     r"""The Facebook Ad account ID(s) to pull data from. The Ad account ID number is in the account dropdown menu or in your browser's address bar of your <a href=\"https://adsmanager.facebook.com/adsmanager/\">Meta Ads Manager</a>. See the <a href=\"https://www.facebook.com/business/help/1492627900875762\">docs</a> for more information."""
@@ -667,6 +676,9 @@ class SourceFacebookMarketingTypedDict(TypedDict):
     r"""The date from which you'd like to replicate data for all incremental streams, in the format YYYY-MM-DDT00:00:00Z. If not set then all data will be replicated for usual streams and only last 2 years for insight streams."""
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceFacebookMarketing(BaseModel):
     account_ids: List[str]
     r"""The Facebook Ad account ID(s) to pull data from. The Ad account ID number is in the account dropdown menu or in your browser's address bar of your <a href=\"https://adsmanager.facebook.com/adsmanager/\">Meta Ads Manager</a>. See the <a href=\"https://www.facebook.com/business/help/1492627900875762\">docs</a> for more information."""

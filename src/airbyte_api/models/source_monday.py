@@ -8,7 +8,13 @@ import pydantic
 from pydantic import Discriminator, Tag, model_serializer
 from pydantic.functional_validators import AfterValidator
 from typing import List, Optional, Union
-from typing_extensions import Annotated, NotRequired, TypeAliasType, TypedDict
+from typing_extensions import (
+    Annotated,
+    NotRequired,
+    TypeAliasType,
+    TypedDict,
+    deprecated,
+)
 
 
 class SourceMondayAuthTypeAPIToken(str, Enum):
@@ -107,6 +113,9 @@ class MondayEnum(str, Enum):
     MONDAY = "monday"
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceMondayTypedDict(TypedDict):
     board_ids: NotRequired[List[int]]
     r"""The IDs of the boards that the Items and Boards streams will extract records from. When left empty, streams will extract records from all boards that exist within the account."""
@@ -116,6 +125,9 @@ class SourceMondayTypedDict(TypedDict):
     source_type: MondayEnum
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceMonday(BaseModel):
     board_ids: Optional[List[int]] = None
     r"""The IDs of the boards that the Items and Boards streams will extract records from. When left empty, streams will extract records from all boards that exist within the account."""

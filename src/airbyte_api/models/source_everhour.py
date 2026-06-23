@@ -6,19 +6,25 @@ from airbyte_api.utils import validate_const
 from enum import Enum
 import pydantic
 from pydantic.functional_validators import AfterValidator
-from typing_extensions import Annotated, TypedDict
+from typing_extensions import Annotated, TypedDict, deprecated
 
 
 class Everhour(str, Enum):
     EVERHOUR = "everhour"
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceEverhourTypedDict(TypedDict):
     api_key: str
     r"""Everhour API Key. See the <a href=\"https://everhour.docs.apiary.io/#introduction/authentication\">docs</a> for information on how to generate this key."""
     source_type: Everhour
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceEverhour(BaseModel):
     api_key: str
     r"""Everhour API Key. See the <a href=\"https://everhour.docs.apiary.io/#introduction/authentication\">docs</a> for information on how to generate this key."""

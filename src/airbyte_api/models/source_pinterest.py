@@ -15,7 +15,7 @@ import pydantic
 from pydantic import model_serializer
 from pydantic.functional_validators import AfterValidator
 from typing import List, Optional
-from typing_extensions import Annotated, NotRequired, TypedDict
+from typing_extensions import Annotated, NotRequired, TypedDict, deprecated
 
 
 class SourcePinterestAuthMethod(str, Enum):
@@ -358,6 +358,9 @@ class SourcePinterestStatus(str, Enum):
     ARCHIVED = "ARCHIVED"
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourcePinterestTypedDict(TypedDict):
     account_id: NotRequired[str]
     r"""The Pinterest account ID you want to fetch data for. This ID must be provided to filter the data for a specific account."""
@@ -373,6 +376,9 @@ class SourcePinterestTypedDict(TypedDict):
     r"""For the ads, ad_groups, and campaigns streams, specifying a status will filter out records that do not match the specified ones. If a status is not specified, the source will default to records with a status of either ACTIVE or PAUSED."""
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourcePinterest(BaseModel):
     account_id: Optional[str] = None
     r"""The Pinterest account ID you want to fetch data for. This ID must be provided to filter the data for a specific account."""

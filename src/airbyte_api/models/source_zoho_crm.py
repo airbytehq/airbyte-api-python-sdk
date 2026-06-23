@@ -15,7 +15,7 @@ import pydantic
 from pydantic import model_serializer
 from pydantic.functional_validators import AfterValidator
 from typing import Optional
-from typing_extensions import Annotated, NotRequired, TypedDict
+from typing_extensions import Annotated, NotRequired, TypedDict, deprecated
 
 
 class DataCenterLocation(str, Enum):
@@ -51,6 +51,9 @@ class ZohoCrm(str, Enum):
     ZOHO_CRM = "zoho-crm"
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceZohoCrmTypedDict(TypedDict):
     client_id: str
     r"""OAuth2.0 Client ID"""
@@ -69,6 +72,9 @@ class SourceZohoCrmTypedDict(TypedDict):
     r"""ISO 8601, for instance: `YYYY-MM-DD`, `YYYY-MM-DD HH:MM:SS+HH:MM`"""
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceZohoCrm(BaseModel):
     client_id: str
     r"""OAuth2.0 Client ID"""

@@ -8,13 +8,16 @@ import pydantic
 from pydantic import model_serializer
 from pydantic.functional_validators import AfterValidator
 from typing import Optional
-from typing_extensions import Annotated, NotRequired, TypedDict
+from typing_extensions import Annotated, NotRequired, TypedDict, deprecated
 
 
 class Typesense(str, Enum):
     TYPESENSE = "typesense"
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'destinationType' key instead.."
+)
 class DestinationTypesenseTypedDict(TypedDict):
     api_key: str
     r"""Typesense API Key"""
@@ -31,6 +34,9 @@ class DestinationTypesenseTypedDict(TypedDict):
     r"""Protocol of the Typesense instance. Ex: http or https. Default is https"""
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'destinationType' key instead.."
+)
 class DestinationTypesense(BaseModel):
     api_key: str
     r"""Typesense API Key"""

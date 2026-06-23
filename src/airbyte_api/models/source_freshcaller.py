@@ -9,13 +9,16 @@ import pydantic
 from pydantic import model_serializer
 from pydantic.functional_validators import AfterValidator
 from typing import Optional
-from typing_extensions import Annotated, NotRequired, TypedDict
+from typing_extensions import Annotated, NotRequired, TypedDict, deprecated
 
 
 class Freshcaller(str, Enum):
     FRESHCALLER = "freshcaller"
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceFreshcallerTypedDict(TypedDict):
     api_key: str
     r"""Freshcaller API Key. See the docs for more information on how to obtain this key."""
@@ -30,6 +33,9 @@ class SourceFreshcallerTypedDict(TypedDict):
     r"""Lag in minutes for each sync, i.e., at time T, data for the time range [prev_sync_time, T-30] will be fetched"""
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceFreshcaller(BaseModel):
     api_key: str
     r"""Freshcaller API Key. See the docs for more information on how to obtain this key."""

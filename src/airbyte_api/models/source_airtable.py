@@ -9,7 +9,13 @@ import pydantic
 from pydantic import model_serializer
 from pydantic.functional_validators import AfterValidator
 from typing import Optional, Union
-from typing_extensions import Annotated, NotRequired, TypeAliasType, TypedDict
+from typing_extensions import (
+    Annotated,
+    NotRequired,
+    TypeAliasType,
+    TypedDict,
+    deprecated,
+)
 
 
 class AuthMethodAPIKey(str, Enum):
@@ -126,11 +132,17 @@ class AirtableEnum(str, Enum):
     AIRTABLE = "airtable"
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceAirtableTypedDict(TypedDict):
     credentials: NotRequired[SourceAirtableAuthenticationTypedDict]
     source_type: AirtableEnum
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceAirtable(BaseModel):
     credentials: Optional[SourceAirtableAuthentication] = None
 

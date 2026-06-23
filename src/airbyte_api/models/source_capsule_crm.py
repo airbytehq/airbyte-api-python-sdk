@@ -7,7 +7,7 @@ from datetime import datetime
 from enum import Enum
 import pydantic
 from pydantic.functional_validators import AfterValidator
-from typing_extensions import Annotated, TypedDict
+from typing_extensions import Annotated, TypedDict, deprecated
 
 
 class Entity(str, Enum):
@@ -20,6 +20,9 @@ class CapsuleCrm(str, Enum):
     CAPSULE_CRM = "capsule-crm"
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceCapsuleCrmTypedDict(TypedDict):
     bearer_token: str
     r"""Bearer token to authenticate API requests. Generate it from the 'My Preferences' > 'API Authentication Tokens' page in your Capsule account."""
@@ -28,6 +31,9 @@ class SourceCapsuleCrmTypedDict(TypedDict):
     source_type: CapsuleCrm
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceCapsuleCrm(BaseModel):
     bearer_token: str
     r"""Bearer token to authenticate API requests. Generate it from the 'My Preferences' > 'API Authentication Tokens' page in your Capsule account."""

@@ -8,7 +8,7 @@ import pydantic
 from pydantic import model_serializer
 from pydantic.functional_validators import AfterValidator
 from typing import Optional
-from typing_extensions import Annotated, NotRequired, TypedDict
+from typing_extensions import Annotated, NotRequired, TypedDict, deprecated
 
 
 class SourceAlphaVantageInterval(str, Enum):
@@ -32,6 +32,9 @@ class AlphaVantage(str, Enum):
     ALPHA_VANTAGE = "alpha-vantage"
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceAlphaVantageTypedDict(TypedDict):
     api_key: str
     r"""API Key"""
@@ -52,6 +55,9 @@ class SourceAlphaVantageTypedDict(TypedDict):
     source_type: AlphaVantage
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceAlphaVantage(BaseModel):
     api_key: str
     r"""API Key"""

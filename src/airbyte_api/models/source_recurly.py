@@ -8,13 +8,16 @@ import pydantic
 from pydantic import model_serializer
 from pydantic.functional_validators import AfterValidator
 from typing import Optional
-from typing_extensions import Annotated, NotRequired, TypedDict
+from typing_extensions import Annotated, NotRequired, TypedDict, deprecated
 
 
 class Recurly(str, Enum):
     RECURLY = "recurly"
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceRecurlyTypedDict(TypedDict):
     api_key: str
     r"""Recurly API Key. See the  <a href=\"https://docs.airbyte.com/integrations/sources/recurly\">docs</a> for more information on how to generate this key."""
@@ -31,6 +34,9 @@ class SourceRecurlyTypedDict(TypedDict):
     source_type: Recurly
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceRecurly(BaseModel):
     api_key: str
     r"""Recurly API Key. See the  <a href=\"https://docs.airbyte.com/integrations/sources/recurly\">docs</a> for more information on how to generate this key."""
