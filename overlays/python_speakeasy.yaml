@@ -1,13 +1,16 @@
 # Speakeasy overlay for Python SDK-specific customizations.
 # Applied on top of the upstream API spec before code generation.
-#
-# This file is currently a no-op placeholder. Add overlay actions here
-# when Python SDK-specific schema tweaks are needed.
-#
 # See: https://www.speakeasy.com/docs/customize-sdks/overlays
 
 overlay: 1.0.0
 info:
   title: Python SDK Overlay
-  version: 0.0.0
-actions: []
+  version: 0.0.1
+actions:
+  # Rename RowFilteringOperationNot to avoid name collision with the
+  # discriminator tag "NOT" in the RowFilteringOperation union.
+  # Without this, Speakeasy appends a "1" suffix and generates a
+  # TYPE_CHECKING circular import that breaks Pydantic model_rebuild().
+  - target: "$.components.schemas.RowFilteringOperationNot"
+    update:
+      x-speakeasy-name-override: RowFilteringOperationNotCondition

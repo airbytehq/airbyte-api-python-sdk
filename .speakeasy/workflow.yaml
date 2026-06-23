@@ -8,10 +8,8 @@ sources:
     airbyte-api:
         inputs:
             - location: https://raw.githubusercontent.com/airbytehq/airbyte-platform/refs/heads/main/airbyte-api/server-api/src/main/openapi/api_sdk.yaml
-        # Uncomment when the overlay has real actions (empty overlays produce
-        # an empty document in Speakeasy CLI, which fails linting):
-        # overlays:
-        #     - location: ./overlays/python_speakeasy.yaml
+        overlays:
+            - location: ./overlays/python_speakeasy.yaml
         registry:
             location: registry.speakeasyapi.dev/airbyte/airbyte-prod/my-source
 targets:
