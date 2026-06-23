@@ -54,6 +54,10 @@ name: Generate SDK
                 description: Validate generation without creating a PR
                 type: boolean
                 default: false
+            should_run:
+                description: Whether the generate job should run (false = skip). Used by callers to pass path-filter results so the job skips internally and reports as 'skipped' (satisfying required checks).
+                type: boolean
+                default: true
         outputs:
             has_changes:
                 description: Whether the generation produced changes vs committed code
@@ -69,6 +73,7 @@ concurrency:
 jobs:
     generate:
         name: Generate SDK
+        if: ${{ inputs.should_run != false }}
         runs-on: ubuntu-latest
         timeout-minutes: 30
         outputs:
