@@ -13,7 +13,7 @@ speakeasy run $ARGS
 [tasks._post-generate]
 help = "Run post-generation patches."
 shell = """
-uv run python scripts/post_generate.py
+uv run scripts/post_generate.uv
 """
 
 [tasks._generate-readme]
