@@ -19,7 +19,7 @@ dev = [
     "mypy ==1.15.0",
     "poethepoet >=0.32",
     "pylint ==3.2.3",
-    "pyright ==1.1.398",
+    "pyright ==1.1.410",
     "ruff >=0.11",
 ]
 
