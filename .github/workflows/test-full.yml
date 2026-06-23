@@ -18,7 +18,9 @@
 #
 # The path filter is scoped to generation-affecting files only (Speakeasy config,
 # gen.yaml, overlays, scripts, src/, etc.). Dev dependency updates (mypy, pylint,
-# etc.) skip the generation validation since they cannot affect generated code.
+# etc.) skip the generation validation because they don't change generated
+# artifacts, and Dependabot PRs lack the SPEAKEASY_API_KEY secret needed to run
+# the generation pipeline.
 
 name: Test (Full)
 
