@@ -7,10 +7,13 @@ info:
   title: Python SDK Overlay
   version: 0.0.1
 actions:
-  # Rename RowFilteringOperationNot to avoid name collision with the
-  # discriminator tag "NOT" in the RowFilteringOperation union.
-  # Without this, Speakeasy appends a "1" suffix and generates a
-  # TYPE_CHECKING circular import that breaks Pydantic model_rebuild().
-  - target: "$.components.schemas.RowFilteringOperationNot"
+  # Break the circular $ref: RowFilteringOperationNot.conditions references
+  # RowFilteringOperation, which references RowFilteringOperationNot again.
+  # This causes Speakeasy to use TYPE_CHECKING imports and miss model_rebuild()
+  # calls for dependent models (ConnectionResponse, StreamConfigurations, etc.).
+  #
+  # Fix: point conditions.items directly at RowFilteringOperationEqual,
+  # removing the recursion. NOT(NOT(x)) = x, so nested NOT is redundant.
+  - target: "$.components.schemas.RowFilteringOperationNot.properties.conditions.items"
     update:
-      x-speakeasy-name-override: RowFilteringOperationNotCondition
+      $ref: "#/components/schemas/RowFilteringOperationEqual"
