@@ -124,13 +124,12 @@ The Speakeasy CLI version is pinned in [`.github/speakeasy/dummy-compose.yml`](h
 Build tasks are defined in [`poe_tasks.toml`](https://github.com/airbytehq/airbyte-api-python-sdk/blob/main/poe_tasks.toml) and run via [poethepoet](https://poethepoet.natn.io/):
 
 ```bash
-uvx --from=poethepoet poe generate-code   # Generate SDK from spec
-uvx --from=poethepoet poe post-generate    # Run post-generation patches
-uvx --from=poethepoet poe generate-full    # Full pipeline (generate + patches)
-uvx --from=poethepoet poe lint             # Run linting checks
-uvx --from=poethepoet poe fix              # Auto-fix lint/formatting
-uvx --from=poethepoet poe test             # Run tests
-uvx --from=poethepoet poe typecheck        # Run type checking
+uv run poe generate-full    # Full pipeline (generate + readme + patches)
+uv run poe build            # Build the Python package
+uv run poe lint             # Run linting checks
+uv run poe fix              # Auto-fix lint/formatting
+uv run poe test             # Run tests
+uv run poe typecheck        # Run type checking
 ```
 
 ## How to Report Issues

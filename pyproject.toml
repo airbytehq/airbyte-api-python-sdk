@@ -1,9 +1,8 @@
-
 [project]
 name = "airbyte-api"
-version = "1.0.0"
+dynamic = ["version"]
 description = "Python Client SDK for Airbyte API"
-authors = [{ name = "Speakeasy" },]
+authors = [{ name = "Airbyte" }]
 readme = "README-PYPI.md"
 requires-python = ">=3.10"
 dependencies = [
@@ -12,27 +11,35 @@ dependencies = [
     "pydantic >=2.11.2",
 ]
 
-[tool.poetry]
-repository = "https://github.com/airbytehq/airbyte-api-python-sdk.git"
-packages = [
-    { include = "airbyte_api", from = "src" }
+[project.urls]
+Repository = "https://github.com/airbytehq/airbyte-api-python-sdk"
+
+[dependency-groups]
+dev = [
+    "mypy ==1.15.0",
+    "poethepoet >=0.32",
+    "pylint ==3.2.3",
+    "pyright ==1.1.398",
+    "ruff >=0.11",
 ]
-include = ["py.typed", "src/airbyte_api/py.typed"]
-
-[tool.setuptools.package-data]
-"*" = ["py.typed", "src/airbyte_api/py.typed"]
-
-[virtualenvs]
-in-project = true
-
-[tool.poetry.group.dev.dependencies]
-mypy = "==1.15.0"
-pylint = "==3.2.3"
-pyright = "==1.1.398"
 
 [build-system]
-requires = ["poetry-core"]
-build-backend = "poetry.core.masonry.api"
+requires = ["hatchling", "uv-dynamic-versioning"]
+build-backend = "hatchling.build"
+
+[tool.hatch.version]
+source = "uv-dynamic-versioning"
+
+[tool.uv-dynamic-versioning]
+[tool.uv-dynamic-versioning.from-file]
+source = "src/airbyte_api/_version.py"
+pattern = "__version__: str = \"(?P<version>[^\"]+)\""
+
+[tool.hatch.build.targets.sdist]
+include = ["src/airbyte_api", "py.typed", "README-PYPI.md"]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/airbyte_api"]
 
 [tool.pytest.ini_options]
 asyncio_default_fixture_loop_scope = "function"
@@ -54,5 +61,3 @@ ignore_missing_imports = true
 [tool.pyright]
 venvPath = "."
 venv = ".venv"
-
-

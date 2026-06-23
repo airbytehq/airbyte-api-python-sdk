@@ -54,6 +54,13 @@ name: Generate SDK
                 description: Validate generation without creating a PR
                 type: boolean
                 default: false
+        outputs:
+            has_changes:
+                description: Whether the generation produced changes vs committed code
+                value: ${{ jobs.generate.outputs.has_changes }}
+            drift_summary:
+                description: Git diff stat summary when drift is detected
+                value: ${{ jobs.generate.outputs.drift_summary }}
 
 concurrency:
     group: ${{ (github.event_name == 'push' || github.event_name == 'schedule') && 'generate-new-pr' || format('generate-{0}', github.run_id) }}
@@ -64,6 +71,9 @@ jobs:
         name: Generate SDK
         runs-on: ubuntu-latest
         timeout-minutes: 30
+        outputs:
+            has_changes: ${{ steps.changes.outputs.has_changes }}
+            drift_summary: ${{ steps.changes.outputs.drift_summary }}
         permissions:
             contents: write
             pull-requests: write
@@ -161,37 +171,13 @@ jobs:
                       exit 1
                   fi
 
-            - name: Generate SDK with Speakeasy
+            - name: Generate SDK
               env:
                   SPEAKEASY_API_KEY: ${{ secrets.SPEAKEASY_API_KEY }}
                   VERSION: ${{ steps.resolve-version.outputs.version }}
               run: |
                   echo "Generating with version: $VERSION"
-                  uvx --from=poethepoet poe generate-code
-
-            - name: Post-generation patching
-              run: python3 scripts/post_generate.py
-
-            - name: Verify generated code
-              run: |
-                  if [ -f "pyproject.toml" ]; then
-                      echo "pyproject.toml found (v2 generator confirmed)"
-                      uv sync --no-install-project 2>/dev/null || true
-                      uv run python -c "import airbyte_api; print(f'SDK import OK: {airbyte_api.__name__}')" || echo "::warning::SDK import check failed"
-                  else
-                      echo "::warning::No pyproject.toml found. Generation may not have produced v2 output."
-                  fi
-
-            - name: Upload generated SDK as artifact
-              if: ${{ inputs.dry_run }}
-              uses: actions/upload-artifact@v7
-              with:
-                  name: generated_sdk_code
-                  path: |
-                      src/
-                      pyproject.toml
-                      py.typed
-                  retention-days: 7
+                  uv run poe generate-full
 
             - name: Generation Summary
               run: |
@@ -203,16 +189,28 @@ jobs:
                   fi
 
             - name: Check for changes
-              if: ${{ !inputs.dry_run }}
               id: changes
               run: |
-                  # Restore workflow.lock to HEAD to ignore non-deterministic
-                  # digest changes that cause infinite generate→merge loops.
+                  # Restore non-deterministic Speakeasy lock files to HEAD
+                  # to ignore digest changes that cause infinite generate→merge loops.
                   git checkout HEAD -- .speakeasy/workflow.lock 2>/dev/null || true
+                  git checkout HEAD -- .speakeasy/gen.lock 2>/dev/null || true
                   if [ -n "$(git status --porcelain)" ]; then
-                      echo "has_changes=true" >> $GITHUB_OUTPUT
+                      echo "has_changes=true" | tee -a $GITHUB_OUTPUT
+                      echo "=== Changed files ==="
+                      git status --porcelain
+                      echo
+                      echo "=== Diff stat ==="
+                      SUMMARY=$(git diff --stat)
+                      echo "$SUMMARY"
+                      EOF=$(dd if=/dev/urandom bs=15 count=1 status=none | base64)
+                      {
+                          echo "drift_summary<<$EOF"
+                          echo "$SUMMARY"
+                          echo "$EOF"
+                      } | tee -a "$GITHUB_OUTPUT"
                   else
-                      echo "has_changes=false" >> $GITHUB_OUTPUT
+                      echo "has_changes=false" | tee -a $GITHUB_OUTPUT
                   fi
 
             # --- PR branch mode: commit and push to the existing PR branch ---

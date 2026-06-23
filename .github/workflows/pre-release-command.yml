@@ -113,16 +113,15 @@ jobs:
         uses: astral-sh/setup-uv@v5
 
       # ── Set version and build ───────────────────────────────────────
-      - name: Set pre-release version in pyproject.toml
+      - name: Set pre-release version
         run: |
           VERSION="${{ inputs.version }}"
-          # Use sed to update version in pyproject.toml
-          sed -i "s/^version = \".*\"/version = \"${VERSION}\"/" pyproject.toml
-          echo "Updated pyproject.toml version to: $VERSION"
-          grep 'version' pyproject.toml | head -1
+          sed -i "s/^__version__: str = \".*\"/__version__: str = \"${VERSION}\"/" src/airbyte_api/_version.py
+          echo "Updated _version.py to: $VERSION"
+          grep '__version__' src/airbyte_api/_version.py
 
       - name: Build package
-        run: uv build
+        run: uv run poe build
 
       - name: Publish to PyPI
         run: uv publish
