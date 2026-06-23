@@ -86,3 +86,17 @@ actions:
     update:
       type: string
       description: "The name of the OAuth-enabled connector (e.g. 'github', 'google-ads')."
+
+  # Workaround for Speakeasy circular-ref model_rebuild() bug.
+  # See: https://github.com/airbytehq/airbyte-api-python-sdk/issues/186
+  #
+  # Break the circular $ref: RowFilteringOperationNot.conditions references
+  # RowFilteringOperation, which references RowFilteringOperationNot again.
+  # This causes Speakeasy to use TYPE_CHECKING imports and miss model_rebuild()
+  # calls for dependent models (ConnectionResponse, StreamConfigurations, etc.).
+  #
+  # Fix: point conditions.items directly at RowFilteringOperationEqual,
+  # removing the recursion. NOT(NOT(x)) = x, so nested NOT is redundant.
+  - target: "$.components.schemas.RowFilteringOperationNot.properties.conditions.items"
+    update:
+      $ref: "#/components/schemas/RowFilteringOperationEqual"
