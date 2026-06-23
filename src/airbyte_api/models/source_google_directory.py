@@ -11,7 +11,7 @@ from typing import Optional, Union
 from typing_extensions import Annotated, NotRequired, TypeAliasType, TypedDict
 
 
-class SourceGoogleDirectorySchemasCredentialsTitle(str, Enum):
+class CredentialsTitleServiceAccounts(str, Enum):
     r"""Authentication Scenario"""
 
     SERVICE_ACCOUNTS = "Service accounts"
@@ -24,7 +24,7 @@ class ServiceAccountKeyTypedDict(TypedDict):
     r"""The contents of the JSON service account key. See the <a href=\"https://developers.google.com/admin-sdk/directory/v1/guides/delegation\">docs</a> for more information on how to generate this key."""
     email: str
     r"""The email of the user, which has permissions to access the Google Workspace Admin APIs."""
-    credentials_title: SourceGoogleDirectorySchemasCredentialsTitle
+    credentials_title: CredentialsTitleServiceAccounts
     r"""Authentication Scenario"""
 
 
@@ -39,15 +39,13 @@ class ServiceAccountKey(BaseModel):
 
     CREDENTIALS_TITLE: Annotated[
         Annotated[
-            Optional[SourceGoogleDirectorySchemasCredentialsTitle],
+            Optional[CredentialsTitleServiceAccounts],
             AfterValidator(
-                validate_const(
-                    SourceGoogleDirectorySchemasCredentialsTitle.SERVICE_ACCOUNTS
-                )
+                validate_const(CredentialsTitleServiceAccounts.SERVICE_ACCOUNTS)
             ),
         ],
         pydantic.Field(alias="credentials_title"),
-    ] = SourceGoogleDirectorySchemasCredentialsTitle.SERVICE_ACCOUNTS
+    ] = CredentialsTitleServiceAccounts.SERVICE_ACCOUNTS
     r"""Authentication Scenario"""
 
     @model_serializer(mode="wrap")
@@ -67,7 +65,7 @@ class ServiceAccountKey(BaseModel):
         return m
 
 
-class SourceGoogleDirectoryCredentialsTitle(str, Enum):
+class CredentialsTitleWebServerApp(str, Enum):
     r"""Authentication Scenario"""
 
     WEB_SERVER_APP = "Web server app"
@@ -82,7 +80,7 @@ class SignInViaGoogleOAuthTypedDict(TypedDict):
     r"""The Client Secret of the developer application."""
     refresh_token: str
     r"""The Token for obtaining a new access token."""
-    credentials_title: SourceGoogleDirectoryCredentialsTitle
+    credentials_title: CredentialsTitleWebServerApp
     r"""Authentication Scenario"""
 
 
@@ -100,13 +98,11 @@ class SignInViaGoogleOAuth(BaseModel):
 
     CREDENTIALS_TITLE: Annotated[
         Annotated[
-            Optional[SourceGoogleDirectoryCredentialsTitle],
-            AfterValidator(
-                validate_const(SourceGoogleDirectoryCredentialsTitle.WEB_SERVER_APP)
-            ),
+            Optional[CredentialsTitleWebServerApp],
+            AfterValidator(validate_const(CredentialsTitleWebServerApp.WEB_SERVER_APP)),
         ],
         pydantic.Field(alias="credentials_title"),
-    ] = SourceGoogleDirectoryCredentialsTitle.WEB_SERVER_APP
+    ] = CredentialsTitleWebServerApp.WEB_SERVER_APP
     r"""Authentication Scenario"""
 
     @model_serializer(mode="wrap")
@@ -126,16 +122,15 @@ class SignInViaGoogleOAuth(BaseModel):
         return m
 
 
-SourceGoogleDirectoryGoogleCredentialsTypedDict = TypeAliasType(
-    "SourceGoogleDirectoryGoogleCredentialsTypedDict",
+GoogleCredentialsTypedDict = TypeAliasType(
+    "GoogleCredentialsTypedDict",
     Union[ServiceAccountKeyTypedDict, SignInViaGoogleOAuthTypedDict],
 )
 r"""Google APIs use the OAuth 2.0 protocol for authentication and authorization. The Source supports <a href=\"https://developers.google.com/identity/protocols/oauth2#webserver\" target=\"_blank\">Web server application</a> and <a href=\"https://developers.google.com/identity/protocols/oauth2#serviceaccount\" target=\"_blank\">Service accounts</a> scenarios."""
 
 
-SourceGoogleDirectoryGoogleCredentials = TypeAliasType(
-    "SourceGoogleDirectoryGoogleCredentials",
-    Union[ServiceAccountKey, SignInViaGoogleOAuth],
+GoogleCredentials = TypeAliasType(
+    "GoogleCredentials", Union[ServiceAccountKey, SignInViaGoogleOAuth]
 )
 r"""Google APIs use the OAuth 2.0 protocol for authentication and authorization. The Source supports <a href=\"https://developers.google.com/identity/protocols/oauth2#webserver\" target=\"_blank\">Web server application</a> and <a href=\"https://developers.google.com/identity/protocols/oauth2#serviceaccount\" target=\"_blank\">Service accounts</a> scenarios."""
 
@@ -145,13 +140,13 @@ class GoogleDirectory(str, Enum):
 
 
 class SourceGoogleDirectoryTypedDict(TypedDict):
-    credentials: NotRequired[SourceGoogleDirectoryGoogleCredentialsTypedDict]
+    credentials: NotRequired[GoogleCredentialsTypedDict]
     r"""Google APIs use the OAuth 2.0 protocol for authentication and authorization. The Source supports <a href=\"https://developers.google.com/identity/protocols/oauth2#webserver\" target=\"_blank\">Web server application</a> and <a href=\"https://developers.google.com/identity/protocols/oauth2#serviceaccount\" target=\"_blank\">Service accounts</a> scenarios."""
     source_type: GoogleDirectory
 
 
 class SourceGoogleDirectory(BaseModel):
-    credentials: Optional[SourceGoogleDirectoryGoogleCredentials] = None
+    credentials: Optional[GoogleCredentials] = None
     r"""Google APIs use the OAuth 2.0 protocol for authentication and authorization. The Source supports <a href=\"https://developers.google.com/identity/protocols/oauth2#webserver\" target=\"_blank\">Web server application</a> and <a href=\"https://developers.google.com/identity/protocols/oauth2#serviceaccount\" target=\"_blank\">Service accounts</a> scenarios."""
 
     SOURCE_TYPE: Annotated[

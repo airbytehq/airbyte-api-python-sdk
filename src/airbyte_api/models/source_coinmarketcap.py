@@ -11,7 +11,7 @@ from typing import List, Optional
 from typing_extensions import Annotated, NotRequired, TypedDict
 
 
-class DataType(str, Enum):
+class SourceCoinmarketcapDataType(str, Enum):
     r"""/latest: Latest market ticker quotes and averages for cryptocurrencies and exchanges. /historical: Intervals of historic market data like OHLCV data or data for use in charting libraries. See <a href=\"https://coinmarketcap.com/api/documentation/v1/#section/Endpoint-Overview\">here</a>."""
 
     LATEST = "latest"
@@ -25,7 +25,7 @@ class Coinmarketcap(str, Enum):
 class SourceCoinmarketcapTypedDict(TypedDict):
     api_key: str
     r"""Your API Key. See <a href=\"https://coinmarketcap.com/api/documentation/v1/#section/Authentication\">here</a>. The token is case sensitive."""
-    data_type: DataType
+    data_type: SourceCoinmarketcapDataType
     r"""/latest: Latest market ticker quotes and averages for cryptocurrencies and exchanges. /historical: Intervals of historic market data like OHLCV data or data for use in charting libraries. See <a href=\"https://coinmarketcap.com/api/documentation/v1/#section/Endpoint-Overview\">here</a>."""
     source_type: Coinmarketcap
     symbols: NotRequired[List[str]]
@@ -36,7 +36,7 @@ class SourceCoinmarketcap(BaseModel):
     api_key: str
     r"""Your API Key. See <a href=\"https://coinmarketcap.com/api/documentation/v1/#section/Authentication\">here</a>. The token is case sensitive."""
 
-    data_type: DataType
+    data_type: SourceCoinmarketcapDataType
     r"""/latest: Latest market ticker quotes and averages for cryptocurrencies and exchanges. /historical: Intervals of historic market data like OHLCV data or data for use in charting libraries. See <a href=\"https://coinmarketcap.com/api/documentation/v1/#section/Endpoint-Overview\">here</a>."""
 
     SOURCE_TYPE: Annotated[

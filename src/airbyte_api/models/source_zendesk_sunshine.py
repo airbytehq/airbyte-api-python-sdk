@@ -12,7 +12,7 @@ from typing import Optional, Union
 from typing_extensions import Annotated, NotRequired, TypeAliasType, TypedDict
 
 
-class SourceZendeskSunshineSchemasAuthMethod(str, Enum):
+class AuthMethodAPIToken(str, Enum):
     API_TOKEN = "api_token"
 
 
@@ -21,7 +21,7 @@ class SourceZendeskSunshineAPITokenTypedDict(TypedDict):
     r"""API Token. See the <a href=\"https://docs.airbyte.com/integrations/sources/zendesk_sunshine\">docs</a> for information on how to generate this key."""
     email: str
     r"""The user email for your Zendesk account"""
-    auth_method: SourceZendeskSunshineSchemasAuthMethod
+    auth_method: AuthMethodAPIToken
 
 
 class SourceZendeskSunshineAPIToken(BaseModel):
@@ -33,13 +33,11 @@ class SourceZendeskSunshineAPIToken(BaseModel):
 
     AUTH_METHOD: Annotated[
         Annotated[
-            Optional[SourceZendeskSunshineSchemasAuthMethod],
-            AfterValidator(
-                validate_const(SourceZendeskSunshineSchemasAuthMethod.API_TOKEN)
-            ),
+            Optional[AuthMethodAPIToken],
+            AfterValidator(validate_const(AuthMethodAPIToken.API_TOKEN)),
         ],
         pydantic.Field(alias="auth_method"),
-    ] = SourceZendeskSunshineSchemasAuthMethod.API_TOKEN
+    ] = AuthMethodAPIToken.API_TOKEN
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
@@ -58,7 +56,7 @@ class SourceZendeskSunshineAPIToken(BaseModel):
         return m
 
 
-class SourceZendeskSunshineAuthMethod(str, Enum):
+class SourceZendeskSunshineAuthMethodOauth20(str, Enum):
     OAUTH2_0 = "oauth2.0"
 
 
@@ -69,7 +67,7 @@ class SourceZendeskSunshineOAuth20TypedDict(TypedDict):
     r"""The Client ID of your OAuth application."""
     client_secret: str
     r"""The Client Secret of your OAuth application."""
-    auth_method: SourceZendeskSunshineAuthMethod
+    auth_method: SourceZendeskSunshineAuthMethodOauth20
 
 
 class SourceZendeskSunshineOAuth20(BaseModel):
@@ -84,11 +82,13 @@ class SourceZendeskSunshineOAuth20(BaseModel):
 
     AUTH_METHOD: Annotated[
         Annotated[
-            Optional[SourceZendeskSunshineAuthMethod],
-            AfterValidator(validate_const(SourceZendeskSunshineAuthMethod.OAUTH2_0)),
+            Optional[SourceZendeskSunshineAuthMethodOauth20],
+            AfterValidator(
+                validate_const(SourceZendeskSunshineAuthMethodOauth20.OAUTH2_0)
+            ),
         ],
         pydantic.Field(alias="auth_method"),
-    ] = SourceZendeskSunshineAuthMethod.OAUTH2_0
+    ] = SourceZendeskSunshineAuthMethodOauth20.OAUTH2_0
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):

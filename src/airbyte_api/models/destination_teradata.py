@@ -15,7 +15,7 @@ class Teradata(str, Enum):
     TERADATA = "teradata"
 
 
-class DestinationTeradataSchemasAuthType(str, Enum):
+class AuthTypeLdap(str, Enum):
     LDAP = "LDAP"
 
 
@@ -24,7 +24,7 @@ class LdapTypedDict(TypedDict):
     r"""Enter the password associated with the username."""
     username: str
     r"""Username to use to access the database."""
-    auth_type: DestinationTeradataSchemasAuthType
+    auth_type: AuthTypeLdap
 
 
 class Ldap(BaseModel):
@@ -36,11 +36,10 @@ class Ldap(BaseModel):
 
     AUTH_TYPE: Annotated[
         Annotated[
-            Optional[DestinationTeradataSchemasAuthType],
-            AfterValidator(validate_const(DestinationTeradataSchemasAuthType.LDAP)),
+            Optional[AuthTypeLdap], AfterValidator(validate_const(AuthTypeLdap.LDAP))
         ],
         pydantic.Field(alias="auth_type"),
-    ] = DestinationTeradataSchemasAuthType.LDAP
+    ] = AuthTypeLdap.LDAP
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
@@ -59,7 +58,7 @@ class Ldap(BaseModel):
         return m
 
 
-class DestinationTeradataAuthType(str, Enum):
+class AuthTypeTd2(str, Enum):
     TD2 = "TD2"
 
 
@@ -68,7 +67,7 @@ class Td2TypedDict(TypedDict):
     r"""Enter the password associated with the username."""
     username: str
     r"""Username to use to access the database."""
-    auth_type: DestinationTeradataAuthType
+    auth_type: AuthTypeTd2
 
 
 class Td2(BaseModel):
@@ -80,11 +79,10 @@ class Td2(BaseModel):
 
     AUTH_TYPE: Annotated[
         Annotated[
-            Optional[DestinationTeradataAuthType],
-            AfterValidator(validate_const(DestinationTeradataAuthType.TD2)),
+            Optional[AuthTypeTd2], AfterValidator(validate_const(AuthTypeTd2.TD2))
         ],
         pydantic.Field(alias="auth_type"),
-    ] = DestinationTeradataAuthType.TD2
+    ] = AuthTypeTd2.TD2
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
@@ -111,7 +109,7 @@ AuthorizationMechanismTypedDict = TypeAliasType(
 AuthorizationMechanism = TypeAliasType("AuthorizationMechanism", Union[Td2, Ldap])
 
 
-class DestinationTeradataSchemasSSLModeSSLModes6Mode(str, Enum):
+class DestinationTeradataModeVerifyFull(str, Enum):
     VERIFY_FULL = "verify-full"
 
 
@@ -122,7 +120,7 @@ class DestinationTeradataVerifyFullTypedDict(TypedDict):
     r"""Specifies the file name of a PEM file that contains Certificate Authority (CA) certificates for use with SSLMODE=verify-full.
     See more information - <a href=\"https://teradata-docs.s3.amazonaws.com/doc/connectivity/jdbc/reference/current/jdbcug_chapter_2.html#URL_SSLCA\"> in the docs</a>.
     """
-    mode: DestinationTeradataSchemasSSLModeSSLModes6Mode
+    mode: DestinationTeradataModeVerifyFull
 
 
 class DestinationTeradataVerifyFull(BaseModel):
@@ -135,15 +133,13 @@ class DestinationTeradataVerifyFull(BaseModel):
 
     MODE: Annotated[
         Annotated[
-            Optional[DestinationTeradataSchemasSSLModeSSLModes6Mode],
+            Optional[DestinationTeradataModeVerifyFull],
             AfterValidator(
-                validate_const(
-                    DestinationTeradataSchemasSSLModeSSLModes6Mode.VERIFY_FULL
-                )
+                validate_const(DestinationTeradataModeVerifyFull.VERIFY_FULL)
             ),
         ],
         pydantic.Field(alias="mode"),
-    ] = DestinationTeradataSchemasSSLModeSSLModes6Mode.VERIFY_FULL
+    ] = DestinationTeradataModeVerifyFull.VERIFY_FULL
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
@@ -162,7 +158,7 @@ class DestinationTeradataVerifyFull(BaseModel):
         return m
 
 
-class DestinationTeradataSchemasSSLModeSSLModes5Mode(str, Enum):
+class DestinationTeradataModeVerifyCa(str, Enum):
     VERIFY_CA = "verify-ca"
 
 
@@ -173,7 +169,7 @@ class DestinationTeradataVerifyCaTypedDict(TypedDict):
     r"""Specifies the file name of a PEM file that contains Certificate Authority (CA) certificates for use with SSLMODE=verify-ca.
     See more information - <a href=\"https://teradata-docs.s3.amazonaws.com/doc/connectivity/jdbc/reference/current/jdbcug_chapter_2.html#URL_SSLCA\"> in the docs</a>.
     """
-    mode: DestinationTeradataSchemasSSLModeSSLModes5Mode
+    mode: DestinationTeradataModeVerifyCa
 
 
 class DestinationTeradataVerifyCa(BaseModel):
@@ -186,13 +182,11 @@ class DestinationTeradataVerifyCa(BaseModel):
 
     MODE: Annotated[
         Annotated[
-            Optional[DestinationTeradataSchemasSSLModeSSLModes5Mode],
-            AfterValidator(
-                validate_const(DestinationTeradataSchemasSSLModeSSLModes5Mode.VERIFY_CA)
-            ),
+            Optional[DestinationTeradataModeVerifyCa],
+            AfterValidator(validate_const(DestinationTeradataModeVerifyCa.VERIFY_CA)),
         ],
         pydantic.Field(alias="mode"),
-    ] = DestinationTeradataSchemasSSLModeSSLModes5Mode.VERIFY_CA
+    ] = DestinationTeradataModeVerifyCa.VERIFY_CA
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
@@ -211,14 +205,14 @@ class DestinationTeradataVerifyCa(BaseModel):
         return m
 
 
-class DestinationTeradataSchemasSSLModeSSLModesMode(str, Enum):
+class DestinationTeradataModeRequire(str, Enum):
     REQUIRE = "require"
 
 
 class DestinationTeradataRequireTypedDict(TypedDict):
     r"""Require SSL mode."""
 
-    mode: DestinationTeradataSchemasSSLModeSSLModesMode
+    mode: DestinationTeradataModeRequire
 
 
 class DestinationTeradataRequire(BaseModel):
@@ -226,13 +220,11 @@ class DestinationTeradataRequire(BaseModel):
 
     MODE: Annotated[
         Annotated[
-            Optional[DestinationTeradataSchemasSSLModeSSLModesMode],
-            AfterValidator(
-                validate_const(DestinationTeradataSchemasSSLModeSSLModesMode.REQUIRE)
-            ),
+            Optional[DestinationTeradataModeRequire],
+            AfterValidator(validate_const(DestinationTeradataModeRequire.REQUIRE)),
         ],
         pydantic.Field(alias="mode"),
-    ] = DestinationTeradataSchemasSSLModeSSLModesMode.REQUIRE
+    ] = DestinationTeradataModeRequire.REQUIRE
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
@@ -251,14 +243,14 @@ class DestinationTeradataRequire(BaseModel):
         return m
 
 
-class DestinationTeradataSchemasSslModeMode(str, Enum):
+class DestinationTeradataModePrefer(str, Enum):
     PREFER = "prefer"
 
 
 class DestinationTeradataPreferTypedDict(TypedDict):
     r"""Prefer SSL mode."""
 
-    mode: DestinationTeradataSchemasSslModeMode
+    mode: DestinationTeradataModePrefer
 
 
 class DestinationTeradataPrefer(BaseModel):
@@ -266,13 +258,11 @@ class DestinationTeradataPrefer(BaseModel):
 
     MODE: Annotated[
         Annotated[
-            Optional[DestinationTeradataSchemasSslModeMode],
-            AfterValidator(
-                validate_const(DestinationTeradataSchemasSslModeMode.PREFER)
-            ),
+            Optional[DestinationTeradataModePrefer],
+            AfterValidator(validate_const(DestinationTeradataModePrefer.PREFER)),
         ],
         pydantic.Field(alias="mode"),
-    ] = DestinationTeradataSchemasSslModeMode.PREFER
+    ] = DestinationTeradataModePrefer.PREFER
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
@@ -291,14 +281,14 @@ class DestinationTeradataPrefer(BaseModel):
         return m
 
 
-class DestinationTeradataSchemasMode(str, Enum):
+class DestinationTeradataModeAllow(str, Enum):
     ALLOW = "allow"
 
 
 class DestinationTeradataAllowTypedDict(TypedDict):
     r"""Allow SSL mode."""
 
-    mode: DestinationTeradataSchemasMode
+    mode: DestinationTeradataModeAllow
 
 
 class DestinationTeradataAllow(BaseModel):
@@ -306,11 +296,11 @@ class DestinationTeradataAllow(BaseModel):
 
     MODE: Annotated[
         Annotated[
-            Optional[DestinationTeradataSchemasMode],
-            AfterValidator(validate_const(DestinationTeradataSchemasMode.ALLOW)),
+            Optional[DestinationTeradataModeAllow],
+            AfterValidator(validate_const(DestinationTeradataModeAllow.ALLOW)),
         ],
         pydantic.Field(alias="mode"),
-    ] = DestinationTeradataSchemasMode.ALLOW
+    ] = DestinationTeradataModeAllow.ALLOW
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
@@ -329,14 +319,14 @@ class DestinationTeradataAllow(BaseModel):
         return m
 
 
-class DestinationTeradataMode(str, Enum):
+class DestinationTeradataModeDisable(str, Enum):
     DISABLE = "disable"
 
 
 class DestinationTeradataDisableTypedDict(TypedDict):
     r"""Disable SSL."""
 
-    mode: DestinationTeradataMode
+    mode: DestinationTeradataModeDisable
 
 
 class DestinationTeradataDisable(BaseModel):
@@ -344,11 +334,11 @@ class DestinationTeradataDisable(BaseModel):
 
     MODE: Annotated[
         Annotated[
-            Optional[DestinationTeradataMode],
-            AfterValidator(validate_const(DestinationTeradataMode.DISABLE)),
+            Optional[DestinationTeradataModeDisable],
+            AfterValidator(validate_const(DestinationTeradataModeDisable.DISABLE)),
         ],
         pydantic.Field(alias="mode"),
-    ] = DestinationTeradataMode.DISABLE
+    ] = DestinationTeradataModeDisable.DISABLE
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):

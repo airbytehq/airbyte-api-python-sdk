@@ -11,11 +11,11 @@ from typing import Optional, Union
 from typing_extensions import Annotated, NotRequired, TypeAliasType, TypedDict
 
 
-class Redshift(str, Enum):
+class DestinationRedshiftRedshift(str, Enum):
     REDSHIFT = "redshift"
 
 
-class DestinationRedshiftSchemasTunnelMethodTunnelMethod(str, Enum):
+class DestinationRedshiftTunnelMethodSSHPasswordAuth(str, Enum):
     r"""Connect through a jump server tunnel host using username and password authentication"""
 
     SSH_PASSWORD_AUTH = "SSH_PASSWORD_AUTH"
@@ -28,7 +28,7 @@ class DestinationRedshiftPasswordAuthenticationTypedDict(TypedDict):
     r"""OS-level username for logging into the jump server host"""
     tunnel_user_password: str
     r"""OS-level password for logging into the jump server host"""
-    tunnel_method: DestinationRedshiftSchemasTunnelMethodTunnelMethod
+    tunnel_method: DestinationRedshiftTunnelMethodSSHPasswordAuth
     r"""Connect through a jump server tunnel host using username and password authentication"""
     tunnel_port: NotRequired[int]
     r"""Port on the proxy/jump server that accepts inbound ssh connections."""
@@ -46,15 +46,15 @@ class DestinationRedshiftPasswordAuthentication(BaseModel):
 
     TUNNEL_METHOD: Annotated[
         Annotated[
-            DestinationRedshiftSchemasTunnelMethodTunnelMethod,
+            DestinationRedshiftTunnelMethodSSHPasswordAuth,
             AfterValidator(
                 validate_const(
-                    DestinationRedshiftSchemasTunnelMethodTunnelMethod.SSH_PASSWORD_AUTH
+                    DestinationRedshiftTunnelMethodSSHPasswordAuth.SSH_PASSWORD_AUTH
                 )
             ),
         ],
         pydantic.Field(alias="tunnel_method"),
-    ] = DestinationRedshiftSchemasTunnelMethodTunnelMethod.SSH_PASSWORD_AUTH
+    ] = DestinationRedshiftTunnelMethodSSHPasswordAuth.SSH_PASSWORD_AUTH
     r"""Connect through a jump server tunnel host using username and password authentication"""
 
     tunnel_port: Optional[int] = 22
@@ -77,7 +77,7 @@ class DestinationRedshiftPasswordAuthentication(BaseModel):
         return m
 
 
-class DestinationRedshiftSchemasTunnelMethod(str, Enum):
+class DestinationRedshiftTunnelMethodSSHKeyAuth(str, Enum):
     r"""Connect through a jump server tunnel host using username and ssh key"""
 
     SSH_KEY_AUTH = "SSH_KEY_AUTH"
@@ -90,7 +90,7 @@ class DestinationRedshiftSSHKeyAuthenticationTypedDict(TypedDict):
     r"""Hostname of the jump server host that allows inbound ssh tunnel."""
     tunnel_user: str
     r"""OS-level username for logging into the jump server host."""
-    tunnel_method: DestinationRedshiftSchemasTunnelMethod
+    tunnel_method: DestinationRedshiftTunnelMethodSSHKeyAuth
     r"""Connect through a jump server tunnel host using username and ssh key"""
     tunnel_port: NotRequired[int]
     r"""Port on the proxy/jump server that accepts inbound ssh connections."""
@@ -108,13 +108,13 @@ class DestinationRedshiftSSHKeyAuthentication(BaseModel):
 
     TUNNEL_METHOD: Annotated[
         Annotated[
-            DestinationRedshiftSchemasTunnelMethod,
+            DestinationRedshiftTunnelMethodSSHKeyAuth,
             AfterValidator(
-                validate_const(DestinationRedshiftSchemasTunnelMethod.SSH_KEY_AUTH)
+                validate_const(DestinationRedshiftTunnelMethodSSHKeyAuth.SSH_KEY_AUTH)
             ),
         ],
         pydantic.Field(alias="tunnel_method"),
-    ] = DestinationRedshiftSchemasTunnelMethod.SSH_KEY_AUTH
+    ] = DestinationRedshiftTunnelMethodSSHKeyAuth.SSH_KEY_AUTH
     r"""Connect through a jump server tunnel host using username and ssh key"""
 
     tunnel_port: Optional[int] = 22
@@ -137,25 +137,27 @@ class DestinationRedshiftSSHKeyAuthentication(BaseModel):
         return m
 
 
-class DestinationRedshiftTunnelMethod(str, Enum):
+class DestinationRedshiftTunnelMethodNoTunnel(str, Enum):
     r"""No ssh tunnel needed to connect to database"""
 
     NO_TUNNEL = "NO_TUNNEL"
 
 
 class DestinationRedshiftNoTunnelTypedDict(TypedDict):
-    tunnel_method: DestinationRedshiftTunnelMethod
+    tunnel_method: DestinationRedshiftTunnelMethodNoTunnel
     r"""No ssh tunnel needed to connect to database"""
 
 
 class DestinationRedshiftNoTunnel(BaseModel):
     TUNNEL_METHOD: Annotated[
         Annotated[
-            DestinationRedshiftTunnelMethod,
-            AfterValidator(validate_const(DestinationRedshiftTunnelMethod.NO_TUNNEL)),
+            DestinationRedshiftTunnelMethodNoTunnel,
+            AfterValidator(
+                validate_const(DestinationRedshiftTunnelMethodNoTunnel.NO_TUNNEL)
+            ),
         ],
         pydantic.Field(alias="tunnel_method"),
-    ] = DestinationRedshiftTunnelMethod.NO_TUNNEL
+    ] = DestinationRedshiftTunnelMethodNoTunnel.NO_TUNNEL
     r"""No ssh tunnel needed to connect to database"""
 
 
@@ -319,7 +321,7 @@ class DestinationRedshiftTypedDict(TypedDict):
     r"""Password associated with the username."""
     username: str
     r"""Username to use to access the database."""
-    destination_type: Redshift
+    destination_type: DestinationRedshiftRedshift
     disable_type_dedupe: NotRequired[bool]
     r"""Disable Writing Final Tables. WARNING! The data format in _airbyte_data is likely stable but there are no guarantees that other metadata columns will remain the same in future versions"""
     drop_cascade: NotRequired[bool]
@@ -352,9 +354,12 @@ class DestinationRedshift(BaseModel):
     r"""Username to use to access the database."""
 
     DESTINATION_TYPE: Annotated[
-        Annotated[Redshift, AfterValidator(validate_const(Redshift.REDSHIFT))],
+        Annotated[
+            DestinationRedshiftRedshift,
+            AfterValidator(validate_const(DestinationRedshiftRedshift.REDSHIFT)),
+        ],
         pydantic.Field(alias="destinationType"),
-    ] = Redshift.REDSHIFT
+    ] = DestinationRedshiftRedshift.REDSHIFT
 
     disable_type_dedupe: Optional[bool] = False
     r"""Disable Writing Final Tables. WARNING! The data format in _airbyte_data is likely stable but there are no guarantees that other metadata columns will remain the same in future versions"""

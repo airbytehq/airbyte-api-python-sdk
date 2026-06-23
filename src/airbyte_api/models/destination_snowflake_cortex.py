@@ -15,7 +15,7 @@ class SnowflakeCortex(str, Enum):
     SNOWFLAKE_CORTEX = "snowflake-cortex"
 
 
-class DestinationSnowflakeCortexSchemasEmbeddingEmbedding5Mode(str, Enum):
+class DestinationSnowflakeCortexModeOpenaiCompatible(str, Enum):
     OPENAI_COMPATIBLE = "openai_compatible"
 
 
@@ -27,7 +27,7 @@ class DestinationSnowflakeCortexOpenAICompatibleTypedDict(TypedDict):
     dimensions: int
     r"""The number of dimensions the embedding model is generating"""
     api_key: NotRequired[str]
-    mode: DestinationSnowflakeCortexSchemasEmbeddingEmbedding5Mode
+    mode: DestinationSnowflakeCortexModeOpenaiCompatible
     model_name: NotRequired[str]
     r"""The name of the model to use for embedding"""
 
@@ -45,15 +45,15 @@ class DestinationSnowflakeCortexOpenAICompatible(BaseModel):
 
     MODE: Annotated[
         Annotated[
-            Optional[DestinationSnowflakeCortexSchemasEmbeddingEmbedding5Mode],
+            Optional[DestinationSnowflakeCortexModeOpenaiCompatible],
             AfterValidator(
                 validate_const(
-                    DestinationSnowflakeCortexSchemasEmbeddingEmbedding5Mode.OPENAI_COMPATIBLE
+                    DestinationSnowflakeCortexModeOpenaiCompatible.OPENAI_COMPATIBLE
                 )
             ),
         ],
         pydantic.Field(alias="mode"),
-    ] = DestinationSnowflakeCortexSchemasEmbeddingEmbedding5Mode.OPENAI_COMPATIBLE
+    ] = DestinationSnowflakeCortexModeOpenaiCompatible.OPENAI_COMPATIBLE
 
     model_name: Optional[str] = "text-embedding-ada-002"
     r"""The name of the model to use for embedding"""
@@ -75,7 +75,7 @@ class DestinationSnowflakeCortexOpenAICompatible(BaseModel):
         return m
 
 
-class DestinationSnowflakeCortexSchemasEmbeddingEmbeddingMode(str, Enum):
+class DestinationSnowflakeCortexModeAzureOpenai(str, Enum):
     AZURE_OPENAI = "azure_openai"
 
 
@@ -88,7 +88,7 @@ class DestinationSnowflakeCortexAzureOpenAITypedDict(TypedDict):
     r"""The deployment for your Azure OpenAI resource.  You can find this in the Azure portal under your Azure OpenAI resource"""
     openai_key: str
     r"""The API key for your Azure OpenAI resource.  You can find this in the Azure portal under your Azure OpenAI resource"""
-    mode: DestinationSnowflakeCortexSchemasEmbeddingEmbeddingMode
+    mode: DestinationSnowflakeCortexModeAzureOpenai
 
 
 class DestinationSnowflakeCortexAzureOpenAI(BaseModel):
@@ -105,15 +105,13 @@ class DestinationSnowflakeCortexAzureOpenAI(BaseModel):
 
     MODE: Annotated[
         Annotated[
-            Optional[DestinationSnowflakeCortexSchemasEmbeddingEmbeddingMode],
+            Optional[DestinationSnowflakeCortexModeAzureOpenai],
             AfterValidator(
-                validate_const(
-                    DestinationSnowflakeCortexSchemasEmbeddingEmbeddingMode.AZURE_OPENAI
-                )
+                validate_const(DestinationSnowflakeCortexModeAzureOpenai.AZURE_OPENAI)
             ),
         ],
         pydantic.Field(alias="mode"),
-    ] = DestinationSnowflakeCortexSchemasEmbeddingEmbeddingMode.AZURE_OPENAI
+    ] = DestinationSnowflakeCortexModeAzureOpenai.AZURE_OPENAI
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
@@ -132,14 +130,14 @@ class DestinationSnowflakeCortexAzureOpenAI(BaseModel):
         return m
 
 
-class DestinationSnowflakeCortexSchemasEmbeddingMode(str, Enum):
+class DestinationSnowflakeCortexModeFake(str, Enum):
     FAKE = "fake"
 
 
 class DestinationSnowflakeCortexFakeTypedDict(TypedDict):
     r"""Use a fake embedding made out of random vectors with 1536 embedding dimensions. This is useful for testing the data pipeline without incurring any costs."""
 
-    mode: DestinationSnowflakeCortexSchemasEmbeddingMode
+    mode: DestinationSnowflakeCortexModeFake
 
 
 class DestinationSnowflakeCortexFake(BaseModel):
@@ -147,13 +145,11 @@ class DestinationSnowflakeCortexFake(BaseModel):
 
     MODE: Annotated[
         Annotated[
-            Optional[DestinationSnowflakeCortexSchemasEmbeddingMode],
-            AfterValidator(
-                validate_const(DestinationSnowflakeCortexSchemasEmbeddingMode.FAKE)
-            ),
+            Optional[DestinationSnowflakeCortexModeFake],
+            AfterValidator(validate_const(DestinationSnowflakeCortexModeFake.FAKE)),
         ],
         pydantic.Field(alias="mode"),
-    ] = DestinationSnowflakeCortexSchemasEmbeddingMode.FAKE
+    ] = DestinationSnowflakeCortexModeFake.FAKE
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
@@ -172,7 +168,7 @@ class DestinationSnowflakeCortexFake(BaseModel):
         return m
 
 
-class DestinationSnowflakeCortexSchemasMode(str, Enum):
+class DestinationSnowflakeCortexModeCohere(str, Enum):
     COHERE = "cohere"
 
 
@@ -180,7 +176,7 @@ class DestinationSnowflakeCortexCohereTypedDict(TypedDict):
     r"""Use the Cohere API to embed text."""
 
     cohere_key: str
-    mode: DestinationSnowflakeCortexSchemasMode
+    mode: DestinationSnowflakeCortexModeCohere
 
 
 class DestinationSnowflakeCortexCohere(BaseModel):
@@ -190,13 +186,11 @@ class DestinationSnowflakeCortexCohere(BaseModel):
 
     MODE: Annotated[
         Annotated[
-            Optional[DestinationSnowflakeCortexSchemasMode],
-            AfterValidator(
-                validate_const(DestinationSnowflakeCortexSchemasMode.COHERE)
-            ),
+            Optional[DestinationSnowflakeCortexModeCohere],
+            AfterValidator(validate_const(DestinationSnowflakeCortexModeCohere.COHERE)),
         ],
         pydantic.Field(alias="mode"),
-    ] = DestinationSnowflakeCortexSchemasMode.COHERE
+    ] = DestinationSnowflakeCortexModeCohere.COHERE
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
@@ -215,7 +209,7 @@ class DestinationSnowflakeCortexCohere(BaseModel):
         return m
 
 
-class DestinationSnowflakeCortexMode(str, Enum):
+class DestinationSnowflakeCortexModeOpenai(str, Enum):
     OPENAI = "openai"
 
 
@@ -223,7 +217,7 @@ class DestinationSnowflakeCortexOpenAITypedDict(TypedDict):
     r"""Use the OpenAI API to embed text. This option is using the text-embedding-ada-002 model with 1536 embedding dimensions."""
 
     openai_key: str
-    mode: DestinationSnowflakeCortexMode
+    mode: DestinationSnowflakeCortexModeOpenai
 
 
 class DestinationSnowflakeCortexOpenAI(BaseModel):
@@ -233,11 +227,11 @@ class DestinationSnowflakeCortexOpenAI(BaseModel):
 
     MODE: Annotated[
         Annotated[
-            Optional[DestinationSnowflakeCortexMode],
-            AfterValidator(validate_const(DestinationSnowflakeCortexMode.OPENAI)),
+            Optional[DestinationSnowflakeCortexModeOpenai],
+            AfterValidator(validate_const(DestinationSnowflakeCortexModeOpenai.OPENAI)),
         ],
         pydantic.Field(alias="mode"),
-    ] = DestinationSnowflakeCortexMode.OPENAI
+    ] = DestinationSnowflakeCortexModeOpenai.OPENAI
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
@@ -370,9 +364,7 @@ class DestinationSnowflakeCortexLanguage(str, Enum):
     SOL = "sol"
 
 
-class DestinationSnowflakeCortexSchemasProcessingTextSplitterTextSplitterMode(
-    str, Enum
-):
+class DestinationSnowflakeCortexModeCode(str, Enum):
     CODE = "code"
 
 
@@ -381,7 +373,7 @@ class DestinationSnowflakeCortexByProgrammingLanguageTypedDict(TypedDict):
 
     language: DestinationSnowflakeCortexLanguage
     r"""Split code in suitable places based on the programming language"""
-    mode: DestinationSnowflakeCortexSchemasProcessingTextSplitterTextSplitterMode
+    mode: DestinationSnowflakeCortexModeCode
 
 
 class DestinationSnowflakeCortexByProgrammingLanguage(BaseModel):
@@ -392,17 +384,11 @@ class DestinationSnowflakeCortexByProgrammingLanguage(BaseModel):
 
     MODE: Annotated[
         Annotated[
-            Optional[
-                DestinationSnowflakeCortexSchemasProcessingTextSplitterTextSplitterMode
-            ],
-            AfterValidator(
-                validate_const(
-                    DestinationSnowflakeCortexSchemasProcessingTextSplitterTextSplitterMode.CODE
-                )
-            ),
+            Optional[DestinationSnowflakeCortexModeCode],
+            AfterValidator(validate_const(DestinationSnowflakeCortexModeCode.CODE)),
         ],
         pydantic.Field(alias="mode"),
-    ] = DestinationSnowflakeCortexSchemasProcessingTextSplitterTextSplitterMode.CODE
+    ] = DestinationSnowflakeCortexModeCode.CODE
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
@@ -421,14 +407,14 @@ class DestinationSnowflakeCortexByProgrammingLanguage(BaseModel):
         return m
 
 
-class DestinationSnowflakeCortexSchemasProcessingTextSplitterMode(str, Enum):
+class DestinationSnowflakeCortexModeMarkdown(str, Enum):
     MARKDOWN = "markdown"
 
 
 class DestinationSnowflakeCortexByMarkdownHeaderTypedDict(TypedDict):
     r"""Split the text by Markdown headers down to the specified header level. If the chunk size fits multiple sections, they will be combined into a single chunk."""
 
-    mode: DestinationSnowflakeCortexSchemasProcessingTextSplitterMode
+    mode: DestinationSnowflakeCortexModeMarkdown
     split_level: NotRequired[int]
     r"""Level of markdown headers to split text fields by. Headings down to the specified level will be used as split points"""
 
@@ -438,15 +424,13 @@ class DestinationSnowflakeCortexByMarkdownHeader(BaseModel):
 
     MODE: Annotated[
         Annotated[
-            Optional[DestinationSnowflakeCortexSchemasProcessingTextSplitterMode],
+            Optional[DestinationSnowflakeCortexModeMarkdown],
             AfterValidator(
-                validate_const(
-                    DestinationSnowflakeCortexSchemasProcessingTextSplitterMode.MARKDOWN
-                )
+                validate_const(DestinationSnowflakeCortexModeMarkdown.MARKDOWN)
             ),
         ],
         pydantic.Field(alias="mode"),
-    ] = DestinationSnowflakeCortexSchemasProcessingTextSplitterMode.MARKDOWN
+    ] = DestinationSnowflakeCortexModeMarkdown.MARKDOWN
 
     split_level: Optional[int] = 1
     r"""Level of markdown headers to split text fields by. Headings down to the specified level will be used as split points"""
@@ -468,7 +452,7 @@ class DestinationSnowflakeCortexByMarkdownHeader(BaseModel):
         return m
 
 
-class DestinationSnowflakeCortexSchemasProcessingMode(str, Enum):
+class DestinationSnowflakeCortexModeSeparator(str, Enum):
     SEPARATOR = "separator"
 
 
@@ -477,7 +461,7 @@ class DestinationSnowflakeCortexBySeparatorTypedDict(TypedDict):
 
     keep_separator: NotRequired[bool]
     r"""Whether to keep the separator in the resulting chunks"""
-    mode: DestinationSnowflakeCortexSchemasProcessingMode
+    mode: DestinationSnowflakeCortexModeSeparator
     separators: NotRequired[List[str]]
     r"""List of separator strings to split text fields by. The separator itself needs to be wrapped in double quotes, e.g. to split by the dot character, use \".\". To split by a newline, use \"\n\"."""
 
@@ -490,15 +474,13 @@ class DestinationSnowflakeCortexBySeparator(BaseModel):
 
     MODE: Annotated[
         Annotated[
-            Optional[DestinationSnowflakeCortexSchemasProcessingMode],
+            Optional[DestinationSnowflakeCortexModeSeparator],
             AfterValidator(
-                validate_const(
-                    DestinationSnowflakeCortexSchemasProcessingMode.SEPARATOR
-                )
+                validate_const(DestinationSnowflakeCortexModeSeparator.SEPARATOR)
             ),
         ],
         pydantic.Field(alias="mode"),
-    ] = DestinationSnowflakeCortexSchemasProcessingMode.SEPARATOR
+    ] = DestinationSnowflakeCortexModeSeparator.SEPARATOR
 
     separators: Optional[List[str]] = None
     r"""List of separator strings to split text fields by. The separator itself needs to be wrapped in double quotes, e.g. to split by the dot character, use \".\". To split by a newline, use \"\n\"."""

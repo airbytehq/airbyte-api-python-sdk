@@ -11,7 +11,7 @@ from typing import Optional, Union
 from typing_extensions import Annotated, NotRequired, TypeAliasType, TypedDict
 
 
-class DestinationAwsDatalakeCredentialsTitle(str, Enum):
+class CredentialsTitleIamUser(str, Enum):
     r"""Name of the credentials"""
 
     IAM_USER = "IAM User"
@@ -22,7 +22,7 @@ class IAMUserTypedDict(TypedDict):
     r"""AWS User Access Key Id"""
     aws_secret_access_key: str
     r"""Secret Access Key"""
-    credentials_title: DestinationAwsDatalakeCredentialsTitle
+    credentials_title: CredentialsTitleIamUser
     r"""Name of the credentials"""
 
 
@@ -35,13 +35,11 @@ class IAMUser(BaseModel):
 
     CREDENTIALS_TITLE: Annotated[
         Annotated[
-            Optional[DestinationAwsDatalakeCredentialsTitle],
-            AfterValidator(
-                validate_const(DestinationAwsDatalakeCredentialsTitle.IAM_USER)
-            ),
+            Optional[CredentialsTitleIamUser],
+            AfterValidator(validate_const(CredentialsTitleIamUser.IAM_USER)),
         ],
         pydantic.Field(alias="credentials_title"),
-    ] = DestinationAwsDatalakeCredentialsTitle.IAM_USER
+    ] = CredentialsTitleIamUser.IAM_USER
     r"""Name of the credentials"""
 
     @model_serializer(mode="wrap")
@@ -61,7 +59,7 @@ class IAMUser(BaseModel):
         return m
 
 
-class CredentialsTitle(str, Enum):
+class CredentialsTitleIamRole(str, Enum):
     r"""Name of the credentials"""
 
     IAM_ROLE = "IAM Role"
@@ -70,7 +68,7 @@ class CredentialsTitle(str, Enum):
 class IAMRoleTypedDict(TypedDict):
     role_arn: str
     r"""Will assume this role to write data to s3"""
-    credentials_title: CredentialsTitle
+    credentials_title: CredentialsTitleIamRole
     r"""Name of the credentials"""
 
 
@@ -80,11 +78,11 @@ class IAMRole(BaseModel):
 
     CREDENTIALS_TITLE: Annotated[
         Annotated[
-            Optional[CredentialsTitle],
-            AfterValidator(validate_const(CredentialsTitle.IAM_ROLE)),
+            Optional[CredentialsTitleIamRole],
+            AfterValidator(validate_const(CredentialsTitleIamRole.IAM_ROLE)),
         ],
         pydantic.Field(alias="credentials_title"),
-    ] = CredentialsTitle.IAM_ROLE
+    ] = CredentialsTitleIamRole.IAM_ROLE
     r"""Name of the credentials"""
 
     @model_serializer(mode="wrap")
@@ -118,7 +116,7 @@ class AwsDatalake(str, Enum):
     AWS_DATALAKE = "aws-datalake"
 
 
-class DestinationAwsDatalakeCompressionCodecOptional(str, Enum):
+class CompressionCodecOptional2(str, Enum):
     r"""The compression algorithm used to compress data."""
 
     UNCOMPRESSED = "UNCOMPRESSED"
@@ -127,25 +125,23 @@ class DestinationAwsDatalakeCompressionCodecOptional(str, Enum):
     ZSTD = "ZSTD"
 
 
-class DestinationAwsDatalakeFormatTypeWildcard(str, Enum):
+class FormatTypeWildcardParquet(str, Enum):
     PARQUET = "Parquet"
 
 
-class ParquetColumnarStorageTypedDict(TypedDict):
-    compression_codec: NotRequired[DestinationAwsDatalakeCompressionCodecOptional]
+class DestinationAwsDatalakeParquetColumnarStorageTypedDict(TypedDict):
+    compression_codec: NotRequired[CompressionCodecOptional2]
     r"""The compression algorithm used to compress data."""
-    format_type: NotRequired[DestinationAwsDatalakeFormatTypeWildcard]
+    format_type: NotRequired[FormatTypeWildcardParquet]
 
 
-class ParquetColumnarStorage(BaseModel):
-    compression_codec: Optional[DestinationAwsDatalakeCompressionCodecOptional] = (
-        DestinationAwsDatalakeCompressionCodecOptional.SNAPPY
+class DestinationAwsDatalakeParquetColumnarStorage(BaseModel):
+    compression_codec: Optional[CompressionCodecOptional2] = (
+        CompressionCodecOptional2.SNAPPY
     )
     r"""The compression algorithm used to compress data."""
 
-    format_type: Optional[DestinationAwsDatalakeFormatTypeWildcard] = (
-        DestinationAwsDatalakeFormatTypeWildcard.PARQUET
-    )
+    format_type: Optional[FormatTypeWildcardParquet] = FormatTypeWildcardParquet.PARQUET
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
@@ -164,30 +160,30 @@ class ParquetColumnarStorage(BaseModel):
         return m
 
 
-class CompressionCodecOptional(str, Enum):
+class CompressionCodecOptional1(str, Enum):
     r"""The compression algorithm used to compress data."""
 
     UNCOMPRESSED = "UNCOMPRESSED"
     GZIP = "GZIP"
 
 
-class FormatTypeWildcard(str, Enum):
+class FormatTypeWildcardJsonl(str, Enum):
     JSONL = "JSONL"
 
 
-class JSONLinesNewlineDelimitedJSONTypedDict(TypedDict):
-    compression_codec: NotRequired[CompressionCodecOptional]
+class DestinationAwsDatalakeJSONLinesNewlineDelimitedJSONTypedDict(TypedDict):
+    compression_codec: NotRequired[CompressionCodecOptional1]
     r"""The compression algorithm used to compress data."""
-    format_type: NotRequired[FormatTypeWildcard]
+    format_type: NotRequired[FormatTypeWildcardJsonl]
 
 
-class JSONLinesNewlineDelimitedJSON(BaseModel):
-    compression_codec: Optional[CompressionCodecOptional] = (
-        CompressionCodecOptional.UNCOMPRESSED
+class DestinationAwsDatalakeJSONLinesNewlineDelimitedJSON(BaseModel):
+    compression_codec: Optional[CompressionCodecOptional1] = (
+        CompressionCodecOptional1.UNCOMPRESSED
     )
     r"""The compression algorithm used to compress data."""
 
-    format_type: Optional[FormatTypeWildcard] = FormatTypeWildcard.JSONL
+    format_type: Optional[FormatTypeWildcardJsonl] = FormatTypeWildcardJsonl.JSONL
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
@@ -208,13 +204,20 @@ class JSONLinesNewlineDelimitedJSON(BaseModel):
 
 OutputFormatWildcardTypedDict = TypeAliasType(
     "OutputFormatWildcardTypedDict",
-    Union[JSONLinesNewlineDelimitedJSONTypedDict, ParquetColumnarStorageTypedDict],
+    Union[
+        DestinationAwsDatalakeJSONLinesNewlineDelimitedJSONTypedDict,
+        DestinationAwsDatalakeParquetColumnarStorageTypedDict,
+    ],
 )
 r"""Format of the data output."""
 
 
 OutputFormatWildcard = TypeAliasType(
-    "OutputFormatWildcard", Union[JSONLinesNewlineDelimitedJSON, ParquetColumnarStorage]
+    "OutputFormatWildcard",
+    Union[
+        DestinationAwsDatalakeJSONLinesNewlineDelimitedJSON,
+        DestinationAwsDatalakeParquetColumnarStorage,
+    ],
 )
 r"""Format of the data output."""
 
@@ -231,7 +234,7 @@ class ChooseHowToPartitionData(str, Enum):
     YEAR_MONTH_DAY = "YEAR/MONTH/DAY"
 
 
-class S3BucketRegion(str, Enum):
+class DestinationAwsDatalakeS3BucketRegion(str, Enum):
     r"""The region of the S3 bucket. See <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-regions-availability-zones.html#concepts-available-regions\">here</a> for all region codes."""
 
     UNKNOWN = ""
@@ -294,7 +297,7 @@ class DestinationAwsDatalakeTypedDict(TypedDict):
     r"""Whether to create tables as LF governed tables."""
     partitioning: NotRequired[ChooseHowToPartitionData]
     r"""Partition data by cursor fields when a cursor field is a date"""
-    region: NotRequired[S3BucketRegion]
+    region: NotRequired[DestinationAwsDatalakeS3BucketRegion]
     r"""The region of the S3 bucket. See <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-regions-availability-zones.html#concepts-available-regions\">here</a> for all region codes."""
 
 
@@ -343,7 +346,9 @@ class DestinationAwsDatalake(BaseModel):
     )
     r"""Partition data by cursor fields when a cursor field is a date"""
 
-    region: Optional[S3BucketRegion] = S3BucketRegion.UNKNOWN
+    region: Optional[DestinationAwsDatalakeS3BucketRegion] = (
+        DestinationAwsDatalakeS3BucketRegion.UNKNOWN
+    )
     r"""The region of the S3 bucket. See <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-regions-availability-zones.html#concepts-available-regions\">here</a> for all region codes."""
 
     @model_serializer(mode="wrap")

@@ -9,9 +9,9 @@
 value: models.RowFilteringOperationEqual = /* values here */
 ```
 
-### `models.RowFilteringOperationNot`
+### `models.RowFilteringOperationNot1`
 
 ```python
-value: models.RowFilteringOperationNot = /* values here */
+value: models.RowFilteringOperationNot1 = /* values here */
 ```
 

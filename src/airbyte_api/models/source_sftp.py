@@ -11,7 +11,7 @@ from typing import Optional, Union
 from typing_extensions import Annotated, NotRequired, TypeAliasType, TypedDict
 
 
-class SourceSftpSchemasAuthMethod(str, Enum):
+class AuthMethodSSHKeyAuth(str, Enum):
     r"""Connect through ssh key"""
 
     SSH_KEY_AUTH = "SSH_KEY_AUTH"
@@ -20,7 +20,7 @@ class SourceSftpSchemasAuthMethod(str, Enum):
 class SourceSftpSSHKeyAuthenticationTypedDict(TypedDict):
     auth_ssh_key: str
     r"""OS-level user account ssh key credentials in RSA PEM format ( created with ssh-keygen -t rsa -m PEM -f myuser_rsa )"""
-    auth_method: SourceSftpSchemasAuthMethod
+    auth_method: AuthMethodSSHKeyAuth
     r"""Connect through ssh key"""
 
 
@@ -30,15 +30,15 @@ class SourceSftpSSHKeyAuthentication(BaseModel):
 
     AUTH_METHOD: Annotated[
         Annotated[
-            SourceSftpSchemasAuthMethod,
-            AfterValidator(validate_const(SourceSftpSchemasAuthMethod.SSH_KEY_AUTH)),
+            AuthMethodSSHKeyAuth,
+            AfterValidator(validate_const(AuthMethodSSHKeyAuth.SSH_KEY_AUTH)),
         ],
         pydantic.Field(alias="auth_method"),
-    ] = SourceSftpSchemasAuthMethod.SSH_KEY_AUTH
+    ] = AuthMethodSSHKeyAuth.SSH_KEY_AUTH
     r"""Connect through ssh key"""
 
 
-class SourceSftpAuthMethod(str, Enum):
+class AuthMethodSSHPasswordAuth(str, Enum):
     r"""Connect through password authentication"""
 
     SSH_PASSWORD_AUTH = "SSH_PASSWORD_AUTH"
@@ -47,7 +47,7 @@ class SourceSftpAuthMethod(str, Enum):
 class SourceSftpPasswordAuthenticationTypedDict(TypedDict):
     auth_user_password: str
     r"""OS-level password for logging into the jump server host"""
-    auth_method: SourceSftpAuthMethod
+    auth_method: AuthMethodSSHPasswordAuth
     r"""Connect through password authentication"""
 
 
@@ -57,11 +57,11 @@ class SourceSftpPasswordAuthentication(BaseModel):
 
     AUTH_METHOD: Annotated[
         Annotated[
-            SourceSftpAuthMethod,
-            AfterValidator(validate_const(SourceSftpAuthMethod.SSH_PASSWORD_AUTH)),
+            AuthMethodSSHPasswordAuth,
+            AfterValidator(validate_const(AuthMethodSSHPasswordAuth.SSH_PASSWORD_AUTH)),
         ],
         pydantic.Field(alias="auth_method"),
-    ] = SourceSftpAuthMethod.SSH_PASSWORD_AUTH
+    ] = AuthMethodSSHPasswordAuth.SSH_PASSWORD_AUTH
     r"""Connect through password authentication"""
 
 

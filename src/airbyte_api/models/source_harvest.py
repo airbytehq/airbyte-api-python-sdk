@@ -12,14 +12,14 @@ from typing import Any, Dict, Optional, Union
 from typing_extensions import Annotated, NotRequired, TypeAliasType, TypedDict
 
 
-class SourceHarvestSchemasAuthType(str, Enum):
+class SourceHarvestAuthTypeToken(str, Enum):
     TOKEN = "Token"
 
 
 class SourceHarvestAuthenticateWithPersonalAccessTokenTypedDict(TypedDict):
     api_token: str
     r"""Log into Harvest and then create new <a href=\"https://id.getharvest.com/developers\"> personal access token</a>."""
-    auth_type: SourceHarvestSchemasAuthType
+    auth_type: SourceHarvestAuthTypeToken
 
 
 class SourceHarvestAuthenticateWithPersonalAccessToken(BaseModel):
@@ -33,11 +33,11 @@ class SourceHarvestAuthenticateWithPersonalAccessToken(BaseModel):
 
     AUTH_TYPE: Annotated[
         Annotated[
-            Optional[SourceHarvestSchemasAuthType],
-            AfterValidator(validate_const(SourceHarvestSchemasAuthType.TOKEN)),
+            Optional[SourceHarvestAuthTypeToken],
+            AfterValidator(validate_const(SourceHarvestAuthTypeToken.TOKEN)),
         ],
         pydantic.Field(alias="auth_type"),
-    ] = SourceHarvestSchemasAuthType.TOKEN
+    ] = SourceHarvestAuthTypeToken.TOKEN
 
     @property
     def additional_properties(self):
@@ -67,7 +67,7 @@ class SourceHarvestAuthenticateWithPersonalAccessToken(BaseModel):
         return m
 
 
-class SourceHarvestAuthType(str, Enum):
+class SourceHarvestAuthTypeClient(str, Enum):
     CLIENT = "Client"
 
 
@@ -78,7 +78,7 @@ class AuthenticateViaHarvestOAuthTypedDict(TypedDict):
     r"""The Client Secret of your Harvest developer application."""
     refresh_token: str
     r"""Refresh Token to renew the expired Access Token."""
-    auth_type: SourceHarvestAuthType
+    auth_type: SourceHarvestAuthTypeClient
 
 
 class AuthenticateViaHarvestOAuth(BaseModel):
@@ -98,11 +98,11 @@ class AuthenticateViaHarvestOAuth(BaseModel):
 
     AUTH_TYPE: Annotated[
         Annotated[
-            Optional[SourceHarvestAuthType],
-            AfterValidator(validate_const(SourceHarvestAuthType.CLIENT)),
+            Optional[SourceHarvestAuthTypeClient],
+            AfterValidator(validate_const(SourceHarvestAuthTypeClient.CLIENT)),
         ],
         pydantic.Field(alias="auth_type"),
-    ] = SourceHarvestAuthType.CLIENT
+    ] = SourceHarvestAuthTypeClient.CLIENT
 
     @property
     def additional_properties(self):

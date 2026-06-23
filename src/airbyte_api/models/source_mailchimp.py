@@ -12,14 +12,14 @@ from typing import Optional, Union
 from typing_extensions import Annotated, NotRequired, TypeAliasType, TypedDict
 
 
-class SourceMailchimpSchemasAuthType(str, Enum):
+class SourceMailchimpAuthTypeApikey(str, Enum):
     APIKEY = "apikey"
 
 
 class SourceMailchimpAPIKeyTypedDict(TypedDict):
     apikey: str
     r"""Mailchimp API Key. See the <a href=\"https://docs.airbyte.com/integrations/sources/mailchimp\">docs</a> for information on how to generate this key."""
-    auth_type: SourceMailchimpSchemasAuthType
+    auth_type: SourceMailchimpAuthTypeApikey
 
 
 class SourceMailchimpAPIKey(BaseModel):
@@ -28,21 +28,21 @@ class SourceMailchimpAPIKey(BaseModel):
 
     AUTH_TYPE: Annotated[
         Annotated[
-            SourceMailchimpSchemasAuthType,
-            AfterValidator(validate_const(SourceMailchimpSchemasAuthType.APIKEY)),
+            SourceMailchimpAuthTypeApikey,
+            AfterValidator(validate_const(SourceMailchimpAuthTypeApikey.APIKEY)),
         ],
         pydantic.Field(alias="auth_type"),
-    ] = SourceMailchimpSchemasAuthType.APIKEY
+    ] = SourceMailchimpAuthTypeApikey.APIKEY
 
 
-class SourceMailchimpAuthType(str, Enum):
+class SourceMailchimpAuthTypeOauth20(str, Enum):
     OAUTH2_0 = "oauth2.0"
 
 
 class SourceMailchimpOAuth20TypedDict(TypedDict):
     access_token: str
     r"""An access token generated using the above client ID and secret."""
-    auth_type: SourceMailchimpAuthType
+    auth_type: SourceMailchimpAuthTypeOauth20
     client_id: NotRequired[str]
     r"""The Client ID of your OAuth application."""
     client_secret: NotRequired[str]
@@ -55,11 +55,11 @@ class SourceMailchimpOAuth20(BaseModel):
 
     AUTH_TYPE: Annotated[
         Annotated[
-            SourceMailchimpAuthType,
-            AfterValidator(validate_const(SourceMailchimpAuthType.OAUTH2_0)),
+            SourceMailchimpAuthTypeOauth20,
+            AfterValidator(validate_const(SourceMailchimpAuthTypeOauth20.OAUTH2_0)),
         ],
         pydantic.Field(alias="auth_type"),
-    ] = SourceMailchimpAuthType.OAUTH2_0
+    ] = SourceMailchimpAuthTypeOauth20.OAUTH2_0
 
     client_id: Optional[str] = None
     r"""The Client ID of your OAuth application."""
@@ -99,13 +99,13 @@ SourceMailchimpAuthentication = Annotated[
 ]
 
 
-class SourceMailchimpMailchimp(str, Enum):
+class MailchimpEnum(str, Enum):
     MAILCHIMP = "mailchimp"
 
 
 class SourceMailchimpTypedDict(TypedDict):
     credentials: NotRequired[SourceMailchimpAuthenticationTypedDict]
-    source_type: SourceMailchimpMailchimp
+    source_type: MailchimpEnum
     start_date: NotRequired[datetime]
     r"""The date from which you want to start syncing data for Incremental streams. Only records that have been created or modified since this date will be synced. If left blank, all data will by synced."""
 
@@ -115,11 +115,10 @@ class SourceMailchimp(BaseModel):
 
     SOURCE_TYPE: Annotated[
         Annotated[
-            SourceMailchimpMailchimp,
-            AfterValidator(validate_const(SourceMailchimpMailchimp.MAILCHIMP)),
+            MailchimpEnum, AfterValidator(validate_const(MailchimpEnum.MAILCHIMP))
         ],
         pydantic.Field(alias="sourceType"),
-    ] = SourceMailchimpMailchimp.MAILCHIMP
+    ] = MailchimpEnum.MAILCHIMP
 
     start_date: Optional[datetime] = None
     r"""The date from which you want to start syncing data for Incremental streams. Only records that have been created or modified since this date will be synced. If left blank, all data will by synced."""

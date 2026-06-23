@@ -11,30 +11,30 @@ from typing import List, Optional, Union
 from typing_extensions import Annotated, NotRequired, TypeAliasType, TypedDict
 
 
-class SourceMondaySchemasAuthType(str, Enum):
+class SourceMondayAuthTypeAPIToken(str, Enum):
     API_TOKEN = "api_token"
 
 
-class APITokenTypedDict(TypedDict):
+class SourceMondayAPITokenTypedDict(TypedDict):
     api_token: str
     r"""API Token for making authenticated requests."""
-    auth_type: SourceMondaySchemasAuthType
+    auth_type: SourceMondayAuthTypeAPIToken
 
 
-class APIToken(BaseModel):
+class SourceMondayAPIToken(BaseModel):
     api_token: str
     r"""API Token for making authenticated requests."""
 
     AUTH_TYPE: Annotated[
         Annotated[
-            SourceMondaySchemasAuthType,
-            AfterValidator(validate_const(SourceMondaySchemasAuthType.API_TOKEN)),
+            SourceMondayAuthTypeAPIToken,
+            AfterValidator(validate_const(SourceMondayAuthTypeAPIToken.API_TOKEN)),
         ],
         pydantic.Field(alias="auth_type"),
-    ] = SourceMondaySchemasAuthType.API_TOKEN
+    ] = SourceMondayAuthTypeAPIToken.API_TOKEN
 
 
-class SourceMondayAuthType(str, Enum):
+class SourceMondayAuthTypeOauth20(str, Enum):
     OAUTH2_0 = "oauth2.0"
 
 
@@ -45,7 +45,7 @@ class SourceMondayOAuth20TypedDict(TypedDict):
     r"""The Client ID of your OAuth application."""
     client_secret: str
     r"""The Client Secret of your OAuth application."""
-    auth_type: SourceMondayAuthType
+    auth_type: SourceMondayAuthTypeOauth20
     subdomain: NotRequired[str]
     r"""Slug/subdomain of the account, or the first part of the URL that comes before .monday.com"""
 
@@ -62,11 +62,11 @@ class SourceMondayOAuth20(BaseModel):
 
     AUTH_TYPE: Annotated[
         Annotated[
-            SourceMondayAuthType,
-            AfterValidator(validate_const(SourceMondayAuthType.OAUTH2_0)),
+            SourceMondayAuthTypeOauth20,
+            AfterValidator(validate_const(SourceMondayAuthTypeOauth20.OAUTH2_0)),
         ],
         pydantic.Field(alias="auth_type"),
-    ] = SourceMondayAuthType.OAUTH2_0
+    ] = SourceMondayAuthTypeOauth20.OAUTH2_0
 
     subdomain: Optional[str] = ""
     r"""Slug/subdomain of the account, or the first part of the URL that comes before .monday.com"""
@@ -90,20 +90,20 @@ class SourceMondayOAuth20(BaseModel):
 
 SourceMondayAuthorizationMethodTypedDict = TypeAliasType(
     "SourceMondayAuthorizationMethodTypedDict",
-    Union[APITokenTypedDict, SourceMondayOAuth20TypedDict],
+    Union[SourceMondayAPITokenTypedDict, SourceMondayOAuth20TypedDict],
 )
 
 
 SourceMondayAuthorizationMethod = Annotated[
     Union[
         Annotated[SourceMondayOAuth20, Tag("oauth2.0")],
-        Annotated[APIToken, Tag("api_token")],
+        Annotated[SourceMondayAPIToken, Tag("api_token")],
     ],
     Discriminator(lambda m: get_discriminator(m, "auth_type", "auth_type")),
 ]
 
 
-class SourceMondayMonday(str, Enum):
+class MondayEnum(str, Enum):
     MONDAY = "monday"
 
 
@@ -113,7 +113,7 @@ class SourceMondayTypedDict(TypedDict):
     credentials: NotRequired[SourceMondayAuthorizationMethodTypedDict]
     num_workers: NotRequired[int]
     r"""The number of worker threads to use for the sync."""
-    source_type: SourceMondayMonday
+    source_type: MondayEnum
 
 
 class SourceMonday(BaseModel):
@@ -126,12 +126,9 @@ class SourceMonday(BaseModel):
     r"""The number of worker threads to use for the sync."""
 
     SOURCE_TYPE: Annotated[
-        Annotated[
-            SourceMondayMonday,
-            AfterValidator(validate_const(SourceMondayMonday.MONDAY)),
-        ],
+        Annotated[MondayEnum, AfterValidator(validate_const(MondayEnum.MONDAY))],
         pydantic.Field(alias="sourceType"),
-    ] = SourceMondayMonday.MONDAY
+    ] = MondayEnum.MONDAY
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
@@ -151,7 +148,7 @@ class SourceMonday(BaseModel):
 
 
 try:
-    APIToken.model_rebuild()
+    SourceMondayAPIToken.model_rebuild()
 except NameError:
     pass
 try:

@@ -15,11 +15,11 @@ class Astra(str, Enum):
     ASTRA = "astra"
 
 
-class DestinationAstraSchemasEmbeddingEmbedding5Mode(str, Enum):
+class DestinationAstraModeOpenaiCompatible(str, Enum):
     OPENAI_COMPATIBLE = "openai_compatible"
 
 
-class OpenAICompatibleTypedDict(TypedDict):
+class DestinationAstraOpenAICompatibleTypedDict(TypedDict):
     r"""Use a service that's compatible with the OpenAI API to embed text."""
 
     base_url: str
@@ -27,12 +27,12 @@ class OpenAICompatibleTypedDict(TypedDict):
     dimensions: int
     r"""The number of dimensions the embedding model is generating"""
     api_key: NotRequired[str]
-    mode: DestinationAstraSchemasEmbeddingEmbedding5Mode
+    mode: DestinationAstraModeOpenaiCompatible
     model_name: NotRequired[str]
     r"""The name of the model to use for embedding"""
 
 
-class OpenAICompatible(BaseModel):
+class DestinationAstraOpenAICompatible(BaseModel):
     r"""Use a service that's compatible with the OpenAI API to embed text."""
 
     base_url: str
@@ -45,15 +45,13 @@ class OpenAICompatible(BaseModel):
 
     MODE: Annotated[
         Annotated[
-            Optional[DestinationAstraSchemasEmbeddingEmbedding5Mode],
+            Optional[DestinationAstraModeOpenaiCompatible],
             AfterValidator(
-                validate_const(
-                    DestinationAstraSchemasEmbeddingEmbedding5Mode.OPENAI_COMPATIBLE
-                )
+                validate_const(DestinationAstraModeOpenaiCompatible.OPENAI_COMPATIBLE)
             ),
         ],
         pydantic.Field(alias="mode"),
-    ] = DestinationAstraSchemasEmbeddingEmbedding5Mode.OPENAI_COMPATIBLE
+    ] = DestinationAstraModeOpenaiCompatible.OPENAI_COMPATIBLE
 
     model_name: Optional[str] = "text-embedding-ada-002"
     r"""The name of the model to use for embedding"""
@@ -75,11 +73,11 @@ class OpenAICompatible(BaseModel):
         return m
 
 
-class DestinationAstraSchemasEmbeddingEmbeddingMode(str, Enum):
+class DestinationAstraModeAzureOpenai(str, Enum):
     AZURE_OPENAI = "azure_openai"
 
 
-class AzureOpenAITypedDict(TypedDict):
+class DestinationAstraAzureOpenAITypedDict(TypedDict):
     r"""Use the Azure-hosted OpenAI API to embed text. This option is using the text-embedding-ada-002 model with 1536 embedding dimensions."""
 
     api_base: str
@@ -88,10 +86,10 @@ class AzureOpenAITypedDict(TypedDict):
     r"""The deployment for your Azure OpenAI resource.  You can find this in the Azure portal under your Azure OpenAI resource"""
     openai_key: str
     r"""The API key for your Azure OpenAI resource.  You can find this in the Azure portal under your Azure OpenAI resource"""
-    mode: DestinationAstraSchemasEmbeddingEmbeddingMode
+    mode: DestinationAstraModeAzureOpenai
 
 
-class AzureOpenAI(BaseModel):
+class DestinationAstraAzureOpenAI(BaseModel):
     r"""Use the Azure-hosted OpenAI API to embed text. This option is using the text-embedding-ada-002 model with 1536 embedding dimensions."""
 
     api_base: str
@@ -105,15 +103,13 @@ class AzureOpenAI(BaseModel):
 
     MODE: Annotated[
         Annotated[
-            Optional[DestinationAstraSchemasEmbeddingEmbeddingMode],
+            Optional[DestinationAstraModeAzureOpenai],
             AfterValidator(
-                validate_const(
-                    DestinationAstraSchemasEmbeddingEmbeddingMode.AZURE_OPENAI
-                )
+                validate_const(DestinationAstraModeAzureOpenai.AZURE_OPENAI)
             ),
         ],
         pydantic.Field(alias="mode"),
-    ] = DestinationAstraSchemasEmbeddingEmbeddingMode.AZURE_OPENAI
+    ] = DestinationAstraModeAzureOpenai.AZURE_OPENAI
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
@@ -132,26 +128,26 @@ class AzureOpenAI(BaseModel):
         return m
 
 
-class DestinationAstraSchemasEmbeddingMode(str, Enum):
+class DestinationAstraModeFake(str, Enum):
     FAKE = "fake"
 
 
-class FakeTypedDict(TypedDict):
+class DestinationAstraFakeTypedDict(TypedDict):
     r"""Use a fake embedding made out of random vectors with 1536 embedding dimensions. This is useful for testing the data pipeline without incurring any costs."""
 
-    mode: DestinationAstraSchemasEmbeddingMode
+    mode: DestinationAstraModeFake
 
 
-class Fake(BaseModel):
+class DestinationAstraFake(BaseModel):
     r"""Use a fake embedding made out of random vectors with 1536 embedding dimensions. This is useful for testing the data pipeline without incurring any costs."""
 
     MODE: Annotated[
         Annotated[
-            Optional[DestinationAstraSchemasEmbeddingMode],
-            AfterValidator(validate_const(DestinationAstraSchemasEmbeddingMode.FAKE)),
+            Optional[DestinationAstraModeFake],
+            AfterValidator(validate_const(DestinationAstraModeFake.FAKE)),
         ],
         pydantic.Field(alias="mode"),
-    ] = DestinationAstraSchemasEmbeddingMode.FAKE
+    ] = DestinationAstraModeFake.FAKE
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
@@ -170,29 +166,29 @@ class Fake(BaseModel):
         return m
 
 
-class DestinationAstraSchemasMode(str, Enum):
+class DestinationAstraModeCohere(str, Enum):
     COHERE = "cohere"
 
 
-class CohereTypedDict(TypedDict):
+class DestinationAstraCohereTypedDict(TypedDict):
     r"""Use the Cohere API to embed text."""
 
     cohere_key: str
-    mode: DestinationAstraSchemasMode
+    mode: DestinationAstraModeCohere
 
 
-class Cohere(BaseModel):
+class DestinationAstraCohere(BaseModel):
     r"""Use the Cohere API to embed text."""
 
     cohere_key: str
 
     MODE: Annotated[
         Annotated[
-            Optional[DestinationAstraSchemasMode],
-            AfterValidator(validate_const(DestinationAstraSchemasMode.COHERE)),
+            Optional[DestinationAstraModeCohere],
+            AfterValidator(validate_const(DestinationAstraModeCohere.COHERE)),
         ],
         pydantic.Field(alias="mode"),
-    ] = DestinationAstraSchemasMode.COHERE
+    ] = DestinationAstraModeCohere.COHERE
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
@@ -211,29 +207,29 @@ class Cohere(BaseModel):
         return m
 
 
-class DestinationAstraMode(str, Enum):
+class DestinationAstraModeOpenai(str, Enum):
     OPENAI = "openai"
 
 
-class OpenAITypedDict(TypedDict):
+class DestinationAstraOpenAITypedDict(TypedDict):
     r"""Use the OpenAI API to embed text. This option is using the text-embedding-ada-002 model with 1536 embedding dimensions."""
 
     openai_key: str
-    mode: DestinationAstraMode
+    mode: DestinationAstraModeOpenai
 
 
-class OpenAI(BaseModel):
+class DestinationAstraOpenAI(BaseModel):
     r"""Use the OpenAI API to embed text. This option is using the text-embedding-ada-002 model with 1536 embedding dimensions."""
 
     openai_key: str
 
     MODE: Annotated[
         Annotated[
-            Optional[DestinationAstraMode],
-            AfterValidator(validate_const(DestinationAstraMode.OPENAI)),
+            Optional[DestinationAstraModeOpenai],
+            AfterValidator(validate_const(DestinationAstraModeOpenai.OPENAI)),
         ],
         pydantic.Field(alias="mode"),
-    ] = DestinationAstraMode.OPENAI
+    ] = DestinationAstraModeOpenai.OPENAI
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
@@ -252,26 +248,33 @@ class OpenAI(BaseModel):
         return m
 
 
-EmbeddingTypedDict = TypeAliasType(
-    "EmbeddingTypedDict",
+DestinationAstraEmbeddingTypedDict = TypeAliasType(
+    "DestinationAstraEmbeddingTypedDict",
     Union[
-        FakeTypedDict,
-        OpenAITypedDict,
-        CohereTypedDict,
-        AzureOpenAITypedDict,
-        OpenAICompatibleTypedDict,
+        DestinationAstraFakeTypedDict,
+        DestinationAstraOpenAITypedDict,
+        DestinationAstraCohereTypedDict,
+        DestinationAstraAzureOpenAITypedDict,
+        DestinationAstraOpenAICompatibleTypedDict,
     ],
 )
 r"""Embedding configuration"""
 
 
-Embedding = TypeAliasType(
-    "Embedding", Union[Fake, OpenAI, Cohere, AzureOpenAI, OpenAICompatible]
+DestinationAstraEmbedding = TypeAliasType(
+    "DestinationAstraEmbedding",
+    Union[
+        DestinationAstraFake,
+        DestinationAstraOpenAI,
+        DestinationAstraCohere,
+        DestinationAstraAzureOpenAI,
+        DestinationAstraOpenAICompatible,
+    ],
 )
 r"""Embedding configuration"""
 
 
-class IndexingTypedDict(TypedDict):
+class DestinationAstraIndexingTypedDict(TypedDict):
     r"""Astra DB gives developers the APIs, real-time data and ecosystem integrations to put accurate RAG and Gen AI apps with fewer hallucinations in production."""
 
     astra_db_app_token: str
@@ -284,7 +287,7 @@ class IndexingTypedDict(TypedDict):
     r"""Collections hold data. They are analagous to tables in traditional Cassandra terminology. This tool will create the collection with the provided name automatically if it does not already exist. Alternatively, you can create one thorugh the Data Explorer tab in the Astra UI."""
 
 
-class Indexing(BaseModel):
+class DestinationAstraIndexing(BaseModel):
     r"""Astra DB gives developers the APIs, real-time data and ecosystem integrations to put accurate RAG and Gen AI apps with fewer hallucinations in production."""
 
     astra_db_app_token: str
@@ -300,14 +303,14 @@ class Indexing(BaseModel):
     r"""Collections hold data. They are analagous to tables in traditional Cassandra terminology. This tool will create the collection with the provided name automatically if it does not already exist. Alternatively, you can create one thorugh the Data Explorer tab in the Astra UI."""
 
 
-class FieldNameMappingConfigModelTypedDict(TypedDict):
+class DestinationAstraFieldNameMappingConfigModelTypedDict(TypedDict):
     from_field: str
     r"""The field name in the source"""
     to_field: str
     r"""The field name to use in the destination"""
 
 
-class FieldNameMappingConfigModel(BaseModel):
+class DestinationAstraFieldNameMappingConfigModel(BaseModel):
     from_field: str
     r"""The field name in the source"""
 
@@ -336,19 +339,19 @@ class DestinationAstraLanguage(str, Enum):
     SOL = "sol"
 
 
-class DestinationAstraSchemasProcessingTextSplitterTextSplitterMode(str, Enum):
+class DestinationAstraModeCode(str, Enum):
     CODE = "code"
 
 
-class ByProgrammingLanguageTypedDict(TypedDict):
+class DestinationAstraByProgrammingLanguageTypedDict(TypedDict):
     r"""Split the text by suitable delimiters based on the programming language. This is useful for splitting code into chunks."""
 
     language: DestinationAstraLanguage
     r"""Split code in suitable places based on the programming language"""
-    mode: DestinationAstraSchemasProcessingTextSplitterTextSplitterMode
+    mode: DestinationAstraModeCode
 
 
-class ByProgrammingLanguage(BaseModel):
+class DestinationAstraByProgrammingLanguage(BaseModel):
     r"""Split the text by suitable delimiters based on the programming language. This is useful for splitting code into chunks."""
 
     language: DestinationAstraLanguage
@@ -356,15 +359,11 @@ class ByProgrammingLanguage(BaseModel):
 
     MODE: Annotated[
         Annotated[
-            Optional[DestinationAstraSchemasProcessingTextSplitterTextSplitterMode],
-            AfterValidator(
-                validate_const(
-                    DestinationAstraSchemasProcessingTextSplitterTextSplitterMode.CODE
-                )
-            ),
+            Optional[DestinationAstraModeCode],
+            AfterValidator(validate_const(DestinationAstraModeCode.CODE)),
         ],
         pydantic.Field(alias="mode"),
-    ] = DestinationAstraSchemasProcessingTextSplitterTextSplitterMode.CODE
+    ] = DestinationAstraModeCode.CODE
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
@@ -383,32 +382,28 @@ class ByProgrammingLanguage(BaseModel):
         return m
 
 
-class DestinationAstraSchemasProcessingTextSplitterMode(str, Enum):
+class DestinationAstraModeMarkdown(str, Enum):
     MARKDOWN = "markdown"
 
 
-class ByMarkdownHeaderTypedDict(TypedDict):
+class DestinationAstraByMarkdownHeaderTypedDict(TypedDict):
     r"""Split the text by Markdown headers down to the specified header level. If the chunk size fits multiple sections, they will be combined into a single chunk."""
 
-    mode: DestinationAstraSchemasProcessingTextSplitterMode
+    mode: DestinationAstraModeMarkdown
     split_level: NotRequired[int]
     r"""Level of markdown headers to split text fields by. Headings down to the specified level will be used as split points"""
 
 
-class ByMarkdownHeader(BaseModel):
+class DestinationAstraByMarkdownHeader(BaseModel):
     r"""Split the text by Markdown headers down to the specified header level. If the chunk size fits multiple sections, they will be combined into a single chunk."""
 
     MODE: Annotated[
         Annotated[
-            Optional[DestinationAstraSchemasProcessingTextSplitterMode],
-            AfterValidator(
-                validate_const(
-                    DestinationAstraSchemasProcessingTextSplitterMode.MARKDOWN
-                )
-            ),
+            Optional[DestinationAstraModeMarkdown],
+            AfterValidator(validate_const(DestinationAstraModeMarkdown.MARKDOWN)),
         ],
         pydantic.Field(alias="mode"),
-    ] = DestinationAstraSchemasProcessingTextSplitterMode.MARKDOWN
+    ] = DestinationAstraModeMarkdown.MARKDOWN
 
     split_level: Optional[int] = 1
     r"""Level of markdown headers to split text fields by. Headings down to the specified level will be used as split points"""
@@ -430,21 +425,21 @@ class ByMarkdownHeader(BaseModel):
         return m
 
 
-class DestinationAstraSchemasProcessingMode(str, Enum):
+class DestinationAstraModeSeparator(str, Enum):
     SEPARATOR = "separator"
 
 
-class BySeparatorTypedDict(TypedDict):
+class DestinationAstraBySeparatorTypedDict(TypedDict):
     r"""Split the text by the list of separators until the chunk size is reached, using the earlier mentioned separators where possible. This is useful for splitting text fields by paragraphs, sentences, words, etc."""
 
     keep_separator: NotRequired[bool]
     r"""Whether to keep the separator in the resulting chunks"""
-    mode: DestinationAstraSchemasProcessingMode
+    mode: DestinationAstraModeSeparator
     separators: NotRequired[List[str]]
     r"""List of separator strings to split text fields by. The separator itself needs to be wrapped in double quotes, e.g. to split by the dot character, use \".\". To split by a newline, use \"\n\"."""
 
 
-class BySeparator(BaseModel):
+class DestinationAstraBySeparator(BaseModel):
     r"""Split the text by the list of separators until the chunk size is reached, using the earlier mentioned separators where possible. This is useful for splitting text fields by paragraphs, sentences, words, etc."""
 
     keep_separator: Optional[bool] = False
@@ -452,13 +447,11 @@ class BySeparator(BaseModel):
 
     MODE: Annotated[
         Annotated[
-            Optional[DestinationAstraSchemasProcessingMode],
-            AfterValidator(
-                validate_const(DestinationAstraSchemasProcessingMode.SEPARATOR)
-            ),
+            Optional[DestinationAstraModeSeparator],
+            AfterValidator(validate_const(DestinationAstraModeSeparator.SEPARATOR)),
         ],
         pydantic.Field(alias="mode"),
-    ] = DestinationAstraSchemasProcessingMode.SEPARATOR
+    ] = DestinationAstraModeSeparator.SEPARATOR
 
     separators: Optional[List[str]] = None
     r"""List of separator strings to split text fields by. The separator itself needs to be wrapped in double quotes, e.g. to split by the dot character, use \".\". To split by a newline, use \"\n\"."""
@@ -480,44 +473,55 @@ class BySeparator(BaseModel):
         return m
 
 
-TextSplitterTypedDict = TypeAliasType(
-    "TextSplitterTypedDict",
+DestinationAstraTextSplitterTypedDict = TypeAliasType(
+    "DestinationAstraTextSplitterTypedDict",
     Union[
-        ByMarkdownHeaderTypedDict, ByProgrammingLanguageTypedDict, BySeparatorTypedDict
+        DestinationAstraByMarkdownHeaderTypedDict,
+        DestinationAstraByProgrammingLanguageTypedDict,
+        DestinationAstraBySeparatorTypedDict,
     ],
 )
 r"""Split text fields into chunks based on the specified method."""
 
 
-TextSplitter = TypeAliasType(
-    "TextSplitter", Union[ByMarkdownHeader, ByProgrammingLanguage, BySeparator]
+DestinationAstraTextSplitter = TypeAliasType(
+    "DestinationAstraTextSplitter",
+    Union[
+        DestinationAstraByMarkdownHeader,
+        DestinationAstraByProgrammingLanguage,
+        DestinationAstraBySeparator,
+    ],
 )
 r"""Split text fields into chunks based on the specified method."""
 
 
-class ProcessingConfigModelTypedDict(TypedDict):
+class DestinationAstraProcessingConfigModelTypedDict(TypedDict):
     chunk_size: int
     r"""Size of chunks in tokens to store in vector store (make sure it is not too big for the context if your LLM)"""
     chunk_overlap: NotRequired[int]
     r"""Size of overlap between chunks in tokens to store in vector store to better capture relevant context"""
-    field_name_mappings: NotRequired[List[FieldNameMappingConfigModelTypedDict]]
+    field_name_mappings: NotRequired[
+        List[DestinationAstraFieldNameMappingConfigModelTypedDict]
+    ]
     r"""List of fields to rename. Not applicable for nested fields, but can be used to rename fields already flattened via dot notation."""
     metadata_fields: NotRequired[List[str]]
     r"""List of fields in the record that should be stored as metadata. The field list is applied to all streams in the same way and non-existing fields are ignored. If none are defined, all fields are considered metadata fields. When specifying text fields, you can access nested fields in the record by using dot notation, e.g. `user.name` will access the `name` field in the `user` object. It's also possible to use wildcards to access all fields in an object, e.g. `users.*.name` will access all `names` fields in all entries of the `users` array. When specifying nested paths, all matching values are flattened into an array set to a field named by the path."""
     text_fields: NotRequired[List[str]]
     r"""List of fields in the record that should be used to calculate the embedding. The field list is applied to all streams in the same way and non-existing fields are ignored. If none are defined, all fields are considered text fields. When specifying text fields, you can access nested fields in the record by using dot notation, e.g. `user.name` will access the `name` field in the `user` object. It's also possible to use wildcards to access all fields in an object, e.g. `users.*.name` will access all `names` fields in all entries of the `users` array."""
-    text_splitter: NotRequired[TextSplitterTypedDict]
+    text_splitter: NotRequired[DestinationAstraTextSplitterTypedDict]
     r"""Split text fields into chunks based on the specified method."""
 
 
-class ProcessingConfigModel(BaseModel):
+class DestinationAstraProcessingConfigModel(BaseModel):
     chunk_size: int
     r"""Size of chunks in tokens to store in vector store (make sure it is not too big for the context if your LLM)"""
 
     chunk_overlap: Optional[int] = 0
     r"""Size of overlap between chunks in tokens to store in vector store to better capture relevant context"""
 
-    field_name_mappings: Optional[List[FieldNameMappingConfigModel]] = None
+    field_name_mappings: Optional[List[DestinationAstraFieldNameMappingConfigModel]] = (
+        None
+    )
     r"""List of fields to rename. Not applicable for nested fields, but can be used to rename fields already flattened via dot notation."""
 
     metadata_fields: Optional[List[str]] = None
@@ -526,7 +530,7 @@ class ProcessingConfigModel(BaseModel):
     text_fields: Optional[List[str]] = None
     r"""List of fields in the record that should be used to calculate the embedding. The field list is applied to all streams in the same way and non-existing fields are ignored. If none are defined, all fields are considered text fields. When specifying text fields, you can access nested fields in the record by using dot notation, e.g. `user.name` will access the `name` field in the `user` object. It's also possible to use wildcards to access all fields in an object, e.g. `users.*.name` will access all `names` fields in all entries of the `users` array."""
 
-    text_splitter: Optional[TextSplitter] = None
+    text_splitter: Optional[DestinationAstraTextSplitter] = None
     r"""Split text fields into chunks based on the specified method."""
 
     @model_serializer(mode="wrap")
@@ -567,11 +571,11 @@ class DestinationAstraTypedDict(TypedDict):
     Processing, embedding and advanced configuration are provided by this base class, while the indexing configuration is provided by the destination connector in the sub class.
     """
 
-    embedding: EmbeddingTypedDict
+    embedding: DestinationAstraEmbeddingTypedDict
     r"""Embedding configuration"""
-    indexing: IndexingTypedDict
+    indexing: DestinationAstraIndexingTypedDict
     r"""Astra DB gives developers the APIs, real-time data and ecosystem integrations to put accurate RAG and Gen AI apps with fewer hallucinations in production."""
-    processing: ProcessingConfigModelTypedDict
+    processing: DestinationAstraProcessingConfigModelTypedDict
     destination_type: Astra
     omit_raw_text: NotRequired[bool]
     r"""Do not store the text that gets embedded along with the vector and the metadata in the destination. If set to true, only the vector and the metadata will be stored - in this case raw text for LLM use cases needs to be retrieved from another source."""
@@ -590,13 +594,13 @@ class DestinationAstra(BaseModel):
     Processing, embedding and advanced configuration are provided by this base class, while the indexing configuration is provided by the destination connector in the sub class.
     """
 
-    embedding: Embedding
+    embedding: DestinationAstraEmbedding
     r"""Embedding configuration"""
 
-    indexing: Indexing
+    indexing: DestinationAstraIndexing
     r"""Astra DB gives developers the APIs, real-time data and ecosystem integrations to put accurate RAG and Gen AI apps with fewer hallucinations in production."""
 
-    processing: ProcessingConfigModel
+    processing: DestinationAstraProcessingConfigModel
 
     DESTINATION_TYPE: Annotated[
         Annotated[Astra, AfterValidator(validate_const(Astra.ASTRA))],
@@ -624,35 +628,35 @@ class DestinationAstra(BaseModel):
 
 
 try:
-    OpenAICompatible.model_rebuild()
+    DestinationAstraOpenAICompatible.model_rebuild()
 except NameError:
     pass
 try:
-    AzureOpenAI.model_rebuild()
+    DestinationAstraAzureOpenAI.model_rebuild()
 except NameError:
     pass
 try:
-    Fake.model_rebuild()
+    DestinationAstraFake.model_rebuild()
 except NameError:
     pass
 try:
-    Cohere.model_rebuild()
+    DestinationAstraCohere.model_rebuild()
 except NameError:
     pass
 try:
-    OpenAI.model_rebuild()
+    DestinationAstraOpenAI.model_rebuild()
 except NameError:
     pass
 try:
-    ByProgrammingLanguage.model_rebuild()
+    DestinationAstraByProgrammingLanguage.model_rebuild()
 except NameError:
     pass
 try:
-    ByMarkdownHeader.model_rebuild()
+    DestinationAstraByMarkdownHeader.model_rebuild()
 except NameError:
     pass
 try:
-    BySeparator.model_rebuild()
+    DestinationAstraBySeparator.model_rebuild()
 except NameError:
     pass
 try:

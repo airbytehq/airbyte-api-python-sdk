@@ -11,7 +11,7 @@ from typing import Any, Dict, List, Optional, Union
 from typing_extensions import Annotated, NotRequired, TypeAliasType, TypedDict
 
 
-class SourceOracleEnterpriseSchemasConnectionType(str, Enum):
+class SourceOracleEnterpriseConnectionTypeSid(str, Enum):
     SID = "sid"
 
 
@@ -19,7 +19,7 @@ class SourceOracleEnterpriseSystemIDSIDTypedDict(TypedDict):
     r"""Use Oracle System Identifier."""
 
     sid: str
-    connection_type: NotRequired[SourceOracleEnterpriseSchemasConnectionType]
+    connection_type: NotRequired[SourceOracleEnterpriseConnectionTypeSid]
 
 
 class SourceOracleEnterpriseSystemIDSID(BaseModel):
@@ -32,8 +32,8 @@ class SourceOracleEnterpriseSystemIDSID(BaseModel):
 
     sid: str
 
-    connection_type: Optional[SourceOracleEnterpriseSchemasConnectionType] = (
-        SourceOracleEnterpriseSchemasConnectionType.SID
+    connection_type: Optional[SourceOracleEnterpriseConnectionTypeSid] = (
+        SourceOracleEnterpriseConnectionTypeSid.SID
     )
 
     @property
@@ -64,7 +64,7 @@ class SourceOracleEnterpriseSystemIDSID(BaseModel):
         return m
 
 
-class SourceOracleEnterpriseConnectionType(str, Enum):
+class SourceOracleEnterpriseConnectionTypeServiceName(str, Enum):
     SERVICE_NAME = "service_name"
 
 
@@ -72,7 +72,7 @@ class SourceOracleEnterpriseServiceNameTypedDict(TypedDict):
     r"""Use service name."""
 
     service_name: str
-    connection_type: NotRequired[SourceOracleEnterpriseConnectionType]
+    connection_type: NotRequired[SourceOracleEnterpriseConnectionTypeServiceName]
 
 
 class SourceOracleEnterpriseServiceName(BaseModel):
@@ -85,8 +85,8 @@ class SourceOracleEnterpriseServiceName(BaseModel):
 
     service_name: str
 
-    connection_type: Optional[SourceOracleEnterpriseConnectionType] = (
-        SourceOracleEnterpriseConnectionType.SERVICE_NAME
+    connection_type: Optional[SourceOracleEnterpriseConnectionTypeServiceName] = (
+        SourceOracleEnterpriseConnectionTypeServiceName.SERVICE_NAME
     )
 
     @property
@@ -134,7 +134,7 @@ SourceOracleEnterpriseConnectBy = TypeAliasType(
 r"""The scheme by which to establish a database connection."""
 
 
-class SourceOracleEnterpriseSchemasCursorMethod(str, Enum):
+class SourceOracleEnterpriseCursorMethodCdc(str, Enum):
     CDC = "cdc"
 
 
@@ -148,7 +148,7 @@ class SourceOracleEnterpriseInvalidCDCPositionBehaviorAdvanced(str, Enum):
 class SourceOracleEnterpriseReadChangesUsingChangeDataCaptureCDCTypedDict(TypedDict):
     r"""<i>Recommended</i> - Incrementally reads new inserts, updates, and deletes using Oracle's <a href=\"https://docs.airbyte.com/integrations/enterprise-connectors/source-oracle#getting-started\"> change data capture feature</a>. This must be enabled on your database."""
 
-    cursor_method: NotRequired[SourceOracleEnterpriseSchemasCursorMethod]
+    cursor_method: NotRequired[SourceOracleEnterpriseCursorMethodCdc]
     debezium_shutdown_timeout_seconds: NotRequired[int]
     r"""The amount of time to allow the Debezium Engine to shut down, in seconds."""
     initial_load_timeout_hours: NotRequired[int]
@@ -167,8 +167,8 @@ class SourceOracleEnterpriseReadChangesUsingChangeDataCaptureCDC(BaseModel):
     )
     __pydantic_extra__: Dict[str, Any] = pydantic.Field(init=False)
 
-    cursor_method: Optional[SourceOracleEnterpriseSchemasCursorMethod] = (
-        SourceOracleEnterpriseSchemasCursorMethod.CDC
+    cursor_method: Optional[SourceOracleEnterpriseCursorMethodCdc] = (
+        SourceOracleEnterpriseCursorMethodCdc.CDC
     )
 
     debezium_shutdown_timeout_seconds: Optional[int] = 60
@@ -217,14 +217,14 @@ class SourceOracleEnterpriseReadChangesUsingChangeDataCaptureCDC(BaseModel):
         return m
 
 
-class SourceOracleEnterpriseCursorMethod(str, Enum):
+class SourceOracleEnterpriseCursorMethodUserDefined(str, Enum):
     USER_DEFINED = "user_defined"
 
 
 class SourceOracleEnterpriseScanChangesWithUserDefinedCursorTypedDict(TypedDict):
     r"""Incrementally detects new inserts and updates using the <a href=\"https://docs.airbyte.com/understanding-airbyte/connections/incremental-append/#user-defined-cursor\">cursor column</a> chosen when configuring a connection (e.g. created_at, updated_at)."""
 
-    cursor_method: NotRequired[SourceOracleEnterpriseCursorMethod]
+    cursor_method: NotRequired[SourceOracleEnterpriseCursorMethodUserDefined]
 
 
 class SourceOracleEnterpriseScanChangesWithUserDefinedCursor(BaseModel):
@@ -235,8 +235,8 @@ class SourceOracleEnterpriseScanChangesWithUserDefinedCursor(BaseModel):
     )
     __pydantic_extra__: Dict[str, Any] = pydantic.Field(init=False)
 
-    cursor_method: Optional[SourceOracleEnterpriseCursorMethod] = (
-        SourceOracleEnterpriseCursorMethod.USER_DEFINED
+    cursor_method: Optional[SourceOracleEnterpriseCursorMethodUserDefined] = (
+        SourceOracleEnterpriseCursorMethodUserDefined.USER_DEFINED
     )
 
     @property
@@ -287,7 +287,7 @@ SourceOracleEnterpriseUpdateMethod = TypeAliasType(
 r"""Configures how data is extracted from the database."""
 
 
-class SourceOracleEnterpriseSchemasEncryptionEncryptionMethod(str, Enum):
+class SourceOracleEnterpriseEncryptionMethodEncryptedVerifyCertificate(str, Enum):
     ENCRYPTED_VERIFY_CERTIFICATE = "encrypted_verify_certificate"
 
 
@@ -297,7 +297,7 @@ class SourceOracleEnterpriseTLSEncryptedVerifyCertificateTypedDict(TypedDict):
     ssl_certificate: str
     r"""Privacy Enhanced Mail (PEM) files are concatenated certificate containers frequently used in certificate installations."""
     encryption_method: NotRequired[
-        SourceOracleEnterpriseSchemasEncryptionEncryptionMethod
+        SourceOracleEnterpriseEncryptionMethodEncryptedVerifyCertificate
     ]
 
 
@@ -313,8 +313,8 @@ class SourceOracleEnterpriseTLSEncryptedVerifyCertificate(BaseModel):
     r"""Privacy Enhanced Mail (PEM) files are concatenated certificate containers frequently used in certificate installations."""
 
     encryption_method: Optional[
-        SourceOracleEnterpriseSchemasEncryptionEncryptionMethod
-    ] = SourceOracleEnterpriseSchemasEncryptionEncryptionMethod.ENCRYPTED_VERIFY_CERTIFICATE
+        SourceOracleEnterpriseEncryptionMethodEncryptedVerifyCertificate
+    ] = SourceOracleEnterpriseEncryptionMethodEncryptedVerifyCertificate.ENCRYPTED_VERIFY_CERTIFICATE
 
     @property
     def additional_properties(self):
@@ -355,7 +355,7 @@ class SourceOracleEnterpriseEncryptionAlgorithm(str, Enum):
     DES = "DES"
 
 
-class SourceOracleEnterpriseSchemasEncryptionMethod(str, Enum):
+class SourceOracleEnterpriseEncryptionMethodClientNne(str, Enum):
     CLIENT_NNE = "client_nne"
 
 
@@ -364,7 +364,7 @@ class SourceOracleEnterpriseNativeNetworkEncryptionNNETypedDict(TypedDict):
 
     encryption_algorithm: NotRequired[SourceOracleEnterpriseEncryptionAlgorithm]
     r"""This parameter defines what encryption algorithm is used."""
-    encryption_method: NotRequired[SourceOracleEnterpriseSchemasEncryptionMethod]
+    encryption_method: NotRequired[SourceOracleEnterpriseEncryptionMethodClientNne]
 
 
 class SourceOracleEnterpriseNativeNetworkEncryptionNNE(BaseModel):
@@ -380,8 +380,8 @@ class SourceOracleEnterpriseNativeNetworkEncryptionNNE(BaseModel):
     )
     r"""This parameter defines what encryption algorithm is used."""
 
-    encryption_method: Optional[SourceOracleEnterpriseSchemasEncryptionMethod] = (
-        SourceOracleEnterpriseSchemasEncryptionMethod.CLIENT_NNE
+    encryption_method: Optional[SourceOracleEnterpriseEncryptionMethodClientNne] = (
+        SourceOracleEnterpriseEncryptionMethodClientNne.CLIENT_NNE
     )
 
     @property
@@ -412,14 +412,14 @@ class SourceOracleEnterpriseNativeNetworkEncryptionNNE(BaseModel):
         return m
 
 
-class SourceOracleEnterpriseEncryptionMethod(str, Enum):
+class SourceOracleEnterpriseEncryptionMethodUnencrypted(str, Enum):
     UNENCRYPTED = "unencrypted"
 
 
 class SourceOracleEnterpriseUnencryptedTypedDict(TypedDict):
     r"""Data transfer will not be encrypted."""
 
-    encryption_method: NotRequired[SourceOracleEnterpriseEncryptionMethod]
+    encryption_method: NotRequired[SourceOracleEnterpriseEncryptionMethodUnencrypted]
 
 
 class SourceOracleEnterpriseUnencrypted(BaseModel):
@@ -430,8 +430,8 @@ class SourceOracleEnterpriseUnencrypted(BaseModel):
     )
     __pydantic_extra__: Dict[str, Any] = pydantic.Field(init=False)
 
-    encryption_method: Optional[SourceOracleEnterpriseEncryptionMethod] = (
-        SourceOracleEnterpriseEncryptionMethod.UNENCRYPTED
+    encryption_method: Optional[SourceOracleEnterpriseEncryptionMethodUnencrypted] = (
+        SourceOracleEnterpriseEncryptionMethodUnencrypted.UNENCRYPTED
     )
 
     @property
@@ -488,7 +488,7 @@ class OracleEnterprise(str, Enum):
     ORACLE_ENTERPRISE = "oracle-enterprise"
 
 
-class TableFilterTypedDict(TypedDict):
+class SourceOracleEnterpriseTableFilterTypedDict(TypedDict):
     r"""Inclusion filter configuration for table selection per schema."""
 
     schema_name: str
@@ -497,7 +497,7 @@ class TableFilterTypedDict(TypedDict):
     r"""List of table name patterns to include from this schema. Should be a SQL LIKE pattern."""
 
 
-class TableFilter(BaseModel):
+class SourceOracleEnterpriseTableFilter(BaseModel):
     r"""Inclusion filter configuration for table selection per schema."""
 
     model_config = ConfigDict(
@@ -520,7 +520,7 @@ class TableFilter(BaseModel):
         self.__pydantic_extra__ = value  # pyright: ignore[reportIncompatibleVariableOverride]
 
 
-class SourceOracleEnterpriseSchemasTunnelMethodTunnelMethod(str, Enum):
+class SourceOracleEnterpriseTunnelMethodSSHPasswordAuth(str, Enum):
     SSH_PASSWORD_AUTH = "SSH_PASSWORD_AUTH"
 
 
@@ -533,7 +533,7 @@ class SourceOracleEnterprisePasswordAuthenticationTypedDict(TypedDict):
     r"""OS-level username for logging into the jump server host"""
     tunnel_user_password: str
     r"""OS-level password for logging into the jump server host"""
-    tunnel_method: NotRequired[SourceOracleEnterpriseSchemasTunnelMethodTunnelMethod]
+    tunnel_method: NotRequired[SourceOracleEnterpriseTunnelMethodSSHPasswordAuth]
     tunnel_port: NotRequired[int]
     r"""Port on the proxy/jump server that accepts inbound ssh connections."""
 
@@ -555,8 +555,8 @@ class SourceOracleEnterprisePasswordAuthentication(BaseModel):
     tunnel_user_password: str
     r"""OS-level password for logging into the jump server host"""
 
-    tunnel_method: Optional[SourceOracleEnterpriseSchemasTunnelMethodTunnelMethod] = (
-        SourceOracleEnterpriseSchemasTunnelMethodTunnelMethod.SSH_PASSWORD_AUTH
+    tunnel_method: Optional[SourceOracleEnterpriseTunnelMethodSSHPasswordAuth] = (
+        SourceOracleEnterpriseTunnelMethodSSHPasswordAuth.SSH_PASSWORD_AUTH
     )
 
     tunnel_port: Optional[int] = 22
@@ -590,7 +590,7 @@ class SourceOracleEnterprisePasswordAuthentication(BaseModel):
         return m
 
 
-class SourceOracleEnterpriseSchemasTunnelMethod(str, Enum):
+class SourceOracleEnterpriseTunnelMethodSSHKeyAuth(str, Enum):
     SSH_KEY_AUTH = "SSH_KEY_AUTH"
 
 
@@ -603,7 +603,7 @@ class SourceOracleEnterpriseSSHKeyAuthenticationTypedDict(TypedDict):
     r"""Hostname of the jump server host that allows inbound ssh tunnel."""
     tunnel_user: str
     r"""OS-level username for logging into the jump server host"""
-    tunnel_method: NotRequired[SourceOracleEnterpriseSchemasTunnelMethod]
+    tunnel_method: NotRequired[SourceOracleEnterpriseTunnelMethodSSHKeyAuth]
     tunnel_port: NotRequired[int]
     r"""Port on the proxy/jump server that accepts inbound ssh connections."""
 
@@ -625,8 +625,8 @@ class SourceOracleEnterpriseSSHKeyAuthentication(BaseModel):
     tunnel_user: str
     r"""OS-level username for logging into the jump server host"""
 
-    tunnel_method: Optional[SourceOracleEnterpriseSchemasTunnelMethod] = (
-        SourceOracleEnterpriseSchemasTunnelMethod.SSH_KEY_AUTH
+    tunnel_method: Optional[SourceOracleEnterpriseTunnelMethodSSHKeyAuth] = (
+        SourceOracleEnterpriseTunnelMethodSSHKeyAuth.SSH_KEY_AUTH
     )
 
     tunnel_port: Optional[int] = 22
@@ -660,14 +660,14 @@ class SourceOracleEnterpriseSSHKeyAuthentication(BaseModel):
         return m
 
 
-class SourceOracleEnterpriseTunnelMethod(str, Enum):
+class SourceOracleEnterpriseTunnelMethodNoTunnel(str, Enum):
     NO_TUNNEL = "NO_TUNNEL"
 
 
 class SourceOracleEnterpriseNoTunnelTypedDict(TypedDict):
     r"""No ssh tunnel needed to connect to database"""
 
-    tunnel_method: NotRequired[SourceOracleEnterpriseTunnelMethod]
+    tunnel_method: NotRequired[SourceOracleEnterpriseTunnelMethodNoTunnel]
 
 
 class SourceOracleEnterpriseNoTunnel(BaseModel):
@@ -678,8 +678,8 @@ class SourceOracleEnterpriseNoTunnel(BaseModel):
     )
     __pydantic_extra__: Dict[str, Any] = pydantic.Field(init=False)
 
-    tunnel_method: Optional[SourceOracleEnterpriseTunnelMethod] = (
-        SourceOracleEnterpriseTunnelMethod.NO_TUNNEL
+    tunnel_method: Optional[SourceOracleEnterpriseTunnelMethodNoTunnel] = (
+        SourceOracleEnterpriseTunnelMethodNoTunnel.NO_TUNNEL
     )
 
     @property
@@ -764,7 +764,7 @@ class SourceOracleEnterpriseTypedDict(TypedDict):
     schemas: NotRequired[List[str]]
     r"""The list of schemas to sync from. Defaults to user. Case sensitive."""
     source_type: OracleEnterprise
-    table_filters: NotRequired[List[TableFilterTypedDict]]
+    table_filters: NotRequired[List[SourceOracleEnterpriseTableFilterTypedDict]]
     r"""Inclusion filters for table selection per schema. If no filters are specified for a schema, all tables in that schema will be synced."""
 
 
@@ -820,7 +820,7 @@ class SourceOracleEnterprise(BaseModel):
         pydantic.Field(alias="sourceType"),
     ] = OracleEnterprise.ORACLE_ENTERPRISE
 
-    table_filters: Optional[List[TableFilter]] = None
+    table_filters: Optional[List[SourceOracleEnterpriseTableFilter]] = None
     r"""Inclusion filters for table selection per schema. If no filters are specified for a schema, all tables in that schema will be synced."""
 
     @model_serializer(mode="wrap")

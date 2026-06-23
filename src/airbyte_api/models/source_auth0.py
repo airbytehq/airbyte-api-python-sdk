@@ -11,14 +11,14 @@ from typing import Optional, Union
 from typing_extensions import Annotated, NotRequired, TypeAliasType, TypedDict
 
 
-class SourceAuth0SchemasAuthenticationMethod(str, Enum):
+class AuthenticationMethodOauth2AccessToken(str, Enum):
     OAUTH2_ACCESS_TOKEN = "oauth2_access_token"
 
 
 class OAuth2AccessTokenTypedDict(TypedDict):
     access_token: str
     r"""Also called <a href=\"https://auth0.com/docs/secure/tokens/access-tokens/get-management-api-access-tokens-for-testing\">API Access Token </a> The access token used to call the Auth0 Management API Token. It's a JWT that contains specific grant permissions knowns as scopes."""
-    auth_type: SourceAuth0SchemasAuthenticationMethod
+    auth_type: AuthenticationMethodOauth2AccessToken
 
 
 class OAuth2AccessToken(BaseModel):
@@ -27,18 +27,18 @@ class OAuth2AccessToken(BaseModel):
 
     AUTH_TYPE: Annotated[
         Annotated[
-            SourceAuth0SchemasAuthenticationMethod,
+            AuthenticationMethodOauth2AccessToken,
             AfterValidator(
                 validate_const(
-                    SourceAuth0SchemasAuthenticationMethod.OAUTH2_ACCESS_TOKEN
+                    AuthenticationMethodOauth2AccessToken.OAUTH2_ACCESS_TOKEN
                 )
             ),
         ],
         pydantic.Field(alias="auth_type"),
-    ] = SourceAuth0SchemasAuthenticationMethod.OAUTH2_ACCESS_TOKEN
+    ] = AuthenticationMethodOauth2AccessToken.OAUTH2_ACCESS_TOKEN
 
 
-class SourceAuth0SchemasCredentialsAuthenticationMethod(str, Enum):
+class AuthenticationMethodOauth2ConfidentialApplication(str, Enum):
     OAUTH2_CONFIDENTIAL_APPLICATION = "oauth2_confidential_application"
 
 
@@ -49,7 +49,7 @@ class OAuth2ConfidentialApplicationTypedDict(TypedDict):
     r"""Your application's Client ID. You can find this value on the <a href=\"https://manage.auth0.com/#/applications\">application's settings tab</a> after you login the admin portal."""
     client_secret: str
     r"""Your application's Client Secret. You can find this value on the <a href=\"https://manage.auth0.com/#/applications\">application's settings tab</a> after you login the admin portal."""
-    auth_type: SourceAuth0SchemasCredentialsAuthenticationMethod
+    auth_type: AuthenticationMethodOauth2ConfidentialApplication
 
 
 class OAuth2ConfidentialApplication(BaseModel):
@@ -64,24 +64,24 @@ class OAuth2ConfidentialApplication(BaseModel):
 
     AUTH_TYPE: Annotated[
         Annotated[
-            SourceAuth0SchemasCredentialsAuthenticationMethod,
+            AuthenticationMethodOauth2ConfidentialApplication,
             AfterValidator(
                 validate_const(
-                    SourceAuth0SchemasCredentialsAuthenticationMethod.OAUTH2_CONFIDENTIAL_APPLICATION
+                    AuthenticationMethodOauth2ConfidentialApplication.OAUTH2_CONFIDENTIAL_APPLICATION
                 )
             ),
         ],
         pydantic.Field(alias="auth_type"),
-    ] = SourceAuth0SchemasCredentialsAuthenticationMethod.OAUTH2_CONFIDENTIAL_APPLICATION
+    ] = AuthenticationMethodOauth2ConfidentialApplication.OAUTH2_CONFIDENTIAL_APPLICATION
 
 
-SourceAuth0AuthenticationMethodTypedDict = TypeAliasType(
-    "SourceAuth0AuthenticationMethodTypedDict",
+SourceAuth0AuthenticationMethodUnionTypedDict = TypeAliasType(
+    "SourceAuth0AuthenticationMethodUnionTypedDict",
     Union[OAuth2AccessTokenTypedDict, OAuth2ConfidentialApplicationTypedDict],
 )
 
 
-SourceAuth0AuthenticationMethod = Annotated[
+SourceAuth0AuthenticationMethodUnion = Annotated[
     Union[
         Annotated[
             OAuth2ConfidentialApplication, Tag("oauth2_confidential_application")
@@ -99,7 +99,7 @@ class Auth0(str, Enum):
 class SourceAuth0TypedDict(TypedDict):
     base_url: str
     r"""The Authentication API is served over HTTPS. All URLs referenced in the documentation have the following base `https://YOUR_DOMAIN`"""
-    credentials: SourceAuth0AuthenticationMethodTypedDict
+    credentials: SourceAuth0AuthenticationMethodUnionTypedDict
     source_type: Auth0
     start_date: NotRequired[str]
     r"""UTC date and time in the format 2017-01-25T00:00:00Z. Any data before this date will not be replicated."""
@@ -109,7 +109,7 @@ class SourceAuth0(BaseModel):
     base_url: str
     r"""The Authentication API is served over HTTPS. All URLs referenced in the documentation have the following base `https://YOUR_DOMAIN`"""
 
-    credentials: SourceAuth0AuthenticationMethod
+    credentials: SourceAuth0AuthenticationMethodUnion
 
     SOURCE_TYPE: Annotated[
         Annotated[Auth0, AfterValidator(validate_const(Auth0.AUTH0))],

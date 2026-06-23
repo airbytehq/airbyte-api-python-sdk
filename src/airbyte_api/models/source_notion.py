@@ -12,14 +12,14 @@ from typing import Optional, Union
 from typing_extensions import Annotated, NotRequired, TypeAliasType, TypedDict
 
 
-class SourceNotionSchemasAuthType(str, Enum):
+class SourceNotionAuthTypeToken(str, Enum):
     TOKEN = "token"
 
 
 class SourceNotionAccessTokenTypedDict(TypedDict):
     token: str
     r"""The Access Token for your private Notion integration. See the <a href='https://docs.airbyte.com/integrations/sources/notion#step-1-create-an-integration-in-notion'>docs</a> for more information on how to obtain this token."""
-    auth_type: SourceNotionSchemasAuthType
+    auth_type: SourceNotionAuthTypeToken
 
 
 class SourceNotionAccessToken(BaseModel):
@@ -28,14 +28,14 @@ class SourceNotionAccessToken(BaseModel):
 
     AUTH_TYPE: Annotated[
         Annotated[
-            SourceNotionSchemasAuthType,
-            AfterValidator(validate_const(SourceNotionSchemasAuthType.TOKEN)),
+            SourceNotionAuthTypeToken,
+            AfterValidator(validate_const(SourceNotionAuthTypeToken.TOKEN)),
         ],
         pydantic.Field(alias="auth_type"),
-    ] = SourceNotionSchemasAuthType.TOKEN
+    ] = SourceNotionAuthTypeToken.TOKEN
 
 
-class SourceNotionAuthType(str, Enum):
+class AuthTypeOAuth20(str, Enum):
     O_AUTH2_0 = "OAuth2.0"
 
 
@@ -46,7 +46,7 @@ class SourceNotionOAuth20TypedDict(TypedDict):
     r"""The Client ID of your Notion integration. See our <a href='https://docs.airbyte.com/integrations/sources/notion#step-2-set-permissions-and-acquire-authorization-credentials'>docs</a> for more information."""
     client_secret: str
     r"""The Client Secret of your Notion integration. See our <a href='https://docs.airbyte.com/integrations/sources/notion#step-2-set-permissions-and-acquire-authorization-credentials'>docs</a> for more information."""
-    auth_type: SourceNotionAuthType
+    auth_type: AuthTypeOAuth20
 
 
 class SourceNotionOAuth20(BaseModel):
@@ -61,11 +61,10 @@ class SourceNotionOAuth20(BaseModel):
 
     AUTH_TYPE: Annotated[
         Annotated[
-            SourceNotionAuthType,
-            AfterValidator(validate_const(SourceNotionAuthType.O_AUTH2_0)),
+            AuthTypeOAuth20, AfterValidator(validate_const(AuthTypeOAuth20.O_AUTH2_0))
         ],
         pydantic.Field(alias="auth_type"),
-    ] = SourceNotionAuthType.O_AUTH2_0
+    ] = AuthTypeOAuth20.O_AUTH2_0
 
 
 SourceNotionAuthenticationMethodTypedDict = TypeAliasType(
@@ -85,14 +84,14 @@ SourceNotionAuthenticationMethod = Annotated[
 r"""Choose either OAuth (recommended for Airbyte Cloud) or Access Token. See our <a href='https://docs.airbyte.com/integrations/sources/notion#setup-guide'>docs</a> for more information."""
 
 
-class SourceNotionNotion(str, Enum):
+class NotionEnum(str, Enum):
     NOTION = "notion"
 
 
 class SourceNotionTypedDict(TypedDict):
     credentials: NotRequired[SourceNotionAuthenticationMethodTypedDict]
     r"""Choose either OAuth (recommended for Airbyte Cloud) or Access Token. See our <a href='https://docs.airbyte.com/integrations/sources/notion#setup-guide'>docs</a> for more information."""
-    source_type: SourceNotionNotion
+    source_type: NotionEnum
     start_date: NotRequired[datetime]
     r"""UTC date and time in the format YYYY-MM-DDTHH:MM:SS.000Z. During incremental sync, any data generated before this date will not be replicated. If left blank, the start date will be set to 2 years before the present date."""
 
@@ -103,11 +102,10 @@ class SourceNotion(BaseModel):
 
     SOURCE_TYPE: Annotated[
         Annotated[
-            Optional[SourceNotionNotion],
-            AfterValidator(validate_const(SourceNotionNotion.NOTION)),
+            Optional[NotionEnum], AfterValidator(validate_const(NotionEnum.NOTION))
         ],
         pydantic.Field(alias="sourceType"),
-    ] = SourceNotionNotion.NOTION
+    ] = NotionEnum.NOTION
 
     start_date: Optional[datetime] = None
     r"""UTC date and time in the format YYYY-MM-DDTHH:MM:SS.000Z. During incremental sync, any data generated before this date will not be replicated. If left blank, the start date will be set to 2 years before the present date."""

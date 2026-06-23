@@ -9,9 +9,9 @@
 value: models.SourceMondayOAuth20 = /* values here */
 ```
 
-### `models.APIToken`
+### `models.SourceMondayAPIToken`
 
 ```python
-value: models.APIToken = /* values here */
+value: models.SourceMondayAPIToken = /* values here */
 ```
 

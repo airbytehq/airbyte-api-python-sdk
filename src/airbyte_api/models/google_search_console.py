@@ -7,14 +7,14 @@ from typing import Optional
 from typing_extensions import NotRequired, TypedDict
 
 
-class AuthorizationTypedDict(TypedDict):
+class GoogleSearchConsoleAuthorizationTypedDict(TypedDict):
     client_id: NotRequired[str]
     r"""The client ID of your Google Search Console developer application. Read more <a href=\"https://developers.google.com/webmaster-tools/v1/how-tos/authorizing\">here</a>."""
     client_secret: NotRequired[str]
     r"""The client secret of your Google Search Console developer application. Read more <a href=\"https://developers.google.com/webmaster-tools/v1/how-tos/authorizing\">here</a>."""
 
 
-class Authorization(BaseModel):
+class GoogleSearchConsoleAuthorization(BaseModel):
     client_id: Optional[str] = None
     r"""The client ID of your Google Search Console developer application. Read more <a href=\"https://developers.google.com/webmaster-tools/v1/how-tos/authorizing\">here</a>."""
 
@@ -39,11 +39,11 @@ class Authorization(BaseModel):
 
 
 class GoogleSearchConsoleTypedDict(TypedDict):
-    authorization: NotRequired[AuthorizationTypedDict]
+    authorization: NotRequired[GoogleSearchConsoleAuthorizationTypedDict]
 
 
 class GoogleSearchConsole(BaseModel):
-    authorization: Optional[Authorization] = None
+    authorization: Optional[GoogleSearchConsoleAuthorization] = None
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):

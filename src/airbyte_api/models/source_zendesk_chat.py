@@ -12,14 +12,14 @@ from typing import Optional, Union
 from typing_extensions import Annotated, NotRequired, TypeAliasType, TypedDict
 
 
-class SourceZendeskChatSchemasCredentials(str, Enum):
+class SourceZendeskChatCredentialsAccessToken(str, Enum):
     ACCESS_TOKEN = "access_token"
 
 
 class SourceZendeskChatAccessTokenTypedDict(TypedDict):
     access_token: str
     r"""The Access Token to make authenticated requests."""
-    credentials: SourceZendeskChatSchemasCredentials
+    credentials: SourceZendeskChatCredentialsAccessToken
 
 
 class SourceZendeskChatAccessToken(BaseModel):
@@ -28,16 +28,16 @@ class SourceZendeskChatAccessToken(BaseModel):
 
     CREDENTIALS: Annotated[
         Annotated[
-            SourceZendeskChatSchemasCredentials,
+            SourceZendeskChatCredentialsAccessToken,
             AfterValidator(
-                validate_const(SourceZendeskChatSchemasCredentials.ACCESS_TOKEN)
+                validate_const(SourceZendeskChatCredentialsAccessToken.ACCESS_TOKEN)
             ),
         ],
         pydantic.Field(alias="credentials"),
-    ] = SourceZendeskChatSchemasCredentials.ACCESS_TOKEN
+    ] = SourceZendeskChatCredentialsAccessToken.ACCESS_TOKEN
 
 
-class SourceZendeskChatCredentials(str, Enum):
+class SourceZendeskChatCredentialsOauth20(str, Enum):
     OAUTH2_0 = "oauth2.0"
 
 
@@ -48,7 +48,7 @@ class SourceZendeskChatOAuth20TypedDict(TypedDict):
     r"""The Client ID of your OAuth application"""
     client_secret: NotRequired[str]
     r"""The Client Secret of your OAuth application."""
-    credentials: SourceZendeskChatCredentials
+    credentials: SourceZendeskChatCredentialsOauth20
     refresh_token: NotRequired[str]
     r"""Refresh Token to obtain new Access Token, when it's expired."""
 
@@ -65,11 +65,13 @@ class SourceZendeskChatOAuth20(BaseModel):
 
     CREDENTIALS: Annotated[
         Annotated[
-            SourceZendeskChatCredentials,
-            AfterValidator(validate_const(SourceZendeskChatCredentials.OAUTH2_0)),
+            SourceZendeskChatCredentialsOauth20,
+            AfterValidator(
+                validate_const(SourceZendeskChatCredentialsOauth20.OAUTH2_0)
+            ),
         ],
         pydantic.Field(alias="credentials"),
-    ] = SourceZendeskChatCredentials.OAUTH2_0
+    ] = SourceZendeskChatCredentialsOauth20.OAUTH2_0
 
     refresh_token: Optional[str] = None
     r"""Refresh Token to obtain new Access Token, when it's expired."""

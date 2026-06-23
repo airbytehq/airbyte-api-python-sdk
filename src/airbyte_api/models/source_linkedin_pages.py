@@ -12,14 +12,14 @@ from typing import Optional, Union
 from typing_extensions import Annotated, NotRequired, TypeAliasType, TypedDict
 
 
-class SourceLinkedinPagesSchemasAuthMethod(str, Enum):
+class SourceLinkedinPagesAuthMethodAccessToken(str, Enum):
     ACCESS_TOKEN = "access_token"
 
 
 class SourceLinkedinPagesAccessTokenTypedDict(TypedDict):
     access_token: str
     r"""The token value generated using the LinkedIn Developers OAuth Token Tools. See the <a href=\"https://docs.airbyte.com/integrations/sources/linkedin-pages/\">docs</a> to obtain yours."""
-    auth_method: SourceLinkedinPagesSchemasAuthMethod
+    auth_method: SourceLinkedinPagesAuthMethodAccessToken
 
 
 class SourceLinkedinPagesAccessToken(BaseModel):
@@ -28,13 +28,13 @@ class SourceLinkedinPagesAccessToken(BaseModel):
 
     AUTH_METHOD: Annotated[
         Annotated[
-            Optional[SourceLinkedinPagesSchemasAuthMethod],
+            Optional[SourceLinkedinPagesAuthMethodAccessToken],
             AfterValidator(
-                validate_const(SourceLinkedinPagesSchemasAuthMethod.ACCESS_TOKEN)
+                validate_const(SourceLinkedinPagesAuthMethodAccessToken.ACCESS_TOKEN)
             ),
         ],
         pydantic.Field(alias="auth_method"),
-    ] = SourceLinkedinPagesSchemasAuthMethod.ACCESS_TOKEN
+    ] = SourceLinkedinPagesAuthMethodAccessToken.ACCESS_TOKEN
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
@@ -53,7 +53,7 @@ class SourceLinkedinPagesAccessToken(BaseModel):
         return m
 
 
-class SourceLinkedinPagesAuthMethod(str, Enum):
+class SourceLinkedinPagesAuthMethodOAuth20(str, Enum):
     O_AUTH2_0 = "oAuth2.0"
 
 
@@ -64,7 +64,7 @@ class SourceLinkedinPagesOAuth20TypedDict(TypedDict):
     r"""The client secret of the LinkedIn developer application."""
     refresh_token: str
     r"""The token value generated using the LinkedIn Developers OAuth Token Tools. See the <a href=\"https://docs.airbyte.com/integrations/sources/linkedin-pages/\">docs</a> to obtain yours."""
-    auth_method: SourceLinkedinPagesAuthMethod
+    auth_method: SourceLinkedinPagesAuthMethodOAuth20
 
 
 class SourceLinkedinPagesOAuth20(BaseModel):
@@ -79,11 +79,13 @@ class SourceLinkedinPagesOAuth20(BaseModel):
 
     AUTH_METHOD: Annotated[
         Annotated[
-            Optional[SourceLinkedinPagesAuthMethod],
-            AfterValidator(validate_const(SourceLinkedinPagesAuthMethod.O_AUTH2_0)),
+            Optional[SourceLinkedinPagesAuthMethodOAuth20],
+            AfterValidator(
+                validate_const(SourceLinkedinPagesAuthMethodOAuth20.O_AUTH2_0)
+            ),
         ],
         pydantic.Field(alias="auth_method"),
-    ] = SourceLinkedinPagesAuthMethod.O_AUTH2_0
+    ] = SourceLinkedinPagesAuthMethodOAuth20.O_AUTH2_0
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):

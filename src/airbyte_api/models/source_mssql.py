@@ -11,7 +11,7 @@ from typing import List, Optional, Union
 from typing_extensions import Annotated, NotRequired, TypeAliasType, TypedDict
 
 
-class SourceMssqlSchemasMethod(str, Enum):
+class SourceMssqlMethodStandard(str, Enum):
     STANDARD = "STANDARD"
 
 
@@ -20,7 +20,7 @@ class SourceMssqlScanChangesWithUserDefinedCursorTypedDict(TypedDict):
 
     exclude_todays_data: NotRequired[bool]
     r"""When enabled incremental syncs using a cursor of a temporal types (date or datetime) will include cursor values only up until last midnight (Advanced)"""
-    method: SourceMssqlSchemasMethod
+    method: SourceMssqlMethodStandard
 
 
 class SourceMssqlScanChangesWithUserDefinedCursor(BaseModel):
@@ -31,11 +31,11 @@ class SourceMssqlScanChangesWithUserDefinedCursor(BaseModel):
 
     METHOD: Annotated[
         Annotated[
-            SourceMssqlSchemasMethod,
-            AfterValidator(validate_const(SourceMssqlSchemasMethod.STANDARD)),
+            SourceMssqlMethodStandard,
+            AfterValidator(validate_const(SourceMssqlMethodStandard.STANDARD)),
         ],
         pydantic.Field(alias="method"),
-    ] = SourceMssqlSchemasMethod.STANDARD
+    ] = SourceMssqlMethodStandard.STANDARD
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
@@ -61,7 +61,7 @@ class SourceMssqlInvalidCDCPositionBehaviorAdvanced(str, Enum):
     RE_SYNC_DATA = "Re-sync data"
 
 
-class SourceMssqlMethod(str, Enum):
+class SourceMssqlMethodCdc(str, Enum):
     CDC = "CDC"
 
 
@@ -76,7 +76,7 @@ class SourceMssqlReadChangesUsingChangeDataCaptureCDCTypedDict(TypedDict):
         SourceMssqlInvalidCDCPositionBehaviorAdvanced
     ]
     r"""Determines whether Airbyte should fail or re-sync data in case of an stale/invalid cursor value into the WAL. If 'Fail sync' is chosen, a user will have to manually reset the connection before being able to continue syncing data. If 'Re-sync data' is chosen, Airbyte will automatically trigger a refresh but could lead to higher cloud costs and data loss."""
-    method: SourceMssqlMethod
+    method: SourceMssqlMethodCdc
     queue_size: NotRequired[int]
     r"""The size of the internal queue. This may interfere with memory consumption and efficiency of the connector, please be careful."""
 
@@ -97,10 +97,11 @@ class SourceMssqlReadChangesUsingChangeDataCaptureCDC(BaseModel):
 
     METHOD: Annotated[
         Annotated[
-            SourceMssqlMethod, AfterValidator(validate_const(SourceMssqlMethod.CDC))
+            SourceMssqlMethodCdc,
+            AfterValidator(validate_const(SourceMssqlMethodCdc.CDC)),
         ],
         pydantic.Field(alias="method"),
-    ] = SourceMssqlMethod.CDC
+    ] = SourceMssqlMethodCdc.CDC
 
     queue_size: Optional[int] = 10000
     r"""The size of the internal queue. This may interfere with memory consumption and efficiency of the connector, please be careful."""
@@ -153,7 +154,7 @@ class SourceMssqlMssql(str, Enum):
     MSSQL = "mssql"
 
 
-class SourceMssqlSchemasSslMethodSslMethod(str, Enum):
+class SslMethodEncryptedVerifyCertificate(str, Enum):
     ENCRYPTED_VERIFY_CERTIFICATE = "encrypted_verify_certificate"
 
 
@@ -164,7 +165,7 @@ class SourceMssqlEncryptedVerifyCertificateTypedDict(TypedDict):
     r"""certificate of the server, or of the CA that signed the server certificate"""
     host_name_in_certificate: NotRequired[str]
     r"""Specifies the host name of the server. The value of this property must match the subject property of the certificate."""
-    ssl_method: SourceMssqlSchemasSslMethodSslMethod
+    ssl_method: SslMethodEncryptedVerifyCertificate
 
 
 class SourceMssqlEncryptedVerifyCertificate(BaseModel):
@@ -180,15 +181,15 @@ class SourceMssqlEncryptedVerifyCertificate(BaseModel):
 
     SSL_METHOD: Annotated[
         Annotated[
-            SourceMssqlSchemasSslMethodSslMethod,
+            SslMethodEncryptedVerifyCertificate,
             AfterValidator(
                 validate_const(
-                    SourceMssqlSchemasSslMethodSslMethod.ENCRYPTED_VERIFY_CERTIFICATE
+                    SslMethodEncryptedVerifyCertificate.ENCRYPTED_VERIFY_CERTIFICATE
                 )
             ),
         ],
         pydantic.Field(alias="ssl_method"),
-    ] = SourceMssqlSchemasSslMethodSslMethod.ENCRYPTED_VERIFY_CERTIFICATE
+    ] = SslMethodEncryptedVerifyCertificate.ENCRYPTED_VERIFY_CERTIFICATE
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
@@ -207,14 +208,14 @@ class SourceMssqlEncryptedVerifyCertificate(BaseModel):
         return m
 
 
-class SourceMssqlSchemasSslMethod(str, Enum):
+class SslMethodEncryptedTrustServerCertificate(str, Enum):
     ENCRYPTED_TRUST_SERVER_CERTIFICATE = "encrypted_trust_server_certificate"
 
 
 class SourceMssqlEncryptedTrustServerCertificateTypedDict(TypedDict):
     r"""Use the certificate provided by the server without verification. (For testing purposes only!)"""
 
-    ssl_method: SourceMssqlSchemasSslMethod
+    ssl_method: SslMethodEncryptedTrustServerCertificate
 
 
 class SourceMssqlEncryptedTrustServerCertificate(BaseModel):
@@ -222,25 +223,25 @@ class SourceMssqlEncryptedTrustServerCertificate(BaseModel):
 
     SSL_METHOD: Annotated[
         Annotated[
-            SourceMssqlSchemasSslMethod,
+            SslMethodEncryptedTrustServerCertificate,
             AfterValidator(
                 validate_const(
-                    SourceMssqlSchemasSslMethod.ENCRYPTED_TRUST_SERVER_CERTIFICATE
+                    SslMethodEncryptedTrustServerCertificate.ENCRYPTED_TRUST_SERVER_CERTIFICATE
                 )
             ),
         ],
         pydantic.Field(alias="ssl_method"),
-    ] = SourceMssqlSchemasSslMethod.ENCRYPTED_TRUST_SERVER_CERTIFICATE
+    ] = SslMethodEncryptedTrustServerCertificate.ENCRYPTED_TRUST_SERVER_CERTIFICATE
 
 
-class SourceMssqlSchemasSSLMethodSSLMethodSSLMethod(str, Enum):
+class SslMethodUnencrypted(str, Enum):
     UNENCRYPTED = "unencrypted"
 
 
 class SourceMssqlUnencryptedTypedDict(TypedDict):
     r"""Data transfer will not be encrypted."""
 
-    ssl_method: SourceMssqlSchemasSSLMethodSSLMethodSSLMethod
+    ssl_method: SslMethodUnencrypted
 
 
 class SourceMssqlUnencrypted(BaseModel):
@@ -248,19 +249,15 @@ class SourceMssqlUnencrypted(BaseModel):
 
     SSL_METHOD: Annotated[
         Annotated[
-            SourceMssqlSchemasSSLMethodSSLMethodSSLMethod,
-            AfterValidator(
-                validate_const(
-                    SourceMssqlSchemasSSLMethodSSLMethodSSLMethod.UNENCRYPTED
-                )
-            ),
+            SslMethodUnencrypted,
+            AfterValidator(validate_const(SslMethodUnencrypted.UNENCRYPTED)),
         ],
         pydantic.Field(alias="ssl_method"),
-    ] = SourceMssqlSchemasSSLMethodSSLMethodSSLMethod.UNENCRYPTED
+    ] = SslMethodUnencrypted.UNENCRYPTED
 
 
-SourceMssqlSSLMethodTypedDict = TypeAliasType(
-    "SourceMssqlSSLMethodTypedDict",
+SourceMssqlSSLMethodUnionTypedDict = TypeAliasType(
+    "SourceMssqlSSLMethodUnionTypedDict",
     Union[
         SourceMssqlUnencryptedTypedDict,
         SourceMssqlEncryptedTrustServerCertificateTypedDict,
@@ -270,7 +267,7 @@ SourceMssqlSSLMethodTypedDict = TypeAliasType(
 r"""The encryption method which is used when communicating with the database."""
 
 
-SourceMssqlSSLMethod = Annotated[
+SourceMssqlSSLMethodUnion = Annotated[
     Union[
         Annotated[SourceMssqlUnencrypted, Tag("unencrypted")],
         Annotated[
@@ -286,7 +283,7 @@ SourceMssqlSSLMethod = Annotated[
 r"""The encryption method which is used when communicating with the database."""
 
 
-class SourceMssqlSchemasTunnelMethodTunnelMethod(str, Enum):
+class SourceMssqlTunnelMethodSSHPasswordAuth(str, Enum):
     r"""Connect through a jump server tunnel host using username and password authentication"""
 
     SSH_PASSWORD_AUTH = "SSH_PASSWORD_AUTH"
@@ -299,7 +296,7 @@ class SourceMssqlPasswordAuthenticationTypedDict(TypedDict):
     r"""OS-level username for logging into the jump server host"""
     tunnel_user_password: str
     r"""OS-level password for logging into the jump server host"""
-    tunnel_method: SourceMssqlSchemasTunnelMethodTunnelMethod
+    tunnel_method: SourceMssqlTunnelMethodSSHPasswordAuth
     r"""Connect through a jump server tunnel host using username and password authentication"""
     tunnel_port: NotRequired[int]
     r"""Port on the proxy/jump server that accepts inbound ssh connections."""
@@ -317,15 +314,13 @@ class SourceMssqlPasswordAuthentication(BaseModel):
 
     TUNNEL_METHOD: Annotated[
         Annotated[
-            SourceMssqlSchemasTunnelMethodTunnelMethod,
+            SourceMssqlTunnelMethodSSHPasswordAuth,
             AfterValidator(
-                validate_const(
-                    SourceMssqlSchemasTunnelMethodTunnelMethod.SSH_PASSWORD_AUTH
-                )
+                validate_const(SourceMssqlTunnelMethodSSHPasswordAuth.SSH_PASSWORD_AUTH)
             ),
         ],
         pydantic.Field(alias="tunnel_method"),
-    ] = SourceMssqlSchemasTunnelMethodTunnelMethod.SSH_PASSWORD_AUTH
+    ] = SourceMssqlTunnelMethodSSHPasswordAuth.SSH_PASSWORD_AUTH
     r"""Connect through a jump server tunnel host using username and password authentication"""
 
     tunnel_port: Optional[int] = 22
@@ -348,7 +343,7 @@ class SourceMssqlPasswordAuthentication(BaseModel):
         return m
 
 
-class SourceMssqlSchemasTunnelMethod(str, Enum):
+class SourceMssqlTunnelMethodSSHKeyAuth(str, Enum):
     r"""Connect through a jump server tunnel host using username and ssh key"""
 
     SSH_KEY_AUTH = "SSH_KEY_AUTH"
@@ -361,7 +356,7 @@ class SourceMssqlSSHKeyAuthenticationTypedDict(TypedDict):
     r"""Hostname of the jump server host that allows inbound ssh tunnel."""
     tunnel_user: str
     r"""OS-level username for logging into the jump server host."""
-    tunnel_method: SourceMssqlSchemasTunnelMethod
+    tunnel_method: SourceMssqlTunnelMethodSSHKeyAuth
     r"""Connect through a jump server tunnel host using username and ssh key"""
     tunnel_port: NotRequired[int]
     r"""Port on the proxy/jump server that accepts inbound ssh connections."""
@@ -379,11 +374,13 @@ class SourceMssqlSSHKeyAuthentication(BaseModel):
 
     TUNNEL_METHOD: Annotated[
         Annotated[
-            SourceMssqlSchemasTunnelMethod,
-            AfterValidator(validate_const(SourceMssqlSchemasTunnelMethod.SSH_KEY_AUTH)),
+            SourceMssqlTunnelMethodSSHKeyAuth,
+            AfterValidator(
+                validate_const(SourceMssqlTunnelMethodSSHKeyAuth.SSH_KEY_AUTH)
+            ),
         ],
         pydantic.Field(alias="tunnel_method"),
-    ] = SourceMssqlSchemasTunnelMethod.SSH_KEY_AUTH
+    ] = SourceMssqlTunnelMethodSSHKeyAuth.SSH_KEY_AUTH
     r"""Connect through a jump server tunnel host using username and ssh key"""
 
     tunnel_port: Optional[int] = 22
@@ -406,25 +403,25 @@ class SourceMssqlSSHKeyAuthentication(BaseModel):
         return m
 
 
-class SourceMssqlTunnelMethod(str, Enum):
+class SourceMssqlTunnelMethodNoTunnel(str, Enum):
     r"""No ssh tunnel needed to connect to database"""
 
     NO_TUNNEL = "NO_TUNNEL"
 
 
 class SourceMssqlNoTunnelTypedDict(TypedDict):
-    tunnel_method: SourceMssqlTunnelMethod
+    tunnel_method: SourceMssqlTunnelMethodNoTunnel
     r"""No ssh tunnel needed to connect to database"""
 
 
 class SourceMssqlNoTunnel(BaseModel):
     TUNNEL_METHOD: Annotated[
         Annotated[
-            SourceMssqlTunnelMethod,
-            AfterValidator(validate_const(SourceMssqlTunnelMethod.NO_TUNNEL)),
+            SourceMssqlTunnelMethodNoTunnel,
+            AfterValidator(validate_const(SourceMssqlTunnelMethodNoTunnel.NO_TUNNEL)),
         ],
         pydantic.Field(alias="tunnel_method"),
-    ] = SourceMssqlTunnelMethod.NO_TUNNEL
+    ] = SourceMssqlTunnelMethodNoTunnel.NO_TUNNEL
     r"""No ssh tunnel needed to connect to database"""
 
 
@@ -468,7 +465,7 @@ class SourceMssqlTypedDict(TypedDict):
     schemas: NotRequired[List[str]]
     r"""The list of schemas to sync from. Defaults to user. Case sensitive."""
     source_type: SourceMssqlMssql
-    ssl_method: NotRequired[SourceMssqlSSLMethodTypedDict]
+    ssl_method: NotRequired[SourceMssqlSSLMethodUnionTypedDict]
     r"""The encryption method which is used when communicating with the database."""
     tunnel_method: NotRequired[SourceMssqlSSHTunnelMethodTypedDict]
     r"""Whether to initiate an SSH tunnel before connecting to the database, and if so, which kind of authentication to use."""
@@ -506,7 +503,7 @@ class SourceMssql(BaseModel):
         pydantic.Field(alias="sourceType"),
     ] = SourceMssqlMssql.MSSQL
 
-    ssl_method: Optional[SourceMssqlSSLMethod] = None
+    ssl_method: Optional[SourceMssqlSSLMethodUnion] = None
     r"""The encryption method which is used when communicating with the database."""
 
     tunnel_method: Optional[SourceMssqlSSHTunnelMethod] = None

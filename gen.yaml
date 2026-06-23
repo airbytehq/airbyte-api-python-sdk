@@ -6,7 +6,8 @@ generation:
     sdkInitStyle: constructor
   useClassNamesForArrayFields: true
   fixes:
-    nameResolutionFeb2025: false
+    nameResolutionDec2023: true
+    nameResolutionFeb2025: true
     parameterOrderingFeb2024: false
     requestResponseComponentNamesFeb2024: false
     securityFeb2025: false
@@ -53,7 +54,7 @@ python:
     sync: EventStream
   fixFlags:
     asyncPaginationSep2025: false
-    conflictResistantModelImportsFeb2026: false
+    conflictResistantModelImportsFeb2026: true
     responseRequiredSep2024: false
   flattenGlobalSecurity: false
   flattenRequests: false

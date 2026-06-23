@@ -292,7 +292,7 @@ with AirbyteAPI(
     res = aa_client.destinations.patch_destination(request=api.PatchDestinationRequest(
         destination_patch_request=models.DestinationPatchRequest(
             configuration=models.DestinationHubspot(
-                credentials=models.OAuth(
+                credentials=models.DestinationHubspotOAuth(
                     client_id="<id>",
                     client_secret="<value>",
                     refresh_token="<value>",

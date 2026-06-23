@@ -18,19 +18,19 @@ class DestinationSnowflakeCDCDeletionMode(str, Enum):
     SOFT_DELETE = "Soft delete"
 
 
-class DestinationSnowflakeSchemasAuthType(str, Enum):
+class AuthTypeUsernameAndPassword(str, Enum):
     USERNAME_AND_PASSWORD = "Username and Password"
 
 
-class UsernameAndPasswordTypedDict(TypedDict):
+class DestinationSnowflakeUsernameAndPasswordTypedDict(TypedDict):
     r"""Configuration details for the Username and Password Authentication."""
 
     password: str
     r"""Enter the password associated with the username."""
-    auth_type: NotRequired[DestinationSnowflakeSchemasAuthType]
+    auth_type: NotRequired[AuthTypeUsernameAndPassword]
 
 
-class UsernameAndPassword(BaseModel):
+class DestinationSnowflakeUsernameAndPassword(BaseModel):
     r"""Configuration details for the Username and Password Authentication."""
 
     model_config = ConfigDict(
@@ -41,8 +41,8 @@ class UsernameAndPassword(BaseModel):
     password: str
     r"""Enter the password associated with the username."""
 
-    auth_type: Optional[DestinationSnowflakeSchemasAuthType] = (
-        DestinationSnowflakeSchemasAuthType.USERNAME_AND_PASSWORD
+    auth_type: Optional[AuthTypeUsernameAndPassword] = (
+        AuthTypeUsernameAndPassword.USERNAME_AND_PASSWORD
     )
 
     @property
@@ -73,11 +73,11 @@ class UsernameAndPassword(BaseModel):
         return m
 
 
-class DestinationSnowflakeAuthType(str, Enum):
+class DestinationSnowflakeAuthTypeKeyPairAuthentication(str, Enum):
     KEY_PAIR_AUTHENTICATION = "Key Pair Authentication"
 
 
-class KeyPairAuthenticationTypedDict(TypedDict):
+class DestinationSnowflakeKeyPairAuthenticationTypedDict(TypedDict):
     r"""Configuration details for the Key Pair Authentication."""
 
     private_key: str
@@ -85,12 +85,12 @@ class KeyPairAuthenticationTypedDict(TypedDict):
     href=\"https://docs.airbyte.com/integrations/destinations/snowflake\">docs</a> for more
     information on how to obtain this key.
     """
-    auth_type: NotRequired[DestinationSnowflakeAuthType]
+    auth_type: NotRequired[DestinationSnowflakeAuthTypeKeyPairAuthentication]
     private_key_password: NotRequired[str]
     r"""Passphrase for private key"""
 
 
-class KeyPairAuthentication(BaseModel):
+class DestinationSnowflakeKeyPairAuthentication(BaseModel):
     r"""Configuration details for the Key Pair Authentication."""
 
     model_config = ConfigDict(
@@ -104,8 +104,8 @@ class KeyPairAuthentication(BaseModel):
     information on how to obtain this key.
     """
 
-    auth_type: Optional[DestinationSnowflakeAuthType] = (
-        DestinationSnowflakeAuthType.KEY_PAIR_AUTHENTICATION
+    auth_type: Optional[DestinationSnowflakeAuthTypeKeyPairAuthentication] = (
+        DestinationSnowflakeAuthTypeKeyPairAuthentication.KEY_PAIR_AUTHENTICATION
     )
 
     private_key_password: Optional[str] = None
@@ -139,20 +139,27 @@ class KeyPairAuthentication(BaseModel):
         return m
 
 
-AuthorizationMethodTypedDict = TypeAliasType(
-    "AuthorizationMethodTypedDict",
-    Union[UsernameAndPasswordTypedDict, KeyPairAuthenticationTypedDict],
+DestinationSnowflakeAuthorizationMethodTypedDict = TypeAliasType(
+    "DestinationSnowflakeAuthorizationMethodTypedDict",
+    Union[
+        DestinationSnowflakeUsernameAndPasswordTypedDict,
+        DestinationSnowflakeKeyPairAuthenticationTypedDict,
+    ],
 )
 r"""Determines the type of authentication that should be used."""
 
 
-AuthorizationMethod = TypeAliasType(
-    "AuthorizationMethod", Union[UsernameAndPassword, KeyPairAuthentication]
+DestinationSnowflakeAuthorizationMethod = TypeAliasType(
+    "DestinationSnowflakeAuthorizationMethod",
+    Union[
+        DestinationSnowflakeUsernameAndPassword,
+        DestinationSnowflakeKeyPairAuthentication,
+    ],
 )
 r"""Determines the type of authentication that should be used."""
 
 
-class Snowflake(str, Enum):
+class DestinationSnowflakeSnowflake(str, Enum):
     SNOWFLAKE = "snowflake"
 
 
@@ -171,9 +178,9 @@ class DestinationSnowflakeTypedDict(TypedDict):
     r"""Enter the name of the <a href=\"https://docs.snowflake.com/en/user-guide/warehouses-overview.html#overview-of-warehouses\">warehouse</a> that you want to use as a compute cluster"""
     cdc_deletion_mode: NotRequired[DestinationSnowflakeCDCDeletionMode]
     r"""Whether to execute CDC deletions as hard deletes (i.e. propagate source deletions to the destination), or soft deletes (i.e. leave a tombstone record in the destination). Defaults to hard deletes."""
-    credentials: NotRequired[AuthorizationMethodTypedDict]
+    credentials: NotRequired[DestinationSnowflakeAuthorizationMethodTypedDict]
     r"""Determines the type of authentication that should be used."""
-    destination_type: Snowflake
+    destination_type: DestinationSnowflakeSnowflake
     disable_type_dedupe: NotRequired[bool]
     r"""Write the legacy \"raw tables\" format, to enable backwards compatibility with older versions of this connector."""
     jdbc_url_params: NotRequired[str]
@@ -208,13 +215,16 @@ class DestinationSnowflake(BaseModel):
     )
     r"""Whether to execute CDC deletions as hard deletes (i.e. propagate source deletions to the destination), or soft deletes (i.e. leave a tombstone record in the destination). Defaults to hard deletes."""
 
-    credentials: Optional[AuthorizationMethod] = None
+    credentials: Optional[DestinationSnowflakeAuthorizationMethod] = None
     r"""Determines the type of authentication that should be used."""
 
     DESTINATION_TYPE: Annotated[
-        Annotated[Snowflake, AfterValidator(validate_const(Snowflake.SNOWFLAKE))],
+        Annotated[
+            DestinationSnowflakeSnowflake,
+            AfterValidator(validate_const(DestinationSnowflakeSnowflake.SNOWFLAKE)),
+        ],
         pydantic.Field(alias="destinationType"),
-    ] = Snowflake.SNOWFLAKE
+    ] = DestinationSnowflakeSnowflake.SNOWFLAKE
 
     disable_type_dedupe: Optional[bool] = None
     r"""Write the legacy \"raw tables\" format, to enable backwards compatibility with older versions of this connector."""

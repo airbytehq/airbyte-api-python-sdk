@@ -1,0 +1,12 @@
+# DestinationSnowflakeUsernameAndPassword
+
+Configuration details for the Username and Password Authentication.
+
+
+## Fields
+
+| Field                                                                                    | Type                                                                                     | Required                                                                                 | Description                                                                              |
+| ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
+| `__pydantic_extra__`                                                                     | Dict[str, *Any*]                                                                         | :heavy_minus_sign:                                                                       | N/A                                                                                      |
+| `auth_type`                                                                              | [Optional[models.AuthTypeUsernameAndPassword]](../models/authtypeusernameandpassword.md) | :heavy_minus_sign:                                                                       | N/A                                                                                      |
+| `password`                                                                               | *str*                                                                                    | :heavy_check_mark:                                                                       | Enter the password associated with the username.                                         |

@@ -12,14 +12,14 @@ from typing import Optional, Union
 from typing_extensions import Annotated, NotRequired, TypeAliasType, TypedDict
 
 
-class SourceOktaSchemasCredentialsAuthType(str, Enum):
+class SourceOktaAuthTypeAPIToken(str, Enum):
     API_TOKEN = "api_token"
 
 
 class SourceOktaAPITokenTypedDict(TypedDict):
     api_token: str
     r"""An Okta token. See the <a href=\"https://docs.airbyte.com/integrations/sources/okta\">docs</a> for instructions on how to generate it."""
-    auth_type: SourceOktaSchemasCredentialsAuthType
+    auth_type: SourceOktaAuthTypeAPIToken
 
 
 class SourceOktaAPIToken(BaseModel):
@@ -28,16 +28,14 @@ class SourceOktaAPIToken(BaseModel):
 
     AUTH_TYPE: Annotated[
         Annotated[
-            SourceOktaSchemasCredentialsAuthType,
-            AfterValidator(
-                validate_const(SourceOktaSchemasCredentialsAuthType.API_TOKEN)
-            ),
+            SourceOktaAuthTypeAPIToken,
+            AfterValidator(validate_const(SourceOktaAuthTypeAPIToken.API_TOKEN)),
         ],
         pydantic.Field(alias="auth_type"),
-    ] = SourceOktaSchemasCredentialsAuthType.API_TOKEN
+    ] = SourceOktaAuthTypeAPIToken.API_TOKEN
 
 
-class SourceOktaSchemasAuthType(str, Enum):
+class AuthTypeOauth20PrivateKey(str, Enum):
     OAUTH2_0_PRIVATE_KEY = "oauth2.0_private_key"
 
 
@@ -50,7 +48,7 @@ class OAuth20WithPrivateKeyTypedDict(TypedDict):
     r"""The private key in PEM format"""
     scope: str
     r"""The OAuth scope."""
-    auth_type: SourceOktaSchemasAuthType
+    auth_type: AuthTypeOauth20PrivateKey
 
 
 class OAuth20WithPrivateKey(BaseModel):
@@ -68,16 +66,16 @@ class OAuth20WithPrivateKey(BaseModel):
 
     AUTH_TYPE: Annotated[
         Annotated[
-            SourceOktaSchemasAuthType,
+            AuthTypeOauth20PrivateKey,
             AfterValidator(
-                validate_const(SourceOktaSchemasAuthType.OAUTH2_0_PRIVATE_KEY)
+                validate_const(AuthTypeOauth20PrivateKey.OAUTH2_0_PRIVATE_KEY)
             ),
         ],
         pydantic.Field(alias="auth_type"),
-    ] = SourceOktaSchemasAuthType.OAUTH2_0_PRIVATE_KEY
+    ] = AuthTypeOauth20PrivateKey.OAUTH2_0_PRIVATE_KEY
 
 
-class SourceOktaAuthType(str, Enum):
+class SourceOktaAuthTypeOauth20(str, Enum):
     OAUTH2_0 = "oauth2.0"
 
 
@@ -88,7 +86,7 @@ class SourceOktaOAuth20TypedDict(TypedDict):
     r"""The Client Secret of your OAuth application."""
     refresh_token: str
     r"""Refresh Token to obtain new Access Token, when it's expired."""
-    auth_type: SourceOktaAuthType
+    auth_type: SourceOktaAuthTypeOauth20
 
 
 class SourceOktaOAuth20(BaseModel):
@@ -103,11 +101,11 @@ class SourceOktaOAuth20(BaseModel):
 
     AUTH_TYPE: Annotated[
         Annotated[
-            SourceOktaAuthType,
-            AfterValidator(validate_const(SourceOktaAuthType.OAUTH2_0)),
+            SourceOktaAuthTypeOauth20,
+            AfterValidator(validate_const(SourceOktaAuthTypeOauth20.OAUTH2_0)),
         ],
         pydantic.Field(alias="auth_type"),
-    ] = SourceOktaAuthType.OAUTH2_0
+    ] = SourceOktaAuthTypeOauth20.OAUTH2_0
 
 
 SourceOktaAuthorizationMethodTypedDict = TypeAliasType(

@@ -1,0 +1,9 @@
+# DimensionsFilterValueDoubleValue
+
+
+## Fields
+
+| Field                                                                                                      | Type                                                                                                       | Required                                                                                                   | Description                                                                                                |
+| ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| `value`                                                                                                    | *float*                                                                                                    | :heavy_check_mark:                                                                                         | N/A                                                                                                        |
+| `value_type`                                                                                               | [models.DimensionsFilterValueValueTypeDoubleValue](../models/dimensionsfiltervaluevaluetypedoublevalue.md) | :heavy_check_mark:                                                                                         | N/A                                                                                                        |

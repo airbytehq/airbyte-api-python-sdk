@@ -11,9 +11,9 @@ Processing configuration
 value: models.SourceGcsLocal = /* values here */
 ```
 
-### `models.ViaAPI`
+### `models.SourceGcsViaAPI`
 
 ```python
-value: models.ViaAPI = /* values here */
+value: models.SourceGcsViaAPI = /* values here */
 ```
 

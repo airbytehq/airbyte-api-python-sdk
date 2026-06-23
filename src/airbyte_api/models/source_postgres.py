@@ -11,14 +11,14 @@ from typing import Any, Dict, List, Optional, Union
 from typing_extensions import Annotated, NotRequired, TypeAliasType, TypedDict
 
 
-class SourcePostgresSchemasReplicationMethodMethod(str, Enum):
+class SourcePostgresMethodStandard(str, Enum):
     STANDARD = "Standard"
 
 
 class SourcePostgresScanChangesWithUserDefinedCursorTypedDict(TypedDict):
     r"""Incrementally detects new inserts and updates using the <a href=\"https://docs.airbyte.com/understanding-airbyte/connections/incremental-append/#user-defined-cursor\">cursor column</a> chosen when configuring a connection (e.g. created_at, updated_at)."""
 
-    method: SourcePostgresSchemasReplicationMethodMethod
+    method: SourcePostgresMethodStandard
 
 
 class SourcePostgresScanChangesWithUserDefinedCursor(BaseModel):
@@ -26,35 +26,30 @@ class SourcePostgresScanChangesWithUserDefinedCursor(BaseModel):
 
     METHOD: Annotated[
         Annotated[
-            SourcePostgresSchemasReplicationMethodMethod,
-            AfterValidator(
-                validate_const(SourcePostgresSchemasReplicationMethodMethod.STANDARD)
-            ),
+            SourcePostgresMethodStandard,
+            AfterValidator(validate_const(SourcePostgresMethodStandard.STANDARD)),
         ],
         pydantic.Field(alias="method"),
-    ] = SourcePostgresSchemasReplicationMethodMethod.STANDARD
+    ] = SourcePostgresMethodStandard.STANDARD
 
 
-class SourcePostgresSchemasMethod(str, Enum):
+class MethodXmin(str, Enum):
     XMIN = "Xmin"
 
 
 class DetectChangesWithXminSystemColumnTypedDict(TypedDict):
     r"""<i>Recommended</i> - Incrementally reads new inserts and updates via Postgres <a href=\"https://docs.airbyte.com/integrations/sources/postgres/#xmin\">Xmin system column</a>. Suitable for databases that have low transaction pressure."""
 
-    method: SourcePostgresSchemasMethod
+    method: MethodXmin
 
 
 class DetectChangesWithXminSystemColumn(BaseModel):
     r"""<i>Recommended</i> - Incrementally reads new inserts and updates via Postgres <a href=\"https://docs.airbyte.com/integrations/sources/postgres/#xmin\">Xmin system column</a>. Suitable for databases that have low transaction pressure."""
 
     METHOD: Annotated[
-        Annotated[
-            SourcePostgresSchemasMethod,
-            AfterValidator(validate_const(SourcePostgresSchemasMethod.XMIN)),
-        ],
+        Annotated[MethodXmin, AfterValidator(validate_const(MethodXmin.XMIN))],
         pydantic.Field(alias="method"),
-    ] = SourcePostgresSchemasMethod.XMIN
+    ] = MethodXmin.XMIN
 
 
 class SourcePostgresInvalidCDCPositionBehaviorAdvanced(str, Enum):
@@ -71,7 +66,7 @@ class LSNCommitBehaviour(str, Enum):
     AFTER_LOADING_DATA_IN_THE_DESTINATION = "After loading Data in the destination"
 
 
-class SourcePostgresMethod(str, Enum):
+class SourcePostgresMethodCdc(str, Enum):
     CDC = "CDC"
 
 
@@ -100,7 +95,7 @@ class ReadChangesUsingWriteAheadLogCDCTypedDict(TypedDict):
     r"""Determines whether Airbyte should fail or re-sync data in case of an stale/invalid cursor value into the WAL. If 'Fail sync' is chosen, a user will have to manually reset the connection before being able to continue syncing data. If 'Re-sync data' is chosen, Airbyte will automatically trigger a refresh but could lead to higher cloud costs and data loss."""
     lsn_commit_behaviour: NotRequired[LSNCommitBehaviour]
     r"""Determines when Airbyte should flush the LSN of processed WAL logs in the source database. `After loading Data in the destination` is default. If `While reading Data` is selected, in case of a downstream failure (while loading data into the destination), next sync would result in a full sync."""
-    method: SourcePostgresMethod
+    method: SourcePostgresMethodCdc
     plugin: NotRequired[Plugin]
     r"""A logical decoding plugin installed on the PostgreSQL server."""
     queue_size: NotRequired[int]
@@ -142,11 +137,11 @@ class ReadChangesUsingWriteAheadLogCDC(BaseModel):
 
     METHOD: Annotated[
         Annotated[
-            SourcePostgresMethod,
-            AfterValidator(validate_const(SourcePostgresMethod.CDC)),
+            SourcePostgresMethodCdc,
+            AfterValidator(validate_const(SourcePostgresMethodCdc.CDC)),
         ],
         pydantic.Field(alias="method"),
-    ] = SourcePostgresMethod.CDC
+    ] = SourcePostgresMethodCdc.CDC
 
     plugin: Optional[Plugin] = Plugin.PGOUTPUT
     r"""A logical decoding plugin installed on the PostgreSQL server."""
@@ -218,7 +213,7 @@ class SourcePostgresPostgres(str, Enum):
     POSTGRES = "postgres"
 
 
-class SourcePostgresSchemasSSLModeSSLModes6Mode(str, Enum):
+class SourcePostgresModeVerifyFull(str, Enum):
     VERIFY_FULL = "verify-full"
 
 
@@ -233,7 +228,7 @@ class SourcePostgresVerifyFullTypedDict(TypedDict):
     r"""Client key"""
     client_key_password: NotRequired[str]
     r"""Password for keystorage. If you do not add it - the password will be generated automatically."""
-    mode: SourcePostgresSchemasSSLModeSSLModes6Mode
+    mode: SourcePostgresModeVerifyFull
 
 
 class SourcePostgresVerifyFull(BaseModel):
@@ -258,13 +253,11 @@ class SourcePostgresVerifyFull(BaseModel):
 
     MODE: Annotated[
         Annotated[
-            SourcePostgresSchemasSSLModeSSLModes6Mode,
-            AfterValidator(
-                validate_const(SourcePostgresSchemasSSLModeSSLModes6Mode.VERIFY_FULL)
-            ),
+            SourcePostgresModeVerifyFull,
+            AfterValidator(validate_const(SourcePostgresModeVerifyFull.VERIFY_FULL)),
         ],
         pydantic.Field(alias="mode"),
-    ] = SourcePostgresSchemasSSLModeSSLModes6Mode.VERIFY_FULL
+    ] = SourcePostgresModeVerifyFull.VERIFY_FULL
 
     @property
     def additional_properties(self):
@@ -296,7 +289,7 @@ class SourcePostgresVerifyFull(BaseModel):
         return m
 
 
-class SourcePostgresSchemasSSLModeSSLModes5Mode(str, Enum):
+class SourcePostgresModeVerifyCa(str, Enum):
     VERIFY_CA = "verify-ca"
 
 
@@ -311,7 +304,7 @@ class SourcePostgresVerifyCaTypedDict(TypedDict):
     r"""Client key"""
     client_key_password: NotRequired[str]
     r"""Password for keystorage. If you do not add it - the password will be generated automatically."""
-    mode: SourcePostgresSchemasSSLModeSSLModes5Mode
+    mode: SourcePostgresModeVerifyCa
 
 
 class SourcePostgresVerifyCa(BaseModel):
@@ -336,13 +329,11 @@ class SourcePostgresVerifyCa(BaseModel):
 
     MODE: Annotated[
         Annotated[
-            SourcePostgresSchemasSSLModeSSLModes5Mode,
-            AfterValidator(
-                validate_const(SourcePostgresSchemasSSLModeSSLModes5Mode.VERIFY_CA)
-            ),
+            SourcePostgresModeVerifyCa,
+            AfterValidator(validate_const(SourcePostgresModeVerifyCa.VERIFY_CA)),
         ],
         pydantic.Field(alias="mode"),
-    ] = SourcePostgresSchemasSSLModeSSLModes5Mode.VERIFY_CA
+    ] = SourcePostgresModeVerifyCa.VERIFY_CA
 
     @property
     def additional_properties(self):
@@ -374,14 +365,14 @@ class SourcePostgresVerifyCa(BaseModel):
         return m
 
 
-class SourcePostgresSchemasSSLModeSSLModesMode(str, Enum):
+class SourcePostgresModeRequire(str, Enum):
     REQUIRE = "require"
 
 
 class SourcePostgresRequireTypedDict(TypedDict):
     r"""Always require encryption. If the source database server does not support encryption, connection will fail."""
 
-    mode: SourcePostgresSchemasSSLModeSSLModesMode
+    mode: SourcePostgresModeRequire
 
 
 class SourcePostgresRequire(BaseModel):
@@ -394,13 +385,11 @@ class SourcePostgresRequire(BaseModel):
 
     MODE: Annotated[
         Annotated[
-            SourcePostgresSchemasSSLModeSSLModesMode,
-            AfterValidator(
-                validate_const(SourcePostgresSchemasSSLModeSSLModesMode.REQUIRE)
-            ),
+            SourcePostgresModeRequire,
+            AfterValidator(validate_const(SourcePostgresModeRequire.REQUIRE)),
         ],
         pydantic.Field(alias="mode"),
-    ] = SourcePostgresSchemasSSLModeSSLModesMode.REQUIRE
+    ] = SourcePostgresModeRequire.REQUIRE
 
     @property
     def additional_properties(self):
@@ -411,14 +400,14 @@ class SourcePostgresRequire(BaseModel):
         self.__pydantic_extra__ = value  # pyright: ignore[reportIncompatibleVariableOverride]
 
 
-class SourcePostgresSchemasSslModeMode(str, Enum):
+class SourcePostgresModePrefer(str, Enum):
     PREFER = "prefer"
 
 
 class SourcePostgresPreferTypedDict(TypedDict):
     r"""Allows unencrypted connection only if the source database does not support encryption."""
 
-    mode: SourcePostgresSchemasSslModeMode
+    mode: SourcePostgresModePrefer
 
 
 class SourcePostgresPrefer(BaseModel):
@@ -431,11 +420,11 @@ class SourcePostgresPrefer(BaseModel):
 
     MODE: Annotated[
         Annotated[
-            SourcePostgresSchemasSslModeMode,
-            AfterValidator(validate_const(SourcePostgresSchemasSslModeMode.PREFER)),
+            SourcePostgresModePrefer,
+            AfterValidator(validate_const(SourcePostgresModePrefer.PREFER)),
         ],
         pydantic.Field(alias="mode"),
-    ] = SourcePostgresSchemasSslModeMode.PREFER
+    ] = SourcePostgresModePrefer.PREFER
 
     @property
     def additional_properties(self):
@@ -446,14 +435,14 @@ class SourcePostgresPrefer(BaseModel):
         self.__pydantic_extra__ = value  # pyright: ignore[reportIncompatibleVariableOverride]
 
 
-class SourcePostgresSchemasMode(str, Enum):
+class SourcePostgresModeAllow(str, Enum):
     ALLOW = "allow"
 
 
 class SourcePostgresAllowTypedDict(TypedDict):
     r"""Enables encryption only when required by the source database."""
 
-    mode: SourcePostgresSchemasMode
+    mode: SourcePostgresModeAllow
 
 
 class SourcePostgresAllow(BaseModel):
@@ -466,11 +455,11 @@ class SourcePostgresAllow(BaseModel):
 
     MODE: Annotated[
         Annotated[
-            SourcePostgresSchemasMode,
-            AfterValidator(validate_const(SourcePostgresSchemasMode.ALLOW)),
+            SourcePostgresModeAllow,
+            AfterValidator(validate_const(SourcePostgresModeAllow.ALLOW)),
         ],
         pydantic.Field(alias="mode"),
-    ] = SourcePostgresSchemasMode.ALLOW
+    ] = SourcePostgresModeAllow.ALLOW
 
     @property
     def additional_properties(self):
@@ -481,14 +470,14 @@ class SourcePostgresAllow(BaseModel):
         self.__pydantic_extra__ = value  # pyright: ignore[reportIncompatibleVariableOverride]
 
 
-class SourcePostgresMode(str, Enum):
+class SourcePostgresModeDisable(str, Enum):
     DISABLE = "disable"
 
 
 class SourcePostgresDisableTypedDict(TypedDict):
     r"""Disables encryption of communication between Airbyte and source database."""
 
-    mode: SourcePostgresMode
+    mode: SourcePostgresModeDisable
 
 
 class SourcePostgresDisable(BaseModel):
@@ -501,11 +490,11 @@ class SourcePostgresDisable(BaseModel):
 
     MODE: Annotated[
         Annotated[
-            SourcePostgresMode,
-            AfterValidator(validate_const(SourcePostgresMode.DISABLE)),
+            SourcePostgresModeDisable,
+            AfterValidator(validate_const(SourcePostgresModeDisable.DISABLE)),
         ],
         pydantic.Field(alias="mode"),
-    ] = SourcePostgresMode.DISABLE
+    ] = SourcePostgresModeDisable.DISABLE
 
     @property
     def additional_properties(self):
@@ -548,7 +537,7 @@ Read more <a href=\"https://jdbc.postgresql.org/documentation/head/ssl-client.ht
 """
 
 
-class SourcePostgresSchemasTunnelMethodTunnelMethod(str, Enum):
+class SourcePostgresTunnelMethodSSHPasswordAuth(str, Enum):
     r"""Connect through a jump server tunnel host using username and password authentication"""
 
     SSH_PASSWORD_AUTH = "SSH_PASSWORD_AUTH"
@@ -561,7 +550,7 @@ class SourcePostgresPasswordAuthenticationTypedDict(TypedDict):
     r"""OS-level username for logging into the jump server host"""
     tunnel_user_password: str
     r"""OS-level password for logging into the jump server host"""
-    tunnel_method: SourcePostgresSchemasTunnelMethodTunnelMethod
+    tunnel_method: SourcePostgresTunnelMethodSSHPasswordAuth
     r"""Connect through a jump server tunnel host using username and password authentication"""
     tunnel_port: NotRequired[int]
     r"""Port on the proxy/jump server that accepts inbound ssh connections."""
@@ -579,15 +568,15 @@ class SourcePostgresPasswordAuthentication(BaseModel):
 
     TUNNEL_METHOD: Annotated[
         Annotated[
-            SourcePostgresSchemasTunnelMethodTunnelMethod,
+            SourcePostgresTunnelMethodSSHPasswordAuth,
             AfterValidator(
                 validate_const(
-                    SourcePostgresSchemasTunnelMethodTunnelMethod.SSH_PASSWORD_AUTH
+                    SourcePostgresTunnelMethodSSHPasswordAuth.SSH_PASSWORD_AUTH
                 )
             ),
         ],
         pydantic.Field(alias="tunnel_method"),
-    ] = SourcePostgresSchemasTunnelMethodTunnelMethod.SSH_PASSWORD_AUTH
+    ] = SourcePostgresTunnelMethodSSHPasswordAuth.SSH_PASSWORD_AUTH
     r"""Connect through a jump server tunnel host using username and password authentication"""
 
     tunnel_port: Optional[int] = 22
@@ -610,7 +599,7 @@ class SourcePostgresPasswordAuthentication(BaseModel):
         return m
 
 
-class SourcePostgresSchemasTunnelMethod(str, Enum):
+class SourcePostgresTunnelMethodSSHKeyAuth(str, Enum):
     r"""Connect through a jump server tunnel host using username and ssh key"""
 
     SSH_KEY_AUTH = "SSH_KEY_AUTH"
@@ -623,7 +612,7 @@ class SourcePostgresSSHKeyAuthenticationTypedDict(TypedDict):
     r"""Hostname of the jump server host that allows inbound ssh tunnel."""
     tunnel_user: str
     r"""OS-level username for logging into the jump server host."""
-    tunnel_method: SourcePostgresSchemasTunnelMethod
+    tunnel_method: SourcePostgresTunnelMethodSSHKeyAuth
     r"""Connect through a jump server tunnel host using username and ssh key"""
     tunnel_port: NotRequired[int]
     r"""Port on the proxy/jump server that accepts inbound ssh connections."""
@@ -641,13 +630,13 @@ class SourcePostgresSSHKeyAuthentication(BaseModel):
 
     TUNNEL_METHOD: Annotated[
         Annotated[
-            SourcePostgresSchemasTunnelMethod,
+            SourcePostgresTunnelMethodSSHKeyAuth,
             AfterValidator(
-                validate_const(SourcePostgresSchemasTunnelMethod.SSH_KEY_AUTH)
+                validate_const(SourcePostgresTunnelMethodSSHKeyAuth.SSH_KEY_AUTH)
             ),
         ],
         pydantic.Field(alias="tunnel_method"),
-    ] = SourcePostgresSchemasTunnelMethod.SSH_KEY_AUTH
+    ] = SourcePostgresTunnelMethodSSHKeyAuth.SSH_KEY_AUTH
     r"""Connect through a jump server tunnel host using username and ssh key"""
 
     tunnel_port: Optional[int] = 22
@@ -670,25 +659,27 @@ class SourcePostgresSSHKeyAuthentication(BaseModel):
         return m
 
 
-class SourcePostgresTunnelMethod(str, Enum):
+class SourcePostgresTunnelMethodNoTunnel(str, Enum):
     r"""No ssh tunnel needed to connect to database"""
 
     NO_TUNNEL = "NO_TUNNEL"
 
 
 class SourcePostgresNoTunnelTypedDict(TypedDict):
-    tunnel_method: SourcePostgresTunnelMethod
+    tunnel_method: SourcePostgresTunnelMethodNoTunnel
     r"""No ssh tunnel needed to connect to database"""
 
 
 class SourcePostgresNoTunnel(BaseModel):
     TUNNEL_METHOD: Annotated[
         Annotated[
-            SourcePostgresTunnelMethod,
-            AfterValidator(validate_const(SourcePostgresTunnelMethod.NO_TUNNEL)),
+            SourcePostgresTunnelMethodNoTunnel,
+            AfterValidator(
+                validate_const(SourcePostgresTunnelMethodNoTunnel.NO_TUNNEL)
+            ),
         ],
         pydantic.Field(alias="tunnel_method"),
-    ] = SourcePostgresTunnelMethod.NO_TUNNEL
+    ] = SourcePostgresTunnelMethodNoTunnel.NO_TUNNEL
     r"""No ssh tunnel needed to connect to database"""
 
 

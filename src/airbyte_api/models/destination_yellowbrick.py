@@ -15,7 +15,7 @@ class Yellowbrick(str, Enum):
     YELLOWBRICK = "yellowbrick"
 
 
-class DestinationYellowbrickSchemasSSLModeSSLModes6Mode(str, Enum):
+class DestinationYellowbrickModeVerifyFull(str, Enum):
     VERIFY_FULL = "verify-full"
 
 
@@ -30,7 +30,7 @@ class DestinationYellowbrickVerifyFullTypedDict(TypedDict):
     r"""Client key"""
     client_key_password: NotRequired[str]
     r"""Password for keystorage. This field is optional. If you do not add it - the password will be generated automatically."""
-    mode: DestinationYellowbrickSchemasSSLModeSSLModes6Mode
+    mode: DestinationYellowbrickModeVerifyFull
 
 
 class DestinationYellowbrickVerifyFull(BaseModel):
@@ -50,15 +50,13 @@ class DestinationYellowbrickVerifyFull(BaseModel):
 
     MODE: Annotated[
         Annotated[
-            Optional[DestinationYellowbrickSchemasSSLModeSSLModes6Mode],
+            Optional[DestinationYellowbrickModeVerifyFull],
             AfterValidator(
-                validate_const(
-                    DestinationYellowbrickSchemasSSLModeSSLModes6Mode.VERIFY_FULL
-                )
+                validate_const(DestinationYellowbrickModeVerifyFull.VERIFY_FULL)
             ),
         ],
         pydantic.Field(alias="mode"),
-    ] = DestinationYellowbrickSchemasSSLModeSSLModes6Mode.VERIFY_FULL
+    ] = DestinationYellowbrickModeVerifyFull.VERIFY_FULL
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
@@ -77,7 +75,7 @@ class DestinationYellowbrickVerifyFull(BaseModel):
         return m
 
 
-class DestinationYellowbrickSchemasSSLModeSSLModes5Mode(str, Enum):
+class DestinationYellowbrickModeVerifyCa(str, Enum):
     VERIFY_CA = "verify-ca"
 
 
@@ -88,7 +86,7 @@ class DestinationYellowbrickVerifyCaTypedDict(TypedDict):
     r"""CA certificate"""
     client_key_password: NotRequired[str]
     r"""Password for keystorage. This field is optional. If you do not add it - the password will be generated automatically."""
-    mode: DestinationYellowbrickSchemasSSLModeSSLModes5Mode
+    mode: DestinationYellowbrickModeVerifyCa
 
 
 class DestinationYellowbrickVerifyCa(BaseModel):
@@ -102,15 +100,13 @@ class DestinationYellowbrickVerifyCa(BaseModel):
 
     MODE: Annotated[
         Annotated[
-            Optional[DestinationYellowbrickSchemasSSLModeSSLModes5Mode],
+            Optional[DestinationYellowbrickModeVerifyCa],
             AfterValidator(
-                validate_const(
-                    DestinationYellowbrickSchemasSSLModeSSLModes5Mode.VERIFY_CA
-                )
+                validate_const(DestinationYellowbrickModeVerifyCa.VERIFY_CA)
             ),
         ],
         pydantic.Field(alias="mode"),
-    ] = DestinationYellowbrickSchemasSSLModeSSLModes5Mode.VERIFY_CA
+    ] = DestinationYellowbrickModeVerifyCa.VERIFY_CA
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
@@ -129,14 +125,14 @@ class DestinationYellowbrickVerifyCa(BaseModel):
         return m
 
 
-class DestinationYellowbrickSchemasSSLModeSSLModesMode(str, Enum):
+class DestinationYellowbrickModeRequire(str, Enum):
     REQUIRE = "require"
 
 
 class DestinationYellowbrickRequireTypedDict(TypedDict):
     r"""Require SSL mode."""
 
-    mode: DestinationYellowbrickSchemasSSLModeSSLModesMode
+    mode: DestinationYellowbrickModeRequire
 
 
 class DestinationYellowbrickRequire(BaseModel):
@@ -144,13 +140,11 @@ class DestinationYellowbrickRequire(BaseModel):
 
     MODE: Annotated[
         Annotated[
-            Optional[DestinationYellowbrickSchemasSSLModeSSLModesMode],
-            AfterValidator(
-                validate_const(DestinationYellowbrickSchemasSSLModeSSLModesMode.REQUIRE)
-            ),
+            Optional[DestinationYellowbrickModeRequire],
+            AfterValidator(validate_const(DestinationYellowbrickModeRequire.REQUIRE)),
         ],
         pydantic.Field(alias="mode"),
-    ] = DestinationYellowbrickSchemasSSLModeSSLModesMode.REQUIRE
+    ] = DestinationYellowbrickModeRequire.REQUIRE
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
@@ -169,14 +163,14 @@ class DestinationYellowbrickRequire(BaseModel):
         return m
 
 
-class DestinationYellowbrickSchemasSslModeMode(str, Enum):
+class DestinationYellowbrickModePrefer(str, Enum):
     PREFER = "prefer"
 
 
 class DestinationYellowbrickPreferTypedDict(TypedDict):
     r"""Prefer SSL mode."""
 
-    mode: DestinationYellowbrickSchemasSslModeMode
+    mode: DestinationYellowbrickModePrefer
 
 
 class DestinationYellowbrickPrefer(BaseModel):
@@ -184,13 +178,11 @@ class DestinationYellowbrickPrefer(BaseModel):
 
     MODE: Annotated[
         Annotated[
-            Optional[DestinationYellowbrickSchemasSslModeMode],
-            AfterValidator(
-                validate_const(DestinationYellowbrickSchemasSslModeMode.PREFER)
-            ),
+            Optional[DestinationYellowbrickModePrefer],
+            AfterValidator(validate_const(DestinationYellowbrickModePrefer.PREFER)),
         ],
         pydantic.Field(alias="mode"),
-    ] = DestinationYellowbrickSchemasSslModeMode.PREFER
+    ] = DestinationYellowbrickModePrefer.PREFER
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
@@ -209,14 +201,14 @@ class DestinationYellowbrickPrefer(BaseModel):
         return m
 
 
-class DestinationYellowbrickSchemasMode(str, Enum):
+class DestinationYellowbrickModeAllow(str, Enum):
     ALLOW = "allow"
 
 
 class DestinationYellowbrickAllowTypedDict(TypedDict):
     r"""Allow SSL mode."""
 
-    mode: DestinationYellowbrickSchemasMode
+    mode: DestinationYellowbrickModeAllow
 
 
 class DestinationYellowbrickAllow(BaseModel):
@@ -224,11 +216,11 @@ class DestinationYellowbrickAllow(BaseModel):
 
     MODE: Annotated[
         Annotated[
-            Optional[DestinationYellowbrickSchemasMode],
-            AfterValidator(validate_const(DestinationYellowbrickSchemasMode.ALLOW)),
+            Optional[DestinationYellowbrickModeAllow],
+            AfterValidator(validate_const(DestinationYellowbrickModeAllow.ALLOW)),
         ],
         pydantic.Field(alias="mode"),
-    ] = DestinationYellowbrickSchemasMode.ALLOW
+    ] = DestinationYellowbrickModeAllow.ALLOW
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
@@ -247,14 +239,14 @@ class DestinationYellowbrickAllow(BaseModel):
         return m
 
 
-class DestinationYellowbrickMode(str, Enum):
+class DestinationYellowbrickModeDisable(str, Enum):
     DISABLE = "disable"
 
 
 class DestinationYellowbrickDisableTypedDict(TypedDict):
     r"""Disable SSL."""
 
-    mode: DestinationYellowbrickMode
+    mode: DestinationYellowbrickModeDisable
 
 
 class DestinationYellowbrickDisable(BaseModel):
@@ -262,11 +254,11 @@ class DestinationYellowbrickDisable(BaseModel):
 
     MODE: Annotated[
         Annotated[
-            Optional[DestinationYellowbrickMode],
-            AfterValidator(validate_const(DestinationYellowbrickMode.DISABLE)),
+            Optional[DestinationYellowbrickModeDisable],
+            AfterValidator(validate_const(DestinationYellowbrickModeDisable.DISABLE)),
         ],
         pydantic.Field(alias="mode"),
-    ] = DestinationYellowbrickMode.DISABLE
+    ] = DestinationYellowbrickModeDisable.DISABLE
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
@@ -329,7 +321,7 @@ See more information - <a href=\"https://jdbc.postgresql.org/documentation/head/
 """
 
 
-class DestinationYellowbrickSchemasTunnelMethodTunnelMethod(str, Enum):
+class DestinationYellowbrickTunnelMethodSSHPasswordAuth(str, Enum):
     r"""Connect through a jump server tunnel host using username and password authentication"""
 
     SSH_PASSWORD_AUTH = "SSH_PASSWORD_AUTH"
@@ -342,7 +334,7 @@ class DestinationYellowbrickPasswordAuthenticationTypedDict(TypedDict):
     r"""OS-level username for logging into the jump server host"""
     tunnel_user_password: str
     r"""OS-level password for logging into the jump server host"""
-    tunnel_method: DestinationYellowbrickSchemasTunnelMethodTunnelMethod
+    tunnel_method: DestinationYellowbrickTunnelMethodSSHPasswordAuth
     r"""Connect through a jump server tunnel host using username and password authentication"""
     tunnel_port: NotRequired[int]
     r"""Port on the proxy/jump server that accepts inbound ssh connections."""
@@ -360,15 +352,15 @@ class DestinationYellowbrickPasswordAuthentication(BaseModel):
 
     TUNNEL_METHOD: Annotated[
         Annotated[
-            DestinationYellowbrickSchemasTunnelMethodTunnelMethod,
+            DestinationYellowbrickTunnelMethodSSHPasswordAuth,
             AfterValidator(
                 validate_const(
-                    DestinationYellowbrickSchemasTunnelMethodTunnelMethod.SSH_PASSWORD_AUTH
+                    DestinationYellowbrickTunnelMethodSSHPasswordAuth.SSH_PASSWORD_AUTH
                 )
             ),
         ],
         pydantic.Field(alias="tunnel_method"),
-    ] = DestinationYellowbrickSchemasTunnelMethodTunnelMethod.SSH_PASSWORD_AUTH
+    ] = DestinationYellowbrickTunnelMethodSSHPasswordAuth.SSH_PASSWORD_AUTH
     r"""Connect through a jump server tunnel host using username and password authentication"""
 
     tunnel_port: Optional[int] = 22
@@ -391,7 +383,7 @@ class DestinationYellowbrickPasswordAuthentication(BaseModel):
         return m
 
 
-class DestinationYellowbrickSchemasTunnelMethod(str, Enum):
+class DestinationYellowbrickTunnelMethodSSHKeyAuth(str, Enum):
     r"""Connect through a jump server tunnel host using username and ssh key"""
 
     SSH_KEY_AUTH = "SSH_KEY_AUTH"
@@ -404,7 +396,7 @@ class DestinationYellowbrickSSHKeyAuthenticationTypedDict(TypedDict):
     r"""Hostname of the jump server host that allows inbound ssh tunnel."""
     tunnel_user: str
     r"""OS-level username for logging into the jump server host."""
-    tunnel_method: DestinationYellowbrickSchemasTunnelMethod
+    tunnel_method: DestinationYellowbrickTunnelMethodSSHKeyAuth
     r"""Connect through a jump server tunnel host using username and ssh key"""
     tunnel_port: NotRequired[int]
     r"""Port on the proxy/jump server that accepts inbound ssh connections."""
@@ -422,13 +414,15 @@ class DestinationYellowbrickSSHKeyAuthentication(BaseModel):
 
     TUNNEL_METHOD: Annotated[
         Annotated[
-            DestinationYellowbrickSchemasTunnelMethod,
+            DestinationYellowbrickTunnelMethodSSHKeyAuth,
             AfterValidator(
-                validate_const(DestinationYellowbrickSchemasTunnelMethod.SSH_KEY_AUTH)
+                validate_const(
+                    DestinationYellowbrickTunnelMethodSSHKeyAuth.SSH_KEY_AUTH
+                )
             ),
         ],
         pydantic.Field(alias="tunnel_method"),
-    ] = DestinationYellowbrickSchemasTunnelMethod.SSH_KEY_AUTH
+    ] = DestinationYellowbrickTunnelMethodSSHKeyAuth.SSH_KEY_AUTH
     r"""Connect through a jump server tunnel host using username and ssh key"""
 
     tunnel_port: Optional[int] = 22
@@ -451,27 +445,27 @@ class DestinationYellowbrickSSHKeyAuthentication(BaseModel):
         return m
 
 
-class DestinationYellowbrickTunnelMethod(str, Enum):
+class DestinationYellowbrickTunnelMethodNoTunnel(str, Enum):
     r"""No ssh tunnel needed to connect to database"""
 
     NO_TUNNEL = "NO_TUNNEL"
 
 
 class DestinationYellowbrickNoTunnelTypedDict(TypedDict):
-    tunnel_method: DestinationYellowbrickTunnelMethod
+    tunnel_method: DestinationYellowbrickTunnelMethodNoTunnel
     r"""No ssh tunnel needed to connect to database"""
 
 
 class DestinationYellowbrickNoTunnel(BaseModel):
     TUNNEL_METHOD: Annotated[
         Annotated[
-            DestinationYellowbrickTunnelMethod,
+            DestinationYellowbrickTunnelMethodNoTunnel,
             AfterValidator(
-                validate_const(DestinationYellowbrickTunnelMethod.NO_TUNNEL)
+                validate_const(DestinationYellowbrickTunnelMethodNoTunnel.NO_TUNNEL)
             ),
         ],
         pydantic.Field(alias="tunnel_method"),
-    ] = DestinationYellowbrickTunnelMethod.NO_TUNNEL
+    ] = DestinationYellowbrickTunnelMethodNoTunnel.NO_TUNNEL
     r"""No ssh tunnel needed to connect to database"""
 
 

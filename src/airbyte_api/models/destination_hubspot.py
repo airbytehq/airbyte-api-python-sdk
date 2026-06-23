@@ -15,7 +15,7 @@ class Type(str, Enum):
     O_AUTH = "OAuth"
 
 
-class OAuthTypedDict(TypedDict):
+class DestinationHubspotOAuthTypedDict(TypedDict):
     client_id: str
     r"""The Client ID of your HubSpot developer application. See the <a href=\\"https://legacydocs.hubspot.com/docs/methods/oauth2/oauth2-quickstart\\">Hubspot docs</a> if you need help finding this ID."""
     client_secret: str
@@ -25,7 +25,7 @@ class OAuthTypedDict(TypedDict):
     type: NotRequired[Type]
 
 
-class OAuth(BaseModel):
+class DestinationHubspotOAuth(BaseModel):
     model_config = ConfigDict(
         populate_by_name=True, arbitrary_types_allowed=True, extra="allow"
     )
@@ -70,11 +70,11 @@ class OAuth(BaseModel):
         return m
 
 
-DestinationHubspotCredentialsTypedDict = OAuthTypedDict
+DestinationHubspotCredentialsTypedDict = DestinationHubspotOAuthTypedDict
 r"""Choose how to authenticate to HubSpot."""
 
 
-DestinationHubspotCredentials = OAuth
+DestinationHubspotCredentials = DestinationHubspotOAuth
 r"""Choose how to authenticate to HubSpot."""
 
 
@@ -121,7 +121,7 @@ class DestinationHubspotS3BucketRegion(str, Enum):
     US_WEST_2 = "us-west-2"
 
 
-class DestinationHubspotSchemasStorageType(str, Enum):
+class DestinationHubspotStorageTypeS3(str, Enum):
     S3 = "S3"
 
 
@@ -140,7 +140,7 @@ class DestinationHubspotS3TypedDict(TypedDict):
     r"""Your S3 endpoint url. Read more <a href=\"https://docs.aws.amazon.com/general/latest/gr/s3.html#:~:text=Service%20endpoints-,Amazon%20S3%20endpoints,-When%20you%20use\">here</a>"""
     secret_access_key: NotRequired[str]
     r"""The corresponding secret to the access key ID. Read more <a href=\"https://docs.aws.amazon.com/general/latest/gr/aws-sec-cred-types.html#access-keys-and-secret-access-keys\">here</a>"""
-    storage_type: NotRequired[DestinationHubspotSchemasStorageType]
+    storage_type: NotRequired[DestinationHubspotStorageTypeS3]
 
 
 class DestinationHubspotS3(BaseModel):
@@ -172,8 +172,8 @@ class DestinationHubspotS3(BaseModel):
     secret_access_key: Optional[str] = None
     r"""The corresponding secret to the access key ID. Read more <a href=\"https://docs.aws.amazon.com/general/latest/gr/aws-sec-cred-types.html#access-keys-and-secret-access-keys\">here</a>"""
 
-    storage_type: Optional[DestinationHubspotSchemasStorageType] = (
-        DestinationHubspotSchemasStorageType.S3
+    storage_type: Optional[DestinationHubspotStorageTypeS3] = (
+        DestinationHubspotStorageTypeS3.S3
     )
 
     @property
@@ -213,12 +213,12 @@ class DestinationHubspotS3(BaseModel):
         return m
 
 
-class DestinationHubspotStorageType(str, Enum):
+class DestinationHubspotStorageTypeNone(str, Enum):
     NONE = "None"
 
 
 class DestinationHubspotNoneTypedDict(TypedDict):
-    storage_type: NotRequired[DestinationHubspotStorageType]
+    storage_type: NotRequired[DestinationHubspotStorageTypeNone]
 
 
 class DestinationHubspotNone(BaseModel):
@@ -227,8 +227,8 @@ class DestinationHubspotNone(BaseModel):
     )
     __pydantic_extra__: Dict[str, Any] = pydantic.Field(init=False)
 
-    storage_type: Optional[DestinationHubspotStorageType] = (
-        DestinationHubspotStorageType.NONE
+    storage_type: Optional[DestinationHubspotStorageTypeNone] = (
+        DestinationHubspotStorageTypeNone.NONE
     )
 
     @property

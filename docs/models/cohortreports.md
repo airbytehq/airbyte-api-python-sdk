@@ -11,9 +11,9 @@ Cohort reports creates a time series of user retention for the cohort.
 value: models.SourceGoogleAnalyticsDataAPIDisabled = /* values here */
 ```
 
-### `models.SourceGoogleAnalyticsDataAPISchemasEnabled`
+### `models.EnabledTrue`
 
 ```python
-value: models.SourceGoogleAnalyticsDataAPISchemasEnabled = /* values here */
+value: models.EnabledTrue = /* values here */
 ```
 

@@ -1,0 +1,12 @@
+# SourceOracleEnterpriseTableFilter
+
+Inclusion filter configuration for table selection per schema.
+
+
+## Fields
+
+| Field                                                                                                   | Type                                                                                                    | Required                                                                                                | Description                                                                                             |
+| ------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------- |
+| `__pydantic_extra__`                                                                                    | Dict[str, *Any*]                                                                                        | :heavy_minus_sign:                                                                                      | N/A                                                                                                     |
+| `schema_name`                                                                                           | *str*                                                                                                   | :heavy_check_mark:                                                                                      | The name of the schema to apply this filter to. Should match a schema defined in "Schemas" field above. |
+| `table_name_patterns`                                                                                   | List[*str*]                                                                                             | :heavy_check_mark:                                                                                      | List of table name patterns to include from this schema. Should be a SQL LIKE pattern.                  |

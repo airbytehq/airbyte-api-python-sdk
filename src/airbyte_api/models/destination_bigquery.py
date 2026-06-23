@@ -11,7 +11,7 @@ from typing import Any, Dict, Optional, Union
 from typing_extensions import Annotated, NotRequired, TypeAliasType, TypedDict
 
 
-class CDCDeletionMode(str, Enum):
+class DestinationBigqueryCDCDeletionMode(str, Enum):
     r"""Whether to execute CDC deletions as hard deletes (i.e. propagate source deletions to the destination), or soft deletes (i.e. leave a tombstone record in the destination). Defaults to hard deletes."""
 
     HARD_DELETE = "Hard delete"
@@ -67,7 +67,7 @@ class DatasetLocation(str, Enum):
     US_WEST4 = "us-west4"
 
 
-class Bigquery(str, Enum):
+class DestinationBigqueryBigquery(str, Enum):
     BIGQUERY = "bigquery"
 
 
@@ -142,7 +142,7 @@ class GCSTmpFilesPostProcessing(str, Enum):
     KEEP_ALL_TMP_FILES_IN_GCS = "Keep all tmp files in GCS"
 
 
-class DestinationBigqueryMethod(str, Enum):
+class MethodGcsStaging(str, Enum):
     GCS_STAGING = "GCS Staging"
 
 
@@ -157,7 +157,7 @@ class GCSStagingTypedDict(TypedDict):
     r"""Directory under the GCS bucket where data will be written."""
     keep_files_in_gcs_bucket: NotRequired[GCSTmpFilesPostProcessing]
     r"""This upload method is supposed to temporary store records in GCS bucket. By this select you can chose if these records should be removed from GCS when migration has finished. The default \"Delete all tmp files from GCS\" value is used if not set explicitly."""
-    method: NotRequired[DestinationBigqueryMethod]
+    method: NotRequired[MethodGcsStaging]
 
 
 class GCSStaging(BaseModel):
@@ -183,7 +183,7 @@ class GCSStaging(BaseModel):
     ] = GCSTmpFilesPostProcessing.DELETE_ALL_TMP_FILES_FROM_GCS
     r"""This upload method is supposed to temporary store records in GCS bucket. By this select you can chose if these records should be removed from GCS when migration has finished. The default \"Delete all tmp files from GCS\" value is used if not set explicitly."""
 
-    method: Optional[DestinationBigqueryMethod] = DestinationBigqueryMethod.GCS_STAGING
+    method: Optional[MethodGcsStaging] = MethodGcsStaging.GCS_STAGING
 
     @property
     def additional_properties(self):
@@ -213,14 +213,14 @@ class GCSStaging(BaseModel):
         return m
 
 
-class Method(str, Enum):
+class DestinationBigqueryMethodStandard(str, Enum):
     STANDARD = "Standard"
 
 
 class BatchedStandardInsertsTypedDict(TypedDict):
     r"""Direct loading using batched SQL INSERT statements. This method uses the BigQuery driver to convert large INSERT statements into file uploads automatically."""
 
-    method: NotRequired[Method]
+    method: NotRequired[DestinationBigqueryMethodStandard]
 
 
 class BatchedStandardInserts(BaseModel):
@@ -231,7 +231,9 @@ class BatchedStandardInserts(BaseModel):
     )
     __pydantic_extra__: Dict[str, Any] = pydantic.Field(init=False)
 
-    method: Optional[Method] = Method.STANDARD
+    method: Optional[DestinationBigqueryMethodStandard] = (
+        DestinationBigqueryMethodStandard.STANDARD
+    )
 
     @property
     def additional_properties(self):
@@ -261,15 +263,15 @@ class BatchedStandardInserts(BaseModel):
         return m
 
 
-LoadingMethodTypedDict = TypeAliasType(
-    "LoadingMethodTypedDict",
+DestinationBigqueryLoadingMethodTypedDict = TypeAliasType(
+    "DestinationBigqueryLoadingMethodTypedDict",
     Union[BatchedStandardInsertsTypedDict, GCSStagingTypedDict],
 )
 r"""The way data will be uploaded to BigQuery."""
 
 
-LoadingMethod = TypeAliasType(
-    "LoadingMethod", Union[BatchedStandardInserts, GCSStaging]
+DestinationBigqueryLoadingMethod = TypeAliasType(
+    "DestinationBigqueryLoadingMethod", Union[BatchedStandardInserts, GCSStaging]
 )
 r"""The way data will be uploaded to BigQuery."""
 
@@ -281,14 +283,14 @@ class DestinationBigqueryTypedDict(TypedDict):
     r"""The location of the dataset. Warning: Changes made after creation will not be applied. Read more <a href=\"https://cloud.google.com/bigquery/docs/locations\">here</a>."""
     project_id: str
     r"""The GCP project ID for the project containing the target BigQuery dataset. Read more <a href=\"https://cloud.google.com/resource-manager/docs/creating-managing-projects#identifying_projects\">here</a>."""
-    cdc_deletion_mode: NotRequired[CDCDeletionMode]
+    cdc_deletion_mode: NotRequired[DestinationBigqueryCDCDeletionMode]
     r"""Whether to execute CDC deletions as hard deletes (i.e. propagate source deletions to the destination), or soft deletes (i.e. leave a tombstone record in the destination). Defaults to hard deletes."""
     credentials_json: NotRequired[str]
     r"""The contents of the JSON service account key. Check out the <a href=\"https://docs.airbyte.com/integrations/destinations/bigquery#service-account-key\">docs</a> if you need help generating this key. Default credentials will be used if this field is left empty."""
-    destination_type: Bigquery
+    destination_type: DestinationBigqueryBigquery
     disable_type_dedupe: NotRequired[bool]
     r"""Write the legacy \"raw tables\" format, to enable backwards compatibility with older versions of this connector."""
-    loading_method: NotRequired[LoadingMethodTypedDict]
+    loading_method: NotRequired[DestinationBigqueryLoadingMethodTypedDict]
     r"""The way data will be uploaded to BigQuery."""
     raw_data_dataset: NotRequired[str]
     r"""Airbyte will use this dataset for various internal tables. In legacy raw tables mode, the raw tables will be stored in this dataset. Defaults to \"airbyte_internal\"."""
@@ -304,21 +306,26 @@ class DestinationBigquery(BaseModel):
     project_id: str
     r"""The GCP project ID for the project containing the target BigQuery dataset. Read more <a href=\"https://cloud.google.com/resource-manager/docs/creating-managing-projects#identifying_projects\">here</a>."""
 
-    cdc_deletion_mode: Optional[CDCDeletionMode] = CDCDeletionMode.HARD_DELETE
+    cdc_deletion_mode: Optional[DestinationBigqueryCDCDeletionMode] = (
+        DestinationBigqueryCDCDeletionMode.HARD_DELETE
+    )
     r"""Whether to execute CDC deletions as hard deletes (i.e. propagate source deletions to the destination), or soft deletes (i.e. leave a tombstone record in the destination). Defaults to hard deletes."""
 
     credentials_json: Optional[str] = None
     r"""The contents of the JSON service account key. Check out the <a href=\"https://docs.airbyte.com/integrations/destinations/bigquery#service-account-key\">docs</a> if you need help generating this key. Default credentials will be used if this field is left empty."""
 
     DESTINATION_TYPE: Annotated[
-        Annotated[Bigquery, AfterValidator(validate_const(Bigquery.BIGQUERY))],
+        Annotated[
+            DestinationBigqueryBigquery,
+            AfterValidator(validate_const(DestinationBigqueryBigquery.BIGQUERY)),
+        ],
         pydantic.Field(alias="destinationType"),
-    ] = Bigquery.BIGQUERY
+    ] = DestinationBigqueryBigquery.BIGQUERY
 
     disable_type_dedupe: Optional[bool] = False
     r"""Write the legacy \"raw tables\" format, to enable backwards compatibility with older versions of this connector."""
 
-    loading_method: Optional[LoadingMethod] = None
+    loading_method: Optional[DestinationBigqueryLoadingMethod] = None
     r"""The way data will be uploaded to BigQuery."""
 
     raw_data_dataset: Optional[str] = None

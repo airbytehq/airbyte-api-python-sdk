@@ -12,7 +12,7 @@ from typing import List, Optional, Union
 from typing_extensions import Annotated, NotRequired, TypeAliasType, TypedDict
 
 
-class SourceSharepointEnterpriseSchemasAuthType(str, Enum):
+class SourceSharepointEnterpriseAuthTypeService(str, Enum):
     SERVICE = "Service"
 
 
@@ -29,7 +29,7 @@ class SourceSharepointEnterpriseServiceKeyAuthenticationTypedDict(TypedDict):
     r"""Tenant ID of the Microsoft SharePoint user"""
     user_principal_name: str
     r"""Special characters such as a period, comma, space, and the at sign (@) are converted to underscores (_). More details: https://learn.microsoft.com/en-us/sharepoint/list-onedrive-urls"""
-    auth_type: SourceSharepointEnterpriseSchemasAuthType
+    auth_type: SourceSharepointEnterpriseAuthTypeService
 
 
 class SourceSharepointEnterpriseServiceKeyAuthentication(BaseModel):
@@ -51,13 +51,13 @@ class SourceSharepointEnterpriseServiceKeyAuthentication(BaseModel):
 
     AUTH_TYPE: Annotated[
         Annotated[
-            Optional[SourceSharepointEnterpriseSchemasAuthType],
+            Optional[SourceSharepointEnterpriseAuthTypeService],
             AfterValidator(
-                validate_const(SourceSharepointEnterpriseSchemasAuthType.SERVICE)
+                validate_const(SourceSharepointEnterpriseAuthTypeService.SERVICE)
             ),
         ],
         pydantic.Field(alias="auth_type"),
-    ] = SourceSharepointEnterpriseSchemasAuthType.SERVICE
+    ] = SourceSharepointEnterpriseAuthTypeService.SERVICE
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
@@ -76,7 +76,7 @@ class SourceSharepointEnterpriseServiceKeyAuthentication(BaseModel):
         return m
 
 
-class SourceSharepointEnterpriseAuthType(str, Enum):
+class SourceSharepointEnterpriseAuthTypeClient(str, Enum):
     CLIENT = "Client"
 
 
@@ -91,7 +91,7 @@ class SourceSharepointEnterpriseAuthenticateViaMicrosoftOAuthTypedDict(TypedDict
     r"""Client Secret of your Microsoft developer application"""
     tenant_id: str
     r"""Tenant ID of the Microsoft SharePoint user"""
-    auth_type: SourceSharepointEnterpriseAuthType
+    auth_type: SourceSharepointEnterpriseAuthTypeClient
     refresh_token: NotRequired[str]
     r"""Refresh Token of your Microsoft developer application"""
     scopes: NotRequired[str]
@@ -114,11 +114,13 @@ class SourceSharepointEnterpriseAuthenticateViaMicrosoftOAuth(BaseModel):
 
     AUTH_TYPE: Annotated[
         Annotated[
-            Optional[SourceSharepointEnterpriseAuthType],
-            AfterValidator(validate_const(SourceSharepointEnterpriseAuthType.CLIENT)),
+            Optional[SourceSharepointEnterpriseAuthTypeClient],
+            AfterValidator(
+                validate_const(SourceSharepointEnterpriseAuthTypeClient.CLIENT)
+            ),
         ],
         pydantic.Field(alias="auth_type"),
-    ] = SourceSharepointEnterpriseAuthType.CLIENT
+    ] = SourceSharepointEnterpriseAuthTypeClient.CLIENT
 
     refresh_token: Optional[str] = None
     r"""Refresh Token of your Microsoft developer application"""
@@ -165,14 +167,14 @@ SourceSharepointEnterpriseAuthentication = TypeAliasType(
 r"""Credentials for connecting to the One Drive API"""
 
 
-class SourceSharepointEnterpriseSchemasDeliveryMethodDeliveryType(str, Enum):
+class SourceSharepointEnterpriseDeliveryTypeUsePermissionsTransfer(str, Enum):
     USE_PERMISSIONS_TRANSFER = "use_permissions_transfer"
 
 
 class SourceSharepointEnterpriseReplicatePermissionsACLTypedDict(TypedDict):
     r"""Sends one identity stream and one for more permissions (ACL) streams to the destination. This data can be used in downstream systems to recreate permission restrictions mirroring the original source."""
 
-    delivery_type: SourceSharepointEnterpriseSchemasDeliveryMethodDeliveryType
+    delivery_type: SourceSharepointEnterpriseDeliveryTypeUsePermissionsTransfer
     include_identities_stream: NotRequired[bool]
     r"""This data can be used in downstream systems to recreate permission restrictions mirroring the original source"""
 
@@ -182,15 +184,15 @@ class SourceSharepointEnterpriseReplicatePermissionsACL(BaseModel):
 
     DELIVERY_TYPE: Annotated[
         Annotated[
-            Optional[SourceSharepointEnterpriseSchemasDeliveryMethodDeliveryType],
+            Optional[SourceSharepointEnterpriseDeliveryTypeUsePermissionsTransfer],
             AfterValidator(
                 validate_const(
-                    SourceSharepointEnterpriseSchemasDeliveryMethodDeliveryType.USE_PERMISSIONS_TRANSFER
+                    SourceSharepointEnterpriseDeliveryTypeUsePermissionsTransfer.USE_PERMISSIONS_TRANSFER
                 )
             ),
         ],
         pydantic.Field(alias="delivery_type"),
-    ] = SourceSharepointEnterpriseSchemasDeliveryMethodDeliveryType.USE_PERMISSIONS_TRANSFER
+    ] = SourceSharepointEnterpriseDeliveryTypeUsePermissionsTransfer.USE_PERMISSIONS_TRANSFER
 
     include_identities_stream: Optional[bool] = True
     r"""This data can be used in downstream systems to recreate permission restrictions mirroring the original source"""
@@ -212,14 +214,14 @@ class SourceSharepointEnterpriseReplicatePermissionsACL(BaseModel):
         return m
 
 
-class SourceSharepointEnterpriseSchemasDeliveryType(str, Enum):
+class SourceSharepointEnterpriseDeliveryTypeUseFileTransfer(str, Enum):
     USE_FILE_TRANSFER = "use_file_transfer"
 
 
 class SourceSharepointEnterpriseCopyRawFilesTypedDict(TypedDict):
     r"""Copy raw files without parsing their contents. Bits are copied into the destination exactly as they appeared in the source. Recommended for use with unstructured text data, non-text and compressed files."""
 
-    delivery_type: SourceSharepointEnterpriseSchemasDeliveryType
+    delivery_type: SourceSharepointEnterpriseDeliveryTypeUseFileTransfer
     preserve_directory_structure: NotRequired[bool]
     r"""If enabled, sends subdirectory folder structure along with source file names to the destination. Otherwise, files will be synced by their names only. This option is ignored when file-based replication is not enabled."""
 
@@ -229,15 +231,15 @@ class SourceSharepointEnterpriseCopyRawFiles(BaseModel):
 
     DELIVERY_TYPE: Annotated[
         Annotated[
-            Optional[SourceSharepointEnterpriseSchemasDeliveryType],
+            Optional[SourceSharepointEnterpriseDeliveryTypeUseFileTransfer],
             AfterValidator(
                 validate_const(
-                    SourceSharepointEnterpriseSchemasDeliveryType.USE_FILE_TRANSFER
+                    SourceSharepointEnterpriseDeliveryTypeUseFileTransfer.USE_FILE_TRANSFER
                 )
             ),
         ],
         pydantic.Field(alias="delivery_type"),
-    ] = SourceSharepointEnterpriseSchemasDeliveryType.USE_FILE_TRANSFER
+    ] = SourceSharepointEnterpriseDeliveryTypeUseFileTransfer.USE_FILE_TRANSFER
 
     preserve_directory_structure: Optional[bool] = True
     r"""If enabled, sends subdirectory folder structure along with source file names to the destination. Otherwise, files will be synced by their names only. This option is ignored when file-based replication is not enabled."""
@@ -259,14 +261,14 @@ class SourceSharepointEnterpriseCopyRawFiles(BaseModel):
         return m
 
 
-class SourceSharepointEnterpriseDeliveryType(str, Enum):
+class SourceSharepointEnterpriseDeliveryTypeUseRecordsTransfer(str, Enum):
     USE_RECORDS_TRANSFER = "use_records_transfer"
 
 
 class SourceSharepointEnterpriseReplicateRecordsTypedDict(TypedDict):
     r"""Recommended - Extract and load structured records into your destination of choice. This is the classic method of moving data in Airbyte. It allows for blocking and hashing individual fields or files from a structured schema. Data can be flattened, typed and deduped depending on the destination."""
 
-    delivery_type: SourceSharepointEnterpriseDeliveryType
+    delivery_type: SourceSharepointEnterpriseDeliveryTypeUseRecordsTransfer
 
 
 class SourceSharepointEnterpriseReplicateRecords(BaseModel):
@@ -274,15 +276,15 @@ class SourceSharepointEnterpriseReplicateRecords(BaseModel):
 
     DELIVERY_TYPE: Annotated[
         Annotated[
-            Optional[SourceSharepointEnterpriseDeliveryType],
+            Optional[SourceSharepointEnterpriseDeliveryTypeUseRecordsTransfer],
             AfterValidator(
                 validate_const(
-                    SourceSharepointEnterpriseDeliveryType.USE_RECORDS_TRANSFER
+                    SourceSharepointEnterpriseDeliveryTypeUseRecordsTransfer.USE_RECORDS_TRANSFER
                 )
             ),
         ],
         pydantic.Field(alias="delivery_type"),
-    ] = SourceSharepointEnterpriseDeliveryType.USE_RECORDS_TRANSFER
+    ] = SourceSharepointEnterpriseDeliveryTypeUseRecordsTransfer.USE_RECORDS_TRANSFER
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
@@ -329,30 +331,28 @@ class SourceSharepointEnterpriseSearchScope(str, Enum):
     ALL = "ALL"
 
 
-class SourceSharepointEnterpriseSharepointEnterprise(str, Enum):
+class SharepointEnterpriseEnum(str, Enum):
     SHAREPOINT_ENTERPRISE = "sharepoint-enterprise"
 
 
-class SourceSharepointEnterpriseSchemasStreamsFormatFormat6Filetype(str, Enum):
+class SourceSharepointEnterpriseFiletypeExcel(str, Enum):
     EXCEL = "excel"
 
 
 class SourceSharepointEnterpriseExcelFormatTypedDict(TypedDict):
-    filetype: SourceSharepointEnterpriseSchemasStreamsFormatFormat6Filetype
+    filetype: SourceSharepointEnterpriseFiletypeExcel
 
 
 class SourceSharepointEnterpriseExcelFormat(BaseModel):
     FILETYPE: Annotated[
         Annotated[
-            Optional[SourceSharepointEnterpriseSchemasStreamsFormatFormat6Filetype],
+            Optional[SourceSharepointEnterpriseFiletypeExcel],
             AfterValidator(
-                validate_const(
-                    SourceSharepointEnterpriseSchemasStreamsFormatFormat6Filetype.EXCEL
-                )
+                validate_const(SourceSharepointEnterpriseFiletypeExcel.EXCEL)
             ),
         ],
         pydantic.Field(alias="filetype"),
-    ] = SourceSharepointEnterpriseSchemasStreamsFormatFormat6Filetype.EXCEL
+    ] = SourceSharepointEnterpriseFiletypeExcel.EXCEL
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
@@ -371,7 +371,7 @@ class SourceSharepointEnterpriseExcelFormat(BaseModel):
         return m
 
 
-class SourceSharepointEnterpriseSchemasStreamsFormatFormatFiletype(str, Enum):
+class SourceSharepointEnterpriseFiletypeUnstructured(str, Enum):
     UNSTRUCTURED = "unstructured"
 
 
@@ -433,7 +433,7 @@ class SourceSharepointEnterpriseParsingStrategy(str, Enum):
 class SourceSharepointEnterpriseUnstructuredDocumentFormatTypedDict(TypedDict):
     r"""Extract text from document formats (.pdf, .docx, .md, .pptx) and emit as one record per file."""
 
-    filetype: SourceSharepointEnterpriseSchemasStreamsFormatFormatFiletype
+    filetype: SourceSharepointEnterpriseFiletypeUnstructured
     processing: NotRequired[SourceSharepointEnterpriseProcessingTypedDict]
     r"""Processing configuration"""
     skip_unprocessable_files: NotRequired[bool]
@@ -447,15 +447,15 @@ class SourceSharepointEnterpriseUnstructuredDocumentFormat(BaseModel):
 
     FILETYPE: Annotated[
         Annotated[
-            Optional[SourceSharepointEnterpriseSchemasStreamsFormatFormatFiletype],
+            Optional[SourceSharepointEnterpriseFiletypeUnstructured],
             AfterValidator(
                 validate_const(
-                    SourceSharepointEnterpriseSchemasStreamsFormatFormatFiletype.UNSTRUCTURED
+                    SourceSharepointEnterpriseFiletypeUnstructured.UNSTRUCTURED
                 )
             ),
         ],
         pydantic.Field(alias="filetype"),
-    ] = SourceSharepointEnterpriseSchemasStreamsFormatFormatFiletype.UNSTRUCTURED
+    ] = SourceSharepointEnterpriseFiletypeUnstructured.UNSTRUCTURED
 
     processing: Optional[SourceSharepointEnterpriseProcessing] = None
     r"""Processing configuration"""
@@ -487,14 +487,14 @@ class SourceSharepointEnterpriseUnstructuredDocumentFormat(BaseModel):
         return m
 
 
-class SourceSharepointEnterpriseSchemasStreamsFormatFiletype(str, Enum):
+class SourceSharepointEnterpriseFiletypeParquet(str, Enum):
     PARQUET = "parquet"
 
 
 class SourceSharepointEnterpriseParquetFormatTypedDict(TypedDict):
     decimal_as_float: NotRequired[bool]
     r"""Whether to convert decimal fields to floats. There is a loss of precision when converting decimals to floats, so this is not recommended."""
-    filetype: SourceSharepointEnterpriseSchemasStreamsFormatFiletype
+    filetype: SourceSharepointEnterpriseFiletypeParquet
 
 
 class SourceSharepointEnterpriseParquetFormat(BaseModel):
@@ -503,15 +503,13 @@ class SourceSharepointEnterpriseParquetFormat(BaseModel):
 
     FILETYPE: Annotated[
         Annotated[
-            Optional[SourceSharepointEnterpriseSchemasStreamsFormatFiletype],
+            Optional[SourceSharepointEnterpriseFiletypeParquet],
             AfterValidator(
-                validate_const(
-                    SourceSharepointEnterpriseSchemasStreamsFormatFiletype.PARQUET
-                )
+                validate_const(SourceSharepointEnterpriseFiletypeParquet.PARQUET)
             ),
         ],
         pydantic.Field(alias="filetype"),
-    ] = SourceSharepointEnterpriseSchemasStreamsFormatFiletype.PARQUET
+    ] = SourceSharepointEnterpriseFiletypeParquet.PARQUET
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
@@ -530,24 +528,24 @@ class SourceSharepointEnterpriseParquetFormat(BaseModel):
         return m
 
 
-class SourceSharepointEnterpriseSchemasStreamsFiletype(str, Enum):
+class SourceSharepointEnterpriseFiletypeJsonl(str, Enum):
     JSONL = "jsonl"
 
 
 class SourceSharepointEnterpriseJsonlFormatTypedDict(TypedDict):
-    filetype: SourceSharepointEnterpriseSchemasStreamsFiletype
+    filetype: SourceSharepointEnterpriseFiletypeJsonl
 
 
 class SourceSharepointEnterpriseJsonlFormat(BaseModel):
     FILETYPE: Annotated[
         Annotated[
-            Optional[SourceSharepointEnterpriseSchemasStreamsFiletype],
+            Optional[SourceSharepointEnterpriseFiletypeJsonl],
             AfterValidator(
-                validate_const(SourceSharepointEnterpriseSchemasStreamsFiletype.JSONL)
+                validate_const(SourceSharepointEnterpriseFiletypeJsonl.JSONL)
             ),
         ],
         pydantic.Field(alias="filetype"),
-    ] = SourceSharepointEnterpriseSchemasStreamsFiletype.JSONL
+    ] = SourceSharepointEnterpriseFiletypeJsonl.JSONL
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
@@ -566,18 +564,18 @@ class SourceSharepointEnterpriseJsonlFormat(BaseModel):
         return m
 
 
-class SourceSharepointEnterpriseSchemasFiletype(str, Enum):
+class SourceSharepointEnterpriseFiletypeCsv(str, Enum):
     CSV = "csv"
 
 
-class SourceSharepointEnterpriseSchemasStreamsHeaderDefinitionType(str, Enum):
+class SourceSharepointEnterpriseHeaderDefinitionTypeUserProvided(str, Enum):
     USER_PROVIDED = "User Provided"
 
 
 class SourceSharepointEnterpriseUserProvidedTypedDict(TypedDict):
     column_names: List[str]
     r"""The column names that will be used while emitting the CSV records"""
-    header_definition_type: SourceSharepointEnterpriseSchemasStreamsHeaderDefinitionType
+    header_definition_type: SourceSharepointEnterpriseHeaderDefinitionTypeUserProvided
 
 
 class SourceSharepointEnterpriseUserProvided(BaseModel):
@@ -586,15 +584,15 @@ class SourceSharepointEnterpriseUserProvided(BaseModel):
 
     HEADER_DEFINITION_TYPE: Annotated[
         Annotated[
-            Optional[SourceSharepointEnterpriseSchemasStreamsHeaderDefinitionType],
+            Optional[SourceSharepointEnterpriseHeaderDefinitionTypeUserProvided],
             AfterValidator(
                 validate_const(
-                    SourceSharepointEnterpriseSchemasStreamsHeaderDefinitionType.USER_PROVIDED
+                    SourceSharepointEnterpriseHeaderDefinitionTypeUserProvided.USER_PROVIDED
                 )
             ),
         ],
         pydantic.Field(alias="header_definition_type"),
-    ] = SourceSharepointEnterpriseSchemasStreamsHeaderDefinitionType.USER_PROVIDED
+    ] = SourceSharepointEnterpriseHeaderDefinitionTypeUserProvided.USER_PROVIDED
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
@@ -613,26 +611,26 @@ class SourceSharepointEnterpriseUserProvided(BaseModel):
         return m
 
 
-class SourceSharepointEnterpriseSchemasHeaderDefinitionType(str, Enum):
+class SourceSharepointEnterpriseHeaderDefinitionTypeAutogenerated(str, Enum):
     AUTOGENERATED = "Autogenerated"
 
 
 class SourceSharepointEnterpriseAutogeneratedTypedDict(TypedDict):
-    header_definition_type: SourceSharepointEnterpriseSchemasHeaderDefinitionType
+    header_definition_type: SourceSharepointEnterpriseHeaderDefinitionTypeAutogenerated
 
 
 class SourceSharepointEnterpriseAutogenerated(BaseModel):
     HEADER_DEFINITION_TYPE: Annotated[
         Annotated[
-            Optional[SourceSharepointEnterpriseSchemasHeaderDefinitionType],
+            Optional[SourceSharepointEnterpriseHeaderDefinitionTypeAutogenerated],
             AfterValidator(
                 validate_const(
-                    SourceSharepointEnterpriseSchemasHeaderDefinitionType.AUTOGENERATED
+                    SourceSharepointEnterpriseHeaderDefinitionTypeAutogenerated.AUTOGENERATED
                 )
             ),
         ],
         pydantic.Field(alias="header_definition_type"),
-    ] = SourceSharepointEnterpriseSchemasHeaderDefinitionType.AUTOGENERATED
+    ] = SourceSharepointEnterpriseHeaderDefinitionTypeAutogenerated.AUTOGENERATED
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
@@ -651,24 +649,26 @@ class SourceSharepointEnterpriseAutogenerated(BaseModel):
         return m
 
 
-class SourceSharepointEnterpriseHeaderDefinitionType(str, Enum):
+class SourceSharepointEnterpriseHeaderDefinitionTypeFromCsv(str, Enum):
     FROM_CSV = "From CSV"
 
 
 class SourceSharepointEnterpriseFromCSVTypedDict(TypedDict):
-    header_definition_type: SourceSharepointEnterpriseHeaderDefinitionType
+    header_definition_type: SourceSharepointEnterpriseHeaderDefinitionTypeFromCsv
 
 
 class SourceSharepointEnterpriseFromCSV(BaseModel):
     HEADER_DEFINITION_TYPE: Annotated[
         Annotated[
-            Optional[SourceSharepointEnterpriseHeaderDefinitionType],
+            Optional[SourceSharepointEnterpriseHeaderDefinitionTypeFromCsv],
             AfterValidator(
-                validate_const(SourceSharepointEnterpriseHeaderDefinitionType.FROM_CSV)
+                validate_const(
+                    SourceSharepointEnterpriseHeaderDefinitionTypeFromCsv.FROM_CSV
+                )
             ),
         ],
         pydantic.Field(alias="header_definition_type"),
-    ] = SourceSharepointEnterpriseHeaderDefinitionType.FROM_CSV
+    ] = SourceSharepointEnterpriseHeaderDefinitionTypeFromCsv.FROM_CSV
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
@@ -720,7 +720,7 @@ class SourceSharepointEnterpriseCSVFormatTypedDict(TypedDict):
     r"""The character used for escaping special characters. To disallow escaping, leave this field blank."""
     false_values: NotRequired[List[str]]
     r"""A set of case-sensitive strings that should be interpreted as false values."""
-    filetype: SourceSharepointEnterpriseSchemasFiletype
+    filetype: SourceSharepointEnterpriseFiletypeCsv
     header_definition: NotRequired[
         SourceSharepointEnterpriseCSVHeaderDefinitionTypedDict
     ]
@@ -759,13 +759,11 @@ class SourceSharepointEnterpriseCSVFormat(BaseModel):
 
     FILETYPE: Annotated[
         Annotated[
-            Optional[SourceSharepointEnterpriseSchemasFiletype],
-            AfterValidator(
-                validate_const(SourceSharepointEnterpriseSchemasFiletype.CSV)
-            ),
+            Optional[SourceSharepointEnterpriseFiletypeCsv],
+            AfterValidator(validate_const(SourceSharepointEnterpriseFiletypeCsv.CSV)),
         ],
         pydantic.Field(alias="filetype"),
-    ] = SourceSharepointEnterpriseSchemasFiletype.CSV
+    ] = SourceSharepointEnterpriseFiletypeCsv.CSV
 
     header_definition: Optional[SourceSharepointEnterpriseCSVHeaderDefinition] = None
     r"""How headers will be defined. `User Provided` assumes the CSV does not have a header row and uses the headers provided and `Autogenerated` assumes the CSV does not have a header row and the CDK will generate headers using for `f{i}` where `i` is the index starting from 0. Else, the default behavior is to use the header from the CSV file. If a user wants to autogenerate or provide column names for a CSV having headers, they can skip rows."""
@@ -825,14 +823,14 @@ class SourceSharepointEnterpriseCSVFormat(BaseModel):
         return m
 
 
-class SourceSharepointEnterpriseFiletype(str, Enum):
+class SourceSharepointEnterpriseFiletypeAvro(str, Enum):
     AVRO = "avro"
 
 
 class SourceSharepointEnterpriseAvroFormatTypedDict(TypedDict):
     double_as_string: NotRequired[bool]
     r"""Whether to convert double fields to strings. This is recommended if you have decimal numbers with a high degree of precision because there can be a loss precision when handling floating point numbers."""
-    filetype: SourceSharepointEnterpriseFiletype
+    filetype: SourceSharepointEnterpriseFiletypeAvro
 
 
 class SourceSharepointEnterpriseAvroFormat(BaseModel):
@@ -841,11 +839,11 @@ class SourceSharepointEnterpriseAvroFormat(BaseModel):
 
     FILETYPE: Annotated[
         Annotated[
-            Optional[SourceSharepointEnterpriseFiletype],
-            AfterValidator(validate_const(SourceSharepointEnterpriseFiletype.AVRO)),
+            Optional[SourceSharepointEnterpriseFiletypeAvro],
+            AfterValidator(validate_const(SourceSharepointEnterpriseFiletypeAvro.AVRO)),
         ],
         pydantic.Field(alias="filetype"),
-    ] = SourceSharepointEnterpriseFiletype.AVRO
+    ] = SourceSharepointEnterpriseFiletypeAvro.AVRO
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
@@ -990,7 +988,7 @@ class SourceSharepointEnterpriseTypedDict(TypedDict):
     r"""Specifies the location(s) to search for files. Valid options are 'ACCESSIBLE_DRIVES' for all SharePoint drives the user can access, 'SHARED_ITEMS' for shared items the user has access to, and 'ALL' to search both."""
     site_url: NotRequired[str]
     r"""Url of SharePoint site to search for files. Leave empty to search in the main site. Use 'https://<tenant_name>.sharepoint.com/sites/' to iterate over all sites."""
-    source_type: SourceSharepointEnterpriseSharepointEnterprise
+    source_type: SharepointEnterpriseEnum
     start_date: NotRequired[datetime]
     r"""UTC date and time in the format 2017-01-25T00:00:00.000000Z. Any file modified before this date will not be replicated."""
 
@@ -1024,15 +1022,13 @@ class SourceSharepointEnterprise(BaseModel):
 
     SOURCE_TYPE: Annotated[
         Annotated[
-            SourceSharepointEnterpriseSharepointEnterprise,
+            SharepointEnterpriseEnum,
             AfterValidator(
-                validate_const(
-                    SourceSharepointEnterpriseSharepointEnterprise.SHAREPOINT_ENTERPRISE
-                )
+                validate_const(SharepointEnterpriseEnum.SHAREPOINT_ENTERPRISE)
             ),
         ],
         pydantic.Field(alias="sourceType"),
-    ] = SourceSharepointEnterpriseSharepointEnterprise.SHAREPOINT_ENTERPRISE
+    ] = SharepointEnterpriseEnum.SHAREPOINT_ENTERPRISE
 
     start_date: Optional[datetime] = None
     r"""UTC date and time in the format 2017-01-25T00:00:00.000000Z. Any file modified before this date will not be replicated."""

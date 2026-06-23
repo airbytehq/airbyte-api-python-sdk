@@ -12,14 +12,14 @@ from typing import Union
 from typing_extensions import Annotated, TypeAliasType, TypedDict
 
 
-class SourceSalesloftSchemasAuthType(str, Enum):
+class SourceSalesloftAuthTypeAPIKey(str, Enum):
     API_KEY = "api_key"
 
 
 class AuthenticateViaAPIKeyTypedDict(TypedDict):
     api_key: str
     r"""API Key for making authenticated requests. More instruction on how to find this value in our <a href=\"https://docs.airbyte.com/integrations/sources/salesloft#setup-guide\">docs</a>"""
-    auth_type: SourceSalesloftSchemasAuthType
+    auth_type: SourceSalesloftAuthTypeAPIKey
 
 
 class AuthenticateViaAPIKey(BaseModel):
@@ -28,14 +28,14 @@ class AuthenticateViaAPIKey(BaseModel):
 
     AUTH_TYPE: Annotated[
         Annotated[
-            SourceSalesloftSchemasAuthType,
-            AfterValidator(validate_const(SourceSalesloftSchemasAuthType.API_KEY)),
+            SourceSalesloftAuthTypeAPIKey,
+            AfterValidator(validate_const(SourceSalesloftAuthTypeAPIKey.API_KEY)),
         ],
         pydantic.Field(alias="auth_type"),
-    ] = SourceSalesloftSchemasAuthType.API_KEY
+    ] = SourceSalesloftAuthTypeAPIKey.API_KEY
 
 
-class SourceSalesloftAuthType(str, Enum):
+class SourceSalesloftAuthTypeOauth20(str, Enum):
     OAUTH2_0 = "oauth2.0"
 
 
@@ -50,7 +50,7 @@ class AuthenticateViaOAuthTypedDict(TypedDict):
     r"""The token for obtaining a new access token."""
     token_expiry_date: datetime
     r"""The date-time when the access token should be refreshed."""
-    auth_type: SourceSalesloftAuthType
+    auth_type: SourceSalesloftAuthTypeOauth20
 
 
 class AuthenticateViaOAuth(BaseModel):
@@ -71,11 +71,11 @@ class AuthenticateViaOAuth(BaseModel):
 
     AUTH_TYPE: Annotated[
         Annotated[
-            SourceSalesloftAuthType,
-            AfterValidator(validate_const(SourceSalesloftAuthType.OAUTH2_0)),
+            SourceSalesloftAuthTypeOauth20,
+            AfterValidator(validate_const(SourceSalesloftAuthTypeOauth20.OAUTH2_0)),
         ],
         pydantic.Field(alias="auth_type"),
-    ] = SourceSalesloftAuthType.OAUTH2_0
+    ] = SourceSalesloftAuthTypeOauth20.OAUTH2_0
 
 
 SourceSalesloftCredentialsTypedDict = TypeAliasType(

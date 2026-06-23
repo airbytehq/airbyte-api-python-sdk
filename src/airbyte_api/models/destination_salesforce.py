@@ -11,7 +11,7 @@ from typing import Any, Dict, Optional, Union
 from typing_extensions import Annotated, NotRequired, TypeAliasType, TypedDict
 
 
-class AuthType(str, Enum):
+class DestinationSalesforceAuthType(str, Enum):
     CLIENT = "Client"
 
 
@@ -58,7 +58,7 @@ class DestinationSalesforceS3BucketRegion(str, Enum):
     US_WEST_2 = "us-west-2"
 
 
-class DestinationSalesforceSchemasStorageType(str, Enum):
+class DestinationSalesforceStorageTypeS3(str, Enum):
     S3 = "S3"
 
 
@@ -77,7 +77,7 @@ class DestinationSalesforceS3TypedDict(TypedDict):
     r"""Your S3 endpoint url. Read more <a href=\"https://docs.aws.amazon.com/general/latest/gr/s3.html#:~:text=Service%20endpoints-,Amazon%20S3%20endpoints,-When%20you%20use\">here</a>"""
     secret_access_key: NotRequired[str]
     r"""The corresponding secret to the access key ID. Read more <a href=\"https://docs.aws.amazon.com/general/latest/gr/aws-sec-cred-types.html#access-keys-and-secret-access-keys\">here</a>"""
-    storage_type: NotRequired[DestinationSalesforceSchemasStorageType]
+    storage_type: NotRequired[DestinationSalesforceStorageTypeS3]
 
 
 class DestinationSalesforceS3(BaseModel):
@@ -109,8 +109,8 @@ class DestinationSalesforceS3(BaseModel):
     secret_access_key: Optional[str] = None
     r"""The corresponding secret to the access key ID. Read more <a href=\"https://docs.aws.amazon.com/general/latest/gr/aws-sec-cred-types.html#access-keys-and-secret-access-keys\">here</a>"""
 
-    storage_type: Optional[DestinationSalesforceSchemasStorageType] = (
-        DestinationSalesforceSchemasStorageType.S3
+    storage_type: Optional[DestinationSalesforceStorageTypeS3] = (
+        DestinationSalesforceStorageTypeS3.S3
     )
 
     @property
@@ -150,12 +150,12 @@ class DestinationSalesforceS3(BaseModel):
         return m
 
 
-class DestinationSalesforceStorageType(str, Enum):
+class DestinationSalesforceStorageTypeNone(str, Enum):
     NONE = "None"
 
 
 class DestinationSalesforceNoneTypedDict(TypedDict):
-    storage_type: NotRequired[DestinationSalesforceStorageType]
+    storage_type: NotRequired[DestinationSalesforceStorageTypeNone]
 
 
 class DestinationSalesforceNone(BaseModel):
@@ -164,8 +164,8 @@ class DestinationSalesforceNone(BaseModel):
     )
     __pydantic_extra__: Dict[str, Any] = pydantic.Field(init=False)
 
-    storage_type: Optional[DestinationSalesforceStorageType] = (
-        DestinationSalesforceStorageType.NONE
+    storage_type: Optional[DestinationSalesforceStorageTypeNone] = (
+        DestinationSalesforceStorageTypeNone.NONE
     )
 
     @property
@@ -215,7 +215,7 @@ class DestinationSalesforceTypedDict(TypedDict):
     r"""Enter your Salesforce developer application's <a href=\"https://developer.salesforce.com/forums/?id=9062I000000DLgbQAG\">Client secret</a>."""
     refresh_token: str
     r"""Enter your application's <a href=\"https://developer.salesforce.com/docs/atlas.en-us.mobile_sdk.meta/mobile_sdk/oauth_refresh_token_flow.htm\">Salesforce Refresh Token</a> used for Airbyte to access your Salesforce account."""
-    auth_type: AuthType
+    auth_type: DestinationSalesforceAuthType
     destination_type: DestinationSalesforceSalesforce
     is_sandbox: NotRequired[bool]
     r"""Toggle if you're using a <a href=\"https://help.salesforce.com/s/articleView?id=sf.deploy_sandboxes_parent.htm&type=5\">Salesforce Sandbox</a>."""
@@ -233,9 +233,12 @@ class DestinationSalesforce(BaseModel):
     r"""Enter your application's <a href=\"https://developer.salesforce.com/docs/atlas.en-us.mobile_sdk.meta/mobile_sdk/oauth_refresh_token_flow.htm\">Salesforce Refresh Token</a> used for Airbyte to access your Salesforce account."""
 
     AUTH_TYPE: Annotated[
-        Annotated[AuthType, AfterValidator(validate_const(AuthType.CLIENT))],
+        Annotated[
+            DestinationSalesforceAuthType,
+            AfterValidator(validate_const(DestinationSalesforceAuthType.CLIENT)),
+        ],
         pydantic.Field(alias="auth_type"),
-    ] = AuthType.CLIENT
+    ] = DestinationSalesforceAuthType.CLIENT
 
     DESTINATION_TYPE: Annotated[
         Annotated[

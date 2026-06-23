@@ -11,7 +11,7 @@ from typing import List, Optional
 from typing_extensions import Annotated, NotRequired, TypedDict
 
 
-class Categories(str, Enum):
+class SourceGooglePagespeedInsightsCategory(str, Enum):
     ACCESSIBILITY = "accessibility"
     BEST_PRACTICES = "best-practices"
     PERFORMANCE = "performance"
@@ -23,15 +23,15 @@ class GooglePagespeedInsights(str, Enum):
     GOOGLE_PAGESPEED_INSIGHTS = "google-pagespeed-insights"
 
 
-class Strategies(str, Enum):
+class Strategy(str, Enum):
     DESKTOP = "desktop"
     MOBILE = "mobile"
 
 
 class SourceGooglePagespeedInsightsTypedDict(TypedDict):
-    categories: List[Categories]
+    categories: List[SourceGooglePagespeedInsightsCategory]
     r"""Defines which Lighthouse category to run. One or many of: \"accessibility\", \"best-practices\", \"performance\", \"pwa\", \"seo\"."""
-    strategies: List[Strategies]
+    strategies: List[Strategy]
     r"""The analyses strategy to use. Either \"desktop\" or \"mobile\"."""
     urls: List[str]
     r"""The URLs to retrieve pagespeed information from. The connector will attempt to sync PageSpeed reports for all the defined URLs. Format: https://(www.)url.domain"""
@@ -41,10 +41,10 @@ class SourceGooglePagespeedInsightsTypedDict(TypedDict):
 
 
 class SourceGooglePagespeedInsights(BaseModel):
-    categories: List[Categories]
+    categories: List[SourceGooglePagespeedInsightsCategory]
     r"""Defines which Lighthouse category to run. One or many of: \"accessibility\", \"best-practices\", \"performance\", \"pwa\", \"seo\"."""
 
-    strategies: List[Strategies]
+    strategies: List[Strategy]
     r"""The analyses strategy to use. Either \"desktop\" or \"mobile\"."""
 
     urls: List[str]

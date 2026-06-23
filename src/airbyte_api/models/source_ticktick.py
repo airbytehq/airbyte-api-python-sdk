@@ -11,14 +11,14 @@ from typing import Optional, Union
 from typing_extensions import Annotated, NotRequired, TypeAliasType, TypedDict
 
 
-class SourceTicktickSchemasAuthType(str, Enum):
+class SourceTicktickAuthTypeToken(str, Enum):
     TOKEN = "Token"
 
 
 class BearerTokenFromOauth2TypedDict(TypedDict):
     bearer_token: str
     r"""Access token for making authenticated requests; filled after complete oauth2 flow."""
-    auth_type: SourceTicktickSchemasAuthType
+    auth_type: SourceTicktickAuthTypeToken
 
 
 class BearerTokenFromOauth2(BaseModel):
@@ -27,14 +27,14 @@ class BearerTokenFromOauth2(BaseModel):
 
     AUTH_TYPE: Annotated[
         Annotated[
-            SourceTicktickSchemasAuthType,
-            AfterValidator(validate_const(SourceTicktickSchemasAuthType.TOKEN)),
+            SourceTicktickAuthTypeToken,
+            AfterValidator(validate_const(SourceTicktickAuthTypeToken.TOKEN)),
         ],
         pydantic.Field(alias="auth_type"),
-    ] = SourceTicktickSchemasAuthType.TOKEN
+    ] = SourceTicktickAuthTypeToken.TOKEN
 
 
-class SourceTicktickAuthType(str, Enum):
+class SourceTicktickAuthTypeOauth(str, Enum):
     OAUTH = "Oauth"
 
 
@@ -43,7 +43,7 @@ class OAuth2TypedDict(TypedDict):
     r"""The client ID of your Ticktick application. Read more <a href=\"https://developer.ticktick.com/api#/openapi?id=getting-started\">here</a>."""
     client_secret: str
     r"""The client secret of of your Ticktick application. application. Read more <a href=\"https://developer.ticktick.com/api#/openapi?id=getting-started\">here</a>."""
-    auth_type: SourceTicktickAuthType
+    auth_type: SourceTicktickAuthTypeOauth
     client_access_token: NotRequired[str]
     r"""Access token for making authenticated requests; filled after complete oauth2 flow."""
 
@@ -57,11 +57,11 @@ class OAuth2(BaseModel):
 
     AUTH_TYPE: Annotated[
         Annotated[
-            SourceTicktickAuthType,
-            AfterValidator(validate_const(SourceTicktickAuthType.OAUTH)),
+            SourceTicktickAuthTypeOauth,
+            AfterValidator(validate_const(SourceTicktickAuthTypeOauth.OAUTH)),
         ],
         pydantic.Field(alias="auth_type"),
-    ] = SourceTicktickAuthType.OAUTH
+    ] = SourceTicktickAuthTypeOauth.OAUTH
 
     client_access_token: Optional[str] = None
     r"""Access token for making authenticated requests; filled after complete oauth2 flow."""
@@ -97,13 +97,13 @@ SourceTicktickAuthenticationType = Annotated[
 ]
 
 
-class SourceTicktickTicktick(str, Enum):
+class TicktickEnum(str, Enum):
     TICKTICK = "ticktick"
 
 
 class SourceTicktickTypedDict(TypedDict):
     authorization: NotRequired[SourceTicktickAuthenticationTypeTypedDict]
-    source_type: SourceTicktickTicktick
+    source_type: TicktickEnum
 
 
 class SourceTicktick(BaseModel):
@@ -111,11 +111,11 @@ class SourceTicktick(BaseModel):
 
     SOURCE_TYPE: Annotated[
         Annotated[
-            Optional[SourceTicktickTicktick],
-            AfterValidator(validate_const(SourceTicktickTicktick.TICKTICK)),
+            Optional[TicktickEnum],
+            AfterValidator(validate_const(TicktickEnum.TICKTICK)),
         ],
         pydantic.Field(alias="sourceType"),
-    ] = SourceTicktickTicktick.TICKTICK
+    ] = TicktickEnum.TICKTICK
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):

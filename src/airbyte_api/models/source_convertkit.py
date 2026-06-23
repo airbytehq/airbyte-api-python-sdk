@@ -12,17 +12,17 @@ from typing import Optional, Union
 from typing_extensions import Annotated, NotRequired, TypeAliasType, TypedDict
 
 
-class SourceConvertkitSchemasAuthType(str, Enum):
+class SourceConvertkitAuthTypeAPIKey(str, Enum):
     API_KEY = "api_key"
 
 
-class APIKeyTypedDict(TypedDict):
+class SourceConvertkitAPIKeyTypedDict(TypedDict):
     api_key: NotRequired[str]
     r"""Kit/ConvertKit API Key"""
-    auth_type: SourceConvertkitSchemasAuthType
+    auth_type: SourceConvertkitAuthTypeAPIKey
 
 
-class APIKey(BaseModel):
+class SourceConvertkitAPIKey(BaseModel):
     api_key: Optional[str] = (
         "{{ config.get('credentials',{}).get('api_key') or config.get('api_secret') }}"
     )
@@ -30,11 +30,11 @@ class APIKey(BaseModel):
 
     AUTH_TYPE: Annotated[
         Annotated[
-            SourceConvertkitSchemasAuthType,
-            AfterValidator(validate_const(SourceConvertkitSchemasAuthType.API_KEY)),
+            SourceConvertkitAuthTypeAPIKey,
+            AfterValidator(validate_const(SourceConvertkitAuthTypeAPIKey.API_KEY)),
         ],
         pydantic.Field(alias="auth_type"),
-    ] = SourceConvertkitSchemasAuthType.API_KEY
+    ] = SourceConvertkitAuthTypeAPIKey.API_KEY
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
@@ -53,7 +53,7 @@ class APIKey(BaseModel):
         return m
 
 
-class SourceConvertkitAuthType(str, Enum):
+class SourceConvertkitAuthTypeOauth20(str, Enum):
     OAUTH2_0 = "oauth2.0"
 
 
@@ -66,7 +66,7 @@ class SourceConvertkitOAuth20TypedDict(TypedDict):
     r"""A current, non-expired refresh token genereted using the provided client ID and secret."""
     access_token: NotRequired[str]
     r"""An access token generated using the provided client information and refresh token."""
-    auth_type: SourceConvertkitAuthType
+    auth_type: SourceConvertkitAuthTypeOauth20
     expires_at: NotRequired[datetime]
     r"""The time at which the current access token is set to expire"""
 
@@ -86,11 +86,11 @@ class SourceConvertkitOAuth20(BaseModel):
 
     AUTH_TYPE: Annotated[
         Annotated[
-            SourceConvertkitAuthType,
-            AfterValidator(validate_const(SourceConvertkitAuthType.OAUTH2_0)),
+            SourceConvertkitAuthTypeOauth20,
+            AfterValidator(validate_const(SourceConvertkitAuthTypeOauth20.OAUTH2_0)),
         ],
         pydantic.Field(alias="auth_type"),
-    ] = SourceConvertkitAuthType.OAUTH2_0
+    ] = SourceConvertkitAuthTypeOauth20.OAUTH2_0
 
     expires_at: Optional[datetime] = None
     r"""The time at which the current access token is set to expire"""
@@ -112,16 +112,16 @@ class SourceConvertkitOAuth20(BaseModel):
         return m
 
 
-AuthenticationTypeTypedDict = TypeAliasType(
-    "AuthenticationTypeTypedDict",
-    Union[APIKeyTypedDict, SourceConvertkitOAuth20TypedDict],
+SourceConvertkitAuthenticationTypeTypedDict = TypeAliasType(
+    "SourceConvertkitAuthenticationTypeTypedDict",
+    Union[SourceConvertkitAPIKeyTypedDict, SourceConvertkitOAuth20TypedDict],
 )
 
 
-AuthenticationType = Annotated[
+SourceConvertkitAuthenticationType = Annotated[
     Union[
         Annotated[SourceConvertkitOAuth20, Tag("oauth2.0")],
-        Annotated[APIKey, Tag("api_key")],
+        Annotated[SourceConvertkitAPIKey, Tag("api_key")],
     ],
     Discriminator(lambda m: get_discriminator(m, "auth_type", "auth_type")),
 ]
@@ -132,13 +132,13 @@ class Convertkit(str, Enum):
 
 
 class SourceConvertkitTypedDict(TypedDict):
-    credentials: AuthenticationTypeTypedDict
+    credentials: SourceConvertkitAuthenticationTypeTypedDict
     source_type: Convertkit
     start_date: NotRequired[datetime]
 
 
 class SourceConvertkit(BaseModel):
-    credentials: AuthenticationType
+    credentials: SourceConvertkitAuthenticationType
 
     SOURCE_TYPE: Annotated[
         Annotated[Convertkit, AfterValidator(validate_const(Convertkit.CONVERTKIT))],
@@ -165,7 +165,7 @@ class SourceConvertkit(BaseModel):
 
 
 try:
-    APIKey.model_rebuild()
+    SourceConvertkitAPIKey.model_rebuild()
 except NameError:
     pass
 try:

@@ -11,7 +11,7 @@ from typing import Any, Dict, Optional, Union
 from typing_extensions import Annotated, NotRequired, TypeAliasType, TypedDict
 
 
-class SourceElasticsearchSchemasAuthenticationMethodMethod(str, Enum):
+class SourceElasticsearchMethodBasic(str, Enum):
     BASIC = "basic"
 
 
@@ -22,7 +22,7 @@ class SourceElasticsearchUsernamePasswordTypedDict(TypedDict):
     r"""Basic auth password to access a secure Elasticsearch server"""
     username: str
     r"""Basic auth username to access a secure Elasticsearch server"""
-    method: SourceElasticsearchSchemasAuthenticationMethodMethod
+    method: SourceElasticsearchMethodBasic
 
 
 class SourceElasticsearchUsernamePassword(BaseModel):
@@ -41,15 +41,11 @@ class SourceElasticsearchUsernamePassword(BaseModel):
 
     METHOD: Annotated[
         Annotated[
-            SourceElasticsearchSchemasAuthenticationMethodMethod,
-            AfterValidator(
-                validate_const(
-                    SourceElasticsearchSchemasAuthenticationMethodMethod.BASIC
-                )
-            ),
+            SourceElasticsearchMethodBasic,
+            AfterValidator(validate_const(SourceElasticsearchMethodBasic.BASIC)),
         ],
         pydantic.Field(alias="method"),
-    ] = SourceElasticsearchSchemasAuthenticationMethodMethod.BASIC
+    ] = SourceElasticsearchMethodBasic.BASIC
 
     @property
     def additional_properties(self):
@@ -60,7 +56,7 @@ class SourceElasticsearchUsernamePassword(BaseModel):
         self.__pydantic_extra__ = value  # pyright: ignore[reportIncompatibleVariableOverride]
 
 
-class SourceElasticsearchSchemasMethod(str, Enum):
+class SourceElasticsearchMethodSecret(str, Enum):
     SECRET = "secret"
 
 
@@ -71,7 +67,7 @@ class SourceElasticsearchAPIKeySecretTypedDict(TypedDict):
     r"""The Key ID to used when accessing an enterprise Elasticsearch instance."""
     api_key_secret: str
     r"""The secret associated with the API Key ID."""
-    method: SourceElasticsearchSchemasMethod
+    method: SourceElasticsearchMethodSecret
 
 
 class SourceElasticsearchAPIKeySecret(BaseModel):
@@ -90,11 +86,11 @@ class SourceElasticsearchAPIKeySecret(BaseModel):
 
     METHOD: Annotated[
         Annotated[
-            SourceElasticsearchSchemasMethod,
-            AfterValidator(validate_const(SourceElasticsearchSchemasMethod.SECRET)),
+            SourceElasticsearchMethodSecret,
+            AfterValidator(validate_const(SourceElasticsearchMethodSecret.SECRET)),
         ],
         pydantic.Field(alias="method"),
-    ] = SourceElasticsearchSchemasMethod.SECRET
+    ] = SourceElasticsearchMethodSecret.SECRET
 
     @property
     def additional_properties(self):
@@ -105,14 +101,14 @@ class SourceElasticsearchAPIKeySecret(BaseModel):
         self.__pydantic_extra__ = value  # pyright: ignore[reportIncompatibleVariableOverride]
 
 
-class SourceElasticsearchMethod(str, Enum):
+class SourceElasticsearchMethodNone(str, Enum):
     NONE = "none"
 
 
 class SourceElasticsearchNoneTypedDict(TypedDict):
     r"""No authentication will be used"""
 
-    method: SourceElasticsearchMethod
+    method: SourceElasticsearchMethodNone
 
 
 class SourceElasticsearchNone(BaseModel):
@@ -125,11 +121,11 @@ class SourceElasticsearchNone(BaseModel):
 
     METHOD: Annotated[
         Annotated[
-            SourceElasticsearchMethod,
-            AfterValidator(validate_const(SourceElasticsearchMethod.NONE)),
+            SourceElasticsearchMethodNone,
+            AfterValidator(validate_const(SourceElasticsearchMethodNone.NONE)),
         ],
         pydantic.Field(alias="method"),
-    ] = SourceElasticsearchMethod.NONE
+    ] = SourceElasticsearchMethodNone.NONE
 
     @property
     def additional_properties(self):

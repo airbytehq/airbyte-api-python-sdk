@@ -11,11 +11,11 @@ from typing import Optional, Union
 from typing_extensions import Annotated, NotRequired, TypeAliasType, TypedDict
 
 
-class Firebolt(str, Enum):
+class DestinationFireboltFirebolt(str, Enum):
     FIREBOLT = "firebolt"
 
 
-class DestinationFireboltSchemasMethod(str, Enum):
+class MethodS3(str, Enum):
     S3 = "S3"
 
 
@@ -28,7 +28,7 @@ class ExternalTableViaS3TypedDict(TypedDict):
     r"""The name of the S3 bucket."""
     s3_region: str
     r"""Region name of the S3 bucket."""
-    method: DestinationFireboltSchemasMethod
+    method: MethodS3
 
 
 class ExternalTableViaS3(BaseModel):
@@ -45,30 +45,24 @@ class ExternalTableViaS3(BaseModel):
     r"""Region name of the S3 bucket."""
 
     METHOD: Annotated[
-        Annotated[
-            DestinationFireboltSchemasMethod,
-            AfterValidator(validate_const(DestinationFireboltSchemasMethod.S3)),
-        ],
+        Annotated[MethodS3, AfterValidator(validate_const(MethodS3.S3))],
         pydantic.Field(alias="method"),
-    ] = DestinationFireboltSchemasMethod.S3
+    ] = MethodS3.S3
 
 
-class DestinationFireboltMethod(str, Enum):
+class MethodSQL(str, Enum):
     SQL = "SQL"
 
 
 class SQLInsertsTypedDict(TypedDict):
-    method: DestinationFireboltMethod
+    method: MethodSQL
 
 
 class SQLInserts(BaseModel):
     METHOD: Annotated[
-        Annotated[
-            DestinationFireboltMethod,
-            AfterValidator(validate_const(DestinationFireboltMethod.SQL)),
-        ],
+        Annotated[MethodSQL, AfterValidator(validate_const(MethodSQL.SQL))],
         pydantic.Field(alias="method"),
-    ] = DestinationFireboltMethod.SQL
+    ] = MethodSQL.SQL
 
 
 DestinationFireboltLoadingMethodTypedDict = TypeAliasType(
@@ -96,7 +90,7 @@ class DestinationFireboltTypedDict(TypedDict):
     r"""The database to connect to."""
     engine: str
     r"""Engine name to connect to."""
-    destination_type: Firebolt
+    destination_type: DestinationFireboltFirebolt
     host: NotRequired[str]
     r"""The host name of your Firebolt database."""
     loading_method: NotRequired[DestinationFireboltLoadingMethodTypedDict]
@@ -120,9 +114,12 @@ class DestinationFirebolt(BaseModel):
     r"""Engine name to connect to."""
 
     DESTINATION_TYPE: Annotated[
-        Annotated[Firebolt, AfterValidator(validate_const(Firebolt.FIREBOLT))],
+        Annotated[
+            DestinationFireboltFirebolt,
+            AfterValidator(validate_const(DestinationFireboltFirebolt.FIREBOLT)),
+        ],
         pydantic.Field(alias="destinationType"),
-    ] = Firebolt.FIREBOLT
+    ] = DestinationFireboltFirebolt.FIREBOLT
 
     host: Optional[str] = None
     r"""The host name of your Firebolt database."""

@@ -15,16 +15,14 @@ class DevNull(str, Enum):
     DEV_NULL = "dev-null"
 
 
-class DestinationDevNullSchemasTestDestinationTestDestinationType(str, Enum):
+class TestDestinationTypeFailing(str, Enum):
     FAILING = "FAILING"
 
 
 class FailingTypedDict(TypedDict):
     num_messages: int
     r"""Number of messages after which to fail."""
-    test_destination_type: NotRequired[
-        DestinationDevNullSchemasTestDestinationTestDestinationType
-    ]
+    test_destination_type: NotRequired[TestDestinationTypeFailing]
 
 
 class Failing(BaseModel):
@@ -36,9 +34,9 @@ class Failing(BaseModel):
     num_messages: int
     r"""Number of messages after which to fail."""
 
-    test_destination_type: Optional[
-        DestinationDevNullSchemasTestDestinationTestDestinationType
-    ] = DestinationDevNullSchemasTestDestinationTestDestinationType.FAILING
+    test_destination_type: Optional[TestDestinationTypeFailing] = (
+        TestDestinationTypeFailing.FAILING
+    )
 
     @property
     def additional_properties(self):
@@ -68,14 +66,14 @@ class Failing(BaseModel):
         return m
 
 
-class DestinationDevNullSchemasTestDestinationType(str, Enum):
+class TestDestinationTypeThrottled(str, Enum):
     THROTTLED = "THROTTLED"
 
 
 class ThrottledTypedDict(TypedDict):
     millis_per_record: int
     r"""The number of milliseconds to wait between each record."""
-    test_destination_type: NotRequired[DestinationDevNullSchemasTestDestinationType]
+    test_destination_type: NotRequired[TestDestinationTypeThrottled]
 
 
 class Throttled(BaseModel):
@@ -87,8 +85,8 @@ class Throttled(BaseModel):
     millis_per_record: int
     r"""The number of milliseconds to wait between each record."""
 
-    test_destination_type: Optional[DestinationDevNullSchemasTestDestinationType] = (
-        DestinationDevNullSchemasTestDestinationType.THROTTLED
+    test_destination_type: Optional[TestDestinationTypeThrottled] = (
+        TestDestinationTypeThrottled.THROTTLED
     )
 
     @property
@@ -119,12 +117,12 @@ class Throttled(BaseModel):
         return m
 
 
-class DestinationDevNullTestDestinationType(str, Enum):
+class TestDestinationTypeSilent(str, Enum):
     SILENT = "SILENT"
 
 
 class SilentTypedDict(TypedDict):
-    test_destination_type: NotRequired[DestinationDevNullTestDestinationType]
+    test_destination_type: NotRequired[TestDestinationTypeSilent]
 
 
 class Silent(BaseModel):
@@ -133,8 +131,8 @@ class Silent(BaseModel):
     )
     __pydantic_extra__: Dict[str, Any] = pydantic.Field(init=False)
 
-    test_destination_type: Optional[DestinationDevNullTestDestinationType] = (
-        DestinationDevNullTestDestinationType.SILENT
+    test_destination_type: Optional[TestDestinationTypeSilent] = (
+        TestDestinationTypeSilent.SILENT
     )
 
     @property
@@ -165,14 +163,14 @@ class Silent(BaseModel):
         return m
 
 
-class DestinationDevNullSchemasLoggingType(str, Enum):
+class LoggingTypeRandomSampling(str, Enum):
     RANDOM_SAMPLING = "RandomSampling"
 
 
 class RandomSamplingTypedDict(TypedDict):
     r"""For each stream, randomly log a percentage of the entries with a maximum cap."""
 
-    logging_type: NotRequired[DestinationDevNullSchemasLoggingType]
+    logging_type: NotRequired[LoggingTypeRandomSampling]
     max_entry_count: NotRequired[float]
     r"""Number of entries to log. This destination is for testing only. So it won't make sense to log infinitely. The maximum is 1,000 entries."""
     sampling_ratio: NotRequired[float]
@@ -189,8 +187,8 @@ class RandomSampling(BaseModel):
     )
     __pydantic_extra__: Dict[str, Any] = pydantic.Field(init=False)
 
-    logging_type: Optional[DestinationDevNullSchemasLoggingType] = (
-        DestinationDevNullSchemasLoggingType.RANDOM_SAMPLING
+    logging_type: Optional[LoggingTypeRandomSampling] = (
+        LoggingTypeRandomSampling.RANDOM_SAMPLING
     )
 
     max_entry_count: Optional[float] = 100
@@ -232,7 +230,7 @@ class RandomSampling(BaseModel):
         return m
 
 
-class DestinationDevNullLoggingType(str, Enum):
+class LoggingTypeEveryNth(str, Enum):
     EVERY_NTH = "EveryNth"
 
 
@@ -241,7 +239,7 @@ class EveryNThEntryTypedDict(TypedDict):
 
     nth_entry_to_log: int
     r"""The N-th entry to log for each stream. N starts from 1. For example, when N = 1, every entry is logged; when N = 2, every other entry is logged; when N = 3, one out of three entries is logged."""
-    logging_type: NotRequired[DestinationDevNullLoggingType]
+    logging_type: NotRequired[LoggingTypeEveryNth]
     max_entry_count: NotRequired[float]
     r"""Number of entries to log. This destination is for testing only. So it won't make sense to log infinitely. The maximum is 1,000 entries."""
 
@@ -257,9 +255,7 @@ class EveryNThEntry(BaseModel):
     nth_entry_to_log: int
     r"""The N-th entry to log for each stream. N starts from 1. For example, when N = 1, every entry is logged; when N = 2, every other entry is logged; when N = 3, one out of three entries is logged."""
 
-    logging_type: Optional[DestinationDevNullLoggingType] = (
-        DestinationDevNullLoggingType.EVERY_NTH
-    )
+    logging_type: Optional[LoggingTypeEveryNth] = LoggingTypeEveryNth.EVERY_NTH
 
     max_entry_count: Optional[float] = 100
     r"""Number of entries to log. This destination is for testing only. So it won't make sense to log infinitely. The maximum is 1,000 entries."""
@@ -292,14 +288,14 @@ class EveryNThEntry(BaseModel):
         return m
 
 
-class LoggingType(str, Enum):
+class LoggingTypeFirstN(str, Enum):
     FIRST_N = "FirstN"
 
 
 class FirstNEntriesTypedDict(TypedDict):
     r"""Log first N entries per stream."""
 
-    logging_type: NotRequired[LoggingType]
+    logging_type: NotRequired[LoggingTypeFirstN]
     max_entry_count: NotRequired[float]
     r"""Number of entries to log. This destination is for testing only. So it won't make sense to log infinitely. The maximum is 1,000 entries."""
 
@@ -312,7 +308,7 @@ class FirstNEntries(BaseModel):
     )
     __pydantic_extra__: Dict[str, Any] = pydantic.Field(init=False)
 
-    logging_type: Optional[LoggingType] = LoggingType.FIRST_N
+    logging_type: Optional[LoggingTypeFirstN] = LoggingTypeFirstN.FIRST_N
 
     max_entry_count: Optional[float] = 100
     r"""Number of entries to log. This destination is for testing only. So it won't make sense to log infinitely. The maximum is 1,000 entries."""
@@ -358,14 +354,14 @@ LoggingConfiguration = TypeAliasType(
 r"""Configurate how the messages are logged."""
 
 
-class TestDestinationType(str, Enum):
+class TestDestinationTypeLogging(str, Enum):
     LOGGING = "LOGGING"
 
 
 class LoggingTypedDict(TypedDict):
     logging_config: LoggingConfigurationTypedDict
     r"""Configurate how the messages are logged."""
-    test_destination_type: NotRequired[TestDestinationType]
+    test_destination_type: NotRequired[TestDestinationTypeLogging]
 
 
 class Logging(BaseModel):
@@ -377,7 +373,9 @@ class Logging(BaseModel):
     logging_config: LoggingConfiguration
     r"""Configurate how the messages are logged."""
 
-    test_destination_type: Optional[TestDestinationType] = TestDestinationType.LOGGING
+    test_destination_type: Optional[TestDestinationTypeLogging] = (
+        TestDestinationTypeLogging.LOGGING
+    )
 
     @property
     def additional_properties(self):

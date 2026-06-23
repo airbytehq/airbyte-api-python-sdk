@@ -12,7 +12,7 @@ from typing import Any, Dict, Optional, Union
 from typing_extensions import Annotated, NotRequired, TypeAliasType, TypedDict
 
 
-class SourceZendeskSupportSchemasCredentials(str, Enum):
+class CredentialsAPIToken(str, Enum):
     API_TOKEN = "api_token"
 
 
@@ -21,7 +21,7 @@ class SourceZendeskSupportAPITokenTypedDict(TypedDict):
     r"""The value of the API token generated. See our <a href=\"https://docs.airbyte.com/integrations/sources/zendesk-support#setup-guide\">full documentation</a> for more information on generating this token."""
     email: str
     r"""The user email for your Zendesk account."""
-    credentials: SourceZendeskSupportSchemasCredentials
+    credentials: CredentialsAPIToken
 
 
 class SourceZendeskSupportAPIToken(BaseModel):
@@ -38,13 +38,11 @@ class SourceZendeskSupportAPIToken(BaseModel):
 
     CREDENTIALS: Annotated[
         Annotated[
-            Optional[SourceZendeskSupportSchemasCredentials],
-            AfterValidator(
-                validate_const(SourceZendeskSupportSchemasCredentials.API_TOKEN)
-            ),
+            Optional[CredentialsAPIToken],
+            AfterValidator(validate_const(CredentialsAPIToken.API_TOKEN)),
         ],
         pydantic.Field(alias="credentials"),
-    ] = SourceZendeskSupportSchemasCredentials.API_TOKEN
+    ] = CredentialsAPIToken.API_TOKEN
 
     @property
     def additional_properties(self):
@@ -74,7 +72,7 @@ class SourceZendeskSupportAPIToken(BaseModel):
         return m
 
 
-class SourceZendeskSupportCredentials(str, Enum):
+class SourceZendeskSupportCredentialsOauth20(str, Enum):
     OAUTH2_0 = "oauth2.0"
 
 
@@ -85,7 +83,7 @@ class SourceZendeskSupportOAuth20TypedDict(TypedDict):
     r"""The OAuth client's ID. See <a href=\"https://docs.searchunify.com/Content/Content-Sources/Zendesk-Authentication-OAuth-Client-ID-Secret.htm#:~:text=Get%20Client%20ID%20and%20Client%20Secret&text=Go%20to%20OAuth%20Clients%20and,will%20be%20displayed%20only%20once.\">this guide</a> for more information."""
     client_secret: NotRequired[str]
     r"""The OAuth client secret. See <a href=\"https://docs.searchunify.com/Content/Content-Sources/Zendesk-Authentication-OAuth-Client-ID-Secret.htm#:~:text=Get%20Client%20ID%20and%20Client%20Secret&text=Go%20to%20OAuth%20Clients%20and,will%20be%20displayed%20only%20once.\">this guide</a> for more information."""
-    credentials: SourceZendeskSupportCredentials
+    credentials: SourceZendeskSupportCredentialsOauth20
 
 
 class SourceZendeskSupportOAuth20(BaseModel):
@@ -105,11 +103,13 @@ class SourceZendeskSupportOAuth20(BaseModel):
 
     CREDENTIALS: Annotated[
         Annotated[
-            Optional[SourceZendeskSupportCredentials],
-            AfterValidator(validate_const(SourceZendeskSupportCredentials.OAUTH2_0)),
+            Optional[SourceZendeskSupportCredentialsOauth20],
+            AfterValidator(
+                validate_const(SourceZendeskSupportCredentialsOauth20.OAUTH2_0)
+            ),
         ],
         pydantic.Field(alias="credentials"),
-    ] = SourceZendeskSupportCredentials.OAUTH2_0
+    ] = SourceZendeskSupportCredentialsOauth20.OAUTH2_0
 
     @property
     def additional_properties(self):
@@ -153,7 +153,7 @@ SourceZendeskSupportAuthentication = TypeAliasType(
 r"""Zendesk allows two authentication methods. We recommend using `OAuth2.0` for Airbyte Cloud users and `API token` for Airbyte Open Source users."""
 
 
-class SourceZendeskSupportZendeskSupport(str, Enum):
+class ZendeskSupportEnum(str, Enum):
     ZENDESK_SUPPORT = "zendesk-support"
 
 
@@ -164,7 +164,7 @@ class SourceZendeskSupportTypedDict(TypedDict):
     r"""Zendesk allows two authentication methods. We recommend using `OAuth2.0` for Airbyte Cloud users and `API token` for Airbyte Open Source users."""
     num_workers: NotRequired[int]
     r"""The number of worker threads to use for the sync. The performance upper boundary is based on the limit of your Zendesk Support plan. More info about the rate limit plan tiers can be found on Zendesk's API <a href=\"https://developer.zendesk.com/api-reference/introduction/rate-limits/#zendesk-support-plan-limits\">docs</a>."""
-    source_type: SourceZendeskSupportZendeskSupport
+    source_type: ZendeskSupportEnum
     start_date: NotRequired[datetime]
     r"""The UTC date and time from which you'd like to replicate data, in the format YYYY-MM-DDT00:00:00Z. All data generated after this date will be replicated."""
 
@@ -181,13 +181,11 @@ class SourceZendeskSupport(BaseModel):
 
     SOURCE_TYPE: Annotated[
         Annotated[
-            SourceZendeskSupportZendeskSupport,
-            AfterValidator(
-                validate_const(SourceZendeskSupportZendeskSupport.ZENDESK_SUPPORT)
-            ),
+            ZendeskSupportEnum,
+            AfterValidator(validate_const(ZendeskSupportEnum.ZENDESK_SUPPORT)),
         ],
         pydantic.Field(alias="sourceType"),
-    ] = SourceZendeskSupportZendeskSupport.ZENDESK_SUPPORT
+    ] = ZendeskSupportEnum.ZENDESK_SUPPORT
 
     start_date: Optional[datetime] = None
     r"""The UTC date and time from which you'd like to replicate data, in the format YYYY-MM-DDT00:00:00Z. All data generated after this date will be replicated."""

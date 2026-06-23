@@ -31,12 +31,12 @@ class SearchCriteria(str, Enum):
     NOT_EXACTS = "not exacts"
 
 
-class StreamsCriteriaTypedDict(TypedDict):
+class StreamsCriterionTypedDict(TypedDict):
     value: str
     criteria: NotRequired[SearchCriteria]
 
 
-class StreamsCriteria(BaseModel):
+class StreamsCriterion(BaseModel):
     value: str
 
     criteria: Optional[SearchCriteria] = SearchCriteria.CONTAINS
@@ -75,7 +75,7 @@ class SourceSalesforceTypedDict(TypedDict):
     r"""Enter the date (or date-time) in the YYYY-MM-DD or YYYY-MM-DDTHH:mm:ssZ format. Airbyte will replicate the data updated on and after this date. If this field is blank, Airbyte will replicate the data for last two years."""
     stream_slice_step: NotRequired[str]
     r"""The size of the time window (ISO8601 duration) to slice requests."""
-    streams_criteria: NotRequired[List[StreamsCriteriaTypedDict]]
+    streams_criteria: NotRequired[List[StreamsCriterionTypedDict]]
     r"""Add filters to select only required stream based on `SObject` name. Use this field to filter which tables are displayed by this connector. This is useful if your Salesforce account has a large number of tables (>1000), in which case you may find it easier to navigate the UI and speed up the connector's performance if you restrict the tables displayed by this connector."""
 
 
@@ -117,7 +117,7 @@ class SourceSalesforce(BaseModel):
     stream_slice_step: Optional[str] = "P30D"
     r"""The size of the time window (ISO8601 duration) to slice requests."""
 
-    streams_criteria: Optional[List[StreamsCriteria]] = None
+    streams_criteria: Optional[List[StreamsCriterion]] = None
     r"""Add filters to select only required stream based on `SObject` name. Use this field to filter which tables are displayed by this connector. This is useful if your Salesforce account has a large number of tables (>1000), in which case you may find it easier to navigate the UI and speed up the connector's performance if you restrict the tables displayed by this connector."""
 
     @model_serializer(mode="wrap")

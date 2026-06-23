@@ -11,7 +11,7 @@ from typing import Any, Dict, Optional, Union
 from typing_extensions import Annotated, NotRequired, TypeAliasType, TypedDict
 
 
-class Clickhouse(str, Enum):
+class DestinationClickhouseClickhouse(str, Enum):
     CLICKHOUSE = "clickhouse"
 
 
@@ -22,11 +22,11 @@ class Protocol(str, Enum):
     HTTPS = "https"
 
 
-class DestinationClickhouseSchemasTunnelMethod(str, Enum):
+class DestinationClickhouseTunnelMethodSSHPasswordAuth(str, Enum):
     SSH_PASSWORD_AUTH = "SSH_PASSWORD_AUTH"
 
 
-class PasswordAuthenticationTypedDict(TypedDict):
+class DestinationClickhousePasswordAuthenticationTypedDict(TypedDict):
     r"""Connect through a jump server tunnel host using username and password authentication"""
 
     tunnel_host: str
@@ -35,12 +35,12 @@ class PasswordAuthenticationTypedDict(TypedDict):
     r"""OS-level username for logging into the jump server host"""
     tunnel_user_password: str
     r"""OS-level password for logging into the jump server host"""
-    tunnel_method: NotRequired[DestinationClickhouseSchemasTunnelMethod]
+    tunnel_method: NotRequired[DestinationClickhouseTunnelMethodSSHPasswordAuth]
     tunnel_port: NotRequired[int]
     r"""Port on the proxy/jump server that accepts inbound ssh connections."""
 
 
-class PasswordAuthentication(BaseModel):
+class DestinationClickhousePasswordAuthentication(BaseModel):
     r"""Connect through a jump server tunnel host using username and password authentication"""
 
     model_config = ConfigDict(
@@ -57,8 +57,8 @@ class PasswordAuthentication(BaseModel):
     tunnel_user_password: str
     r"""OS-level password for logging into the jump server host"""
 
-    tunnel_method: Optional[DestinationClickhouseSchemasTunnelMethod] = (
-        DestinationClickhouseSchemasTunnelMethod.SSH_PASSWORD_AUTH
+    tunnel_method: Optional[DestinationClickhouseTunnelMethodSSHPasswordAuth] = (
+        DestinationClickhouseTunnelMethodSSHPasswordAuth.SSH_PASSWORD_AUTH
     )
 
     tunnel_port: Optional[int] = 22
@@ -92,11 +92,11 @@ class PasswordAuthentication(BaseModel):
         return m
 
 
-class DestinationClickhouseTunnelMethod(str, Enum):
+class DestinationClickhouseTunnelMethodSSHKeyAuth(str, Enum):
     SSH_KEY_AUTH = "SSH_KEY_AUTH"
 
 
-class SSHKeyAuthenticationTypedDict(TypedDict):
+class DestinationClickhouseSSHKeyAuthenticationTypedDict(TypedDict):
     r"""Connect through a jump server tunnel host using username and ssh key"""
 
     ssh_key: str
@@ -105,12 +105,12 @@ class SSHKeyAuthenticationTypedDict(TypedDict):
     r"""Hostname of the jump server host that allows inbound ssh tunnel."""
     tunnel_user: str
     r"""OS-level username for logging into the jump server host"""
-    tunnel_method: NotRequired[DestinationClickhouseTunnelMethod]
+    tunnel_method: NotRequired[DestinationClickhouseTunnelMethodSSHKeyAuth]
     tunnel_port: NotRequired[int]
     r"""Port on the proxy/jump server that accepts inbound ssh connections."""
 
 
-class SSHKeyAuthentication(BaseModel):
+class DestinationClickhouseSSHKeyAuthentication(BaseModel):
     r"""Connect through a jump server tunnel host using username and ssh key"""
 
     model_config = ConfigDict(
@@ -127,8 +127,8 @@ class SSHKeyAuthentication(BaseModel):
     tunnel_user: str
     r"""OS-level username for logging into the jump server host"""
 
-    tunnel_method: Optional[DestinationClickhouseTunnelMethod] = (
-        DestinationClickhouseTunnelMethod.SSH_KEY_AUTH
+    tunnel_method: Optional[DestinationClickhouseTunnelMethodSSHKeyAuth] = (
+        DestinationClickhouseTunnelMethodSSHKeyAuth.SSH_KEY_AUTH
     )
 
     tunnel_port: Optional[int] = 22
@@ -162,17 +162,17 @@ class SSHKeyAuthentication(BaseModel):
         return m
 
 
-class TunnelMethod(str, Enum):
+class DestinationClickhouseTunnelMethodNoTunnel(str, Enum):
     NO_TUNNEL = "NO_TUNNEL"
 
 
-class NoTunnelTypedDict(TypedDict):
+class DestinationClickhouseNoTunnelTypedDict(TypedDict):
     r"""No ssh tunnel needed to connect to database"""
 
-    tunnel_method: NotRequired[TunnelMethod]
+    tunnel_method: NotRequired[DestinationClickhouseTunnelMethodNoTunnel]
 
 
-class NoTunnel(BaseModel):
+class DestinationClickhouseNoTunnel(BaseModel):
     r"""No ssh tunnel needed to connect to database"""
 
     model_config = ConfigDict(
@@ -180,7 +180,9 @@ class NoTunnel(BaseModel):
     )
     __pydantic_extra__: Dict[str, Any] = pydantic.Field(init=False)
 
-    tunnel_method: Optional[TunnelMethod] = TunnelMethod.NO_TUNNEL
+    tunnel_method: Optional[DestinationClickhouseTunnelMethodNoTunnel] = (
+        DestinationClickhouseTunnelMethodNoTunnel.NO_TUNNEL
+    )
 
     @property
     def additional_properties(self):
@@ -210,19 +212,24 @@ class NoTunnel(BaseModel):
         return m
 
 
-SSHTunnelMethodTypedDict = TypeAliasType(
-    "SSHTunnelMethodTypedDict",
+DestinationClickhouseSSHTunnelMethodTypedDict = TypeAliasType(
+    "DestinationClickhouseSSHTunnelMethodTypedDict",
     Union[
-        NoTunnelTypedDict,
-        SSHKeyAuthenticationTypedDict,
-        PasswordAuthenticationTypedDict,
+        DestinationClickhouseNoTunnelTypedDict,
+        DestinationClickhouseSSHKeyAuthenticationTypedDict,
+        DestinationClickhousePasswordAuthenticationTypedDict,
     ],
 )
 r"""Whether to initiate an SSH tunnel before connecting to the database, and if so, which kind of authentication to use."""
 
 
-SSHTunnelMethod = TypeAliasType(
-    "SSHTunnelMethod", Union[NoTunnel, SSHKeyAuthentication, PasswordAuthentication]
+DestinationClickhouseSSHTunnelMethod = TypeAliasType(
+    "DestinationClickhouseSSHTunnelMethod",
+    Union[
+        DestinationClickhouseNoTunnel,
+        DestinationClickhouseSSHKeyAuthentication,
+        DestinationClickhousePasswordAuthentication,
+    ],
 )
 r"""Whether to initiate an SSH tunnel before connecting to the database, and if so, which kind of authentication to use."""
 
@@ -234,7 +241,7 @@ class DestinationClickhouseTypedDict(TypedDict):
     r"""Password associated with the username."""
     database: NotRequired[str]
     r"""Name of the database."""
-    destination_type: Clickhouse
+    destination_type: DestinationClickhouseClickhouse
     enable_json: NotRequired[bool]
     r"""Use the JSON type for Object fields. If disabled, the JSON will be converted to a string."""
     port: NotRequired[str]
@@ -243,7 +250,7 @@ class DestinationClickhouseTypedDict(TypedDict):
     r"""Protocol for the database connection string."""
     record_window_size: NotRequired[int]
     r"""Warning: Tuning this parameter can impact the performances. The maximum number of records that should be written to a batch. The batch size limit is still limited to 70 Mb"""
-    tunnel_method: NotRequired[SSHTunnelMethodTypedDict]
+    tunnel_method: NotRequired[DestinationClickhouseSSHTunnelMethodTypedDict]
     r"""Whether to initiate an SSH tunnel before connecting to the database, and if so, which kind of authentication to use."""
     username: NotRequired[str]
     r"""Username to use to access the database."""
@@ -260,9 +267,12 @@ class DestinationClickhouse(BaseModel):
     r"""Name of the database."""
 
     DESTINATION_TYPE: Annotated[
-        Annotated[Clickhouse, AfterValidator(validate_const(Clickhouse.CLICKHOUSE))],
+        Annotated[
+            DestinationClickhouseClickhouse,
+            AfterValidator(validate_const(DestinationClickhouseClickhouse.CLICKHOUSE)),
+        ],
         pydantic.Field(alias="destinationType"),
-    ] = Clickhouse.CLICKHOUSE
+    ] = DestinationClickhouseClickhouse.CLICKHOUSE
 
     enable_json: Optional[bool] = False
     r"""Use the JSON type for Object fields. If disabled, the JSON will be converted to a string."""
@@ -276,7 +286,7 @@ class DestinationClickhouse(BaseModel):
     record_window_size: Optional[int] = None
     r"""Warning: Tuning this parameter can impact the performances. The maximum number of records that should be written to a batch. The batch size limit is still limited to 70 Mb"""
 
-    tunnel_method: Optional[SSHTunnelMethod] = None
+    tunnel_method: Optional[DestinationClickhouseSSHTunnelMethod] = None
     r"""Whether to initiate an SSH tunnel before connecting to the database, and if so, which kind of authentication to use."""
 
     username: Optional[str] = "default"
