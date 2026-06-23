@@ -16,7 +16,7 @@ Repository = "https://github.com/airbytehq/airbyte-api-python-sdk"
 
 [dependency-groups]
 dev = [
-    "mypy ==1.15.0",
+    "mypy ==2.1.0",
     "poethepoet >=0.32",
     "pylint ==3.2.3",
     "pyright ==1.1.398",
