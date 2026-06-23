@@ -36,7 +36,7 @@ source = "src/airbyte_api/_version.py"
 pattern = "__version__: str = \"(?P<version>[^\"]+)\""
 
 [tool.hatch.build.targets.sdist]
-include = ["src/airbyte_api", "py.typed"]
+include = ["src/airbyte_api", "py.typed", "README-PYPI.md"]
 
 [tool.hatch.build.targets.wheel]
 packages = ["src/airbyte_api"]

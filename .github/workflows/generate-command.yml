@@ -169,26 +169,6 @@ jobs:
                   echo "Generating with version: $VERSION"
                   uv run poe generate-full
 
-            - name: Verify generated code
-              run: |
-                  if [ -f "pyproject.toml" ]; then
-                      echo "pyproject.toml found (v2 generator confirmed)"
-                      uv run python -c "import airbyte_api; print(f'SDK import OK: {airbyte_api.__name__}')" || echo "::warning::SDK import check failed"
-                  else
-                      echo "::warning::No pyproject.toml found. Generation may not have produced v2 output."
-                  fi
-
-            - name: Upload generated SDK as artifact
-              if: ${{ inputs.dry_run }}
-              uses: actions/upload-artifact@v7
-              with:
-                  name: generated_sdk_code
-                  path: |
-                      src/
-                      pyproject.toml
-                      py.typed
-                  retention-days: 7
-
             - name: Generation Summary
               run: |
                   echo "=== Generation Summary ==="
@@ -199,7 +179,6 @@ jobs:
                   fi
 
             - name: Check for changes
-              if: ${{ !inputs.dry_run }}
               id: changes
               run: |
                   # Restore workflow.lock to HEAD to ignore non-deterministic
@@ -207,9 +186,46 @@ jobs:
                   git checkout HEAD -- .speakeasy/workflow.lock 2>/dev/null || true
                   if [ -n "$(git status --porcelain)" ]; then
                       echo "has_changes=true" >> $GITHUB_OUTPUT
+                      echo "=== Changed files ==="
+                      git status --porcelain
+                      echo
+                      echo "=== Diff stat ==="
+                      git diff --stat
                   else
                       echo "has_changes=false" >> $GITHUB_OUTPUT
                   fi
+
+            - name: Detect generation drift (dry run)
+              if: ${{ inputs.dry_run && steps.changes.outputs.has_changes == 'true' }}
+              id: drift
+              run: |
+                  echo "::error::Generated code drift detected. The committed code does not match what the generation pipeline produces."
+                  SUMMARY=$(git diff --stat)
+                  EOF=$(dd if=/dev/urandom bs=15 count=1 status=none | base64)
+                  echo "summary<<$EOF" >> $GITHUB_OUTPUT
+                  echo "$SUMMARY" >> $GITHUB_OUTPUT
+                  echo "$EOF" >> $GITHUB_OUTPUT
+
+            - name: Post drift comment on PR
+              if: ${{ inputs.dry_run && steps.changes.outputs.has_changes == 'true' && github.event_name == 'pull_request' }}
+              uses: peter-evans/create-or-update-comment@v5
+              with:
+                  issue-number: ${{ github.event.pull_request.number }}
+                  body: |
+                      <!-- zero-diff-check -->
+                      **Generated Code Drift Detected**
+
+                      The committed code does not match what the generation pipeline produces.
+
+                      **To fix:** Comment `/generate` on this PR to regenerate.
+
+                      ```
+                      ${{ steps.drift.outputs.summary }}
+                      ```
+
+            - name: Fail on drift (dry run)
+              if: ${{ inputs.dry_run && steps.changes.outputs.has_changes == 'true' }}
+              run: exit 1
 
             # --- PR branch mode: commit and push to the existing PR branch ---
             - name: Push regenerated code to PR branch

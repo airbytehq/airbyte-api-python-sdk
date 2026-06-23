@@ -13,13 +13,13 @@ speakeasy run $ARGS
 [tasks._post-generate]
 help = "Run post-generation patches."
 shell = """
-python3 scripts/post_generate.py
+uv run python scripts/post_generate.py
 """
 
 [tasks._generate-readme]
 help = "Generate README-PYPI.md from README.md (rewrites relative links to absolute GitHub URLs)."
 shell = """
-python3 scripts/prepare_readme.py
+uv run python scripts/prepare_readme.py
 """
 
 [tasks.lint]
@@ -55,5 +55,5 @@ uv build
 """
 
 [tasks.generate-full]
-help = "Full generation pipeline: generate code, post-generate patches, prepare readme."
+help = "Full generation pipeline: generate code, prepare readme, post-generate patches."
 sequence = ["_generate-code", "_generate-readme", "_post-generate"]
