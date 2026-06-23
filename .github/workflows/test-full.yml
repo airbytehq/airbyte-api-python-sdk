@@ -15,6 +15,10 @@
 # workflow that never runs as "expected" (pending), which blocks required checks.
 # Instead, we filter paths at the job level so skipped jobs report as "skipped"
 # (equivalent to "passed" for required checks).
+#
+# The path filter is scoped to generation-affecting files only (Speakeasy config,
+# gen.yaml, overlays, scripts, src/, etc.). Dev dependency updates (mypy, pylint,
+# etc.) skip the generation validation since they cannot affect generated code.
 
 name: Test (Full)
 
@@ -39,9 +43,15 @@ jobs:
         with:
           filters: |
             generation:
-              - '**'
-              - '!README.md'
-              - '!docs/**'
+              - '.speakeasy/**'
+              - '.genignore'
+              - '.github/speakeasy/**'
+              - '.github/workflows/generate-command.yml'
+              - 'gen.yaml'
+              - 'overlays/**'
+              - 'scripts/**'
+              - 'poe_tasks.toml'
+              - 'src/**'
     outputs:
       should_run: ${{ github.event_name == 'workflow_dispatch' || steps.filter.outputs.generation == 'true' }}
 
