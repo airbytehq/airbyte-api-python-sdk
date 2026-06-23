@@ -11,9 +11,9 @@ Choose how to authenticate to Square.
 value: models.OauthAuthentication = /* values here */
 ```
 
-### `models.SourceSquareAPIKey`
+### `models.SourceSquareAuthenticationAPIKey`
 
 ```python
-value: models.SourceSquareAPIKey = /* values here */
+value: models.SourceSquareAuthenticationAPIKey = /* values here */
 ```
 

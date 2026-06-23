@@ -12,11 +12,11 @@ from typing import List, Optional, Union
 from typing_extensions import Annotated, NotRequired, TypeAliasType, TypedDict
 
 
-class SourceMicrosoftOnedriveAuthTypeService(str, Enum):
+class SourceMicrosoftOnedriveAuthenticationCredentialsAuthType(str, Enum):
     SERVICE = "Service"
 
 
-class SourceMicrosoftOnedriveServiceKeyAuthenticationTypedDict(TypedDict):
+class ServiceKeyAuthenticationTypedDict(TypedDict):
     r"""ServiceCredentials class for service key authentication.
     This class is structured similarly to OAuthCredentials but for a different authentication method.
     """
@@ -29,10 +29,10 @@ class SourceMicrosoftOnedriveServiceKeyAuthenticationTypedDict(TypedDict):
     r"""Tenant ID of the Microsoft OneDrive user"""
     user_principal_name: str
     r"""Special characters such as a period, comma, space, and the at sign (@) are converted to underscores (_). More details: https://learn.microsoft.com/en-us/sharepoint/list-onedrive-urls"""
-    auth_type: SourceMicrosoftOnedriveAuthTypeService
+    auth_type: SourceMicrosoftOnedriveAuthenticationCredentialsAuthType
 
 
-class SourceMicrosoftOnedriveServiceKeyAuthentication(BaseModel):
+class ServiceKeyAuthentication(BaseModel):
     r"""ServiceCredentials class for service key authentication.
     This class is structured similarly to OAuthCredentials but for a different authentication method.
     """
@@ -51,13 +51,15 @@ class SourceMicrosoftOnedriveServiceKeyAuthentication(BaseModel):
 
     AUTH_TYPE: Annotated[
         Annotated[
-            Optional[SourceMicrosoftOnedriveAuthTypeService],
+            Optional[SourceMicrosoftOnedriveAuthenticationCredentialsAuthType],
             AfterValidator(
-                validate_const(SourceMicrosoftOnedriveAuthTypeService.SERVICE)
+                validate_const(
+                    SourceMicrosoftOnedriveAuthenticationCredentialsAuthType.SERVICE
+                )
             ),
         ],
         pydantic.Field(alias="auth_type"),
-    ] = SourceMicrosoftOnedriveAuthTypeService.SERVICE
+    ] = SourceMicrosoftOnedriveAuthenticationCredentialsAuthType.SERVICE
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
@@ -76,11 +78,11 @@ class SourceMicrosoftOnedriveServiceKeyAuthentication(BaseModel):
         return m
 
 
-class SourceMicrosoftOnedriveAuthTypeClient(str, Enum):
+class SourceMicrosoftOnedriveAuthenticationAuthType(str, Enum):
     CLIENT = "Client"
 
 
-class SourceMicrosoftOnedriveAuthenticateViaMicrosoftOAuthTypedDict(TypedDict):
+class AuthenticateViaMicrosoftOAuthTypedDict(TypedDict):
     r"""OAuthCredentials class to hold authentication details for Microsoft OAuth authentication.
     This class uses pydantic for data validation and settings management.
     """
@@ -93,10 +95,10 @@ class SourceMicrosoftOnedriveAuthenticateViaMicrosoftOAuthTypedDict(TypedDict):
     r"""Refresh Token of your Microsoft developer application"""
     tenant_id: str
     r"""Tenant ID of the Microsoft OneDrive user"""
-    auth_type: SourceMicrosoftOnedriveAuthTypeClient
+    auth_type: SourceMicrosoftOnedriveAuthenticationAuthType
 
 
-class SourceMicrosoftOnedriveAuthenticateViaMicrosoftOAuth(BaseModel):
+class AuthenticateViaMicrosoftOAuth(BaseModel):
     r"""OAuthCredentials class to hold authentication details for Microsoft OAuth authentication.
     This class uses pydantic for data validation and settings management.
     """
@@ -115,13 +117,13 @@ class SourceMicrosoftOnedriveAuthenticateViaMicrosoftOAuth(BaseModel):
 
     AUTH_TYPE: Annotated[
         Annotated[
-            Optional[SourceMicrosoftOnedriveAuthTypeClient],
+            Optional[SourceMicrosoftOnedriveAuthenticationAuthType],
             AfterValidator(
-                validate_const(SourceMicrosoftOnedriveAuthTypeClient.CLIENT)
+                validate_const(SourceMicrosoftOnedriveAuthenticationAuthType.CLIENT)
             ),
         ],
         pydantic.Field(alias="auth_type"),
-    ] = SourceMicrosoftOnedriveAuthTypeClient.CLIENT
+    ] = SourceMicrosoftOnedriveAuthenticationAuthType.CLIENT
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
@@ -142,25 +144,19 @@ class SourceMicrosoftOnedriveAuthenticateViaMicrosoftOAuth(BaseModel):
 
 SourceMicrosoftOnedriveAuthenticationTypedDict = TypeAliasType(
     "SourceMicrosoftOnedriveAuthenticationTypedDict",
-    Union[
-        SourceMicrosoftOnedriveAuthenticateViaMicrosoftOAuthTypedDict,
-        SourceMicrosoftOnedriveServiceKeyAuthenticationTypedDict,
-    ],
+    Union[AuthenticateViaMicrosoftOAuthTypedDict, ServiceKeyAuthenticationTypedDict],
 )
 r"""Credentials for connecting to the One Drive API"""
 
 
 SourceMicrosoftOnedriveAuthentication = TypeAliasType(
     "SourceMicrosoftOnedriveAuthentication",
-    Union[
-        SourceMicrosoftOnedriveAuthenticateViaMicrosoftOAuth,
-        SourceMicrosoftOnedriveServiceKeyAuthentication,
-    ],
+    Union[AuthenticateViaMicrosoftOAuth, ServiceKeyAuthentication],
 )
 r"""Credentials for connecting to the One Drive API"""
 
 
-class SourceMicrosoftOnedriveSearchScope(str, Enum):
+class SearchScope(str, Enum):
     r"""Specifies the location(s) to search for files. Valid options are 'ACCESSIBLE_DRIVES' to search in the selected OneDrive drive, 'SHARED_ITEMS' for shared items the user has access to, and 'ALL' to search both."""
 
     ACCESSIBLE_DRIVES = "ACCESSIBLE_DRIVES"
@@ -168,34 +164,34 @@ class SourceMicrosoftOnedriveSearchScope(str, Enum):
     ALL = "ALL"
 
 
-class MicrosoftOnedriveEnum(str, Enum):
+class SourceMicrosoftOnedriveMicrosoftOnedrive(str, Enum):
     MICROSOFT_ONEDRIVE = "microsoft-onedrive"
 
 
-class SourceMicrosoftOnedriveFiletypeUnstructured(str, Enum):
+class SourceMicrosoftOnedriveFormatStreamsFormat5Filetype(str, Enum):
     UNSTRUCTURED = "unstructured"
 
 
-class SourceMicrosoftOnedriveMode(str, Enum):
+class SourceMicrosoftOnedriveProcessingMode(str, Enum):
     LOCAL = "local"
 
 
-class SourceMicrosoftOnedriveLocalTypedDict(TypedDict):
+class SourceMicrosoftOnedriveProcessingLocalTypedDict(TypedDict):
     r"""Process files locally, supporting `fast` and `ocr` modes. This is the default option."""
 
-    mode: SourceMicrosoftOnedriveMode
+    mode: SourceMicrosoftOnedriveProcessingMode
 
 
-class SourceMicrosoftOnedriveLocal(BaseModel):
+class SourceMicrosoftOnedriveProcessingLocal(BaseModel):
     r"""Process files locally, supporting `fast` and `ocr` modes. This is the default option."""
 
     MODE: Annotated[
         Annotated[
-            Optional[SourceMicrosoftOnedriveMode],
-            AfterValidator(validate_const(SourceMicrosoftOnedriveMode.LOCAL)),
+            Optional[SourceMicrosoftOnedriveProcessingMode],
+            AfterValidator(validate_const(SourceMicrosoftOnedriveProcessingMode.LOCAL)),
         ],
         pydantic.Field(alias="mode"),
-    ] = SourceMicrosoftOnedriveMode.LOCAL
+    ] = SourceMicrosoftOnedriveProcessingMode.LOCAL
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
@@ -214,15 +210,17 @@ class SourceMicrosoftOnedriveLocal(BaseModel):
         return m
 
 
-SourceMicrosoftOnedriveProcessingTypedDict = SourceMicrosoftOnedriveLocalTypedDict
+SourceMicrosoftOnedriveFormatProcessingTypedDict = (
+    SourceMicrosoftOnedriveProcessingLocalTypedDict
+)
 r"""Processing configuration"""
 
 
-SourceMicrosoftOnedriveProcessing = SourceMicrosoftOnedriveLocal
+SourceMicrosoftOnedriveFormatProcessing = SourceMicrosoftOnedriveProcessingLocal
 r"""Processing configuration"""
 
 
-class SourceMicrosoftOnedriveParsingStrategy(str, Enum):
+class SourceMicrosoftOnedriveFormatParsingStrategy(str, Enum):
     r"""The strategy used to parse documents. `fast` extracts text directly from the document which doesn't work for all files. `ocr_only` is more reliable, but slower. `hi_res` is the most reliable, but requires an API key and a hosted instance of unstructured and can't be used with local mode. See the unstructured.io documentation for more details: https://unstructured-io.github.io/unstructured/core/partition.html#partition-pdf"""
 
     AUTO = "auto"
@@ -231,39 +229,41 @@ class SourceMicrosoftOnedriveParsingStrategy(str, Enum):
     HI_RES = "hi_res"
 
 
-class SourceMicrosoftOnedriveUnstructuredDocumentFormatTypedDict(TypedDict):
+class SourceMicrosoftOnedriveFormatUnstructuredDocumentFormatTypedDict(TypedDict):
     r"""Extract text from document formats (.pdf, .docx, .md, .pptx) and emit as one record per file."""
 
-    filetype: SourceMicrosoftOnedriveFiletypeUnstructured
-    processing: NotRequired[SourceMicrosoftOnedriveProcessingTypedDict]
+    filetype: SourceMicrosoftOnedriveFormatStreamsFormat5Filetype
+    processing: NotRequired[SourceMicrosoftOnedriveFormatProcessingTypedDict]
     r"""Processing configuration"""
     skip_unprocessable_files: NotRequired[bool]
     r"""If true, skip files that cannot be parsed and pass the error message along as the _ab_source_file_parse_error field. If false, fail the sync."""
-    strategy: NotRequired[SourceMicrosoftOnedriveParsingStrategy]
+    strategy: NotRequired[SourceMicrosoftOnedriveFormatParsingStrategy]
     r"""The strategy used to parse documents. `fast` extracts text directly from the document which doesn't work for all files. `ocr_only` is more reliable, but slower. `hi_res` is the most reliable, but requires an API key and a hosted instance of unstructured and can't be used with local mode. See the unstructured.io documentation for more details: https://unstructured-io.github.io/unstructured/core/partition.html#partition-pdf"""
 
 
-class SourceMicrosoftOnedriveUnstructuredDocumentFormat(BaseModel):
+class SourceMicrosoftOnedriveFormatUnstructuredDocumentFormat(BaseModel):
     r"""Extract text from document formats (.pdf, .docx, .md, .pptx) and emit as one record per file."""
 
     FILETYPE: Annotated[
         Annotated[
-            Optional[SourceMicrosoftOnedriveFiletypeUnstructured],
+            Optional[SourceMicrosoftOnedriveFormatStreamsFormat5Filetype],
             AfterValidator(
-                validate_const(SourceMicrosoftOnedriveFiletypeUnstructured.UNSTRUCTURED)
+                validate_const(
+                    SourceMicrosoftOnedriveFormatStreamsFormat5Filetype.UNSTRUCTURED
+                )
             ),
         ],
         pydantic.Field(alias="filetype"),
-    ] = SourceMicrosoftOnedriveFiletypeUnstructured.UNSTRUCTURED
+    ] = SourceMicrosoftOnedriveFormatStreamsFormat5Filetype.UNSTRUCTURED
 
-    processing: Optional[SourceMicrosoftOnedriveProcessing] = None
+    processing: Optional[SourceMicrosoftOnedriveFormatProcessing] = None
     r"""Processing configuration"""
 
     skip_unprocessable_files: Optional[bool] = True
     r"""If true, skip files that cannot be parsed and pass the error message along as the _ab_source_file_parse_error field. If false, fail the sync."""
 
-    strategy: Optional[SourceMicrosoftOnedriveParsingStrategy] = (
-        SourceMicrosoftOnedriveParsingStrategy.AUTO
+    strategy: Optional[SourceMicrosoftOnedriveFormatParsingStrategy] = (
+        SourceMicrosoftOnedriveFormatParsingStrategy.AUTO
     )
     r"""The strategy used to parse documents. `fast` extracts text directly from the document which doesn't work for all files. `ocr_only` is more reliable, but slower. `hi_res` is the most reliable, but requires an API key and a hosted instance of unstructured and can't be used with local mode. See the unstructured.io documentation for more details: https://unstructured-io.github.io/unstructured/core/partition.html#partition-pdf"""
 
@@ -286,29 +286,31 @@ class SourceMicrosoftOnedriveUnstructuredDocumentFormat(BaseModel):
         return m
 
 
-class SourceMicrosoftOnedriveFiletypeParquet(str, Enum):
+class SourceMicrosoftOnedriveFormatStreamsFormat4Filetype(str, Enum):
     PARQUET = "parquet"
 
 
-class SourceMicrosoftOnedriveParquetFormatTypedDict(TypedDict):
+class SourceMicrosoftOnedriveFormatParquetFormatTypedDict(TypedDict):
     decimal_as_float: NotRequired[bool]
     r"""Whether to convert decimal fields to floats. There is a loss of precision when converting decimals to floats, so this is not recommended."""
-    filetype: SourceMicrosoftOnedriveFiletypeParquet
+    filetype: SourceMicrosoftOnedriveFormatStreamsFormat4Filetype
 
 
-class SourceMicrosoftOnedriveParquetFormat(BaseModel):
+class SourceMicrosoftOnedriveFormatParquetFormat(BaseModel):
     decimal_as_float: Optional[bool] = False
     r"""Whether to convert decimal fields to floats. There is a loss of precision when converting decimals to floats, so this is not recommended."""
 
     FILETYPE: Annotated[
         Annotated[
-            Optional[SourceMicrosoftOnedriveFiletypeParquet],
+            Optional[SourceMicrosoftOnedriveFormatStreamsFormat4Filetype],
             AfterValidator(
-                validate_const(SourceMicrosoftOnedriveFiletypeParquet.PARQUET)
+                validate_const(
+                    SourceMicrosoftOnedriveFormatStreamsFormat4Filetype.PARQUET
+                )
             ),
         ],
         pydantic.Field(alias="filetype"),
-    ] = SourceMicrosoftOnedriveFiletypeParquet.PARQUET
+    ] = SourceMicrosoftOnedriveFormatStreamsFormat4Filetype.PARQUET
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
@@ -327,22 +329,24 @@ class SourceMicrosoftOnedriveParquetFormat(BaseModel):
         return m
 
 
-class SourceMicrosoftOnedriveFiletypeJsonl(str, Enum):
+class SourceMicrosoftOnedriveFormatStreamsFormatFiletype(str, Enum):
     JSONL = "jsonl"
 
 
-class SourceMicrosoftOnedriveJsonlFormatTypedDict(TypedDict):
-    filetype: SourceMicrosoftOnedriveFiletypeJsonl
+class SourceMicrosoftOnedriveFormatJsonlFormatTypedDict(TypedDict):
+    filetype: SourceMicrosoftOnedriveFormatStreamsFormatFiletype
 
 
-class SourceMicrosoftOnedriveJsonlFormat(BaseModel):
+class SourceMicrosoftOnedriveFormatJsonlFormat(BaseModel):
     FILETYPE: Annotated[
         Annotated[
-            Optional[SourceMicrosoftOnedriveFiletypeJsonl],
-            AfterValidator(validate_const(SourceMicrosoftOnedriveFiletypeJsonl.JSONL)),
+            Optional[SourceMicrosoftOnedriveFormatStreamsFormatFiletype],
+            AfterValidator(
+                validate_const(SourceMicrosoftOnedriveFormatStreamsFormatFiletype.JSONL)
+            ),
         ],
         pydantic.Field(alias="filetype"),
-    ] = SourceMicrosoftOnedriveFiletypeJsonl.JSONL
+    ] = SourceMicrosoftOnedriveFormatStreamsFormatFiletype.JSONL
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
@@ -361,35 +365,41 @@ class SourceMicrosoftOnedriveJsonlFormat(BaseModel):
         return m
 
 
-class SourceMicrosoftOnedriveFiletypeCsv(str, Enum):
+class SourceMicrosoftOnedriveFormatStreamsFiletype(str, Enum):
     CSV = "csv"
 
 
-class SourceMicrosoftOnedriveHeaderDefinitionTypeUserProvided(str, Enum):
+class SourceMicrosoftOnedriveCSVHeaderDefinitionStreamsFormatHeaderDefinitionType(
+    str, Enum
+):
     USER_PROVIDED = "User Provided"
 
 
-class SourceMicrosoftOnedriveUserProvidedTypedDict(TypedDict):
+class SourceMicrosoftOnedriveCSVHeaderDefinitionUserProvidedTypedDict(TypedDict):
     column_names: List[str]
     r"""The column names that will be used while emitting the CSV records"""
-    header_definition_type: SourceMicrosoftOnedriveHeaderDefinitionTypeUserProvided
+    header_definition_type: (
+        SourceMicrosoftOnedriveCSVHeaderDefinitionStreamsFormatHeaderDefinitionType
+    )
 
 
-class SourceMicrosoftOnedriveUserProvided(BaseModel):
+class SourceMicrosoftOnedriveCSVHeaderDefinitionUserProvided(BaseModel):
     column_names: List[str]
     r"""The column names that will be used while emitting the CSV records"""
 
     HEADER_DEFINITION_TYPE: Annotated[
         Annotated[
-            Optional[SourceMicrosoftOnedriveHeaderDefinitionTypeUserProvided],
+            Optional[
+                SourceMicrosoftOnedriveCSVHeaderDefinitionStreamsFormatHeaderDefinitionType
+            ],
             AfterValidator(
                 validate_const(
-                    SourceMicrosoftOnedriveHeaderDefinitionTypeUserProvided.USER_PROVIDED
+                    SourceMicrosoftOnedriveCSVHeaderDefinitionStreamsFormatHeaderDefinitionType.USER_PROVIDED
                 )
             ),
         ],
         pydantic.Field(alias="header_definition_type"),
-    ] = SourceMicrosoftOnedriveHeaderDefinitionTypeUserProvided.USER_PROVIDED
+    ] = SourceMicrosoftOnedriveCSVHeaderDefinitionStreamsFormatHeaderDefinitionType.USER_PROVIDED
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
@@ -408,26 +418,30 @@ class SourceMicrosoftOnedriveUserProvided(BaseModel):
         return m
 
 
-class SourceMicrosoftOnedriveHeaderDefinitionTypeAutogenerated(str, Enum):
+class SourceMicrosoftOnedriveCSVHeaderDefinitionStreamsHeaderDefinitionType(str, Enum):
     AUTOGENERATED = "Autogenerated"
 
 
-class SourceMicrosoftOnedriveAutogeneratedTypedDict(TypedDict):
-    header_definition_type: SourceMicrosoftOnedriveHeaderDefinitionTypeAutogenerated
+class SourceMicrosoftOnedriveCSVHeaderDefinitionAutogeneratedTypedDict(TypedDict):
+    header_definition_type: (
+        SourceMicrosoftOnedriveCSVHeaderDefinitionStreamsHeaderDefinitionType
+    )
 
 
-class SourceMicrosoftOnedriveAutogenerated(BaseModel):
+class SourceMicrosoftOnedriveCSVHeaderDefinitionAutogenerated(BaseModel):
     HEADER_DEFINITION_TYPE: Annotated[
         Annotated[
-            Optional[SourceMicrosoftOnedriveHeaderDefinitionTypeAutogenerated],
+            Optional[
+                SourceMicrosoftOnedriveCSVHeaderDefinitionStreamsHeaderDefinitionType
+            ],
             AfterValidator(
                 validate_const(
-                    SourceMicrosoftOnedriveHeaderDefinitionTypeAutogenerated.AUTOGENERATED
+                    SourceMicrosoftOnedriveCSVHeaderDefinitionStreamsHeaderDefinitionType.AUTOGENERATED
                 )
             ),
         ],
         pydantic.Field(alias="header_definition_type"),
-    ] = SourceMicrosoftOnedriveHeaderDefinitionTypeAutogenerated.AUTOGENERATED
+    ] = SourceMicrosoftOnedriveCSVHeaderDefinitionStreamsHeaderDefinitionType.AUTOGENERATED
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
@@ -446,26 +460,28 @@ class SourceMicrosoftOnedriveAutogenerated(BaseModel):
         return m
 
 
-class SourceMicrosoftOnedriveHeaderDefinitionTypeFromCsv(str, Enum):
+class SourceMicrosoftOnedriveCSVHeaderDefinitionHeaderDefinitionType(str, Enum):
     FROM_CSV = "From CSV"
 
 
-class SourceMicrosoftOnedriveFromCSVTypedDict(TypedDict):
-    header_definition_type: SourceMicrosoftOnedriveHeaderDefinitionTypeFromCsv
+class SourceMicrosoftOnedriveCSVHeaderDefinitionFromCSVTypedDict(TypedDict):
+    header_definition_type: (
+        SourceMicrosoftOnedriveCSVHeaderDefinitionHeaderDefinitionType
+    )
 
 
-class SourceMicrosoftOnedriveFromCSV(BaseModel):
+class SourceMicrosoftOnedriveCSVHeaderDefinitionFromCSV(BaseModel):
     HEADER_DEFINITION_TYPE: Annotated[
         Annotated[
-            Optional[SourceMicrosoftOnedriveHeaderDefinitionTypeFromCsv],
+            Optional[SourceMicrosoftOnedriveCSVHeaderDefinitionHeaderDefinitionType],
             AfterValidator(
                 validate_const(
-                    SourceMicrosoftOnedriveHeaderDefinitionTypeFromCsv.FROM_CSV
+                    SourceMicrosoftOnedriveCSVHeaderDefinitionHeaderDefinitionType.FROM_CSV
                 )
             ),
         ],
         pydantic.Field(alias="header_definition_type"),
-    ] = SourceMicrosoftOnedriveHeaderDefinitionTypeFromCsv.FROM_CSV
+    ] = SourceMicrosoftOnedriveCSVHeaderDefinitionHeaderDefinitionType.FROM_CSV
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
@@ -484,29 +500,29 @@ class SourceMicrosoftOnedriveFromCSV(BaseModel):
         return m
 
 
-SourceMicrosoftOnedriveCSVHeaderDefinitionTypedDict = TypeAliasType(
-    "SourceMicrosoftOnedriveCSVHeaderDefinitionTypedDict",
+SourceMicrosoftOnedriveFormatCSVHeaderDefinitionTypedDict = TypeAliasType(
+    "SourceMicrosoftOnedriveFormatCSVHeaderDefinitionTypedDict",
     Union[
-        SourceMicrosoftOnedriveFromCSVTypedDict,
-        SourceMicrosoftOnedriveAutogeneratedTypedDict,
-        SourceMicrosoftOnedriveUserProvidedTypedDict,
+        SourceMicrosoftOnedriveCSVHeaderDefinitionFromCSVTypedDict,
+        SourceMicrosoftOnedriveCSVHeaderDefinitionAutogeneratedTypedDict,
+        SourceMicrosoftOnedriveCSVHeaderDefinitionUserProvidedTypedDict,
     ],
 )
 r"""How headers will be defined. `User Provided` assumes the CSV does not have a header row and uses the headers provided and `Autogenerated` assumes the CSV does not have a header row and the CDK will generate headers using for `f{i}` where `i` is the index starting from 0. Else, the default behavior is to use the header from the CSV file. If a user wants to autogenerate or provide column names for a CSV having headers, they can skip rows."""
 
 
-SourceMicrosoftOnedriveCSVHeaderDefinition = TypeAliasType(
-    "SourceMicrosoftOnedriveCSVHeaderDefinition",
+SourceMicrosoftOnedriveFormatCSVHeaderDefinition = TypeAliasType(
+    "SourceMicrosoftOnedriveFormatCSVHeaderDefinition",
     Union[
-        SourceMicrosoftOnedriveFromCSV,
-        SourceMicrosoftOnedriveAutogenerated,
-        SourceMicrosoftOnedriveUserProvided,
+        SourceMicrosoftOnedriveCSVHeaderDefinitionFromCSV,
+        SourceMicrosoftOnedriveCSVHeaderDefinitionAutogenerated,
+        SourceMicrosoftOnedriveCSVHeaderDefinitionUserProvided,
     ],
 )
 r"""How headers will be defined. `User Provided` assumes the CSV does not have a header row and uses the headers provided and `Autogenerated` assumes the CSV does not have a header row and the CDK will generate headers using for `f{i}` where `i` is the index starting from 0. Else, the default behavior is to use the header from the CSV file. If a user wants to autogenerate or provide column names for a CSV having headers, they can skip rows."""
 
 
-class SourceMicrosoftOnedriveCSVFormatTypedDict(TypedDict):
+class SourceMicrosoftOnedriveFormatCSVFormatTypedDict(TypedDict):
     delimiter: NotRequired[str]
     r"""The character delimiting individual cells in the CSV data. This may only be a 1-character string. For tab-delimited data enter '\t'."""
     double_quote: NotRequired[bool]
@@ -517,8 +533,10 @@ class SourceMicrosoftOnedriveCSVFormatTypedDict(TypedDict):
     r"""The character used for escaping special characters. To disallow escaping, leave this field blank."""
     false_values: NotRequired[List[str]]
     r"""A set of case-sensitive strings that should be interpreted as false values."""
-    filetype: SourceMicrosoftOnedriveFiletypeCsv
-    header_definition: NotRequired[SourceMicrosoftOnedriveCSVHeaderDefinitionTypedDict]
+    filetype: SourceMicrosoftOnedriveFormatStreamsFiletype
+    header_definition: NotRequired[
+        SourceMicrosoftOnedriveFormatCSVHeaderDefinitionTypedDict
+    ]
     r"""How headers will be defined. `User Provided` assumes the CSV does not have a header row and uses the headers provided and `Autogenerated` assumes the CSV does not have a header row and the CDK will generate headers using for `f{i}` where `i` is the index starting from 0. Else, the default behavior is to use the header from the CSV file. If a user wants to autogenerate or provide column names for a CSV having headers, they can skip rows."""
     ignore_errors_on_fields_mismatch: NotRequired[bool]
     r"""Whether to ignore errors that occur when the number of fields in the CSV does not match the number of columns in the schema."""
@@ -536,7 +554,7 @@ class SourceMicrosoftOnedriveCSVFormatTypedDict(TypedDict):
     r"""A set of case-sensitive strings that should be interpreted as true values."""
 
 
-class SourceMicrosoftOnedriveCSVFormat(BaseModel):
+class SourceMicrosoftOnedriveFormatCSVFormat(BaseModel):
     delimiter: Optional[str] = ","
     r"""The character delimiting individual cells in the CSV data. This may only be a 1-character string. For tab-delimited data enter '\t'."""
 
@@ -554,13 +572,15 @@ class SourceMicrosoftOnedriveCSVFormat(BaseModel):
 
     FILETYPE: Annotated[
         Annotated[
-            Optional[SourceMicrosoftOnedriveFiletypeCsv],
-            AfterValidator(validate_const(SourceMicrosoftOnedriveFiletypeCsv.CSV)),
+            Optional[SourceMicrosoftOnedriveFormatStreamsFiletype],
+            AfterValidator(
+                validate_const(SourceMicrosoftOnedriveFormatStreamsFiletype.CSV)
+            ),
         ],
         pydantic.Field(alias="filetype"),
-    ] = SourceMicrosoftOnedriveFiletypeCsv.CSV
+    ] = SourceMicrosoftOnedriveFormatStreamsFiletype.CSV
 
-    header_definition: Optional[SourceMicrosoftOnedriveCSVHeaderDefinition] = None
+    header_definition: Optional[SourceMicrosoftOnedriveFormatCSVHeaderDefinition] = None
     r"""How headers will be defined. `User Provided` assumes the CSV does not have a header row and uses the headers provided and `Autogenerated` assumes the CSV does not have a header row and the CDK will generate headers using for `f{i}` where `i` is the index starting from 0. Else, the default behavior is to use the header from the CSV file. If a user wants to autogenerate or provide column names for a CSV having headers, they can skip rows."""
 
     ignore_errors_on_fields_mismatch: Optional[bool] = False
@@ -618,27 +638,27 @@ class SourceMicrosoftOnedriveCSVFormat(BaseModel):
         return m
 
 
-class SourceMicrosoftOnedriveFiletypeAvro(str, Enum):
+class SourceMicrosoftOnedriveFormatFiletype(str, Enum):
     AVRO = "avro"
 
 
-class SourceMicrosoftOnedriveAvroFormatTypedDict(TypedDict):
+class SourceMicrosoftOnedriveFormatAvroFormatTypedDict(TypedDict):
     double_as_string: NotRequired[bool]
     r"""Whether to convert double fields to strings. This is recommended if you have decimal numbers with a high degree of precision because there can be a loss precision when handling floating point numbers."""
-    filetype: SourceMicrosoftOnedriveFiletypeAvro
+    filetype: SourceMicrosoftOnedriveFormatFiletype
 
 
-class SourceMicrosoftOnedriveAvroFormat(BaseModel):
+class SourceMicrosoftOnedriveFormatAvroFormat(BaseModel):
     double_as_string: Optional[bool] = False
     r"""Whether to convert double fields to strings. This is recommended if you have decimal numbers with a high degree of precision because there can be a loss precision when handling floating point numbers."""
 
     FILETYPE: Annotated[
         Annotated[
-            Optional[SourceMicrosoftOnedriveFiletypeAvro],
-            AfterValidator(validate_const(SourceMicrosoftOnedriveFiletypeAvro.AVRO)),
+            Optional[SourceMicrosoftOnedriveFormatFiletype],
+            AfterValidator(validate_const(SourceMicrosoftOnedriveFormatFiletype.AVRO)),
         ],
         pydantic.Field(alias="filetype"),
-    ] = SourceMicrosoftOnedriveFiletypeAvro.AVRO
+    ] = SourceMicrosoftOnedriveFormatFiletype.AVRO
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
@@ -660,11 +680,11 @@ class SourceMicrosoftOnedriveAvroFormat(BaseModel):
 SourceMicrosoftOnedriveFormatTypedDict = TypeAliasType(
     "SourceMicrosoftOnedriveFormatTypedDict",
     Union[
-        SourceMicrosoftOnedriveJsonlFormatTypedDict,
-        SourceMicrosoftOnedriveAvroFormatTypedDict,
-        SourceMicrosoftOnedriveParquetFormatTypedDict,
-        SourceMicrosoftOnedriveUnstructuredDocumentFormatTypedDict,
-        SourceMicrosoftOnedriveCSVFormatTypedDict,
+        SourceMicrosoftOnedriveFormatJsonlFormatTypedDict,
+        SourceMicrosoftOnedriveFormatAvroFormatTypedDict,
+        SourceMicrosoftOnedriveFormatParquetFormatTypedDict,
+        SourceMicrosoftOnedriveFormatUnstructuredDocumentFormatTypedDict,
+        SourceMicrosoftOnedriveFormatCSVFormatTypedDict,
     ],
 )
 r"""The configuration options that are used to alter how to read incoming files that deviate from the standard formatting."""
@@ -673,11 +693,11 @@ r"""The configuration options that are used to alter how to read incoming files 
 SourceMicrosoftOnedriveFormat = TypeAliasType(
     "SourceMicrosoftOnedriveFormat",
     Union[
-        SourceMicrosoftOnedriveJsonlFormat,
-        SourceMicrosoftOnedriveAvroFormat,
-        SourceMicrosoftOnedriveParquetFormat,
-        SourceMicrosoftOnedriveUnstructuredDocumentFormat,
-        SourceMicrosoftOnedriveCSVFormat,
+        SourceMicrosoftOnedriveFormatJsonlFormat,
+        SourceMicrosoftOnedriveFormatAvroFormat,
+        SourceMicrosoftOnedriveFormatParquetFormat,
+        SourceMicrosoftOnedriveFormatUnstructuredDocumentFormat,
+        SourceMicrosoftOnedriveFormatCSVFormat,
     ],
 )
 r"""The configuration options that are used to alter how to read incoming files that deviate from the standard formatting."""
@@ -770,9 +790,9 @@ class SourceMicrosoftOnedriveTypedDict(TypedDict):
     r"""Name of the Microsoft OneDrive drive where the file(s) exist."""
     folder_path: NotRequired[str]
     r"""Path to a specific folder within the drives to search for files. Leave empty to search all folders of the drives. This does not apply to shared items."""
-    search_scope: NotRequired[SourceMicrosoftOnedriveSearchScope]
+    search_scope: NotRequired[SearchScope]
     r"""Specifies the location(s) to search for files. Valid options are 'ACCESSIBLE_DRIVES' to search in the selected OneDrive drive, 'SHARED_ITEMS' for shared items the user has access to, and 'ALL' to search both."""
-    source_type: MicrosoftOnedriveEnum
+    source_type: SourceMicrosoftOnedriveMicrosoftOnedrive
     start_date: NotRequired[datetime]
     r"""UTC date and time in the format 2017-01-25T00:00:00.000000Z. Any file modified before this date will not be replicated."""
 
@@ -794,18 +814,20 @@ class SourceMicrosoftOnedrive(BaseModel):
     folder_path: Optional[str] = "."
     r"""Path to a specific folder within the drives to search for files. Leave empty to search all folders of the drives. This does not apply to shared items."""
 
-    search_scope: Optional[SourceMicrosoftOnedriveSearchScope] = (
-        SourceMicrosoftOnedriveSearchScope.ALL
-    )
+    search_scope: Optional[SearchScope] = SearchScope.ALL
     r"""Specifies the location(s) to search for files. Valid options are 'ACCESSIBLE_DRIVES' to search in the selected OneDrive drive, 'SHARED_ITEMS' for shared items the user has access to, and 'ALL' to search both."""
 
     SOURCE_TYPE: Annotated[
         Annotated[
-            MicrosoftOnedriveEnum,
-            AfterValidator(validate_const(MicrosoftOnedriveEnum.MICROSOFT_ONEDRIVE)),
+            SourceMicrosoftOnedriveMicrosoftOnedrive,
+            AfterValidator(
+                validate_const(
+                    SourceMicrosoftOnedriveMicrosoftOnedrive.MICROSOFT_ONEDRIVE
+                )
+            ),
         ],
         pydantic.Field(alias="sourceType"),
-    ] = MicrosoftOnedriveEnum.MICROSOFT_ONEDRIVE
+    ] = SourceMicrosoftOnedriveMicrosoftOnedrive.MICROSOFT_ONEDRIVE
 
     start_date: Optional[datetime] = None
     r"""UTC date and time in the format 2017-01-25T00:00:00.000000Z. Any file modified before this date will not be replicated."""
@@ -830,47 +852,47 @@ class SourceMicrosoftOnedrive(BaseModel):
 
 
 try:
-    SourceMicrosoftOnedriveServiceKeyAuthentication.model_rebuild()
+    ServiceKeyAuthentication.model_rebuild()
 except NameError:
     pass
 try:
-    SourceMicrosoftOnedriveAuthenticateViaMicrosoftOAuth.model_rebuild()
+    AuthenticateViaMicrosoftOAuth.model_rebuild()
 except NameError:
     pass
 try:
-    SourceMicrosoftOnedriveLocal.model_rebuild()
+    SourceMicrosoftOnedriveProcessingLocal.model_rebuild()
 except NameError:
     pass
 try:
-    SourceMicrosoftOnedriveUnstructuredDocumentFormat.model_rebuild()
+    SourceMicrosoftOnedriveFormatUnstructuredDocumentFormat.model_rebuild()
 except NameError:
     pass
 try:
-    SourceMicrosoftOnedriveParquetFormat.model_rebuild()
+    SourceMicrosoftOnedriveFormatParquetFormat.model_rebuild()
 except NameError:
     pass
 try:
-    SourceMicrosoftOnedriveJsonlFormat.model_rebuild()
+    SourceMicrosoftOnedriveFormatJsonlFormat.model_rebuild()
 except NameError:
     pass
 try:
-    SourceMicrosoftOnedriveUserProvided.model_rebuild()
+    SourceMicrosoftOnedriveCSVHeaderDefinitionUserProvided.model_rebuild()
 except NameError:
     pass
 try:
-    SourceMicrosoftOnedriveAutogenerated.model_rebuild()
+    SourceMicrosoftOnedriveCSVHeaderDefinitionAutogenerated.model_rebuild()
 except NameError:
     pass
 try:
-    SourceMicrosoftOnedriveFromCSV.model_rebuild()
+    SourceMicrosoftOnedriveCSVHeaderDefinitionFromCSV.model_rebuild()
 except NameError:
     pass
 try:
-    SourceMicrosoftOnedriveCSVFormat.model_rebuild()
+    SourceMicrosoftOnedriveFormatCSVFormat.model_rebuild()
 except NameError:
     pass
 try:
-    SourceMicrosoftOnedriveAvroFormat.model_rebuild()
+    SourceMicrosoftOnedriveFormatAvroFormat.model_rebuild()
 except NameError:
     pass
 try:

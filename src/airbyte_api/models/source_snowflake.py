@@ -11,19 +11,19 @@ from typing import Any, Dict, Optional, Union
 from typing_extensions import Annotated, NotRequired, TypeAliasType, TypedDict
 
 
-class AuthTypeUsernamePassword(str, Enum):
+class SourceSnowflakeAuthorizationMethodCredentialsAuthType(str, Enum):
     USERNAME_PASSWORD = "username/password"
 
 
-class SourceSnowflakeUsernameAndPasswordTypedDict(TypedDict):
+class AuthorizationMethodUsernameAndPasswordTypedDict(TypedDict):
     password: str
     r"""The password associated with the username."""
     username: str
     r"""The username you created to allow Airbyte to access the database."""
-    auth_type: NotRequired[AuthTypeUsernamePassword]
+    auth_type: NotRequired[SourceSnowflakeAuthorizationMethodCredentialsAuthType]
 
 
-class SourceSnowflakeUsernameAndPassword(BaseModel):
+class AuthorizationMethodUsernameAndPassword(BaseModel):
     model_config = ConfigDict(
         populate_by_name=True, arbitrary_types_allowed=True, extra="allow"
     )
@@ -35,8 +35,8 @@ class SourceSnowflakeUsernameAndPassword(BaseModel):
     username: str
     r"""The username you created to allow Airbyte to access the database."""
 
-    auth_type: Optional[AuthTypeUsernamePassword] = (
-        AuthTypeUsernamePassword.USERNAME_PASSWORD
+    auth_type: Optional[SourceSnowflakeAuthorizationMethodCredentialsAuthType] = (
+        SourceSnowflakeAuthorizationMethodCredentialsAuthType.USERNAME_PASSWORD
     )
 
     @property
@@ -67,21 +67,21 @@ class SourceSnowflakeUsernameAndPassword(BaseModel):
         return m
 
 
-class SourceSnowflakeAuthTypeKeyPairAuthentication(str, Enum):
+class SourceSnowflakeAuthorizationMethodAuthType(str, Enum):
     KEY_PAIR_AUTHENTICATION = "Key Pair Authentication"
 
 
-class SourceSnowflakeKeyPairAuthenticationTypedDict(TypedDict):
+class AuthorizationMethodKeyPairAuthenticationTypedDict(TypedDict):
     private_key: str
     r"""RSA Private key to use for Snowflake connection. See the <a href=\"https://docs.airbyte.com/integrations/sources/snowflake#key-pair-authentication\">docs</a> for more information on how to obtain this key."""
     username: str
     r"""The username you created to allow Airbyte to access the database."""
-    auth_type: NotRequired[SourceSnowflakeAuthTypeKeyPairAuthentication]
+    auth_type: NotRequired[SourceSnowflakeAuthorizationMethodAuthType]
     private_key_password: NotRequired[str]
     r"""Passphrase for private key"""
 
 
-class SourceSnowflakeKeyPairAuthentication(BaseModel):
+class AuthorizationMethodKeyPairAuthentication(BaseModel):
     model_config = ConfigDict(
         populate_by_name=True, arbitrary_types_allowed=True, extra="allow"
     )
@@ -93,8 +93,8 @@ class SourceSnowflakeKeyPairAuthentication(BaseModel):
     username: str
     r"""The username you created to allow Airbyte to access the database."""
 
-    auth_type: Optional[SourceSnowflakeAuthTypeKeyPairAuthentication] = (
-        SourceSnowflakeAuthTypeKeyPairAuthentication.KEY_PAIR_AUTHENTICATION
+    auth_type: Optional[SourceSnowflakeAuthorizationMethodAuthType] = (
+        SourceSnowflakeAuthorizationMethodAuthType.KEY_PAIR_AUTHENTICATION
     )
 
     private_key_password: Optional[str] = None
@@ -131,29 +131,31 @@ class SourceSnowflakeKeyPairAuthentication(BaseModel):
 SourceSnowflakeAuthorizationMethodTypedDict = TypeAliasType(
     "SourceSnowflakeAuthorizationMethodTypedDict",
     Union[
-        SourceSnowflakeUsernameAndPasswordTypedDict,
-        SourceSnowflakeKeyPairAuthenticationTypedDict,
+        AuthorizationMethodUsernameAndPasswordTypedDict,
+        AuthorizationMethodKeyPairAuthenticationTypedDict,
     ],
 )
 
 
 SourceSnowflakeAuthorizationMethod = TypeAliasType(
     "SourceSnowflakeAuthorizationMethod",
-    Union[SourceSnowflakeUsernameAndPassword, SourceSnowflakeKeyPairAuthentication],
+    Union[
+        AuthorizationMethodUsernameAndPassword, AuthorizationMethodKeyPairAuthentication
+    ],
 )
 
 
-class SourceSnowflakeCursorMethod(str, Enum):
+class SourceSnowflakeUpdateMethodCursorMethod(str, Enum):
     USER_DEFINED = "user_defined"
 
 
-class SourceSnowflakeScanChangesWithUserDefinedCursorTypedDict(TypedDict):
+class SourceSnowflakeUpdateMethodScanChangesWithUserDefinedCursorTypedDict(TypedDict):
     r"""Incrementally detects new inserts and updates using the <a href=\"https://docs.airbyte.com/understanding-airbyte/connections/incremental-append/#user-defined-cursor\">cursor column</a> chosen when configuring a connection (e.g. created_at, updated_at)."""
 
-    cursor_method: NotRequired[SourceSnowflakeCursorMethod]
+    cursor_method: NotRequired[SourceSnowflakeUpdateMethodCursorMethod]
 
 
-class SourceSnowflakeScanChangesWithUserDefinedCursor(BaseModel):
+class SourceSnowflakeUpdateMethodScanChangesWithUserDefinedCursor(BaseModel):
     r"""Incrementally detects new inserts and updates using the <a href=\"https://docs.airbyte.com/understanding-airbyte/connections/incremental-append/#user-defined-cursor\">cursor column</a> chosen when configuring a connection (e.g. created_at, updated_at)."""
 
     model_config = ConfigDict(
@@ -161,8 +163,8 @@ class SourceSnowflakeScanChangesWithUserDefinedCursor(BaseModel):
     )
     __pydantic_extra__: Dict[str, Any] = pydantic.Field(init=False)
 
-    cursor_method: Optional[SourceSnowflakeCursorMethod] = (
-        SourceSnowflakeCursorMethod.USER_DEFINED
+    cursor_method: Optional[SourceSnowflakeUpdateMethodCursorMethod] = (
+        SourceSnowflakeUpdateMethodCursorMethod.USER_DEFINED
     )
 
     @property
@@ -194,12 +196,14 @@ class SourceSnowflakeScanChangesWithUserDefinedCursor(BaseModel):
 
 
 SourceSnowflakeUpdateMethodTypedDict = (
-    SourceSnowflakeScanChangesWithUserDefinedCursorTypedDict
+    SourceSnowflakeUpdateMethodScanChangesWithUserDefinedCursorTypedDict
 )
 r"""Configures how data is extracted from the database."""
 
 
-SourceSnowflakeUpdateMethod = SourceSnowflakeScanChangesWithUserDefinedCursor
+SourceSnowflakeUpdateMethod = (
+    SourceSnowflakeUpdateMethodScanChangesWithUserDefinedCursor
+)
 r"""Configures how data is extracted from the database."""
 
 

@@ -15,26 +15,26 @@ class SourceClickhouseClickhouse(str, Enum):
     CLICKHOUSE = "clickhouse"
 
 
-class SourceClickhouseTunnelMethodSSHPasswordAuth(str, Enum):
+class SourceClickhouseSSHTunnelMethodTunnelMethod3TunnelMethod(str, Enum):
     r"""Connect through a jump server tunnel host using username and password authentication"""
 
     SSH_PASSWORD_AUTH = "SSH_PASSWORD_AUTH"
 
 
-class SourceClickhousePasswordAuthenticationTypedDict(TypedDict):
+class SourceClickhouseSSHTunnelMethodPasswordAuthenticationTypedDict(TypedDict):
     tunnel_host: str
     r"""Hostname of the jump server host that allows inbound ssh tunnel."""
     tunnel_user: str
     r"""OS-level username for logging into the jump server host"""
     tunnel_user_password: str
     r"""OS-level password for logging into the jump server host"""
-    tunnel_method: SourceClickhouseTunnelMethodSSHPasswordAuth
+    tunnel_method: SourceClickhouseSSHTunnelMethodTunnelMethod3TunnelMethod
     r"""Connect through a jump server tunnel host using username and password authentication"""
     tunnel_port: NotRequired[int]
     r"""Port on the proxy/jump server that accepts inbound ssh connections."""
 
 
-class SourceClickhousePasswordAuthentication(BaseModel):
+class SourceClickhouseSSHTunnelMethodPasswordAuthentication(BaseModel):
     tunnel_host: str
     r"""Hostname of the jump server host that allows inbound ssh tunnel."""
 
@@ -46,15 +46,15 @@ class SourceClickhousePasswordAuthentication(BaseModel):
 
     TUNNEL_METHOD: Annotated[
         Annotated[
-            SourceClickhouseTunnelMethodSSHPasswordAuth,
+            SourceClickhouseSSHTunnelMethodTunnelMethod3TunnelMethod,
             AfterValidator(
                 validate_const(
-                    SourceClickhouseTunnelMethodSSHPasswordAuth.SSH_PASSWORD_AUTH
+                    SourceClickhouseSSHTunnelMethodTunnelMethod3TunnelMethod.SSH_PASSWORD_AUTH
                 )
             ),
         ],
         pydantic.Field(alias="tunnel_method"),
-    ] = SourceClickhouseTunnelMethodSSHPasswordAuth.SSH_PASSWORD_AUTH
+    ] = SourceClickhouseSSHTunnelMethodTunnelMethod3TunnelMethod.SSH_PASSWORD_AUTH
     r"""Connect through a jump server tunnel host using username and password authentication"""
 
     tunnel_port: Optional[int] = 22
@@ -77,26 +77,26 @@ class SourceClickhousePasswordAuthentication(BaseModel):
         return m
 
 
-class SourceClickhouseTunnelMethodSSHKeyAuth(str, Enum):
+class SourceClickhouseSSHTunnelMethodTunnelMethodTunnelMethod(str, Enum):
     r"""Connect through a jump server tunnel host using username and ssh key"""
 
     SSH_KEY_AUTH = "SSH_KEY_AUTH"
 
 
-class SourceClickhouseSSHKeyAuthenticationTypedDict(TypedDict):
+class SourceClickhouseSSHTunnelMethodSSHKeyAuthenticationTypedDict(TypedDict):
     ssh_key: str
     r"""OS-level user account ssh key credentials in RSA PEM format ( created with ssh-keygen -t rsa -m PEM -f myuser_rsa )"""
     tunnel_host: str
     r"""Hostname of the jump server host that allows inbound ssh tunnel."""
     tunnel_user: str
     r"""OS-level username for logging into the jump server host."""
-    tunnel_method: SourceClickhouseTunnelMethodSSHKeyAuth
+    tunnel_method: SourceClickhouseSSHTunnelMethodTunnelMethodTunnelMethod
     r"""Connect through a jump server tunnel host using username and ssh key"""
     tunnel_port: NotRequired[int]
     r"""Port on the proxy/jump server that accepts inbound ssh connections."""
 
 
-class SourceClickhouseSSHKeyAuthentication(BaseModel):
+class SourceClickhouseSSHTunnelMethodSSHKeyAuthentication(BaseModel):
     ssh_key: str
     r"""OS-level user account ssh key credentials in RSA PEM format ( created with ssh-keygen -t rsa -m PEM -f myuser_rsa )"""
 
@@ -108,13 +108,15 @@ class SourceClickhouseSSHKeyAuthentication(BaseModel):
 
     TUNNEL_METHOD: Annotated[
         Annotated[
-            SourceClickhouseTunnelMethodSSHKeyAuth,
+            SourceClickhouseSSHTunnelMethodTunnelMethodTunnelMethod,
             AfterValidator(
-                validate_const(SourceClickhouseTunnelMethodSSHKeyAuth.SSH_KEY_AUTH)
+                validate_const(
+                    SourceClickhouseSSHTunnelMethodTunnelMethodTunnelMethod.SSH_KEY_AUTH
+                )
             ),
         ],
         pydantic.Field(alias="tunnel_method"),
-    ] = SourceClickhouseTunnelMethodSSHKeyAuth.SSH_KEY_AUTH
+    ] = SourceClickhouseSSHTunnelMethodTunnelMethodTunnelMethod.SSH_KEY_AUTH
     r"""Connect through a jump server tunnel host using username and ssh key"""
 
     tunnel_port: Optional[int] = 22
@@ -137,36 +139,36 @@ class SourceClickhouseSSHKeyAuthentication(BaseModel):
         return m
 
 
-class SourceClickhouseTunnelMethodNoTunnel(str, Enum):
+class SourceClickhouseSSHTunnelMethodTunnelMethod(str, Enum):
     r"""No ssh tunnel needed to connect to database"""
 
     NO_TUNNEL = "NO_TUNNEL"
 
 
-class SourceClickhouseNoTunnelTypedDict(TypedDict):
-    tunnel_method: SourceClickhouseTunnelMethodNoTunnel
+class SourceClickhouseSSHTunnelMethodNoTunnelTypedDict(TypedDict):
+    tunnel_method: SourceClickhouseSSHTunnelMethodTunnelMethod
     r"""No ssh tunnel needed to connect to database"""
 
 
-class SourceClickhouseNoTunnel(BaseModel):
+class SourceClickhouseSSHTunnelMethodNoTunnel(BaseModel):
     TUNNEL_METHOD: Annotated[
         Annotated[
-            SourceClickhouseTunnelMethodNoTunnel,
+            SourceClickhouseSSHTunnelMethodTunnelMethod,
             AfterValidator(
-                validate_const(SourceClickhouseTunnelMethodNoTunnel.NO_TUNNEL)
+                validate_const(SourceClickhouseSSHTunnelMethodTunnelMethod.NO_TUNNEL)
             ),
         ],
         pydantic.Field(alias="tunnel_method"),
-    ] = SourceClickhouseTunnelMethodNoTunnel.NO_TUNNEL
+    ] = SourceClickhouseSSHTunnelMethodTunnelMethod.NO_TUNNEL
     r"""No ssh tunnel needed to connect to database"""
 
 
 SourceClickhouseSSHTunnelMethodTypedDict = TypeAliasType(
     "SourceClickhouseSSHTunnelMethodTypedDict",
     Union[
-        SourceClickhouseNoTunnelTypedDict,
-        SourceClickhouseSSHKeyAuthenticationTypedDict,
-        SourceClickhousePasswordAuthenticationTypedDict,
+        SourceClickhouseSSHTunnelMethodNoTunnelTypedDict,
+        SourceClickhouseSSHTunnelMethodSSHKeyAuthenticationTypedDict,
+        SourceClickhouseSSHTunnelMethodPasswordAuthenticationTypedDict,
     ],
 )
 r"""Whether to initiate an SSH tunnel before connecting to the database, and if so, which kind of authentication to use."""
@@ -174,9 +176,14 @@ r"""Whether to initiate an SSH tunnel before connecting to the database, and if 
 
 SourceClickhouseSSHTunnelMethod = Annotated[
     Union[
-        Annotated[SourceClickhouseNoTunnel, Tag("NO_TUNNEL")],
-        Annotated[SourceClickhouseSSHKeyAuthentication, Tag("SSH_KEY_AUTH")],
-        Annotated[SourceClickhousePasswordAuthentication, Tag("SSH_PASSWORD_AUTH")],
+        Annotated[SourceClickhouseSSHTunnelMethodNoTunnel, Tag("NO_TUNNEL")],
+        Annotated[
+            SourceClickhouseSSHTunnelMethodSSHKeyAuthentication, Tag("SSH_KEY_AUTH")
+        ],
+        Annotated[
+            SourceClickhouseSSHTunnelMethodPasswordAuthentication,
+            Tag("SSH_PASSWORD_AUTH"),
+        ],
     ],
     Discriminator(lambda m: get_discriminator(m, "tunnel_method", "tunnel_method")),
 ]
@@ -256,15 +263,15 @@ class SourceClickhouse(BaseModel):
 
 
 try:
-    SourceClickhousePasswordAuthentication.model_rebuild()
+    SourceClickhouseSSHTunnelMethodPasswordAuthentication.model_rebuild()
 except NameError:
     pass
 try:
-    SourceClickhouseSSHKeyAuthentication.model_rebuild()
+    SourceClickhouseSSHTunnelMethodSSHKeyAuthentication.model_rebuild()
 except NameError:
     pass
 try:
-    SourceClickhouseNoTunnel.model_rebuild()
+    SourceClickhouseSSHTunnelMethodNoTunnel.model_rebuild()
 except NameError:
     pass
 try:

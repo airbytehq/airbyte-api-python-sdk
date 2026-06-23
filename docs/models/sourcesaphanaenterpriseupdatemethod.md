@@ -5,15 +5,15 @@ Configures how data is extracted from the database.
 
 ## Supported Types
 
-### `models.SourceSapHanaEnterpriseScanChangesWithUserDefinedCursor`
+### `models.SourceSapHanaEnterpriseUpdateMethodScanChangesWithUserDefinedCursor`
 
 ```python
-value: models.SourceSapHanaEnterpriseScanChangesWithUserDefinedCursor = /* values here */
+value: models.SourceSapHanaEnterpriseUpdateMethodScanChangesWithUserDefinedCursor = /* values here */
 ```
 
-### `models.SourceSapHanaEnterpriseReadChangesUsingChangeDataCaptureCDC`
+### `models.SourceSapHanaEnterpriseUpdateMethodReadChangesUsingChangeDataCaptureCDC`
 
 ```python
-value: models.SourceSapHanaEnterpriseReadChangesUsingChangeDataCaptureCDC = /* values here */
+value: models.SourceSapHanaEnterpriseUpdateMethodReadChangesUsingChangeDataCaptureCDC = /* values here */
 ```
 

@@ -1,0 +1,8 @@
+# DestinationMongodbSSHTunnelMethodNoTunnel
+
+
+## Fields
+
+| Field                                                                                                              | Type                                                                                                               | Required                                                                                                           | Description                                                                                                        |
+| ------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------ |
+| `tunnel_method`                                                                                                    | [models.DestinationMongodbSSHTunnelMethodTunnelMethod](../models/destinationmongodbsshtunnelmethodtunnelmethod.md) | :heavy_check_mark:                                                                                                 | No ssh tunnel needed to connect to database                                                                        |

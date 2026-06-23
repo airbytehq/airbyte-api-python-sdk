@@ -12,39 +12,39 @@ SSL connection modes.
 
 ## Supported Types
 
-### `models.DestinationTeradataDisable`
+### `models.DestinationTeradataSSLModesDisable`
 
 ```python
-value: models.DestinationTeradataDisable = /* values here */
+value: models.DestinationTeradataSSLModesDisable = /* values here */
 ```
 
-### `models.DestinationTeradataAllow`
+### `models.SSLModesAllow`
 
 ```python
-value: models.DestinationTeradataAllow = /* values here */
+value: models.SSLModesAllow = /* values here */
 ```
 
-### `models.DestinationTeradataPrefer`
+### `models.SSLModesPrefer`
 
 ```python
-value: models.DestinationTeradataPrefer = /* values here */
+value: models.SSLModesPrefer = /* values here */
 ```
 
-### `models.DestinationTeradataRequire`
+### `models.SSLModesRequire`
 
 ```python
-value: models.DestinationTeradataRequire = /* values here */
+value: models.SSLModesRequire = /* values here */
 ```
 
-### `models.DestinationTeradataVerifyCa`
+### `models.SSLModesVerifyCa`
 
 ```python
-value: models.DestinationTeradataVerifyCa = /* values here */
+value: models.SSLModesVerifyCa = /* values here */
 ```
 
-### `models.DestinationTeradataVerifyFull`
+### `models.DestinationTeradataSSLModesVerifyFull`
 
 ```python
-value: models.DestinationTeradataVerifyFull = /* values here */
+value: models.DestinationTeradataSSLModesVerifyFull = /* values here */
 ```
 

@@ -25,26 +25,31 @@ class FileFormat(str, Enum):
     YAML = "yaml"
 
 
-class StorageLocal(str, Enum):
+class SourceFileStorageProviderProvider8Storage(str, Enum):
     r"""WARNING: Note that the local storage URL available for reading must start with the local mount \"/local/\" at the moment until we implement more advanced docker mounting options."""
 
     LOCAL = "local"
 
 
 class LocalFilesystemLimitedTypedDict(TypedDict):
-    storage: StorageLocal
+    storage: SourceFileStorageProviderProvider8Storage
     r"""WARNING: Note that the local storage URL available for reading must start with the local mount \"/local/\" at the moment until we implement more advanced docker mounting options."""
 
 
 class LocalFilesystemLimited(BaseModel):
     STORAGE: Annotated[
-        Annotated[StorageLocal, AfterValidator(validate_const(StorageLocal.LOCAL))],
+        Annotated[
+            SourceFileStorageProviderProvider8Storage,
+            AfterValidator(
+                validate_const(SourceFileStorageProviderProvider8Storage.LOCAL)
+            ),
+        ],
         pydantic.Field(alias="storage"),
-    ] = StorageLocal.LOCAL
+    ] = SourceFileStorageProviderProvider8Storage.LOCAL
     r"""WARNING: Note that the local storage URL available for reading must start with the local mount \"/local/\" at the moment until we implement more advanced docker mounting options."""
 
 
-class StorageSftp(str, Enum):
+class SourceFileStorageProviderProvider7Storage(str, Enum):
     SFTP = "SFTP"
 
 
@@ -53,7 +58,7 @@ class SFTPSecureFileTransferProtocolTypedDict(TypedDict):
     user: str
     password: NotRequired[str]
     port: NotRequired[str]
-    storage: StorageSftp
+    storage: SourceFileStorageProviderProvider7Storage
 
 
 class SFTPSecureFileTransferProtocol(BaseModel):
@@ -66,9 +71,14 @@ class SFTPSecureFileTransferProtocol(BaseModel):
     port: Optional[str] = "22"
 
     STORAGE: Annotated[
-        Annotated[StorageSftp, AfterValidator(validate_const(StorageSftp.SFTP))],
+        Annotated[
+            SourceFileStorageProviderProvider7Storage,
+            AfterValidator(
+                validate_const(SourceFileStorageProviderProvider7Storage.SFTP)
+            ),
+        ],
         pydantic.Field(alias="storage"),
-    ] = StorageSftp.SFTP
+    ] = SourceFileStorageProviderProvider7Storage.SFTP
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
@@ -87,7 +97,7 @@ class SFTPSecureFileTransferProtocol(BaseModel):
         return m
 
 
-class StorageScp(str, Enum):
+class SourceFileStorageProviderProvider6Storage(str, Enum):
     SCP = "SCP"
 
 
@@ -96,7 +106,7 @@ class SCPSecureCopyProtocolTypedDict(TypedDict):
     user: str
     password: NotRequired[str]
     port: NotRequired[str]
-    storage: StorageScp
+    storage: SourceFileStorageProviderProvider6Storage
 
 
 class SCPSecureCopyProtocol(BaseModel):
@@ -109,9 +119,14 @@ class SCPSecureCopyProtocol(BaseModel):
     port: Optional[str] = "22"
 
     STORAGE: Annotated[
-        Annotated[StorageScp, AfterValidator(validate_const(StorageScp.SCP))],
+        Annotated[
+            SourceFileStorageProviderProvider6Storage,
+            AfterValidator(
+                validate_const(SourceFileStorageProviderProvider6Storage.SCP)
+            ),
+        ],
         pydantic.Field(alias="storage"),
-    ] = StorageScp.SCP
+    ] = SourceFileStorageProviderProvider6Storage.SCP
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
@@ -130,7 +145,7 @@ class SCPSecureCopyProtocol(BaseModel):
         return m
 
 
-class StorageSSH(str, Enum):
+class SourceFileStorageProviderProvider5Storage(str, Enum):
     SSH = "SSH"
 
 
@@ -139,7 +154,7 @@ class SSHSecureShellTypedDict(TypedDict):
     user: str
     password: NotRequired[str]
     port: NotRequired[str]
-    storage: StorageSSH
+    storage: SourceFileStorageProviderProvider5Storage
 
 
 class SSHSecureShell(BaseModel):
@@ -152,9 +167,14 @@ class SSHSecureShell(BaseModel):
     port: Optional[str] = "22"
 
     STORAGE: Annotated[
-        Annotated[StorageSSH, AfterValidator(validate_const(StorageSSH.SSH))],
+        Annotated[
+            SourceFileStorageProviderProvider5Storage,
+            AfterValidator(
+                validate_const(SourceFileStorageProviderProvider5Storage.SSH)
+            ),
+        ],
         pydantic.Field(alias="storage"),
-    ] = StorageSSH.SSH
+    ] = SourceFileStorageProviderProvider5Storage.SSH
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
@@ -173,7 +193,7 @@ class SSHSecureShell(BaseModel):
         return m
 
 
-class StorageAzBlob(str, Enum):
+class SourceFileStorageProviderProviderStorage(str, Enum):
     AZ_BLOB = "AzBlob"
 
 
@@ -184,7 +204,7 @@ class AzBlobAzureBlobStorageTypedDict(TypedDict):
     r"""To access Azure Blob Storage, this connector would need credentials with the proper permissions. One option is a SAS (Shared Access Signature) token. If accessing publicly available data, this field is not necessary."""
     shared_key: NotRequired[str]
     r"""To access Azure Blob Storage, this connector would need credentials with the proper permissions. One option is a storage account shared key (aka account key or access key). If accessing publicly available data, this field is not necessary."""
-    storage: StorageAzBlob
+    storage: SourceFileStorageProviderProviderStorage
 
 
 class AzBlobAzureBlobStorage(BaseModel):
@@ -198,9 +218,14 @@ class AzBlobAzureBlobStorage(BaseModel):
     r"""To access Azure Blob Storage, this connector would need credentials with the proper permissions. One option is a storage account shared key (aka account key or access key). If accessing publicly available data, this field is not necessary."""
 
     STORAGE: Annotated[
-        Annotated[StorageAzBlob, AfterValidator(validate_const(StorageAzBlob.AZ_BLOB))],
+        Annotated[
+            SourceFileStorageProviderProviderStorage,
+            AfterValidator(
+                validate_const(SourceFileStorageProviderProviderStorage.AZ_BLOB)
+            ),
+        ],
         pydantic.Field(alias="storage"),
-    ] = StorageAzBlob.AZ_BLOB
+    ] = SourceFileStorageProviderProviderStorage.AZ_BLOB
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
@@ -219,7 +244,7 @@ class AzBlobAzureBlobStorage(BaseModel):
         return m
 
 
-class StorageS3(str, Enum):
+class SourceFileStorageProviderStorage(str, Enum):
     S3 = "S3"
 
 
@@ -228,7 +253,7 @@ class S3AmazonWebServicesTypedDict(TypedDict):
     r"""In order to access private Buckets stored on AWS S3, this connector would need credentials with the proper permissions. If accessing publicly available data, this field is not necessary."""
     aws_secret_access_key: NotRequired[str]
     r"""In order to access private Buckets stored on AWS S3, this connector would need credentials with the proper permissions. If accessing publicly available data, this field is not necessary."""
-    storage: StorageS3
+    storage: SourceFileStorageProviderStorage
 
 
 class S3AmazonWebServices(BaseModel):
@@ -239,9 +264,12 @@ class S3AmazonWebServices(BaseModel):
     r"""In order to access private Buckets stored on AWS S3, this connector would need credentials with the proper permissions. If accessing publicly available data, this field is not necessary."""
 
     STORAGE: Annotated[
-        Annotated[StorageS3, AfterValidator(validate_const(StorageS3.S3))],
+        Annotated[
+            SourceFileStorageProviderStorage,
+            AfterValidator(validate_const(SourceFileStorageProviderStorage.S3)),
+        ],
         pydantic.Field(alias="storage"),
-    ] = StorageS3.S3
+    ] = SourceFileStorageProviderStorage.S3
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
@@ -260,14 +288,14 @@ class S3AmazonWebServices(BaseModel):
         return m
 
 
-class StorageGcs(str, Enum):
+class StorageProviderStorage(str, Enum):
     GCS = "GCS"
 
 
 class GCSGoogleCloudStorageTypedDict(TypedDict):
     service_account_json: NotRequired[str]
     r"""In order to access private Buckets stored on Google Cloud, this connector would need a service account json credentials with the proper permissions as described <a href=\"https://cloud.google.com/iam/docs/service-accounts\" target=\"_blank\">here</a>. Please generate the credentials.json file and copy/paste its content to this field (expecting JSON formats). If accessing publicly available data, this field is not necessary."""
-    storage: StorageGcs
+    storage: StorageProviderStorage
 
 
 class GCSGoogleCloudStorage(BaseModel):
@@ -275,9 +303,12 @@ class GCSGoogleCloudStorage(BaseModel):
     r"""In order to access private Buckets stored on Google Cloud, this connector would need a service account json credentials with the proper permissions as described <a href=\"https://cloud.google.com/iam/docs/service-accounts\" target=\"_blank\">here</a>. Please generate the credentials.json file and copy/paste its content to this field (expecting JSON formats). If accessing publicly available data, this field is not necessary."""
 
     STORAGE: Annotated[
-        Annotated[StorageGcs, AfterValidator(validate_const(StorageGcs.GCS))],
+        Annotated[
+            StorageProviderStorage,
+            AfterValidator(validate_const(StorageProviderStorage.GCS)),
+        ],
         pydantic.Field(alias="storage"),
-    ] = StorageGcs.GCS
+    ] = StorageProviderStorage.GCS
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
@@ -296,21 +327,21 @@ class GCSGoogleCloudStorage(BaseModel):
         return m
 
 
-class StorageHTTPS(str, Enum):
+class Storage(str, Enum):
     HTTPS = "HTTPS"
 
 
 class HTTPSPublicWebTypedDict(TypedDict):
-    storage: StorageHTTPS
+    storage: Storage
     user_agent: NotRequired[bool]
     r"""Add User-Agent to request"""
 
 
 class HTTPSPublicWeb(BaseModel):
     STORAGE: Annotated[
-        Annotated[StorageHTTPS, AfterValidator(validate_const(StorageHTTPS.HTTPS))],
+        Annotated[Storage, AfterValidator(validate_const(Storage.HTTPS))],
         pydantic.Field(alias="storage"),
-    ] = StorageHTTPS.HTTPS
+    ] = Storage.HTTPS
 
     user_agent: Optional[bool] = False
     r"""Add User-Agent to request"""

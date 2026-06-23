@@ -7,14 +7,14 @@ from typing import Optional
 from typing_extensions import NotRequired, TypedDict
 
 
-class AirtableCredentialsTypedDict(TypedDict):
+class CredentialsTypedDict(TypedDict):
     client_id: NotRequired[str]
     r"""The client ID of the Airtable developer application."""
     client_secret: NotRequired[str]
     r"""The client secret of the Airtable developer application."""
 
 
-class AirtableCredentials(BaseModel):
+class Credentials(BaseModel):
     client_id: Optional[str] = None
     r"""The client ID of the Airtable developer application."""
 
@@ -39,11 +39,11 @@ class AirtableCredentials(BaseModel):
 
 
 class AirtableTypedDict(TypedDict):
-    credentials: NotRequired[AirtableCredentialsTypedDict]
+    credentials: NotRequired[CredentialsTypedDict]
 
 
 class Airtable(BaseModel):
-    credentials: Optional[AirtableCredentials] = None
+    credentials: Optional[Credentials] = None
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):

@@ -5,15 +5,15 @@ Credentials for the service
 
 ## Supported Types
 
-### `models.SourceGoogleAnalyticsDataAPIAuthenticateViaGoogleOauth`
+### `models.CredentialsAuthenticateViaGoogleOauth`
 
 ```python
-value: models.SourceGoogleAnalyticsDataAPIAuthenticateViaGoogleOauth = /* values here */
+value: models.CredentialsAuthenticateViaGoogleOauth = /* values here */
 ```
 
-### `models.SourceGoogleAnalyticsDataAPIServiceAccountKeyAuthentication`
+### `models.CredentialsServiceAccountKeyAuthentication`
 
 ```python
-value: models.SourceGoogleAnalyticsDataAPIServiceAccountKeyAuthentication = /* values here */
+value: models.CredentialsServiceAccountKeyAuthentication = /* values here */
 ```
 

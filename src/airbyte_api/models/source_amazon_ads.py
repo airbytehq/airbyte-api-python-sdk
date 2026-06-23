@@ -16,7 +16,7 @@ class SourceAmazonAdsAuthType(str, Enum):
     OAUTH2_0 = "oauth2.0"
 
 
-class SourceAmazonAdsRegion(str, Enum):
+class Region(str, Enum):
     r"""Region to pull data from (EU/NA/FE). See <a href=\"https://advertising.amazon.com/API/docs/en-us/info/api-overview#api-endpoints\">docs</a> for more details."""
 
     NA = "NA"
@@ -24,7 +24,7 @@ class SourceAmazonAdsRegion(str, Enum):
     FE = "FE"
 
 
-class AmazonAdsEnum(str, Enum):
+class SourceAmazonAdsAmazonAds(str, Enum):
     AMAZON_ADS = "amazon-ads"
 
 
@@ -44,9 +44,9 @@ class SourceAmazonAdsTypedDict(TypedDict):
     r"""The number of worker threads to use for the sync."""
     profiles: NotRequired[List[int]]
     r"""Profile IDs you want to fetch data for. The Amazon Ads source connector supports only profiles with seller and vendor type, profiles with agency type will be ignored. See <a href=\"https://advertising.amazon.com/API/docs/en-us/concepts/authorization/profiles\">docs</a> for more details. Note: If Marketplace IDs are also selected, profiles will be selected if they match the Profile ID OR the Marketplace ID."""
-    region: NotRequired[SourceAmazonAdsRegion]
+    region: NotRequired[Region]
     r"""Region to pull data from (EU/NA/FE). See <a href=\"https://advertising.amazon.com/API/docs/en-us/info/api-overview#api-endpoints\">docs</a> for more details."""
-    source_type: AmazonAdsEnum
+    source_type: SourceAmazonAdsAmazonAds
     start_date: NotRequired[date]
     r"""The Start date for collecting reports, should not be more than 60 days in the past. In YYYY-MM-DD format"""
 
@@ -81,15 +81,16 @@ class SourceAmazonAds(BaseModel):
     profiles: Optional[List[int]] = None
     r"""Profile IDs you want to fetch data for. The Amazon Ads source connector supports only profiles with seller and vendor type, profiles with agency type will be ignored. See <a href=\"https://advertising.amazon.com/API/docs/en-us/concepts/authorization/profiles\">docs</a> for more details. Note: If Marketplace IDs are also selected, profiles will be selected if they match the Profile ID OR the Marketplace ID."""
 
-    region: Optional[SourceAmazonAdsRegion] = SourceAmazonAdsRegion.NA
+    region: Optional[Region] = Region.NA
     r"""Region to pull data from (EU/NA/FE). See <a href=\"https://advertising.amazon.com/API/docs/en-us/info/api-overview#api-endpoints\">docs</a> for more details."""
 
     SOURCE_TYPE: Annotated[
         Annotated[
-            AmazonAdsEnum, AfterValidator(validate_const(AmazonAdsEnum.AMAZON_ADS))
+            SourceAmazonAdsAmazonAds,
+            AfterValidator(validate_const(SourceAmazonAdsAmazonAds.AMAZON_ADS)),
         ],
         pydantic.Field(alias="sourceType"),
-    ] = AmazonAdsEnum.AMAZON_ADS
+    ] = SourceAmazonAdsAmazonAds.AMAZON_ADS
 
     start_date: Optional[date] = None
     r"""The Start date for collecting reports, should not be more than 60 days in the past. In YYYY-MM-DD format"""

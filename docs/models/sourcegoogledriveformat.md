@@ -5,39 +5,39 @@ The configuration options that are used to alter how to read incoming files that
 
 ## Supported Types
 
-### `models.SourceGoogleDriveAvroFormat`
+### `models.SourceGoogleDriveFormatAvroFormat`
 
 ```python
-value: models.SourceGoogleDriveAvroFormat = /* values here */
+value: models.SourceGoogleDriveFormatAvroFormat = /* values here */
 ```
 
-### `models.SourceGoogleDriveCSVFormat`
+### `models.SourceGoogleDriveFormatCSVFormat`
 
 ```python
-value: models.SourceGoogleDriveCSVFormat = /* values here */
+value: models.SourceGoogleDriveFormatCSVFormat = /* values here */
 ```
 
-### `models.SourceGoogleDriveJsonlFormat`
+### `models.SourceGoogleDriveFormatJsonlFormat`
 
 ```python
-value: models.SourceGoogleDriveJsonlFormat = /* values here */
+value: models.SourceGoogleDriveFormatJsonlFormat = /* values here */
 ```
 
-### `models.SourceGoogleDriveParquetFormat`
+### `models.SourceGoogleDriveFormatParquetFormat`
 
 ```python
-value: models.SourceGoogleDriveParquetFormat = /* values here */
+value: models.SourceGoogleDriveFormatParquetFormat = /* values here */
 ```
 
-### `models.SourceGoogleDriveUnstructuredDocumentFormat`
+### `models.SourceGoogleDriveFormatUnstructuredDocumentFormat`
 
 ```python
-value: models.SourceGoogleDriveUnstructuredDocumentFormat = /* values here */
+value: models.SourceGoogleDriveFormatUnstructuredDocumentFormat = /* values here */
 ```
 
-### `models.SourceGoogleDriveExcelFormat`
+### `models.SourceGoogleDriveFormatExcelFormat`
 
 ```python
-value: models.SourceGoogleDriveExcelFormat = /* values here */
+value: models.SourceGoogleDriveFormatExcelFormat = /* values here */
 ```
 

@@ -11,15 +11,15 @@ from typing import Optional, Union
 from typing_extensions import Annotated, NotRequired, TypeAliasType, TypedDict
 
 
-class DestinationPostgresPostgres(str, Enum):
+class Postgres(str, Enum):
     POSTGRES = "postgres"
 
 
-class DestinationPostgresModeVerifyFull(str, Enum):
+class DestinationPostgresSSLModesSSLMode6Mode(str, Enum):
     VERIFY_FULL = "verify-full"
 
 
-class DestinationPostgresVerifyFullTypedDict(TypedDict):
+class VerifyFullTypedDict(TypedDict):
     r"""Verify-full SSL mode."""
 
     ca_certificate: str
@@ -30,10 +30,10 @@ class DestinationPostgresVerifyFullTypedDict(TypedDict):
     r"""Client key"""
     client_key_password: NotRequired[str]
     r"""Password for keystorage. This field is optional. If you do not add it - the password will be generated automatically."""
-    mode: DestinationPostgresModeVerifyFull
+    mode: DestinationPostgresSSLModesSSLMode6Mode
 
 
-class DestinationPostgresVerifyFull(BaseModel):
+class VerifyFull(BaseModel):
     r"""Verify-full SSL mode."""
 
     ca_certificate: str
@@ -50,13 +50,13 @@ class DestinationPostgresVerifyFull(BaseModel):
 
     MODE: Annotated[
         Annotated[
-            Optional[DestinationPostgresModeVerifyFull],
+            Optional[DestinationPostgresSSLModesSSLMode6Mode],
             AfterValidator(
-                validate_const(DestinationPostgresModeVerifyFull.VERIFY_FULL)
+                validate_const(DestinationPostgresSSLModesSSLMode6Mode.VERIFY_FULL)
             ),
         ],
         pydantic.Field(alias="mode"),
-    ] = DestinationPostgresModeVerifyFull.VERIFY_FULL
+    ] = DestinationPostgresSSLModesSSLMode6Mode.VERIFY_FULL
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
@@ -75,21 +75,21 @@ class DestinationPostgresVerifyFull(BaseModel):
         return m
 
 
-class DestinationPostgresModeVerifyCa(str, Enum):
+class DestinationPostgresSSLModesSSLMode5Mode(str, Enum):
     VERIFY_CA = "verify-ca"
 
 
-class DestinationPostgresVerifyCaTypedDict(TypedDict):
+class VerifyCaTypedDict(TypedDict):
     r"""Verify-ca SSL mode."""
 
     ca_certificate: str
     r"""CA certificate"""
     client_key_password: NotRequired[str]
     r"""Password for keystorage. This field is optional. If you do not add it - the password will be generated automatically."""
-    mode: DestinationPostgresModeVerifyCa
+    mode: DestinationPostgresSSLModesSSLMode5Mode
 
 
-class DestinationPostgresVerifyCa(BaseModel):
+class VerifyCa(BaseModel):
     r"""Verify-ca SSL mode."""
 
     ca_certificate: str
@@ -100,11 +100,13 @@ class DestinationPostgresVerifyCa(BaseModel):
 
     MODE: Annotated[
         Annotated[
-            Optional[DestinationPostgresModeVerifyCa],
-            AfterValidator(validate_const(DestinationPostgresModeVerifyCa.VERIFY_CA)),
+            Optional[DestinationPostgresSSLModesSSLMode5Mode],
+            AfterValidator(
+                validate_const(DestinationPostgresSSLModesSSLMode5Mode.VERIFY_CA)
+            ),
         ],
         pydantic.Field(alias="mode"),
-    ] = DestinationPostgresModeVerifyCa.VERIFY_CA
+    ] = DestinationPostgresSSLModesSSLMode5Mode.VERIFY_CA
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
@@ -123,26 +125,28 @@ class DestinationPostgresVerifyCa(BaseModel):
         return m
 
 
-class DestinationPostgresModeRequire(str, Enum):
+class DestinationPostgresSSLModesSSLMode4Mode(str, Enum):
     REQUIRE = "require"
 
 
-class DestinationPostgresRequireTypedDict(TypedDict):
+class RequireTypedDict(TypedDict):
     r"""Require SSL mode."""
 
-    mode: DestinationPostgresModeRequire
+    mode: DestinationPostgresSSLModesSSLMode4Mode
 
 
-class DestinationPostgresRequire(BaseModel):
+class Require(BaseModel):
     r"""Require SSL mode."""
 
     MODE: Annotated[
         Annotated[
-            Optional[DestinationPostgresModeRequire],
-            AfterValidator(validate_const(DestinationPostgresModeRequire.REQUIRE)),
+            Optional[DestinationPostgresSSLModesSSLMode4Mode],
+            AfterValidator(
+                validate_const(DestinationPostgresSSLModesSSLMode4Mode.REQUIRE)
+            ),
         ],
         pydantic.Field(alias="mode"),
-    ] = DestinationPostgresModeRequire.REQUIRE
+    ] = DestinationPostgresSSLModesSSLMode4Mode.REQUIRE
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
@@ -161,26 +165,28 @@ class DestinationPostgresRequire(BaseModel):
         return m
 
 
-class DestinationPostgresModePrefer(str, Enum):
+class DestinationPostgresSSLModesSSLModeMode(str, Enum):
     PREFER = "prefer"
 
 
-class DestinationPostgresPreferTypedDict(TypedDict):
+class PreferTypedDict(TypedDict):
     r"""Prefer SSL mode."""
 
-    mode: DestinationPostgresModePrefer
+    mode: DestinationPostgresSSLModesSSLModeMode
 
 
-class DestinationPostgresPrefer(BaseModel):
+class Prefer(BaseModel):
     r"""Prefer SSL mode."""
 
     MODE: Annotated[
         Annotated[
-            Optional[DestinationPostgresModePrefer],
-            AfterValidator(validate_const(DestinationPostgresModePrefer.PREFER)),
+            Optional[DestinationPostgresSSLModesSSLModeMode],
+            AfterValidator(
+                validate_const(DestinationPostgresSSLModesSSLModeMode.PREFER)
+            ),
         ],
         pydantic.Field(alias="mode"),
-    ] = DestinationPostgresModePrefer.PREFER
+    ] = DestinationPostgresSSLModesSSLModeMode.PREFER
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
@@ -199,26 +205,26 @@ class DestinationPostgresPrefer(BaseModel):
         return m
 
 
-class DestinationPostgresModeAllow(str, Enum):
+class DestinationPostgresSSLModesMode(str, Enum):
     ALLOW = "allow"
 
 
-class DestinationPostgresAllowTypedDict(TypedDict):
+class AllowTypedDict(TypedDict):
     r"""Allow SSL mode."""
 
-    mode: DestinationPostgresModeAllow
+    mode: DestinationPostgresSSLModesMode
 
 
-class DestinationPostgresAllow(BaseModel):
+class Allow(BaseModel):
     r"""Allow SSL mode."""
 
     MODE: Annotated[
         Annotated[
-            Optional[DestinationPostgresModeAllow],
-            AfterValidator(validate_const(DestinationPostgresModeAllow.ALLOW)),
+            Optional[DestinationPostgresSSLModesMode],
+            AfterValidator(validate_const(DestinationPostgresSSLModesMode.ALLOW)),
         ],
         pydantic.Field(alias="mode"),
-    ] = DestinationPostgresModeAllow.ALLOW
+    ] = DestinationPostgresSSLModesMode.ALLOW
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
@@ -237,26 +243,25 @@ class DestinationPostgresAllow(BaseModel):
         return m
 
 
-class DestinationPostgresModeDisable(str, Enum):
+class SSLModesMode(str, Enum):
     DISABLE = "disable"
 
 
-class DestinationPostgresDisableTypedDict(TypedDict):
+class DisableTypedDict(TypedDict):
     r"""Disable SSL."""
 
-    mode: DestinationPostgresModeDisable
+    mode: SSLModesMode
 
 
-class DestinationPostgresDisable(BaseModel):
+class Disable(BaseModel):
     r"""Disable SSL."""
 
     MODE: Annotated[
         Annotated[
-            Optional[DestinationPostgresModeDisable],
-            AfterValidator(validate_const(DestinationPostgresModeDisable.DISABLE)),
+            Optional[SSLModesMode], AfterValidator(validate_const(SSLModesMode.DISABLE))
         ],
         pydantic.Field(alias="mode"),
-    ] = DestinationPostgresModeDisable.DISABLE
+    ] = SSLModesMode.DISABLE
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
@@ -275,15 +280,15 @@ class DestinationPostgresDisable(BaseModel):
         return m
 
 
-DestinationPostgresSSLModesTypedDict = TypeAliasType(
-    "DestinationPostgresSSLModesTypedDict",
+SSLModesTypedDict = TypeAliasType(
+    "SSLModesTypedDict",
     Union[
-        DestinationPostgresDisableTypedDict,
-        DestinationPostgresAllowTypedDict,
-        DestinationPostgresPreferTypedDict,
-        DestinationPostgresRequireTypedDict,
-        DestinationPostgresVerifyCaTypedDict,
-        DestinationPostgresVerifyFullTypedDict,
+        DisableTypedDict,
+        AllowTypedDict,
+        PreferTypedDict,
+        RequireTypedDict,
+        VerifyCaTypedDict,
+        VerifyFullTypedDict,
     ],
 )
 r"""SSL connection modes.
@@ -297,16 +302,8 @@ See more information - <a href=\"https://jdbc.postgresql.org/documentation/head/
 """
 
 
-DestinationPostgresSSLModes = TypeAliasType(
-    "DestinationPostgresSSLModes",
-    Union[
-        DestinationPostgresDisable,
-        DestinationPostgresAllow,
-        DestinationPostgresPrefer,
-        DestinationPostgresRequire,
-        DestinationPostgresVerifyCa,
-        DestinationPostgresVerifyFull,
-    ],
+SSLModes = TypeAliasType(
+    "SSLModes", Union[Disable, Allow, Prefer, Require, VerifyCa, VerifyFull]
 )
 r"""SSL connection modes.
 <b>disable</b> - Chose this mode to disable encryption of communication between Airbyte and destination database
@@ -319,26 +316,26 @@ See more information - <a href=\"https://jdbc.postgresql.org/documentation/head/
 """
 
 
-class DestinationPostgresTunnelMethodSSHPasswordAuth(str, Enum):
+class DestinationPostgresSSHTunnelMethodTunnelMethod3TunnelMethod(str, Enum):
     r"""Connect through a jump server tunnel host using username and password authentication"""
 
     SSH_PASSWORD_AUTH = "SSH_PASSWORD_AUTH"
 
 
-class DestinationPostgresPasswordAuthenticationTypedDict(TypedDict):
+class DestinationPostgresSSHTunnelMethodPasswordAuthenticationTypedDict(TypedDict):
     tunnel_host: str
     r"""Hostname of the jump server host that allows inbound ssh tunnel."""
     tunnel_user: str
     r"""OS-level username for logging into the jump server host"""
     tunnel_user_password: str
     r"""OS-level password for logging into the jump server host"""
-    tunnel_method: DestinationPostgresTunnelMethodSSHPasswordAuth
+    tunnel_method: DestinationPostgresSSHTunnelMethodTunnelMethod3TunnelMethod
     r"""Connect through a jump server tunnel host using username and password authentication"""
     tunnel_port: NotRequired[int]
     r"""Port on the proxy/jump server that accepts inbound ssh connections."""
 
 
-class DestinationPostgresPasswordAuthentication(BaseModel):
+class DestinationPostgresSSHTunnelMethodPasswordAuthentication(BaseModel):
     tunnel_host: str
     r"""Hostname of the jump server host that allows inbound ssh tunnel."""
 
@@ -350,15 +347,15 @@ class DestinationPostgresPasswordAuthentication(BaseModel):
 
     TUNNEL_METHOD: Annotated[
         Annotated[
-            DestinationPostgresTunnelMethodSSHPasswordAuth,
+            DestinationPostgresSSHTunnelMethodTunnelMethod3TunnelMethod,
             AfterValidator(
                 validate_const(
-                    DestinationPostgresTunnelMethodSSHPasswordAuth.SSH_PASSWORD_AUTH
+                    DestinationPostgresSSHTunnelMethodTunnelMethod3TunnelMethod.SSH_PASSWORD_AUTH
                 )
             ),
         ],
         pydantic.Field(alias="tunnel_method"),
-    ] = DestinationPostgresTunnelMethodSSHPasswordAuth.SSH_PASSWORD_AUTH
+    ] = DestinationPostgresSSHTunnelMethodTunnelMethod3TunnelMethod.SSH_PASSWORD_AUTH
     r"""Connect through a jump server tunnel host using username and password authentication"""
 
     tunnel_port: Optional[int] = 22
@@ -381,26 +378,26 @@ class DestinationPostgresPasswordAuthentication(BaseModel):
         return m
 
 
-class DestinationPostgresTunnelMethodSSHKeyAuth(str, Enum):
+class DestinationPostgresSSHTunnelMethodTunnelMethodTunnelMethod(str, Enum):
     r"""Connect through a jump server tunnel host using username and ssh key"""
 
     SSH_KEY_AUTH = "SSH_KEY_AUTH"
 
 
-class DestinationPostgresSSHKeyAuthenticationTypedDict(TypedDict):
+class DestinationPostgresSSHTunnelMethodSSHKeyAuthenticationTypedDict(TypedDict):
     ssh_key: str
     r"""OS-level user account ssh key credentials in RSA PEM format ( created with ssh-keygen -t rsa -m PEM -f myuser_rsa )"""
     tunnel_host: str
     r"""Hostname of the jump server host that allows inbound ssh tunnel."""
     tunnel_user: str
     r"""OS-level username for logging into the jump server host."""
-    tunnel_method: DestinationPostgresTunnelMethodSSHKeyAuth
+    tunnel_method: DestinationPostgresSSHTunnelMethodTunnelMethodTunnelMethod
     r"""Connect through a jump server tunnel host using username and ssh key"""
     tunnel_port: NotRequired[int]
     r"""Port on the proxy/jump server that accepts inbound ssh connections."""
 
 
-class DestinationPostgresSSHKeyAuthentication(BaseModel):
+class DestinationPostgresSSHTunnelMethodSSHKeyAuthentication(BaseModel):
     ssh_key: str
     r"""OS-level user account ssh key credentials in RSA PEM format ( created with ssh-keygen -t rsa -m PEM -f myuser_rsa )"""
 
@@ -412,13 +409,15 @@ class DestinationPostgresSSHKeyAuthentication(BaseModel):
 
     TUNNEL_METHOD: Annotated[
         Annotated[
-            DestinationPostgresTunnelMethodSSHKeyAuth,
+            DestinationPostgresSSHTunnelMethodTunnelMethodTunnelMethod,
             AfterValidator(
-                validate_const(DestinationPostgresTunnelMethodSSHKeyAuth.SSH_KEY_AUTH)
+                validate_const(
+                    DestinationPostgresSSHTunnelMethodTunnelMethodTunnelMethod.SSH_KEY_AUTH
+                )
             ),
         ],
         pydantic.Field(alias="tunnel_method"),
-    ] = DestinationPostgresTunnelMethodSSHKeyAuth.SSH_KEY_AUTH
+    ] = DestinationPostgresSSHTunnelMethodTunnelMethodTunnelMethod.SSH_KEY_AUTH
     r"""Connect through a jump server tunnel host using username and ssh key"""
 
     tunnel_port: Optional[int] = 22
@@ -441,36 +440,36 @@ class DestinationPostgresSSHKeyAuthentication(BaseModel):
         return m
 
 
-class DestinationPostgresTunnelMethodNoTunnel(str, Enum):
+class DestinationPostgresSSHTunnelMethodTunnelMethod(str, Enum):
     r"""No ssh tunnel needed to connect to database"""
 
     NO_TUNNEL = "NO_TUNNEL"
 
 
-class DestinationPostgresNoTunnelTypedDict(TypedDict):
-    tunnel_method: DestinationPostgresTunnelMethodNoTunnel
+class DestinationPostgresSSHTunnelMethodNoTunnelTypedDict(TypedDict):
+    tunnel_method: DestinationPostgresSSHTunnelMethodTunnelMethod
     r"""No ssh tunnel needed to connect to database"""
 
 
-class DestinationPostgresNoTunnel(BaseModel):
+class DestinationPostgresSSHTunnelMethodNoTunnel(BaseModel):
     TUNNEL_METHOD: Annotated[
         Annotated[
-            DestinationPostgresTunnelMethodNoTunnel,
+            DestinationPostgresSSHTunnelMethodTunnelMethod,
             AfterValidator(
-                validate_const(DestinationPostgresTunnelMethodNoTunnel.NO_TUNNEL)
+                validate_const(DestinationPostgresSSHTunnelMethodTunnelMethod.NO_TUNNEL)
             ),
         ],
         pydantic.Field(alias="tunnel_method"),
-    ] = DestinationPostgresTunnelMethodNoTunnel.NO_TUNNEL
+    ] = DestinationPostgresSSHTunnelMethodTunnelMethod.NO_TUNNEL
     r"""No ssh tunnel needed to connect to database"""
 
 
 DestinationPostgresSSHTunnelMethodTypedDict = TypeAliasType(
     "DestinationPostgresSSHTunnelMethodTypedDict",
     Union[
-        DestinationPostgresNoTunnelTypedDict,
-        DestinationPostgresSSHKeyAuthenticationTypedDict,
-        DestinationPostgresPasswordAuthenticationTypedDict,
+        DestinationPostgresSSHTunnelMethodNoTunnelTypedDict,
+        DestinationPostgresSSHTunnelMethodSSHKeyAuthenticationTypedDict,
+        DestinationPostgresSSHTunnelMethodPasswordAuthenticationTypedDict,
     ],
 )
 r"""Whether to initiate an SSH tunnel before connecting to the database, and if so, which kind of authentication to use."""
@@ -478,9 +477,14 @@ r"""Whether to initiate an SSH tunnel before connecting to the database, and if 
 
 DestinationPostgresSSHTunnelMethod = Annotated[
     Union[
-        Annotated[DestinationPostgresNoTunnel, Tag("NO_TUNNEL")],
-        Annotated[DestinationPostgresSSHKeyAuthentication, Tag("SSH_KEY_AUTH")],
-        Annotated[DestinationPostgresPasswordAuthentication, Tag("SSH_PASSWORD_AUTH")],
+        Annotated[DestinationPostgresSSHTunnelMethodNoTunnel, Tag("NO_TUNNEL")],
+        Annotated[
+            DestinationPostgresSSHTunnelMethodSSHKeyAuthentication, Tag("SSH_KEY_AUTH")
+        ],
+        Annotated[
+            DestinationPostgresSSHTunnelMethodPasswordAuthentication,
+            Tag("SSH_PASSWORD_AUTH"),
+        ],
     ],
     Discriminator(lambda m: get_discriminator(m, "tunnel_method", "tunnel_method")),
 ]
@@ -494,7 +498,7 @@ class DestinationPostgresTypedDict(TypedDict):
     r"""Hostname of the database."""
     username: str
     r"""Username to use to access the database."""
-    destination_type: DestinationPostgresPostgres
+    destination_type: Postgres
     disable_type_dedupe: NotRequired[bool]
     r"""Disable Writing Final Tables. WARNING! The data format in _airbyte_data is likely stable but there are no guarantees that other metadata columns will remain the same in future versions"""
     drop_cascade: NotRequired[bool]
@@ -511,7 +515,7 @@ class DestinationPostgresTypedDict(TypedDict):
     r"""The default schema tables are written to if the source does not specify a namespace. The usual value for this field is \"public\"."""
     ssl: NotRequired[bool]
     r"""Encrypt data using SSL. When activating SSL, please select one of the connection modes."""
-    ssl_mode: NotRequired[DestinationPostgresSSLModesTypedDict]
+    ssl_mode: NotRequired[SSLModesTypedDict]
     r"""SSL connection modes.
     <b>disable</b> - Chose this mode to disable encryption of communication between Airbyte and destination database
     <b>allow</b> - Chose this mode to enable encryption only when required by the source database
@@ -538,12 +542,9 @@ class DestinationPostgres(BaseModel):
     r"""Username to use to access the database."""
 
     DESTINATION_TYPE: Annotated[
-        Annotated[
-            DestinationPostgresPostgres,
-            AfterValidator(validate_const(DestinationPostgresPostgres.POSTGRES)),
-        ],
+        Annotated[Postgres, AfterValidator(validate_const(Postgres.POSTGRES))],
         pydantic.Field(alias="destinationType"),
-    ] = DestinationPostgresPostgres.POSTGRES
+    ] = Postgres.POSTGRES
 
     disable_type_dedupe: Optional[bool] = False
     r"""Disable Writing Final Tables. WARNING! The data format in _airbyte_data is likely stable but there are no guarantees that other metadata columns will remain the same in future versions"""
@@ -569,7 +570,7 @@ class DestinationPostgres(BaseModel):
     ssl: Optional[bool] = False
     r"""Encrypt data using SSL. When activating SSL, please select one of the connection modes."""
 
-    ssl_mode: Optional[DestinationPostgresSSLModes] = None
+    ssl_mode: Optional[SSLModes] = None
     r"""SSL connection modes.
     <b>disable</b> - Chose this mode to disable encryption of communication between Airbyte and destination database
     <b>allow</b> - Chose this mode to enable encryption only when required by the source database
@@ -618,39 +619,39 @@ class DestinationPostgres(BaseModel):
 
 
 try:
-    DestinationPostgresVerifyFull.model_rebuild()
+    VerifyFull.model_rebuild()
 except NameError:
     pass
 try:
-    DestinationPostgresVerifyCa.model_rebuild()
+    VerifyCa.model_rebuild()
 except NameError:
     pass
 try:
-    DestinationPostgresRequire.model_rebuild()
+    Require.model_rebuild()
 except NameError:
     pass
 try:
-    DestinationPostgresPrefer.model_rebuild()
+    Prefer.model_rebuild()
 except NameError:
     pass
 try:
-    DestinationPostgresAllow.model_rebuild()
+    Allow.model_rebuild()
 except NameError:
     pass
 try:
-    DestinationPostgresDisable.model_rebuild()
+    Disable.model_rebuild()
 except NameError:
     pass
 try:
-    DestinationPostgresPasswordAuthentication.model_rebuild()
+    DestinationPostgresSSHTunnelMethodPasswordAuthentication.model_rebuild()
 except NameError:
     pass
 try:
-    DestinationPostgresSSHKeyAuthentication.model_rebuild()
+    DestinationPostgresSSHTunnelMethodSSHKeyAuthentication.model_rebuild()
 except NameError:
     pass
 try:
-    DestinationPostgresNoTunnel.model_rebuild()
+    DestinationPostgresSSHTunnelMethodNoTunnel.model_rebuild()
 except NameError:
     pass
 try:

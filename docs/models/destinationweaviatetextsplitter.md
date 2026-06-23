@@ -5,21 +5,21 @@ Split text fields into chunks based on the specified method.
 
 ## Supported Types
 
-### `models.DestinationWeaviateBySeparator`
+### `models.DestinationWeaviateTextSplitterBySeparator`
 
 ```python
-value: models.DestinationWeaviateBySeparator = /* values here */
+value: models.DestinationWeaviateTextSplitterBySeparator = /* values here */
 ```
 
-### `models.DestinationWeaviateByMarkdownHeader`
+### `models.DestinationWeaviateTextSplitterByMarkdownHeader`
 
 ```python
-value: models.DestinationWeaviateByMarkdownHeader = /* values here */
+value: models.DestinationWeaviateTextSplitterByMarkdownHeader = /* values here */
 ```
 
-### `models.DestinationWeaviateByProgrammingLanguage`
+### `models.DestinationWeaviateTextSplitterByProgrammingLanguage`
 
 ```python
-value: models.DestinationWeaviateByProgrammingLanguage = /* values here */
+value: models.DestinationWeaviateTextSplitterByProgrammingLanguage = /* values here */
 ```
 

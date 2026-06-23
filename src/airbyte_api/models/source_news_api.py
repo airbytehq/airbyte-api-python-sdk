@@ -11,7 +11,7 @@ from typing import List, Optional
 from typing_extensions import Annotated, NotRequired, TypedDict
 
 
-class SourceNewsAPICategory(str, Enum):
+class Category(str, Enum):
     r"""The category you want to get top headlines for."""
 
     BUSINESS = "business"
@@ -23,7 +23,7 @@ class SourceNewsAPICategory(str, Enum):
     TECHNOLOGY = "technology"
 
 
-class SourceNewsAPICountry(str, Enum):
+class Country(str, Enum):
     r"""The 2-letter ISO 3166-1 code of the country you want to get headlines
     for. You can't mix this with the sources parameter.
 
@@ -85,7 +85,7 @@ class SourceNewsAPICountry(str, Enum):
     ZA = "za"
 
 
-class SourceNewsAPILanguage(str, Enum):
+class Language(str, Enum):
     r"""The 2-letter ISO-639-1 code of the language you want to get headlines
     for. Possible options: ar de en es fr he it nl no pt ru se ud zh.
 
@@ -113,7 +113,7 @@ class SearchIn(str, Enum):
     CONTENT = "content"
 
 
-class SourceNewsAPISortBy(str, Enum):
+class SortBy(str, Enum):
     r"""The order to sort the articles in. Possible options: relevancy,
     popularity, publishedAt.
 
@@ -131,9 +131,9 @@ class NewsAPI(str, Enum):
 class SourceNewsAPITypedDict(TypedDict):
     api_key: str
     r"""API Key"""
-    category: NotRequired[SourceNewsAPICategory]
+    category: NotRequired[Category]
     r"""The category you want to get top headlines for."""
-    country: NotRequired[SourceNewsAPICountry]
+    country: NotRequired[Country]
     r"""The 2-letter ISO 3166-1 code of the country you want to get headlines
     for. You can't mix this with the sources parameter.
 
@@ -153,7 +153,7 @@ class SourceNewsAPITypedDict(TypedDict):
     engadget.com) to remove from the results.
 
     """
-    language: NotRequired[SourceNewsAPILanguage]
+    language: NotRequired[Language]
     r"""The 2-letter ISO-639-1 code of the language you want to get headlines
     for. Possible options: ar de en es fr he it nl no pt ru se ud zh.
 
@@ -168,7 +168,7 @@ class SourceNewsAPITypedDict(TypedDict):
     information.
 
     """
-    sort_by: NotRequired[SourceNewsAPISortBy]
+    sort_by: NotRequired[SortBy]
     r"""The order to sort the articles in. Possible options: relevancy,
     popularity, publishedAt.
 
@@ -192,10 +192,10 @@ class SourceNewsAPI(BaseModel):
     api_key: str
     r"""API Key"""
 
-    category: Optional[SourceNewsAPICategory] = SourceNewsAPICategory.BUSINESS
+    category: Optional[Category] = Category.BUSINESS
     r"""The category you want to get top headlines for."""
 
-    country: Optional[SourceNewsAPICountry] = SourceNewsAPICountry.US
+    country: Optional[Country] = Country.US
     r"""The 2-letter ISO 3166-1 code of the country you want to get headlines
     for. You can't mix this with the sources parameter.
 
@@ -219,7 +219,7 @@ class SourceNewsAPI(BaseModel):
 
     """
 
-    language: Optional[SourceNewsAPILanguage] = None
+    language: Optional[Language] = None
     r"""The 2-letter ISO-639-1 code of the language you want to get headlines
     for. Possible options: ar de en es fr he it nl no pt ru se ud zh.
 
@@ -237,7 +237,7 @@ class SourceNewsAPI(BaseModel):
 
     """
 
-    sort_by: Optional[SourceNewsAPISortBy] = SourceNewsAPISortBy.PUBLISHED_AT
+    sort_by: Optional[SortBy] = SortBy.PUBLISHED_AT
     r"""The order to sort the articles in. Possible options: relevancy,
     popularity, publishedAt.
 

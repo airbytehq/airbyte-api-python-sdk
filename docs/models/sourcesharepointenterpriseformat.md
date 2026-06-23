@@ -5,39 +5,39 @@ The configuration options that are used to alter how to read incoming files that
 
 ## Supported Types
 
-### `models.SourceSharepointEnterpriseAvroFormat`
+### `models.SourceSharepointEnterpriseFormatAvroFormat`
 
 ```python
-value: models.SourceSharepointEnterpriseAvroFormat = /* values here */
+value: models.SourceSharepointEnterpriseFormatAvroFormat = /* values here */
 ```
 
-### `models.SourceSharepointEnterpriseCSVFormat`
+### `models.SourceSharepointEnterpriseFormatCSVFormat`
 
 ```python
-value: models.SourceSharepointEnterpriseCSVFormat = /* values here */
+value: models.SourceSharepointEnterpriseFormatCSVFormat = /* values here */
 ```
 
-### `models.SourceSharepointEnterpriseJsonlFormat`
+### `models.SourceSharepointEnterpriseFormatJsonlFormat`
 
 ```python
-value: models.SourceSharepointEnterpriseJsonlFormat = /* values here */
+value: models.SourceSharepointEnterpriseFormatJsonlFormat = /* values here */
 ```
 
-### `models.SourceSharepointEnterpriseParquetFormat`
+### `models.SourceSharepointEnterpriseFormatParquetFormat`
 
 ```python
-value: models.SourceSharepointEnterpriseParquetFormat = /* values here */
+value: models.SourceSharepointEnterpriseFormatParquetFormat = /* values here */
 ```
 
-### `models.SourceSharepointEnterpriseUnstructuredDocumentFormat`
+### `models.SourceSharepointEnterpriseFormatUnstructuredDocumentFormat`
 
 ```python
-value: models.SourceSharepointEnterpriseUnstructuredDocumentFormat = /* values here */
+value: models.SourceSharepointEnterpriseFormatUnstructuredDocumentFormat = /* values here */
 ```
 
-### `models.SourceSharepointEnterpriseExcelFormat`
+### `models.SourceSharepointEnterpriseFormatExcelFormat`
 
 ```python
-value: models.SourceSharepointEnterpriseExcelFormat = /* values here */
+value: models.SourceSharepointEnterpriseFormatExcelFormat = /* values here */
 ```
 

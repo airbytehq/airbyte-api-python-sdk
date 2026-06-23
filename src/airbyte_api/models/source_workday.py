@@ -26,11 +26,11 @@ class SourceWorkdayAuthentication(BaseModel):
     username: str
 
 
-class ReportIDTypedDict(TypedDict):
+class ReportIdsTypedDict(TypedDict):
     report_id: NotRequired[str]
 
 
-class ReportID(BaseModel):
+class ReportIds(BaseModel):
     report_id: Optional[str] = None
 
     @model_serializer(mode="wrap")
@@ -58,7 +58,7 @@ class SourceWorkdayTypedDict(TypedDict):
     credentials: SourceWorkdayAuthenticationTypedDict
     r"""Credentials for connecting to the Workday (RAAS) API."""
     host: str
-    report_ids: List[ReportIDTypedDict]
+    report_ids: List[ReportIdsTypedDict]
     r"""Report IDs can be found by clicking the three dots on the right side of the report > Web Service > View URLs > in JSON url copy everything between Workday tenant/ and ?format=json."""
     tenant_id: str
     num_workers: NotRequired[int]
@@ -72,7 +72,7 @@ class SourceWorkday(BaseModel):
 
     host: str
 
-    report_ids: List[ReportID]
+    report_ids: List[ReportIds]
     r"""Report IDs can be found by clicking the three dots on the right side of the report > Web Service > View URLs > in JSON url copy everything between Workday tenant/ and ?format=json."""
 
     tenant_id: str

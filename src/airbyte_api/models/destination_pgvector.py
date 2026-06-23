@@ -15,11 +15,11 @@ class Pgvector(str, Enum):
     PGVECTOR = "pgvector"
 
 
-class DestinationPgvectorModeOpenaiCompatible(str, Enum):
+class DestinationPgvectorEmbeddingEmbedding5Mode(str, Enum):
     OPENAI_COMPATIBLE = "openai_compatible"
 
 
-class DestinationPgvectorOpenAICompatibleTypedDict(TypedDict):
+class DestinationPgvectorEmbeddingOpenAICompatibleTypedDict(TypedDict):
     r"""Use a service that's compatible with the OpenAI API to embed text."""
 
     base_url: str
@@ -27,12 +27,12 @@ class DestinationPgvectorOpenAICompatibleTypedDict(TypedDict):
     dimensions: int
     r"""The number of dimensions the embedding model is generating"""
     api_key: NotRequired[str]
-    mode: DestinationPgvectorModeOpenaiCompatible
+    mode: DestinationPgvectorEmbeddingEmbedding5Mode
     model_name: NotRequired[str]
     r"""The name of the model to use for embedding"""
 
 
-class DestinationPgvectorOpenAICompatible(BaseModel):
+class DestinationPgvectorEmbeddingOpenAICompatible(BaseModel):
     r"""Use a service that's compatible with the OpenAI API to embed text."""
 
     base_url: str
@@ -45,15 +45,15 @@ class DestinationPgvectorOpenAICompatible(BaseModel):
 
     MODE: Annotated[
         Annotated[
-            Optional[DestinationPgvectorModeOpenaiCompatible],
+            Optional[DestinationPgvectorEmbeddingEmbedding5Mode],
             AfterValidator(
                 validate_const(
-                    DestinationPgvectorModeOpenaiCompatible.OPENAI_COMPATIBLE
+                    DestinationPgvectorEmbeddingEmbedding5Mode.OPENAI_COMPATIBLE
                 )
             ),
         ],
         pydantic.Field(alias="mode"),
-    ] = DestinationPgvectorModeOpenaiCompatible.OPENAI_COMPATIBLE
+    ] = DestinationPgvectorEmbeddingEmbedding5Mode.OPENAI_COMPATIBLE
 
     model_name: Optional[str] = "text-embedding-ada-002"
     r"""The name of the model to use for embedding"""
@@ -75,11 +75,11 @@ class DestinationPgvectorOpenAICompatible(BaseModel):
         return m
 
 
-class DestinationPgvectorModeAzureOpenai(str, Enum):
+class DestinationPgvectorEmbeddingEmbedding4Mode(str, Enum):
     AZURE_OPENAI = "azure_openai"
 
 
-class DestinationPgvectorAzureOpenAITypedDict(TypedDict):
+class DestinationPgvectorEmbeddingAzureOpenAITypedDict(TypedDict):
     r"""Use the Azure-hosted OpenAI API to embed text. This option is using the text-embedding-ada-002 model with 1536 embedding dimensions."""
 
     api_base: str
@@ -88,10 +88,10 @@ class DestinationPgvectorAzureOpenAITypedDict(TypedDict):
     r"""The deployment for your Azure OpenAI resource.  You can find this in the Azure portal under your Azure OpenAI resource"""
     openai_key: str
     r"""The API key for your Azure OpenAI resource.  You can find this in the Azure portal under your Azure OpenAI resource"""
-    mode: DestinationPgvectorModeAzureOpenai
+    mode: DestinationPgvectorEmbeddingEmbedding4Mode
 
 
-class DestinationPgvectorAzureOpenAI(BaseModel):
+class DestinationPgvectorEmbeddingAzureOpenAI(BaseModel):
     r"""Use the Azure-hosted OpenAI API to embed text. This option is using the text-embedding-ada-002 model with 1536 embedding dimensions."""
 
     api_base: str
@@ -105,13 +105,13 @@ class DestinationPgvectorAzureOpenAI(BaseModel):
 
     MODE: Annotated[
         Annotated[
-            Optional[DestinationPgvectorModeAzureOpenai],
+            Optional[DestinationPgvectorEmbeddingEmbedding4Mode],
             AfterValidator(
-                validate_const(DestinationPgvectorModeAzureOpenai.AZURE_OPENAI)
+                validate_const(DestinationPgvectorEmbeddingEmbedding4Mode.AZURE_OPENAI)
             ),
         ],
         pydantic.Field(alias="mode"),
-    ] = DestinationPgvectorModeAzureOpenai.AZURE_OPENAI
+    ] = DestinationPgvectorEmbeddingEmbedding4Mode.AZURE_OPENAI
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
@@ -130,26 +130,28 @@ class DestinationPgvectorAzureOpenAI(BaseModel):
         return m
 
 
-class DestinationPgvectorModeFake(str, Enum):
+class DestinationPgvectorEmbeddingEmbedding3Mode(str, Enum):
     FAKE = "fake"
 
 
-class DestinationPgvectorFakeTypedDict(TypedDict):
+class DestinationPgvectorEmbeddingFakeTypedDict(TypedDict):
     r"""Use a fake embedding made out of random vectors with 1536 embedding dimensions. This is useful for testing the data pipeline without incurring any costs."""
 
-    mode: DestinationPgvectorModeFake
+    mode: DestinationPgvectorEmbeddingEmbedding3Mode
 
 
-class DestinationPgvectorFake(BaseModel):
+class DestinationPgvectorEmbeddingFake(BaseModel):
     r"""Use a fake embedding made out of random vectors with 1536 embedding dimensions. This is useful for testing the data pipeline without incurring any costs."""
 
     MODE: Annotated[
         Annotated[
-            Optional[DestinationPgvectorModeFake],
-            AfterValidator(validate_const(DestinationPgvectorModeFake.FAKE)),
+            Optional[DestinationPgvectorEmbeddingEmbedding3Mode],
+            AfterValidator(
+                validate_const(DestinationPgvectorEmbeddingEmbedding3Mode.FAKE)
+            ),
         ],
         pydantic.Field(alias="mode"),
-    ] = DestinationPgvectorModeFake.FAKE
+    ] = DestinationPgvectorEmbeddingEmbedding3Mode.FAKE
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
@@ -168,29 +170,31 @@ class DestinationPgvectorFake(BaseModel):
         return m
 
 
-class DestinationPgvectorModeCohere(str, Enum):
+class DestinationPgvectorEmbeddingEmbeddingMode(str, Enum):
     COHERE = "cohere"
 
 
-class DestinationPgvectorCohereTypedDict(TypedDict):
+class DestinationPgvectorEmbeddingCohereTypedDict(TypedDict):
     r"""Use the Cohere API to embed text."""
 
     cohere_key: str
-    mode: DestinationPgvectorModeCohere
+    mode: DestinationPgvectorEmbeddingEmbeddingMode
 
 
-class DestinationPgvectorCohere(BaseModel):
+class DestinationPgvectorEmbeddingCohere(BaseModel):
     r"""Use the Cohere API to embed text."""
 
     cohere_key: str
 
     MODE: Annotated[
         Annotated[
-            Optional[DestinationPgvectorModeCohere],
-            AfterValidator(validate_const(DestinationPgvectorModeCohere.COHERE)),
+            Optional[DestinationPgvectorEmbeddingEmbeddingMode],
+            AfterValidator(
+                validate_const(DestinationPgvectorEmbeddingEmbeddingMode.COHERE)
+            ),
         ],
         pydantic.Field(alias="mode"),
-    ] = DestinationPgvectorModeCohere.COHERE
+    ] = DestinationPgvectorEmbeddingEmbeddingMode.COHERE
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
@@ -209,29 +213,29 @@ class DestinationPgvectorCohere(BaseModel):
         return m
 
 
-class DestinationPgvectorModeOpenai(str, Enum):
+class DestinationPgvectorEmbeddingMode(str, Enum):
     OPENAI = "openai"
 
 
-class DestinationPgvectorOpenAITypedDict(TypedDict):
+class DestinationPgvectorEmbeddingOpenAITypedDict(TypedDict):
     r"""Use the OpenAI API to embed text. This option is using the text-embedding-ada-002 model with 1536 embedding dimensions."""
 
     openai_key: str
-    mode: DestinationPgvectorModeOpenai
+    mode: DestinationPgvectorEmbeddingMode
 
 
-class DestinationPgvectorOpenAI(BaseModel):
+class DestinationPgvectorEmbeddingOpenAI(BaseModel):
     r"""Use the OpenAI API to embed text. This option is using the text-embedding-ada-002 model with 1536 embedding dimensions."""
 
     openai_key: str
 
     MODE: Annotated[
         Annotated[
-            Optional[DestinationPgvectorModeOpenai],
-            AfterValidator(validate_const(DestinationPgvectorModeOpenai.OPENAI)),
+            Optional[DestinationPgvectorEmbeddingMode],
+            AfterValidator(validate_const(DestinationPgvectorEmbeddingMode.OPENAI)),
         ],
         pydantic.Field(alias="mode"),
-    ] = DestinationPgvectorModeOpenai.OPENAI
+    ] = DestinationPgvectorEmbeddingMode.OPENAI
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
@@ -253,11 +257,11 @@ class DestinationPgvectorOpenAI(BaseModel):
 DestinationPgvectorEmbeddingTypedDict = TypeAliasType(
     "DestinationPgvectorEmbeddingTypedDict",
     Union[
-        DestinationPgvectorFakeTypedDict,
-        DestinationPgvectorOpenAITypedDict,
-        DestinationPgvectorCohereTypedDict,
-        DestinationPgvectorAzureOpenAITypedDict,
-        DestinationPgvectorOpenAICompatibleTypedDict,
+        DestinationPgvectorEmbeddingFakeTypedDict,
+        DestinationPgvectorEmbeddingOpenAITypedDict,
+        DestinationPgvectorEmbeddingCohereTypedDict,
+        DestinationPgvectorEmbeddingAzureOpenAITypedDict,
+        DestinationPgvectorEmbeddingOpenAICompatibleTypedDict,
     ],
 )
 r"""Embedding configuration"""
@@ -266,11 +270,11 @@ r"""Embedding configuration"""
 DestinationPgvectorEmbedding = TypeAliasType(
     "DestinationPgvectorEmbedding",
     Union[
-        DestinationPgvectorFake,
-        DestinationPgvectorOpenAI,
-        DestinationPgvectorCohere,
-        DestinationPgvectorAzureOpenAI,
-        DestinationPgvectorOpenAICompatible,
+        DestinationPgvectorEmbeddingFake,
+        DestinationPgvectorEmbeddingOpenAI,
+        DestinationPgvectorEmbeddingCohere,
+        DestinationPgvectorEmbeddingAzureOpenAI,
+        DestinationPgvectorEmbeddingOpenAICompatible,
     ],
 )
 r"""Embedding configuration"""
@@ -354,7 +358,7 @@ class DestinationPgvectorFieldNameMappingConfigModel(BaseModel):
     r"""The field name to use in the destination"""
 
 
-class DestinationPgvectorLanguage(str, Enum):
+class DestinationPgvectorTextSplitterLanguage(str, Enum):
     r"""Split code in suitable places based on the programming language"""
 
     CPP = "cpp"
@@ -375,31 +379,35 @@ class DestinationPgvectorLanguage(str, Enum):
     SOL = "sol"
 
 
-class DestinationPgvectorModeCode(str, Enum):
+class DestinationPgvectorTextSplitterProcessingTextSplitterMode(str, Enum):
     CODE = "code"
 
 
-class DestinationPgvectorByProgrammingLanguageTypedDict(TypedDict):
+class DestinationPgvectorTextSplitterByProgrammingLanguageTypedDict(TypedDict):
     r"""Split the text by suitable delimiters based on the programming language. This is useful for splitting code into chunks."""
 
-    language: DestinationPgvectorLanguage
+    language: DestinationPgvectorTextSplitterLanguage
     r"""Split code in suitable places based on the programming language"""
-    mode: DestinationPgvectorModeCode
+    mode: DestinationPgvectorTextSplitterProcessingTextSplitterMode
 
 
-class DestinationPgvectorByProgrammingLanguage(BaseModel):
+class DestinationPgvectorTextSplitterByProgrammingLanguage(BaseModel):
     r"""Split the text by suitable delimiters based on the programming language. This is useful for splitting code into chunks."""
 
-    language: DestinationPgvectorLanguage
+    language: DestinationPgvectorTextSplitterLanguage
     r"""Split code in suitable places based on the programming language"""
 
     MODE: Annotated[
         Annotated[
-            Optional[DestinationPgvectorModeCode],
-            AfterValidator(validate_const(DestinationPgvectorModeCode.CODE)),
+            Optional[DestinationPgvectorTextSplitterProcessingTextSplitterMode],
+            AfterValidator(
+                validate_const(
+                    DestinationPgvectorTextSplitterProcessingTextSplitterMode.CODE
+                )
+            ),
         ],
         pydantic.Field(alias="mode"),
-    ] = DestinationPgvectorModeCode.CODE
+    ] = DestinationPgvectorTextSplitterProcessingTextSplitterMode.CODE
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
@@ -418,28 +426,30 @@ class DestinationPgvectorByProgrammingLanguage(BaseModel):
         return m
 
 
-class DestinationPgvectorModeMarkdown(str, Enum):
+class DestinationPgvectorTextSplitterProcessingMode(str, Enum):
     MARKDOWN = "markdown"
 
 
-class DestinationPgvectorByMarkdownHeaderTypedDict(TypedDict):
+class DestinationPgvectorTextSplitterByMarkdownHeaderTypedDict(TypedDict):
     r"""Split the text by Markdown headers down to the specified header level. If the chunk size fits multiple sections, they will be combined into a single chunk."""
 
-    mode: DestinationPgvectorModeMarkdown
+    mode: DestinationPgvectorTextSplitterProcessingMode
     split_level: NotRequired[int]
     r"""Level of markdown headers to split text fields by. Headings down to the specified level will be used as split points"""
 
 
-class DestinationPgvectorByMarkdownHeader(BaseModel):
+class DestinationPgvectorTextSplitterByMarkdownHeader(BaseModel):
     r"""Split the text by Markdown headers down to the specified header level. If the chunk size fits multiple sections, they will be combined into a single chunk."""
 
     MODE: Annotated[
         Annotated[
-            Optional[DestinationPgvectorModeMarkdown],
-            AfterValidator(validate_const(DestinationPgvectorModeMarkdown.MARKDOWN)),
+            Optional[DestinationPgvectorTextSplitterProcessingMode],
+            AfterValidator(
+                validate_const(DestinationPgvectorTextSplitterProcessingMode.MARKDOWN)
+            ),
         ],
         pydantic.Field(alias="mode"),
-    ] = DestinationPgvectorModeMarkdown.MARKDOWN
+    ] = DestinationPgvectorTextSplitterProcessingMode.MARKDOWN
 
     split_level: Optional[int] = 1
     r"""Level of markdown headers to split text fields by. Headings down to the specified level will be used as split points"""
@@ -461,21 +471,21 @@ class DestinationPgvectorByMarkdownHeader(BaseModel):
         return m
 
 
-class DestinationPgvectorModeSeparator(str, Enum):
+class DestinationPgvectorTextSplitterMode(str, Enum):
     SEPARATOR = "separator"
 
 
-class DestinationPgvectorBySeparatorTypedDict(TypedDict):
+class DestinationPgvectorTextSplitterBySeparatorTypedDict(TypedDict):
     r"""Split the text by the list of separators until the chunk size is reached, using the earlier mentioned separators where possible. This is useful for splitting text fields by paragraphs, sentences, words, etc."""
 
     keep_separator: NotRequired[bool]
     r"""Whether to keep the separator in the resulting chunks"""
-    mode: DestinationPgvectorModeSeparator
+    mode: DestinationPgvectorTextSplitterMode
     separators: NotRequired[List[str]]
     r"""List of separator strings to split text fields by. The separator itself needs to be wrapped in double quotes, e.g. to split by the dot character, use \".\". To split by a newline, use \"\n\"."""
 
 
-class DestinationPgvectorBySeparator(BaseModel):
+class DestinationPgvectorTextSplitterBySeparator(BaseModel):
     r"""Split the text by the list of separators until the chunk size is reached, using the earlier mentioned separators where possible. This is useful for splitting text fields by paragraphs, sentences, words, etc."""
 
     keep_separator: Optional[bool] = False
@@ -483,11 +493,13 @@ class DestinationPgvectorBySeparator(BaseModel):
 
     MODE: Annotated[
         Annotated[
-            Optional[DestinationPgvectorModeSeparator],
-            AfterValidator(validate_const(DestinationPgvectorModeSeparator.SEPARATOR)),
+            Optional[DestinationPgvectorTextSplitterMode],
+            AfterValidator(
+                validate_const(DestinationPgvectorTextSplitterMode.SEPARATOR)
+            ),
         ],
         pydantic.Field(alias="mode"),
-    ] = DestinationPgvectorModeSeparator.SEPARATOR
+    ] = DestinationPgvectorTextSplitterMode.SEPARATOR
 
     separators: Optional[List[str]] = None
     r"""List of separator strings to split text fields by. The separator itself needs to be wrapped in double quotes, e.g. to split by the dot character, use \".\". To split by a newline, use \"\n\"."""
@@ -512,9 +524,9 @@ class DestinationPgvectorBySeparator(BaseModel):
 DestinationPgvectorTextSplitterTypedDict = TypeAliasType(
     "DestinationPgvectorTextSplitterTypedDict",
     Union[
-        DestinationPgvectorByMarkdownHeaderTypedDict,
-        DestinationPgvectorByProgrammingLanguageTypedDict,
-        DestinationPgvectorBySeparatorTypedDict,
+        DestinationPgvectorTextSplitterByMarkdownHeaderTypedDict,
+        DestinationPgvectorTextSplitterByProgrammingLanguageTypedDict,
+        DestinationPgvectorTextSplitterBySeparatorTypedDict,
     ],
 )
 r"""Split text fields into chunks based on the specified method."""
@@ -523,9 +535,9 @@ r"""Split text fields into chunks based on the specified method."""
 DestinationPgvectorTextSplitter = TypeAliasType(
     "DestinationPgvectorTextSplitter",
     Union[
-        DestinationPgvectorByMarkdownHeader,
-        DestinationPgvectorByProgrammingLanguage,
-        DestinationPgvectorBySeparator,
+        DestinationPgvectorTextSplitterByMarkdownHeader,
+        DestinationPgvectorTextSplitterByProgrammingLanguage,
+        DestinationPgvectorTextSplitterBySeparator,
     ],
 )
 r"""Split text fields into chunks based on the specified method."""
@@ -664,35 +676,35 @@ class DestinationPgvector(BaseModel):
 
 
 try:
-    DestinationPgvectorOpenAICompatible.model_rebuild()
+    DestinationPgvectorEmbeddingOpenAICompatible.model_rebuild()
 except NameError:
     pass
 try:
-    DestinationPgvectorAzureOpenAI.model_rebuild()
+    DestinationPgvectorEmbeddingAzureOpenAI.model_rebuild()
 except NameError:
     pass
 try:
-    DestinationPgvectorFake.model_rebuild()
+    DestinationPgvectorEmbeddingFake.model_rebuild()
 except NameError:
     pass
 try:
-    DestinationPgvectorCohere.model_rebuild()
+    DestinationPgvectorEmbeddingCohere.model_rebuild()
 except NameError:
     pass
 try:
-    DestinationPgvectorOpenAI.model_rebuild()
+    DestinationPgvectorEmbeddingOpenAI.model_rebuild()
 except NameError:
     pass
 try:
-    DestinationPgvectorByProgrammingLanguage.model_rebuild()
+    DestinationPgvectorTextSplitterByProgrammingLanguage.model_rebuild()
 except NameError:
     pass
 try:
-    DestinationPgvectorByMarkdownHeader.model_rebuild()
+    DestinationPgvectorTextSplitterByMarkdownHeader.model_rebuild()
 except NameError:
     pass
 try:
-    DestinationPgvectorBySeparator.model_rebuild()
+    DestinationPgvectorTextSplitterBySeparator.model_rebuild()
 except NameError:
     pass
 try:

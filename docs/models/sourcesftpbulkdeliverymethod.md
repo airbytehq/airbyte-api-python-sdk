@@ -3,15 +3,15 @@
 
 ## Supported Types
 
-### `models.SourceSftpBulkReplicateRecords`
+### `models.SourceSftpBulkDeliveryMethodReplicateRecords`
 
 ```python
-value: models.SourceSftpBulkReplicateRecords = /* values here */
+value: models.SourceSftpBulkDeliveryMethodReplicateRecords = /* values here */
 ```
 
-### `models.SourceSftpBulkCopyRawFiles`
+### `models.SourceSftpBulkDeliveryMethodCopyRawFiles`
 
 ```python
-value: models.SourceSftpBulkCopyRawFiles = /* values here */
+value: models.SourceSftpBulkDeliveryMethodCopyRawFiles = /* values here */
 ```
 

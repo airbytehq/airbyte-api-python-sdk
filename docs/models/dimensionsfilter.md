@@ -5,22 +5,22 @@ Dimensions filter
 
 ## Supported Types
 
-### `models.DimensionsFilterAndGroup`
+### `models.AndGroup`
 
 ```python
-value: models.DimensionsFilterAndGroup = /* values here */
+value: models.AndGroup = /* values here */
 ```
 
-### `models.DimensionsFilterOrGroup`
+### `models.OrGroup`
 
 ```python
-value: models.DimensionsFilterOrGroup = /* values here */
+value: models.OrGroup = /* values here */
 ```
 
-### `models.DimensionsFilterNotExpression`
+### `models.NotExpression`
 
 ```python
-value: models.DimensionsFilterNotExpression = /* values here */
+value: models.NotExpression = /* values here */
 ```
 
 ### `models.DimensionsFilterFilter`

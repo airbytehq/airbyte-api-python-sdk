@@ -15,11 +15,11 @@ class MssqlV2(str, Enum):
     MSSQL_V2 = "mssql-v2"
 
 
-class DestinationMssqlV2LoadTypeBulk(str, Enum):
+class DestinationMssqlV2LoadTypeLoadTypeLoadType(str, Enum):
     BULK = "BULK"
 
 
-class DestinationMssqlV2BulkLoadTypedDict(TypedDict):
+class LoadTypeBulkLoadTypedDict(TypedDict):
     r"""Configuration details for using the BULK loading mechanism."""
 
     azure_blob_storage_account_name: str
@@ -32,10 +32,10 @@ class DestinationMssqlV2BulkLoadTypedDict(TypedDict):
     r"""A shared access signature (SAS) provides secure delegated access to resources in your storage account. See: https://learn.microsoft.com/azure/storage/common/storage-sas-overview"""
     bulk_load_validate_values_pre_load: NotRequired[bool]
     r"""When enabled, Airbyte will validate all values before loading them into the destination table. This provides stronger data integrity guarantees but may significantly impact performance."""
-    load_type: NotRequired[DestinationMssqlV2LoadTypeBulk]
+    load_type: NotRequired[DestinationMssqlV2LoadTypeLoadTypeLoadType]
 
 
-class DestinationMssqlV2BulkLoad(BaseModel):
+class LoadTypeBulkLoad(BaseModel):
     r"""Configuration details for using the BULK loading mechanism."""
 
     model_config = ConfigDict(
@@ -58,8 +58,8 @@ class DestinationMssqlV2BulkLoad(BaseModel):
     bulk_load_validate_values_pre_load: Optional[bool] = False
     r"""When enabled, Airbyte will validate all values before loading them into the destination table. This provides stronger data integrity guarantees but may significantly impact performance."""
 
-    load_type: Optional[DestinationMssqlV2LoadTypeBulk] = (
-        DestinationMssqlV2LoadTypeBulk.BULK
+    load_type: Optional[DestinationMssqlV2LoadTypeLoadTypeLoadType] = (
+        DestinationMssqlV2LoadTypeLoadTypeLoadType.BULK
     )
 
     @property
@@ -90,17 +90,17 @@ class DestinationMssqlV2BulkLoad(BaseModel):
         return m
 
 
-class DestinationMssqlV2LoadTypeInsert(str, Enum):
+class DestinationMssqlV2LoadTypeLoadType(str, Enum):
     INSERT = "INSERT"
 
 
-class DestinationMssqlV2InsertLoadTypedDict(TypedDict):
+class LoadTypeInsertLoadTypedDict(TypedDict):
     r"""Configuration details for using the INSERT loading mechanism."""
 
-    load_type: NotRequired[DestinationMssqlV2LoadTypeInsert]
+    load_type: NotRequired[DestinationMssqlV2LoadTypeLoadType]
 
 
-class DestinationMssqlV2InsertLoad(BaseModel):
+class LoadTypeInsertLoad(BaseModel):
     r"""Configuration details for using the INSERT loading mechanism."""
 
     model_config = ConfigDict(
@@ -108,8 +108,8 @@ class DestinationMssqlV2InsertLoad(BaseModel):
     )
     __pydantic_extra__: Dict[str, Any] = pydantic.Field(init=False)
 
-    load_type: Optional[DestinationMssqlV2LoadTypeInsert] = (
-        DestinationMssqlV2LoadTypeInsert.INSERT
+    load_type: Optional[DestinationMssqlV2LoadTypeLoadType] = (
+        DestinationMssqlV2LoadTypeLoadType.INSERT
     )
 
     @property
@@ -140,37 +140,36 @@ class DestinationMssqlV2InsertLoad(BaseModel):
         return m
 
 
-DestinationMssqlV2LoadTypeUnionTypedDict = TypeAliasType(
-    "DestinationMssqlV2LoadTypeUnionTypedDict",
-    Union[DestinationMssqlV2InsertLoadTypedDict, DestinationMssqlV2BulkLoadTypedDict],
+DestinationMssqlV2LoadTypeTypedDict = TypeAliasType(
+    "DestinationMssqlV2LoadTypeTypedDict",
+    Union[LoadTypeInsertLoadTypedDict, LoadTypeBulkLoadTypedDict],
 )
 r"""Specifies the type of load mechanism (e.g., BULK, INSERT) and its associated configuration."""
 
 
-DestinationMssqlV2LoadTypeUnion = TypeAliasType(
-    "DestinationMssqlV2LoadTypeUnion",
-    Union[DestinationMssqlV2InsertLoad, DestinationMssqlV2BulkLoad],
+DestinationMssqlV2LoadType = TypeAliasType(
+    "DestinationMssqlV2LoadType", Union[LoadTypeInsertLoad, LoadTypeBulkLoad]
 )
 r"""Specifies the type of load mechanism (e.g., BULK, INSERT) and its associated configuration."""
 
 
-class DestinationMssqlV2NameEncryptedVerifyCertificate(str, Enum):
+class DestinationMssqlV2SSLMethodSSLMethod3Name(str, Enum):
     ENCRYPTED_VERIFY_CERTIFICATE = "encrypted_verify_certificate"
 
 
-class DestinationMssqlV2EncryptedVerifyCertificateTypedDict(TypedDict):
+class SSLMethodEncryptedVerifyCertificateTypedDict(TypedDict):
     r"""Verify and use the certificate provided by the server."""
 
     host_name_in_certificate: NotRequired[str]
     r"""Specifies the host name of the server. The value of this property must match the subject property of the certificate."""
-    name: NotRequired[DestinationMssqlV2NameEncryptedVerifyCertificate]
+    name: NotRequired[DestinationMssqlV2SSLMethodSSLMethod3Name]
     trust_store_name: NotRequired[str]
     r"""Specifies the name of the trust store."""
     trust_store_password: NotRequired[str]
     r"""Specifies the password of the trust store."""
 
 
-class DestinationMssqlV2EncryptedVerifyCertificate(BaseModel):
+class SSLMethodEncryptedVerifyCertificate(BaseModel):
     r"""Verify and use the certificate provided by the server."""
 
     model_config = ConfigDict(
@@ -183,8 +182,8 @@ class DestinationMssqlV2EncryptedVerifyCertificate(BaseModel):
     ] = None
     r"""Specifies the host name of the server. The value of this property must match the subject property of the certificate."""
 
-    name: Optional[DestinationMssqlV2NameEncryptedVerifyCertificate] = (
-        DestinationMssqlV2NameEncryptedVerifyCertificate.ENCRYPTED_VERIFY_CERTIFICATE
+    name: Optional[DestinationMssqlV2SSLMethodSSLMethod3Name] = (
+        DestinationMssqlV2SSLMethodSSLMethod3Name.ENCRYPTED_VERIFY_CERTIFICATE
     )
 
     trust_store_name: Annotated[
@@ -227,17 +226,17 @@ class DestinationMssqlV2EncryptedVerifyCertificate(BaseModel):
         return m
 
 
-class DestinationMssqlV2NameEncryptedTrustServerCertificate(str, Enum):
+class DestinationMssqlV2SSLMethodSSLMethodName(str, Enum):
     ENCRYPTED_TRUST_SERVER_CERTIFICATE = "encrypted_trust_server_certificate"
 
 
-class DestinationMssqlV2EncryptedTrustServerCertificateTypedDict(TypedDict):
+class SSLMethodEncryptedTrustServerCertificateTypedDict(TypedDict):
     r"""Use the certificate provided by the server without verification. (For testing purposes only!)"""
 
-    name: NotRequired[DestinationMssqlV2NameEncryptedTrustServerCertificate]
+    name: NotRequired[DestinationMssqlV2SSLMethodSSLMethodName]
 
 
-class DestinationMssqlV2EncryptedTrustServerCertificate(BaseModel):
+class SSLMethodEncryptedTrustServerCertificate(BaseModel):
     r"""Use the certificate provided by the server without verification. (For testing purposes only!)"""
 
     model_config = ConfigDict(
@@ -245,8 +244,8 @@ class DestinationMssqlV2EncryptedTrustServerCertificate(BaseModel):
     )
     __pydantic_extra__: Dict[str, Any] = pydantic.Field(init=False)
 
-    name: Optional[DestinationMssqlV2NameEncryptedTrustServerCertificate] = (
-        DestinationMssqlV2NameEncryptedTrustServerCertificate.ENCRYPTED_TRUST_SERVER_CERTIFICATE
+    name: Optional[DestinationMssqlV2SSLMethodSSLMethodName] = (
+        DestinationMssqlV2SSLMethodSSLMethodName.ENCRYPTED_TRUST_SERVER_CERTIFICATE
     )
 
     @property
@@ -277,17 +276,17 @@ class DestinationMssqlV2EncryptedTrustServerCertificate(BaseModel):
         return m
 
 
-class DestinationMssqlV2NameUnencrypted(str, Enum):
+class DestinationMssqlV2SSLMethodName(str, Enum):
     UNENCRYPTED = "unencrypted"
 
 
-class DestinationMssqlV2UnencryptedTypedDict(TypedDict):
+class SSLMethodUnencryptedTypedDict(TypedDict):
     r"""The data transfer will not be encrypted."""
 
-    name: NotRequired[DestinationMssqlV2NameUnencrypted]
+    name: NotRequired[DestinationMssqlV2SSLMethodName]
 
 
-class DestinationMssqlV2Unencrypted(BaseModel):
+class SSLMethodUnencrypted(BaseModel):
     r"""The data transfer will not be encrypted."""
 
     model_config = ConfigDict(
@@ -295,8 +294,8 @@ class DestinationMssqlV2Unencrypted(BaseModel):
     )
     __pydantic_extra__: Dict[str, Any] = pydantic.Field(init=False)
 
-    name: Optional[DestinationMssqlV2NameUnencrypted] = (
-        DestinationMssqlV2NameUnencrypted.UNENCRYPTED
+    name: Optional[DestinationMssqlV2SSLMethodName] = (
+        DestinationMssqlV2SSLMethodName.UNENCRYPTED
     )
 
     @property
@@ -330,9 +329,9 @@ class DestinationMssqlV2Unencrypted(BaseModel):
 DestinationMssqlV2SSLMethodTypedDict = TypeAliasType(
     "DestinationMssqlV2SSLMethodTypedDict",
     Union[
-        DestinationMssqlV2UnencryptedTypedDict,
-        DestinationMssqlV2EncryptedTrustServerCertificateTypedDict,
-        DestinationMssqlV2EncryptedVerifyCertificateTypedDict,
+        SSLMethodUnencryptedTypedDict,
+        SSLMethodEncryptedTrustServerCertificateTypedDict,
+        SSLMethodEncryptedVerifyCertificateTypedDict,
     ],
 )
 r"""The encryption method which is used to communicate with the database."""
@@ -341,9 +340,9 @@ r"""The encryption method which is used to communicate with the database."""
 DestinationMssqlV2SSLMethod = TypeAliasType(
     "DestinationMssqlV2SSLMethod",
     Union[
-        DestinationMssqlV2Unencrypted,
-        DestinationMssqlV2EncryptedTrustServerCertificate,
-        DestinationMssqlV2EncryptedVerifyCertificate,
+        SSLMethodUnencrypted,
+        SSLMethodEncryptedTrustServerCertificate,
+        SSLMethodEncryptedVerifyCertificate,
     ],
 )
 r"""The encryption method which is used to communicate with the database."""
@@ -354,7 +353,7 @@ class DestinationMssqlV2TypedDict(TypedDict):
     r"""The name of the MSSQL database."""
     host: str
     r"""The host name of the MSSQL database."""
-    load_type: DestinationMssqlV2LoadTypeUnionTypedDict
+    load_type: DestinationMssqlV2LoadTypeTypedDict
     r"""Specifies the type of load mechanism (e.g., BULK, INSERT) and its associated configuration."""
     port: int
     r"""The port of the MSSQL database."""
@@ -378,7 +377,7 @@ class DestinationMssqlV2(BaseModel):
     host: str
     r"""The host name of the MSSQL database."""
 
-    load_type: DestinationMssqlV2LoadTypeUnion
+    load_type: DestinationMssqlV2LoadType
     r"""Specifies the type of load mechanism (e.g., BULK, INSERT) and its associated configuration."""
 
     port: int
@@ -422,7 +421,7 @@ class DestinationMssqlV2(BaseModel):
 
 
 try:
-    DestinationMssqlV2EncryptedVerifyCertificate.model_rebuild()
+    SSLMethodEncryptedVerifyCertificate.model_rebuild()
 except NameError:
     pass
 try:

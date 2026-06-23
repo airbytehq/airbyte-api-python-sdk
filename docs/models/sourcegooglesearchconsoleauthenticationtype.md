@@ -3,15 +3,15 @@
 
 ## Supported Types
 
-### `models.SourceGoogleSearchConsoleOAuth`
+### `models.AuthenticationTypeOAuth`
 
 ```python
-value: models.SourceGoogleSearchConsoleOAuth = /* values here */
+value: models.AuthenticationTypeOAuth = /* values here */
 ```
 
-### `models.SourceGoogleSearchConsoleServiceAccountKeyAuthentication`
+### `models.AuthenticationTypeServiceAccountKeyAuthentication`
 
 ```python
-value: models.SourceGoogleSearchConsoleServiceAccountKeyAuthentication = /* values here */
+value: models.AuthenticationTypeServiceAccountKeyAuthentication = /* values here */
 ```
 

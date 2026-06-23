@@ -11,22 +11,22 @@ Embedding configuration
 value: models.NoExternalEmbedding = /* values here */
 ```
 
-### `models.DestinationWeaviateAzureOpenAI`
+### `models.DestinationWeaviateEmbeddingAzureOpenAI`
 
 ```python
-value: models.DestinationWeaviateAzureOpenAI = /* values here */
+value: models.DestinationWeaviateEmbeddingAzureOpenAI = /* values here */
 ```
 
-### `models.DestinationWeaviateOpenAI`
+### `models.DestinationWeaviateEmbeddingOpenAI`
 
 ```python
-value: models.DestinationWeaviateOpenAI = /* values here */
+value: models.DestinationWeaviateEmbeddingOpenAI = /* values here */
 ```
 
-### `models.DestinationWeaviateCohere`
+### `models.DestinationWeaviateEmbeddingCohere`
 
 ```python
-value: models.DestinationWeaviateCohere = /* values here */
+value: models.DestinationWeaviateEmbeddingCohere = /* values here */
 ```
 
 ### `models.FromField`
@@ -35,15 +35,15 @@ value: models.DestinationWeaviateCohere = /* values here */
 value: models.FromField = /* values here */
 ```
 
-### `models.DestinationWeaviateFake`
+### `models.DestinationWeaviateEmbeddingFake`
 
 ```python
-value: models.DestinationWeaviateFake = /* values here */
+value: models.DestinationWeaviateEmbeddingFake = /* values here */
 ```
 
-### `models.DestinationWeaviateOpenAICompatible`
+### `models.DestinationWeaviateEmbeddingOpenAICompatible`
 
 ```python
-value: models.DestinationWeaviateOpenAICompatible = /* values here */
+value: models.DestinationWeaviateEmbeddingOpenAICompatible = /* values here */
 ```
 

@@ -1,0 +1,11 @@
+# SourceOracleEncryptionTLSEncryptedVerifyCertificate
+
+Verify and use the certificate provided by the server.
+
+
+## Fields
+
+| Field                                                                                                                      | Type                                                                                                                       | Required                                                                                                                   | Description                                                                                                                |
+| -------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------- |
+| `encryption_method`                                                                                                        | [models.SourceOracleEncryptionEncryption3EncryptionMethod](../models/sourceoracleencryptionencryption3encryptionmethod.md) | :heavy_check_mark:                                                                                                         | N/A                                                                                                                        |
+| `ssl_certificate`                                                                                                          | *str*                                                                                                                      | :heavy_check_mark:                                                                                                         | Privacy Enhanced Mail (PEM) files are concatenated certificate containers frequently used in certificate installations.    |

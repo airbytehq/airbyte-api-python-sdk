@@ -3,15 +3,15 @@
 
 ## Supported Types
 
-### `models.SourceTypeformOAuth20`
+### `models.SourceTypeformAuthorizationMethodOAuth20`
 
 ```python
-value: models.SourceTypeformOAuth20 = /* values here */
+value: models.SourceTypeformAuthorizationMethodOAuth20 = /* values here */
 ```
 
-### `models.SourceTypeformPrivateToken`
+### `models.AuthorizationMethodPrivateToken`
 
 ```python
-value: models.SourceTypeformPrivateToken = /* values here */
+value: models.AuthorizationMethodPrivateToken = /* values here */
 ```
 

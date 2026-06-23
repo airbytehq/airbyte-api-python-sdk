@@ -5,21 +5,21 @@ Whether to initiate an SSH tunnel before connecting to the database, and if so, 
 
 ## Supported Types
 
-### `models.SourceDb2EnterpriseNoTunnel`
+### `models.SourceDb2EnterpriseSSHTunnelMethodNoTunnel`
 
 ```python
-value: models.SourceDb2EnterpriseNoTunnel = /* values here */
+value: models.SourceDb2EnterpriseSSHTunnelMethodNoTunnel = /* values here */
 ```
 
-### `models.SourceDb2EnterpriseSSHKeyAuthentication`
+### `models.SourceDb2EnterpriseSSHTunnelMethodSSHKeyAuthentication`
 
 ```python
-value: models.SourceDb2EnterpriseSSHKeyAuthentication = /* values here */
+value: models.SourceDb2EnterpriseSSHTunnelMethodSSHKeyAuthentication = /* values here */
 ```
 
-### `models.SourceDb2EnterprisePasswordAuthentication`
+### `models.SourceDb2EnterpriseSSHTunnelMethodPasswordAuthentication`
 
 ```python
-value: models.SourceDb2EnterprisePasswordAuthentication = /* values here */
+value: models.SourceDb2EnterpriseSSHTunnelMethodPasswordAuthentication = /* values here */
 ```
 

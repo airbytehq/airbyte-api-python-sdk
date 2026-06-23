@@ -5,15 +5,15 @@ Authentication method to access Google Sheets
 
 ## Supported Types
 
-### `models.DestinationGoogleSheetsAuthenticateViaGoogleOAuth`
+### `models.AuthenticateViaGoogleOAuth`
 
 ```python
-value: models.DestinationGoogleSheetsAuthenticateViaGoogleOAuth = /* values here */
+value: models.AuthenticateViaGoogleOAuth = /* values here */
 ```
 
-### `models.DestinationGoogleSheetsServiceAccountKeyAuthentication`
+### `models.ServiceAccountKeyAuthentication`
 
 ```python
-value: models.DestinationGoogleSheetsServiceAccountKeyAuthentication = /* values here */
+value: models.ServiceAccountKeyAuthentication = /* values here */
 ```
 

@@ -5,21 +5,21 @@ Whether to initiate an SSH tunnel before connecting to the database, and if so, 
 
 ## Supported Types
 
-### `models.SourceSapHanaEnterpriseNoTunnel`
+### `models.SourceSapHanaEnterpriseSSHTunnelMethodNoTunnel`
 
 ```python
-value: models.SourceSapHanaEnterpriseNoTunnel = /* values here */
+value: models.SourceSapHanaEnterpriseSSHTunnelMethodNoTunnel = /* values here */
 ```
 
-### `models.SourceSapHanaEnterpriseSSHKeyAuthentication`
+### `models.SourceSapHanaEnterpriseSSHTunnelMethodSSHKeyAuthentication`
 
 ```python
-value: models.SourceSapHanaEnterpriseSSHKeyAuthentication = /* values here */
+value: models.SourceSapHanaEnterpriseSSHTunnelMethodSSHKeyAuthentication = /* values here */
 ```
 
-### `models.SourceSapHanaEnterprisePasswordAuthentication`
+### `models.SourceSapHanaEnterpriseSSHTunnelMethodPasswordAuthentication`
 
 ```python
-value: models.SourceSapHanaEnterprisePasswordAuthentication = /* values here */
+value: models.SourceSapHanaEnterpriseSSHTunnelMethodPasswordAuthentication = /* values here */
 ```
 

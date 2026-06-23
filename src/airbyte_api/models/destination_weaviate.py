@@ -15,11 +15,11 @@ class Weaviate(str, Enum):
     WEAVIATE = "weaviate"
 
 
-class DestinationWeaviateModeOpenaiCompatible(str, Enum):
+class DestinationWeaviateEmbeddingEmbedding7Mode(str, Enum):
     OPENAI_COMPATIBLE = "openai_compatible"
 
 
-class DestinationWeaviateOpenAICompatibleTypedDict(TypedDict):
+class DestinationWeaviateEmbeddingOpenAICompatibleTypedDict(TypedDict):
     r"""Use a service that's compatible with the OpenAI API to embed text."""
 
     base_url: str
@@ -27,12 +27,12 @@ class DestinationWeaviateOpenAICompatibleTypedDict(TypedDict):
     dimensions: int
     r"""The number of dimensions the embedding model is generating"""
     api_key: NotRequired[str]
-    mode: DestinationWeaviateModeOpenaiCompatible
+    mode: DestinationWeaviateEmbeddingEmbedding7Mode
     model_name: NotRequired[str]
     r"""The name of the model to use for embedding"""
 
 
-class DestinationWeaviateOpenAICompatible(BaseModel):
+class DestinationWeaviateEmbeddingOpenAICompatible(BaseModel):
     r"""Use a service that's compatible with the OpenAI API to embed text."""
 
     base_url: str
@@ -45,15 +45,15 @@ class DestinationWeaviateOpenAICompatible(BaseModel):
 
     MODE: Annotated[
         Annotated[
-            Optional[DestinationWeaviateModeOpenaiCompatible],
+            Optional[DestinationWeaviateEmbeddingEmbedding7Mode],
             AfterValidator(
                 validate_const(
-                    DestinationWeaviateModeOpenaiCompatible.OPENAI_COMPATIBLE
+                    DestinationWeaviateEmbeddingEmbedding7Mode.OPENAI_COMPATIBLE
                 )
             ),
         ],
         pydantic.Field(alias="mode"),
-    ] = DestinationWeaviateModeOpenaiCompatible.OPENAI_COMPATIBLE
+    ] = DestinationWeaviateEmbeddingEmbedding7Mode.OPENAI_COMPATIBLE
 
     model_name: Optional[str] = "text-embedding-ada-002"
     r"""The name of the model to use for embedding"""
@@ -75,26 +75,28 @@ class DestinationWeaviateOpenAICompatible(BaseModel):
         return m
 
 
-class DestinationWeaviateModeFake(str, Enum):
+class DestinationWeaviateEmbeddingEmbedding6Mode(str, Enum):
     FAKE = "fake"
 
 
-class DestinationWeaviateFakeTypedDict(TypedDict):
+class DestinationWeaviateEmbeddingFakeTypedDict(TypedDict):
     r"""Use a fake embedding made out of random vectors with 1536 embedding dimensions. This is useful for testing the data pipeline without incurring any costs."""
 
-    mode: DestinationWeaviateModeFake
+    mode: DestinationWeaviateEmbeddingEmbedding6Mode
 
 
-class DestinationWeaviateFake(BaseModel):
+class DestinationWeaviateEmbeddingFake(BaseModel):
     r"""Use a fake embedding made out of random vectors with 1536 embedding dimensions. This is useful for testing the data pipeline without incurring any costs."""
 
     MODE: Annotated[
         Annotated[
-            Optional[DestinationWeaviateModeFake],
-            AfterValidator(validate_const(DestinationWeaviateModeFake.FAKE)),
+            Optional[DestinationWeaviateEmbeddingEmbedding6Mode],
+            AfterValidator(
+                validate_const(DestinationWeaviateEmbeddingEmbedding6Mode.FAKE)
+            ),
         ],
         pydantic.Field(alias="mode"),
-    ] = DestinationWeaviateModeFake.FAKE
+    ] = DestinationWeaviateEmbeddingEmbedding6Mode.FAKE
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
@@ -113,7 +115,7 @@ class DestinationWeaviateFake(BaseModel):
         return m
 
 
-class ModeFromField(str, Enum):
+class DestinationWeaviateEmbeddingEmbedding5Mode(str, Enum):
     FROM_FIELD = "from_field"
 
 
@@ -124,7 +126,7 @@ class FromFieldTypedDict(TypedDict):
     r"""The number of dimensions the embedding model is generating"""
     field_name: str
     r"""Name of the field in the record that contains the embedding"""
-    mode: ModeFromField
+    mode: DestinationWeaviateEmbeddingEmbedding5Mode
 
 
 class FromField(BaseModel):
@@ -138,148 +140,13 @@ class FromField(BaseModel):
 
     MODE: Annotated[
         Annotated[
-            Optional[ModeFromField],
-            AfterValidator(validate_const(ModeFromField.FROM_FIELD)),
-        ],
-        pydantic.Field(alias="mode"),
-    ] = ModeFromField.FROM_FIELD
-
-    @model_serializer(mode="wrap")
-    def serialize_model(self, handler):
-        optional_fields = set(["mode"])
-        serialized = handler(self)
-        m = {}
-
-        for n, f in type(self).model_fields.items():
-            k = f.alias or n
-            val = serialized.get(k, serialized.get(n))
-
-            if val != UNSET_SENTINEL:
-                if val is not None or k not in optional_fields:
-                    m[k] = val
-
-        return m
-
-
-class DestinationWeaviateModeCohere(str, Enum):
-    COHERE = "cohere"
-
-
-class DestinationWeaviateCohereTypedDict(TypedDict):
-    r"""Use the Cohere API to embed text."""
-
-    cohere_key: str
-    mode: DestinationWeaviateModeCohere
-
-
-class DestinationWeaviateCohere(BaseModel):
-    r"""Use the Cohere API to embed text."""
-
-    cohere_key: str
-
-    MODE: Annotated[
-        Annotated[
-            Optional[DestinationWeaviateModeCohere],
-            AfterValidator(validate_const(DestinationWeaviateModeCohere.COHERE)),
-        ],
-        pydantic.Field(alias="mode"),
-    ] = DestinationWeaviateModeCohere.COHERE
-
-    @model_serializer(mode="wrap")
-    def serialize_model(self, handler):
-        optional_fields = set(["mode"])
-        serialized = handler(self)
-        m = {}
-
-        for n, f in type(self).model_fields.items():
-            k = f.alias or n
-            val = serialized.get(k, serialized.get(n))
-
-            if val != UNSET_SENTINEL:
-                if val is not None or k not in optional_fields:
-                    m[k] = val
-
-        return m
-
-
-class DestinationWeaviateModeOpenai(str, Enum):
-    OPENAI = "openai"
-
-
-class DestinationWeaviateOpenAITypedDict(TypedDict):
-    r"""Use the OpenAI API to embed text. This option is using the text-embedding-ada-002 model with 1536 embedding dimensions."""
-
-    openai_key: str
-    mode: DestinationWeaviateModeOpenai
-
-
-class DestinationWeaviateOpenAI(BaseModel):
-    r"""Use the OpenAI API to embed text. This option is using the text-embedding-ada-002 model with 1536 embedding dimensions."""
-
-    openai_key: str
-
-    MODE: Annotated[
-        Annotated[
-            Optional[DestinationWeaviateModeOpenai],
-            AfterValidator(validate_const(DestinationWeaviateModeOpenai.OPENAI)),
-        ],
-        pydantic.Field(alias="mode"),
-    ] = DestinationWeaviateModeOpenai.OPENAI
-
-    @model_serializer(mode="wrap")
-    def serialize_model(self, handler):
-        optional_fields = set(["mode"])
-        serialized = handler(self)
-        m = {}
-
-        for n, f in type(self).model_fields.items():
-            k = f.alias or n
-            val = serialized.get(k, serialized.get(n))
-
-            if val != UNSET_SENTINEL:
-                if val is not None or k not in optional_fields:
-                    m[k] = val
-
-        return m
-
-
-class DestinationWeaviateModeAzureOpenai(str, Enum):
-    AZURE_OPENAI = "azure_openai"
-
-
-class DestinationWeaviateAzureOpenAITypedDict(TypedDict):
-    r"""Use the Azure-hosted OpenAI API to embed text. This option is using the text-embedding-ada-002 model with 1536 embedding dimensions."""
-
-    api_base: str
-    r"""The base URL for your Azure OpenAI resource.  You can find this in the Azure portal under your Azure OpenAI resource"""
-    deployment: str
-    r"""The deployment for your Azure OpenAI resource.  You can find this in the Azure portal under your Azure OpenAI resource"""
-    openai_key: str
-    r"""The API key for your Azure OpenAI resource.  You can find this in the Azure portal under your Azure OpenAI resource"""
-    mode: DestinationWeaviateModeAzureOpenai
-
-
-class DestinationWeaviateAzureOpenAI(BaseModel):
-    r"""Use the Azure-hosted OpenAI API to embed text. This option is using the text-embedding-ada-002 model with 1536 embedding dimensions."""
-
-    api_base: str
-    r"""The base URL for your Azure OpenAI resource.  You can find this in the Azure portal under your Azure OpenAI resource"""
-
-    deployment: str
-    r"""The deployment for your Azure OpenAI resource.  You can find this in the Azure portal under your Azure OpenAI resource"""
-
-    openai_key: str
-    r"""The API key for your Azure OpenAI resource.  You can find this in the Azure portal under your Azure OpenAI resource"""
-
-    MODE: Annotated[
-        Annotated[
-            Optional[DestinationWeaviateModeAzureOpenai],
+            Optional[DestinationWeaviateEmbeddingEmbedding5Mode],
             AfterValidator(
-                validate_const(DestinationWeaviateModeAzureOpenai.AZURE_OPENAI)
+                validate_const(DestinationWeaviateEmbeddingEmbedding5Mode.FROM_FIELD)
             ),
         ],
         pydantic.Field(alias="mode"),
-    ] = DestinationWeaviateModeAzureOpenai.AZURE_OPENAI
+    ] = DestinationWeaviateEmbeddingEmbedding5Mode.FROM_FIELD
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
@@ -298,14 +165,155 @@ class DestinationWeaviateAzureOpenAI(BaseModel):
         return m
 
 
-class ModeNoEmbedding(str, Enum):
+class DestinationWeaviateEmbeddingEmbedding4Mode(str, Enum):
+    COHERE = "cohere"
+
+
+class DestinationWeaviateEmbeddingCohereTypedDict(TypedDict):
+    r"""Use the Cohere API to embed text."""
+
+    cohere_key: str
+    mode: DestinationWeaviateEmbeddingEmbedding4Mode
+
+
+class DestinationWeaviateEmbeddingCohere(BaseModel):
+    r"""Use the Cohere API to embed text."""
+
+    cohere_key: str
+
+    MODE: Annotated[
+        Annotated[
+            Optional[DestinationWeaviateEmbeddingEmbedding4Mode],
+            AfterValidator(
+                validate_const(DestinationWeaviateEmbeddingEmbedding4Mode.COHERE)
+            ),
+        ],
+        pydantic.Field(alias="mode"),
+    ] = DestinationWeaviateEmbeddingEmbedding4Mode.COHERE
+
+    @model_serializer(mode="wrap")
+    def serialize_model(self, handler):
+        optional_fields = set(["mode"])
+        serialized = handler(self)
+        m = {}
+
+        for n, f in type(self).model_fields.items():
+            k = f.alias or n
+            val = serialized.get(k, serialized.get(n))
+
+            if val != UNSET_SENTINEL:
+                if val is not None or k not in optional_fields:
+                    m[k] = val
+
+        return m
+
+
+class DestinationWeaviateEmbeddingEmbedding3Mode(str, Enum):
+    OPENAI = "openai"
+
+
+class DestinationWeaviateEmbeddingOpenAITypedDict(TypedDict):
+    r"""Use the OpenAI API to embed text. This option is using the text-embedding-ada-002 model with 1536 embedding dimensions."""
+
+    openai_key: str
+    mode: DestinationWeaviateEmbeddingEmbedding3Mode
+
+
+class DestinationWeaviateEmbeddingOpenAI(BaseModel):
+    r"""Use the OpenAI API to embed text. This option is using the text-embedding-ada-002 model with 1536 embedding dimensions."""
+
+    openai_key: str
+
+    MODE: Annotated[
+        Annotated[
+            Optional[DestinationWeaviateEmbeddingEmbedding3Mode],
+            AfterValidator(
+                validate_const(DestinationWeaviateEmbeddingEmbedding3Mode.OPENAI)
+            ),
+        ],
+        pydantic.Field(alias="mode"),
+    ] = DestinationWeaviateEmbeddingEmbedding3Mode.OPENAI
+
+    @model_serializer(mode="wrap")
+    def serialize_model(self, handler):
+        optional_fields = set(["mode"])
+        serialized = handler(self)
+        m = {}
+
+        for n, f in type(self).model_fields.items():
+            k = f.alias or n
+            val = serialized.get(k, serialized.get(n))
+
+            if val != UNSET_SENTINEL:
+                if val is not None or k not in optional_fields:
+                    m[k] = val
+
+        return m
+
+
+class DestinationWeaviateEmbeddingEmbeddingMode(str, Enum):
+    AZURE_OPENAI = "azure_openai"
+
+
+class DestinationWeaviateEmbeddingAzureOpenAITypedDict(TypedDict):
+    r"""Use the Azure-hosted OpenAI API to embed text. This option is using the text-embedding-ada-002 model with 1536 embedding dimensions."""
+
+    api_base: str
+    r"""The base URL for your Azure OpenAI resource.  You can find this in the Azure portal under your Azure OpenAI resource"""
+    deployment: str
+    r"""The deployment for your Azure OpenAI resource.  You can find this in the Azure portal under your Azure OpenAI resource"""
+    openai_key: str
+    r"""The API key for your Azure OpenAI resource.  You can find this in the Azure portal under your Azure OpenAI resource"""
+    mode: DestinationWeaviateEmbeddingEmbeddingMode
+
+
+class DestinationWeaviateEmbeddingAzureOpenAI(BaseModel):
+    r"""Use the Azure-hosted OpenAI API to embed text. This option is using the text-embedding-ada-002 model with 1536 embedding dimensions."""
+
+    api_base: str
+    r"""The base URL for your Azure OpenAI resource.  You can find this in the Azure portal under your Azure OpenAI resource"""
+
+    deployment: str
+    r"""The deployment for your Azure OpenAI resource.  You can find this in the Azure portal under your Azure OpenAI resource"""
+
+    openai_key: str
+    r"""The API key for your Azure OpenAI resource.  You can find this in the Azure portal under your Azure OpenAI resource"""
+
+    MODE: Annotated[
+        Annotated[
+            Optional[DestinationWeaviateEmbeddingEmbeddingMode],
+            AfterValidator(
+                validate_const(DestinationWeaviateEmbeddingEmbeddingMode.AZURE_OPENAI)
+            ),
+        ],
+        pydantic.Field(alias="mode"),
+    ] = DestinationWeaviateEmbeddingEmbeddingMode.AZURE_OPENAI
+
+    @model_serializer(mode="wrap")
+    def serialize_model(self, handler):
+        optional_fields = set(["mode"])
+        serialized = handler(self)
+        m = {}
+
+        for n, f in type(self).model_fields.items():
+            k = f.alias or n
+            val = serialized.get(k, serialized.get(n))
+
+            if val != UNSET_SENTINEL:
+                if val is not None or k not in optional_fields:
+                    m[k] = val
+
+        return m
+
+
+class DestinationWeaviateEmbeddingMode(str, Enum):
     NO_EMBEDDING = "no_embedding"
 
 
 class NoExternalEmbeddingTypedDict(TypedDict):
     r"""Do not calculate and pass embeddings to Weaviate. Suitable for clusters with configured vectorizers to calculate embeddings within Weaviate or for classes that should only support regular text search."""
 
-    mode: ModeNoEmbedding
+    mode: DestinationWeaviateEmbeddingMode
 
 
 class NoExternalEmbedding(BaseModel):
@@ -313,11 +321,13 @@ class NoExternalEmbedding(BaseModel):
 
     MODE: Annotated[
         Annotated[
-            Optional[ModeNoEmbedding],
-            AfterValidator(validate_const(ModeNoEmbedding.NO_EMBEDDING)),
+            Optional[DestinationWeaviateEmbeddingMode],
+            AfterValidator(
+                validate_const(DestinationWeaviateEmbeddingMode.NO_EMBEDDING)
+            ),
         ],
         pydantic.Field(alias="mode"),
-    ] = ModeNoEmbedding.NO_EMBEDDING
+    ] = DestinationWeaviateEmbeddingMode.NO_EMBEDDING
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
@@ -340,12 +350,12 @@ DestinationWeaviateEmbeddingTypedDict = TypeAliasType(
     "DestinationWeaviateEmbeddingTypedDict",
     Union[
         NoExternalEmbeddingTypedDict,
-        DestinationWeaviateFakeTypedDict,
-        DestinationWeaviateOpenAITypedDict,
-        DestinationWeaviateCohereTypedDict,
+        DestinationWeaviateEmbeddingFakeTypedDict,
+        DestinationWeaviateEmbeddingOpenAITypedDict,
+        DestinationWeaviateEmbeddingCohereTypedDict,
         FromFieldTypedDict,
-        DestinationWeaviateAzureOpenAITypedDict,
-        DestinationWeaviateOpenAICompatibleTypedDict,
+        DestinationWeaviateEmbeddingAzureOpenAITypedDict,
+        DestinationWeaviateEmbeddingOpenAICompatibleTypedDict,
     ],
 )
 r"""Embedding configuration"""
@@ -355,12 +365,12 @@ DestinationWeaviateEmbedding = TypeAliasType(
     "DestinationWeaviateEmbedding",
     Union[
         NoExternalEmbedding,
-        DestinationWeaviateFake,
-        DestinationWeaviateOpenAI,
-        DestinationWeaviateCohere,
+        DestinationWeaviateEmbeddingFake,
+        DestinationWeaviateEmbeddingOpenAI,
+        DestinationWeaviateEmbeddingCohere,
         FromField,
-        DestinationWeaviateAzureOpenAI,
-        DestinationWeaviateOpenAICompatible,
+        DestinationWeaviateEmbeddingAzureOpenAI,
+        DestinationWeaviateEmbeddingOpenAICompatible,
     ],
 )
 r"""Embedding configuration"""
@@ -377,14 +387,14 @@ class Header(BaseModel):
     value: str
 
 
-class DestinationWeaviateModeNoAuth(str, Enum):
+class DestinationWeaviateAuthenticationIndexingAuthMode(str, Enum):
     NO_AUTH = "no_auth"
 
 
 class NoAuthenticationTypedDict(TypedDict):
     r"""Do not authenticate (suitable for locally running test clusters, do not use for clusters with public IP addresses)"""
 
-    mode: DestinationWeaviateModeNoAuth
+    mode: DestinationWeaviateAuthenticationIndexingAuthMode
 
 
 class NoAuthentication(BaseModel):
@@ -392,63 +402,15 @@ class NoAuthentication(BaseModel):
 
     MODE: Annotated[
         Annotated[
-            Optional[DestinationWeaviateModeNoAuth],
-            AfterValidator(validate_const(DestinationWeaviateModeNoAuth.NO_AUTH)),
-        ],
-        pydantic.Field(alias="mode"),
-    ] = DestinationWeaviateModeNoAuth.NO_AUTH
-
-    @model_serializer(mode="wrap")
-    def serialize_model(self, handler):
-        optional_fields = set(["mode"])
-        serialized = handler(self)
-        m = {}
-
-        for n, f in type(self).model_fields.items():
-            k = f.alias or n
-            val = serialized.get(k, serialized.get(n))
-
-            if val != UNSET_SENTINEL:
-                if val is not None or k not in optional_fields:
-                    m[k] = val
-
-        return m
-
-
-class DestinationWeaviateModeUsernamePassword(str, Enum):
-    USERNAME_PASSWORD = "username_password"
-
-
-class DestinationWeaviateUsernamePasswordTypedDict(TypedDict):
-    r"""Authenticate using username and password (suitable for self-managed Weaviate clusters)"""
-
-    password: str
-    r"""Password for the Weaviate cluster"""
-    username: str
-    r"""Username for the Weaviate cluster"""
-    mode: DestinationWeaviateModeUsernamePassword
-
-
-class DestinationWeaviateUsernamePassword(BaseModel):
-    r"""Authenticate using username and password (suitable for self-managed Weaviate clusters)"""
-
-    password: str
-    r"""Password for the Weaviate cluster"""
-
-    username: str
-    r"""Username for the Weaviate cluster"""
-
-    MODE: Annotated[
-        Annotated[
-            Optional[DestinationWeaviateModeUsernamePassword],
+            Optional[DestinationWeaviateAuthenticationIndexingAuthMode],
             AfterValidator(
                 validate_const(
-                    DestinationWeaviateModeUsernamePassword.USERNAME_PASSWORD
+                    DestinationWeaviateAuthenticationIndexingAuthMode.NO_AUTH
                 )
             ),
         ],
         pydantic.Field(alias="mode"),
-    ] = DestinationWeaviateModeUsernamePassword.USERNAME_PASSWORD
+    ] = DestinationWeaviateAuthenticationIndexingAuthMode.NO_AUTH
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
@@ -467,19 +429,71 @@ class DestinationWeaviateUsernamePassword(BaseModel):
         return m
 
 
-class DestinationWeaviateModeToken(str, Enum):
+class DestinationWeaviateAuthenticationIndexingMode(str, Enum):
+    USERNAME_PASSWORD = "username_password"
+
+
+class DestinationWeaviateAuthenticationUsernamePasswordTypedDict(TypedDict):
+    r"""Authenticate using username and password (suitable for self-managed Weaviate clusters)"""
+
+    password: str
+    r"""Password for the Weaviate cluster"""
+    username: str
+    r"""Username for the Weaviate cluster"""
+    mode: DestinationWeaviateAuthenticationIndexingMode
+
+
+class DestinationWeaviateAuthenticationUsernamePassword(BaseModel):
+    r"""Authenticate using username and password (suitable for self-managed Weaviate clusters)"""
+
+    password: str
+    r"""Password for the Weaviate cluster"""
+
+    username: str
+    r"""Username for the Weaviate cluster"""
+
+    MODE: Annotated[
+        Annotated[
+            Optional[DestinationWeaviateAuthenticationIndexingMode],
+            AfterValidator(
+                validate_const(
+                    DestinationWeaviateAuthenticationIndexingMode.USERNAME_PASSWORD
+                )
+            ),
+        ],
+        pydantic.Field(alias="mode"),
+    ] = DestinationWeaviateAuthenticationIndexingMode.USERNAME_PASSWORD
+
+    @model_serializer(mode="wrap")
+    def serialize_model(self, handler):
+        optional_fields = set(["mode"])
+        serialized = handler(self)
+        m = {}
+
+        for n, f in type(self).model_fields.items():
+            k = f.alias or n
+            val = serialized.get(k, serialized.get(n))
+
+            if val != UNSET_SENTINEL:
+                if val is not None or k not in optional_fields:
+                    m[k] = val
+
+        return m
+
+
+class DestinationWeaviateAuthenticationMode(str, Enum):
     TOKEN = "token"
 
 
-class DestinationWeaviateAPITokenTypedDict(TypedDict):
+class DestinationWeaviateAuthenticationAPITokenTypedDict(TypedDict):
     r"""Authenticate using an API token (suitable for Weaviate Cloud)"""
 
     token: str
     r"""API Token for the Weaviate instance"""
-    mode: DestinationWeaviateModeToken
+    mode: DestinationWeaviateAuthenticationMode
 
 
-class DestinationWeaviateAPIToken(BaseModel):
+class DestinationWeaviateAuthenticationAPIToken(BaseModel):
     r"""Authenticate using an API token (suitable for Weaviate Cloud)"""
 
     token: str
@@ -487,11 +501,11 @@ class DestinationWeaviateAPIToken(BaseModel):
 
     MODE: Annotated[
         Annotated[
-            Optional[DestinationWeaviateModeToken],
-            AfterValidator(validate_const(DestinationWeaviateModeToken.TOKEN)),
+            Optional[DestinationWeaviateAuthenticationMode],
+            AfterValidator(validate_const(DestinationWeaviateAuthenticationMode.TOKEN)),
         ],
         pydantic.Field(alias="mode"),
-    ] = DestinationWeaviateModeToken.TOKEN
+    ] = DestinationWeaviateAuthenticationMode.TOKEN
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
@@ -514,8 +528,8 @@ DestinationWeaviateAuthenticationTypedDict = TypeAliasType(
     "DestinationWeaviateAuthenticationTypedDict",
     Union[
         NoAuthenticationTypedDict,
-        DestinationWeaviateAPITokenTypedDict,
-        DestinationWeaviateUsernamePasswordTypedDict,
+        DestinationWeaviateAuthenticationAPITokenTypedDict,
+        DestinationWeaviateAuthenticationUsernamePasswordTypedDict,
     ],
 )
 r"""Authentication method"""
@@ -525,8 +539,8 @@ DestinationWeaviateAuthentication = TypeAliasType(
     "DestinationWeaviateAuthentication",
     Union[
         NoAuthentication,
-        DestinationWeaviateAPIToken,
-        DestinationWeaviateUsernamePassword,
+        DestinationWeaviateAuthenticationAPIToken,
+        DestinationWeaviateAuthenticationUsernamePassword,
     ],
 )
 r"""Authentication method"""
@@ -628,7 +642,7 @@ class DestinationWeaviateFieldNameMappingConfigModel(BaseModel):
     r"""The field name to use in the destination"""
 
 
-class DestinationWeaviateLanguage(str, Enum):
+class DestinationWeaviateTextSplitterLanguage(str, Enum):
     r"""Split code in suitable places based on the programming language"""
 
     CPP = "cpp"
@@ -649,31 +663,35 @@ class DestinationWeaviateLanguage(str, Enum):
     SOL = "sol"
 
 
-class DestinationWeaviateModeCode(str, Enum):
+class DestinationWeaviateTextSplitterProcessingTextSplitterMode(str, Enum):
     CODE = "code"
 
 
-class DestinationWeaviateByProgrammingLanguageTypedDict(TypedDict):
+class DestinationWeaviateTextSplitterByProgrammingLanguageTypedDict(TypedDict):
     r"""Split the text by suitable delimiters based on the programming language. This is useful for splitting code into chunks."""
 
-    language: DestinationWeaviateLanguage
+    language: DestinationWeaviateTextSplitterLanguage
     r"""Split code in suitable places based on the programming language"""
-    mode: DestinationWeaviateModeCode
+    mode: DestinationWeaviateTextSplitterProcessingTextSplitterMode
 
 
-class DestinationWeaviateByProgrammingLanguage(BaseModel):
+class DestinationWeaviateTextSplitterByProgrammingLanguage(BaseModel):
     r"""Split the text by suitable delimiters based on the programming language. This is useful for splitting code into chunks."""
 
-    language: DestinationWeaviateLanguage
+    language: DestinationWeaviateTextSplitterLanguage
     r"""Split code in suitable places based on the programming language"""
 
     MODE: Annotated[
         Annotated[
-            Optional[DestinationWeaviateModeCode],
-            AfterValidator(validate_const(DestinationWeaviateModeCode.CODE)),
+            Optional[DestinationWeaviateTextSplitterProcessingTextSplitterMode],
+            AfterValidator(
+                validate_const(
+                    DestinationWeaviateTextSplitterProcessingTextSplitterMode.CODE
+                )
+            ),
         ],
         pydantic.Field(alias="mode"),
-    ] = DestinationWeaviateModeCode.CODE
+    ] = DestinationWeaviateTextSplitterProcessingTextSplitterMode.CODE
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
@@ -692,28 +710,30 @@ class DestinationWeaviateByProgrammingLanguage(BaseModel):
         return m
 
 
-class DestinationWeaviateModeMarkdown(str, Enum):
+class DestinationWeaviateTextSplitterProcessingMode(str, Enum):
     MARKDOWN = "markdown"
 
 
-class DestinationWeaviateByMarkdownHeaderTypedDict(TypedDict):
+class DestinationWeaviateTextSplitterByMarkdownHeaderTypedDict(TypedDict):
     r"""Split the text by Markdown headers down to the specified header level. If the chunk size fits multiple sections, they will be combined into a single chunk."""
 
-    mode: DestinationWeaviateModeMarkdown
+    mode: DestinationWeaviateTextSplitterProcessingMode
     split_level: NotRequired[int]
     r"""Level of markdown headers to split text fields by. Headings down to the specified level will be used as split points"""
 
 
-class DestinationWeaviateByMarkdownHeader(BaseModel):
+class DestinationWeaviateTextSplitterByMarkdownHeader(BaseModel):
     r"""Split the text by Markdown headers down to the specified header level. If the chunk size fits multiple sections, they will be combined into a single chunk."""
 
     MODE: Annotated[
         Annotated[
-            Optional[DestinationWeaviateModeMarkdown],
-            AfterValidator(validate_const(DestinationWeaviateModeMarkdown.MARKDOWN)),
+            Optional[DestinationWeaviateTextSplitterProcessingMode],
+            AfterValidator(
+                validate_const(DestinationWeaviateTextSplitterProcessingMode.MARKDOWN)
+            ),
         ],
         pydantic.Field(alias="mode"),
-    ] = DestinationWeaviateModeMarkdown.MARKDOWN
+    ] = DestinationWeaviateTextSplitterProcessingMode.MARKDOWN
 
     split_level: Optional[int] = 1
     r"""Level of markdown headers to split text fields by. Headings down to the specified level will be used as split points"""
@@ -735,21 +755,21 @@ class DestinationWeaviateByMarkdownHeader(BaseModel):
         return m
 
 
-class DestinationWeaviateModeSeparator(str, Enum):
+class DestinationWeaviateTextSplitterMode(str, Enum):
     SEPARATOR = "separator"
 
 
-class DestinationWeaviateBySeparatorTypedDict(TypedDict):
+class DestinationWeaviateTextSplitterBySeparatorTypedDict(TypedDict):
     r"""Split the text by the list of separators until the chunk size is reached, using the earlier mentioned separators where possible. This is useful for splitting text fields by paragraphs, sentences, words, etc."""
 
     keep_separator: NotRequired[bool]
     r"""Whether to keep the separator in the resulting chunks"""
-    mode: DestinationWeaviateModeSeparator
+    mode: DestinationWeaviateTextSplitterMode
     separators: NotRequired[List[str]]
     r"""List of separator strings to split text fields by. The separator itself needs to be wrapped in double quotes, e.g. to split by the dot character, use \".\". To split by a newline, use \"\n\"."""
 
 
-class DestinationWeaviateBySeparator(BaseModel):
+class DestinationWeaviateTextSplitterBySeparator(BaseModel):
     r"""Split the text by the list of separators until the chunk size is reached, using the earlier mentioned separators where possible. This is useful for splitting text fields by paragraphs, sentences, words, etc."""
 
     keep_separator: Optional[bool] = False
@@ -757,11 +777,13 @@ class DestinationWeaviateBySeparator(BaseModel):
 
     MODE: Annotated[
         Annotated[
-            Optional[DestinationWeaviateModeSeparator],
-            AfterValidator(validate_const(DestinationWeaviateModeSeparator.SEPARATOR)),
+            Optional[DestinationWeaviateTextSplitterMode],
+            AfterValidator(
+                validate_const(DestinationWeaviateTextSplitterMode.SEPARATOR)
+            ),
         ],
         pydantic.Field(alias="mode"),
-    ] = DestinationWeaviateModeSeparator.SEPARATOR
+    ] = DestinationWeaviateTextSplitterMode.SEPARATOR
 
     separators: Optional[List[str]] = None
     r"""List of separator strings to split text fields by. The separator itself needs to be wrapped in double quotes, e.g. to split by the dot character, use \".\". To split by a newline, use \"\n\"."""
@@ -786,9 +808,9 @@ class DestinationWeaviateBySeparator(BaseModel):
 DestinationWeaviateTextSplitterTypedDict = TypeAliasType(
     "DestinationWeaviateTextSplitterTypedDict",
     Union[
-        DestinationWeaviateByMarkdownHeaderTypedDict,
-        DestinationWeaviateByProgrammingLanguageTypedDict,
-        DestinationWeaviateBySeparatorTypedDict,
+        DestinationWeaviateTextSplitterByMarkdownHeaderTypedDict,
+        DestinationWeaviateTextSplitterByProgrammingLanguageTypedDict,
+        DestinationWeaviateTextSplitterBySeparatorTypedDict,
     ],
 )
 r"""Split text fields into chunks based on the specified method."""
@@ -797,9 +819,9 @@ r"""Split text fields into chunks based on the specified method."""
 DestinationWeaviateTextSplitter = TypeAliasType(
     "DestinationWeaviateTextSplitter",
     Union[
-        DestinationWeaviateByMarkdownHeader,
-        DestinationWeaviateByProgrammingLanguage,
-        DestinationWeaviateBySeparator,
+        DestinationWeaviateTextSplitterByMarkdownHeader,
+        DestinationWeaviateTextSplitterByProgrammingLanguage,
+        DestinationWeaviateTextSplitterBySeparator,
     ],
 )
 r"""Split text fields into chunks based on the specified method."""
@@ -938,11 +960,11 @@ class DestinationWeaviate(BaseModel):
 
 
 try:
-    DestinationWeaviateOpenAICompatible.model_rebuild()
+    DestinationWeaviateEmbeddingOpenAICompatible.model_rebuild()
 except NameError:
     pass
 try:
-    DestinationWeaviateFake.model_rebuild()
+    DestinationWeaviateEmbeddingFake.model_rebuild()
 except NameError:
     pass
 try:
@@ -950,15 +972,15 @@ try:
 except NameError:
     pass
 try:
-    DestinationWeaviateCohere.model_rebuild()
+    DestinationWeaviateEmbeddingCohere.model_rebuild()
 except NameError:
     pass
 try:
-    DestinationWeaviateOpenAI.model_rebuild()
+    DestinationWeaviateEmbeddingOpenAI.model_rebuild()
 except NameError:
     pass
 try:
-    DestinationWeaviateAzureOpenAI.model_rebuild()
+    DestinationWeaviateEmbeddingAzureOpenAI.model_rebuild()
 except NameError:
     pass
 try:
@@ -970,23 +992,23 @@ try:
 except NameError:
     pass
 try:
-    DestinationWeaviateUsernamePassword.model_rebuild()
+    DestinationWeaviateAuthenticationUsernamePassword.model_rebuild()
 except NameError:
     pass
 try:
-    DestinationWeaviateAPIToken.model_rebuild()
+    DestinationWeaviateAuthenticationAPIToken.model_rebuild()
 except NameError:
     pass
 try:
-    DestinationWeaviateByProgrammingLanguage.model_rebuild()
+    DestinationWeaviateTextSplitterByProgrammingLanguage.model_rebuild()
 except NameError:
     pass
 try:
-    DestinationWeaviateByMarkdownHeader.model_rebuild()
+    DestinationWeaviateTextSplitterByMarkdownHeader.model_rebuild()
 except NameError:
     pass
 try:
-    DestinationWeaviateBySeparator.model_rebuild()
+    DestinationWeaviateTextSplitterBySeparator.model_rebuild()
 except NameError:
     pass
 try:

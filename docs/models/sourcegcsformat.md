@@ -5,39 +5,39 @@ The configuration options that are used to alter how to read incoming files that
 
 ## Supported Types
 
-### `models.SourceGcsAvroFormat`
+### `models.FormatAvroFormat`
 
 ```python
-value: models.SourceGcsAvroFormat = /* values here */
+value: models.FormatAvroFormat = /* values here */
 ```
 
-### `models.SourceGcsCSVFormat`
+### `models.FormatCSVFormat`
 
 ```python
-value: models.SourceGcsCSVFormat = /* values here */
+value: models.FormatCSVFormat = /* values here */
 ```
 
-### `models.SourceGcsJsonlFormat`
+### `models.FormatJsonlFormat`
 
 ```python
-value: models.SourceGcsJsonlFormat = /* values here */
+value: models.FormatJsonlFormat = /* values here */
 ```
 
-### `models.SourceGcsParquetFormat`
+### `models.FormatParquetFormat`
 
 ```python
-value: models.SourceGcsParquetFormat = /* values here */
+value: models.FormatParquetFormat = /* values here */
 ```
 
-### `models.SourceGcsUnstructuredDocumentFormat`
+### `models.FormatUnstructuredDocumentFormat`
 
 ```python
-value: models.SourceGcsUnstructuredDocumentFormat = /* values here */
+value: models.FormatUnstructuredDocumentFormat = /* values here */
 ```
 
-### `models.SourceGcsExcelFormat`
+### `models.FormatExcelFormat`
 
 ```python
-value: models.SourceGcsExcelFormat = /* values here */
+value: models.FormatExcelFormat = /* values here */
 ```
 

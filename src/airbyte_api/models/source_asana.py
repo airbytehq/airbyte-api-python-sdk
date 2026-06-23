@@ -11,32 +11,34 @@ from typing import Any, List, Optional, Union
 from typing_extensions import Annotated, NotRequired, TypeAliasType, TypedDict
 
 
-class CredentialsTitlePatCredentials(str, Enum):
+class SourceAsanaAuthenticationMechanismCredentialsTitle(str, Enum):
     r"""PAT Credentials"""
 
     PAT_CREDENTIALS = "PAT Credentials"
 
 
-class SourceAsanaAuthenticateWithPersonalAccessTokenTypedDict(TypedDict):
+class AuthenticateWithPersonalAccessTokenTypedDict(TypedDict):
     personal_access_token: str
     r"""Asana Personal Access Token (generate yours <a href=\"https://app.asana.com/0/developer-console\">here</a>)."""
-    option_title: CredentialsTitlePatCredentials
+    option_title: SourceAsanaAuthenticationMechanismCredentialsTitle
     r"""PAT Credentials"""
 
 
-class SourceAsanaAuthenticateWithPersonalAccessToken(BaseModel):
+class AuthenticateWithPersonalAccessToken(BaseModel):
     personal_access_token: str
     r"""Asana Personal Access Token (generate yours <a href=\"https://app.asana.com/0/developer-console\">here</a>)."""
 
     OPTION_TITLE: Annotated[
         Annotated[
-            Optional[CredentialsTitlePatCredentials],
+            Optional[SourceAsanaAuthenticationMechanismCredentialsTitle],
             AfterValidator(
-                validate_const(CredentialsTitlePatCredentials.PAT_CREDENTIALS)
+                validate_const(
+                    SourceAsanaAuthenticationMechanismCredentialsTitle.PAT_CREDENTIALS
+                )
             ),
         ],
         pydantic.Field(alias="option_title"),
-    ] = CredentialsTitlePatCredentials.PAT_CREDENTIALS
+    ] = SourceAsanaAuthenticationMechanismCredentialsTitle.PAT_CREDENTIALS
     r"""PAT Credentials"""
 
     @model_serializer(mode="wrap")
@@ -56,7 +58,7 @@ class SourceAsanaAuthenticateWithPersonalAccessToken(BaseModel):
         return m
 
 
-class CredentialsTitleOAuthCredentials(str, Enum):
+class AuthenticationMechanismCredentialsTitle(str, Enum):
     r"""OAuth Credentials"""
 
     O_AUTH_CREDENTIALS = "OAuth Credentials"
@@ -66,7 +68,7 @@ class AuthenticateViaAsanaOauthTypedDict(TypedDict):
     client_id: str
     client_secret: str
     refresh_token: str
-    option_title: CredentialsTitleOAuthCredentials
+    option_title: AuthenticationMechanismCredentialsTitle
     r"""OAuth Credentials"""
 
 
@@ -79,13 +81,15 @@ class AuthenticateViaAsanaOauth(BaseModel):
 
     OPTION_TITLE: Annotated[
         Annotated[
-            Optional[CredentialsTitleOAuthCredentials],
+            Optional[AuthenticationMechanismCredentialsTitle],
             AfterValidator(
-                validate_const(CredentialsTitleOAuthCredentials.O_AUTH_CREDENTIALS)
+                validate_const(
+                    AuthenticationMechanismCredentialsTitle.O_AUTH_CREDENTIALS
+                )
             ),
         ],
         pydantic.Field(alias="option_title"),
-    ] = CredentialsTitleOAuthCredentials.O_AUTH_CREDENTIALS
+    ] = AuthenticationMechanismCredentialsTitle.O_AUTH_CREDENTIALS
     r"""OAuth Credentials"""
 
     @model_serializer(mode="wrap")
@@ -105,39 +109,38 @@ class AuthenticateViaAsanaOauth(BaseModel):
         return m
 
 
-SourceAsanaAuthenticationMechanismTypedDict = TypeAliasType(
-    "SourceAsanaAuthenticationMechanismTypedDict",
+AuthenticationMechanismTypedDict = TypeAliasType(
+    "AuthenticationMechanismTypedDict",
     Union[
-        SourceAsanaAuthenticateWithPersonalAccessTokenTypedDict,
-        AuthenticateViaAsanaOauthTypedDict,
+        AuthenticateWithPersonalAccessTokenTypedDict, AuthenticateViaAsanaOauthTypedDict
     ],
 )
 r"""Choose how to authenticate to Github"""
 
 
-SourceAsanaAuthenticationMechanism = TypeAliasType(
-    "SourceAsanaAuthenticationMechanism",
-    Union[SourceAsanaAuthenticateWithPersonalAccessToken, AuthenticateViaAsanaOauth],
+AuthenticationMechanism = TypeAliasType(
+    "AuthenticationMechanism",
+    Union[AuthenticateWithPersonalAccessToken, AuthenticateViaAsanaOauth],
 )
 r"""Choose how to authenticate to Github"""
 
 
-class AsanaEnum(str, Enum):
+class SourceAsanaAsana(str, Enum):
     ASANA = "asana"
 
 
 class SourceAsanaTypedDict(TypedDict):
-    credentials: NotRequired[SourceAsanaAuthenticationMechanismTypedDict]
+    credentials: NotRequired[AuthenticationMechanismTypedDict]
     r"""Choose how to authenticate to Github"""
     num_workers: NotRequired[int]
     r"""The number of worker threads to use for the sync. The performance upper boundary is based on the limit of your Asana pricing plan. More info about the rate limit tiers can be found on Asana's API <a href=\"https://developers.asana.com/docs/rate-limits\">docs</a>."""
     organization_export_ids: NotRequired[List[Any]]
     r"""Globally unique identifiers for the organization exports"""
-    source_type: AsanaEnum
+    source_type: SourceAsanaAsana
 
 
 class SourceAsana(BaseModel):
-    credentials: Optional[SourceAsanaAuthenticationMechanism] = None
+    credentials: Optional[AuthenticationMechanism] = None
     r"""Choose how to authenticate to Github"""
 
     num_workers: Optional[int] = 10
@@ -147,9 +150,12 @@ class SourceAsana(BaseModel):
     r"""Globally unique identifiers for the organization exports"""
 
     SOURCE_TYPE: Annotated[
-        Annotated[Optional[AsanaEnum], AfterValidator(validate_const(AsanaEnum.ASANA))],
+        Annotated[
+            Optional[SourceAsanaAsana],
+            AfterValidator(validate_const(SourceAsanaAsana.ASANA)),
+        ],
         pydantic.Field(alias="sourceType"),
-    ] = AsanaEnum.ASANA
+    ] = SourceAsanaAsana.ASANA
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
@@ -171,7 +177,7 @@ class SourceAsana(BaseModel):
 
 
 try:
-    SourceAsanaAuthenticateWithPersonalAccessToken.model_rebuild()
+    AuthenticateWithPersonalAccessToken.model_rebuild()
 except NameError:
     pass
 try:

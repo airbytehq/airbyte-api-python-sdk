@@ -12,44 +12,46 @@ from typing import Optional, Union
 from typing_extensions import Annotated, NotRequired, TypeAliasType, TypedDict
 
 
-class SourceNotionAuthTypeToken(str, Enum):
+class SourceNotionAuthenticationMethodAuthType(str, Enum):
     TOKEN = "token"
 
 
-class SourceNotionAccessTokenTypedDict(TypedDict):
+class AuthenticationMethodAccessTokenTypedDict(TypedDict):
     token: str
     r"""The Access Token for your private Notion integration. See the <a href='https://docs.airbyte.com/integrations/sources/notion#step-1-create-an-integration-in-notion'>docs</a> for more information on how to obtain this token."""
-    auth_type: SourceNotionAuthTypeToken
+    auth_type: SourceNotionAuthenticationMethodAuthType
 
 
-class SourceNotionAccessToken(BaseModel):
+class AuthenticationMethodAccessToken(BaseModel):
     token: str
     r"""The Access Token for your private Notion integration. See the <a href='https://docs.airbyte.com/integrations/sources/notion#step-1-create-an-integration-in-notion'>docs</a> for more information on how to obtain this token."""
 
     AUTH_TYPE: Annotated[
         Annotated[
-            SourceNotionAuthTypeToken,
-            AfterValidator(validate_const(SourceNotionAuthTypeToken.TOKEN)),
+            SourceNotionAuthenticationMethodAuthType,
+            AfterValidator(
+                validate_const(SourceNotionAuthenticationMethodAuthType.TOKEN)
+            ),
         ],
         pydantic.Field(alias="auth_type"),
-    ] = SourceNotionAuthTypeToken.TOKEN
+    ] = SourceNotionAuthenticationMethodAuthType.TOKEN
 
 
-class AuthTypeOAuth20(str, Enum):
+class AuthenticationMethodAuthType(str, Enum):
     O_AUTH2_0 = "OAuth2.0"
 
 
-class SourceNotionOAuth20TypedDict(TypedDict):
+class AuthenticationMethodOAuth20TypedDict(TypedDict):
     access_token: str
     r"""The Access Token received by completing the OAuth flow for your Notion integration. See our <a href='https://docs.airbyte.com/integrations/sources/notion#step-2-set-permissions-and-acquire-authorization-credentials'>docs</a> for more information."""
     client_id: str
     r"""The Client ID of your Notion integration. See our <a href='https://docs.airbyte.com/integrations/sources/notion#step-2-set-permissions-and-acquire-authorization-credentials'>docs</a> for more information."""
     client_secret: str
     r"""The Client Secret of your Notion integration. See our <a href='https://docs.airbyte.com/integrations/sources/notion#step-2-set-permissions-and-acquire-authorization-credentials'>docs</a> for more information."""
-    auth_type: AuthTypeOAuth20
+    auth_type: AuthenticationMethodAuthType
 
 
-class SourceNotionOAuth20(BaseModel):
+class AuthenticationMethodOAuth20(BaseModel):
     access_token: str
     r"""The Access Token received by completing the OAuth flow for your Notion integration. See our <a href='https://docs.airbyte.com/integrations/sources/notion#step-2-set-permissions-and-acquire-authorization-credentials'>docs</a> for more information."""
 
@@ -61,37 +63,40 @@ class SourceNotionOAuth20(BaseModel):
 
     AUTH_TYPE: Annotated[
         Annotated[
-            AuthTypeOAuth20, AfterValidator(validate_const(AuthTypeOAuth20.O_AUTH2_0))
+            AuthenticationMethodAuthType,
+            AfterValidator(validate_const(AuthenticationMethodAuthType.O_AUTH2_0)),
         ],
         pydantic.Field(alias="auth_type"),
-    ] = AuthTypeOAuth20.O_AUTH2_0
+    ] = AuthenticationMethodAuthType.O_AUTH2_0
 
 
 SourceNotionAuthenticationMethodTypedDict = TypeAliasType(
     "SourceNotionAuthenticationMethodTypedDict",
-    Union[SourceNotionAccessTokenTypedDict, SourceNotionOAuth20TypedDict],
+    Union[
+        AuthenticationMethodAccessTokenTypedDict, AuthenticationMethodOAuth20TypedDict
+    ],
 )
 r"""Choose either OAuth (recommended for Airbyte Cloud) or Access Token. See our <a href='https://docs.airbyte.com/integrations/sources/notion#setup-guide'>docs</a> for more information."""
 
 
 SourceNotionAuthenticationMethod = Annotated[
     Union[
-        Annotated[SourceNotionOAuth20, Tag("OAuth2.0")],
-        Annotated[SourceNotionAccessToken, Tag("token")],
+        Annotated[AuthenticationMethodOAuth20, Tag("OAuth2.0")],
+        Annotated[AuthenticationMethodAccessToken, Tag("token")],
     ],
     Discriminator(lambda m: get_discriminator(m, "auth_type", "auth_type")),
 ]
 r"""Choose either OAuth (recommended for Airbyte Cloud) or Access Token. See our <a href='https://docs.airbyte.com/integrations/sources/notion#setup-guide'>docs</a> for more information."""
 
 
-class NotionEnum(str, Enum):
+class SourceNotionNotion(str, Enum):
     NOTION = "notion"
 
 
 class SourceNotionTypedDict(TypedDict):
     credentials: NotRequired[SourceNotionAuthenticationMethodTypedDict]
     r"""Choose either OAuth (recommended for Airbyte Cloud) or Access Token. See our <a href='https://docs.airbyte.com/integrations/sources/notion#setup-guide'>docs</a> for more information."""
-    source_type: NotionEnum
+    source_type: SourceNotionNotion
     start_date: NotRequired[datetime]
     r"""UTC date and time in the format YYYY-MM-DDTHH:MM:SS.000Z. During incremental sync, any data generated before this date will not be replicated. If left blank, the start date will be set to 2 years before the present date."""
 
@@ -102,10 +107,11 @@ class SourceNotion(BaseModel):
 
     SOURCE_TYPE: Annotated[
         Annotated[
-            Optional[NotionEnum], AfterValidator(validate_const(NotionEnum.NOTION))
+            Optional[SourceNotionNotion],
+            AfterValidator(validate_const(SourceNotionNotion.NOTION)),
         ],
         pydantic.Field(alias="sourceType"),
-    ] = NotionEnum.NOTION
+    ] = SourceNotionNotion.NOTION
 
     start_date: Optional[datetime] = None
     r"""UTC date and time in the format YYYY-MM-DDTHH:MM:SS.000Z. During incremental sync, any data generated before this date will not be replicated. If left blank, the start date will be set to 2 years before the present date."""
@@ -128,11 +134,11 @@ class SourceNotion(BaseModel):
 
 
 try:
-    SourceNotionAccessToken.model_rebuild()
+    AuthenticationMethodAccessToken.model_rebuild()
 except NameError:
     pass
 try:
-    SourceNotionOAuth20.model_rebuild()
+    AuthenticationMethodOAuth20.model_rebuild()
 except NameError:
     pass
 try:

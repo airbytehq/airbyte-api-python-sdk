@@ -3,21 +3,21 @@
 
 ## Supported Types
 
-### `models.SourceSharepointEnterpriseReplicateRecords`
+### `models.SourceSharepointEnterpriseDeliveryMethodReplicateRecords`
 
 ```python
-value: models.SourceSharepointEnterpriseReplicateRecords = /* values here */
+value: models.SourceSharepointEnterpriseDeliveryMethodReplicateRecords = /* values here */
 ```
 
-### `models.SourceSharepointEnterpriseCopyRawFiles`
+### `models.SourceSharepointEnterpriseDeliveryMethodCopyRawFiles`
 
 ```python
-value: models.SourceSharepointEnterpriseCopyRawFiles = /* values here */
+value: models.SourceSharepointEnterpriseDeliveryMethodCopyRawFiles = /* values here */
 ```
 
-### `models.SourceSharepointEnterpriseReplicatePermissionsACL`
+### `models.DeliveryMethodReplicatePermissionsACL`
 
 ```python
-value: models.SourceSharepointEnterpriseReplicatePermissionsACL = /* values here */
+value: models.DeliveryMethodReplicatePermissionsACL = /* values here */
 ```
 

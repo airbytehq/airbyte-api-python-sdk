@@ -11,7 +11,7 @@ from typing import Any, Dict, Optional, Union
 from typing_extensions import Annotated, NotRequired, TypeAliasType, TypedDict
 
 
-class DestinationSalesforceAuthType(str, Enum):
+class AuthType(str, Enum):
     CLIENT = "Client"
 
 
@@ -19,7 +19,7 @@ class DestinationSalesforceSalesforce(str, Enum):
     SALESFORCE = "salesforce"
 
 
-class DestinationSalesforceS3BucketRegion(str, Enum):
+class DestinationSalesforceObjectStorageSpecS3BucketRegion(str, Enum):
     r"""The region of the S3 bucket. See <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-regions-availability-zones.html#concepts-available-regions\">here</a> for all region codes."""
 
     UNKNOWN = ""
@@ -58,11 +58,11 @@ class DestinationSalesforceS3BucketRegion(str, Enum):
     US_WEST_2 = "us-west-2"
 
 
-class DestinationSalesforceStorageTypeS3(str, Enum):
+class DestinationSalesforceObjectStorageSpecObjectStorageConfigStorageType(str, Enum):
     S3 = "S3"
 
 
-class DestinationSalesforceS3TypedDict(TypedDict):
+class DestinationSalesforceObjectStorageSpecS3TypedDict(TypedDict):
     bucket_path: str
     r"""All files in the bucket will be prefixed by this."""
     s3_bucket_name: str
@@ -71,16 +71,18 @@ class DestinationSalesforceS3TypedDict(TypedDict):
     r"""The access key ID to access the S3 bucket. Airbyte requires Read and Write permissions to the given bucket. Read more <a href=\"https://docs.aws.amazon.com/general/latest/gr/aws-sec-cred-types.html#access-keys-and-secret-access-keys\">here</a>."""
     role_arn: NotRequired[str]
     r"""The ARN of the AWS role to assume. Only usable in Airbyte Cloud."""
-    s3_bucket_region: NotRequired[DestinationSalesforceS3BucketRegion]
+    s3_bucket_region: NotRequired[DestinationSalesforceObjectStorageSpecS3BucketRegion]
     r"""The region of the S3 bucket. See <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-regions-availability-zones.html#concepts-available-regions\">here</a> for all region codes."""
     s3_endpoint: NotRequired[str]
     r"""Your S3 endpoint url. Read more <a href=\"https://docs.aws.amazon.com/general/latest/gr/s3.html#:~:text=Service%20endpoints-,Amazon%20S3%20endpoints,-When%20you%20use\">here</a>"""
     secret_access_key: NotRequired[str]
     r"""The corresponding secret to the access key ID. Read more <a href=\"https://docs.aws.amazon.com/general/latest/gr/aws-sec-cred-types.html#access-keys-and-secret-access-keys\">here</a>"""
-    storage_type: NotRequired[DestinationSalesforceStorageTypeS3]
+    storage_type: NotRequired[
+        DestinationSalesforceObjectStorageSpecObjectStorageConfigStorageType
+    ]
 
 
-class DestinationSalesforceS3(BaseModel):
+class DestinationSalesforceObjectStorageSpecS3(BaseModel):
     model_config = ConfigDict(
         populate_by_name=True, arbitrary_types_allowed=True, extra="allow"
     )
@@ -98,8 +100,8 @@ class DestinationSalesforceS3(BaseModel):
     role_arn: Optional[str] = None
     r"""The ARN of the AWS role to assume. Only usable in Airbyte Cloud."""
 
-    s3_bucket_region: Optional[DestinationSalesforceS3BucketRegion] = (
-        DestinationSalesforceS3BucketRegion.UNKNOWN
+    s3_bucket_region: Optional[DestinationSalesforceObjectStorageSpecS3BucketRegion] = (
+        DestinationSalesforceObjectStorageSpecS3BucketRegion.UNKNOWN
     )
     r"""The region of the S3 bucket. See <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-regions-availability-zones.html#concepts-available-regions\">here</a> for all region codes."""
 
@@ -109,9 +111,9 @@ class DestinationSalesforceS3(BaseModel):
     secret_access_key: Optional[str] = None
     r"""The corresponding secret to the access key ID. Read more <a href=\"https://docs.aws.amazon.com/general/latest/gr/aws-sec-cred-types.html#access-keys-and-secret-access-keys\">here</a>"""
 
-    storage_type: Optional[DestinationSalesforceStorageTypeS3] = (
-        DestinationSalesforceStorageTypeS3.S3
-    )
+    storage_type: Optional[
+        DestinationSalesforceObjectStorageSpecObjectStorageConfigStorageType
+    ] = DestinationSalesforceObjectStorageSpecObjectStorageConfigStorageType.S3
 
     @property
     def additional_properties(self):
@@ -150,22 +152,22 @@ class DestinationSalesforceS3(BaseModel):
         return m
 
 
-class DestinationSalesforceStorageTypeNone(str, Enum):
+class DestinationSalesforceObjectStorageSpecStorageType(str, Enum):
     NONE = "None"
 
 
-class DestinationSalesforceNoneTypedDict(TypedDict):
-    storage_type: NotRequired[DestinationSalesforceStorageTypeNone]
+class ObjectStorageSpecNoneTypedDict(TypedDict):
+    storage_type: NotRequired[DestinationSalesforceObjectStorageSpecStorageType]
 
 
-class DestinationSalesforceNone(BaseModel):
+class ObjectStorageSpecNone(BaseModel):
     model_config = ConfigDict(
         populate_by_name=True, arbitrary_types_allowed=True, extra="allow"
     )
     __pydantic_extra__: Dict[str, Any] = pydantic.Field(init=False)
 
-    storage_type: Optional[DestinationSalesforceStorageTypeNone] = (
-        DestinationSalesforceStorageTypeNone.NONE
+    storage_type: Optional[DestinationSalesforceObjectStorageSpecStorageType] = (
+        DestinationSalesforceObjectStorageSpecStorageType.NONE
     )
 
     @property
@@ -198,13 +200,16 @@ class DestinationSalesforceNone(BaseModel):
 
 DestinationSalesforceObjectStorageSpecTypedDict = TypeAliasType(
     "DestinationSalesforceObjectStorageSpecTypedDict",
-    Union[DestinationSalesforceNoneTypedDict, DestinationSalesforceS3TypedDict],
+    Union[
+        ObjectStorageSpecNoneTypedDict,
+        DestinationSalesforceObjectStorageSpecS3TypedDict,
+    ],
 )
 
 
 DestinationSalesforceObjectStorageSpec = TypeAliasType(
     "DestinationSalesforceObjectStorageSpec",
-    Union[DestinationSalesforceNone, DestinationSalesforceS3],
+    Union[ObjectStorageSpecNone, DestinationSalesforceObjectStorageSpecS3],
 )
 
 
@@ -215,7 +220,7 @@ class DestinationSalesforceTypedDict(TypedDict):
     r"""Enter your Salesforce developer application's <a href=\"https://developer.salesforce.com/forums/?id=9062I000000DLgbQAG\">Client secret</a>."""
     refresh_token: str
     r"""Enter your application's <a href=\"https://developer.salesforce.com/docs/atlas.en-us.mobile_sdk.meta/mobile_sdk/oauth_refresh_token_flow.htm\">Salesforce Refresh Token</a> used for Airbyte to access your Salesforce account."""
-    auth_type: DestinationSalesforceAuthType
+    auth_type: AuthType
     destination_type: DestinationSalesforceSalesforce
     is_sandbox: NotRequired[bool]
     r"""Toggle if you're using a <a href=\"https://help.salesforce.com/s/articleView?id=sf.deploy_sandboxes_parent.htm&type=5\">Salesforce Sandbox</a>."""
@@ -233,12 +238,9 @@ class DestinationSalesforce(BaseModel):
     r"""Enter your application's <a href=\"https://developer.salesforce.com/docs/atlas.en-us.mobile_sdk.meta/mobile_sdk/oauth_refresh_token_flow.htm\">Salesforce Refresh Token</a> used for Airbyte to access your Salesforce account."""
 
     AUTH_TYPE: Annotated[
-        Annotated[
-            DestinationSalesforceAuthType,
-            AfterValidator(validate_const(DestinationSalesforceAuthType.CLIENT)),
-        ],
+        Annotated[AuthType, AfterValidator(validate_const(AuthType.CLIENT))],
         pydantic.Field(alias="auth_type"),
-    ] = DestinationSalesforceAuthType.CLIENT
+    ] = AuthType.CLIENT
 
     DESTINATION_TYPE: Annotated[
         Annotated[

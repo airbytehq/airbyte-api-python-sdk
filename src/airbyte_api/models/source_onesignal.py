@@ -12,13 +12,13 @@ from typing import List, Optional
 from typing_extensions import Annotated, NotRequired, TypedDict
 
 
-class ApplicationTypedDict(TypedDict):
+class ApplicationsTypedDict(TypedDict):
     app_api_key: str
     app_id: str
     app_name: NotRequired[str]
 
 
-class Application(BaseModel):
+class Applications(BaseModel):
     app_api_key: str
 
     app_id: str
@@ -47,7 +47,7 @@ class Onesignal(str, Enum):
 
 
 class SourceOnesignalTypedDict(TypedDict):
-    applications: List[ApplicationTypedDict]
+    applications: List[ApplicationsTypedDict]
     r"""Applications keys, see the <a href=\"https://documentation.onesignal.com/docs/accounts-and-keys\">docs</a> for more information on how to obtain this data"""
     outcome_names: str
     r"""Comma-separated list of names and the value (sum/count) for the returned outcome data. See the <a href=\"https://documentation.onesignal.com/reference/view-outcomes\">docs</a> for more details"""
@@ -59,7 +59,7 @@ class SourceOnesignalTypedDict(TypedDict):
 
 
 class SourceOnesignal(BaseModel):
-    applications: List[Application]
+    applications: List[Applications]
     r"""Applications keys, see the <a href=\"https://documentation.onesignal.com/docs/accounts-and-keys\">docs</a> for more information on how to obtain this data"""
 
     outcome_names: str

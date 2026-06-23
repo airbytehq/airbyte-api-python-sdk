@@ -12,7 +12,7 @@ from typing import Optional, Union
 from typing_extensions import Annotated, NotRequired, TypeAliasType, TypedDict
 
 
-class AuthTypeSandboxAccessToken(str, Enum):
+class SourceTiktokMarketingAuthenticationMethodCredentialsAuthType(str, Enum):
     SANDBOX_ACCESS_TOKEN = "sandbox_access_token"
 
 
@@ -21,7 +21,7 @@ class SandboxAccessTokenTypedDict(TypedDict):
     r"""The long-term authorized access token."""
     advertiser_id: str
     r"""The Advertiser ID which generated for the developer's Sandbox application."""
-    auth_type: AuthTypeSandboxAccessToken
+    auth_type: SourceTiktokMarketingAuthenticationMethodCredentialsAuthType
 
 
 class SandboxAccessToken(BaseModel):
@@ -33,13 +33,15 @@ class SandboxAccessToken(BaseModel):
 
     AUTH_TYPE: Annotated[
         Annotated[
-            Optional[AuthTypeSandboxAccessToken],
+            Optional[SourceTiktokMarketingAuthenticationMethodCredentialsAuthType],
             AfterValidator(
-                validate_const(AuthTypeSandboxAccessToken.SANDBOX_ACCESS_TOKEN)
+                validate_const(
+                    SourceTiktokMarketingAuthenticationMethodCredentialsAuthType.SANDBOX_ACCESS_TOKEN
+                )
             ),
         ],
         pydantic.Field(alias="auth_type"),
-    ] = AuthTypeSandboxAccessToken.SANDBOX_ACCESS_TOKEN
+    ] = SourceTiktokMarketingAuthenticationMethodCredentialsAuthType.SANDBOX_ACCESS_TOKEN
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
@@ -58,11 +60,11 @@ class SandboxAccessToken(BaseModel):
         return m
 
 
-class SourceTiktokMarketingAuthTypeOauth20(str, Enum):
+class SourceTiktokMarketingAuthenticationMethodAuthType(str, Enum):
     OAUTH2_0 = "oauth2.0"
 
 
-class SourceTiktokMarketingOAuth20TypedDict(TypedDict):
+class SourceTiktokMarketingAuthenticationMethodOAuth20TypedDict(TypedDict):
     access_token: str
     r"""Long-term Authorized Access Token."""
     app_id: str
@@ -71,10 +73,10 @@ class SourceTiktokMarketingOAuth20TypedDict(TypedDict):
     r"""The Developer Application Secret."""
     advertiser_id: NotRequired[str]
     r"""The Advertiser ID to filter reports and streams. Let this empty to retrieve all."""
-    auth_type: SourceTiktokMarketingAuthTypeOauth20
+    auth_type: SourceTiktokMarketingAuthenticationMethodAuthType
 
 
-class SourceTiktokMarketingOAuth20(BaseModel):
+class SourceTiktokMarketingAuthenticationMethodOAuth20(BaseModel):
     access_token: str
     r"""Long-term Authorized Access Token."""
 
@@ -89,13 +91,15 @@ class SourceTiktokMarketingOAuth20(BaseModel):
 
     AUTH_TYPE: Annotated[
         Annotated[
-            Optional[SourceTiktokMarketingAuthTypeOauth20],
+            Optional[SourceTiktokMarketingAuthenticationMethodAuthType],
             AfterValidator(
-                validate_const(SourceTiktokMarketingAuthTypeOauth20.OAUTH2_0)
+                validate_const(
+                    SourceTiktokMarketingAuthenticationMethodAuthType.OAUTH2_0
+                )
             ),
         ],
         pydantic.Field(alias="auth_type"),
-    ] = SourceTiktokMarketingAuthTypeOauth20.OAUTH2_0
+    ] = SourceTiktokMarketingAuthenticationMethodAuthType.OAUTH2_0
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
@@ -116,19 +120,22 @@ class SourceTiktokMarketingOAuth20(BaseModel):
 
 SourceTiktokMarketingAuthenticationMethodTypedDict = TypeAliasType(
     "SourceTiktokMarketingAuthenticationMethodTypedDict",
-    Union[SandboxAccessTokenTypedDict, SourceTiktokMarketingOAuth20TypedDict],
+    Union[
+        SandboxAccessTokenTypedDict,
+        SourceTiktokMarketingAuthenticationMethodOAuth20TypedDict,
+    ],
 )
 r"""Authentication method"""
 
 
 SourceTiktokMarketingAuthenticationMethod = TypeAliasType(
     "SourceTiktokMarketingAuthenticationMethod",
-    Union[SandboxAccessToken, SourceTiktokMarketingOAuth20],
+    Union[SandboxAccessToken, SourceTiktokMarketingAuthenticationMethodOAuth20],
 )
 r"""Authentication method"""
 
 
-class TiktokMarketingEnum(str, Enum):
+class SourceTiktokMarketingTiktokMarketing(str, Enum):
     TIKTOK_MARKETING = "tiktok-marketing"
 
 
@@ -141,7 +148,7 @@ class SourceTiktokMarketingTypedDict(TypedDict):
     r"""The date until which you'd like to replicate data for all incremental streams, in the format YYYY-MM-DD. All data generated between start_date and this date will be replicated. Not setting this option will result in always syncing the data till the current date."""
     include_deleted: NotRequired[bool]
     r"""Set to active if you want to include deleted data in report based streams and Ads, Ad Groups and Campaign streams."""
-    source_type: TiktokMarketingEnum
+    source_type: SourceTiktokMarketingTiktokMarketing
     start_date: NotRequired[date]
     r"""The Start Date in format: YYYY-MM-DD. Any data before this date will not be replicated. If this parameter is not set, all data will be replicated."""
 
@@ -161,11 +168,13 @@ class SourceTiktokMarketing(BaseModel):
 
     SOURCE_TYPE: Annotated[
         Annotated[
-            Optional[TiktokMarketingEnum],
-            AfterValidator(validate_const(TiktokMarketingEnum.TIKTOK_MARKETING)),
+            Optional[SourceTiktokMarketingTiktokMarketing],
+            AfterValidator(
+                validate_const(SourceTiktokMarketingTiktokMarketing.TIKTOK_MARKETING)
+            ),
         ],
         pydantic.Field(alias="sourceType"),
-    ] = TiktokMarketingEnum.TIKTOK_MARKETING
+    ] = SourceTiktokMarketingTiktokMarketing.TIKTOK_MARKETING
 
     start_date: Optional[date] = date.fromisoformat("2016-09-01")
     r"""The Start Date in format: YYYY-MM-DD. Any data before this date will not be replicated. If this parameter is not set, all data will be replicated."""
@@ -201,7 +210,7 @@ try:
 except NameError:
     pass
 try:
-    SourceTiktokMarketingOAuth20.model_rebuild()
+    SourceTiktokMarketingAuthenticationMethodOAuth20.model_rebuild()
 except NameError:
     pass
 try:

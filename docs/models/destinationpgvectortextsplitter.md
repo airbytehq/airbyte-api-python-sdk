@@ -5,21 +5,21 @@ Split text fields into chunks based on the specified method.
 
 ## Supported Types
 
-### `models.DestinationPgvectorBySeparator`
+### `models.DestinationPgvectorTextSplitterBySeparator`
 
 ```python
-value: models.DestinationPgvectorBySeparator = /* values here */
+value: models.DestinationPgvectorTextSplitterBySeparator = /* values here */
 ```
 
-### `models.DestinationPgvectorByMarkdownHeader`
+### `models.DestinationPgvectorTextSplitterByMarkdownHeader`
 
 ```python
-value: models.DestinationPgvectorByMarkdownHeader = /* values here */
+value: models.DestinationPgvectorTextSplitterByMarkdownHeader = /* values here */
 ```
 
-### `models.DestinationPgvectorByProgrammingLanguage`
+### `models.DestinationPgvectorTextSplitterByProgrammingLanguage`
 
 ```python
-value: models.DestinationPgvectorByProgrammingLanguage = /* values here */
+value: models.DestinationPgvectorTextSplitterByProgrammingLanguage = /* values here */
 ```
 

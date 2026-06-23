@@ -11,65 +11,71 @@ from typing import Optional, Union
 from typing_extensions import Annotated, NotRequired, TypeAliasType, TypedDict
 
 
-class AuthMethodSSHKeyAuth(str, Enum):
+class SourceSftpAuthenticationCredentialsAuthMethod(str, Enum):
     r"""Connect through ssh key"""
 
     SSH_KEY_AUTH = "SSH_KEY_AUTH"
 
 
-class SourceSftpSSHKeyAuthenticationTypedDict(TypedDict):
+class AuthenticationSSHKeyAuthenticationTypedDict(TypedDict):
     auth_ssh_key: str
     r"""OS-level user account ssh key credentials in RSA PEM format ( created with ssh-keygen -t rsa -m PEM -f myuser_rsa )"""
-    auth_method: AuthMethodSSHKeyAuth
+    auth_method: SourceSftpAuthenticationCredentialsAuthMethod
     r"""Connect through ssh key"""
 
 
-class SourceSftpSSHKeyAuthentication(BaseModel):
+class AuthenticationSSHKeyAuthentication(BaseModel):
     auth_ssh_key: str
     r"""OS-level user account ssh key credentials in RSA PEM format ( created with ssh-keygen -t rsa -m PEM -f myuser_rsa )"""
 
     AUTH_METHOD: Annotated[
         Annotated[
-            AuthMethodSSHKeyAuth,
-            AfterValidator(validate_const(AuthMethodSSHKeyAuth.SSH_KEY_AUTH)),
+            SourceSftpAuthenticationCredentialsAuthMethod,
+            AfterValidator(
+                validate_const(
+                    SourceSftpAuthenticationCredentialsAuthMethod.SSH_KEY_AUTH
+                )
+            ),
         ],
         pydantic.Field(alias="auth_method"),
-    ] = AuthMethodSSHKeyAuth.SSH_KEY_AUTH
+    ] = SourceSftpAuthenticationCredentialsAuthMethod.SSH_KEY_AUTH
     r"""Connect through ssh key"""
 
 
-class AuthMethodSSHPasswordAuth(str, Enum):
+class SourceSftpAuthenticationAuthMethod(str, Enum):
     r"""Connect through password authentication"""
 
     SSH_PASSWORD_AUTH = "SSH_PASSWORD_AUTH"
 
 
-class SourceSftpPasswordAuthenticationTypedDict(TypedDict):
+class AuthenticationPasswordAuthenticationTypedDict(TypedDict):
     auth_user_password: str
     r"""OS-level password for logging into the jump server host"""
-    auth_method: AuthMethodSSHPasswordAuth
+    auth_method: SourceSftpAuthenticationAuthMethod
     r"""Connect through password authentication"""
 
 
-class SourceSftpPasswordAuthentication(BaseModel):
+class AuthenticationPasswordAuthentication(BaseModel):
     auth_user_password: str
     r"""OS-level password for logging into the jump server host"""
 
     AUTH_METHOD: Annotated[
         Annotated[
-            AuthMethodSSHPasswordAuth,
-            AfterValidator(validate_const(AuthMethodSSHPasswordAuth.SSH_PASSWORD_AUTH)),
+            SourceSftpAuthenticationAuthMethod,
+            AfterValidator(
+                validate_const(SourceSftpAuthenticationAuthMethod.SSH_PASSWORD_AUTH)
+            ),
         ],
         pydantic.Field(alias="auth_method"),
-    ] = AuthMethodSSHPasswordAuth.SSH_PASSWORD_AUTH
+    ] = SourceSftpAuthenticationAuthMethod.SSH_PASSWORD_AUTH
     r"""Connect through password authentication"""
 
 
 SourceSftpAuthenticationTypedDict = TypeAliasType(
     "SourceSftpAuthenticationTypedDict",
     Union[
-        SourceSftpPasswordAuthenticationTypedDict,
-        SourceSftpSSHKeyAuthenticationTypedDict,
+        AuthenticationPasswordAuthenticationTypedDict,
+        AuthenticationSSHKeyAuthenticationTypedDict,
     ],
 )
 r"""The server authentication method"""
@@ -77,8 +83,8 @@ r"""The server authentication method"""
 
 SourceSftpAuthentication = Annotated[
     Union[
-        Annotated[SourceSftpPasswordAuthentication, Tag("SSH_PASSWORD_AUTH")],
-        Annotated[SourceSftpSSHKeyAuthentication, Tag("SSH_KEY_AUTH")],
+        Annotated[AuthenticationPasswordAuthentication, Tag("SSH_PASSWORD_AUTH")],
+        Annotated[AuthenticationSSHKeyAuthentication, Tag("SSH_KEY_AUTH")],
     ],
     Discriminator(lambda m: get_discriminator(m, "auth_method", "auth_method")),
 ]
@@ -154,11 +160,11 @@ class SourceSftp(BaseModel):
 
 
 try:
-    SourceSftpSSHKeyAuthentication.model_rebuild()
+    AuthenticationSSHKeyAuthentication.model_rebuild()
 except NameError:
     pass
 try:
-    SourceSftpPasswordAuthentication.model_rebuild()
+    AuthenticationPasswordAuthentication.model_rebuild()
 except NameError:
     pass
 try:

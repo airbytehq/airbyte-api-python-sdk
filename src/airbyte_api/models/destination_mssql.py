@@ -11,15 +11,15 @@ from typing import Any, Dict, Optional, Union
 from typing_extensions import Annotated, NotRequired, TypeAliasType, TypedDict
 
 
-class DestinationMssqlMssql(str, Enum):
+class Mssql(str, Enum):
     MSSQL = "mssql"
 
 
-class DestinationMssqlLoadTypeBulk(str, Enum):
+class LoadTypeLoadType(str, Enum):
     BULK = "BULK"
 
 
-class DestinationMssqlBulkLoadTypedDict(TypedDict):
+class BulkLoadTypedDict(TypedDict):
     r"""Configuration details for using the BULK loading mechanism."""
 
     azure_blob_storage_account_name: str
@@ -32,12 +32,12 @@ class DestinationMssqlBulkLoadTypedDict(TypedDict):
     r"""The Azure blob storage account key. Mutually exclusive with a Shared Access Signature"""
     bulk_load_validate_values_pre_load: NotRequired[bool]
     r"""When enabled, Airbyte will validate all values before loading them into the destination table. This provides stronger data integrity guarantees but may significantly impact performance."""
-    load_type: NotRequired[DestinationMssqlLoadTypeBulk]
+    load_type: NotRequired[LoadTypeLoadType]
     shared_access_signature: NotRequired[str]
     r"""A shared access signature (SAS) provides secure delegated access to resources in your storage account. See: https://learn.microsoft.com/azure/storage/common/storage-sas-overview.Mutually exclusive with an account key"""
 
 
-class DestinationMssqlBulkLoad(BaseModel):
+class BulkLoad(BaseModel):
     r"""Configuration details for using the BULK loading mechanism."""
 
     model_config = ConfigDict(
@@ -60,9 +60,7 @@ class DestinationMssqlBulkLoad(BaseModel):
     bulk_load_validate_values_pre_load: Optional[bool] = False
     r"""When enabled, Airbyte will validate all values before loading them into the destination table. This provides stronger data integrity guarantees but may significantly impact performance."""
 
-    load_type: Optional[DestinationMssqlLoadTypeBulk] = (
-        DestinationMssqlLoadTypeBulk.BULK
-    )
+    load_type: Optional[LoadTypeLoadType] = LoadTypeLoadType.BULK
 
     shared_access_signature: Optional[str] = None
     r"""A shared access signature (SAS) provides secure delegated access to resources in your storage account. See: https://learn.microsoft.com/azure/storage/common/storage-sas-overview.Mutually exclusive with an account key"""
@@ -102,17 +100,17 @@ class DestinationMssqlBulkLoad(BaseModel):
         return m
 
 
-class DestinationMssqlLoadTypeInsert(str, Enum):
+class DestinationMssqlLoadTypeLoadType(str, Enum):
     INSERT = "INSERT"
 
 
-class DestinationMssqlInsertLoadTypedDict(TypedDict):
+class InsertLoadTypedDict(TypedDict):
     r"""Configuration details for using the INSERT loading mechanism."""
 
-    load_type: NotRequired[DestinationMssqlLoadTypeInsert]
+    load_type: NotRequired[DestinationMssqlLoadTypeLoadType]
 
 
-class DestinationMssqlInsertLoad(BaseModel):
+class InsertLoad(BaseModel):
     r"""Configuration details for using the INSERT loading mechanism."""
 
     model_config = ConfigDict(
@@ -120,8 +118,8 @@ class DestinationMssqlInsertLoad(BaseModel):
     )
     __pydantic_extra__: Dict[str, Any] = pydantic.Field(init=False)
 
-    load_type: Optional[DestinationMssqlLoadTypeInsert] = (
-        DestinationMssqlLoadTypeInsert.INSERT
+    load_type: Optional[DestinationMssqlLoadTypeLoadType] = (
+        DestinationMssqlLoadTypeLoadType.INSERT
     )
 
     @property
@@ -152,37 +150,33 @@ class DestinationMssqlInsertLoad(BaseModel):
         return m
 
 
-DestinationMssqlLoadTypeUnionTypedDict = TypeAliasType(
-    "DestinationMssqlLoadTypeUnionTypedDict",
-    Union[DestinationMssqlInsertLoadTypedDict, DestinationMssqlBulkLoadTypedDict],
+LoadTypeTypedDict = TypeAliasType(
+    "LoadTypeTypedDict", Union[InsertLoadTypedDict, BulkLoadTypedDict]
 )
 r"""Specifies the type of load mechanism (e.g., BULK, INSERT) and its associated configuration."""
 
 
-DestinationMssqlLoadTypeUnion = TypeAliasType(
-    "DestinationMssqlLoadTypeUnion",
-    Union[DestinationMssqlInsertLoad, DestinationMssqlBulkLoad],
-)
+LoadType = TypeAliasType("LoadType", Union[InsertLoad, BulkLoad])
 r"""Specifies the type of load mechanism (e.g., BULK, INSERT) and its associated configuration."""
 
 
-class DestinationMssqlNameEncryptedVerifyCertificate(str, Enum):
+class DestinationMssqlSSLMethodName(str, Enum):
     ENCRYPTED_VERIFY_CERTIFICATE = "encrypted_verify_certificate"
 
 
-class DestinationMssqlEncryptedVerifyCertificateTypedDict(TypedDict):
+class EncryptedVerifyCertificateTypedDict(TypedDict):
     r"""Verify and use the certificate provided by the server."""
 
     host_name_in_certificate: NotRequired[str]
     r"""Specifies the host name of the server. The value of this property must match the subject property of the certificate."""
-    name: NotRequired[DestinationMssqlNameEncryptedVerifyCertificate]
+    name: NotRequired[DestinationMssqlSSLMethodName]
     trust_store_name: NotRequired[str]
     r"""Specifies the name of the trust store."""
     trust_store_password: NotRequired[str]
     r"""Specifies the password of the trust store."""
 
 
-class DestinationMssqlEncryptedVerifyCertificate(BaseModel):
+class EncryptedVerifyCertificate(BaseModel):
     r"""Verify and use the certificate provided by the server."""
 
     model_config = ConfigDict(
@@ -195,8 +189,8 @@ class DestinationMssqlEncryptedVerifyCertificate(BaseModel):
     ] = None
     r"""Specifies the host name of the server. The value of this property must match the subject property of the certificate."""
 
-    name: Optional[DestinationMssqlNameEncryptedVerifyCertificate] = (
-        DestinationMssqlNameEncryptedVerifyCertificate.ENCRYPTED_VERIFY_CERTIFICATE
+    name: Optional[DestinationMssqlSSLMethodName] = (
+        DestinationMssqlSSLMethodName.ENCRYPTED_VERIFY_CERTIFICATE
     )
 
     trust_store_name: Annotated[
@@ -239,17 +233,17 @@ class DestinationMssqlEncryptedVerifyCertificate(BaseModel):
         return m
 
 
-class DestinationMssqlNameEncryptedTrustServerCertificate(str, Enum):
+class SSLMethodName(str, Enum):
     ENCRYPTED_TRUST_SERVER_CERTIFICATE = "encrypted_trust_server_certificate"
 
 
-class DestinationMssqlEncryptedTrustServerCertificateTypedDict(TypedDict):
+class EncryptedTrustServerCertificateTypedDict(TypedDict):
     r"""Use the certificate provided by the server without verification. (For testing purposes only!)"""
 
-    name: NotRequired[DestinationMssqlNameEncryptedTrustServerCertificate]
+    name: NotRequired[SSLMethodName]
 
 
-class DestinationMssqlEncryptedTrustServerCertificate(BaseModel):
+class EncryptedTrustServerCertificate(BaseModel):
     r"""Use the certificate provided by the server without verification. (For testing purposes only!)"""
 
     model_config = ConfigDict(
@@ -257,9 +251,7 @@ class DestinationMssqlEncryptedTrustServerCertificate(BaseModel):
     )
     __pydantic_extra__: Dict[str, Any] = pydantic.Field(init=False)
 
-    name: Optional[DestinationMssqlNameEncryptedTrustServerCertificate] = (
-        DestinationMssqlNameEncryptedTrustServerCertificate.ENCRYPTED_TRUST_SERVER_CERTIFICATE
-    )
+    name: Optional[SSLMethodName] = SSLMethodName.ENCRYPTED_TRUST_SERVER_CERTIFICATE
 
     @property
     def additional_properties(self):
@@ -289,17 +281,17 @@ class DestinationMssqlEncryptedTrustServerCertificate(BaseModel):
         return m
 
 
-class DestinationMssqlNameUnencrypted(str, Enum):
+class Name(str, Enum):
     UNENCRYPTED = "unencrypted"
 
 
-class DestinationMssqlUnencryptedTypedDict(TypedDict):
+class UnencryptedTypedDict(TypedDict):
     r"""The data transfer will not be encrypted."""
 
-    name: NotRequired[DestinationMssqlNameUnencrypted]
+    name: NotRequired[Name]
 
 
-class DestinationMssqlUnencrypted(BaseModel):
+class Unencrypted(BaseModel):
     r"""The data transfer will not be encrypted."""
 
     model_config = ConfigDict(
@@ -307,9 +299,7 @@ class DestinationMssqlUnencrypted(BaseModel):
     )
     __pydantic_extra__: Dict[str, Any] = pydantic.Field(init=False)
 
-    name: Optional[DestinationMssqlNameUnencrypted] = (
-        DestinationMssqlNameUnencrypted.UNENCRYPTED
-    )
+    name: Optional[Name] = Name.UNENCRYPTED
 
     @property
     def additional_properties(self):
@@ -339,33 +329,29 @@ class DestinationMssqlUnencrypted(BaseModel):
         return m
 
 
-DestinationMssqlSSLMethodTypedDict = TypeAliasType(
-    "DestinationMssqlSSLMethodTypedDict",
+SSLMethodTypedDict = TypeAliasType(
+    "SSLMethodTypedDict",
     Union[
-        DestinationMssqlUnencryptedTypedDict,
-        DestinationMssqlEncryptedTrustServerCertificateTypedDict,
-        DestinationMssqlEncryptedVerifyCertificateTypedDict,
+        UnencryptedTypedDict,
+        EncryptedTrustServerCertificateTypedDict,
+        EncryptedVerifyCertificateTypedDict,
     ],
 )
 r"""The encryption method which is used to communicate with the database."""
 
 
-DestinationMssqlSSLMethod = TypeAliasType(
-    "DestinationMssqlSSLMethod",
-    Union[
-        DestinationMssqlUnencrypted,
-        DestinationMssqlEncryptedTrustServerCertificate,
-        DestinationMssqlEncryptedVerifyCertificate,
-    ],
+SSLMethod = TypeAliasType(
+    "SSLMethod",
+    Union[Unencrypted, EncryptedTrustServerCertificate, EncryptedVerifyCertificate],
 )
 r"""The encryption method which is used to communicate with the database."""
 
 
-class DestinationMssqlTunnelMethodSSHPasswordAuth(str, Enum):
+class DestinationMssqlSSHTunnelMethodTunnelMethod3TunnelMethod(str, Enum):
     SSH_PASSWORD_AUTH = "SSH_PASSWORD_AUTH"
 
 
-class DestinationMssqlPasswordAuthenticationTypedDict(TypedDict):
+class DestinationMssqlSSHTunnelMethodPasswordAuthenticationTypedDict(TypedDict):
     r"""Connect through a jump server tunnel host using username and password authentication"""
 
     tunnel_host: str
@@ -374,12 +360,12 @@ class DestinationMssqlPasswordAuthenticationTypedDict(TypedDict):
     r"""OS-level username for logging into the jump server host"""
     tunnel_user_password: str
     r"""OS-level password for logging into the jump server host"""
-    tunnel_method: NotRequired[DestinationMssqlTunnelMethodSSHPasswordAuth]
+    tunnel_method: NotRequired[DestinationMssqlSSHTunnelMethodTunnelMethod3TunnelMethod]
     tunnel_port: NotRequired[int]
     r"""Port on the proxy/jump server that accepts inbound ssh connections."""
 
 
-class DestinationMssqlPasswordAuthentication(BaseModel):
+class DestinationMssqlSSHTunnelMethodPasswordAuthentication(BaseModel):
     r"""Connect through a jump server tunnel host using username and password authentication"""
 
     model_config = ConfigDict(
@@ -396,9 +382,9 @@ class DestinationMssqlPasswordAuthentication(BaseModel):
     tunnel_user_password: str
     r"""OS-level password for logging into the jump server host"""
 
-    tunnel_method: Optional[DestinationMssqlTunnelMethodSSHPasswordAuth] = (
-        DestinationMssqlTunnelMethodSSHPasswordAuth.SSH_PASSWORD_AUTH
-    )
+    tunnel_method: Optional[
+        DestinationMssqlSSHTunnelMethodTunnelMethod3TunnelMethod
+    ] = DestinationMssqlSSHTunnelMethodTunnelMethod3TunnelMethod.SSH_PASSWORD_AUTH
 
     tunnel_port: Optional[int] = 22
     r"""Port on the proxy/jump server that accepts inbound ssh connections."""
@@ -431,11 +417,11 @@ class DestinationMssqlPasswordAuthentication(BaseModel):
         return m
 
 
-class DestinationMssqlTunnelMethodSSHKeyAuth(str, Enum):
+class DestinationMssqlSSHTunnelMethodTunnelMethodTunnelMethod(str, Enum):
     SSH_KEY_AUTH = "SSH_KEY_AUTH"
 
 
-class DestinationMssqlSSHKeyAuthenticationTypedDict(TypedDict):
+class DestinationMssqlSSHTunnelMethodSSHKeyAuthenticationTypedDict(TypedDict):
     r"""Connect through a jump server tunnel host using username and ssh key"""
 
     ssh_key: str
@@ -444,12 +430,12 @@ class DestinationMssqlSSHKeyAuthenticationTypedDict(TypedDict):
     r"""Hostname of the jump server host that allows inbound ssh tunnel."""
     tunnel_user: str
     r"""OS-level username for logging into the jump server host"""
-    tunnel_method: NotRequired[DestinationMssqlTunnelMethodSSHKeyAuth]
+    tunnel_method: NotRequired[DestinationMssqlSSHTunnelMethodTunnelMethodTunnelMethod]
     tunnel_port: NotRequired[int]
     r"""Port on the proxy/jump server that accepts inbound ssh connections."""
 
 
-class DestinationMssqlSSHKeyAuthentication(BaseModel):
+class DestinationMssqlSSHTunnelMethodSSHKeyAuthentication(BaseModel):
     r"""Connect through a jump server tunnel host using username and ssh key"""
 
     model_config = ConfigDict(
@@ -466,8 +452,8 @@ class DestinationMssqlSSHKeyAuthentication(BaseModel):
     tunnel_user: str
     r"""OS-level username for logging into the jump server host"""
 
-    tunnel_method: Optional[DestinationMssqlTunnelMethodSSHKeyAuth] = (
-        DestinationMssqlTunnelMethodSSHKeyAuth.SSH_KEY_AUTH
+    tunnel_method: Optional[DestinationMssqlSSHTunnelMethodTunnelMethodTunnelMethod] = (
+        DestinationMssqlSSHTunnelMethodTunnelMethodTunnelMethod.SSH_KEY_AUTH
     )
 
     tunnel_port: Optional[int] = 22
@@ -501,17 +487,17 @@ class DestinationMssqlSSHKeyAuthentication(BaseModel):
         return m
 
 
-class DestinationMssqlTunnelMethodNoTunnel(str, Enum):
+class DestinationMssqlSSHTunnelMethodTunnelMethod(str, Enum):
     NO_TUNNEL = "NO_TUNNEL"
 
 
-class DestinationMssqlNoTunnelTypedDict(TypedDict):
+class DestinationMssqlSSHTunnelMethodNoTunnelTypedDict(TypedDict):
     r"""No ssh tunnel needed to connect to database"""
 
-    tunnel_method: NotRequired[DestinationMssqlTunnelMethodNoTunnel]
+    tunnel_method: NotRequired[DestinationMssqlSSHTunnelMethodTunnelMethod]
 
 
-class DestinationMssqlNoTunnel(BaseModel):
+class DestinationMssqlSSHTunnelMethodNoTunnel(BaseModel):
     r"""No ssh tunnel needed to connect to database"""
 
     model_config = ConfigDict(
@@ -519,8 +505,8 @@ class DestinationMssqlNoTunnel(BaseModel):
     )
     __pydantic_extra__: Dict[str, Any] = pydantic.Field(init=False)
 
-    tunnel_method: Optional[DestinationMssqlTunnelMethodNoTunnel] = (
-        DestinationMssqlTunnelMethodNoTunnel.NO_TUNNEL
+    tunnel_method: Optional[DestinationMssqlSSHTunnelMethodTunnelMethod] = (
+        DestinationMssqlSSHTunnelMethodTunnelMethod.NO_TUNNEL
     )
 
     @property
@@ -554,9 +540,9 @@ class DestinationMssqlNoTunnel(BaseModel):
 DestinationMssqlSSHTunnelMethodTypedDict = TypeAliasType(
     "DestinationMssqlSSHTunnelMethodTypedDict",
     Union[
-        DestinationMssqlNoTunnelTypedDict,
-        DestinationMssqlSSHKeyAuthenticationTypedDict,
-        DestinationMssqlPasswordAuthenticationTypedDict,
+        DestinationMssqlSSHTunnelMethodNoTunnelTypedDict,
+        DestinationMssqlSSHTunnelMethodSSHKeyAuthenticationTypedDict,
+        DestinationMssqlSSHTunnelMethodPasswordAuthenticationTypedDict,
     ],
 )
 r"""Whether to initiate an SSH tunnel before connecting to the database, and if so, which kind of authentication to use."""
@@ -565,9 +551,9 @@ r"""Whether to initiate an SSH tunnel before connecting to the database, and if 
 DestinationMssqlSSHTunnelMethod = TypeAliasType(
     "DestinationMssqlSSHTunnelMethod",
     Union[
-        DestinationMssqlNoTunnel,
-        DestinationMssqlSSHKeyAuthentication,
-        DestinationMssqlPasswordAuthentication,
+        DestinationMssqlSSHTunnelMethodNoTunnel,
+        DestinationMssqlSSHTunnelMethodSSHKeyAuthentication,
+        DestinationMssqlSSHTunnelMethodPasswordAuthentication,
     ],
 )
 r"""Whether to initiate an SSH tunnel before connecting to the database, and if so, which kind of authentication to use."""
@@ -578,15 +564,15 @@ class DestinationMssqlTypedDict(TypedDict):
     r"""The name of the MSSQL database."""
     host: str
     r"""The host name of the MSSQL database."""
-    load_type: DestinationMssqlLoadTypeUnionTypedDict
+    load_type: LoadTypeTypedDict
     r"""Specifies the type of load mechanism (e.g., BULK, INSERT) and its associated configuration."""
     port: int
     r"""The port of the MSSQL database."""
-    ssl_method: DestinationMssqlSSLMethodTypedDict
+    ssl_method: SSLMethodTypedDict
     r"""The encryption method which is used to communicate with the database."""
     user: str
     r"""The username which is used to access the database."""
-    destination_type: DestinationMssqlMssql
+    destination_type: Mssql
     jdbc_url_params: NotRequired[str]
     r"""Additional properties to pass to the JDBC URL string when connecting to the database formatted as 'key=value' pairs separated by the symbol '&'. (example: key1=value1&key2=value2&key3=value3)."""
     password: NotRequired[str]
@@ -604,25 +590,22 @@ class DestinationMssql(BaseModel):
     host: str
     r"""The host name of the MSSQL database."""
 
-    load_type: DestinationMssqlLoadTypeUnion
+    load_type: LoadType
     r"""Specifies the type of load mechanism (e.g., BULK, INSERT) and its associated configuration."""
 
     port: int
     r"""The port of the MSSQL database."""
 
-    ssl_method: DestinationMssqlSSLMethod
+    ssl_method: SSLMethod
     r"""The encryption method which is used to communicate with the database."""
 
     user: str
     r"""The username which is used to access the database."""
 
     DESTINATION_TYPE: Annotated[
-        Annotated[
-            DestinationMssqlMssql,
-            AfterValidator(validate_const(DestinationMssqlMssql.MSSQL)),
-        ],
+        Annotated[Mssql, AfterValidator(validate_const(Mssql.MSSQL))],
         pydantic.Field(alias="destinationType"),
-    ] = DestinationMssqlMssql.MSSQL
+    ] = Mssql.MSSQL
 
     jdbc_url_params: Optional[str] = None
     r"""Additional properties to pass to the JDBC URL string when connecting to the database formatted as 'key=value' pairs separated by the symbol '&'. (example: key1=value1&key2=value2&key3=value3)."""
@@ -656,7 +639,7 @@ class DestinationMssql(BaseModel):
 
 
 try:
-    DestinationMssqlEncryptedVerifyCertificate.model_rebuild()
+    EncryptedVerifyCertificate.model_rebuild()
 except NameError:
     pass
 try:

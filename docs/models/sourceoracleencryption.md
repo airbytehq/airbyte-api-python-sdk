@@ -5,21 +5,21 @@ The encryption method with is used when communicating with the database.
 
 ## Supported Types
 
-### `models.SourceOracleUnencrypted`
+### `models.SourceOracleEncryptionUnencrypted`
 
 ```python
-value: models.SourceOracleUnencrypted = /* values here */
+value: models.SourceOracleEncryptionUnencrypted = /* values here */
 ```
 
-### `models.SourceOracleNativeNetworkEncryptionNNE`
+### `models.EncryptionNativeNetworkEncryptionNNE`
 
 ```python
-value: models.SourceOracleNativeNetworkEncryptionNNE = /* values here */
+value: models.EncryptionNativeNetworkEncryptionNNE = /* values here */
 ```
 
-### `models.SourceOracleTLSEncryptedVerifyCertificate`
+### `models.SourceOracleEncryptionTLSEncryptedVerifyCertificate`
 
 ```python
-value: models.SourceOracleTLSEncryptedVerifyCertificate = /* values here */
+value: models.SourceOracleEncryptionTLSEncryptedVerifyCertificate = /* values here */
 ```
 

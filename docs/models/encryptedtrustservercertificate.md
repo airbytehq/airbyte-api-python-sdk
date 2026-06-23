@@ -1,0 +1,11 @@
+# EncryptedTrustServerCertificate
+
+Use the certificate provided by the server without verification. (For testing purposes only!)
+
+
+## Fields
+
+| Field                                                        | Type                                                         | Required                                                     | Description                                                  |
+| ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| `__pydantic_extra__`                                         | Dict[str, *Any*]                                             | :heavy_minus_sign:                                           | N/A                                                          |
+| `name`                                                       | [Optional[models.SSLMethodName]](../models/sslmethodname.md) | :heavy_minus_sign:                                           | N/A                                                          |

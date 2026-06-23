@@ -3,15 +3,15 @@
 
 ## Supported Types
 
-### `models.SourceMicrosoftSharepointReplicateRecords`
+### `models.DeliveryMethodReplicateRecords`
 
 ```python
-value: models.SourceMicrosoftSharepointReplicateRecords = /* values here */
+value: models.DeliveryMethodReplicateRecords = /* values here */
 ```
 
-### `models.SourceMicrosoftSharepointCopyRawFiles`
+### `models.DeliveryMethodCopyRawFiles`
 
 ```python
-value: models.SourceMicrosoftSharepointCopyRawFiles = /* values here */
+value: models.DeliveryMethodCopyRawFiles = /* values here */
 ```
 

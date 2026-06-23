@@ -12,27 +12,27 @@ from typing import List, Optional, Union
 from typing_extensions import Annotated, NotRequired, TypeAliasType, TypedDict
 
 
-class OptionTitlePatCredentials(str, Enum):
+class AuthenticationOptionTitle(str, Enum):
     PAT_CREDENTIALS = "PAT Credentials"
 
 
-class SourceGithubPersonalAccessTokenTypedDict(TypedDict):
+class SourceGithubAuthenticationPersonalAccessTokenTypedDict(TypedDict):
     personal_access_token: str
     r"""Log into GitHub and then generate a <a href=\"https://github.com/settings/tokens\">personal access token</a>. To load balance your API quota consumption across multiple API tokens, input multiple tokens separated with \",\" """
-    option_title: OptionTitlePatCredentials
+    option_title: AuthenticationOptionTitle
 
 
-class SourceGithubPersonalAccessToken(BaseModel):
+class SourceGithubAuthenticationPersonalAccessToken(BaseModel):
     personal_access_token: str
     r"""Log into GitHub and then generate a <a href=\"https://github.com/settings/tokens\">personal access token</a>. To load balance your API quota consumption across multiple API tokens, input multiple tokens separated with \",\" """
 
     OPTION_TITLE: Annotated[
         Annotated[
-            Optional[OptionTitlePatCredentials],
-            AfterValidator(validate_const(OptionTitlePatCredentials.PAT_CREDENTIALS)),
+            Optional[AuthenticationOptionTitle],
+            AfterValidator(validate_const(AuthenticationOptionTitle.PAT_CREDENTIALS)),
         ],
         pydantic.Field(alias="option_title"),
-    ] = OptionTitlePatCredentials.PAT_CREDENTIALS
+    ] = AuthenticationOptionTitle.PAT_CREDENTIALS
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
@@ -51,21 +51,21 @@ class SourceGithubPersonalAccessToken(BaseModel):
         return m
 
 
-class OptionTitleOAuthCredentials(str, Enum):
+class OptionTitle(str, Enum):
     O_AUTH_CREDENTIALS = "OAuth Credentials"
 
 
-class SourceGithubOAuthTypedDict(TypedDict):
+class AuthenticationOAuthTypedDict(TypedDict):
     access_token: str
     r"""OAuth access token"""
     client_id: NotRequired[str]
     r"""OAuth Client Id"""
     client_secret: NotRequired[str]
     r"""OAuth Client secret"""
-    option_title: OptionTitleOAuthCredentials
+    option_title: OptionTitle
 
 
-class SourceGithubOAuth(BaseModel):
+class AuthenticationOAuth(BaseModel):
     access_token: str
     r"""OAuth access token"""
 
@@ -77,13 +77,11 @@ class SourceGithubOAuth(BaseModel):
 
     OPTION_TITLE: Annotated[
         Annotated[
-            Optional[OptionTitleOAuthCredentials],
-            AfterValidator(
-                validate_const(OptionTitleOAuthCredentials.O_AUTH_CREDENTIALS)
-            ),
+            Optional[OptionTitle],
+            AfterValidator(validate_const(OptionTitle.O_AUTH_CREDENTIALS)),
         ],
         pydantic.Field(alias="option_title"),
-    ] = OptionTitleOAuthCredentials.O_AUTH_CREDENTIALS
+    ] = OptionTitle.O_AUTH_CREDENTIALS
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
@@ -104,19 +102,22 @@ class SourceGithubOAuth(BaseModel):
 
 SourceGithubAuthenticationTypedDict = TypeAliasType(
     "SourceGithubAuthenticationTypedDict",
-    Union[SourceGithubPersonalAccessTokenTypedDict, SourceGithubOAuthTypedDict],
+    Union[
+        SourceGithubAuthenticationPersonalAccessTokenTypedDict,
+        AuthenticationOAuthTypedDict,
+    ],
 )
 r"""Choose how to authenticate to GitHub"""
 
 
 SourceGithubAuthentication = TypeAliasType(
     "SourceGithubAuthentication",
-    Union[SourceGithubPersonalAccessToken, SourceGithubOAuth],
+    Union[SourceGithubAuthenticationPersonalAccessToken, AuthenticationOAuth],
 )
 r"""Choose how to authenticate to GitHub"""
 
 
-class GithubEnum(str, Enum):
+class SourceGithubGithub(str, Enum):
     GITHUB = "github"
 
 
@@ -131,7 +132,7 @@ class SourceGithubTypedDict(TypedDict):
     r"""List of GitHub repository branches to pull commits for, e.g. `airbytehq/airbyte/master`. If no branches are specified for a repository, the default branch will be pulled."""
     max_waiting_time: NotRequired[int]
     r"""Max Waiting Time for rate limit. Set higher value to wait till rate limits will be resetted to continue sync"""
-    source_type: GithubEnum
+    source_type: SourceGithubGithub
     start_date: NotRequired[datetime]
     r"""The date from which you'd like to replicate data from GitHub in the format YYYY-MM-DDT00:00:00Z. If the date is not set, all data will be replicated.  For the streams which support this configuration, only data generated on or after the start date will be replicated. This field doesn't apply to all streams, see the <a href=\"https://docs.airbyte.com/integrations/sources/github\">docs</a> for more info"""
 
@@ -153,9 +154,12 @@ class SourceGithub(BaseModel):
     r"""Max Waiting Time for rate limit. Set higher value to wait till rate limits will be resetted to continue sync"""
 
     SOURCE_TYPE: Annotated[
-        Annotated[GithubEnum, AfterValidator(validate_const(GithubEnum.GITHUB))],
+        Annotated[
+            SourceGithubGithub,
+            AfterValidator(validate_const(SourceGithubGithub.GITHUB)),
+        ],
         pydantic.Field(alias="sourceType"),
-    ] = GithubEnum.GITHUB
+    ] = SourceGithubGithub.GITHUB
 
     start_date: Optional[datetime] = None
     r"""The date from which you'd like to replicate data from GitHub in the format YYYY-MM-DDT00:00:00Z. If the date is not set, all data will be replicated.  For the streams which support this configuration, only data generated on or after the start date will be replicated. This field doesn't apply to all streams, see the <a href=\"https://docs.airbyte.com/integrations/sources/github\">docs</a> for more info"""
@@ -178,11 +182,11 @@ class SourceGithub(BaseModel):
 
 
 try:
-    SourceGithubPersonalAccessToken.model_rebuild()
+    SourceGithubAuthenticationPersonalAccessToken.model_rebuild()
 except NameError:
     pass
 try:
-    SourceGithubOAuth.model_rebuild()
+    AuthenticationOAuth.model_rebuild()
 except NameError:
     pass
 try:

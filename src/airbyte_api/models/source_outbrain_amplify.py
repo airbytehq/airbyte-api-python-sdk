@@ -22,7 +22,7 @@ class BothUsernameAndPasswordIsRequiredForAuthenticationRequest(str, Enum):
     USERNAME_PASSWORD = "username_password"
 
 
-class SourceOutbrainAmplifyUsernamePasswordTypedDict(TypedDict):
+class SourceOutbrainAmplifyAuthenticationMethodUsernamePasswordTypedDict(TypedDict):
     password: str
     r"""Add Password for authentication."""
     username: str
@@ -30,7 +30,7 @@ class SourceOutbrainAmplifyUsernamePasswordTypedDict(TypedDict):
     type: BothUsernameAndPasswordIsRequiredForAuthenticationRequest
 
 
-class SourceOutbrainAmplifyUsernamePassword(BaseModel):
+class SourceOutbrainAmplifyAuthenticationMethodUsernamePassword(BaseModel):
     password: str
     r"""Add Password for authentication."""
 
@@ -54,13 +54,13 @@ class AccessTokenIsRequiredForAuthenticationRequests(str, Enum):
     ACCESS_TOKEN = "access_token"
 
 
-class SourceOutbrainAmplifyAccessTokenTypedDict(TypedDict):
+class SourceOutbrainAmplifyAuthenticationMethodAccessTokenTypedDict(TypedDict):
     access_token: str
     r"""Access Token for making authenticated requests."""
     type: AccessTokenIsRequiredForAuthenticationRequests
 
 
-class SourceOutbrainAmplifyAccessToken(BaseModel):
+class SourceOutbrainAmplifyAuthenticationMethodAccessToken(BaseModel):
     access_token: str
     r"""Access Token for making authenticated requests."""
 
@@ -80,8 +80,8 @@ class SourceOutbrainAmplifyAccessToken(BaseModel):
 SourceOutbrainAmplifyAuthenticationMethodTypedDict = TypeAliasType(
     "SourceOutbrainAmplifyAuthenticationMethodTypedDict",
     Union[
-        SourceOutbrainAmplifyAccessTokenTypedDict,
-        SourceOutbrainAmplifyUsernamePasswordTypedDict,
+        SourceOutbrainAmplifyAuthenticationMethodAccessTokenTypedDict,
+        SourceOutbrainAmplifyAuthenticationMethodUsernamePasswordTypedDict,
     ],
 )
 r"""Credentials for making authenticated requests requires either username/password or access_token."""
@@ -89,8 +89,13 @@ r"""Credentials for making authenticated requests requires either username/passw
 
 SourceOutbrainAmplifyAuthenticationMethod = Annotated[
     Union[
-        Annotated[SourceOutbrainAmplifyAccessToken, Tag("access_token")],
-        Annotated[SourceOutbrainAmplifyUsernamePassword, Tag("username_password")],
+        Annotated[
+            SourceOutbrainAmplifyAuthenticationMethodAccessToken, Tag("access_token")
+        ],
+        Annotated[
+            SourceOutbrainAmplifyAuthenticationMethodUsernamePassword,
+            Tag("username_password"),
+        ],
     ],
     Discriminator(lambda m: get_discriminator(m, "type", "type")),
 ]
@@ -185,11 +190,11 @@ class SourceOutbrainAmplify(BaseModel):
 
 
 try:
-    SourceOutbrainAmplifyUsernamePassword.model_rebuild()
+    SourceOutbrainAmplifyAuthenticationMethodUsernamePassword.model_rebuild()
 except NameError:
     pass
 try:
-    SourceOutbrainAmplifyAccessToken.model_rebuild()
+    SourceOutbrainAmplifyAuthenticationMethodAccessToken.model_rebuild()
 except NameError:
     pass
 try:

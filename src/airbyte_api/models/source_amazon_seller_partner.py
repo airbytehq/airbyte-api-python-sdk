@@ -48,7 +48,7 @@ class FinancialEventsStepSizeInDays(str, Enum):
     ONE_HUNDRED_AND_EIGHTY = "180"
 
 
-class SourceAmazonSellerPartnerAWSRegion(str, Enum):
+class AWSRegion(str, Enum):
     r"""Select the AWS Region."""
 
     AE = "AE"
@@ -168,7 +168,7 @@ class ReportOptions(BaseModel):
     stream_name: str
 
 
-class AmazonSellerPartnerEnum(str, Enum):
+class SourceAmazonSellerPartnerAmazonSellerPartner(str, Enum):
     AMAZON_SELLER_PARTNER = "amazon-seller-partner"
 
 
@@ -200,7 +200,7 @@ class SourceAmazonSellerPartnerTypedDict(TypedDict):
     r"""The number of workers to use for the connector when syncing concurrently."""
     period_in_days: NotRequired[int]
     r"""For syncs spanning a large date range, this option is used to request data in a smaller fixed window to improve sync reliability. This time window can be configured granularly by day."""
-    region: NotRequired[SourceAmazonSellerPartnerAWSRegion]
+    region: NotRequired[AWSRegion]
     r"""Select the AWS Region."""
     replication_end_date: NotRequired[datetime]
     r"""UTC date and time in the format 2017-01-25T00:00:00Z. Any data after this date will not be replicated."""
@@ -208,7 +208,7 @@ class SourceAmazonSellerPartnerTypedDict(TypedDict):
     r"""UTC date and time in the format 2017-01-25T00:00:00Z. Any data before this date will not be replicated. If start date is not provided or older than 2 years ago from today, the date 2 years ago from today will be used."""
     report_options_list: NotRequired[List[ReportOptionsTypedDict]]
     r"""Additional information passed to reports. This varies by report type."""
-    source_type: AmazonSellerPartnerEnum
+    source_type: SourceAmazonSellerPartnerAmazonSellerPartner
     wait_to_avoid_fatal_errors: NotRequired[bool]
     r"""For report based streams with known amount of requests per time period, this option will use waiting time between requests to avoid fatal statuses in reports. See <a href=\"https://docs.airbyte.com/integrations/sources/amazon-seller-partner#limitations--troubleshooting\" target=\"_blank\">Troubleshooting</a> section for more details"""
 
@@ -262,9 +262,7 @@ class SourceAmazonSellerPartner(BaseModel):
     period_in_days: Optional[int] = 90
     r"""For syncs spanning a large date range, this option is used to request data in a smaller fixed window to improve sync reliability. This time window can be configured granularly by day."""
 
-    region: Optional[SourceAmazonSellerPartnerAWSRegion] = (
-        SourceAmazonSellerPartnerAWSRegion.US
-    )
+    region: Optional[AWSRegion] = AWSRegion.US
     r"""Select the AWS Region."""
 
     replication_end_date: Optional[datetime] = None
@@ -278,13 +276,15 @@ class SourceAmazonSellerPartner(BaseModel):
 
     SOURCE_TYPE: Annotated[
         Annotated[
-            AmazonSellerPartnerEnum,
+            SourceAmazonSellerPartnerAmazonSellerPartner,
             AfterValidator(
-                validate_const(AmazonSellerPartnerEnum.AMAZON_SELLER_PARTNER)
+                validate_const(
+                    SourceAmazonSellerPartnerAmazonSellerPartner.AMAZON_SELLER_PARTNER
+                )
             ),
         ],
         pydantic.Field(alias="sourceType"),
-    ] = AmazonSellerPartnerEnum.AMAZON_SELLER_PARTNER
+    ] = SourceAmazonSellerPartnerAmazonSellerPartner.AMAZON_SELLER_PARTNER
 
     wait_to_avoid_fatal_errors: Optional[bool] = False
     r"""For report based streams with known amount of requests per time period, this option will use waiting time between requests to avoid fatal statuses in reports. See <a href=\"https://docs.airbyte.com/integrations/sources/amazon-seller-partner#limitations--troubleshooting\" target=\"_blank\">Troubleshooting</a> section for more details"""

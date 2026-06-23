@@ -5,21 +5,21 @@ Authentication method
 
 ## Supported Types
 
-### `models.DestinationMilvusAPIToken`
+### `models.DestinationMilvusAuthenticationAPIToken`
 
 ```python
-value: models.DestinationMilvusAPIToken = /* values here */
+value: models.DestinationMilvusAuthenticationAPIToken = /* values here */
 ```
 
-### `models.DestinationMilvusUsernamePassword`
+### `models.AuthenticationUsernamePassword`
 
 ```python
-value: models.DestinationMilvusUsernamePassword = /* values here */
+value: models.AuthenticationUsernamePassword = /* values here */
 ```
 
-### `models.DestinationMilvusNoAuth`
+### `models.NoAuth`
 
 ```python
-value: models.DestinationMilvusNoAuth = /* values here */
+value: models.NoAuth = /* values here */
 ```
 

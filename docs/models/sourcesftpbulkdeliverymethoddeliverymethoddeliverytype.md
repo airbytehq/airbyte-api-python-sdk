@@ -1,0 +1,16 @@
+# SourceSftpBulkDeliveryMethodDeliveryMethodDeliveryType
+
+## Example Usage
+
+```python
+from airbyte_api.models import SourceSftpBulkDeliveryMethodDeliveryMethodDeliveryType
+
+value = SourceSftpBulkDeliveryMethodDeliveryMethodDeliveryType.USE_FILE_TRANSFER
+```
+
+
+## Values
+
+| Name                | Value               |
+| ------------------- | ------------------- |
+| `USE_FILE_TRANSFER` | use_file_transfer   |

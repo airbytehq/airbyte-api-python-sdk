@@ -44,13 +44,13 @@ class AuthenticateViaOAuth20(BaseModel):
         self.__pydantic_extra__ = value  # pyright: ignore[reportIncompatibleVariableOverride]
 
 
-class YoutubeAnalyticsEnum(str, Enum):
+class SourceYoutubeAnalyticsYoutubeAnalytics(str, Enum):
     YOUTUBE_ANALYTICS = "youtube-analytics"
 
 
 class SourceYoutubeAnalyticsTypedDict(TypedDict):
     credentials: AuthenticateViaOAuth20TypedDict
-    source_type: YoutubeAnalyticsEnum
+    source_type: SourceYoutubeAnalyticsYoutubeAnalytics
 
 
 class SourceYoutubeAnalytics(BaseModel):
@@ -58,11 +58,13 @@ class SourceYoutubeAnalytics(BaseModel):
 
     SOURCE_TYPE: Annotated[
         Annotated[
-            YoutubeAnalyticsEnum,
-            AfterValidator(validate_const(YoutubeAnalyticsEnum.YOUTUBE_ANALYTICS)),
+            SourceYoutubeAnalyticsYoutubeAnalytics,
+            AfterValidator(
+                validate_const(SourceYoutubeAnalyticsYoutubeAnalytics.YOUTUBE_ANALYTICS)
+            ),
         ],
         pydantic.Field(alias="sourceType"),
-    ] = YoutubeAnalyticsEnum.YOUTUBE_ANALYTICS
+    ] = SourceYoutubeAnalyticsYoutubeAnalytics.YOUTUBE_ANALYTICS
 
 
 try:

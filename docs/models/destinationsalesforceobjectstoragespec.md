@@ -3,15 +3,15 @@
 
 ## Supported Types
 
-### `models.DestinationSalesforceNone`
+### `models.ObjectStorageSpecNone`
 
 ```python
-value: models.DestinationSalesforceNone = /* values here */
+value: models.ObjectStorageSpecNone = /* values here */
 ```
 
-### `models.DestinationSalesforceS3`
+### `models.DestinationSalesforceObjectStorageSpecS3`
 
 ```python
-value: models.DestinationSalesforceS3 = /* values here */
+value: models.DestinationSalesforceObjectStorageSpecS3 = /* values here */
 ```
 

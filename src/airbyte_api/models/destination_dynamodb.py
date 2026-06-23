@@ -11,11 +11,11 @@ from typing import Optional
 from typing_extensions import Annotated, NotRequired, TypedDict
 
 
-class DestinationDynamodbDynamodb(str, Enum):
+class Dynamodb(str, Enum):
     DYNAMODB = "dynamodb"
 
 
-class DestinationDynamodbDynamoDBRegion(str, Enum):
+class DynamoDBRegion(str, Enum):
     r"""The region of the DynamoDB."""
 
     UNKNOWN = ""
@@ -61,10 +61,10 @@ class DestinationDynamodbTypedDict(TypedDict):
     r"""The prefix to use when naming DynamoDB tables."""
     secret_access_key: str
     r"""The corresponding secret to the access key id."""
-    destination_type: DestinationDynamodbDynamodb
+    destination_type: Dynamodb
     dynamodb_endpoint: NotRequired[str]
     r"""This is your DynamoDB endpoint url.(if you are working with AWS DynamoDB, just leave empty)."""
-    dynamodb_region: NotRequired[DestinationDynamodbDynamoDBRegion]
+    dynamodb_region: NotRequired[DynamoDBRegion]
     r"""The region of the DynamoDB."""
 
 
@@ -79,19 +79,14 @@ class DestinationDynamodb(BaseModel):
     r"""The corresponding secret to the access key id."""
 
     DESTINATION_TYPE: Annotated[
-        Annotated[
-            DestinationDynamodbDynamodb,
-            AfterValidator(validate_const(DestinationDynamodbDynamodb.DYNAMODB)),
-        ],
+        Annotated[Dynamodb, AfterValidator(validate_const(Dynamodb.DYNAMODB))],
         pydantic.Field(alias="destinationType"),
-    ] = DestinationDynamodbDynamodb.DYNAMODB
+    ] = Dynamodb.DYNAMODB
 
     dynamodb_endpoint: Optional[str] = ""
     r"""This is your DynamoDB endpoint url.(if you are working with AWS DynamoDB, just leave empty)."""
 
-    dynamodb_region: Optional[DestinationDynamodbDynamoDBRegion] = (
-        DestinationDynamodbDynamoDBRegion.UNKNOWN
-    )
+    dynamodb_region: Optional[DynamoDBRegion] = DynamoDBRegion.UNKNOWN
     r"""The region of the DynamoDB."""
 
     @model_serializer(mode="wrap")

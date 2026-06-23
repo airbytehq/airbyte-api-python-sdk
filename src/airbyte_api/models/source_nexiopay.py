@@ -16,7 +16,7 @@ class Nexiopay(str, Enum):
     NEXIOPAY = "nexiopay"
 
 
-class SourceNexiopaySubdomain(str, Enum):
+class Subdomain(str, Enum):
     r"""The subdomain for the Nexio API environment, such as 'nexiopaysandbox' or 'nexiopay'."""
 
     NEXIOPAYSANDBOX = "nexiopaysandbox"
@@ -30,7 +30,7 @@ class SourceNexiopayTypedDict(TypedDict):
     username: str
     r"""Your Nexio API username. You can find it in the Nexio Dashboard under Settings > User Management. Select the API user and copy the username."""
     source_type: Nexiopay
-    subdomain: NotRequired[SourceNexiopaySubdomain]
+    subdomain: NotRequired[Subdomain]
     r"""The subdomain for the Nexio API environment, such as 'nexiopaysandbox' or 'nexiopay'."""
 
 
@@ -48,7 +48,7 @@ class SourceNexiopay(BaseModel):
         pydantic.Field(alias="sourceType"),
     ] = Nexiopay.NEXIOPAY
 
-    subdomain: Optional[SourceNexiopaySubdomain] = SourceNexiopaySubdomain.NEXIOPAY
+    subdomain: Optional[Subdomain] = Subdomain.NEXIOPAY
     r"""The subdomain for the Nexio API environment, such as 'nexiopaysandbox' or 'nexiopay'."""
 
     @model_serializer(mode="wrap")

@@ -5,33 +5,33 @@ Embedding configuration
 
 ## Supported Types
 
-### `models.DestinationPgvectorOpenAI`
+### `models.DestinationPgvectorEmbeddingOpenAI`
 
 ```python
-value: models.DestinationPgvectorOpenAI = /* values here */
+value: models.DestinationPgvectorEmbeddingOpenAI = /* values here */
 ```
 
-### `models.DestinationPgvectorCohere`
+### `models.DestinationPgvectorEmbeddingCohere`
 
 ```python
-value: models.DestinationPgvectorCohere = /* values here */
+value: models.DestinationPgvectorEmbeddingCohere = /* values here */
 ```
 
-### `models.DestinationPgvectorFake`
+### `models.DestinationPgvectorEmbeddingFake`
 
 ```python
-value: models.DestinationPgvectorFake = /* values here */
+value: models.DestinationPgvectorEmbeddingFake = /* values here */
 ```
 
-### `models.DestinationPgvectorAzureOpenAI`
+### `models.DestinationPgvectorEmbeddingAzureOpenAI`
 
 ```python
-value: models.DestinationPgvectorAzureOpenAI = /* values here */
+value: models.DestinationPgvectorEmbeddingAzureOpenAI = /* values here */
 ```
 
-### `models.DestinationPgvectorOpenAICompatible`
+### `models.DestinationPgvectorEmbeddingOpenAICompatible`
 
 ```python
-value: models.DestinationPgvectorOpenAICompatible = /* values here */
+value: models.DestinationPgvectorEmbeddingOpenAICompatible = /* values here */
 ```
 

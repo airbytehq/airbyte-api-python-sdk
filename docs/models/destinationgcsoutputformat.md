@@ -5,27 +5,27 @@ Output data format. One of the following formats must be selected - <a href="htt
 
 ## Supported Types
 
-### `models.DestinationGcsAvroApacheAvro`
+### `models.AvroApacheAvro`
 
 ```python
-value: models.DestinationGcsAvroApacheAvro = /* values here */
+value: models.AvroApacheAvro = /* values here */
 ```
 
-### `models.DestinationGcsCSVCommaSeparatedValues`
+### `models.OutputFormatCSVCommaSeparatedValues`
 
 ```python
-value: models.DestinationGcsCSVCommaSeparatedValues = /* values here */
+value: models.OutputFormatCSVCommaSeparatedValues = /* values here */
 ```
 
-### `models.DestinationGcsJSONLinesNewlineDelimitedJSON`
+### `models.DestinationGcsOutputFormatJSONLinesNewlineDelimitedJSON`
 
 ```python
-value: models.DestinationGcsJSONLinesNewlineDelimitedJSON = /* values here */
+value: models.DestinationGcsOutputFormatJSONLinesNewlineDelimitedJSON = /* values here */
 ```
 
-### `models.DestinationGcsParquetColumnarStorage`
+### `models.OutputFormatParquetColumnarStorage`
 
 ```python
-value: models.DestinationGcsParquetColumnarStorage = /* values here */
+value: models.OutputFormatParquetColumnarStorage = /* values here */
 ```
 

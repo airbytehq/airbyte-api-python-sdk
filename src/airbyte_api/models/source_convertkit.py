@@ -12,17 +12,17 @@ from typing import Optional, Union
 from typing_extensions import Annotated, NotRequired, TypeAliasType, TypedDict
 
 
-class SourceConvertkitAuthTypeAPIKey(str, Enum):
+class SourceConvertkitAuthenticationTypeAuthType(str, Enum):
     API_KEY = "api_key"
 
 
-class SourceConvertkitAPIKeyTypedDict(TypedDict):
+class APIKeyTypedDict(TypedDict):
     api_key: NotRequired[str]
     r"""Kit/ConvertKit API Key"""
-    auth_type: SourceConvertkitAuthTypeAPIKey
+    auth_type: SourceConvertkitAuthenticationTypeAuthType
 
 
-class SourceConvertkitAPIKey(BaseModel):
+class APIKey(BaseModel):
     api_key: Optional[str] = (
         "{{ config.get('credentials',{}).get('api_key') or config.get('api_secret') }}"
     )
@@ -30,11 +30,13 @@ class SourceConvertkitAPIKey(BaseModel):
 
     AUTH_TYPE: Annotated[
         Annotated[
-            SourceConvertkitAuthTypeAPIKey,
-            AfterValidator(validate_const(SourceConvertkitAuthTypeAPIKey.API_KEY)),
+            SourceConvertkitAuthenticationTypeAuthType,
+            AfterValidator(
+                validate_const(SourceConvertkitAuthenticationTypeAuthType.API_KEY)
+            ),
         ],
         pydantic.Field(alias="auth_type"),
-    ] = SourceConvertkitAuthTypeAPIKey.API_KEY
+    ] = SourceConvertkitAuthenticationTypeAuthType.API_KEY
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
@@ -53,11 +55,11 @@ class SourceConvertkitAPIKey(BaseModel):
         return m
 
 
-class SourceConvertkitAuthTypeOauth20(str, Enum):
+class AuthenticationTypeAuthType(str, Enum):
     OAUTH2_0 = "oauth2.0"
 
 
-class SourceConvertkitOAuth20TypedDict(TypedDict):
+class AuthenticationTypeOAuth20TypedDict(TypedDict):
     client_id: str
     r"""The client ID of your OAuth application."""
     client_secret: str
@@ -66,12 +68,12 @@ class SourceConvertkitOAuth20TypedDict(TypedDict):
     r"""A current, non-expired refresh token genereted using the provided client ID and secret."""
     access_token: NotRequired[str]
     r"""An access token generated using the provided client information and refresh token."""
-    auth_type: SourceConvertkitAuthTypeOauth20
+    auth_type: AuthenticationTypeAuthType
     expires_at: NotRequired[datetime]
     r"""The time at which the current access token is set to expire"""
 
 
-class SourceConvertkitOAuth20(BaseModel):
+class AuthenticationTypeOAuth20(BaseModel):
     client_id: str
     r"""The client ID of your OAuth application."""
 
@@ -86,11 +88,11 @@ class SourceConvertkitOAuth20(BaseModel):
 
     AUTH_TYPE: Annotated[
         Annotated[
-            SourceConvertkitAuthTypeOauth20,
-            AfterValidator(validate_const(SourceConvertkitAuthTypeOauth20.OAUTH2_0)),
+            AuthenticationTypeAuthType,
+            AfterValidator(validate_const(AuthenticationTypeAuthType.OAUTH2_0)),
         ],
         pydantic.Field(alias="auth_type"),
-    ] = SourceConvertkitAuthTypeOauth20.OAUTH2_0
+    ] = AuthenticationTypeAuthType.OAUTH2_0
 
     expires_at: Optional[datetime] = None
     r"""The time at which the current access token is set to expire"""
@@ -112,16 +114,16 @@ class SourceConvertkitOAuth20(BaseModel):
         return m
 
 
-SourceConvertkitAuthenticationTypeTypedDict = TypeAliasType(
-    "SourceConvertkitAuthenticationTypeTypedDict",
-    Union[SourceConvertkitAPIKeyTypedDict, SourceConvertkitOAuth20TypedDict],
+AuthenticationTypeTypedDict = TypeAliasType(
+    "AuthenticationTypeTypedDict",
+    Union[APIKeyTypedDict, AuthenticationTypeOAuth20TypedDict],
 )
 
 
-SourceConvertkitAuthenticationType = Annotated[
+AuthenticationType = Annotated[
     Union[
-        Annotated[SourceConvertkitOAuth20, Tag("oauth2.0")],
-        Annotated[SourceConvertkitAPIKey, Tag("api_key")],
+        Annotated[AuthenticationTypeOAuth20, Tag("oauth2.0")],
+        Annotated[APIKey, Tag("api_key")],
     ],
     Discriminator(lambda m: get_discriminator(m, "auth_type", "auth_type")),
 ]
@@ -132,13 +134,13 @@ class Convertkit(str, Enum):
 
 
 class SourceConvertkitTypedDict(TypedDict):
-    credentials: SourceConvertkitAuthenticationTypeTypedDict
+    credentials: AuthenticationTypeTypedDict
     source_type: Convertkit
     start_date: NotRequired[datetime]
 
 
 class SourceConvertkit(BaseModel):
-    credentials: SourceConvertkitAuthenticationType
+    credentials: AuthenticationType
 
     SOURCE_TYPE: Annotated[
         Annotated[Convertkit, AfterValidator(validate_const(Convertkit.CONVERTKIT))],
@@ -165,11 +167,11 @@ class SourceConvertkit(BaseModel):
 
 
 try:
-    SourceConvertkitAPIKey.model_rebuild()
+    APIKey.model_rebuild()
 except NameError:
     pass
 try:
-    SourceConvertkitOAuth20.model_rebuild()
+    AuthenticationTypeOAuth20.model_rebuild()
 except NameError:
     pass
 try:

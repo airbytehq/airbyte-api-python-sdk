@@ -5,39 +5,39 @@ The configuration options that are used to alter how to read incoming files that
 
 ## Supported Types
 
-### `models.SourceS3AvroFormat`
+### `models.SourceS3FormatAvroFormat`
 
 ```python
-value: models.SourceS3AvroFormat = /* values here */
+value: models.SourceS3FormatAvroFormat = /* values here */
 ```
 
-### `models.SourceS3CSVFormat`
+### `models.SourceS3FormatCSVFormat`
 
 ```python
-value: models.SourceS3CSVFormat = /* values here */
+value: models.SourceS3FormatCSVFormat = /* values here */
 ```
 
-### `models.SourceS3JsonlFormat`
+### `models.SourceS3FormatJsonlFormat`
 
 ```python
-value: models.SourceS3JsonlFormat = /* values here */
+value: models.SourceS3FormatJsonlFormat = /* values here */
 ```
 
-### `models.SourceS3ParquetFormat`
+### `models.SourceS3FormatParquetFormat`
 
 ```python
-value: models.SourceS3ParquetFormat = /* values here */
+value: models.SourceS3FormatParquetFormat = /* values here */
 ```
 
-### `models.SourceS3UnstructuredDocumentFormat`
+### `models.SourceS3FormatUnstructuredDocumentFormat`
 
 ```python
-value: models.SourceS3UnstructuredDocumentFormat = /* values here */
+value: models.SourceS3FormatUnstructuredDocumentFormat = /* values here */
 ```
 
-### `models.SourceS3ExcelFormat`
+### `models.SourceS3FormatExcelFormat`
 
 ```python
-value: models.SourceS3ExcelFormat = /* values here */
+value: models.SourceS3FormatExcelFormat = /* values here */
 ```
 

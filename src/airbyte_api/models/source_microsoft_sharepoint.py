@@ -12,11 +12,11 @@ from typing import List, Optional, Union
 from typing_extensions import Annotated, NotRequired, TypeAliasType, TypedDict
 
 
-class SourceMicrosoftSharepointAuthTypeService(str, Enum):
+class SourceMicrosoftSharepointAuthenticationCredentialsAuthType(str, Enum):
     SERVICE = "Service"
 
 
-class SourceMicrosoftSharepointServiceKeyAuthenticationTypedDict(TypedDict):
+class AuthenticationServiceKeyAuthenticationTypedDict(TypedDict):
     r"""ServiceCredentials class for service key authentication.
     This class is structured similarly to OAuthCredentials but for a different authentication method.
     """
@@ -29,10 +29,10 @@ class SourceMicrosoftSharepointServiceKeyAuthenticationTypedDict(TypedDict):
     r"""Tenant ID of the Microsoft SharePoint user"""
     user_principal_name: str
     r"""Special characters such as a period, comma, space, and the at sign (@) are converted to underscores (_). More details: https://learn.microsoft.com/en-us/sharepoint/list-onedrive-urls"""
-    auth_type: SourceMicrosoftSharepointAuthTypeService
+    auth_type: SourceMicrosoftSharepointAuthenticationCredentialsAuthType
 
 
-class SourceMicrosoftSharepointServiceKeyAuthentication(BaseModel):
+class AuthenticationServiceKeyAuthentication(BaseModel):
     r"""ServiceCredentials class for service key authentication.
     This class is structured similarly to OAuthCredentials but for a different authentication method.
     """
@@ -51,13 +51,15 @@ class SourceMicrosoftSharepointServiceKeyAuthentication(BaseModel):
 
     AUTH_TYPE: Annotated[
         Annotated[
-            Optional[SourceMicrosoftSharepointAuthTypeService],
+            Optional[SourceMicrosoftSharepointAuthenticationCredentialsAuthType],
             AfterValidator(
-                validate_const(SourceMicrosoftSharepointAuthTypeService.SERVICE)
+                validate_const(
+                    SourceMicrosoftSharepointAuthenticationCredentialsAuthType.SERVICE
+                )
             ),
         ],
         pydantic.Field(alias="auth_type"),
-    ] = SourceMicrosoftSharepointAuthTypeService.SERVICE
+    ] = SourceMicrosoftSharepointAuthenticationCredentialsAuthType.SERVICE
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
@@ -76,11 +78,11 @@ class SourceMicrosoftSharepointServiceKeyAuthentication(BaseModel):
         return m
 
 
-class SourceMicrosoftSharepointAuthTypeClient(str, Enum):
+class SourceMicrosoftSharepointAuthenticationAuthType(str, Enum):
     CLIENT = "Client"
 
 
-class SourceMicrosoftSharepointAuthenticateViaMicrosoftOAuthTypedDict(TypedDict):
+class AuthenticationAuthenticateViaMicrosoftOAuthTypedDict(TypedDict):
     r"""OAuthCredentials class to hold authentication details for Microsoft OAuth authentication.
     This class uses pydantic for data validation and settings management.
     """
@@ -91,12 +93,12 @@ class SourceMicrosoftSharepointAuthenticateViaMicrosoftOAuthTypedDict(TypedDict)
     r"""Client Secret of your Microsoft developer application"""
     tenant_id: str
     r"""Tenant ID of the Microsoft SharePoint user"""
-    auth_type: SourceMicrosoftSharepointAuthTypeClient
+    auth_type: SourceMicrosoftSharepointAuthenticationAuthType
     refresh_token: NotRequired[str]
     r"""Refresh Token of your Microsoft developer application"""
 
 
-class SourceMicrosoftSharepointAuthenticateViaMicrosoftOAuth(BaseModel):
+class AuthenticationAuthenticateViaMicrosoftOAuth(BaseModel):
     r"""OAuthCredentials class to hold authentication details for Microsoft OAuth authentication.
     This class uses pydantic for data validation and settings management.
     """
@@ -112,13 +114,13 @@ class SourceMicrosoftSharepointAuthenticateViaMicrosoftOAuth(BaseModel):
 
     AUTH_TYPE: Annotated[
         Annotated[
-            Optional[SourceMicrosoftSharepointAuthTypeClient],
+            Optional[SourceMicrosoftSharepointAuthenticationAuthType],
             AfterValidator(
-                validate_const(SourceMicrosoftSharepointAuthTypeClient.CLIENT)
+                validate_const(SourceMicrosoftSharepointAuthenticationAuthType.CLIENT)
             ),
         ],
         pydantic.Field(alias="auth_type"),
-    ] = SourceMicrosoftSharepointAuthTypeClient.CLIENT
+    ] = SourceMicrosoftSharepointAuthenticationAuthType.CLIENT
 
     refresh_token: Optional[str] = None
     r"""Refresh Token of your Microsoft developer application"""
@@ -143,8 +145,8 @@ class SourceMicrosoftSharepointAuthenticateViaMicrosoftOAuth(BaseModel):
 SourceMicrosoftSharepointAuthenticationTypedDict = TypeAliasType(
     "SourceMicrosoftSharepointAuthenticationTypedDict",
     Union[
-        SourceMicrosoftSharepointAuthenticateViaMicrosoftOAuthTypedDict,
-        SourceMicrosoftSharepointServiceKeyAuthenticationTypedDict,
+        AuthenticationAuthenticateViaMicrosoftOAuthTypedDict,
+        AuthenticationServiceKeyAuthenticationTypedDict,
     ],
 )
 r"""Credentials for connecting to the One Drive API"""
@@ -153,39 +155,39 @@ r"""Credentials for connecting to the One Drive API"""
 SourceMicrosoftSharepointAuthentication = TypeAliasType(
     "SourceMicrosoftSharepointAuthentication",
     Union[
-        SourceMicrosoftSharepointAuthenticateViaMicrosoftOAuth,
-        SourceMicrosoftSharepointServiceKeyAuthentication,
+        AuthenticationAuthenticateViaMicrosoftOAuth,
+        AuthenticationServiceKeyAuthentication,
     ],
 )
 r"""Credentials for connecting to the One Drive API"""
 
 
-class SourceMicrosoftSharepointDeliveryTypeUseFileTransfer(str, Enum):
+class SourceMicrosoftSharepointDeliveryMethodDeliveryMethodDeliveryType(str, Enum):
     USE_FILE_TRANSFER = "use_file_transfer"
 
 
-class SourceMicrosoftSharepointCopyRawFilesTypedDict(TypedDict):
+class DeliveryMethodCopyRawFilesTypedDict(TypedDict):
     r"""Copy raw files without parsing their contents. Bits are copied into the destination exactly as they appeared in the source. Recommended for use with unstructured text data, non-text and compressed files."""
 
-    delivery_type: SourceMicrosoftSharepointDeliveryTypeUseFileTransfer
+    delivery_type: SourceMicrosoftSharepointDeliveryMethodDeliveryMethodDeliveryType
     preserve_directory_structure: NotRequired[bool]
     r"""If enabled, sends subdirectory folder structure along with source file names to the destination. Otherwise, files will be synced by their names only. This option is ignored when file-based replication is not enabled."""
 
 
-class SourceMicrosoftSharepointCopyRawFiles(BaseModel):
+class DeliveryMethodCopyRawFiles(BaseModel):
     r"""Copy raw files without parsing their contents. Bits are copied into the destination exactly as they appeared in the source. Recommended for use with unstructured text data, non-text and compressed files."""
 
     DELIVERY_TYPE: Annotated[
         Annotated[
-            Optional[SourceMicrosoftSharepointDeliveryTypeUseFileTransfer],
+            Optional[SourceMicrosoftSharepointDeliveryMethodDeliveryMethodDeliveryType],
             AfterValidator(
                 validate_const(
-                    SourceMicrosoftSharepointDeliveryTypeUseFileTransfer.USE_FILE_TRANSFER
+                    SourceMicrosoftSharepointDeliveryMethodDeliveryMethodDeliveryType.USE_FILE_TRANSFER
                 )
             ),
         ],
         pydantic.Field(alias="delivery_type"),
-    ] = SourceMicrosoftSharepointDeliveryTypeUseFileTransfer.USE_FILE_TRANSFER
+    ] = SourceMicrosoftSharepointDeliveryMethodDeliveryMethodDeliveryType.USE_FILE_TRANSFER
 
     preserve_directory_structure: Optional[bool] = True
     r"""If enabled, sends subdirectory folder structure along with source file names to the destination. Otherwise, files will be synced by their names only. This option is ignored when file-based replication is not enabled."""
@@ -207,30 +209,30 @@ class SourceMicrosoftSharepointCopyRawFiles(BaseModel):
         return m
 
 
-class SourceMicrosoftSharepointDeliveryTypeUseRecordsTransfer(str, Enum):
+class SourceMicrosoftSharepointDeliveryMethodDeliveryType(str, Enum):
     USE_RECORDS_TRANSFER = "use_records_transfer"
 
 
-class SourceMicrosoftSharepointReplicateRecordsTypedDict(TypedDict):
+class DeliveryMethodReplicateRecordsTypedDict(TypedDict):
     r"""Recommended - Extract and load structured records into your destination of choice. This is the classic method of moving data in Airbyte. It allows for blocking and hashing individual fields or files from a structured schema. Data can be flattened, typed and deduped depending on the destination."""
 
-    delivery_type: SourceMicrosoftSharepointDeliveryTypeUseRecordsTransfer
+    delivery_type: SourceMicrosoftSharepointDeliveryMethodDeliveryType
 
 
-class SourceMicrosoftSharepointReplicateRecords(BaseModel):
+class DeliveryMethodReplicateRecords(BaseModel):
     r"""Recommended - Extract and load structured records into your destination of choice. This is the classic method of moving data in Airbyte. It allows for blocking and hashing individual fields or files from a structured schema. Data can be flattened, typed and deduped depending on the destination."""
 
     DELIVERY_TYPE: Annotated[
         Annotated[
-            Optional[SourceMicrosoftSharepointDeliveryTypeUseRecordsTransfer],
+            Optional[SourceMicrosoftSharepointDeliveryMethodDeliveryType],
             AfterValidator(
                 validate_const(
-                    SourceMicrosoftSharepointDeliveryTypeUseRecordsTransfer.USE_RECORDS_TRANSFER
+                    SourceMicrosoftSharepointDeliveryMethodDeliveryType.USE_RECORDS_TRANSFER
                 )
             ),
         ],
         pydantic.Field(alias="delivery_type"),
-    ] = SourceMicrosoftSharepointDeliveryTypeUseRecordsTransfer.USE_RECORDS_TRANSFER
+    ] = SourceMicrosoftSharepointDeliveryMethodDeliveryType.USE_RECORDS_TRANSFER
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
@@ -251,18 +253,13 @@ class SourceMicrosoftSharepointReplicateRecords(BaseModel):
 
 SourceMicrosoftSharepointDeliveryMethodTypedDict = TypeAliasType(
     "SourceMicrosoftSharepointDeliveryMethodTypedDict",
-    Union[
-        SourceMicrosoftSharepointReplicateRecordsTypedDict,
-        SourceMicrosoftSharepointCopyRawFilesTypedDict,
-    ],
+    Union[DeliveryMethodReplicateRecordsTypedDict, DeliveryMethodCopyRawFilesTypedDict],
 )
 
 
 SourceMicrosoftSharepointDeliveryMethod = TypeAliasType(
     "SourceMicrosoftSharepointDeliveryMethod",
-    Union[
-        SourceMicrosoftSharepointReplicateRecords, SourceMicrosoftSharepointCopyRawFiles
-    ],
+    Union[DeliveryMethodReplicateRecords, DeliveryMethodCopyRawFiles],
 )
 
 
@@ -274,28 +271,30 @@ class SourceMicrosoftSharepointSearchScope(str, Enum):
     ALL = "ALL"
 
 
-class MicrosoftSharepointEnum(str, Enum):
+class SourceMicrosoftSharepointMicrosoftSharepoint(str, Enum):
     MICROSOFT_SHAREPOINT = "microsoft-sharepoint"
 
 
-class SourceMicrosoftSharepointFiletypeExcel(str, Enum):
+class SourceMicrosoftSharepointFormatStreamsFormat6Filetype(str, Enum):
     EXCEL = "excel"
 
 
-class SourceMicrosoftSharepointExcelFormatTypedDict(TypedDict):
-    filetype: SourceMicrosoftSharepointFiletypeExcel
+class SourceMicrosoftSharepointFormatExcelFormatTypedDict(TypedDict):
+    filetype: SourceMicrosoftSharepointFormatStreamsFormat6Filetype
 
 
-class SourceMicrosoftSharepointExcelFormat(BaseModel):
+class SourceMicrosoftSharepointFormatExcelFormat(BaseModel):
     FILETYPE: Annotated[
         Annotated[
-            Optional[SourceMicrosoftSharepointFiletypeExcel],
+            Optional[SourceMicrosoftSharepointFormatStreamsFormat6Filetype],
             AfterValidator(
-                validate_const(SourceMicrosoftSharepointFiletypeExcel.EXCEL)
+                validate_const(
+                    SourceMicrosoftSharepointFormatStreamsFormat6Filetype.EXCEL
+                )
             ),
         ],
         pydantic.Field(alias="filetype"),
-    ] = SourceMicrosoftSharepointFiletypeExcel.EXCEL
+    ] = SourceMicrosoftSharepointFormatStreamsFormat6Filetype.EXCEL
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
@@ -314,30 +313,32 @@ class SourceMicrosoftSharepointExcelFormat(BaseModel):
         return m
 
 
-class SourceMicrosoftSharepointFiletypeUnstructured(str, Enum):
+class SourceMicrosoftSharepointFormatStreamsFormat5Filetype(str, Enum):
     UNSTRUCTURED = "unstructured"
 
 
-class SourceMicrosoftSharepointMode(str, Enum):
+class SourceMicrosoftSharepointProcessingMode(str, Enum):
     LOCAL = "local"
 
 
-class SourceMicrosoftSharepointLocalTypedDict(TypedDict):
+class SourceMicrosoftSharepointProcessingLocalTypedDict(TypedDict):
     r"""Process files locally, supporting `fast` and `ocr` modes. This is the default option."""
 
-    mode: SourceMicrosoftSharepointMode
+    mode: SourceMicrosoftSharepointProcessingMode
 
 
-class SourceMicrosoftSharepointLocal(BaseModel):
+class SourceMicrosoftSharepointProcessingLocal(BaseModel):
     r"""Process files locally, supporting `fast` and `ocr` modes. This is the default option."""
 
     MODE: Annotated[
         Annotated[
-            Optional[SourceMicrosoftSharepointMode],
-            AfterValidator(validate_const(SourceMicrosoftSharepointMode.LOCAL)),
+            Optional[SourceMicrosoftSharepointProcessingMode],
+            AfterValidator(
+                validate_const(SourceMicrosoftSharepointProcessingMode.LOCAL)
+            ),
         ],
         pydantic.Field(alias="mode"),
-    ] = SourceMicrosoftSharepointMode.LOCAL
+    ] = SourceMicrosoftSharepointProcessingMode.LOCAL
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
@@ -356,15 +357,17 @@ class SourceMicrosoftSharepointLocal(BaseModel):
         return m
 
 
-SourceMicrosoftSharepointProcessingTypedDict = SourceMicrosoftSharepointLocalTypedDict
+SourceMicrosoftSharepointFormatProcessingTypedDict = (
+    SourceMicrosoftSharepointProcessingLocalTypedDict
+)
 r"""Processing configuration"""
 
 
-SourceMicrosoftSharepointProcessing = SourceMicrosoftSharepointLocal
+SourceMicrosoftSharepointFormatProcessing = SourceMicrosoftSharepointProcessingLocal
 r"""Processing configuration"""
 
 
-class SourceMicrosoftSharepointParsingStrategy(str, Enum):
+class SourceMicrosoftSharepointFormatParsingStrategy(str, Enum):
     r"""The strategy used to parse documents. `fast` extracts text directly from the document which doesn't work for all files. `ocr_only` is more reliable, but slower. `hi_res` is the most reliable, but requires an API key and a hosted instance of unstructured and can't be used with local mode. See the unstructured.io documentation for more details: https://unstructured-io.github.io/unstructured/core/partition.html#partition-pdf"""
 
     AUTO = "auto"
@@ -373,41 +376,41 @@ class SourceMicrosoftSharepointParsingStrategy(str, Enum):
     HI_RES = "hi_res"
 
 
-class SourceMicrosoftSharepointUnstructuredDocumentFormatTypedDict(TypedDict):
+class SourceMicrosoftSharepointFormatUnstructuredDocumentFormatTypedDict(TypedDict):
     r"""Extract text from document formats (.pdf, .docx, .md, .pptx) and emit as one record per file."""
 
-    filetype: SourceMicrosoftSharepointFiletypeUnstructured
-    processing: NotRequired[SourceMicrosoftSharepointProcessingTypedDict]
+    filetype: SourceMicrosoftSharepointFormatStreamsFormat5Filetype
+    processing: NotRequired[SourceMicrosoftSharepointFormatProcessingTypedDict]
     r"""Processing configuration"""
     skip_unprocessable_files: NotRequired[bool]
     r"""If true, skip files that cannot be parsed and pass the error message along as the _ab_source_file_parse_error field. If false, fail the sync."""
-    strategy: NotRequired[SourceMicrosoftSharepointParsingStrategy]
+    strategy: NotRequired[SourceMicrosoftSharepointFormatParsingStrategy]
     r"""The strategy used to parse documents. `fast` extracts text directly from the document which doesn't work for all files. `ocr_only` is more reliable, but slower. `hi_res` is the most reliable, but requires an API key and a hosted instance of unstructured and can't be used with local mode. See the unstructured.io documentation for more details: https://unstructured-io.github.io/unstructured/core/partition.html#partition-pdf"""
 
 
-class SourceMicrosoftSharepointUnstructuredDocumentFormat(BaseModel):
+class SourceMicrosoftSharepointFormatUnstructuredDocumentFormat(BaseModel):
     r"""Extract text from document formats (.pdf, .docx, .md, .pptx) and emit as one record per file."""
 
     FILETYPE: Annotated[
         Annotated[
-            Optional[SourceMicrosoftSharepointFiletypeUnstructured],
+            Optional[SourceMicrosoftSharepointFormatStreamsFormat5Filetype],
             AfterValidator(
                 validate_const(
-                    SourceMicrosoftSharepointFiletypeUnstructured.UNSTRUCTURED
+                    SourceMicrosoftSharepointFormatStreamsFormat5Filetype.UNSTRUCTURED
                 )
             ),
         ],
         pydantic.Field(alias="filetype"),
-    ] = SourceMicrosoftSharepointFiletypeUnstructured.UNSTRUCTURED
+    ] = SourceMicrosoftSharepointFormatStreamsFormat5Filetype.UNSTRUCTURED
 
-    processing: Optional[SourceMicrosoftSharepointProcessing] = None
+    processing: Optional[SourceMicrosoftSharepointFormatProcessing] = None
     r"""Processing configuration"""
 
     skip_unprocessable_files: Optional[bool] = True
     r"""If true, skip files that cannot be parsed and pass the error message along as the _ab_source_file_parse_error field. If false, fail the sync."""
 
-    strategy: Optional[SourceMicrosoftSharepointParsingStrategy] = (
-        SourceMicrosoftSharepointParsingStrategy.AUTO
+    strategy: Optional[SourceMicrosoftSharepointFormatParsingStrategy] = (
+        SourceMicrosoftSharepointFormatParsingStrategy.AUTO
     )
     r"""The strategy used to parse documents. `fast` extracts text directly from the document which doesn't work for all files. `ocr_only` is more reliable, but slower. `hi_res` is the most reliable, but requires an API key and a hosted instance of unstructured and can't be used with local mode. See the unstructured.io documentation for more details: https://unstructured-io.github.io/unstructured/core/partition.html#partition-pdf"""
 
@@ -430,29 +433,31 @@ class SourceMicrosoftSharepointUnstructuredDocumentFormat(BaseModel):
         return m
 
 
-class SourceMicrosoftSharepointFiletypeParquet(str, Enum):
+class SourceMicrosoftSharepointFormatStreamsFormat4Filetype(str, Enum):
     PARQUET = "parquet"
 
 
-class SourceMicrosoftSharepointParquetFormatTypedDict(TypedDict):
+class SourceMicrosoftSharepointFormatParquetFormatTypedDict(TypedDict):
     decimal_as_float: NotRequired[bool]
     r"""Whether to convert decimal fields to floats. There is a loss of precision when converting decimals to floats, so this is not recommended."""
-    filetype: SourceMicrosoftSharepointFiletypeParquet
+    filetype: SourceMicrosoftSharepointFormatStreamsFormat4Filetype
 
 
-class SourceMicrosoftSharepointParquetFormat(BaseModel):
+class SourceMicrosoftSharepointFormatParquetFormat(BaseModel):
     decimal_as_float: Optional[bool] = False
     r"""Whether to convert decimal fields to floats. There is a loss of precision when converting decimals to floats, so this is not recommended."""
 
     FILETYPE: Annotated[
         Annotated[
-            Optional[SourceMicrosoftSharepointFiletypeParquet],
+            Optional[SourceMicrosoftSharepointFormatStreamsFormat4Filetype],
             AfterValidator(
-                validate_const(SourceMicrosoftSharepointFiletypeParquet.PARQUET)
+                validate_const(
+                    SourceMicrosoftSharepointFormatStreamsFormat4Filetype.PARQUET
+                )
             ),
         ],
         pydantic.Field(alias="filetype"),
-    ] = SourceMicrosoftSharepointFiletypeParquet.PARQUET
+    ] = SourceMicrosoftSharepointFormatStreamsFormat4Filetype.PARQUET
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
@@ -471,24 +476,26 @@ class SourceMicrosoftSharepointParquetFormat(BaseModel):
         return m
 
 
-class SourceMicrosoftSharepointFiletypeJsonl(str, Enum):
+class SourceMicrosoftSharepointFormatStreamsFormatFiletype(str, Enum):
     JSONL = "jsonl"
 
 
-class SourceMicrosoftSharepointJsonlFormatTypedDict(TypedDict):
-    filetype: SourceMicrosoftSharepointFiletypeJsonl
+class SourceMicrosoftSharepointFormatJsonlFormatTypedDict(TypedDict):
+    filetype: SourceMicrosoftSharepointFormatStreamsFormatFiletype
 
 
-class SourceMicrosoftSharepointJsonlFormat(BaseModel):
+class SourceMicrosoftSharepointFormatJsonlFormat(BaseModel):
     FILETYPE: Annotated[
         Annotated[
-            Optional[SourceMicrosoftSharepointFiletypeJsonl],
+            Optional[SourceMicrosoftSharepointFormatStreamsFormatFiletype],
             AfterValidator(
-                validate_const(SourceMicrosoftSharepointFiletypeJsonl.JSONL)
+                validate_const(
+                    SourceMicrosoftSharepointFormatStreamsFormatFiletype.JSONL
+                )
             ),
         ],
         pydantic.Field(alias="filetype"),
-    ] = SourceMicrosoftSharepointFiletypeJsonl.JSONL
+    ] = SourceMicrosoftSharepointFormatStreamsFormatFiletype.JSONL
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
@@ -507,35 +514,41 @@ class SourceMicrosoftSharepointJsonlFormat(BaseModel):
         return m
 
 
-class SourceMicrosoftSharepointFiletypeCsv(str, Enum):
+class SourceMicrosoftSharepointFormatStreamsFiletype(str, Enum):
     CSV = "csv"
 
 
-class SourceMicrosoftSharepointHeaderDefinitionTypeUserProvided(str, Enum):
+class SourceMicrosoftSharepointCSVHeaderDefinitionStreamsFormatHeaderDefinitionType(
+    str, Enum
+):
     USER_PROVIDED = "User Provided"
 
 
-class SourceMicrosoftSharepointUserProvidedTypedDict(TypedDict):
+class SourceMicrosoftSharepointCSVHeaderDefinitionUserProvidedTypedDict(TypedDict):
     column_names: List[str]
     r"""The column names that will be used while emitting the CSV records"""
-    header_definition_type: SourceMicrosoftSharepointHeaderDefinitionTypeUserProvided
+    header_definition_type: (
+        SourceMicrosoftSharepointCSVHeaderDefinitionStreamsFormatHeaderDefinitionType
+    )
 
 
-class SourceMicrosoftSharepointUserProvided(BaseModel):
+class SourceMicrosoftSharepointCSVHeaderDefinitionUserProvided(BaseModel):
     column_names: List[str]
     r"""The column names that will be used while emitting the CSV records"""
 
     HEADER_DEFINITION_TYPE: Annotated[
         Annotated[
-            Optional[SourceMicrosoftSharepointHeaderDefinitionTypeUserProvided],
+            Optional[
+                SourceMicrosoftSharepointCSVHeaderDefinitionStreamsFormatHeaderDefinitionType
+            ],
             AfterValidator(
                 validate_const(
-                    SourceMicrosoftSharepointHeaderDefinitionTypeUserProvided.USER_PROVIDED
+                    SourceMicrosoftSharepointCSVHeaderDefinitionStreamsFormatHeaderDefinitionType.USER_PROVIDED
                 )
             ),
         ],
         pydantic.Field(alias="header_definition_type"),
-    ] = SourceMicrosoftSharepointHeaderDefinitionTypeUserProvided.USER_PROVIDED
+    ] = SourceMicrosoftSharepointCSVHeaderDefinitionStreamsFormatHeaderDefinitionType.USER_PROVIDED
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
@@ -554,26 +567,32 @@ class SourceMicrosoftSharepointUserProvided(BaseModel):
         return m
 
 
-class SourceMicrosoftSharepointHeaderDefinitionTypeAutogenerated(str, Enum):
+class SourceMicrosoftSharepointCSVHeaderDefinitionStreamsHeaderDefinitionType(
+    str, Enum
+):
     AUTOGENERATED = "Autogenerated"
 
 
-class SourceMicrosoftSharepointAutogeneratedTypedDict(TypedDict):
-    header_definition_type: SourceMicrosoftSharepointHeaderDefinitionTypeAutogenerated
+class SourceMicrosoftSharepointCSVHeaderDefinitionAutogeneratedTypedDict(TypedDict):
+    header_definition_type: (
+        SourceMicrosoftSharepointCSVHeaderDefinitionStreamsHeaderDefinitionType
+    )
 
 
-class SourceMicrosoftSharepointAutogenerated(BaseModel):
+class SourceMicrosoftSharepointCSVHeaderDefinitionAutogenerated(BaseModel):
     HEADER_DEFINITION_TYPE: Annotated[
         Annotated[
-            Optional[SourceMicrosoftSharepointHeaderDefinitionTypeAutogenerated],
+            Optional[
+                SourceMicrosoftSharepointCSVHeaderDefinitionStreamsHeaderDefinitionType
+            ],
             AfterValidator(
                 validate_const(
-                    SourceMicrosoftSharepointHeaderDefinitionTypeAutogenerated.AUTOGENERATED
+                    SourceMicrosoftSharepointCSVHeaderDefinitionStreamsHeaderDefinitionType.AUTOGENERATED
                 )
             ),
         ],
         pydantic.Field(alias="header_definition_type"),
-    ] = SourceMicrosoftSharepointHeaderDefinitionTypeAutogenerated.AUTOGENERATED
+    ] = SourceMicrosoftSharepointCSVHeaderDefinitionStreamsHeaderDefinitionType.AUTOGENERATED
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
@@ -592,26 +611,28 @@ class SourceMicrosoftSharepointAutogenerated(BaseModel):
         return m
 
 
-class SourceMicrosoftSharepointHeaderDefinitionTypeFromCsv(str, Enum):
+class SourceMicrosoftSharepointCSVHeaderDefinitionHeaderDefinitionType(str, Enum):
     FROM_CSV = "From CSV"
 
 
-class SourceMicrosoftSharepointFromCSVTypedDict(TypedDict):
-    header_definition_type: SourceMicrosoftSharepointHeaderDefinitionTypeFromCsv
+class SourceMicrosoftSharepointCSVHeaderDefinitionFromCSVTypedDict(TypedDict):
+    header_definition_type: (
+        SourceMicrosoftSharepointCSVHeaderDefinitionHeaderDefinitionType
+    )
 
 
-class SourceMicrosoftSharepointFromCSV(BaseModel):
+class SourceMicrosoftSharepointCSVHeaderDefinitionFromCSV(BaseModel):
     HEADER_DEFINITION_TYPE: Annotated[
         Annotated[
-            Optional[SourceMicrosoftSharepointHeaderDefinitionTypeFromCsv],
+            Optional[SourceMicrosoftSharepointCSVHeaderDefinitionHeaderDefinitionType],
             AfterValidator(
                 validate_const(
-                    SourceMicrosoftSharepointHeaderDefinitionTypeFromCsv.FROM_CSV
+                    SourceMicrosoftSharepointCSVHeaderDefinitionHeaderDefinitionType.FROM_CSV
                 )
             ),
         ],
         pydantic.Field(alias="header_definition_type"),
-    ] = SourceMicrosoftSharepointHeaderDefinitionTypeFromCsv.FROM_CSV
+    ] = SourceMicrosoftSharepointCSVHeaderDefinitionHeaderDefinitionType.FROM_CSV
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
@@ -630,29 +651,29 @@ class SourceMicrosoftSharepointFromCSV(BaseModel):
         return m
 
 
-SourceMicrosoftSharepointCSVHeaderDefinitionTypedDict = TypeAliasType(
-    "SourceMicrosoftSharepointCSVHeaderDefinitionTypedDict",
+SourceMicrosoftSharepointFormatCSVHeaderDefinitionTypedDict = TypeAliasType(
+    "SourceMicrosoftSharepointFormatCSVHeaderDefinitionTypedDict",
     Union[
-        SourceMicrosoftSharepointFromCSVTypedDict,
-        SourceMicrosoftSharepointAutogeneratedTypedDict,
-        SourceMicrosoftSharepointUserProvidedTypedDict,
+        SourceMicrosoftSharepointCSVHeaderDefinitionFromCSVTypedDict,
+        SourceMicrosoftSharepointCSVHeaderDefinitionAutogeneratedTypedDict,
+        SourceMicrosoftSharepointCSVHeaderDefinitionUserProvidedTypedDict,
     ],
 )
 r"""How headers will be defined. `User Provided` assumes the CSV does not have a header row and uses the headers provided and `Autogenerated` assumes the CSV does not have a header row and the CDK will generate headers using for `f{i}` where `i` is the index starting from 0. Else, the default behavior is to use the header from the CSV file. If a user wants to autogenerate or provide column names for a CSV having headers, they can skip rows."""
 
 
-SourceMicrosoftSharepointCSVHeaderDefinition = TypeAliasType(
-    "SourceMicrosoftSharepointCSVHeaderDefinition",
+SourceMicrosoftSharepointFormatCSVHeaderDefinition = TypeAliasType(
+    "SourceMicrosoftSharepointFormatCSVHeaderDefinition",
     Union[
-        SourceMicrosoftSharepointFromCSV,
-        SourceMicrosoftSharepointAutogenerated,
-        SourceMicrosoftSharepointUserProvided,
+        SourceMicrosoftSharepointCSVHeaderDefinitionFromCSV,
+        SourceMicrosoftSharepointCSVHeaderDefinitionAutogenerated,
+        SourceMicrosoftSharepointCSVHeaderDefinitionUserProvided,
     ],
 )
 r"""How headers will be defined. `User Provided` assumes the CSV does not have a header row and uses the headers provided and `Autogenerated` assumes the CSV does not have a header row and the CDK will generate headers using for `f{i}` where `i` is the index starting from 0. Else, the default behavior is to use the header from the CSV file. If a user wants to autogenerate or provide column names for a CSV having headers, they can skip rows."""
 
 
-class SourceMicrosoftSharepointCSVFormatTypedDict(TypedDict):
+class SourceMicrosoftSharepointFormatCSVFormatTypedDict(TypedDict):
     delimiter: NotRequired[str]
     r"""The character delimiting individual cells in the CSV data. This may only be a 1-character string. For tab-delimited data enter '\t'."""
     double_quote: NotRequired[bool]
@@ -663,9 +684,9 @@ class SourceMicrosoftSharepointCSVFormatTypedDict(TypedDict):
     r"""The character used for escaping special characters. To disallow escaping, leave this field blank."""
     false_values: NotRequired[List[str]]
     r"""A set of case-sensitive strings that should be interpreted as false values."""
-    filetype: SourceMicrosoftSharepointFiletypeCsv
+    filetype: SourceMicrosoftSharepointFormatStreamsFiletype
     header_definition: NotRequired[
-        SourceMicrosoftSharepointCSVHeaderDefinitionTypedDict
+        SourceMicrosoftSharepointFormatCSVHeaderDefinitionTypedDict
     ]
     r"""How headers will be defined. `User Provided` assumes the CSV does not have a header row and uses the headers provided and `Autogenerated` assumes the CSV does not have a header row and the CDK will generate headers using for `f{i}` where `i` is the index starting from 0. Else, the default behavior is to use the header from the CSV file. If a user wants to autogenerate or provide column names for a CSV having headers, they can skip rows."""
     ignore_errors_on_fields_mismatch: NotRequired[bool]
@@ -684,7 +705,7 @@ class SourceMicrosoftSharepointCSVFormatTypedDict(TypedDict):
     r"""A set of case-sensitive strings that should be interpreted as true values."""
 
 
-class SourceMicrosoftSharepointCSVFormat(BaseModel):
+class SourceMicrosoftSharepointFormatCSVFormat(BaseModel):
     delimiter: Optional[str] = ","
     r"""The character delimiting individual cells in the CSV data. This may only be a 1-character string. For tab-delimited data enter '\t'."""
 
@@ -702,13 +723,17 @@ class SourceMicrosoftSharepointCSVFormat(BaseModel):
 
     FILETYPE: Annotated[
         Annotated[
-            Optional[SourceMicrosoftSharepointFiletypeCsv],
-            AfterValidator(validate_const(SourceMicrosoftSharepointFiletypeCsv.CSV)),
+            Optional[SourceMicrosoftSharepointFormatStreamsFiletype],
+            AfterValidator(
+                validate_const(SourceMicrosoftSharepointFormatStreamsFiletype.CSV)
+            ),
         ],
         pydantic.Field(alias="filetype"),
-    ] = SourceMicrosoftSharepointFiletypeCsv.CSV
+    ] = SourceMicrosoftSharepointFormatStreamsFiletype.CSV
 
-    header_definition: Optional[SourceMicrosoftSharepointCSVHeaderDefinition] = None
+    header_definition: Optional[SourceMicrosoftSharepointFormatCSVHeaderDefinition] = (
+        None
+    )
     r"""How headers will be defined. `User Provided` assumes the CSV does not have a header row and uses the headers provided and `Autogenerated` assumes the CSV does not have a header row and the CDK will generate headers using for `f{i}` where `i` is the index starting from 0. Else, the default behavior is to use the header from the CSV file. If a user wants to autogenerate or provide column names for a CSV having headers, they can skip rows."""
 
     ignore_errors_on_fields_mismatch: Optional[bool] = False
@@ -766,27 +791,29 @@ class SourceMicrosoftSharepointCSVFormat(BaseModel):
         return m
 
 
-class SourceMicrosoftSharepointFiletypeAvro(str, Enum):
+class SourceMicrosoftSharepointFormatFiletype(str, Enum):
     AVRO = "avro"
 
 
-class SourceMicrosoftSharepointAvroFormatTypedDict(TypedDict):
+class SourceMicrosoftSharepointFormatAvroFormatTypedDict(TypedDict):
     double_as_string: NotRequired[bool]
     r"""Whether to convert double fields to strings. This is recommended if you have decimal numbers with a high degree of precision because there can be a loss precision when handling floating point numbers."""
-    filetype: SourceMicrosoftSharepointFiletypeAvro
+    filetype: SourceMicrosoftSharepointFormatFiletype
 
 
-class SourceMicrosoftSharepointAvroFormat(BaseModel):
+class SourceMicrosoftSharepointFormatAvroFormat(BaseModel):
     double_as_string: Optional[bool] = False
     r"""Whether to convert double fields to strings. This is recommended if you have decimal numbers with a high degree of precision because there can be a loss precision when handling floating point numbers."""
 
     FILETYPE: Annotated[
         Annotated[
-            Optional[SourceMicrosoftSharepointFiletypeAvro],
-            AfterValidator(validate_const(SourceMicrosoftSharepointFiletypeAvro.AVRO)),
+            Optional[SourceMicrosoftSharepointFormatFiletype],
+            AfterValidator(
+                validate_const(SourceMicrosoftSharepointFormatFiletype.AVRO)
+            ),
         ],
         pydantic.Field(alias="filetype"),
-    ] = SourceMicrosoftSharepointFiletypeAvro.AVRO
+    ] = SourceMicrosoftSharepointFormatFiletype.AVRO
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
@@ -808,12 +835,12 @@ class SourceMicrosoftSharepointAvroFormat(BaseModel):
 SourceMicrosoftSharepointFormatTypedDict = TypeAliasType(
     "SourceMicrosoftSharepointFormatTypedDict",
     Union[
-        SourceMicrosoftSharepointJsonlFormatTypedDict,
-        SourceMicrosoftSharepointExcelFormatTypedDict,
-        SourceMicrosoftSharepointAvroFormatTypedDict,
-        SourceMicrosoftSharepointParquetFormatTypedDict,
-        SourceMicrosoftSharepointUnstructuredDocumentFormatTypedDict,
-        SourceMicrosoftSharepointCSVFormatTypedDict,
+        SourceMicrosoftSharepointFormatJsonlFormatTypedDict,
+        SourceMicrosoftSharepointFormatExcelFormatTypedDict,
+        SourceMicrosoftSharepointFormatAvroFormatTypedDict,
+        SourceMicrosoftSharepointFormatParquetFormatTypedDict,
+        SourceMicrosoftSharepointFormatUnstructuredDocumentFormatTypedDict,
+        SourceMicrosoftSharepointFormatCSVFormatTypedDict,
     ],
 )
 r"""The configuration options that are used to alter how to read incoming files that deviate from the standard formatting."""
@@ -822,12 +849,12 @@ r"""The configuration options that are used to alter how to read incoming files 
 SourceMicrosoftSharepointFormat = TypeAliasType(
     "SourceMicrosoftSharepointFormat",
     Union[
-        SourceMicrosoftSharepointJsonlFormat,
-        SourceMicrosoftSharepointExcelFormat,
-        SourceMicrosoftSharepointAvroFormat,
-        SourceMicrosoftSharepointParquetFormat,
-        SourceMicrosoftSharepointUnstructuredDocumentFormat,
-        SourceMicrosoftSharepointCSVFormat,
+        SourceMicrosoftSharepointFormatJsonlFormat,
+        SourceMicrosoftSharepointFormatExcelFormat,
+        SourceMicrosoftSharepointFormatAvroFormat,
+        SourceMicrosoftSharepointFormatParquetFormat,
+        SourceMicrosoftSharepointFormatUnstructuredDocumentFormat,
+        SourceMicrosoftSharepointFormatCSVFormat,
     ],
 )
 r"""The configuration options that are used to alter how to read incoming files that deviate from the standard formatting."""
@@ -929,7 +956,7 @@ class SourceMicrosoftSharepointTypedDict(TypedDict):
     r"""Specifies the location(s) to search for files. Valid options are 'ACCESSIBLE_DRIVES' for all SharePoint drives the user can access, 'SHARED_ITEMS' for shared items the user has access to, and 'ALL' to search both."""
     site_url: NotRequired[str]
     r"""Url of SharePoint site to search for files. Leave empty to search in the main site. Use 'https://<tenant_name>.sharepoint.com/sites/' to iterate over all sites."""
-    source_type: MicrosoftSharepointEnum
+    source_type: SourceMicrosoftSharepointMicrosoftSharepoint
     start_date: NotRequired[datetime]
     r"""UTC date and time in the format 2017-01-25T00:00:00.000000Z. Any file modified before this date will not be replicated."""
 
@@ -960,13 +987,15 @@ class SourceMicrosoftSharepoint(BaseModel):
 
     SOURCE_TYPE: Annotated[
         Annotated[
-            MicrosoftSharepointEnum,
+            SourceMicrosoftSharepointMicrosoftSharepoint,
             AfterValidator(
-                validate_const(MicrosoftSharepointEnum.MICROSOFT_SHAREPOINT)
+                validate_const(
+                    SourceMicrosoftSharepointMicrosoftSharepoint.MICROSOFT_SHAREPOINT
+                )
             ),
         ],
         pydantic.Field(alias="sourceType"),
-    ] = MicrosoftSharepointEnum.MICROSOFT_SHAREPOINT
+    ] = SourceMicrosoftSharepointMicrosoftSharepoint.MICROSOFT_SHAREPOINT
 
     start_date: Optional[datetime] = None
     r"""UTC date and time in the format 2017-01-25T00:00:00.000000Z. Any file modified before this date will not be replicated."""
@@ -991,59 +1020,59 @@ class SourceMicrosoftSharepoint(BaseModel):
 
 
 try:
-    SourceMicrosoftSharepointServiceKeyAuthentication.model_rebuild()
+    AuthenticationServiceKeyAuthentication.model_rebuild()
 except NameError:
     pass
 try:
-    SourceMicrosoftSharepointAuthenticateViaMicrosoftOAuth.model_rebuild()
+    AuthenticationAuthenticateViaMicrosoftOAuth.model_rebuild()
 except NameError:
     pass
 try:
-    SourceMicrosoftSharepointCopyRawFiles.model_rebuild()
+    DeliveryMethodCopyRawFiles.model_rebuild()
 except NameError:
     pass
 try:
-    SourceMicrosoftSharepointReplicateRecords.model_rebuild()
+    DeliveryMethodReplicateRecords.model_rebuild()
 except NameError:
     pass
 try:
-    SourceMicrosoftSharepointExcelFormat.model_rebuild()
+    SourceMicrosoftSharepointFormatExcelFormat.model_rebuild()
 except NameError:
     pass
 try:
-    SourceMicrosoftSharepointLocal.model_rebuild()
+    SourceMicrosoftSharepointProcessingLocal.model_rebuild()
 except NameError:
     pass
 try:
-    SourceMicrosoftSharepointUnstructuredDocumentFormat.model_rebuild()
+    SourceMicrosoftSharepointFormatUnstructuredDocumentFormat.model_rebuild()
 except NameError:
     pass
 try:
-    SourceMicrosoftSharepointParquetFormat.model_rebuild()
+    SourceMicrosoftSharepointFormatParquetFormat.model_rebuild()
 except NameError:
     pass
 try:
-    SourceMicrosoftSharepointJsonlFormat.model_rebuild()
+    SourceMicrosoftSharepointFormatJsonlFormat.model_rebuild()
 except NameError:
     pass
 try:
-    SourceMicrosoftSharepointUserProvided.model_rebuild()
+    SourceMicrosoftSharepointCSVHeaderDefinitionUserProvided.model_rebuild()
 except NameError:
     pass
 try:
-    SourceMicrosoftSharepointAutogenerated.model_rebuild()
+    SourceMicrosoftSharepointCSVHeaderDefinitionAutogenerated.model_rebuild()
 except NameError:
     pass
 try:
-    SourceMicrosoftSharepointFromCSV.model_rebuild()
+    SourceMicrosoftSharepointCSVHeaderDefinitionFromCSV.model_rebuild()
 except NameError:
     pass
 try:
-    SourceMicrosoftSharepointCSVFormat.model_rebuild()
+    SourceMicrosoftSharepointFormatCSVFormat.model_rebuild()
 except NameError:
     pass
 try:
-    SourceMicrosoftSharepointAvroFormat.model_rebuild()
+    SourceMicrosoftSharepointFormatAvroFormat.model_rebuild()
 except NameError:
     pass
 try:

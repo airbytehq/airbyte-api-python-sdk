@@ -12,17 +12,17 @@ from typing import Any, Dict, Optional, Union
 from typing_extensions import Annotated, NotRequired, TypeAliasType, TypedDict
 
 
-class SourceHarvestAuthTypeToken(str, Enum):
+class SourceHarvestAuthenticationMechanismAuthType(str, Enum):
     TOKEN = "Token"
 
 
-class SourceHarvestAuthenticateWithPersonalAccessTokenTypedDict(TypedDict):
+class AuthenticationMechanismAuthenticateWithPersonalAccessTokenTypedDict(TypedDict):
     api_token: str
     r"""Log into Harvest and then create new <a href=\"https://id.getharvest.com/developers\"> personal access token</a>."""
-    auth_type: SourceHarvestAuthTypeToken
+    auth_type: SourceHarvestAuthenticationMechanismAuthType
 
 
-class SourceHarvestAuthenticateWithPersonalAccessToken(BaseModel):
+class AuthenticationMechanismAuthenticateWithPersonalAccessToken(BaseModel):
     model_config = ConfigDict(
         populate_by_name=True, arbitrary_types_allowed=True, extra="allow"
     )
@@ -33,11 +33,13 @@ class SourceHarvestAuthenticateWithPersonalAccessToken(BaseModel):
 
     AUTH_TYPE: Annotated[
         Annotated[
-            Optional[SourceHarvestAuthTypeToken],
-            AfterValidator(validate_const(SourceHarvestAuthTypeToken.TOKEN)),
+            Optional[SourceHarvestAuthenticationMechanismAuthType],
+            AfterValidator(
+                validate_const(SourceHarvestAuthenticationMechanismAuthType.TOKEN)
+            ),
         ],
         pydantic.Field(alias="auth_type"),
-    ] = SourceHarvestAuthTypeToken.TOKEN
+    ] = SourceHarvestAuthenticationMechanismAuthType.TOKEN
 
     @property
     def additional_properties(self):
@@ -67,7 +69,7 @@ class SourceHarvestAuthenticateWithPersonalAccessToken(BaseModel):
         return m
 
 
-class SourceHarvestAuthTypeClient(str, Enum):
+class AuthenticationMechanismAuthType(str, Enum):
     CLIENT = "Client"
 
 
@@ -78,7 +80,7 @@ class AuthenticateViaHarvestOAuthTypedDict(TypedDict):
     r"""The Client Secret of your Harvest developer application."""
     refresh_token: str
     r"""Refresh Token to renew the expired Access Token."""
-    auth_type: SourceHarvestAuthTypeClient
+    auth_type: AuthenticationMechanismAuthType
 
 
 class AuthenticateViaHarvestOAuth(BaseModel):
@@ -98,11 +100,11 @@ class AuthenticateViaHarvestOAuth(BaseModel):
 
     AUTH_TYPE: Annotated[
         Annotated[
-            Optional[SourceHarvestAuthTypeClient],
-            AfterValidator(validate_const(SourceHarvestAuthTypeClient.CLIENT)),
+            Optional[AuthenticationMechanismAuthType],
+            AfterValidator(validate_const(AuthenticationMechanismAuthType.CLIENT)),
         ],
         pydantic.Field(alias="auth_type"),
-    ] = SourceHarvestAuthTypeClient.CLIENT
+    ] = AuthenticationMechanismAuthType.CLIENT
 
     @property
     def additional_properties(self):
@@ -135,7 +137,7 @@ class AuthenticateViaHarvestOAuth(BaseModel):
 SourceHarvestAuthenticationMechanismTypedDict = TypeAliasType(
     "SourceHarvestAuthenticationMechanismTypedDict",
     Union[
-        SourceHarvestAuthenticateWithPersonalAccessTokenTypedDict,
+        AuthenticationMechanismAuthenticateWithPersonalAccessTokenTypedDict,
         AuthenticateViaHarvestOAuthTypedDict,
     ],
 )
@@ -145,7 +147,8 @@ r"""Choose how to authenticate to Harvest."""
 SourceHarvestAuthenticationMechanism = TypeAliasType(
     "SourceHarvestAuthenticationMechanism",
     Union[
-        SourceHarvestAuthenticateWithPersonalAccessToken, AuthenticateViaHarvestOAuth
+        AuthenticationMechanismAuthenticateWithPersonalAccessToken,
+        AuthenticateViaHarvestOAuth,
     ],
 )
 r"""Choose how to authenticate to Harvest."""
@@ -198,7 +201,7 @@ class SourceHarvest(BaseModel):
 
 
 try:
-    SourceHarvestAuthenticateWithPersonalAccessToken.model_rebuild()
+    AuthenticationMechanismAuthenticateWithPersonalAccessToken.model_rebuild()
 except NameError:
     pass
 try:

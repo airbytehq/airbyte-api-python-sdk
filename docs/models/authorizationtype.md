@@ -5,10 +5,10 @@ Authorization type.
 
 ## Supported Types
 
-### `models.DestinationMongodbNone`
+### `models.AuthorizationTypeNone`
 
 ```python
-value: models.DestinationMongodbNone = /* values here */
+value: models.AuthorizationTypeNone = /* values here */
 ```
 
 ### `models.LoginPassword`

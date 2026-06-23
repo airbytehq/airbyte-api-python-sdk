@@ -12,29 +12,31 @@ from typing import Optional, Union
 from typing_extensions import Annotated, NotRequired, TypeAliasType, TypedDict
 
 
-class SourceLinkedinPagesAuthMethodAccessToken(str, Enum):
+class SourceLinkedinPagesAuthenticationCredentialsAuthMethod(str, Enum):
     ACCESS_TOKEN = "access_token"
 
 
-class SourceLinkedinPagesAccessTokenTypedDict(TypedDict):
+class SourceLinkedinPagesAuthenticationAccessTokenTypedDict(TypedDict):
     access_token: str
     r"""The token value generated using the LinkedIn Developers OAuth Token Tools. See the <a href=\"https://docs.airbyte.com/integrations/sources/linkedin-pages/\">docs</a> to obtain yours."""
-    auth_method: SourceLinkedinPagesAuthMethodAccessToken
+    auth_method: SourceLinkedinPagesAuthenticationCredentialsAuthMethod
 
 
-class SourceLinkedinPagesAccessToken(BaseModel):
+class SourceLinkedinPagesAuthenticationAccessToken(BaseModel):
     access_token: str
     r"""The token value generated using the LinkedIn Developers OAuth Token Tools. See the <a href=\"https://docs.airbyte.com/integrations/sources/linkedin-pages/\">docs</a> to obtain yours."""
 
     AUTH_METHOD: Annotated[
         Annotated[
-            Optional[SourceLinkedinPagesAuthMethodAccessToken],
+            Optional[SourceLinkedinPagesAuthenticationCredentialsAuthMethod],
             AfterValidator(
-                validate_const(SourceLinkedinPagesAuthMethodAccessToken.ACCESS_TOKEN)
+                validate_const(
+                    SourceLinkedinPagesAuthenticationCredentialsAuthMethod.ACCESS_TOKEN
+                )
             ),
         ],
         pydantic.Field(alias="auth_method"),
-    ] = SourceLinkedinPagesAuthMethodAccessToken.ACCESS_TOKEN
+    ] = SourceLinkedinPagesAuthenticationCredentialsAuthMethod.ACCESS_TOKEN
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
@@ -53,21 +55,21 @@ class SourceLinkedinPagesAccessToken(BaseModel):
         return m
 
 
-class SourceLinkedinPagesAuthMethodOAuth20(str, Enum):
+class SourceLinkedinPagesAuthenticationAuthMethod(str, Enum):
     O_AUTH2_0 = "oAuth2.0"
 
 
-class SourceLinkedinPagesOAuth20TypedDict(TypedDict):
+class SourceLinkedinPagesAuthenticationOAuth20TypedDict(TypedDict):
     client_id: str
     r"""The client ID of the LinkedIn developer application."""
     client_secret: str
     r"""The client secret of the LinkedIn developer application."""
     refresh_token: str
     r"""The token value generated using the LinkedIn Developers OAuth Token Tools. See the <a href=\"https://docs.airbyte.com/integrations/sources/linkedin-pages/\">docs</a> to obtain yours."""
-    auth_method: SourceLinkedinPagesAuthMethodOAuth20
+    auth_method: SourceLinkedinPagesAuthenticationAuthMethod
 
 
-class SourceLinkedinPagesOAuth20(BaseModel):
+class SourceLinkedinPagesAuthenticationOAuth20(BaseModel):
     client_id: str
     r"""The client ID of the LinkedIn developer application."""
 
@@ -79,13 +81,13 @@ class SourceLinkedinPagesOAuth20(BaseModel):
 
     AUTH_METHOD: Annotated[
         Annotated[
-            Optional[SourceLinkedinPagesAuthMethodOAuth20],
+            Optional[SourceLinkedinPagesAuthenticationAuthMethod],
             AfterValidator(
-                validate_const(SourceLinkedinPagesAuthMethodOAuth20.O_AUTH2_0)
+                validate_const(SourceLinkedinPagesAuthenticationAuthMethod.O_AUTH2_0)
             ),
         ],
         pydantic.Field(alias="auth_method"),
-    ] = SourceLinkedinPagesAuthMethodOAuth20.O_AUTH2_0
+    ] = SourceLinkedinPagesAuthenticationAuthMethod.O_AUTH2_0
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
@@ -106,13 +108,19 @@ class SourceLinkedinPagesOAuth20(BaseModel):
 
 SourceLinkedinPagesAuthenticationTypedDict = TypeAliasType(
     "SourceLinkedinPagesAuthenticationTypedDict",
-    Union[SourceLinkedinPagesAccessTokenTypedDict, SourceLinkedinPagesOAuth20TypedDict],
+    Union[
+        SourceLinkedinPagesAuthenticationAccessTokenTypedDict,
+        SourceLinkedinPagesAuthenticationOAuth20TypedDict,
+    ],
 )
 
 
 SourceLinkedinPagesAuthentication = TypeAliasType(
     "SourceLinkedinPagesAuthentication",
-    Union[SourceLinkedinPagesAccessToken, SourceLinkedinPagesOAuth20],
+    Union[
+        SourceLinkedinPagesAuthenticationAccessToken,
+        SourceLinkedinPagesAuthenticationOAuth20,
+    ],
 )
 
 
@@ -175,11 +183,11 @@ class SourceLinkedinPages(BaseModel):
 
 
 try:
-    SourceLinkedinPagesAccessToken.model_rebuild()
+    SourceLinkedinPagesAuthenticationAccessToken.model_rebuild()
 except NameError:
     pass
 try:
-    SourceLinkedinPagesOAuth20.model_rebuild()
+    SourceLinkedinPagesAuthenticationOAuth20.model_rebuild()
 except NameError:
     pass
 try:

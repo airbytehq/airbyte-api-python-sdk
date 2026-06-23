@@ -1,0 +1,16 @@
+# SourceGoogleAnalyticsDataAPIToValueCustomReportsArrayValueType
+
+## Example Usage
+
+```python
+from airbyte_api.models import SourceGoogleAnalyticsDataAPIToValueCustomReportsArrayValueType
+
+value = SourceGoogleAnalyticsDataAPIToValueCustomReportsArrayValueType.INT64_VALUE
+```
+
+
+## Values
+
+| Name          | Value         |
+| ------------- | ------------- |
+| `INT64_VALUE` | int64Value    |

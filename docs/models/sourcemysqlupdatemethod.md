@@ -5,15 +5,15 @@ Configures how data is extracted from the database.
 
 ## Supported Types
 
-### `models.SourceMysqlScanChangesWithUserDefinedCursor`
+### `models.SourceMysqlUpdateMethodScanChangesWithUserDefinedCursor`
 
 ```python
-value: models.SourceMysqlScanChangesWithUserDefinedCursor = /* values here */
+value: models.SourceMysqlUpdateMethodScanChangesWithUserDefinedCursor = /* values here */
 ```
 
-### `models.SourceMysqlReadChangesUsingChangeDataCaptureCDC`
+### `models.SourceMysqlUpdateMethodReadChangesUsingChangeDataCaptureCDC`
 
 ```python
-value: models.SourceMysqlReadChangesUsingChangeDataCaptureCDC = /* values here */
+value: models.SourceMysqlUpdateMethodReadChangesUsingChangeDataCaptureCDC = /* values here */
 ```
 

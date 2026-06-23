@@ -5,10 +5,10 @@ The authorization method to use to retrieve data from Shopify
 
 ## Supported Types
 
-### `models.SourceShopifyOAuth20`
+### `models.ShopifyAuthorizationMethodOAuth20`
 
 ```python
-value: models.SourceShopifyOAuth20 = /* values here */
+value: models.ShopifyAuthorizationMethodOAuth20 = /* values here */
 ```
 
 ### `models.APIPassword`

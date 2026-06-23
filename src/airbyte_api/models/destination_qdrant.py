@@ -15,11 +15,11 @@ class Qdrant(str, Enum):
     QDRANT = "qdrant"
 
 
-class DestinationQdrantModeOpenaiCompatible(str, Enum):
+class DestinationQdrantEmbeddingEmbedding5Mode(str, Enum):
     OPENAI_COMPATIBLE = "openai_compatible"
 
 
-class DestinationQdrantOpenAICompatibleTypedDict(TypedDict):
+class DestinationQdrantEmbeddingOpenAICompatibleTypedDict(TypedDict):
     r"""Use a service that's compatible with the OpenAI API to embed text."""
 
     base_url: str
@@ -27,12 +27,12 @@ class DestinationQdrantOpenAICompatibleTypedDict(TypedDict):
     dimensions: int
     r"""The number of dimensions the embedding model is generating"""
     api_key: NotRequired[str]
-    mode: DestinationQdrantModeOpenaiCompatible
+    mode: DestinationQdrantEmbeddingEmbedding5Mode
     model_name: NotRequired[str]
     r"""The name of the model to use for embedding"""
 
 
-class DestinationQdrantOpenAICompatible(BaseModel):
+class DestinationQdrantEmbeddingOpenAICompatible(BaseModel):
     r"""Use a service that's compatible with the OpenAI API to embed text."""
 
     base_url: str
@@ -45,13 +45,15 @@ class DestinationQdrantOpenAICompatible(BaseModel):
 
     MODE: Annotated[
         Annotated[
-            Optional[DestinationQdrantModeOpenaiCompatible],
+            Optional[DestinationQdrantEmbeddingEmbedding5Mode],
             AfterValidator(
-                validate_const(DestinationQdrantModeOpenaiCompatible.OPENAI_COMPATIBLE)
+                validate_const(
+                    DestinationQdrantEmbeddingEmbedding5Mode.OPENAI_COMPATIBLE
+                )
             ),
         ],
         pydantic.Field(alias="mode"),
-    ] = DestinationQdrantModeOpenaiCompatible.OPENAI_COMPATIBLE
+    ] = DestinationQdrantEmbeddingEmbedding5Mode.OPENAI_COMPATIBLE
 
     model_name: Optional[str] = "text-embedding-ada-002"
     r"""The name of the model to use for embedding"""
@@ -73,11 +75,11 @@ class DestinationQdrantOpenAICompatible(BaseModel):
         return m
 
 
-class DestinationQdrantModeAzureOpenai(str, Enum):
+class DestinationQdrantEmbeddingEmbedding4Mode(str, Enum):
     AZURE_OPENAI = "azure_openai"
 
 
-class DestinationQdrantAzureOpenAITypedDict(TypedDict):
+class DestinationQdrantEmbeddingAzureOpenAITypedDict(TypedDict):
     r"""Use the Azure-hosted OpenAI API to embed text. This option is using the text-embedding-ada-002 model with 1536 embedding dimensions."""
 
     api_base: str
@@ -86,10 +88,10 @@ class DestinationQdrantAzureOpenAITypedDict(TypedDict):
     r"""The deployment for your Azure OpenAI resource.  You can find this in the Azure portal under your Azure OpenAI resource"""
     openai_key: str
     r"""The API key for your Azure OpenAI resource.  You can find this in the Azure portal under your Azure OpenAI resource"""
-    mode: DestinationQdrantModeAzureOpenai
+    mode: DestinationQdrantEmbeddingEmbedding4Mode
 
 
-class DestinationQdrantAzureOpenAI(BaseModel):
+class DestinationQdrantEmbeddingAzureOpenAI(BaseModel):
     r"""Use the Azure-hosted OpenAI API to embed text. This option is using the text-embedding-ada-002 model with 1536 embedding dimensions."""
 
     api_base: str
@@ -103,13 +105,13 @@ class DestinationQdrantAzureOpenAI(BaseModel):
 
     MODE: Annotated[
         Annotated[
-            Optional[DestinationQdrantModeAzureOpenai],
+            Optional[DestinationQdrantEmbeddingEmbedding4Mode],
             AfterValidator(
-                validate_const(DestinationQdrantModeAzureOpenai.AZURE_OPENAI)
+                validate_const(DestinationQdrantEmbeddingEmbedding4Mode.AZURE_OPENAI)
             ),
         ],
         pydantic.Field(alias="mode"),
-    ] = DestinationQdrantModeAzureOpenai.AZURE_OPENAI
+    ] = DestinationQdrantEmbeddingEmbedding4Mode.AZURE_OPENAI
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
@@ -128,26 +130,28 @@ class DestinationQdrantAzureOpenAI(BaseModel):
         return m
 
 
-class DestinationQdrantModeFake(str, Enum):
+class DestinationQdrantEmbeddingEmbedding3Mode(str, Enum):
     FAKE = "fake"
 
 
-class DestinationQdrantFakeTypedDict(TypedDict):
+class DestinationQdrantEmbeddingFakeTypedDict(TypedDict):
     r"""Use a fake embedding made out of random vectors with 1536 embedding dimensions. This is useful for testing the data pipeline without incurring any costs."""
 
-    mode: DestinationQdrantModeFake
+    mode: DestinationQdrantEmbeddingEmbedding3Mode
 
 
-class DestinationQdrantFake(BaseModel):
+class DestinationQdrantEmbeddingFake(BaseModel):
     r"""Use a fake embedding made out of random vectors with 1536 embedding dimensions. This is useful for testing the data pipeline without incurring any costs."""
 
     MODE: Annotated[
         Annotated[
-            Optional[DestinationQdrantModeFake],
-            AfterValidator(validate_const(DestinationQdrantModeFake.FAKE)),
+            Optional[DestinationQdrantEmbeddingEmbedding3Mode],
+            AfterValidator(
+                validate_const(DestinationQdrantEmbeddingEmbedding3Mode.FAKE)
+            ),
         ],
         pydantic.Field(alias="mode"),
-    ] = DestinationQdrantModeFake.FAKE
+    ] = DestinationQdrantEmbeddingEmbedding3Mode.FAKE
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
@@ -166,29 +170,31 @@ class DestinationQdrantFake(BaseModel):
         return m
 
 
-class DestinationQdrantModeCohere(str, Enum):
+class DestinationQdrantEmbeddingEmbeddingMode(str, Enum):
     COHERE = "cohere"
 
 
-class DestinationQdrantCohereTypedDict(TypedDict):
+class DestinationQdrantEmbeddingCohereTypedDict(TypedDict):
     r"""Use the Cohere API to embed text."""
 
     cohere_key: str
-    mode: DestinationQdrantModeCohere
+    mode: DestinationQdrantEmbeddingEmbeddingMode
 
 
-class DestinationQdrantCohere(BaseModel):
+class DestinationQdrantEmbeddingCohere(BaseModel):
     r"""Use the Cohere API to embed text."""
 
     cohere_key: str
 
     MODE: Annotated[
         Annotated[
-            Optional[DestinationQdrantModeCohere],
-            AfterValidator(validate_const(DestinationQdrantModeCohere.COHERE)),
+            Optional[DestinationQdrantEmbeddingEmbeddingMode],
+            AfterValidator(
+                validate_const(DestinationQdrantEmbeddingEmbeddingMode.COHERE)
+            ),
         ],
         pydantic.Field(alias="mode"),
-    ] = DestinationQdrantModeCohere.COHERE
+    ] = DestinationQdrantEmbeddingEmbeddingMode.COHERE
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
@@ -207,29 +213,29 @@ class DestinationQdrantCohere(BaseModel):
         return m
 
 
-class DestinationQdrantModeOpenai(str, Enum):
+class DestinationQdrantEmbeddingMode(str, Enum):
     OPENAI = "openai"
 
 
-class DestinationQdrantOpenAITypedDict(TypedDict):
+class DestinationQdrantEmbeddingOpenAITypedDict(TypedDict):
     r"""Use the OpenAI API to embed text. This option is using the text-embedding-ada-002 model with 1536 embedding dimensions."""
 
     openai_key: str
-    mode: DestinationQdrantModeOpenai
+    mode: DestinationQdrantEmbeddingMode
 
 
-class DestinationQdrantOpenAI(BaseModel):
+class DestinationQdrantEmbeddingOpenAI(BaseModel):
     r"""Use the OpenAI API to embed text. This option is using the text-embedding-ada-002 model with 1536 embedding dimensions."""
 
     openai_key: str
 
     MODE: Annotated[
         Annotated[
-            Optional[DestinationQdrantModeOpenai],
-            AfterValidator(validate_const(DestinationQdrantModeOpenai.OPENAI)),
+            Optional[DestinationQdrantEmbeddingMode],
+            AfterValidator(validate_const(DestinationQdrantEmbeddingMode.OPENAI)),
         ],
         pydantic.Field(alias="mode"),
-    ] = DestinationQdrantModeOpenai.OPENAI
+    ] = DestinationQdrantEmbeddingMode.OPENAI
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
@@ -251,11 +257,11 @@ class DestinationQdrantOpenAI(BaseModel):
 DestinationQdrantEmbeddingTypedDict = TypeAliasType(
     "DestinationQdrantEmbeddingTypedDict",
     Union[
-        DestinationQdrantFakeTypedDict,
-        DestinationQdrantOpenAITypedDict,
-        DestinationQdrantCohereTypedDict,
-        DestinationQdrantAzureOpenAITypedDict,
-        DestinationQdrantOpenAICompatibleTypedDict,
+        DestinationQdrantEmbeddingFakeTypedDict,
+        DestinationQdrantEmbeddingOpenAITypedDict,
+        DestinationQdrantEmbeddingCohereTypedDict,
+        DestinationQdrantEmbeddingAzureOpenAITypedDict,
+        DestinationQdrantEmbeddingOpenAICompatibleTypedDict,
     ],
 )
 r"""Embedding configuration"""
@@ -264,32 +270,34 @@ r"""Embedding configuration"""
 DestinationQdrantEmbedding = TypeAliasType(
     "DestinationQdrantEmbedding",
     Union[
-        DestinationQdrantFake,
-        DestinationQdrantOpenAI,
-        DestinationQdrantCohere,
-        DestinationQdrantAzureOpenAI,
-        DestinationQdrantOpenAICompatible,
+        DestinationQdrantEmbeddingFake,
+        DestinationQdrantEmbeddingOpenAI,
+        DestinationQdrantEmbeddingCohere,
+        DestinationQdrantEmbeddingAzureOpenAI,
+        DestinationQdrantEmbeddingOpenAICompatible,
     ],
 )
 r"""Embedding configuration"""
 
 
-class AuthenticationMethodModeNoAuth(str, Enum):
+class DestinationQdrantAuthenticationMethodMode(str, Enum):
     NO_AUTH = "no_auth"
 
 
-class DestinationQdrantNoAuthTypedDict(TypedDict):
-    mode: AuthenticationMethodModeNoAuth
+class AuthenticationMethodNoAuthTypedDict(TypedDict):
+    mode: DestinationQdrantAuthenticationMethodMode
 
 
-class DestinationQdrantNoAuth(BaseModel):
+class AuthenticationMethodNoAuth(BaseModel):
     MODE: Annotated[
         Annotated[
-            Optional[AuthenticationMethodModeNoAuth],
-            AfterValidator(validate_const(AuthenticationMethodModeNoAuth.NO_AUTH)),
+            Optional[DestinationQdrantAuthenticationMethodMode],
+            AfterValidator(
+                validate_const(DestinationQdrantAuthenticationMethodMode.NO_AUTH)
+            ),
         ],
         pydantic.Field(alias="mode"),
-    ] = AuthenticationMethodModeNoAuth.NO_AUTH
+    ] = DestinationQdrantAuthenticationMethodMode.NO_AUTH
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
@@ -308,14 +316,14 @@ class DestinationQdrantNoAuth(BaseModel):
         return m
 
 
-class ModeAPIKeyAuth(str, Enum):
+class AuthenticationMethodMode(str, Enum):
     API_KEY_AUTH = "api_key_auth"
 
 
 class APIKeyAuthTypedDict(TypedDict):
     api_key: str
     r"""API Key for the Qdrant instance"""
-    mode: ModeAPIKeyAuth
+    mode: AuthenticationMethodMode
 
 
 class APIKeyAuth(BaseModel):
@@ -324,11 +332,11 @@ class APIKeyAuth(BaseModel):
 
     MODE: Annotated[
         Annotated[
-            Optional[ModeAPIKeyAuth],
-            AfterValidator(validate_const(ModeAPIKeyAuth.API_KEY_AUTH)),
+            Optional[AuthenticationMethodMode],
+            AfterValidator(validate_const(AuthenticationMethodMode.API_KEY_AUTH)),
         ],
         pydantic.Field(alias="mode"),
-    ] = ModeAPIKeyAuth.API_KEY_AUTH
+    ] = AuthenticationMethodMode.API_KEY_AUTH
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
@@ -349,13 +357,14 @@ class APIKeyAuth(BaseModel):
 
 DestinationQdrantAuthenticationMethodTypedDict = TypeAliasType(
     "DestinationQdrantAuthenticationMethodTypedDict",
-    Union[DestinationQdrantNoAuthTypedDict, APIKeyAuthTypedDict],
+    Union[AuthenticationMethodNoAuthTypedDict, APIKeyAuthTypedDict],
 )
 r"""Method to authenticate with the Qdrant Instance"""
 
 
 DestinationQdrantAuthenticationMethod = TypeAliasType(
-    "DestinationQdrantAuthenticationMethod", Union[DestinationQdrantNoAuth, APIKeyAuth]
+    "DestinationQdrantAuthenticationMethod",
+    Union[AuthenticationMethodNoAuth, APIKeyAuth],
 )
 r"""Method to authenticate with the Qdrant Instance"""
 
@@ -440,7 +449,7 @@ class DestinationQdrantFieldNameMappingConfigModel(BaseModel):
     r"""The field name to use in the destination"""
 
 
-class DestinationQdrantLanguage(str, Enum):
+class DestinationQdrantTextSplitterLanguage(str, Enum):
     r"""Split code in suitable places based on the programming language"""
 
     CPP = "cpp"
@@ -461,31 +470,35 @@ class DestinationQdrantLanguage(str, Enum):
     SOL = "sol"
 
 
-class DestinationQdrantModeCode(str, Enum):
+class DestinationQdrantTextSplitterProcessingTextSplitterMode(str, Enum):
     CODE = "code"
 
 
-class DestinationQdrantByProgrammingLanguageTypedDict(TypedDict):
+class DestinationQdrantTextSplitterByProgrammingLanguageTypedDict(TypedDict):
     r"""Split the text by suitable delimiters based on the programming language. This is useful for splitting code into chunks."""
 
-    language: DestinationQdrantLanguage
+    language: DestinationQdrantTextSplitterLanguage
     r"""Split code in suitable places based on the programming language"""
-    mode: DestinationQdrantModeCode
+    mode: DestinationQdrantTextSplitterProcessingTextSplitterMode
 
 
-class DestinationQdrantByProgrammingLanguage(BaseModel):
+class DestinationQdrantTextSplitterByProgrammingLanguage(BaseModel):
     r"""Split the text by suitable delimiters based on the programming language. This is useful for splitting code into chunks."""
 
-    language: DestinationQdrantLanguage
+    language: DestinationQdrantTextSplitterLanguage
     r"""Split code in suitable places based on the programming language"""
 
     MODE: Annotated[
         Annotated[
-            Optional[DestinationQdrantModeCode],
-            AfterValidator(validate_const(DestinationQdrantModeCode.CODE)),
+            Optional[DestinationQdrantTextSplitterProcessingTextSplitterMode],
+            AfterValidator(
+                validate_const(
+                    DestinationQdrantTextSplitterProcessingTextSplitterMode.CODE
+                )
+            ),
         ],
         pydantic.Field(alias="mode"),
-    ] = DestinationQdrantModeCode.CODE
+    ] = DestinationQdrantTextSplitterProcessingTextSplitterMode.CODE
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
@@ -504,28 +517,30 @@ class DestinationQdrantByProgrammingLanguage(BaseModel):
         return m
 
 
-class DestinationQdrantModeMarkdown(str, Enum):
+class DestinationQdrantTextSplitterProcessingMode(str, Enum):
     MARKDOWN = "markdown"
 
 
-class DestinationQdrantByMarkdownHeaderTypedDict(TypedDict):
+class DestinationQdrantTextSplitterByMarkdownHeaderTypedDict(TypedDict):
     r"""Split the text by Markdown headers down to the specified header level. If the chunk size fits multiple sections, they will be combined into a single chunk."""
 
-    mode: DestinationQdrantModeMarkdown
+    mode: DestinationQdrantTextSplitterProcessingMode
     split_level: NotRequired[int]
     r"""Level of markdown headers to split text fields by. Headings down to the specified level will be used as split points"""
 
 
-class DestinationQdrantByMarkdownHeader(BaseModel):
+class DestinationQdrantTextSplitterByMarkdownHeader(BaseModel):
     r"""Split the text by Markdown headers down to the specified header level. If the chunk size fits multiple sections, they will be combined into a single chunk."""
 
     MODE: Annotated[
         Annotated[
-            Optional[DestinationQdrantModeMarkdown],
-            AfterValidator(validate_const(DestinationQdrantModeMarkdown.MARKDOWN)),
+            Optional[DestinationQdrantTextSplitterProcessingMode],
+            AfterValidator(
+                validate_const(DestinationQdrantTextSplitterProcessingMode.MARKDOWN)
+            ),
         ],
         pydantic.Field(alias="mode"),
-    ] = DestinationQdrantModeMarkdown.MARKDOWN
+    ] = DestinationQdrantTextSplitterProcessingMode.MARKDOWN
 
     split_level: Optional[int] = 1
     r"""Level of markdown headers to split text fields by. Headings down to the specified level will be used as split points"""
@@ -547,21 +562,21 @@ class DestinationQdrantByMarkdownHeader(BaseModel):
         return m
 
 
-class DestinationQdrantModeSeparator(str, Enum):
+class DestinationQdrantTextSplitterMode(str, Enum):
     SEPARATOR = "separator"
 
 
-class DestinationQdrantBySeparatorTypedDict(TypedDict):
+class DestinationQdrantTextSplitterBySeparatorTypedDict(TypedDict):
     r"""Split the text by the list of separators until the chunk size is reached, using the earlier mentioned separators where possible. This is useful for splitting text fields by paragraphs, sentences, words, etc."""
 
     keep_separator: NotRequired[bool]
     r"""Whether to keep the separator in the resulting chunks"""
-    mode: DestinationQdrantModeSeparator
+    mode: DestinationQdrantTextSplitterMode
     separators: NotRequired[List[str]]
     r"""List of separator strings to split text fields by. The separator itself needs to be wrapped in double quotes, e.g. to split by the dot character, use \".\". To split by a newline, use \"\n\"."""
 
 
-class DestinationQdrantBySeparator(BaseModel):
+class DestinationQdrantTextSplitterBySeparator(BaseModel):
     r"""Split the text by the list of separators until the chunk size is reached, using the earlier mentioned separators where possible. This is useful for splitting text fields by paragraphs, sentences, words, etc."""
 
     keep_separator: Optional[bool] = False
@@ -569,11 +584,11 @@ class DestinationQdrantBySeparator(BaseModel):
 
     MODE: Annotated[
         Annotated[
-            Optional[DestinationQdrantModeSeparator],
-            AfterValidator(validate_const(DestinationQdrantModeSeparator.SEPARATOR)),
+            Optional[DestinationQdrantTextSplitterMode],
+            AfterValidator(validate_const(DestinationQdrantTextSplitterMode.SEPARATOR)),
         ],
         pydantic.Field(alias="mode"),
-    ] = DestinationQdrantModeSeparator.SEPARATOR
+    ] = DestinationQdrantTextSplitterMode.SEPARATOR
 
     separators: Optional[List[str]] = None
     r"""List of separator strings to split text fields by. The separator itself needs to be wrapped in double quotes, e.g. to split by the dot character, use \".\". To split by a newline, use \"\n\"."""
@@ -598,9 +613,9 @@ class DestinationQdrantBySeparator(BaseModel):
 DestinationQdrantTextSplitterTypedDict = TypeAliasType(
     "DestinationQdrantTextSplitterTypedDict",
     Union[
-        DestinationQdrantByMarkdownHeaderTypedDict,
-        DestinationQdrantByProgrammingLanguageTypedDict,
-        DestinationQdrantBySeparatorTypedDict,
+        DestinationQdrantTextSplitterByMarkdownHeaderTypedDict,
+        DestinationQdrantTextSplitterByProgrammingLanguageTypedDict,
+        DestinationQdrantTextSplitterBySeparatorTypedDict,
     ],
 )
 r"""Split text fields into chunks based on the specified method."""
@@ -609,9 +624,9 @@ r"""Split text fields into chunks based on the specified method."""
 DestinationQdrantTextSplitter = TypeAliasType(
     "DestinationQdrantTextSplitter",
     Union[
-        DestinationQdrantByMarkdownHeader,
-        DestinationQdrantByProgrammingLanguage,
-        DestinationQdrantBySeparator,
+        DestinationQdrantTextSplitterByMarkdownHeader,
+        DestinationQdrantTextSplitterByProgrammingLanguage,
+        DestinationQdrantTextSplitterBySeparator,
     ],
 )
 r"""Split text fields into chunks based on the specified method."""
@@ -750,27 +765,27 @@ class DestinationQdrant(BaseModel):
 
 
 try:
-    DestinationQdrantOpenAICompatible.model_rebuild()
+    DestinationQdrantEmbeddingOpenAICompatible.model_rebuild()
 except NameError:
     pass
 try:
-    DestinationQdrantAzureOpenAI.model_rebuild()
+    DestinationQdrantEmbeddingAzureOpenAI.model_rebuild()
 except NameError:
     pass
 try:
-    DestinationQdrantFake.model_rebuild()
+    DestinationQdrantEmbeddingFake.model_rebuild()
 except NameError:
     pass
 try:
-    DestinationQdrantCohere.model_rebuild()
+    DestinationQdrantEmbeddingCohere.model_rebuild()
 except NameError:
     pass
 try:
-    DestinationQdrantOpenAI.model_rebuild()
+    DestinationQdrantEmbeddingOpenAI.model_rebuild()
 except NameError:
     pass
 try:
-    DestinationQdrantNoAuth.model_rebuild()
+    AuthenticationMethodNoAuth.model_rebuild()
 except NameError:
     pass
 try:
@@ -778,15 +793,15 @@ try:
 except NameError:
     pass
 try:
-    DestinationQdrantByProgrammingLanguage.model_rebuild()
+    DestinationQdrantTextSplitterByProgrammingLanguage.model_rebuild()
 except NameError:
     pass
 try:
-    DestinationQdrantByMarkdownHeader.model_rebuild()
+    DestinationQdrantTextSplitterByMarkdownHeader.model_rebuild()
 except NameError:
     pass
 try:
-    DestinationQdrantBySeparator.model_rebuild()
+    DestinationQdrantTextSplitterBySeparator.model_rebuild()
 except NameError:
     pass
 try:

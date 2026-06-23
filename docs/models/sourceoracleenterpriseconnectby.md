@@ -5,15 +5,15 @@ The scheme by which to establish a database connection.
 
 ## Supported Types
 
-### `models.SourceOracleEnterpriseServiceName`
+### `models.ConnectByServiceName`
 
 ```python
-value: models.SourceOracleEnterpriseServiceName = /* values here */
+value: models.ConnectByServiceName = /* values here */
 ```
 
-### `models.SourceOracleEnterpriseSystemIDSID`
+### `models.ConnectBySystemIDSID`
 
 ```python
-value: models.SourceOracleEnterpriseSystemIDSID = /* values here */
+value: models.ConnectBySystemIDSID = /* values here */
 ```
 

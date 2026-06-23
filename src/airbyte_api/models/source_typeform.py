@@ -12,29 +12,31 @@ from typing import List, Optional, Union
 from typing_extensions import Annotated, NotRequired, TypeAliasType, TypedDict
 
 
-class SourceTypeformAuthTypeAccessToken(str, Enum):
+class SourceTypeformAuthorizationMethodCredentialsAuthType(str, Enum):
     ACCESS_TOKEN = "access_token"
 
 
-class SourceTypeformPrivateTokenTypedDict(TypedDict):
+class AuthorizationMethodPrivateTokenTypedDict(TypedDict):
     access_token: str
     r"""Log into your Typeform account and then generate a personal Access Token."""
-    auth_type: SourceTypeformAuthTypeAccessToken
+    auth_type: SourceTypeformAuthorizationMethodCredentialsAuthType
 
 
-class SourceTypeformPrivateToken(BaseModel):
+class AuthorizationMethodPrivateToken(BaseModel):
     access_token: str
     r"""Log into your Typeform account and then generate a personal Access Token."""
 
     AUTH_TYPE: Annotated[
         Annotated[
-            Optional[SourceTypeformAuthTypeAccessToken],
+            Optional[SourceTypeformAuthorizationMethodCredentialsAuthType],
             AfterValidator(
-                validate_const(SourceTypeformAuthTypeAccessToken.ACCESS_TOKEN)
+                validate_const(
+                    SourceTypeformAuthorizationMethodCredentialsAuthType.ACCESS_TOKEN
+                )
             ),
         ],
         pydantic.Field(alias="auth_type"),
-    ] = SourceTypeformAuthTypeAccessToken.ACCESS_TOKEN
+    ] = SourceTypeformAuthorizationMethodCredentialsAuthType.ACCESS_TOKEN
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
@@ -53,11 +55,11 @@ class SourceTypeformPrivateToken(BaseModel):
         return m
 
 
-class SourceTypeformAuthTypeOauth20(str, Enum):
+class SourceTypeformAuthorizationMethodAuthType(str, Enum):
     OAUTH2_0 = "oauth2.0"
 
 
-class SourceTypeformOAuth20TypedDict(TypedDict):
+class SourceTypeformAuthorizationMethodOAuth20TypedDict(TypedDict):
     access_token: str
     r"""Access Token for making authenticated requests."""
     client_id: str
@@ -68,10 +70,10 @@ class SourceTypeformOAuth20TypedDict(TypedDict):
     r"""The key to refresh the expired access_token."""
     token_expiry_date: datetime
     r"""The date-time when the access token should be refreshed."""
-    auth_type: SourceTypeformAuthTypeOauth20
+    auth_type: SourceTypeformAuthorizationMethodAuthType
 
 
-class SourceTypeformOAuth20(BaseModel):
+class SourceTypeformAuthorizationMethodOAuth20(BaseModel):
     access_token: str
     r"""Access Token for making authenticated requests."""
 
@@ -89,11 +91,13 @@ class SourceTypeformOAuth20(BaseModel):
 
     AUTH_TYPE: Annotated[
         Annotated[
-            Optional[SourceTypeformAuthTypeOauth20],
-            AfterValidator(validate_const(SourceTypeformAuthTypeOauth20.OAUTH2_0)),
+            Optional[SourceTypeformAuthorizationMethodAuthType],
+            AfterValidator(
+                validate_const(SourceTypeformAuthorizationMethodAuthType.OAUTH2_0)
+            ),
         ],
         pydantic.Field(alias="auth_type"),
-    ] = SourceTypeformAuthTypeOauth20.OAUTH2_0
+    ] = SourceTypeformAuthorizationMethodAuthType.OAUTH2_0
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
@@ -114,17 +118,20 @@ class SourceTypeformOAuth20(BaseModel):
 
 SourceTypeformAuthorizationMethodTypedDict = TypeAliasType(
     "SourceTypeformAuthorizationMethodTypedDict",
-    Union[SourceTypeformPrivateTokenTypedDict, SourceTypeformOAuth20TypedDict],
+    Union[
+        AuthorizationMethodPrivateTokenTypedDict,
+        SourceTypeformAuthorizationMethodOAuth20TypedDict,
+    ],
 )
 
 
 SourceTypeformAuthorizationMethod = TypeAliasType(
     "SourceTypeformAuthorizationMethod",
-    Union[SourceTypeformPrivateToken, SourceTypeformOAuth20],
+    Union[AuthorizationMethodPrivateToken, SourceTypeformAuthorizationMethodOAuth20],
 )
 
 
-class TypeformEnum(str, Enum):
+class SourceTypeformTypeform(str, Enum):
     TYPEFORM = "typeform"
 
 
@@ -132,7 +139,7 @@ class SourceTypeformTypedDict(TypedDict):
     credentials: SourceTypeformAuthorizationMethodTypedDict
     form_ids: NotRequired[List[str]]
     r"""When this parameter is set, the connector will replicate data only from the input forms. Otherwise, all forms in your Typeform account will be replicated. You can find form IDs in your form URLs. For example, in the URL \"https://mysite.typeform.com/to/u6nXL7\" the form_id is u6nXL7. You can find form URLs on Share panel"""
-    source_type: TypeformEnum
+    source_type: SourceTypeformTypeform
     start_date: NotRequired[datetime]
     r"""The date from which you'd like to replicate data for Typeform API, in the format YYYY-MM-DDT00:00:00Z. All data generated after this date will be replicated."""
 
@@ -144,9 +151,12 @@ class SourceTypeform(BaseModel):
     r"""When this parameter is set, the connector will replicate data only from the input forms. Otherwise, all forms in your Typeform account will be replicated. You can find form IDs in your form URLs. For example, in the URL \"https://mysite.typeform.com/to/u6nXL7\" the form_id is u6nXL7. You can find form URLs on Share panel"""
 
     SOURCE_TYPE: Annotated[
-        Annotated[TypeformEnum, AfterValidator(validate_const(TypeformEnum.TYPEFORM))],
+        Annotated[
+            SourceTypeformTypeform,
+            AfterValidator(validate_const(SourceTypeformTypeform.TYPEFORM)),
+        ],
         pydantic.Field(alias="sourceType"),
-    ] = TypeformEnum.TYPEFORM
+    ] = SourceTypeformTypeform.TYPEFORM
 
     start_date: Optional[datetime] = None
     r"""The date from which you'd like to replicate data for Typeform API, in the format YYYY-MM-DDT00:00:00Z. All data generated after this date will be replicated."""
@@ -169,11 +179,11 @@ class SourceTypeform(BaseModel):
 
 
 try:
-    SourceTypeformPrivateToken.model_rebuild()
+    AuthorizationMethodPrivateToken.model_rebuild()
 except NameError:
     pass
 try:
-    SourceTypeformOAuth20.model_rebuild()
+    SourceTypeformAuthorizationMethodOAuth20.model_rebuild()
 except NameError:
     pass
 try:

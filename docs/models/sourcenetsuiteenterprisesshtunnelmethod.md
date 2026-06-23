@@ -5,16 +5,16 @@ Whether to initiate an SSH tunnel before connecting to the database, and if so, 
 
 ## Supported Types
 
-### `models.SourceNetsuiteEnterpriseNoTunnel`
+### `models.SourceNetsuiteEnterpriseSSHTunnelMethodNoTunnel`
 
 ```python
-value: models.SourceNetsuiteEnterpriseNoTunnel = /* values here */
+value: models.SourceNetsuiteEnterpriseSSHTunnelMethodNoTunnel = /* values here */
 ```
 
-### `models.SourceNetsuiteEnterpriseSSHKeyAuthentication`
+### `models.SourceNetsuiteEnterpriseSSHTunnelMethodSSHKeyAuthentication`
 
 ```python
-value: models.SourceNetsuiteEnterpriseSSHKeyAuthentication = /* values here */
+value: models.SourceNetsuiteEnterpriseSSHTunnelMethodSSHKeyAuthentication = /* values here */
 ```
 
 ### `models.SourceNetsuiteEnterpriseSSHTunnelMethodPasswordAuthentication`

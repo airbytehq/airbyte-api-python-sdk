@@ -5,33 +5,33 @@ Embedding configuration
 
 ## Supported Types
 
-### `models.DestinationPineconeOpenAI`
+### `models.DestinationPineconeEmbeddingOpenAI`
 
 ```python
-value: models.DestinationPineconeOpenAI = /* values here */
+value: models.DestinationPineconeEmbeddingOpenAI = /* values here */
 ```
 
-### `models.DestinationPineconeCohere`
+### `models.DestinationPineconeEmbeddingCohere`
 
 ```python
-value: models.DestinationPineconeCohere = /* values here */
+value: models.DestinationPineconeEmbeddingCohere = /* values here */
 ```
 
-### `models.DestinationPineconeFake`
+### `models.DestinationPineconeEmbeddingFake`
 
 ```python
-value: models.DestinationPineconeFake = /* values here */
+value: models.DestinationPineconeEmbeddingFake = /* values here */
 ```
 
-### `models.DestinationPineconeAzureOpenAI`
+### `models.DestinationPineconeEmbeddingAzureOpenAI`
 
 ```python
-value: models.DestinationPineconeAzureOpenAI = /* values here */
+value: models.DestinationPineconeEmbeddingAzureOpenAI = /* values here */
 ```
 
-### `models.DestinationPineconeOpenAICompatible`
+### `models.DestinationPineconeEmbeddingOpenAICompatible`
 
 ```python
-value: models.DestinationPineconeOpenAICompatible = /* values here */
+value: models.DestinationPineconeEmbeddingOpenAICompatible = /* values here */
 ```
 

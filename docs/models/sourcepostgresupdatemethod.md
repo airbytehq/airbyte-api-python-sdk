@@ -17,9 +17,9 @@ value: models.ReadChangesUsingWriteAheadLogCDC = /* values here */
 value: models.DetectChangesWithXminSystemColumn = /* values here */
 ```
 
-### `models.SourcePostgresScanChangesWithUserDefinedCursor`
+### `models.SourcePostgresUpdateMethodScanChangesWithUserDefinedCursor`
 
 ```python
-value: models.SourcePostgresScanChangesWithUserDefinedCursor = /* values here */
+value: models.SourcePostgresUpdateMethodScanChangesWithUserDefinedCursor = /* values here */
 ```
 

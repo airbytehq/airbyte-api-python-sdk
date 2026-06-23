@@ -3,15 +3,15 @@
 
 ## Supported Types
 
-### `models.SourceLinkedinPagesOAuth20`
+### `models.SourceLinkedinPagesAuthenticationOAuth20`
 
 ```python
-value: models.SourceLinkedinPagesOAuth20 = /* values here */
+value: models.SourceLinkedinPagesAuthenticationOAuth20 = /* values here */
 ```
 
-### `models.SourceLinkedinPagesAccessToken`
+### `models.SourceLinkedinPagesAuthenticationAccessToken`
 
 ```python
-value: models.SourceLinkedinPagesAccessToken = /* values here */
+value: models.SourceLinkedinPagesAuthenticationAccessToken = /* values here */
 ```
 

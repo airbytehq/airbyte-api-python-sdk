@@ -11,7 +11,7 @@ from typing import List, Optional
 from typing_extensions import Annotated, NotRequired, TypedDict
 
 
-class ServiceDetail(str, Enum):
+class ServiceDetails(str, Enum):
     ESCALATION_POLICIES = "escalation_policies"
     TEAMS = "teams"
     INTEGRATIONS = "integrations"
@@ -37,7 +37,7 @@ class SourcePagerdutyTypedDict(TypedDict):
     r"""Maximum number of PagerDuty API request retries to perform upon connection errors. The source will pause for an exponentially increasing number of seconds before retrying."""
     page_size: NotRequired[int]
     r"""page size to use when querying PagerDuty API"""
-    service_details: NotRequired[List[ServiceDetail]]
+    service_details: NotRequired[List[ServiceDetails]]
     r"""List of PagerDuty service additional details to include."""
     source_type: Pagerduty
 
@@ -64,7 +64,7 @@ class SourcePagerduty(BaseModel):
     page_size: Optional[int] = 25
     r"""page size to use when querying PagerDuty API"""
 
-    service_details: Optional[List[ServiceDetail]] = None
+    service_details: Optional[List[ServiceDetails]] = None
     r"""List of PagerDuty service additional details to include."""
 
     SOURCE_TYPE: Annotated[

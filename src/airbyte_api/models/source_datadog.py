@@ -20,7 +20,7 @@ class DataSource(str, Enum):
     RUM = "rum"
 
 
-class QueryTypedDict(TypedDict):
+class QueriesTypedDict(TypedDict):
     data_source: DataSource
     r"""A data source that is powered by the platform."""
     name: str
@@ -29,7 +29,7 @@ class QueryTypedDict(TypedDict):
     r"""A classic query string."""
 
 
-class Query(BaseModel):
+class Queries(BaseModel):
     data_source: DataSource
     r"""A data source that is powered by the platform."""
 
@@ -63,7 +63,7 @@ class SourceDatadogTypedDict(TypedDict):
     r"""UTC date and time in the format 2017-01-25T00:00:00Z. Data after this date will  not be replicated. An empty value will represent the current datetime for each  execution. This just applies to Incremental syncs."""
     max_records_per_request: NotRequired[int]
     r"""Maximum number of records to collect per request."""
-    queries: NotRequired[List[QueryTypedDict]]
+    queries: NotRequired[List[QueriesTypedDict]]
     r"""List of queries to be run and used as inputs."""
     query: NotRequired[str]
     r"""The search query. This just applies to Incremental syncs. If empty, it'll collect all logs."""
@@ -87,7 +87,7 @@ class SourceDatadog(BaseModel):
     max_records_per_request: Optional[int] = 5000
     r"""Maximum number of records to collect per request."""
 
-    queries: Optional[List[Query]] = None
+    queries: Optional[List[Queries]] = None
     r"""List of queries to be run and used as inputs."""
 
     query: Optional[str] = None

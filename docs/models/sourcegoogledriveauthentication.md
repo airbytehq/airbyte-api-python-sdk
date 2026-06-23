@@ -5,15 +5,15 @@ Credentials for connecting to the Google Drive API
 
 ## Supported Types
 
-### `models.SourceGoogleDriveAuthenticateViaGoogleOAuth`
+### `models.SourceGoogleDriveAuthenticationAuthenticateViaGoogleOAuth`
 
 ```python
-value: models.SourceGoogleDriveAuthenticateViaGoogleOAuth = /* values here */
+value: models.SourceGoogleDriveAuthenticationAuthenticateViaGoogleOAuth = /* values here */
 ```
 
-### `models.SourceGoogleDriveServiceAccountKeyAuthentication`
+### `models.SourceGoogleDriveAuthenticationServiceAccountKeyAuthentication`
 
 ```python
-value: models.SourceGoogleDriveServiceAccountKeyAuthentication = /* values here */
+value: models.SourceGoogleDriveAuthenticationServiceAccountKeyAuthentication = /* values here */
 ```
 

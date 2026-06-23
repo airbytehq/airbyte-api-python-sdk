@@ -5,21 +5,21 @@ Whether to initiate an SSH tunnel before connecting to the database, and if so, 
 
 ## Supported Types
 
-### `models.DestinationElasticsearchNoTunnel`
+### `models.SSHTunnelMethodNoTunnel`
 
 ```python
-value: models.DestinationElasticsearchNoTunnel = /* values here */
+value: models.SSHTunnelMethodNoTunnel = /* values here */
 ```
 
-### `models.DestinationElasticsearchSSHKeyAuthentication`
+### `models.SSHTunnelMethodSSHKeyAuthentication`
 
 ```python
-value: models.DestinationElasticsearchSSHKeyAuthentication = /* values here */
+value: models.SSHTunnelMethodSSHKeyAuthentication = /* values here */
 ```
 
-### `models.DestinationElasticsearchPasswordAuthentication`
+### `models.SSHTunnelMethodPasswordAuthentication`
 
 ```python
-value: models.DestinationElasticsearchPasswordAuthentication = /* values here */
+value: models.SSHTunnelMethodPasswordAuthentication = /* values here */
 ```
 

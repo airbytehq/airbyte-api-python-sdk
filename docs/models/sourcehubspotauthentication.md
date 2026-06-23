@@ -5,10 +5,10 @@ Choose how to authenticate to HubSpot.
 
 ## Supported Types
 
-### `models.SourceHubspotOAuth`
+### `models.SourceHubspotAuthenticationOAuth`
 
 ```python
-value: models.SourceHubspotOAuth = /* values here */
+value: models.SourceHubspotAuthenticationOAuth = /* values here */
 ```
 
 ### `models.PrivateApp`

@@ -1,16 +1,11 @@
-# SslMethodUnencrypted
+# SSLMethodUnencrypted
 
-## Example Usage
-
-```python
-from airbyte_api.models import SslMethodUnencrypted
-
-value = SslMethodUnencrypted.UNENCRYPTED
-```
+The data transfer will not be encrypted.
 
 
-## Values
+## Fields
 
-| Name          | Value         |
-| ------------- | ------------- |
-| `UNENCRYPTED` | unencrypted   |
+| Field                                                                                            | Type                                                                                             | Required                                                                                         | Description                                                                                      |
+| ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ |
+| `__pydantic_extra__`                                                                             | Dict[str, *Any*]                                                                                 | :heavy_minus_sign:                                                                               | N/A                                                                                              |
+| `name`                                                                                           | [Optional[models.DestinationMssqlV2SSLMethodName]](../models/destinationmssqlv2sslmethodname.md) | :heavy_minus_sign:                                                                               | N/A                                                                                              |

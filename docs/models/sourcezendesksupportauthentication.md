@@ -5,15 +5,15 @@ Zendesk allows two authentication methods. We recommend using `OAuth2.0` for Air
 
 ## Supported Types
 
-### `models.SourceZendeskSupportOAuth20`
+### `models.SourceZendeskSupportAuthenticationOAuth20`
 
 ```python
-value: models.SourceZendeskSupportOAuth20 = /* values here */
+value: models.SourceZendeskSupportAuthenticationOAuth20 = /* values here */
 ```
 
-### `models.SourceZendeskSupportAPIToken`
+### `models.AuthenticationAPIToken`
 
 ```python
-value: models.SourceZendeskSupportAPIToken = /* values here */
+value: models.AuthenticationAPIToken = /* values here */
 ```
 

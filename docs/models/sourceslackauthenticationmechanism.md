@@ -11,9 +11,9 @@ Choose how to authenticate into Slack
 value: models.SignInViaSlackOAuth = /* values here */
 ```
 
-### `models.SourceSlackAPIToken`
+### `models.AuthenticationMechanismAPIToken`
 
 ```python
-value: models.SourceSlackAPIToken = /* values here */
+value: models.AuthenticationMechanismAPIToken = /* values here */
 ```
 

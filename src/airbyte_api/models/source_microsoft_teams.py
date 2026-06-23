@@ -11,7 +11,7 @@ from typing import Optional, Union
 from typing_extensions import Annotated, NotRequired, TypeAliasType, TypedDict
 
 
-class SourceMicrosoftTeamsAuthTypeToken(str, Enum):
+class SourceMicrosoftTeamsAuthenticationMechanismCredentialsAuthType(str, Enum):
     TOKEN = "Token"
 
 
@@ -22,7 +22,7 @@ class AuthenticateViaMicrosoftTypedDict(TypedDict):
     r"""The Client Secret of your Microsoft Teams developer application."""
     tenant_id: str
     r"""A globally unique identifier (GUID) that is different than your organization name or domain. Follow these steps to obtain: open one of the Teams where you belong inside the Teams Application -> Click on the … next to the Team title -> Click on Get link to team -> Copy the link to the team and grab the tenant ID form the URL"""
-    auth_type: SourceMicrosoftTeamsAuthTypeToken
+    auth_type: SourceMicrosoftTeamsAuthenticationMechanismCredentialsAuthType
 
 
 class AuthenticateViaMicrosoft(BaseModel):
@@ -37,11 +37,15 @@ class AuthenticateViaMicrosoft(BaseModel):
 
     AUTH_TYPE: Annotated[
         Annotated[
-            Optional[SourceMicrosoftTeamsAuthTypeToken],
-            AfterValidator(validate_const(SourceMicrosoftTeamsAuthTypeToken.TOKEN)),
+            Optional[SourceMicrosoftTeamsAuthenticationMechanismCredentialsAuthType],
+            AfterValidator(
+                validate_const(
+                    SourceMicrosoftTeamsAuthenticationMechanismCredentialsAuthType.TOKEN
+                )
+            ),
         ],
         pydantic.Field(alias="auth_type"),
-    ] = SourceMicrosoftTeamsAuthTypeToken.TOKEN
+    ] = SourceMicrosoftTeamsAuthenticationMechanismCredentialsAuthType.TOKEN
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
@@ -60,7 +64,7 @@ class AuthenticateViaMicrosoft(BaseModel):
         return m
 
 
-class SourceMicrosoftTeamsAuthTypeClient(str, Enum):
+class SourceMicrosoftTeamsAuthenticationMechanismAuthType(str, Enum):
     CLIENT = "Client"
 
 
@@ -73,7 +77,7 @@ class AuthenticateViaMicrosoftOAuth20TypedDict(TypedDict):
     r"""A Refresh Token to renew the expired Access Token."""
     tenant_id: str
     r"""A globally unique identifier (GUID) that is different than your organization name or domain. Follow these steps to obtain: open one of the Teams where you belong inside the Teams Application -> Click on the … next to the Team title -> Click on Get link to team -> Copy the link to the team and grab the tenant ID form the URL"""
-    auth_type: SourceMicrosoftTeamsAuthTypeClient
+    auth_type: SourceMicrosoftTeamsAuthenticationMechanismAuthType
 
 
 class AuthenticateViaMicrosoftOAuth20(BaseModel):
@@ -91,11 +95,15 @@ class AuthenticateViaMicrosoftOAuth20(BaseModel):
 
     AUTH_TYPE: Annotated[
         Annotated[
-            Optional[SourceMicrosoftTeamsAuthTypeClient],
-            AfterValidator(validate_const(SourceMicrosoftTeamsAuthTypeClient.CLIENT)),
+            Optional[SourceMicrosoftTeamsAuthenticationMechanismAuthType],
+            AfterValidator(
+                validate_const(
+                    SourceMicrosoftTeamsAuthenticationMechanismAuthType.CLIENT
+                )
+            ),
         ],
         pydantic.Field(alias="auth_type"),
-    ] = SourceMicrosoftTeamsAuthTypeClient.CLIENT
+    ] = SourceMicrosoftTeamsAuthenticationMechanismAuthType.CLIENT
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
@@ -128,7 +136,7 @@ SourceMicrosoftTeamsAuthenticationMechanism = TypeAliasType(
 r"""Choose how to authenticate to Microsoft"""
 
 
-class MicrosoftTeamsEnum(str, Enum):
+class SourceMicrosoftTeamsMicrosoftTeams(str, Enum):
     MICROSOFT_TEAMS = "microsoft-teams"
 
 
@@ -137,7 +145,7 @@ class SourceMicrosoftTeamsTypedDict(TypedDict):
     r"""Specifies the length of time over which the Team Device Report stream is aggregated. The supported values are: D7, D30, D90, and D180."""
     credentials: NotRequired[SourceMicrosoftTeamsAuthenticationMechanismTypedDict]
     r"""Choose how to authenticate to Microsoft"""
-    source_type: MicrosoftTeamsEnum
+    source_type: SourceMicrosoftTeamsMicrosoftTeams
 
 
 class SourceMicrosoftTeams(BaseModel):
@@ -149,11 +157,13 @@ class SourceMicrosoftTeams(BaseModel):
 
     SOURCE_TYPE: Annotated[
         Annotated[
-            MicrosoftTeamsEnum,
-            AfterValidator(validate_const(MicrosoftTeamsEnum.MICROSOFT_TEAMS)),
+            SourceMicrosoftTeamsMicrosoftTeams,
+            AfterValidator(
+                validate_const(SourceMicrosoftTeamsMicrosoftTeams.MICROSOFT_TEAMS)
+            ),
         ],
         pydantic.Field(alias="sourceType"),
-    ] = MicrosoftTeamsEnum.MICROSOFT_TEAMS
+    ] = SourceMicrosoftTeamsMicrosoftTeams.MICROSOFT_TEAMS
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):

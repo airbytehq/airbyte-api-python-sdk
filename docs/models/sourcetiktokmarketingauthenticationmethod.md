@@ -5,10 +5,10 @@ Authentication method
 
 ## Supported Types
 
-### `models.SourceTiktokMarketingOAuth20`
+### `models.SourceTiktokMarketingAuthenticationMethodOAuth20`
 
 ```python
-value: models.SourceTiktokMarketingOAuth20 = /* values here */
+value: models.SourceTiktokMarketingAuthenticationMethodOAuth20 = /* values here */
 ```
 
 ### `models.SandboxAccessToken`

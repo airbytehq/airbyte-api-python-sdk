@@ -11,27 +11,27 @@ from typing import Optional, Union
 from typing_extensions import Annotated, NotRequired, TypeAliasType, TypedDict
 
 
-class DeletionModeDeletedField(str, Enum):
+class DeletionModeDeletionMode(str, Enum):
     DELETED_FIELD = "deleted_field"
 
 
-class SourceFaunaEnabledTypedDict(TypedDict):
+class EnabledTypedDict(TypedDict):
     column: NotRequired[str]
     r"""Name of the \"deleted at\" column."""
-    deletion_mode: DeletionModeDeletedField
+    deletion_mode: DeletionModeDeletionMode
 
 
-class SourceFaunaEnabled(BaseModel):
+class Enabled(BaseModel):
     column: Optional[str] = "deleted_at"
     r"""Name of the \"deleted at\" column."""
 
     DELETION_MODE: Annotated[
         Annotated[
-            DeletionModeDeletedField,
-            AfterValidator(validate_const(DeletionModeDeletedField.DELETED_FIELD)),
+            DeletionModeDeletionMode,
+            AfterValidator(validate_const(DeletionModeDeletionMode.DELETED_FIELD)),
         ],
         pydantic.Field(alias="deletion_mode"),
-    ] = DeletionModeDeletedField.DELETED_FIELD
+    ] = DeletionModeDeletionMode.DELETED_FIELD
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
@@ -50,27 +50,26 @@ class SourceFaunaEnabled(BaseModel):
         return m
 
 
-class DeletionModeIgnore(str, Enum):
+class SourceFaunaDeletionModeDeletionMode(str, Enum):
     IGNORE = "ignore"
 
 
-class SourceFaunaDisabledTypedDict(TypedDict):
-    deletion_mode: DeletionModeIgnore
+class DisabledTypedDict(TypedDict):
+    deletion_mode: SourceFaunaDeletionModeDeletionMode
 
 
-class SourceFaunaDisabled(BaseModel):
+class Disabled(BaseModel):
     DELETION_MODE: Annotated[
         Annotated[
-            DeletionModeIgnore,
-            AfterValidator(validate_const(DeletionModeIgnore.IGNORE)),
+            SourceFaunaDeletionModeDeletionMode,
+            AfterValidator(validate_const(SourceFaunaDeletionModeDeletionMode.IGNORE)),
         ],
         pydantic.Field(alias="deletion_mode"),
-    ] = DeletionModeIgnore.IGNORE
+    ] = SourceFaunaDeletionModeDeletionMode.IGNORE
 
 
 DeletionModeTypedDict = TypeAliasType(
-    "DeletionModeTypedDict",
-    Union[SourceFaunaDisabledTypedDict, SourceFaunaEnabledTypedDict],
+    "DeletionModeTypedDict", Union[DisabledTypedDict, EnabledTypedDict]
 )
 r"""<b>This only applies to incremental syncs.</b> <br>
 Enabling deletion mode informs your destination of deleted documents.<br>
@@ -80,10 +79,7 @@ Enabled - Enables this feature. When a document is deleted, the connector export
 
 
 DeletionMode = Annotated[
-    Union[
-        Annotated[SourceFaunaDisabled, Tag("ignore")],
-        Annotated[SourceFaunaEnabled, Tag("deleted_field")],
-    ],
+    Union[Annotated[Disabled, Tag("ignore")], Annotated[Enabled, Tag("deleted_field")]],
     Discriminator(lambda m: get_discriminator(m, "deletion_mode", "deletion_mode")),
 ]
 r"""<b>This only applies to incremental syncs.</b> <br>
@@ -199,11 +195,11 @@ class SourceFauna(BaseModel):
 
 
 try:
-    SourceFaunaEnabled.model_rebuild()
+    Enabled.model_rebuild()
 except NameError:
     pass
 try:
-    SourceFaunaDisabled.model_rebuild()
+    Disabled.model_rebuild()
 except NameError:
     pass
 try:

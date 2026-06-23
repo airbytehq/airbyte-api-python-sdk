@@ -43,11 +43,11 @@ class DestinationCustomerIoCredentials(BaseModel):
         self.__pydantic_extra__ = value  # pyright: ignore[reportIncompatibleVariableOverride]
 
 
-class DestinationCustomerIoCustomerIo(str, Enum):
+class CustomerIo(str, Enum):
     CUSTOMER_IO = "customer-io"
 
 
-class DestinationCustomerIoS3BucketRegion(str, Enum):
+class ObjectStorageSpecS3BucketRegion(str, Enum):
     r"""The region of the S3 bucket. See <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-regions-availability-zones.html#concepts-available-regions\">here</a> for all region codes."""
 
     UNKNOWN = ""
@@ -86,11 +86,11 @@ class DestinationCustomerIoS3BucketRegion(str, Enum):
     US_WEST_2 = "us-west-2"
 
 
-class DestinationCustomerIoStorageTypeS3(str, Enum):
+class ObjectStorageSpecStorageType(str, Enum):
     S3 = "S3"
 
 
-class DestinationCustomerIoS3TypedDict(TypedDict):
+class ObjectStorageSpecS3TypedDict(TypedDict):
     bucket_path: str
     r"""All files in the bucket will be prefixed by this."""
     s3_bucket_name: str
@@ -99,16 +99,16 @@ class DestinationCustomerIoS3TypedDict(TypedDict):
     r"""The access key ID to access the S3 bucket. Airbyte requires Read and Write permissions to the given bucket. Read more <a href=\"https://docs.aws.amazon.com/general/latest/gr/aws-sec-cred-types.html#access-keys-and-secret-access-keys\">here</a>."""
     role_arn: NotRequired[str]
     r"""The ARN of the AWS role to assume. Only usable in Airbyte Cloud."""
-    s3_bucket_region: NotRequired[DestinationCustomerIoS3BucketRegion]
+    s3_bucket_region: NotRequired[ObjectStorageSpecS3BucketRegion]
     r"""The region of the S3 bucket. See <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-regions-availability-zones.html#concepts-available-regions\">here</a> for all region codes."""
     s3_endpoint: NotRequired[str]
     r"""Your S3 endpoint url. Read more <a href=\"https://docs.aws.amazon.com/general/latest/gr/s3.html#:~:text=Service%20endpoints-,Amazon%20S3%20endpoints,-When%20you%20use\">here</a>"""
     secret_access_key: NotRequired[str]
     r"""The corresponding secret to the access key ID. Read more <a href=\"https://docs.aws.amazon.com/general/latest/gr/aws-sec-cred-types.html#access-keys-and-secret-access-keys\">here</a>"""
-    storage_type: NotRequired[DestinationCustomerIoStorageTypeS3]
+    storage_type: NotRequired[ObjectStorageSpecStorageType]
 
 
-class DestinationCustomerIoS3(BaseModel):
+class ObjectStorageSpecS3(BaseModel):
     model_config = ConfigDict(
         populate_by_name=True, arbitrary_types_allowed=True, extra="allow"
     )
@@ -126,8 +126,8 @@ class DestinationCustomerIoS3(BaseModel):
     role_arn: Optional[str] = None
     r"""The ARN of the AWS role to assume. Only usable in Airbyte Cloud."""
 
-    s3_bucket_region: Optional[DestinationCustomerIoS3BucketRegion] = (
-        DestinationCustomerIoS3BucketRegion.UNKNOWN
+    s3_bucket_region: Optional[ObjectStorageSpecS3BucketRegion] = (
+        ObjectStorageSpecS3BucketRegion.UNKNOWN
     )
     r"""The region of the S3 bucket. See <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-regions-availability-zones.html#concepts-available-regions\">here</a> for all region codes."""
 
@@ -137,8 +137,8 @@ class DestinationCustomerIoS3(BaseModel):
     secret_access_key: Optional[str] = None
     r"""The corresponding secret to the access key ID. Read more <a href=\"https://docs.aws.amazon.com/general/latest/gr/aws-sec-cred-types.html#access-keys-and-secret-access-keys\">here</a>"""
 
-    storage_type: Optional[DestinationCustomerIoStorageTypeS3] = (
-        DestinationCustomerIoStorageTypeS3.S3
+    storage_type: Optional[ObjectStorageSpecStorageType] = (
+        ObjectStorageSpecStorageType.S3
     )
 
     @property
@@ -178,23 +178,21 @@ class DestinationCustomerIoS3(BaseModel):
         return m
 
 
-class DestinationCustomerIoStorageTypeNone(str, Enum):
+class StorageType(str, Enum):
     NONE = "None"
 
 
-class DestinationCustomerIoNoneTypedDict(TypedDict):
-    storage_type: NotRequired[DestinationCustomerIoStorageTypeNone]
+class NoneTTypedDict(TypedDict):
+    storage_type: NotRequired[StorageType]
 
 
-class DestinationCustomerIoNone(BaseModel):
+class NoneT(BaseModel):
     model_config = ConfigDict(
         populate_by_name=True, arbitrary_types_allowed=True, extra="allow"
     )
     __pydantic_extra__: Dict[str, Any] = pydantic.Field(init=False)
 
-    storage_type: Optional[DestinationCustomerIoStorageTypeNone] = (
-        DestinationCustomerIoStorageTypeNone.NONE
-    )
+    storage_type: Optional[StorageType] = StorageType.NONE
 
     @property
     def additional_properties(self):
@@ -224,23 +222,21 @@ class DestinationCustomerIoNone(BaseModel):
         return m
 
 
-DestinationCustomerIoObjectStorageSpecTypedDict = TypeAliasType(
-    "DestinationCustomerIoObjectStorageSpecTypedDict",
-    Union[DestinationCustomerIoNoneTypedDict, DestinationCustomerIoS3TypedDict],
+ObjectStorageSpecTypedDict = TypeAliasType(
+    "ObjectStorageSpecTypedDict", Union[NoneTTypedDict, ObjectStorageSpecS3TypedDict]
 )
 
 
-DestinationCustomerIoObjectStorageSpec = TypeAliasType(
-    "DestinationCustomerIoObjectStorageSpec",
-    Union[DestinationCustomerIoNone, DestinationCustomerIoS3],
+ObjectStorageSpec = TypeAliasType(
+    "ObjectStorageSpec", Union[NoneT, ObjectStorageSpecS3]
 )
 
 
 class DestinationCustomerIoTypedDict(TypedDict):
     credentials: DestinationCustomerIoCredentialsTypedDict
     r"""Enter the site ID and API key to authenticate."""
-    destination_type: DestinationCustomerIoCustomerIo
-    object_storage_config: NotRequired[DestinationCustomerIoObjectStorageSpecTypedDict]
+    destination_type: CustomerIo
+    object_storage_config: NotRequired[ObjectStorageSpecTypedDict]
 
 
 class DestinationCustomerIo(BaseModel):
@@ -248,14 +244,11 @@ class DestinationCustomerIo(BaseModel):
     r"""Enter the site ID and API key to authenticate."""
 
     DESTINATION_TYPE: Annotated[
-        Annotated[
-            DestinationCustomerIoCustomerIo,
-            AfterValidator(validate_const(DestinationCustomerIoCustomerIo.CUSTOMER_IO)),
-        ],
+        Annotated[CustomerIo, AfterValidator(validate_const(CustomerIo.CUSTOMER_IO))],
         pydantic.Field(alias="destinationType"),
-    ] = DestinationCustomerIoCustomerIo.CUSTOMER_IO
+    ] = CustomerIo.CUSTOMER_IO
 
-    object_storage_config: Optional[DestinationCustomerIoObjectStorageSpec] = None
+    object_storage_config: Optional[ObjectStorageSpec] = None
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):

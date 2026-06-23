@@ -11,29 +11,31 @@ from typing import Optional, Union
 from typing_extensions import Annotated, TypeAliasType, TypedDict
 
 
-class DestinationGoogleSheetsAuthTypeService(str, Enum):
+class DestinationGoogleSheetsAuthenticationCredentialsAuthType(str, Enum):
     SERVICE = "service"
 
 
-class DestinationGoogleSheetsServiceAccountKeyAuthenticationTypedDict(TypedDict):
+class ServiceAccountKeyAuthenticationTypedDict(TypedDict):
     service_account_info: str
     r"""Enter your service account key in JSON format. See the <a href='https://docs.airbyte.com/integrations/destinations/google-sheets#service-account'>docs</a> for more information on how to generate this key."""
-    auth_type: DestinationGoogleSheetsAuthTypeService
+    auth_type: DestinationGoogleSheetsAuthenticationCredentialsAuthType
 
 
-class DestinationGoogleSheetsServiceAccountKeyAuthentication(BaseModel):
+class ServiceAccountKeyAuthentication(BaseModel):
     service_account_info: str
     r"""Enter your service account key in JSON format. See the <a href='https://docs.airbyte.com/integrations/destinations/google-sheets#service-account'>docs</a> for more information on how to generate this key."""
 
     AUTH_TYPE: Annotated[
         Annotated[
-            Optional[DestinationGoogleSheetsAuthTypeService],
+            Optional[DestinationGoogleSheetsAuthenticationCredentialsAuthType],
             AfterValidator(
-                validate_const(DestinationGoogleSheetsAuthTypeService.SERVICE)
+                validate_const(
+                    DestinationGoogleSheetsAuthenticationCredentialsAuthType.SERVICE
+                )
             ),
         ],
         pydantic.Field(alias="auth_type"),
-    ] = DestinationGoogleSheetsAuthTypeService.SERVICE
+    ] = DestinationGoogleSheetsAuthenticationCredentialsAuthType.SERVICE
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
@@ -52,21 +54,21 @@ class DestinationGoogleSheetsServiceAccountKeyAuthentication(BaseModel):
         return m
 
 
-class DestinationGoogleSheetsAuthTypeOauth20(str, Enum):
+class DestinationGoogleSheetsAuthenticationAuthType(str, Enum):
     OAUTH2_0 = "oauth2.0"
 
 
-class DestinationGoogleSheetsAuthenticateViaGoogleOAuthTypedDict(TypedDict):
+class AuthenticateViaGoogleOAuthTypedDict(TypedDict):
     client_id: str
     r"""The Client ID of your Google Sheets developer application."""
     client_secret: str
     r"""The Client Secret of your Google Sheets developer application."""
     refresh_token: str
     r"""The token for obtaining new access token."""
-    auth_type: DestinationGoogleSheetsAuthTypeOauth20
+    auth_type: DestinationGoogleSheetsAuthenticationAuthType
 
 
-class DestinationGoogleSheetsAuthenticateViaGoogleOAuth(BaseModel):
+class AuthenticateViaGoogleOAuth(BaseModel):
     client_id: str
     r"""The Client ID of your Google Sheets developer application."""
 
@@ -78,13 +80,13 @@ class DestinationGoogleSheetsAuthenticateViaGoogleOAuth(BaseModel):
 
     AUTH_TYPE: Annotated[
         Annotated[
-            Optional[DestinationGoogleSheetsAuthTypeOauth20],
+            Optional[DestinationGoogleSheetsAuthenticationAuthType],
             AfterValidator(
-                validate_const(DestinationGoogleSheetsAuthTypeOauth20.OAUTH2_0)
+                validate_const(DestinationGoogleSheetsAuthenticationAuthType.OAUTH2_0)
             ),
         ],
         pydantic.Field(alias="auth_type"),
-    ] = DestinationGoogleSheetsAuthTypeOauth20.OAUTH2_0
+    ] = DestinationGoogleSheetsAuthenticationAuthType.OAUTH2_0
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
@@ -106,8 +108,7 @@ class DestinationGoogleSheetsAuthenticateViaGoogleOAuth(BaseModel):
 DestinationGoogleSheetsAuthenticationTypedDict = TypeAliasType(
     "DestinationGoogleSheetsAuthenticationTypedDict",
     Union[
-        DestinationGoogleSheetsServiceAccountKeyAuthenticationTypedDict,
-        DestinationGoogleSheetsAuthenticateViaGoogleOAuthTypedDict,
+        ServiceAccountKeyAuthenticationTypedDict, AuthenticateViaGoogleOAuthTypedDict
     ],
 )
 r"""Authentication method to access Google Sheets"""
@@ -115,10 +116,7 @@ r"""Authentication method to access Google Sheets"""
 
 DestinationGoogleSheetsAuthentication = TypeAliasType(
     "DestinationGoogleSheetsAuthentication",
-    Union[
-        DestinationGoogleSheetsServiceAccountKeyAuthentication,
-        DestinationGoogleSheetsAuthenticateViaGoogleOAuth,
-    ],
+    Union[ServiceAccountKeyAuthentication, AuthenticateViaGoogleOAuth],
 )
 r"""Authentication method to access Google Sheets"""
 
@@ -154,11 +152,11 @@ class DestinationGoogleSheets(BaseModel):
 
 
 try:
-    DestinationGoogleSheetsServiceAccountKeyAuthentication.model_rebuild()
+    ServiceAccountKeyAuthentication.model_rebuild()
 except NameError:
     pass
 try:
-    DestinationGoogleSheetsAuthenticateViaGoogleOAuth.model_rebuild()
+    AuthenticateViaGoogleOAuth.model_rebuild()
 except NameError:
     pass
 try:

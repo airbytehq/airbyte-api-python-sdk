@@ -12,14 +12,14 @@ from typing import List, Optional, Union
 from typing_extensions import Annotated, NotRequired, TypeAliasType, TypedDict
 
 
-class SourceGcsAuthTypeService(str, Enum):
+class SourceGcsAuthenticationCredentialsAuthType(str, Enum):
     SERVICE = "Service"
 
 
 class ServiceAccountAuthenticationTypedDict(TypedDict):
     service_account: str
     r"""Enter your Google Cloud <a href=\"https://cloud.google.com/iam/docs/creating-managing-service-account-keys#creating_service_account_keys\">service account key</a> in JSON format"""
-    auth_type: SourceGcsAuthTypeService
+    auth_type: SourceGcsAuthenticationCredentialsAuthType
 
 
 class ServiceAccountAuthentication(BaseModel):
@@ -28,11 +28,13 @@ class ServiceAccountAuthentication(BaseModel):
 
     AUTH_TYPE: Annotated[
         Annotated[
-            Optional[SourceGcsAuthTypeService],
-            AfterValidator(validate_const(SourceGcsAuthTypeService.SERVICE)),
+            Optional[SourceGcsAuthenticationCredentialsAuthType],
+            AfterValidator(
+                validate_const(SourceGcsAuthenticationCredentialsAuthType.SERVICE)
+            ),
         ],
         pydantic.Field(alias="auth_type"),
-    ] = SourceGcsAuthTypeService.SERVICE
+    ] = SourceGcsAuthenticationCredentialsAuthType.SERVICE
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
@@ -51,11 +53,11 @@ class ServiceAccountAuthentication(BaseModel):
         return m
 
 
-class SourceGcsAuthTypeClient(str, Enum):
+class SourceGcsAuthenticationAuthType(str, Enum):
     CLIENT = "Client"
 
 
-class SourceGcsAuthenticateViaGoogleOAuthTypedDict(TypedDict):
+class AuthenticationAuthenticateViaGoogleOAuthTypedDict(TypedDict):
     access_token: str
     r"""Access Token"""
     client_id: str
@@ -64,10 +66,10 @@ class SourceGcsAuthenticateViaGoogleOAuthTypedDict(TypedDict):
     r"""Client Secret"""
     refresh_token: str
     r"""Access Token"""
-    auth_type: SourceGcsAuthTypeClient
+    auth_type: SourceGcsAuthenticationAuthType
 
 
-class SourceGcsAuthenticateViaGoogleOAuth(BaseModel):
+class AuthenticationAuthenticateViaGoogleOAuth(BaseModel):
     access_token: str
     r"""Access Token"""
 
@@ -82,11 +84,11 @@ class SourceGcsAuthenticateViaGoogleOAuth(BaseModel):
 
     AUTH_TYPE: Annotated[
         Annotated[
-            Optional[SourceGcsAuthTypeClient],
-            AfterValidator(validate_const(SourceGcsAuthTypeClient.CLIENT)),
+            Optional[SourceGcsAuthenticationAuthType],
+            AfterValidator(validate_const(SourceGcsAuthenticationAuthType.CLIENT)),
         ],
         pydantic.Field(alias="auth_type"),
-    ] = SourceGcsAuthTypeClient.CLIENT
+    ] = SourceGcsAuthenticationAuthType.CLIENT
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
@@ -109,7 +111,7 @@ SourceGcsAuthenticationTypedDict = TypeAliasType(
     "SourceGcsAuthenticationTypedDict",
     Union[
         ServiceAccountAuthenticationTypedDict,
-        SourceGcsAuthenticateViaGoogleOAuthTypedDict,
+        AuthenticationAuthenticateViaGoogleOAuthTypedDict,
     ],
 )
 r"""Credentials for connecting to the Google Cloud Storage API"""
@@ -117,7 +119,7 @@ r"""Credentials for connecting to the Google Cloud Storage API"""
 
 SourceGcsAuthentication = TypeAliasType(
     "SourceGcsAuthentication",
-    Union[ServiceAccountAuthentication, SourceGcsAuthenticateViaGoogleOAuth],
+    Union[ServiceAccountAuthentication, AuthenticationAuthenticateViaGoogleOAuth],
 )
 r"""Credentials for connecting to the Google Cloud Storage API"""
 
@@ -126,22 +128,22 @@ class SourceGcsGcs(str, Enum):
     GCS = "gcs"
 
 
-class SourceGcsFiletypeExcel(str, Enum):
+class SourceGcsFormatStreamsFormat6Filetype(str, Enum):
     EXCEL = "excel"
 
 
-class SourceGcsExcelFormatTypedDict(TypedDict):
-    filetype: SourceGcsFiletypeExcel
+class FormatExcelFormatTypedDict(TypedDict):
+    filetype: SourceGcsFormatStreamsFormat6Filetype
 
 
-class SourceGcsExcelFormat(BaseModel):
+class FormatExcelFormat(BaseModel):
     FILETYPE: Annotated[
         Annotated[
-            Optional[SourceGcsFiletypeExcel],
-            AfterValidator(validate_const(SourceGcsFiletypeExcel.EXCEL)),
+            Optional[SourceGcsFormatStreamsFormat6Filetype],
+            AfterValidator(validate_const(SourceGcsFormatStreamsFormat6Filetype.EXCEL)),
         ],
         pydantic.Field(alias="filetype"),
-    ] = SourceGcsFiletypeExcel.EXCEL
+    ] = SourceGcsFormatStreamsFormat6Filetype.EXCEL
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
@@ -160,22 +162,22 @@ class SourceGcsExcelFormat(BaseModel):
         return m
 
 
-class SourceGcsFiletypeUnstructured(str, Enum):
+class SourceGcsFormatStreamsFormat5Filetype(str, Enum):
     UNSTRUCTURED = "unstructured"
 
 
-class SourceGcsModeAPI(str, Enum):
+class SourceGcsProcessingStreamsMode(str, Enum):
     API = "api"
 
 
-class SourceGcsAPIParameterConfigModelTypedDict(TypedDict):
+class APIParameterConfigModelTypedDict(TypedDict):
     name: str
     r"""The name of the unstructured API parameter to use"""
     value: str
     r"""The value of the parameter"""
 
 
-class SourceGcsAPIParameterConfigModel(BaseModel):
+class APIParameterConfigModel(BaseModel):
     name: str
     r"""The name of the unstructured API parameter to use"""
 
@@ -183,19 +185,19 @@ class SourceGcsAPIParameterConfigModel(BaseModel):
     r"""The value of the parameter"""
 
 
-class SourceGcsViaAPITypedDict(TypedDict):
+class ViaAPITypedDict(TypedDict):
     r"""Process files via an API, using the `hi_res` mode. This option is useful for increased performance and accuracy, but requires an API key and a hosted instance of unstructured."""
 
     api_key: NotRequired[str]
     r"""The API key to use matching the environment"""
     api_url: NotRequired[str]
     r"""The URL of the unstructured API to use"""
-    mode: SourceGcsModeAPI
-    parameters: NotRequired[List[SourceGcsAPIParameterConfigModelTypedDict]]
+    mode: SourceGcsProcessingStreamsMode
+    parameters: NotRequired[List[APIParameterConfigModelTypedDict]]
     r"""List of parameters send to the API"""
 
 
-class SourceGcsViaAPI(BaseModel):
+class ViaAPI(BaseModel):
     r"""Process files via an API, using the `hi_res` mode. This option is useful for increased performance and accuracy, but requires an API key and a hosted instance of unstructured."""
 
     api_key: Optional[str] = ""
@@ -206,13 +208,13 @@ class SourceGcsViaAPI(BaseModel):
 
     MODE: Annotated[
         Annotated[
-            Optional[SourceGcsModeAPI],
-            AfterValidator(validate_const(SourceGcsModeAPI.API)),
+            Optional[SourceGcsProcessingStreamsMode],
+            AfterValidator(validate_const(SourceGcsProcessingStreamsMode.API)),
         ],
         pydantic.Field(alias="mode"),
-    ] = SourceGcsModeAPI.API
+    ] = SourceGcsProcessingStreamsMode.API
 
-    parameters: Optional[List[SourceGcsAPIParameterConfigModel]] = None
+    parameters: Optional[List[APIParameterConfigModel]] = None
     r"""List of parameters send to the API"""
 
     @model_serializer(mode="wrap")
@@ -232,26 +234,26 @@ class SourceGcsViaAPI(BaseModel):
         return m
 
 
-class SourceGcsModeLocal(str, Enum):
+class SourceGcsProcessingMode(str, Enum):
     LOCAL = "local"
 
 
-class SourceGcsLocalTypedDict(TypedDict):
+class ProcessingLocalTypedDict(TypedDict):
     r"""Process files locally, supporting `fast` and `ocr` modes. This is the default option."""
 
-    mode: SourceGcsModeLocal
+    mode: SourceGcsProcessingMode
 
 
-class SourceGcsLocal(BaseModel):
+class ProcessingLocal(BaseModel):
     r"""Process files locally, supporting `fast` and `ocr` modes. This is the default option."""
 
     MODE: Annotated[
         Annotated[
-            Optional[SourceGcsModeLocal],
-            AfterValidator(validate_const(SourceGcsModeLocal.LOCAL)),
+            Optional[SourceGcsProcessingMode],
+            AfterValidator(validate_const(SourceGcsProcessingMode.LOCAL)),
         ],
         pydantic.Field(alias="mode"),
-    ] = SourceGcsModeLocal.LOCAL
+    ] = SourceGcsProcessingMode.LOCAL
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
@@ -270,20 +272,17 @@ class SourceGcsLocal(BaseModel):
         return m
 
 
-SourceGcsProcessingTypedDict = TypeAliasType(
-    "SourceGcsProcessingTypedDict",
-    Union[SourceGcsLocalTypedDict, SourceGcsViaAPITypedDict],
+FormatProcessingTypedDict = TypeAliasType(
+    "FormatProcessingTypedDict", Union[ProcessingLocalTypedDict, ViaAPITypedDict]
 )
 r"""Processing configuration"""
 
 
-SourceGcsProcessing = TypeAliasType(
-    "SourceGcsProcessing", Union[SourceGcsLocal, SourceGcsViaAPI]
-)
+FormatProcessing = TypeAliasType("FormatProcessing", Union[ProcessingLocal, ViaAPI])
 r"""Processing configuration"""
 
 
-class SourceGcsParsingStrategy(str, Enum):
+class FormatParsingStrategy(str, Enum):
     r"""The strategy used to parse documents. `fast` extracts text directly from the document which doesn't work for all files. `ocr_only` is more reliable, but slower. `hi_res` is the most reliable, but requires an API key and a hosted instance of unstructured and can't be used with local mode. See the unstructured.io documentation for more details: https://unstructured-io.github.io/unstructured/core/partition.html#partition-pdf"""
 
     AUTO = "auto"
@@ -292,36 +291,38 @@ class SourceGcsParsingStrategy(str, Enum):
     HI_RES = "hi_res"
 
 
-class SourceGcsUnstructuredDocumentFormatTypedDict(TypedDict):
+class FormatUnstructuredDocumentFormatTypedDict(TypedDict):
     r"""Extract text from document formats (.pdf, .docx, .md, .pptx) and emit as one record per file."""
 
-    filetype: SourceGcsFiletypeUnstructured
-    processing: NotRequired[SourceGcsProcessingTypedDict]
+    filetype: SourceGcsFormatStreamsFormat5Filetype
+    processing: NotRequired[FormatProcessingTypedDict]
     r"""Processing configuration"""
     skip_unprocessable_files: NotRequired[bool]
     r"""If true, skip files that cannot be parsed and pass the error message along as the _ab_source_file_parse_error field. If false, fail the sync."""
-    strategy: NotRequired[SourceGcsParsingStrategy]
+    strategy: NotRequired[FormatParsingStrategy]
     r"""The strategy used to parse documents. `fast` extracts text directly from the document which doesn't work for all files. `ocr_only` is more reliable, but slower. `hi_res` is the most reliable, but requires an API key and a hosted instance of unstructured and can't be used with local mode. See the unstructured.io documentation for more details: https://unstructured-io.github.io/unstructured/core/partition.html#partition-pdf"""
 
 
-class SourceGcsUnstructuredDocumentFormat(BaseModel):
+class FormatUnstructuredDocumentFormat(BaseModel):
     r"""Extract text from document formats (.pdf, .docx, .md, .pptx) and emit as one record per file."""
 
     FILETYPE: Annotated[
         Annotated[
-            Optional[SourceGcsFiletypeUnstructured],
-            AfterValidator(validate_const(SourceGcsFiletypeUnstructured.UNSTRUCTURED)),
+            Optional[SourceGcsFormatStreamsFormat5Filetype],
+            AfterValidator(
+                validate_const(SourceGcsFormatStreamsFormat5Filetype.UNSTRUCTURED)
+            ),
         ],
         pydantic.Field(alias="filetype"),
-    ] = SourceGcsFiletypeUnstructured.UNSTRUCTURED
+    ] = SourceGcsFormatStreamsFormat5Filetype.UNSTRUCTURED
 
-    processing: Optional[SourceGcsProcessing] = None
+    processing: Optional[FormatProcessing] = None
     r"""Processing configuration"""
 
     skip_unprocessable_files: Optional[bool] = True
     r"""If true, skip files that cannot be parsed and pass the error message along as the _ab_source_file_parse_error field. If false, fail the sync."""
 
-    strategy: Optional[SourceGcsParsingStrategy] = SourceGcsParsingStrategy.AUTO
+    strategy: Optional[FormatParsingStrategy] = FormatParsingStrategy.AUTO
     r"""The strategy used to parse documents. `fast` extracts text directly from the document which doesn't work for all files. `ocr_only` is more reliable, but slower. `hi_res` is the most reliable, but requires an API key and a hosted instance of unstructured and can't be used with local mode. See the unstructured.io documentation for more details: https://unstructured-io.github.io/unstructured/core/partition.html#partition-pdf"""
 
     @model_serializer(mode="wrap")
@@ -343,27 +344,29 @@ class SourceGcsUnstructuredDocumentFormat(BaseModel):
         return m
 
 
-class SourceGcsFiletypeParquet(str, Enum):
+class SourceGcsFormatStreamsFormat4Filetype(str, Enum):
     PARQUET = "parquet"
 
 
-class SourceGcsParquetFormatTypedDict(TypedDict):
+class FormatParquetFormatTypedDict(TypedDict):
     decimal_as_float: NotRequired[bool]
     r"""Whether to convert decimal fields to floats. There is a loss of precision when converting decimals to floats, so this is not recommended."""
-    filetype: SourceGcsFiletypeParquet
+    filetype: SourceGcsFormatStreamsFormat4Filetype
 
 
-class SourceGcsParquetFormat(BaseModel):
+class FormatParquetFormat(BaseModel):
     decimal_as_float: Optional[bool] = False
     r"""Whether to convert decimal fields to floats. There is a loss of precision when converting decimals to floats, so this is not recommended."""
 
     FILETYPE: Annotated[
         Annotated[
-            Optional[SourceGcsFiletypeParquet],
-            AfterValidator(validate_const(SourceGcsFiletypeParquet.PARQUET)),
+            Optional[SourceGcsFormatStreamsFormat4Filetype],
+            AfterValidator(
+                validate_const(SourceGcsFormatStreamsFormat4Filetype.PARQUET)
+            ),
         ],
         pydantic.Field(alias="filetype"),
-    ] = SourceGcsFiletypeParquet.PARQUET
+    ] = SourceGcsFormatStreamsFormat4Filetype.PARQUET
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
@@ -382,22 +385,22 @@ class SourceGcsParquetFormat(BaseModel):
         return m
 
 
-class SourceGcsFiletypeJsonl(str, Enum):
+class SourceGcsFormatStreamsFormatFiletype(str, Enum):
     JSONL = "jsonl"
 
 
-class SourceGcsJsonlFormatTypedDict(TypedDict):
-    filetype: SourceGcsFiletypeJsonl
+class FormatJsonlFormatTypedDict(TypedDict):
+    filetype: SourceGcsFormatStreamsFormatFiletype
 
 
-class SourceGcsJsonlFormat(BaseModel):
+class FormatJsonlFormat(BaseModel):
     FILETYPE: Annotated[
         Annotated[
-            Optional[SourceGcsFiletypeJsonl],
-            AfterValidator(validate_const(SourceGcsFiletypeJsonl.JSONL)),
+            Optional[SourceGcsFormatStreamsFormatFiletype],
+            AfterValidator(validate_const(SourceGcsFormatStreamsFormatFiletype.JSONL)),
         ],
         pydantic.Field(alias="filetype"),
-    ] = SourceGcsFiletypeJsonl.JSONL
+    ] = SourceGcsFormatStreamsFormatFiletype.JSONL
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
@@ -416,33 +419,37 @@ class SourceGcsJsonlFormat(BaseModel):
         return m
 
 
-class SourceGcsFiletypeCsv(str, Enum):
+class SourceGcsFormatStreamsFiletype(str, Enum):
     CSV = "csv"
 
 
-class SourceGcsHeaderDefinitionTypeUserProvided(str, Enum):
+class SourceGcsCSVHeaderDefinitionStreamsFormatHeaderDefinitionType(str, Enum):
     USER_PROVIDED = "User Provided"
 
 
-class SourceGcsUserProvidedTypedDict(TypedDict):
+class CSVHeaderDefinitionUserProvidedTypedDict(TypedDict):
     column_names: List[str]
     r"""The column names that will be used while emitting the CSV records"""
-    header_definition_type: SourceGcsHeaderDefinitionTypeUserProvided
+    header_definition_type: (
+        SourceGcsCSVHeaderDefinitionStreamsFormatHeaderDefinitionType
+    )
 
 
-class SourceGcsUserProvided(BaseModel):
+class CSVHeaderDefinitionUserProvided(BaseModel):
     column_names: List[str]
     r"""The column names that will be used while emitting the CSV records"""
 
     HEADER_DEFINITION_TYPE: Annotated[
         Annotated[
-            Optional[SourceGcsHeaderDefinitionTypeUserProvided],
+            Optional[SourceGcsCSVHeaderDefinitionStreamsFormatHeaderDefinitionType],
             AfterValidator(
-                validate_const(SourceGcsHeaderDefinitionTypeUserProvided.USER_PROVIDED)
+                validate_const(
+                    SourceGcsCSVHeaderDefinitionStreamsFormatHeaderDefinitionType.USER_PROVIDED
+                )
             ),
         ],
         pydantic.Field(alias="header_definition_type"),
-    ] = SourceGcsHeaderDefinitionTypeUserProvided.USER_PROVIDED
+    ] = SourceGcsCSVHeaderDefinitionStreamsFormatHeaderDefinitionType.USER_PROVIDED
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
@@ -461,24 +468,26 @@ class SourceGcsUserProvided(BaseModel):
         return m
 
 
-class SourceGcsHeaderDefinitionTypeAutogenerated(str, Enum):
+class SourceGcsCSVHeaderDefinitionStreamsHeaderDefinitionType(str, Enum):
     AUTOGENERATED = "Autogenerated"
 
 
-class SourceGcsAutogeneratedTypedDict(TypedDict):
-    header_definition_type: SourceGcsHeaderDefinitionTypeAutogenerated
+class CSVHeaderDefinitionAutogeneratedTypedDict(TypedDict):
+    header_definition_type: SourceGcsCSVHeaderDefinitionStreamsHeaderDefinitionType
 
 
-class SourceGcsAutogenerated(BaseModel):
+class CSVHeaderDefinitionAutogenerated(BaseModel):
     HEADER_DEFINITION_TYPE: Annotated[
         Annotated[
-            Optional[SourceGcsHeaderDefinitionTypeAutogenerated],
+            Optional[SourceGcsCSVHeaderDefinitionStreamsHeaderDefinitionType],
             AfterValidator(
-                validate_const(SourceGcsHeaderDefinitionTypeAutogenerated.AUTOGENERATED)
+                validate_const(
+                    SourceGcsCSVHeaderDefinitionStreamsHeaderDefinitionType.AUTOGENERATED
+                )
             ),
         ],
         pydantic.Field(alias="header_definition_type"),
-    ] = SourceGcsHeaderDefinitionTypeAutogenerated.AUTOGENERATED
+    ] = SourceGcsCSVHeaderDefinitionStreamsHeaderDefinitionType.AUTOGENERATED
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
@@ -497,24 +506,26 @@ class SourceGcsAutogenerated(BaseModel):
         return m
 
 
-class SourceGcsHeaderDefinitionTypeFromCsv(str, Enum):
+class SourceGcsCSVHeaderDefinitionHeaderDefinitionType(str, Enum):
     FROM_CSV = "From CSV"
 
 
-class SourceGcsFromCSVTypedDict(TypedDict):
-    header_definition_type: SourceGcsHeaderDefinitionTypeFromCsv
+class CSVHeaderDefinitionFromCSVTypedDict(TypedDict):
+    header_definition_type: SourceGcsCSVHeaderDefinitionHeaderDefinitionType
 
 
-class SourceGcsFromCSV(BaseModel):
+class CSVHeaderDefinitionFromCSV(BaseModel):
     HEADER_DEFINITION_TYPE: Annotated[
         Annotated[
-            Optional[SourceGcsHeaderDefinitionTypeFromCsv],
+            Optional[SourceGcsCSVHeaderDefinitionHeaderDefinitionType],
             AfterValidator(
-                validate_const(SourceGcsHeaderDefinitionTypeFromCsv.FROM_CSV)
+                validate_const(
+                    SourceGcsCSVHeaderDefinitionHeaderDefinitionType.FROM_CSV
+                )
             ),
         ],
         pydantic.Field(alias="header_definition_type"),
-    ] = SourceGcsHeaderDefinitionTypeFromCsv.FROM_CSV
+    ] = SourceGcsCSVHeaderDefinitionHeaderDefinitionType.FROM_CSV
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
@@ -533,25 +544,29 @@ class SourceGcsFromCSV(BaseModel):
         return m
 
 
-SourceGcsCSVHeaderDefinitionTypedDict = TypeAliasType(
-    "SourceGcsCSVHeaderDefinitionTypedDict",
+FormatCSVHeaderDefinitionTypedDict = TypeAliasType(
+    "FormatCSVHeaderDefinitionTypedDict",
     Union[
-        SourceGcsFromCSVTypedDict,
-        SourceGcsAutogeneratedTypedDict,
-        SourceGcsUserProvidedTypedDict,
+        CSVHeaderDefinitionFromCSVTypedDict,
+        CSVHeaderDefinitionAutogeneratedTypedDict,
+        CSVHeaderDefinitionUserProvidedTypedDict,
     ],
 )
 r"""How headers will be defined. `User Provided` assumes the CSV does not have a header row and uses the headers provided and `Autogenerated` assumes the CSV does not have a header row and the CDK will generate headers using for `f{i}` where `i` is the index starting from 0. Else, the default behavior is to use the header from the CSV file. If a user wants to autogenerate or provide column names for a CSV having headers, they can skip rows."""
 
 
-SourceGcsCSVHeaderDefinition = TypeAliasType(
-    "SourceGcsCSVHeaderDefinition",
-    Union[SourceGcsFromCSV, SourceGcsAutogenerated, SourceGcsUserProvided],
+FormatCSVHeaderDefinition = TypeAliasType(
+    "FormatCSVHeaderDefinition",
+    Union[
+        CSVHeaderDefinitionFromCSV,
+        CSVHeaderDefinitionAutogenerated,
+        CSVHeaderDefinitionUserProvided,
+    ],
 )
 r"""How headers will be defined. `User Provided` assumes the CSV does not have a header row and uses the headers provided and `Autogenerated` assumes the CSV does not have a header row and the CDK will generate headers using for `f{i}` where `i` is the index starting from 0. Else, the default behavior is to use the header from the CSV file. If a user wants to autogenerate or provide column names for a CSV having headers, they can skip rows."""
 
 
-class SourceGcsCSVFormatTypedDict(TypedDict):
+class FormatCSVFormatTypedDict(TypedDict):
     delimiter: NotRequired[str]
     r"""The character delimiting individual cells in the CSV data. This may only be a 1-character string. For tab-delimited data enter '\t'."""
     double_quote: NotRequired[bool]
@@ -562,8 +577,8 @@ class SourceGcsCSVFormatTypedDict(TypedDict):
     r"""The character used for escaping special characters. To disallow escaping, leave this field blank."""
     false_values: NotRequired[List[str]]
     r"""A set of case-sensitive strings that should be interpreted as false values."""
-    filetype: SourceGcsFiletypeCsv
-    header_definition: NotRequired[SourceGcsCSVHeaderDefinitionTypedDict]
+    filetype: SourceGcsFormatStreamsFiletype
+    header_definition: NotRequired[FormatCSVHeaderDefinitionTypedDict]
     r"""How headers will be defined. `User Provided` assumes the CSV does not have a header row and uses the headers provided and `Autogenerated` assumes the CSV does not have a header row and the CDK will generate headers using for `f{i}` where `i` is the index starting from 0. Else, the default behavior is to use the header from the CSV file. If a user wants to autogenerate or provide column names for a CSV having headers, they can skip rows."""
     ignore_errors_on_fields_mismatch: NotRequired[bool]
     r"""Whether to ignore errors that occur when the number of fields in the CSV does not match the number of columns in the schema."""
@@ -581,7 +596,7 @@ class SourceGcsCSVFormatTypedDict(TypedDict):
     r"""A set of case-sensitive strings that should be interpreted as true values."""
 
 
-class SourceGcsCSVFormat(BaseModel):
+class FormatCSVFormat(BaseModel):
     delimiter: Optional[str] = ","
     r"""The character delimiting individual cells in the CSV data. This may only be a 1-character string. For tab-delimited data enter '\t'."""
 
@@ -599,13 +614,13 @@ class SourceGcsCSVFormat(BaseModel):
 
     FILETYPE: Annotated[
         Annotated[
-            Optional[SourceGcsFiletypeCsv],
-            AfterValidator(validate_const(SourceGcsFiletypeCsv.CSV)),
+            Optional[SourceGcsFormatStreamsFiletype],
+            AfterValidator(validate_const(SourceGcsFormatStreamsFiletype.CSV)),
         ],
         pydantic.Field(alias="filetype"),
-    ] = SourceGcsFiletypeCsv.CSV
+    ] = SourceGcsFormatStreamsFiletype.CSV
 
-    header_definition: Optional[SourceGcsCSVHeaderDefinition] = None
+    header_definition: Optional[FormatCSVHeaderDefinition] = None
     r"""How headers will be defined. `User Provided` assumes the CSV does not have a header row and uses the headers provided and `Autogenerated` assumes the CSV does not have a header row and the CDK will generate headers using for `f{i}` where `i` is the index starting from 0. Else, the default behavior is to use the header from the CSV file. If a user wants to autogenerate or provide column names for a CSV having headers, they can skip rows."""
 
     ignore_errors_on_fields_mismatch: Optional[bool] = False
@@ -663,27 +678,27 @@ class SourceGcsCSVFormat(BaseModel):
         return m
 
 
-class SourceGcsFiletypeAvro(str, Enum):
+class SourceGcsFormatFiletype(str, Enum):
     AVRO = "avro"
 
 
-class SourceGcsAvroFormatTypedDict(TypedDict):
+class FormatAvroFormatTypedDict(TypedDict):
     double_as_string: NotRequired[bool]
     r"""Whether to convert double fields to strings. This is recommended if you have decimal numbers with a high degree of precision because there can be a loss precision when handling floating point numbers."""
-    filetype: SourceGcsFiletypeAvro
+    filetype: SourceGcsFormatFiletype
 
 
-class SourceGcsAvroFormat(BaseModel):
+class FormatAvroFormat(BaseModel):
     double_as_string: Optional[bool] = False
     r"""Whether to convert double fields to strings. This is recommended if you have decimal numbers with a high degree of precision because there can be a loss precision when handling floating point numbers."""
 
     FILETYPE: Annotated[
         Annotated[
-            Optional[SourceGcsFiletypeAvro],
-            AfterValidator(validate_const(SourceGcsFiletypeAvro.AVRO)),
+            Optional[SourceGcsFormatFiletype],
+            AfterValidator(validate_const(SourceGcsFormatFiletype.AVRO)),
         ],
         pydantic.Field(alias="filetype"),
-    ] = SourceGcsFiletypeAvro.AVRO
+    ] = SourceGcsFormatFiletype.AVRO
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
@@ -705,12 +720,12 @@ class SourceGcsAvroFormat(BaseModel):
 SourceGcsFormatTypedDict = TypeAliasType(
     "SourceGcsFormatTypedDict",
     Union[
-        SourceGcsJsonlFormatTypedDict,
-        SourceGcsExcelFormatTypedDict,
-        SourceGcsAvroFormatTypedDict,
-        SourceGcsParquetFormatTypedDict,
-        SourceGcsUnstructuredDocumentFormatTypedDict,
-        SourceGcsCSVFormatTypedDict,
+        FormatJsonlFormatTypedDict,
+        FormatExcelFormatTypedDict,
+        FormatAvroFormatTypedDict,
+        FormatParquetFormatTypedDict,
+        FormatUnstructuredDocumentFormatTypedDict,
+        FormatCSVFormatTypedDict,
     ],
 )
 r"""The configuration options that are used to alter how to read incoming files that deviate from the standard formatting."""
@@ -719,12 +734,12 @@ r"""The configuration options that are used to alter how to read incoming files 
 SourceGcsFormat = TypeAliasType(
     "SourceGcsFormat",
     Union[
-        SourceGcsJsonlFormat,
-        SourceGcsExcelFormat,
-        SourceGcsAvroFormat,
-        SourceGcsParquetFormat,
-        SourceGcsUnstructuredDocumentFormat,
-        SourceGcsCSVFormat,
+        FormatJsonlFormat,
+        FormatExcelFormat,
+        FormatAvroFormat,
+        FormatParquetFormat,
+        FormatUnstructuredDocumentFormat,
+        FormatCSVFormat,
     ],
 )
 r"""The configuration options that are used to alter how to read incoming files that deviate from the standard formatting."""
@@ -872,51 +887,51 @@ try:
 except NameError:
     pass
 try:
-    SourceGcsAuthenticateViaGoogleOAuth.model_rebuild()
+    AuthenticationAuthenticateViaGoogleOAuth.model_rebuild()
 except NameError:
     pass
 try:
-    SourceGcsExcelFormat.model_rebuild()
+    FormatExcelFormat.model_rebuild()
 except NameError:
     pass
 try:
-    SourceGcsViaAPI.model_rebuild()
+    ViaAPI.model_rebuild()
 except NameError:
     pass
 try:
-    SourceGcsLocal.model_rebuild()
+    ProcessingLocal.model_rebuild()
 except NameError:
     pass
 try:
-    SourceGcsUnstructuredDocumentFormat.model_rebuild()
+    FormatUnstructuredDocumentFormat.model_rebuild()
 except NameError:
     pass
 try:
-    SourceGcsParquetFormat.model_rebuild()
+    FormatParquetFormat.model_rebuild()
 except NameError:
     pass
 try:
-    SourceGcsJsonlFormat.model_rebuild()
+    FormatJsonlFormat.model_rebuild()
 except NameError:
     pass
 try:
-    SourceGcsUserProvided.model_rebuild()
+    CSVHeaderDefinitionUserProvided.model_rebuild()
 except NameError:
     pass
 try:
-    SourceGcsAutogenerated.model_rebuild()
+    CSVHeaderDefinitionAutogenerated.model_rebuild()
 except NameError:
     pass
 try:
-    SourceGcsFromCSV.model_rebuild()
+    CSVHeaderDefinitionFromCSV.model_rebuild()
 except NameError:
     pass
 try:
-    SourceGcsCSVFormat.model_rebuild()
+    FormatCSVFormat.model_rebuild()
 except NameError:
     pass
 try:
-    SourceGcsAvroFormat.model_rebuild()
+    FormatAvroFormat.model_rebuild()
 except NameError:
     pass
 try:

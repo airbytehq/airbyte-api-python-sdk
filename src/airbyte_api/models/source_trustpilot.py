@@ -12,19 +12,19 @@ from typing import List, Optional, Union
 from typing_extensions import Annotated, TypeAliasType, TypedDict
 
 
-class SourceTrustpilotAuthTypeApikey(str, Enum):
+class SourceTrustpilotAuthorizationMethodCredentialsAuthType(str, Enum):
     APIKEY = "apikey"
 
 
-class SourceTrustpilotAPIKeyTypedDict(TypedDict):
+class AuthorizationMethodAPIKeyTypedDict(TypedDict):
     r"""The API key authentication method gives you access to only the streams which are part of the Public API. When you want to get streams available via the Consumer API (e.g. the private reviews) you need to use authentication method OAuth 2.0."""
 
     client_id: str
     r"""The API key of the Trustpilot API application."""
-    auth_type: SourceTrustpilotAuthTypeApikey
+    auth_type: SourceTrustpilotAuthorizationMethodCredentialsAuthType
 
 
-class SourceTrustpilotAPIKey(BaseModel):
+class AuthorizationMethodAPIKey(BaseModel):
     r"""The API key authentication method gives you access to only the streams which are part of the Public API. When you want to get streams available via the Consumer API (e.g. the private reviews) you need to use authentication method OAuth 2.0."""
 
     client_id: str
@@ -32,11 +32,15 @@ class SourceTrustpilotAPIKey(BaseModel):
 
     AUTH_TYPE: Annotated[
         Annotated[
-            Optional[SourceTrustpilotAuthTypeApikey],
-            AfterValidator(validate_const(SourceTrustpilotAuthTypeApikey.APIKEY)),
+            Optional[SourceTrustpilotAuthorizationMethodCredentialsAuthType],
+            AfterValidator(
+                validate_const(
+                    SourceTrustpilotAuthorizationMethodCredentialsAuthType.APIKEY
+                )
+            ),
         ],
         pydantic.Field(alias="auth_type"),
-    ] = SourceTrustpilotAuthTypeApikey.APIKEY
+    ] = SourceTrustpilotAuthorizationMethodCredentialsAuthType.APIKEY
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
@@ -55,11 +59,11 @@ class SourceTrustpilotAPIKey(BaseModel):
         return m
 
 
-class SourceTrustpilotAuthTypeOauth20(str, Enum):
+class SourceTrustpilotAuthorizationMethodAuthType(str, Enum):
     OAUTH2_0 = "oauth2.0"
 
 
-class SourceTrustpilotOAuth20TypedDict(TypedDict):
+class SourceTrustpilotAuthorizationMethodOAuth20TypedDict(TypedDict):
     access_token: str
     r"""Access Token for making authenticated requests."""
     client_id: str
@@ -70,10 +74,10 @@ class SourceTrustpilotOAuth20TypedDict(TypedDict):
     r"""The key to refresh the expired access_token."""
     token_expiry_date: datetime
     r"""The date-time when the access token should be refreshed."""
-    auth_type: SourceTrustpilotAuthTypeOauth20
+    auth_type: SourceTrustpilotAuthorizationMethodAuthType
 
 
-class SourceTrustpilotOAuth20(BaseModel):
+class SourceTrustpilotAuthorizationMethodOAuth20(BaseModel):
     access_token: str
     r"""Access Token for making authenticated requests."""
 
@@ -91,11 +95,13 @@ class SourceTrustpilotOAuth20(BaseModel):
 
     AUTH_TYPE: Annotated[
         Annotated[
-            Optional[SourceTrustpilotAuthTypeOauth20],
-            AfterValidator(validate_const(SourceTrustpilotAuthTypeOauth20.OAUTH2_0)),
+            Optional[SourceTrustpilotAuthorizationMethodAuthType],
+            AfterValidator(
+                validate_const(SourceTrustpilotAuthorizationMethodAuthType.OAUTH2_0)
+            ),
         ],
         pydantic.Field(alias="auth_type"),
-    ] = SourceTrustpilotAuthTypeOauth20.OAUTH2_0
+    ] = SourceTrustpilotAuthorizationMethodAuthType.OAUTH2_0
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
@@ -116,13 +122,16 @@ class SourceTrustpilotOAuth20(BaseModel):
 
 SourceTrustpilotAuthorizationMethodTypedDict = TypeAliasType(
     "SourceTrustpilotAuthorizationMethodTypedDict",
-    Union[SourceTrustpilotAPIKeyTypedDict, SourceTrustpilotOAuth20TypedDict],
+    Union[
+        AuthorizationMethodAPIKeyTypedDict,
+        SourceTrustpilotAuthorizationMethodOAuth20TypedDict,
+    ],
 )
 
 
 SourceTrustpilotAuthorizationMethod = TypeAliasType(
     "SourceTrustpilotAuthorizationMethod",
-    Union[SourceTrustpilotAPIKey, SourceTrustpilotOAuth20],
+    Union[AuthorizationMethodAPIKey, SourceTrustpilotAuthorizationMethodOAuth20],
 )
 
 
@@ -155,11 +164,11 @@ class SourceTrustpilot(BaseModel):
 
 
 try:
-    SourceTrustpilotAPIKey.model_rebuild()
+    AuthorizationMethodAPIKey.model_rebuild()
 except NameError:
     pass
 try:
-    SourceTrustpilotOAuth20.model_rebuild()
+    SourceTrustpilotAuthorizationMethodOAuth20.model_rebuild()
 except NameError:
     pass
 try:

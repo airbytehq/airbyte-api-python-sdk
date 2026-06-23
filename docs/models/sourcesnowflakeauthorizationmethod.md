@@ -3,15 +3,15 @@
 
 ## Supported Types
 
-### `models.SourceSnowflakeKeyPairAuthentication`
+### `models.AuthorizationMethodKeyPairAuthentication`
 
 ```python
-value: models.SourceSnowflakeKeyPairAuthentication = /* values here */
+value: models.AuthorizationMethodKeyPairAuthentication = /* values here */
 ```
 
-### `models.SourceSnowflakeUsernameAndPassword`
+### `models.AuthorizationMethodUsernameAndPassword`
 
 ```python
-value: models.SourceSnowflakeUsernameAndPassword = /* values here */
+value: models.AuthorizationMethodUsernameAndPassword = /* values here */
 ```
 

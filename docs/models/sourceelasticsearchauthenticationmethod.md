@@ -5,21 +5,21 @@ The type of authentication to be used
 
 ## Supported Types
 
-### `models.SourceElasticsearchNone`
+### `models.SourceElasticsearchAuthenticationMethodNone`
 
 ```python
-value: models.SourceElasticsearchNone = /* values here */
+value: models.SourceElasticsearchAuthenticationMethodNone = /* values here */
 ```
 
-### `models.SourceElasticsearchAPIKeySecret`
+### `models.AuthenticationMethodAPIKeySecret`
 
 ```python
-value: models.SourceElasticsearchAPIKeySecret = /* values here */
+value: models.AuthenticationMethodAPIKeySecret = /* values here */
 ```
 
-### `models.SourceElasticsearchUsernamePassword`
+### `models.AuthenticationMethodUsernamePassword`
 
 ```python
-value: models.SourceElasticsearchUsernamePassword = /* values here */
+value: models.AuthenticationMethodUsernamePassword = /* values here */
 ```
 

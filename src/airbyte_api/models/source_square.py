@@ -12,30 +12,32 @@ from typing import Optional, Union
 from typing_extensions import Annotated, NotRequired, TypeAliasType, TypedDict
 
 
-class SourceSquareAuthTypeAPIKey(str, Enum):
+class SourceSquareAuthenticationCredentialsAuthType(str, Enum):
     API_KEY = "API Key"
 
 
-class SourceSquareAPIKeyTypedDict(TypedDict):
+class SourceSquareAuthenticationAPIKeyTypedDict(TypedDict):
     api_key: str
     r"""The API key for a Square application"""
-    auth_type: SourceSquareAuthTypeAPIKey
+    auth_type: SourceSquareAuthenticationCredentialsAuthType
 
 
-class SourceSquareAPIKey(BaseModel):
+class SourceSquareAuthenticationAPIKey(BaseModel):
     api_key: str
     r"""The API key for a Square application"""
 
     AUTH_TYPE: Annotated[
         Annotated[
-            SourceSquareAuthTypeAPIKey,
-            AfterValidator(validate_const(SourceSquareAuthTypeAPIKey.API_KEY)),
+            SourceSquareAuthenticationCredentialsAuthType,
+            AfterValidator(
+                validate_const(SourceSquareAuthenticationCredentialsAuthType.API_KEY)
+            ),
         ],
         pydantic.Field(alias="auth_type"),
-    ] = SourceSquareAuthTypeAPIKey.API_KEY
+    ] = SourceSquareAuthenticationCredentialsAuthType.API_KEY
 
 
-class AuthTypeOAuth(str, Enum):
+class SourceSquareAuthenticationAuthType(str, Enum):
     O_AUTH = "OAuth"
 
 
@@ -46,7 +48,7 @@ class OauthAuthenticationTypedDict(TypedDict):
     r"""The Square-issued application secret for your application"""
     refresh_token: str
     r"""A refresh token generated using the above client ID and secret"""
-    auth_type: AuthTypeOAuth
+    auth_type: SourceSquareAuthenticationAuthType
 
 
 class OauthAuthentication(BaseModel):
@@ -60,14 +62,17 @@ class OauthAuthentication(BaseModel):
     r"""A refresh token generated using the above client ID and secret"""
 
     AUTH_TYPE: Annotated[
-        Annotated[AuthTypeOAuth, AfterValidator(validate_const(AuthTypeOAuth.O_AUTH))],
+        Annotated[
+            SourceSquareAuthenticationAuthType,
+            AfterValidator(validate_const(SourceSquareAuthenticationAuthType.O_AUTH)),
+        ],
         pydantic.Field(alias="auth_type"),
-    ] = AuthTypeOAuth.O_AUTH
+    ] = SourceSquareAuthenticationAuthType.O_AUTH
 
 
 SourceSquareAuthenticationTypedDict = TypeAliasType(
     "SourceSquareAuthenticationTypedDict",
-    Union[SourceSquareAPIKeyTypedDict, OauthAuthenticationTypedDict],
+    Union[SourceSquareAuthenticationAPIKeyTypedDict, OauthAuthenticationTypedDict],
 )
 r"""Choose how to authenticate to Square."""
 
@@ -75,7 +80,7 @@ r"""Choose how to authenticate to Square."""
 SourceSquareAuthentication = Annotated[
     Union[
         Annotated[OauthAuthentication, Tag("OAuth")],
-        Annotated[SourceSquareAPIKey, Tag("API Key")],
+        Annotated[SourceSquareAuthenticationAPIKey, Tag("API Key")],
     ],
     Discriminator(lambda m: get_discriminator(m, "auth_type", "auth_type")),
 ]
@@ -136,7 +141,7 @@ class SourceSquare(BaseModel):
 
 
 try:
-    SourceSquareAPIKey.model_rebuild()
+    SourceSquareAuthenticationAPIKey.model_rebuild()
 except NameError:
     pass
 try:

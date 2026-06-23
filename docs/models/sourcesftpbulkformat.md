@@ -5,39 +5,39 @@ The configuration options that are used to alter how to read incoming files that
 
 ## Supported Types
 
-### `models.SourceSftpBulkAvroFormat`
+### `models.SourceSftpBulkFormatAvroFormat`
 
 ```python
-value: models.SourceSftpBulkAvroFormat = /* values here */
+value: models.SourceSftpBulkFormatAvroFormat = /* values here */
 ```
 
-### `models.SourceSftpBulkCSVFormat`
+### `models.SourceSftpBulkFormatCSVFormat`
 
 ```python
-value: models.SourceSftpBulkCSVFormat = /* values here */
+value: models.SourceSftpBulkFormatCSVFormat = /* values here */
 ```
 
-### `models.SourceSftpBulkJsonlFormat`
+### `models.SourceSftpBulkFormatJsonlFormat`
 
 ```python
-value: models.SourceSftpBulkJsonlFormat = /* values here */
+value: models.SourceSftpBulkFormatJsonlFormat = /* values here */
 ```
 
-### `models.SourceSftpBulkParquetFormat`
+### `models.SourceSftpBulkFormatParquetFormat`
 
 ```python
-value: models.SourceSftpBulkParquetFormat = /* values here */
+value: models.SourceSftpBulkFormatParquetFormat = /* values here */
 ```
 
-### `models.SourceSftpBulkUnstructuredDocumentFormat`
+### `models.SourceSftpBulkFormatUnstructuredDocumentFormat`
 
 ```python
-value: models.SourceSftpBulkUnstructuredDocumentFormat = /* values here */
+value: models.SourceSftpBulkFormatUnstructuredDocumentFormat = /* values here */
 ```
 
-### `models.SourceSftpBulkExcelFormat`
+### `models.SourceSftpBulkFormatExcelFormat`
 
 ```python
-value: models.SourceSftpBulkExcelFormat = /* values here */
+value: models.SourceSftpBulkFormatExcelFormat = /* values here */
 ```
 

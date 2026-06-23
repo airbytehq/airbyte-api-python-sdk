@@ -15,33 +15,29 @@ class DestinationAzureBlobStorageAzureBlobStorage(str, Enum):
     AZURE_BLOB_STORAGE = "azure-blob-storage"
 
 
-class DestinationAzureBlobStorageFlattening2(str, Enum):
+class OutputFormatFlattening(str, Enum):
     NO_FLATTENING = "No flattening"
     ROOT_LEVEL_FLATTENING = "Root level flattening"
 
 
-class DestinationAzureBlobStorageFormatTypeJsonl(str, Enum):
+class OutputFormatFormatType(str, Enum):
     JSONL = "JSONL"
 
 
-class DestinationAzureBlobStorageJSONLinesNewlineDelimitedJSONTypedDict(TypedDict):
-    flattening: NotRequired[DestinationAzureBlobStorageFlattening2]
-    format_type: NotRequired[DestinationAzureBlobStorageFormatTypeJsonl]
+class OutputFormatJSONLinesNewlineDelimitedJSONTypedDict(TypedDict):
+    flattening: NotRequired[OutputFormatFlattening]
+    format_type: NotRequired[OutputFormatFormatType]
 
 
-class DestinationAzureBlobStorageJSONLinesNewlineDelimitedJSON(BaseModel):
+class OutputFormatJSONLinesNewlineDelimitedJSON(BaseModel):
     model_config = ConfigDict(
         populate_by_name=True, arbitrary_types_allowed=True, extra="allow"
     )
     __pydantic_extra__: Dict[str, Any] = pydantic.Field(init=False)
 
-    flattening: Optional[DestinationAzureBlobStorageFlattening2] = (
-        DestinationAzureBlobStorageFlattening2.NO_FLATTENING
-    )
+    flattening: Optional[OutputFormatFlattening] = OutputFormatFlattening.NO_FLATTENING
 
-    format_type: Optional[DestinationAzureBlobStorageFormatTypeJsonl] = (
-        DestinationAzureBlobStorageFormatTypeJsonl.JSONL
-    )
+    format_type: Optional[OutputFormatFormatType] = OutputFormatFormatType.JSONL
 
     @property
     def additional_properties(self):
@@ -71,33 +67,29 @@ class DestinationAzureBlobStorageJSONLinesNewlineDelimitedJSON(BaseModel):
         return m
 
 
-class DestinationAzureBlobStorageFlattening1(str, Enum):
+class Flattening(str, Enum):
     NO_FLATTENING = "No flattening"
     ROOT_LEVEL_FLATTENING = "Root level flattening"
 
 
-class DestinationAzureBlobStorageFormatTypeCsv(str, Enum):
+class FormatType(str, Enum):
     CSV = "CSV"
 
 
-class DestinationAzureBlobStorageCSVCommaSeparatedValuesTypedDict(TypedDict):
-    flattening: NotRequired[DestinationAzureBlobStorageFlattening1]
-    format_type: NotRequired[DestinationAzureBlobStorageFormatTypeCsv]
+class CSVCommaSeparatedValuesTypedDict(TypedDict):
+    flattening: NotRequired[Flattening]
+    format_type: NotRequired[FormatType]
 
 
-class DestinationAzureBlobStorageCSVCommaSeparatedValues(BaseModel):
+class CSVCommaSeparatedValues(BaseModel):
     model_config = ConfigDict(
         populate_by_name=True, arbitrary_types_allowed=True, extra="allow"
     )
     __pydantic_extra__: Dict[str, Any] = pydantic.Field(init=False)
 
-    flattening: Optional[DestinationAzureBlobStorageFlattening1] = (
-        DestinationAzureBlobStorageFlattening1.NO_FLATTENING
-    )
+    flattening: Optional[Flattening] = Flattening.NO_FLATTENING
 
-    format_type: Optional[DestinationAzureBlobStorageFormatTypeCsv] = (
-        DestinationAzureBlobStorageFormatTypeCsv.CSV
-    )
+    format_type: Optional[FormatType] = FormatType.CSV
 
     @property
     def additional_properties(self):
@@ -127,22 +119,19 @@ class DestinationAzureBlobStorageCSVCommaSeparatedValues(BaseModel):
         return m
 
 
-DestinationAzureBlobStorageOutputFormatTypedDict = TypeAliasType(
-    "DestinationAzureBlobStorageOutputFormatTypedDict",
+OutputFormatTypedDict = TypeAliasType(
+    "OutputFormatTypedDict",
     Union[
-        DestinationAzureBlobStorageCSVCommaSeparatedValuesTypedDict,
-        DestinationAzureBlobStorageJSONLinesNewlineDelimitedJSONTypedDict,
+        CSVCommaSeparatedValuesTypedDict,
+        OutputFormatJSONLinesNewlineDelimitedJSONTypedDict,
     ],
 )
 r"""Format of the data output."""
 
 
-DestinationAzureBlobStorageOutputFormat = TypeAliasType(
-    "DestinationAzureBlobStorageOutputFormat",
-    Union[
-        DestinationAzureBlobStorageCSVCommaSeparatedValues,
-        DestinationAzureBlobStorageJSONLinesNewlineDelimitedJSON,
-    ],
+OutputFormat = TypeAliasType(
+    "OutputFormat",
+    Union[CSVCommaSeparatedValues, OutputFormatJSONLinesNewlineDelimitedJSON],
 )
 r"""Format of the data output."""
 
@@ -152,7 +141,7 @@ class DestinationAzureBlobStorageTypedDict(TypedDict):
     r"""The name of the Azure Blob Storage Account. Read more <a href=\"https://learn.microsoft.com/en-gb/azure/storage/blobs/storage-blobs-introduction#storage-accounts\">here</a>."""
     azure_blob_storage_container_name: str
     r"""The name of the Azure Blob Storage Container. Read more <a href=\"https://learn.microsoft.com/en-gb/azure/storage/blobs/storage-blobs-introduction#containers\">here</a>."""
-    format_: DestinationAzureBlobStorageOutputFormatTypedDict
+    format_: OutputFormatTypedDict
     r"""Format of the data output."""
     azure_blob_storage_account_key: NotRequired[str]
     r"""The Azure Blob Storage account key. If you set this value, you must not set the \"Shared Access Signature\", \"Azure Tenant ID\", \"Azure Client ID\", or \"Azure Client Secret\" fields."""
@@ -178,9 +167,7 @@ class DestinationAzureBlobStorage(BaseModel):
     azure_blob_storage_container_name: str
     r"""The name of the Azure Blob Storage Container. Read more <a href=\"https://learn.microsoft.com/en-gb/azure/storage/blobs/storage-blobs-introduction#containers\">here</a>."""
 
-    format_: Annotated[
-        DestinationAzureBlobStorageOutputFormat, pydantic.Field(alias="format")
-    ]
+    format_: Annotated[OutputFormat, pydantic.Field(alias="format")]
     r"""Format of the data output."""
 
     azure_blob_storage_account_key: Optional[str] = None

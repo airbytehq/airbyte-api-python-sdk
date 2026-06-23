@@ -52,29 +52,31 @@ class ValidCampaignStatuses(str, Enum):
     WITH_ISSUES = "WITH_ISSUES"
 
 
-class SourceFacebookMarketingAuthTypeService(str, Enum):
+class SourceFacebookMarketingAuthenticationCredentialsAuthType(str, Enum):
     SERVICE = "Service"
 
 
-class SourceFacebookMarketingServiceAccountKeyAuthenticationTypedDict(TypedDict):
+class AuthenticationServiceAccountKeyAuthenticationTypedDict(TypedDict):
     access_token: str
     r"""The value of the generated access token. From your App’s Dashboard, click on \"Marketing API\" then \"Tools\". Select permissions <b>ads_management, ads_read, read_insights, business_management</b>. Then click on \"Get token\". See the <a href=\"https://docs.airbyte.com/integrations/sources/facebook-marketing\">docs</a> for more information."""
-    auth_type: SourceFacebookMarketingAuthTypeService
+    auth_type: SourceFacebookMarketingAuthenticationCredentialsAuthType
 
 
-class SourceFacebookMarketingServiceAccountKeyAuthentication(BaseModel):
+class AuthenticationServiceAccountKeyAuthentication(BaseModel):
     access_token: str
     r"""The value of the generated access token. From your App’s Dashboard, click on \"Marketing API\" then \"Tools\". Select permissions <b>ads_management, ads_read, read_insights, business_management</b>. Then click on \"Get token\". See the <a href=\"https://docs.airbyte.com/integrations/sources/facebook-marketing\">docs</a> for more information."""
 
     AUTH_TYPE: Annotated[
         Annotated[
-            Optional[SourceFacebookMarketingAuthTypeService],
+            Optional[SourceFacebookMarketingAuthenticationCredentialsAuthType],
             AfterValidator(
-                validate_const(SourceFacebookMarketingAuthTypeService.SERVICE)
+                validate_const(
+                    SourceFacebookMarketingAuthenticationCredentialsAuthType.SERVICE
+                )
             ),
         ],
         pydantic.Field(alias="auth_type"),
-    ] = SourceFacebookMarketingAuthTypeService.SERVICE
+    ] = SourceFacebookMarketingAuthenticationCredentialsAuthType.SERVICE
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
@@ -93,7 +95,7 @@ class SourceFacebookMarketingServiceAccountKeyAuthentication(BaseModel):
         return m
 
 
-class SourceFacebookMarketingAuthTypeClient(str, Enum):
+class SourceFacebookMarketingAuthenticationAuthType(str, Enum):
     CLIENT = "Client"
 
 
@@ -104,7 +106,7 @@ class AuthenticateViaFacebookMarketingOauthTypedDict(TypedDict):
     r"""Client Secret for the Facebook Marketing API"""
     access_token: NotRequired[str]
     r"""The value of the generated access token. From your App’s Dashboard, click on \"Marketing API\" then \"Tools\". Select permissions <b>ads_management, ads_read, read_insights, business_management</b>. Then click on \"Get token\". See the <a href=\"https://docs.airbyte.com/integrations/sources/facebook-marketing\">docs</a> for more information."""
-    auth_type: SourceFacebookMarketingAuthTypeClient
+    auth_type: SourceFacebookMarketingAuthenticationAuthType
 
 
 class AuthenticateViaFacebookMarketingOauth(BaseModel):
@@ -119,13 +121,13 @@ class AuthenticateViaFacebookMarketingOauth(BaseModel):
 
     AUTH_TYPE: Annotated[
         Annotated[
-            Optional[SourceFacebookMarketingAuthTypeClient],
+            Optional[SourceFacebookMarketingAuthenticationAuthType],
             AfterValidator(
-                validate_const(SourceFacebookMarketingAuthTypeClient.CLIENT)
+                validate_const(SourceFacebookMarketingAuthenticationAuthType.CLIENT)
             ),
         ],
         pydantic.Field(alias="auth_type"),
-    ] = SourceFacebookMarketingAuthTypeClient.CLIENT
+    ] = SourceFacebookMarketingAuthenticationAuthType.CLIENT
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
@@ -147,7 +149,7 @@ class AuthenticateViaFacebookMarketingOauth(BaseModel):
 SourceFacebookMarketingAuthenticationTypedDict = TypeAliasType(
     "SourceFacebookMarketingAuthenticationTypedDict",
     Union[
-        SourceFacebookMarketingServiceAccountKeyAuthenticationTypedDict,
+        AuthenticationServiceAccountKeyAuthenticationTypedDict,
         AuthenticateViaFacebookMarketingOauthTypedDict,
     ],
 )
@@ -157,14 +159,14 @@ r"""Credentials for connecting to the Facebook Marketing API"""
 SourceFacebookMarketingAuthentication = TypeAliasType(
     "SourceFacebookMarketingAuthentication",
     Union[
-        SourceFacebookMarketingServiceAccountKeyAuthentication,
+        AuthenticationServiceAccountKeyAuthentication,
         AuthenticateViaFacebookMarketingOauth,
     ],
 )
 r"""Credentials for connecting to the Facebook Marketing API"""
 
 
-class ActionBreakdownValidActionBreakdowns(str, Enum):
+class SourceFacebookMarketingValidActionBreakdowns(str, Enum):
     r"""An enumeration."""
 
     ACTION_CANVAS_COMPONENT_NAME = "action_canvas_component_name"
@@ -513,7 +515,7 @@ class SourceFacebookMarketingValidEnums(str, Enum):
     WISH_BID = "wish_bid"
 
 
-class SourceFacebookMarketingLevel(str, Enum):
+class Level(str, Enum):
     r"""Chosen level for API"""
 
     AD = "ad"
@@ -527,7 +529,7 @@ class InsightConfigTypedDict(TypedDict):
 
     name: str
     r"""The name value of insight"""
-    action_breakdowns: NotRequired[List[ActionBreakdownValidActionBreakdowns]]
+    action_breakdowns: NotRequired[List[SourceFacebookMarketingValidActionBreakdowns]]
     r"""A list of chosen action_breakdowns for action_breakdowns"""
     breakdowns: NotRequired[List[ValidBreakdowns]]
     r"""A list of chosen breakdowns for breakdowns"""
@@ -539,7 +541,7 @@ class InsightConfigTypedDict(TypedDict):
     r"""The insights job timeout"""
     insights_lookback_window: NotRequired[int]
     r"""The attribution window"""
-    level: NotRequired[SourceFacebookMarketingLevel]
+    level: NotRequired[Level]
     r"""Chosen level for API"""
     start_date: NotRequired[datetime]
     r"""The date from which you'd like to replicate data for this stream, in the format YYYY-MM-DDT00:00:00Z."""
@@ -553,7 +555,9 @@ class InsightConfig(BaseModel):
     name: str
     r"""The name value of insight"""
 
-    action_breakdowns: Optional[List[ActionBreakdownValidActionBreakdowns]] = None
+    action_breakdowns: Optional[List[SourceFacebookMarketingValidActionBreakdowns]] = (
+        None
+    )
     r"""A list of chosen action_breakdowns for action_breakdowns"""
 
     breakdowns: Optional[List[ValidBreakdowns]] = None
@@ -571,7 +575,7 @@ class InsightConfig(BaseModel):
     insights_lookback_window: Optional[int] = 28
     r"""The attribution window"""
 
-    level: Optional[SourceFacebookMarketingLevel] = SourceFacebookMarketingLevel.AD
+    level: Optional[Level] = Level.AD
     r"""Chosen level for API"""
 
     start_date: Optional[datetime] = None
@@ -609,7 +613,7 @@ class InsightConfig(BaseModel):
         return m
 
 
-class DefaultAdsInsightsActionBreakdownValidActionBreakdowns(str, Enum):
+class ValidActionBreakdowns(str, Enum):
     r"""An enumeration."""
 
     ACTION_CANVAS_COMPONENT_NAME = "action_canvas_component_name"
@@ -629,7 +633,7 @@ class DefaultAdsInsightsActionBreakdownValidActionBreakdowns(str, Enum):
     STANDARD_EVENT_CONTENT_TYPE = "standard_event_content_type"
 
 
-class FacebookMarketingEnum(str, Enum):
+class SourceFacebookMarketingFacebookMarketing(str, Enum):
     FACEBOOK_MARKETING = "facebook-marketing"
 
 
@@ -648,9 +652,7 @@ class SourceFacebookMarketingTypedDict(TypedDict):
     r"""Select the statuses you want to be loaded in the stream. If no specific statuses are selected, the API's default behavior applies, and some statuses may be filtered out."""
     custom_insights: NotRequired[List[InsightConfigTypedDict]]
     r"""A list which contains ad statistics entries, each entry must have a name and can contains fields, breakdowns or action_breakdowns. Click on \"add\" to fill this field."""
-    default_ads_insights_action_breakdowns: NotRequired[
-        List[DefaultAdsInsightsActionBreakdownValidActionBreakdowns]
-    ]
+    default_ads_insights_action_breakdowns: NotRequired[List[ValidActionBreakdowns]]
     r"""Action breakdowns for the Built-in Ads Insights stream that will be used in the request. You can override default values or remove them to make it empty if needed."""
     end_date: NotRequired[datetime]
     r"""The date until which you'd like to replicate data for all incremental streams, in the format YYYY-MM-DDT00:00:00Z. All data generated between the start date and this end date will be replicated. Not setting this option will result in always syncing the latest data."""
@@ -662,7 +664,7 @@ class SourceFacebookMarketingTypedDict(TypedDict):
     r"""The attribution window. Facebook freezes insight data 28 days after it was generated, which means that all data from the past 28 days may have changed since we last emitted it, so you can retrieve refreshed insights from the past by setting this parameter. If you set a custom lookback window value in Facebook account, please provide the same value here."""
     page_size: NotRequired[int]
     r"""Page size used when sending requests to Facebook API to specify number of records per page when response has pagination. Most users do not need to set this field unless they specifically need to tune the connector to address specific issues or use cases."""
-    source_type: FacebookMarketingEnum
+    source_type: SourceFacebookMarketingFacebookMarketing
     start_date: NotRequired[datetime]
     r"""The date from which you'd like to replicate data for all incremental streams, in the format YYYY-MM-DDT00:00:00Z. If not set then all data will be replicated for usual streams and only last 2 years for insight streams."""
 
@@ -689,9 +691,7 @@ class SourceFacebookMarketing(BaseModel):
     custom_insights: Optional[List[InsightConfig]] = None
     r"""A list which contains ad statistics entries, each entry must have a name and can contains fields, breakdowns or action_breakdowns. Click on \"add\" to fill this field."""
 
-    default_ads_insights_action_breakdowns: Optional[
-        List[DefaultAdsInsightsActionBreakdownValidActionBreakdowns]
-    ] = None
+    default_ads_insights_action_breakdowns: Optional[List[ValidActionBreakdowns]] = None
     r"""Action breakdowns for the Built-in Ads Insights stream that will be used in the request. You can override default values or remove them to make it empty if needed."""
 
     end_date: Optional[datetime] = None
@@ -711,11 +711,15 @@ class SourceFacebookMarketing(BaseModel):
 
     SOURCE_TYPE: Annotated[
         Annotated[
-            FacebookMarketingEnum,
-            AfterValidator(validate_const(FacebookMarketingEnum.FACEBOOK_MARKETING)),
+            SourceFacebookMarketingFacebookMarketing,
+            AfterValidator(
+                validate_const(
+                    SourceFacebookMarketingFacebookMarketing.FACEBOOK_MARKETING
+                )
+            ),
         ],
         pydantic.Field(alias="sourceType"),
-    ] = FacebookMarketingEnum.FACEBOOK_MARKETING
+    ] = SourceFacebookMarketingFacebookMarketing.FACEBOOK_MARKETING
 
     start_date: Optional[datetime] = None
     r"""The date from which you'd like to replicate data for all incremental streams, in the format YYYY-MM-DDT00:00:00Z. If not set then all data will be replicated for usual streams and only last 2 years for insight streams."""
@@ -753,7 +757,7 @@ class SourceFacebookMarketing(BaseModel):
 
 
 try:
-    SourceFacebookMarketingServiceAccountKeyAuthentication.model_rebuild()
+    AuthenticationServiceAccountKeyAuthentication.model_rebuild()
 except NameError:
     pass
 try:

@@ -12,30 +12,34 @@ from typing import Optional, Union
 from typing_extensions import Annotated, NotRequired, TypeAliasType, TypedDict
 
 
-class SourceOktaAuthTypeAPIToken(str, Enum):
+class SourceOktaAuthorizationMethodCredentials3AuthType(str, Enum):
     API_TOKEN = "api_token"
 
 
-class SourceOktaAPITokenTypedDict(TypedDict):
+class AuthorizationMethodAPITokenTypedDict(TypedDict):
     api_token: str
     r"""An Okta token. See the <a href=\"https://docs.airbyte.com/integrations/sources/okta\">docs</a> for instructions on how to generate it."""
-    auth_type: SourceOktaAuthTypeAPIToken
+    auth_type: SourceOktaAuthorizationMethodCredentials3AuthType
 
 
-class SourceOktaAPIToken(BaseModel):
+class AuthorizationMethodAPIToken(BaseModel):
     api_token: str
     r"""An Okta token. See the <a href=\"https://docs.airbyte.com/integrations/sources/okta\">docs</a> for instructions on how to generate it."""
 
     AUTH_TYPE: Annotated[
         Annotated[
-            SourceOktaAuthTypeAPIToken,
-            AfterValidator(validate_const(SourceOktaAuthTypeAPIToken.API_TOKEN)),
+            SourceOktaAuthorizationMethodCredentials3AuthType,
+            AfterValidator(
+                validate_const(
+                    SourceOktaAuthorizationMethodCredentials3AuthType.API_TOKEN
+                )
+            ),
         ],
         pydantic.Field(alias="auth_type"),
-    ] = SourceOktaAuthTypeAPIToken.API_TOKEN
+    ] = SourceOktaAuthorizationMethodCredentials3AuthType.API_TOKEN
 
 
-class AuthTypeOauth20PrivateKey(str, Enum):
+class SourceOktaAuthorizationMethodCredentialsAuthType(str, Enum):
     OAUTH2_0_PRIVATE_KEY = "oauth2.0_private_key"
 
 
@@ -48,7 +52,7 @@ class OAuth20WithPrivateKeyTypedDict(TypedDict):
     r"""The private key in PEM format"""
     scope: str
     r"""The OAuth scope."""
-    auth_type: AuthTypeOauth20PrivateKey
+    auth_type: SourceOktaAuthorizationMethodCredentialsAuthType
 
 
 class OAuth20WithPrivateKey(BaseModel):
@@ -66,30 +70,32 @@ class OAuth20WithPrivateKey(BaseModel):
 
     AUTH_TYPE: Annotated[
         Annotated[
-            AuthTypeOauth20PrivateKey,
+            SourceOktaAuthorizationMethodCredentialsAuthType,
             AfterValidator(
-                validate_const(AuthTypeOauth20PrivateKey.OAUTH2_0_PRIVATE_KEY)
+                validate_const(
+                    SourceOktaAuthorizationMethodCredentialsAuthType.OAUTH2_0_PRIVATE_KEY
+                )
             ),
         ],
         pydantic.Field(alias="auth_type"),
-    ] = AuthTypeOauth20PrivateKey.OAUTH2_0_PRIVATE_KEY
+    ] = SourceOktaAuthorizationMethodCredentialsAuthType.OAUTH2_0_PRIVATE_KEY
 
 
-class SourceOktaAuthTypeOauth20(str, Enum):
+class SourceOktaAuthorizationMethodAuthType(str, Enum):
     OAUTH2_0 = "oauth2.0"
 
 
-class SourceOktaOAuth20TypedDict(TypedDict):
+class SourceOktaAuthorizationMethodOAuth20TypedDict(TypedDict):
     client_id: str
     r"""The Client ID of your OAuth application."""
     client_secret: str
     r"""The Client Secret of your OAuth application."""
     refresh_token: str
     r"""Refresh Token to obtain new Access Token, when it's expired."""
-    auth_type: SourceOktaAuthTypeOauth20
+    auth_type: SourceOktaAuthorizationMethodAuthType
 
 
-class SourceOktaOAuth20(BaseModel):
+class SourceOktaAuthorizationMethodOAuth20(BaseModel):
     client_id: str
     r"""The Client ID of your OAuth application."""
 
@@ -101,18 +107,20 @@ class SourceOktaOAuth20(BaseModel):
 
     AUTH_TYPE: Annotated[
         Annotated[
-            SourceOktaAuthTypeOauth20,
-            AfterValidator(validate_const(SourceOktaAuthTypeOauth20.OAUTH2_0)),
+            SourceOktaAuthorizationMethodAuthType,
+            AfterValidator(
+                validate_const(SourceOktaAuthorizationMethodAuthType.OAUTH2_0)
+            ),
         ],
         pydantic.Field(alias="auth_type"),
-    ] = SourceOktaAuthTypeOauth20.OAUTH2_0
+    ] = SourceOktaAuthorizationMethodAuthType.OAUTH2_0
 
 
 SourceOktaAuthorizationMethodTypedDict = TypeAliasType(
     "SourceOktaAuthorizationMethodTypedDict",
     Union[
-        SourceOktaAPITokenTypedDict,
-        SourceOktaOAuth20TypedDict,
+        AuthorizationMethodAPITokenTypedDict,
+        SourceOktaAuthorizationMethodOAuth20TypedDict,
         OAuth20WithPrivateKeyTypedDict,
     ],
 )
@@ -120,9 +128,9 @@ SourceOktaAuthorizationMethodTypedDict = TypeAliasType(
 
 SourceOktaAuthorizationMethod = Annotated[
     Union[
-        Annotated[SourceOktaOAuth20, Tag("oauth2.0")],
+        Annotated[SourceOktaAuthorizationMethodOAuth20, Tag("oauth2.0")],
         Annotated[OAuth20WithPrivateKey, Tag("oauth2.0_private_key")],
-        Annotated[SourceOktaAPIToken, Tag("api_token")],
+        Annotated[AuthorizationMethodAPIToken, Tag("api_token")],
     ],
     Discriminator(lambda m: get_discriminator(m, "auth_type", "auth_type")),
 ]
@@ -173,7 +181,7 @@ class SourceOkta(BaseModel):
 
 
 try:
-    SourceOktaAPIToken.model_rebuild()
+    AuthorizationMethodAPIToken.model_rebuild()
 except NameError:
     pass
 try:
@@ -181,7 +189,7 @@ try:
 except NameError:
     pass
 try:
-    SourceOktaOAuth20.model_rebuild()
+    SourceOktaAuthorizationMethodOAuth20.model_rebuild()
 except NameError:
     pass
 try:

@@ -5,21 +5,21 @@ Split text fields into chunks based on the specified method.
 
 ## Supported Types
 
-### `models.DestinationMilvusBySeparator`
+### `models.TextSplitterBySeparator`
 
 ```python
-value: models.DestinationMilvusBySeparator = /* values here */
+value: models.TextSplitterBySeparator = /* values here */
 ```
 
-### `models.DestinationMilvusByMarkdownHeader`
+### `models.TextSplitterByMarkdownHeader`
 
 ```python
-value: models.DestinationMilvusByMarkdownHeader = /* values here */
+value: models.TextSplitterByMarkdownHeader = /* values here */
 ```
 
-### `models.DestinationMilvusByProgrammingLanguage`
+### `models.TextSplitterByProgrammingLanguage`
 
 ```python
-value: models.DestinationMilvusByProgrammingLanguage = /* values here */
+value: models.TextSplitterByProgrammingLanguage = /* values here */
 ```
 

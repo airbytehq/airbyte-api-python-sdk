@@ -5,21 +5,21 @@ Whether to initiate an SSH tunnel before connecting to the database, and if so, 
 
 ## Supported Types
 
-### `models.SourceOracleNoTunnel`
+### `models.SourceOracleSSHTunnelMethodNoTunnel`
 
 ```python
-value: models.SourceOracleNoTunnel = /* values here */
+value: models.SourceOracleSSHTunnelMethodNoTunnel = /* values here */
 ```
 
-### `models.SourceOracleSSHKeyAuthentication`
+### `models.SourceOracleSSHTunnelMethodSSHKeyAuthentication`
 
 ```python
-value: models.SourceOracleSSHKeyAuthentication = /* values here */
+value: models.SourceOracleSSHTunnelMethodSSHKeyAuthentication = /* values here */
 ```
 
-### `models.SourceOraclePasswordAuthentication`
+### `models.SourceOracleSSHTunnelMethodPasswordAuthentication`
 
 ```python
-value: models.SourceOraclePasswordAuthentication = /* values here */
+value: models.SourceOracleSSHTunnelMethodPasswordAuthentication = /* values here */
 ```
 

@@ -9,7 +9,7 @@ from pydantic.functional_validators import AfterValidator
 from typing_extensions import Annotated, TypedDict
 
 
-class DestinationConvexConvex(str, Enum):
+class Convex(str, Enum):
     CONVEX = "convex"
 
 
@@ -18,7 +18,7 @@ class DestinationConvexTypedDict(TypedDict):
     r"""API access key used to send data to a Convex deployment."""
     deployment_url: str
     r"""URL of the Convex deployment that is the destination"""
-    destination_type: DestinationConvexConvex
+    destination_type: Convex
 
 
 class DestinationConvex(BaseModel):
@@ -29,12 +29,9 @@ class DestinationConvex(BaseModel):
     r"""URL of the Convex deployment that is the destination"""
 
     DESTINATION_TYPE: Annotated[
-        Annotated[
-            DestinationConvexConvex,
-            AfterValidator(validate_const(DestinationConvexConvex.CONVEX)),
-        ],
+        Annotated[Convex, AfterValidator(validate_const(Convex.CONVEX))],
         pydantic.Field(alias="destinationType"),
-    ] = DestinationConvexConvex.CONVEX
+    ] = Convex.CONVEX
 
 
 try:

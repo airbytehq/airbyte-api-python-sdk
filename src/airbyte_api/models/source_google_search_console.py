@@ -12,19 +12,19 @@ from typing import List, Optional, Union
 from typing_extensions import Annotated, NotRequired, TypeAliasType, TypedDict
 
 
-class SourceGoogleSearchConsoleAuthTypeService(str, Enum):
+class SourceGoogleSearchConsoleAuthenticationTypeAuthorizationAuthType(str, Enum):
     SERVICE = "Service"
 
 
-class SourceGoogleSearchConsoleServiceAccountKeyAuthenticationTypedDict(TypedDict):
+class AuthenticationTypeServiceAccountKeyAuthenticationTypedDict(TypedDict):
     email: str
     r"""The email of the user which has permissions to access the Google Workspace Admin APIs."""
     service_account_info: str
     r"""The JSON key of the service account to use for authorization. Read more <a href=\"https://cloud.google.com/iam/docs/creating-managing-service-account-keys\">here</a>."""
-    auth_type: SourceGoogleSearchConsoleAuthTypeService
+    auth_type: SourceGoogleSearchConsoleAuthenticationTypeAuthorizationAuthType
 
 
-class SourceGoogleSearchConsoleServiceAccountKeyAuthentication(BaseModel):
+class AuthenticationTypeServiceAccountKeyAuthentication(BaseModel):
     email: str
     r"""The email of the user which has permissions to access the Google Workspace Admin APIs."""
 
@@ -33,20 +33,22 @@ class SourceGoogleSearchConsoleServiceAccountKeyAuthentication(BaseModel):
 
     AUTH_TYPE: Annotated[
         Annotated[
-            SourceGoogleSearchConsoleAuthTypeService,
+            SourceGoogleSearchConsoleAuthenticationTypeAuthorizationAuthType,
             AfterValidator(
-                validate_const(SourceGoogleSearchConsoleAuthTypeService.SERVICE)
+                validate_const(
+                    SourceGoogleSearchConsoleAuthenticationTypeAuthorizationAuthType.SERVICE
+                )
             ),
         ],
         pydantic.Field(alias="auth_type"),
-    ] = SourceGoogleSearchConsoleAuthTypeService.SERVICE
+    ] = SourceGoogleSearchConsoleAuthenticationTypeAuthorizationAuthType.SERVICE
 
 
-class SourceGoogleSearchConsoleAuthTypeClient(str, Enum):
+class SourceGoogleSearchConsoleAuthenticationTypeAuthType(str, Enum):
     CLIENT = "Client"
 
 
-class SourceGoogleSearchConsoleOAuthTypedDict(TypedDict):
+class AuthenticationTypeOAuthTypedDict(TypedDict):
     client_id: str
     r"""The client ID of your Google Search Console developer application. Read more <a href=\"https://developers.google.com/webmaster-tools/v1/how-tos/authorizing\">here</a>."""
     client_secret: str
@@ -55,10 +57,10 @@ class SourceGoogleSearchConsoleOAuthTypedDict(TypedDict):
     r"""The token for obtaining a new access token. Read more <a href=\"https://developers.google.com/webmaster-tools/v1/how-tos/authorizing\">here</a>."""
     access_token: NotRequired[str]
     r"""Access token for making authenticated requests. Read more <a href=\"https://developers.google.com/webmaster-tools/v1/how-tos/authorizing\">here</a>."""
-    auth_type: SourceGoogleSearchConsoleAuthTypeClient
+    auth_type: SourceGoogleSearchConsoleAuthenticationTypeAuthType
 
 
-class SourceGoogleSearchConsoleOAuth(BaseModel):
+class AuthenticationTypeOAuth(BaseModel):
     client_id: str
     r"""The client ID of your Google Search Console developer application. Read more <a href=\"https://developers.google.com/webmaster-tools/v1/how-tos/authorizing\">here</a>."""
 
@@ -73,13 +75,15 @@ class SourceGoogleSearchConsoleOAuth(BaseModel):
 
     AUTH_TYPE: Annotated[
         Annotated[
-            SourceGoogleSearchConsoleAuthTypeClient,
+            SourceGoogleSearchConsoleAuthenticationTypeAuthType,
             AfterValidator(
-                validate_const(SourceGoogleSearchConsoleAuthTypeClient.CLIENT)
+                validate_const(
+                    SourceGoogleSearchConsoleAuthenticationTypeAuthType.CLIENT
+                )
             ),
         ],
         pydantic.Field(alias="auth_type"),
-    ] = SourceGoogleSearchConsoleAuthTypeClient.CLIENT
+    ] = SourceGoogleSearchConsoleAuthenticationTypeAuthType.CLIENT
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
@@ -101,18 +105,16 @@ class SourceGoogleSearchConsoleOAuth(BaseModel):
 SourceGoogleSearchConsoleAuthenticationTypeTypedDict = TypeAliasType(
     "SourceGoogleSearchConsoleAuthenticationTypeTypedDict",
     Union[
-        SourceGoogleSearchConsoleServiceAccountKeyAuthenticationTypedDict,
-        SourceGoogleSearchConsoleOAuthTypedDict,
+        AuthenticationTypeServiceAccountKeyAuthenticationTypedDict,
+        AuthenticationTypeOAuthTypedDict,
     ],
 )
 
 
 SourceGoogleSearchConsoleAuthenticationType = Annotated[
     Union[
-        Annotated[SourceGoogleSearchConsoleOAuth, Tag("Client")],
-        Annotated[
-            SourceGoogleSearchConsoleServiceAccountKeyAuthentication, Tag("Service")
-        ],
+        Annotated[AuthenticationTypeOAuth, Tag("Client")],
+        Annotated[AuthenticationTypeServiceAccountKeyAuthentication, Tag("Service")],
     ],
     Discriminator(lambda m: get_discriminator(m, "auth_type", "auth_type")),
 ]
@@ -150,7 +152,7 @@ class DataFreshness(str, Enum):
     ALL = "all"
 
 
-class GoogleSearchConsoleEnum(str, Enum):
+class SourceGoogleSearchConsoleGoogleSearchConsole(str, Enum):
     GOOGLE_SEARCH_CONSOLE = "google-search-console"
 
 
@@ -170,7 +172,7 @@ class SourceGoogleSearchConsoleTypedDict(TypedDict):
     r"""UTC date in the format YYYY-MM-DD. Any data created after this date will not be replicated. Must be greater or equal to the start date field. Leaving this field blank will replicate all data from the start date onward."""
     num_workers: NotRequired[int]
     r"""The number of worker threads to use for the sync. For more details on Google Search Console rate limits, refer to the <a href=\"https://developers.google.com/webmaster-tools/limits\">docs</a>."""
-    source_type: GoogleSearchConsoleEnum
+    source_type: SourceGoogleSearchConsoleGoogleSearchConsole
     start_date: NotRequired[date]
     r"""UTC date in the format YYYY-MM-DD. Any data before this date will not be replicated."""
 
@@ -200,13 +202,15 @@ class SourceGoogleSearchConsole(BaseModel):
 
     SOURCE_TYPE: Annotated[
         Annotated[
-            GoogleSearchConsoleEnum,
+            SourceGoogleSearchConsoleGoogleSearchConsole,
             AfterValidator(
-                validate_const(GoogleSearchConsoleEnum.GOOGLE_SEARCH_CONSOLE)
+                validate_const(
+                    SourceGoogleSearchConsoleGoogleSearchConsole.GOOGLE_SEARCH_CONSOLE
+                )
             ),
         ],
         pydantic.Field(alias="sourceType"),
-    ] = GoogleSearchConsoleEnum.GOOGLE_SEARCH_CONSOLE
+    ] = SourceGoogleSearchConsoleGoogleSearchConsole.GOOGLE_SEARCH_CONSOLE
 
     start_date: Optional[date] = date.fromisoformat("2021-01-01")
     r"""UTC date in the format YYYY-MM-DD. Any data before this date will not be replicated."""
@@ -238,11 +242,11 @@ class SourceGoogleSearchConsole(BaseModel):
 
 
 try:
-    SourceGoogleSearchConsoleServiceAccountKeyAuthentication.model_rebuild()
+    AuthenticationTypeServiceAccountKeyAuthentication.model_rebuild()
 except NameError:
     pass
 try:
-    SourceGoogleSearchConsoleOAuth.model_rebuild()
+    AuthenticationTypeOAuth.model_rebuild()
 except NameError:
     pass
 try:

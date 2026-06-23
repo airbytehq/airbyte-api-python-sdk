@@ -71,29 +71,31 @@ class AdAnalyticsReportConfiguration(BaseModel):
     r"""Choose how to group the data in your report by time. The options are:<br>- 'ALL': A single result summarizing the entire time range.<br>- 'DAILY': Group results by each day.<br>- 'MONTHLY': Group results by each month.<br>- 'YEARLY': Group results by each year.<br>Selecting a time grouping helps you analyze trends and patterns over different time periods."""
 
 
-class SourceLinkedinAdsAuthMethodAccessToken(str, Enum):
+class SourceLinkedinAdsAuthenticationCredentialsAuthMethod(str, Enum):
     ACCESS_TOKEN = "access_token"
 
 
-class SourceLinkedinAdsAccessTokenTypedDict(TypedDict):
+class AuthenticationAccessTokenTypedDict(TypedDict):
     access_token: str
     r"""The access token generated for your developer application. Refer to our <a href='https://docs.airbyte.com/integrations/sources/linkedin-ads#setup-guide'>documentation</a> for more information."""
-    auth_method: SourceLinkedinAdsAuthMethodAccessToken
+    auth_method: SourceLinkedinAdsAuthenticationCredentialsAuthMethod
 
 
-class SourceLinkedinAdsAccessToken(BaseModel):
+class AuthenticationAccessToken(BaseModel):
     access_token: str
     r"""The access token generated for your developer application. Refer to our <a href='https://docs.airbyte.com/integrations/sources/linkedin-ads#setup-guide'>documentation</a> for more information."""
 
     AUTH_METHOD: Annotated[
         Annotated[
-            Optional[SourceLinkedinAdsAuthMethodAccessToken],
+            Optional[SourceLinkedinAdsAuthenticationCredentialsAuthMethod],
             AfterValidator(
-                validate_const(SourceLinkedinAdsAuthMethodAccessToken.ACCESS_TOKEN)
+                validate_const(
+                    SourceLinkedinAdsAuthenticationCredentialsAuthMethod.ACCESS_TOKEN
+                )
             ),
         ],
         pydantic.Field(alias="auth_method"),
-    ] = SourceLinkedinAdsAuthMethodAccessToken.ACCESS_TOKEN
+    ] = SourceLinkedinAdsAuthenticationCredentialsAuthMethod.ACCESS_TOKEN
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
@@ -112,21 +114,21 @@ class SourceLinkedinAdsAccessToken(BaseModel):
         return m
 
 
-class SourceLinkedinAdsAuthMethodOAuth20(str, Enum):
+class SourceLinkedinAdsAuthenticationAuthMethod(str, Enum):
     O_AUTH2_0 = "oAuth2.0"
 
 
-class SourceLinkedinAdsOAuth20TypedDict(TypedDict):
+class AuthenticationOAuth20TypedDict(TypedDict):
     client_id: str
     r"""The client ID of your developer application. Refer to our <a href='https://docs.airbyte.com/integrations/sources/linkedin-ads#setup-guide'>documentation</a> for more information."""
     client_secret: str
     r"""The client secret of your developer application. Refer to our <a href='https://docs.airbyte.com/integrations/sources/linkedin-ads#setup-guide'>documentation</a> for more information."""
     refresh_token: str
     r"""The key to refresh the expired access token. Refer to our <a href='https://docs.airbyte.com/integrations/sources/linkedin-ads#setup-guide'>documentation</a> for more information."""
-    auth_method: SourceLinkedinAdsAuthMethodOAuth20
+    auth_method: SourceLinkedinAdsAuthenticationAuthMethod
 
 
-class SourceLinkedinAdsOAuth20(BaseModel):
+class AuthenticationOAuth20(BaseModel):
     client_id: str
     r"""The client ID of your developer application. Refer to our <a href='https://docs.airbyte.com/integrations/sources/linkedin-ads#setup-guide'>documentation</a> for more information."""
 
@@ -138,13 +140,13 @@ class SourceLinkedinAdsOAuth20(BaseModel):
 
     AUTH_METHOD: Annotated[
         Annotated[
-            Optional[SourceLinkedinAdsAuthMethodOAuth20],
+            Optional[SourceLinkedinAdsAuthenticationAuthMethod],
             AfterValidator(
-                validate_const(SourceLinkedinAdsAuthMethodOAuth20.O_AUTH2_0)
+                validate_const(SourceLinkedinAdsAuthenticationAuthMethod.O_AUTH2_0)
             ),
         ],
         pydantic.Field(alias="auth_method"),
-    ] = SourceLinkedinAdsAuthMethodOAuth20.O_AUTH2_0
+    ] = SourceLinkedinAdsAuthenticationAuthMethod.O_AUTH2_0
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
@@ -165,17 +167,17 @@ class SourceLinkedinAdsOAuth20(BaseModel):
 
 SourceLinkedinAdsAuthenticationTypedDict = TypeAliasType(
     "SourceLinkedinAdsAuthenticationTypedDict",
-    Union[SourceLinkedinAdsAccessTokenTypedDict, SourceLinkedinAdsOAuth20TypedDict],
+    Union[AuthenticationAccessTokenTypedDict, AuthenticationOAuth20TypedDict],
 )
 
 
 SourceLinkedinAdsAuthentication = TypeAliasType(
     "SourceLinkedinAdsAuthentication",
-    Union[SourceLinkedinAdsAccessToken, SourceLinkedinAdsOAuth20],
+    Union[AuthenticationAccessToken, AuthenticationOAuth20],
 )
 
 
-class LinkedinAdsEnum(str, Enum):
+class SourceLinkedinAdsLinkedinAds(str, Enum):
     LINKEDIN_ADS = "linkedin-ads"
 
 
@@ -190,7 +192,7 @@ class SourceLinkedinAdsTypedDict(TypedDict):
     r"""How far into the past to look for records. (in days)"""
     num_workers: NotRequired[int]
     r"""The number of workers to use for the connector. This is used to limit the number of concurrent requests to the LinkedIn Ads API. If not set, the default is 3 workers."""
-    source_type: LinkedinAdsEnum
+    source_type: SourceLinkedinAdsLinkedinAds
 
 
 class SourceLinkedinAds(BaseModel):
@@ -212,11 +214,11 @@ class SourceLinkedinAds(BaseModel):
 
     SOURCE_TYPE: Annotated[
         Annotated[
-            LinkedinAdsEnum,
-            AfterValidator(validate_const(LinkedinAdsEnum.LINKEDIN_ADS)),
+            SourceLinkedinAdsLinkedinAds,
+            AfterValidator(validate_const(SourceLinkedinAdsLinkedinAds.LINKEDIN_ADS)),
         ],
         pydantic.Field(alias="sourceType"),
-    ] = LinkedinAdsEnum.LINKEDIN_ADS
+    ] = SourceLinkedinAdsLinkedinAds.LINKEDIN_ADS
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
@@ -244,11 +246,11 @@ class SourceLinkedinAds(BaseModel):
 
 
 try:
-    SourceLinkedinAdsAccessToken.model_rebuild()
+    AuthenticationAccessToken.model_rebuild()
 except NameError:
     pass
 try:
-    SourceLinkedinAdsOAuth20.model_rebuild()
+    AuthenticationOAuth20.model_rebuild()
 except NameError:
     pass
 try:

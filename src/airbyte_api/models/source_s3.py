@@ -12,30 +12,32 @@ from typing import List, Optional, Union
 from typing_extensions import Annotated, NotRequired, TypeAliasType, TypedDict
 
 
-class SourceS3DeliveryTypeUseFileTransfer(str, Enum):
+class SourceS3DeliveryMethodDeliveryMethodDeliveryType(str, Enum):
     USE_FILE_TRANSFER = "use_file_transfer"
 
 
-class SourceS3CopyRawFilesTypedDict(TypedDict):
+class SourceS3DeliveryMethodCopyRawFilesTypedDict(TypedDict):
     r"""Copy raw files without parsing their contents. Bits are copied into the destination exactly as they appeared in the source. Recommended for use with unstructured text data, non-text and compressed files."""
 
-    delivery_type: SourceS3DeliveryTypeUseFileTransfer
+    delivery_type: SourceS3DeliveryMethodDeliveryMethodDeliveryType
     preserve_directory_structure: NotRequired[bool]
     r"""If enabled, sends subdirectory folder structure along with source file names to the destination. Otherwise, files will be synced by their names only. This option is ignored when file-based replication is not enabled."""
 
 
-class SourceS3CopyRawFiles(BaseModel):
+class SourceS3DeliveryMethodCopyRawFiles(BaseModel):
     r"""Copy raw files without parsing their contents. Bits are copied into the destination exactly as they appeared in the source. Recommended for use with unstructured text data, non-text and compressed files."""
 
     DELIVERY_TYPE: Annotated[
         Annotated[
-            Optional[SourceS3DeliveryTypeUseFileTransfer],
+            Optional[SourceS3DeliveryMethodDeliveryMethodDeliveryType],
             AfterValidator(
-                validate_const(SourceS3DeliveryTypeUseFileTransfer.USE_FILE_TRANSFER)
+                validate_const(
+                    SourceS3DeliveryMethodDeliveryMethodDeliveryType.USE_FILE_TRANSFER
+                )
             ),
         ],
         pydantic.Field(alias="delivery_type"),
-    ] = SourceS3DeliveryTypeUseFileTransfer.USE_FILE_TRANSFER
+    ] = SourceS3DeliveryMethodDeliveryMethodDeliveryType.USE_FILE_TRANSFER
 
     preserve_directory_structure: Optional[bool] = True
     r"""If enabled, sends subdirectory folder structure along with source file names to the destination. Otherwise, files will be synced by their names only. This option is ignored when file-based replication is not enabled."""
@@ -57,30 +59,28 @@ class SourceS3CopyRawFiles(BaseModel):
         return m
 
 
-class SourceS3DeliveryTypeUseRecordsTransfer(str, Enum):
+class SourceS3DeliveryMethodDeliveryType(str, Enum):
     USE_RECORDS_TRANSFER = "use_records_transfer"
 
 
-class SourceS3ReplicateRecordsTypedDict(TypedDict):
+class SourceS3DeliveryMethodReplicateRecordsTypedDict(TypedDict):
     r"""Recommended - Extract and load structured records into your destination of choice. This is the classic method of moving data in Airbyte. It allows for blocking and hashing individual fields or files from a structured schema. Data can be flattened, typed and deduped depending on the destination."""
 
-    delivery_type: SourceS3DeliveryTypeUseRecordsTransfer
+    delivery_type: SourceS3DeliveryMethodDeliveryType
 
 
-class SourceS3ReplicateRecords(BaseModel):
+class SourceS3DeliveryMethodReplicateRecords(BaseModel):
     r"""Recommended - Extract and load structured records into your destination of choice. This is the classic method of moving data in Airbyte. It allows for blocking and hashing individual fields or files from a structured schema. Data can be flattened, typed and deduped depending on the destination."""
 
     DELIVERY_TYPE: Annotated[
         Annotated[
-            Optional[SourceS3DeliveryTypeUseRecordsTransfer],
+            Optional[SourceS3DeliveryMethodDeliveryType],
             AfterValidator(
-                validate_const(
-                    SourceS3DeliveryTypeUseRecordsTransfer.USE_RECORDS_TRANSFER
-                )
+                validate_const(SourceS3DeliveryMethodDeliveryType.USE_RECORDS_TRANSFER)
             ),
         ],
         pydantic.Field(alias="delivery_type"),
-    ] = SourceS3DeliveryTypeUseRecordsTransfer.USE_RECORDS_TRANSFER
+    ] = SourceS3DeliveryMethodDeliveryType.USE_RECORDS_TRANSFER
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
@@ -101,12 +101,16 @@ class SourceS3ReplicateRecords(BaseModel):
 
 SourceS3DeliveryMethodTypedDict = TypeAliasType(
     "SourceS3DeliveryMethodTypedDict",
-    Union[SourceS3ReplicateRecordsTypedDict, SourceS3CopyRawFilesTypedDict],
+    Union[
+        SourceS3DeliveryMethodReplicateRecordsTypedDict,
+        SourceS3DeliveryMethodCopyRawFilesTypedDict,
+    ],
 )
 
 
 SourceS3DeliveryMethod = TypeAliasType(
-    "SourceS3DeliveryMethod", Union[SourceS3ReplicateRecords, SourceS3CopyRawFiles]
+    "SourceS3DeliveryMethod",
+    Union[SourceS3DeliveryMethodReplicateRecords, SourceS3DeliveryMethodCopyRawFiles],
 )
 
 
@@ -114,22 +118,22 @@ class SourceS3S3(str, Enum):
     S3 = "s3"
 
 
-class SourceS3FiletypeExcel(str, Enum):
+class SourceS3FormatStreamsFormat6Filetype(str, Enum):
     EXCEL = "excel"
 
 
-class SourceS3ExcelFormatTypedDict(TypedDict):
-    filetype: SourceS3FiletypeExcel
+class SourceS3FormatExcelFormatTypedDict(TypedDict):
+    filetype: SourceS3FormatStreamsFormat6Filetype
 
 
-class SourceS3ExcelFormat(BaseModel):
+class SourceS3FormatExcelFormat(BaseModel):
     FILETYPE: Annotated[
         Annotated[
-            Optional[SourceS3FiletypeExcel],
-            AfterValidator(validate_const(SourceS3FiletypeExcel.EXCEL)),
+            Optional[SourceS3FormatStreamsFormat6Filetype],
+            AfterValidator(validate_const(SourceS3FormatStreamsFormat6Filetype.EXCEL)),
         ],
         pydantic.Field(alias="filetype"),
-    ] = SourceS3FiletypeExcel.EXCEL
+    ] = SourceS3FormatStreamsFormat6Filetype.EXCEL
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
@@ -148,29 +152,30 @@ class SourceS3ExcelFormat(BaseModel):
         return m
 
 
-class SourceS3FiletypeUnstructured(str, Enum):
+class SourceS3FormatStreamsFormat5Filetype(str, Enum):
     UNSTRUCTURED = "unstructured"
 
 
-class SourceS3Mode(str, Enum):
+class SourceS3ProcessingMode(str, Enum):
     LOCAL = "local"
 
 
-class SourceS3LocalTypedDict(TypedDict):
+class SourceS3ProcessingLocalTypedDict(TypedDict):
     r"""Process files locally, supporting `fast` and `ocr` modes. This is the default option."""
 
-    mode: SourceS3Mode
+    mode: SourceS3ProcessingMode
 
 
-class SourceS3Local(BaseModel):
+class SourceS3ProcessingLocal(BaseModel):
     r"""Process files locally, supporting `fast` and `ocr` modes. This is the default option."""
 
     MODE: Annotated[
         Annotated[
-            Optional[SourceS3Mode], AfterValidator(validate_const(SourceS3Mode.LOCAL))
+            Optional[SourceS3ProcessingMode],
+            AfterValidator(validate_const(SourceS3ProcessingMode.LOCAL)),
         ],
         pydantic.Field(alias="mode"),
-    ] = SourceS3Mode.LOCAL
+    ] = SourceS3ProcessingMode.LOCAL
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
@@ -189,15 +194,15 @@ class SourceS3Local(BaseModel):
         return m
 
 
-SourceS3ProcessingTypedDict = SourceS3LocalTypedDict
+SourceS3FormatProcessingTypedDict = SourceS3ProcessingLocalTypedDict
 r"""Processing configuration"""
 
 
-SourceS3Processing = SourceS3Local
+SourceS3FormatProcessing = SourceS3ProcessingLocal
 r"""Processing configuration"""
 
 
-class SourceS3ParsingStrategy(str, Enum):
+class SourceS3FormatParsingStrategy(str, Enum):
     r"""The strategy used to parse documents. `fast` extracts text directly from the document which doesn't work for all files. `ocr_only` is more reliable, but slower. `hi_res` is the most reliable, but requires an API key and a hosted instance of unstructured and can't be used with local mode. See the unstructured.io documentation for more details: https://unstructured-io.github.io/unstructured/core/partition.html#partition-pdf"""
 
     AUTO = "auto"
@@ -206,36 +211,40 @@ class SourceS3ParsingStrategy(str, Enum):
     HI_RES = "hi_res"
 
 
-class SourceS3UnstructuredDocumentFormatTypedDict(TypedDict):
+class SourceS3FormatUnstructuredDocumentFormatTypedDict(TypedDict):
     r"""Extract text from document formats (.pdf, .docx, .md, .pptx) and emit as one record per file."""
 
-    filetype: SourceS3FiletypeUnstructured
-    processing: NotRequired[SourceS3ProcessingTypedDict]
+    filetype: SourceS3FormatStreamsFormat5Filetype
+    processing: NotRequired[SourceS3FormatProcessingTypedDict]
     r"""Processing configuration"""
     skip_unprocessable_files: NotRequired[bool]
     r"""If true, skip files that cannot be parsed and pass the error message along as the _ab_source_file_parse_error field. If false, fail the sync."""
-    strategy: NotRequired[SourceS3ParsingStrategy]
+    strategy: NotRequired[SourceS3FormatParsingStrategy]
     r"""The strategy used to parse documents. `fast` extracts text directly from the document which doesn't work for all files. `ocr_only` is more reliable, but slower. `hi_res` is the most reliable, but requires an API key and a hosted instance of unstructured and can't be used with local mode. See the unstructured.io documentation for more details: https://unstructured-io.github.io/unstructured/core/partition.html#partition-pdf"""
 
 
-class SourceS3UnstructuredDocumentFormat(BaseModel):
+class SourceS3FormatUnstructuredDocumentFormat(BaseModel):
     r"""Extract text from document formats (.pdf, .docx, .md, .pptx) and emit as one record per file."""
 
     FILETYPE: Annotated[
         Annotated[
-            Optional[SourceS3FiletypeUnstructured],
-            AfterValidator(validate_const(SourceS3FiletypeUnstructured.UNSTRUCTURED)),
+            Optional[SourceS3FormatStreamsFormat5Filetype],
+            AfterValidator(
+                validate_const(SourceS3FormatStreamsFormat5Filetype.UNSTRUCTURED)
+            ),
         ],
         pydantic.Field(alias="filetype"),
-    ] = SourceS3FiletypeUnstructured.UNSTRUCTURED
+    ] = SourceS3FormatStreamsFormat5Filetype.UNSTRUCTURED
 
-    processing: Optional[SourceS3Processing] = None
+    processing: Optional[SourceS3FormatProcessing] = None
     r"""Processing configuration"""
 
     skip_unprocessable_files: Optional[bool] = True
     r"""If true, skip files that cannot be parsed and pass the error message along as the _ab_source_file_parse_error field. If false, fail the sync."""
 
-    strategy: Optional[SourceS3ParsingStrategy] = SourceS3ParsingStrategy.AUTO
+    strategy: Optional[SourceS3FormatParsingStrategy] = (
+        SourceS3FormatParsingStrategy.AUTO
+    )
     r"""The strategy used to parse documents. `fast` extracts text directly from the document which doesn't work for all files. `ocr_only` is more reliable, but slower. `hi_res` is the most reliable, but requires an API key and a hosted instance of unstructured and can't be used with local mode. See the unstructured.io documentation for more details: https://unstructured-io.github.io/unstructured/core/partition.html#partition-pdf"""
 
     @model_serializer(mode="wrap")
@@ -257,27 +266,29 @@ class SourceS3UnstructuredDocumentFormat(BaseModel):
         return m
 
 
-class SourceS3FiletypeParquet(str, Enum):
+class SourceS3FormatStreamsFormat4Filetype(str, Enum):
     PARQUET = "parquet"
 
 
-class SourceS3ParquetFormatTypedDict(TypedDict):
+class SourceS3FormatParquetFormatTypedDict(TypedDict):
     decimal_as_float: NotRequired[bool]
     r"""Whether to convert decimal fields to floats. There is a loss of precision when converting decimals to floats, so this is not recommended."""
-    filetype: SourceS3FiletypeParquet
+    filetype: SourceS3FormatStreamsFormat4Filetype
 
 
-class SourceS3ParquetFormat(BaseModel):
+class SourceS3FormatParquetFormat(BaseModel):
     decimal_as_float: Optional[bool] = False
     r"""Whether to convert decimal fields to floats. There is a loss of precision when converting decimals to floats, so this is not recommended."""
 
     FILETYPE: Annotated[
         Annotated[
-            Optional[SourceS3FiletypeParquet],
-            AfterValidator(validate_const(SourceS3FiletypeParquet.PARQUET)),
+            Optional[SourceS3FormatStreamsFormat4Filetype],
+            AfterValidator(
+                validate_const(SourceS3FormatStreamsFormat4Filetype.PARQUET)
+            ),
         ],
         pydantic.Field(alias="filetype"),
-    ] = SourceS3FiletypeParquet.PARQUET
+    ] = SourceS3FormatStreamsFormat4Filetype.PARQUET
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
@@ -296,22 +307,22 @@ class SourceS3ParquetFormat(BaseModel):
         return m
 
 
-class SourceS3FiletypeJsonl(str, Enum):
+class SourceS3FormatStreamsFormatFiletype(str, Enum):
     JSONL = "jsonl"
 
 
-class SourceS3JsonlFormatTypedDict(TypedDict):
-    filetype: SourceS3FiletypeJsonl
+class SourceS3FormatJsonlFormatTypedDict(TypedDict):
+    filetype: SourceS3FormatStreamsFormatFiletype
 
 
-class SourceS3JsonlFormat(BaseModel):
+class SourceS3FormatJsonlFormat(BaseModel):
     FILETYPE: Annotated[
         Annotated[
-            Optional[SourceS3FiletypeJsonl],
-            AfterValidator(validate_const(SourceS3FiletypeJsonl.JSONL)),
+            Optional[SourceS3FormatStreamsFormatFiletype],
+            AfterValidator(validate_const(SourceS3FormatStreamsFormatFiletype.JSONL)),
         ],
         pydantic.Field(alias="filetype"),
-    ] = SourceS3FiletypeJsonl.JSONL
+    ] = SourceS3FormatStreamsFormatFiletype.JSONL
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
@@ -330,33 +341,35 @@ class SourceS3JsonlFormat(BaseModel):
         return m
 
 
-class SourceS3FiletypeCsv(str, Enum):
+class SourceS3FormatStreamsFiletype(str, Enum):
     CSV = "csv"
 
 
-class SourceS3HeaderDefinitionTypeUserProvided(str, Enum):
+class SourceS3CSVHeaderDefinitionStreamsFormatHeaderDefinitionType(str, Enum):
     USER_PROVIDED = "User Provided"
 
 
-class SourceS3UserProvidedTypedDict(TypedDict):
+class SourceS3CSVHeaderDefinitionUserProvidedTypedDict(TypedDict):
     column_names: List[str]
     r"""The column names that will be used while emitting the CSV records"""
-    header_definition_type: SourceS3HeaderDefinitionTypeUserProvided
+    header_definition_type: SourceS3CSVHeaderDefinitionStreamsFormatHeaderDefinitionType
 
 
-class SourceS3UserProvided(BaseModel):
+class SourceS3CSVHeaderDefinitionUserProvided(BaseModel):
     column_names: List[str]
     r"""The column names that will be used while emitting the CSV records"""
 
     HEADER_DEFINITION_TYPE: Annotated[
         Annotated[
-            Optional[SourceS3HeaderDefinitionTypeUserProvided],
+            Optional[SourceS3CSVHeaderDefinitionStreamsFormatHeaderDefinitionType],
             AfterValidator(
-                validate_const(SourceS3HeaderDefinitionTypeUserProvided.USER_PROVIDED)
+                validate_const(
+                    SourceS3CSVHeaderDefinitionStreamsFormatHeaderDefinitionType.USER_PROVIDED
+                )
             ),
         ],
         pydantic.Field(alias="header_definition_type"),
-    ] = SourceS3HeaderDefinitionTypeUserProvided.USER_PROVIDED
+    ] = SourceS3CSVHeaderDefinitionStreamsFormatHeaderDefinitionType.USER_PROVIDED
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
@@ -375,24 +388,26 @@ class SourceS3UserProvided(BaseModel):
         return m
 
 
-class SourceS3HeaderDefinitionTypeAutogenerated(str, Enum):
+class SourceS3CSVHeaderDefinitionStreamsHeaderDefinitionType(str, Enum):
     AUTOGENERATED = "Autogenerated"
 
 
-class SourceS3AutogeneratedTypedDict(TypedDict):
-    header_definition_type: SourceS3HeaderDefinitionTypeAutogenerated
+class SourceS3CSVHeaderDefinitionAutogeneratedTypedDict(TypedDict):
+    header_definition_type: SourceS3CSVHeaderDefinitionStreamsHeaderDefinitionType
 
 
-class SourceS3Autogenerated(BaseModel):
+class SourceS3CSVHeaderDefinitionAutogenerated(BaseModel):
     HEADER_DEFINITION_TYPE: Annotated[
         Annotated[
-            Optional[SourceS3HeaderDefinitionTypeAutogenerated],
+            Optional[SourceS3CSVHeaderDefinitionStreamsHeaderDefinitionType],
             AfterValidator(
-                validate_const(SourceS3HeaderDefinitionTypeAutogenerated.AUTOGENERATED)
+                validate_const(
+                    SourceS3CSVHeaderDefinitionStreamsHeaderDefinitionType.AUTOGENERATED
+                )
             ),
         ],
         pydantic.Field(alias="header_definition_type"),
-    ] = SourceS3HeaderDefinitionTypeAutogenerated.AUTOGENERATED
+    ] = SourceS3CSVHeaderDefinitionStreamsHeaderDefinitionType.AUTOGENERATED
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
@@ -411,24 +426,24 @@ class SourceS3Autogenerated(BaseModel):
         return m
 
 
-class SourceS3HeaderDefinitionTypeFromCsv(str, Enum):
+class SourceS3CSVHeaderDefinitionHeaderDefinitionType(str, Enum):
     FROM_CSV = "From CSV"
 
 
-class SourceS3FromCSVTypedDict(TypedDict):
-    header_definition_type: SourceS3HeaderDefinitionTypeFromCsv
+class SourceS3CSVHeaderDefinitionFromCSVTypedDict(TypedDict):
+    header_definition_type: SourceS3CSVHeaderDefinitionHeaderDefinitionType
 
 
-class SourceS3FromCSV(BaseModel):
+class SourceS3CSVHeaderDefinitionFromCSV(BaseModel):
     HEADER_DEFINITION_TYPE: Annotated[
         Annotated[
-            Optional[SourceS3HeaderDefinitionTypeFromCsv],
+            Optional[SourceS3CSVHeaderDefinitionHeaderDefinitionType],
             AfterValidator(
-                validate_const(SourceS3HeaderDefinitionTypeFromCsv.FROM_CSV)
+                validate_const(SourceS3CSVHeaderDefinitionHeaderDefinitionType.FROM_CSV)
             ),
         ],
         pydantic.Field(alias="header_definition_type"),
-    ] = SourceS3HeaderDefinitionTypeFromCsv.FROM_CSV
+    ] = SourceS3CSVHeaderDefinitionHeaderDefinitionType.FROM_CSV
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
@@ -447,25 +462,29 @@ class SourceS3FromCSV(BaseModel):
         return m
 
 
-SourceS3CSVHeaderDefinitionTypedDict = TypeAliasType(
-    "SourceS3CSVHeaderDefinitionTypedDict",
+SourceS3FormatCSVHeaderDefinitionTypedDict = TypeAliasType(
+    "SourceS3FormatCSVHeaderDefinitionTypedDict",
     Union[
-        SourceS3FromCSVTypedDict,
-        SourceS3AutogeneratedTypedDict,
-        SourceS3UserProvidedTypedDict,
+        SourceS3CSVHeaderDefinitionFromCSVTypedDict,
+        SourceS3CSVHeaderDefinitionAutogeneratedTypedDict,
+        SourceS3CSVHeaderDefinitionUserProvidedTypedDict,
     ],
 )
 r"""How headers will be defined. `User Provided` assumes the CSV does not have a header row and uses the headers provided and `Autogenerated` assumes the CSV does not have a header row and the CDK will generate headers using for `f{i}` where `i` is the index starting from 0. Else, the default behavior is to use the header from the CSV file. If a user wants to autogenerate or provide column names for a CSV having headers, they can skip rows."""
 
 
-SourceS3CSVHeaderDefinition = TypeAliasType(
-    "SourceS3CSVHeaderDefinition",
-    Union[SourceS3FromCSV, SourceS3Autogenerated, SourceS3UserProvided],
+SourceS3FormatCSVHeaderDefinition = TypeAliasType(
+    "SourceS3FormatCSVHeaderDefinition",
+    Union[
+        SourceS3CSVHeaderDefinitionFromCSV,
+        SourceS3CSVHeaderDefinitionAutogenerated,
+        SourceS3CSVHeaderDefinitionUserProvided,
+    ],
 )
 r"""How headers will be defined. `User Provided` assumes the CSV does not have a header row and uses the headers provided and `Autogenerated` assumes the CSV does not have a header row and the CDK will generate headers using for `f{i}` where `i` is the index starting from 0. Else, the default behavior is to use the header from the CSV file. If a user wants to autogenerate or provide column names for a CSV having headers, they can skip rows."""
 
 
-class SourceS3CSVFormatTypedDict(TypedDict):
+class SourceS3FormatCSVFormatTypedDict(TypedDict):
     delimiter: NotRequired[str]
     r"""The character delimiting individual cells in the CSV data. This may only be a 1-character string. For tab-delimited data enter '\t'."""
     double_quote: NotRequired[bool]
@@ -476,8 +495,8 @@ class SourceS3CSVFormatTypedDict(TypedDict):
     r"""The character used for escaping special characters. To disallow escaping, leave this field blank."""
     false_values: NotRequired[List[str]]
     r"""A set of case-sensitive strings that should be interpreted as false values."""
-    filetype: SourceS3FiletypeCsv
-    header_definition: NotRequired[SourceS3CSVHeaderDefinitionTypedDict]
+    filetype: SourceS3FormatStreamsFiletype
+    header_definition: NotRequired[SourceS3FormatCSVHeaderDefinitionTypedDict]
     r"""How headers will be defined. `User Provided` assumes the CSV does not have a header row and uses the headers provided and `Autogenerated` assumes the CSV does not have a header row and the CDK will generate headers using for `f{i}` where `i` is the index starting from 0. Else, the default behavior is to use the header from the CSV file. If a user wants to autogenerate or provide column names for a CSV having headers, they can skip rows."""
     ignore_errors_on_fields_mismatch: NotRequired[bool]
     r"""Whether to ignore errors that occur when the number of fields in the CSV does not match the number of columns in the schema."""
@@ -495,7 +514,7 @@ class SourceS3CSVFormatTypedDict(TypedDict):
     r"""A set of case-sensitive strings that should be interpreted as true values."""
 
 
-class SourceS3CSVFormat(BaseModel):
+class SourceS3FormatCSVFormat(BaseModel):
     delimiter: Optional[str] = ","
     r"""The character delimiting individual cells in the CSV data. This may only be a 1-character string. For tab-delimited data enter '\t'."""
 
@@ -513,13 +532,13 @@ class SourceS3CSVFormat(BaseModel):
 
     FILETYPE: Annotated[
         Annotated[
-            Optional[SourceS3FiletypeCsv],
-            AfterValidator(validate_const(SourceS3FiletypeCsv.CSV)),
+            Optional[SourceS3FormatStreamsFiletype],
+            AfterValidator(validate_const(SourceS3FormatStreamsFiletype.CSV)),
         ],
         pydantic.Field(alias="filetype"),
-    ] = SourceS3FiletypeCsv.CSV
+    ] = SourceS3FormatStreamsFiletype.CSV
 
-    header_definition: Optional[SourceS3CSVHeaderDefinition] = None
+    header_definition: Optional[SourceS3FormatCSVHeaderDefinition] = None
     r"""How headers will be defined. `User Provided` assumes the CSV does not have a header row and uses the headers provided and `Autogenerated` assumes the CSV does not have a header row and the CDK will generate headers using for `f{i}` where `i` is the index starting from 0. Else, the default behavior is to use the header from the CSV file. If a user wants to autogenerate or provide column names for a CSV having headers, they can skip rows."""
 
     ignore_errors_on_fields_mismatch: Optional[bool] = False
@@ -577,27 +596,27 @@ class SourceS3CSVFormat(BaseModel):
         return m
 
 
-class SourceS3FiletypeAvro(str, Enum):
+class SourceS3FormatFiletype(str, Enum):
     AVRO = "avro"
 
 
-class SourceS3AvroFormatTypedDict(TypedDict):
+class SourceS3FormatAvroFormatTypedDict(TypedDict):
     double_as_string: NotRequired[bool]
     r"""Whether to convert double fields to strings. This is recommended if you have decimal numbers with a high degree of precision because there can be a loss precision when handling floating point numbers."""
-    filetype: SourceS3FiletypeAvro
+    filetype: SourceS3FormatFiletype
 
 
-class SourceS3AvroFormat(BaseModel):
+class SourceS3FormatAvroFormat(BaseModel):
     double_as_string: Optional[bool] = False
     r"""Whether to convert double fields to strings. This is recommended if you have decimal numbers with a high degree of precision because there can be a loss precision when handling floating point numbers."""
 
     FILETYPE: Annotated[
         Annotated[
-            Optional[SourceS3FiletypeAvro],
-            AfterValidator(validate_const(SourceS3FiletypeAvro.AVRO)),
+            Optional[SourceS3FormatFiletype],
+            AfterValidator(validate_const(SourceS3FormatFiletype.AVRO)),
         ],
         pydantic.Field(alias="filetype"),
-    ] = SourceS3FiletypeAvro.AVRO
+    ] = SourceS3FormatFiletype.AVRO
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
@@ -619,12 +638,12 @@ class SourceS3AvroFormat(BaseModel):
 SourceS3FormatTypedDict = TypeAliasType(
     "SourceS3FormatTypedDict",
     Union[
-        SourceS3JsonlFormatTypedDict,
-        SourceS3ExcelFormatTypedDict,
-        SourceS3AvroFormatTypedDict,
-        SourceS3ParquetFormatTypedDict,
-        SourceS3UnstructuredDocumentFormatTypedDict,
-        SourceS3CSVFormatTypedDict,
+        SourceS3FormatJsonlFormatTypedDict,
+        SourceS3FormatExcelFormatTypedDict,
+        SourceS3FormatAvroFormatTypedDict,
+        SourceS3FormatParquetFormatTypedDict,
+        SourceS3FormatUnstructuredDocumentFormatTypedDict,
+        SourceS3FormatCSVFormatTypedDict,
     ],
 )
 r"""The configuration options that are used to alter how to read incoming files that deviate from the standard formatting."""
@@ -633,12 +652,12 @@ r"""The configuration options that are used to alter how to read incoming files 
 SourceS3Format = TypeAliasType(
     "SourceS3Format",
     Union[
-        SourceS3JsonlFormat,
-        SourceS3ExcelFormat,
-        SourceS3AvroFormat,
-        SourceS3ParquetFormat,
-        SourceS3UnstructuredDocumentFormat,
-        SourceS3CSVFormat,
+        SourceS3FormatJsonlFormat,
+        SourceS3FormatExcelFormat,
+        SourceS3FormatAvroFormat,
+        SourceS3FormatParquetFormat,
+        SourceS3FormatUnstructuredDocumentFormat,
+        SourceS3FormatCSVFormat,
     ],
 )
 r"""The configuration options that are used to alter how to read incoming files that deviate from the standard formatting."""
@@ -813,51 +832,51 @@ class SourceS3(BaseModel):
 
 
 try:
-    SourceS3CopyRawFiles.model_rebuild()
+    SourceS3DeliveryMethodCopyRawFiles.model_rebuild()
 except NameError:
     pass
 try:
-    SourceS3ReplicateRecords.model_rebuild()
+    SourceS3DeliveryMethodReplicateRecords.model_rebuild()
 except NameError:
     pass
 try:
-    SourceS3ExcelFormat.model_rebuild()
+    SourceS3FormatExcelFormat.model_rebuild()
 except NameError:
     pass
 try:
-    SourceS3Local.model_rebuild()
+    SourceS3ProcessingLocal.model_rebuild()
 except NameError:
     pass
 try:
-    SourceS3UnstructuredDocumentFormat.model_rebuild()
+    SourceS3FormatUnstructuredDocumentFormat.model_rebuild()
 except NameError:
     pass
 try:
-    SourceS3ParquetFormat.model_rebuild()
+    SourceS3FormatParquetFormat.model_rebuild()
 except NameError:
     pass
 try:
-    SourceS3JsonlFormat.model_rebuild()
+    SourceS3FormatJsonlFormat.model_rebuild()
 except NameError:
     pass
 try:
-    SourceS3UserProvided.model_rebuild()
+    SourceS3CSVHeaderDefinitionUserProvided.model_rebuild()
 except NameError:
     pass
 try:
-    SourceS3Autogenerated.model_rebuild()
+    SourceS3CSVHeaderDefinitionAutogenerated.model_rebuild()
 except NameError:
     pass
 try:
-    SourceS3FromCSV.model_rebuild()
+    SourceS3CSVHeaderDefinitionFromCSV.model_rebuild()
 except NameError:
     pass
 try:
-    SourceS3CSVFormat.model_rebuild()
+    SourceS3FormatCSVFormat.model_rebuild()
 except NameError:
     pass
 try:
-    SourceS3AvroFormat.model_rebuild()
+    SourceS3FormatAvroFormat.model_rebuild()
 except NameError:
     pass
 try:

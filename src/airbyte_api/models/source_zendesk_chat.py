@@ -12,48 +12,50 @@ from typing import Optional, Union
 from typing_extensions import Annotated, NotRequired, TypeAliasType, TypedDict
 
 
-class SourceZendeskChatCredentialsAccessToken(str, Enum):
+class SourceZendeskChatAuthorizationMethodCredentialsCredentials(str, Enum):
     ACCESS_TOKEN = "access_token"
 
 
-class SourceZendeskChatAccessTokenTypedDict(TypedDict):
+class AuthorizationMethodAccessTokenTypedDict(TypedDict):
     access_token: str
     r"""The Access Token to make authenticated requests."""
-    credentials: SourceZendeskChatCredentialsAccessToken
+    credentials: SourceZendeskChatAuthorizationMethodCredentialsCredentials
 
 
-class SourceZendeskChatAccessToken(BaseModel):
+class AuthorizationMethodAccessToken(BaseModel):
     access_token: str
     r"""The Access Token to make authenticated requests."""
 
     CREDENTIALS: Annotated[
         Annotated[
-            SourceZendeskChatCredentialsAccessToken,
+            SourceZendeskChatAuthorizationMethodCredentialsCredentials,
             AfterValidator(
-                validate_const(SourceZendeskChatCredentialsAccessToken.ACCESS_TOKEN)
+                validate_const(
+                    SourceZendeskChatAuthorizationMethodCredentialsCredentials.ACCESS_TOKEN
+                )
             ),
         ],
         pydantic.Field(alias="credentials"),
-    ] = SourceZendeskChatCredentialsAccessToken.ACCESS_TOKEN
+    ] = SourceZendeskChatAuthorizationMethodCredentialsCredentials.ACCESS_TOKEN
 
 
-class SourceZendeskChatCredentialsOauth20(str, Enum):
+class SourceZendeskChatAuthorizationMethodCredentials(str, Enum):
     OAUTH2_0 = "oauth2.0"
 
 
-class SourceZendeskChatOAuth20TypedDict(TypedDict):
+class SourceZendeskChatAuthorizationMethodOAuth20TypedDict(TypedDict):
     access_token: NotRequired[str]
     r"""Access Token for making authenticated requests."""
     client_id: NotRequired[str]
     r"""The Client ID of your OAuth application"""
     client_secret: NotRequired[str]
     r"""The Client Secret of your OAuth application."""
-    credentials: SourceZendeskChatCredentialsOauth20
+    credentials: SourceZendeskChatAuthorizationMethodCredentials
     refresh_token: NotRequired[str]
     r"""Refresh Token to obtain new Access Token, when it's expired."""
 
 
-class SourceZendeskChatOAuth20(BaseModel):
+class SourceZendeskChatAuthorizationMethodOAuth20(BaseModel):
     access_token: Optional[str] = None
     r"""Access Token for making authenticated requests."""
 
@@ -65,13 +67,13 @@ class SourceZendeskChatOAuth20(BaseModel):
 
     CREDENTIALS: Annotated[
         Annotated[
-            SourceZendeskChatCredentialsOauth20,
+            SourceZendeskChatAuthorizationMethodCredentials,
             AfterValidator(
-                validate_const(SourceZendeskChatCredentialsOauth20.OAUTH2_0)
+                validate_const(SourceZendeskChatAuthorizationMethodCredentials.OAUTH2_0)
             ),
         ],
         pydantic.Field(alias="credentials"),
-    ] = SourceZendeskChatCredentialsOauth20.OAUTH2_0
+    ] = SourceZendeskChatAuthorizationMethodCredentials.OAUTH2_0
 
     refresh_token: Optional[str] = None
     r"""Refresh Token to obtain new Access Token, when it's expired."""
@@ -97,14 +99,17 @@ class SourceZendeskChatOAuth20(BaseModel):
 
 SourceZendeskChatAuthorizationMethodTypedDict = TypeAliasType(
     "SourceZendeskChatAuthorizationMethodTypedDict",
-    Union[SourceZendeskChatAccessTokenTypedDict, SourceZendeskChatOAuth20TypedDict],
+    Union[
+        AuthorizationMethodAccessTokenTypedDict,
+        SourceZendeskChatAuthorizationMethodOAuth20TypedDict,
+    ],
 )
 
 
 SourceZendeskChatAuthorizationMethod = Annotated[
     Union[
-        Annotated[SourceZendeskChatOAuth20, Tag("oauth2.0")],
-        Annotated[SourceZendeskChatAccessToken, Tag("access_token")],
+        Annotated[SourceZendeskChatAuthorizationMethodOAuth20, Tag("oauth2.0")],
+        Annotated[AuthorizationMethodAccessToken, Tag("access_token")],
     ],
     Discriminator(lambda m: get_discriminator(m, "credentials", "credentials")),
 ]
@@ -157,11 +162,11 @@ class SourceZendeskChat(BaseModel):
 
 
 try:
-    SourceZendeskChatAccessToken.model_rebuild()
+    AuthorizationMethodAccessToken.model_rebuild()
 except NameError:
     pass
 try:
-    SourceZendeskChatOAuth20.model_rebuild()
+    SourceZendeskChatAuthorizationMethodOAuth20.model_rebuild()
 except NameError:
     pass
 try:

@@ -11,18 +11,20 @@ from typing import Any, Dict, List, Optional, Union
 from typing_extensions import Annotated, NotRequired, TypeAliasType, TypedDict
 
 
-class SourceOracleEnterpriseConnectionTypeSid(str, Enum):
+class SourceOracleEnterpriseConnectByConnectionDataConnectionType(str, Enum):
     SID = "sid"
 
 
-class SourceOracleEnterpriseSystemIDSIDTypedDict(TypedDict):
+class ConnectBySystemIDSIDTypedDict(TypedDict):
     r"""Use Oracle System Identifier."""
 
     sid: str
-    connection_type: NotRequired[SourceOracleEnterpriseConnectionTypeSid]
+    connection_type: NotRequired[
+        SourceOracleEnterpriseConnectByConnectionDataConnectionType
+    ]
 
 
-class SourceOracleEnterpriseSystemIDSID(BaseModel):
+class ConnectBySystemIDSID(BaseModel):
     r"""Use Oracle System Identifier."""
 
     model_config = ConfigDict(
@@ -32,9 +34,9 @@ class SourceOracleEnterpriseSystemIDSID(BaseModel):
 
     sid: str
 
-    connection_type: Optional[SourceOracleEnterpriseConnectionTypeSid] = (
-        SourceOracleEnterpriseConnectionTypeSid.SID
-    )
+    connection_type: Optional[
+        SourceOracleEnterpriseConnectByConnectionDataConnectionType
+    ] = SourceOracleEnterpriseConnectByConnectionDataConnectionType.SID
 
     @property
     def additional_properties(self):
@@ -64,18 +66,18 @@ class SourceOracleEnterpriseSystemIDSID(BaseModel):
         return m
 
 
-class SourceOracleEnterpriseConnectionTypeServiceName(str, Enum):
+class SourceOracleEnterpriseConnectByConnectionType(str, Enum):
     SERVICE_NAME = "service_name"
 
 
-class SourceOracleEnterpriseServiceNameTypedDict(TypedDict):
+class ConnectByServiceNameTypedDict(TypedDict):
     r"""Use service name."""
 
     service_name: str
-    connection_type: NotRequired[SourceOracleEnterpriseConnectionTypeServiceName]
+    connection_type: NotRequired[SourceOracleEnterpriseConnectByConnectionType]
 
 
-class SourceOracleEnterpriseServiceName(BaseModel):
+class ConnectByServiceName(BaseModel):
     r"""Use service name."""
 
     model_config = ConfigDict(
@@ -85,8 +87,8 @@ class SourceOracleEnterpriseServiceName(BaseModel):
 
     service_name: str
 
-    connection_type: Optional[SourceOracleEnterpriseConnectionTypeServiceName] = (
-        SourceOracleEnterpriseConnectionTypeServiceName.SERVICE_NAME
+    connection_type: Optional[SourceOracleEnterpriseConnectByConnectionType] = (
+        SourceOracleEnterpriseConnectByConnectionType.SERVICE_NAME
     )
 
     @property
@@ -119,47 +121,45 @@ class SourceOracleEnterpriseServiceName(BaseModel):
 
 SourceOracleEnterpriseConnectByTypedDict = TypeAliasType(
     "SourceOracleEnterpriseConnectByTypedDict",
-    Union[
-        SourceOracleEnterpriseServiceNameTypedDict,
-        SourceOracleEnterpriseSystemIDSIDTypedDict,
-    ],
+    Union[ConnectByServiceNameTypedDict, ConnectBySystemIDSIDTypedDict],
 )
 r"""The scheme by which to establish a database connection."""
 
 
 SourceOracleEnterpriseConnectBy = TypeAliasType(
-    "SourceOracleEnterpriseConnectBy",
-    Union[SourceOracleEnterpriseServiceName, SourceOracleEnterpriseSystemIDSID],
+    "SourceOracleEnterpriseConnectBy", Union[ConnectByServiceName, ConnectBySystemIDSID]
 )
 r"""The scheme by which to establish a database connection."""
 
 
-class SourceOracleEnterpriseCursorMethodCdc(str, Enum):
+class SourceOracleEnterpriseUpdateMethodCursorCursorMethod(str, Enum):
     CDC = "cdc"
 
 
-class SourceOracleEnterpriseInvalidCDCPositionBehaviorAdvanced(str, Enum):
+class SourceOracleEnterpriseUpdateMethodInvalidCDCPositionBehaviorAdvanced(str, Enum):
     r"""Determines whether Airbyte should fail or re-sync data in case of an stale/invalid cursor value in the mined logs. If 'Fail sync' is chosen, a user will have to manually reset the connection before being able to continue syncing data. If 'Re-sync data' is chosen, Airbyte will automatically trigger a refresh but could lead to higher cloud costs and data loss."""
 
     FAIL_SYNC = "Fail sync"
     RE_SYNC_DATA = "Re-sync data"
 
 
-class SourceOracleEnterpriseReadChangesUsingChangeDataCaptureCDCTypedDict(TypedDict):
+class SourceOracleEnterpriseUpdateMethodReadChangesUsingChangeDataCaptureCDCTypedDict(
+    TypedDict
+):
     r"""<i>Recommended</i> - Incrementally reads new inserts, updates, and deletes using Oracle's <a href=\"https://docs.airbyte.com/integrations/enterprise-connectors/source-oracle#getting-started\"> change data capture feature</a>. This must be enabled on your database."""
 
-    cursor_method: NotRequired[SourceOracleEnterpriseCursorMethodCdc]
+    cursor_method: NotRequired[SourceOracleEnterpriseUpdateMethodCursorCursorMethod]
     debezium_shutdown_timeout_seconds: NotRequired[int]
     r"""The amount of time to allow the Debezium Engine to shut down, in seconds."""
     initial_load_timeout_hours: NotRequired[int]
     r"""The amount of time an initial load is allowed to continue for before catching up on CDC events."""
     invalid_cdc_cursor_position_behavior: NotRequired[
-        SourceOracleEnterpriseInvalidCDCPositionBehaviorAdvanced
+        SourceOracleEnterpriseUpdateMethodInvalidCDCPositionBehaviorAdvanced
     ]
     r"""Determines whether Airbyte should fail or re-sync data in case of an stale/invalid cursor value in the mined logs. If 'Fail sync' is chosen, a user will have to manually reset the connection before being able to continue syncing data. If 'Re-sync data' is chosen, Airbyte will automatically trigger a refresh but could lead to higher cloud costs and data loss."""
 
 
-class SourceOracleEnterpriseReadChangesUsingChangeDataCaptureCDC(BaseModel):
+class SourceOracleEnterpriseUpdateMethodReadChangesUsingChangeDataCaptureCDC(BaseModel):
     r"""<i>Recommended</i> - Incrementally reads new inserts, updates, and deletes using Oracle's <a href=\"https://docs.airbyte.com/integrations/enterprise-connectors/source-oracle#getting-started\"> change data capture feature</a>. This must be enabled on your database."""
 
     model_config = ConfigDict(
@@ -167,8 +167,8 @@ class SourceOracleEnterpriseReadChangesUsingChangeDataCaptureCDC(BaseModel):
     )
     __pydantic_extra__: Dict[str, Any] = pydantic.Field(init=False)
 
-    cursor_method: Optional[SourceOracleEnterpriseCursorMethodCdc] = (
-        SourceOracleEnterpriseCursorMethodCdc.CDC
+    cursor_method: Optional[SourceOracleEnterpriseUpdateMethodCursorCursorMethod] = (
+        SourceOracleEnterpriseUpdateMethodCursorCursorMethod.CDC
     )
 
     debezium_shutdown_timeout_seconds: Optional[int] = 60
@@ -178,8 +178,8 @@ class SourceOracleEnterpriseReadChangesUsingChangeDataCaptureCDC(BaseModel):
     r"""The amount of time an initial load is allowed to continue for before catching up on CDC events."""
 
     invalid_cdc_cursor_position_behavior: Optional[
-        SourceOracleEnterpriseInvalidCDCPositionBehaviorAdvanced
-    ] = SourceOracleEnterpriseInvalidCDCPositionBehaviorAdvanced.FAIL_SYNC
+        SourceOracleEnterpriseUpdateMethodInvalidCDCPositionBehaviorAdvanced
+    ] = SourceOracleEnterpriseUpdateMethodInvalidCDCPositionBehaviorAdvanced.FAIL_SYNC
     r"""Determines whether Airbyte should fail or re-sync data in case of an stale/invalid cursor value in the mined logs. If 'Fail sync' is chosen, a user will have to manually reset the connection before being able to continue syncing data. If 'Re-sync data' is chosen, Airbyte will automatically trigger a refresh but could lead to higher cloud costs and data loss."""
 
     @property
@@ -217,17 +217,19 @@ class SourceOracleEnterpriseReadChangesUsingChangeDataCaptureCDC(BaseModel):
         return m
 
 
-class SourceOracleEnterpriseCursorMethodUserDefined(str, Enum):
+class SourceOracleEnterpriseUpdateMethodCursorMethod(str, Enum):
     USER_DEFINED = "user_defined"
 
 
-class SourceOracleEnterpriseScanChangesWithUserDefinedCursorTypedDict(TypedDict):
+class SourceOracleEnterpriseUpdateMethodScanChangesWithUserDefinedCursorTypedDict(
+    TypedDict
+):
     r"""Incrementally detects new inserts and updates using the <a href=\"https://docs.airbyte.com/understanding-airbyte/connections/incremental-append/#user-defined-cursor\">cursor column</a> chosen when configuring a connection (e.g. created_at, updated_at)."""
 
-    cursor_method: NotRequired[SourceOracleEnterpriseCursorMethodUserDefined]
+    cursor_method: NotRequired[SourceOracleEnterpriseUpdateMethodCursorMethod]
 
 
-class SourceOracleEnterpriseScanChangesWithUserDefinedCursor(BaseModel):
+class SourceOracleEnterpriseUpdateMethodScanChangesWithUserDefinedCursor(BaseModel):
     r"""Incrementally detects new inserts and updates using the <a href=\"https://docs.airbyte.com/understanding-airbyte/connections/incremental-append/#user-defined-cursor\">cursor column</a> chosen when configuring a connection (e.g. created_at, updated_at)."""
 
     model_config = ConfigDict(
@@ -235,8 +237,8 @@ class SourceOracleEnterpriseScanChangesWithUserDefinedCursor(BaseModel):
     )
     __pydantic_extra__: Dict[str, Any] = pydantic.Field(init=False)
 
-    cursor_method: Optional[SourceOracleEnterpriseCursorMethodUserDefined] = (
-        SourceOracleEnterpriseCursorMethodUserDefined.USER_DEFINED
+    cursor_method: Optional[SourceOracleEnterpriseUpdateMethodCursorMethod] = (
+        SourceOracleEnterpriseUpdateMethodCursorMethod.USER_DEFINED
     )
 
     @property
@@ -270,8 +272,8 @@ class SourceOracleEnterpriseScanChangesWithUserDefinedCursor(BaseModel):
 SourceOracleEnterpriseUpdateMethodTypedDict = TypeAliasType(
     "SourceOracleEnterpriseUpdateMethodTypedDict",
     Union[
-        SourceOracleEnterpriseScanChangesWithUserDefinedCursorTypedDict,
-        SourceOracleEnterpriseReadChangesUsingChangeDataCaptureCDCTypedDict,
+        SourceOracleEnterpriseUpdateMethodScanChangesWithUserDefinedCursorTypedDict,
+        SourceOracleEnterpriseUpdateMethodReadChangesUsingChangeDataCaptureCDCTypedDict,
     ],
 )
 r"""Configures how data is extracted from the database."""
@@ -280,28 +282,28 @@ r"""Configures how data is extracted from the database."""
 SourceOracleEnterpriseUpdateMethod = TypeAliasType(
     "SourceOracleEnterpriseUpdateMethod",
     Union[
-        SourceOracleEnterpriseScanChangesWithUserDefinedCursor,
-        SourceOracleEnterpriseReadChangesUsingChangeDataCaptureCDC,
+        SourceOracleEnterpriseUpdateMethodScanChangesWithUserDefinedCursor,
+        SourceOracleEnterpriseUpdateMethodReadChangesUsingChangeDataCaptureCDC,
     ],
 )
 r"""Configures how data is extracted from the database."""
 
 
-class SourceOracleEnterpriseEncryptionMethodEncryptedVerifyCertificate(str, Enum):
+class SourceOracleEnterpriseEncryptionEncryption3EncryptionMethod(str, Enum):
     ENCRYPTED_VERIFY_CERTIFICATE = "encrypted_verify_certificate"
 
 
-class SourceOracleEnterpriseTLSEncryptedVerifyCertificateTypedDict(TypedDict):
+class SourceOracleEnterpriseEncryptionTLSEncryptedVerifyCertificateTypedDict(TypedDict):
     r"""Verify and use the certificate provided by the server."""
 
     ssl_certificate: str
     r"""Privacy Enhanced Mail (PEM) files are concatenated certificate containers frequently used in certificate installations."""
     encryption_method: NotRequired[
-        SourceOracleEnterpriseEncryptionMethodEncryptedVerifyCertificate
+        SourceOracleEnterpriseEncryptionEncryption3EncryptionMethod
     ]
 
 
-class SourceOracleEnterpriseTLSEncryptedVerifyCertificate(BaseModel):
+class SourceOracleEnterpriseEncryptionTLSEncryptedVerifyCertificate(BaseModel):
     r"""Verify and use the certificate provided by the server."""
 
     model_config = ConfigDict(
@@ -313,8 +315,8 @@ class SourceOracleEnterpriseTLSEncryptedVerifyCertificate(BaseModel):
     r"""Privacy Enhanced Mail (PEM) files are concatenated certificate containers frequently used in certificate installations."""
 
     encryption_method: Optional[
-        SourceOracleEnterpriseEncryptionMethodEncryptedVerifyCertificate
-    ] = SourceOracleEnterpriseEncryptionMethodEncryptedVerifyCertificate.ENCRYPTED_VERIFY_CERTIFICATE
+        SourceOracleEnterpriseEncryptionEncryption3EncryptionMethod
+    ] = SourceOracleEnterpriseEncryptionEncryption3EncryptionMethod.ENCRYPTED_VERIFY_CERTIFICATE
 
     @property
     def additional_properties(self):
@@ -344,7 +346,7 @@ class SourceOracleEnterpriseTLSEncryptedVerifyCertificate(BaseModel):
         return m
 
 
-class SourceOracleEnterpriseEncryptionAlgorithm(str, Enum):
+class SourceOracleEnterpriseEncryptionEncryptionAlgorithm(str, Enum):
     r"""This parameter defines what encryption algorithm is used."""
 
     AES256 = "AES256"
@@ -355,19 +357,23 @@ class SourceOracleEnterpriseEncryptionAlgorithm(str, Enum):
     DES = "DES"
 
 
-class SourceOracleEnterpriseEncryptionMethodClientNne(str, Enum):
+class SourceOracleEnterpriseEncryptionEncryptionEncryptionMethod(str, Enum):
     CLIENT_NNE = "client_nne"
 
 
-class SourceOracleEnterpriseNativeNetworkEncryptionNNETypedDict(TypedDict):
+class SourceOracleEnterpriseEncryptionNativeNetworkEncryptionNNETypedDict(TypedDict):
     r"""The native network encryption gives you the ability to encrypt database connections, without the configuration overhead of TCP/IP and SSL/TLS and without the need to open and listen on different ports."""
 
-    encryption_algorithm: NotRequired[SourceOracleEnterpriseEncryptionAlgorithm]
+    encryption_algorithm: NotRequired[
+        SourceOracleEnterpriseEncryptionEncryptionAlgorithm
+    ]
     r"""This parameter defines what encryption algorithm is used."""
-    encryption_method: NotRequired[SourceOracleEnterpriseEncryptionMethodClientNne]
+    encryption_method: NotRequired[
+        SourceOracleEnterpriseEncryptionEncryptionEncryptionMethod
+    ]
 
 
-class SourceOracleEnterpriseNativeNetworkEncryptionNNE(BaseModel):
+class SourceOracleEnterpriseEncryptionNativeNetworkEncryptionNNE(BaseModel):
     r"""The native network encryption gives you the ability to encrypt database connections, without the configuration overhead of TCP/IP and SSL/TLS and without the need to open and listen on different ports."""
 
     model_config = ConfigDict(
@@ -375,14 +381,14 @@ class SourceOracleEnterpriseNativeNetworkEncryptionNNE(BaseModel):
     )
     __pydantic_extra__: Dict[str, Any] = pydantic.Field(init=False)
 
-    encryption_algorithm: Optional[SourceOracleEnterpriseEncryptionAlgorithm] = (
-        SourceOracleEnterpriseEncryptionAlgorithm.AES256
-    )
+    encryption_algorithm: Optional[
+        SourceOracleEnterpriseEncryptionEncryptionAlgorithm
+    ] = SourceOracleEnterpriseEncryptionEncryptionAlgorithm.AES256
     r"""This parameter defines what encryption algorithm is used."""
 
-    encryption_method: Optional[SourceOracleEnterpriseEncryptionMethodClientNne] = (
-        SourceOracleEnterpriseEncryptionMethodClientNne.CLIENT_NNE
-    )
+    encryption_method: Optional[
+        SourceOracleEnterpriseEncryptionEncryptionEncryptionMethod
+    ] = SourceOracleEnterpriseEncryptionEncryptionEncryptionMethod.CLIENT_NNE
 
     @property
     def additional_properties(self):
@@ -412,17 +418,17 @@ class SourceOracleEnterpriseNativeNetworkEncryptionNNE(BaseModel):
         return m
 
 
-class SourceOracleEnterpriseEncryptionMethodUnencrypted(str, Enum):
+class SourceOracleEnterpriseEncryptionEncryptionMethod(str, Enum):
     UNENCRYPTED = "unencrypted"
 
 
-class SourceOracleEnterpriseUnencryptedTypedDict(TypedDict):
+class SourceOracleEnterpriseEncryptionUnencryptedTypedDict(TypedDict):
     r"""Data transfer will not be encrypted."""
 
-    encryption_method: NotRequired[SourceOracleEnterpriseEncryptionMethodUnencrypted]
+    encryption_method: NotRequired[SourceOracleEnterpriseEncryptionEncryptionMethod]
 
 
-class SourceOracleEnterpriseUnencrypted(BaseModel):
+class SourceOracleEnterpriseEncryptionUnencrypted(BaseModel):
     r"""Data transfer will not be encrypted."""
 
     model_config = ConfigDict(
@@ -430,8 +436,8 @@ class SourceOracleEnterpriseUnencrypted(BaseModel):
     )
     __pydantic_extra__: Dict[str, Any] = pydantic.Field(init=False)
 
-    encryption_method: Optional[SourceOracleEnterpriseEncryptionMethodUnencrypted] = (
-        SourceOracleEnterpriseEncryptionMethodUnencrypted.UNENCRYPTED
+    encryption_method: Optional[SourceOracleEnterpriseEncryptionEncryptionMethod] = (
+        SourceOracleEnterpriseEncryptionEncryptionMethod.UNENCRYPTED
     )
 
     @property
@@ -465,9 +471,9 @@ class SourceOracleEnterpriseUnencrypted(BaseModel):
 SourceOracleEnterpriseEncryptionTypedDict = TypeAliasType(
     "SourceOracleEnterpriseEncryptionTypedDict",
     Union[
-        SourceOracleEnterpriseUnencryptedTypedDict,
-        SourceOracleEnterpriseNativeNetworkEncryptionNNETypedDict,
-        SourceOracleEnterpriseTLSEncryptedVerifyCertificateTypedDict,
+        SourceOracleEnterpriseEncryptionUnencryptedTypedDict,
+        SourceOracleEnterpriseEncryptionNativeNetworkEncryptionNNETypedDict,
+        SourceOracleEnterpriseEncryptionTLSEncryptedVerifyCertificateTypedDict,
     ],
 )
 r"""The encryption method with is used when communicating with the database."""
@@ -476,9 +482,9 @@ r"""The encryption method with is used when communicating with the database."""
 SourceOracleEnterpriseEncryption = TypeAliasType(
     "SourceOracleEnterpriseEncryption",
     Union[
-        SourceOracleEnterpriseUnencrypted,
-        SourceOracleEnterpriseNativeNetworkEncryptionNNE,
-        SourceOracleEnterpriseTLSEncryptedVerifyCertificate,
+        SourceOracleEnterpriseEncryptionUnencrypted,
+        SourceOracleEnterpriseEncryptionNativeNetworkEncryptionNNE,
+        SourceOracleEnterpriseEncryptionTLSEncryptedVerifyCertificate,
     ],
 )
 r"""The encryption method with is used when communicating with the database."""
@@ -488,7 +494,7 @@ class OracleEnterprise(str, Enum):
     ORACLE_ENTERPRISE = "oracle-enterprise"
 
 
-class SourceOracleEnterpriseTableFilterTypedDict(TypedDict):
+class TableFilterTypedDict(TypedDict):
     r"""Inclusion filter configuration for table selection per schema."""
 
     schema_name: str
@@ -497,7 +503,7 @@ class SourceOracleEnterpriseTableFilterTypedDict(TypedDict):
     r"""List of table name patterns to include from this schema. Should be a SQL LIKE pattern."""
 
 
-class SourceOracleEnterpriseTableFilter(BaseModel):
+class TableFilter(BaseModel):
     r"""Inclusion filter configuration for table selection per schema."""
 
     model_config = ConfigDict(
@@ -520,11 +526,11 @@ class SourceOracleEnterpriseTableFilter(BaseModel):
         self.__pydantic_extra__ = value  # pyright: ignore[reportIncompatibleVariableOverride]
 
 
-class SourceOracleEnterpriseTunnelMethodSSHPasswordAuth(str, Enum):
+class SourceOracleEnterpriseSSHTunnelMethodTunnelMethod3TunnelMethod(str, Enum):
     SSH_PASSWORD_AUTH = "SSH_PASSWORD_AUTH"
 
 
-class SourceOracleEnterprisePasswordAuthenticationTypedDict(TypedDict):
+class SourceOracleEnterpriseSSHTunnelMethodPasswordAuthenticationTypedDict(TypedDict):
     r"""Connect through a jump server tunnel host using username and password authentication"""
 
     tunnel_host: str
@@ -533,12 +539,14 @@ class SourceOracleEnterprisePasswordAuthenticationTypedDict(TypedDict):
     r"""OS-level username for logging into the jump server host"""
     tunnel_user_password: str
     r"""OS-level password for logging into the jump server host"""
-    tunnel_method: NotRequired[SourceOracleEnterpriseTunnelMethodSSHPasswordAuth]
+    tunnel_method: NotRequired[
+        SourceOracleEnterpriseSSHTunnelMethodTunnelMethod3TunnelMethod
+    ]
     tunnel_port: NotRequired[int]
     r"""Port on the proxy/jump server that accepts inbound ssh connections."""
 
 
-class SourceOracleEnterprisePasswordAuthentication(BaseModel):
+class SourceOracleEnterpriseSSHTunnelMethodPasswordAuthentication(BaseModel):
     r"""Connect through a jump server tunnel host using username and password authentication"""
 
     model_config = ConfigDict(
@@ -555,9 +563,9 @@ class SourceOracleEnterprisePasswordAuthentication(BaseModel):
     tunnel_user_password: str
     r"""OS-level password for logging into the jump server host"""
 
-    tunnel_method: Optional[SourceOracleEnterpriseTunnelMethodSSHPasswordAuth] = (
-        SourceOracleEnterpriseTunnelMethodSSHPasswordAuth.SSH_PASSWORD_AUTH
-    )
+    tunnel_method: Optional[
+        SourceOracleEnterpriseSSHTunnelMethodTunnelMethod3TunnelMethod
+    ] = SourceOracleEnterpriseSSHTunnelMethodTunnelMethod3TunnelMethod.SSH_PASSWORD_AUTH
 
     tunnel_port: Optional[int] = 22
     r"""Port on the proxy/jump server that accepts inbound ssh connections."""
@@ -590,11 +598,11 @@ class SourceOracleEnterprisePasswordAuthentication(BaseModel):
         return m
 
 
-class SourceOracleEnterpriseTunnelMethodSSHKeyAuth(str, Enum):
+class SourceOracleEnterpriseSSHTunnelMethodTunnelMethodTunnelMethod(str, Enum):
     SSH_KEY_AUTH = "SSH_KEY_AUTH"
 
 
-class SourceOracleEnterpriseSSHKeyAuthenticationTypedDict(TypedDict):
+class SourceOracleEnterpriseSSHTunnelMethodSSHKeyAuthenticationTypedDict(TypedDict):
     r"""Connect through a jump server tunnel host using username and ssh key"""
 
     ssh_key: str
@@ -603,12 +611,14 @@ class SourceOracleEnterpriseSSHKeyAuthenticationTypedDict(TypedDict):
     r"""Hostname of the jump server host that allows inbound ssh tunnel."""
     tunnel_user: str
     r"""OS-level username for logging into the jump server host"""
-    tunnel_method: NotRequired[SourceOracleEnterpriseTunnelMethodSSHKeyAuth]
+    tunnel_method: NotRequired[
+        SourceOracleEnterpriseSSHTunnelMethodTunnelMethodTunnelMethod
+    ]
     tunnel_port: NotRequired[int]
     r"""Port on the proxy/jump server that accepts inbound ssh connections."""
 
 
-class SourceOracleEnterpriseSSHKeyAuthentication(BaseModel):
+class SourceOracleEnterpriseSSHTunnelMethodSSHKeyAuthentication(BaseModel):
     r"""Connect through a jump server tunnel host using username and ssh key"""
 
     model_config = ConfigDict(
@@ -625,9 +635,9 @@ class SourceOracleEnterpriseSSHKeyAuthentication(BaseModel):
     tunnel_user: str
     r"""OS-level username for logging into the jump server host"""
 
-    tunnel_method: Optional[SourceOracleEnterpriseTunnelMethodSSHKeyAuth] = (
-        SourceOracleEnterpriseTunnelMethodSSHKeyAuth.SSH_KEY_AUTH
-    )
+    tunnel_method: Optional[
+        SourceOracleEnterpriseSSHTunnelMethodTunnelMethodTunnelMethod
+    ] = SourceOracleEnterpriseSSHTunnelMethodTunnelMethodTunnelMethod.SSH_KEY_AUTH
 
     tunnel_port: Optional[int] = 22
     r"""Port on the proxy/jump server that accepts inbound ssh connections."""
@@ -660,17 +670,17 @@ class SourceOracleEnterpriseSSHKeyAuthentication(BaseModel):
         return m
 
 
-class SourceOracleEnterpriseTunnelMethodNoTunnel(str, Enum):
+class SourceOracleEnterpriseSSHTunnelMethodTunnelMethod(str, Enum):
     NO_TUNNEL = "NO_TUNNEL"
 
 
-class SourceOracleEnterpriseNoTunnelTypedDict(TypedDict):
+class SourceOracleEnterpriseSSHTunnelMethodNoTunnelTypedDict(TypedDict):
     r"""No ssh tunnel needed to connect to database"""
 
-    tunnel_method: NotRequired[SourceOracleEnterpriseTunnelMethodNoTunnel]
+    tunnel_method: NotRequired[SourceOracleEnterpriseSSHTunnelMethodTunnelMethod]
 
 
-class SourceOracleEnterpriseNoTunnel(BaseModel):
+class SourceOracleEnterpriseSSHTunnelMethodNoTunnel(BaseModel):
     r"""No ssh tunnel needed to connect to database"""
 
     model_config = ConfigDict(
@@ -678,8 +688,8 @@ class SourceOracleEnterpriseNoTunnel(BaseModel):
     )
     __pydantic_extra__: Dict[str, Any] = pydantic.Field(init=False)
 
-    tunnel_method: Optional[SourceOracleEnterpriseTunnelMethodNoTunnel] = (
-        SourceOracleEnterpriseTunnelMethodNoTunnel.NO_TUNNEL
+    tunnel_method: Optional[SourceOracleEnterpriseSSHTunnelMethodTunnelMethod] = (
+        SourceOracleEnterpriseSSHTunnelMethodTunnelMethod.NO_TUNNEL
     )
 
     @property
@@ -713,9 +723,9 @@ class SourceOracleEnterpriseNoTunnel(BaseModel):
 SourceOracleEnterpriseSSHTunnelMethodTypedDict = TypeAliasType(
     "SourceOracleEnterpriseSSHTunnelMethodTypedDict",
     Union[
-        SourceOracleEnterpriseNoTunnelTypedDict,
-        SourceOracleEnterpriseSSHKeyAuthenticationTypedDict,
-        SourceOracleEnterprisePasswordAuthenticationTypedDict,
+        SourceOracleEnterpriseSSHTunnelMethodNoTunnelTypedDict,
+        SourceOracleEnterpriseSSHTunnelMethodSSHKeyAuthenticationTypedDict,
+        SourceOracleEnterpriseSSHTunnelMethodPasswordAuthenticationTypedDict,
     ],
 )
 r"""Whether to initiate an SSH tunnel before connecting to the database, and if so, which kind of authentication to use."""
@@ -724,9 +734,9 @@ r"""Whether to initiate an SSH tunnel before connecting to the database, and if 
 SourceOracleEnterpriseSSHTunnelMethod = TypeAliasType(
     "SourceOracleEnterpriseSSHTunnelMethod",
     Union[
-        SourceOracleEnterpriseNoTunnel,
-        SourceOracleEnterpriseSSHKeyAuthentication,
-        SourceOracleEnterprisePasswordAuthentication,
+        SourceOracleEnterpriseSSHTunnelMethodNoTunnel,
+        SourceOracleEnterpriseSSHTunnelMethodSSHKeyAuthentication,
+        SourceOracleEnterpriseSSHTunnelMethodPasswordAuthentication,
     ],
 )
 r"""Whether to initiate an SSH tunnel before connecting to the database, and if so, which kind of authentication to use."""
@@ -764,7 +774,7 @@ class SourceOracleEnterpriseTypedDict(TypedDict):
     schemas: NotRequired[List[str]]
     r"""The list of schemas to sync from. Defaults to user. Case sensitive."""
     source_type: OracleEnterprise
-    table_filters: NotRequired[List[SourceOracleEnterpriseTableFilterTypedDict]]
+    table_filters: NotRequired[List[TableFilterTypedDict]]
     r"""Inclusion filters for table selection per schema. If no filters are specified for a schema, all tables in that schema will be synced."""
 
 
@@ -820,7 +830,7 @@ class SourceOracleEnterprise(BaseModel):
         pydantic.Field(alias="sourceType"),
     ] = OracleEnterprise.ORACLE_ENTERPRISE
 
-    table_filters: Optional[List[SourceOracleEnterpriseTableFilter]] = None
+    table_filters: Optional[List[TableFilter]] = None
     r"""Inclusion filters for table selection per schema. If no filters are specified for a schema, all tables in that schema will be synced."""
 
     @model_serializer(mode="wrap")

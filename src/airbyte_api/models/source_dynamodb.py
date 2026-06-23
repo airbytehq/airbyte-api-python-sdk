@@ -17,12 +17,12 @@ from typing import Any, Dict, Optional, Union
 from typing_extensions import Annotated, NotRequired, TypeAliasType, TypedDict
 
 
-class AuthTypeRole(str, Enum):
+class SourceDynamodbCredentialsAuthType(str, Enum):
     ROLE = "Role"
 
 
 class RoleBasedAuthenticationTypedDict(TypedDict):
-    auth_type: AuthTypeRole
+    auth_type: SourceDynamodbCredentialsAuthType
 
 
 class RoleBasedAuthentication(BaseModel):
@@ -33,10 +33,11 @@ class RoleBasedAuthentication(BaseModel):
 
     AUTH_TYPE: Annotated[
         Annotated[
-            Optional[AuthTypeRole], AfterValidator(validate_const(AuthTypeRole.ROLE))
+            Optional[SourceDynamodbCredentialsAuthType],
+            AfterValidator(validate_const(SourceDynamodbCredentialsAuthType.ROLE)),
         ],
         pydantic.Field(alias="auth_type"),
-    ] = AuthTypeRole.ROLE
+    ] = SourceDynamodbCredentialsAuthType.ROLE
 
     @property
     def additional_properties(self):
@@ -66,7 +67,7 @@ class RoleBasedAuthentication(BaseModel):
         return m
 
 
-class AuthTypeUser(str, Enum):
+class CredentialsAuthType(str, Enum):
     USER = "User"
 
 
@@ -75,7 +76,7 @@ class AuthenticateViaAccessKeysTypedDict(TypedDict):
     r"""The access key id to access Dynamodb. Airbyte requires read permissions to the database"""
     secret_access_key: str
     r"""The corresponding secret to the access key id."""
-    auth_type: AuthTypeUser
+    auth_type: CredentialsAuthType
 
 
 class AuthenticateViaAccessKeys(BaseModel):
@@ -92,10 +93,11 @@ class AuthenticateViaAccessKeys(BaseModel):
 
     AUTH_TYPE: Annotated[
         Annotated[
-            Optional[AuthTypeUser], AfterValidator(validate_const(AuthTypeUser.USER))
+            Optional[CredentialsAuthType],
+            AfterValidator(validate_const(CredentialsAuthType.USER)),
         ],
         pydantic.Field(alias="auth_type"),
-    ] = AuthTypeUser.USER
+    ] = CredentialsAuthType.USER
 
     @property
     def additional_properties(self):

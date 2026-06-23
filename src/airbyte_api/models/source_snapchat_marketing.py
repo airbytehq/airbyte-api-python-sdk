@@ -19,7 +19,7 @@ class ActionReportTime(str, Enum):
     IMPRESSION = "impression"
 
 
-class SnapchatMarketingEnum(str, Enum):
+class SourceSnapchatMarketingSnapchatMarketing(str, Enum):
     SNAPCHAT_MARKETING = "snapchat-marketing"
 
 
@@ -56,7 +56,7 @@ class SourceSnapchatMarketingTypedDict(TypedDict):
     r"""Date in the format 2017-01-25. Any data after this date will not be replicated."""
     organization_ids: NotRequired[List[Any]]
     r"""The IDs of the organizations to retrieve"""
-    source_type: SnapchatMarketingEnum
+    source_type: SourceSnapchatMarketingSnapchatMarketing
     start_date: NotRequired[date]
     r"""Date in the format 2022-01-01. Any data before this date will not be replicated."""
     swipe_up_attribution_window: NotRequired[SwipeUpAttributionWindow]
@@ -89,11 +89,15 @@ class SourceSnapchatMarketing(BaseModel):
 
     SOURCE_TYPE: Annotated[
         Annotated[
-            SnapchatMarketingEnum,
-            AfterValidator(validate_const(SnapchatMarketingEnum.SNAPCHAT_MARKETING)),
+            SourceSnapchatMarketingSnapchatMarketing,
+            AfterValidator(
+                validate_const(
+                    SourceSnapchatMarketingSnapchatMarketing.SNAPCHAT_MARKETING
+                )
+            ),
         ],
         pydantic.Field(alias="sourceType"),
-    ] = SnapchatMarketingEnum.SNAPCHAT_MARKETING
+    ] = SourceSnapchatMarketingSnapchatMarketing.SNAPCHAT_MARKETING
 
     start_date: Optional[date] = date.fromisoformat("2022-01-01")
     r"""Date in the format 2022-01-01. Any data before this date will not be replicated."""

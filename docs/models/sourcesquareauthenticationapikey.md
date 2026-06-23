@@ -1,0 +1,9 @@
+# SourceSquareAuthenticationAPIKey
+
+
+## Fields
+
+| Field                                                                                                              | Type                                                                                                               | Required                                                                                                           | Description                                                                                                        |
+| ------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------ |
+| `api_key`                                                                                                          | *str*                                                                                                              | :heavy_check_mark:                                                                                                 | The API key for a Square application                                                                               |
+| `auth_type`                                                                                                        | [models.SourceSquareAuthenticationCredentialsAuthType](../models/sourcesquareauthenticationcredentialsauthtype.md) | :heavy_check_mark:                                                                                                 | N/A                                                                                                                |

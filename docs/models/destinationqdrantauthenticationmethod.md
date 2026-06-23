@@ -11,9 +11,9 @@ Method to authenticate with the Qdrant Instance
 value: models.APIKeyAuth = /* values here */
 ```
 
-### `models.DestinationQdrantNoAuth`
+### `models.AuthenticationMethodNoAuth`
 
 ```python
-value: models.DestinationQdrantNoAuth = /* values here */
+value: models.AuthenticationMethodNoAuth = /* values here */
 ```
 

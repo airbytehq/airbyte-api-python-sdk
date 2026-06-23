@@ -5,21 +5,21 @@ Split text fields into chunks based on the specified method.
 
 ## Supported Types
 
-### `models.DestinationQdrantBySeparator`
+### `models.DestinationQdrantTextSplitterBySeparator`
 
 ```python
-value: models.DestinationQdrantBySeparator = /* values here */
+value: models.DestinationQdrantTextSplitterBySeparator = /* values here */
 ```
 
-### `models.DestinationQdrantByMarkdownHeader`
+### `models.DestinationQdrantTextSplitterByMarkdownHeader`
 
 ```python
-value: models.DestinationQdrantByMarkdownHeader = /* values here */
+value: models.DestinationQdrantTextSplitterByMarkdownHeader = /* values here */
 ```
 
-### `models.DestinationQdrantByProgrammingLanguage`
+### `models.DestinationQdrantTextSplitterByProgrammingLanguage`
 
 ```python
-value: models.DestinationQdrantByProgrammingLanguage = /* values here */
+value: models.DestinationQdrantTextSplitterByProgrammingLanguage = /* values here */
 ```
 

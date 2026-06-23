@@ -11,21 +11,21 @@ from typing import Any, Dict, Optional, Union
 from typing_extensions import Annotated, NotRequired, TypeAliasType, TypedDict
 
 
-class SourceElasticsearchMethodBasic(str, Enum):
+class SourceElasticsearchAuthenticationMethodAuthenticationMethod3Method(str, Enum):
     BASIC = "basic"
 
 
-class SourceElasticsearchUsernamePasswordTypedDict(TypedDict):
+class AuthenticationMethodUsernamePasswordTypedDict(TypedDict):
     r"""Basic auth header with a username and password"""
 
     password: str
     r"""Basic auth password to access a secure Elasticsearch server"""
     username: str
     r"""Basic auth username to access a secure Elasticsearch server"""
-    method: SourceElasticsearchMethodBasic
+    method: SourceElasticsearchAuthenticationMethodAuthenticationMethod3Method
 
 
-class SourceElasticsearchUsernamePassword(BaseModel):
+class AuthenticationMethodUsernamePassword(BaseModel):
     r"""Basic auth header with a username and password"""
 
     model_config = ConfigDict(
@@ -41,11 +41,15 @@ class SourceElasticsearchUsernamePassword(BaseModel):
 
     METHOD: Annotated[
         Annotated[
-            SourceElasticsearchMethodBasic,
-            AfterValidator(validate_const(SourceElasticsearchMethodBasic.BASIC)),
+            SourceElasticsearchAuthenticationMethodAuthenticationMethod3Method,
+            AfterValidator(
+                validate_const(
+                    SourceElasticsearchAuthenticationMethodAuthenticationMethod3Method.BASIC
+                )
+            ),
         ],
         pydantic.Field(alias="method"),
-    ] = SourceElasticsearchMethodBasic.BASIC
+    ] = SourceElasticsearchAuthenticationMethodAuthenticationMethod3Method.BASIC
 
     @property
     def additional_properties(self):
@@ -56,21 +60,21 @@ class SourceElasticsearchUsernamePassword(BaseModel):
         self.__pydantic_extra__ = value  # pyright: ignore[reportIncompatibleVariableOverride]
 
 
-class SourceElasticsearchMethodSecret(str, Enum):
+class SourceElasticsearchAuthenticationMethodAuthenticationMethodMethod(str, Enum):
     SECRET = "secret"
 
 
-class SourceElasticsearchAPIKeySecretTypedDict(TypedDict):
+class AuthenticationMethodAPIKeySecretTypedDict(TypedDict):
     r"""Use a api key and secret combination to authenticate"""
 
     api_key_id: str
     r"""The Key ID to used when accessing an enterprise Elasticsearch instance."""
     api_key_secret: str
     r"""The secret associated with the API Key ID."""
-    method: SourceElasticsearchMethodSecret
+    method: SourceElasticsearchAuthenticationMethodAuthenticationMethodMethod
 
 
-class SourceElasticsearchAPIKeySecret(BaseModel):
+class AuthenticationMethodAPIKeySecret(BaseModel):
     r"""Use a api key and secret combination to authenticate"""
 
     model_config = ConfigDict(
@@ -86,11 +90,15 @@ class SourceElasticsearchAPIKeySecret(BaseModel):
 
     METHOD: Annotated[
         Annotated[
-            SourceElasticsearchMethodSecret,
-            AfterValidator(validate_const(SourceElasticsearchMethodSecret.SECRET)),
+            SourceElasticsearchAuthenticationMethodAuthenticationMethodMethod,
+            AfterValidator(
+                validate_const(
+                    SourceElasticsearchAuthenticationMethodAuthenticationMethodMethod.SECRET
+                )
+            ),
         ],
         pydantic.Field(alias="method"),
-    ] = SourceElasticsearchMethodSecret.SECRET
+    ] = SourceElasticsearchAuthenticationMethodAuthenticationMethodMethod.SECRET
 
     @property
     def additional_properties(self):
@@ -101,17 +109,17 @@ class SourceElasticsearchAPIKeySecret(BaseModel):
         self.__pydantic_extra__ = value  # pyright: ignore[reportIncompatibleVariableOverride]
 
 
-class SourceElasticsearchMethodNone(str, Enum):
+class SourceElasticsearchAuthenticationMethodMethod(str, Enum):
     NONE = "none"
 
 
-class SourceElasticsearchNoneTypedDict(TypedDict):
+class SourceElasticsearchAuthenticationMethodNoneTypedDict(TypedDict):
     r"""No authentication will be used"""
 
-    method: SourceElasticsearchMethodNone
+    method: SourceElasticsearchAuthenticationMethodMethod
 
 
-class SourceElasticsearchNone(BaseModel):
+class SourceElasticsearchAuthenticationMethodNone(BaseModel):
     r"""No authentication will be used"""
 
     model_config = ConfigDict(
@@ -121,11 +129,13 @@ class SourceElasticsearchNone(BaseModel):
 
     METHOD: Annotated[
         Annotated[
-            SourceElasticsearchMethodNone,
-            AfterValidator(validate_const(SourceElasticsearchMethodNone.NONE)),
+            SourceElasticsearchAuthenticationMethodMethod,
+            AfterValidator(
+                validate_const(SourceElasticsearchAuthenticationMethodMethod.NONE)
+            ),
         ],
         pydantic.Field(alias="method"),
-    ] = SourceElasticsearchMethodNone.NONE
+    ] = SourceElasticsearchAuthenticationMethodMethod.NONE
 
     @property
     def additional_properties(self):
@@ -139,9 +149,9 @@ class SourceElasticsearchNone(BaseModel):
 SourceElasticsearchAuthenticationMethodTypedDict = TypeAliasType(
     "SourceElasticsearchAuthenticationMethodTypedDict",
     Union[
-        SourceElasticsearchNoneTypedDict,
-        SourceElasticsearchAPIKeySecretTypedDict,
-        SourceElasticsearchUsernamePasswordTypedDict,
+        SourceElasticsearchAuthenticationMethodNoneTypedDict,
+        AuthenticationMethodAPIKeySecretTypedDict,
+        AuthenticationMethodUsernamePasswordTypedDict,
     ],
 )
 r"""The type of authentication to be used"""
@@ -149,9 +159,9 @@ r"""The type of authentication to be used"""
 
 SourceElasticsearchAuthenticationMethod = Annotated[
     Union[
-        Annotated[SourceElasticsearchNone, Tag("none")],
-        Annotated[SourceElasticsearchAPIKeySecret, Tag("secret")],
-        Annotated[SourceElasticsearchUsernamePassword, Tag("basic")],
+        Annotated[SourceElasticsearchAuthenticationMethodNone, Tag("none")],
+        Annotated[AuthenticationMethodAPIKeySecret, Tag("secret")],
+        Annotated[AuthenticationMethodUsernamePassword, Tag("basic")],
     ],
     Discriminator(lambda m: get_discriminator(m, "method", "method")),
 ]
@@ -208,15 +218,15 @@ class SourceElasticsearch(BaseModel):
 
 
 try:
-    SourceElasticsearchUsernamePassword.model_rebuild()
+    AuthenticationMethodUsernamePassword.model_rebuild()
 except NameError:
     pass
 try:
-    SourceElasticsearchAPIKeySecret.model_rebuild()
+    AuthenticationMethodAPIKeySecret.model_rebuild()
 except NameError:
     pass
 try:
-    SourceElasticsearchNone.model_rebuild()
+    SourceElasticsearchAuthenticationMethodNone.model_rebuild()
 except NameError:
     pass
 try:

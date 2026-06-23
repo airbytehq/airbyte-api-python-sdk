@@ -12,7 +12,7 @@ from typing import List, Optional
 from typing_extensions import Annotated, NotRequired, TypedDict
 
 
-class SourceGoogleAdsGoogleCredentialsTypedDict(TypedDict):
+class GoogleCredentialsTypedDict(TypedDict):
     client_id: str
     r"""The Client ID of your Google Ads developer application. For detailed instructions on finding this value, refer to our <a href=\"https://docs.airbyte.com/integrations/sources/google-ads#setup-guide\">documentation</a>."""
     client_secret: str
@@ -25,7 +25,7 @@ class SourceGoogleAdsGoogleCredentialsTypedDict(TypedDict):
     r"""The Access Token for making authenticated requests. For detailed instructions on finding this value, refer to our <a href=\"https://docs.airbyte.com/integrations/sources/google-ads#setup-guide\">documentation</a>."""
 
 
-class SourceGoogleAdsGoogleCredentials(BaseModel):
+class GoogleCredentials(BaseModel):
     client_id: str
     r"""The Client ID of your Google Ads developer application. For detailed instructions on finding this value, refer to our <a href=\"https://docs.airbyte.com/integrations/sources/google-ads#setup-guide\">documentation</a>."""
 
@@ -83,12 +83,12 @@ class CustomerStatus(str, Enum):
     CLOSED = "CLOSED"
 
 
-class GoogleAdsEnum(str, Enum):
+class SourceGoogleAdsGoogleAds(str, Enum):
     GOOGLE_ADS = "google-ads"
 
 
 class SourceGoogleAdsTypedDict(TypedDict):
-    credentials: SourceGoogleAdsGoogleCredentialsTypedDict
+    credentials: GoogleCredentialsTypedDict
     conversion_window_days: NotRequired[int]
     r"""A conversion window is the number of days after an ad interaction (such as an ad click or video view) during which a conversion, such as a purchase, is recorded in Google Ads. For more information, see <a href=\"https://support.google.com/google-ads/answer/3123169?hl=en\">Google's documentation</a>."""
     custom_queries_array: NotRequired[List[CustomQueriesArrayTypedDict]]
@@ -98,13 +98,13 @@ class SourceGoogleAdsTypedDict(TypedDict):
     r"""A list of customer statuses to filter on. For detailed info about what each status mean refer to Google Ads <a href=\"https://developers.google.com/google-ads/api/reference/rpc/v15/CustomerStatusEnum.CustomerStatus\">documentation</a>."""
     end_date: NotRequired[date]
     r"""UTC date in the format YYYY-MM-DD. Any data after this date will not be replicated. (Default value of today is used if not set)"""
-    source_type: GoogleAdsEnum
+    source_type: SourceGoogleAdsGoogleAds
     start_date: NotRequired[date]
     r"""UTC date in the format YYYY-MM-DD. Any data before this date will not be replicated. (Default value of two years ago is used if not set)"""
 
 
 class SourceGoogleAds(BaseModel):
-    credentials: SourceGoogleAdsGoogleCredentials
+    credentials: GoogleCredentials
 
     conversion_window_days: Optional[int] = 14
     r"""A conversion window is the number of days after an ad interaction (such as an ad click or video view) during which a conversion, such as a purchase, is recorded in Google Ads. For more information, see <a href=\"https://support.google.com/google-ads/answer/3123169?hl=en\">Google's documentation</a>."""
@@ -122,10 +122,11 @@ class SourceGoogleAds(BaseModel):
 
     SOURCE_TYPE: Annotated[
         Annotated[
-            GoogleAdsEnum, AfterValidator(validate_const(GoogleAdsEnum.GOOGLE_ADS))
+            SourceGoogleAdsGoogleAds,
+            AfterValidator(validate_const(SourceGoogleAdsGoogleAds.GOOGLE_ADS)),
         ],
         pydantic.Field(alias="sourceType"),
-    ] = GoogleAdsEnum.GOOGLE_ADS
+    ] = SourceGoogleAdsGoogleAds.GOOGLE_ADS
 
     start_date: Optional[date] = None
     r"""UTC date in the format YYYY-MM-DD. Any data before this date will not be replicated. (Default value of two years ago is used if not set)"""

@@ -5,9 +5,9 @@ Configures how data is extracted from the database.
 
 ## Supported Types
 
-### `models.SourceNetsuiteEnterpriseScanChangesWithUserDefinedCursor`
+### `models.SourceNetsuiteEnterpriseUpdateMethodScanChangesWithUserDefinedCursor`
 
 ```python
-value: models.SourceNetsuiteEnterpriseScanChangesWithUserDefinedCursor = /* values here */
+value: models.SourceNetsuiteEnterpriseUpdateMethodScanChangesWithUserDefinedCursor = /* values here */
 ```
 

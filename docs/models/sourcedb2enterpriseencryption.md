@@ -5,15 +5,15 @@ The encryption method with is used when communicating with the database.
 
 ## Supported Types
 
-### `models.SourceDb2EnterpriseUnencrypted`
+### `models.SourceDb2EnterpriseEncryptionUnencrypted`
 
 ```python
-value: models.SourceDb2EnterpriseUnencrypted = /* values here */
+value: models.SourceDb2EnterpriseEncryptionUnencrypted = /* values here */
 ```
 
-### `models.SourceDb2EnterpriseTLSEncryptedVerifyCertificate`
+### `models.EncryptionTLSEncryptedVerifyCertificate`
 
 ```python
-value: models.SourceDb2EnterpriseTLSEncryptedVerifyCertificate = /* values here */
+value: models.EncryptionTLSEncryptedVerifyCertificate = /* values here */
 ```
 

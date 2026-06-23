@@ -5,21 +5,21 @@ Split text fields into chunks based on the specified method.
 
 ## Supported Types
 
-### `models.DestinationPineconeBySeparator`
+### `models.DestinationPineconeTextSplitterBySeparator`
 
 ```python
-value: models.DestinationPineconeBySeparator = /* values here */
+value: models.DestinationPineconeTextSplitterBySeparator = /* values here */
 ```
 
-### `models.DestinationPineconeByMarkdownHeader`
+### `models.DestinationPineconeTextSplitterByMarkdownHeader`
 
 ```python
-value: models.DestinationPineconeByMarkdownHeader = /* values here */
+value: models.DestinationPineconeTextSplitterByMarkdownHeader = /* values here */
 ```
 
-### `models.DestinationPineconeByProgrammingLanguage`
+### `models.DestinationPineconeTextSplitterByProgrammingLanguage`
 
 ```python
-value: models.DestinationPineconeByProgrammingLanguage = /* values here */
+value: models.DestinationPineconeTextSplitterByProgrammingLanguage = /* values here */
 ```
 

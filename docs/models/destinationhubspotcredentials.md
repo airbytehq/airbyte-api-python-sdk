@@ -5,9 +5,9 @@ Choose how to authenticate to HubSpot.
 
 ## Supported Types
 
-### `models.DestinationHubspotOAuth`
+### `models.OAuth`
 
 ```python
-value: models.DestinationHubspotOAuth = /* values here */
+value: models.OAuth = /* values here */
 ```
 

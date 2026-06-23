@@ -5,15 +5,15 @@ Configures how data is extracted from the database.
 
 ## Supported Types
 
-### `models.SourceOracleEnterpriseScanChangesWithUserDefinedCursor`
+### `models.SourceOracleEnterpriseUpdateMethodScanChangesWithUserDefinedCursor`
 
 ```python
-value: models.SourceOracleEnterpriseScanChangesWithUserDefinedCursor = /* values here */
+value: models.SourceOracleEnterpriseUpdateMethodScanChangesWithUserDefinedCursor = /* values here */
 ```
 
-### `models.SourceOracleEnterpriseReadChangesUsingChangeDataCaptureCDC`
+### `models.SourceOracleEnterpriseUpdateMethodReadChangesUsingChangeDataCaptureCDC`
 
 ```python
-value: models.SourceOracleEnterpriseReadChangesUsingChangeDataCaptureCDC = /* values here */
+value: models.SourceOracleEnterpriseUpdateMethodReadChangesUsingChangeDataCaptureCDC = /* values here */
 ```
 

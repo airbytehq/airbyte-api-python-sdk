@@ -11,29 +11,29 @@ from typing import Optional, Union
 from typing_extensions import Annotated, NotRequired, TypeAliasType, TypedDict
 
 
-class SourceDriftCredentialsAccessToken(str, Enum):
+class SourceDriftAuthorizationMethodCredentials(str, Enum):
     ACCESS_TOKEN = "access_token"
 
 
-class SourceDriftAccessTokenTypedDict(TypedDict):
+class AccessTokenTypedDict(TypedDict):
     access_token: str
     r"""Drift Access Token. See the <a href=\"https://docs.airbyte.com/integrations/sources/drift\">docs</a> for more information on how to generate this key."""
-    credentials: SourceDriftCredentialsAccessToken
+    credentials: SourceDriftAuthorizationMethodCredentials
 
 
-class SourceDriftAccessToken(BaseModel):
+class AccessToken(BaseModel):
     access_token: str
     r"""Drift Access Token. See the <a href=\"https://docs.airbyte.com/integrations/sources/drift\">docs</a> for more information on how to generate this key."""
 
     CREDENTIALS: Annotated[
         Annotated[
-            Optional[SourceDriftCredentialsAccessToken],
+            Optional[SourceDriftAuthorizationMethodCredentials],
             AfterValidator(
-                validate_const(SourceDriftCredentialsAccessToken.ACCESS_TOKEN)
+                validate_const(SourceDriftAuthorizationMethodCredentials.ACCESS_TOKEN)
             ),
         ],
         pydantic.Field(alias="credentials"),
-    ] = SourceDriftCredentialsAccessToken.ACCESS_TOKEN
+    ] = SourceDriftAuthorizationMethodCredentials.ACCESS_TOKEN
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
@@ -52,11 +52,11 @@ class SourceDriftAccessToken(BaseModel):
         return m
 
 
-class SourceDriftCredentialsOauth20(str, Enum):
+class AuthorizationMethodCredentials(str, Enum):
     OAUTH2_0 = "oauth2.0"
 
 
-class SourceDriftOAuth20TypedDict(TypedDict):
+class AuthorizationMethodOAuth20TypedDict(TypedDict):
     access_token: str
     r"""Access Token for making authenticated requests."""
     client_id: str
@@ -65,10 +65,10 @@ class SourceDriftOAuth20TypedDict(TypedDict):
     r"""The Client Secret of your Drift developer application."""
     refresh_token: str
     r"""Refresh Token to renew the expired Access Token."""
-    credentials: SourceDriftCredentialsOauth20
+    credentials: AuthorizationMethodCredentials
 
 
-class SourceDriftOAuth20(BaseModel):
+class AuthorizationMethodOAuth20(BaseModel):
     access_token: str
     r"""Access Token for making authenticated requests."""
 
@@ -83,11 +83,11 @@ class SourceDriftOAuth20(BaseModel):
 
     CREDENTIALS: Annotated[
         Annotated[
-            Optional[SourceDriftCredentialsOauth20],
-            AfterValidator(validate_const(SourceDriftCredentialsOauth20.OAUTH2_0)),
+            Optional[AuthorizationMethodCredentials],
+            AfterValidator(validate_const(AuthorizationMethodCredentials.OAUTH2_0)),
         ],
         pydantic.Field(alias="credentials"),
-    ] = SourceDriftCredentialsOauth20.OAUTH2_0
+    ] = AuthorizationMethodCredentials.OAUTH2_0
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
@@ -108,16 +108,16 @@ class SourceDriftOAuth20(BaseModel):
 
 SourceDriftAuthorizationMethodTypedDict = TypeAliasType(
     "SourceDriftAuthorizationMethodTypedDict",
-    Union[SourceDriftAccessTokenTypedDict, SourceDriftOAuth20TypedDict],
+    Union[AccessTokenTypedDict, AuthorizationMethodOAuth20TypedDict],
 )
 
 
 SourceDriftAuthorizationMethod = TypeAliasType(
-    "SourceDriftAuthorizationMethod", Union[SourceDriftAccessToken, SourceDriftOAuth20]
+    "SourceDriftAuthorizationMethod", Union[AccessToken, AuthorizationMethodOAuth20]
 )
 
 
-class DriftEnum(str, Enum):
+class SourceDriftDrift(str, Enum):
     DRIFT = "drift"
 
 
@@ -125,7 +125,7 @@ class SourceDriftTypedDict(TypedDict):
     credentials: NotRequired[SourceDriftAuthorizationMethodTypedDict]
     email: NotRequired[str]
     r"""Email used as parameter for contacts stream"""
-    source_type: DriftEnum
+    source_type: SourceDriftDrift
 
 
 class SourceDrift(BaseModel):
@@ -135,9 +135,11 @@ class SourceDrift(BaseModel):
     r"""Email used as parameter for contacts stream"""
 
     SOURCE_TYPE: Annotated[
-        Annotated[DriftEnum, AfterValidator(validate_const(DriftEnum.DRIFT))],
+        Annotated[
+            SourceDriftDrift, AfterValidator(validate_const(SourceDriftDrift.DRIFT))
+        ],
         pydantic.Field(alias="sourceType"),
-    ] = DriftEnum.DRIFT
+    ] = SourceDriftDrift.DRIFT
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
@@ -157,11 +159,11 @@ class SourceDrift(BaseModel):
 
 
 try:
-    SourceDriftAccessToken.model_rebuild()
+    AccessToken.model_rebuild()
 except NameError:
     pass
 try:
-    SourceDriftOAuth20.model_rebuild()
+    AuthorizationMethodOAuth20.model_rebuild()
 except NameError:
     pass
 try:

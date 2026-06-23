@@ -10,7 +10,7 @@ from typing import List
 from typing_extensions import Annotated, TypedDict
 
 
-class FieldT(str, Enum):
+class Fields(str, Enum):
     CLICKS = "CLICKS"
     COMPLETES = "COMPLETES"
     COMPLETION_RATE = "COMPLETION_RATE"
@@ -56,7 +56,7 @@ class SourceSpotifyAdsTypedDict(TypedDict):
     r"""The Client ID of your Spotify Developer application."""
     client_secret: str
     r"""The Client Secret of your Spotify Developer application."""
-    fields: List[FieldT]
+    fields: List[Fields]
     r"""List of fields to include in the campaign performance report. Choose from available metrics."""
     refresh_token: str
     r"""The Refresh Token obtained from the initial OAuth 2.0 authorization flow."""
@@ -75,7 +75,7 @@ class SourceSpotifyAds(BaseModel):
     client_secret: str
     r"""The Client Secret of your Spotify Developer application."""
 
-    fields: List[FieldT]
+    fields: List[Fields]
     r"""List of fields to include in the campaign performance report. Choose from available metrics."""
 
     refresh_token: str

@@ -12,19 +12,19 @@ from typing import Optional, Union
 from typing_extensions import Annotated, NotRequired, TypeAliasType, TypedDict
 
 
-class AuthMethodAPIToken(str, Enum):
+class SourceZendeskSunshineAuthorizationMethodAuthMethod(str, Enum):
     API_TOKEN = "api_token"
 
 
-class SourceZendeskSunshineAPITokenTypedDict(TypedDict):
+class SourceZendeskSunshineAuthorizationMethodAPITokenTypedDict(TypedDict):
     api_token: str
     r"""API Token. See the <a href=\"https://docs.airbyte.com/integrations/sources/zendesk_sunshine\">docs</a> for information on how to generate this key."""
     email: str
     r"""The user email for your Zendesk account"""
-    auth_method: AuthMethodAPIToken
+    auth_method: SourceZendeskSunshineAuthorizationMethodAuthMethod
 
 
-class SourceZendeskSunshineAPIToken(BaseModel):
+class SourceZendeskSunshineAuthorizationMethodAPIToken(BaseModel):
     api_token: str
     r"""API Token. See the <a href=\"https://docs.airbyte.com/integrations/sources/zendesk_sunshine\">docs</a> for information on how to generate this key."""
 
@@ -33,11 +33,15 @@ class SourceZendeskSunshineAPIToken(BaseModel):
 
     AUTH_METHOD: Annotated[
         Annotated[
-            Optional[AuthMethodAPIToken],
-            AfterValidator(validate_const(AuthMethodAPIToken.API_TOKEN)),
+            Optional[SourceZendeskSunshineAuthorizationMethodAuthMethod],
+            AfterValidator(
+                validate_const(
+                    SourceZendeskSunshineAuthorizationMethodAuthMethod.API_TOKEN
+                )
+            ),
         ],
         pydantic.Field(alias="auth_method"),
-    ] = AuthMethodAPIToken.API_TOKEN
+    ] = SourceZendeskSunshineAuthorizationMethodAuthMethod.API_TOKEN
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
@@ -56,21 +60,21 @@ class SourceZendeskSunshineAPIToken(BaseModel):
         return m
 
 
-class SourceZendeskSunshineAuthMethodOauth20(str, Enum):
+class AuthorizationMethodAuthMethod(str, Enum):
     OAUTH2_0 = "oauth2.0"
 
 
-class SourceZendeskSunshineOAuth20TypedDict(TypedDict):
+class SourceZendeskSunshineAuthorizationMethodOAuth20TypedDict(TypedDict):
     access_token: str
     r"""Long-term access Token for making authenticated requests."""
     client_id: str
     r"""The Client ID of your OAuth application."""
     client_secret: str
     r"""The Client Secret of your OAuth application."""
-    auth_method: SourceZendeskSunshineAuthMethodOauth20
+    auth_method: AuthorizationMethodAuthMethod
 
 
-class SourceZendeskSunshineOAuth20(BaseModel):
+class SourceZendeskSunshineAuthorizationMethodOAuth20(BaseModel):
     access_token: str
     r"""Long-term access Token for making authenticated requests."""
 
@@ -82,13 +86,11 @@ class SourceZendeskSunshineOAuth20(BaseModel):
 
     AUTH_METHOD: Annotated[
         Annotated[
-            Optional[SourceZendeskSunshineAuthMethodOauth20],
-            AfterValidator(
-                validate_const(SourceZendeskSunshineAuthMethodOauth20.OAUTH2_0)
-            ),
+            Optional[AuthorizationMethodAuthMethod],
+            AfterValidator(validate_const(AuthorizationMethodAuthMethod.OAUTH2_0)),
         ],
         pydantic.Field(alias="auth_method"),
-    ] = SourceZendeskSunshineAuthMethodOauth20.OAUTH2_0
+    ] = AuthorizationMethodAuthMethod.OAUTH2_0
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
@@ -110,14 +112,18 @@ class SourceZendeskSunshineOAuth20(BaseModel):
 SourceZendeskSunshineAuthorizationMethodTypedDict = TypeAliasType(
     "SourceZendeskSunshineAuthorizationMethodTypedDict",
     Union[
-        SourceZendeskSunshineAPITokenTypedDict, SourceZendeskSunshineOAuth20TypedDict
+        SourceZendeskSunshineAuthorizationMethodAPITokenTypedDict,
+        SourceZendeskSunshineAuthorizationMethodOAuth20TypedDict,
     ],
 )
 
 
 SourceZendeskSunshineAuthorizationMethod = TypeAliasType(
     "SourceZendeskSunshineAuthorizationMethod",
-    Union[SourceZendeskSunshineAPIToken, SourceZendeskSunshineOAuth20],
+    Union[
+        SourceZendeskSunshineAuthorizationMethodAPIToken,
+        SourceZendeskSunshineAuthorizationMethodOAuth20,
+    ],
 )
 
 
@@ -169,11 +175,11 @@ class SourceZendeskSunshine(BaseModel):
 
 
 try:
-    SourceZendeskSunshineAPIToken.model_rebuild()
+    SourceZendeskSunshineAuthorizationMethodAPIToken.model_rebuild()
 except NameError:
     pass
 try:
-    SourceZendeskSunshineOAuth20.model_rebuild()
+    SourceZendeskSunshineAuthorizationMethodOAuth20.model_rebuild()
 except NameError:
     pass
 try:

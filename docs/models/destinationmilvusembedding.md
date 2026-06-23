@@ -5,33 +5,33 @@ Embedding configuration
 
 ## Supported Types
 
-### `models.DestinationMilvusOpenAI`
+### `models.EmbeddingOpenAI`
 
 ```python
-value: models.DestinationMilvusOpenAI = /* values here */
+value: models.EmbeddingOpenAI = /* values here */
 ```
 
-### `models.DestinationMilvusCohere`
+### `models.EmbeddingCohere`
 
 ```python
-value: models.DestinationMilvusCohere = /* values here */
+value: models.EmbeddingCohere = /* values here */
 ```
 
-### `models.DestinationMilvusFake`
+### `models.EmbeddingFake`
 
 ```python
-value: models.DestinationMilvusFake = /* values here */
+value: models.EmbeddingFake = /* values here */
 ```
 
-### `models.DestinationMilvusAzureOpenAI`
+### `models.EmbeddingAzureOpenAI`
 
 ```python
-value: models.DestinationMilvusAzureOpenAI = /* values here */
+value: models.EmbeddingAzureOpenAI = /* values here */
 ```
 
-### `models.DestinationMilvusOpenAICompatible`
+### `models.EmbeddingOpenAICompatible`
 
 ```python
-value: models.DestinationMilvusOpenAICompatible = /* values here */
+value: models.EmbeddingOpenAICompatible = /* values here */
 ```
 

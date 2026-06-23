@@ -12,14 +12,14 @@ from typing import Optional, Union
 from typing_extensions import Annotated, NotRequired, TypeAliasType, TypedDict
 
 
-class OptionTitleProjectSecret(str, Enum):
+class SourceMixpanelAuthenticationWildcardOptionTitle(str, Enum):
     PROJECT_SECRET = "Project Secret"
 
 
 class ProjectSecretTypedDict(TypedDict):
     api_secret: str
     r"""Mixpanel project secret. See the <a href=\"https://developer.mixpanel.com/reference/project-secret#managing-a-projects-secret\">docs</a> for more information on how to obtain this."""
-    option_title: OptionTitleProjectSecret
+    option_title: SourceMixpanelAuthenticationWildcardOptionTitle
 
 
 class ProjectSecret(BaseModel):
@@ -28,11 +28,15 @@ class ProjectSecret(BaseModel):
 
     OPTION_TITLE: Annotated[
         Annotated[
-            Optional[OptionTitleProjectSecret],
-            AfterValidator(validate_const(OptionTitleProjectSecret.PROJECT_SECRET)),
+            Optional[SourceMixpanelAuthenticationWildcardOptionTitle],
+            AfterValidator(
+                validate_const(
+                    SourceMixpanelAuthenticationWildcardOptionTitle.PROJECT_SECRET
+                )
+            ),
         ],
         pydantic.Field(alias="option_title"),
-    ] = OptionTitleProjectSecret.PROJECT_SECRET
+    ] = SourceMixpanelAuthenticationWildcardOptionTitle.PROJECT_SECRET
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
@@ -51,7 +55,7 @@ class ProjectSecret(BaseModel):
         return m
 
 
-class OptionTitleServiceAccount(str, Enum):
+class AuthenticationWildcardOptionTitle(str, Enum):
     SERVICE_ACCOUNT = "Service Account"
 
 
@@ -62,7 +66,7 @@ class ServiceAccountTypedDict(TypedDict):
     r"""Mixpanel Service Account Secret. See the <a href=\"https://developer.mixpanel.com/reference/service-accounts\">docs</a> for more information on how to obtain this."""
     username: str
     r"""Mixpanel Service Account Username. See the <a href=\"https://developer.mixpanel.com/reference/service-accounts\">docs</a> for more information on how to obtain this."""
-    option_title: OptionTitleServiceAccount
+    option_title: AuthenticationWildcardOptionTitle
 
 
 class ServiceAccount(BaseModel):
@@ -77,11 +81,13 @@ class ServiceAccount(BaseModel):
 
     OPTION_TITLE: Annotated[
         Annotated[
-            Optional[OptionTitleServiceAccount],
-            AfterValidator(validate_const(OptionTitleServiceAccount.SERVICE_ACCOUNT)),
+            Optional[AuthenticationWildcardOptionTitle],
+            AfterValidator(
+                validate_const(AuthenticationWildcardOptionTitle.SERVICE_ACCOUNT)
+            ),
         ],
         pydantic.Field(alias="option_title"),
-    ] = OptionTitleServiceAccount.SERVICE_ACCOUNT
+    ] = AuthenticationWildcardOptionTitle.SERVICE_ACCOUNT
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):

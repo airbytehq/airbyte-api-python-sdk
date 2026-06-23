@@ -1,0 +1,11 @@
+# SourceDb2EnterpriseSSHTunnelMethodNoTunnel
+
+No ssh tunnel needed to connect to database
+
+
+## Fields
+
+| Field                                                                                                                          | Type                                                                                                                           | Required                                                                                                                       | Description                                                                                                                    |
+| ------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------ |
+| `__pydantic_extra__`                                                                                                           | Dict[str, *Any*]                                                                                                               | :heavy_minus_sign:                                                                                                             | N/A                                                                                                                            |
+| `tunnel_method`                                                                                                                | [Optional[models.SourceDb2EnterpriseSSHTunnelMethodTunnelMethod]](../models/sourcedb2enterprisesshtunnelmethodtunnelmethod.md) | :heavy_minus_sign:                                                                                                             | N/A                                                                                                                            |

@@ -11,30 +11,30 @@ from typing import Optional, Union
 from typing_extensions import Annotated, NotRequired, TypeAliasType, TypedDict
 
 
-class DestinationRedshiftRedshift(str, Enum):
+class Redshift(str, Enum):
     REDSHIFT = "redshift"
 
 
-class DestinationRedshiftTunnelMethodSSHPasswordAuth(str, Enum):
+class DestinationRedshiftSSHTunnelMethodTunnelMethod3TunnelMethod(str, Enum):
     r"""Connect through a jump server tunnel host using username and password authentication"""
 
     SSH_PASSWORD_AUTH = "SSH_PASSWORD_AUTH"
 
 
-class DestinationRedshiftPasswordAuthenticationTypedDict(TypedDict):
+class DestinationRedshiftSSHTunnelMethodPasswordAuthenticationTypedDict(TypedDict):
     tunnel_host: str
     r"""Hostname of the jump server host that allows inbound ssh tunnel."""
     tunnel_user: str
     r"""OS-level username for logging into the jump server host"""
     tunnel_user_password: str
     r"""OS-level password for logging into the jump server host"""
-    tunnel_method: DestinationRedshiftTunnelMethodSSHPasswordAuth
+    tunnel_method: DestinationRedshiftSSHTunnelMethodTunnelMethod3TunnelMethod
     r"""Connect through a jump server tunnel host using username and password authentication"""
     tunnel_port: NotRequired[int]
     r"""Port on the proxy/jump server that accepts inbound ssh connections."""
 
 
-class DestinationRedshiftPasswordAuthentication(BaseModel):
+class DestinationRedshiftSSHTunnelMethodPasswordAuthentication(BaseModel):
     tunnel_host: str
     r"""Hostname of the jump server host that allows inbound ssh tunnel."""
 
@@ -46,15 +46,15 @@ class DestinationRedshiftPasswordAuthentication(BaseModel):
 
     TUNNEL_METHOD: Annotated[
         Annotated[
-            DestinationRedshiftTunnelMethodSSHPasswordAuth,
+            DestinationRedshiftSSHTunnelMethodTunnelMethod3TunnelMethod,
             AfterValidator(
                 validate_const(
-                    DestinationRedshiftTunnelMethodSSHPasswordAuth.SSH_PASSWORD_AUTH
+                    DestinationRedshiftSSHTunnelMethodTunnelMethod3TunnelMethod.SSH_PASSWORD_AUTH
                 )
             ),
         ],
         pydantic.Field(alias="tunnel_method"),
-    ] = DestinationRedshiftTunnelMethodSSHPasswordAuth.SSH_PASSWORD_AUTH
+    ] = DestinationRedshiftSSHTunnelMethodTunnelMethod3TunnelMethod.SSH_PASSWORD_AUTH
     r"""Connect through a jump server tunnel host using username and password authentication"""
 
     tunnel_port: Optional[int] = 22
@@ -77,26 +77,26 @@ class DestinationRedshiftPasswordAuthentication(BaseModel):
         return m
 
 
-class DestinationRedshiftTunnelMethodSSHKeyAuth(str, Enum):
+class DestinationRedshiftSSHTunnelMethodTunnelMethodTunnelMethod(str, Enum):
     r"""Connect through a jump server tunnel host using username and ssh key"""
 
     SSH_KEY_AUTH = "SSH_KEY_AUTH"
 
 
-class DestinationRedshiftSSHKeyAuthenticationTypedDict(TypedDict):
+class DestinationRedshiftSSHTunnelMethodSSHKeyAuthenticationTypedDict(TypedDict):
     ssh_key: str
     r"""OS-level user account ssh key credentials in RSA PEM format ( created with ssh-keygen -t rsa -m PEM -f myuser_rsa )"""
     tunnel_host: str
     r"""Hostname of the jump server host that allows inbound ssh tunnel."""
     tunnel_user: str
     r"""OS-level username for logging into the jump server host."""
-    tunnel_method: DestinationRedshiftTunnelMethodSSHKeyAuth
+    tunnel_method: DestinationRedshiftSSHTunnelMethodTunnelMethodTunnelMethod
     r"""Connect through a jump server tunnel host using username and ssh key"""
     tunnel_port: NotRequired[int]
     r"""Port on the proxy/jump server that accepts inbound ssh connections."""
 
 
-class DestinationRedshiftSSHKeyAuthentication(BaseModel):
+class DestinationRedshiftSSHTunnelMethodSSHKeyAuthentication(BaseModel):
     ssh_key: str
     r"""OS-level user account ssh key credentials in RSA PEM format ( created with ssh-keygen -t rsa -m PEM -f myuser_rsa )"""
 
@@ -108,13 +108,15 @@ class DestinationRedshiftSSHKeyAuthentication(BaseModel):
 
     TUNNEL_METHOD: Annotated[
         Annotated[
-            DestinationRedshiftTunnelMethodSSHKeyAuth,
+            DestinationRedshiftSSHTunnelMethodTunnelMethodTunnelMethod,
             AfterValidator(
-                validate_const(DestinationRedshiftTunnelMethodSSHKeyAuth.SSH_KEY_AUTH)
+                validate_const(
+                    DestinationRedshiftSSHTunnelMethodTunnelMethodTunnelMethod.SSH_KEY_AUTH
+                )
             ),
         ],
         pydantic.Field(alias="tunnel_method"),
-    ] = DestinationRedshiftTunnelMethodSSHKeyAuth.SSH_KEY_AUTH
+    ] = DestinationRedshiftSSHTunnelMethodTunnelMethodTunnelMethod.SSH_KEY_AUTH
     r"""Connect through a jump server tunnel host using username and ssh key"""
 
     tunnel_port: Optional[int] = 22
@@ -137,36 +139,36 @@ class DestinationRedshiftSSHKeyAuthentication(BaseModel):
         return m
 
 
-class DestinationRedshiftTunnelMethodNoTunnel(str, Enum):
+class DestinationRedshiftSSHTunnelMethodTunnelMethod(str, Enum):
     r"""No ssh tunnel needed to connect to database"""
 
     NO_TUNNEL = "NO_TUNNEL"
 
 
-class DestinationRedshiftNoTunnelTypedDict(TypedDict):
-    tunnel_method: DestinationRedshiftTunnelMethodNoTunnel
+class DestinationRedshiftSSHTunnelMethodNoTunnelTypedDict(TypedDict):
+    tunnel_method: DestinationRedshiftSSHTunnelMethodTunnelMethod
     r"""No ssh tunnel needed to connect to database"""
 
 
-class DestinationRedshiftNoTunnel(BaseModel):
+class DestinationRedshiftSSHTunnelMethodNoTunnel(BaseModel):
     TUNNEL_METHOD: Annotated[
         Annotated[
-            DestinationRedshiftTunnelMethodNoTunnel,
+            DestinationRedshiftSSHTunnelMethodTunnelMethod,
             AfterValidator(
-                validate_const(DestinationRedshiftTunnelMethodNoTunnel.NO_TUNNEL)
+                validate_const(DestinationRedshiftSSHTunnelMethodTunnelMethod.NO_TUNNEL)
             ),
         ],
         pydantic.Field(alias="tunnel_method"),
-    ] = DestinationRedshiftTunnelMethodNoTunnel.NO_TUNNEL
+    ] = DestinationRedshiftSSHTunnelMethodTunnelMethod.NO_TUNNEL
     r"""No ssh tunnel needed to connect to database"""
 
 
 DestinationRedshiftSSHTunnelMethodTypedDict = TypeAliasType(
     "DestinationRedshiftSSHTunnelMethodTypedDict",
     Union[
-        DestinationRedshiftNoTunnelTypedDict,
-        DestinationRedshiftSSHKeyAuthenticationTypedDict,
-        DestinationRedshiftPasswordAuthenticationTypedDict,
+        DestinationRedshiftSSHTunnelMethodNoTunnelTypedDict,
+        DestinationRedshiftSSHTunnelMethodSSHKeyAuthenticationTypedDict,
+        DestinationRedshiftSSHTunnelMethodPasswordAuthenticationTypedDict,
     ],
 )
 r"""Whether to initiate an SSH tunnel before connecting to the database, and if so, which kind of authentication to use."""
@@ -174,20 +176,25 @@ r"""Whether to initiate an SSH tunnel before connecting to the database, and if 
 
 DestinationRedshiftSSHTunnelMethod = Annotated[
     Union[
-        Annotated[DestinationRedshiftNoTunnel, Tag("NO_TUNNEL")],
-        Annotated[DestinationRedshiftSSHKeyAuthentication, Tag("SSH_KEY_AUTH")],
-        Annotated[DestinationRedshiftPasswordAuthentication, Tag("SSH_PASSWORD_AUTH")],
+        Annotated[DestinationRedshiftSSHTunnelMethodNoTunnel, Tag("NO_TUNNEL")],
+        Annotated[
+            DestinationRedshiftSSHTunnelMethodSSHKeyAuthentication, Tag("SSH_KEY_AUTH")
+        ],
+        Annotated[
+            DestinationRedshiftSSHTunnelMethodPasswordAuthentication,
+            Tag("SSH_PASSWORD_AUTH"),
+        ],
     ],
     Discriminator(lambda m: get_discriminator(m, "tunnel_method", "tunnel_method")),
 ]
 r"""Whether to initiate an SSH tunnel before connecting to the database, and if so, which kind of authentication to use."""
 
 
-class DestinationRedshiftMethod(str, Enum):
+class UploadingMethodMethod(str, Enum):
     S3_STAGING = "S3 Staging"
 
 
-class DestinationRedshiftS3BucketRegion(str, Enum):
+class UploadingMethodS3BucketRegion(str, Enum):
     r"""The region of the S3 staging bucket."""
 
     UNKNOWN = ""
@@ -237,12 +244,12 @@ class AWSS3StagingTypedDict(TypedDict):
     r"""The corresponding secret to the above access key id. See <a href=\"https://docs.aws.amazon.com/general/latest/gr/aws-sec-cred-types.html#access-keys-and-secret-access-keys\">AWS docs</a> on how to generate an access key ID and secret access key."""
     file_name_pattern: NotRequired[str]
     r"""The pattern allows you to set the file-name format for the S3 staging file(s)"""
-    method: DestinationRedshiftMethod
+    method: UploadingMethodMethod
     purge_staging_data: NotRequired[bool]
     r"""Whether to delete the staging files from S3 after completing the sync. See <a href=\"https://docs.airbyte.com/integrations/destinations/redshift/#:~:text=the%20root%20directory.-,Purge%20Staging%20Data,-Whether%20to%20delete\"> docs</a> for details."""
     s3_bucket_path: NotRequired[str]
     r"""The directory under the S3 bucket where data will be written. If not provided, then defaults to the root directory. See <a href=\"https://docs.aws.amazon.com/prescriptive-guidance/latest/defining-bucket-names-data-lakes/faq.html#:~:text=be%20globally%20unique.-,For%20S3%20bucket%20paths,-%2C%20you%20can%20use\">path's name recommendations</a> for more details."""
-    s3_bucket_region: NotRequired[DestinationRedshiftS3BucketRegion]
+    s3_bucket_region: NotRequired[UploadingMethodS3BucketRegion]
     r"""The region of the S3 staging bucket."""
 
 
@@ -263,11 +270,11 @@ class AWSS3Staging(BaseModel):
 
     METHOD: Annotated[
         Annotated[
-            DestinationRedshiftMethod,
-            AfterValidator(validate_const(DestinationRedshiftMethod.S3_STAGING)),
+            UploadingMethodMethod,
+            AfterValidator(validate_const(UploadingMethodMethod.S3_STAGING)),
         ],
         pydantic.Field(alias="method"),
-    ] = DestinationRedshiftMethod.S3_STAGING
+    ] = UploadingMethodMethod.S3_STAGING
 
     purge_staging_data: Optional[bool] = True
     r"""Whether to delete the staging files from S3 after completing the sync. See <a href=\"https://docs.airbyte.com/integrations/destinations/redshift/#:~:text=the%20root%20directory.-,Purge%20Staging%20Data,-Whether%20to%20delete\"> docs</a> for details."""
@@ -275,8 +282,8 @@ class AWSS3Staging(BaseModel):
     s3_bucket_path: Optional[str] = None
     r"""The directory under the S3 bucket where data will be written. If not provided, then defaults to the root directory. See <a href=\"https://docs.aws.amazon.com/prescriptive-guidance/latest/defining-bucket-names-data-lakes/faq.html#:~:text=be%20globally%20unique.-,For%20S3%20bucket%20paths,-%2C%20you%20can%20use\">path's name recommendations</a> for more details."""
 
-    s3_bucket_region: Optional[DestinationRedshiftS3BucketRegion] = (
-        DestinationRedshiftS3BucketRegion.UNKNOWN
+    s3_bucket_region: Optional[UploadingMethodS3BucketRegion] = (
+        UploadingMethodS3BucketRegion.UNKNOWN
     )
     r"""The region of the S3 staging bucket."""
 
@@ -321,7 +328,7 @@ class DestinationRedshiftTypedDict(TypedDict):
     r"""Password associated with the username."""
     username: str
     r"""Username to use to access the database."""
-    destination_type: DestinationRedshiftRedshift
+    destination_type: Redshift
     disable_type_dedupe: NotRequired[bool]
     r"""Disable Writing Final Tables. WARNING! The data format in _airbyte_data is likely stable but there are no guarantees that other metadata columns will remain the same in future versions"""
     drop_cascade: NotRequired[bool]
@@ -354,12 +361,9 @@ class DestinationRedshift(BaseModel):
     r"""Username to use to access the database."""
 
     DESTINATION_TYPE: Annotated[
-        Annotated[
-            DestinationRedshiftRedshift,
-            AfterValidator(validate_const(DestinationRedshiftRedshift.REDSHIFT)),
-        ],
+        Annotated[Redshift, AfterValidator(validate_const(Redshift.REDSHIFT))],
         pydantic.Field(alias="destinationType"),
-    ] = DestinationRedshiftRedshift.REDSHIFT
+    ] = Redshift.REDSHIFT
 
     disable_type_dedupe: Optional[bool] = False
     r"""Disable Writing Final Tables. WARNING! The data format in _airbyte_data is likely stable but there are no guarantees that other metadata columns will remain the same in future versions"""
@@ -414,15 +418,15 @@ class DestinationRedshift(BaseModel):
 
 
 try:
-    DestinationRedshiftPasswordAuthentication.model_rebuild()
+    DestinationRedshiftSSHTunnelMethodPasswordAuthentication.model_rebuild()
 except NameError:
     pass
 try:
-    DestinationRedshiftSSHKeyAuthentication.model_rebuild()
+    DestinationRedshiftSSHTunnelMethodSSHKeyAuthentication.model_rebuild()
 except NameError:
     pass
 try:
-    DestinationRedshiftNoTunnel.model_rebuild()
+    DestinationRedshiftSSHTunnelMethodNoTunnel.model_rebuild()
 except NameError:
     pass
 try:

@@ -5,9 +5,9 @@ Configures how data is extracted from the database.
 
 ## Supported Types
 
-### `models.SourceSnowflakeScanChangesWithUserDefinedCursor`
+### `models.SourceSnowflakeUpdateMethodScanChangesWithUserDefinedCursor`
 
 ```python
-value: models.SourceSnowflakeScanChangesWithUserDefinedCursor = /* values here */
+value: models.SourceSnowflakeUpdateMethodScanChangesWithUserDefinedCursor = /* values here */
 ```
 

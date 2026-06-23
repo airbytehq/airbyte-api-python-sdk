@@ -11,7 +11,7 @@ from typing import Optional, Union
 from typing_extensions import Annotated, NotRequired, TypeAliasType, TypedDict
 
 
-class AuthTypeSingleStoreAccessToken(str, Enum):
+class SourceCartAuthorizationMethodCredentialsAuthType(str, Enum):
     SINGLE_STORE_ACCESS_TOKEN = "SINGLE_STORE_ACCESS_TOKEN"
 
 
@@ -20,7 +20,7 @@ class SingleStoreAccessTokenTypedDict(TypedDict):
     r"""Access Token for making authenticated requests."""
     store_name: str
     r"""The name of Cart.com Online Store. All API URLs start with https://[mystorename.com]/api/v1/, where [mystorename.com] is the domain name of your store."""
-    auth_type: AuthTypeSingleStoreAccessToken
+    auth_type: SourceCartAuthorizationMethodCredentialsAuthType
 
 
 class SingleStoreAccessToken(BaseModel):
@@ -32,16 +32,18 @@ class SingleStoreAccessToken(BaseModel):
 
     AUTH_TYPE: Annotated[
         Annotated[
-            AuthTypeSingleStoreAccessToken,
+            SourceCartAuthorizationMethodCredentialsAuthType,
             AfterValidator(
-                validate_const(AuthTypeSingleStoreAccessToken.SINGLE_STORE_ACCESS_TOKEN)
+                validate_const(
+                    SourceCartAuthorizationMethodCredentialsAuthType.SINGLE_STORE_ACCESS_TOKEN
+                )
             ),
         ],
         pydantic.Field(alias="auth_type"),
-    ] = AuthTypeSingleStoreAccessToken.SINGLE_STORE_ACCESS_TOKEN
+    ] = SourceCartAuthorizationMethodCredentialsAuthType.SINGLE_STORE_ACCESS_TOKEN
 
 
-class AuthTypeCentralAPIRouter(str, Enum):
+class SourceCartAuthorizationMethodAuthType(str, Enum):
     CENTRAL_API_ROUTER = "CENTRAL_API_ROUTER"
 
 
@@ -52,7 +54,7 @@ class CentralAPIRouterTypedDict(TypedDict):
     r"""Enter your application's User Name"""
     user_secret: str
     r"""Enter your application's User Secret"""
-    auth_type: AuthTypeCentralAPIRouter
+    auth_type: SourceCartAuthorizationMethodAuthType
 
 
 class CentralAPIRouter(BaseModel):
@@ -67,11 +69,13 @@ class CentralAPIRouter(BaseModel):
 
     AUTH_TYPE: Annotated[
         Annotated[
-            AuthTypeCentralAPIRouter,
-            AfterValidator(validate_const(AuthTypeCentralAPIRouter.CENTRAL_API_ROUTER)),
+            SourceCartAuthorizationMethodAuthType,
+            AfterValidator(
+                validate_const(SourceCartAuthorizationMethodAuthType.CENTRAL_API_ROUTER)
+            ),
         ],
         pydantic.Field(alias="auth_type"),
-    ] = AuthTypeCentralAPIRouter.CENTRAL_API_ROUTER
+    ] = SourceCartAuthorizationMethodAuthType.CENTRAL_API_ROUTER
 
 
 SourceCartAuthorizationMethodTypedDict = TypeAliasType(

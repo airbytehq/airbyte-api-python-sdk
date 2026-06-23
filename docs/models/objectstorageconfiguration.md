@@ -3,15 +3,15 @@
 
 ## Supported Types
 
-### `models.DestinationHubspotNone`
+### `models.ObjectStorageConfigurationNone`
 
 ```python
-value: models.DestinationHubspotNone = /* values here */
+value: models.ObjectStorageConfigurationNone = /* values here */
 ```
 
-### `models.DestinationHubspotS3`
+### `models.ObjectStorageConfigurationS3`
 
 ```python
-value: models.DestinationHubspotS3 = /* values here */
+value: models.ObjectStorageConfigurationS3 = /* values here */
 ```
 

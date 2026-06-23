@@ -15,11 +15,11 @@ class Milvus(str, Enum):
     MILVUS = "milvus"
 
 
-class DestinationMilvusModeOpenaiCompatible(str, Enum):
+class DestinationMilvusEmbeddingEmbedding5Mode(str, Enum):
     OPENAI_COMPATIBLE = "openai_compatible"
 
 
-class DestinationMilvusOpenAICompatibleTypedDict(TypedDict):
+class EmbeddingOpenAICompatibleTypedDict(TypedDict):
     r"""Use a service that's compatible with the OpenAI API to embed text."""
 
     base_url: str
@@ -27,12 +27,12 @@ class DestinationMilvusOpenAICompatibleTypedDict(TypedDict):
     dimensions: int
     r"""The number of dimensions the embedding model is generating"""
     api_key: NotRequired[str]
-    mode: DestinationMilvusModeOpenaiCompatible
+    mode: DestinationMilvusEmbeddingEmbedding5Mode
     model_name: NotRequired[str]
     r"""The name of the model to use for embedding"""
 
 
-class DestinationMilvusOpenAICompatible(BaseModel):
+class EmbeddingOpenAICompatible(BaseModel):
     r"""Use a service that's compatible with the OpenAI API to embed text."""
 
     base_url: str
@@ -45,13 +45,15 @@ class DestinationMilvusOpenAICompatible(BaseModel):
 
     MODE: Annotated[
         Annotated[
-            Optional[DestinationMilvusModeOpenaiCompatible],
+            Optional[DestinationMilvusEmbeddingEmbedding5Mode],
             AfterValidator(
-                validate_const(DestinationMilvusModeOpenaiCompatible.OPENAI_COMPATIBLE)
+                validate_const(
+                    DestinationMilvusEmbeddingEmbedding5Mode.OPENAI_COMPATIBLE
+                )
             ),
         ],
         pydantic.Field(alias="mode"),
-    ] = DestinationMilvusModeOpenaiCompatible.OPENAI_COMPATIBLE
+    ] = DestinationMilvusEmbeddingEmbedding5Mode.OPENAI_COMPATIBLE
 
     model_name: Optional[str] = "text-embedding-ada-002"
     r"""The name of the model to use for embedding"""
@@ -73,11 +75,11 @@ class DestinationMilvusOpenAICompatible(BaseModel):
         return m
 
 
-class DestinationMilvusModeAzureOpenai(str, Enum):
+class DestinationMilvusEmbeddingEmbedding4Mode(str, Enum):
     AZURE_OPENAI = "azure_openai"
 
 
-class DestinationMilvusAzureOpenAITypedDict(TypedDict):
+class EmbeddingAzureOpenAITypedDict(TypedDict):
     r"""Use the Azure-hosted OpenAI API to embed text. This option is using the text-embedding-ada-002 model with 1536 embedding dimensions."""
 
     api_base: str
@@ -86,10 +88,10 @@ class DestinationMilvusAzureOpenAITypedDict(TypedDict):
     r"""The deployment for your Azure OpenAI resource.  You can find this in the Azure portal under your Azure OpenAI resource"""
     openai_key: str
     r"""The API key for your Azure OpenAI resource.  You can find this in the Azure portal under your Azure OpenAI resource"""
-    mode: DestinationMilvusModeAzureOpenai
+    mode: DestinationMilvusEmbeddingEmbedding4Mode
 
 
-class DestinationMilvusAzureOpenAI(BaseModel):
+class EmbeddingAzureOpenAI(BaseModel):
     r"""Use the Azure-hosted OpenAI API to embed text. This option is using the text-embedding-ada-002 model with 1536 embedding dimensions."""
 
     api_base: str
@@ -103,13 +105,13 @@ class DestinationMilvusAzureOpenAI(BaseModel):
 
     MODE: Annotated[
         Annotated[
-            Optional[DestinationMilvusModeAzureOpenai],
+            Optional[DestinationMilvusEmbeddingEmbedding4Mode],
             AfterValidator(
-                validate_const(DestinationMilvusModeAzureOpenai.AZURE_OPENAI)
+                validate_const(DestinationMilvusEmbeddingEmbedding4Mode.AZURE_OPENAI)
             ),
         ],
         pydantic.Field(alias="mode"),
-    ] = DestinationMilvusModeAzureOpenai.AZURE_OPENAI
+    ] = DestinationMilvusEmbeddingEmbedding4Mode.AZURE_OPENAI
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
@@ -128,26 +130,28 @@ class DestinationMilvusAzureOpenAI(BaseModel):
         return m
 
 
-class DestinationMilvusModeFake(str, Enum):
+class DestinationMilvusEmbeddingEmbedding3Mode(str, Enum):
     FAKE = "fake"
 
 
-class DestinationMilvusFakeTypedDict(TypedDict):
+class EmbeddingFakeTypedDict(TypedDict):
     r"""Use a fake embedding made out of random vectors with 1536 embedding dimensions. This is useful for testing the data pipeline without incurring any costs."""
 
-    mode: DestinationMilvusModeFake
+    mode: DestinationMilvusEmbeddingEmbedding3Mode
 
 
-class DestinationMilvusFake(BaseModel):
+class EmbeddingFake(BaseModel):
     r"""Use a fake embedding made out of random vectors with 1536 embedding dimensions. This is useful for testing the data pipeline without incurring any costs."""
 
     MODE: Annotated[
         Annotated[
-            Optional[DestinationMilvusModeFake],
-            AfterValidator(validate_const(DestinationMilvusModeFake.FAKE)),
+            Optional[DestinationMilvusEmbeddingEmbedding3Mode],
+            AfterValidator(
+                validate_const(DestinationMilvusEmbeddingEmbedding3Mode.FAKE)
+            ),
         ],
         pydantic.Field(alias="mode"),
-    ] = DestinationMilvusModeFake.FAKE
+    ] = DestinationMilvusEmbeddingEmbedding3Mode.FAKE
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
@@ -166,29 +170,31 @@ class DestinationMilvusFake(BaseModel):
         return m
 
 
-class DestinationMilvusModeCohere(str, Enum):
+class DestinationMilvusEmbeddingEmbeddingMode(str, Enum):
     COHERE = "cohere"
 
 
-class DestinationMilvusCohereTypedDict(TypedDict):
+class EmbeddingCohereTypedDict(TypedDict):
     r"""Use the Cohere API to embed text."""
 
     cohere_key: str
-    mode: DestinationMilvusModeCohere
+    mode: DestinationMilvusEmbeddingEmbeddingMode
 
 
-class DestinationMilvusCohere(BaseModel):
+class EmbeddingCohere(BaseModel):
     r"""Use the Cohere API to embed text."""
 
     cohere_key: str
 
     MODE: Annotated[
         Annotated[
-            Optional[DestinationMilvusModeCohere],
-            AfterValidator(validate_const(DestinationMilvusModeCohere.COHERE)),
+            Optional[DestinationMilvusEmbeddingEmbeddingMode],
+            AfterValidator(
+                validate_const(DestinationMilvusEmbeddingEmbeddingMode.COHERE)
+            ),
         ],
         pydantic.Field(alias="mode"),
-    ] = DestinationMilvusModeCohere.COHERE
+    ] = DestinationMilvusEmbeddingEmbeddingMode.COHERE
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
@@ -207,29 +213,29 @@ class DestinationMilvusCohere(BaseModel):
         return m
 
 
-class DestinationMilvusModeOpenai(str, Enum):
+class DestinationMilvusEmbeddingMode(str, Enum):
     OPENAI = "openai"
 
 
-class DestinationMilvusOpenAITypedDict(TypedDict):
+class EmbeddingOpenAITypedDict(TypedDict):
     r"""Use the OpenAI API to embed text. This option is using the text-embedding-ada-002 model with 1536 embedding dimensions."""
 
     openai_key: str
-    mode: DestinationMilvusModeOpenai
+    mode: DestinationMilvusEmbeddingMode
 
 
-class DestinationMilvusOpenAI(BaseModel):
+class EmbeddingOpenAI(BaseModel):
     r"""Use the OpenAI API to embed text. This option is using the text-embedding-ada-002 model with 1536 embedding dimensions."""
 
     openai_key: str
 
     MODE: Annotated[
         Annotated[
-            Optional[DestinationMilvusModeOpenai],
-            AfterValidator(validate_const(DestinationMilvusModeOpenai.OPENAI)),
+            Optional[DestinationMilvusEmbeddingMode],
+            AfterValidator(validate_const(DestinationMilvusEmbeddingMode.OPENAI)),
         ],
         pydantic.Field(alias="mode"),
-    ] = DestinationMilvusModeOpenai.OPENAI
+    ] = DestinationMilvusEmbeddingMode.OPENAI
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
@@ -251,11 +257,11 @@ class DestinationMilvusOpenAI(BaseModel):
 DestinationMilvusEmbeddingTypedDict = TypeAliasType(
     "DestinationMilvusEmbeddingTypedDict",
     Union[
-        DestinationMilvusFakeTypedDict,
-        DestinationMilvusOpenAITypedDict,
-        DestinationMilvusCohereTypedDict,
-        DestinationMilvusAzureOpenAITypedDict,
-        DestinationMilvusOpenAICompatibleTypedDict,
+        EmbeddingFakeTypedDict,
+        EmbeddingOpenAITypedDict,
+        EmbeddingCohereTypedDict,
+        EmbeddingAzureOpenAITypedDict,
+        EmbeddingOpenAICompatibleTypedDict,
     ],
 )
 r"""Embedding configuration"""
@@ -264,86 +270,38 @@ r"""Embedding configuration"""
 DestinationMilvusEmbedding = TypeAliasType(
     "DestinationMilvusEmbedding",
     Union[
-        DestinationMilvusFake,
-        DestinationMilvusOpenAI,
-        DestinationMilvusCohere,
-        DestinationMilvusAzureOpenAI,
-        DestinationMilvusOpenAICompatible,
+        EmbeddingFake,
+        EmbeddingOpenAI,
+        EmbeddingCohere,
+        EmbeddingAzureOpenAI,
+        EmbeddingOpenAICompatible,
     ],
 )
 r"""Embedding configuration"""
 
 
-class DestinationMilvusModeNoAuth(str, Enum):
+class DestinationMilvusAuthenticationIndexingAuthMode(str, Enum):
     NO_AUTH = "no_auth"
 
 
-class DestinationMilvusNoAuthTypedDict(TypedDict):
+class NoAuthTypedDict(TypedDict):
     r"""Do not authenticate (suitable for locally running test clusters, do not use for clusters with public IP addresses)"""
 
-    mode: DestinationMilvusModeNoAuth
+    mode: DestinationMilvusAuthenticationIndexingAuthMode
 
 
-class DestinationMilvusNoAuth(BaseModel):
+class NoAuth(BaseModel):
     r"""Do not authenticate (suitable for locally running test clusters, do not use for clusters with public IP addresses)"""
 
     MODE: Annotated[
         Annotated[
-            Optional[DestinationMilvusModeNoAuth],
-            AfterValidator(validate_const(DestinationMilvusModeNoAuth.NO_AUTH)),
-        ],
-        pydantic.Field(alias="mode"),
-    ] = DestinationMilvusModeNoAuth.NO_AUTH
-
-    @model_serializer(mode="wrap")
-    def serialize_model(self, handler):
-        optional_fields = set(["mode"])
-        serialized = handler(self)
-        m = {}
-
-        for n, f in type(self).model_fields.items():
-            k = f.alias or n
-            val = serialized.get(k, serialized.get(n))
-
-            if val != UNSET_SENTINEL:
-                if val is not None or k not in optional_fields:
-                    m[k] = val
-
-        return m
-
-
-class DestinationMilvusModeUsernamePassword(str, Enum):
-    USERNAME_PASSWORD = "username_password"
-
-
-class DestinationMilvusUsernamePasswordTypedDict(TypedDict):
-    r"""Authenticate using username and password (suitable for self-managed Milvus clusters)"""
-
-    password: str
-    r"""Password for the Milvus instance"""
-    username: str
-    r"""Username for the Milvus instance"""
-    mode: DestinationMilvusModeUsernamePassword
-
-
-class DestinationMilvusUsernamePassword(BaseModel):
-    r"""Authenticate using username and password (suitable for self-managed Milvus clusters)"""
-
-    password: str
-    r"""Password for the Milvus instance"""
-
-    username: str
-    r"""Username for the Milvus instance"""
-
-    MODE: Annotated[
-        Annotated[
-            Optional[DestinationMilvusModeUsernamePassword],
+            Optional[DestinationMilvusAuthenticationIndexingAuthMode],
             AfterValidator(
-                validate_const(DestinationMilvusModeUsernamePassword.USERNAME_PASSWORD)
+                validate_const(DestinationMilvusAuthenticationIndexingAuthMode.NO_AUTH)
             ),
         ],
         pydantic.Field(alias="mode"),
-    ] = DestinationMilvusModeUsernamePassword.USERNAME_PASSWORD
+    ] = DestinationMilvusAuthenticationIndexingAuthMode.NO_AUTH
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
@@ -362,19 +320,71 @@ class DestinationMilvusUsernamePassword(BaseModel):
         return m
 
 
-class DestinationMilvusModeToken(str, Enum):
+class DestinationMilvusAuthenticationIndexingMode(str, Enum):
+    USERNAME_PASSWORD = "username_password"
+
+
+class AuthenticationUsernamePasswordTypedDict(TypedDict):
+    r"""Authenticate using username and password (suitable for self-managed Milvus clusters)"""
+
+    password: str
+    r"""Password for the Milvus instance"""
+    username: str
+    r"""Username for the Milvus instance"""
+    mode: DestinationMilvusAuthenticationIndexingMode
+
+
+class AuthenticationUsernamePassword(BaseModel):
+    r"""Authenticate using username and password (suitable for self-managed Milvus clusters)"""
+
+    password: str
+    r"""Password for the Milvus instance"""
+
+    username: str
+    r"""Username for the Milvus instance"""
+
+    MODE: Annotated[
+        Annotated[
+            Optional[DestinationMilvusAuthenticationIndexingMode],
+            AfterValidator(
+                validate_const(
+                    DestinationMilvusAuthenticationIndexingMode.USERNAME_PASSWORD
+                )
+            ),
+        ],
+        pydantic.Field(alias="mode"),
+    ] = DestinationMilvusAuthenticationIndexingMode.USERNAME_PASSWORD
+
+    @model_serializer(mode="wrap")
+    def serialize_model(self, handler):
+        optional_fields = set(["mode"])
+        serialized = handler(self)
+        m = {}
+
+        for n, f in type(self).model_fields.items():
+            k = f.alias or n
+            val = serialized.get(k, serialized.get(n))
+
+            if val != UNSET_SENTINEL:
+                if val is not None or k not in optional_fields:
+                    m[k] = val
+
+        return m
+
+
+class DestinationMilvusAuthenticationMode(str, Enum):
     TOKEN = "token"
 
 
-class DestinationMilvusAPITokenTypedDict(TypedDict):
+class DestinationMilvusAuthenticationAPITokenTypedDict(TypedDict):
     r"""Authenticate using an API token (suitable for Zilliz Cloud)"""
 
     token: str
     r"""API Token for the Milvus instance"""
-    mode: DestinationMilvusModeToken
+    mode: DestinationMilvusAuthenticationMode
 
 
-class DestinationMilvusAPIToken(BaseModel):
+class DestinationMilvusAuthenticationAPIToken(BaseModel):
     r"""Authenticate using an API token (suitable for Zilliz Cloud)"""
 
     token: str
@@ -382,11 +392,11 @@ class DestinationMilvusAPIToken(BaseModel):
 
     MODE: Annotated[
         Annotated[
-            Optional[DestinationMilvusModeToken],
-            AfterValidator(validate_const(DestinationMilvusModeToken.TOKEN)),
+            Optional[DestinationMilvusAuthenticationMode],
+            AfterValidator(validate_const(DestinationMilvusAuthenticationMode.TOKEN)),
         ],
         pydantic.Field(alias="mode"),
-    ] = DestinationMilvusModeToken.TOKEN
+    ] = DestinationMilvusAuthenticationMode.TOKEN
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
@@ -408,9 +418,9 @@ class DestinationMilvusAPIToken(BaseModel):
 DestinationMilvusAuthenticationTypedDict = TypeAliasType(
     "DestinationMilvusAuthenticationTypedDict",
     Union[
-        DestinationMilvusNoAuthTypedDict,
-        DestinationMilvusAPITokenTypedDict,
-        DestinationMilvusUsernamePasswordTypedDict,
+        NoAuthTypedDict,
+        DestinationMilvusAuthenticationAPITokenTypedDict,
+        AuthenticationUsernamePasswordTypedDict,
     ],
 )
 r"""Authentication method"""
@@ -419,9 +429,7 @@ r"""Authentication method"""
 DestinationMilvusAuthentication = TypeAliasType(
     "DestinationMilvusAuthentication",
     Union[
-        DestinationMilvusNoAuth,
-        DestinationMilvusAPIToken,
-        DestinationMilvusUsernamePassword,
+        NoAuth, DestinationMilvusAuthenticationAPIToken, AuthenticationUsernamePassword
     ],
 )
 r"""Authentication method"""
@@ -497,7 +505,7 @@ class DestinationMilvusFieldNameMappingConfigModel(BaseModel):
     r"""The field name to use in the destination"""
 
 
-class DestinationMilvusLanguage(str, Enum):
+class TextSplitterLanguage(str, Enum):
     r"""Split code in suitable places based on the programming language"""
 
     CPP = "cpp"
@@ -518,31 +526,35 @@ class DestinationMilvusLanguage(str, Enum):
     SOL = "sol"
 
 
-class DestinationMilvusModeCode(str, Enum):
+class DestinationMilvusTextSplitterProcessingTextSplitterMode(str, Enum):
     CODE = "code"
 
 
-class DestinationMilvusByProgrammingLanguageTypedDict(TypedDict):
+class TextSplitterByProgrammingLanguageTypedDict(TypedDict):
     r"""Split the text by suitable delimiters based on the programming language. This is useful for splitting code into chunks."""
 
-    language: DestinationMilvusLanguage
+    language: TextSplitterLanguage
     r"""Split code in suitable places based on the programming language"""
-    mode: DestinationMilvusModeCode
+    mode: DestinationMilvusTextSplitterProcessingTextSplitterMode
 
 
-class DestinationMilvusByProgrammingLanguage(BaseModel):
+class TextSplitterByProgrammingLanguage(BaseModel):
     r"""Split the text by suitable delimiters based on the programming language. This is useful for splitting code into chunks."""
 
-    language: DestinationMilvusLanguage
+    language: TextSplitterLanguage
     r"""Split code in suitable places based on the programming language"""
 
     MODE: Annotated[
         Annotated[
-            Optional[DestinationMilvusModeCode],
-            AfterValidator(validate_const(DestinationMilvusModeCode.CODE)),
+            Optional[DestinationMilvusTextSplitterProcessingTextSplitterMode],
+            AfterValidator(
+                validate_const(
+                    DestinationMilvusTextSplitterProcessingTextSplitterMode.CODE
+                )
+            ),
         ],
         pydantic.Field(alias="mode"),
-    ] = DestinationMilvusModeCode.CODE
+    ] = DestinationMilvusTextSplitterProcessingTextSplitterMode.CODE
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
@@ -561,28 +573,30 @@ class DestinationMilvusByProgrammingLanguage(BaseModel):
         return m
 
 
-class DestinationMilvusModeMarkdown(str, Enum):
+class DestinationMilvusTextSplitterProcessingMode(str, Enum):
     MARKDOWN = "markdown"
 
 
-class DestinationMilvusByMarkdownHeaderTypedDict(TypedDict):
+class TextSplitterByMarkdownHeaderTypedDict(TypedDict):
     r"""Split the text by Markdown headers down to the specified header level. If the chunk size fits multiple sections, they will be combined into a single chunk."""
 
-    mode: DestinationMilvusModeMarkdown
+    mode: DestinationMilvusTextSplitterProcessingMode
     split_level: NotRequired[int]
     r"""Level of markdown headers to split text fields by. Headings down to the specified level will be used as split points"""
 
 
-class DestinationMilvusByMarkdownHeader(BaseModel):
+class TextSplitterByMarkdownHeader(BaseModel):
     r"""Split the text by Markdown headers down to the specified header level. If the chunk size fits multiple sections, they will be combined into a single chunk."""
 
     MODE: Annotated[
         Annotated[
-            Optional[DestinationMilvusModeMarkdown],
-            AfterValidator(validate_const(DestinationMilvusModeMarkdown.MARKDOWN)),
+            Optional[DestinationMilvusTextSplitterProcessingMode],
+            AfterValidator(
+                validate_const(DestinationMilvusTextSplitterProcessingMode.MARKDOWN)
+            ),
         ],
         pydantic.Field(alias="mode"),
-    ] = DestinationMilvusModeMarkdown.MARKDOWN
+    ] = DestinationMilvusTextSplitterProcessingMode.MARKDOWN
 
     split_level: Optional[int] = 1
     r"""Level of markdown headers to split text fields by. Headings down to the specified level will be used as split points"""
@@ -604,21 +618,21 @@ class DestinationMilvusByMarkdownHeader(BaseModel):
         return m
 
 
-class DestinationMilvusModeSeparator(str, Enum):
+class DestinationMilvusTextSplitterMode(str, Enum):
     SEPARATOR = "separator"
 
 
-class DestinationMilvusBySeparatorTypedDict(TypedDict):
+class TextSplitterBySeparatorTypedDict(TypedDict):
     r"""Split the text by the list of separators until the chunk size is reached, using the earlier mentioned separators where possible. This is useful for splitting text fields by paragraphs, sentences, words, etc."""
 
     keep_separator: NotRequired[bool]
     r"""Whether to keep the separator in the resulting chunks"""
-    mode: DestinationMilvusModeSeparator
+    mode: DestinationMilvusTextSplitterMode
     separators: NotRequired[List[str]]
     r"""List of separator strings to split text fields by. The separator itself needs to be wrapped in double quotes, e.g. to split by the dot character, use \".\". To split by a newline, use \"\n\"."""
 
 
-class DestinationMilvusBySeparator(BaseModel):
+class TextSplitterBySeparator(BaseModel):
     r"""Split the text by the list of separators until the chunk size is reached, using the earlier mentioned separators where possible. This is useful for splitting text fields by paragraphs, sentences, words, etc."""
 
     keep_separator: Optional[bool] = False
@@ -626,11 +640,11 @@ class DestinationMilvusBySeparator(BaseModel):
 
     MODE: Annotated[
         Annotated[
-            Optional[DestinationMilvusModeSeparator],
-            AfterValidator(validate_const(DestinationMilvusModeSeparator.SEPARATOR)),
+            Optional[DestinationMilvusTextSplitterMode],
+            AfterValidator(validate_const(DestinationMilvusTextSplitterMode.SEPARATOR)),
         ],
         pydantic.Field(alias="mode"),
-    ] = DestinationMilvusModeSeparator.SEPARATOR
+    ] = DestinationMilvusTextSplitterMode.SEPARATOR
 
     separators: Optional[List[str]] = None
     r"""List of separator strings to split text fields by. The separator itself needs to be wrapped in double quotes, e.g. to split by the dot character, use \".\". To split by a newline, use \"\n\"."""
@@ -655,9 +669,9 @@ class DestinationMilvusBySeparator(BaseModel):
 DestinationMilvusTextSplitterTypedDict = TypeAliasType(
     "DestinationMilvusTextSplitterTypedDict",
     Union[
-        DestinationMilvusByMarkdownHeaderTypedDict,
-        DestinationMilvusByProgrammingLanguageTypedDict,
-        DestinationMilvusBySeparatorTypedDict,
+        TextSplitterByMarkdownHeaderTypedDict,
+        TextSplitterByProgrammingLanguageTypedDict,
+        TextSplitterBySeparatorTypedDict,
     ],
 )
 r"""Split text fields into chunks based on the specified method."""
@@ -666,9 +680,9 @@ r"""Split text fields into chunks based on the specified method."""
 DestinationMilvusTextSplitter = TypeAliasType(
     "DestinationMilvusTextSplitter",
     Union[
-        DestinationMilvusByMarkdownHeader,
-        DestinationMilvusByProgrammingLanguage,
-        DestinationMilvusBySeparator,
+        TextSplitterByMarkdownHeader,
+        TextSplitterByProgrammingLanguage,
+        TextSplitterBySeparator,
     ],
 )
 r"""Split text fields into chunks based on the specified method."""
@@ -807,47 +821,47 @@ class DestinationMilvus(BaseModel):
 
 
 try:
-    DestinationMilvusOpenAICompatible.model_rebuild()
+    EmbeddingOpenAICompatible.model_rebuild()
 except NameError:
     pass
 try:
-    DestinationMilvusAzureOpenAI.model_rebuild()
+    EmbeddingAzureOpenAI.model_rebuild()
 except NameError:
     pass
 try:
-    DestinationMilvusFake.model_rebuild()
+    EmbeddingFake.model_rebuild()
 except NameError:
     pass
 try:
-    DestinationMilvusCohere.model_rebuild()
+    EmbeddingCohere.model_rebuild()
 except NameError:
     pass
 try:
-    DestinationMilvusOpenAI.model_rebuild()
+    EmbeddingOpenAI.model_rebuild()
 except NameError:
     pass
 try:
-    DestinationMilvusNoAuth.model_rebuild()
+    NoAuth.model_rebuild()
 except NameError:
     pass
 try:
-    DestinationMilvusUsernamePassword.model_rebuild()
+    AuthenticationUsernamePassword.model_rebuild()
 except NameError:
     pass
 try:
-    DestinationMilvusAPIToken.model_rebuild()
+    DestinationMilvusAuthenticationAPIToken.model_rebuild()
 except NameError:
     pass
 try:
-    DestinationMilvusByProgrammingLanguage.model_rebuild()
+    TextSplitterByProgrammingLanguage.model_rebuild()
 except NameError:
     pass
 try:
-    DestinationMilvusByMarkdownHeader.model_rebuild()
+    TextSplitterByMarkdownHeader.model_rebuild()
 except NameError:
     pass
 try:
-    DestinationMilvusBySeparator.model_rebuild()
+    TextSplitterBySeparator.model_rebuild()
 except NameError:
     pass
 try:

@@ -5,9 +5,9 @@ An HMAC key is a type of credential and can be associated with a service account
 
 ## Supported Types
 
-### `models.DestinationGcsHMACKey`
+### `models.HMACKey`
 
 ```python
-value: models.DestinationGcsHMACKey = /* values here */
+value: models.HMACKey = /* values here */
 ```
 

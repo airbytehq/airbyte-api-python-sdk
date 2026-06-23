@@ -5,21 +5,21 @@ The encryption method with is used when communicating with the database.
 
 ## Supported Types
 
-### `models.SourceSapHanaEnterpriseUnencrypted`
+### `models.SourceSapHanaEnterpriseEncryptionUnencrypted`
 
 ```python
-value: models.SourceSapHanaEnterpriseUnencrypted = /* values here */
+value: models.SourceSapHanaEnterpriseEncryptionUnencrypted = /* values here */
 ```
 
-### `models.SourceSapHanaEnterpriseNativeNetworkEncryptionNNE`
+### `models.SourceSapHanaEnterpriseEncryptionNativeNetworkEncryptionNNE`
 
 ```python
-value: models.SourceSapHanaEnterpriseNativeNetworkEncryptionNNE = /* values here */
+value: models.SourceSapHanaEnterpriseEncryptionNativeNetworkEncryptionNNE = /* values here */
 ```
 
-### `models.SourceSapHanaEnterpriseTLSEncryptedVerifyCertificate`
+### `models.SourceSapHanaEnterpriseEncryptionTLSEncryptedVerifyCertificate`
 
 ```python
-value: models.SourceSapHanaEnterpriseTLSEncryptedVerifyCertificate = /* values here */
+value: models.SourceSapHanaEnterpriseEncryptionTLSEncryptedVerifyCertificate = /* values here */
 ```
 

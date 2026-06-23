@@ -11,9 +11,9 @@ Choose how to authenticate to Harvest.
 value: models.AuthenticateViaHarvestOAuth = /* values here */
 ```
 
-### `models.SourceHarvestAuthenticateWithPersonalAccessToken`
+### `models.AuthenticationMechanismAuthenticateWithPersonalAccessToken`
 
 ```python
-value: models.SourceHarvestAuthenticateWithPersonalAccessToken = /* values here */
+value: models.AuthenticationMechanismAuthenticateWithPersonalAccessToken = /* values here */
 ```
 

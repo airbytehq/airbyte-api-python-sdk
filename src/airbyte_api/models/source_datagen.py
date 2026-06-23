@@ -11,14 +11,14 @@ from typing import Any, Dict, Optional, Union
 from typing_extensions import Annotated, NotRequired, TypeAliasType, TypedDict
 
 
-class DataTypeTypes(str, Enum):
+class SourceDatagenDataGenerationTypeDataType(str, Enum):
     TYPES = "types"
 
 
 class AllTypesTypedDict(TypedDict):
     r"""Generates one column of each Airbyte data type."""
 
-    data_type: NotRequired[DataTypeTypes]
+    data_type: NotRequired[SourceDatagenDataGenerationTypeDataType]
 
 
 class AllTypes(BaseModel):
@@ -29,7 +29,9 @@ class AllTypes(BaseModel):
     )
     __pydantic_extra__: Dict[str, Any] = pydantic.Field(init=False)
 
-    data_type: Optional[DataTypeTypes] = DataTypeTypes.TYPES
+    data_type: Optional[SourceDatagenDataGenerationTypeDataType] = (
+        SourceDatagenDataGenerationTypeDataType.TYPES
+    )
 
     @property
     def additional_properties(self):
@@ -59,14 +61,14 @@ class AllTypes(BaseModel):
         return m
 
 
-class DataTypeIncrement(str, Enum):
+class DataGenerationTypeDataType(str, Enum):
     INCREMENT = "increment"
 
 
 class IncrementalTypedDict(TypedDict):
     r"""Generates incrementally increasing numerical data for the source."""
 
-    data_type: NotRequired[DataTypeIncrement]
+    data_type: NotRequired[DataGenerationTypeDataType]
 
 
 class Incremental(BaseModel):
@@ -77,7 +79,9 @@ class Incremental(BaseModel):
     )
     __pydantic_extra__: Dict[str, Any] = pydantic.Field(init=False)
 
-    data_type: Optional[DataTypeIncrement] = DataTypeIncrement.INCREMENT
+    data_type: Optional[DataGenerationTypeDataType] = (
+        DataGenerationTypeDataType.INCREMENT
+    )
 
     @property
     def additional_properties(self):

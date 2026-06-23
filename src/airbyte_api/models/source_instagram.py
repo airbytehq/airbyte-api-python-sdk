@@ -12,7 +12,7 @@ from typing import Optional
 from typing_extensions import Annotated, NotRequired, TypedDict
 
 
-class InstagramEnum(str, Enum):
+class SourceInstagramInstagram(str, Enum):
     INSTAGRAM = "instagram"
 
 
@@ -25,7 +25,7 @@ class SourceInstagramTypedDict(TypedDict):
     r"""The Client Secret for your Oauth application"""
     num_workers: NotRequired[int]
     r"""The number of worker threads to use for the sync."""
-    source_type: InstagramEnum
+    source_type: SourceInstagramInstagram
     start_date: NotRequired[datetime]
     r"""The date from which you'd like to replicate data for User Insights, in the format YYYY-MM-DDT00:00:00Z. All data generated after this date will be replicated. If left blank, the start date will be set to 2 years before the present date."""
 
@@ -45,10 +45,11 @@ class SourceInstagram(BaseModel):
 
     SOURCE_TYPE: Annotated[
         Annotated[
-            InstagramEnum, AfterValidator(validate_const(InstagramEnum.INSTAGRAM))
+            SourceInstagramInstagram,
+            AfterValidator(validate_const(SourceInstagramInstagram.INSTAGRAM)),
         ],
         pydantic.Field(alias="sourceType"),
-    ] = InstagramEnum.INSTAGRAM
+    ] = SourceInstagramInstagram.INSTAGRAM
 
     start_date: Optional[datetime] = None
     r"""The date from which you'd like to replicate data for User Insights, in the format YYYY-MM-DDT00:00:00Z. All data generated after this date will be replicated. If left blank, the start date will be set to 2 years before the present date."""

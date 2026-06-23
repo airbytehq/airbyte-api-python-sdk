@@ -5,21 +5,21 @@ Whether to initiate an SSH tunnel before connecting to the database, and if so, 
 
 ## Supported Types
 
-### `models.SourcePostgresNoTunnel`
+### `models.SourcePostgresSSHTunnelMethodNoTunnel`
 
 ```python
-value: models.SourcePostgresNoTunnel = /* values here */
+value: models.SourcePostgresSSHTunnelMethodNoTunnel = /* values here */
 ```
 
-### `models.SourcePostgresSSHKeyAuthentication`
+### `models.SourcePostgresSSHTunnelMethodSSHKeyAuthentication`
 
 ```python
-value: models.SourcePostgresSSHKeyAuthentication = /* values here */
+value: models.SourcePostgresSSHTunnelMethodSSHKeyAuthentication = /* values here */
 ```
 
-### `models.SourcePostgresPasswordAuthentication`
+### `models.SourcePostgresSSHTunnelMethodPasswordAuthentication`
 
 ```python
-value: models.SourcePostgresPasswordAuthentication = /* values here */
+value: models.SourcePostgresSSHTunnelMethodPasswordAuthentication = /* values here */
 ```
 

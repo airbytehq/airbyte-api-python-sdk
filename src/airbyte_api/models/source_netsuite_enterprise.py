@@ -11,7 +11,9 @@ from typing import Any, Dict, Optional, Union
 from typing_extensions import Annotated, NotRequired, TypeAliasType, TypedDict
 
 
-class AuthenticationMethodOauth2Authentication(str, Enum):
+class SourceNetsuiteEnterpriseAuthenticationMethodAuthenticationMethodAuthenticationMethod(
+    str, Enum
+):
     OAUTH2_AUTHENTICATION = "oauth2_authentication"
 
 
@@ -24,7 +26,9 @@ class OAuth2AuthenticationTypedDict(TypedDict):
     r"""The certificate ID for the OAuth 2.0 Client Credentials Setup entry."""
     oauth2_private_key: str
     r"""The private portion of the certificate with which OAuth2 was setup. ( created with openssl req -new -x509 -newkey rsa:4096 -keyout private.pem -sigopt rsa_padding_mode:pss -sha256 -sigopt rsa_pss_saltlen:64 -out public.pem -nodes -days 365 )"""
-    authentication_method: NotRequired[AuthenticationMethodOauth2Authentication]
+    authentication_method: NotRequired[
+        SourceNetsuiteEnterpriseAuthenticationMethodAuthenticationMethodAuthenticationMethod
+    ]
 
 
 class OAuth2Authentication(BaseModel):
@@ -44,9 +48,9 @@ class OAuth2Authentication(BaseModel):
     oauth2_private_key: str
     r"""The private portion of the certificate with which OAuth2 was setup. ( created with openssl req -new -x509 -newkey rsa:4096 -keyout private.pem -sigopt rsa_padding_mode:pss -sha256 -sigopt rsa_pss_saltlen:64 -out public.pem -nodes -days 365 )"""
 
-    authentication_method: Optional[AuthenticationMethodOauth2Authentication] = (
-        AuthenticationMethodOauth2Authentication.OAUTH2_AUTHENTICATION
-    )
+    authentication_method: Optional[
+        SourceNetsuiteEnterpriseAuthenticationMethodAuthenticationMethodAuthenticationMethod
+    ] = SourceNetsuiteEnterpriseAuthenticationMethodAuthenticationMethodAuthenticationMethod.OAUTH2_AUTHENTICATION
 
     @property
     def additional_properties(self):
@@ -76,7 +80,7 @@ class OAuth2Authentication(BaseModel):
         return m
 
 
-class AuthenticationMethodTokenBasedAuthentication(str, Enum):
+class SourceNetsuiteEnterpriseAuthenticationMethodAuthenticationMethod(str, Enum):
     TOKEN_BASED_AUTHENTICATION = "token_based_authentication"
 
 
@@ -91,7 +95,9 @@ class TokenBasedAuthenticationTypedDict(TypedDict):
     r"""The token ID used for token-based authentication. This is generated in NetSuite when creating a token-based role."""
     token_secret: str
     r"""The token secret used for token-based authentication. This is generated in NetSuite when creating a token-based role.Ensure to keep this value secure."""
-    authentication_method: NotRequired[AuthenticationMethodTokenBasedAuthentication]
+    authentication_method: NotRequired[
+        SourceNetsuiteEnterpriseAuthenticationMethodAuthenticationMethod
+    ]
 
 
 class TokenBasedAuthentication(BaseModel):
@@ -114,9 +120,9 @@ class TokenBasedAuthentication(BaseModel):
     token_secret: str
     r"""The token secret used for token-based authentication. This is generated in NetSuite when creating a token-based role.Ensure to keep this value secure."""
 
-    authentication_method: Optional[AuthenticationMethodTokenBasedAuthentication] = (
-        AuthenticationMethodTokenBasedAuthentication.TOKEN_BASED_AUTHENTICATION
-    )
+    authentication_method: Optional[
+        SourceNetsuiteEnterpriseAuthenticationMethodAuthenticationMethod
+    ] = SourceNetsuiteEnterpriseAuthenticationMethodAuthenticationMethod.TOKEN_BASED_AUTHENTICATION
 
     @property
     def additional_properties(self):
@@ -146,7 +152,7 @@ class TokenBasedAuthentication(BaseModel):
         return m
 
 
-class AuthenticationMethodPasswordAuthenticationEnum(str, Enum):
+class AuthenticationMethodAuthenticationMethod(str, Enum):
     PASSWORD_AUTHENTICATION = "password_authentication"
 
 
@@ -155,7 +161,7 @@ class AuthenticationMethodPasswordAuthenticationTypedDict(TypedDict):
 
     password: str
     r"""The password associated with the username."""
-    authentication_method: NotRequired[AuthenticationMethodPasswordAuthenticationEnum]
+    authentication_method: NotRequired[AuthenticationMethodAuthenticationMethod]
 
 
 class AuthenticationMethodPasswordAuthentication(BaseModel):
@@ -169,8 +175,8 @@ class AuthenticationMethodPasswordAuthentication(BaseModel):
     password: str
     r"""The password associated with the username."""
 
-    authentication_method: Optional[AuthenticationMethodPasswordAuthenticationEnum] = (
-        AuthenticationMethodPasswordAuthenticationEnum.PASSWORD_AUTHENTICATION
+    authentication_method: Optional[AuthenticationMethodAuthenticationMethod] = (
+        AuthenticationMethodAuthenticationMethod.PASSWORD_AUTHENTICATION
     )
 
     @property
@@ -201,8 +207,8 @@ class AuthenticationMethodPasswordAuthentication(BaseModel):
         return m
 
 
-SourceNetsuiteEnterpriseAuthenticationMethodUnionTypedDict = TypeAliasType(
-    "SourceNetsuiteEnterpriseAuthenticationMethodUnionTypedDict",
+SourceNetsuiteEnterpriseAuthenticationMethodTypedDict = TypeAliasType(
+    "SourceNetsuiteEnterpriseAuthenticationMethodTypedDict",
     Union[
         AuthenticationMethodPasswordAuthenticationTypedDict,
         OAuth2AuthenticationTypedDict,
@@ -212,8 +218,8 @@ SourceNetsuiteEnterpriseAuthenticationMethodUnionTypedDict = TypeAliasType(
 r"""Configure how to authenticate to Netsuite. Options include username/password or token-based authentication."""
 
 
-SourceNetsuiteEnterpriseAuthenticationMethodUnion = TypeAliasType(
-    "SourceNetsuiteEnterpriseAuthenticationMethodUnion",
+SourceNetsuiteEnterpriseAuthenticationMethod = TypeAliasType(
+    "SourceNetsuiteEnterpriseAuthenticationMethod",
     Union[
         AuthenticationMethodPasswordAuthentication,
         OAuth2Authentication,
@@ -223,17 +229,19 @@ SourceNetsuiteEnterpriseAuthenticationMethodUnion = TypeAliasType(
 r"""Configure how to authenticate to Netsuite. Options include username/password or token-based authentication."""
 
 
-class SourceNetsuiteEnterpriseCursorMethod(str, Enum):
+class SourceNetsuiteEnterpriseUpdateMethodCursorMethod(str, Enum):
     USER_DEFINED = "user_defined"
 
 
-class SourceNetsuiteEnterpriseScanChangesWithUserDefinedCursorTypedDict(TypedDict):
+class SourceNetsuiteEnterpriseUpdateMethodScanChangesWithUserDefinedCursorTypedDict(
+    TypedDict
+):
     r"""Incrementally detects new inserts and updates using the <a href=\"https://docs.airbyte.com/understanding-airbyte/connections/incremental-append/#user-defined-cursor\">cursor column</a> chosen when configuring a connection (e.g. created_at, updated_at)."""
 
-    cursor_method: NotRequired[SourceNetsuiteEnterpriseCursorMethod]
+    cursor_method: NotRequired[SourceNetsuiteEnterpriseUpdateMethodCursorMethod]
 
 
-class SourceNetsuiteEnterpriseScanChangesWithUserDefinedCursor(BaseModel):
+class SourceNetsuiteEnterpriseUpdateMethodScanChangesWithUserDefinedCursor(BaseModel):
     r"""Incrementally detects new inserts and updates using the <a href=\"https://docs.airbyte.com/understanding-airbyte/connections/incremental-append/#user-defined-cursor\">cursor column</a> chosen when configuring a connection (e.g. created_at, updated_at)."""
 
     model_config = ConfigDict(
@@ -241,8 +249,8 @@ class SourceNetsuiteEnterpriseScanChangesWithUserDefinedCursor(BaseModel):
     )
     __pydantic_extra__: Dict[str, Any] = pydantic.Field(init=False)
 
-    cursor_method: Optional[SourceNetsuiteEnterpriseCursorMethod] = (
-        SourceNetsuiteEnterpriseCursorMethod.USER_DEFINED
+    cursor_method: Optional[SourceNetsuiteEnterpriseUpdateMethodCursorMethod] = (
+        SourceNetsuiteEnterpriseUpdateMethodCursorMethod.USER_DEFINED
     )
 
     @property
@@ -274,13 +282,13 @@ class SourceNetsuiteEnterpriseScanChangesWithUserDefinedCursor(BaseModel):
 
 
 SourceNetsuiteEnterpriseUpdateMethodTypedDict = (
-    SourceNetsuiteEnterpriseScanChangesWithUserDefinedCursorTypedDict
+    SourceNetsuiteEnterpriseUpdateMethodScanChangesWithUserDefinedCursorTypedDict
 )
 r"""Configures how data is extracted from the database."""
 
 
 SourceNetsuiteEnterpriseUpdateMethod = (
-    SourceNetsuiteEnterpriseScanChangesWithUserDefinedCursor
+    SourceNetsuiteEnterpriseUpdateMethodScanChangesWithUserDefinedCursor
 )
 r"""Configures how data is extracted from the database."""
 
@@ -289,7 +297,7 @@ class NetsuiteEnterprise(str, Enum):
     NETSUITE_ENTERPRISE = "netsuite-enterprise"
 
 
-class SourceNetsuiteEnterpriseTunnelMethodSSHPasswordAuth(str, Enum):
+class SourceNetsuiteEnterpriseSSHTunnelMethodTunnelMethod3TunnelMethod(str, Enum):
     SSH_PASSWORD_AUTH = "SSH_PASSWORD_AUTH"
 
 
@@ -302,7 +310,9 @@ class SourceNetsuiteEnterpriseSSHTunnelMethodPasswordAuthenticationTypedDict(Typ
     r"""OS-level username for logging into the jump server host"""
     tunnel_user_password: str
     r"""OS-level password for logging into the jump server host"""
-    tunnel_method: NotRequired[SourceNetsuiteEnterpriseTunnelMethodSSHPasswordAuth]
+    tunnel_method: NotRequired[
+        SourceNetsuiteEnterpriseSSHTunnelMethodTunnelMethod3TunnelMethod
+    ]
     tunnel_port: NotRequired[int]
     r"""Port on the proxy/jump server that accepts inbound ssh connections."""
 
@@ -324,9 +334,9 @@ class SourceNetsuiteEnterpriseSSHTunnelMethodPasswordAuthentication(BaseModel):
     tunnel_user_password: str
     r"""OS-level password for logging into the jump server host"""
 
-    tunnel_method: Optional[SourceNetsuiteEnterpriseTunnelMethodSSHPasswordAuth] = (
-        SourceNetsuiteEnterpriseTunnelMethodSSHPasswordAuth.SSH_PASSWORD_AUTH
-    )
+    tunnel_method: Optional[
+        SourceNetsuiteEnterpriseSSHTunnelMethodTunnelMethod3TunnelMethod
+    ] = SourceNetsuiteEnterpriseSSHTunnelMethodTunnelMethod3TunnelMethod.SSH_PASSWORD_AUTH
 
     tunnel_port: Optional[int] = 22
     r"""Port on the proxy/jump server that accepts inbound ssh connections."""
@@ -359,11 +369,11 @@ class SourceNetsuiteEnterpriseSSHTunnelMethodPasswordAuthentication(BaseModel):
         return m
 
 
-class SourceNetsuiteEnterpriseTunnelMethodSSHKeyAuth(str, Enum):
+class SourceNetsuiteEnterpriseSSHTunnelMethodTunnelMethodTunnelMethod(str, Enum):
     SSH_KEY_AUTH = "SSH_KEY_AUTH"
 
 
-class SourceNetsuiteEnterpriseSSHKeyAuthenticationTypedDict(TypedDict):
+class SourceNetsuiteEnterpriseSSHTunnelMethodSSHKeyAuthenticationTypedDict(TypedDict):
     r"""Connect through a jump server tunnel host using username and ssh key"""
 
     ssh_key: str
@@ -372,12 +382,14 @@ class SourceNetsuiteEnterpriseSSHKeyAuthenticationTypedDict(TypedDict):
     r"""Hostname of the jump server host that allows inbound ssh tunnel."""
     tunnel_user: str
     r"""OS-level username for logging into the jump server host"""
-    tunnel_method: NotRequired[SourceNetsuiteEnterpriseTunnelMethodSSHKeyAuth]
+    tunnel_method: NotRequired[
+        SourceNetsuiteEnterpriseSSHTunnelMethodTunnelMethodTunnelMethod
+    ]
     tunnel_port: NotRequired[int]
     r"""Port on the proxy/jump server that accepts inbound ssh connections."""
 
 
-class SourceNetsuiteEnterpriseSSHKeyAuthentication(BaseModel):
+class SourceNetsuiteEnterpriseSSHTunnelMethodSSHKeyAuthentication(BaseModel):
     r"""Connect through a jump server tunnel host using username and ssh key"""
 
     model_config = ConfigDict(
@@ -394,9 +406,9 @@ class SourceNetsuiteEnterpriseSSHKeyAuthentication(BaseModel):
     tunnel_user: str
     r"""OS-level username for logging into the jump server host"""
 
-    tunnel_method: Optional[SourceNetsuiteEnterpriseTunnelMethodSSHKeyAuth] = (
-        SourceNetsuiteEnterpriseTunnelMethodSSHKeyAuth.SSH_KEY_AUTH
-    )
+    tunnel_method: Optional[
+        SourceNetsuiteEnterpriseSSHTunnelMethodTunnelMethodTunnelMethod
+    ] = SourceNetsuiteEnterpriseSSHTunnelMethodTunnelMethodTunnelMethod.SSH_KEY_AUTH
 
     tunnel_port: Optional[int] = 22
     r"""Port on the proxy/jump server that accepts inbound ssh connections."""
@@ -429,17 +441,17 @@ class SourceNetsuiteEnterpriseSSHKeyAuthentication(BaseModel):
         return m
 
 
-class SourceNetsuiteEnterpriseTunnelMethodNoTunnel(str, Enum):
+class SourceNetsuiteEnterpriseSSHTunnelMethodTunnelMethod(str, Enum):
     NO_TUNNEL = "NO_TUNNEL"
 
 
-class SourceNetsuiteEnterpriseNoTunnelTypedDict(TypedDict):
+class SourceNetsuiteEnterpriseSSHTunnelMethodNoTunnelTypedDict(TypedDict):
     r"""No ssh tunnel needed to connect to database"""
 
-    tunnel_method: NotRequired[SourceNetsuiteEnterpriseTunnelMethodNoTunnel]
+    tunnel_method: NotRequired[SourceNetsuiteEnterpriseSSHTunnelMethodTunnelMethod]
 
 
-class SourceNetsuiteEnterpriseNoTunnel(BaseModel):
+class SourceNetsuiteEnterpriseSSHTunnelMethodNoTunnel(BaseModel):
     r"""No ssh tunnel needed to connect to database"""
 
     model_config = ConfigDict(
@@ -447,8 +459,8 @@ class SourceNetsuiteEnterpriseNoTunnel(BaseModel):
     )
     __pydantic_extra__: Dict[str, Any] = pydantic.Field(init=False)
 
-    tunnel_method: Optional[SourceNetsuiteEnterpriseTunnelMethodNoTunnel] = (
-        SourceNetsuiteEnterpriseTunnelMethodNoTunnel.NO_TUNNEL
+    tunnel_method: Optional[SourceNetsuiteEnterpriseSSHTunnelMethodTunnelMethod] = (
+        SourceNetsuiteEnterpriseSSHTunnelMethodTunnelMethod.NO_TUNNEL
     )
 
     @property
@@ -482,8 +494,8 @@ class SourceNetsuiteEnterpriseNoTunnel(BaseModel):
 SourceNetsuiteEnterpriseSSHTunnelMethodTypedDict = TypeAliasType(
     "SourceNetsuiteEnterpriseSSHTunnelMethodTypedDict",
     Union[
-        SourceNetsuiteEnterpriseNoTunnelTypedDict,
-        SourceNetsuiteEnterpriseSSHKeyAuthenticationTypedDict,
+        SourceNetsuiteEnterpriseSSHTunnelMethodNoTunnelTypedDict,
+        SourceNetsuiteEnterpriseSSHTunnelMethodSSHKeyAuthenticationTypedDict,
         SourceNetsuiteEnterpriseSSHTunnelMethodPasswordAuthenticationTypedDict,
     ],
 )
@@ -493,8 +505,8 @@ r"""Whether to initiate an SSH tunnel before connecting to the database, and if 
 SourceNetsuiteEnterpriseSSHTunnelMethod = TypeAliasType(
     "SourceNetsuiteEnterpriseSSHTunnelMethod",
     Union[
-        SourceNetsuiteEnterpriseNoTunnel,
-        SourceNetsuiteEnterpriseSSHKeyAuthentication,
+        SourceNetsuiteEnterpriseSSHTunnelMethodNoTunnel,
+        SourceNetsuiteEnterpriseSSHTunnelMethodSSHKeyAuthentication,
         SourceNetsuiteEnterpriseSSHTunnelMethodPasswordAuthentication,
     ],
 )
@@ -504,7 +516,7 @@ r"""Whether to initiate an SSH tunnel before connecting to the database, and if 
 class SourceNetsuiteEnterpriseTypedDict(TypedDict):
     account_id: str
     r"""The username which is used to access the database."""
-    authentication_method: SourceNetsuiteEnterpriseAuthenticationMethodUnionTypedDict
+    authentication_method: SourceNetsuiteEnterpriseAuthenticationMethodTypedDict
     r"""Configure how to authenticate to Netsuite. Options include username/password or token-based authentication."""
     cursor: SourceNetsuiteEnterpriseUpdateMethodTypedDict
     r"""Configures how data is extracted from the database."""
@@ -533,7 +545,7 @@ class SourceNetsuiteEnterprise(BaseModel):
     account_id: str
     r"""The username which is used to access the database."""
 
-    authentication_method: SourceNetsuiteEnterpriseAuthenticationMethodUnion
+    authentication_method: SourceNetsuiteEnterpriseAuthenticationMethod
     r"""Configure how to authenticate to Netsuite. Options include username/password or token-based authentication."""
 
     cursor: SourceNetsuiteEnterpriseUpdateMethod

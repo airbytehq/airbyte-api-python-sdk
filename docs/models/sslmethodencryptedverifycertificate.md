@@ -1,16 +1,14 @@
-# SslMethodEncryptedVerifyCertificate
+# SSLMethodEncryptedVerifyCertificate
 
-## Example Usage
-
-```python
-from airbyte_api.models import SslMethodEncryptedVerifyCertificate
-
-value = SslMethodEncryptedVerifyCertificate.ENCRYPTED_VERIFY_CERTIFICATE
-```
+Verify and use the certificate provided by the server.
 
 
-## Values
+## Fields
 
-| Name                           | Value                          |
-| ------------------------------ | ------------------------------ |
-| `ENCRYPTED_VERIFY_CERTIFICATE` | encrypted_verify_certificate   |
+| Field                                                                                                                 | Type                                                                                                                  | Required                                                                                                              | Description                                                                                                           |
+| --------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------- |
+| `__pydantic_extra__`                                                                                                  | Dict[str, *Any*]                                                                                                      | :heavy_minus_sign:                                                                                                    | N/A                                                                                                                   |
+| `host_name_in_certificate`                                                                                            | *Optional[str]*                                                                                                       | :heavy_minus_sign:                                                                                                    | Specifies the host name of the server. The value of this property must match the subject property of the certificate. |
+| `name`                                                                                                                | [Optional[models.DestinationMssqlV2SSLMethodSSLMethod3Name]](../models/destinationmssqlv2sslmethodsslmethod3name.md)  | :heavy_minus_sign:                                                                                                    | N/A                                                                                                                   |
+| `trust_store_name`                                                                                                    | *Optional[str]*                                                                                                       | :heavy_minus_sign:                                                                                                    | Specifies the name of the trust store.                                                                                |
+| `trust_store_password`                                                                                                | *Optional[str]*                                                                                                       | :heavy_minus_sign:                                                                                                    | Specifies the password of the trust store.                                                                            |

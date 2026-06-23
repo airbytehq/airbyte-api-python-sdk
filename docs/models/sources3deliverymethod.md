@@ -3,15 +3,15 @@
 
 ## Supported Types
 
-### `models.SourceS3ReplicateRecords`
+### `models.SourceS3DeliveryMethodReplicateRecords`
 
 ```python
-value: models.SourceS3ReplicateRecords = /* values here */
+value: models.SourceS3DeliveryMethodReplicateRecords = /* values here */
 ```
 
-### `models.SourceS3CopyRawFiles`
+### `models.SourceS3DeliveryMethodCopyRawFiles`
 
 ```python
-value: models.SourceS3CopyRawFiles = /* values here */
+value: models.SourceS3DeliveryMethodCopyRawFiles = /* values here */
 ```
 

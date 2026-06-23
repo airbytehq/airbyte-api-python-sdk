@@ -5,15 +5,15 @@ The server authentication method
 
 ## Supported Types
 
-### `models.SourceSftpPasswordAuthentication`
+### `models.AuthenticationPasswordAuthentication`
 
 ```python
-value: models.SourceSftpPasswordAuthentication = /* values here */
+value: models.AuthenticationPasswordAuthentication = /* values here */
 ```
 
-### `models.SourceSftpSSHKeyAuthentication`
+### `models.AuthenticationSSHKeyAuthentication`
 
 ```python
-value: models.SourceSftpSSHKeyAuthentication = /* values here */
+value: models.AuthenticationSSHKeyAuthentication = /* values here */
 ```
 

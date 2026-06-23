@@ -5,21 +5,21 @@ Whether to initiate an SSH tunnel before connecting to the database, and if so, 
 
 ## Supported Types
 
-### `models.DestinationRedshiftNoTunnel`
+### `models.DestinationRedshiftSSHTunnelMethodNoTunnel`
 
 ```python
-value: models.DestinationRedshiftNoTunnel = /* values here */
+value: models.DestinationRedshiftSSHTunnelMethodNoTunnel = /* values here */
 ```
 
-### `models.DestinationRedshiftSSHKeyAuthentication`
+### `models.DestinationRedshiftSSHTunnelMethodSSHKeyAuthentication`
 
 ```python
-value: models.DestinationRedshiftSSHKeyAuthentication = /* values here */
+value: models.DestinationRedshiftSSHTunnelMethodSSHKeyAuthentication = /* values here */
 ```
 
-### `models.DestinationRedshiftPasswordAuthentication`
+### `models.DestinationRedshiftSSHTunnelMethodPasswordAuthentication`
 
 ```python
-value: models.DestinationRedshiftPasswordAuthentication = /* values here */
+value: models.DestinationRedshiftSSHTunnelMethodPasswordAuthentication = /* values here */
 ```
 

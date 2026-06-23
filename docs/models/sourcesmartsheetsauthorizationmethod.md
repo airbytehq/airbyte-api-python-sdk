@@ -3,10 +3,10 @@
 
 ## Supported Types
 
-### `models.SourceSmartsheetsOAuth20`
+### `models.SourceSmartsheetsAuthorizationMethodOAuth20`
 
 ```python
-value: models.SourceSmartsheetsOAuth20 = /* values here */
+value: models.SourceSmartsheetsAuthorizationMethodOAuth20 = /* values here */
 ```
 
 ### `models.APIAccessToken`

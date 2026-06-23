@@ -3,15 +3,15 @@
 
 ## Supported Types
 
-### `models.SourceZendeskSunshineOAuth20`
+### `models.SourceZendeskSunshineAuthorizationMethodOAuth20`
 
 ```python
-value: models.SourceZendeskSunshineOAuth20 = /* values here */
+value: models.SourceZendeskSunshineAuthorizationMethodOAuth20 = /* values here */
 ```
 
-### `models.SourceZendeskSunshineAPIToken`
+### `models.SourceZendeskSunshineAuthorizationMethodAPIToken`
 
 ```python
-value: models.SourceZendeskSunshineAPIToken = /* values here */
+value: models.SourceZendeskSunshineAuthorizationMethodAPIToken = /* values here */
 ```
 

@@ -5,27 +5,27 @@ Format of the data output. See <a href="https://docs.airbyte.com/integrations/de
 
 ## Supported Types
 
-### `models.DestinationS3CSVCommaSeparatedValues`
+### `models.DestinationS3OutputFormatCSVCommaSeparatedValues`
 
 ```python
-value: models.DestinationS3CSVCommaSeparatedValues = /* values here */
+value: models.DestinationS3OutputFormatCSVCommaSeparatedValues = /* values here */
 ```
 
-### `models.DestinationS3JSONLinesNewlineDelimitedJSON`
+### `models.DestinationS3OutputFormatJSONLinesNewlineDelimitedJSON`
 
 ```python
-value: models.DestinationS3JSONLinesNewlineDelimitedJSON = /* values here */
+value: models.DestinationS3OutputFormatJSONLinesNewlineDelimitedJSON = /* values here */
 ```
 
-### `models.DestinationS3AvroApacheAvro`
+### `models.OutputFormatAvroApacheAvro`
 
 ```python
-value: models.DestinationS3AvroApacheAvro = /* values here */
+value: models.OutputFormatAvroApacheAvro = /* values here */
 ```
 
-### `models.DestinationS3ParquetColumnarStorage`
+### `models.DestinationS3OutputFormatParquetColumnarStorage`
 
 ```python
-value: models.DestinationS3ParquetColumnarStorage = /* values here */
+value: models.DestinationS3OutputFormatParquetColumnarStorage = /* values here */
 ```
 

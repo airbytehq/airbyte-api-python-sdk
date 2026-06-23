@@ -12,14 +12,14 @@ from typing import List, Optional, Union
 from typing_extensions import Annotated, NotRequired, TypeAliasType, TypedDict
 
 
-class AuthTypeStorageAccountKey(str, Enum):
+class SourceAzureBlobStorageAuthenticationCredentials3AuthType(str, Enum):
     STORAGE_ACCOUNT_KEY = "storage_account_key"
 
 
 class AuthenticateViaStorageAccountKeyTypedDict(TypedDict):
     azure_blob_storage_account_key: str
     r"""The Azure blob storage account key."""
-    auth_type: AuthTypeStorageAccountKey
+    auth_type: SourceAzureBlobStorageAuthenticationCredentials3AuthType
 
 
 class AuthenticateViaStorageAccountKey(BaseModel):
@@ -28,13 +28,15 @@ class AuthenticateViaStorageAccountKey(BaseModel):
 
     AUTH_TYPE: Annotated[
         Annotated[
-            Optional[AuthTypeStorageAccountKey],
+            Optional[SourceAzureBlobStorageAuthenticationCredentials3AuthType],
             AfterValidator(
-                validate_const(AuthTypeStorageAccountKey.STORAGE_ACCOUNT_KEY)
+                validate_const(
+                    SourceAzureBlobStorageAuthenticationCredentials3AuthType.STORAGE_ACCOUNT_KEY
+                )
             ),
         ],
         pydantic.Field(alias="auth_type"),
-    ] = AuthTypeStorageAccountKey.STORAGE_ACCOUNT_KEY
+    ] = SourceAzureBlobStorageAuthenticationCredentials3AuthType.STORAGE_ACCOUNT_KEY
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
@@ -53,7 +55,7 @@ class AuthenticateViaStorageAccountKey(BaseModel):
         return m
 
 
-class AuthTypeClientCredentials(str, Enum):
+class SourceAzureBlobStorageAuthenticationCredentialsAuthType(str, Enum):
     CLIENT_CREDENTIALS = "client_credentials"
 
 
@@ -64,7 +66,7 @@ class AuthenticateViaClientCredentialsTypedDict(TypedDict):
     r"""Client Secret of your Microsoft developer application"""
     app_tenant_id: str
     r"""Tenant ID of the Microsoft Azure Application"""
-    auth_type: AuthTypeClientCredentials
+    auth_type: SourceAzureBlobStorageAuthenticationCredentialsAuthType
 
 
 class AuthenticateViaClientCredentials(BaseModel):
@@ -79,13 +81,15 @@ class AuthenticateViaClientCredentials(BaseModel):
 
     AUTH_TYPE: Annotated[
         Annotated[
-            Optional[AuthTypeClientCredentials],
+            Optional[SourceAzureBlobStorageAuthenticationCredentialsAuthType],
             AfterValidator(
-                validate_const(AuthTypeClientCredentials.CLIENT_CREDENTIALS)
+                validate_const(
+                    SourceAzureBlobStorageAuthenticationCredentialsAuthType.CLIENT_CREDENTIALS
+                )
             ),
         ],
         pydantic.Field(alias="auth_type"),
-    ] = AuthTypeClientCredentials.CLIENT_CREDENTIALS
+    ] = SourceAzureBlobStorageAuthenticationCredentialsAuthType.CLIENT_CREDENTIALS
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
@@ -104,7 +108,7 @@ class AuthenticateViaClientCredentials(BaseModel):
         return m
 
 
-class AuthTypeOauth2(str, Enum):
+class SourceAzureBlobStorageAuthenticationAuthType(str, Enum):
     OAUTH2 = "oauth2"
 
 
@@ -117,7 +121,7 @@ class AuthenticateViaOauth2TypedDict(TypedDict):
     r"""Refresh Token of your Microsoft developer application"""
     tenant_id: str
     r"""Tenant ID of the Microsoft Azure Application user"""
-    auth_type: AuthTypeOauth2
+    auth_type: SourceAzureBlobStorageAuthenticationAuthType
 
 
 class AuthenticateViaOauth2(BaseModel):
@@ -135,11 +139,13 @@ class AuthenticateViaOauth2(BaseModel):
 
     AUTH_TYPE: Annotated[
         Annotated[
-            Optional[AuthTypeOauth2],
-            AfterValidator(validate_const(AuthTypeOauth2.OAUTH2)),
+            Optional[SourceAzureBlobStorageAuthenticationAuthType],
+            AfterValidator(
+                validate_const(SourceAzureBlobStorageAuthenticationAuthType.OAUTH2)
+            ),
         ],
         pydantic.Field(alias="auth_type"),
-    ] = AuthTypeOauth2.OAUTH2
+    ] = SourceAzureBlobStorageAuthenticationAuthType.OAUTH2
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
@@ -184,22 +190,24 @@ class SourceAzureBlobStorageAzureBlobStorage(str, Enum):
     AZURE_BLOB_STORAGE = "azure-blob-storage"
 
 
-class SourceAzureBlobStorageFiletypeExcel(str, Enum):
+class SourceAzureBlobStorageFormatStreamsFormat6Filetype(str, Enum):
     EXCEL = "excel"
 
 
-class SourceAzureBlobStorageExcelFormatTypedDict(TypedDict):
-    filetype: SourceAzureBlobStorageFiletypeExcel
+class ExcelFormatTypedDict(TypedDict):
+    filetype: SourceAzureBlobStorageFormatStreamsFormat6Filetype
 
 
-class SourceAzureBlobStorageExcelFormat(BaseModel):
+class ExcelFormat(BaseModel):
     FILETYPE: Annotated[
         Annotated[
-            Optional[SourceAzureBlobStorageFiletypeExcel],
-            AfterValidator(validate_const(SourceAzureBlobStorageFiletypeExcel.EXCEL)),
+            Optional[SourceAzureBlobStorageFormatStreamsFormat6Filetype],
+            AfterValidator(
+                validate_const(SourceAzureBlobStorageFormatStreamsFormat6Filetype.EXCEL)
+            ),
         ],
         pydantic.Field(alias="filetype"),
-    ] = SourceAzureBlobStorageFiletypeExcel.EXCEL
+    ] = SourceAzureBlobStorageFormatStreamsFormat6Filetype.EXCEL
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
@@ -218,30 +226,30 @@ class SourceAzureBlobStorageExcelFormat(BaseModel):
         return m
 
 
-class SourceAzureBlobStorageFiletypeUnstructured(str, Enum):
+class SourceAzureBlobStorageFormatStreamsFormatFiletype(str, Enum):
     UNSTRUCTURED = "unstructured"
 
 
-class SourceAzureBlobStorageMode(str, Enum):
+class ProcessingMode(str, Enum):
     LOCAL = "local"
 
 
-class SourceAzureBlobStorageLocalTypedDict(TypedDict):
+class LocalTypedDict(TypedDict):
     r"""Process files locally, supporting `fast` and `ocr` modes. This is the default option."""
 
-    mode: SourceAzureBlobStorageMode
+    mode: ProcessingMode
 
 
-class SourceAzureBlobStorageLocal(BaseModel):
+class Local(BaseModel):
     r"""Process files locally, supporting `fast` and `ocr` modes. This is the default option."""
 
     MODE: Annotated[
         Annotated[
-            Optional[SourceAzureBlobStorageMode],
-            AfterValidator(validate_const(SourceAzureBlobStorageMode.LOCAL)),
+            Optional[ProcessingMode],
+            AfterValidator(validate_const(ProcessingMode.LOCAL)),
         ],
         pydantic.Field(alias="mode"),
-    ] = SourceAzureBlobStorageMode.LOCAL
+    ] = ProcessingMode.LOCAL
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
@@ -260,15 +268,15 @@ class SourceAzureBlobStorageLocal(BaseModel):
         return m
 
 
-SourceAzureBlobStorageProcessingTypedDict = SourceAzureBlobStorageLocalTypedDict
+ProcessingTypedDict = LocalTypedDict
 r"""Processing configuration"""
 
 
-SourceAzureBlobStorageProcessing = SourceAzureBlobStorageLocal
+Processing = Local
 r"""Processing configuration"""
 
 
-class SourceAzureBlobStorageParsingStrategy(str, Enum):
+class ParsingStrategy(str, Enum):
     r"""The strategy used to parse documents. `fast` extracts text directly from the document which doesn't work for all files. `ocr_only` is more reliable, but slower. `hi_res` is the most reliable, but requires an API key and a hosted instance of unstructured and can't be used with local mode. See the unstructured.io documentation for more details: https://unstructured-io.github.io/unstructured/core/partition.html#partition-pdf"""
 
     AUTO = "auto"
@@ -277,40 +285,40 @@ class SourceAzureBlobStorageParsingStrategy(str, Enum):
     HI_RES = "hi_res"
 
 
-class SourceAzureBlobStorageUnstructuredDocumentFormatTypedDict(TypedDict):
+class UnstructuredDocumentFormatTypedDict(TypedDict):
     r"""Extract text from document formats (.pdf, .docx, .md, .pptx) and emit as one record per file."""
 
-    filetype: SourceAzureBlobStorageFiletypeUnstructured
-    processing: NotRequired[SourceAzureBlobStorageProcessingTypedDict]
+    filetype: SourceAzureBlobStorageFormatStreamsFormatFiletype
+    processing: NotRequired[ProcessingTypedDict]
     r"""Processing configuration"""
     skip_unprocessable_files: NotRequired[bool]
     r"""If true, skip files that cannot be parsed and pass the error message along as the _ab_source_file_parse_error field. If false, fail the sync."""
-    strategy: NotRequired[SourceAzureBlobStorageParsingStrategy]
+    strategy: NotRequired[ParsingStrategy]
     r"""The strategy used to parse documents. `fast` extracts text directly from the document which doesn't work for all files. `ocr_only` is more reliable, but slower. `hi_res` is the most reliable, but requires an API key and a hosted instance of unstructured and can't be used with local mode. See the unstructured.io documentation for more details: https://unstructured-io.github.io/unstructured/core/partition.html#partition-pdf"""
 
 
-class SourceAzureBlobStorageUnstructuredDocumentFormat(BaseModel):
+class UnstructuredDocumentFormat(BaseModel):
     r"""Extract text from document formats (.pdf, .docx, .md, .pptx) and emit as one record per file."""
 
     FILETYPE: Annotated[
         Annotated[
-            Optional[SourceAzureBlobStorageFiletypeUnstructured],
+            Optional[SourceAzureBlobStorageFormatStreamsFormatFiletype],
             AfterValidator(
-                validate_const(SourceAzureBlobStorageFiletypeUnstructured.UNSTRUCTURED)
+                validate_const(
+                    SourceAzureBlobStorageFormatStreamsFormatFiletype.UNSTRUCTURED
+                )
             ),
         ],
         pydantic.Field(alias="filetype"),
-    ] = SourceAzureBlobStorageFiletypeUnstructured.UNSTRUCTURED
+    ] = SourceAzureBlobStorageFormatStreamsFormatFiletype.UNSTRUCTURED
 
-    processing: Optional[SourceAzureBlobStorageProcessing] = None
+    processing: Optional[Processing] = None
     r"""Processing configuration"""
 
     skip_unprocessable_files: Optional[bool] = True
     r"""If true, skip files that cannot be parsed and pass the error message along as the _ab_source_file_parse_error field. If false, fail the sync."""
 
-    strategy: Optional[SourceAzureBlobStorageParsingStrategy] = (
-        SourceAzureBlobStorageParsingStrategy.AUTO
-    )
+    strategy: Optional[ParsingStrategy] = ParsingStrategy.AUTO
     r"""The strategy used to parse documents. `fast` extracts text directly from the document which doesn't work for all files. `ocr_only` is more reliable, but slower. `hi_res` is the most reliable, but requires an API key and a hosted instance of unstructured and can't be used with local mode. See the unstructured.io documentation for more details: https://unstructured-io.github.io/unstructured/core/partition.html#partition-pdf"""
 
     @model_serializer(mode="wrap")
@@ -332,29 +340,29 @@ class SourceAzureBlobStorageUnstructuredDocumentFormat(BaseModel):
         return m
 
 
-class SourceAzureBlobStorageFiletypeParquet(str, Enum):
+class SourceAzureBlobStorageFormatStreamsFiletype(str, Enum):
     PARQUET = "parquet"
 
 
-class SourceAzureBlobStorageParquetFormatTypedDict(TypedDict):
+class ParquetFormatTypedDict(TypedDict):
     decimal_as_float: NotRequired[bool]
     r"""Whether to convert decimal fields to floats. There is a loss of precision when converting decimals to floats, so this is not recommended."""
-    filetype: SourceAzureBlobStorageFiletypeParquet
+    filetype: SourceAzureBlobStorageFormatStreamsFiletype
 
 
-class SourceAzureBlobStorageParquetFormat(BaseModel):
+class ParquetFormat(BaseModel):
     decimal_as_float: Optional[bool] = False
     r"""Whether to convert decimal fields to floats. There is a loss of precision when converting decimals to floats, so this is not recommended."""
 
     FILETYPE: Annotated[
         Annotated[
-            Optional[SourceAzureBlobStorageFiletypeParquet],
+            Optional[SourceAzureBlobStorageFormatStreamsFiletype],
             AfterValidator(
-                validate_const(SourceAzureBlobStorageFiletypeParquet.PARQUET)
+                validate_const(SourceAzureBlobStorageFormatStreamsFiletype.PARQUET)
             ),
         ],
         pydantic.Field(alias="filetype"),
-    ] = SourceAzureBlobStorageFiletypeParquet.PARQUET
+    ] = SourceAzureBlobStorageFormatStreamsFiletype.PARQUET
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
@@ -373,22 +381,22 @@ class SourceAzureBlobStorageParquetFormat(BaseModel):
         return m
 
 
-class SourceAzureBlobStorageFiletypeJsonl(str, Enum):
+class SourceAzureBlobStorageFormatFiletype(str, Enum):
     JSONL = "jsonl"
 
 
-class SourceAzureBlobStorageJsonlFormatTypedDict(TypedDict):
-    filetype: SourceAzureBlobStorageFiletypeJsonl
+class JsonlFormatTypedDict(TypedDict):
+    filetype: SourceAzureBlobStorageFormatFiletype
 
 
-class SourceAzureBlobStorageJsonlFormat(BaseModel):
+class JsonlFormat(BaseModel):
     FILETYPE: Annotated[
         Annotated[
-            Optional[SourceAzureBlobStorageFiletypeJsonl],
-            AfterValidator(validate_const(SourceAzureBlobStorageFiletypeJsonl.JSONL)),
+            Optional[SourceAzureBlobStorageFormatFiletype],
+            AfterValidator(validate_const(SourceAzureBlobStorageFormatFiletype.JSONL)),
         ],
         pydantic.Field(alias="filetype"),
-    ] = SourceAzureBlobStorageFiletypeJsonl.JSONL
+    ] = SourceAzureBlobStorageFormatFiletype.JSONL
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
@@ -407,35 +415,37 @@ class SourceAzureBlobStorageJsonlFormat(BaseModel):
         return m
 
 
-class SourceAzureBlobStorageFiletypeCsv(str, Enum):
+class FormatFiletype(str, Enum):
     CSV = "csv"
 
 
-class SourceAzureBlobStorageHeaderDefinitionTypeUserProvided(str, Enum):
+class SourceAzureBlobStorageCSVHeaderDefinitionHeaderDefinitionType(str, Enum):
     USER_PROVIDED = "User Provided"
 
 
-class SourceAzureBlobStorageUserProvidedTypedDict(TypedDict):
+class UserProvidedTypedDict(TypedDict):
     column_names: List[str]
     r"""The column names that will be used while emitting the CSV records"""
-    header_definition_type: SourceAzureBlobStorageHeaderDefinitionTypeUserProvided
+    header_definition_type: (
+        SourceAzureBlobStorageCSVHeaderDefinitionHeaderDefinitionType
+    )
 
 
-class SourceAzureBlobStorageUserProvided(BaseModel):
+class UserProvided(BaseModel):
     column_names: List[str]
     r"""The column names that will be used while emitting the CSV records"""
 
     HEADER_DEFINITION_TYPE: Annotated[
         Annotated[
-            Optional[SourceAzureBlobStorageHeaderDefinitionTypeUserProvided],
+            Optional[SourceAzureBlobStorageCSVHeaderDefinitionHeaderDefinitionType],
             AfterValidator(
                 validate_const(
-                    SourceAzureBlobStorageHeaderDefinitionTypeUserProvided.USER_PROVIDED
+                    SourceAzureBlobStorageCSVHeaderDefinitionHeaderDefinitionType.USER_PROVIDED
                 )
             ),
         ],
         pydantic.Field(alias="header_definition_type"),
-    ] = SourceAzureBlobStorageHeaderDefinitionTypeUserProvided.USER_PROVIDED
+    ] = SourceAzureBlobStorageCSVHeaderDefinitionHeaderDefinitionType.USER_PROVIDED
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
@@ -454,26 +464,24 @@ class SourceAzureBlobStorageUserProvided(BaseModel):
         return m
 
 
-class SourceAzureBlobStorageHeaderDefinitionTypeAutogenerated(str, Enum):
+class CSVHeaderDefinitionHeaderDefinitionType(str, Enum):
     AUTOGENERATED = "Autogenerated"
 
 
-class SourceAzureBlobStorageAutogeneratedTypedDict(TypedDict):
-    header_definition_type: SourceAzureBlobStorageHeaderDefinitionTypeAutogenerated
+class AutogeneratedTypedDict(TypedDict):
+    header_definition_type: CSVHeaderDefinitionHeaderDefinitionType
 
 
-class SourceAzureBlobStorageAutogenerated(BaseModel):
+class Autogenerated(BaseModel):
     HEADER_DEFINITION_TYPE: Annotated[
         Annotated[
-            Optional[SourceAzureBlobStorageHeaderDefinitionTypeAutogenerated],
+            Optional[CSVHeaderDefinitionHeaderDefinitionType],
             AfterValidator(
-                validate_const(
-                    SourceAzureBlobStorageHeaderDefinitionTypeAutogenerated.AUTOGENERATED
-                )
+                validate_const(CSVHeaderDefinitionHeaderDefinitionType.AUTOGENERATED)
             ),
         ],
         pydantic.Field(alias="header_definition_type"),
-    ] = SourceAzureBlobStorageHeaderDefinitionTypeAutogenerated.AUTOGENERATED
+    ] = CSVHeaderDefinitionHeaderDefinitionType.AUTOGENERATED
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
@@ -492,26 +500,22 @@ class SourceAzureBlobStorageAutogenerated(BaseModel):
         return m
 
 
-class SourceAzureBlobStorageHeaderDefinitionTypeFromCsv(str, Enum):
+class HeaderDefinitionType(str, Enum):
     FROM_CSV = "From CSV"
 
 
-class SourceAzureBlobStorageFromCSVTypedDict(TypedDict):
-    header_definition_type: SourceAzureBlobStorageHeaderDefinitionTypeFromCsv
+class FromCSVTypedDict(TypedDict):
+    header_definition_type: HeaderDefinitionType
 
 
-class SourceAzureBlobStorageFromCSV(BaseModel):
+class FromCSV(BaseModel):
     HEADER_DEFINITION_TYPE: Annotated[
         Annotated[
-            Optional[SourceAzureBlobStorageHeaderDefinitionTypeFromCsv],
-            AfterValidator(
-                validate_const(
-                    SourceAzureBlobStorageHeaderDefinitionTypeFromCsv.FROM_CSV
-                )
-            ),
+            Optional[HeaderDefinitionType],
+            AfterValidator(validate_const(HeaderDefinitionType.FROM_CSV)),
         ],
         pydantic.Field(alias="header_definition_type"),
-    ] = SourceAzureBlobStorageHeaderDefinitionTypeFromCsv.FROM_CSV
+    ] = HeaderDefinitionType.FROM_CSV
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
@@ -530,29 +534,20 @@ class SourceAzureBlobStorageFromCSV(BaseModel):
         return m
 
 
-SourceAzureBlobStorageCSVHeaderDefinitionTypedDict = TypeAliasType(
-    "SourceAzureBlobStorageCSVHeaderDefinitionTypedDict",
-    Union[
-        SourceAzureBlobStorageFromCSVTypedDict,
-        SourceAzureBlobStorageAutogeneratedTypedDict,
-        SourceAzureBlobStorageUserProvidedTypedDict,
-    ],
+CSVHeaderDefinitionTypedDict = TypeAliasType(
+    "CSVHeaderDefinitionTypedDict",
+    Union[FromCSVTypedDict, AutogeneratedTypedDict, UserProvidedTypedDict],
 )
 r"""How headers will be defined. `User Provided` assumes the CSV does not have a header row and uses the headers provided and `Autogenerated` assumes the CSV does not have a header row and the CDK will generate headers using for `f{i}` where `i` is the index starting from 0. Else, the default behavior is to use the header from the CSV file. If a user wants to autogenerate or provide column names for a CSV having headers, they can skip rows."""
 
 
-SourceAzureBlobStorageCSVHeaderDefinition = TypeAliasType(
-    "SourceAzureBlobStorageCSVHeaderDefinition",
-    Union[
-        SourceAzureBlobStorageFromCSV,
-        SourceAzureBlobStorageAutogenerated,
-        SourceAzureBlobStorageUserProvided,
-    ],
+CSVHeaderDefinition = TypeAliasType(
+    "CSVHeaderDefinition", Union[FromCSV, Autogenerated, UserProvided]
 )
 r"""How headers will be defined. `User Provided` assumes the CSV does not have a header row and uses the headers provided and `Autogenerated` assumes the CSV does not have a header row and the CDK will generate headers using for `f{i}` where `i` is the index starting from 0. Else, the default behavior is to use the header from the CSV file. If a user wants to autogenerate or provide column names for a CSV having headers, they can skip rows."""
 
 
-class SourceAzureBlobStorageCSVFormatTypedDict(TypedDict):
+class CSVFormatTypedDict(TypedDict):
     delimiter: NotRequired[str]
     r"""The character delimiting individual cells in the CSV data. This may only be a 1-character string. For tab-delimited data enter '\t'."""
     double_quote: NotRequired[bool]
@@ -563,8 +558,8 @@ class SourceAzureBlobStorageCSVFormatTypedDict(TypedDict):
     r"""The character used for escaping special characters. To disallow escaping, leave this field blank."""
     false_values: NotRequired[List[str]]
     r"""A set of case-sensitive strings that should be interpreted as false values."""
-    filetype: SourceAzureBlobStorageFiletypeCsv
-    header_definition: NotRequired[SourceAzureBlobStorageCSVHeaderDefinitionTypedDict]
+    filetype: FormatFiletype
+    header_definition: NotRequired[CSVHeaderDefinitionTypedDict]
     r"""How headers will be defined. `User Provided` assumes the CSV does not have a header row and uses the headers provided and `Autogenerated` assumes the CSV does not have a header row and the CDK will generate headers using for `f{i}` where `i` is the index starting from 0. Else, the default behavior is to use the header from the CSV file. If a user wants to autogenerate or provide column names for a CSV having headers, they can skip rows."""
     ignore_errors_on_fields_mismatch: NotRequired[bool]
     r"""Whether to ignore errors that occur when the number of fields in the CSV does not match the number of columns in the schema."""
@@ -582,7 +577,7 @@ class SourceAzureBlobStorageCSVFormatTypedDict(TypedDict):
     r"""A set of case-sensitive strings that should be interpreted as true values."""
 
 
-class SourceAzureBlobStorageCSVFormat(BaseModel):
+class CSVFormat(BaseModel):
     delimiter: Optional[str] = ","
     r"""The character delimiting individual cells in the CSV data. This may only be a 1-character string. For tab-delimited data enter '\t'."""
 
@@ -600,13 +595,12 @@ class SourceAzureBlobStorageCSVFormat(BaseModel):
 
     FILETYPE: Annotated[
         Annotated[
-            Optional[SourceAzureBlobStorageFiletypeCsv],
-            AfterValidator(validate_const(SourceAzureBlobStorageFiletypeCsv.CSV)),
+            Optional[FormatFiletype], AfterValidator(validate_const(FormatFiletype.CSV))
         ],
         pydantic.Field(alias="filetype"),
-    ] = SourceAzureBlobStorageFiletypeCsv.CSV
+    ] = FormatFiletype.CSV
 
-    header_definition: Optional[SourceAzureBlobStorageCSVHeaderDefinition] = None
+    header_definition: Optional[CSVHeaderDefinition] = None
     r"""How headers will be defined. `User Provided` assumes the CSV does not have a header row and uses the headers provided and `Autogenerated` assumes the CSV does not have a header row and the CDK will generate headers using for `f{i}` where `i` is the index starting from 0. Else, the default behavior is to use the header from the CSV file. If a user wants to autogenerate or provide column names for a CSV having headers, they can skip rows."""
 
     ignore_errors_on_fields_mismatch: Optional[bool] = False
@@ -664,27 +658,24 @@ class SourceAzureBlobStorageCSVFormat(BaseModel):
         return m
 
 
-class SourceAzureBlobStorageFiletypeAvro(str, Enum):
+class Filetype(str, Enum):
     AVRO = "avro"
 
 
-class SourceAzureBlobStorageAvroFormatTypedDict(TypedDict):
+class AvroFormatTypedDict(TypedDict):
     double_as_string: NotRequired[bool]
     r"""Whether to convert double fields to strings. This is recommended if you have decimal numbers with a high degree of precision because there can be a loss precision when handling floating point numbers."""
-    filetype: SourceAzureBlobStorageFiletypeAvro
+    filetype: Filetype
 
 
-class SourceAzureBlobStorageAvroFormat(BaseModel):
+class AvroFormat(BaseModel):
     double_as_string: Optional[bool] = False
     r"""Whether to convert double fields to strings. This is recommended if you have decimal numbers with a high degree of precision because there can be a loss precision when handling floating point numbers."""
 
     FILETYPE: Annotated[
-        Annotated[
-            Optional[SourceAzureBlobStorageFiletypeAvro],
-            AfterValidator(validate_const(SourceAzureBlobStorageFiletypeAvro.AVRO)),
-        ],
+        Annotated[Optional[Filetype], AfterValidator(validate_const(Filetype.AVRO))],
         pydantic.Field(alias="filetype"),
-    ] = SourceAzureBlobStorageFiletypeAvro.AVRO
+    ] = Filetype.AVRO
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
@@ -703,35 +694,35 @@ class SourceAzureBlobStorageAvroFormat(BaseModel):
         return m
 
 
-SourceAzureBlobStorageFormatTypedDict = TypeAliasType(
-    "SourceAzureBlobStorageFormatTypedDict",
+FormatTypedDict = TypeAliasType(
+    "FormatTypedDict",
     Union[
-        SourceAzureBlobStorageJsonlFormatTypedDict,
-        SourceAzureBlobStorageExcelFormatTypedDict,
-        SourceAzureBlobStorageAvroFormatTypedDict,
-        SourceAzureBlobStorageParquetFormatTypedDict,
-        SourceAzureBlobStorageUnstructuredDocumentFormatTypedDict,
-        SourceAzureBlobStorageCSVFormatTypedDict,
+        JsonlFormatTypedDict,
+        ExcelFormatTypedDict,
+        AvroFormatTypedDict,
+        ParquetFormatTypedDict,
+        UnstructuredDocumentFormatTypedDict,
+        CSVFormatTypedDict,
     ],
 )
 r"""The configuration options that are used to alter how to read incoming files that deviate from the standard formatting."""
 
 
-SourceAzureBlobStorageFormat = TypeAliasType(
-    "SourceAzureBlobStorageFormat",
+Format = TypeAliasType(
+    "Format",
     Union[
-        SourceAzureBlobStorageJsonlFormat,
-        SourceAzureBlobStorageExcelFormat,
-        SourceAzureBlobStorageAvroFormat,
-        SourceAzureBlobStorageParquetFormat,
-        SourceAzureBlobStorageUnstructuredDocumentFormat,
-        SourceAzureBlobStorageCSVFormat,
+        JsonlFormat,
+        ExcelFormat,
+        AvroFormat,
+        ParquetFormat,
+        UnstructuredDocumentFormat,
+        CSVFormat,
     ],
 )
 r"""The configuration options that are used to alter how to read incoming files that deviate from the standard formatting."""
 
 
-class SourceAzureBlobStorageValidationPolicy(str, Enum):
+class ValidationPolicy(str, Enum):
     r"""The name of the validation policy that dictates sync behavior when a record does not adhere to the stream schema."""
 
     EMIT_RECORD = "Emit Record"
@@ -739,8 +730,8 @@ class SourceAzureBlobStorageValidationPolicy(str, Enum):
     WAIT_FOR_DISCOVER = "Wait for Discover"
 
 
-class SourceAzureBlobStorageFileBasedStreamConfigTypedDict(TypedDict):
-    format_: SourceAzureBlobStorageFormatTypedDict
+class FileBasedStreamConfigTypedDict(TypedDict):
+    format_: FormatTypedDict
     r"""The configuration options that are used to alter how to read incoming files that deviate from the standard formatting."""
     name: str
     r"""The name of the stream."""
@@ -754,12 +745,12 @@ class SourceAzureBlobStorageFileBasedStreamConfigTypedDict(TypedDict):
     r"""The number of resent files which will be used to discover the schema for this stream."""
     schemaless: NotRequired[bool]
     r"""When enabled, syncs will not validate or structure records against the stream's schema."""
-    validation_policy: NotRequired[SourceAzureBlobStorageValidationPolicy]
+    validation_policy: NotRequired[ValidationPolicy]
     r"""The name of the validation policy that dictates sync behavior when a record does not adhere to the stream schema."""
 
 
-class SourceAzureBlobStorageFileBasedStreamConfig(BaseModel):
-    format_: Annotated[SourceAzureBlobStorageFormat, pydantic.Field(alias="format")]
+class FileBasedStreamConfig(BaseModel):
+    format_: Annotated[Format, pydantic.Field(alias="format")]
     r"""The configuration options that are used to alter how to read incoming files that deviate from the standard formatting."""
 
     name: str
@@ -780,9 +771,7 @@ class SourceAzureBlobStorageFileBasedStreamConfig(BaseModel):
     schemaless: Optional[bool] = False
     r"""When enabled, syncs will not validate or structure records against the stream's schema."""
 
-    validation_policy: Optional[SourceAzureBlobStorageValidationPolicy] = (
-        SourceAzureBlobStorageValidationPolicy.EMIT_RECORD
-    )
+    validation_policy: Optional[ValidationPolicy] = ValidationPolicy.EMIT_RECORD
     r"""The name of the validation policy that dictates sync behavior when a record does not adhere to the stream schema."""
 
     @model_serializer(mode="wrap")
@@ -822,7 +811,7 @@ class SourceAzureBlobStorageTypedDict(TypedDict):
     r"""The name of the Azure blob storage container."""
     credentials: SourceAzureBlobStorageAuthenticationTypedDict
     r"""Credentials for connecting to the Azure Blob Storage"""
-    streams: List[SourceAzureBlobStorageFileBasedStreamConfigTypedDict]
+    streams: List[FileBasedStreamConfigTypedDict]
     r"""Each instance of this configuration defines a <a href=\"https://docs.airbyte.com/cloud/core-concepts#stream\">stream</a>. Use this to define which files belong in the stream, their format, and how they should be parsed and validated. When sending data to warehouse destination such as Snowflake or BigQuery, each stream is a separate table."""
     azure_blob_storage_endpoint: NotRequired[str]
     r"""This is Azure Blob Storage endpoint domain name. Leave default value (or leave it empty if run container from command line) to use Microsoft native from example."""
@@ -845,7 +834,7 @@ class SourceAzureBlobStorage(BaseModel):
     credentials: SourceAzureBlobStorageAuthentication
     r"""Credentials for connecting to the Azure Blob Storage"""
 
-    streams: List[SourceAzureBlobStorageFileBasedStreamConfig]
+    streams: List[FileBasedStreamConfig]
     r"""Each instance of this configuration defines a <a href=\"https://docs.airbyte.com/cloud/core-concepts#stream\">stream</a>. Use this to define which files belong in the stream, their format, and how they should be parsed and validated. When sending data to warehouse destination such as Snowflake or BigQuery, each stream is a separate table."""
 
     azure_blob_storage_endpoint: Optional[str] = None
@@ -896,47 +885,47 @@ try:
 except NameError:
     pass
 try:
-    SourceAzureBlobStorageExcelFormat.model_rebuild()
+    ExcelFormat.model_rebuild()
 except NameError:
     pass
 try:
-    SourceAzureBlobStorageLocal.model_rebuild()
+    Local.model_rebuild()
 except NameError:
     pass
 try:
-    SourceAzureBlobStorageUnstructuredDocumentFormat.model_rebuild()
+    UnstructuredDocumentFormat.model_rebuild()
 except NameError:
     pass
 try:
-    SourceAzureBlobStorageParquetFormat.model_rebuild()
+    ParquetFormat.model_rebuild()
 except NameError:
     pass
 try:
-    SourceAzureBlobStorageJsonlFormat.model_rebuild()
+    JsonlFormat.model_rebuild()
 except NameError:
     pass
 try:
-    SourceAzureBlobStorageUserProvided.model_rebuild()
+    UserProvided.model_rebuild()
 except NameError:
     pass
 try:
-    SourceAzureBlobStorageAutogenerated.model_rebuild()
+    Autogenerated.model_rebuild()
 except NameError:
     pass
 try:
-    SourceAzureBlobStorageFromCSV.model_rebuild()
+    FromCSV.model_rebuild()
 except NameError:
     pass
 try:
-    SourceAzureBlobStorageCSVFormat.model_rebuild()
+    CSVFormat.model_rebuild()
 except NameError:
     pass
 try:
-    SourceAzureBlobStorageAvroFormat.model_rebuild()
+    AvroFormat.model_rebuild()
 except NameError:
     pass
 try:
-    SourceAzureBlobStorageFileBasedStreamConfig.model_rebuild()
+    FileBasedStreamConfig.model_rebuild()
 except NameError:
     pass
 try:

@@ -12,7 +12,7 @@ from typing import Optional, Union
 from typing_extensions import Annotated, NotRequired, TypeAliasType, TypedDict
 
 
-class AuthTypePrivateAppCredentials(str, Enum):
+class SourceHubspotAuthenticationCredentialsAuthType(str, Enum):
     r"""Name of the credentials set"""
 
     PRIVATE_APP_CREDENTIALS = "Private App Credentials"
@@ -21,7 +21,7 @@ class AuthTypePrivateAppCredentials(str, Enum):
 class PrivateAppTypedDict(TypedDict):
     access_token: str
     r"""HubSpot Access token. See the <a href=\"https://developers.hubspot.com/docs/api/private-apps\">Hubspot docs</a> if you need help finding this token."""
-    credentials_title: AuthTypePrivateAppCredentials
+    credentials_title: SourceHubspotAuthenticationCredentialsAuthType
     r"""Name of the credentials set"""
 
 
@@ -31,34 +31,36 @@ class PrivateApp(BaseModel):
 
     CREDENTIALS_TITLE: Annotated[
         Annotated[
-            AuthTypePrivateAppCredentials,
+            SourceHubspotAuthenticationCredentialsAuthType,
             AfterValidator(
-                validate_const(AuthTypePrivateAppCredentials.PRIVATE_APP_CREDENTIALS)
+                validate_const(
+                    SourceHubspotAuthenticationCredentialsAuthType.PRIVATE_APP_CREDENTIALS
+                )
             ),
         ],
         pydantic.Field(alias="credentials_title"),
-    ] = AuthTypePrivateAppCredentials.PRIVATE_APP_CREDENTIALS
+    ] = SourceHubspotAuthenticationCredentialsAuthType.PRIVATE_APP_CREDENTIALS
     r"""Name of the credentials set"""
 
 
-class AuthTypeOAuthCredentials(str, Enum):
+class SourceHubspotAuthenticationAuthType(str, Enum):
     r"""Name of the credentials"""
 
     O_AUTH_CREDENTIALS = "OAuth Credentials"
 
 
-class SourceHubspotOAuthTypedDict(TypedDict):
+class SourceHubspotAuthenticationOAuthTypedDict(TypedDict):
     client_id: str
     r"""The Client ID of your HubSpot developer application. See the <a href=\"https://legacydocs.hubspot.com/docs/methods/oauth2/oauth2-quickstart\">Hubspot docs</a> if you need help finding this ID."""
     client_secret: str
     r"""The client secret for your HubSpot developer application. See the <a href=\"https://legacydocs.hubspot.com/docs/methods/oauth2/oauth2-quickstart\">Hubspot docs</a> if you need help finding this secret."""
     refresh_token: str
     r"""Refresh token to renew an expired access token. See the <a href=\"https://legacydocs.hubspot.com/docs/methods/oauth2/oauth2-quickstart\">Hubspot docs</a> if you need help finding this token."""
-    credentials_title: AuthTypeOAuthCredentials
+    credentials_title: SourceHubspotAuthenticationAuthType
     r"""Name of the credentials"""
 
 
-class SourceHubspotOAuth(BaseModel):
+class SourceHubspotAuthenticationOAuth(BaseModel):
     client_id: str
     r"""The Client ID of your HubSpot developer application. See the <a href=\"https://legacydocs.hubspot.com/docs/methods/oauth2/oauth2-quickstart\">Hubspot docs</a> if you need help finding this ID."""
 
@@ -70,24 +72,26 @@ class SourceHubspotOAuth(BaseModel):
 
     CREDENTIALS_TITLE: Annotated[
         Annotated[
-            AuthTypeOAuthCredentials,
-            AfterValidator(validate_const(AuthTypeOAuthCredentials.O_AUTH_CREDENTIALS)),
+            SourceHubspotAuthenticationAuthType,
+            AfterValidator(
+                validate_const(SourceHubspotAuthenticationAuthType.O_AUTH_CREDENTIALS)
+            ),
         ],
         pydantic.Field(alias="credentials_title"),
-    ] = AuthTypeOAuthCredentials.O_AUTH_CREDENTIALS
+    ] = SourceHubspotAuthenticationAuthType.O_AUTH_CREDENTIALS
     r"""Name of the credentials"""
 
 
 SourceHubspotAuthenticationTypedDict = TypeAliasType(
     "SourceHubspotAuthenticationTypedDict",
-    Union[PrivateAppTypedDict, SourceHubspotOAuthTypedDict],
+    Union[PrivateAppTypedDict, SourceHubspotAuthenticationOAuthTypedDict],
 )
 r"""Choose how to authenticate to HubSpot."""
 
 
 SourceHubspotAuthentication = Annotated[
     Union[
-        Annotated[SourceHubspotOAuth, Tag("OAuth Credentials")],
+        Annotated[SourceHubspotAuthenticationOAuth, Tag("OAuth Credentials")],
         Annotated[PrivateApp, Tag("Private App Credentials")],
     ],
     Discriminator(
@@ -158,7 +162,7 @@ try:
 except NameError:
     pass
 try:
-    SourceHubspotOAuth.model_rebuild()
+    SourceHubspotAuthenticationOAuth.model_rebuild()
 except NameError:
     pass
 try:

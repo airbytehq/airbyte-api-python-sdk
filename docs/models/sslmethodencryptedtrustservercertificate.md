@@ -1,16 +1,11 @@
-# SslMethodEncryptedTrustServerCertificate
+# SSLMethodEncryptedTrustServerCertificate
 
-## Example Usage
-
-```python
-from airbyte_api.models import SslMethodEncryptedTrustServerCertificate
-
-value = SslMethodEncryptedTrustServerCertificate.ENCRYPTED_TRUST_SERVER_CERTIFICATE
-```
+Use the certificate provided by the server without verification. (For testing purposes only!)
 
 
-## Values
+## Fields
 
-| Name                                 | Value                                |
-| ------------------------------------ | ------------------------------------ |
-| `ENCRYPTED_TRUST_SERVER_CERTIFICATE` | encrypted_trust_server_certificate   |
+| Field                                                                                                              | Type                                                                                                               | Required                                                                                                           | Description                                                                                                        |
+| ------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------ |
+| `__pydantic_extra__`                                                                                               | Dict[str, *Any*]                                                                                                   | :heavy_minus_sign:                                                                                                 | N/A                                                                                                                |
+| `name`                                                                                                             | [Optional[models.DestinationMssqlV2SSLMethodSSLMethodName]](../models/destinationmssqlv2sslmethodsslmethodname.md) | :heavy_minus_sign:                                                                                                 | N/A                                                                                                                |

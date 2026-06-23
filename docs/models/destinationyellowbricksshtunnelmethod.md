@@ -5,21 +5,21 @@ Whether to initiate an SSH tunnel before connecting to the database, and if so, 
 
 ## Supported Types
 
-### `models.DestinationYellowbrickNoTunnel`
+### `models.DestinationYellowbrickSSHTunnelMethodNoTunnel`
 
 ```python
-value: models.DestinationYellowbrickNoTunnel = /* values here */
+value: models.DestinationYellowbrickSSHTunnelMethodNoTunnel = /* values here */
 ```
 
-### `models.DestinationYellowbrickSSHKeyAuthentication`
+### `models.DestinationYellowbrickSSHTunnelMethodSSHKeyAuthentication`
 
 ```python
-value: models.DestinationYellowbrickSSHKeyAuthentication = /* values here */
+value: models.DestinationYellowbrickSSHTunnelMethodSSHKeyAuthentication = /* values here */
 ```
 
-### `models.DestinationYellowbrickPasswordAuthentication`
+### `models.DestinationYellowbrickSSHTunnelMethodPasswordAuthentication`
 
 ```python
-value: models.DestinationYellowbrickPasswordAuthentication = /* values here */
+value: models.DestinationYellowbrickSSHTunnelMethodPasswordAuthentication = /* values here */
 ```
 

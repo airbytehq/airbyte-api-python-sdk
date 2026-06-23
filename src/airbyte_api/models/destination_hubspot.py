@@ -15,7 +15,7 @@ class Type(str, Enum):
     O_AUTH = "OAuth"
 
 
-class DestinationHubspotOAuthTypedDict(TypedDict):
+class OAuthTypedDict(TypedDict):
     client_id: str
     r"""The Client ID of your HubSpot developer application. See the <a href=\\"https://legacydocs.hubspot.com/docs/methods/oauth2/oauth2-quickstart\\">Hubspot docs</a> if you need help finding this ID."""
     client_secret: str
@@ -25,7 +25,7 @@ class DestinationHubspotOAuthTypedDict(TypedDict):
     type: NotRequired[Type]
 
 
-class DestinationHubspotOAuth(BaseModel):
+class OAuth(BaseModel):
     model_config = ConfigDict(
         populate_by_name=True, arbitrary_types_allowed=True, extra="allow"
     )
@@ -70,11 +70,11 @@ class DestinationHubspotOAuth(BaseModel):
         return m
 
 
-DestinationHubspotCredentialsTypedDict = DestinationHubspotOAuthTypedDict
+DestinationHubspotCredentialsTypedDict = OAuthTypedDict
 r"""Choose how to authenticate to HubSpot."""
 
 
-DestinationHubspotCredentials = DestinationHubspotOAuth
+DestinationHubspotCredentials = OAuth
 r"""Choose how to authenticate to HubSpot."""
 
 
@@ -82,7 +82,7 @@ class DestinationHubspotHubspot(str, Enum):
     HUBSPOT = "hubspot"
 
 
-class DestinationHubspotS3BucketRegion(str, Enum):
+class ObjectStorageConfigurationS3BucketRegion(str, Enum):
     r"""The region of the S3 bucket. See <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-regions-availability-zones.html#concepts-available-regions\">here</a> for all region codes."""
 
     UNKNOWN = ""
@@ -121,11 +121,11 @@ class DestinationHubspotS3BucketRegion(str, Enum):
     US_WEST_2 = "us-west-2"
 
 
-class DestinationHubspotStorageTypeS3(str, Enum):
+class DestinationHubspotObjectStorageConfigurationStorageType(str, Enum):
     S3 = "S3"
 
 
-class DestinationHubspotS3TypedDict(TypedDict):
+class ObjectStorageConfigurationS3TypedDict(TypedDict):
     bucket_path: str
     r"""All files in the bucket will be prefixed by this."""
     s3_bucket_name: str
@@ -134,16 +134,16 @@ class DestinationHubspotS3TypedDict(TypedDict):
     r"""The access key ID to access the S3 bucket. Airbyte requires Read and Write permissions to the given bucket. Read more <a href=\"https://docs.aws.amazon.com/general/latest/gr/aws-sec-cred-types.html#access-keys-and-secret-access-keys\">here</a>."""
     role_arn: NotRequired[str]
     r"""The ARN of the AWS role to assume. Only usable in Airbyte Cloud."""
-    s3_bucket_region: NotRequired[DestinationHubspotS3BucketRegion]
+    s3_bucket_region: NotRequired[ObjectStorageConfigurationS3BucketRegion]
     r"""The region of the S3 bucket. See <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-regions-availability-zones.html#concepts-available-regions\">here</a> for all region codes."""
     s3_endpoint: NotRequired[str]
     r"""Your S3 endpoint url. Read more <a href=\"https://docs.aws.amazon.com/general/latest/gr/s3.html#:~:text=Service%20endpoints-,Amazon%20S3%20endpoints,-When%20you%20use\">here</a>"""
     secret_access_key: NotRequired[str]
     r"""The corresponding secret to the access key ID. Read more <a href=\"https://docs.aws.amazon.com/general/latest/gr/aws-sec-cred-types.html#access-keys-and-secret-access-keys\">here</a>"""
-    storage_type: NotRequired[DestinationHubspotStorageTypeS3]
+    storage_type: NotRequired[DestinationHubspotObjectStorageConfigurationStorageType]
 
 
-class DestinationHubspotS3(BaseModel):
+class ObjectStorageConfigurationS3(BaseModel):
     model_config = ConfigDict(
         populate_by_name=True, arbitrary_types_allowed=True, extra="allow"
     )
@@ -161,8 +161,8 @@ class DestinationHubspotS3(BaseModel):
     role_arn: Optional[str] = None
     r"""The ARN of the AWS role to assume. Only usable in Airbyte Cloud."""
 
-    s3_bucket_region: Optional[DestinationHubspotS3BucketRegion] = (
-        DestinationHubspotS3BucketRegion.UNKNOWN
+    s3_bucket_region: Optional[ObjectStorageConfigurationS3BucketRegion] = (
+        ObjectStorageConfigurationS3BucketRegion.UNKNOWN
     )
     r"""The region of the S3 bucket. See <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-regions-availability-zones.html#concepts-available-regions\">here</a> for all region codes."""
 
@@ -172,8 +172,8 @@ class DestinationHubspotS3(BaseModel):
     secret_access_key: Optional[str] = None
     r"""The corresponding secret to the access key ID. Read more <a href=\"https://docs.aws.amazon.com/general/latest/gr/aws-sec-cred-types.html#access-keys-and-secret-access-keys\">here</a>"""
 
-    storage_type: Optional[DestinationHubspotStorageTypeS3] = (
-        DestinationHubspotStorageTypeS3.S3
+    storage_type: Optional[DestinationHubspotObjectStorageConfigurationStorageType] = (
+        DestinationHubspotObjectStorageConfigurationStorageType.S3
     )
 
     @property
@@ -213,22 +213,22 @@ class DestinationHubspotS3(BaseModel):
         return m
 
 
-class DestinationHubspotStorageTypeNone(str, Enum):
+class ObjectStorageConfigurationStorageType(str, Enum):
     NONE = "None"
 
 
-class DestinationHubspotNoneTypedDict(TypedDict):
-    storage_type: NotRequired[DestinationHubspotStorageTypeNone]
+class ObjectStorageConfigurationNoneTypedDict(TypedDict):
+    storage_type: NotRequired[ObjectStorageConfigurationStorageType]
 
 
-class DestinationHubspotNone(BaseModel):
+class ObjectStorageConfigurationNone(BaseModel):
     model_config = ConfigDict(
         populate_by_name=True, arbitrary_types_allowed=True, extra="allow"
     )
     __pydantic_extra__: Dict[str, Any] = pydantic.Field(init=False)
 
-    storage_type: Optional[DestinationHubspotStorageTypeNone] = (
-        DestinationHubspotStorageTypeNone.NONE
+    storage_type: Optional[ObjectStorageConfigurationStorageType] = (
+        ObjectStorageConfigurationStorageType.NONE
     )
 
     @property
@@ -261,12 +261,15 @@ class DestinationHubspotNone(BaseModel):
 
 ObjectStorageConfigurationTypedDict = TypeAliasType(
     "ObjectStorageConfigurationTypedDict",
-    Union[DestinationHubspotNoneTypedDict, DestinationHubspotS3TypedDict],
+    Union[
+        ObjectStorageConfigurationNoneTypedDict, ObjectStorageConfigurationS3TypedDict
+    ],
 )
 
 
 ObjectStorageConfiguration = TypeAliasType(
-    "ObjectStorageConfiguration", Union[DestinationHubspotNone, DestinationHubspotS3]
+    "ObjectStorageConfiguration",
+    Union[ObjectStorageConfigurationNone, ObjectStorageConfigurationS3],
 )
 
 

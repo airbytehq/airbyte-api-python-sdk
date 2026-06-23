@@ -6,15 +6,15 @@ SSL connection modes.
 
 ## Supported Types
 
-### `models.DestinationRedisDisable`
+### `models.SSLModesDisable`
 
 ```python
-value: models.DestinationRedisDisable = /* values here */
+value: models.SSLModesDisable = /* values here */
 ```
 
-### `models.DestinationRedisVerifyFull`
+### `models.SSLModesVerifyFull`
 
 ```python
-value: models.DestinationRedisVerifyFull = /* values here */
+value: models.SSLModesVerifyFull = /* values here */
 ```
 

@@ -11,12 +11,12 @@ from typing import Optional
 from typing_extensions import Annotated, NotRequired, TypedDict
 
 
-class SourceRdStationMarketingAuthType(str, Enum):
+class SourceRdStationMarketingAuthenticationTypeAuthType(str, Enum):
     CLIENT = "Client"
 
 
 class SignInViaRDStationOAuthTypedDict(TypedDict):
-    auth_type: SourceRdStationMarketingAuthType
+    auth_type: SourceRdStationMarketingAuthenticationTypeAuthType
     client_id: NotRequired[str]
     r"""The Client ID of your RD Station developer application."""
     client_secret: NotRequired[str]
@@ -28,11 +28,15 @@ class SignInViaRDStationOAuthTypedDict(TypedDict):
 class SignInViaRDStationOAuth(BaseModel):
     AUTH_TYPE: Annotated[
         Annotated[
-            SourceRdStationMarketingAuthType,
-            AfterValidator(validate_const(SourceRdStationMarketingAuthType.CLIENT)),
+            SourceRdStationMarketingAuthenticationTypeAuthType,
+            AfterValidator(
+                validate_const(
+                    SourceRdStationMarketingAuthenticationTypeAuthType.CLIENT
+                )
+            ),
         ],
         pydantic.Field(alias="auth_type"),
-    ] = SourceRdStationMarketingAuthType.CLIENT
+    ] = SourceRdStationMarketingAuthenticationTypeAuthType.CLIENT
 
     client_id: Optional[str] = None
     r"""The Client ID of your RD Station developer application."""
@@ -68,7 +72,7 @@ SourceRdStationMarketingAuthenticationType = SignInViaRDStationOAuth
 r"""Choose one of the possible authorization method"""
 
 
-class RdStationMarketingEnum(str, Enum):
+class SourceRdStationMarketingRdStationMarketing(str, Enum):
     RD_STATION_MARKETING = "rd-station-marketing"
 
 
@@ -77,7 +81,7 @@ class SourceRdStationMarketingTypedDict(TypedDict):
     r"""UTC date and time in the format 2017-01-25T00:00:00Z. Any data before this date will not be replicated. When specified and not None, then stream will behave as incremental"""
     authorization: NotRequired[SourceRdStationMarketingAuthenticationTypeTypedDict]
     r"""Choose one of the possible authorization method"""
-    source_type: RdStationMarketingEnum
+    source_type: SourceRdStationMarketingRdStationMarketing
 
 
 class SourceRdStationMarketing(BaseModel):
@@ -89,11 +93,15 @@ class SourceRdStationMarketing(BaseModel):
 
     SOURCE_TYPE: Annotated[
         Annotated[
-            RdStationMarketingEnum,
-            AfterValidator(validate_const(RdStationMarketingEnum.RD_STATION_MARKETING)),
+            SourceRdStationMarketingRdStationMarketing,
+            AfterValidator(
+                validate_const(
+                    SourceRdStationMarketingRdStationMarketing.RD_STATION_MARKETING
+                )
+            ),
         ],
         pydantic.Field(alias="sourceType"),
-    ] = RdStationMarketingEnum.RD_STATION_MARKETING
+    ] = SourceRdStationMarketingRdStationMarketing.RD_STATION_MARKETING
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):

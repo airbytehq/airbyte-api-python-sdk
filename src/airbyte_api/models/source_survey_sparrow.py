@@ -11,26 +11,24 @@ from typing import Any, List, Optional, Union
 from typing_extensions import Annotated, NotRequired, TypeAliasType, TypedDict
 
 
-class URLBaseHTTPSAPISurveysparrowComV3(str, Enum):
+class BaseURLURLBase(str, Enum):
     HTTPS_API_SURVEYSPARROW_COM_V3 = "https://api.surveysparrow.com/v3"
 
 
 class GlobalAccountTypedDict(TypedDict):
-    url_base: URLBaseHTTPSAPISurveysparrowComV3
+    url_base: BaseURLURLBase
 
 
 class GlobalAccount(BaseModel):
     URL_BASE: Annotated[
         Annotated[
-            Optional[URLBaseHTTPSAPISurveysparrowComV3],
+            Optional[BaseURLURLBase],
             AfterValidator(
-                validate_const(
-                    URLBaseHTTPSAPISurveysparrowComV3.HTTPS_API_SURVEYSPARROW_COM_V3
-                )
+                validate_const(BaseURLURLBase.HTTPS_API_SURVEYSPARROW_COM_V3)
             ),
         ],
         pydantic.Field(alias="url_base"),
-    ] = URLBaseHTTPSAPISurveysparrowComV3.HTTPS_API_SURVEYSPARROW_COM_V3
+    ] = BaseURLURLBase.HTTPS_API_SURVEYSPARROW_COM_V3
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
@@ -49,26 +47,22 @@ class GlobalAccount(BaseModel):
         return m
 
 
-class URLBaseHTTPSEuAPISurveysparrowComV3(str, Enum):
+class URLBase(str, Enum):
     HTTPS_EU_API_SURVEYSPARROW_COM_V3 = "https://eu-api.surveysparrow.com/v3"
 
 
 class EUBasedAccountTypedDict(TypedDict):
-    url_base: URLBaseHTTPSEuAPISurveysparrowComV3
+    url_base: URLBase
 
 
 class EUBasedAccount(BaseModel):
     URL_BASE: Annotated[
         Annotated[
-            Optional[URLBaseHTTPSEuAPISurveysparrowComV3],
-            AfterValidator(
-                validate_const(
-                    URLBaseHTTPSEuAPISurveysparrowComV3.HTTPS_EU_API_SURVEYSPARROW_COM_V3
-                )
-            ),
+            Optional[URLBase],
+            AfterValidator(validate_const(URLBase.HTTPS_EU_API_SURVEYSPARROW_COM_V3)),
         ],
         pydantic.Field(alias="url_base"),
-    ] = URLBaseHTTPSEuAPISurveysparrowComV3.HTTPS_EU_API_SURVEYSPARROW_COM_V3
+    ] = URLBase.HTTPS_EU_API_SURVEYSPARROW_COM_V3
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):

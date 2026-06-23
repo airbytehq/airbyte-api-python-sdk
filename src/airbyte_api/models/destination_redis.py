@@ -21,11 +21,11 @@ class Redis(str, Enum):
     REDIS = "redis"
 
 
-class DestinationRedisModeVerifyFull(str, Enum):
+class DestinationRedisSSLModesSSLModeMode(str, Enum):
     VERIFY_FULL = "verify-full"
 
 
-class DestinationRedisVerifyFullTypedDict(TypedDict):
+class SSLModesVerifyFullTypedDict(TypedDict):
     r"""Verify-full SSL mode."""
 
     ca_certificate: str
@@ -36,10 +36,10 @@ class DestinationRedisVerifyFullTypedDict(TypedDict):
     r"""Client key"""
     client_key_password: NotRequired[str]
     r"""Password for keystorage. If you do not add it - the password will be generated automatically."""
-    mode: DestinationRedisModeVerifyFull
+    mode: DestinationRedisSSLModesSSLModeMode
 
 
-class DestinationRedisVerifyFull(BaseModel):
+class SSLModesVerifyFull(BaseModel):
     r"""Verify-full SSL mode."""
 
     ca_certificate: str
@@ -56,11 +56,13 @@ class DestinationRedisVerifyFull(BaseModel):
 
     MODE: Annotated[
         Annotated[
-            Optional[DestinationRedisModeVerifyFull],
-            AfterValidator(validate_const(DestinationRedisModeVerifyFull.VERIFY_FULL)),
+            Optional[DestinationRedisSSLModesSSLModeMode],
+            AfterValidator(
+                validate_const(DestinationRedisSSLModesSSLModeMode.VERIFY_FULL)
+            ),
         ],
         pydantic.Field(alias="mode"),
-    ] = DestinationRedisModeVerifyFull.VERIFY_FULL
+    ] = DestinationRedisSSLModesSSLModeMode.VERIFY_FULL
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
@@ -79,26 +81,26 @@ class DestinationRedisVerifyFull(BaseModel):
         return m
 
 
-class DestinationRedisModeDisable(str, Enum):
+class DestinationRedisSSLModesMode(str, Enum):
     DISABLE = "disable"
 
 
-class DestinationRedisDisableTypedDict(TypedDict):
+class SSLModesDisableTypedDict(TypedDict):
     r"""Disable SSL."""
 
-    mode: DestinationRedisModeDisable
+    mode: DestinationRedisSSLModesMode
 
 
-class DestinationRedisDisable(BaseModel):
+class SSLModesDisable(BaseModel):
     r"""Disable SSL."""
 
     MODE: Annotated[
         Annotated[
-            Optional[DestinationRedisModeDisable],
-            AfterValidator(validate_const(DestinationRedisModeDisable.DISABLE)),
+            Optional[DestinationRedisSSLModesMode],
+            AfterValidator(validate_const(DestinationRedisSSLModesMode.DISABLE)),
         ],
         pydantic.Field(alias="mode"),
-    ] = DestinationRedisModeDisable.DISABLE
+    ] = DestinationRedisSSLModesMode.DISABLE
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
@@ -119,7 +121,7 @@ class DestinationRedisDisable(BaseModel):
 
 DestinationRedisSSLModesTypedDict = TypeAliasType(
     "DestinationRedisSSLModesTypedDict",
-    Union[DestinationRedisDisableTypedDict, DestinationRedisVerifyFullTypedDict],
+    Union[SSLModesDisableTypedDict, SSLModesVerifyFullTypedDict],
 )
 r"""SSL connection modes.
 <li><b>verify-full</b> - This is the most secure mode. Always require encryption and verifies the identity of the source database server
@@ -127,34 +129,33 @@ r"""SSL connection modes.
 
 
 DestinationRedisSSLModes = TypeAliasType(
-    "DestinationRedisSSLModes",
-    Union[DestinationRedisDisable, DestinationRedisVerifyFull],
+    "DestinationRedisSSLModes", Union[SSLModesDisable, SSLModesVerifyFull]
 )
 r"""SSL connection modes.
 <li><b>verify-full</b> - This is the most secure mode. Always require encryption and verifies the identity of the source database server
 """
 
 
-class DestinationRedisTunnelMethodSSHPasswordAuth(str, Enum):
+class DestinationRedisSSHTunnelMethodTunnelMethod3TunnelMethod(str, Enum):
     r"""Connect through a jump server tunnel host using username and password authentication"""
 
     SSH_PASSWORD_AUTH = "SSH_PASSWORD_AUTH"
 
 
-class DestinationRedisPasswordAuthenticationTypedDict(TypedDict):
+class DestinationRedisSSHTunnelMethodPasswordAuthenticationTypedDict(TypedDict):
     tunnel_host: str
     r"""Hostname of the jump server host that allows inbound ssh tunnel."""
     tunnel_user: str
     r"""OS-level username for logging into the jump server host"""
     tunnel_user_password: str
     r"""OS-level password for logging into the jump server host"""
-    tunnel_method: DestinationRedisTunnelMethodSSHPasswordAuth
+    tunnel_method: DestinationRedisSSHTunnelMethodTunnelMethod3TunnelMethod
     r"""Connect through a jump server tunnel host using username and password authentication"""
     tunnel_port: NotRequired[int]
     r"""Port on the proxy/jump server that accepts inbound ssh connections."""
 
 
-class DestinationRedisPasswordAuthentication(BaseModel):
+class DestinationRedisSSHTunnelMethodPasswordAuthentication(BaseModel):
     tunnel_host: str
     r"""Hostname of the jump server host that allows inbound ssh tunnel."""
 
@@ -166,15 +167,15 @@ class DestinationRedisPasswordAuthentication(BaseModel):
 
     TUNNEL_METHOD: Annotated[
         Annotated[
-            DestinationRedisTunnelMethodSSHPasswordAuth,
+            DestinationRedisSSHTunnelMethodTunnelMethod3TunnelMethod,
             AfterValidator(
                 validate_const(
-                    DestinationRedisTunnelMethodSSHPasswordAuth.SSH_PASSWORD_AUTH
+                    DestinationRedisSSHTunnelMethodTunnelMethod3TunnelMethod.SSH_PASSWORD_AUTH
                 )
             ),
         ],
         pydantic.Field(alias="tunnel_method"),
-    ] = DestinationRedisTunnelMethodSSHPasswordAuth.SSH_PASSWORD_AUTH
+    ] = DestinationRedisSSHTunnelMethodTunnelMethod3TunnelMethod.SSH_PASSWORD_AUTH
     r"""Connect through a jump server tunnel host using username and password authentication"""
 
     tunnel_port: Optional[int] = 22
@@ -197,26 +198,26 @@ class DestinationRedisPasswordAuthentication(BaseModel):
         return m
 
 
-class DestinationRedisTunnelMethodSSHKeyAuth(str, Enum):
+class DestinationRedisSSHTunnelMethodTunnelMethodTunnelMethod(str, Enum):
     r"""Connect through a jump server tunnel host using username and ssh key"""
 
     SSH_KEY_AUTH = "SSH_KEY_AUTH"
 
 
-class DestinationRedisSSHKeyAuthenticationTypedDict(TypedDict):
+class DestinationRedisSSHTunnelMethodSSHKeyAuthenticationTypedDict(TypedDict):
     ssh_key: str
     r"""OS-level user account ssh key credentials in RSA PEM format ( created with ssh-keygen -t rsa -m PEM -f myuser_rsa )"""
     tunnel_host: str
     r"""Hostname of the jump server host that allows inbound ssh tunnel."""
     tunnel_user: str
     r"""OS-level username for logging into the jump server host."""
-    tunnel_method: DestinationRedisTunnelMethodSSHKeyAuth
+    tunnel_method: DestinationRedisSSHTunnelMethodTunnelMethodTunnelMethod
     r"""Connect through a jump server tunnel host using username and ssh key"""
     tunnel_port: NotRequired[int]
     r"""Port on the proxy/jump server that accepts inbound ssh connections."""
 
 
-class DestinationRedisSSHKeyAuthentication(BaseModel):
+class DestinationRedisSSHTunnelMethodSSHKeyAuthentication(BaseModel):
     ssh_key: str
     r"""OS-level user account ssh key credentials in RSA PEM format ( created with ssh-keygen -t rsa -m PEM -f myuser_rsa )"""
 
@@ -228,13 +229,15 @@ class DestinationRedisSSHKeyAuthentication(BaseModel):
 
     TUNNEL_METHOD: Annotated[
         Annotated[
-            DestinationRedisTunnelMethodSSHKeyAuth,
+            DestinationRedisSSHTunnelMethodTunnelMethodTunnelMethod,
             AfterValidator(
-                validate_const(DestinationRedisTunnelMethodSSHKeyAuth.SSH_KEY_AUTH)
+                validate_const(
+                    DestinationRedisSSHTunnelMethodTunnelMethodTunnelMethod.SSH_KEY_AUTH
+                )
             ),
         ],
         pydantic.Field(alias="tunnel_method"),
-    ] = DestinationRedisTunnelMethodSSHKeyAuth.SSH_KEY_AUTH
+    ] = DestinationRedisSSHTunnelMethodTunnelMethodTunnelMethod.SSH_KEY_AUTH
     r"""Connect through a jump server tunnel host using username and ssh key"""
 
     tunnel_port: Optional[int] = 22
@@ -257,36 +260,36 @@ class DestinationRedisSSHKeyAuthentication(BaseModel):
         return m
 
 
-class DestinationRedisTunnelMethodNoTunnel(str, Enum):
+class DestinationRedisSSHTunnelMethodTunnelMethod(str, Enum):
     r"""No ssh tunnel needed to connect to database"""
 
     NO_TUNNEL = "NO_TUNNEL"
 
 
-class DestinationRedisNoTunnelTypedDict(TypedDict):
-    tunnel_method: DestinationRedisTunnelMethodNoTunnel
+class DestinationRedisSSHTunnelMethodNoTunnelTypedDict(TypedDict):
+    tunnel_method: DestinationRedisSSHTunnelMethodTunnelMethod
     r"""No ssh tunnel needed to connect to database"""
 
 
-class DestinationRedisNoTunnel(BaseModel):
+class DestinationRedisSSHTunnelMethodNoTunnel(BaseModel):
     TUNNEL_METHOD: Annotated[
         Annotated[
-            DestinationRedisTunnelMethodNoTunnel,
+            DestinationRedisSSHTunnelMethodTunnelMethod,
             AfterValidator(
-                validate_const(DestinationRedisTunnelMethodNoTunnel.NO_TUNNEL)
+                validate_const(DestinationRedisSSHTunnelMethodTunnelMethod.NO_TUNNEL)
             ),
         ],
         pydantic.Field(alias="tunnel_method"),
-    ] = DestinationRedisTunnelMethodNoTunnel.NO_TUNNEL
+    ] = DestinationRedisSSHTunnelMethodTunnelMethod.NO_TUNNEL
     r"""No ssh tunnel needed to connect to database"""
 
 
 DestinationRedisSSHTunnelMethodTypedDict = TypeAliasType(
     "DestinationRedisSSHTunnelMethodTypedDict",
     Union[
-        DestinationRedisNoTunnelTypedDict,
-        DestinationRedisSSHKeyAuthenticationTypedDict,
-        DestinationRedisPasswordAuthenticationTypedDict,
+        DestinationRedisSSHTunnelMethodNoTunnelTypedDict,
+        DestinationRedisSSHTunnelMethodSSHKeyAuthenticationTypedDict,
+        DestinationRedisSSHTunnelMethodPasswordAuthenticationTypedDict,
     ],
 )
 r"""Whether to initiate an SSH tunnel before connecting to the database, and if so, which kind of authentication to use."""
@@ -294,9 +297,14 @@ r"""Whether to initiate an SSH tunnel before connecting to the database, and if 
 
 DestinationRedisSSHTunnelMethod = Annotated[
     Union[
-        Annotated[DestinationRedisNoTunnel, Tag("NO_TUNNEL")],
-        Annotated[DestinationRedisSSHKeyAuthentication, Tag("SSH_KEY_AUTH")],
-        Annotated[DestinationRedisPasswordAuthentication, Tag("SSH_PASSWORD_AUTH")],
+        Annotated[DestinationRedisSSHTunnelMethodNoTunnel, Tag("NO_TUNNEL")],
+        Annotated[
+            DestinationRedisSSHTunnelMethodSSHKeyAuthentication, Tag("SSH_KEY_AUTH")
+        ],
+        Annotated[
+            DestinationRedisSSHTunnelMethodPasswordAuthentication,
+            Tag("SSH_PASSWORD_AUTH"),
+        ],
     ],
     Discriminator(lambda m: get_discriminator(m, "tunnel_method", "tunnel_method")),
 ]
@@ -377,23 +385,23 @@ class DestinationRedis(BaseModel):
 
 
 try:
-    DestinationRedisVerifyFull.model_rebuild()
+    SSLModesVerifyFull.model_rebuild()
 except NameError:
     pass
 try:
-    DestinationRedisDisable.model_rebuild()
+    SSLModesDisable.model_rebuild()
 except NameError:
     pass
 try:
-    DestinationRedisPasswordAuthentication.model_rebuild()
+    DestinationRedisSSHTunnelMethodPasswordAuthentication.model_rebuild()
 except NameError:
     pass
 try:
-    DestinationRedisSSHKeyAuthentication.model_rebuild()
+    DestinationRedisSSHTunnelMethodSSHKeyAuthentication.model_rebuild()
 except NameError:
     pass
 try:
-    DestinationRedisNoTunnel.model_rebuild()
+    DestinationRedisSSHTunnelMethodNoTunnel.model_rebuild()
 except NameError:
     pass
 try:

@@ -3,15 +3,15 @@
 
 ## Supported Types
 
-### `models.SourceDriftOAuth20`
+### `models.AuthorizationMethodOAuth20`
 
 ```python
-value: models.SourceDriftOAuth20 = /* values here */
+value: models.AuthorizationMethodOAuth20 = /* values here */
 ```
 
-### `models.SourceDriftAccessToken`
+### `models.AccessToken`
 
 ```python
-value: models.SourceDriftAccessToken = /* values here */
+value: models.AccessToken = /* values here */
 ```
 

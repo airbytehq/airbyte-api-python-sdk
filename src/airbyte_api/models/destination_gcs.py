@@ -11,28 +11,26 @@ from typing import Optional, Union
 from typing_extensions import Annotated, NotRequired, TypeAliasType, TypedDict
 
 
-class DestinationGcsCredentialType(str, Enum):
+class CredentialType(str, Enum):
     HMAC_KEY = "HMAC_KEY"
 
 
-class DestinationGcsHMACKeyTypedDict(TypedDict):
+class HMACKeyTypedDict(TypedDict):
     hmac_key_access_id: str
     r"""When linked to a service account, this ID is 61 characters long; when linked to a user account, it is 24 characters long. Read more <a href=\"https://cloud.google.com/storage/docs/authentication/hmackeys#overview\">here</a>."""
     hmac_key_secret: str
     r"""The corresponding secret for the access ID. It is a 40-character base-64 encoded string.  Read more <a href=\"https://cloud.google.com/storage/docs/authentication/hmackeys#secrets\">here</a>."""
-    credential_type: NotRequired[DestinationGcsCredentialType]
+    credential_type: NotRequired[CredentialType]
 
 
-class DestinationGcsHMACKey(BaseModel):
+class HMACKey(BaseModel):
     hmac_key_access_id: str
     r"""When linked to a service account, this ID is 61 characters long; when linked to a user account, it is 24 characters long. Read more <a href=\"https://cloud.google.com/storage/docs/authentication/hmackeys#overview\">here</a>."""
 
     hmac_key_secret: str
     r"""The corresponding secret for the access ID. It is a 40-character base-64 encoded string.  Read more <a href=\"https://cloud.google.com/storage/docs/authentication/hmackeys#secrets\">here</a>."""
 
-    credential_type: Optional[DestinationGcsCredentialType] = (
-        DestinationGcsCredentialType.HMAC_KEY
-    )
+    credential_type: Optional[CredentialType] = CredentialType.HMAC_KEY
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
@@ -51,11 +49,11 @@ class DestinationGcsHMACKey(BaseModel):
         return m
 
 
-DestinationGcsAuthenticationTypedDict = DestinationGcsHMACKeyTypedDict
+DestinationGcsAuthenticationTypedDict = HMACKeyTypedDict
 r"""An HMAC key is a type of credential and can be associated with a service account or a user account in Cloud Storage. Read more <a href=\"https://cloud.google.com/storage/docs/authentication/hmackeys\">here</a>."""
 
 
-DestinationGcsAuthentication = DestinationGcsHMACKey
+DestinationGcsAuthentication = HMACKey
 r"""An HMAC key is a type of credential and can be associated with a service account or a user account in Cloud Storage. Read more <a href=\"https://cloud.google.com/storage/docs/authentication/hmackeys\">here</a>."""
 
 
@@ -63,7 +61,7 @@ class DestinationGcsGcs(str, Enum):
     GCS = "gcs"
 
 
-class DestinationGcsCompressionCodecEnum(str, Enum):
+class OutputFormatCompressionCodec(str, Enum):
     r"""The compression algorithm used to compress data pages."""
 
     UNCOMPRESSED = "UNCOMPRESSED"
@@ -75,32 +73,32 @@ class DestinationGcsCompressionCodecEnum(str, Enum):
     ZSTD = "ZSTD"
 
 
-class DestinationGcsFormatTypeParquet(str, Enum):
+class DestinationGcsOutputFormatFormat4FormatType(str, Enum):
     PARQUET = "Parquet"
 
 
-class DestinationGcsParquetColumnarStorageTypedDict(TypedDict):
+class OutputFormatParquetColumnarStorageTypedDict(TypedDict):
     block_size_mb: NotRequired[int]
     r"""This is the size of a row group being buffered in memory. It limits the memory usage when writing. Larger values will improve the IO when reading, but consume more memory when writing. Default: 128 MB."""
-    compression_codec: NotRequired[DestinationGcsCompressionCodecEnum]
+    compression_codec: NotRequired[OutputFormatCompressionCodec]
     r"""The compression algorithm used to compress data pages."""
     dictionary_encoding: NotRequired[bool]
     r"""Default: true."""
     dictionary_page_size_kb: NotRequired[int]
     r"""There is one dictionary page per column per row group when dictionary encoding is used. The dictionary page size works like the page size but for dictionary. Default: 1024 KB."""
-    format_type: NotRequired[DestinationGcsFormatTypeParquet]
+    format_type: NotRequired[DestinationGcsOutputFormatFormat4FormatType]
     max_padding_size_mb: NotRequired[int]
     r"""Maximum size allowed as padding to align row groups. This is also the minimum size of a row group. Default: 8 MB."""
     page_size_kb: NotRequired[int]
     r"""The page size is for compression. A block is composed of pages. A page is the smallest unit that must be read fully to access a single record. If this value is too small, the compression will deteriorate. Default: 1024 KB."""
 
 
-class DestinationGcsParquetColumnarStorage(BaseModel):
+class OutputFormatParquetColumnarStorage(BaseModel):
     block_size_mb: Optional[int] = 128
     r"""This is the size of a row group being buffered in memory. It limits the memory usage when writing. Larger values will improve the IO when reading, but consume more memory when writing. Default: 128 MB."""
 
-    compression_codec: Optional[DestinationGcsCompressionCodecEnum] = (
-        DestinationGcsCompressionCodecEnum.UNCOMPRESSED
+    compression_codec: Optional[OutputFormatCompressionCodec] = (
+        OutputFormatCompressionCodec.UNCOMPRESSED
     )
     r"""The compression algorithm used to compress data pages."""
 
@@ -110,8 +108,8 @@ class DestinationGcsParquetColumnarStorage(BaseModel):
     dictionary_page_size_kb: Optional[int] = 1024
     r"""There is one dictionary page per column per row group when dictionary encoding is used. The dictionary page size works like the page size but for dictionary. Default: 1024 KB."""
 
-    format_type: Optional[DestinationGcsFormatTypeParquet] = (
-        DestinationGcsFormatTypeParquet.PARQUET
+    format_type: Optional[DestinationGcsOutputFormatFormat4FormatType] = (
+        DestinationGcsOutputFormatFormat4FormatType.PARQUET
     )
 
     max_padding_size_mb: Optional[int] = 8
@@ -147,17 +145,17 @@ class DestinationGcsParquetColumnarStorage(BaseModel):
         return m
 
 
-class DestinationGcsCompressionTypeGzip2(str, Enum):
+class DestinationGcsCompressionFormatCompressionType(str, Enum):
     GZIP = "GZIP"
 
 
-class DestinationGcsGZIP2TypedDict(TypedDict):
-    compression_type: NotRequired[DestinationGcsCompressionTypeGzip2]
+class CompressionGZIPTypedDict(TypedDict):
+    compression_type: NotRequired[DestinationGcsCompressionFormatCompressionType]
 
 
-class DestinationGcsGZIP2(BaseModel):
-    compression_type: Optional[DestinationGcsCompressionTypeGzip2] = (
-        DestinationGcsCompressionTypeGzip2.GZIP
+class CompressionGZIP(BaseModel):
+    compression_type: Optional[DestinationGcsCompressionFormatCompressionType] = (
+        DestinationGcsCompressionFormatCompressionType.GZIP
     )
 
     @model_serializer(mode="wrap")
@@ -177,17 +175,17 @@ class DestinationGcsGZIP2(BaseModel):
         return m
 
 
-class DestinationGcsCompressionTypeNoCompression2(str, Enum):
+class DestinationGcsCompressionCompressionType(str, Enum):
     NO_COMPRESSION = "No Compression"
 
 
-class DestinationGcsCompressionNoCompression2TypedDict(TypedDict):
-    compression_type: NotRequired[DestinationGcsCompressionTypeNoCompression2]
+class DestinationGcsCompressionNoCompressionTypedDict(TypedDict):
+    compression_type: NotRequired[DestinationGcsCompressionCompressionType]
 
 
-class DestinationGcsCompressionNoCompression2(BaseModel):
-    compression_type: Optional[DestinationGcsCompressionTypeNoCompression2] = (
-        DestinationGcsCompressionTypeNoCompression2.NO_COMPRESSION
+class DestinationGcsCompressionNoCompression(BaseModel):
+    compression_type: Optional[DestinationGcsCompressionCompressionType] = (
+        DestinationGcsCompressionCompressionType.NO_COMPRESSION
     )
 
     @model_serializer(mode="wrap")
@@ -207,38 +205,36 @@ class DestinationGcsCompressionNoCompression2(BaseModel):
         return m
 
 
-DestinationGcsCompression2TypedDict = TypeAliasType(
-    "DestinationGcsCompression2TypedDict",
-    Union[
-        DestinationGcsCompressionNoCompression2TypedDict, DestinationGcsGZIP2TypedDict
-    ],
+OutputFormatCompressionTypedDict = TypeAliasType(
+    "OutputFormatCompressionTypedDict",
+    Union[DestinationGcsCompressionNoCompressionTypedDict, CompressionGZIPTypedDict],
 )
 r"""Whether the output files should be compressed. If compression is selected, the output filename will have an extra extension (GZIP: \".jsonl.gz\")."""
 
 
-DestinationGcsCompression2 = TypeAliasType(
-    "DestinationGcsCompression2",
-    Union[DestinationGcsCompressionNoCompression2, DestinationGcsGZIP2],
+OutputFormatCompression = TypeAliasType(
+    "OutputFormatCompression",
+    Union[DestinationGcsCompressionNoCompression, CompressionGZIP],
 )
 r"""Whether the output files should be compressed. If compression is selected, the output filename will have an extra extension (GZIP: \".jsonl.gz\")."""
 
 
-class DestinationGcsFormatTypeJsonl(str, Enum):
+class DestinationGcsOutputFormatFormat3FormatType(str, Enum):
     JSONL = "JSONL"
 
 
-class DestinationGcsJSONLinesNewlineDelimitedJSONTypedDict(TypedDict):
-    compression: NotRequired[DestinationGcsCompression2TypedDict]
+class DestinationGcsOutputFormatJSONLinesNewlineDelimitedJSONTypedDict(TypedDict):
+    compression: NotRequired[OutputFormatCompressionTypedDict]
     r"""Whether the output files should be compressed. If compression is selected, the output filename will have an extra extension (GZIP: \".jsonl.gz\")."""
-    format_type: NotRequired[DestinationGcsFormatTypeJsonl]
+    format_type: NotRequired[DestinationGcsOutputFormatFormat3FormatType]
 
 
-class DestinationGcsJSONLinesNewlineDelimitedJSON(BaseModel):
-    compression: Optional[DestinationGcsCompression2] = None
+class DestinationGcsOutputFormatJSONLinesNewlineDelimitedJSON(BaseModel):
+    compression: Optional[OutputFormatCompression] = None
     r"""Whether the output files should be compressed. If compression is selected, the output filename will have an extra extension (GZIP: \".jsonl.gz\")."""
 
-    format_type: Optional[DestinationGcsFormatTypeJsonl] = (
-        DestinationGcsFormatTypeJsonl.JSONL
+    format_type: Optional[DestinationGcsOutputFormatFormat3FormatType] = (
+        DestinationGcsOutputFormatFormat3FormatType.JSONL
     )
 
     @model_serializer(mode="wrap")
@@ -258,17 +254,17 @@ class DestinationGcsJSONLinesNewlineDelimitedJSON(BaseModel):
         return m
 
 
-class DestinationGcsCompressionTypeGzip1(str, Enum):
+class CompressionCompressionType(str, Enum):
     GZIP = "GZIP"
 
 
-class DestinationGcsGZIP1TypedDict(TypedDict):
-    compression_type: NotRequired[DestinationGcsCompressionTypeGzip1]
+class GzipTypedDict(TypedDict):
+    compression_type: NotRequired[CompressionCompressionType]
 
 
-class DestinationGcsGZIP1(BaseModel):
-    compression_type: Optional[DestinationGcsCompressionTypeGzip1] = (
-        DestinationGcsCompressionTypeGzip1.GZIP
+class Gzip(BaseModel):
+    compression_type: Optional[CompressionCompressionType] = (
+        CompressionCompressionType.GZIP
     )
 
     @model_serializer(mode="wrap")
@@ -288,18 +284,16 @@ class DestinationGcsGZIP1(BaseModel):
         return m
 
 
-class DestinationGcsCompressionTypeNoCompression1(str, Enum):
+class CompressionType(str, Enum):
     NO_COMPRESSION = "No Compression"
 
 
-class DestinationGcsCompressionNoCompression1TypedDict(TypedDict):
-    compression_type: NotRequired[DestinationGcsCompressionTypeNoCompression1]
+class CompressionNoCompressionTypedDict(TypedDict):
+    compression_type: NotRequired[CompressionType]
 
 
-class DestinationGcsCompressionNoCompression1(BaseModel):
-    compression_type: Optional[DestinationGcsCompressionTypeNoCompression1] = (
-        DestinationGcsCompressionTypeNoCompression1.NO_COMPRESSION
-    )
+class CompressionNoCompression(BaseModel):
+    compression_type: Optional[CompressionType] = CompressionType.NO_COMPRESSION
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
@@ -318,19 +312,13 @@ class DestinationGcsCompressionNoCompression1(BaseModel):
         return m
 
 
-DestinationGcsCompression1TypedDict = TypeAliasType(
-    "DestinationGcsCompression1TypedDict",
-    Union[
-        DestinationGcsCompressionNoCompression1TypedDict, DestinationGcsGZIP1TypedDict
-    ],
+CompressionTypedDict = TypeAliasType(
+    "CompressionTypedDict", Union[CompressionNoCompressionTypedDict, GzipTypedDict]
 )
 r"""Whether the output files should be compressed. If compression is selected, the output filename will have an extra extension (GZIP: \".csv.gz\")."""
 
 
-DestinationGcsCompression1 = TypeAliasType(
-    "DestinationGcsCompression1",
-    Union[DestinationGcsCompressionNoCompression1, DestinationGcsGZIP1],
-)
+Compression = TypeAliasType("Compression", Union[CompressionNoCompression, Gzip])
 r"""Whether the output files should be compressed. If compression is selected, the output filename will have an extra extension (GZIP: \".csv.gz\")."""
 
 
@@ -341,26 +329,28 @@ class Normalization(str, Enum):
     ROOT_LEVEL_FLATTENING = "Root level flattening"
 
 
-class DestinationGcsFormatTypeCsv(str, Enum):
+class DestinationGcsOutputFormatFormatFormatType(str, Enum):
     CSV = "CSV"
 
 
-class DestinationGcsCSVCommaSeparatedValuesTypedDict(TypedDict):
-    compression: NotRequired[DestinationGcsCompression1TypedDict]
+class OutputFormatCSVCommaSeparatedValuesTypedDict(TypedDict):
+    compression: NotRequired[CompressionTypedDict]
     r"""Whether the output files should be compressed. If compression is selected, the output filename will have an extra extension (GZIP: \".csv.gz\")."""
     flattening: NotRequired[Normalization]
     r"""Whether the input JSON data should be normalized (flattened) in the output CSV. Please refer to docs for details."""
-    format_type: NotRequired[DestinationGcsFormatTypeCsv]
+    format_type: NotRequired[DestinationGcsOutputFormatFormatFormatType]
 
 
-class DestinationGcsCSVCommaSeparatedValues(BaseModel):
-    compression: Optional[DestinationGcsCompression1] = None
+class OutputFormatCSVCommaSeparatedValues(BaseModel):
+    compression: Optional[Compression] = None
     r"""Whether the output files should be compressed. If compression is selected, the output filename will have an extra extension (GZIP: \".csv.gz\")."""
 
     flattening: Optional[Normalization] = Normalization.NO_FLATTENING
     r"""Whether the input JSON data should be normalized (flattened) in the output CSV. Please refer to docs for details."""
 
-    format_type: Optional[DestinationGcsFormatTypeCsv] = DestinationGcsFormatTypeCsv.CSV
+    format_type: Optional[DestinationGcsOutputFormatFormatFormatType] = (
+        DestinationGcsOutputFormatFormatFormatType.CSV
+    )
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
@@ -379,16 +369,18 @@ class DestinationGcsCSVCommaSeparatedValues(BaseModel):
         return m
 
 
-class DestinationGcsCodecSnappy(str, Enum):
+class DestinationGcsCompressionCodecFormatOutputFormat1Codec(str, Enum):
     SNAPPY = "snappy"
 
 
-class DestinationGcsSnappyTypedDict(TypedDict):
-    codec: NotRequired[DestinationGcsCodecSnappy]
+class SnappyTypedDict(TypedDict):
+    codec: NotRequired[DestinationGcsCompressionCodecFormatOutputFormat1Codec]
 
 
-class DestinationGcsSnappy(BaseModel):
-    codec: Optional[DestinationGcsCodecSnappy] = DestinationGcsCodecSnappy.SNAPPY
+class Snappy(BaseModel):
+    codec: Optional[DestinationGcsCompressionCodecFormatOutputFormat1Codec] = (
+        DestinationGcsCompressionCodecFormatOutputFormat1Codec.SNAPPY
+    )
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
@@ -407,21 +399,21 @@ class DestinationGcsSnappy(BaseModel):
         return m
 
 
-class DestinationGcsCodecZstandard(str, Enum):
+class DestinationGcsCompressionCodecFormatOutputFormatCodec(str, Enum):
     ZSTANDARD = "zstandard"
 
 
-class DestinationGcsZstandardTypedDict(TypedDict):
-    codec: NotRequired[DestinationGcsCodecZstandard]
+class ZstandardTypedDict(TypedDict):
+    codec: NotRequired[DestinationGcsCompressionCodecFormatOutputFormatCodec]
     compression_level: NotRequired[int]
     r"""Negative levels are 'fast' modes akin to lz4 or snappy, levels above 9 are generally for archival purposes, and levels above 18 use a lot of memory."""
     include_checksum: NotRequired[bool]
     r"""If true, include a checksum with each data block."""
 
 
-class DestinationGcsZstandard(BaseModel):
-    codec: Optional[DestinationGcsCodecZstandard] = (
-        DestinationGcsCodecZstandard.ZSTANDARD
+class Zstandard(BaseModel):
+    codec: Optional[DestinationGcsCompressionCodecFormatOutputFormatCodec] = (
+        DestinationGcsCompressionCodecFormatOutputFormatCodec.ZSTANDARD
     )
 
     compression_level: Optional[int] = 3
@@ -447,18 +439,20 @@ class DestinationGcsZstandard(BaseModel):
         return m
 
 
-class DestinationGcsCodecXz(str, Enum):
+class DestinationGcsCompressionCodecFormatCodec(str, Enum):
     XZ = "xz"
 
 
-class DestinationGcsXzTypedDict(TypedDict):
-    codec: NotRequired[DestinationGcsCodecXz]
+class XzTypedDict(TypedDict):
+    codec: NotRequired[DestinationGcsCompressionCodecFormatCodec]
     compression_level: NotRequired[int]
     r"""The presets 0-3 are fast presets with medium compression. The presets 4-6 are fairly slow presets with high compression. The default preset is 6. The presets 7-9 are like the preset 6 but use bigger dictionaries and have higher compressor and decompressor memory requirements. Unless the uncompressed size of the file exceeds 8 MiB, 16 MiB, or 32 MiB, it is waste of memory to use the presets 7, 8, or 9, respectively. Read more <a href=\"https://commons.apache.org/proper/commons-compress/apidocs/org/apache/commons/compress/compressors/xz/XZCompressorOutputStream.html#XZCompressorOutputStream-java.io.OutputStream-int-\">here</a> for details."""
 
 
-class DestinationGcsXz(BaseModel):
-    codec: Optional[DestinationGcsCodecXz] = DestinationGcsCodecXz.XZ
+class Xz(BaseModel):
+    codec: Optional[DestinationGcsCompressionCodecFormatCodec] = (
+        DestinationGcsCompressionCodecFormatCodec.XZ
+    )
 
     compression_level: Optional[int] = 6
     r"""The presets 0-3 are fast presets with medium compression. The presets 4-6 are fairly slow presets with high compression. The default preset is 6. The presets 7-9 are like the preset 6 but use bigger dictionaries and have higher compressor and decompressor memory requirements. Unless the uncompressed size of the file exceeds 8 MiB, 16 MiB, or 32 MiB, it is waste of memory to use the presets 7, 8, or 9, respectively. Read more <a href=\"https://commons.apache.org/proper/commons-compress/apidocs/org/apache/commons/compress/compressors/xz/XZCompressorOutputStream.html#XZCompressorOutputStream-java.io.OutputStream-int-\">here</a> for details."""
@@ -480,16 +474,18 @@ class DestinationGcsXz(BaseModel):
         return m
 
 
-class DestinationGcsCodecBzip2(str, Enum):
+class DestinationGcsCompressionCodecCodec(str, Enum):
     BZIP2 = "bzip2"
 
 
-class DestinationGcsBzip2TypedDict(TypedDict):
-    codec: NotRequired[DestinationGcsCodecBzip2]
+class Bzip2TypedDict(TypedDict):
+    codec: NotRequired[DestinationGcsCompressionCodecCodec]
 
 
-class DestinationGcsBzip2(BaseModel):
-    codec: Optional[DestinationGcsCodecBzip2] = DestinationGcsCodecBzip2.BZIP2
+class Bzip2(BaseModel):
+    codec: Optional[DestinationGcsCompressionCodecCodec] = (
+        DestinationGcsCompressionCodecCodec.BZIP2
+    )
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
@@ -508,18 +504,18 @@ class DestinationGcsBzip2(BaseModel):
         return m
 
 
-class DestinationGcsCodecDeflate(str, Enum):
+class CompressionCodecCodec(str, Enum):
     DEFLATE = "Deflate"
 
 
-class DestinationGcsDeflateTypedDict(TypedDict):
-    codec: NotRequired[DestinationGcsCodecDeflate]
+class DeflateTypedDict(TypedDict):
+    codec: NotRequired[CompressionCodecCodec]
     compression_level: NotRequired[int]
     r"""0: no compression & fastest, 9: best compression & slowest."""
 
 
-class DestinationGcsDeflate(BaseModel):
-    codec: Optional[DestinationGcsCodecDeflate] = DestinationGcsCodecDeflate.DEFLATE
+class Deflate(BaseModel):
+    codec: Optional[CompressionCodecCodec] = CompressionCodecCodec.DEFLATE
 
     compression_level: Optional[int] = 0
     r"""0: no compression & fastest, 9: best compression & slowest."""
@@ -541,18 +537,16 @@ class DestinationGcsDeflate(BaseModel):
         return m
 
 
-class DestinationGcsCodecNoCompression(str, Enum):
+class Codec(str, Enum):
     NO_COMPRESSION = "no compression"
 
 
-class DestinationGcsCompressionCodecNoCompressionTypedDict(TypedDict):
-    codec: NotRequired[DestinationGcsCodecNoCompression]
+class NoCompressionTypedDict(TypedDict):
+    codec: NotRequired[Codec]
 
 
-class DestinationGcsCompressionCodecNoCompression(BaseModel):
-    codec: Optional[DestinationGcsCodecNoCompression] = (
-        DestinationGcsCodecNoCompression.NO_COMPRESSION
-    )
+class NoCompression(BaseModel):
+    codec: Optional[Codec] = Codec.NO_COMPRESSION
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
@@ -571,50 +565,42 @@ class DestinationGcsCompressionCodecNoCompression(BaseModel):
         return m
 
 
-DestinationGcsCompressionCodecUnionTypedDict = TypeAliasType(
-    "DestinationGcsCompressionCodecUnionTypedDict",
+CompressionCodecTypedDict = TypeAliasType(
+    "CompressionCodecTypedDict",
     Union[
-        DestinationGcsCompressionCodecNoCompressionTypedDict,
-        DestinationGcsBzip2TypedDict,
-        DestinationGcsSnappyTypedDict,
-        DestinationGcsDeflateTypedDict,
-        DestinationGcsXzTypedDict,
-        DestinationGcsZstandardTypedDict,
+        NoCompressionTypedDict,
+        Bzip2TypedDict,
+        SnappyTypedDict,
+        DeflateTypedDict,
+        XzTypedDict,
+        ZstandardTypedDict,
     ],
 )
 r"""The compression algorithm used to compress data. Default to no compression."""
 
 
-DestinationGcsCompressionCodecUnion = TypeAliasType(
-    "DestinationGcsCompressionCodecUnion",
-    Union[
-        DestinationGcsCompressionCodecNoCompression,
-        DestinationGcsBzip2,
-        DestinationGcsSnappy,
-        DestinationGcsDeflate,
-        DestinationGcsXz,
-        DestinationGcsZstandard,
-    ],
+CompressionCodec = TypeAliasType(
+    "CompressionCodec", Union[NoCompression, Bzip2, Snappy, Deflate, Xz, Zstandard]
 )
 r"""The compression algorithm used to compress data. Default to no compression."""
 
 
-class DestinationGcsFormatTypeAvro(str, Enum):
+class DestinationGcsOutputFormatFormatType(str, Enum):
     AVRO = "Avro"
 
 
-class DestinationGcsAvroApacheAvroTypedDict(TypedDict):
-    compression_codec: DestinationGcsCompressionCodecUnionTypedDict
+class AvroApacheAvroTypedDict(TypedDict):
+    compression_codec: CompressionCodecTypedDict
     r"""The compression algorithm used to compress data. Default to no compression."""
-    format_type: NotRequired[DestinationGcsFormatTypeAvro]
+    format_type: NotRequired[DestinationGcsOutputFormatFormatType]
 
 
-class DestinationGcsAvroApacheAvro(BaseModel):
-    compression_codec: DestinationGcsCompressionCodecUnion
+class AvroApacheAvro(BaseModel):
+    compression_codec: CompressionCodec
     r"""The compression algorithm used to compress data. Default to no compression."""
 
-    format_type: Optional[DestinationGcsFormatTypeAvro] = (
-        DestinationGcsFormatTypeAvro.AVRO
+    format_type: Optional[DestinationGcsOutputFormatFormatType] = (
+        DestinationGcsOutputFormatFormatType.AVRO
     )
 
     @model_serializer(mode="wrap")
@@ -637,10 +623,10 @@ class DestinationGcsAvroApacheAvro(BaseModel):
 DestinationGcsOutputFormatTypedDict = TypeAliasType(
     "DestinationGcsOutputFormatTypedDict",
     Union[
-        DestinationGcsAvroApacheAvroTypedDict,
-        DestinationGcsJSONLinesNewlineDelimitedJSONTypedDict,
-        DestinationGcsCSVCommaSeparatedValuesTypedDict,
-        DestinationGcsParquetColumnarStorageTypedDict,
+        AvroApacheAvroTypedDict,
+        DestinationGcsOutputFormatJSONLinesNewlineDelimitedJSONTypedDict,
+        OutputFormatCSVCommaSeparatedValuesTypedDict,
+        OutputFormatParquetColumnarStorageTypedDict,
     ],
 )
 r"""Output data format. One of the following formats must be selected - <a href=\"https://cloud.google.com/bigquery/docs/loading-data-cloud-storage-avro#advantages_of_avro\">AVRO</a> format, <a href=\"https://cloud.google.com/bigquery/docs/loading-data-cloud-storage-parquet#parquet_schemas\">PARQUET</a> format, <a href=\"https://cloud.google.com/bigquery/docs/loading-data-cloud-storage-csv#loading_csv_data_into_a_table\">CSV</a> format, or <a href=\"https://cloud.google.com/bigquery/docs/loading-data-cloud-storage-json#loading_json_data_into_a_new_table\">JSONL</a> format."""
@@ -649,10 +635,10 @@ r"""Output data format. One of the following formats must be selected - <a href=
 DestinationGcsOutputFormat = TypeAliasType(
     "DestinationGcsOutputFormat",
     Union[
-        DestinationGcsAvroApacheAvro,
-        DestinationGcsJSONLinesNewlineDelimitedJSON,
-        DestinationGcsCSVCommaSeparatedValues,
-        DestinationGcsParquetColumnarStorage,
+        AvroApacheAvro,
+        DestinationGcsOutputFormatJSONLinesNewlineDelimitedJSON,
+        OutputFormatCSVCommaSeparatedValues,
+        OutputFormatParquetColumnarStorage,
     ],
 )
 r"""Output data format. One of the following formats must be selected - <a href=\"https://cloud.google.com/bigquery/docs/loading-data-cloud-storage-avro#advantages_of_avro\">AVRO</a> format, <a href=\"https://cloud.google.com/bigquery/docs/loading-data-cloud-storage-parquet#parquet_schemas\">PARQUET</a> format, <a href=\"https://cloud.google.com/bigquery/docs/loading-data-cloud-storage-csv#loading_csv_data_into_a_table\">CSV</a> format, or <a href=\"https://cloud.google.com/bigquery/docs/loading-data-cloud-storage-json#loading_json_data_into_a_new_table\">JSONL</a> format."""

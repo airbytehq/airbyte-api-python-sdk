@@ -11,14 +11,14 @@ from typing import Any, Dict, Optional, Union
 from typing_extensions import Annotated, NotRequired, TypeAliasType, TypedDict
 
 
-class SourceRetentlyAuthTypeToken(str, Enum):
+class SourceRetentlyAuthenticationMechanismCredentialsAuthType(str, Enum):
     TOKEN = "Token"
 
 
 class AuthenticateWithAPITokenTypedDict(TypedDict):
     api_key: str
     r"""Retently API Token. See the <a href=\"https://app.retently.com/settings/api/tokens\">docs</a> for more information on how to obtain this key."""
-    auth_type: SourceRetentlyAuthTypeToken
+    auth_type: SourceRetentlyAuthenticationMechanismCredentialsAuthType
 
 
 class AuthenticateWithAPIToken(BaseModel):
@@ -32,11 +32,15 @@ class AuthenticateWithAPIToken(BaseModel):
 
     AUTH_TYPE: Annotated[
         Annotated[
-            Optional[SourceRetentlyAuthTypeToken],
-            AfterValidator(validate_const(SourceRetentlyAuthTypeToken.TOKEN)),
+            Optional[SourceRetentlyAuthenticationMechanismCredentialsAuthType],
+            AfterValidator(
+                validate_const(
+                    SourceRetentlyAuthenticationMechanismCredentialsAuthType.TOKEN
+                )
+            ),
         ],
         pydantic.Field(alias="auth_type"),
-    ] = SourceRetentlyAuthTypeToken.TOKEN
+    ] = SourceRetentlyAuthenticationMechanismCredentialsAuthType.TOKEN
 
     @property
     def additional_properties(self):
@@ -66,7 +70,7 @@ class AuthenticateWithAPIToken(BaseModel):
         return m
 
 
-class SourceRetentlyAuthTypeClient(str, Enum):
+class SourceRetentlyAuthenticationMechanismAuthType(str, Enum):
     CLIENT = "Client"
 
 
@@ -77,7 +81,7 @@ class AuthenticateViaRetentlyOAuthTypedDict(TypedDict):
     r"""The Client Secret of your Retently developer application."""
     refresh_token: str
     r"""Retently Refresh Token which can be used to fetch new Bearer Tokens when the current one expires."""
-    auth_type: SourceRetentlyAuthTypeClient
+    auth_type: SourceRetentlyAuthenticationMechanismAuthType
 
 
 class AuthenticateViaRetentlyOAuth(BaseModel):
@@ -97,11 +101,13 @@ class AuthenticateViaRetentlyOAuth(BaseModel):
 
     AUTH_TYPE: Annotated[
         Annotated[
-            Optional[SourceRetentlyAuthTypeClient],
-            AfterValidator(validate_const(SourceRetentlyAuthTypeClient.CLIENT)),
+            Optional[SourceRetentlyAuthenticationMechanismAuthType],
+            AfterValidator(
+                validate_const(SourceRetentlyAuthenticationMechanismAuthType.CLIENT)
+            ),
         ],
         pydantic.Field(alias="auth_type"),
-    ] = SourceRetentlyAuthTypeClient.CLIENT
+    ] = SourceRetentlyAuthenticationMechanismAuthType.CLIENT
 
     @property
     def additional_properties(self):
