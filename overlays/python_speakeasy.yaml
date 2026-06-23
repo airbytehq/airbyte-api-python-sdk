@@ -15,12 +15,13 @@ actions:
       $ref: "#/components/schemas/RowFilteringOperationEqual"
 
   # -----------------------------------------------------------------------
-  # Test: RFC 9535 JSONPath with PropertyNameExtension (@~) to match
-  # connector schemas by name prefix and mark them deprecated.
+  # Mark all source-* and destination-* connector schemas as deprecated.
+  # Uses RFC 9535 JSONPath with Speakeasy's @~ property-name extension.
+  # search(@~, '^source-') matches schemas whose key starts with "source-".
   # -----------------------------------------------------------------------
 
   # Mark all source-* connector schemas as deprecated
-  - target: "$.components.schemas[?match(@~, '^source-')]"
+  - target: "$.components.schemas[?search(@~, '^source-')]"
     update:
       deprecated: true
       x-speakeasy-deprecation-message: >-
@@ -28,7 +29,7 @@ actions:
         Pass configuration as a plain dict with a required 'sourceType' key instead.
 
   # Mark all destination-* connector schemas as deprecated
-  - target: "$.components.schemas[?match(@~, '^destination-')]"
+  - target: "$.components.schemas[?search(@~, '^destination-')]"
     update:
       deprecated: true
       x-speakeasy-deprecation-message: >-
