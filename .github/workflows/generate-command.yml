@@ -67,8 +67,36 @@ concurrency:
     cancel-in-progress: true
 
 jobs:
+    check-paths:
+        name: Check Generation Paths
+        if: ${{ inputs.dry_run }}
+        runs-on: ubuntu-latest
+        outputs:
+            should_run: ${{ github.event_name == 'workflow_dispatch' || steps.filter.outputs.generation == 'true' }}
+        steps:
+            - name: Checkout repository
+              uses: actions/checkout@v4
+            - name: Filter changed paths
+              uses: dorny/paths-filter@v4
+              id: filter
+              with:
+                  filters: |
+                      generation:
+                          - '.speakeasy/**'
+                          - '.genignore'
+                          - '.github/speakeasy/**'
+                          - '.github/workflows/generate-command.yml'
+                          - 'gen.yaml'
+                          - 'overlays/**'
+                          - 'README.md'
+                          - 'scripts/**'
+                          - 'poe_tasks.toml'
+                          - 'src/**'
+
     generate:
         name: Generate SDK
+        needs: [check-paths]
+        if: ${{ always() && (!inputs.dry_run || needs.check-paths.outputs.should_run == 'true') }}
         runs-on: ubuntu-latest
         timeout-minutes: 30
         outputs:
