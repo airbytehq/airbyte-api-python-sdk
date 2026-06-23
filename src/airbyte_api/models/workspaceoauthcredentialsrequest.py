@@ -2,10 +2,9 @@
 
 from __future__ import annotations
 from .actortypeenum import ActorTypeEnum
-from .oauthactornames import OAuthActorNames
 from airbyte_api.types import BaseModel
 import pydantic
-from typing import Any
+from typing import Any, Dict
 from typing_extensions import Annotated, TypedDict
 
 
@@ -14,9 +13,10 @@ class WorkspaceOAuthCredentialsRequestTypedDict(TypedDict):
 
     actor_type: ActorTypeEnum
     r"""Whether you're setting this override for a source or destination"""
-    configuration: Any
-    r"""The values required to configure the source."""
-    name: OAuthActorNames
+    configuration: Dict[str, Any]
+    r"""OAuth credentials configuration for the connector."""
+    name: str
+    r"""The name of the OAuth-enabled connector (e.g. 'github', 'google-ads')."""
 
 
 class WorkspaceOAuthCredentialsRequest(BaseModel):
@@ -25,10 +25,11 @@ class WorkspaceOAuthCredentialsRequest(BaseModel):
     actor_type: Annotated[ActorTypeEnum, pydantic.Field(alias="actorType")]
     r"""Whether you're setting this override for a source or destination"""
 
-    configuration: Any
-    r"""The values required to configure the source."""
+    configuration: Dict[str, Any]
+    r"""OAuth credentials configuration for the connector."""
 
-    name: OAuthActorNames
+    name: str
+    r"""The name of the OAuth-enabled connector (e.g. 'github', 'google-ads')."""
 
 
 try:

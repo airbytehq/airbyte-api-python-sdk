@@ -1,9 +1,0 @@
-# SourceRetently
-
-
-## Fields
-
-| Field                                                                                                        | Type                                                                                                         | Required                                                                                                     | Description                                                                                                  |
-| ------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------ |
-| `credentials`                                                                                                | [Optional[models.SourceRetentlyAuthenticationMechanism]](../models/sourceretentlyauthenticationmechanism.md) | :heavy_minus_sign:                                                                                           | Choose how to authenticate to Retently                                                                       |
-| `source_type`                                                                                                | [models.Retently](../models/retently.md)                                                                     | :heavy_check_mark:                                                                                           | N/A                                                                                                          |
