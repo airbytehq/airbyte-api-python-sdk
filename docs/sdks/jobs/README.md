@@ -203,11 +203,11 @@ with AirbyteAPI(
 ) as aa_client:
 
     res = aa_client.jobs.list_jobs(request={
-        "created_at_end": parse_datetime("2024-11-05T02:58:38.581Z"),
         "created_at_start": parse_datetime("2024-04-14T21:55:04.172Z"),
-        "order_by": "updatedAt|DESC",
-        "updated_at_end": parse_datetime("2025-11-15T07:41:11.221Z"),
+        "created_at_end": parse_datetime("2024-11-05T02:58:38.581Z"),
         "updated_at_start": parse_datetime("2026-10-05T17:24:30.764Z"),
+        "updated_at_end": parse_datetime("2025-11-15T07:41:11.221Z"),
+        "order_by": "updatedAt|DESC",
     })
 
     assert res.jobs_response is not None

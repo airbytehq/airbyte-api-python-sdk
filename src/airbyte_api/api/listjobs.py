@@ -19,26 +19,26 @@ from typing_extensions import Annotated, NotRequired, TypedDict
 class ListJobsRequestTypedDict(TypedDict):
     connection_id: NotRequired[str]
     r"""Filter the Jobs by connectionId."""
-    created_at_end: NotRequired[datetime]
-    r"""The end date to filter by"""
-    created_at_start: NotRequired[datetime]
-    r"""The start date to filter by"""
-    job_type: NotRequired[models_jobtypeenum.JobTypeEnum]
-    r"""Filter the Jobs by jobType."""
     limit: NotRequired[int]
     r"""Set the limit on the number of Jobs returned. The default is 20 Jobs."""
     offset: NotRequired[int]
     r"""Set the offset to start at when returning Jobs. The default is 0."""
-    order_by: NotRequired[str]
-    r"""The field and method to use for ordering"""
+    job_type: NotRequired[models_jobtypeenum.JobTypeEnum]
+    r"""Filter the Jobs by jobType."""
+    workspace_ids: NotRequired[List[str]]
+    r"""The UUIDs of the workspaces you wish to list jobs for. Empty list will retrieve all allowed workspaces."""
     status: NotRequired[models_jobstatusenum.JobStatusEnum]
     r"""The Job status you want to filter by"""
-    updated_at_end: NotRequired[datetime]
+    created_at_start: NotRequired[datetime]
+    r"""The start date to filter by"""
+    created_at_end: NotRequired[datetime]
     r"""The end date to filter by"""
     updated_at_start: NotRequired[datetime]
     r"""The start date to filter by"""
-    workspace_ids: NotRequired[List[str]]
-    r"""The UUIDs of the workspaces you wish to list jobs for. Empty list will retrieve all allowed workspaces."""
+    updated_at_end: NotRequired[datetime]
+    r"""The end date to filter by"""
+    order_by: NotRequired[str]
+    r"""The field and method to use for ordering"""
 
 
 class ListJobsRequest(BaseModel):
@@ -48,27 +48,6 @@ class ListJobsRequest(BaseModel):
         FieldMetadata(query=QueryParamMetadata(style="form", explode=True)),
     ] = None
     r"""Filter the Jobs by connectionId."""
-
-    created_at_end: Annotated[
-        Optional[datetime],
-        pydantic.Field(alias="createdAtEnd"),
-        FieldMetadata(query=QueryParamMetadata(style="form", explode=True)),
-    ] = None
-    r"""The end date to filter by"""
-
-    created_at_start: Annotated[
-        Optional[datetime],
-        pydantic.Field(alias="createdAtStart"),
-        FieldMetadata(query=QueryParamMetadata(style="form", explode=True)),
-    ] = None
-    r"""The start date to filter by"""
-
-    job_type: Annotated[
-        Optional[models_jobtypeenum.JobTypeEnum],
-        pydantic.Field(alias="jobType"),
-        FieldMetadata(query=QueryParamMetadata(style="form", explode=True)),
-    ] = None
-    r"""Filter the Jobs by jobType."""
 
     limit: Annotated[
         Optional[int],
@@ -82,12 +61,19 @@ class ListJobsRequest(BaseModel):
     ] = 0
     r"""Set the offset to start at when returning Jobs. The default is 0."""
 
-    order_by: Annotated[
-        Optional[str],
-        pydantic.Field(alias="orderBy"),
+    job_type: Annotated[
+        Optional[models_jobtypeenum.JobTypeEnum],
+        pydantic.Field(alias="jobType"),
         FieldMetadata(query=QueryParamMetadata(style="form", explode=True)),
     ] = None
-    r"""The field and method to use for ordering"""
+    r"""Filter the Jobs by jobType."""
+
+    workspace_ids: Annotated[
+        Optional[List[str]],
+        pydantic.Field(alias="workspaceIds"),
+        FieldMetadata(query=QueryParamMetadata(style="form", explode=True)),
+    ] = None
+    r"""The UUIDs of the workspaces you wish to list jobs for. Empty list will retrieve all allowed workspaces."""
 
     status: Annotated[
         Optional[models_jobstatusenum.JobStatusEnum],
@@ -95,9 +81,16 @@ class ListJobsRequest(BaseModel):
     ] = None
     r"""The Job status you want to filter by"""
 
-    updated_at_end: Annotated[
+    created_at_start: Annotated[
         Optional[datetime],
-        pydantic.Field(alias="updatedAtEnd"),
+        pydantic.Field(alias="createdAtStart"),
+        FieldMetadata(query=QueryParamMetadata(style="form", explode=True)),
+    ] = None
+    r"""The start date to filter by"""
+
+    created_at_end: Annotated[
+        Optional[datetime],
+        pydantic.Field(alias="createdAtEnd"),
         FieldMetadata(query=QueryParamMetadata(style="form", explode=True)),
     ] = None
     r"""The end date to filter by"""
@@ -109,28 +102,35 @@ class ListJobsRequest(BaseModel):
     ] = None
     r"""The start date to filter by"""
 
-    workspace_ids: Annotated[
-        Optional[List[str]],
-        pydantic.Field(alias="workspaceIds"),
+    updated_at_end: Annotated[
+        Optional[datetime],
+        pydantic.Field(alias="updatedAtEnd"),
         FieldMetadata(query=QueryParamMetadata(style="form", explode=True)),
     ] = None
-    r"""The UUIDs of the workspaces you wish to list jobs for. Empty list will retrieve all allowed workspaces."""
+    r"""The end date to filter by"""
+
+    order_by: Annotated[
+        Optional[str],
+        pydantic.Field(alias="orderBy"),
+        FieldMetadata(query=QueryParamMetadata(style="form", explode=True)),
+    ] = None
+    r"""The field and method to use for ordering"""
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
         optional_fields = set(
             [
                 "connectionId",
-                "createdAtEnd",
-                "createdAtStart",
-                "jobType",
                 "limit",
                 "offset",
-                "orderBy",
-                "status",
-                "updatedAtEnd",
-                "updatedAtStart",
+                "jobType",
                 "workspaceIds",
+                "status",
+                "createdAtStart",
+                "createdAtEnd",
+                "updatedAtStart",
+                "updatedAtEnd",
+                "orderBy",
             ]
         )
         serialized = handler(self)

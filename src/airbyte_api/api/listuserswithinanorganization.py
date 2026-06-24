@@ -13,10 +13,10 @@ from typing_extensions import Annotated, NotRequired, TypedDict
 
 class ListUsersWithinAnOrganizationRequestTypedDict(TypedDict):
     organization_id: str
-    emails: NotRequired[List[str]]
-    r"""List of user emails to filter by"""
     ids: NotRequired[List[str]]
     r"""List of user IDs to filter by"""
+    emails: NotRequired[List[str]]
+    r"""List of user emails to filter by"""
 
 
 class ListUsersWithinAnOrganizationRequest(BaseModel):
@@ -26,21 +26,21 @@ class ListUsersWithinAnOrganizationRequest(BaseModel):
         FieldMetadata(query=QueryParamMetadata(style="form", explode=True)),
     ]
 
-    emails: Annotated[
-        Optional[List[str]],
-        FieldMetadata(query=QueryParamMetadata(style="form", explode=True)),
-    ] = None
-    r"""List of user emails to filter by"""
-
     ids: Annotated[
         Optional[List[str]],
         FieldMetadata(query=QueryParamMetadata(style="form", explode=True)),
     ] = None
     r"""List of user IDs to filter by"""
 
+    emails: Annotated[
+        Optional[List[str]],
+        FieldMetadata(query=QueryParamMetadata(style="form", explode=True)),
+    ] = None
+    r"""List of user emails to filter by"""
+
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
-        optional_fields = set(["emails", "ids"])
+        optional_fields = set(["ids", "emails"])
         serialized = handler(self)
         m = {}
 

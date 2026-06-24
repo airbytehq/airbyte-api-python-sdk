@@ -31,11 +31,11 @@ with AirbyteAPI(
 ) as aa_client:
 
     res = aa_client.declarative_source_definitions.create_declarative_source_definition(request={
+        "workspace_id": "9f09326e-38fd-40ea-8871-6aaf7655a237",
         "create_declarative_source_definition_request": {
             "manifest": "<value>",
             "name": "<value>",
         },
-        "workspace_id": "9f09326e-38fd-40ea-8871-6aaf7655a237",
     })
 
     assert res.declarative_source_definition_response is not None
@@ -83,8 +83,8 @@ with AirbyteAPI(
 ) as aa_client:
 
     res = aa_client.declarative_source_definitions.delete_declarative_source_definition(request={
-        "definition_id": "0cf3a1f6-1af6-4ae7-ae77-4bd1b32041f4",
         "workspace_id": "5bed2604-75d1-40cf-a858-64e430840198",
+        "definition_id": "0cf3a1f6-1af6-4ae7-ae77-4bd1b32041f4",
     })
 
     assert res.declarative_source_definition_response is not None
@@ -132,8 +132,8 @@ with AirbyteAPI(
 ) as aa_client:
 
     res = aa_client.declarative_source_definitions.get_declarative_source_definition(request={
-        "definition_id": "ce3288f2-b43c-40d0-ae8e-864c7a844485",
         "workspace_id": "2a50feae-cf51-42e9-b777-b8d52ea2704e",
+        "definition_id": "ce3288f2-b43c-40d0-ae8e-864c7a844485",
     })
 
     assert res.declarative_source_definition_response is not None
@@ -229,11 +229,11 @@ with AirbyteAPI(
 ) as aa_client:
 
     res = aa_client.declarative_source_definitions.update_declarative_source_definition(request={
+        "workspace_id": "38cb8d27-592a-4438-be38-823abf06a84e",
+        "definition_id": "c97eb9ab-47b5-4609-8d65-0a62f74ca843",
         "update_declarative_source_definition_request": {
             "manifest": "<value>",
         },
-        "definition_id": "c97eb9ab-47b5-4609-8d65-0a62f74ca843",
-        "workspace_id": "38cb8d27-592a-4438-be38-823abf06a84e",
     })
 
     assert res.declarative_source_definition_response is not None

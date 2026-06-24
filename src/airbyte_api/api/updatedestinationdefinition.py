@@ -15,17 +15,18 @@ from typing_extensions import Annotated, NotRequired, TypedDict
 
 
 class UpdateDestinationDefinitionRequestTypedDict(TypedDict):
+    workspace_id: str
+    definition_id: str
     update_definition_request: (
         models_updatedefinitionrequest.UpdateDefinitionRequestTypedDict
     )
-    definition_id: str
-    workspace_id: str
 
 
 class UpdateDestinationDefinitionRequest(BaseModel):
-    update_definition_request: Annotated[
-        models_updatedefinitionrequest.UpdateDefinitionRequest,
-        FieldMetadata(request=RequestMetadata(media_type="application/json")),
+    workspace_id: Annotated[
+        str,
+        pydantic.Field(alias="workspaceId"),
+        FieldMetadata(path=PathParamMetadata(style="simple", explode=False)),
     ]
 
     definition_id: Annotated[
@@ -34,10 +35,9 @@ class UpdateDestinationDefinitionRequest(BaseModel):
         FieldMetadata(path=PathParamMetadata(style="simple", explode=False)),
     ]
 
-    workspace_id: Annotated[
-        str,
-        pydantic.Field(alias="workspaceId"),
-        FieldMetadata(path=PathParamMetadata(style="simple", explode=False)),
+    update_definition_request: Annotated[
+        models_updatedefinitionrequest.UpdateDefinitionRequest,
+        FieldMetadata(request=RequestMetadata(media_type="application/json")),
     ]
 
 

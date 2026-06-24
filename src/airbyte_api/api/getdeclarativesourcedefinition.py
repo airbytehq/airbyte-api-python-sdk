@@ -14,20 +14,20 @@ from typing_extensions import Annotated, NotRequired, TypedDict
 
 
 class GetDeclarativeSourceDefinitionRequestTypedDict(TypedDict):
-    definition_id: str
     workspace_id: str
+    definition_id: str
 
 
 class GetDeclarativeSourceDefinitionRequest(BaseModel):
-    definition_id: Annotated[
-        str,
-        pydantic.Field(alias="definitionId"),
-        FieldMetadata(path=PathParamMetadata(style="simple", explode=False)),
-    ]
-
     workspace_id: Annotated[
         str,
         pydantic.Field(alias="workspaceId"),
+        FieldMetadata(path=PathParamMetadata(style="simple", explode=False)),
+    ]
+
+    definition_id: Annotated[
+        str,
+        pydantic.Field(alias="definitionId"),
         FieldMetadata(path=PathParamMetadata(style="simple", explode=False)),
     ]
 
