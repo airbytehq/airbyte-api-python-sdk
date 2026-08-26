@@ -14,6 +14,8 @@ class AirbyteAPIConnectionScheduleTypedDict(TypedDict):
 
     schedule_type: ScheduleTypeEnum
     cron_expression: NotRequired[str]
+    cron_time_zone: NotRequired[str]
+    r"""Supported timezone ID or fixed offset for the cron schedule; defaults to UTC and cannot start with Etc."""
 
 
 class AirbyteAPIConnectionSchedule(BaseModel):
@@ -25,9 +27,14 @@ class AirbyteAPIConnectionSchedule(BaseModel):
         Optional[str], pydantic.Field(alias="cronExpression")
     ] = None
 
+    cron_time_zone: Annotated[Optional[str], pydantic.Field(alias="cronTimeZone")] = (
+        None
+    )
+    r"""Supported timezone ID or fixed offset for the cron schedule; defaults to UTC and cannot start with Etc."""
+
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
-        optional_fields = set(["cronExpression"])
+        optional_fields = set(["cronExpression", "cronTimeZone"])
         serialized = handler(self)
         m = {}
 
