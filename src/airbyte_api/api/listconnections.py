@@ -12,19 +12,33 @@ from typing_extensions import Annotated, NotRequired, TypedDict
 
 
 class ListConnectionsRequestTypedDict(TypedDict):
+    workspace_ids: NotRequired[List[str]]
+    r"""The UUIDs of the workspaces you wish to list connections for. Empty list will retrieve all allowed workspaces."""
+    tag_ids: NotRequired[List[str]]
+    r"""The UUIDs of the tags you wish to list connections for. Empty list will retrieve all connections."""
     include_deleted: NotRequired[bool]
     r"""Include deleted connections in the returned results."""
     limit: NotRequired[int]
     r"""Set the limit on the number of Connections returned. The default is 20."""
     offset: NotRequired[int]
     r"""Set the offset to start at when returning Connections. The default is 0"""
-    tag_ids: NotRequired[List[str]]
-    r"""The UUIDs of the tags you wish to list connections for. Empty list will retrieve all connections."""
-    workspace_ids: NotRequired[List[str]]
-    r"""The UUIDs of the workspaces you wish to list connections for. Empty list will retrieve all allowed workspaces."""
 
 
 class ListConnectionsRequest(BaseModel):
+    workspace_ids: Annotated[
+        Optional[List[str]],
+        pydantic.Field(alias="workspaceIds"),
+        FieldMetadata(query=QueryParamMetadata(style="form", explode=True)),
+    ] = None
+    r"""The UUIDs of the workspaces you wish to list connections for. Empty list will retrieve all allowed workspaces."""
+
+    tag_ids: Annotated[
+        Optional[List[str]],
+        pydantic.Field(alias="tagIds"),
+        FieldMetadata(query=QueryParamMetadata(style="form", explode=True)),
+    ] = None
+    r"""The UUIDs of the tags you wish to list connections for. Empty list will retrieve all connections."""
+
     include_deleted: Annotated[
         Optional[bool],
         pydantic.Field(alias="includeDeleted"),
@@ -44,24 +58,10 @@ class ListConnectionsRequest(BaseModel):
     ] = 0
     r"""Set the offset to start at when returning Connections. The default is 0"""
 
-    tag_ids: Annotated[
-        Optional[List[str]],
-        pydantic.Field(alias="tagIds"),
-        FieldMetadata(query=QueryParamMetadata(style="form", explode=True)),
-    ] = None
-    r"""The UUIDs of the tags you wish to list connections for. Empty list will retrieve all connections."""
-
-    workspace_ids: Annotated[
-        Optional[List[str]],
-        pydantic.Field(alias="workspaceIds"),
-        FieldMetadata(query=QueryParamMetadata(style="form", explode=True)),
-    ] = None
-    r"""The UUIDs of the workspaces you wish to list connections for. Empty list will retrieve all allowed workspaces."""
-
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
         optional_fields = set(
-            ["includeDeleted", "limit", "offset", "tagIds", "workspaceIds"]
+            ["workspaceIds", "tagIds", "includeDeleted", "limit", "offset"]
         )
         serialized = handler(self)
         m = {}

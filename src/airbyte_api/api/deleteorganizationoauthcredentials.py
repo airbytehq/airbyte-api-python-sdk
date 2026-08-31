@@ -10,14 +10,20 @@ from typing_extensions import Annotated, TypedDict
 
 
 class DeleteOrganizationOAuthCredentialsRequestTypedDict(TypedDict):
+    organization_id: str
     actor_type: models_actortypeenum.ActorTypeEnum
     r"""Whether you're setting this override for a source or destination"""
     name: str
     r"""The name of the source or destination i.e. google-ads"""
-    organization_id: str
 
 
 class DeleteOrganizationOAuthCredentialsRequest(BaseModel):
+    organization_id: Annotated[
+        str,
+        pydantic.Field(alias="organizationId"),
+        FieldMetadata(path=PathParamMetadata(style="simple", explode=False)),
+    ]
+
     actor_type: Annotated[
         models_actortypeenum.ActorTypeEnum,
         pydantic.Field(alias="actorType"),
@@ -29,12 +35,6 @@ class DeleteOrganizationOAuthCredentialsRequest(BaseModel):
         str, FieldMetadata(path=PathParamMetadata(style="simple", explode=False))
     ]
     r"""The name of the source or destination i.e. google-ads"""
-
-    organization_id: Annotated[
-        str,
-        pydantic.Field(alias="organizationId"),
-        FieldMetadata(path=PathParamMetadata(style="simple", explode=False)),
-    ]
 
 
 class DeleteOrganizationOAuthCredentialsResponseTypedDict(TypedDict):

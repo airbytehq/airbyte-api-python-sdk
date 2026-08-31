@@ -223,11 +223,11 @@ with AirbyteAPI(
 ) as aa_client:
 
     res = aa_client.tags.update_tag(request={
+        "tag_id": "80469d11-8074-4b50-ac85-fa8ba37ca92a",
         "tag_patch_request": {
             "color": "red",
             "name": "<value>",
         },
-        "tag_id": "80469d11-8074-4b50-ac85-fa8ba37ca92a",
     })
 
     assert res.tag_response is not None

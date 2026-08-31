@@ -30,6 +30,7 @@ with AirbyteAPI(
 ) as aa_client:
 
     res = aa_client.organizations.create_or_update_organization_o_auth_credentials(request={
+        "organization_id": "<value>",
         "organization_o_auth_credentials_request": {
             "actor_type": models.ActorTypeEnum.SOURCE,
             "configuration": {
@@ -37,7 +38,6 @@ with AirbyteAPI(
             },
             "name": "<value>",
         },
-        "organization_id": "<value>",
     })
 
     assert res is not None
@@ -89,9 +89,9 @@ with AirbyteAPI(
 ) as aa_client:
 
     res = aa_client.organizations.delete_organization_o_auth_credentials(request={
+        "organization_id": "<value>",
         "actor_type": models.ActorTypeEnum.SOURCE,
         "name": "<value>",
-        "organization_id": "<value>",
     })
 
     assert res is not None

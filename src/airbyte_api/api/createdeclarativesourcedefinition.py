@@ -15,20 +15,20 @@ from typing_extensions import Annotated, NotRequired, TypedDict
 
 
 class CreateDeclarativeSourceDefinitionRequestTypedDict(TypedDict):
-    create_declarative_source_definition_request: models_createdeclarativesourcedefinitionrequest.CreateDeclarativeSourceDefinitionRequestTypedDict
     workspace_id: str
+    create_declarative_source_definition_request: models_createdeclarativesourcedefinitionrequest.CreateDeclarativeSourceDefinitionRequestTypedDict
 
 
 class CreateDeclarativeSourceDefinitionRequest(BaseModel):
-    create_declarative_source_definition_request: Annotated[
-        models_createdeclarativesourcedefinitionrequest.CreateDeclarativeSourceDefinitionRequest,
-        FieldMetadata(request=RequestMetadata(media_type="application/json")),
-    ]
-
     workspace_id: Annotated[
         str,
         pydantic.Field(alias="workspaceId"),
         FieldMetadata(path=PathParamMetadata(style="simple", explode=False)),
+    ]
+
+    create_declarative_source_definition_request: Annotated[
+        models_createdeclarativesourcedefinitionrequest.CreateDeclarativeSourceDefinitionRequest,
+        FieldMetadata(request=RequestMetadata(media_type="application/json")),
     ]
 
 

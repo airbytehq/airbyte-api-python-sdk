@@ -252,10 +252,10 @@ with AirbyteAPI(
 ) as aa_client:
 
     res = aa_client.connections.patch_connection(request={
+        "connection_id": "<value>",
         "connection_patch_request": {
             "namespace_format": "${SOURCE_NAMESPACE}",
         },
-        "connection_id": "<value>",
     })
 
     assert res.connection_response is not None
@@ -281,11 +281,11 @@ with AirbyteAPI(
 ) as aa_client:
 
     res = aa_client.connections.patch_connection(request={
+        "connection_id": "<value>",
         "connection_patch_request": {
             "name": "Postgres-to-Bigquery",
             "namespace_format": "${SOURCE_NAMESPACE}",
         },
-        "connection_id": "<value>",
     })
 
     assert res.connection_response is not None

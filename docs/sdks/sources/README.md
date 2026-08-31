@@ -387,6 +387,7 @@ with AirbyteAPI(
 ) as aa_client:
 
     res = aa_client.sources.patch_source(request=api.PatchSourceRequest(
+        source_id="<value>",
         source_patch_request=models.SourcePatchRequest(
             configuration=models.SourceNutshell(
                 username="Elyssa_Hackett7",
@@ -394,7 +395,6 @@ with AirbyteAPI(
             name="My Source",
             workspace_id="744cc0ed-7f05-4949-9e60-2a814f90c035",
         ),
-        source_id="<value>",
     ))
 
     assert res.source_response is not None
@@ -420,6 +420,7 @@ with AirbyteAPI(
 ) as aa_client:
 
     res = aa_client.sources.patch_source(request=api.PatchSourceRequest(
+        source_id="<value>",
         source_patch_request=models.SourcePatchRequest(
             configuration=models.SourceFirebolt(
                 account="95324582",
@@ -430,7 +431,6 @@ with AirbyteAPI(
             ),
             name="My source",
         ),
-        source_id="<value>",
     ))
 
     assert res.source_response is not None
@@ -478,6 +478,7 @@ with AirbyteAPI(
 ) as aa_client:
 
     res = aa_client.sources.put_source(request=api.PutSourceRequest(
+        source_id="<value>",
         source_put_request=models.SourcePutRequest(
             configuration=models.SourceRailz(
                 client_id="<id>",
@@ -486,7 +487,6 @@ with AirbyteAPI(
             ),
             name="My Source",
         ),
-        source_id="<value>",
     ))
 
     assert res.source_response is not None
@@ -512,6 +512,7 @@ with AirbyteAPI(
 ) as aa_client:
 
     res = aa_client.sources.put_source(request=api.PutSourceRequest(
+        source_id="<value>",
         source_put_request=models.SourcePutRequest(
             configuration=models.SourceRailz(
                 client_id="<id>",
@@ -520,7 +521,6 @@ with AirbyteAPI(
             ),
             name="<value>",
         ),
-        source_id="<value>",
     ))
 
     assert res.source_response is not None

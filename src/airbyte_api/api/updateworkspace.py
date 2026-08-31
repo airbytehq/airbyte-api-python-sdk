@@ -15,22 +15,22 @@ from typing_extensions import Annotated, NotRequired, TypedDict
 
 
 class UpdateWorkspaceRequestTypedDict(TypedDict):
+    workspace_id: str
     workspace_update_request: (
         models_workspaceupdaterequest.WorkspaceUpdateRequestTypedDict
     )
-    workspace_id: str
 
 
 class UpdateWorkspaceRequest(BaseModel):
-    workspace_update_request: Annotated[
-        models_workspaceupdaterequest.WorkspaceUpdateRequest,
-        FieldMetadata(request=RequestMetadata(media_type="application/json")),
-    ]
-
     workspace_id: Annotated[
         str,
         pydantic.Field(alias="workspaceId"),
         FieldMetadata(path=PathParamMetadata(style="simple", explode=False)),
+    ]
+
+    workspace_update_request: Annotated[
+        models_workspaceupdaterequest.WorkspaceUpdateRequest,
+        FieldMetadata(request=RequestMetadata(media_type="application/json")),
     ]
 
 

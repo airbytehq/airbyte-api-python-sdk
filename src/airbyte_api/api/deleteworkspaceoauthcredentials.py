@@ -10,14 +10,20 @@ from typing_extensions import Annotated, TypedDict
 
 
 class DeleteWorkspaceOAuthCredentialsRequestTypedDict(TypedDict):
+    workspace_id: str
     actor_type: models_actortypeenum.ActorTypeEnum
     r"""Whether you're setting this override for a source or destination"""
     name: str
     r"""The name of the source or destination i.e. google-ads"""
-    workspace_id: str
 
 
 class DeleteWorkspaceOAuthCredentialsRequest(BaseModel):
+    workspace_id: Annotated[
+        str,
+        pydantic.Field(alias="workspaceId"),
+        FieldMetadata(path=PathParamMetadata(style="simple", explode=False)),
+    ]
+
     actor_type: Annotated[
         models_actortypeenum.ActorTypeEnum,
         pydantic.Field(alias="actorType"),
@@ -29,12 +35,6 @@ class DeleteWorkspaceOAuthCredentialsRequest(BaseModel):
         str, FieldMetadata(path=PathParamMetadata(style="simple", explode=False))
     ]
     r"""The name of the source or destination i.e. google-ads"""
-
-    workspace_id: Annotated[
-        str,
-        pydantic.Field(alias="workspaceId"),
-        FieldMetadata(path=PathParamMetadata(style="simple", explode=False)),
-    ]
 
 
 class DeleteWorkspaceOAuthCredentialsResponseTypedDict(TypedDict):

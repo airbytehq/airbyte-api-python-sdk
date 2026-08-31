@@ -12,20 +12,20 @@ from typing_extensions import Annotated, TypedDict
 
 
 class CreateOrUpdateWorkspaceOAuthCredentialsRequestTypedDict(TypedDict):
-    workspace_o_auth_credentials_request: models_workspaceoauthcredentialsrequest.WorkspaceOAuthCredentialsRequestTypedDict
     workspace_id: str
+    workspace_o_auth_credentials_request: models_workspaceoauthcredentialsrequest.WorkspaceOAuthCredentialsRequestTypedDict
 
 
 class CreateOrUpdateWorkspaceOAuthCredentialsRequest(BaseModel):
-    workspace_o_auth_credentials_request: Annotated[
-        models_workspaceoauthcredentialsrequest.WorkspaceOAuthCredentialsRequest,
-        FieldMetadata(request=RequestMetadata(media_type="application/json")),
-    ]
-
     workspace_id: Annotated[
         str,
         pydantic.Field(alias="workspaceId"),
         FieldMetadata(path=PathParamMetadata(style="simple", explode=False)),
+    ]
+
+    workspace_o_auth_credentials_request: Annotated[
+        models_workspaceoauthcredentialsrequest.WorkspaceOAuthCredentialsRequest,
+        FieldMetadata(request=RequestMetadata(media_type="application/json")),
     ]
 
 

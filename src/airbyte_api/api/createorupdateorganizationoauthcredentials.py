@@ -12,20 +12,20 @@ from typing_extensions import Annotated, TypedDict
 
 
 class CreateOrUpdateOrganizationOAuthCredentialsRequestTypedDict(TypedDict):
-    organization_o_auth_credentials_request: models_organizationoauthcredentialsrequest.OrganizationOAuthCredentialsRequestTypedDict
     organization_id: str
+    organization_o_auth_credentials_request: models_organizationoauthcredentialsrequest.OrganizationOAuthCredentialsRequestTypedDict
 
 
 class CreateOrUpdateOrganizationOAuthCredentialsRequest(BaseModel):
-    organization_o_auth_credentials_request: Annotated[
-        models_organizationoauthcredentialsrequest.OrganizationOAuthCredentialsRequest,
-        FieldMetadata(request=RequestMetadata(media_type="application/json")),
-    ]
-
     organization_id: Annotated[
         str,
         pydantic.Field(alias="organizationId"),
         FieldMetadata(path=PathParamMetadata(style="simple", explode=False)),
+    ]
+
+    organization_o_auth_credentials_request: Annotated[
+        models_organizationoauthcredentialsrequest.OrganizationOAuthCredentialsRequest,
+        FieldMetadata(request=RequestMetadata(media_type="application/json")),
     ]
 
 

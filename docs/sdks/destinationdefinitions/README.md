@@ -31,12 +31,12 @@ with AirbyteAPI(
 ) as aa_client:
 
     res = aa_client.destination_definitions.create_destination_definition(request={
+        "workspace_id": "20a22858-a8c3-4a9c-af3e-691931b55938",
         "create_definition_request": {
             "docker_image_tag": "<value>",
             "docker_repository": "<value>",
             "name": "<value>",
         },
-        "workspace_id": "20a22858-a8c3-4a9c-af3e-691931b55938",
     })
 
     assert res.definition_response is not None
@@ -84,8 +84,8 @@ with AirbyteAPI(
 ) as aa_client:
 
     res = aa_client.destination_definitions.delete_destination_definition(request={
-        "definition_id": "1f3ace88-4e9e-4438-8667-c98520825c79",
         "workspace_id": "b1b184d8-4def-4e2d-8e9d-7caadc80e180",
+        "definition_id": "1f3ace88-4e9e-4438-8667-c98520825c79",
     })
 
     assert res.definition_response is not None
@@ -133,8 +133,8 @@ with AirbyteAPI(
 ) as aa_client:
 
     res = aa_client.destination_definitions.get_destination_definition(request={
-        "definition_id": "83a7ce8a-1507-42c5-84a3-1b95932f919f",
         "workspace_id": "443f2bd2-d502-4aec-b86f-c4e3d5675ae9",
+        "definition_id": "83a7ce8a-1507-42c5-84a3-1b95932f919f",
     })
 
     assert res.definition_response is not None
@@ -230,12 +230,12 @@ with AirbyteAPI(
 ) as aa_client:
 
     res = aa_client.destination_definitions.update_destination_definition(request={
+        "workspace_id": "29dd981b-57da-413b-b1f4-012b1a97afc4",
+        "definition_id": "43c71f97-6486-49c7-9f26-4de603fa3bb2",
         "update_definition_request": {
             "docker_image_tag": "<value>",
             "name": "<value>",
         },
-        "definition_id": "43c71f97-6486-49c7-9f26-4de603fa3bb2",
-        "workspace_id": "29dd981b-57da-413b-b1f4-012b1a97afc4",
     })
 
     assert res.definition_response is not None

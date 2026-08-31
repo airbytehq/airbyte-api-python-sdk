@@ -15,22 +15,22 @@ from typing_extensions import Annotated, NotRequired, TypedDict
 
 
 class UpdatePermissionRequestTypedDict(TypedDict):
+    permission_id: str
     permission_update_request: (
         models_permissionupdaterequest.PermissionUpdateRequestTypedDict
     )
-    permission_id: str
 
 
 class UpdatePermissionRequest(BaseModel):
-    permission_update_request: Annotated[
-        models_permissionupdaterequest.PermissionUpdateRequest,
-        FieldMetadata(request=RequestMetadata(media_type="application/json")),
-    ]
-
     permission_id: Annotated[
         str,
         pydantic.Field(alias="permissionId"),
         FieldMetadata(path=PathParamMetadata(style="simple", explode=False)),
+    ]
+
+    permission_update_request: Annotated[
+        models_permissionupdaterequest.PermissionUpdateRequest,
+        FieldMetadata(request=RequestMetadata(media_type="application/json")),
     ]
 
 

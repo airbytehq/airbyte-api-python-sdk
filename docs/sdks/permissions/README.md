@@ -250,10 +250,10 @@ with AirbyteAPI(
 ) as aa_client:
 
     res = aa_client.permissions.update_permission(request={
+        "permission_id": "<value>",
         "permission_update_request": {
             "permission_type": models.PermissionType.ORGANIZATION_READER,
         },
-        "permission_id": "<value>",
     })
 
     assert res.permission_response is not None

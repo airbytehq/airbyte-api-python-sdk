@@ -8,12 +8,12 @@ generation:
   fixes:
     nameResolutionDec2023: true
     nameResolutionFeb2025: true
-    parameterOrderingFeb2024: false
-    requestResponseComponentNamesFeb2024: false
-    securityFeb2025: false
-    sharedErrorComponentsApr2025: false
-    sharedNestedComponentsJan2026: false
-    nameOverrideFeb2026: false
+    parameterOrderingFeb2024: true
+    requestResponseComponentNamesFeb2024: true
+    securityFeb2025: true
+    sharedErrorComponentsApr2025: true
+    sharedNestedComponentsJan2026: true
+    nameOverrideFeb2026: true
   auth:
     oAuth2ClientCredentialsEnabled: true
     oAuth2PasswordEnabled: false
@@ -53,9 +53,9 @@ python:
     async: EventStreamAsync
     sync: EventStream
   fixFlags:
-    asyncPaginationSep2025: false
+    asyncPaginationSep2025: true
     conflictResistantModelImportsFeb2026: true
-    responseRequiredSep2024: false
+    responseRequiredSep2024: true
   flattenGlobalSecurity: false
   flattenRequests: false
   flatteningOrder: parameters-first

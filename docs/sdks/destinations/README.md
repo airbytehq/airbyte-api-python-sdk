@@ -258,13 +258,13 @@ with AirbyteAPI(
 ) as aa_client:
 
     res = aa_client.destinations.patch_destination(request=api.PatchDestinationRequest(
+        destination_id="<value>",
         destination_patch_request=models.DestinationPatchRequest(
             configuration=models.DestinationDuckdb(
                 destination_path="/local/destination.duckdb",
             ),
             name="My Destination",
         ),
-        destination_id="<value>",
     ))
 
     assert res.destination_response is not None
@@ -290,6 +290,7 @@ with AirbyteAPI(
 ) as aa_client:
 
     res = aa_client.destinations.patch_destination(request=api.PatchDestinationRequest(
+        destination_id="<value>",
         destination_patch_request=models.DestinationPatchRequest(
             configuration=models.DestinationHubspot(
                 credentials=models.DestinationHubspotOAuth(
@@ -300,7 +301,6 @@ with AirbyteAPI(
                 ),
             ),
         ),
-        destination_id="<value>",
     ))
 
     assert res.destination_response is not None
@@ -348,6 +348,7 @@ with AirbyteAPI(
 ) as aa_client:
 
     res = aa_client.destinations.put_destination(request=api.PutDestinationRequest(
+        destination_id="<value>",
         destination_put_request=models.DestinationPutRequest(
             configuration=models.DestinationSftpJSON(
                 destination_path="/json_data",
@@ -358,7 +359,6 @@ with AirbyteAPI(
             ),
             name="My Destination",
         ),
-        destination_id="<value>",
     ))
 
     assert res.destination_response is not None
@@ -384,6 +384,7 @@ with AirbyteAPI(
 ) as aa_client:
 
     res = aa_client.destinations.put_destination(request=api.PutDestinationRequest(
+        destination_id="<value>",
         destination_put_request=models.DestinationPutRequest(
             configuration=models.DestinationSalesforce(
                 client_id="<id>",
@@ -393,7 +394,6 @@ with AirbyteAPI(
             ),
             name="<value>",
         ),
-        destination_id="<value>",
     ))
 
     assert res.destination_response is not None

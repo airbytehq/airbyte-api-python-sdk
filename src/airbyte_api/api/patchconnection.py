@@ -15,22 +15,22 @@ from typing_extensions import Annotated, NotRequired, TypedDict
 
 
 class PatchConnectionRequestTypedDict(TypedDict):
+    connection_id: str
     connection_patch_request: (
         models_connectionpatchrequest.ConnectionPatchRequestTypedDict
     )
-    connection_id: str
 
 
 class PatchConnectionRequest(BaseModel):
-    connection_patch_request: Annotated[
-        models_connectionpatchrequest.ConnectionPatchRequest,
-        FieldMetadata(request=RequestMetadata(media_type="application/json")),
-    ]
-
     connection_id: Annotated[
         str,
         pydantic.Field(alias="connectionId"),
         FieldMetadata(path=PathParamMetadata(style="simple", explode=False)),
+    ]
+
+    connection_patch_request: Annotated[
+        models_connectionpatchrequest.ConnectionPatchRequest,
+        FieldMetadata(request=RequestMetadata(media_type="application/json")),
     ]
 
 
