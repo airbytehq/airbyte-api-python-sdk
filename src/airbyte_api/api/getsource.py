@@ -14,7 +14,7 @@ from typing_extensions import Annotated, NotRequired, TypedDict
 class GetSourceRequestTypedDict(TypedDict):
     source_id: str
     include_secret_coordinates: NotRequired[bool]
-    r"""Rather than return *** for secret properties include the secret coordinate information"""
+    r"""Rather than return *** for secret properties include the secret coordinate information. Coordinates are opaque pointers, not secret values, and resolving one requires access to the secret storage that holds it. They are not stable: a coordinate changes when the secret is rewritten."""
 
 
 class GetSourceRequest(BaseModel):
@@ -29,7 +29,7 @@ class GetSourceRequest(BaseModel):
         pydantic.Field(alias="includeSecretCoordinates"),
         FieldMetadata(query=QueryParamMetadata(style="form", explode=True)),
     ] = None
-    r"""Rather than return *** for secret properties include the secret coordinate information"""
+    r"""Rather than return *** for secret properties include the secret coordinate information. Coordinates are opaque pointers, not secret values, and resolving one requires access to the secret storage that holds it. They are not stable: a coordinate changes when the secret is rewritten."""
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
