@@ -1,9 +1,0 @@
-# Enterprise
-
-
-## Fields
-
-| Field                                                                                                                  | Type                                                                                                                   | Required                                                                                                               | Description                                                                                                            |
-| ---------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------- |
-| `api_endpoint`                                                                                                         | [Optional[models.APIEndpointEnterprise]](../models/apiendpointenterprise.md)                                           | :heavy_minus_sign:                                                                                                     | N/A                                                                                                                    |
-| `enterprise_url`                                                                                                       | *str*                                                                                                                  | :heavy_check_mark:                                                                                                     | Upgrade to Enterprise to make your API url your-domain.com/API or subdomain.jotform.com/API instead of api.jotform.com |

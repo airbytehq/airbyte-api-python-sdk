@@ -33,8 +33,15 @@ with AirbyteAPI(
 ) as aa_client:
 
     res = aa_client.sources.create_source(request=models.SourceCreateRequest(
-        configuration=models.SourceOnepagecrm(
-            username="Bartholome.Rolfson90",
+        configuration=models.SourceConfiguration(
+            source_type="onepagecrm",
+            **{
+                "airbyte_source_name": "google-ads",
+                "conversion_window_days": 14,
+                "customer_id": "1234567890",
+                "start_date": 1672531200000,
+                "end_date": 1704067200000,
+            },
         ),
         name="My Source",
         workspace_id="744cc0ed-7f05-4949-9e60-2a814f90c035",
@@ -63,8 +70,13 @@ with AirbyteAPI(
 ) as aa_client:
 
     res = aa_client.sources.create_source(request=models.SourceCreateRequest(
-        configuration=models.SourceMailerlite(
-            api_token="<value>",
+        configuration=models.SourceConfiguration(
+            source_type="postgres",
+            **{
+                "user": "charles",
+                "host": "localhost",
+                "port": 5432,
+            },
         ),
         name="<value>",
         workspace_id="5923d04d-a31f-43ea-8396-170b96449103",
@@ -216,7 +228,7 @@ with AirbyteAPI(
 
     res = aa_client.sources.initiate_o_auth(request={
         "redirect_url": "https://cloud.airbyte.io/v1/api/oauth/callback",
-        "source_type": models.OAuthActorNames.INTERCOM,
+        "source_type": "intercom",
         "workspace_id": "871d9b60-11d1-44cb-8c92-c246d53bf87e",
     })
 
@@ -388,8 +400,15 @@ with AirbyteAPI(
 
     res = aa_client.sources.patch_source(request=api.PatchSourceRequest(
         source_patch_request=models.SourcePatchRequest(
-            configuration=models.SourceNutshell(
-                username="Elyssa_Hackett7",
+            configuration=models.SourceConfiguration(
+                source_type="nutshell",
+                **{
+                    "airbyte_source_name": "google-ads",
+                    "conversion_window_days": 14,
+                    "customer_id": "1234567890",
+                    "start_date": 1672531200000,
+                    "end_date": 1704067200000,
+                },
             ),
             name="My Source",
             workspace_id="744cc0ed-7f05-4949-9e60-2a814f90c035",
@@ -421,12 +440,13 @@ with AirbyteAPI(
 
     res = aa_client.sources.patch_source(request=api.PatchSourceRequest(
         source_patch_request=models.SourcePatchRequest(
-            configuration=models.SourceFirebolt(
-                account="95324582",
-                client_id="bbl9qth066hmxkwyb0hy2iwk8ktez9dz",
-                client_secret="<value>",
-                database="<value>",
-                engine="<value>",
+            configuration=models.SourceConfiguration(
+                source_type="postgres",
+                **{
+                    "user": "charles",
+                    "host": "localhost",
+                    "port": 5432,
+                },
             ),
             name="My source",
         ),
@@ -479,10 +499,15 @@ with AirbyteAPI(
 
     res = aa_client.sources.put_source(request=api.PutSourceRequest(
         source_put_request=models.SourcePutRequest(
-            configuration=models.SourceRailz(
-                client_id="<id>",
-                secret_key="<value>",
-                start_date="<value>",
+            configuration=models.SourceConfiguration(
+                source_type="railz",
+                **{
+                    "airbyte_source_name": "google-ads",
+                    "conversion_window_days": 14,
+                    "customer_id": "1234567890",
+                    "start_date": 1672531200000,
+                    "end_date": 1704067200000,
+                },
             ),
             name="My Source",
         ),
@@ -513,10 +538,13 @@ with AirbyteAPI(
 
     res = aa_client.sources.put_source(request=api.PutSourceRequest(
         source_put_request=models.SourcePutRequest(
-            configuration=models.SourceRailz(
-                client_id="<id>",
-                secret_key="<value>",
-                start_date="<value>",
+            configuration=models.SourceConfiguration(
+                source_type="postgres",
+                **{
+                    "user": "charles",
+                    "host": "localhost",
+                    "port": 5432,
+                },
             ),
             name="<value>",
         ),

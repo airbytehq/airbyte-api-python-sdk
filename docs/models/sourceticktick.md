@@ -1,9 +1,0 @@
-# SourceTicktick
-
-
-## Fields
-
-| Field                                                                                              | Type                                                                                               | Required                                                                                           | Description                                                                                        |
-| -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- |
-| `authorization`                                                                                    | [Optional[models.SourceTicktickAuthenticationType]](../models/sourceticktickauthenticationtype.md) | :heavy_minus_sign:                                                                                 | N/A                                                                                                |
-| `source_type`                                                                                      | [Optional[models.TicktickEnum]](../models/ticktickenum.md)                                         | :heavy_minus_sign:                                                                                 | N/A                                                                                                |

@@ -15,7 +15,7 @@ from typing_extensions import Annotated, NotRequired, TypedDict
 
 class SourcePutRequestTypedDict(TypedDict):
     configuration: SourceConfigurationTypedDict
-    r"""The values required to configure the source."""
+    r"""The values required to configure the source. Must include a `sourceType` string identifying the connector (e.g. 'postgres', 'github'). Additional properties depend on the connector type; the API validates the full schema server-side."""
     name: str
     resource_allocation: NotRequired[ScopedResourceRequirementsTypedDict]
     r"""actor or actor definition specific resource requirements. if default is set, these are the requirements that should be set for ALL jobs run for this actor definition. it is overriden by the job type specific configurations. if not set, the platform will use defaults. these values will be overriden by configuration at the connection level."""
@@ -23,7 +23,7 @@ class SourcePutRequestTypedDict(TypedDict):
 
 class SourcePutRequest(BaseModel):
     configuration: SourceConfiguration
-    r"""The values required to configure the source."""
+    r"""The values required to configure the source. Must include a `sourceType` string identifying the connector (e.g. 'postgres', 'github'). Additional properties depend on the connector type; the API validates the full schema server-side."""
 
     name: str
 

@@ -18,7 +18,7 @@ from typing_extensions import Annotated, NotRequired, TypedDict
 
 class DestinationPutRequestTypedDict(TypedDict):
     configuration: DestinationConfigurationTypedDict
-    r"""The values required to configure the destination."""
+    r"""The values required to configure the destination. Must include a `destinationType` string identifying the connector (e.g. 'postgres', 'bigquery'). Additional properties depend on the connector type; the API validates the full schema server-side."""
     name: str
     resource_allocation: NotRequired[ScopedResourceRequirementsTypedDict]
     r"""actor or actor definition specific resource requirements. if default is set, these are the requirements that should be set for ALL jobs run for this actor definition. it is overriden by the job type specific configurations. if not set, the platform will use defaults. these values will be overriden by configuration at the connection level."""
@@ -26,7 +26,7 @@ class DestinationPutRequestTypedDict(TypedDict):
 
 class DestinationPutRequest(BaseModel):
     configuration: DestinationConfiguration
-    r"""The values required to configure the destination."""
+    r"""The values required to configure the destination. Must include a `destinationType` string identifying the connector (e.g. 'postgres', 'bigquery'). Additional properties depend on the connector type; the API validates the full schema server-side."""
 
     name: str
 

@@ -17,7 +17,7 @@ class SourceResponseTypedDict(TypedDict):
     r"""Provides details of a single source."""
 
     configuration: SourceConfigurationTypedDict
-    r"""The values required to configure the source."""
+    r"""The values required to configure the source. Must include a `sourceType` string identifying the connector (e.g. 'postgres', 'github'). Additional properties depend on the connector type; the API validates the full schema server-side."""
     created_at: int
     definition_id: str
     name: str
@@ -32,7 +32,7 @@ class SourceResponse(BaseModel):
     r"""Provides details of a single source."""
 
     configuration: SourceConfiguration
-    r"""The values required to configure the source."""
+    r"""The values required to configure the source. Must include a `sourceType` string identifying the connector (e.g. 'postgres', 'github'). Additional properties depend on the connector type; the API validates the full schema server-side."""
 
     created_at: Annotated[int, pydantic.Field(alias="createdAt")]
 

@@ -18,7 +18,7 @@ from typing_extensions import Annotated, NotRequired, TypedDict
 
 class DestinationCreateRequestTypedDict(TypedDict):
     configuration: DestinationConfigurationTypedDict
-    r"""The values required to configure the destination."""
+    r"""The values required to configure the destination. Must include a `destinationType` string identifying the connector (e.g. 'postgres', 'bigquery'). Additional properties depend on the connector type; the API validates the full schema server-side."""
     name: str
     r"""Name of the destination e.g. dev-mysql-instance."""
     workspace_id: str
@@ -30,7 +30,7 @@ class DestinationCreateRequestTypedDict(TypedDict):
 
 class DestinationCreateRequest(BaseModel):
     configuration: DestinationConfiguration
-    r"""The values required to configure the destination."""
+    r"""The values required to configure the destination. Must include a `destinationType` string identifying the connector (e.g. 'postgres', 'bigquery'). Additional properties depend on the connector type; the API validates the full schema server-side."""
 
     name: str
     r"""Name of the destination e.g. dev-mysql-instance."""

@@ -8,7 +8,7 @@ import pydantic
 from typing_extensions import Annotated, TypedDict
 
 
-class EncryptionMapperAESConfigurationMode(str, Enum):
+class Mode(str, Enum):
     CBC = "CBC"
     CFB = "CFB"
     OFB = "OFB"
@@ -26,7 +26,7 @@ class EncryptionMapperAESConfigurationTypedDict(TypedDict):
     algorithm: EncryptionMapperAlgorithm
     field_name_suffix: str
     key: str
-    mode: EncryptionMapperAESConfigurationMode
+    mode: Mode
     padding: Padding
     target_field: str
 
@@ -38,7 +38,7 @@ class EncryptionMapperAESConfiguration(BaseModel):
 
     key: str
 
-    mode: EncryptionMapperAESConfigurationMode
+    mode: Mode
 
     padding: Padding
 
