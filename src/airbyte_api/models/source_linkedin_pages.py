@@ -9,7 +9,13 @@ import pydantic
 from pydantic import model_serializer
 from pydantic.functional_validators import AfterValidator
 from typing import Optional, Union
-from typing_extensions import Annotated, NotRequired, TypeAliasType, TypedDict
+from typing_extensions import (
+    Annotated,
+    NotRequired,
+    TypeAliasType,
+    TypedDict,
+    deprecated,
+)
 
 
 class SourceLinkedinPagesAuthMethodAccessToken(str, Enum):
@@ -127,6 +133,9 @@ class TimeGranularityType(str, Enum):
     MONTH = "MONTH"
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceLinkedinPagesTypedDict(TypedDict):
     org_id: str
     r"""Specify the Organization ID"""
@@ -138,6 +147,9 @@ class SourceLinkedinPagesTypedDict(TypedDict):
     r"""Granularity of the statistics for metrics per time period. Must be either \"DAY\" or \"MONTH\" """
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceLinkedinPages(BaseModel):
     org_id: str
     r"""Specify the Organization ID"""

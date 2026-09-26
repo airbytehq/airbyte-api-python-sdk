@@ -6,13 +6,16 @@ from airbyte_api.utils import validate_const
 from enum import Enum
 import pydantic
 from pydantic.functional_validators import AfterValidator
-from typing_extensions import Annotated, TypedDict
+from typing_extensions import Annotated, TypedDict, deprecated
 
 
 class Confluence(str, Enum):
     CONFLUENCE = "confluence"
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceConfluenceTypedDict(TypedDict):
     api_token: str
     r"""Please follow the Jira confluence for generating an API token: <a href=\"https://support.atlassian.com/atlassian-account/docs/manage-api-tokens-for-your-atlassian-account/\">generating an API token</a>."""
@@ -23,6 +26,9 @@ class SourceConfluenceTypedDict(TypedDict):
     source_type: Confluence
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceConfluence(BaseModel):
     api_token: str
     r"""Please follow the Jira confluence for generating an API token: <a href=\"https://support.atlassian.com/atlassian-account/docs/manage-api-tokens-for-your-atlassian-account/\">generating an API token</a>."""

@@ -1,4 +1,4 @@
-# DestinationWeaviate
+# ~~DestinationWeaviate~~
 
 The configuration model for the Vector DB based destinations. This model is used to generate the UI for the destination configuration,
 as well as to provide type safety for the configuration passed to the destination.
@@ -10,6 +10,8 @@ The configuration model is composed of four parts:
 * Advanced configuration
 
 Processing, embedding and advanced configuration are provided by this base class, while the indexing configuration is provided by the destination connector in the sub class.
+
+> :warning: **DEPRECATED**: Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'destinationType' key instead..
 
 
 ## Fields

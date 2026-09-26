@@ -6,13 +6,16 @@ from airbyte_api.utils import validate_const
 from enum import Enum
 import pydantic
 from pydantic.functional_validators import AfterValidator
-from typing_extensions import Annotated, TypedDict
+from typing_extensions import Annotated, TypedDict, deprecated
 
 
 class Gitbook(str, Enum):
     GITBOOK = "gitbook"
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceGitbookTypedDict(TypedDict):
     access_token: str
     r"""Personal access token for authenticating with the GitBook API. You can view and manage your access tokens in the Developer settings of your GitBook user account."""
@@ -20,6 +23,9 @@ class SourceGitbookTypedDict(TypedDict):
     source_type: Gitbook
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceGitbook(BaseModel):
     access_token: str
     r"""Personal access token for authenticating with the GitBook API. You can view and manage your access tokens in the Developer settings of your GitBook user account."""

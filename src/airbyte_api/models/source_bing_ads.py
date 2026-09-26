@@ -9,7 +9,7 @@ import pydantic
 from pydantic import model_serializer
 from pydantic.functional_validators import AfterValidator
 from typing import List, Optional
-from typing_extensions import Annotated, NotRequired, TypedDict
+from typing_extensions import Annotated, NotRequired, TypedDict, deprecated
 
 
 class Operator(str, Enum):
@@ -153,6 +153,9 @@ class BingAdsEnum(str, Enum):
     BING_ADS = "bing-ads"
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceBingAdsTypedDict(TypedDict):
     client_id: str
     r"""The Client ID of your Microsoft Advertising developer application."""
@@ -176,6 +179,9 @@ class SourceBingAdsTypedDict(TypedDict):
     r"""The Tenant ID of your Microsoft Advertising developer application. Set this to \"common\" unless you know you need a different value."""
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceBingAds(BaseModel):
     client_id: str
     r"""The Client ID of your Microsoft Advertising developer application."""

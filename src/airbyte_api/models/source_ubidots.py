@@ -6,19 +6,25 @@ from airbyte_api.utils import validate_const
 from enum import Enum
 import pydantic
 from pydantic.functional_validators import AfterValidator
-from typing_extensions import Annotated, TypedDict
+from typing_extensions import Annotated, TypedDict, deprecated
 
 
 class Ubidots(str, Enum):
     UBIDOTS = "ubidots"
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceUbidotsTypedDict(TypedDict):
     api_token: str
     r"""API token to use for authentication. Obtain it from your Ubidots account."""
     source_type: Ubidots
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceUbidots(BaseModel):
     api_token: str
     r"""API token to use for authentication. Obtain it from your Ubidots account."""

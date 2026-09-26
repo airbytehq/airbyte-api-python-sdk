@@ -8,7 +8,13 @@ import pydantic
 from pydantic import Discriminator, Tag, model_serializer
 from pydantic.functional_validators import AfterValidator
 from typing import Optional, Union
-from typing_extensions import Annotated, NotRequired, TypeAliasType, TypedDict
+from typing_extensions import (
+    Annotated,
+    NotRequired,
+    TypeAliasType,
+    TypedDict,
+    deprecated,
+)
 
 
 class SourceTicktickAuthTypeToken(str, Enum):
@@ -101,11 +107,17 @@ class TicktickEnum(str, Enum):
     TICKTICK = "ticktick"
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceTicktickTypedDict(TypedDict):
     authorization: NotRequired[SourceTicktickAuthenticationTypeTypedDict]
     source_type: TicktickEnum
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceTicktick(BaseModel):
     authorization: Optional[SourceTicktickAuthenticationType] = None
 

@@ -8,13 +8,16 @@ import pydantic
 from pydantic import model_serializer
 from pydantic.functional_validators import AfterValidator
 from typing import Optional
-from typing_extensions import Annotated, NotRequired, TypedDict
+from typing_extensions import Annotated, NotRequired, TypedDict, deprecated
 
 
 class Pubsub(str, Enum):
     PUBSUB = "pubsub"
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'destinationType' key instead.."
+)
 class DestinationPubsubTypedDict(TypedDict):
     credentials_json: str
     r"""The contents of the JSON service account key. Check out the <a href=\"https://docs.airbyte.com/integrations/destinations/pubsub\">docs</a> if you need help generating this key."""
@@ -35,6 +38,9 @@ class DestinationPubsubTypedDict(TypedDict):
     r"""If TRUE PubSub publisher will have <a href=\"https://cloud.google.com/pubsub/docs/ordering\">message ordering</a> enabled. Every message will have an ordering key of stream"""
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'destinationType' key instead.."
+)
 class DestinationPubsub(BaseModel):
     credentials_json: str
     r"""The contents of the JSON service account key. Check out the <a href=\"https://docs.airbyte.com/integrations/destinations/pubsub\">docs</a> if you need help generating this key."""

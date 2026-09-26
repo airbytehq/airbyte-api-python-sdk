@@ -7,13 +7,16 @@ from datetime import datetime
 from enum import Enum
 import pydantic
 from pydantic.functional_validators import AfterValidator
-from typing_extensions import Annotated, TypedDict
+from typing_extensions import Annotated, TypedDict, deprecated
 
 
 class Bluetally(str, Enum):
     BLUETALLY = "bluetally"
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceBluetallyTypedDict(TypedDict):
     api_key: str
     r"""Your API key to authenticate with the BlueTally API. You can generate it by navigating to your account settings, selecting 'API Keys', and clicking 'Create API Key'."""
@@ -21,6 +24,9 @@ class SourceBluetallyTypedDict(TypedDict):
     source_type: Bluetally
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceBluetally(BaseModel):
     api_key: str
     r"""Your API key to authenticate with the BlueTally API. You can generate it by navigating to your account settings, selecting 'API Keys', and clicking 'Create API Key'."""

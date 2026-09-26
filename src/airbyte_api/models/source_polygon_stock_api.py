@@ -9,13 +9,16 @@ import pydantic
 from pydantic import model_serializer
 from pydantic.functional_validators import AfterValidator
 from typing import Optional
-from typing_extensions import Annotated, NotRequired, TypedDict
+from typing_extensions import Annotated, NotRequired, TypedDict, deprecated
 
 
 class PolygonStockAPI(str, Enum):
     POLYGON_STOCK_API = "polygon-stock-api"
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourcePolygonStockAPITypedDict(TypedDict):
     api_key: str
     r"""Your API ACCESS Key"""
@@ -38,6 +41,9 @@ class SourcePolygonStockAPITypedDict(TypedDict):
     source_type: PolygonStockAPI
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourcePolygonStockAPI(BaseModel):
     api_key: Annotated[str, pydantic.Field(alias="apiKey")]
     r"""Your API ACCESS Key"""

@@ -9,7 +9,7 @@ import pydantic
 from pydantic import model_serializer
 from pydantic.functional_validators import AfterValidator
 from typing import Optional
-from typing_extensions import Annotated, NotRequired, TypedDict
+from typing_extensions import Annotated, NotRequired, TypedDict, deprecated
 
 
 class DataRegion(str, Enum):
@@ -23,6 +23,9 @@ class Amplitude(str, Enum):
     AMPLITUDE = "amplitude"
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceAmplitudeTypedDict(TypedDict):
     api_key: str
     r"""Amplitude API Key. See the <a href=\"https://docs.airbyte.com/integrations/sources/amplitude#setup-guide\">setup guide</a> for more information on how to obtain this key."""
@@ -43,6 +46,9 @@ class SourceAmplitudeTypedDict(TypedDict):
     source_type: Amplitude
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceAmplitude(BaseModel):
     api_key: str
     r"""Amplitude API Key. See the <a href=\"https://docs.airbyte.com/integrations/sources/amplitude#setup-guide\">setup guide</a> for more information on how to obtain this key."""

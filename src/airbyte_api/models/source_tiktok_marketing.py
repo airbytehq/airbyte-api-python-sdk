@@ -9,7 +9,13 @@ import pydantic
 from pydantic import model_serializer
 from pydantic.functional_validators import AfterValidator
 from typing import Optional, Union
-from typing_extensions import Annotated, NotRequired, TypeAliasType, TypedDict
+from typing_extensions import (
+    Annotated,
+    NotRequired,
+    TypeAliasType,
+    TypedDict,
+    deprecated,
+)
 
 
 class AuthTypeSandboxAccessToken(str, Enum):
@@ -132,6 +138,9 @@ class TiktokMarketingEnum(str, Enum):
     TIKTOK_MARKETING = "tiktok-marketing"
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceTiktokMarketingTypedDict(TypedDict):
     attribution_window: NotRequired[int]
     r"""The attribution window in days."""
@@ -146,6 +155,9 @@ class SourceTiktokMarketingTypedDict(TypedDict):
     r"""The Start Date in format: YYYY-MM-DD. Any data before this date will not be replicated. If this parameter is not set, all data will be replicated."""
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceTiktokMarketing(BaseModel):
     attribution_window: Optional[int] = 3
     r"""The attribution window in days."""

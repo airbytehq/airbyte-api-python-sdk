@@ -7,13 +7,16 @@ from datetime import datetime
 from enum import Enum
 import pydantic
 from pydantic.functional_validators import AfterValidator
-from typing_extensions import Annotated, TypedDict
+from typing_extensions import Annotated, TypedDict, deprecated
 
 
 class CiscoMeraki(str, Enum):
     CISCO_MERAKI = "cisco-meraki"
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceCiscoMerakiTypedDict(TypedDict):
     api_key: str
     r"""Your Meraki API key. Obtain it by logging into your Meraki Dashboard at https://dashboard.meraki.com/, navigating to 'My Profile' via the avatar icon in the top right corner, and generating the API key. Save this key securely as it represents your admin credentials."""
@@ -21,6 +24,9 @@ class SourceCiscoMerakiTypedDict(TypedDict):
     source_type: CiscoMeraki
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceCiscoMeraki(BaseModel):
     api_key: str
     r"""Your Meraki API key. Obtain it by logging into your Meraki Dashboard at https://dashboard.meraki.com/, navigating to 'My Profile' via the avatar icon in the top right corner, and generating the API key. Save this key securely as it represents your admin credentials."""

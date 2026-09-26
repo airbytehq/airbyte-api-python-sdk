@@ -9,13 +9,16 @@ import pydantic
 from pydantic import model_serializer
 from pydantic.functional_validators import AfterValidator
 from typing import Optional
-from typing_extensions import Annotated, NotRequired, TypedDict
+from typing_extensions import Annotated, NotRequired, TypedDict, deprecated
 
 
 class Paystack(str, Enum):
     PAYSTACK = "paystack"
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourcePaystackTypedDict(TypedDict):
     secret_key: str
     r"""The Paystack API key (usually starts with 'sk_live_'; find yours <a href=\"https://dashboard.paystack.com/#/settings/developer\">here</a>)."""
@@ -26,6 +29,9 @@ class SourcePaystackTypedDict(TypedDict):
     source_type: Paystack
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourcePaystack(BaseModel):
     secret_key: str
     r"""The Paystack API key (usually starts with 'sk_live_'; find yours <a href=\"https://dashboard.paystack.com/#/settings/developer\">here</a>)."""

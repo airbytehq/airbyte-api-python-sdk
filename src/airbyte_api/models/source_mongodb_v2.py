@@ -8,7 +8,13 @@ import pydantic
 from pydantic import ConfigDict, Discriminator, Tag, model_serializer
 from pydantic.functional_validators import AfterValidator
 from typing import Any, Dict, List, Optional, Union
-from typing_extensions import Annotated, NotRequired, TypeAliasType, TypedDict
+from typing_extensions import (
+    Annotated,
+    NotRequired,
+    TypeAliasType,
+    TypedDict,
+    deprecated,
+)
 
 
 class ClusterTypeSelfManagedReplicaSet(str, Enum):
@@ -222,6 +228,9 @@ class CaptureModeAdvanced(str, Enum):
     POST_IMAGE = "Post Image"
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceMongodbV2TypedDict(TypedDict):
     database_config: ClusterTypeTypedDict
     r"""Configures the MongoDB cluster type."""
@@ -244,6 +253,9 @@ class SourceMongodbV2TypedDict(TypedDict):
     r"""Determines how Airbyte looks up the value of an updated document. If 'Lookup' is chosen, the current value of the document will be read. If 'Post Image' is chosen, then the version of the document immediately after an update will be read. WARNING : Severe data loss will occur if this option is chosen and the appropriate settings are not set on your Mongo instance : https://www.mongodb.com/docs/manual/changeStreams/#change-streams-with-document-pre-and-post-images."""
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceMongodbV2(BaseModel):
     database_config: ClusterType
     r"""Configures the MongoDB cluster type."""

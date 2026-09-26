@@ -9,7 +9,7 @@ import pydantic
 from pydantic import model_serializer
 from pydantic.functional_validators import AfterValidator
 from typing import Optional
-from typing_extensions import Annotated, NotRequired, TypedDict
+from typing_extensions import Annotated, NotRequired, TypedDict, deprecated
 
 
 class SourceWorkdayRestAuthenticationTypedDict(TypedDict):
@@ -30,6 +30,9 @@ class WorkdayRest(str, Enum):
     WORKDAY_REST = "workday-rest"
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceWorkdayRestTypedDict(TypedDict):
     credentials: SourceWorkdayRestAuthenticationTypedDict
     r"""Credentials for connecting to the Workday (REST) API."""
@@ -42,6 +45,9 @@ class SourceWorkdayRestTypedDict(TypedDict):
     r"""Rows after this date will be synced, default 2 years ago."""
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceWorkdayRest(BaseModel):
     credentials: SourceWorkdayRestAuthentication
     r"""Credentials for connecting to the Workday (REST) API."""

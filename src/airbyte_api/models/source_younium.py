@@ -8,13 +8,16 @@ import pydantic
 from pydantic import model_serializer
 from pydantic.functional_validators import AfterValidator
 from typing import Optional
-from typing_extensions import Annotated, NotRequired, TypedDict
+from typing_extensions import Annotated, NotRequired, TypedDict, deprecated
 
 
 class Younium(str, Enum):
     YOUNIUM = "younium"
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceYouniumTypedDict(TypedDict):
     legal_entity: str
     r"""Legal Entity that data should be pulled from"""
@@ -27,6 +30,9 @@ class SourceYouniumTypedDict(TypedDict):
     source_type: Younium
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceYounium(BaseModel):
     legal_entity: str
     r"""Legal Entity that data should be pulled from"""

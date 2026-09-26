@@ -8,13 +8,16 @@ import pydantic
 from pydantic import model_serializer
 from pydantic.functional_validators import AfterValidator
 from typing import Optional
-from typing_extensions import Annotated, NotRequired, TypedDict
+from typing_extensions import Annotated, NotRequired, TypedDict, deprecated
 
 
 class Opsgenie(str, Enum):
     OPSGENIE = "opsgenie"
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceOpsgenieTypedDict(TypedDict):
     api_token: str
     r"""API token used to access the Opsgenie platform"""
@@ -25,6 +28,9 @@ class SourceOpsgenieTypedDict(TypedDict):
     r"""The date from which you'd like to replicate data from Opsgenie in the format of YYYY-MM-DDT00:00:00Z. All data generated after this date will be replicated. Note that it will be used only in the following incremental streams: issues."""
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceOpsgenie(BaseModel):
     api_token: str
     r"""API token used to access the Opsgenie platform"""

@@ -7,13 +7,16 @@ from datetime import datetime
 from enum import Enum
 import pydantic
 from pydantic.functional_validators import AfterValidator
-from typing_extensions import Annotated, TypedDict
+from typing_extensions import Annotated, TypedDict, deprecated
 
 
 class Eventbrite(str, Enum):
     EVENTBRITE = "eventbrite"
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceEventbriteTypedDict(TypedDict):
     private_token: str
     r"""The private token to use for authenticating API requests."""
@@ -21,6 +24,9 @@ class SourceEventbriteTypedDict(TypedDict):
     source_type: Eventbrite
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceEventbrite(BaseModel):
     private_token: str
     r"""The private token to use for authenticating API requests."""

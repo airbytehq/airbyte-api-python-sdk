@@ -9,7 +9,13 @@ import pydantic
 from pydantic import model_serializer
 from pydantic.functional_validators import AfterValidator
 from typing import Optional, Union
-from typing_extensions import Annotated, NotRequired, TypeAliasType, TypedDict
+from typing_extensions import (
+    Annotated,
+    NotRequired,
+    TypeAliasType,
+    TypedDict,
+    deprecated,
+)
 
 
 class APIEndpointEnterprise(str, Enum):
@@ -110,6 +116,9 @@ class Jotform(str, Enum):
     JOTFORM = "jotform"
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceJotformTypedDict(TypedDict):
     api_endpoint: APIEndpointTypedDict
     api_key: str
@@ -118,6 +127,9 @@ class SourceJotformTypedDict(TypedDict):
     source_type: Jotform
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceJotform(BaseModel):
     api_endpoint: APIEndpoint
 

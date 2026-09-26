@@ -6,13 +6,16 @@ from airbyte_api.utils import validate_const
 from enum import Enum
 import pydantic
 from pydantic.functional_validators import AfterValidator
-from typing_extensions import Annotated, TypedDict
+from typing_extensions import Annotated, TypedDict, deprecated
 
 
 class N8n(str, Enum):
     N8N = "n8n"
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceN8nTypedDict(TypedDict):
     api_key: str
     r"""Your API KEY. See <a href=\"https://docs.n8n.io/api/authentication\">here</a>"""
@@ -21,6 +24,9 @@ class SourceN8nTypedDict(TypedDict):
     source_type: N8n
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceN8n(BaseModel):
     api_key: str
     r"""Your API KEY. See <a href=\"https://docs.n8n.io/api/authentication\">here</a>"""

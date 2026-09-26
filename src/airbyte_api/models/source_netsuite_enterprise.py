@@ -8,7 +8,13 @@ import pydantic
 from pydantic import ConfigDict, model_serializer
 from pydantic.functional_validators import AfterValidator
 from typing import Any, Dict, Optional, Union
-from typing_extensions import Annotated, NotRequired, TypeAliasType, TypedDict
+from typing_extensions import (
+    Annotated,
+    NotRequired,
+    TypeAliasType,
+    TypedDict,
+    deprecated,
+)
 
 
 class AuthenticationMethodOauth2Authentication(str, Enum):
@@ -501,6 +507,9 @@ SourceNetsuiteEnterpriseSSHTunnelMethod = TypeAliasType(
 r"""Whether to initiate an SSH tunnel before connecting to the database, and if so, which kind of authentication to use."""
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceNetsuiteEnterpriseTypedDict(TypedDict):
     account_id: str
     r"""The username which is used to access the database."""
@@ -529,6 +538,9 @@ class SourceNetsuiteEnterpriseTypedDict(TypedDict):
     source_type: NetsuiteEnterprise
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceNetsuiteEnterprise(BaseModel):
     account_id: str
     r"""The username which is used to access the database."""

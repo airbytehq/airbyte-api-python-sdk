@@ -9,7 +9,13 @@ import pydantic
 from pydantic import model_serializer
 from pydantic.functional_validators import AfterValidator
 from typing import Optional, Union
-from typing_extensions import Annotated, NotRequired, TypeAliasType, TypedDict
+from typing_extensions import (
+    Annotated,
+    NotRequired,
+    TypeAliasType,
+    TypedDict,
+    deprecated,
+)
 
 
 class OptionTitleProjectSecret(str, Enum):
@@ -124,6 +130,9 @@ class Mixpanel(str, Enum):
     MIXPANEL = "mixpanel"
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceMixpanelTypedDict(TypedDict):
     credentials: AuthenticationWildcardTypedDict
     r"""Choose how to authenticate to Mixpanel"""
@@ -150,6 +159,9 @@ class SourceMixpanelTypedDict(TypedDict):
     r"""The date in the format YYYY-MM-DD. Any data before this date will not be replicated. If this option is not set, the connector will replicate data from up to one year ago by default."""
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceMixpanel(BaseModel):
     credentials: AuthenticationWildcard
     r"""Choose how to authenticate to Mixpanel"""

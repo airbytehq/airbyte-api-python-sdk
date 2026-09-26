@@ -8,13 +8,16 @@ import pydantic
 from pydantic import model_serializer
 from pydantic.functional_validators import AfterValidator
 from typing import Optional
-from typing_extensions import Annotated, NotRequired, TypedDict
+from typing_extensions import Annotated, NotRequired, TypedDict, deprecated
 
 
 class Wrike(str, Enum):
     WRIKE = "wrike"
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceWrikeTypedDict(TypedDict):
     access_token: str
     r"""Permanent access token. You can find documentation on how to acquire a permanent access token  <a href=\"https://developers.wrike.com/oauth-20-authorization/\">here</a>"""
@@ -25,6 +28,9 @@ class SourceWrikeTypedDict(TypedDict):
     r"""Wrike's instance such as `app-us2.wrike.com`"""
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceWrike(BaseModel):
     access_token: str
     r"""Permanent access token. You can find documentation on how to acquire a permanent access token  <a href=\"https://developers.wrike.com/oauth-20-authorization/\">here</a>"""

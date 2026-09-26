@@ -9,13 +9,16 @@ import pydantic
 from pydantic import model_serializer
 from pydantic.functional_validators import AfterValidator
 from typing import Any, List, Optional
-from typing_extensions import Annotated, NotRequired, TypedDict
+from typing_extensions import Annotated, NotRequired, TypedDict, deprecated
 
 
 class Metricool(str, Enum):
     METRICOOL = "metricool"
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceMetricoolTypedDict(TypedDict):
     blog_ids: List[Any]
     r"""Brand IDs"""
@@ -30,6 +33,9 @@ class SourceMetricoolTypedDict(TypedDict):
     r"""If not set, defaults to 60 days back. If below \"End Date\", defaults to 1 day before \"End Date\" """
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceMetricool(BaseModel):
     blog_ids: List[Any]
     r"""Brand IDs"""

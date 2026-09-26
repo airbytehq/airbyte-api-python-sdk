@@ -6,13 +6,16 @@ from airbyte_api.utils import validate_const
 from enum import Enum
 import pydantic
 from pydantic.functional_validators import AfterValidator
-from typing_extensions import Annotated, TypedDict
+from typing_extensions import Annotated, TypedDict, deprecated
 
 
 class Primetric(str, Enum):
     PRIMETRIC = "primetric"
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourcePrimetricTypedDict(TypedDict):
     client_id: str
     r"""The Client ID of your Primetric developer application. The Client ID is visible <a href=\\"https://app.primetric.com/administrator/integrations\">here</a>."""
@@ -21,6 +24,9 @@ class SourcePrimetricTypedDict(TypedDict):
     source_type: Primetric
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourcePrimetric(BaseModel):
     client_id: str
     r"""The Client ID of your Primetric developer application. The Client ID is visible <a href=\\"https://app.primetric.com/administrator/integrations\">here</a>."""

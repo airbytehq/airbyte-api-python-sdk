@@ -9,13 +9,16 @@ import pydantic
 from pydantic import model_serializer
 from pydantic.functional_validators import AfterValidator
 from typing import Optional
-from typing_extensions import Annotated, NotRequired, TypedDict
+from typing_extensions import Annotated, NotRequired, TypedDict, deprecated
 
 
 class AcuityScheduling(str, Enum):
     ACUITY_SCHEDULING = "acuity-scheduling"
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceAcuitySchedulingTypedDict(TypedDict):
     start_date: datetime
     username: str
@@ -23,6 +26,9 @@ class SourceAcuitySchedulingTypedDict(TypedDict):
     source_type: AcuityScheduling
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceAcuityScheduling(BaseModel):
     start_date: datetime
 

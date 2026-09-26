@@ -6,13 +6,16 @@ from airbyte_api.utils import validate_const
 from enum import Enum
 import pydantic
 from pydantic.functional_validators import AfterValidator
-from typing_extensions import Annotated, TypedDict
+from typing_extensions import Annotated, TypedDict, deprecated
 
 
 class Configcat(str, Enum):
     CONFIGCAT = "configcat"
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceConfigcatTypedDict(TypedDict):
     password: str
     r"""Basic auth password. See <a href=\"https://api.configcat.com/docs/#section/Authentication\">here</a>."""
@@ -21,6 +24,9 @@ class SourceConfigcatTypedDict(TypedDict):
     source_type: Configcat
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceConfigcat(BaseModel):
     password: str
     r"""Basic auth password. See <a href=\"https://api.configcat.com/docs/#section/Authentication\">here</a>."""

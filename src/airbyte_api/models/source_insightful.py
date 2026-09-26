@@ -7,13 +7,16 @@ from datetime import datetime
 from enum import Enum
 import pydantic
 from pydantic.functional_validators import AfterValidator
-from typing_extensions import Annotated, TypedDict
+from typing_extensions import Annotated, TypedDict, deprecated
 
 
 class Insightful(str, Enum):
     INSIGHTFUL = "insightful"
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceInsightfulTypedDict(TypedDict):
     api_token: str
     r"""Your API token for accessing the Insightful API. Generate it by logging in as an Admin to your organization's account, navigating to the API page, and creating a new token. Note that this token will only be shown once, so store it securely."""
@@ -21,6 +24,9 @@ class SourceInsightfulTypedDict(TypedDict):
     source_type: Insightful
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceInsightful(BaseModel):
     api_token: str
     r"""Your API token for accessing the Insightful API. Generate it by logging in as an Admin to your organization's account, navigating to the API page, and creating a new token. Note that this token will only be shown once, so store it securely."""

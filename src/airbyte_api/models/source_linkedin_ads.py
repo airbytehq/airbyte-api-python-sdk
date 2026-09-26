@@ -9,7 +9,13 @@ import pydantic
 from pydantic import model_serializer
 from pydantic.functional_validators import AfterValidator
 from typing import List, Optional, Union
-from typing_extensions import Annotated, NotRequired, TypeAliasType, TypedDict
+from typing_extensions import (
+    Annotated,
+    NotRequired,
+    TypeAliasType,
+    TypedDict,
+    deprecated,
+)
 
 
 class PivotCategory(str, Enum):
@@ -179,6 +185,9 @@ class LinkedinAdsEnum(str, Enum):
     LINKEDIN_ADS = "linkedin-ads"
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceLinkedinAdsTypedDict(TypedDict):
     start_date: date
     r"""UTC date in the format YYYY-MM-DD. Any data before this date will not be replicated."""
@@ -193,6 +202,9 @@ class SourceLinkedinAdsTypedDict(TypedDict):
     source_type: LinkedinAdsEnum
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceLinkedinAds(BaseModel):
     start_date: date
     r"""UTC date in the format YYYY-MM-DD. Any data before this date will not be replicated."""

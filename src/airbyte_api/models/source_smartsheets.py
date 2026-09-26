@@ -9,7 +9,13 @@ import pydantic
 from pydantic import model_serializer
 from pydantic.functional_validators import AfterValidator
 from typing import List, Optional, Union
-from typing_extensions import Annotated, NotRequired, TypeAliasType, TypedDict
+from typing_extensions import (
+    Annotated,
+    NotRequired,
+    TypeAliasType,
+    TypedDict,
+    deprecated,
+)
 
 
 class SourceSmartsheetsAuthTypeAccessToken(str, Enum):
@@ -148,6 +154,9 @@ class SmartsheetsEnum(str, Enum):
     SMARTSHEETS = "smartsheets"
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceSmartsheetsTypedDict(TypedDict):
     credentials: SourceSmartsheetsAuthorizationMethodTypedDict
     spreadsheet_id: str
@@ -159,6 +168,9 @@ class SourceSmartsheetsTypedDict(TypedDict):
     source_type: SmartsheetsEnum
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceSmartsheets(BaseModel):
     credentials: SourceSmartsheetsAuthorizationMethod
 

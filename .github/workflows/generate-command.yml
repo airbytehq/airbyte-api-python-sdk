@@ -228,6 +228,9 @@ jobs:
                   # to ignore digest changes that cause infinite generate→merge loops.
                   git checkout HEAD -- .speakeasy/workflow.lock 2>/dev/null || true
                   git checkout HEAD -- .speakeasy/gen.lock 2>/dev/null || true
+                  # Exclude gen.yaml from drift check — version is injected by
+                  # --set-version at generation time and is not committed.
+                  git checkout HEAD -- gen.yaml 2>/dev/null || true
                   if [ -n "$(git status --porcelain)" ]; then
                       echo "has_changes=true" | tee -a $GITHUB_OUTPUT
                       echo "=== Changed files ==="

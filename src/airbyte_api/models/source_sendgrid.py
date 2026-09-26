@@ -7,13 +7,16 @@ from datetime import datetime
 from enum import Enum
 import pydantic
 from pydantic.functional_validators import AfterValidator
-from typing_extensions import Annotated, TypedDict
+from typing_extensions import Annotated, TypedDict, deprecated
 
 
 class Sendgrid(str, Enum):
     SENDGRID = "sendgrid"
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceSendgridTypedDict(TypedDict):
     api_key: str
     r"""Sendgrid API Key, use <a href=\\"https://app.sendgrid.com/settings/api_keys/\\">admin</a> to generate this key."""
@@ -22,6 +25,9 @@ class SourceSendgridTypedDict(TypedDict):
     source_type: Sendgrid
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceSendgrid(BaseModel):
     api_key: str
     r"""Sendgrid API Key, use <a href=\\"https://app.sendgrid.com/settings/api_keys/\\">admin</a> to generate this key."""

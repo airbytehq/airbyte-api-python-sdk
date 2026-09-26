@@ -8,13 +8,16 @@ import pydantic
 from pydantic import model_serializer
 from pydantic.functional_validators import AfterValidator
 from typing import Optional
-from typing_extensions import Annotated, NotRequired, TypedDict
+from typing_extensions import Annotated, NotRequired, TypedDict, deprecated
 
 
 class Motherduck(str, Enum):
     MOTHERDUCK = "motherduck"
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'destinationType' key instead.."
+)
 class DestinationMotherduckTypedDict(TypedDict):
     motherduck_api_key: str
     r"""API access token to use for authentication to a MotherDuck database."""
@@ -25,6 +28,9 @@ class DestinationMotherduckTypedDict(TypedDict):
     r"""Database schema name, defaults to 'main' if not specified."""
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'destinationType' key instead.."
+)
 class DestinationMotherduck(BaseModel):
     motherduck_api_key: str
     r"""API access token to use for authentication to a MotherDuck database."""

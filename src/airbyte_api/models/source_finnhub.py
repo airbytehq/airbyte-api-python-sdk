@@ -9,7 +9,7 @@ import pydantic
 from pydantic import model_serializer
 from pydantic.functional_validators import AfterValidator
 from typing import Any, List, Optional
-from typing_extensions import Annotated, NotRequired, TypedDict
+from typing_extensions import Annotated, NotRequired, TypedDict, deprecated
 
 
 class MarketNewsCategory(str, Enum):
@@ -25,6 +25,9 @@ class Finnhub(str, Enum):
     FINNHUB = "finnhub"
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceFinnhubTypedDict(TypedDict):
     api_key: str
     r"""The API key to use for authentication"""
@@ -37,6 +40,9 @@ class SourceFinnhubTypedDict(TypedDict):
     source_type: Finnhub
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceFinnhub(BaseModel):
     api_key: str
     r"""The API key to use for authentication"""

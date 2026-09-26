@@ -8,13 +8,16 @@ import pydantic
 from pydantic import model_serializer
 from pydantic.functional_validators import AfterValidator
 from typing import Optional
-from typing_extensions import Annotated, NotRequired, TypedDict
+from typing_extensions import Annotated, NotRequired, TypedDict, deprecated
 
 
 class Outlook(str, Enum):
     OUTLOOK = "outlook"
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceOutlookTypedDict(TypedDict):
     client_id: str
     r"""The Client ID of your Microsoft Azure application"""
@@ -27,6 +30,9 @@ class SourceOutlookTypedDict(TypedDict):
     r"""Azure AD Tenant ID (optional for multi-tenant apps, defaults to 'common')"""
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceOutlook(BaseModel):
     client_id: str
     r"""The Client ID of your Microsoft Azure application"""

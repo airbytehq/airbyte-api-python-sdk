@@ -9,13 +9,16 @@ import pydantic
 from pydantic import model_serializer
 from pydantic.functional_validators import AfterValidator
 from typing import Optional
-from typing_extensions import Annotated, NotRequired, TypedDict
+from typing_extensions import Annotated, NotRequired, TypedDict, deprecated
 
 
 class NebiusAi(str, Enum):
     NEBIUS_AI = "nebius-ai"
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceNebiusAiTypedDict(TypedDict):
     api_key: str
     r"""API key or access token"""
@@ -25,6 +28,9 @@ class SourceNebiusAiTypedDict(TypedDict):
     source_type: NebiusAi
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceNebiusAi(BaseModel):
     api_key: str
     r"""API key or access token"""

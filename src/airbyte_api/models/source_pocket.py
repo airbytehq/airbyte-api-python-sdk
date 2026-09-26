@@ -8,7 +8,7 @@ import pydantic
 from pydantic import model_serializer
 from pydantic.functional_validators import AfterValidator
 from typing import Optional
-from typing_extensions import Annotated, NotRequired, TypedDict
+from typing_extensions import Annotated, NotRequired, TypedDict, deprecated
 
 
 class ContentType(str, Enum):
@@ -47,6 +47,9 @@ class State(str, Enum):
     ALL = "all"
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourcePocketTypedDict(TypedDict):
     access_token: str
     r"""The user's Pocket access token."""
@@ -73,6 +76,9 @@ class SourcePocketTypedDict(TypedDict):
     r"""Return only items tagged with this tag name. Use _untagged_ for retrieving only untagged items."""
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourcePocket(BaseModel):
     access_token: str
     r"""The user's Pocket access token."""

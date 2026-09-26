@@ -8,13 +8,16 @@ import pydantic
 from pydantic import model_serializer
 from pydantic.functional_validators import AfterValidator
 from typing import Optional
-from typing_extensions import Annotated, NotRequired, TypedDict
+from typing_extensions import Annotated, NotRequired, TypedDict, deprecated
 
 
 class Clockify(str, Enum):
     CLOCKIFY = "clockify"
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceClockifyTypedDict(TypedDict):
     api_key: str
     r"""You can get your api access_key <a href=\"https://app.clockify.me/user/settings\">here</a> This API is Case Sensitive."""
@@ -25,6 +28,9 @@ class SourceClockifyTypedDict(TypedDict):
     source_type: Clockify
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceClockify(BaseModel):
     api_key: str
     r"""You can get your api access_key <a href=\"https://app.clockify.me/user/settings\">here</a> This API is Case Sensitive."""

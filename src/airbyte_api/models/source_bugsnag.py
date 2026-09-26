@@ -7,13 +7,16 @@ from datetime import datetime
 from enum import Enum
 import pydantic
 from pydantic.functional_validators import AfterValidator
-from typing_extensions import Annotated, TypedDict
+from typing_extensions import Annotated, TypedDict, deprecated
 
 
 class Bugsnag(str, Enum):
     BUGSNAG = "bugsnag"
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceBugsnagTypedDict(TypedDict):
     auth_token: str
     r"""Personal auth token for accessing the Bugsnag API. Generate it in the My Account section of Bugsnag settings."""
@@ -21,6 +24,9 @@ class SourceBugsnagTypedDict(TypedDict):
     source_type: Bugsnag
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceBugsnag(BaseModel):
     auth_token: str
     r"""Personal auth token for accessing the Bugsnag API. Generate it in the My Account section of Bugsnag settings."""

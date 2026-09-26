@@ -9,13 +9,16 @@ import pydantic
 from pydantic import model_serializer
 from pydantic.functional_validators import AfterValidator
 from typing import Optional
-from typing_extensions import Annotated, NotRequired, TypedDict
+from typing_extensions import Annotated, NotRequired, TypedDict, deprecated
 
 
 class Calendly(str, Enum):
     CALENDLY = "calendly"
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceCalendlyTypedDict(TypedDict):
     api_key: str
     r"""Go to Integrations → API & Webhooks to obtain your bearer token. https://calendly.com/integrations/api_webhooks"""
@@ -25,6 +28,9 @@ class SourceCalendlyTypedDict(TypedDict):
     source_type: Calendly
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceCalendly(BaseModel):
     api_key: str
     r"""Go to Integrations → API & Webhooks to obtain your bearer token. https://calendly.com/integrations/api_webhooks"""

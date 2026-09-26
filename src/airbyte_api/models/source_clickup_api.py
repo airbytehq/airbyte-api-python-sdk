@@ -8,13 +8,16 @@ import pydantic
 from pydantic import model_serializer
 from pydantic.functional_validators import AfterValidator
 from typing import Optional
-from typing_extensions import Annotated, NotRequired, TypedDict
+from typing_extensions import Annotated, NotRequired, TypedDict, deprecated
 
 
 class ClickupAPI(str, Enum):
     CLICKUP_API = "clickup-api"
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceClickupAPITypedDict(TypedDict):
     api_token: str
     r"""Every ClickUp API call required authentication. This field is your personal API token. See <a href=\"https://clickup.com/api/developer-portal/authentication/#personal-token\">here</a>."""
@@ -23,6 +26,9 @@ class SourceClickupAPITypedDict(TypedDict):
     source_type: ClickupAPI
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceClickupAPI(BaseModel):
     api_token: str
     r"""Every ClickUp API call required authentication. This field is your personal API token. See <a href=\"https://clickup.com/api/developer-portal/authentication/#personal-token\">here</a>."""

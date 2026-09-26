@@ -7,13 +7,16 @@ from datetime import datetime
 from enum import Enum
 import pydantic
 from pydantic.functional_validators import AfterValidator
-from typing_extensions import Annotated, TypedDict
+from typing_extensions import Annotated, TypedDict, deprecated
 
 
 class Chartmogul(str, Enum):
     CHARTMOGUL = "chartmogul"
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceChartmogulTypedDict(TypedDict):
     api_key: str
     r"""Your Chartmogul API key. See <a href=\"https://help.chartmogul.com/hc/en-us/articles/4407796325906-Creating-and-Managing-API-keys#creating-an-api-key\"> the docs </a> for info on how to obtain this."""
@@ -22,6 +25,9 @@ class SourceChartmogulTypedDict(TypedDict):
     source_type: Chartmogul
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceChartmogul(BaseModel):
     api_key: str
     r"""Your Chartmogul API key. See <a href=\"https://help.chartmogul.com/hc/en-us/articles/4407796325906-Creating-and-Managing-API-keys#creating-an-api-key\"> the docs </a> for info on how to obtain this."""

@@ -9,7 +9,13 @@ import pydantic
 from pydantic import model_serializer
 from pydantic.functional_validators import AfterValidator
 from typing import List, Optional, Union
-from typing_extensions import Annotated, NotRequired, TypeAliasType, TypedDict
+from typing_extensions import (
+    Annotated,
+    NotRequired,
+    TypeAliasType,
+    TypedDict,
+    deprecated,
+)
 
 
 class SourceGcsAuthTypeService(str, Enum):
@@ -810,6 +816,9 @@ class SourceGcsFileBasedStreamConfig(BaseModel):
         return m
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceGcsTypedDict(TypedDict):
     r"""NOTE: When this Spec is changed, legacy_config_transformer.py must also be
     modified to uptake the changes because it is responsible for converting
@@ -827,6 +836,9 @@ class SourceGcsTypedDict(TypedDict):
     r"""UTC date and time in the format 2017-01-25T00:00:00.000000Z. Any file modified before this date will not be replicated."""
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceGcs(BaseModel):
     r"""NOTE: When this Spec is changed, legacy_config_transformer.py must also be
     modified to uptake the changes because it is responsible for converting

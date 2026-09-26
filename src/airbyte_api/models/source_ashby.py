@@ -6,13 +6,16 @@ from airbyte_api.utils import validate_const
 from enum import Enum
 import pydantic
 from pydantic.functional_validators import AfterValidator
-from typing_extensions import Annotated, TypedDict
+from typing_extensions import Annotated, TypedDict, deprecated
 
 
 class Ashby(str, Enum):
     ASHBY = "ashby"
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceAshbyTypedDict(TypedDict):
     api_key: str
     r"""The Ashby API Key, see <a href=\\"https://developers.ashbyhq.com/reference/authentication\\">doc</a> here."""
@@ -21,6 +24,9 @@ class SourceAshbyTypedDict(TypedDict):
     source_type: Ashby
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceAshby(BaseModel):
     api_key: str
     r"""The Ashby API Key, see <a href=\\"https://developers.ashbyhq.com/reference/authentication\\">doc</a> here."""

@@ -6,19 +6,25 @@ from airbyte_api.utils import validate_const
 from enum import Enum
 import pydantic
 from pydantic.functional_validators import AfterValidator
-from typing_extensions import Annotated, TypedDict
+from typing_extensions import Annotated, TypedDict, deprecated
 
 
 class Persistiq(str, Enum):
     PERSISTIQ = "persistiq"
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourcePersistiqTypedDict(TypedDict):
     api_key: str
     r"""PersistIq API Key. See the <a href=\"https://apidocs.persistiq.com/#authentication\">docs</a> for more information on where to find that key."""
     source_type: Persistiq
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourcePersistiq(BaseModel):
     api_key: str
     r"""PersistIq API Key. See the <a href=\"https://apidocs.persistiq.com/#authentication\">docs</a> for more information on where to find that key."""

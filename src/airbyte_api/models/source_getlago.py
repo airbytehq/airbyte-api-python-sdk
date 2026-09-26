@@ -8,13 +8,16 @@ import pydantic
 from pydantic import model_serializer
 from pydantic.functional_validators import AfterValidator
 from typing import Optional
-from typing_extensions import Annotated, NotRequired, TypedDict
+from typing_extensions import Annotated, NotRequired, TypedDict, deprecated
 
 
 class Getlago(str, Enum):
     GETLAGO = "getlago"
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceGetlagoTypedDict(TypedDict):
     api_key: str
     r"""Your API Key. See <a href=\"https://doc.getlago.com/docs/api/intro\">here</a>."""
@@ -23,6 +26,9 @@ class SourceGetlagoTypedDict(TypedDict):
     source_type: Getlago
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceGetlago(BaseModel):
     api_key: str
     r"""Your API Key. See <a href=\"https://doc.getlago.com/docs/api/intro\">here</a>."""

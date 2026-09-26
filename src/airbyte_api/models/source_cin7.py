@@ -6,13 +6,16 @@ from airbyte_api.utils import validate_const
 from enum import Enum
 import pydantic
 from pydantic.functional_validators import AfterValidator
-from typing_extensions import Annotated, TypedDict
+from typing_extensions import Annotated, TypedDict, deprecated
 
 
 class Cin7(str, Enum):
     CIN7 = "cin7"
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceCin7TypedDict(TypedDict):
     accountid: str
     r"""The ID associated with your account."""
@@ -21,6 +24,9 @@ class SourceCin7TypedDict(TypedDict):
     source_type: Cin7
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceCin7(BaseModel):
     accountid: str
     r"""The ID associated with your account."""

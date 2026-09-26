@@ -9,13 +9,16 @@ import pydantic
 from pydantic import model_serializer
 from pydantic.functional_validators import AfterValidator
 from typing import Optional
-from typing_extensions import Annotated, NotRequired, TypedDict
+from typing_extensions import Annotated, NotRequired, TypedDict, deprecated
 
 
 class MercadoAds(str, Enum):
     MERCADO_ADS = "mercado-ads"
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceMercadoAdsTypedDict(TypedDict):
     client_id: str
     client_refresh_token: str
@@ -28,6 +31,9 @@ class SourceMercadoAdsTypedDict(TypedDict):
     r"""Cannot exceed 90 days from current day for Product Ads, and 90 days from \"End Date\" on Brand and Display Ads"""
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceMercadoAds(BaseModel):
     client_id: str
 

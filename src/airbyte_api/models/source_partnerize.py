@@ -6,13 +6,16 @@ from airbyte_api.utils import validate_const
 from enum import Enum
 import pydantic
 from pydantic.functional_validators import AfterValidator
-from typing_extensions import Annotated, TypedDict
+from typing_extensions import Annotated, TypedDict, deprecated
 
 
 class Partnerize(str, Enum):
     PARTNERIZE = "partnerize"
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourcePartnerizeTypedDict(TypedDict):
     application_key: str
     r"""The application key identifies the network you are making the request against. Find it in your account settings under 'User Application Key' at https://console.partnerize.com."""
@@ -21,6 +24,9 @@ class SourcePartnerizeTypedDict(TypedDict):
     source_type: Partnerize
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourcePartnerize(BaseModel):
     application_key: str
     r"""The application key identifies the network you are making the request against. Find it in your account settings under 'User Application Key' at https://console.partnerize.com."""

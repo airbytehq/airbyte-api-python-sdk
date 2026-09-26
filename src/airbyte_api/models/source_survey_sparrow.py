@@ -8,7 +8,13 @@ import pydantic
 from pydantic import model_serializer
 from pydantic.functional_validators import AfterValidator
 from typing import Any, List, Optional, Union
-from typing_extensions import Annotated, NotRequired, TypeAliasType, TypedDict
+from typing_extensions import (
+    Annotated,
+    NotRequired,
+    TypeAliasType,
+    TypedDict,
+    deprecated,
+)
 
 
 class URLBaseHTTPSAPISurveysparrowComV3(str, Enum):
@@ -101,6 +107,9 @@ class SurveySparrow(str, Enum):
     SURVEY_SPARROW = "survey-sparrow"
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceSurveySparrowTypedDict(TypedDict):
     access_token: str
     r"""Your access token. See <a href=\"https://developers.surveysparrow.com/rest-apis#authentication\">here</a>. The key is case sensitive."""
@@ -111,6 +120,9 @@ class SourceSurveySparrowTypedDict(TypedDict):
     r"""A List of your survey ids for survey-specific stream"""
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceSurveySparrow(BaseModel):
     access_token: str
     r"""Your access token. See <a href=\"https://developers.surveysparrow.com/rest-apis#authentication\">here</a>. The key is case sensitive."""

@@ -8,7 +8,13 @@ import pydantic
 from pydantic import Discriminator, Tag, model_serializer
 from pydantic.functional_validators import AfterValidator
 from typing import Optional, Union
-from typing_extensions import Annotated, NotRequired, TypeAliasType, TypedDict
+from typing_extensions import (
+    Annotated,
+    NotRequired,
+    TypeAliasType,
+    TypedDict,
+    deprecated,
+)
 
 
 class AuthMethodSSHKeyAuth(str, Enum):
@@ -89,6 +95,9 @@ class Sftp(str, Enum):
     SFTP = "sftp"
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceSftpTypedDict(TypedDict):
     host: str
     r"""The server host address"""
@@ -107,6 +116,9 @@ class SourceSftpTypedDict(TypedDict):
     source_type: Sftp
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceSftp(BaseModel):
     host: str
     r"""The server host address"""

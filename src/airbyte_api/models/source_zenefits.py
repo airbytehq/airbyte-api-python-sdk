@@ -6,19 +6,25 @@ from airbyte_api.utils import validate_const
 from enum import Enum
 import pydantic
 from pydantic.functional_validators import AfterValidator
-from typing_extensions import Annotated, TypedDict
+from typing_extensions import Annotated, TypedDict, deprecated
 
 
 class Zenefits(str, Enum):
     ZENEFITS = "zenefits"
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceZenefitsTypedDict(TypedDict):
     token: str
     r"""Use Sync with Zenefits button on the link given on the readme file, and get the token to access the api"""
     source_type: Zenefits
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceZenefits(BaseModel):
     token: str
     r"""Use Sync with Zenefits button on the link given on the readme file, and get the token to access the api"""

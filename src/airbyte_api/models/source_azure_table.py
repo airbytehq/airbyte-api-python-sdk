@@ -8,13 +8,16 @@ import pydantic
 from pydantic import model_serializer
 from pydantic.functional_validators import AfterValidator
 from typing import Optional
-from typing_extensions import Annotated, NotRequired, TypedDict
+from typing_extensions import Annotated, NotRequired, TypedDict, deprecated
 
 
 class AzureTable(str, Enum):
     AZURE_TABLE = "azure-table"
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceAzureTableTypedDict(TypedDict):
     storage_access_key: str
     r"""Azure Table Storage Access Key. See the <a href=\"https://docs.airbyte.com/integrations/sources/azure-table\">docs</a> for more information on how to obtain this key."""
@@ -25,6 +28,9 @@ class SourceAzureTableTypedDict(TypedDict):
     r"""Azure Table Storage service account URL suffix. See the <a href=\"https://docs.airbyte.com/integrations/sources/azure-table\">docs</a> for more information on how to obtain endpoint suffix"""
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceAzureTable(BaseModel):
     storage_access_key: str
     r"""Azure Table Storage Access Key. See the <a href=\"https://docs.airbyte.com/integrations/sources/azure-table\">docs</a> for more information on how to obtain this key."""

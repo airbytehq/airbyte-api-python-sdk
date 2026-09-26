@@ -8,13 +8,16 @@ import pydantic
 from pydantic import model_serializer
 from pydantic.functional_validators import AfterValidator
 from typing import Optional
-from typing_extensions import Annotated, NotRequired, TypedDict
+from typing_extensions import Annotated, NotRequired, TypedDict, deprecated
 
 
 class Metabase(str, Enum):
     METABASE = "metabase"
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceMetabaseTypedDict(TypedDict):
     instance_api_url: str
     r"""URL to your metabase instance API"""
@@ -31,6 +34,9 @@ class SourceMetabaseTypedDict(TypedDict):
     source_type: Metabase
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceMetabase(BaseModel):
     instance_api_url: str
     r"""URL to your metabase instance API"""

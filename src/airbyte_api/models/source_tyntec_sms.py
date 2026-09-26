@@ -8,13 +8,16 @@ import pydantic
 from pydantic import model_serializer
 from pydantic.functional_validators import AfterValidator
 from typing import Optional
-from typing_extensions import Annotated, NotRequired, TypedDict
+from typing_extensions import Annotated, NotRequired, TypedDict, deprecated
 
 
 class TyntecSms(str, Enum):
     TYNTEC_SMS = "tyntec-sms"
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceTyntecSmsTypedDict(TypedDict):
     api_key: str
     r"""Your Tyntec API Key. See <a href=\"https://www.tyntec.com/docs/docs-center-sms-api-quick-start\">here</a>"""
@@ -27,6 +30,9 @@ class SourceTyntecSmsTypedDict(TypedDict):
     source_type: TyntecSms
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceTyntecSms(BaseModel):
     api_key: str
     r"""Your Tyntec API Key. See <a href=\"https://www.tyntec.com/docs/docs-center-sms-api-quick-start\">here</a>"""

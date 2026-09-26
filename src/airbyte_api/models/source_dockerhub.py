@@ -6,19 +6,25 @@ from airbyte_api.utils import validate_const
 from enum import Enum
 import pydantic
 from pydantic.functional_validators import AfterValidator
-from typing_extensions import Annotated, TypedDict
+from typing_extensions import Annotated, TypedDict, deprecated
 
 
 class Dockerhub(str, Enum):
     DOCKERHUB = "dockerhub"
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceDockerhubTypedDict(TypedDict):
     docker_username: str
     r"""Username of DockerHub person or organization (for https://hub.docker.com/v2/repositories/USERNAME/ API call)"""
     source_type: Dockerhub
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceDockerhub(BaseModel):
     docker_username: str
     r"""Username of DockerHub person or organization (for https://hub.docker.com/v2/repositories/USERNAME/ API call)"""

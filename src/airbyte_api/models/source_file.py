@@ -8,7 +8,13 @@ import pydantic
 from pydantic import Discriminator, Tag, model_serializer
 from pydantic.functional_validators import AfterValidator
 from typing import Optional, Union
-from typing_extensions import Annotated, NotRequired, TypeAliasType, TypedDict
+from typing_extensions import (
+    Annotated,
+    NotRequired,
+    TypeAliasType,
+    TypedDict,
+    deprecated,
+)
 
 
 class FileFormat(str, Enum):
@@ -368,6 +374,9 @@ class File(str, Enum):
     FILE = "file"
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceFileTypedDict(TypedDict):
     dataset_name: str
     r"""The Name of the final table to replicate this file into (should include letters, numbers dash and underscores only)."""
@@ -382,6 +391,9 @@ class SourceFileTypedDict(TypedDict):
     source_type: File
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceFile(BaseModel):
     dataset_name: str
     r"""The Name of the final table to replicate this file into (should include letters, numbers dash and underscores only)."""

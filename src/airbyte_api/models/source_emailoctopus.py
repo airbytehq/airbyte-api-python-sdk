@@ -6,19 +6,25 @@ from airbyte_api.utils import validate_const
 from enum import Enum
 import pydantic
 from pydantic.functional_validators import AfterValidator
-from typing_extensions import Annotated, TypedDict
+from typing_extensions import Annotated, TypedDict, deprecated
 
 
 class Emailoctopus(str, Enum):
     EMAILOCTOPUS = "emailoctopus"
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceEmailoctopusTypedDict(TypedDict):
     api_key: str
     r"""EmailOctopus API Key. See the <a href=\"https://help.emailoctopus.com/article/165-how-to-create-and-delete-api-keys\">docs</a> for information on how to generate this key."""
     source_type: Emailoctopus
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceEmailoctopus(BaseModel):
     api_key: str
     r"""EmailOctopus API Key. See the <a href=\"https://help.emailoctopus.com/article/165-how-to-create-and-delete-api-keys\">docs</a> for information on how to generate this key."""

@@ -6,13 +6,16 @@ from airbyte_api.utils import validate_const
 from enum import Enum
 import pydantic
 from pydantic.functional_validators import AfterValidator
-from typing_extensions import Annotated, TypedDict
+from typing_extensions import Annotated, TypedDict, deprecated
 
 
 class Waiteraid(str, Enum):
     WAITERAID = "waiteraid"
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceWaiteraidTypedDict(TypedDict):
     auth_hash: str
     r"""Your WaiterAid API key, obtained from API request with Username and Password"""
@@ -23,6 +26,9 @@ class SourceWaiteraidTypedDict(TypedDict):
     source_type: Waiteraid
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceWaiteraid(BaseModel):
     auth_hash: str
     r"""Your WaiterAid API key, obtained from API request with Username and Password"""

@@ -9,13 +9,16 @@ import pydantic
 from pydantic import model_serializer
 from pydantic.functional_validators import AfterValidator
 from typing import Optional
-from typing_extensions import Annotated, NotRequired, TypedDict
+from typing_extensions import Annotated, NotRequired, TypedDict, deprecated
 
 
 class Pardot(str, Enum):
     PARDOT = "pardot"
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourcePardotTypedDict(TypedDict):
     client_id: str
     r"""The Consumer Key that can be found when viewing your app in Salesforce"""
@@ -32,6 +35,9 @@ class SourcePardotTypedDict(TypedDict):
     r"""UTC date and time in the format 2000-01-01T00:00:00Z. Any data before this date will not be replicated. Defaults to the year Pardot was released."""
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourcePardot(BaseModel):
     client_id: str
     r"""The Consumer Key that can be found when viewing your app in Salesforce"""

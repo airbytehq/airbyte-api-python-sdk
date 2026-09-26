@@ -7,13 +7,16 @@ from datetime import datetime
 from enum import Enum
 import pydantic
 from pydantic.functional_validators import AfterValidator
-from typing_extensions import Annotated, TypedDict
+from typing_extensions import Annotated, TypedDict, deprecated
 
 
 class Shopwired(str, Enum):
     SHOPWIRED = "shopwired"
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceShopwiredTypedDict(TypedDict):
     api_key: str
     r"""Your API Key, which acts as the username for Basic Authentication. You can find it in your ShopWired account under API settings."""
@@ -23,6 +26,9 @@ class SourceShopwiredTypedDict(TypedDict):
     source_type: Shopwired
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceShopwired(BaseModel):
     api_key: str
     r"""Your API Key, which acts as the username for Basic Authentication. You can find it in your ShopWired account under API settings."""

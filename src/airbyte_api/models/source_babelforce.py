@@ -8,7 +8,7 @@ import pydantic
 from pydantic import model_serializer
 from pydantic.functional_validators import AfterValidator
 from typing import Optional
-from typing_extensions import Annotated, NotRequired, TypedDict
+from typing_extensions import Annotated, NotRequired, TypedDict, deprecated
 
 
 class SourceBabelforceRegion(str, Enum):
@@ -23,6 +23,9 @@ class Babelforce(str, Enum):
     BABELFORCE = "babelforce"
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceBabelforceTypedDict(TypedDict):
     access_key_id: str
     r"""The Babelforce access key ID"""
@@ -37,6 +40,9 @@ class SourceBabelforceTypedDict(TypedDict):
     source_type: Babelforce
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceBabelforce(BaseModel):
     access_key_id: str
     r"""The Babelforce access key ID"""

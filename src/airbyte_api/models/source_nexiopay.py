@@ -9,7 +9,7 @@ import pydantic
 from pydantic import model_serializer
 from pydantic.functional_validators import AfterValidator
 from typing import Optional
-from typing_extensions import Annotated, NotRequired, TypedDict
+from typing_extensions import Annotated, NotRequired, TypedDict, deprecated
 
 
 class Nexiopay(str, Enum):
@@ -23,6 +23,9 @@ class SourceNexiopaySubdomain(str, Enum):
     NEXIOPAY = "nexiopay"
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceNexiopayTypedDict(TypedDict):
     api_key: str
     r"""Your Nexio API key (password). You can find it in the Nexio Dashboard under Settings > User Management. Select the API user and copy the API key."""
@@ -34,6 +37,9 @@ class SourceNexiopayTypedDict(TypedDict):
     r"""The subdomain for the Nexio API environment, such as 'nexiopaysandbox' or 'nexiopay'."""
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceNexiopay(BaseModel):
     api_key: str
     r"""Your Nexio API key (password). You can find it in the Nexio Dashboard under Settings > User Management. Select the API user and copy the API key."""

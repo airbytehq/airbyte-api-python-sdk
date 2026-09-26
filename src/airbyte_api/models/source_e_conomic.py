@@ -6,13 +6,16 @@ from airbyte_api.utils import validate_const
 from enum import Enum
 import pydantic
 from pydantic.functional_validators import AfterValidator
-from typing_extensions import Annotated, TypedDict
+from typing_extensions import Annotated, TypedDict, deprecated
 
 
 class EConomic(str, Enum):
     E_CONOMIC = "e-conomic"
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceEConomicTypedDict(TypedDict):
     agreement_grant_token: str
     r"""Token that identifies the grant issued by an agreement, allowing your app to access data. Obtain it from your e-conomic account settings."""
@@ -21,6 +24,9 @@ class SourceEConomicTypedDict(TypedDict):
     source_type: EConomic
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceEConomic(BaseModel):
     agreement_grant_token: str
     r"""Token that identifies the grant issued by an agreement, allowing your app to access data. Obtain it from your e-conomic account settings."""

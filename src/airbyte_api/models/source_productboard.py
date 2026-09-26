@@ -7,13 +7,16 @@ from datetime import datetime
 from enum import Enum
 import pydantic
 from pydantic.functional_validators import AfterValidator
-from typing_extensions import Annotated, TypedDict
+from typing_extensions import Annotated, TypedDict, deprecated
 
 
 class Productboard(str, Enum):
     PRODUCTBOARD = "productboard"
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceProductboardTypedDict(TypedDict):
     access_token: str
     r"""Your Productboard access token. See https://developer.productboard.com/reference/authentication for steps to generate one."""
@@ -21,6 +24,9 @@ class SourceProductboardTypedDict(TypedDict):
     source_type: Productboard
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceProductboard(BaseModel):
     access_token: str
     r"""Your Productboard access token. See https://developer.productboard.com/reference/authentication for steps to generate one."""

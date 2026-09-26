@@ -8,13 +8,16 @@ import pydantic
 from pydantic import model_serializer
 from pydantic.functional_validators import AfterValidator
 from typing import Optional
-from typing_extensions import Annotated, NotRequired, TypedDict
+from typing_extensions import Annotated, NotRequired, TypedDict, deprecated
 
 
 class Mailersend(str, Enum):
     MAILERSEND = "mailersend"
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceMailersendTypedDict(TypedDict):
     api_token: str
     r"""Your API Token. See <a href=\"https://www.mailersend.com/help/managing-api-tokens\">here</a>."""
@@ -25,6 +28,9 @@ class SourceMailersendTypedDict(TypedDict):
     r"""Timestamp is assumed to be UTC."""
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceMailersend(BaseModel):
     api_token: str
     r"""Your API Token. See <a href=\"https://www.mailersend.com/help/managing-api-tokens\">here</a>."""

@@ -9,7 +9,13 @@ import pydantic
 from pydantic import Discriminator, Tag, model_serializer
 from pydantic.functional_validators import AfterValidator
 from typing import List, Optional, Union
-from typing_extensions import Annotated, NotRequired, TypeAliasType, TypedDict
+from typing_extensions import (
+    Annotated,
+    NotRequired,
+    TypeAliasType,
+    TypedDict,
+    deprecated,
+)
 
 
 class SourceGoogleSearchConsoleAuthTypeService(str, Enum):
@@ -154,6 +160,9 @@ class GoogleSearchConsoleEnum(str, Enum):
     GOOGLE_SEARCH_CONSOLE = "google-search-console"
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceGoogleSearchConsoleTypedDict(TypedDict):
     authorization: SourceGoogleSearchConsoleAuthenticationTypeTypedDict
     site_urls: List[str]
@@ -175,6 +184,9 @@ class SourceGoogleSearchConsoleTypedDict(TypedDict):
     r"""UTC date in the format YYYY-MM-DD. Any data before this date will not be replicated."""
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceGoogleSearchConsole(BaseModel):
     authorization: SourceGoogleSearchConsoleAuthenticationType
 

@@ -9,7 +9,13 @@ import pydantic
 from pydantic import Discriminator, Tag, model_serializer
 from pydantic.functional_validators import AfterValidator
 from typing import Optional, Union
-from typing_extensions import Annotated, NotRequired, TypeAliasType, TypedDict
+from typing_extensions import (
+    Annotated,
+    NotRequired,
+    TypeAliasType,
+    TypedDict,
+    deprecated,
+)
 
 
 class SourceSquareAuthTypeAPIKey(str, Enum):
@@ -86,6 +92,9 @@ class Square(str, Enum):
     SQUARE = "square"
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceSquareTypedDict(TypedDict):
     credentials: NotRequired[SourceSquareAuthenticationTypedDict]
     r"""Choose how to authenticate to Square."""
@@ -98,6 +107,9 @@ class SourceSquareTypedDict(TypedDict):
     r"""UTC date in the format YYYY-MM-DD. Any data before this date will not be replicated. If not set, all data will be replicated."""
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceSquare(BaseModel):
     credentials: Optional[SourceSquareAuthentication] = None
     r"""Choose how to authenticate to Square."""

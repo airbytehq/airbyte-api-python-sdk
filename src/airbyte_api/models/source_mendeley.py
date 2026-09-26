@@ -9,13 +9,16 @@ import pydantic
 from pydantic import model_serializer
 from pydantic.functional_validators import AfterValidator
 from typing import Optional
-from typing_extensions import Annotated, NotRequired, TypedDict
+from typing_extensions import Annotated, NotRequired, TypedDict, deprecated
 
 
 class Mendeley(str, Enum):
     MENDELEY = "mendeley"
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceMendeleyTypedDict(TypedDict):
     client_id: str
     r"""Could be found at `https://dev.mendeley.com/myapps.html`"""
@@ -31,6 +34,9 @@ class SourceMendeleyTypedDict(TypedDict):
     source_type: Mendeley
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceMendeley(BaseModel):
     client_id: str
     r"""Could be found at `https://dev.mendeley.com/myapps.html`"""

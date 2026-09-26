@@ -9,7 +9,7 @@ import pydantic
 from pydantic import Discriminator, Tag
 from pydantic.functional_validators import AfterValidator
 from typing import Union
-from typing_extensions import Annotated, TypeAliasType, TypedDict
+from typing_extensions import Annotated, TypeAliasType, TypedDict, deprecated
 
 
 class SourceSalesloftAuthTypeAPIKey(str, Enum):
@@ -97,6 +97,9 @@ class Salesloft(str, Enum):
     SALESLOFT = "salesloft"
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceSalesloftTypedDict(TypedDict):
     credentials: SourceSalesloftCredentialsTypedDict
     start_date: datetime
@@ -104,6 +107,9 @@ class SourceSalesloftTypedDict(TypedDict):
     source_type: Salesloft
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceSalesloft(BaseModel):
     credentials: SourceSalesloftCredentials
 

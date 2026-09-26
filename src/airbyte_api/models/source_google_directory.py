@@ -8,7 +8,13 @@ import pydantic
 from pydantic import model_serializer
 from pydantic.functional_validators import AfterValidator
 from typing import Optional, Union
-from typing_extensions import Annotated, NotRequired, TypeAliasType, TypedDict
+from typing_extensions import (
+    Annotated,
+    NotRequired,
+    TypeAliasType,
+    TypedDict,
+    deprecated,
+)
 
 
 class CredentialsTitleServiceAccounts(str, Enum):
@@ -139,12 +145,18 @@ class GoogleDirectory(str, Enum):
     GOOGLE_DIRECTORY = "google-directory"
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceGoogleDirectoryTypedDict(TypedDict):
     credentials: NotRequired[GoogleCredentialsTypedDict]
     r"""Google APIs use the OAuth 2.0 protocol for authentication and authorization. The Source supports <a href=\"https://developers.google.com/identity/protocols/oauth2#webserver\" target=\"_blank\">Web server application</a> and <a href=\"https://developers.google.com/identity/protocols/oauth2#serviceaccount\" target=\"_blank\">Service accounts</a> scenarios."""
     source_type: GoogleDirectory
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceGoogleDirectory(BaseModel):
     credentials: Optional[GoogleCredentials] = None
     r"""Google APIs use the OAuth 2.0 protocol for authentication and authorization. The Source supports <a href=\"https://developers.google.com/identity/protocols/oauth2#webserver\" target=\"_blank\">Web server application</a> and <a href=\"https://developers.google.com/identity/protocols/oauth2#serviceaccount\" target=\"_blank\">Service accounts</a> scenarios."""

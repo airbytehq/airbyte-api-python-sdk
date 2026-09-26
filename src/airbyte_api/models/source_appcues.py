@@ -9,13 +9,16 @@ import pydantic
 from pydantic import model_serializer
 from pydantic.functional_validators import AfterValidator
 from typing import Optional
-from typing_extensions import Annotated, NotRequired, TypedDict
+from typing_extensions import Annotated, NotRequired, TypedDict, deprecated
 
 
 class Appcues(str, Enum):
     APPCUES = "appcues"
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceAppcuesTypedDict(TypedDict):
     account_id: str
     r"""Account ID of Appcues found in account settings page (https://studio.appcues.com/settings/account)"""
@@ -25,6 +28,9 @@ class SourceAppcuesTypedDict(TypedDict):
     source_type: Appcues
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceAppcues(BaseModel):
     account_id: str
     r"""Account ID of Appcues found in account settings page (https://studio.appcues.com/settings/account)"""

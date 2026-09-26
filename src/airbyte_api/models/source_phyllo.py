@@ -9,7 +9,7 @@ import pydantic
 from pydantic import model_serializer
 from pydantic.functional_validators import AfterValidator
 from typing import Optional
-from typing_extensions import Annotated, NotRequired, TypedDict
+from typing_extensions import Annotated, NotRequired, TypedDict, deprecated
 
 
 class SourcePhylloEnvironment(str, Enum):
@@ -24,6 +24,9 @@ class Phyllo(str, Enum):
     PHYLLO = "phyllo"
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourcePhylloTypedDict(TypedDict):
     client_id: str
     r"""Your Client ID for the Phyllo API. You can find this in the Phyllo Developer Dashboard under API credentials."""
@@ -35,6 +38,9 @@ class SourcePhylloTypedDict(TypedDict):
     source_type: Phyllo
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourcePhyllo(BaseModel):
     client_id: str
     r"""Your Client ID for the Phyllo API. You can find this in the Phyllo Developer Dashboard under API credentials."""

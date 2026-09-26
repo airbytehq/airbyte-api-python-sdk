@@ -6,13 +6,16 @@ from airbyte_api.utils import validate_const
 from enum import Enum
 import pydantic
 from pydantic.functional_validators import AfterValidator
-from typing_extensions import Annotated, TypedDict
+from typing_extensions import Annotated, TypedDict, deprecated
 
 
 class Smaily(str, Enum):
     SMAILY = "smaily"
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceSmailyTypedDict(TypedDict):
     api_password: str
     r"""API user password. See https://smaily.com/help/api/general/create-api-user/"""
@@ -23,6 +26,9 @@ class SourceSmailyTypedDict(TypedDict):
     source_type: Smaily
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceSmaily(BaseModel):
     api_password: str
     r"""API user password. See https://smaily.com/help/api/general/create-api-user/"""

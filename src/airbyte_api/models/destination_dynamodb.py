@@ -8,7 +8,7 @@ import pydantic
 from pydantic import model_serializer
 from pydantic.functional_validators import AfterValidator
 from typing import Optional
-from typing_extensions import Annotated, NotRequired, TypedDict
+from typing_extensions import Annotated, NotRequired, TypedDict, deprecated
 
 
 class DestinationDynamodbDynamodb(str, Enum):
@@ -54,6 +54,9 @@ class DestinationDynamodbDynamoDBRegion(str, Enum):
     US_WEST_2 = "us-west-2"
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'destinationType' key instead.."
+)
 class DestinationDynamodbTypedDict(TypedDict):
     access_key_id: str
     r"""The access key id to access the DynamoDB. Airbyte requires Read and Write permissions to the DynamoDB."""
@@ -68,6 +71,9 @@ class DestinationDynamodbTypedDict(TypedDict):
     r"""The region of the DynamoDB."""
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'destinationType' key instead.."
+)
 class DestinationDynamodb(BaseModel):
     access_key_id: str
     r"""The access key id to access the DynamoDB. Airbyte requires Read and Write permissions to the DynamoDB."""

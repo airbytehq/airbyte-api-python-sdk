@@ -8,13 +8,16 @@ import pydantic
 from pydantic import model_serializer
 from pydantic.functional_validators import AfterValidator
 from typing import Optional
-from typing_extensions import Annotated, NotRequired, TypedDict
+from typing_extensions import Annotated, NotRequired, TypedDict, deprecated
 
 
 class Firestore(str, Enum):
     FIRESTORE = "firestore"
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'destinationType' key instead.."
+)
 class DestinationFirestoreTypedDict(TypedDict):
     project_id: str
     r"""The GCP project ID for the project containing the target BigQuery dataset."""
@@ -23,6 +26,9 @@ class DestinationFirestoreTypedDict(TypedDict):
     destination_type: Firestore
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'destinationType' key instead.."
+)
 class DestinationFirestore(BaseModel):
     project_id: str
     r"""The GCP project ID for the project containing the target BigQuery dataset."""

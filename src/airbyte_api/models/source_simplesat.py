@@ -9,13 +9,16 @@ import pydantic
 from pydantic import model_serializer
 from pydantic.functional_validators import AfterValidator
 from typing import Optional
-from typing_extensions import Annotated, NotRequired, TypedDict
+from typing_extensions import Annotated, NotRequired, TypedDict, deprecated
 
 
 class Simplesat(str, Enum):
     SIMPLESAT = "simplesat"
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceSimplesatTypedDict(TypedDict):
     api_key: str
     end_date: NotRequired[datetime]
@@ -25,6 +28,9 @@ class SourceSimplesatTypedDict(TypedDict):
     r"""Date from when the sync should start"""
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceSimplesat(BaseModel):
     api_key: str
 

@@ -8,7 +8,13 @@ import pydantic
 from pydantic import Discriminator, Tag, model_serializer
 from pydantic.functional_validators import AfterValidator
 from typing import Optional, Union
-from typing_extensions import Annotated, NotRequired, TypeAliasType, TypedDict
+from typing_extensions import (
+    Annotated,
+    NotRequired,
+    TypeAliasType,
+    TypedDict,
+    deprecated,
+)
 
 
 class DestinationFireboltFirebolt(str, Enum):
@@ -79,6 +85,9 @@ DestinationFireboltLoadingMethod = Annotated[
 r"""Loading method used to select the way data will be uploaded to Firebolt"""
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'destinationType' key instead.."
+)
 class DestinationFireboltTypedDict(TypedDict):
     account: str
     r"""Firebolt account to login."""
@@ -97,6 +106,9 @@ class DestinationFireboltTypedDict(TypedDict):
     r"""Loading method used to select the way data will be uploaded to Firebolt"""
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'destinationType' key instead.."
+)
 class DestinationFirebolt(BaseModel):
     account: str
     r"""Firebolt account to login."""

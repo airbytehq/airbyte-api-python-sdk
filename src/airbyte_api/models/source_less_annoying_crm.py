@@ -7,13 +7,16 @@ from datetime import datetime
 from enum import Enum
 import pydantic
 from pydantic.functional_validators import AfterValidator
-from typing_extensions import Annotated, TypedDict
+from typing_extensions import Annotated, TypedDict, deprecated
 
 
 class LessAnnoyingCrm(str, Enum):
     LESS_ANNOYING_CRM = "less-annoying-crm"
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceLessAnnoyingCrmTypedDict(TypedDict):
     api_key: str
     r"""API key to use. Manage and create your API keys on the Programmer API settings page at https://account.lessannoyingcrm.com/app/Settings/Api."""
@@ -21,6 +24,9 @@ class SourceLessAnnoyingCrmTypedDict(TypedDict):
     source_type: LessAnnoyingCrm
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceLessAnnoyingCrm(BaseModel):
     api_key: str
     r"""API key to use. Manage and create your API keys on the Programmer API settings page at https://account.lessannoyingcrm.com/app/Settings/Api."""

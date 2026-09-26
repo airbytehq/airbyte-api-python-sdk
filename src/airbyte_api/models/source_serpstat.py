@@ -8,13 +8,16 @@ import pydantic
 from pydantic import model_serializer
 from pydantic.functional_validators import AfterValidator
 from typing import Any, List, Optional
-from typing_extensions import Annotated, NotRequired, TypedDict
+from typing_extensions import Annotated, NotRequired, TypedDict, deprecated
 
 
 class Serpstat(str, Enum):
     SERPSTAT = "serpstat"
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceSerpstatTypedDict(TypedDict):
     api_key: str
     r"""Serpstat API key can be found here: https://serpstat.com/users/profile/"""
@@ -39,6 +42,9 @@ class SourceSerpstatTypedDict(TypedDict):
     source_type: Serpstat
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceSerpstat(BaseModel):
     api_key: str
     r"""Serpstat API key can be found here: https://serpstat.com/users/profile/"""

@@ -9,7 +9,7 @@ import pydantic
 from pydantic import model_serializer
 from pydantic.functional_validators import AfterValidator
 from typing import Optional
-from typing_extensions import Annotated, NotRequired, TypedDict
+from typing_extensions import Annotated, NotRequired, TypedDict, deprecated
 
 
 class CastorEdc(str, Enum):
@@ -24,6 +24,9 @@ class URLRegion(str, Enum):
     US = "us"
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceCastorEdcTypedDict(TypedDict):
     client_id: str
     r"""Visit `https://YOUR_REGION.castoredc.com/account/settings`"""
@@ -35,6 +38,9 @@ class SourceCastorEdcTypedDict(TypedDict):
     r"""The url region given at time of registration"""
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceCastorEdc(BaseModel):
     client_id: str
     r"""Visit `https://YOUR_REGION.castoredc.com/account/settings`"""

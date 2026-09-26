@@ -6,13 +6,16 @@ from airbyte_api.utils import validate_const
 from enum import Enum
 import pydantic
 from pydantic.functional_validators import AfterValidator
-from typing_extensions import Annotated, TypedDict
+from typing_extensions import Annotated, TypedDict, deprecated
 
 
 class Workable(str, Enum):
     WORKABLE = "workable"
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceWorkableTypedDict(TypedDict):
     account_subdomain: str
     r"""Your Workable account subdomain, e.g. https://your_account_subdomain.workable.com."""
@@ -23,6 +26,9 @@ class SourceWorkableTypedDict(TypedDict):
     source_type: Workable
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceWorkable(BaseModel):
     account_subdomain: str
     r"""Your Workable account subdomain, e.g. https://your_account_subdomain.workable.com."""

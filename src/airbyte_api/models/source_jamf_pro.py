@@ -8,13 +8,16 @@ import pydantic
 from pydantic import model_serializer
 from pydantic.functional_validators import AfterValidator
 from typing import Optional
-from typing_extensions import Annotated, NotRequired, TypedDict
+from typing_extensions import Annotated, NotRequired, TypedDict, deprecated
 
 
 class JamfPro(str, Enum):
     JAMF_PRO = "jamf-pro"
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceJamfProTypedDict(TypedDict):
     subdomain: str
     r"""The unique subdomain for your Jamf Pro instance."""
@@ -23,6 +26,9 @@ class SourceJamfProTypedDict(TypedDict):
     source_type: JamfPro
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceJamfPro(BaseModel):
     subdomain: str
     r"""The unique subdomain for your Jamf Pro instance."""

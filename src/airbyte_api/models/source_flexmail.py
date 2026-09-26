@@ -6,13 +6,16 @@ from airbyte_api.utils import validate_const
 from enum import Enum
 import pydantic
 from pydantic.functional_validators import AfterValidator
-from typing_extensions import Annotated, TypedDict
+from typing_extensions import Annotated, TypedDict, deprecated
 
 
 class Flexmail(str, Enum):
     FLEXMAIL = "flexmail"
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceFlexmailTypedDict(TypedDict):
     account_id: str
     r"""Your Flexmail account ID. You can find it in your Flexmail account settings."""
@@ -21,6 +24,9 @@ class SourceFlexmailTypedDict(TypedDict):
     source_type: Flexmail
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceFlexmail(BaseModel):
     account_id: str
     r"""Your Flexmail account ID. You can find it in your Flexmail account settings."""

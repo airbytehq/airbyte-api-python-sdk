@@ -8,7 +8,13 @@ import pydantic
 from pydantic import ConfigDict, model_serializer
 from pydantic.functional_validators import AfterValidator
 from typing import Any, Dict, Optional, Union
-from typing_extensions import Annotated, NotRequired, TypeAliasType, TypedDict
+from typing_extensions import (
+    Annotated,
+    NotRequired,
+    TypeAliasType,
+    TypedDict,
+    deprecated,
+)
 
 
 class Type(str, Enum):
@@ -270,6 +276,9 @@ ObjectStorageConfiguration = TypeAliasType(
 )
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'destinationType' key instead.."
+)
 class DestinationHubspotTypedDict(TypedDict):
     credentials: DestinationHubspotCredentialsTypedDict
     r"""Choose how to authenticate to HubSpot."""
@@ -277,6 +286,9 @@ class DestinationHubspotTypedDict(TypedDict):
     object_storage_config: NotRequired[ObjectStorageConfigurationTypedDict]
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'destinationType' key instead.."
+)
 class DestinationHubspot(BaseModel):
     credentials: DestinationHubspotCredentials
     r"""Choose how to authenticate to HubSpot."""

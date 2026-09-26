@@ -7,13 +7,16 @@ from enum import Enum
 import pydantic
 from pydantic.functional_validators import AfterValidator
 from typing import Any, List
-from typing_extensions import Annotated, TypedDict
+from typing_extensions import Annotated, TypedDict, deprecated
 
 
 class Openaq(str, Enum):
     OPENAQ = "openaq"
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceOpenaqTypedDict(TypedDict):
     api_key: str
     country_ids: List[Any]
@@ -21,6 +24,9 @@ class SourceOpenaqTypedDict(TypedDict):
     source_type: Openaq
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceOpenaq(BaseModel):
     api_key: str
 

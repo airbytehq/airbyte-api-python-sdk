@@ -8,7 +8,13 @@ import pydantic
 from pydantic import model_serializer
 from pydantic.functional_validators import AfterValidator
 from typing import List, Optional, Union
-from typing_extensions import Annotated, NotRequired, TypeAliasType, TypedDict
+from typing_extensions import (
+    Annotated,
+    NotRequired,
+    TypeAliasType,
+    TypedDict,
+    deprecated,
+)
 
 
 class SnowflakeCortex(str, Enum):
@@ -587,6 +593,9 @@ class DestinationSnowflakeCortexProcessingConfigModel(BaseModel):
         return m
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'destinationType' key instead.."
+)
 class DestinationSnowflakeCortexTypedDict(TypedDict):
     r"""The configuration model for the Vector DB based destinations. This model is used to generate the UI for the destination configuration,
     as well as to provide type safety for the configuration passed to the destination.
@@ -610,6 +619,9 @@ class DestinationSnowflakeCortexTypedDict(TypedDict):
     r"""Do not store the text that gets embedded along with the vector and the metadata in the destination. If set to true, only the vector and the metadata will be stored - in this case raw text for LLM use cases needs to be retrieved from another source."""
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'destinationType' key instead.."
+)
 class DestinationSnowflakeCortex(BaseModel):
     r"""The configuration model for the Vector DB based destinations. This model is used to generate the UI for the destination configuration,
     as well as to provide type safety for the configuration passed to the destination.
