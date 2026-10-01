@@ -161,7 +161,7 @@ jobs:
 
             - name: Get next version from release drafter
               id: get-version
-              uses: aaronsteers/semantic-pr-release-drafter@v2.2.0
+              uses: airbytehq/semantic-pr-release-drafter@v2.2.0
               with:
                   dry-run: true
               env:
