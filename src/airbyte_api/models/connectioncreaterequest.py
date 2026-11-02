@@ -33,6 +33,8 @@ class ConnectionCreateRequestTypedDict(TypedDict):
         NonBreakingSchemaUpdatesBehaviorEnum
     ]
     r"""Set how Airbyte handles syncs when it detects a non-breaking schema change in the source"""
+    notify_schema_changes: NotRequired[bool]
+    r"""Turns schema change notifications on or off for this connection. The workspace's notification settings decide where they are sent. Breaking changes use `connectionUpdateActionRequired`. Other schema changes use `connectionUpdate`. If omitted, it is true when the workspace's `connectionUpdate` settings have email or webhook enabled. Otherwise it is false."""
     prefix: NotRequired[str]
     r"""Prefix that will be prepended to the name of each stream when it is written to the destination (ex. “airbyte_” causes “projects” => “airbyte_projects”)."""
     schedule: NotRequired[AirbyteAPIConnectionScheduleTypedDict]
@@ -76,6 +78,11 @@ class ConnectionCreateRequest(BaseModel):
     ] = NonBreakingSchemaUpdatesBehaviorEnum.IGNORE
     r"""Set how Airbyte handles syncs when it detects a non-breaking schema change in the source"""
 
+    notify_schema_changes: Annotated[
+        Optional[bool], pydantic.Field(alias="notifySchemaChanges")
+    ] = None
+    r"""Turns schema change notifications on or off for this connection. The workspace's notification settings decide where they are sent. Breaking changes use `connectionUpdateActionRequired`. Other schema changes use `connectionUpdate`. If omitted, it is true when the workspace's `connectionUpdate` settings have email or webhook enabled. Otherwise it is false."""
+
     prefix: Optional[str] = ""
     r"""Prefix that will be prepended to the name of each stream when it is written to the destination (ex. “airbyte_” causes “projects” => “airbyte_projects”)."""
 
@@ -96,6 +103,7 @@ class ConnectionCreateRequest(BaseModel):
                 "namespaceDefinition",
                 "namespaceFormat",
                 "nonBreakingSchemaUpdatesBehavior",
+                "notifySchemaChanges",
                 "prefix",
                 "schedule",
                 "status",

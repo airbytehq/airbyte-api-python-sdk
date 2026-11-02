@@ -33,6 +33,8 @@ class ConnectionPatchRequestTypedDict(TypedDict):
         NonBreakingSchemaUpdatesBehaviorEnumNoDefault
     ]
     r"""Set how Airbyte handles syncs when it detects a non-breaking schema change in the source"""
+    notify_schema_changes: NotRequired[bool]
+    r"""Turns schema change notifications on or off for this connection. The workspace's notification settings decide where they are sent. Breaking changes use `connectionUpdateActionRequired`. Other schema changes use `connectionUpdate`."""
     prefix: NotRequired[str]
     r"""Prefix that will be prepended to the name of each stream when it is written to the destination (ex. “airbyte_” causes “projects” => “airbyte_projects”)."""
     schedule: NotRequired[AirbyteAPIConnectionScheduleTypedDict]
@@ -73,6 +75,11 @@ class ConnectionPatchRequest(BaseModel):
     ] = None
     r"""Set how Airbyte handles syncs when it detects a non-breaking schema change in the source"""
 
+    notify_schema_changes: Annotated[
+        Optional[bool], pydantic.Field(alias="notifySchemaChanges")
+    ] = None
+    r"""Turns schema change notifications on or off for this connection. The workspace's notification settings decide where they are sent. Breaking changes use `connectionUpdateActionRequired`. Other schema changes use `connectionUpdate`."""
+
     prefix: Optional[str] = None
     r"""Prefix that will be prepended to the name of each stream when it is written to the destination (ex. “airbyte_” causes “projects” => “airbyte_projects”)."""
 
@@ -93,6 +100,7 @@ class ConnectionPatchRequest(BaseModel):
                 "namespaceDefinition",
                 "namespaceFormat",
                 "nonBreakingSchemaUpdatesBehavior",
+                "notifySchemaChanges",
                 "prefix",
                 "schedule",
                 "status",
