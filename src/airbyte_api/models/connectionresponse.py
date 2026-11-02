@@ -39,6 +39,8 @@ class ConnectionResponseTypedDict(TypedDict):
         NonBreakingSchemaUpdatesBehaviorEnum
     ]
     r"""Set how Airbyte handles syncs when it detects a non-breaking schema change in the source"""
+    notify_schema_changes: NotRequired[bool]
+    r"""Turns schema change notifications on or off for this connection. The workspace's notification settings decide where they are sent. Breaking changes use `connectionUpdateActionRequired`. Other schema changes use `connectionUpdate`."""
     prefix: NotRequired[str]
     status_reason: NotRequired[str]
 
@@ -83,6 +85,11 @@ class ConnectionResponse(BaseModel):
     ] = NonBreakingSchemaUpdatesBehaviorEnum.IGNORE
     r"""Set how Airbyte handles syncs when it detects a non-breaking schema change in the source"""
 
+    notify_schema_changes: Annotated[
+        Optional[bool], pydantic.Field(alias="notifySchemaChanges")
+    ] = None
+    r"""Turns schema change notifications on or off for this connection. The workspace's notification settings decide where they are sent. Breaking changes use `connectionUpdateActionRequired`. Other schema changes use `connectionUpdate`."""
+
     prefix: Optional[str] = None
 
     status_reason: Annotated[Optional[str], pydantic.Field(alias="statusReason")] = None
@@ -94,6 +101,7 @@ class ConnectionResponse(BaseModel):
                 "namespaceDefinition",
                 "namespaceFormat",
                 "nonBreakingSchemaUpdatesBehavior",
+                "notifySchemaChanges",
                 "prefix",
                 "statusReason",
             ]
