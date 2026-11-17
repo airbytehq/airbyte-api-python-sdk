@@ -92,14 +92,21 @@ jobs:
         id: resolve-ref
         env:
           GH_TOKEN: ${{ steps.app-token.outputs.token || secrets.GITHUB_TOKEN }}
+          IN_PR: ${{ inputs.pr }}
         run: |
-          PR_HEAD=$(gh pr view "${{ inputs.pr }}" --repo "${{ github.repository }}" --json headRefName -q '.headRefName')
+          if [[ ! "${IN_PR}" =~ ^[0-9]+$ ]]; then
+            echo "::error::The pr input must be a number."
+            exit 1
+          fi
+          PR_HEAD=$(gh pr view "${IN_PR}" --repo "${GITHUB_REPOSITORY}" --json headRefName -q '.headRefName')
           echo "ref=$PR_HEAD" >> "$GITHUB_OUTPUT"
 
       # ── Validate version input ──────────────────────────────────────
       - name: Validate pre-release version
+        env:
+          IN_VERSION: ${{ inputs.version }}
         run: |
-          VERSION="${{ inputs.version }}"
+          VERSION="${IN_VERSION}"
 
           # PEP 440 pre-release pattern: X.Y.Z(a|b|rc|dev)N
           if ! echo "$VERSION" | grep -qE '^[0-9]+\.[0-9]+\.[0-9]+(a|b|rc|dev|\.dev)[0-9]+$'; then
@@ -132,8 +139,10 @@ jobs:
 
       # ── Tag the commit ──────────────────────────────────────────────
       - name: Create and push tag
+        env:
+          IN_VERSION: ${{ inputs.version }}
         run: |
-          VERSION="${{ inputs.version }}"
+          VERSION="${IN_VERSION}"
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git tag -a "v${VERSION}" -m "Pre-release v${VERSION}"

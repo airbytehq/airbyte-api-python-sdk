@@ -42,8 +42,10 @@ jobs:
     steps:
       - name: Check for generation drift
         id: drift-check
+        env:
+          NEEDS_VALIDATE_HAS_CHANGES: ${{ needs.validate.outputs.has_changes }}
         run: |
-          if [ "${{ needs.validate.outputs.has_changes }}" = "true" ]; then
+          if [ "${NEEDS_VALIDATE_HAS_CHANGES}" = "true" ]; then
               echo "has_diff=true" >> $GITHUB_OUTPUT
               echo "::warning::Generated code drift detected. The committed code does not match what the generation pipeline produces."
           else
