@@ -20,7 +20,7 @@ class DestinationResponseTypedDict(TypedDict):
     r"""Provides details of a single destination."""
 
     configuration: DestinationConfigurationTypedDict
-    r"""The values required to configure the destination."""
+    r"""The values required to configure the destination. Must include a `destinationType` string identifying the connector (e.g. 'postgres', 'bigquery'). Additional properties depend on the connector type; the API validates the full schema server-side."""
     created_at: int
     definition_id: str
     destination_id: str
@@ -35,7 +35,7 @@ class DestinationResponse(BaseModel):
     r"""Provides details of a single destination."""
 
     configuration: DestinationConfiguration
-    r"""The values required to configure the destination."""
+    r"""The values required to configure the destination. Must include a `destinationType` string identifying the connector (e.g. 'postgres', 'bigquery'). Additional properties depend on the connector type; the API validates the full schema server-side."""
 
     created_at: Annotated[int, pydantic.Field(alias="createdAt")]
 

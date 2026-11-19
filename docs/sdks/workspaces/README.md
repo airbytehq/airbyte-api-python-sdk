@@ -39,7 +39,7 @@ with AirbyteAPI(
             "configuration": {
 
             },
-            "name": models.OAuthActorNames.TRELLO,
+            "name": "trello",
         },
         "workspace_id": "<value>",
     })

@@ -1,9 +1,0 @@
-# SourceIntruder
-
-
-## Fields
-
-| Field                                                                                             | Type                                                                                              | Required                                                                                          | Description                                                                                       |
-| ------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- |
-| `access_token`                                                                                    | *str*                                                                                             | :heavy_check_mark:                                                                                | Your API Access token. See <a href="https://developers.intruder.io/docs/authentication">here</a>. |
-| `source_type`                                                                                     | [models.Intruder](../models/intruder.md)                                                          | :heavy_check_mark:                                                                                | N/A                                                                                               |

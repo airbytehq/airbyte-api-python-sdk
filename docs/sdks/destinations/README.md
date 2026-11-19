@@ -32,9 +32,23 @@ with AirbyteAPI(
 ) as aa_client:
 
     res = aa_client.destinations.create_destination(request=models.DestinationCreateRequest(
-        configuration=models.DestinationElasticsearch(
-            endpoint="<value>",
-            upsert=True,
+        configuration=models.DestinationConfiguration(
+            destination_type="elasticsearch",
+            **{
+                "airbyte_destination_name": "postgres",
+                "port": 5432,
+                "schema": "public",
+                "ssl_mode": {
+                    "mode": "prefer",
+                },
+                "tunnel_method": {
+                    "tunnel_method": "NO_TUNNEL",
+                },
+                "host": "localhost",
+                "database": "postgres",
+                "username": "postgres",
+                "password": "test",
+            },
         ),
         name="Postgres",
         workspace_id="2155ae5a-de39-4808-af6a-16fe7b8b4ed2",
@@ -63,9 +77,13 @@ with AirbyteAPI(
 ) as aa_client:
 
     res = aa_client.destinations.create_destination(request=models.DestinationCreateRequest(
-        configuration=models.DestinationTimeplus(
-            apikey="<value>",
-            endpoint="https://us-west-2.timeplus.cloud/workspace_id",
+        configuration=models.DestinationConfiguration(
+            destination_type="postgres",
+            **{
+                "user": "charles",
+                "host": "localhost",
+                "port": 5432,
+            },
         ),
         name="<value>",
         workspace_id="dc693cc0-960d-4c6c-9d1b-05e8bf0c96ba",
@@ -259,8 +277,14 @@ with AirbyteAPI(
 
     res = aa_client.destinations.patch_destination(request=api.PatchDestinationRequest(
         destination_patch_request=models.DestinationPatchRequest(
-            configuration=models.DestinationDuckdb(
-                destination_path="/local/destination.duckdb",
+            configuration=models.DestinationConfiguration(
+                destination_type="duckdb",
+                **{
+                    "conversion_window_days": 14,
+                    "customer_id": "1234567890",
+                    "start_date": 1672531200000,
+                    "end_date": 1704067200000,
+                },
             ),
             name="My Destination",
         ),
@@ -291,13 +315,13 @@ with AirbyteAPI(
 
     res = aa_client.destinations.patch_destination(request=api.PatchDestinationRequest(
         destination_patch_request=models.DestinationPatchRequest(
-            configuration=models.DestinationHubspot(
-                credentials=models.DestinationHubspotOAuth(
-                    client_id="<id>",
-                    client_secret="<value>",
-                    refresh_token="<value>",
-                    type=models.Type.O_AUTH,
-                ),
+            configuration=models.DestinationConfiguration(
+                destination_type="postgres",
+                **{
+                    "user": "charles",
+                    "host": "localhost",
+                    "port": 5432,
+                },
             ),
         ),
         destination_id="<value>",
@@ -349,12 +373,14 @@ with AirbyteAPI(
 
     res = aa_client.destinations.put_destination(request=api.PutDestinationRequest(
         destination_put_request=models.DestinationPutRequest(
-            configuration=models.DestinationSftpJSON(
-                destination_path="/json_data",
-                host="slight-consistency.info",
-                password="TRmq8ozhIC5jwDd",
-                port=22,
-                username="Easton_Wilderman",
+            configuration=models.DestinationConfiguration(
+                destination_type="sftp-json",
+                **{
+                    "conversion_window_days": 14,
+                    "customer_id": "1234567890",
+                    "start_date": 1672531200000,
+                    "end_date": 1704067200000,
+                },
             ),
             name="My Destination",
         ),
@@ -385,11 +411,13 @@ with AirbyteAPI(
 
     res = aa_client.destinations.put_destination(request=api.PutDestinationRequest(
         destination_put_request=models.DestinationPutRequest(
-            configuration=models.DestinationSalesforce(
-                client_id="<id>",
-                client_secret="<value>",
-                is_sandbox=False,
-                refresh_token="<value>",
+            configuration=models.DestinationConfiguration(
+                destination_type="postgres",
+                **{
+                    "user": "charles",
+                    "host": "localhost",
+                    "port": 5432,
+                },
             ),
             name="<value>",
         ),

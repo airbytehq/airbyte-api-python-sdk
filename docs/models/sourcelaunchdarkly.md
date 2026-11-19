@@ -1,9 +1,0 @@
-# SourceLaunchdarkly
-
-
-## Fields
-
-| Field                                                                                                        | Type                                                                                                         | Required                                                                                                     | Description                                                                                                  |
-| ------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------ |
-| `access_token`                                                                                               | *str*                                                                                                        | :heavy_check_mark:                                                                                           | Your Access token. See <a href="https://apidocs.launchdarkly.com/#section/Overview/Authentication">here</a>. |
-| `source_type`                                                                                                | [models.Launchdarkly](../models/launchdarkly.md)                                                             | :heavy_check_mark:                                                                                           | N/A                                                                                                          |

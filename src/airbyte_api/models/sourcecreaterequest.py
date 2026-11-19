@@ -15,7 +15,7 @@ from typing_extensions import Annotated, NotRequired, TypedDict
 
 class SourceCreateRequestTypedDict(TypedDict):
     configuration: SourceConfigurationTypedDict
-    r"""The values required to configure the source."""
+    r"""The values required to configure the source. Must include a `sourceType` string identifying the connector (e.g. 'postgres', 'github'). Additional properties depend on the connector type; the API validates the full schema server-side."""
     name: str
     r"""Name of the source e.g. dev-mysql-instance."""
     workspace_id: str
@@ -29,7 +29,7 @@ class SourceCreateRequestTypedDict(TypedDict):
 
 class SourceCreateRequest(BaseModel):
     configuration: SourceConfiguration
-    r"""The values required to configure the source."""
+    r"""The values required to configure the source. Must include a `sourceType` string identifying the connector (e.g. 'postgres', 'github'). Additional properties depend on the connector type; the API validates the full schema server-side."""
 
     name: str
     r"""Name of the source e.g. dev-mysql-instance."""
