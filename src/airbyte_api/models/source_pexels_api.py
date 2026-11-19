@@ -8,13 +8,16 @@ import pydantic
 from pydantic import model_serializer
 from pydantic.functional_validators import AfterValidator
 from typing import Optional
-from typing_extensions import Annotated, NotRequired, TypedDict
+from typing_extensions import Annotated, NotRequired, TypedDict, deprecated
 
 
 class PexelsAPI(str, Enum):
     PEXELS_API = "pexels-api"
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourcePexelsAPITypedDict(TypedDict):
     api_key: str
     r"""API key is required to access pexels api, For getting your's goto https://www.pexels.com/api/documentation and create account for free."""
@@ -31,6 +34,9 @@ class SourcePexelsAPITypedDict(TypedDict):
     source_type: PexelsAPI
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourcePexelsAPI(BaseModel):
     api_key: str
     r"""API key is required to access pexels api, For getting your's goto https://www.pexels.com/api/documentation and create account for free."""

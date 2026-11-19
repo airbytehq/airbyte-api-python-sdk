@@ -9,7 +9,13 @@ import pydantic
 from pydantic import Discriminator, Tag, model_serializer
 from pydantic.functional_validators import AfterValidator
 from typing import Optional, Union
-from typing_extensions import Annotated, NotRequired, TypeAliasType, TypedDict
+from typing_extensions import (
+    Annotated,
+    NotRequired,
+    TypeAliasType,
+    TypedDict,
+    deprecated,
+)
 
 
 class SourceZendeskChatCredentialsAccessToken(str, Enum):
@@ -114,6 +120,9 @@ class ZendeskChat(str, Enum):
     ZENDESK_CHAT = "zendesk-chat"
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceZendeskChatTypedDict(TypedDict):
     start_date: datetime
     r"""The date from which you'd like to replicate data for Zendesk Chat API, in the format YYYY-MM-DDT00:00:00Z."""
@@ -123,6 +132,9 @@ class SourceZendeskChatTypedDict(TypedDict):
     source_type: ZendeskChat
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceZendeskChat(BaseModel):
     start_date: datetime
     r"""The date from which you'd like to replicate data for Zendesk Chat API, in the format YYYY-MM-DDT00:00:00Z."""

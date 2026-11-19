@@ -7,13 +7,16 @@ from datetime import datetime
 from enum import Enum
 import pydantic
 from pydantic.functional_validators import AfterValidator
-from typing_extensions import Annotated, TypedDict
+from typing_extensions import Annotated, TypedDict, deprecated
 
 
 class HighLevel(str, Enum):
     HIGH_LEVEL = "high-level"
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceHighLevelTypedDict(TypedDict):
     api_key: str
     location_id: str
@@ -21,6 +24,9 @@ class SourceHighLevelTypedDict(TypedDict):
     source_type: HighLevel
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceHighLevel(BaseModel):
     api_key: str
 

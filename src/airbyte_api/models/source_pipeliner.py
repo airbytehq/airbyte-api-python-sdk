@@ -8,7 +8,7 @@ import pydantic
 from pydantic import model_serializer
 from pydantic.functional_validators import AfterValidator
 from typing import Optional
-from typing_extensions import Annotated, NotRequired, TypedDict
+from typing_extensions import Annotated, NotRequired, TypedDict, deprecated
 
 
 class SourcePipelinerDataCenter(str, Enum):
@@ -22,6 +22,9 @@ class Pipeliner(str, Enum):
     PIPELINER = "pipeliner"
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourcePipelinerTypedDict(TypedDict):
     service: SourcePipelinerDataCenter
     spaceid: str
@@ -30,6 +33,9 @@ class SourcePipelinerTypedDict(TypedDict):
     source_type: Pipeliner
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourcePipeliner(BaseModel):
     service: SourcePipelinerDataCenter
 

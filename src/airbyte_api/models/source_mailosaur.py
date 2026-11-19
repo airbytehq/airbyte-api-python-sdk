@@ -8,13 +8,16 @@ import pydantic
 from pydantic import model_serializer
 from pydantic.functional_validators import AfterValidator
 from typing import Optional
-from typing_extensions import Annotated, NotRequired, TypedDict
+from typing_extensions import Annotated, NotRequired, TypedDict, deprecated
 
 
 class Mailosaur(str, Enum):
     MAILOSAUR = "mailosaur"
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceMailosaurTypedDict(TypedDict):
     username: str
     r"""Enter \"api\" here"""
@@ -23,6 +26,9 @@ class SourceMailosaurTypedDict(TypedDict):
     source_type: Mailosaur
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceMailosaur(BaseModel):
     username: str
     r"""Enter \"api\" here"""

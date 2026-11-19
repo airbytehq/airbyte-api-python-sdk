@@ -9,7 +9,13 @@ import pydantic
 from pydantic import Discriminator, Tag, model_serializer
 from pydantic.functional_validators import AfterValidator
 from typing import Optional, Union
-from typing_extensions import Annotated, NotRequired, TypeAliasType, TypedDict
+from typing_extensions import (
+    Annotated,
+    NotRequired,
+    TypeAliasType,
+    TypedDict,
+    deprecated,
+)
 
 
 class SourceMailchimpAuthTypeApikey(str, Enum):
@@ -103,6 +109,9 @@ class MailchimpEnum(str, Enum):
     MAILCHIMP = "mailchimp"
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceMailchimpTypedDict(TypedDict):
     credentials: NotRequired[SourceMailchimpAuthenticationTypedDict]
     source_type: MailchimpEnum
@@ -110,6 +119,9 @@ class SourceMailchimpTypedDict(TypedDict):
     r"""The date from which you want to start syncing data for Incremental streams. Only records that have been created or modified since this date will be synced. If left blank, all data will by synced."""
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceMailchimp(BaseModel):
     credentials: Optional[SourceMailchimpAuthentication] = None
 

@@ -8,13 +8,16 @@ import pydantic
 from pydantic import model_serializer
 from pydantic.functional_validators import AfterValidator
 from typing import Optional
-from typing_extensions import Annotated, NotRequired, TypedDict
+from typing_extensions import Annotated, NotRequired, TypedDict, deprecated
 
 
 class Appsflyer(str, Enum):
     APPSFLYER = "appsflyer"
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceAppsflyerTypedDict(TypedDict):
     api_token: str
     r"""Pull API token for authentication. If you change the account admin, the token changes, and you must update scripts with the new token. <a href=\"https://support.appsflyer.com/hc/en-us/articles/360004562377\">Get the API token in the Dashboard</a>."""
@@ -27,6 +30,9 @@ class SourceAppsflyerTypedDict(TypedDict):
     r"""Time zone in which date times are stored. The project timezone may be found in the App settings in the AppsFlyer console."""
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceAppsflyer(BaseModel):
     api_token: str
     r"""Pull API token for authentication. If you change the account admin, the token changes, and you must update scripts with the new token. <a href=\"https://support.appsflyer.com/hc/en-us/articles/360004562377\">Get the API token in the Dashboard</a>."""

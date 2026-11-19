@@ -8,13 +8,16 @@ import pydantic
 from pydantic import model_serializer
 from pydantic.functional_validators import AfterValidator
 from typing import List, Optional
-from typing_extensions import Annotated, NotRequired, TypedDict
+from typing_extensions import Annotated, NotRequired, TypedDict, deprecated
 
 
 class Looker(str, Enum):
     LOOKER = "looker"
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceLookerTypedDict(TypedDict):
     client_id: str
     r"""The Client ID is first part of an API3 key that is specific to each Looker user. See the <a href=\"https://docs.airbyte.com/integrations/sources/looker\">docs</a> for more information on how to generate this key."""
@@ -27,6 +30,9 @@ class SourceLookerTypedDict(TypedDict):
     source_type: Looker
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceLooker(BaseModel):
     client_id: str
     r"""The Client ID is first part of an API3 key that is specific to each Looker user. See the <a href=\"https://docs.airbyte.com/integrations/sources/looker\">docs</a> for more information on how to generate this key."""

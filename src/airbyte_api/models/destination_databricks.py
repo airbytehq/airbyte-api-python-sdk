@@ -8,7 +8,13 @@ import pydantic
 from pydantic import Discriminator, Tag, model_serializer
 from pydantic.functional_validators import AfterValidator
 from typing import Optional, Union
-from typing_extensions import Annotated, NotRequired, TypeAliasType, TypedDict
+from typing_extensions import (
+    Annotated,
+    NotRequired,
+    TypeAliasType,
+    TypedDict,
+    deprecated,
+)
 
 
 class AuthTypeBasic(str, Enum):
@@ -76,6 +82,9 @@ class Databricks(str, Enum):
     DATABRICKS = "databricks"
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'destinationType' key instead.."
+)
 class DestinationDatabricksTypedDict(TypedDict):
     authentication: DestinationDatabricksAuthenticationTypedDict
     r"""Authentication mechanism for Staging files and running queries"""
@@ -98,6 +107,9 @@ class DestinationDatabricksTypedDict(TypedDict):
     r"""The default schema tables are written. If not specified otherwise, the \"default\" will be used."""
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'destinationType' key instead.."
+)
 class DestinationDatabricks(BaseModel):
     authentication: DestinationDatabricksAuthentication
     r"""Authentication mechanism for Staging files and running queries"""

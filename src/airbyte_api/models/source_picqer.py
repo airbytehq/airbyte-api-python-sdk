@@ -9,13 +9,16 @@ import pydantic
 from pydantic import model_serializer
 from pydantic.functional_validators import AfterValidator
 from typing import Optional
-from typing_extensions import Annotated, NotRequired, TypedDict
+from typing_extensions import Annotated, NotRequired, TypedDict, deprecated
 
 
 class Picqer(str, Enum):
     PICQER = "picqer"
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourcePicqerTypedDict(TypedDict):
     organization_name: str
     r"""The organization name which is used to login to picqer"""
@@ -25,6 +28,9 @@ class SourcePicqerTypedDict(TypedDict):
     source_type: Picqer
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourcePicqer(BaseModel):
     organization_name: str
     r"""The organization name which is used to login to picqer"""

@@ -7,13 +7,16 @@ from datetime import datetime
 from enum import Enum
 import pydantic
 from pydantic.functional_validators import AfterValidator
-from typing_extensions import Annotated, TypedDict
+from typing_extensions import Annotated, TypedDict, deprecated
 
 
 class Ezofficeinventory(str, Enum):
     EZOFFICEINVENTORY = "ezofficeinventory"
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceEzofficeinventoryTypedDict(TypedDict):
     api_key: str
     r"""Your EZOfficeInventory Access Token. API Access is disabled by default. Enable API Access in Settings > Integrations > API Integration and click on Update to generate a new access token"""
@@ -24,6 +27,9 @@ class SourceEzofficeinventoryTypedDict(TypedDict):
     source_type: Ezofficeinventory
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceEzofficeinventory(BaseModel):
     api_key: str
     r"""Your EZOfficeInventory Access Token. API Access is disabled by default. Enable API Access in Settings > Integrations > API Integration and click on Update to generate a new access token"""

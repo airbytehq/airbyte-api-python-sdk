@@ -9,7 +9,7 @@ import pydantic
 from pydantic import model_serializer
 from pydantic.functional_validators import AfterValidator
 from typing import Any, List, Optional
-from typing_extensions import Annotated, NotRequired, TypedDict
+from typing_extensions import Annotated, NotRequired, TypedDict, deprecated
 
 
 class Cimis(str, Enum):
@@ -28,6 +28,9 @@ class UnitOfMeasure(str, Enum):
     M = "M"
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceCimisTypedDict(TypedDict):
     api_key: str
     end_date: datetime
@@ -40,6 +43,9 @@ class SourceCimisTypedDict(TypedDict):
     unit_of_measure: NotRequired[UnitOfMeasure]
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceCimis(BaseModel):
     api_key: str
 

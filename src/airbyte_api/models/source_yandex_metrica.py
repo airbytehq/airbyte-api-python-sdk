@@ -9,13 +9,16 @@ import pydantic
 from pydantic import model_serializer
 from pydantic.functional_validators import AfterValidator
 from typing import Optional
-from typing_extensions import Annotated, NotRequired, TypedDict
+from typing_extensions import Annotated, NotRequired, TypedDict, deprecated
 
 
 class YandexMetrica(str, Enum):
     YANDEX_METRICA = "yandex-metrica"
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceYandexMetricaTypedDict(TypedDict):
     auth_token: str
     r"""Your Yandex Metrica API access token"""
@@ -28,6 +31,9 @@ class SourceYandexMetricaTypedDict(TypedDict):
     source_type: YandexMetrica
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceYandexMetrica(BaseModel):
     auth_token: str
     r"""Your Yandex Metrica API access token"""

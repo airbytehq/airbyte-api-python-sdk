@@ -9,7 +9,13 @@ import pydantic
 from pydantic import model_serializer
 from pydantic.functional_validators import AfterValidator
 from typing import Literal, Optional, Union
-from typing_extensions import Annotated, NotRequired, TypeAliasType, TypedDict
+from typing_extensions import (
+    Annotated,
+    NotRequired,
+    TypeAliasType,
+    TypedDict,
+    deprecated,
+)
 
 
 class PlanCustom(str, Enum):
@@ -411,6 +417,9 @@ class Freshdesk(str, Enum):
     FRESHDESK = "freshdesk"
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceFreshdeskTypedDict(TypedDict):
     api_key: str
     r"""Freshdesk API Key. See the <a href=\"https://docs.airbyte.com/integrations/sources/freshdesk\">docs</a> for more information on how to obtain this key."""
@@ -427,6 +436,9 @@ class SourceFreshdeskTypedDict(TypedDict):
     r"""UTC date and time. Any data created after this date will be replicated. If this parameter is not set, all data will be replicated."""
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceFreshdesk(BaseModel):
     api_key: str
     r"""Freshdesk API Key. See the <a href=\"https://docs.airbyte.com/integrations/sources/freshdesk\">docs</a> for more information on how to obtain this key."""

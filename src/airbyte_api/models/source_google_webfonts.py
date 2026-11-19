@@ -8,13 +8,16 @@ import pydantic
 from pydantic import model_serializer
 from pydantic.functional_validators import AfterValidator
 from typing import Optional
-from typing_extensions import Annotated, NotRequired, TypedDict
+from typing_extensions import Annotated, NotRequired, TypedDict, deprecated
 
 
 class GoogleWebfonts(str, Enum):
     GOOGLE_WEBFONTS = "google-webfonts"
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceGoogleWebfontsTypedDict(TypedDict):
     api_key: str
     r"""API key is required to access google apis, For getting your's goto google console and generate api key for Webfonts"""
@@ -27,6 +30,9 @@ class SourceGoogleWebfontsTypedDict(TypedDict):
     source_type: GoogleWebfonts
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceGoogleWebfonts(BaseModel):
     api_key: str
     r"""API key is required to access google apis, For getting your's goto google console and generate api key for Webfonts"""

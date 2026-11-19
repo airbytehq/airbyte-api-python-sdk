@@ -7,7 +7,7 @@ from enum import Enum
 import pydantic
 from pydantic.functional_validators import AfterValidator
 from typing import List
-from typing_extensions import Annotated, TypedDict
+from typing_extensions import Annotated, TypedDict, deprecated
 
 
 class FieldT(str, Enum):
@@ -49,6 +49,9 @@ class SpotifyAds(str, Enum):
     SPOTIFY_ADS = "spotify-ads"
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceSpotifyAdsTypedDict(TypedDict):
     ad_account_id: str
     r"""The ID of the Spotify Ad Account you want to sync data from."""
@@ -65,6 +68,9 @@ class SourceSpotifyAdsTypedDict(TypedDict):
     source_type: SpotifyAds
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceSpotifyAds(BaseModel):
     ad_account_id: str
     r"""The ID of the Spotify Ad Account you want to sync data from."""

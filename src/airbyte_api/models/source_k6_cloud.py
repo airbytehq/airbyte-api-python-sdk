@@ -6,19 +6,25 @@ from airbyte_api.utils import validate_const
 from enum import Enum
 import pydantic
 from pydantic.functional_validators import AfterValidator
-from typing_extensions import Annotated, TypedDict
+from typing_extensions import Annotated, TypedDict, deprecated
 
 
 class K6Cloud(str, Enum):
     K6_CLOUD = "k6-cloud"
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceK6CloudTypedDict(TypedDict):
     api_token: str
     r"""Your API Token. See <a href=\"https://k6.io/docs/cloud/integrations/token/\">here</a>. The key is case sensitive."""
     source_type: K6Cloud
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceK6Cloud(BaseModel):
     api_token: str
     r"""Your API Token. See <a href=\"https://k6.io/docs/cloud/integrations/token/\">here</a>. The key is case sensitive."""

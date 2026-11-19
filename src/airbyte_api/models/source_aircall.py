@@ -7,13 +7,16 @@ from datetime import datetime
 from enum import Enum
 import pydantic
 from pydantic.functional_validators import AfterValidator
-from typing_extensions import Annotated, TypedDict
+from typing_extensions import Annotated, TypedDict, deprecated
 
 
 class Aircall(str, Enum):
     AIRCALL = "aircall"
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceAircallTypedDict(TypedDict):
     api_id: str
     r"""App ID found at settings https://dashboard.aircall.io/integrations/api-keys"""
@@ -24,6 +27,9 @@ class SourceAircallTypedDict(TypedDict):
     source_type: Aircall
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceAircall(BaseModel):
     api_id: str
     r"""App ID found at settings https://dashboard.aircall.io/integrations/api-keys"""

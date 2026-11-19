@@ -7,13 +7,16 @@ from datetime import datetime
 from enum import Enum
 import pydantic
 from pydantic.functional_validators import AfterValidator
-from typing_extensions import Annotated, TypedDict
+from typing_extensions import Annotated, TypedDict, deprecated
 
 
 class SolarwindsServiceDesk(str, Enum):
     SOLARWINDS_SERVICE_DESK = "solarwinds-service-desk"
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceSolarwindsServiceDeskTypedDict(TypedDict):
     api_key_2: str
     r"""Refer to `https://documentation.solarwinds.com/en/success_center/swsd/content/completeguidetoswsd/token-authentication-for-api-integration.htm#link4`"""
@@ -21,6 +24,9 @@ class SourceSolarwindsServiceDeskTypedDict(TypedDict):
     source_type: SolarwindsServiceDesk
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceSolarwindsServiceDesk(BaseModel):
     api_key_2: str
     r"""Refer to `https://documentation.solarwinds.com/en/success_center/swsd/content/completeguidetoswsd/token-authentication-for-api-integration.htm#link4`"""

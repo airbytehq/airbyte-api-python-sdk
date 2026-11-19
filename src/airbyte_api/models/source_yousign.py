@@ -9,7 +9,7 @@ import pydantic
 from pydantic import model_serializer
 from pydantic.functional_validators import AfterValidator
 from typing import Optional
-from typing_extensions import Annotated, NotRequired, TypedDict
+from typing_extensions import Annotated, NotRequired, TypedDict, deprecated
 
 
 class Yousign(str, Enum):
@@ -23,6 +23,9 @@ class SourceYousignSubdomain(str, Enum):
     API = "api"
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceYousignTypedDict(TypedDict):
     api_key: str
     r"""API key or access token"""
@@ -34,6 +37,9 @@ class SourceYousignTypedDict(TypedDict):
     r"""The subdomain for the Yousign API environment, such as 'sandbox' or 'api'."""
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceYousign(BaseModel):
     api_key: str
     r"""API key or access token"""

@@ -8,13 +8,16 @@ import pydantic
 from pydantic import model_serializer
 from pydantic.functional_validators import AfterValidator
 from typing import Optional
-from typing_extensions import Annotated, NotRequired, TypedDict
+from typing_extensions import Annotated, NotRequired, TypedDict, deprecated
 
 
 class Kyve(str, Enum):
     KYVE = "kyve"
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceKyveTypedDict(TypedDict):
     pool_ids: str
     r"""The IDs of the KYVE storage pool you want to archive. (Comma separated)"""
@@ -25,6 +28,9 @@ class SourceKyveTypedDict(TypedDict):
     r"""URL to the KYVE Chain API."""
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceKyve(BaseModel):
     pool_ids: str
     r"""The IDs of the KYVE storage pool you want to archive. (Comma separated)"""

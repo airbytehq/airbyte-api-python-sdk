@@ -1,6 +1,8 @@
-# DestinationS3DataLake
+# ~~DestinationS3DataLake~~
 
 Defines the configurations required to connect to an Iceberg catalog, including warehouse location, main branch name, and catalog type specifics.
+
+> :warning: **DEPRECATED**: Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'destinationType' key instead..
 
 
 ## Fields

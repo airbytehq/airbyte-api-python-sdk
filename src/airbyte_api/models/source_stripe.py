@@ -9,13 +9,16 @@ import pydantic
 from pydantic import model_serializer
 from pydantic.functional_validators import AfterValidator
 from typing import Optional
-from typing_extensions import Annotated, NotRequired, TypedDict
+from typing_extensions import Annotated, NotRequired, TypedDict, deprecated
 
 
 class Stripe(str, Enum):
     STRIPE = "stripe"
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceStripeTypedDict(TypedDict):
     account_id: str
     r"""Your Stripe account ID (starts with 'acct_', find yours <a href=\"https://dashboard.stripe.com/settings/account\">here</a>)."""
@@ -34,6 +37,9 @@ class SourceStripeTypedDict(TypedDict):
     r"""UTC date and time in the format 2017-01-25T00:00:00Z. Only data generated after this date will be replicated."""
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceStripe(BaseModel):
     account_id: str
     r"""Your Stripe account ID (starts with 'acct_', find yours <a href=\"https://dashboard.stripe.com/settings/account\">here</a>)."""

@@ -7,13 +7,16 @@ from datetime import datetime
 from enum import Enum
 import pydantic
 from pydantic.functional_validators import AfterValidator
-from typing_extensions import Annotated, TypedDict
+from typing_extensions import Annotated, TypedDict, deprecated
 
 
 class Vercel(str, Enum):
     VERCEL = "vercel"
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceVercelTypedDict(TypedDict):
     access_token: str
     r"""Access token to authenticate with the Vercel API. Create and manage tokens in your Vercel account settings."""
@@ -21,6 +24,9 @@ class SourceVercelTypedDict(TypedDict):
     source_type: Vercel
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceVercel(BaseModel):
     access_token: str
     r"""Access token to authenticate with the Vercel API. Create and manage tokens in your Vercel account settings."""

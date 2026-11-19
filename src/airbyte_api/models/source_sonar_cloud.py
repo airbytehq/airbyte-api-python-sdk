@@ -9,13 +9,16 @@ import pydantic
 from pydantic import model_serializer
 from pydantic.functional_validators import AfterValidator
 from typing import Any, List, Optional
-from typing_extensions import Annotated, NotRequired, TypedDict
+from typing_extensions import Annotated, NotRequired, TypedDict, deprecated
 
 
 class SonarCloud(str, Enum):
     SONAR_CLOUD = "sonar-cloud"
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceSonarCloudTypedDict(TypedDict):
     component_keys: List[Any]
     r"""Comma-separated list of component keys."""
@@ -30,6 +33,9 @@ class SourceSonarCloudTypedDict(TypedDict):
     r"""To retrieve issues created after the given date (inclusive)."""
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceSonarCloud(BaseModel):
     component_keys: List[Any]
     r"""Comma-separated list of component keys."""

@@ -6,13 +6,16 @@ from airbyte_api.utils import validate_const
 from enum import Enum
 import pydantic
 from pydantic.functional_validators import AfterValidator
-from typing_extensions import Annotated, TypedDict
+from typing_extensions import Annotated, TypedDict, deprecated
 
 
 class Freshsales(str, Enum):
     FRESHSALES = "freshsales"
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceFreshsalesTypedDict(TypedDict):
     api_key: str
     r"""Freshsales API Key. See <a href=\"https://crmsupport.freshworks.com/support/solutions/articles/50000002503-how-to-find-my-api-key-\">here</a>. The key is case sensitive."""
@@ -21,6 +24,9 @@ class SourceFreshsalesTypedDict(TypedDict):
     source_type: Freshsales
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceFreshsales(BaseModel):
     api_key: str
     r"""Freshsales API Key. See <a href=\"https://crmsupport.freshworks.com/support/solutions/articles/50000002503-how-to-find-my-api-key-\">here</a>. The key is case sensitive."""

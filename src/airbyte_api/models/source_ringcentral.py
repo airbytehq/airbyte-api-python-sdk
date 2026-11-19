@@ -6,13 +6,16 @@ from airbyte_api.utils import validate_const
 from enum import Enum
 import pydantic
 from pydantic.functional_validators import AfterValidator
-from typing_extensions import Annotated, TypedDict
+from typing_extensions import Annotated, TypedDict, deprecated
 
 
 class Ringcentral(str, Enum):
     RINGCENTRAL = "ringcentral"
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceRingcentralTypedDict(TypedDict):
     account_id: str
     r"""Could be seen at response to basic api call to an endpoint with ~ operator.  Example- (https://platform.devtest.ringcentral.com/restapi/v1.0/account/~/extension/~/business-hours)
@@ -27,6 +30,9 @@ class SourceRingcentralTypedDict(TypedDict):
     source_type: Ringcentral
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceRingcentral(BaseModel):
     account_id: str
     r"""Could be seen at response to basic api call to an endpoint with ~ operator.  Example- (https://platform.devtest.ringcentral.com/restapi/v1.0/account/~/extension/~/business-hours)

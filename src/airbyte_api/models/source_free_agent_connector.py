@@ -9,13 +9,16 @@ import pydantic
 from pydantic import model_serializer
 from pydantic.functional_validators import AfterValidator
 from typing import Optional
-from typing_extensions import Annotated, NotRequired, TypedDict
+from typing_extensions import Annotated, NotRequired, TypedDict, deprecated
 
 
 class FreeAgentConnector(str, Enum):
     FREE_AGENT_CONNECTOR = "free-agent-connector"
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceFreeAgentConnectorTypedDict(TypedDict):
     client_id: str
     client_refresh_token_2: str
@@ -25,6 +28,9 @@ class SourceFreeAgentConnectorTypedDict(TypedDict):
     updated_since: NotRequired[datetime]
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceFreeAgentConnector(BaseModel):
     client_id: str
 

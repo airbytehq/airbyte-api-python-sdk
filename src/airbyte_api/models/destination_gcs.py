@@ -8,7 +8,13 @@ import pydantic
 from pydantic import model_serializer
 from pydantic.functional_validators import AfterValidator
 from typing import Optional, Union
-from typing_extensions import Annotated, NotRequired, TypeAliasType, TypedDict
+from typing_extensions import (
+    Annotated,
+    NotRequired,
+    TypeAliasType,
+    TypedDict,
+    deprecated,
+)
 
 
 class DestinationGcsCredentialType(str, Enum):
@@ -698,6 +704,9 @@ class GCSBucketRegion(str, Enum):
     NAM4 = "nam4"
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'destinationType' key instead.."
+)
 class DestinationGcsTypedDict(TypedDict):
     credential: DestinationGcsAuthenticationTypedDict
     r"""An HMAC key is a type of credential and can be associated with a service account or a user account in Cloud Storage. Read more <a href=\"https://cloud.google.com/storage/docs/authentication/hmackeys\">here</a>."""
@@ -712,6 +721,9 @@ class DestinationGcsTypedDict(TypedDict):
     r"""Select a Region of the GCS Bucket. Read more <a href=\"https://cloud.google.com/storage/docs/locations\">here</a>."""
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'destinationType' key instead.."
+)
 class DestinationGcs(BaseModel):
     credential: DestinationGcsAuthentication
     r"""An HMAC key is a type of credential and can be associated with a service account or a user account in Cloud Storage. Read more <a href=\"https://cloud.google.com/storage/docs/authentication/hmackeys\">here</a>."""

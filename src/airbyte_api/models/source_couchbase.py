@@ -9,13 +9,16 @@ import pydantic
 from pydantic import model_serializer
 from pydantic.functional_validators import AfterValidator
 from typing import Optional
-from typing_extensions import Annotated, NotRequired, TypedDict
+from typing_extensions import Annotated, NotRequired, TypedDict, deprecated
 
 
 class Couchbase(str, Enum):
     COUCHBASE = "couchbase"
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceCouchbaseTypedDict(TypedDict):
     bucket: str
     r"""The name of the bucket to sync data from"""
@@ -30,6 +33,9 @@ class SourceCouchbaseTypedDict(TypedDict):
     r"""The date from which you'd like to replicate data for incremental streams, in the format YYYY-MM-DDT00:00:00Z. All data generated after this date will be replicated. If not set, all data will be replicated."""
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceCouchbase(BaseModel):
     bucket: str
     r"""The name of the bucket to sync data from"""

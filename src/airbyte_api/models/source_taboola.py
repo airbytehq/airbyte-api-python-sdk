@@ -6,13 +6,16 @@ from airbyte_api.utils import validate_const
 from enum import Enum
 import pydantic
 from pydantic.functional_validators import AfterValidator
-from typing_extensions import Annotated, TypedDict
+from typing_extensions import Annotated, TypedDict, deprecated
 
 
 class Taboola(str, Enum):
     TABOOLA = "taboola"
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceTaboolaTypedDict(TypedDict):
     account_id: str
     r"""The ID associated with your taboola account"""
@@ -21,6 +24,9 @@ class SourceTaboolaTypedDict(TypedDict):
     source_type: Taboola
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceTaboola(BaseModel):
     account_id: str
     r"""The ID associated with your taboola account"""

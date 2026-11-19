@@ -8,13 +8,16 @@ import pydantic
 from pydantic import model_serializer
 from pydantic.functional_validators import AfterValidator
 from typing import Optional
-from typing_extensions import Annotated, NotRequired, TypedDict
+from typing_extensions import Annotated, NotRequired, TypedDict, deprecated
 
 
 class Unleash(str, Enum):
     UNLEASH = "unleash"
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceUnleashTypedDict(TypedDict):
     api_token: str
     r"""Your API Token (Server-Side SDK [Client]). See <a href=\"https://docs.getunleash.io/how-to/how-to-create-api-tokens/\">here</a>. The token is case sensitive."""
@@ -27,6 +30,9 @@ class SourceUnleashTypedDict(TypedDict):
     source_type: Unleash
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceUnleash(BaseModel):
     api_token: str
     r"""Your API Token (Server-Side SDK [Client]). See <a href=\"https://docs.getunleash.io/how-to/how-to-create-api-tokens/\">here</a>. The token is case sensitive."""

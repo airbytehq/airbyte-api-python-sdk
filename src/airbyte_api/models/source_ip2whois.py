@@ -8,13 +8,16 @@ import pydantic
 from pydantic import model_serializer
 from pydantic.functional_validators import AfterValidator
 from typing import Optional
-from typing_extensions import Annotated, NotRequired, TypedDict
+from typing_extensions import Annotated, NotRequired, TypedDict, deprecated
 
 
 class Ip2whois(str, Enum):
     IP2WHOIS = "ip2whois"
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceIp2whoisTypedDict(TypedDict):
     api_key: NotRequired[str]
     r"""Your API Key. See <a href=\"https://www.ip2whois.com/developers-api\">here</a>."""
@@ -23,6 +26,9 @@ class SourceIp2whoisTypedDict(TypedDict):
     source_type: Ip2whois
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceIp2whois(BaseModel):
     api_key: Optional[str] = None
     r"""Your API Key. See <a href=\"https://www.ip2whois.com/developers-api\">here</a>."""

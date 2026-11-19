@@ -8,7 +8,7 @@ import pydantic
 from pydantic import model_serializer
 from pydantic.functional_validators import AfterValidator
 from typing import Optional
-from typing_extensions import Annotated, NotRequired, TypedDict
+from typing_extensions import Annotated, NotRequired, TypedDict, deprecated
 
 
 class SourceZohoExpenseDataCenter(str, Enum):
@@ -28,6 +28,9 @@ class ZohoExpense(str, Enum):
     ZOHO_EXPENSE = "zoho-expense"
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceZohoExpenseTypedDict(TypedDict):
     client_id: str
     client_secret: str
@@ -37,6 +40,9 @@ class SourceZohoExpenseTypedDict(TypedDict):
     source_type: ZohoExpense
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceZohoExpense(BaseModel):
     client_id: str
 

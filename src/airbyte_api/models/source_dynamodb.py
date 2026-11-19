@@ -14,7 +14,13 @@ import pydantic
 from pydantic import ConfigDict, model_serializer
 from pydantic.functional_validators import AfterValidator
 from typing import Any, Dict, Optional, Union
-from typing_extensions import Annotated, NotRequired, TypeAliasType, TypedDict
+from typing_extensions import (
+    Annotated,
+    NotRequired,
+    TypeAliasType,
+    TypedDict,
+    deprecated,
+)
 
 
 class AuthTypeRole(str, Enum):
@@ -182,6 +188,9 @@ class SourceDynamodbDynamodb(str, Enum):
     DYNAMODB = "dynamodb"
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceDynamodbTypedDict(TypedDict):
     credentials: NotRequired[Nullable[SourceDynamodbCredentialsTypedDict]]
     r"""Credentials for the service"""
@@ -196,6 +205,9 @@ class SourceDynamodbTypedDict(TypedDict):
     source_type: SourceDynamodbDynamodb
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceDynamodb(BaseModel):
     credentials: OptionalNullable[SourceDynamodbCredentials] = UNSET
     r"""Credentials for the service"""

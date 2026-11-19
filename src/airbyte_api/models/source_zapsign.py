@@ -9,13 +9,16 @@ import pydantic
 from pydantic import model_serializer
 from pydantic.functional_validators import AfterValidator
 from typing import Any, List, Optional
-from typing_extensions import Annotated, NotRequired, TypedDict
+from typing_extensions import Annotated, NotRequired, TypedDict, deprecated
 
 
 class Zapsign(str, Enum):
     ZAPSIGN = "zapsign"
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceZapsignTypedDict(TypedDict):
     api_token: str
     r"""Your static API token for authentication. You can find it in your ZapSign account under the 'Settings' or 'API' section. For more details, refer to the [Getting Started](https://docs.zapsign.com.br/english/getting-started#how-do-i-get-my-api-token) guide."""
@@ -25,6 +28,9 @@ class SourceZapsignTypedDict(TypedDict):
     source_type: Zapsign
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceZapsign(BaseModel):
     api_token: str
     r"""Your static API token for authentication. You can find it in your ZapSign account under the 'Settings' or 'API' section. For more details, refer to the [Getting Started](https://docs.zapsign.com.br/english/getting-started#how-do-i-get-my-api-token) guide."""

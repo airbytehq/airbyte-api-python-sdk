@@ -8,7 +8,13 @@ import pydantic
 from pydantic import model_serializer
 from pydantic.functional_validators import AfterValidator
 from typing import Optional, Union
-from typing_extensions import Annotated, NotRequired, TypeAliasType, TypedDict
+from typing_extensions import (
+    Annotated,
+    NotRequired,
+    TypeAliasType,
+    TypedDict,
+    deprecated,
+)
 
 
 class SourceMicrosoftTeamsAuthTypeToken(str, Enum):
@@ -132,6 +138,9 @@ class MicrosoftTeamsEnum(str, Enum):
     MICROSOFT_TEAMS = "microsoft-teams"
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceMicrosoftTeamsTypedDict(TypedDict):
     period: str
     r"""Specifies the length of time over which the Team Device Report stream is aggregated. The supported values are: D7, D30, D90, and D180."""
@@ -140,6 +149,9 @@ class SourceMicrosoftTeamsTypedDict(TypedDict):
     source_type: MicrosoftTeamsEnum
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceMicrosoftTeams(BaseModel):
     period: str
     r"""Specifies the length of time over which the Team Device Report stream is aggregated. The supported values are: D7, D30, D90, and D180."""

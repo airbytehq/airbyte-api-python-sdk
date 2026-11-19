@@ -6,19 +6,25 @@ from airbyte_api.utils import validate_const
 from enum import Enum
 import pydantic
 from pydantic.functional_validators import AfterValidator
-from typing_extensions import Annotated, TypedDict
+from typing_extensions import Annotated, TypedDict, deprecated
 
 
 class Statuspage(str, Enum):
     STATUSPAGE = "statuspage"
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceStatuspageTypedDict(TypedDict):
     api_key: str
     r"""Your API Key. See <a href=\"https://developer.statuspage.io/#section/Authentication/api_key\">here</a>."""
     source_type: Statuspage
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceStatuspage(BaseModel):
     api_key: str
     r"""Your API Key. See <a href=\"https://developer.statuspage.io/#section/Authentication/api_key\">here</a>."""

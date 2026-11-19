@@ -9,13 +9,16 @@ import pydantic
 from pydantic import model_serializer
 from pydantic.functional_validators import AfterValidator
 from typing import Optional
-from typing_extensions import Annotated, NotRequired, TypedDict
+from typing_extensions import Annotated, NotRequired, TypedDict, deprecated
 
 
 class Recharge(str, Enum):
     RECHARGE = "recharge"
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceRechargeTypedDict(TypedDict):
     access_token: str
     r"""The value of the Access Token generated. See the <a href=\"https://docs.airbyte.com/integrations/sources/recharge\">docs</a> for more information."""
@@ -28,6 +31,9 @@ class SourceRechargeTypedDict(TypedDict):
     r"""Define whether or not the `Orders` stream should use the deprecated `2021-01` API version, or use `2021-11`, otherwise."""
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceRecharge(BaseModel):
     access_token: str
     r"""The value of the Access Token generated. See the <a href=\"https://docs.airbyte.com/integrations/sources/recharge\">docs</a> for more information."""

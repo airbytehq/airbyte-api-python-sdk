@@ -8,13 +8,16 @@ import pydantic
 from pydantic import model_serializer
 from pydantic.functional_validators import AfterValidator
 from typing import Optional
-from typing_extensions import Annotated, NotRequired, TypedDict
+from typing_extensions import Annotated, NotRequired, TypedDict, deprecated
 
 
 class Plausible(str, Enum):
     PLAUSIBLE = "plausible"
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourcePlausibleTypedDict(TypedDict):
     api_key: str
     r"""Plausible API Key. See the <a href=\"https://plausible.io/docs/stats-api\">docs</a> for information on how to generate this key."""
@@ -27,6 +30,9 @@ class SourcePlausibleTypedDict(TypedDict):
     r"""Start date for data to retrieve, in ISO-8601 format."""
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourcePlausible(BaseModel):
     api_key: str
     r"""Plausible API Key. See the <a href=\"https://plausible.io/docs/stats-api\">docs</a> for information on how to generate this key."""

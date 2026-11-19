@@ -8,7 +8,13 @@ import pydantic
 from pydantic import ConfigDict, model_serializer
 from pydantic.functional_validators import AfterValidator
 from typing import Any, Dict, Optional, Union
-from typing_extensions import Annotated, NotRequired, TypeAliasType, TypedDict
+from typing_extensions import (
+    Annotated,
+    NotRequired,
+    TypeAliasType,
+    TypedDict,
+    deprecated,
+)
 
 
 class SourceRetentlyAuthTypeToken(str, Enum):
@@ -149,12 +155,18 @@ class Retently(str, Enum):
     RETENTLY = "retently"
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceRetentlyTypedDict(TypedDict):
     credentials: NotRequired[SourceRetentlyAuthenticationMechanismTypedDict]
     r"""Choose how to authenticate to Retently"""
     source_type: Retently
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceRetently(BaseModel):
     credentials: Optional[SourceRetentlyAuthenticationMechanism] = None
     r"""Choose how to authenticate to Retently"""

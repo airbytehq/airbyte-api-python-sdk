@@ -8,19 +8,25 @@ import pydantic
 from pydantic import model_serializer
 from pydantic.functional_validators import AfterValidator
 from typing import Optional
-from typing_extensions import Annotated, NotRequired, TypedDict
+from typing_extensions import Annotated, NotRequired, TypedDict, deprecated
 
 
 class Xkcd(str, Enum):
     XKCD = "xkcd"
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceXkcdTypedDict(TypedDict):
     comic_number: NotRequired[str]
     r"""Specifies the comic number in which details are to be extracted, pagination will begin with that number to end of available comics"""
     source_type: Xkcd
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceXkcd(BaseModel):
     comic_number: Optional[str] = "2960"
     r"""Specifies the comic number in which details are to be extracted, pagination will begin with that number to end of available comics"""

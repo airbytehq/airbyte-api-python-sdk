@@ -8,13 +8,16 @@ import pydantic
 from pydantic import model_serializer
 from pydantic.functional_validators import AfterValidator
 from typing import Optional
-from typing_extensions import Annotated, NotRequired, TypedDict
+from typing_extensions import Annotated, NotRequired, TypedDict, deprecated
 
 
 class Zoom(str, Enum):
     ZOOM = "zoom"
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceZoomTypedDict(TypedDict):
     account_id: str
     r"""The account ID for your Zoom account. You can find this in the Zoom Marketplace under the \"Manage\" tab for your app."""
@@ -26,6 +29,9 @@ class SourceZoomTypedDict(TypedDict):
     source_type: Zoom
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceZoom(BaseModel):
     account_id: str
     r"""The account ID for your Zoom account. You can find this in the Zoom Marketplace under the \"Manage\" tab for your app."""

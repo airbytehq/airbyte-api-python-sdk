@@ -9,13 +9,16 @@ import pydantic
 from pydantic import model_serializer
 from pydantic.functional_validators import AfterValidator
 from typing import Any, List, Optional
-from typing_extensions import Annotated, NotRequired, TypedDict
+from typing_extensions import Annotated, NotRequired, TypedDict, deprecated
 
 
 class NewsdataIo(str, Enum):
     NEWSDATA_IO = "newsdata-io"
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceNewsdataIoTypedDict(TypedDict):
     api_key: str
     start_date: datetime
@@ -34,6 +37,9 @@ class SourceNewsdataIoTypedDict(TypedDict):
     source_type: NewsdataIo
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceNewsdataIo(BaseModel):
     api_key: str
 

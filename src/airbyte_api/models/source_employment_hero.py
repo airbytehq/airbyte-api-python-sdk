@@ -8,13 +8,16 @@ import pydantic
 from pydantic import model_serializer
 from pydantic.functional_validators import AfterValidator
 from typing import Any, List, Optional
-from typing_extensions import Annotated, NotRequired, TypedDict
+from typing_extensions import Annotated, NotRequired, TypedDict, deprecated
 
 
 class EmploymentHero(str, Enum):
     EMPLOYMENT_HERO = "employment-hero"
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceEmploymentHeroTypedDict(TypedDict):
     api_key: str
     employees_configids: NotRequired[List[Any]]
@@ -24,6 +27,9 @@ class SourceEmploymentHeroTypedDict(TypedDict):
     source_type: EmploymentHero
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceEmploymentHero(BaseModel):
     api_key: str
 

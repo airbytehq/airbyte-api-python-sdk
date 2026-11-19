@@ -8,7 +8,7 @@ import pydantic
 from pydantic import model_serializer
 from pydantic.functional_validators import AfterValidator
 from typing import Any, List, Optional
-from typing_extensions import Annotated, NotRequired, TypedDict
+from typing_extensions import Annotated, NotRequired, TypedDict, deprecated
 
 
 class SourceNewsdataCategory(str, Enum):
@@ -156,6 +156,9 @@ class Newsdata(str, Enum):
     NEWSDATA = "newsdata"
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceNewsdataTypedDict(TypedDict):
     api_key: str
     r"""API Key"""
@@ -171,6 +174,9 @@ class SourceNewsdataTypedDict(TypedDict):
     source_type: Newsdata
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceNewsdata(BaseModel):
     api_key: str
     r"""API Key"""

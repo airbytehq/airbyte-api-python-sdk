@@ -9,7 +9,7 @@ import pydantic
 from pydantic import model_serializer
 from pydantic.functional_validators import AfterValidator
 from typing import Optional
-from typing_extensions import Annotated, NotRequired, TypedDict
+from typing_extensions import Annotated, NotRequired, TypedDict, deprecated
 
 
 class Mention(str, Enum):
@@ -24,6 +24,9 @@ class StatisticsInterval(str, Enum):
     P1_M = "P1M"
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceMentionTypedDict(TypedDict):
     api_key: str
     stats_start_date: datetime
@@ -33,6 +36,9 @@ class SourceMentionTypedDict(TypedDict):
     r"""Periodicity of statistics returned. it may be daily(P1D), weekly(P1W) or monthly(P1M)."""
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceMention(BaseModel):
     api_key: str
 

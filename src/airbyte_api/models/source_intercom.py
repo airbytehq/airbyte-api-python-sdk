@@ -9,13 +9,16 @@ import pydantic
 from pydantic import model_serializer
 from pydantic.functional_validators import AfterValidator
 from typing import Optional
-from typing_extensions import Annotated, NotRequired, TypedDict
+from typing_extensions import Annotated, NotRequired, TypedDict, deprecated
 
 
 class Intercom(str, Enum):
     INTERCOM = "intercom"
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceIntercomTypedDict(TypedDict):
     access_token: str
     r"""Access token for making authenticated requests. See the <a href=\"https://developers.intercom.com/building-apps/docs/authentication-types#how-to-get-your-access-token\">Intercom docs</a> for more information."""
@@ -32,6 +35,9 @@ class SourceIntercomTypedDict(TypedDict):
     source_type: Intercom
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceIntercom(BaseModel):
     access_token: str
     r"""Access token for making authenticated requests. See the <a href=\"https://developers.intercom.com/building-apps/docs/authentication-types#how-to-get-your-access-token\">Intercom docs</a> for more information."""

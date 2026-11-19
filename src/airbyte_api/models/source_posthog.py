@@ -9,13 +9,16 @@ import pydantic
 from pydantic import model_serializer
 from pydantic.functional_validators import AfterValidator
 from typing import Optional
-from typing_extensions import Annotated, NotRequired, TypedDict
+from typing_extensions import Annotated, NotRequired, TypedDict, deprecated
 
 
 class Posthog(str, Enum):
     POSTHOG = "posthog"
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourcePosthogTypedDict(TypedDict):
     api_key: str
     r"""API Key. See the <a href=\"https://docs.airbyte.com/integrations/sources/posthog\">docs</a> for information on how to generate this key."""
@@ -28,6 +31,9 @@ class SourcePosthogTypedDict(TypedDict):
     source_type: Posthog
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourcePosthog(BaseModel):
     api_key: str
     r"""API Key. See the <a href=\"https://docs.airbyte.com/integrations/sources/posthog\">docs</a> for information on how to generate this key."""

@@ -9,13 +9,16 @@ import pydantic
 from pydantic import model_serializer
 from pydantic.functional_validators import AfterValidator
 from typing import Optional
-from typing_extensions import Annotated, NotRequired, TypedDict
+from typing_extensions import Annotated, NotRequired, TypedDict, deprecated
 
 
 class Lob(str, Enum):
     LOB = "lob"
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceLobTypedDict(TypedDict):
     api_key: str
     r"""API key to use for authentication. You can find your account's API keys in your Dashboard Settings at https://dashboard.lob.com/settings/api-keys."""
@@ -25,6 +28,9 @@ class SourceLobTypedDict(TypedDict):
     source_type: Lob
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceLob(BaseModel):
     api_key: str
     r"""API key to use for authentication. You can find your account's API keys in your Dashboard Settings at https://dashboard.lob.com/settings/api-keys."""

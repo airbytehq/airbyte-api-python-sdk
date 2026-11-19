@@ -9,7 +9,13 @@ import pydantic
 from pydantic import Discriminator, Tag, model_serializer
 from pydantic.functional_validators import AfterValidator
 from typing import Optional, Union
-from typing_extensions import Annotated, NotRequired, TypeAliasType, TypedDict
+from typing_extensions import (
+    Annotated,
+    NotRequired,
+    TypeAliasType,
+    TypedDict,
+    deprecated,
+)
 
 
 class SourceConvertkitAuthTypeAPIKey(str, Enum):
@@ -131,12 +137,18 @@ class Convertkit(str, Enum):
     CONVERTKIT = "convertkit"
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceConvertkitTypedDict(TypedDict):
     credentials: SourceConvertkitAuthenticationTypeTypedDict
     source_type: Convertkit
     start_date: NotRequired[datetime]
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceConvertkit(BaseModel):
     credentials: SourceConvertkitAuthenticationType
 

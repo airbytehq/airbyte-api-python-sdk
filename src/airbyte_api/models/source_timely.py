@@ -7,13 +7,16 @@ from datetime import datetime
 from enum import Enum
 import pydantic
 from pydantic.functional_validators import AfterValidator
-from typing_extensions import Annotated, TypedDict
+from typing_extensions import Annotated, TypedDict, deprecated
 
 
 class Timely(str, Enum):
     TIMELY = "timely"
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceTimelyTypedDict(TypedDict):
     account_id: str
     r"""The Account ID for your Timely account"""
@@ -24,6 +27,9 @@ class SourceTimelyTypedDict(TypedDict):
     source_type: Timely
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceTimely(BaseModel):
     account_id: str
     r"""The Account ID for your Timely account"""

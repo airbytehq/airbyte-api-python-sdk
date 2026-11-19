@@ -8,13 +8,16 @@ import pydantic
 from pydantic import model_serializer
 from pydantic.functional_validators import AfterValidator
 from typing import Optional
-from typing_extensions import Annotated, NotRequired, TypedDict
+from typing_extensions import Annotated, NotRequired, TypedDict, deprecated
 
 
 class Zenloop(str, Enum):
     ZENLOOP = "zenloop"
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceZenloopTypedDict(TypedDict):
     api_token: str
     r"""Zenloop API Token. You can get the API token in settings page <a href=\"https://app.zenloop.com/settings/api\">here</a>"""
@@ -27,6 +30,9 @@ class SourceZenloopTypedDict(TypedDict):
     r"""Zenloop Survey ID. Can be found <a href=\"https://app.zenloop.com/settings/api\">here</a>. Leave empty to pull answers from all surveys"""
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceZenloop(BaseModel):
     api_token: str
     r"""Zenloop API Token. You can get the API token in settings page <a href=\"https://app.zenloop.com/settings/api\">here</a>"""

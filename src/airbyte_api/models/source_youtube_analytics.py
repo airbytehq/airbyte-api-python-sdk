@@ -8,7 +8,7 @@ import pydantic
 from pydantic import ConfigDict
 from pydantic.functional_validators import AfterValidator
 from typing import Any, Dict
-from typing_extensions import Annotated, TypedDict
+from typing_extensions import Annotated, TypedDict, deprecated
 
 
 class AuthenticateViaOAuth20TypedDict(TypedDict):
@@ -48,11 +48,17 @@ class YoutubeAnalyticsEnum(str, Enum):
     YOUTUBE_ANALYTICS = "youtube-analytics"
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceYoutubeAnalyticsTypedDict(TypedDict):
     credentials: AuthenticateViaOAuth20TypedDict
     source_type: YoutubeAnalyticsEnum
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceYoutubeAnalytics(BaseModel):
     credentials: AuthenticateViaOAuth20
 

@@ -8,13 +8,16 @@ import pydantic
 from pydantic import model_serializer
 from pydantic.functional_validators import AfterValidator
 from typing import Optional
-from typing_extensions import Annotated, NotRequired, TypedDict
+from typing_extensions import Annotated, NotRequired, TypedDict, deprecated
 
 
 class MailjetSms(str, Enum):
     MAILJET_SMS = "mailjet-sms"
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceMailjetSmsTypedDict(TypedDict):
     token: str
     r"""Your access token. See <a href=\"https://dev.mailjet.com/sms/reference/overview/authentication\">here</a>."""
@@ -25,6 +28,9 @@ class SourceMailjetSmsTypedDict(TypedDict):
     r"""Retrieve SMS messages created after the specified timestamp. Required format - Unix timestamp."""
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceMailjetSms(BaseModel):
     token: str
     r"""Your access token. See <a href=\"https://dev.mailjet.com/sms/reference/overview/authentication\">here</a>."""

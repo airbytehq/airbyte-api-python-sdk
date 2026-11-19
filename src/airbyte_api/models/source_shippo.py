@@ -7,13 +7,16 @@ from datetime import datetime
 from enum import Enum
 import pydantic
 from pydantic.functional_validators import AfterValidator
-from typing_extensions import Annotated, TypedDict
+from typing_extensions import Annotated, TypedDict, deprecated
 
 
 class Shippo(str, Enum):
     SHIPPO = "shippo"
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceShippoTypedDict(TypedDict):
     shippo_token: str
     r"""The bearer token used for making requests"""
@@ -21,6 +24,9 @@ class SourceShippoTypedDict(TypedDict):
     source_type: Shippo
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceShippo(BaseModel):
     shippo_token: str
     r"""The bearer token used for making requests"""

@@ -6,19 +6,25 @@ from airbyte_api.utils import validate_const
 from enum import Enum
 import pydantic
 from pydantic.functional_validators import AfterValidator
-from typing_extensions import Annotated, TypedDict
+from typing_extensions import Annotated, TypedDict, deprecated
 
 
 class Eventzilla(str, Enum):
     EVENTZILLA = "eventzilla"
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceEventzillaTypedDict(TypedDict):
     x_api_key: str
     r"""API key to use. Generate it by creating a new application within your Eventzilla account settings under Settings > App Management."""
     source_type: Eventzilla
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceEventzilla(BaseModel):
     x_api_key: Annotated[str, pydantic.Field(alias="x-api-key")]
     r"""API key to use. Generate it by creating a new application within your Eventzilla account settings under Settings > App Management."""

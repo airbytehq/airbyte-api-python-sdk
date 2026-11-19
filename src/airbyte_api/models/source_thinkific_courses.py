@@ -6,19 +6,25 @@ from airbyte_api.utils import validate_const
 from enum import Enum
 import pydantic
 from pydantic.functional_validators import AfterValidator
-from typing_extensions import Annotated, TypedDict
+from typing_extensions import Annotated, TypedDict, deprecated
 
 
 class ThinkificCourses(str, Enum):
     THINKIFIC_COURSES = "thinkific-courses"
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceThinkificCoursesTypedDict(TypedDict):
     x_auth_subdomain: str
     api_key: str
     source_type: ThinkificCourses
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceThinkificCourses(BaseModel):
     x_auth_subdomain: Annotated[str, pydantic.Field(alias="X-Auth-Subdomain")]
 

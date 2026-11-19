@@ -6,13 +6,16 @@ from airbyte_api.utils import validate_const
 from enum import Enum
 import pydantic
 from pydantic.functional_validators import AfterValidator
-from typing_extensions import Annotated, TypedDict
+from typing_extensions import Annotated, TypedDict, deprecated
 
 
 class Postmarkapp(str, Enum):
     POSTMARKAPP = "postmarkapp"
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourcePostmarkappTypedDict(TypedDict):
     x_postmark_account_token: str
     r"""API Key for account"""
@@ -21,6 +24,9 @@ class SourcePostmarkappTypedDict(TypedDict):
     source_type: Postmarkapp
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourcePostmarkapp(BaseModel):
     x_postmark_account_token: Annotated[
         str, pydantic.Field(alias="X-Postmark-Account-Token")

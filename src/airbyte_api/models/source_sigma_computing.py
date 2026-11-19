@@ -9,13 +9,16 @@ import pydantic
 from pydantic import model_serializer
 from pydantic.functional_validators import AfterValidator
 from typing import Optional
-from typing_extensions import Annotated, NotRequired, TypedDict
+from typing_extensions import Annotated, NotRequired, TypedDict, deprecated
 
 
 class SigmaComputing(str, Enum):
     SIGMA_COMPUTING = "sigma-computing"
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceSigmaComputingTypedDict(TypedDict):
     base_url: str
     r"""The base url of your sigma organization"""
@@ -29,6 +32,9 @@ class SourceSigmaComputingTypedDict(TypedDict):
     source_type: SigmaComputing
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceSigmaComputing(BaseModel):
     base_url: str
     r"""The base url of your sigma organization"""

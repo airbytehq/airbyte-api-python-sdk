@@ -9,13 +9,16 @@ import pydantic
 from pydantic import model_serializer
 from pydantic.functional_validators import AfterValidator
 from typing import List, Optional
-from typing_extensions import Annotated, NotRequired, TypedDict
+from typing_extensions import Annotated, NotRequired, TypedDict, deprecated
 
 
 class Jira(str, Enum):
     JIRA = "jira"
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceJiraTypedDict(TypedDict):
     api_token: str
     r"""Jira API Token. See the <a href=\"https://docs.airbyte.com/integrations/sources/jira\">docs</a> for more information on how to generate this key. API Token is used for Authorization to your account by BasicAuth."""
@@ -34,6 +37,9 @@ class SourceJiraTypedDict(TypedDict):
     r"""The date from which you want to replicate data from Jira, use the format YYYY-MM-DDT00:00:00Z. Note that this field only applies to certain streams, and only data generated on or after the start date will be replicated. Or leave it empty if you want to replicate all data. For more information, refer to the <a href=\"https://docs.airbyte.com/integrations/sources/jira/\">documentation</a>."""
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceJira(BaseModel):
     api_token: str
     r"""Jira API Token. See the <a href=\"https://docs.airbyte.com/integrations/sources/jira\">docs</a> for more information on how to generate this key. API Token is used for Authorization to your account by BasicAuth."""

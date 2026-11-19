@@ -9,13 +9,16 @@ import pydantic
 from pydantic import model_serializer
 from pydantic.functional_validators import AfterValidator
 from typing import Optional
-from typing_extensions import Annotated, NotRequired, TypedDict
+from typing_extensions import Annotated, NotRequired, TypedDict, deprecated
 
 
 class CloseCom(str, Enum):
     CLOSE_COM = "close-com"
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceCloseComTypedDict(TypedDict):
     api_key: str
     r"""Close.com API key (usually starts with 'api_'; find yours <a href=\"https://app.close.com/settings/api/\">here</a>)."""
@@ -24,6 +27,9 @@ class SourceCloseComTypedDict(TypedDict):
     r"""The start date to sync data; all data after this date will be replicated. Leave blank to retrieve all the data available in the account. Format: YYYY-MM-DD."""
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceCloseCom(BaseModel):
     api_key: str
     r"""Close.com API key (usually starts with 'api_'; find yours <a href=\"https://app.close.com/settings/api/\">here</a>)."""

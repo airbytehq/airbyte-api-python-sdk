@@ -9,7 +9,7 @@ import pydantic
 from pydantic import model_serializer
 from pydantic.functional_validators import AfterValidator
 from typing import Optional
-from typing_extensions import Annotated, NotRequired, TypedDict
+from typing_extensions import Annotated, NotRequired, TypedDict, deprecated
 
 
 class DomainRegionCode(str, Enum):
@@ -23,6 +23,9 @@ class Mailgun(str, Enum):
     MAILGUN = "mailgun"
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceMailgunTypedDict(TypedDict):
     private_key: str
     r"""Primary account API key to access your Mailgun data."""
@@ -33,6 +36,9 @@ class SourceMailgunTypedDict(TypedDict):
     r"""UTC date and time in the format 2020-10-01 00:00:00. Any data before this date will not be replicated. If omitted, defaults to 3 days ago."""
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceMailgun(BaseModel):
     private_key: str
     r"""Primary account API key to access your Mailgun data."""

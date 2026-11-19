@@ -9,7 +9,7 @@ import pydantic
 from pydantic import model_serializer
 from pydantic.functional_validators import AfterValidator
 from typing import List, Optional
-from typing_extensions import Annotated, NotRequired, TypedDict
+from typing_extensions import Annotated, NotRequired, TypedDict, deprecated
 
 
 class AWSSellerPartnerAccountType(str, Enum):
@@ -172,6 +172,9 @@ class AmazonSellerPartnerEnum(str, Enum):
     AMAZON_SELLER_PARTNER = "amazon-seller-partner"
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceAmazonSellerPartnerTypedDict(TypedDict):
     lwa_app_id: str
     r"""Your Login with Amazon Client ID."""
@@ -213,6 +216,9 @@ class SourceAmazonSellerPartnerTypedDict(TypedDict):
     r"""For report based streams with known amount of requests per time period, this option will use waiting time between requests to avoid fatal statuses in reports. See <a href=\"https://docs.airbyte.com/integrations/sources/amazon-seller-partner#limitations--troubleshooting\" target=\"_blank\">Troubleshooting</a> section for more details"""
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceAmazonSellerPartner(BaseModel):
     lwa_app_id: str
     r"""Your Login with Amazon Client ID."""

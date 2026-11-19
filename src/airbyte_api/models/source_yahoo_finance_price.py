@@ -8,7 +8,7 @@ import pydantic
 from pydantic import model_serializer
 from pydantic.functional_validators import AfterValidator
 from typing import Optional
-from typing_extensions import Annotated, NotRequired, TypedDict
+from typing_extensions import Annotated, NotRequired, TypedDict, deprecated
 
 
 class SourceYahooFinancePriceInterval(str, Enum):
@@ -47,6 +47,9 @@ class YahooFinancePrice(str, Enum):
     YAHOO_FINANCE_PRICE = "yahoo-finance-price"
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceYahooFinancePriceTypedDict(TypedDict):
     tickers: str
     r"""Comma-separated identifiers for the stocks to be queried. Whitespaces are allowed."""
@@ -57,6 +60,9 @@ class SourceYahooFinancePriceTypedDict(TypedDict):
     source_type: YahooFinancePrice
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceYahooFinancePrice(BaseModel):
     tickers: str
     r"""Comma-separated identifiers for the stocks to be queried. Whitespaces are allowed."""

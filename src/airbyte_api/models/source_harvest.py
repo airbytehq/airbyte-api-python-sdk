@@ -9,7 +9,13 @@ import pydantic
 from pydantic import ConfigDict, model_serializer
 from pydantic.functional_validators import AfterValidator
 from typing import Any, Dict, Optional, Union
-from typing_extensions import Annotated, NotRequired, TypeAliasType, TypedDict
+from typing_extensions import (
+    Annotated,
+    NotRequired,
+    TypeAliasType,
+    TypedDict,
+    deprecated,
+)
 
 
 class SourceHarvestAuthTypeToken(str, Enum):
@@ -155,6 +161,9 @@ class Harvest(str, Enum):
     HARVEST = "harvest"
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceHarvestTypedDict(TypedDict):
     account_id: str
     r"""Harvest account ID. Required for all Harvest requests in pair with Personal Access Token"""
@@ -165,6 +174,9 @@ class SourceHarvestTypedDict(TypedDict):
     source_type: Harvest
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceHarvest(BaseModel):
     account_id: str
     r"""Harvest account ID. Required for all Harvest requests in pair with Personal Access Token"""

@@ -9,7 +9,7 @@ import pydantic
 from pydantic import model_serializer
 from pydantic.functional_validators import AfterValidator
 from typing import Optional
-from typing_extensions import Annotated, NotRequired, TypedDict
+from typing_extensions import Annotated, NotRequired, TypedDict, deprecated
 
 
 class SourceDwollaEnvironment(str, Enum):
@@ -23,6 +23,9 @@ class Dwolla(str, Enum):
     DWOLLA = "dwolla"
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceDwollaTypedDict(TypedDict):
     client_id: str
     client_secret: str
@@ -32,6 +35,9 @@ class SourceDwollaTypedDict(TypedDict):
     source_type: Dwolla
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceDwolla(BaseModel):
     client_id: str
 

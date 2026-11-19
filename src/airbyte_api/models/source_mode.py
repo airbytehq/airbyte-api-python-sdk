@@ -6,13 +6,16 @@ from airbyte_api.utils import validate_const
 from enum import Enum
 import pydantic
 from pydantic.functional_validators import AfterValidator
-from typing_extensions import Annotated, TypedDict
+from typing_extensions import Annotated, TypedDict, deprecated
 
 
 class SourceModeMode(str, Enum):
     MODE = "mode"
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceModeTypedDict(TypedDict):
     api_secret: str
     r"""API secret to use as the password for Basic Authentication."""
@@ -22,6 +25,9 @@ class SourceModeTypedDict(TypedDict):
     source_type: SourceModeMode
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceMode(BaseModel):
     api_secret: str
     r"""API secret to use as the password for Basic Authentication."""

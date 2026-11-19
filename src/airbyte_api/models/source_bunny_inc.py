@@ -9,13 +9,16 @@ import pydantic
 from pydantic import model_serializer
 from pydantic.functional_validators import AfterValidator
 from typing import Optional
-from typing_extensions import Annotated, NotRequired, TypedDict
+from typing_extensions import Annotated, NotRequired, TypedDict, deprecated
 
 
 class BunnyInc(str, Enum):
     BUNNY_INC = "bunny-inc"
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceBunnyIncTypedDict(TypedDict):
     apikey: str
     subdomain: str
@@ -24,6 +27,9 @@ class SourceBunnyIncTypedDict(TypedDict):
     start_date: NotRequired[datetime]
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceBunnyInc(BaseModel):
     apikey: str
 

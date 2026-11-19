@@ -6,13 +6,16 @@ from airbyte_api.utils import validate_const
 from enum import Enum
 import pydantic
 from pydantic.functional_validators import AfterValidator
-from typing_extensions import Annotated, TypedDict
+from typing_extensions import Annotated, TypedDict, deprecated
 
 
 class Toggl(str, Enum):
     TOGGL = "toggl"
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceTogglTypedDict(TypedDict):
     api_token: str
     r"""Your API Token. See <a href=\"https://developers.track.toggl.com/docs/authentication\">here</a>. The token is case sensitive."""
@@ -27,6 +30,9 @@ class SourceTogglTypedDict(TypedDict):
     source_type: Toggl
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourceToggl(BaseModel):
     api_token: str
     r"""Your API Token. See <a href=\"https://developers.track.toggl.com/docs/authentication\">here</a>. The token is case sensitive."""

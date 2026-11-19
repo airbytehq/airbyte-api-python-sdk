@@ -8,13 +8,16 @@ import pydantic
 from pydantic import model_serializer
 from pydantic.functional_validators import AfterValidator
 from typing import Optional
-from typing_extensions import Annotated, NotRequired, TypedDict
+from typing_extensions import Annotated, NotRequired, TypedDict, deprecated
 
 
 class Pypi(str, Enum):
     PYPI = "pypi"
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourcePypiTypedDict(TypedDict):
     project_name: str
     r"""Name of the project/package. Can only be in lowercase with hyphen. This is the name used using pip command for installing the package."""
@@ -23,6 +26,9 @@ class SourcePypiTypedDict(TypedDict):
     r"""Version of the project/package.  Use it to find a particular release instead of all releases."""
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourcePypi(BaseModel):
     project_name: str
     r"""Name of the project/package. Can only be in lowercase with hyphen. This is the name used using pip command for installing the package."""

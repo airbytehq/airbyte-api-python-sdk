@@ -9,7 +9,7 @@ import pydantic
 from pydantic import model_serializer
 from pydantic.functional_validators import AfterValidator
 from typing import Optional
-from typing_extensions import Annotated, NotRequired, TypedDict
+from typing_extensions import Annotated, NotRequired, TypedDict, deprecated
 
 
 class PlaidEnvironment(str, Enum):
@@ -24,6 +24,9 @@ class Plaid(str, Enum):
     PLAID = "plaid"
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourcePlaidTypedDict(TypedDict):
     access_token: str
     r"""The end-user's Link access token."""
@@ -38,6 +41,9 @@ class SourcePlaidTypedDict(TypedDict):
     r"""The date from which you'd like to replicate data for Plaid in the format YYYY-MM-DD. All data generated after this date will be replicated."""
 
 
+@deprecated(
+    "warning: ** DEPRECATED ** - Typed connector configuration models are deprecated and will be removed in v1.1.0. Pass configuration as a plain dict with a required 'sourceType' key instead.."
+)
 class SourcePlaid(BaseModel):
     access_token: str
     r"""The end-user's Link access token."""
