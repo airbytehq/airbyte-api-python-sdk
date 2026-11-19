@@ -37,7 +37,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Create draft release
-        uses: aaronsteers/semantic-pr-release-drafter@v2.2.0
+        uses: aaronsteers/semantic-pr-release-drafter@v2.4.4
         id: release-drafter
         with:
           name-template: 'v$RESOLVED_VERSION'
