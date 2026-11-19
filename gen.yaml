@@ -12,7 +12,7 @@ generation:
     requestResponseComponentNamesFeb2024: false
     securityFeb2025: false
     sharedErrorComponentsApr2025: false
-    sharedNestedComponentsJan2026: false
+    sharedNestedComponentsJan2026: true
     nameOverrideFeb2026: false
   auth:
     oAuth2ClientCredentialsEnabled: true
