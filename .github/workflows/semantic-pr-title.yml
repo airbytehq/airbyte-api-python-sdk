@@ -45,7 +45,7 @@ jobs:
 
       - name: Check for "do not merge" in PR title
         if: ${{ github.event.pull_request.draft == false }}
-        uses: actions/github-script@v8
+        uses: actions/github-script@v9
         with:
           script: |
             const title = context.payload.pull_request.title.toLowerCase();
